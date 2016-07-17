@@ -266,7 +266,6 @@ end
 
 # the interpreter
 class Interpreter
-  attr_reader :current_line_number
   attr_accessor :next_line_number
 
   def initialize(print_width, zone_width, output_speed)
@@ -443,7 +442,7 @@ class Interpreter
     # phase 2: run each command
     # start with the first line number
     line_numbers = @program_lines.keys.sort
-    @current_line_number = line_numbers[0]
+    @current_line_index = line_numbers[0]
     @running = true
     begin
       program_loop(trace_flag || @tron_flag) while @running
@@ -456,23 +455,26 @@ class Interpreter
 
   def print_trace_info(line)
     @printer.newline_when_needed
-    @printer.print_out "#{@current_line_number}: #{line}"
+    @printer.print_out "#{@current_line_index}: #{line}"
     @printer.newline
   end
 
-  def print_errors(current_line_number, statement)
-    puts "Errors in line #{current_line_number}:"
+  def print_errors(current_line_index, statement)
+    puts "Errors in line #{current_line_index}:"
     statement.errors.each { |error| puts error }
   end
 
-  def execute_a_line(do_trace)
-    line = @program_lines[@current_line_number]
+  def execute_a_statement(do_trace)
+    line = @program_lines[@current_line_index]
     statements = line.statements
     statements.each do |statement|
       print_trace_info(statement) if do_trace
       stop_running unless statement.errors.empty?
-      print_errors(current_line_number, statement) unless statement.errors.empty?
-      statement.execute(self, do_trace) if @running
+      if statement.errors.empty?
+        statement.execute(self, do_trace) if @running
+      else
+        print_errors(@current_line_index, statement)
+      end
     end
   end
 
@@ -480,22 +482,22 @@ class Interpreter
     # pick the next line number
     @next_line_number = find_next_line_number
     begin
-      execute_a_line(trace_flag)
+      execute_a_statement(trace_flag)
       # set the next line number
-      @current_line_number = nil
+      @current_line_index = nil
       if @running
         verify_next_line_number
-        @current_line_number = @next_line_number
+        @current_line_index = @next_line_number
       end
     rescue BASICException => message
-      puts "#{message} in line #{current_line_number}"
+      puts "#{message} in line #{@current_line_index}"
       stop_running
     end
   end
 
   def find_next_line_number
     line_numbers = @program_lines.keys.sort
-    index = line_numbers.index(@current_line_number)
+    index = line_numbers.index(@current_line_index)
     line_numbers[index + 1]
   end
 
@@ -579,7 +581,7 @@ class Interpreter
 
   def stop
     stop_running
-    puts "STOP in line #{@current_line_number}"
+    puts "STOP in line #{@current_line_index}"
   end
 
   def stop_running
@@ -598,7 +600,7 @@ class Interpreter
     # starting with @next_line_number
     line_numbers = @program_lines.keys.sort
     forward_line_numbers =
-      line_numbers.select { |line_number| line_number > @current_line_number }
+      line_numbers.select { |line_number| line_number > @current_line_index }
     # find a NEXT statement with matching control variable
     forward_line_numbers.each do |line_number|
       line = @program_lines[line_number]

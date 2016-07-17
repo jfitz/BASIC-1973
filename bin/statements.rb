@@ -231,16 +231,6 @@ class AbstractStatement
     end
   end
 
-  def execute(interpreter, trace)
-    if @errors.empty?
-      execute_cmd(interpreter, trace)
-    else
-      @errors.each do |error|
-        puts "line #{interpreter.current_line_number}: #{error}"
-      end
-    end
-  end
-
   protected
 
   def make_coord(c)
@@ -263,7 +253,7 @@ class UnknownStatement < AbstractStatement
     @text
   end
 
-  def execute_cmd(_, _)
+  def execute(_, _)
     0
   end
 end
@@ -278,7 +268,7 @@ class EmptyStatement < AbstractStatement
     ''
   end
 
-  def execute_cmd(_, _)
+  def execute(_, _)
     0
   end
 end
@@ -296,7 +286,7 @@ class RemarkStatement < AbstractStatement
     @keyword + @rest
   end
 
-  def execute_cmd(_, _)
+  def execute(_, _)
     0
   end
 end
@@ -324,7 +314,7 @@ class DimStatement < AbstractStatement
     @keyword + ' ' + @expression_list.join(', ')
   end
 
-  def execute_cmd(interpreter, _)
+  def execute(interpreter, _)
     @expression_list.each do |expression|
       variables = expression.evaluate(interpreter)
       variable = variables[0]
@@ -358,7 +348,7 @@ class LetStatement < AbstractStatement
     @keyword + ' ' + @assignment.to_s
   end
 
-  def execute_cmd(interpreter, trace)
+  def execute(interpreter, trace)
     l_values = @assignment.eval_target(interpreter)
     l_value = l_values[0]
     r_values = @assignment.eval_value(interpreter)
@@ -400,7 +390,7 @@ class InputStatement < AbstractStatement
     end
   end
 
-  def execute_cmd(interpreter, trace)
+  def execute(interpreter, trace)
     printer = interpreter.print_handler
     values = input_values
     name_value_pairs =
@@ -480,7 +470,7 @@ class IfStatement < AbstractStatement
     @keyword + ' ' + @expression.to_s + ' THEN ' + @destination.to_s
   end
 
-  def execute_cmd(interpreter, trace)
+  def execute(interpreter, trace)
     result = @expression.evaluate(interpreter)[0]
     interpreter.next_line_number = @destination if result.value
     return unless trace
@@ -541,7 +531,7 @@ class PrintStatement < AbstractStatement
     end
   end
 
-  def execute_cmd(interpreter, _)
+  def execute(interpreter, _)
     printer = interpreter.print_handler
     @print_items.each do |item|
       item.print(printer, interpreter)
@@ -607,7 +597,7 @@ class GotoStatement < AbstractStatement
     @keyword + ' ' + @destination.to_s
   end
 
-  def execute_cmd(interpreter, _)
+  def execute(interpreter, _)
     interpreter.next_line_number = @destination
   end
 end
@@ -631,7 +621,7 @@ class GosubStatement < AbstractStatement
     @keyword + ' ' + @destination.to_s
   end
 
-  def execute_cmd(interpreter, _)
+  def execute(interpreter, _)
     interpreter.push_return(interpreter.next_line_number)
     interpreter.next_line_number = @destination
   end
@@ -647,7 +637,7 @@ class ReturnStatement < AbstractStatement
     @keyword
   end
 
-  def execute_cmd(interpreter, _)
+  def execute(interpreter, _)
     interpreter.next_line_number = interpreter.pop_return
   end
 end
@@ -716,7 +706,7 @@ class ForStatement < AbstractStatement
     end
   end
 
-  def execute_cmd(interpreter, trace)
+  def execute(interpreter, trace)
     from = @start.evaluate(interpreter)[0]
     to = @end.evaluate(interpreter)[0]
     step = @step_value.evaluate(interpreter)[0]
@@ -814,7 +804,7 @@ class NextStatement < AbstractStatement
     @keyword + ' ' + @control.to_s
   end
 
-  def execute_cmd(interpreter, trace)
+  def execute(interpreter, trace)
     fornext_control = interpreter.retrieve_fornext(@control)
     # check control variable value
     # if matches end value, stop here
@@ -853,7 +843,7 @@ class ReadStatement < AbstractStatement
     @keyword + ' ' + @expression_list.join(', ')
   end
 
-  def execute_cmd(interpreter, trace)
+  def execute(interpreter, trace)
     @expression_list.each do |expression|
       variables = expression.evaluate(interpreter)
       variable = variables[0]
@@ -879,7 +869,7 @@ class DataStatement < AbstractStatement
     interpreter.store_data(data_list)
   end
 
-  def execute_cmd(_, _)
+  def execute(_, _)
     0
   end
 end
@@ -894,7 +884,7 @@ class RestoreStatement < AbstractStatement
     @keyword
   end
 
-  def execute_cmd(interpreter, _)
+  def execute(interpreter, _)
     interpreter.reset_data
   end
 end
@@ -925,7 +915,7 @@ class DefineFunctionStatement < AbstractStatement
     interpreter.set_user_function(@name, @arguments, @template)
   end
 
-  def execute_cmd(_, _)
+  def execute(_, _)
   end
 end
 
@@ -939,7 +929,7 @@ class StopStatement < AbstractStatement
     @keyword
   end
 
-  def execute_cmd(interpreter, _)
+  def execute(interpreter, _)
     printer = interpreter.print_handler
     printer.newline_when_needed
     interpreter.stop
@@ -956,7 +946,7 @@ class EndStatement < AbstractStatement
     @keyword
   end
 
-  def execute_cmd(interpreter, _)
+  def execute(interpreter, _)
     printer = interpreter.print_handler
     printer.newline_when_needed
     interpreter.stop
@@ -977,7 +967,7 @@ class TraceStatement < AbstractStatement
     end
   end
 
-  def execute_cmd(interpreter, _)
+  def execute(interpreter, _)
     interpreter.trace(@operation.value)
   end
 
@@ -1005,7 +995,7 @@ class MatPrintStatement < AbstractStatement
     end
   end
 
-  def execute_cmd(interpreter, _)
+  def execute(interpreter, _)
     printer = interpreter.print_handler
     i = 0
     @print_items.each do |item|
@@ -1063,7 +1053,7 @@ class MatReadStatement < AbstractStatement
     @keyword + ' ' + @expression_list.join(', ')
   end
 
-  def execute_cmd(interpreter, trace)
+  def execute(interpreter, trace)
     @expression_list.each do |expression|
       targets = expression.evaluate(interpreter)
       targets.each do |target|
@@ -1131,7 +1121,7 @@ class MatLetStatement < AbstractStatement
     @keyword + ' ' + @assignment.to_s
   end
 
-  def execute_cmd(interpreter, trace)
+  def execute(interpreter, trace)
     l_value = first_target(interpreter)
     name = l_value
     r_value = first_value(interpreter)
