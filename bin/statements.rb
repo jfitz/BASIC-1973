@@ -80,23 +80,23 @@ class StatementFactory
     @statement_definitions = statement_definitions
   end
 
-  def parse(line)
+  def parse(text)
     line_num = nil
     statement = nil
-    m = /\A\d+/.match(line)
+    m = /\A\d+/.match(text)
     unless m.nil?
       line_num = LineNumber.new(m[0])
-      statements = create(m.post_match)
+      line = create(m.post_match)
     end
-    [line_num, statements]
+    [line_num, line]
   end
 
   private
 
   def create(text)
     squeezed = squeeze_out_spaces(text)
-    return [EmptyStatement.new] if squeezed == ''
-    return [RemarkStatement.new(text)] if squeezed[0..2] == 'REM'
+    return Line.new(text, [EmptyStatement.new]) if squeezed == ''
+    return Line.new(text, [RemarkStatement.new(text)]) if squeezed[0..2] == 'REM'
 
     statements = []
     all_tokens = tokenize(squeezed)
@@ -106,7 +106,7 @@ class StatementFactory
       keyword << tokens.shift.to_s while !tokens.empty? && tokens[0].keyword?
       statements << create_regular_statement(keyword, text, tokens)
     end
-    statements
+    Line.new(text, statements)
   end
 
   def split(tokens)
@@ -221,10 +221,6 @@ class AbstractStatement
 
   def pre_execute(_)
     0
-  end
-
-  def list
-    @text
   end
 
   def pretty

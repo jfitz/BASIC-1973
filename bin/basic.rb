@@ -165,6 +165,22 @@ class LineListSpec
   end
 end
 
+# Line class to hold a line of code
+class Line
+  def initialize(text, statements)
+    @text = text
+    @statements = statements
+  end
+
+  def list
+    @text
+  end
+
+  def statements
+    @statements
+  end
+end
+
 # Print Handler class
 # Handle tab stops and carriage control
 class PrintHandler
@@ -322,9 +338,9 @@ class Interpreter
 
   def list_lines_errors(line_numbers)
     line_numbers.each do |line_number|
-      statements = @program_lines[line_number]
-      first_statement = statements[0]
-      puts line_number.to_s + first_statement.list
+      line = @program_lines[line_number]
+      puts line_number.to_s + line.list
+      statements = line.statements
       statements.each do |statement|
         statement.errors.each { |error| puts ' ' + error }
       end
@@ -333,7 +349,8 @@ class Interpreter
 
   def pretty_lines_errors(line_numbers)
     line_numbers.each do |line_number|
-      statements = @program_lines[line_number]
+      line = @program_lines[line_number]
+      statements = line.statements
       ss = []
       statements.each { |statement| ss << statement.pretty }
       text = ss.join(' \\')
@@ -346,11 +363,8 @@ class Interpreter
 
   def list_lines(line_numbers)
     line_numbers.each do |line_number|
-      statement = @program_lines[line_number]
-      ss = []
-      statements.each { |statement| ss << statement.list }
-      text = ss.join('\\')
-      puts line_number.to_s + text
+      line = @program_lines[line_number]
+      puts line_number.to_s + line.list
     end
   end
 
@@ -419,7 +433,8 @@ class Interpreter
     # phase 1: do all initialization (store values in DATA lines)
     line_numbers = @program_lines.keys.sort
     line_numbers.each do |line_number|
-      statements = @program_lines[line_number]
+      line = @program_lines[line_number]
+      statements = line.statements
       statements.each { |statement| statement.pre_execute(self) }
     end
   end
@@ -451,7 +466,8 @@ class Interpreter
   end
 
   def execute_a_line(do_trace)
-    statements = @program_lines[@current_line_number]
+    line = @program_lines[@current_line_number]
+    statements = line.statements
     statements.each do |statement|
       print_trace_info(statement) if do_trace
       stop_running unless statement.errors.empty?
@@ -535,7 +551,8 @@ class Interpreter
     begin
       File.open(filename, 'w') do |file|
         line_numbers.each do |line_num|
-          statements = @program_lines[line_num]
+          line = @program_lines[line_num]
+          statements = line.statements
           text = statements.join('\\')
           file.puts line_num + ' ' + text
         end
@@ -584,7 +601,8 @@ class Interpreter
       line_numbers.select { |line_number| line_number > @current_line_number }
     # find a NEXT statement with matching control variable
     forward_line_numbers.each do |line_number|
-      statements = @program_lines[line_number]
+      line = @program_lines[line_number]
+      statements = line.statements
       statements.each do |statement|
         if statement.class.to_s == 'NextStatement'
           return line_number if statement.control == control_variable
@@ -740,9 +758,10 @@ class Interpreter
   end
 
   def store_program_line(cmd, print_errors)
-    line_num, statements = parse_line(cmd)
-    if !line_num.nil? && !statements.nil?
-      @program_lines[line_num] = statements
+    line_num, line = parse_line(cmd)
+    if !line_num.nil? && !line.nil?
+      @program_lines[line_num] = line
+      statements = line.statements
       statements.each do |statement|
         statement.errors.each { |error| puts error } if print_errors
         !statement.errors.empty?
