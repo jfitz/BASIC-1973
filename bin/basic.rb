@@ -322,26 +322,36 @@ class Interpreter
 
   def list_lines_errors(line_numbers)
     line_numbers.each do |line_number|
-      statement = @program_lines[line_number]
-      text = statement.list
+      statements = @program_lines[line_number]
+      ss = []
+      statements.each { |statement| ss << statement.list }
+      text = ss.join('\\')
       puts line_number.to_s + text
-      statement.errors.each { |error| puts ' ' + error }
+      statements.each do |statement|
+        statement.errors.each { |error| puts ' ' + error }
+      end
     end
   end
 
   def pretty_lines_errors(line_numbers)
     line_numbers.each do |line_number|
-      statement = @program_lines[line_number]
-      text = statement.pretty
+      statements = @program_lines[line_number]
+      ss = []
+      statements.each { |statement| ss << statement.pretty }
+      text = ss.join('\\')
       puts line_number.to_s + text
-      statement.errors.each { |error| puts ' ' + error }
+      statements.each do |statement|
+        statement.errors.each { |error| puts ' ' + error }
+      end
     end
   end
 
   def list_lines(line_numbers)
     line_numbers.each do |line_number|
       statement = @program_lines[line_number]
-      text = statement.list
+      ss = []
+      statements.each { |statement| ss << statement.list }
+      text = ss.join('\\')
       puts line_number.to_s + text
     end
   end
@@ -411,7 +421,8 @@ class Interpreter
     # phase 1: do all initialization (store values in DATA lines)
     line_numbers = @program_lines.keys.sort
     line_numbers.each do |line_number|
-      @program_lines[line_number].pre_execute(self)
+      statements = @program_lines[line_number]
+      statements.each { |statement| statement.pre_execute(self) }
     end
   end
 
@@ -442,11 +453,13 @@ class Interpreter
   end
 
   def execute_a_line(do_trace)
-    statement = @program_lines[@current_line_number]
-    print_trace_info(statement) if do_trace
-    stop_running unless statement.errors.empty?
-    print_errors(current_line_number, statement) unless statement.errors.empty?
-    statement.execute(self, do_trace) if @running
+    statements = @program_lines[@current_line_number]
+    statements.each do |statement|
+      print_trace_info(statement) if do_trace
+      stop_running unless statement.errors.empty?
+      print_errors(current_line_number, statement) unless statement.errors.empty?
+      statement.execute(self, do_trace) if @running
+    end
   end
 
   def program_loop(trace_flag)
@@ -524,7 +537,8 @@ class Interpreter
     begin
       File.open(filename, 'w') do |file|
         line_numbers.each do |line_num|
-          text = @program_lines[line_num]
+          statements = @program_lines[line_num]
+          text = statements.join('\\')
           file.puts line_num + ' ' + text
         end
         file.close
@@ -572,9 +586,11 @@ class Interpreter
       line_numbers.select { |line_number| line_number > @current_line_number }
     # find a NEXT statement with matching control variable
     forward_line_numbers.each do |line_number|
-      statement = @program_lines[line_number]
-      if statement.class.to_s == 'NextStatement'
-        return line_number if statement.control == control_variable
+      statements = @program_lines[line_number]
+      statements.each do |statement|
+        if statement.class.to_s == 'NextStatement'
+          return line_number if statement.control == control_variable
+        end
       end
     end
     raise(BASICException, 'FOR without NEXT') # if none found, error
@@ -726,11 +742,13 @@ class Interpreter
   end
 
   def store_program_line(cmd, print_errors)
-    line_num, statement = parse_line(cmd)
-    if !line_num.nil? && !statement.nil?
-      @program_lines[line_num] = statement
-      statement.errors.each { |error| puts error } if print_errors
-      !statement.errors.empty?
+    line_num, statements = parse_line(cmd)
+    if !line_num.nil? && !statements.nil?
+      @program_lines[line_num] = statements
+      statements.each do |statement|
+        statement.errors.each { |error| puts error } if print_errors
+        !statement.errors.empty?
+      end
     else
       true
     end

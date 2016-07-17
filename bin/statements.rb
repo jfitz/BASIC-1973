@@ -88,7 +88,8 @@ class StatementFactory
       line_num = LineNumber.new(m[0])
       statement = create(m.post_match)
     end
-    [line_num, statement]
+    statements = [statement]
+    [line_num, statements]
   end
 
   private
