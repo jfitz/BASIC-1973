@@ -472,7 +472,7 @@ class IfStatement < AbstractStatement
 
   def execute(interpreter, trace)
     result = @expression.evaluate(interpreter)[0]
-    interpreter.next_line_number = @destination if result.value
+    interpreter.next_line_index = @destination if result.value
     return unless trace
     printer = interpreter.print_handler
     s = ' ' + result.to_s
@@ -598,7 +598,7 @@ class GotoStatement < AbstractStatement
   end
 
   def execute(interpreter, _)
-    interpreter.next_line_number = @destination
+    interpreter.next_line_index = @destination
   end
 end
 
@@ -622,8 +622,8 @@ class GosubStatement < AbstractStatement
   end
 
   def execute(interpreter, _)
-    interpreter.push_return(interpreter.next_line_number)
-    interpreter.next_line_number = @destination
+    interpreter.push_return(interpreter.next_line_index)
+    interpreter.next_line_index = @destination
   end
 end
 
@@ -638,7 +638,7 @@ class ReturnStatement < AbstractStatement
   end
 
   def execute(interpreter, _)
-    interpreter.next_line_number = interpreter.pop_return
+    interpreter.next_line_index = interpreter.pop_return
   end
 end
 
@@ -713,11 +713,11 @@ class ForStatement < AbstractStatement
 
     interpreter.set_value(@control, from, false)
     fornext_control =
-      ForNextControl.new(@control, interpreter.next_line_number, from, to, step)
+      ForNextControl.new(@control, interpreter.next_line_index, from, to, step)
 
     interpreter.assign_fornext(fornext_control)
     terminated = fornext_control.front_terminated?
-    interpreter.next_line_number =
+    interpreter.next_line_index =
       interpreter.find_closing_next(@control.to_s) if terminated
 
     print_trace_info(interpreter.print_handler, from, to, step, terminated) if
@@ -816,7 +816,7 @@ class NextStatement < AbstractStatement
     end
     return if terminated
     # set next line from top item
-    interpreter.next_line_number = fornext_control.start_line_index
+    interpreter.next_line_index = fornext_control.start_line_index
     # change control variable value
     fornext_control.bump_control(interpreter, trace)
   end

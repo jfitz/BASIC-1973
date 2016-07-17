@@ -266,7 +266,7 @@ end
 
 # the interpreter
 class Interpreter
-  attr_accessor :next_line_number
+  attr_accessor :next_line_index
 
   def initialize(print_width, zone_width, output_speed)
     @running = false
@@ -406,12 +406,12 @@ class Interpreter
     puts e
   end
 
-  def verify_next_line_number
+  def verify_next_line_index
     raise BASICException, 'Program terminated without END' if
-      @next_line_number.nil?
+      @next_line_index.nil?
     line_numbers = @program_lines.keys.sort
-    raise BASICException, "Line number #{@next_line_number} not found" unless
-      line_numbers.include?(@next_line_number)
+    raise BASICException, "Line number #{@next_line_index} not found" unless
+      line_numbers.include?(@next_line_index)
   end
 
   public
@@ -480,14 +480,14 @@ class Interpreter
 
   def program_loop(trace_flag)
     # pick the next line number
-    @next_line_number = find_next_line_number
+    @next_line_index = find_next_line_index
     begin
       execute_a_statement(trace_flag)
       # set the next line number
       @current_line_index = nil
       if @running
-        verify_next_line_number
-        @current_line_index = @next_line_number
+        verify_next_line_index
+        @current_line_index = @next_line_index
       end
     rescue BASICException => message
       puts "#{message} in line #{@current_line_index}"
@@ -495,7 +495,7 @@ class Interpreter
     end
   end
 
-  def find_next_line_number
+  def find_next_line_index
     line_numbers = @program_lines.keys.sort
     index = line_numbers.index(@current_line_index)
     line_numbers[index + 1]
@@ -597,7 +597,7 @@ class Interpreter
   end
 
   def find_closing_next(control_variable)
-    # starting with @next_line_number
+    # starting with @next_line_index
     line_numbers = @program_lines.keys.sort
     forward_line_numbers =
       line_numbers.select { |line_number| line_number > @current_line_index }
