@@ -9,6 +9,7 @@ class AbstractToken
     @is_boolean_constant = false
     @is_user_function = false
     @is_variable = false
+    @is_statement_separator = false
   end
 
   def keyword?
@@ -55,6 +56,10 @@ class AbstractToken
     @is_function || @is_text_constant || @is_numeric_constant ||
       @is_boolean_constant || @is_user_function || @is_variable
   end
+
+  def statement_separator?
+    @is_statement_separator
+  end
 end
 
 # invalid token
@@ -81,6 +86,19 @@ class KeywordToken < AbstractToken
 
   def to_s
     @keyword
+  end
+end
+
+# statement separator token
+class SeparatorToken < AbstractToken
+  attr_reader :separator
+  def initialize(text)
+    @is_statement_separator = true
+    @separator = text
+  end
+
+  def to_s
+    @separator
   end
 end
 

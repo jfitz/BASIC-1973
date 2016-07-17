@@ -86,9 +86,8 @@ class StatementFactory
     m = /\A\d+/.match(line)
     unless m.nil?
       line_num = LineNumber.new(m[0])
-      statement = create(m.post_match)
+      statements = create(m.post_match)
     end
-    statements = [statement]
     [line_num, statements]
   end
 
@@ -96,13 +95,33 @@ class StatementFactory
 
   def create(text)
     squeezed = squeeze_out_spaces(text)
-    return EmptyStatement.new if squeezed == ''
-    return RemarkStatement.new(text) if squeezed[0..2] == 'REM'
+    return [EmptyStatement.new] if squeezed == ''
+    return [RemarkStatement.new(text)] if squeezed[0..2] == 'REM'
 
-    tokens = tokenize(squeezed)
-    keyword = ''
-    keyword << tokens.shift.to_s while !tokens.empty? && tokens[0].keyword?
-    create_regular_statement(keyword, text, tokens)
+    statements = []
+    all_tokens = tokenize(squeezed)
+    tokens_lists = split(all_tokens)
+    tokens_lists.each do |tokens|
+      keyword = ''
+      keyword << tokens.shift.to_s while !tokens.empty? && tokens[0].keyword?
+      statements << create_regular_statement(keyword, text, tokens)
+    end
+    statements
+  end
+
+  def split(tokens)
+    tokens_lists = []
+    statement_tokens = []
+    tokens.each do |token|
+      if token.statement_separator?
+        tokens_lists << statement_tokens
+        statement_tokens = []
+      else
+        statement_tokens << token
+      end
+    end
+    tokens_lists << statement_tokens unless statement_tokens.empty?
+    tokens_lists
   end
 
   def create_regular_statement(keyword, text, tokens)
@@ -110,7 +129,6 @@ class StatementFactory
     statement =
       @statement_definitions[keyword].new(text, tokens) unless
         keyword.empty?
-    statement
   end
 
   def tokenize(text)
@@ -145,17 +163,24 @@ class StatementFactory
 
   def make_tokenizers
     tokenizers = []
+
+    separators = [ '\\' ]
+    tokenizers << ListTokenizer.new(separators, SeparatorToken)
+
     keywords = statement_definitions.keys + %w(THEN TO STEP) -
                %w(MATPRINT MATREAD)
     tokenizers << ListTokenizer.new(keywords, KeywordToken)
+
     operators = [
       '+', '-', '*', '/', '^', '(', ')',
       '<', '<=', '=', '>', '>=', '<>',
       ',', ';'
     ]
     tokenizers << ListTokenizer.new(operators, OperatorToken)
+
     tokenizers <<
       ListTokenizer.new(FunctionFactory.function_names, FunctionToken)
+
     tokenizers << TextTokenizer.new
     tokenizers << NumberTokenizer.new
     tokenizers << ListTokenizer.new(%w(ON OFF), BooleanConstantToken)

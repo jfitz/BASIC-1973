@@ -14,6 +14,8 @@ bash test/bin/run_one_test.sh remark_2
 
 bash test/bin/run_one_test.sh values
 ((ECODE+=$?))
+bash test/bin/run_one_test.sh multistatement
+((ECODE+=$?))
 
 bash test/bin/run_one_test.sh dataread
 ((ECODE+=$?))

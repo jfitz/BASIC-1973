@@ -323,10 +323,8 @@ class Interpreter
   def list_lines_errors(line_numbers)
     line_numbers.each do |line_number|
       statements = @program_lines[line_number]
-      ss = []
-      statements.each { |statement| ss << statement.list }
-      text = ss.join('\\')
-      puts line_number.to_s + text
+      first_statement = statements[0]
+      puts line_number.to_s + first_statement.list
       statements.each do |statement|
         statement.errors.each { |error| puts ' ' + error }
       end
@@ -338,7 +336,7 @@ class Interpreter
       statements = @program_lines[line_number]
       ss = []
       statements.each { |statement| ss << statement.pretty }
-      text = ss.join('\\')
+      text = ss.join(' \\')
       puts line_number.to_s + text
       statements.each do |statement|
         statement.errors.each { |error| puts ' ' + error }
