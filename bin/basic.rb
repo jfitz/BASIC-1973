@@ -174,6 +174,11 @@ class LineNumberIndex
     @number = number
     @index = index
   end
+
+  def to_s
+    return @number.to_s if @index == 0
+    @number.to_s + '/' + @index.to_s
+  end
 end
 
 # Line class to hold a line of code
@@ -509,7 +514,12 @@ class Interpreter
   def find_next_line_index
     line_numbers = @program_lines.keys.sort
     index = line_numbers.index(@current_line_index.number)
-    LineNumberIndex.new(line_numbers[index + 1], 0)
+    line_number = line_numbers[index + 1]
+    unless line_number.nil?
+      next_line_index = LineNumberIndex.new(line_number, 0)
+      return next_line_index
+    end
+    nil
   end
 
   public

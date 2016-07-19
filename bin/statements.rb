@@ -467,7 +467,7 @@ class IfStatement < AbstractStatement
   end
 
   def to_s
-    @keyword + ' ' + @expression.to_s + ' THEN ' + @destination.number.to_s
+    @keyword + ' ' + @expression.to_s + ' THEN ' + @destination.to_s
   end
 
   def execute(interpreter, trace)
@@ -594,7 +594,7 @@ class GotoStatement < AbstractStatement
   end
 
   def to_s
-    @keyword + ' ' + @destination.number.to_s
+    @keyword + ' ' + @destination.to_s
   end
 
   def execute(interpreter, _)
@@ -618,7 +618,7 @@ class GosubStatement < AbstractStatement
   end
 
   def to_s
-    @keyword + ' ' + @destination.number.to_s
+    @keyword + ' ' + @destination.to_s
   end
 
   def execute(interpreter, _)
