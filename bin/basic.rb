@@ -175,9 +175,13 @@ class LineNumberIndex
     @index = index
   end
 
+  def next_statement
+    LineNumberIndex.new(number, index + 1)
+  end
+
   def to_s
     return @number.to_s if @index == 0
-    @number.to_s + '/' + @index.to_s
+    @number.to_s + '.' + @index.to_s
   end
 end
 
@@ -471,7 +475,7 @@ class Interpreter
 
   def print_trace_info(line)
     @printer.newline_when_needed
-    @printer.print_out "#{@current_line_index.number}: #{line}"
+    @printer.print_out "#{@current_line_index}: #{line}"
     @printer.newline
   end
 
@@ -483,14 +487,14 @@ class Interpreter
   def execute_a_statement(do_trace)
     line = @program_lines[@current_line_index.number]
     statements = line.statements
-    statements.each do |statement|
-      print_trace_info(statement) if do_trace
-      stop_running unless statement.errors.empty?
-      if statement.errors.empty?
-        statement.execute(self, do_trace) if @running
-      else
-        print_errors(@current_line_index, statement)
-      end
+    index = @current_line_index.index
+    statement = statements[index]
+    print_trace_info(statement) if do_trace
+    stop_running unless statement.errors.empty?
+    if statement.errors.empty?
+      statement.execute(self, do_trace) if @running
+    else
+      print_errors(@current_line_index, statement)
     end
   end
 
@@ -512,6 +516,12 @@ class Interpreter
   end
 
   def find_next_line_index
+    line = @program_lines[@current_line_index.number]
+    statements = line.statements
+    current_line_index = @current_line_index.next_statement
+    if current_line_index.index < statements.size
+      return current_line_index
+    end
     line_numbers = @program_lines.keys.sort
     index = line_numbers.index(@current_line_index.number)
     line_number = line_numbers[index + 1]

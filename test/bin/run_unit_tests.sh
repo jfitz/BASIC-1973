@@ -80,6 +80,8 @@ bash test/bin/run_one_test.sh gosub_1
 ((ECODE+=$?))
 bash test/bin/run_one_test.sh return_no_gosub
 ((ECODE+=$?))
+bash test/bin/run_one_test.sh multi_gosub
+((ECODE+=$?))
 
 bash test/bin/run_one_test.sh fornext_1
 ((ECODE+=$?))
@@ -90,6 +92,8 @@ bash test/bin/run_one_test.sh fornext_3
 bash test/bin/run_one_test.sh fornext_4
 ((ECODE+=$?))
 bash test/bin/run_one_test.sh fornext_5
+((ECODE+=$?))
+bash test/bin/run_one_test.sh multi_fornext
 ((ECODE+=$?))
 
 bash test/bin/run_one_test.sh syntax_error_1
