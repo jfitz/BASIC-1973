@@ -467,7 +467,7 @@ class IfStatement < AbstractStatement
   end
 
   def to_s
-    @keyword + ' ' + @expression.to_s + ' THEN ' + @destination['line_number'].to_s
+    @keyword + ' ' + @expression.to_s + ' THEN ' + @destination.number.to_s
   end
 
   def execute(interpreter, trace)
@@ -499,7 +499,7 @@ class IfStatement < AbstractStatement
 
   def parse_line(expression, keyword, destination)
     if destination.numeric_constant?
-      @destination = { 'line_number' => LineNumber.new(destination), 'index' => 0 }
+      @destination = LineNumberIndex.new(LineNumber.new(destination), 0)
     else
       @errors << "Invalid line number #{destination}"
     end
@@ -584,7 +584,7 @@ class GotoStatement < AbstractStatement
     super('GOTO', line)
     if tokens.size == 1
       if tokens[0].numeric_constant?
-        @destination = { 'line_number' => LineNumber.new(tokens[0]), 'index' => 0 }
+        @destination = LineNumberIndex.new(LineNumber.new(tokens[0]), 0)
       else
         @errors << "Invalid line number #{tokens[0]}"
       end
@@ -594,7 +594,7 @@ class GotoStatement < AbstractStatement
   end
 
   def to_s
-    @keyword + ' ' + @destination['line_number'].to_s
+    @keyword + ' ' + @destination.number.to_s
   end
 
   def execute(interpreter, _)
@@ -608,7 +608,7 @@ class GosubStatement < AbstractStatement
     super('GOSUB', line)
     if tokens.size == 1
       if tokens[0].numeric_constant?
-        @destination = { 'line_number' => LineNumber.new(tokens[0]), 'index' => 0 }
+        @destination = LineNumberIndex.new(LineNumber.new(tokens[0]), 0)
       else
         @errors << "Invalid line number #{tokens[0]}"
       end
@@ -618,7 +618,7 @@ class GosubStatement < AbstractStatement
   end
 
   def to_s
-    @keyword + ' ' + @destination['line_number'].to_s
+    @keyword + ' ' + @destination.number.to_s
   end
 
   def execute(interpreter, _)

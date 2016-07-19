@@ -165,6 +165,17 @@ class LineListSpec
   end
 end
 
+# LineNumberIndex class to hold line number and index within line
+class LineNumberIndex
+  attr_reader :number
+  attr_reader :index
+
+  def initialize(number, index)
+    @number = number
+    @index = index
+  end
+end
+
 # Line class to hold a line of code
 class Line
   def initialize(text, statements)
@@ -410,8 +421,8 @@ class Interpreter
     raise BASICException, 'Program terminated without END' if
       @next_line_index.nil?
     line_numbers = @program_lines.keys.sort
-    raise BASICException, "Line number #{@next_line_index['line_number']} not found" unless
-      line_numbers.include?(@next_line_index['line_number'])
+    raise BASICException, "Line number #{@next_line_index.number} not found" unless
+      line_numbers.include?(@next_line_index.number)
   end
 
   public
@@ -442,7 +453,7 @@ class Interpreter
     # phase 2: run each command
     # start with the first line number
     line_numbers = @program_lines.keys.sort
-    @current_line_index = { 'line_number' => line_numbers[0], 'index' => 0 }
+    @current_line_index = LineNumberIndex.new(line_numbers[0], 0)
     @running = true
     begin
       program_loop(trace_flag || @tron_flag) while @running
@@ -455,17 +466,17 @@ class Interpreter
 
   def print_trace_info(line)
     @printer.newline_when_needed
-    @printer.print_out "#{@current_line_index['line_number']}: #{line}"
+    @printer.print_out "#{@current_line_index.number}: #{line}"
     @printer.newline
   end
 
   def print_errors(current_line_index, statement)
-    puts "Errors in line #{current_line_index['line_number']}:"
+    puts "Errors in line #{current_line_index.number}:"
     statement.errors.each { |error| puts error }
   end
 
   def execute_a_statement(do_trace)
-    line = @program_lines[@current_line_index['line_number']]
+    line = @program_lines[@current_line_index.number]
     statements = line.statements
     statements.each do |statement|
       print_trace_info(statement) if do_trace
@@ -490,15 +501,15 @@ class Interpreter
         @current_line_index = @next_line_index
       end
     rescue BASICException => message
-      puts "#{message} in line #{@current_line_index['line_number']}"
+      puts "#{message} in line #{@current_line_index.number}"
       stop_running
     end
   end
 
   def find_next_line_index
     line_numbers = @program_lines.keys.sort
-    index = line_numbers.index(@current_line_index['line_number'])
-    { 'line_number' => line_numbers[index + 1], 'index' => 0 }
+    index = line_numbers.index(@current_line_index.number)
+    LineNumberIndex.new(line_numbers[index + 1], 0)
   end
 
   public
@@ -581,7 +592,7 @@ class Interpreter
 
   def stop
     stop_running
-    puts "STOP in line #{@current_line_index['line_number']}"
+    puts "STOP in line #{@current_line_index.number}"
   end
 
   def stop_running
@@ -600,14 +611,14 @@ class Interpreter
     # starting with @next_line_index
     line_numbers = @program_lines.keys.sort
     forward_line_numbers =
-      line_numbers.select { |line_number| line_number > @current_line_index['line_number'] }
+      line_numbers.select { |line_number| line_number > @current_line_index.number }
     # find a NEXT statement with matching control variable
     forward_line_numbers.each do |line_number|
       line = @program_lines[line_number]
       statements = line.statements
       statements.each do |statement|
         if statement.class.to_s == 'NextStatement'
-          return { 'line_number' => line_number, 'index' => 0 } if statement.control == control_variable
+          return LineNumberIndex.new(line_number, 0) if statement.control == control_variable
         end
       end
     end
