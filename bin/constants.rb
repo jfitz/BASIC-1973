@@ -348,7 +348,7 @@ class BooleanConstant < AbstractElement
     super()
     @value = false
     @value = true if text.class.to_s == 'BooleanConstantToken' &&
-      text.boolean_constant == 'ON'
+                     text.boolean_constant == 'ON'
     @value = true if text.class.to_s == 'String' && text.to_s.casecmp('ON') == 0
     @value = true if text.class.to_s == 'TrueClass'
     @operand = true
@@ -504,14 +504,28 @@ class Function < AbstractElement
     @precedence = 7
   end
 
+  private
+
   def ensure_one_argument(stack)
     raise(BASICException, @name + ' requires argument') if
-      stack.size == 0 || stack[-1].class.to_s != 'Array'
+      stack.empty? || stack[-1].class.to_s != 'Array'
     raise(BASICException, @name + ' requires one argument') unless
       stack[-1].size == 1
   end
 
-  private
+  def ensure_one_or_two_arguments(stack)
+    raise(BASICException, @name + ' requires argument') if
+      stack.empty? || stack[-1].class.to_s != 'Array'
+    raise(BASICException, @name + ' requires one or two arguments') unless
+      [1, 2].include? stack[-1].size
+  end
+
+  def ensure_zero_or_one_argument(stack)
+    raise(BASICException, @name + ' requires argument') if
+      stack.empty? || stack[-1].class.to_s != 'Array'
+    raise(BASICException, @name + ' requires zero or one argument') unless
+      [0, 1].include? stack[-1].size
+  end
 
   def check_args(args)
     raise(BASICException, 'No arguments for function') if
