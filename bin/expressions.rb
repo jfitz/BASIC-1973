@@ -570,9 +570,6 @@ class Parser
   end
 
   def parse(element)
-    raise(BASICException, 'Function requires parentheses') if
-      !element.group_start? && @previous_element.function?
-
     if element.group_separator?
       group_separator(element)
     elsif element.operator?

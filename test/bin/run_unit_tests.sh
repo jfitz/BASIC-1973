@@ -119,6 +119,8 @@ bash test/bin/run_one_test.sh function_sgn
 ((ECODE+=$?))
 bash test/bin/run_one_test.sh function_exp
 ((ECODE+=$?))
+bash test/bin/run_one_test.sh function_rnd_0
+((ECODE+=$?))
 
 bash test/bin/run_one_test.sh function_trn
 ((ECODE+=$?))

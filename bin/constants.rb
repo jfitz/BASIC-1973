@@ -504,6 +504,13 @@ class Function < AbstractElement
     @precedence = 7
   end
 
+  def ensure_one_argument(stack)
+    raise(BASICException, @name + ' requires argument') if
+      stack.size == 0 || stack[-1].class.to_s != 'Array'
+    raise(BASICException, @name + ' requires one argument') unless
+      stack[-1].size == 1
+  end
+
   private
 
   def check_args(args)
