@@ -506,25 +506,18 @@ class Function < AbstractElement
 
   private
 
-  def ensure_one_argument(stack)
+  def ensure_argument_count(stack, expected)
     raise(BASICException, @name + ' requires argument') if
       stack.empty? || stack[-1].class.to_s != 'Array'
-    raise(BASICException, @name + ' requires one argument') unless
-      stack[-1].size == 1
+    valid = counts_to_text(expected)
+    raise(BASICException, @name + ' requires ' + valid + ' argument') unless
+      expected.include? stack[-1].size
   end
 
-  def ensure_one_or_two_arguments(stack)
-    raise(BASICException, @name + ' requires argument') if
-      stack.empty? || stack[-1].class.to_s != 'Array'
-    raise(BASICException, @name + ' requires one or two arguments') unless
-      [1, 2].include? stack[-1].size
-  end
-
-  def ensure_zero_or_one_argument(stack)
-    raise(BASICException, @name + ' requires argument') if
-      stack.empty? || stack[-1].class.to_s != 'Array'
-    raise(BASICException, @name + ' requires zero or one argument') unless
-      [0, 1].include? stack[-1].size
+  def counts_to_text(counts)
+    words = %w( zero one two )
+    texts = counts.map { |v| words[v] }
+    texts.join(' or ')
   end
 
   def check_args(args)

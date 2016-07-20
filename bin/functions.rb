@@ -34,7 +34,7 @@ class FunctionInt < AbstractScalarFunction
 
   # return a single value
   def evaluate(_, stack)
-    ensure_one_argument(stack)
+    ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['NumericConstant'])
     args[0].truncate
@@ -51,7 +51,7 @@ class FunctionRnd < AbstractScalarFunction
   def evaluate(interpreter, stack)
     stack.push([NumericConstant.new(100)]) if
       stack.empty? || stack[-1].class.to_s != 'Array'
-    ensure_zero_or_one_argument(stack)
+    ensure_argument_count(stack, [0, 1])
     args = stack.pop
     args = [NumericConstant.new(100)] if args.empty?
     check_arg_types(args, ['NumericConstant'])
@@ -66,7 +66,7 @@ class FunctionExp < AbstractScalarFunction
   end
 
   def evaluate(_, stack)
-    ensure_one_argument(stack)
+    ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['NumericConstant'])
     args[0].exp
@@ -80,7 +80,7 @@ class FunctionLog < AbstractScalarFunction
   end
 
   def evaluate(_, stack)
-    ensure_one_argument(stack)
+    ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['NumericConstant'])
     args[0].log
@@ -94,7 +94,7 @@ class FunctionAbs < AbstractScalarFunction
   end
 
   def evaluate(_, stack)
-    ensure_one_argument(stack)
+    ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['NumericConstant'])
     args[0].abs
@@ -108,7 +108,7 @@ class FunctionSqr < AbstractScalarFunction
   end
 
   def evaluate(_, stack)
-    ensure_one_argument(stack)
+    ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['NumericConstant'])
     args[0].sqrt
@@ -122,7 +122,7 @@ class FunctionSin < AbstractScalarFunction
   end
 
   def evaluate(_, stack)
-    ensure_one_argument(stack)
+    ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['NumericConstant'])
     args[0].sin
@@ -136,7 +136,7 @@ class FunctionCos < AbstractScalarFunction
   end
 
   def evaluate(_, stack)
-    ensure_one_argument(stack)
+    ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['NumericConstant'])
     args[0].cos
@@ -150,7 +150,7 @@ class FunctionTan < AbstractScalarFunction
   end
 
   def evaluate(_, stack)
-    ensure_one_argument(stack)
+    ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['NumericConstant'])
     args[0].tan
@@ -164,7 +164,7 @@ class FunctionAtn < AbstractScalarFunction
   end
 
   def evaluate(_, stack)
-    ensure_one_argument(stack)
+    ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['NumericConstant'])
     args[0].atn
@@ -178,7 +178,7 @@ class FunctionSgn < AbstractScalarFunction
   end
 
   def evaluate(_, stack)
-    ensure_one_argument(stack)
+    ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['NumericConstant'])
     args[0].sign
@@ -192,7 +192,7 @@ class FunctionTrn < AbstractMatrixFunction
   end
 
   def evaluate(_, stack)
-    ensure_one_argument(stack)
+    ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['Matrix'])
     dims = args[0].dimensions
@@ -208,7 +208,7 @@ class FunctionZer < AbstractScalarFunction
   end
 
   def evaluate(_, stack)
-    ensure_one_or_two_arguments(stack)
+    ensure_argument_count(stack, [1,2])
     args = stack.pop
     check_arg_types(args, ['NumericConstant'] * args.size)
     matrix = Matrix.new(args.clone, {})
@@ -223,7 +223,7 @@ class FunctionCon < AbstractScalarFunction
   end
 
   def evaluate(_, stack)
-    ensure_one_or_two_arguments(stack)
+    ensure_argument_count(stack, [1,2])
     args = stack.pop
     check_arg_types(args, ['NumericConstant'] * args.size)
     matrix = Matrix.new(args.clone, {})
@@ -238,7 +238,7 @@ class FunctionIdn < AbstractScalarFunction
   end
 
   def evaluate(_, stack)
-    ensure_one_or_two_arguments(stack)
+    ensure_argument_count(stack, [1,2])
     args = stack.pop
     check_arg_types(args, ['NumericConstant'] * args.size)
     check_square(args) if args.size == 2
@@ -263,7 +263,7 @@ class FunctionDet < AbstractMatrixFunction
   end
 
   def evaluate(_, stack)
-    ensure_one_argument(stack)
+    ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['Matrix'])
     args[0].determinant
@@ -277,7 +277,7 @@ class FunctionInv < AbstractMatrixFunction
   end
 
   def evaluate(_, stack)
-    ensure_one_argument(stack)
+    ensure_argument_count(stack, [1])
     args = stack.pop
     dims = args[0].dimensions
     check_arg_types(args, ['Matrix'])
