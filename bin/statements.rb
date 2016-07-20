@@ -129,6 +129,7 @@ class StatementFactory
     statement =
       @statement_definitions[keyword].new(text, tokens) unless
         keyword.empty?
+    statement
   end
 
   def tokenize(text)
@@ -305,7 +306,7 @@ class DimStatement < AbstractStatement
         @expression_list <<
           TargetExpression.new(tokens_list, VariableDimension)
       rescue BASICException
-        @errors << "Invalid variable #{tokens_list}"
+        @errors << 'Invalid variable ' + tokens_list.map(&:to_s).join
       end
     end
   end
@@ -447,7 +448,7 @@ class InputStatement < AbstractStatement
         expression_list <<
           TargetExpression.new(tokens_list, ScalarReference)
       rescue BASICException
-        @errors << "Invalid variable #{tokens_list}"
+        @errors << 'Invalid variable ' + tokens_list.map(&:to_s).join
       end
     end
     expression_list
@@ -834,7 +835,7 @@ class ReadStatement < AbstractStatement
       begin
         @expression_list << TargetExpression.new(tokens_list, ScalarReference)
       rescue BASICException
-        @errors << "Invalid variable #{tokens_list}"
+        @errors << 'Invalid variable ' + tokens_list.map(&:to_s).join
       end
     end
   end
@@ -1044,7 +1045,7 @@ class MatReadStatement < AbstractStatement
         expression = TargetExpression.new(tokens_list, MatrixReference)
         @expression_list << expression
       rescue BASICException
-        @errors << "Invalid variable #{tokens_list}"
+        @errors << 'Invalid variable ' + tokens_list.map(&:to_s).join
       end
     end
   end
