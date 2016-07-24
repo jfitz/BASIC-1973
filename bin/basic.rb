@@ -427,10 +427,11 @@ class Interpreter
   end
 
   def verify_next_line_index
-    raise BASICException, 'Program terminated without END' if
+    raise(BASICException, 'Program terminated without END') if
       @next_line_index.nil?
     line_numbers = @program_lines.keys.sort
-    raise BASICException, "Line number #{@next_line_index.number} not found" unless
+    raise(BASICException,
+          "Line number #{@next_line_index.number} not found") unless
       line_numbers.include?(@next_line_index.number)
   end
 
@@ -479,8 +480,9 @@ class Interpreter
     @printer.newline
   end
 
-  def print_errors(current_line_index, statement)
-    puts "Errors in line #{current_line_index.number}:"
+  def print_errors(statement)
+    line_number = @current_line_index.number
+    puts "Errors in line #{line_number}:"
     statement.errors.each { |error| puts error }
   end
 
@@ -494,7 +496,7 @@ class Interpreter
     if statement.errors.empty?
       statement.execute(self, do_trace) if @running
     else
-      print_errors(@current_line_index, statement)
+      print_errors(statement)
     end
   end
 
@@ -510,25 +512,37 @@ class Interpreter
         @current_line_index = @next_line_index
       end
     rescue BASICException => message
-      puts "#{message} in line #{@current_line_index.number}"
+      if @current_line_index.nil?
+        puts message
+      else
+        line_number = @current_line_index.number
+        puts "#{message} in line #{line_number}"
+      end
       stop_running
     end
   end
 
   def find_next_line_index
-    line = @program_lines[@current_line_index.number]
+    # find next statement within the current line
+    line_number = @current_line_index.number
+    line = @program_lines[line_number]
     statements = line.statements
     current_line_index = @current_line_index.next_statement
     if current_line_index.index < statements.size
       return current_line_index
     end
+
+    # find the next line
     line_numbers = @program_lines.keys.sort
-    index = line_numbers.index(@current_line_index.number)
+    line_number = @current_line_index.number
+    index = line_numbers.index(line_number)
     line_number = line_numbers[index + 1]
     unless line_number.nil?
       next_line_index = LineNumberIndex.new(line_number, 0)
       return next_line_index
     end
+
+    # nothing left to execute
     nil
   end
 
@@ -631,14 +645,17 @@ class Interpreter
     # starting with @next_line_index
     line_numbers = @program_lines.keys.sort
     forward_line_numbers =
-      line_numbers.select { |line_number| line_number > @current_line_index.number }
+      line_numbers.select do |line_number|
+        line_number > @current_line_index.number
+      end
     # find a NEXT statement with matching control variable
     forward_line_numbers.each do |line_number|
       line = @program_lines[line_number]
       statements = line.statements
       statements.each do |statement|
         if statement.class.to_s == 'NextStatement'
-          return LineNumberIndex.new(line_number, 0) if statement.control == control_variable
+          return LineNumberIndex.new(line_number, 0) if
+            statement.control == control_variable
         end
       end
     end
