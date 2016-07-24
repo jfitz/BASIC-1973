@@ -795,10 +795,12 @@ class Interpreter
     if !line_num.nil? && !line.nil?
       @program_lines[line_num] = line
       statements = line.statements
+      any_errors = false
       statements.each do |statement|
         statement.errors.each { |error| puts error } if print_errors
-        !statement.errors.empty?
+        any_errors |= statement.errors.size > 0
       end
+      any_errors
     else
       true
     end
