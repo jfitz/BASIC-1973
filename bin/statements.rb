@@ -127,8 +127,8 @@ class StatementFactory
   def create_regular_statement(keyword, text, tokens)
     statement = UnknownStatement.new(text)
     statement =
-      @statement_definitions[keyword].new(text, tokens) unless
-        keyword.empty?
+      @statement_definitions[keyword].new(text, tokens) if
+        @statement_definitions.has_key? keyword
     statement
   end
 
@@ -149,6 +149,7 @@ class StatementFactory
       'IF' => IfStatement,
       'INPUT' => InputStatement,
       'LET' => LetStatement,
+      '' => LetLessStatement,
       'MATPRINT' => MatPrintStatement,
       'MATREAD' => MatReadStatement,
       'MAT' => MatLetStatement,
@@ -347,6 +348,36 @@ class LetStatement < AbstractStatement
 
   def to_s
     @keyword + ' ' + @assignment.to_s
+  end
+
+  def execute(interpreter, trace)
+    l_values = @assignment.eval_target(interpreter)
+    l_value = l_values[0]
+    r_values = @assignment.eval_value(interpreter)
+    r_value = r_values[0]
+    interpreter.set_value(l_value, r_value, trace)
+  end
+end
+
+# LET-less assignment
+class LetLessStatement < AbstractStatement
+  def initialize(line, tokens)
+    super('', line)
+    begin
+      @assignment = ScalarAssignment.new(tokens)
+      if @assignment.count_target != 1
+        @errors << 'Assignment must have only one left-hand value'
+      end
+      if @assignment.count_value != 1
+        @errors << 'Assignment must have only one right-hand value'
+      end
+    rescue BASICException => e
+      @errors << e.message
+    end
+  end
+
+  def to_s
+    @assignment.to_s
   end
 
   def execute(interpreter, trace)

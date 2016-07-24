@@ -52,6 +52,8 @@ bash test/bin/run_one_test.sh print_7
 
 bash test/bin/run_one_test.sh let_n
 ((ECODE+=$?))
+bash test/bin/run_one_test.sh letless_n
+((ECODE+=$?))
 bash test/bin/run_one_test.sh let_n_plus_n
 ((ECODE+=$?))
 bash test/bin/run_one_test.sh let_n_plus_v
