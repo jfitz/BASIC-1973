@@ -285,3 +285,21 @@ class FunctionInv < AbstractMatrixFunction
     Matrix.new(dims.clone, args[0].inverse_values)
   end
 end
+
+# function TAB
+class FunctionTab < AbstractScalarFunction
+  def initialize(text)
+    super
+  end
+
+  def evaluate(interpreter, stack)
+    ensure_argument_count(stack, [1])
+    args = stack.pop
+    check_arg_types(args, ['NumericConstant'])
+    printer = interpreter.printer
+    width = printer.columns_to_advance(args[0].to_v)
+    spaces = ' ' * width
+    quoted = '"' + spaces + '"'
+    TextConstant.new(quoted)
+  end
+end

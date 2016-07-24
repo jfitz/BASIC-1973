@@ -239,6 +239,16 @@ class PrintHandler
     @last_was_numeric = false
   end
 
+  def tabto(new_column)
+    space_after_numeric if @last_was_numeric
+    print_item(' ') while @column < new_column && @column < @max_width
+    @last_was_numeric = false
+  end
+
+  def columns_to_advance(new_column)
+    [new_column - @column, 0].max
+  end
+
   def trace_output(s)
     newline_when_needed
     print_out(s)
@@ -287,6 +297,7 @@ end
 # the interpreter
 class Interpreter
   attr_accessor :next_line_index
+  attr_reader :printer
 
   def initialize(print_width, zone_width, output_speed)
     @running = false
@@ -743,10 +754,6 @@ class Interpreter
       variable = Variable.new(name, coords)
       set_value(variable, value, trace)
     end
-  end
-
-  def print_handler
-    @printer
   end
 
   def push_return(destination)

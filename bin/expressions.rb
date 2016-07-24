@@ -477,7 +477,8 @@ class FunctionFactory
     'CON' => FunctionCon,
     'IDN' => FunctionIdn,
     'DET' => FunctionDet,
-    'INV' => FunctionInv
+    'INV' => FunctionInv,
+    'TAB' => FunctionTab
   }
 
   def self.valid?(text)

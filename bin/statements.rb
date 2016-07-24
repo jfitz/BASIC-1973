@@ -423,7 +423,7 @@ class InputStatement < AbstractStatement
   end
 
   def execute(interpreter, trace)
-    printer = interpreter.print_handler
+    printer = interpreter.printer
     values = input_values
     name_value_pairs =
       zip(@expression_list, values[0, @expression_list.length])
@@ -506,7 +506,7 @@ class IfStatement < AbstractStatement
     result = @expression.evaluate(interpreter)[0]
     interpreter.next_line_index = @destination if result.value
     return unless trace
-    printer = interpreter.print_handler
+    printer = interpreter.printer
     s = ' ' + result.to_s
     printer.trace_output(s)
   end
@@ -564,7 +564,7 @@ class PrintStatement < AbstractStatement
   end
 
   def execute(interpreter, _)
-    printer = interpreter.print_handler
+    printer = interpreter.printer
     @print_items.each do |item|
       item.print(printer, interpreter)
     end
@@ -752,7 +752,7 @@ class ForStatement < AbstractStatement
     interpreter.next_line_index =
       interpreter.find_closing_next(@control.to_s) if terminated
 
-    print_trace_info(interpreter.print_handler, from, to, step, terminated) if
+    print_trace_info(interpreter.printer, from, to, step, terminated) if
       trace
   end
 
@@ -842,7 +842,7 @@ class NextStatement < AbstractStatement
     # if matches end value, stop here
     terminated = fornext_control.terminated?(interpreter)
     if trace
-      printer = interpreter.print_handler
+      printer = interpreter.printer
       s = ' terminated:' + terminated.to_s
       printer.trace_output(s)
     end
@@ -962,7 +962,7 @@ class StopStatement < AbstractStatement
   end
 
   def execute(interpreter, _)
-    printer = interpreter.print_handler
+    printer = interpreter.printer
     printer.newline_when_needed
     interpreter.stop
   end
@@ -979,7 +979,7 @@ class EndStatement < AbstractStatement
   end
 
   def execute(interpreter, _)
-    printer = interpreter.print_handler
+    printer = interpreter.printer
     printer.newline_when_needed
     interpreter.stop
   end
@@ -1028,7 +1028,7 @@ class MatPrintStatement < AbstractStatement
   end
 
   def execute(interpreter, _)
-    printer = interpreter.print_handler
+    printer = interpreter.printer
     i = 0
     @print_items.each do |item|
       if item.printable?
