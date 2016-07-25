@@ -503,10 +503,10 @@ class Interpreter
     index = @current_line_index.index
     statement = statements[index]
     print_trace_info(statement) if do_trace
-    stop_running unless statement.errors.empty?
     if statement.errors.empty?
-      statement.execute(self, do_trace) if @running
+      statement.execute(self, do_trace)
     else
+      stop_running
       print_errors(statement)
     end
   end
