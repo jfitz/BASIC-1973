@@ -155,6 +155,7 @@ class StatementFactory
       'MAT' => MatLetStatement,
       'NEXT' => NextStatement,
       'PRINT' => PrintStatement,
+      'RANDOMIZE' => RandomizeStatement,
       'READ' => ReadStatement,
       'RESTORE' => RestoreStatement,
       'RETURN' => ReturnStatement,
@@ -1186,5 +1187,20 @@ class MatLetStatement < AbstractStatement
     r_value = r_values[0]
     raise(BASICException, 'Expected Matrix') if r_value.class.to_s != 'Matrix'
     r_value
+  end
+end
+
+# RANDOMIZE
+class RandomizeStatement < AbstractStatement
+  def initialize(line, _tokens)
+    super('RANDOMIZE', line)
+  end
+
+  def to_s
+    @keyword
+  end
+
+  def execute(interpreter, _)
+    interpreter.new_random
   end
 end

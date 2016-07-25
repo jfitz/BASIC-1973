@@ -187,6 +187,8 @@ end
 
 # Line class to hold a line of code
 class Line
+  attr_reader :statements
+
   def initialize(text, statements)
     @text = text
     @statements = statements
@@ -194,10 +196,6 @@ class Line
 
   def list
     @text
-  end
-
-  def statements
-    @statements
   end
 end
 
@@ -299,13 +297,14 @@ class Interpreter
   attr_accessor :next_line_index
   attr_reader :printer
 
-  def initialize(print_width, zone_width, output_speed)
+  def initialize(print_width, zone_width, output_speed, respect_randomize)
     @running = false
     @randomizer = Random.new(1)
     @data_store = []
     @data_index = 0
     @statement_factory = StatementFactory.new
     @printer = PrintHandler.new(print_width, zone_width, output_speed)
+    @respect_randomize = respect_randomize
     @return_stack = []
     @fornexts = {}
     @dimensions = {}
@@ -539,9 +538,7 @@ class Interpreter
     line = @program_lines[line_number]
     statements = line.statements
     current_line_index = @current_line_index.next_statement
-    if current_line_index.index < statements.size
-      return current_line_index
-    end
+    return current_line_index if current_line_index.index < statements.size
 
     # find the next line
     line_numbers = @program_lines.keys.sort
@@ -652,6 +649,10 @@ class Interpreter
     NumericConstant.new(@randomizer.rand(upper_bound))
   end
 
+  def new_random
+    @randomizer = Random.new if @respect_randomize
+  end
+
   def find_closing_next(control_variable)
     # starting with @next_line_index
     line_numbers = @program_lines.keys.sort
@@ -664,10 +665,9 @@ class Interpreter
       line = @program_lines[line_number]
       statements = line.statements
       statements.each do |statement|
-        if statement.class.to_s == 'NextStatement'
-          return LineNumberIndex.new(line_number, 0) if
-            statement.control == control_variable
-        end
+        return LineNumberIndex.new(line_number, 0) if
+          statement.class.to_s == 'NextStatement' &&
+          statement.control == control_variable
       end
     end
     raise(BASICException, 'FOR without NEXT') # if none found, error
@@ -822,7 +822,7 @@ class Interpreter
       any_errors = false
       statements.each do |statement|
         statement.errors.each { |error| puts error } if print_errors
-        any_errors |= statement.errors.size > 0
+        any_errors |= statement.errors.empty?
       end
       any_errors
     else
@@ -860,7 +860,7 @@ class Interpreter
     when 'RUN'
       execute_run_command
     when 'TRACE'
-      cmd_run(true)
+      cmd_run(true, false)
     when '.VARS'
       dump_vars
     when '.UDFS'
@@ -942,6 +942,7 @@ OptionParser.new do |opt|
   opt.on('--tty') { |o| options[:tty] = o }
   opt.on('--print-width WIDTH') { |o| options[:print_width] = o }
   opt.on('--zone-width WIDTH') { |o| options[:zone_width] = o }
+  opt.on('--ignore-randomize') { |o| options[:ignore_randomize] = o }
 end.parse!
 
 run_filename = options[:run_name]
@@ -956,20 +957,24 @@ print_width = 72
 print_width = options[:print_width].to_i if options.key?(:print_width)
 zone_width = 16
 zone_width = options[:zone_width].to_i if options.key?(:zone_width)
+respect_randomize = true
+respect_randomize = !options[:ignore_randomize] if
+  options.key?(:ignore_randomize)
 
 puts 'BASIC-1973 interpreter version -1'
 puts
 if !run_filename.nil?
-  interpreter = Interpreter.new(print_width, zone_width, output_speed)
+  interpreter =
+    Interpreter.new(print_width, zone_width, output_speed, respect_randomize)
   interpreter.load_and_run(run_filename, trace_flag, timing_flag)
 elsif !list_filename.nil?
-  interpreter = Interpreter.new(print_width, zone_width, 0)
+  interpreter = Interpreter.new(print_width, zone_width, 0, respect_randomize)
   interpreter.load_and_list(list_filename, trace_flag)
 elsif !pretty_filename.nil?
-  interpreter = Interpreter.new(print_width, zone_width, 0)
+  interpreter = Interpreter.new(print_width, zone_width, 0, respect_randomize)
   interpreter.load_and_pretty(pretty_filename, trace_flag)
 else
-  interpreter = Interpreter.new(print_width, zone_width, 0)
+  interpreter = Interpreter.new(print_width, zone_width, 0, respect_randomize)
   interpreter.go
 end
 puts
