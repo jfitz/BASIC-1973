@@ -403,7 +403,7 @@ class InputStatement < AbstractStatement
       @errors << 'No variables specified'
     else
       if tokens_lists[0][0].text_constant?
-        @prompt = TextConstantToken.new(tokens_lists[0][0].to_s)
+        @prompt = tokens_lists[0][0]
         tokens_lists.shift
       end
       # check variables are specified
@@ -425,7 +425,7 @@ class InputStatement < AbstractStatement
 
   def execute(interpreter, trace)
     printer = interpreter.printer
-    values = input_values
+    values = input_values(interpreter)
     name_value_pairs =
       zip(@expression_list, values[0, @expression_list.length])
     name_value_pairs.each do |hash|
@@ -461,13 +461,13 @@ class InputStatement < AbstractStatement
     values
   end
 
-  def input_values
+  def input_values(interpreter)
     values = []
     prompt = @prompt
     while values.size < @expression_list.size
       print prompt.value
-      input_line = gets
-      values += textline_to_constants(input_line.chomp)
+      input_text = interpreter.read_line
+      values += textline_to_constants(input_text)
       prompt = @default_prompt
     end
     values
