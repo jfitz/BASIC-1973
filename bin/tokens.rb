@@ -90,7 +90,7 @@ class KeywordToken < AbstractToken
 end
 
 # statement separator token
-class SeparatorToken < AbstractToken
+class StatementSeparatorToken < AbstractToken
   attr_reader :separator
   def initialize(text)
     @is_statement_separator = true
