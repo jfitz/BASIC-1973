@@ -300,6 +300,7 @@ class FunctionTab < AbstractScalarFunction
     width = printer.columns_to_advance(args[0].to_v)
     spaces = ' ' * width
     quoted = '"' + spaces + '"'
-    TextConstant.new(quoted)
+    v = TextConstantToken.new(quoted)
+    TextConstant.new(v)
   end
 end
