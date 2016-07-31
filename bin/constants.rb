@@ -77,7 +77,7 @@ end
 # beginning of a group
 class GroupStart < AbstractElement
   def self.accept?(token)
-    classes = %w(String)
+    classes = %w(String GroupStartToken)
     classes.include?(token.class.to_s)
   end
 
@@ -347,7 +347,7 @@ class TextConstant < AbstractElement
     @value = nil
     @value = text[1..-2] if text.class.to_s == 'String'
     @value = text.value if text.class.to_s == 'TextConstantToken'
-    raise BASICException, "'#{text}' is not a text constant" if @value.nil?
+    raise(BASICException, "'#{text}' is not a text constant") if @value.nil?
     @operand = true
     @precedence = 0
   end
