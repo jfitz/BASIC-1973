@@ -11,6 +11,7 @@ class AbstractToken
     @is_user_function = false
     @is_variable = false
     @is_statement_separator = false
+    @is_groupend = false
   end
 
   def keyword?
@@ -26,10 +27,6 @@ class AbstractToken
   end
 
   def open?
-    false
-  end
-
-  def close?
     false
   end
 
@@ -60,6 +57,10 @@ class AbstractToken
   def operand?
     @is_function || @is_text_constant || @is_numeric_constant ||
       @is_boolean_constant || @is_user_function || @is_variable
+  end
+
+  def groupend?
+    @is_groupend
   end
 
   def statement_separator?
@@ -124,10 +125,6 @@ class OperatorToken < AbstractToken
     @operator == '('
   end
 
-  def close?
-    @operator == ')'
-  end
-
   def comparison?
     @operator == '<' || @operator == '<=' ||
       @operator == '>' || @operator == '>=' ||
@@ -139,9 +136,23 @@ class OperatorToken < AbstractToken
   end
 end
 
+# group end token
+class GroupEndToken < AbstractToken
+  attr_reader :ender
+
+  def initialize(text)
+    @is_groupend = true
+    @ender = text
+  end
+
+  def to_s
+    @ender
+  end
+end
+
 # parameter separator token
 class ParamSeparatorToken < AbstractToken
-  attr_reader :operator
+  attr_reader :separator
 
   def initialize(text)
     @is_separator = true
