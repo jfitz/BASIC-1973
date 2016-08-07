@@ -70,8 +70,7 @@ class StatementFactory
   end
 
   def parse(text)
-    line_num = nil
-    statement = nil
+    line_number = nil
     m = /\A\d+/.match(text)
     unless m.nil?
       number = NumericConstantToken.new(m[0])
@@ -129,7 +128,7 @@ class StatementFactory
     statement = UnknownStatement.new(text)
     statement =
       @statement_definitions[keyword].new(text, tokens) if
-        @statement_definitions.has_key? keyword
+        @statement_definitions.key? keyword
     statement
   end
 
@@ -168,7 +167,7 @@ class StatementFactory
   def make_tokenizers
     tokenizers = []
 
-    tokenizers << ListTokenizer.new([ '\\' ], StatementSeparatorToken)
+    tokenizers << ListTokenizer.new(['\\'], StatementSeparatorToken)
 
     keywords = statement_definitions.keys + %w(THEN TO STEP) -
                %w(MATPRINT MATREAD)
@@ -180,9 +179,9 @@ class StatementFactory
     ]
     tokenizers << ListTokenizer.new(operators, OperatorToken)
 
-    tokenizers << ListTokenizer.new([ '(' ], GroupStartToken)
-    tokenizers << ListTokenizer.new([ ')' ], GroupEndToken)
-    tokenizers << ListTokenizer.new([ ',', ';' ], ParamSeparatorToken)
+    tokenizers << ListTokenizer.new(['('], GroupStartToken)
+    tokenizers << ListTokenizer.new([')'], GroupEndToken)
+    tokenizers << ListTokenizer.new([',', ';'], ParamSeparatorToken)
 
     tokenizers <<
       ListTokenizer.new(FunctionFactory.function_names, FunctionToken)
@@ -761,7 +760,7 @@ class ForStatement < AbstractStatement
     interpreter.assign_fornext(fornext_control)
     terminated = fornext_control.front_terminated?
     interpreter.next_line_index =
-      interpreter.find_closing_next(@control.to_s) if terminated
+      interpreter.find_closing_next(@control) if terminated
 
     print_trace_info(interpreter.printer, from, to, step, terminated) if
       trace
@@ -800,7 +799,7 @@ class ForStatement < AbstractStatement
   def make_to_value(tokens)
     parts = split_on_token(tokens, 'TO')
     raise(BASICException, 'Missing start value') if
-      parts.size < 1 || parts[0].to_s == 'TO'
+      parts.empty? || parts[0].to_s == 'TO'
     raise(BASICException, 'Missing \'TO\'') if
       parts.size < 2 || parts[1].to_s != 'TO'
     raise(BASICException, 'Missing end value') if parts.size != 3

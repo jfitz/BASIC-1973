@@ -147,7 +147,7 @@ class LineListSpec
   private
 
   def make_single(text, program_line_numbers)
-    line_number = LineNumber.new(text)
+    line_number = LineNumber.new(NumericConstantToken.new(text))
     @line_numbers << line_number if
       program_line_numbers.include?(line_number)
     @range_type = :single
@@ -396,7 +396,8 @@ class Interpreter
   def list_lines(line_numbers)
     line_numbers.each do |line_number|
       line = @program_lines[line_number]
-      puts line_number.to_s + line.list
+      text = line.list
+      puts line_number.to_s + text
     end
   end
 
@@ -440,7 +441,7 @@ class Interpreter
   end
 
   def verify_next_line_index
-    raise(BASICException, 'Program terminated without END') if
+    raise BASICException, 'Program terminated without END' if
       @next_line_index.nil?
     line_numbers = @program_lines.keys.sort
     raise(BASICException,
@@ -705,10 +706,12 @@ class Interpreter
     forward_line_numbers.each do |line_number|
       line = @program_lines[line_number]
       statements = line.statements
+      index = 0
       statements.each do |statement|
-        return LineNumberIndex.new(line_number, 0) if
+        return LineNumberIndex.new(line_number, index) if
           statement.class.to_s == 'NextStatement' &&
           statement.control == control_variable
+        index += 1
       end
     end
     raise(BASICException, 'FOR without NEXT') # if none found, error
