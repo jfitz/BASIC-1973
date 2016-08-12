@@ -278,6 +278,11 @@ class VariableToken < AbstractToken
     @variable.hash
   end
 
+  def content_type
+    return 'TextConstant' if @variable.include?('$')
+    'NumericConstant'
+  end
+
   def to_s
     @variable
   end
@@ -362,8 +367,8 @@ end
 class VariableTokenizer
   def try(text)
     @token = ''
-    /\A[A-Z]/.match(text) { |m| @token = m[0] }
-    /\A[A-Z]\d/.match(text) { |m| @token = m[0] }
+    /\A[A-Z]\$?/.match(text) { |m| @token = m[0] }
+    /\A[A-Z]\d\$?/.match(text) { |m| @token = m[0] }
   end
 
   def count

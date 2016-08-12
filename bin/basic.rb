@@ -779,7 +779,11 @@ class Interpreter
     # then look in general table
     if value.nil?
       v = variable.to_s
-      @variables[v] = NumericConstant.new(0) unless @variables.key?(v)
+      default_type = variable.content_type
+      default_value = NumericConstant.new(0)
+      default_value = TextConstant.new(TextConstantToken.new('""')) if
+        default_type == 'TextConstant'
+      @variables[v] = default_value unless @variables.key?(v)
       value = @variables[v]
     end
     value

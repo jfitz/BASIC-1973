@@ -390,8 +390,40 @@ class TextConstant < AbstractElement
     self
   end
 
+  def matrix?
+    false
+  end
+
+  def b_eq(other)
+    BooleanConstant.new(@value == other.to_v)
+  end
+
+  def b_ne(other)
+    BooleanConstant.new(@value != other.to_v)
+  end
+
+  def b_gt(other)
+    BooleanConstant.new(@value > other.to_v)
+  end
+
+  def b_ge(other)
+    BooleanConstant.new(@value >= other.to_v)
+  end
+
+  def b_lt(other)
+    BooleanConstant.new(@value < other.to_v)
+  end
+
+  def b_le(other)
+    BooleanConstant.new(@value <= other.to_v)
+  end
+
   def printable?
     true
+  end
+
+  def to_v
+    @value
   end
 
   def to_s
@@ -481,7 +513,7 @@ class VariableName < AbstractElement
   end
 
   def self.init?(text)
-    /\A[A-Z]\d?\z/.match(text)
+    /\A[A-Z]\d?\$?\z/.match(text)
   end
 
   attr_reader :name
@@ -495,15 +527,15 @@ class VariableName < AbstractElement
     @variable = true
     @operand = true
     @precedence = 7
-    @content_type = 'NumericConstant'
+    @content_type = @name.content_type
   end
 
   def eql?(other)
-    @name == other.name
+    to_s == other.to_s
   end
 
   def ==(other)
-    @name == other.name
+    to_s == other.to_s
   end
 
   def hash
