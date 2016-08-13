@@ -39,6 +39,19 @@ bash test/bin/run_one_test.sh ifthen_ne
 bash test/bin/run_one_test.sh ifthen_eq
 ((ECODE+=$?))
 
+bash test/bin/run_one_test.sh ifthen_ge_t
+((ECODE+=$?))
+bash test/bin/run_one_test.sh ifthen_gt_t
+((ECODE+=$?))
+bash test/bin/run_one_test.sh ifthen_le_t
+((ECODE+=$?))
+bash test/bin/run_one_test.sh ifthen_lt_t
+((ECODE+=$?))
+bash test/bin/run_one_test.sh ifthen_ne_t
+((ECODE+=$?))
+bash test/bin/run_one_test.sh ifthen_eq_t
+((ECODE+=$?))
+
 bash test/bin/run_one_test.sh print_1
 ((ECODE+=$?))
 bash test/bin/run_one_test.sh print_2
