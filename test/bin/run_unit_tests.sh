@@ -28,6 +28,8 @@ bash test/bin/run_one_test.sh dataread_t
 
 bash test/bin/run_one_test.sh input
 ((ECODE+=$?))
+bash test/bin/run_one_test.sh input_t
+((ECODE+=$?))
 
 bash test/bin/run_one_test.sh ifthen_ge
 ((ECODE+=$?))
