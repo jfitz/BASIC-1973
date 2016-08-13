@@ -23,6 +23,8 @@ bash test/bin/run_one_test.sh dataread
 ((ECODE+=$?))
 bash test/bin/run_one_test.sh datarestore
 ((ECODE+=$?))
+bash test/bin/run_one_test.sh dataread_t
+((ECODE+=$?))
 
 bash test/bin/run_one_test.sh ifthen_ge
 ((ECODE+=$?))
@@ -57,6 +59,8 @@ bash test/bin/run_one_test.sh print_t1
 bash test/bin/run_one_test.sh let_n
 ((ECODE+=$?))
 bash test/bin/run_one_test.sh letless_n
+((ECODE+=$?))
+bash test/bin/run_one_test.sh let_t
 ((ECODE+=$?))
 bash test/bin/run_one_test.sh let_n_plus_n
 ((ECODE+=$?))
