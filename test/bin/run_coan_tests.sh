@@ -21,6 +21,8 @@ bash test/bin/run_coan_test.sh page_7_3
 ((ECODE+=$?))
 bash test/bin/run_coan_test.sh page_8_1
 ((ECODE+=$?))
+bash test/bin/run_coan_test.sh page_8_2
+((ECODE+=$?))
 
 echo
 echo Failures: $ECODE
