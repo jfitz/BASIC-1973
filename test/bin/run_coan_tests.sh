@@ -21,7 +21,11 @@ bash test/bin/run_coan_test.sh page_7_3
 ((ECODE+=$?))
 bash test/bin/run_coan_test.sh page_8_1
 ((ECODE+=$?))
-bash test/bin/run_coan_test.sh page_8_2
+bash test/bin/run_coan_test.sh prog-1-6-g
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-1-6-h
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-1-7-b
 ((ECODE+=$?))
 
 echo
