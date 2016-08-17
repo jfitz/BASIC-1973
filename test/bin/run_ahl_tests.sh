@@ -7,7 +7,7 @@ mkdir tests
 echo Running all tests...
 ECODE=0
 
-bash test/bin/run_one_test.sh bounce
+bash test/bin/run_ahl_test.sh bounce
 ((ECODE+=$?))
 
 echo
