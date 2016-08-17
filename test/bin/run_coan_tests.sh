@@ -7,19 +7,19 @@ mkdir tests
 echo Running all tests...
 ECODE=0
 
-bash test/bin/run_coan_test.sh read-data
+bash test/bin/run_coan_test.sh prog-1-2-a
 ((ECODE+=$?))
-bash test/bin/run_coan_test.sh let
+bash test/bin/run_coan_test.sh prog-1-4-a
 ((ECODE+=$?))
-bash test/bin/run_coan_test.sh input
+bash test/bin/run_coan_test.sh prog-1-5-a
 ((ECODE+=$?))
-bash test/bin/run_coan_test.sh page_7_1
+bash test/bin/run_coan_test.sh prog-1-6-a
 ((ECODE+=$?))
-bash test/bin/run_coan_test.sh page_7_2
+bash test/bin/run_coan_test.sh prog-1-6-d
 ((ECODE+=$?))
-bash test/bin/run_coan_test.sh page_7_3
+bash test/bin/run_coan_test.sh prog-1-6-e
 ((ECODE+=$?))
-bash test/bin/run_coan_test.sh page_8_1
+bash test/bin/run_coan_test.sh prog-1-6-f
 ((ECODE+=$?))
 bash test/bin/run_coan_test.sh prog-1-6-g
 ((ECODE+=$?))
