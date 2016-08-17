@@ -28,6 +28,19 @@ bash test/bin/run_coan_test.sh prog-1-6-h
 bash test/bin/run_coan_test.sh prog-1-7-b
 ((ECODE+=$?))
 
+bash test/bin/run_coan_test.sh prog-2-4-a
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-2-4-b
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-2-4-c
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-2-4-d
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-2-4-e
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-2-4-f
+((ECODE+=$?))
+
 echo
 echo Failures: $ECODE
 
