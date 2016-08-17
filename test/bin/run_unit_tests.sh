@@ -193,10 +193,6 @@ bash test/bin/run_one_test.sh mat_print_3
 bash test/bin/run_one_test.sh mat_print_4
 ((ECODE+=$?))
 
-bash test/bin/run_one_test.sh mati-0
-((ECODE+=$?))
-bash test/bin/run_one_test.sh mati-1
-((ECODE+=$?))
 bash test/bin/run_one_test.sh mat_let_1
 ((ECODE+=$?))
 bash test/bin/run_one_test.sh mat_let_uni_plus
