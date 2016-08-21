@@ -104,6 +104,23 @@ bash test/bin/run_coan_test.sh prog-4-3-d
 bash test/bin/run_coan_test.sh prog-4-3-e
 ((ECODE+=$?))
 
+bash test/bin/run_coan_test.sh prog-4-4-a
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-4-4-b
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-4-4-c
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-4-4-d --ignore-rnd-arg
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-4-4-e
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-4-4-f
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-4-4-g
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-4-4-h
+((ECODE+=$?))
+
 echo
 echo Failures: $ECODE
 

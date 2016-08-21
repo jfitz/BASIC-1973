@@ -528,7 +528,7 @@ class CarriageControl
     when 'NL'
       printer.newline
     when ''
-      # do nothing
+      printer.implied
     end
   end
 end

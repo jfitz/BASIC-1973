@@ -202,11 +202,12 @@ end
 # Print Handler class
 # Handle tab stops and carriage control
 class PrintHandler
-  def initialize(max_width, zone_width, print_rate)
+  def initialize(max_width, zone_width, print_rate, implied_semicolon)
     @column = 0
     @max_width = max_width
     @zone_width = zone_width
     @print_rate = print_rate
+    @implied_semicolon = implied_semicolon
     @last_was_numeric = false
   end
 
@@ -235,6 +236,11 @@ class PrintHandler
       print_item(' ') while @column % 3 != 0
     end
     @last_was_numeric = false
+  end
+
+  def implied
+    semicolon if @implied_semicolon
+    #nothing else otherwise
   end
 
   def tabto(new_column)
@@ -298,7 +304,8 @@ class Interpreter
   attr_reader :printer
 
   def initialize(print_width, zone_width, output_speed, echo_input,
-                 int_floor, ignore_rnd_arg, respect_randomize)
+                 int_floor, ignore_rnd_arg, implied_semicolon,
+                 respect_randomize)
     @running = false
     @randomizer = Random.new(1)
     @data_store = []
@@ -307,7 +314,8 @@ class Interpreter
     @echo_input = echo_input
     @int_floor = int_floor
     @ignore_rnd_arg = ignore_rnd_arg
-    @printer = PrintHandler.new(print_width, zone_width, output_speed)
+    @printer =
+      PrintHandler.new(print_width, zone_width, output_speed, implied_semicolon)
     @respect_randomize = respect_randomize
     @return_stack = []
     @fornexts = {}
@@ -998,6 +1006,7 @@ OptionParser.new do |opt|
   opt.on('--echo-input') { |o| options[:echo_input] = o }
   opt.on('--int-floor') { |o| options[:int_floor] = o }
   opt.on('--ignore-rnd-arg') { |o| options[:ignore_rnd_arg] = o }
+  opt.on('--implied-semicolon') { |o| options[:implied_semicolon] = o }
   opt.on('--ignore-randomize') { |o| options[:ignore_randomize] = o }
 end.parse!
 
@@ -1016,6 +1025,7 @@ zone_width = options[:zone_width].to_i if options.key?(:zone_width)
 echo_input = options.key?(:echo_input) || false
 int_floor = options.key?(:int_floor) || false
 ignore_rnd_arg = options.key?(:ignore_rnd_arg) || false
+implied_semicolon = options.key?(:implied_semicolon) || false
 respect_randomize = true
 respect_randomize = !options[:ignore_randomize] if
   options.key?(:ignore_randomize)
@@ -1025,22 +1035,26 @@ puts
 if !run_filename.nil?
   interpreter =
     Interpreter.new(print_width, zone_width, output_speed, echo_input,
-                    int_floor, ignore_rnd_arg, respect_randomize)
+                    int_floor, ignore_rnd_arg, implied_semicolon,
+                    respect_randomize)
   interpreter.load_and_run(run_filename, trace_flag, timing_flag)
 elsif !list_filename.nil?
   interpreter =
     Interpreter.new(print_width, zone_width, 0, echo_input,
-                    int_floor, ignore_rnd_arg, respect_randomize)
+                    int_floor, ignore_rnd_arg, implied_semicolon,
+                    respect_randomize)
   interpreter.load_and_list(list_filename, trace_flag)
 elsif !pretty_filename.nil?
   interpreter =
     Interpreter.new(print_width, zone_width, 0, echo_input,
-                    int_floor, ignore_rnd_arg, respect_randomize)
+                    int_floor, ignore_rnd_arg, implied_semicolon,
+                    respect_randomize)
   interpreter.load_and_pretty(pretty_filename, trace_flag)
 else
   interpreter =
     Interpreter.new(print_width, zone_width, 0, echo_input,
-                    int_floor, ignore_rnd_arg, respect_randomize)
+                    int_floor, ignore_rnd_arg, implied_semicolon,
+                    respect_randomize)
   interpreter.go
 end
 puts
