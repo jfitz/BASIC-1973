@@ -338,8 +338,8 @@ class LetStatement < AbstractStatement
     super('LET', line)
     begin
       @assignment = ScalarAssignment.new(tokens)
-      if @assignment.count_target != 1
-        @errors << 'Assignment must have only one left-hand value'
+      if @assignment.count_target == 0
+        @errors << 'Assignment must have left-hand value(s)'
       end
       if @assignment.count_value != 1
         @errors << 'Assignment must have only one right-hand value'
@@ -355,10 +355,11 @@ class LetStatement < AbstractStatement
 
   def execute(interpreter, trace)
     l_values = @assignment.eval_target(interpreter)
-    l_value = l_values[0]
     r_values = @assignment.eval_value(interpreter)
     r_value = r_values[0]
-    interpreter.set_value(l_value, r_value, trace)
+    l_values.each do |l_value|
+      interpreter.set_value(l_value, r_value, trace)
+    end
   end
 end
 
@@ -368,8 +369,8 @@ class LetLessStatement < AbstractStatement
     super('', line)
     begin
       @assignment = ScalarAssignment.new(tokens)
-      if @assignment.count_target != 1
-        @errors << 'Assignment must have only one left-hand value'
+      if @assignment.count_target == 0
+        @errors << 'Assignment must have left-hand value(s)'
       end
       if @assignment.count_value != 1
         @errors << 'Assignment must have only one right-hand value'
@@ -385,10 +386,11 @@ class LetLessStatement < AbstractStatement
 
   def execute(interpreter, trace)
     l_values = @assignment.eval_target(interpreter)
-    l_value = l_values[0]
     r_values = @assignment.eval_value(interpreter)
     r_value = r_values[0]
-    interpreter.set_value(l_value, r_value, trace)
+    l_values.each do |l_value|
+      interpreter.set_value(l_value, r_value, trace)
+    end
   end
 end
 
@@ -1168,8 +1170,8 @@ class MatLetStatement < AbstractStatement
     super('MAT', line)
     begin
       @assignment = MatrixAssignment.new(tokens)
-      if @assignment.count_target != 1
-        @errors << 'Assignment must have only one left-hand value'
+      if @assignment.count_target == 0
+        @errors << 'Assignment must have left-hand value(s)'
       end
       if @assignment.count_value != 1
         @errors << 'Assignment must have only one right-hand value'
@@ -1185,22 +1187,19 @@ class MatLetStatement < AbstractStatement
   end
 
   def execute(interpreter, trace)
-    l_value = first_target(interpreter)
-    name = l_value
     r_value = first_value(interpreter)
     dims = r_value.dimensions
-    interpreter.set_dimensions(name, dims)
     values = r_value.values_1 if dims.size == 1
     values = r_value.values_2 if dims.size == 2
-    interpreter.set_values(l_value.name, values, trace)
+
+    l_values = @assignment.eval_target(interpreter)
+    l_values.each do |l_value|
+      interpreter.set_dimensions(l_value, dims)
+      interpreter.set_values(l_value.name, values, trace)
+    end
   end
 
   private
-
-  def first_target(interpreter)
-    l_values = @assignment.eval_target(interpreter)
-    l_values[0]
-  end
 
   def first_value(interpreter)
     r_values = @assignment.eval_value(interpreter)
