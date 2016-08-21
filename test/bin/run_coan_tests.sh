@@ -81,6 +81,17 @@ bash test/bin/run_coan_test.sh prog-3-4-d
 
 bash test/bin/run_coan_test.sh prog-4-1-a --int-floor
 ((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-4-1-b
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-4-1-c
+((ECODE+=$?))
+
+bash test/bin/run_coan_test.sh prog-4-2-a
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-4-2-b
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-4-2-c
+((ECODE+=$?))
 
 echo
 echo Failures: $ECODE
