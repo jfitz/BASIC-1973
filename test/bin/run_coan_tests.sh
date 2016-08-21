@@ -93,6 +93,17 @@ bash test/bin/run_coan_test.sh prog-4-2-b
 bash test/bin/run_coan_test.sh prog-4-2-c
 ((ECODE+=$?))
 
+bash test/bin/run_coan_test.sh prog-4-3-a
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-4-3-b
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-4-3-c
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-4-3-d
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-4-3-e
+((ECODE+=$?))
+
 echo
 echo Failures: $ECODE
 
