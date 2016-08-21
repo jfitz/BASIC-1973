@@ -298,7 +298,7 @@ class Interpreter
   attr_reader :printer
 
   def initialize(print_width, zone_width, output_speed, echo_input,
-                 int_floor, respect_randomize)
+                 int_floor, ignore_rnd_arg, respect_randomize)
     @running = false
     @randomizer = Random.new(1)
     @data_store = []
@@ -306,6 +306,7 @@ class Interpreter
     @statement_factory = StatementFactory.new
     @echo_input = echo_input
     @int_floor = int_floor
+    @ignore_rnd_arg = ignore_rnd_arg
     @printer = PrintHandler.new(print_width, zone_width, output_speed)
     @respect_randomize = respect_randomize
     @return_stack = []
@@ -681,6 +682,7 @@ class Interpreter
     upper_bound = upper_bound.to_v
     upper_bound = upper_bound.truncate
     upper_bound = 1 if upper_bound <= 0
+    upper_bound = 1 if @ignore_rnd_arg
     upper_bound = upper_bound.to_f
     NumericConstant.new(@randomizer.rand(upper_bound))
   end
@@ -995,6 +997,7 @@ OptionParser.new do |opt|
   opt.on('--zone-width WIDTH') { |o| options[:zone_width] = o }
   opt.on('--echo-input') { |o| options[:echo_input] = o }
   opt.on('--int-floor') { |o| options[:int_floor] = o }
+  opt.on('--ignore-rnd-arg') { |o| options[:ignore_rnd_arg] = o }
   opt.on('--ignore-randomize') { |o| options[:ignore_randomize] = o }
 end.parse!
 
@@ -1012,6 +1015,7 @@ zone_width = 16
 zone_width = options[:zone_width].to_i if options.key?(:zone_width)
 echo_input = options.key?(:echo_input) || false
 int_floor = options.key?(:int_floor) || false
+ignore_rnd_arg = options.key?(:ignore_rnd_arg) || false
 respect_randomize = true
 respect_randomize = !options[:ignore_randomize] if
   options.key?(:ignore_randomize)
@@ -1021,22 +1025,22 @@ puts
 if !run_filename.nil?
   interpreter =
     Interpreter.new(print_width, zone_width, output_speed, echo_input,
-                    int_floor, respect_randomize)
+                    int_floor, ignore_rnd_arg, respect_randomize)
   interpreter.load_and_run(run_filename, trace_flag, timing_flag)
 elsif !list_filename.nil?
   interpreter =
     Interpreter.new(print_width, zone_width, 0, echo_input,
-                    int_floor, respect_randomize)
+                    int_floor, ignore_rnd_arg, respect_randomize)
   interpreter.load_and_list(list_filename, trace_flag)
 elsif !pretty_filename.nil?
   interpreter =
     Interpreter.new(print_width, zone_width, 0, echo_input,
-                    int_floor, respect_randomize)
+                    int_floor, ignore_rnd_arg, respect_randomize)
   interpreter.load_and_pretty(pretty_filename, trace_flag)
 else
   interpreter =
     Interpreter.new(print_width, zone_width, 0, echo_input,
-                    int_floor, respect_randomize)
+                    int_floor, ignore_rnd_arg, respect_randomize)
   interpreter.go
 end
 puts
