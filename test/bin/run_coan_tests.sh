@@ -118,7 +118,7 @@ bash test/bin/run_coan_test.sh prog-4-4-f
 ((ECODE+=$?))
 bash test/bin/run_coan_test.sh prog-4-4-g
 ((ECODE+=$?))
-bash test/bin/run_coan_test.sh prog-4-4-h
+bash test/bin/run_coan_test.sh prog-4-4-h --implied-semicolon
 ((ECODE+=$?))
 
 echo
