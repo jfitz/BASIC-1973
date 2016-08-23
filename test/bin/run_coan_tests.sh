@@ -141,6 +141,11 @@ bash test/bin/run_coan_test.sh prog-5-2-d
 bash test/bin/run_coan_test.sh prog-5-2-e
 ((ECODE+=$?))
 
+bash test/bin/run_coan_test.sh prog-5-3-a
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-5-3-b
+((ECODE+=$?))
+
 echo
 echo Failures: $ECODE
 
