@@ -125,6 +125,16 @@ bash test/bin/run_coan_test.sh prog-4-4-i --implied-semicolon
 bash test/bin/run_coan_test.sh prog-4-4-j --implied-semicolon
 ((ECODE+=$?))
 
+bash test/bin/run_coan_test.sh prog-5-1-a
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-5-1-b
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-5-1-c
+((ECODE+=$?))
+bash test/bin/run_coan_test.sh prog-5-1-d
+((ECODE+=$?))
+
+
 echo
 echo Failures: $ECODE
 
