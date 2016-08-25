@@ -13,6 +13,7 @@ class AbstractToken
     @is_statement_separator = false
     @is_groupstart = false
     @is_groupend = false
+    is_invalid = false
   end
 
   def keyword?
@@ -67,6 +68,10 @@ class AbstractToken
   def statement_separator?
     @is_statement_separator
   end
+
+  def invalid?
+    @is_invalid
+  end
 end
 
 # invalid token
@@ -74,6 +79,7 @@ class InvalidToken < AbstractToken
   attr_reader :text
 
   def initialize(text)
+    @is_invalid = true
     @text = text
   end
 
@@ -343,6 +349,22 @@ class TextTokenizer
 
   def token
     TextConstantToken.new(@token)
+  end
+end
+
+# token reader for text constants
+class BareTextTokenizer
+  def try(text)
+    @token = ''
+    /\A[^,;]+/.match(text) { |m| @token = m[0] }
+  end
+
+  def count
+    @token.size
+  end
+
+  def token
+    TextConstantToken.new('"' + @token + '"')
   end
 end
 

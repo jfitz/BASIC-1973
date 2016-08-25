@@ -134,7 +134,8 @@ class StatementFactory
 
   def tokenize(text)
     tokenizers = make_tokenizers
-    text_to_tokens(text, tokenizers)
+    tokenizer = Tokenizer.new(tokenizers)
+    tokenizer.tokenize(text)
   end
 
   def statement_definitions
@@ -193,15 +194,21 @@ class StatementFactory
     tokenizers << VariableTokenizer.new
     tokenizers << InvalidTokenizer.new
   end
+end
 
-  def text_to_tokens(text, tokenizers)
-    tokens = []
-    until text.nil? || text.empty?
-      tokenizers.each { |tokenizer| tokenizer.try(text) }
-
+class Tokenizer
+  def initialize(tokenizers)
+    @tokenizers = tokenizers
+  end
+ 
+  def tokenize(text)
+     tokens = []
+     until text.nil? || text.empty?
+      @tokenizers.each { |tokenizer| tokenizer.try(text) }
+ 
       count = 0
       token = nil
-      tokenizers.each do |tokenizer|
+      @tokenizers.each do |tokenizer|
         if tokenizer.count > count
           token = tokenizer.token
           count = tokenizer.count
@@ -452,45 +459,27 @@ class InputStatement < AbstractStatement
     results
   end
 
-  # converts text line to constant values
-  def textline_to_constants(line)
-    values = []
-    text_values = line.split(',')
-    numeric_tokenizer = NumberTokenizer.new
-    text_tokenizer = TextTokenizer.new
-    text_values.each do |value|
-      v = value.strip
-      numeric_tokenizer.try(v)
-      if numeric_tokenizer.count == v.size
-        v1 = NumericConstantToken.new(v)
-        values << NumericConstant.new(v1)
-      else
-        text_tokenizer.try(v)
-        if text_tokenizer.count == v.size
-          v1 = TextConstantToken.new(v)
-          values << TextConstant.new(v1)
-        else
-          v0 = '"' + v + '"'
-          text_tokenizer.try(v0)
-          if text_tokenizer.count == v0.size
-            v1 = TextConstantToken.new(v0)
-            values << TextConstant.new(v1)
-          else
-            raise(BASICException, "Value '#{value}' not numeric or text")
-          end
-        end
-      end
-    end
-    values
-  end
-
   def input_values(interpreter)
     values = []
     prompt = @prompt
+    tokenizers = []
+    tokenizers << ListTokenizer.new([',', ';'], ParamSeparatorToken)
+    tokenizers << TextTokenizer.new
+    tokenizers << NumberTokenizer.new
+    tokenizers << InvalidTokenizer.new
+    tokenizers << BareTextTokenizer.new
+
+    tokenizer = Tokenizer.new(tokenizers)
     while values.size < @expression_list.size
       print prompt.value
       input_text = interpreter.read_line
-      values += textline_to_constants(input_text)
+
+      # new start
+      tokens = tokenizer.tokenize(input_text)
+      @expressions = ValueScalarExpression.new(tokens)
+      values += @expressions.evaluate(interpreter)
+      # new end
+
       prompt = @default_prompt
     end
     values
@@ -500,8 +489,7 @@ class InputStatement < AbstractStatement
     expression_list = []
     tokens_lists.each do |tokens_list|
       begin
-        expression_list <<
-          TargetExpression.new(tokens_list, ScalarReference)
+        expression_list << TargetExpression.new(tokens_list, ScalarReference)
       rescue BASICException
         @errors << 'Invalid variable ' + tokens_list.map(&:to_s).join
       end
