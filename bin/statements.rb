@@ -196,14 +196,15 @@ class StatementFactory
   end
 end
 
+# tokenizer class
 class Tokenizer
   def initialize(tokenizers)
     @tokenizers = tokenizers
   end
  
   def tokenize(text)
-     tokens = []
-     until text.nil? || text.empty?
+    tokens = []
+    until text.nil? || text.empty?
       @tokenizers.each { |tokenizer| tokenizer.try(text) }
  
       count = 0
@@ -214,7 +215,8 @@ class Tokenizer
           count = tokenizer.count
         end
       end
-      tokens << token unless token.nil?
+      raise(Exception, "Cannot tokenize '#{text}'") if token.nil?
+      tokens += token
       text = text[count..-1]
     end
     tokens
@@ -460,25 +462,29 @@ class InputStatement < AbstractStatement
   end
 
   def input_values(interpreter)
+    # when parsing user input, we use different tokenizers than the code
+    # each token must end with a comma or a newline
+    # numeric tokens may contain leading signs
+    # all tokens may have leading or trailing spaces (or both)
     values = []
     prompt = @prompt
     tokenizers = []
-    tokenizers << ListTokenizer.new([',', ';'], ParamSeparatorToken)
-    tokenizers << TextTokenizer.new
-    tokenizers << NumberTokenizer.new
-    tokenizers << InvalidTokenizer.new
-    tokenizers << BareTextTokenizer.new
+    tokenizers << InputTextTokenizer.new
+    tokenizers << InputETextTokenizer.new
+    tokenizers << InputNumberTokenizer.new
+    tokenizers << InputENumberTokenizer.new
+    tokenizers << InputBareTextTokenizer.new
+    tokenizers << InputEBareTextTokenizer.new
 
     tokenizer = Tokenizer.new(tokenizers)
     while values.size < @expression_list.size
       print prompt.value
-      input_text = interpreter.read_line
 
-      # new start
+      input_text = interpreter.read_line
       tokens = tokenizer.tokenize(input_text)
-      @expressions = ValueScalarExpression.new(tokens)
-      values += @expressions.evaluate(interpreter)
-      # new end
+      expressions = ValueScalarExpression.new(tokens)
+      ev = expressions.evaluate(interpreter)
+      values += ev
 
       prompt = @default_prompt
     end
@@ -1211,3 +1217,4 @@ class RandomizeStatement < AbstractStatement
     interpreter.new_random
   end
 end
+
