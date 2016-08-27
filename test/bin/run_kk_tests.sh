@@ -7,82 +7,82 @@ mkdir tests
 echo Running all tests...
 ECODE=0
 
-bash test/bin/run_kk_test.sh binom
+bash test/bin/run_test.sh kk binom
 ((ECODE+=$?))
-bash test/bin/run_kk_test.sh china
-((ECODE+=$?))
-
-bash test/bin/run_kk_test.sh convert
-((ECODE+=$?))
-bash test/bin/run_kk_test.sh lrgfct
+bash test/bin/run_test.sh kk china
 ((ECODE+=$?))
 
-bash test/bin/run_kk_test.sh roots
+bash test/bin/run_test.sh kk convert
 ((ECODE+=$?))
-bash test/bin/run_kk_test.sh sales
-((ECODE+=$?))
-
-bash test/bin/run_kk_test.sh table
-((ECODE+=$?))
-bash test/bin/run_kk_test.sh income
-((ECODE+=$?))
-bash test/bin/run_kk_test.sh rc-sum
+bash test/bin/run_test.sh kk lrgfct
 ((ECODE+=$?))
 
-bash test/bin/run_kk_test.sh inverse_7
+bash test/bin/run_test.sh kk roots
 ((ECODE+=$?))
-bash test/bin/run_kk_test.sh inverse_9
-((ECODE+=$?))
-
-bash test/bin/run_kk_test.sh define
+bash test/bin/run_test.sh kk sales
 ((ECODE+=$?))
 
-bash test/bin/run_kk_test.sh trig-1
+bash test/bin/run_test.sh kk table
 ((ECODE+=$?))
-bash test/bin/run_kk_test.sh trig-2
+bash test/bin/run_test.sh kk income
 ((ECODE+=$?))
-bash test/bin/run_kk_test.sh trig-3
-((ECODE+=$?))
-
-bash test/bin/run_kk_test.sh zero-1
-((ECODE+=$?))
-bash test/bin/run_kk_test.sh zero-2
-((ECODE+=$?))
-bash test/bin/run_kk_test.sh zero-3
-((ECODE+=$?))
-bash test/bin/run_kk_test.sh zero-4
+bash test/bin/run_test.sh kk rc-sum
 ((ECODE+=$?))
 
-bash test/bin/run_kk_test.sh mati-0
+bash test/bin/run_test.sh kk inverse_7
 ((ECODE+=$?))
-bash test/bin/run_kk_test.sh mati-1
-((ECODE+=$?))
-bash test/bin/run_kk_test.sh matops
-((ECODE+=$?))
-bash test/bin/run_kk_test.sh matmpy
-((ECODE+=$?))
-bash test/bin/run_kk_test.sh matpwr
-((ECODE+=$?))
-bash test/bin/run_kk_test.sh matinv
-((ECODE+=$?))
-bash test/bin/run_kk_test.sh linequ
+bash test/bin/run_test.sh kk inverse_9
 ((ECODE+=$?))
 
-bash test/bin/run_kk_test.sh deal
+bash test/bin/run_test.sh kk define
 ((ECODE+=$?))
-bash test/bin/run_kk_test.sh dice
+
+bash test/bin/run_test.sh kk trig-1
 ((ECODE+=$?))
-bash test/bin/run_kk_test.sh needle
+bash test/bin/run_test.sh kk trig-2
 ((ECODE+=$?))
-bash test/bin/run_kk_test.sh knight
+bash test/bin/run_test.sh kk trig-3
 ((ECODE+=$?))
-bash test/bin/run_kk_test.sh random_float
+
+bash test/bin/run_test.sh kk zero-1
 ((ECODE+=$?))
-bash test/bin/run_kk_test.sh random_int
+bash test/bin/run_test.sh kk zero-2
 ((ECODE+=$?))
-bash test/bin/run_kk_test.sh plot
+bash test/bin/run_test.sh kk zero-3
 ((ECODE+=$?))
-bash test/bin/run_kk_test.sh plotxy
+bash test/bin/run_test.sh kk zero-4
+((ECODE+=$?))
+
+bash test/bin/run_test.sh kk mati-0
+((ECODE+=$?))
+bash test/bin/run_test.sh kk mati-1
+((ECODE+=$?))
+bash test/bin/run_test.sh kk matops
+((ECODE+=$?))
+bash test/bin/run_test.sh kk matmpy
+((ECODE+=$?))
+bash test/bin/run_test.sh kk matpwr
+((ECODE+=$?))
+bash test/bin/run_test.sh kk matinv
+((ECODE+=$?))
+bash test/bin/run_test.sh kk linequ
+((ECODE+=$?))
+
+bash test/bin/run_test.sh kk deal
+((ECODE+=$?))
+bash test/bin/run_test.sh kk dice
+((ECODE+=$?))
+bash test/bin/run_test.sh kk needle
+((ECODE+=$?))
+bash test/bin/run_test.sh kk knight
+((ECODE+=$?))
+bash test/bin/run_test.sh kk random_float
+((ECODE+=$?))
+bash test/bin/run_test.sh kk random_int
+((ECODE+=$?))
+bash test/bin/run_test.sh kk plot
+((ECODE+=$?))
+bash test/bin/run_test.sh kk plotxy
 ((ECODE+=$?))
 
 echo
