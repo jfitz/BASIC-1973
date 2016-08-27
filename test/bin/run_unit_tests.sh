@@ -28,6 +28,12 @@ bash test/bin/run_test.sh unit dataread_t
 
 bash test/bin/run_test.sh unit input
 ((ECODE+=$?))
+bash test/bin/run_test.sh unit input_2
+((ECODE+=$?))
+bash test/bin/run_test.sh unit input_3
+((ECODE+=$?))
+bash test/bin/run_test.sh unit input_4
+((ECODE+=$?))
 bash test/bin/run_test.sh unit input_t
 ((ECODE+=$?))
 
