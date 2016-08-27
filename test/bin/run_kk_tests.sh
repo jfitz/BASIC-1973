@@ -21,8 +21,6 @@ bash test/bin/run_kk_test.sh roots
 ((ECODE+=$?))
 bash test/bin/run_kk_test.sh sales
 ((ECODE+=$?))
-bash test/bin/run_kk_test.sh sqrabs
-((ECODE+=$?))
 
 bash test/bin/run_kk_test.sh table
 ((ECODE+=$?))
@@ -70,8 +68,6 @@ bash test/bin/run_kk_test.sh matinv
 bash test/bin/run_kk_test.sh linequ
 ((ECODE+=$?))
 
-bash test/bin/run_kk_test.sh annular
-((ECODE+=$?))
 bash test/bin/run_kk_test.sh deal
 ((ECODE+=$?))
 bash test/bin/run_kk_test.sh dice
