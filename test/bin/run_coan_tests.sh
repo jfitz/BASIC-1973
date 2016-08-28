@@ -157,6 +157,15 @@ bash test/bin/run_test.sh coan prog-6-3-a
 bash test/bin/run_test.sh coan prog-6-3-b
 ((ECODE+=$?))
 
+bash test/bin/run_test.sh coan prog-7-1-a
+((ECODE+=$?))
+bash test/bin/run_test.sh coan prog-7-1-b
+((ECODE+=$?))
+# don't test programs from chapter 7 section 2
+# -- they use subscripts for substrings
+bash test/bin/run_test.sh coan prog-7-3-a
+((ECODE+=$?))
+
 echo
 echo Failures: $ECODE
 
