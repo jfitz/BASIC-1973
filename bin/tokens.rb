@@ -394,7 +394,7 @@ end
 class InputTextTokenizer
   def try(text)
     @token = ''
-    /\A *(".*") *,/.match(text) { |m| @token = m[0] }
+    /\A *("[^"]*") *,/.match(text) { |m| @token = m[0] }
   end
 
   def count
@@ -402,7 +402,9 @@ class InputTextTokenizer
   end
 
   def token
-    [TextConstantToken.new(@token[0..-2]), ParamSeparatorToken.new(',')]
+    no_comma = @token[0..-2]
+    stripped = no_comma.strip
+    [TextConstantToken.new(stripped), ParamSeparatorToken.new(',')]
   end
 end
 
@@ -418,7 +420,10 @@ class InputBareTextTokenizer
   end
 
   def token
-    [TextConstantToken.new('"' + @token[0..-2] + '"'), ParamSeparatorToken.new(',')]
+    no_comma = @token[0..-2]
+    stripped = no_comma.strip
+    quoted = '"' + stripped + '"'
+    [TextConstantToken.new(quoted), ParamSeparatorToken.new(',')]
   end
 end
 
@@ -449,7 +454,7 @@ end
 class InputETextTokenizer
   def try(text)
     @token = ''
-    /\A *".*" *\z/.match(text) { |m| @token = m[0] }
+    /\A *"[^"]*" *\z/.match(text) { |m| @token = m[0] }
   end
 
   def count
@@ -457,7 +462,8 @@ class InputETextTokenizer
   end
 
   def token
-    [TextConstantToken.new(@token)]
+    stripped = @token.strip
+    [TextConstantToken.new(stripped)]
   end
 end
 
@@ -473,7 +479,9 @@ class InputEBareTextTokenizer
   end
 
   def token
-    [TextConstantToken.new('"' + @token + '"')]
+    stripped = @token.strip
+    quoted = '"' + stripped + '"'
+    [TextConstantToken.new(quoted)]
   end
 end
 
