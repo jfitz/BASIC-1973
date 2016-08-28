@@ -198,6 +198,12 @@ bash test/bin/run_test.sh unit random_1
 ((ECODE+=$?))
 bash test/bin/run_test.sh unit random_10 --ignore-rnd-arg
 ((ECODE+=$?))
+bash test/bin/run_test.sh unit function_len
+((ECODE+=$?))
+bash test/bin/run_test.sh unit function_chr
+((ECODE+=$?))
+bash test/bin/run_test.sh unit function_asc
+((ECODE+=$?))
 
 bash test/bin/run_test.sh unit sqrabs
 ((ECODE+=$?))

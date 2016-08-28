@@ -473,7 +473,10 @@ class FunctionFactory
     'IDN' => FunctionIdn,
     'DET' => FunctionDet,
     'INV' => FunctionInv,
-    'TAB' => FunctionTab
+    'TAB' => FunctionTab,
+    'CHR$' => FunctionChr,
+    'LEN' => FunctionLen,
+    'ASC' => FunctionAsc
   }
 
   def self.valid?(text)

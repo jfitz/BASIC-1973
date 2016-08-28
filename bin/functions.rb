@@ -304,3 +304,58 @@ class FunctionTab < AbstractScalarFunction
     TextConstant.new(v)
   end
 end
+
+# function CHR$
+class FunctionChr < AbstractScalarFunction
+  def initialize(text)
+    super
+  end
+
+  def evaluate(interpreter, stack)
+    ensure_argument_count(stack, [1])
+    args = stack.pop
+    check_arg_types(args, ['NumericConstant'])
+    value = args[0].to_i
+    raise(BASICException, 'Invalid value for CHR$()') if !value.between?(32, 126)
+    text = value.chr
+    quoted = '"' + text + '"'
+    v = TextConstantToken.new(quoted)
+    TextConstant.new(v)
+  end
+end
+
+# function LEN
+class FunctionLen < AbstractScalarFunction
+  def initialize(text)
+    super
+  end
+
+  def evaluate(interpreter, stack)
+    ensure_argument_count(stack, [1])
+    args = stack.pop
+    check_arg_types(args, ['TextConstant'])
+    text = args[0].to_v
+    length = text.size
+    token = NumericConstantToken.new(length.to_s)
+    NumericConstant.new(token)
+  end
+end
+
+# function ASC
+class FunctionAsc < AbstractScalarFunction
+  def initialize(text)
+    super
+  end
+
+  def evaluate(interpreter, stack)
+    ensure_argument_count(stack, [1])
+    args = stack.pop
+    check_arg_types(args, ['TextConstant'])
+    text = args[0].to_v
+    raise(BASICException, 'Empty string in ASC()') if text.empty?
+    value = text[0].ord
+    raise(BASICException, 'Invalid value in ASC()') if !value.between?(32, 126)
+    token = NumericConstantToken.new(value.to_s)
+    NumericConstant.new(token)
+  end
+end
