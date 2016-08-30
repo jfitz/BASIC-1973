@@ -978,7 +978,6 @@ end
 class ScalarAssignment < AbstractAssignment
   def initialize(tokens)
     super
-    # parse into variable, '=', expression
     @target = TargetExpression.new(@token_lists[0], ScalarReference)
     @expression = ValueScalarExpression.new(@token_lists[2])
   end
@@ -996,7 +995,6 @@ end
 class MatrixAssignment < AbstractAssignment
   def initialize(tokens)
     super
-    # parse into variable, '=', expression
     @target = TargetExpression.new(@token_lists[0], MatrixReference)
     @functions = {
       'CON' => FunctionCon,

@@ -188,10 +188,12 @@ end
 # Line class to hold a line of code
 class Line
   attr_reader :statements
+  attr_reader :tokens
 
-  def initialize(text, statements)
+  def initialize(text, statements, tokens)
     @text = text
     @statements = statements
+    @tokens = tokens
   end
 
   def list
@@ -343,14 +345,14 @@ class Interpreter
     puts "Syntax error: #{e.message}"
   end
 
-  def cmd_list(linespec)
+  def cmd_list(linespec, list_tokens)
     linespec = linespec.strip
     if !@program_lines.empty?
       begin
         line_numbers = @program_lines.keys.sort
         line_number_range = LineListSpec.new(linespec, line_numbers)
         line_numbers = line_number_range.line_numbers
-        list_lines_errors(line_numbers)
+        list_lines_errors(line_numbers, list_tokens)
       rescue BASICException => e
         puts e
       end
@@ -377,7 +379,7 @@ class Interpreter
 
   private
 
-  def list_lines_errors(line_numbers)
+  def list_lines_errors(line_numbers, list_tokens)
     line_numbers.each do |line_number|
       line = @program_lines[line_number]
       puts line_number.to_s + line.list
@@ -385,6 +387,8 @@ class Interpreter
       statements.each do |statement|
         statement.errors.each { |error| puts ' ' + error }
       end
+      tokens = line.tokens
+      puts 'TOKENS: ' + tokens.map(&:to_s).join(' ') if list_tokens
     end
   end
 
@@ -510,7 +514,8 @@ class Interpreter
   end
 
   def execute_a_statement(do_trace)
-    line = @program_lines[@current_line_index.number]
+    line_number = @current_line_index.number
+    line = @program_lines[line_number]
     statements = line.statements
     index = @current_line_index.index
     statement = statements[index]
@@ -633,7 +638,7 @@ class Interpreter
 
   # returns an Array of values
   def evaluate(parsed_expressions)
-    # expected = parsed_expressions[0].length
+    expected = parsed_expressions.length
     result_values = []
     parsed_expressions.each do |parsed_expression|
       stack = []
@@ -653,13 +658,12 @@ class Interpreter
       #      "Expected item #{expected_result_class}, "
       #      "found item type #{item.class} remaining on evaluation stack") if
       #  item.class.to_s != expected_result_class
-      result_values << item unless item.nil?
+      result_values << item
     end
-    # actual = result_values.length
-    # raise(Exception,
-    #      "Expected #{expected} items, "
-    #      "#{actual} remaining on evaluation stack") if
-    #   actual != expected
+    actual = result_values.length
+    raise(Exception,
+          "Expected #{expected} items, #{actual} remaining on evaluation stack") if
+      actual != expected
     result_values
   end
 
@@ -805,8 +809,8 @@ class Interpreter
 
   def set_value(variable, value, trace)
     # check that value type matches variable type
-    raise(BASICException, 'Type mismatch') if
-      variable.content_type != value.class.to_s
+    raise(BASICException, "Type mismatch #{value.class} is not #{variable.content_type}") if
+      value.class.to_s != variable.content_type
     v = variable.to_s
     @variables[v] = value
     puts(' ' + variable.to_s + ' = ' + value.to_s) if trace
@@ -936,7 +940,7 @@ class Interpreter
   def execute_4_command(cmd, rest)
     case cmd
     when 'LIST'
-      cmd_list(rest)
+      cmd_list(rest, false)
     when 'LOAD'
       cmd_load(rest, false)
     when 'SAVE'
@@ -945,11 +949,13 @@ class Interpreter
   end
 
   def command_6?(text)
-    %w(PRETTY DELETE).include?(text)
+    %w(TOKENS PRETTY DELETE).include?(text)
   end
 
   def execute_6_command(cmd, rest)
     case cmd
+    when 'TOKENS'
+      cmd_list(rest, true)
     when 'PRETTY'
       cmd_pretty(rest)
     when 'DELETE'
@@ -973,9 +979,9 @@ class Interpreter
     end
   end
 
-  def load_and_list(filename, trace_flag)
+  def load_and_list(filename, trace_flag, list_tokens)
     @program_lines = {}
-    cmd_list('') if cmd_load(filename, trace_flag)
+    cmd_list('', list_tokens) if cmd_load(filename, trace_flag)
   end
 
   def load_and_pretty(filename, trace_flag)
@@ -1001,6 +1007,7 @@ options = {}
 OptionParser.new do |opt|
   opt.on('-r', '--run SOURCE') { |o| options[:run_name] = o }
   opt.on('-l', '--list SOURCE') { |o| options[:list_name] = o }
+  opt.on('--tokens') { |o| options[:tokens] = o }
   opt.on('-p', '--pretty-list SOURCE') { |o| options[:pretty_name] = o }
   opt.on('--trace') { |o| options[:trace] = o }
   opt.on('--notiming') { |o| options[:notiming] = o }
@@ -1018,6 +1025,7 @@ run_filename = options[:run_name]
 list_filename = options[:list_name]
 pretty_filename = options[:pretty_name]
 trace_flag = options.key?(:trace) || false
+list_tokens = options.key?(:tokens) || false
 notiming_flag = options.key?(:notiming) || false
 timing_flag = !notiming_flag
 output_speed = 0
@@ -1047,7 +1055,7 @@ elsif !list_filename.nil?
     Interpreter.new(print_width, zone_width, 0, echo_input,
                     int_floor, ignore_rnd_arg, implied_semicolon,
                     respect_randomize)
-  interpreter.load_and_list(list_filename, trace_flag)
+  interpreter.load_and_list(list_filename, trace_flag, list_tokens)
 elsif !pretty_filename.nil?
   interpreter =
     Interpreter.new(print_width, zone_width, 0, echo_input,
