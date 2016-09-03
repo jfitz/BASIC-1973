@@ -422,6 +422,10 @@ class TextConstant < AbstractElement
     self
   end
 
+  def array?
+    false
+  end
+
   def matrix?
     false
   end
