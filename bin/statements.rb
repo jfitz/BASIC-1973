@@ -182,6 +182,8 @@ class StatementFactory
     ]
     tokenizers << ListTokenizer.new(operators, OperatorToken)
 
+    tokenizers << BreakTokenizer.new
+
     tokenizers << ListTokenizer.new(['(', '['], GroupStartToken)
     tokenizers << ListTokenizer.new([')', ']'], GroupEndToken)
     tokenizers << ListTokenizer.new([',', ';'], ParamSeparatorToken)
@@ -257,6 +259,16 @@ class AbstractStatement
 
   protected
 
+  def remove_break_tokens(tokens)
+    new_list = []
+
+    tokens.each do |token|
+      new_list << token unless token.class.to_s == 'BreakToken'
+    end
+
+    new_list
+  end
+
   def make_coord(c)
     [NumericConstant.new(c)]
   end
@@ -319,6 +331,7 @@ end
 class DimStatement < AbstractStatement
   def initialize(line, tokens)
     super('DIM', line)
+    tokens = remove_break_tokens(tokens)
     tokens_lists = ArgSplitter.split_tokens(tokens, false)
 
     @errors << 'No variables specified' if tokens_lists.empty?
@@ -355,6 +368,7 @@ end
 class LetStatement < AbstractStatement
   def initialize(line, tokens)
     super('LET', line)
+    tokens = remove_break_tokens(tokens)
     begin
       @assignment = ScalarAssignment.new(tokens)
       if @assignment.count_target == 0
@@ -386,6 +400,7 @@ end
 class LetLessStatement < AbstractStatement
   def initialize(line, tokens)
     super('', line)
+    tokens = remove_break_tokens(tokens)
     begin
       @assignment = ScalarAssignment.new(tokens)
       if @assignment.count_target == 0
@@ -417,6 +432,7 @@ end
 class InputStatement < AbstractStatement
   def initialize(line, tokens)
     super('INPUT', line)
+    tokens = remove_break_tokens(tokens)
     tokens_lists = ArgSplitter.split_tokens(tokens, false)
     # [prompt string] variable [variable]...
     @default_prompt = TextConstantToken.new('"? "')
@@ -518,6 +534,7 @@ end
 class IfStatement < AbstractStatement
   def initialize(line, tokens)
     super('IF', line)
+    tokens = remove_break_tokens(tokens)
     parts = split_keywords(tokens)
     if parts.size == 3
       parse_line(parts[0], parts[1], parts[2][0])
@@ -576,6 +593,7 @@ end
 class PrintStatement < AbstractStatement
   def initialize(line, tokens)
     super('PRINT', line)
+    tokens = remove_break_tokens(tokens)
     tokens_lists = ArgSplitter.split_tokens(tokens, true)
     # variable/constant, [separator, variable/constant]... [separator]
 
@@ -642,6 +660,7 @@ end
 class GotoStatement < AbstractStatement
   def initialize(line, tokens)
     super('GOTO', line)
+    tokens = remove_break_tokens(tokens)
     if tokens.size == 1
       if tokens[0].numeric_constant?
         @destination = LineNumberIndex.new(LineNumber.new(tokens[0]), 0)
@@ -666,6 +685,7 @@ end
 class GosubStatement < AbstractStatement
   def initialize(line, tokens)
     super('GOSUB', line)
+    tokens = remove_break_tokens(tokens)
     if tokens.size == 1
       if tokens[0].numeric_constant?
         @destination = LineNumberIndex.new(LineNumber.new(tokens[0]), 0)
@@ -751,6 +771,7 @@ end
 class ForStatement < AbstractStatement
   def initialize(line, tokens)
     super('FOR', line)
+    tokens = remove_break_tokens(tokens)
     # parse control variable, '=', numeric_expression, "TO",
     # numeric_expression, "STEP", numeric_expression
     begin
@@ -857,6 +878,7 @@ class NextStatement < AbstractStatement
 
   def initialize(line, tokens)
     super('NEXT', line)
+    tokens = remove_break_tokens(tokens)
     # parse control variable
     @control = nil
     if tokens.size == 1
@@ -896,6 +918,7 @@ end
 class ReadStatement < AbstractStatement
   def initialize(line, tokens)
     super('READ', line)
+    tokens = remove_break_tokens(tokens)
     tokens_lists = ArgSplitter.split_tokens(tokens, false)
     # variable [variable]...
 
@@ -927,6 +950,7 @@ end
 class DataStatement < AbstractStatement
   def initialize(line, tokens)
     super('DATA', line)
+    tokens = remove_break_tokens(tokens)
     @expressions = ValueScalarExpression.new(tokens)
   end
 
@@ -963,6 +987,7 @@ end
 class DefineFunctionStatement < AbstractStatement
   def initialize(line, tokens)
     super('DEF', line)
+    tokens = remove_break_tokens(tokens)
     @name = ''
     @arguments = []
     @template = ''
@@ -1027,6 +1052,7 @@ end
 class TraceStatement < AbstractStatement
   def initialize(line, tokens)
     super('TRACE', line)
+    tokens = remove_break_tokens(tokens)
     tokens_lists = ArgSplitter.split_tokens(tokens, false)
     if tokens_lists.empty?
       @errors << 'Syntax error'
@@ -1050,6 +1076,7 @@ end
 class MatPrintStatement < AbstractStatement
   def initialize(line, tokens)
     super('MAT PRINT', line)
+    tokens = remove_break_tokens(tokens)
     tokens_lists = ArgSplitter.split_tokens(tokens, true)
     # variable, [separator, variable]... [separator]
 
@@ -1104,6 +1131,7 @@ end
 class MatReadStatement < AbstractStatement
   def initialize(line, tokens)
     super('MAT READ', line)
+    tokens = remove_break_tokens(tokens)
     tokens_lists = ArgSplitter.split_tokens(tokens, false)
     # variable [variable]...
 
@@ -1172,6 +1200,7 @@ end
 class MatLetStatement < AbstractStatement
   def initialize(line, tokens)
     super('MAT', line)
+    tokens = remove_break_tokens(tokens)
     begin
       @assignment = MatrixAssignment.new(tokens)
       if @assignment.count_target == 0

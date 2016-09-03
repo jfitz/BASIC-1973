@@ -88,6 +88,19 @@ class InvalidToken < AbstractToken
   end
 end
 
+# break token
+class BreakToken < AbstractToken
+  attr_reader :text
+
+  def initialize(text)
+    @text = text
+  end
+
+  def to_s
+    @text
+  end
+end
+
 # keyword token
 class KeywordToken < AbstractToken
   attr_reader :keyword
@@ -505,5 +518,22 @@ class InputENumberTokenizer
 
   def token
     [NumericConstantToken.new(@token)]
+  end
+end
+
+# token reader for token separator
+class BreakTokenizer
+  def try(text)
+    @token = ''
+    @token = text[0] if text[0] == '_'
+    text = '_'
+  end
+
+  def count
+    @token.size
+  end
+
+  def token
+    [BreakToken.new(@token)]
   end
 end
