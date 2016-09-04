@@ -175,8 +175,7 @@ class StatementFactory
 
     tokenizers << ListTokenizer.new(['\\'], StatementSeparatorToken)
 
-    keywords = statement_definitions.keys + %w(THEN TO STEP) -
-               %w(MATPRINT MATREAD)
+    keywords = statement_definitions.keys + %w(THEN TO STEP)
     tokenizers << ListTokenizer.new(keywords, KeywordToken)
 
     operators = [
