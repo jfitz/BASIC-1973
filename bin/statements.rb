@@ -1230,7 +1230,8 @@ class ArrLetStatement < AbstractStatement
   def first_value(interpreter)
     r_values = @assignment.eval_value(interpreter)
     r_value = r_values[0]
-    raise(BASICException, 'Expected Array') if r_value.class.to_s != 'BASICArray'
+    raise(BASICException, 'Expected Array') if
+      r_value.class.to_s != 'BASICArray'
     r_value
   end
 end

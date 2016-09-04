@@ -9,6 +9,17 @@ class AbstractScalarFunction < Function
   end
 end
 
+# Function that expects array parameters
+class AbstractArrayFunction < Function
+  def initialize(text)
+    super
+  end
+
+  def default_type
+    ArrayValue
+  end
+end
+
 # Function that expects matrix parameters
 class AbstractMatrixFunction < Function
   def initialize(text)
@@ -316,11 +327,12 @@ class FunctionChr < AbstractScalarFunction
     args = stack.pop
     check_arg_types(args, ['NumericConstant'])
     value = args[0].to_i
-    raise(BASICException, 'Invalid value for CHR$()') if !value.between?(32, 126)
+    raise(BASICException, 'Invalid value for CHR$()') if
+      !value.between?(32, 126)
     text = value.chr
     quoted = '"' + text + '"'
-    v = TextConstantToken.new(quoted)
-    TextConstant.new(v)
+    token = TextConstantToken.new(quoted)
+    TextConstant.new(token)
   end
 end
 
@@ -357,5 +369,50 @@ class FunctionAsc < AbstractScalarFunction
     raise(BASICException, 'Invalid value in ASC()') if !value.between?(32, 126)
     token = NumericConstantToken.new(value.to_s)
     NumericConstant.new(token)
+  end
+end
+
+# function PACK
+class FunctionPack < AbstractArrayFunction
+  def initialize(text)
+    super
+  end
+
+  def evaluate(interpreter, stack)
+    ensure_argument_count(stack, [1])
+    args = stack.pop
+    check_arg_types(args, ['BASICArray'])
+    array = args[0]
+    dims = array.dimensions
+    raise(BASICException, @name + ' requires array') unless dims.size == 1
+    result = array.pack
+    quoted = '"' + result + '"'
+    token = TextConstantToken.new(quoted)
+    TextConstant.new(token)
+  end
+end
+
+# function UNPACK
+class FunctionUnpack < AbstractScalarFunction
+  def initialize(text)
+    super
+  end
+
+  def evaluate(interpreter, stack)
+    ensure_argument_count(stack, [1])
+    args = stack.pop
+    check_arg_types(args, ['TextConstant'])
+    text = args[0].to_v
+    length = NumericConstant.new(text.size)
+    dims = [length]
+    values = {}
+    values[[NumericConstant.new(0)]] = length
+    index = 1
+    text.each_char do |char|
+      key = [NumericConstant.new(index)]
+      values[key] = NumericConstant.new(char.ord)
+      index += 1
+    end
+    BASICArray.new(dims, values)
   end
 end

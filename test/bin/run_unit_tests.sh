@@ -209,6 +209,11 @@ bash test/bin/run_test.sh unit function_chr
 bash test/bin/run_test.sh unit function_asc
 ((ECODE+=$?))
 
+bash test/bin/run_test.sh unit function_pack
+((ECODE+=$?))
+bash test/bin/run_test.sh unit function_unpack
+((ECODE+=$?))
+
 bash test/bin/run_test.sh unit sqrabs
 ((ECODE+=$?))
 bash test/bin/run_test.sh unit annular

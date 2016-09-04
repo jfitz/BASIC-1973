@@ -57,7 +57,7 @@ class BASICArray
   attr_reader :dimensions
 
   def initialize(dimensions, values)
-    @dimensions = dimensions
+    @dimensions = dimensions  # Array of NumericConstant
     @values = values
   end
 
@@ -102,6 +102,16 @@ class BASICArray
     else
       raise BASICException, 'Too many dimensions in array'
     end
+  end
+
+  def pack
+    count = get_value(0).to_i
+    result = ''
+    (1..count).each do |index|
+      value = get_value(index)
+      result += value.to_i.chr unless value.nil?
+    end
+    result
   end
 
   private
@@ -154,7 +164,7 @@ class Matrix
   attr_reader :dimensions
 
   def initialize(dimensions, values)
-    @dimensions = dimensions
+    @dimensions = dimensions   # Array of NumericConstant
     @values = values
   end
 
@@ -633,7 +643,8 @@ class FunctionFactory
     'CHR$' => FunctionChr,
     'LEN' => FunctionLen,
     'ASC' => FunctionAsc,
-    'PACK$' => FunctionPack
+    'PACK$' => FunctionPack,
+    'UNPACK' => FunctionUnpack
   }
 
   def self.valid?(text)
@@ -898,7 +909,8 @@ class AbstractExpression
     (follows_operand ? binary_classes : unary_classes).each do |c|
       element = c.new(token) if element.nil? && c.accept?(token)
     end
-    raise(BASICException, "Token '#{token.class}:#{token}' is not a value or operator") if
+    raise(BASICException,
+          "Token '#{token.class}:#{token}' is not a value or operator") if
       element.nil?
     element
   end
