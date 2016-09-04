@@ -807,7 +807,8 @@ class Interpreter
 
   def set_value(variable, value, trace)
     # check that value type matches variable type
-    raise(BASICException, "Type mismatch #{value.class} is not #{variable.content_type}") if
+    raise(BASICException,
+          "Type mismatch #{value.class} is not #{variable.content_type}") if
       value.class.to_s != variable.content_type
     v = variable.to_s
     @variables[v] = value
