@@ -401,17 +401,7 @@ class FunctionUnpack < AbstractScalarFunction
     ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['TextConstant'])
-    text = args[0].to_v
-    length = NumericConstant.new(text.size)
-    dims = [length]
-    values = {}
-    values[[NumericConstant.new(0)]] = length
-    index = 1
-    text.each_char do |char|
-      key = [NumericConstant.new(index)]
-      values[key] = NumericConstant.new(char.ord)
-      index += 1
-    end
-    BASICArray.new(dims, values)
+    text = args[0]
+    text.unpack
   end
 end

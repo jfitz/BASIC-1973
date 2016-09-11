@@ -466,6 +466,20 @@ class TextConstant < AbstractElement
   def print(printer)
     printer.print_item @value
   end
+
+  def unpack
+    length = NumericConstant.new(@value.size)
+    dims = [length]
+    values = {}
+    values[[NumericConstant.new(0)]] = length
+    index = 1
+    @value.each_char do |char|
+      key = [NumericConstant.new(index)]
+      values[key] = NumericConstant.new(char.ord)
+      index += 1
+    end
+    BASICArray.new(dims, values)
+  end
 end
 
 # Boolean constants
