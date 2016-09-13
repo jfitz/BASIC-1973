@@ -107,7 +107,9 @@ class BASICArray
       value = get_value(index)
       result += value.to_i.chr unless value.nil?
     end
-    result
+    quoted = '"' + result + '"'
+    token = TextConstantToken.new(quoted)
+    TextConstant.new(token)
   end
 
   private

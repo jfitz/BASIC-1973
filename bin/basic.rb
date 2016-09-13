@@ -679,6 +679,14 @@ class Interpreter
     puts
   end
 
+  def dump_dims
+    @dimensions.each do |key, value|
+      dims = []
+      value.each { |nc| dims << nc.to_v }
+      puts "#{key.class}:#{key} (#{dims.join(', ')})"
+    end
+  end
+
   def stop
     stop_running
     puts "STOP in line #{@current_line_index.number}"
@@ -914,7 +922,7 @@ class Interpreter
   private
 
   def simple_command?(text)
-    %w(NEW RUN TRACE .VARS .UDFS).include?(text)
+    %w(NEW RUN TRACE .VARS .UDFS .DIMS).include?(text)
   end
 
   def execute_simple_command(text)
@@ -929,6 +937,8 @@ class Interpreter
       dump_vars
     when '.UDFS'
       dump_user_functions
+    when '.DIMS'
+      dump_dims
     end
   end
 

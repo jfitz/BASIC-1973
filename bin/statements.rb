@@ -142,6 +142,10 @@ class StatementFactory
 
   def statement_definitions
     {
+      'ARRPRINT' => ArrPrintStatement,
+      'ARRREAD' => ArrReadStatement,
+      'ARR' => ArrLetStatement,
+      'CHANGE' => ChangeStatement,
       'DATA' => DataStatement,
       'DEF' => DefineFunctionStatement,
       'DIM' => DimStatement,
@@ -153,9 +157,6 @@ class StatementFactory
       'INPUT' => InputStatement,
       'LET' => LetStatement,
       '' => LetLessStatement,
-      'ARRPRINT' => ArrPrintStatement,
-      'ARRREAD' => ArrReadStatement,
-      'ARR' => ArrLetStatement,
       'MATPRINT' => MatPrintStatement,
       'MATREAD' => MatReadStatement,
       'MAT' => MatLetStatement,
@@ -271,6 +272,22 @@ class AbstractStatement
     new_list
   end
 
+  def split_on_token(tokens, token_to_split)
+    results = []
+    list = []
+    tokens.each do |token|
+      if token.to_s != token_to_split
+        list << token
+      else
+        results << list unless list.empty?
+        list = []
+        results << token
+      end
+    end
+    results << list unless list.empty?
+    results
+  end
+
   def make_coord(c)
     [NumericConstant.new(c)]
   end
@@ -326,6 +343,61 @@ class RemarkStatement < AbstractStatement
 
   def execute(_, _)
     0
+  end
+end
+
+# CHANGE
+class ChangeStatement < AbstractStatement
+  def initialize(line, tokens)
+    super('CHANGE', tokens)
+    tokens = remove_break_tokens(tokens)
+    parts = split_on_token(tokens, 'TO')
+    raise(BASICException, 'Missing value') if
+      parts.empty? || parts[0].to_s == 'TO'
+    raise(BASICException, 'Missing \'TO\'') if
+      parts.size < 2 || parts[1].to_s != 'TO'
+    raise(BASICException, 'Missing target') if parts.size != 3
+    raise(BASICException, 'Invalid source') if parts[0].size != 1
+    @source = VariableName.new(parts[0][0])
+    raise(BASICException, 'Invalid target') if parts[2].size != 1
+    @target = VariableName.new(parts[2][0])
+  end
+
+  def to_s
+    @keyword + ' ' + @source.to_s + ' TO ' + @target.to_s
+  end
+
+  def execute(interpreter, trace)
+    if @source.content_type == 'TextConstant' &&
+       @target.content_type == 'NumericConstant'
+      #string to array
+      text = interpreter.get_value(@source)
+      array = text.unpack
+      dims = array.dimensions
+      target_variable = Variable.new(@target)
+      interpreter.set_dimensions(target_variable, dims)
+      values = array.values
+      interpreter.set_values(@target, values, trace)
+    elsif @source.content_type == 'NumericConstant' &&
+          @target.content_type == 'TextConstant'
+      # array to string
+      source_variable = Variable.new(@source)
+      dims = interpreter.get_dimensions(@source)
+      raise(BASICException, 'Source must have 1 dimension') unless
+        dims.size == 1
+      cols = dims[0].to_i
+      values = {}
+      (0..cols).each do |col|
+        variable = Variable.new(@source, [col])
+        coord = make_coord(col)
+        values[coord] = interpreter.get_value(variable)
+      end
+      array = BASICArray.new(dims, values)
+      text = array.pack
+      interpreter.set_value(@target, text, trace)
+    else
+      raise BASICException, 'Type mismatch'
+    end
   end
 end
 
@@ -823,22 +895,6 @@ class ForStatement < AbstractStatement
       @errors << 'Control variable must be a variable'
     end
     parts[2]
-  end
-
-  def split_on_token(tokens, token_to_split)
-    results = []
-    list = []
-    tokens.each do |token|
-      if token.to_s != token_to_split
-        list << token
-      else
-        results << list unless list.empty?
-        list = []
-        results << token
-      end
-    end
-    results << list unless list.empty?
-    results
   end
 
   def make_to_value(tokens)

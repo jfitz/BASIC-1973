@@ -384,10 +384,7 @@ class FunctionPack < AbstractArrayFunction
     array = args[0]
     dims = array.dimensions
     raise(BASICException, @name + ' requires array') unless dims.size == 1
-    result = array.pack
-    quoted = '"' + result + '"'
-    token = TextConstantToken.new(quoted)
-    TextConstant.new(token)
+    array.pack
   end
 end
 
