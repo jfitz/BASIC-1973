@@ -402,3 +402,68 @@ class FunctionUnpack < AbstractScalarFunction
     text.unpack
   end
 end
+
+# function EXT$
+class FunctionExt < AbstractScalarFunction
+  def initialize(text)
+    super
+  end
+
+  def evaluate(interpreter, stack)
+    ensure_argument_count(stack, [3])
+    args = stack.pop
+    check_arg_types(args,
+                    ['TextConstant', 'NumericConstant', 'NumericConstant'])
+    value = args[0].to_v
+    start = args[1].to_i
+    stop = args[2].to_i
+    raise(BASICException, 'Invalid index for EXT$()') if
+      start < 1 || start > value.size || stop < start || stop > value.size
+    text = value[(start - 1)..(stop - 1)]
+    quoted = '"' + text + '"'
+    token = TextConstantToken.new(quoted)
+    TextConstant.new(token)
+  end
+end
+
+# class to make functions, given the name
+class FunctionFactory
+  @functions = {
+    'INT' => FunctionInt,
+    'RND' => FunctionRnd,
+    'EXP' => FunctionExp,
+    'LOG' => FunctionLog,
+    'ABS' => FunctionAbs,
+    'SQR' => FunctionSqr,
+    'SIN' => FunctionSin,
+    'COS' => FunctionCos,
+    'TAN' => FunctionTan,
+    'ATN' => FunctionAtn,
+    'SGN' => FunctionSgn,
+    'TRN' => FunctionTrn,
+    'ZER' => FunctionZer,
+    'CON' => FunctionCon,
+    'IDN' => FunctionIdn,
+    'DET' => FunctionDet,
+    'INV' => FunctionInv,
+    'TAB' => FunctionTab,
+    'CHR$' => FunctionChr,
+    'LEN' => FunctionLen,
+    'ASC' => FunctionAsc,
+    'PACK$' => FunctionPack,
+    'UNPACK' => FunctionUnpack,
+    'EXT$' => FunctionExt
+  }
+
+  def self.valid?(text)
+    @functions.key?(text)
+  end
+
+  def self.make(text)
+    @functions[text].new(text) if @functions.key?(text)
+  end
+
+  def self.function_names
+    @functions.keys
+  end
+end

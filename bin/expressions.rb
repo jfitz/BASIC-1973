@@ -578,47 +578,6 @@ class VariableDimension < Variable
   end
 end
 
-# class to make functions, given the name
-class FunctionFactory
-  @functions = {
-    'INT' => FunctionInt,
-    'RND' => FunctionRnd,
-    'EXP' => FunctionExp,
-    'LOG' => FunctionLog,
-    'ABS' => FunctionAbs,
-    'SQR' => FunctionSqr,
-    'SIN' => FunctionSin,
-    'COS' => FunctionCos,
-    'TAN' => FunctionTan,
-    'ATN' => FunctionAtn,
-    'SGN' => FunctionSgn,
-    'TRN' => FunctionTrn,
-    'ZER' => FunctionZer,
-    'CON' => FunctionCon,
-    'IDN' => FunctionIdn,
-    'DET' => FunctionDet,
-    'INV' => FunctionInv,
-    'TAB' => FunctionTab,
-    'CHR$' => FunctionChr,
-    'LEN' => FunctionLen,
-    'ASC' => FunctionAsc,
-    'PACK$' => FunctionPack,
-    'UNPACK' => FunctionUnpack
-  }
-
-  def self.valid?(text)
-    @functions.key?(text)
-  end
-
-  def self.make(text)
-    @functions[text].new(text) if @functions.key?(text)
-  end
-
-  def self.function_names
-    @functions.keys
-  end
-end
-
 # User-defined function (provides a scalar value)
 class UserFunction < AbstractScalarFunction
   def self.accept?(token)
