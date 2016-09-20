@@ -9,6 +9,7 @@ require 'operators'
 require 'functions'
 require 'expressions'
 require 'tokens'
+require 'io'
 require 'statements'
 
 # Contain line numbers
@@ -214,11 +215,11 @@ class Interpreter
     @data_store = []
     @data_index = 0
     @statement_factory = StatementFactory.new
-    @echo_input = echo_input
     @int_floor = int_floor
     @ignore_rnd_arg = ignore_rnd_arg
     @console_io =
-      ConsoleIo.new(print_width, zone_width, output_speed, implied_semicolon)
+      ConsoleIo.new(print_width, zone_width, output_speed, implied_semicolon,
+                    echo_input)
     @respect_randomize = respect_randomize
     @return_stack = []
     @fornexts = {}
@@ -227,18 +228,6 @@ class Interpreter
     @user_var_names = {}
     @user_var_values = []
   end
-
-  private
-
-  def ascii_printables(text)
-    ascii_text = ''
-    text.each_char do |c|
-      ascii_text += c if c >= ' ' && c <= '~'
-    end
-    ascii_text
-  end
-
-  public
 
   def parse_line(line)
     @statement_factory.parse(line)
@@ -322,7 +311,7 @@ class Interpreter
   def list_and_delete_lines(line_numbers)
     list_lines(line_numbers)
     print 'DELETE THESE LINES? '
-    answer = read_line
+    answer = @console_io.read_line
     delete_specific_lines(line_numbers) if answer == 'YES'
   end
 
@@ -491,7 +480,7 @@ class Interpreter
         File.open(filename, 'r') do |file|
           @program_lines = {}
           file.each_line do |line|
-            line = ascii_printables(line)
+            line = console_io.ascii_printables(line)
             puts line if trace_flag
             store_program_line(line, false)
           end
@@ -608,12 +597,6 @@ class Interpreter
 
   def new_random
     @randomizer = Random.new if @respect_randomize
-  end
-
-  def read_line
-    input_text = ascii_printables(gets)
-    puts(input_text) if @echo_input
-    input_text
   end
 
   def find_closing_next(control_variable)
@@ -775,7 +758,7 @@ class Interpreter
     done = false
     until done
       print "READY\n" if need_prompt
-      cmd = read_line
+      cmd = @console_io.read_line
       if /\A\d/ =~ cmd
         # starts with a number, so maybe it is a program line
         need_prompt = store_program_line(cmd, true)
