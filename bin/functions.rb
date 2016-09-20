@@ -306,8 +306,8 @@ class FunctionTab < AbstractScalarFunction
     ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['NumericConstant'])
-    printer = interpreter.printer
-    width = printer.columns_to_advance(args[0].to_v)
+    console_io = interpreter.console_io
+    width = console_io.columns_to_advance(args[0].to_v)
     spaces = ' ' * width
     quoted = '"' + spaces + '"'
     v = TextConstantToken.new(quoted)
