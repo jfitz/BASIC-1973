@@ -1,4 +1,3 @@
-# ConsoleIo class
 # Handle tab stops and carriage control
 class ConsoleIo
   def initialize(max_width, zone_width, print_rate, implied_semicolon,
@@ -113,6 +112,7 @@ class ConsoleIo
   end
 end
 
+# stores values for DATA statement
 class DataStore
   def initialize
     @data_store = []
@@ -133,3 +133,44 @@ class DataStore
     @data_index = 0
   end
 end
+
+# reads values from file and writes values to file
+class FileHandler
+  def initialize(file_name)
+    @file = File.new(file_name, "w")
+  end
+
+  def close
+    @file.close
+  end
+
+  def print_item(text)
+    @file.print text
+  end
+
+  def last_was_numeric
+  end
+
+  def newline
+    @file.puts
+  end
+
+  def implied_newline
+  end
+
+  def tab
+    @file.putc ' '
+  end
+
+  def semicolon
+    @file.putc ' '
+  end
+
+  def implied
+    @file.putc ' '
+  end
+
+  def tabto(new_column)
+  end
+end
+

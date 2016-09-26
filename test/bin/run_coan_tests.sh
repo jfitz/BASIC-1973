@@ -171,6 +171,8 @@ bash test/bin/run_test.sh coan prog-7-3-c
 ((ECODE+=$?))
 bash test/bin/run_test.sh coan prog-7-3-d
 ((ECODE+=$?))
+bash test/bin/run_test.sh coan prog-7-5-a
+((ECODE+=$?))
 
 echo
 echo Failures: $ECODE

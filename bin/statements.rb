@@ -150,6 +150,7 @@ class StatementFactory
       'DEF' => DefineFunctionStatement,
       'DIM' => DimStatement,
       'END' => EndStatement,
+      'FILES' => FilesStatement,
       'FOR' => ForStatement,
       'GOSUB' => GosubStatement,
       'GOTO' => GotoStatement,
@@ -180,7 +181,7 @@ class StatementFactory
     tokenizers << ListTokenizer.new(keywords, KeywordToken)
 
     operators = [
-      '+', '-', '*', '/', '^',
+      '+', '-', '*', '/', '^', '#',
       '<', '<=', '=', '>', '>=', '<>'
     ]
     tokenizers << ListTokenizer.new(operators, OperatorToken)
@@ -438,6 +439,28 @@ class DimStatement < AbstractStatement
   end
 end
 
+# FILES
+class FilesStatement < AbstractStatement
+  def initialize(line, tokens)
+    super('FILES', line)
+    tokens = remove_break_tokens(tokens)
+    @expressions = ValueScalarExpression.new(tokens)
+  end
+
+  def to_s
+    @keyword + ' ' + @expressions.to_s
+  end
+
+  def pre_execute(interpreter)
+    file_names = @expressions.evaluate(interpreter)
+    interpreter.add_file_names(file_names)
+  end
+
+  def execute(_, _)
+    0
+  end
+end
+
 # LET
 class LetStatement < AbstractStatement
   def initialize(line, tokens)
@@ -685,13 +708,31 @@ class PrintStatement < AbstractStatement
   end
 
   def execute(interpreter, _)
-    io = interpreter.console_io
-    @print_items.each do |item|
-      item.print(io, interpreter)
+    file_handle, print_items = extract_file_handle(@print_items, interpreter)
+    fh = interpreter.get_file_handler(file_handle)
+    print_items.each do |item|
+      item.print(fh, interpreter)
     end
   end
 
   private
+
+  def extract_file_handle(print_items, interpreter)
+    print_items = print_items.clone
+    if print_items.size > 1
+      item_0 = print_items[0]
+      value_0 = item_0.evaluate(interpreter)
+      value_0_0 = value_0[0]
+      if value_0_0.class.to_s == 'FileHandle'
+        file_handle = value_0_0
+        print_items.shift
+        print_items.shift if print_items[0].class.to_s == 'CarriageControl'
+      else
+        file_handle = nil
+      end
+    end
+    return file_handle, print_items
+  end
 
   def tokens_to_expressions(tokens_lists)
     @print_items = []
