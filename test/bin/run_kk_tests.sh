@@ -1,88 +1,91 @@
+TESTROOT=test
+TESTBED=tests
+
 echo Removing old directory
-if [ -d tests ] ; then rm -r tests ; fi
+if [ -d "$TESTBED" ] ; then rm -r "$TESTBED" ; fi
 
 echo Creating directory tests
-mkdir tests
+mkdir "$TESTBED"
 
 echo Running all tests...
 ECODE=0
 
-bash test/bin/run_test.sh kk binom
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk binom
 ((ECODE+=$?))
-bash test/bin/run_test.sh kk china
-((ECODE+=$?))
-
-bash test/bin/run_test.sh kk convert
-((ECODE+=$?))
-bash test/bin/run_test.sh kk lrgfct
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk china
 ((ECODE+=$?))
 
-bash test/bin/run_test.sh kk roots
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk convert
 ((ECODE+=$?))
-bash test/bin/run_test.sh kk sales
-((ECODE+=$?))
-
-bash test/bin/run_test.sh kk table
-((ECODE+=$?))
-bash test/bin/run_test.sh kk income
-((ECODE+=$?))
-bash test/bin/run_test.sh kk rc-sum
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk lrgfct
 ((ECODE+=$?))
 
-bash test/bin/run_test.sh kk inverse_7
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk roots
 ((ECODE+=$?))
-bash test/bin/run_test.sh kk inverse_9
-((ECODE+=$?))
-
-bash test/bin/run_test.sh kk define
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk sales
 ((ECODE+=$?))
 
-bash test/bin/run_test.sh kk trig-1
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk table
 ((ECODE+=$?))
-bash test/bin/run_test.sh kk trig-2
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk income
 ((ECODE+=$?))
-bash test/bin/run_test.sh kk trig-3
-((ECODE+=$?))
-
-bash test/bin/run_test.sh kk zero-1
-((ECODE+=$?))
-bash test/bin/run_test.sh kk zero-2
-((ECODE+=$?))
-bash test/bin/run_test.sh kk zero-3
-((ECODE+=$?))
-bash test/bin/run_test.sh kk zero-4
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk rc-sum
 ((ECODE+=$?))
 
-bash test/bin/run_test.sh kk mati-0
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk inverse_7
 ((ECODE+=$?))
-bash test/bin/run_test.sh kk mati-1
-((ECODE+=$?))
-bash test/bin/run_test.sh kk matops
-((ECODE+=$?))
-bash test/bin/run_test.sh kk matmpy
-((ECODE+=$?))
-bash test/bin/run_test.sh kk matpwr
-((ECODE+=$?))
-bash test/bin/run_test.sh kk matinv
-((ECODE+=$?))
-bash test/bin/run_test.sh kk linequ
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk inverse_9
 ((ECODE+=$?))
 
-bash test/bin/run_test.sh kk deal
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk define
 ((ECODE+=$?))
-bash test/bin/run_test.sh kk dice
+
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk trig-1
 ((ECODE+=$?))
-bash test/bin/run_test.sh kk needle
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk trig-2
 ((ECODE+=$?))
-bash test/bin/run_test.sh kk knight
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk trig-3
 ((ECODE+=$?))
-bash test/bin/run_test.sh kk random_float
+
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk zero-1
 ((ECODE+=$?))
-bash test/bin/run_test.sh kk random_int
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk zero-2
 ((ECODE+=$?))
-bash test/bin/run_test.sh kk plot
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk zero-3
 ((ECODE+=$?))
-bash test/bin/run_test.sh kk plotxy
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk zero-4
+((ECODE+=$?))
+
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk mati-0
+((ECODE+=$?))
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk mati-1
+((ECODE+=$?))
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk matops
+((ECODE+=$?))
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk matmpy
+((ECODE+=$?))
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk matpwr
+((ECODE+=$?))
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk matinv
+((ECODE+=$?))
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk linequ
+((ECODE+=$?))
+
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk deal
+((ECODE+=$?))
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk dice
+((ECODE+=$?))
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk needle
+((ECODE+=$?))
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk knight
+((ECODE+=$?))
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk random_float
+((ECODE+=$?))
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk random_int
+((ECODE+=$?))
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk plot
+((ECODE+=$?))
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" kk plotxy
 ((ECODE+=$?))
 
 echo

@@ -1,13 +1,16 @@
+TESTROOT=test
+TESTBED=tests
+
 echo Removing old directory
-if [ -d tests ] ; then rm -r tests ; fi
+if [ -d "$TESTBED" ] ; then rm -r "$TESTBED" ; fi
 
 echo Creating directory tests
-mkdir tests
+mkdir "$TESTBED"
 
 echo Running all tests...
 ECODE=0
 
-bash test/bin/run_test.sh ahl bounce
+bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" ahl bounce
 ((ECODE+=$?))
 
 echo
