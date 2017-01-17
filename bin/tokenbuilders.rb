@@ -1,8 +1,5 @@
 # accept any characters
 class InvalidTokenBuilder
-  def initialize
-  end
-
   def try(text)
     @token = ''
     @token += text.empty? ? '' : text[0]
@@ -256,7 +253,6 @@ class BreakTokenBuilder
   def try(text)
     @token = ''
     @token = text[0] if text[0] == '_'
-    text = '_'
   end
 
   def count

@@ -4,32 +4,41 @@ class Tokenizer
     @tokenizers = tokenizers
     @invalid_tokenizer = invalid_tokenizer
   end
- 
+
   def tokenize(text)
     tokens = []
     until text.nil? || text.empty?
-      @tokenizers.each { |tokenizer| tokenizer.try(text) }
- 
-      count = 0
-      token = nil
-      # general tokenizers
-      @tokenizers.each do |tokenizer|
-        if tokenizer.count > count
-          token = tokenizer.token
-          count = tokenizer.count
-        end
-      end
+      token, count = try_tokenizers(text)
 
-      # invalid tokenizer
-      if token.nil? && !@invalid_tokenizer.nil?
-        @invalid_tokenizer.try(text)
-        token = @invalid_tokenizer.token
-        count = @invalid_tokenizer.count
-      end
+      token, count = try_invalid(text) if token.nil? && !@invalid_tokenizer.nil?
       raise(Exception, "Cannot tokenize '#{text}'") if token.nil?
+
       tokens += token
       text = text[count..-1]
     end
     tokens
+  end
+
+  private
+
+  def try_tokenizers(text)
+    @tokenizers.each { |tokenizer| tokenizer.try(text) }
+    count = 0
+    token = nil
+    # general tokenizers
+    @tokenizers.each do |tokenizer|
+      if tokenizer.count > count
+        token = tokenizer.token
+        count = tokenizer.count
+      end
+    end
+    [token, count]
+  end
+
+  def try_invalid(text)
+    @invalid_tokenizer.try(text)
+    token = @invalid_tokenizer.token
+    count = @invalid_tokenizer.count
+    [token, count]
   end
 end
