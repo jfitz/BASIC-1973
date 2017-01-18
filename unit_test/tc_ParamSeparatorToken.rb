@@ -10,7 +10,7 @@ class TestParamSeparatorToken < Test::Unit::TestCase
     token = ParamSeparatorToken.new(',')
 
     assert_equal(',', token.to_s)
-    assert_equal(',', token.separator)
+
     assert(!token.keyword?)
     assert(!token.operator?)
     assert(token.separator?)
@@ -31,7 +31,7 @@ class TestParamSeparatorToken < Test::Unit::TestCase
     token = ParamSeparatorToken.new(';')
 
     assert_equal(';', token.to_s)
-    assert_equal(';', token.separator)
+
     assert(!token.keyword?)
     assert(!token.operator?)
     assert(token.separator?)
