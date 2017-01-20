@@ -270,19 +270,17 @@ end
 
 # variable token
 class VariableToken < AbstractToken
-  attr_reader :text
-  
   def initialize(text)
     @is_variable = true
     @text = text
   end
 
   def eql?(other)
-    @text == other.text
+    @text == other.to_s
   end
 
   def ==(other)
-    @text == other.text
+    @text == other.to_s
   end
 
   def hash

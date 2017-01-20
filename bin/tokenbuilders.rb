@@ -69,8 +69,8 @@ class TextTokenBuilder
   end
 end
 
-# token reader for numeric constants
-class ReadNumberTokenBuilder
+# token reader for numeric constants in input channels (READ, INPUT)
+class InputNumberTokenBuilder
   def try(text)
     @token = ''
     /\A[+-]?\d+/.match(text) { |m| @token = m[0] }
@@ -130,11 +130,11 @@ class VariableTokenBuilder
   end
 end
 
-# token reader for text constants
+# token reader for text constants in input channels (READ, INPUT)
 class InputTextTokenBuilder
   def try(text)
     @token = ''
-    /\A *("[^"]*") *,/.match(text) { |m| @token = m[0] }
+    /\A"[^"]*"/.match(text) { |m| @token = m[0] }
   end
 
   def count
@@ -142,9 +142,7 @@ class InputTextTokenBuilder
   end
 
   def token
-    no_comma = @token[0..-2]
-    stripped = no_comma.strip
-    [TextConstantToken.new(stripped), ParamSeparatorToken.new(',')]
+    [TextConstantToken.new(@token)]
   end
 end
 
@@ -152,7 +150,7 @@ end
 class InputBareTextTokenBuilder
   def try(text)
     @token = ''
-    /\A *([^,]*) *,/.match(text) { |m| @token = m[0] }
+    /\A[^,; ]*/.match(text) { |m| @token = m[0] }
   end
 
   def count
@@ -160,91 +158,8 @@ class InputBareTextTokenBuilder
   end
 
   def token
-    no_comma = @token[0..-2]
-    stripped = no_comma.strip
-    quoted = '"' + stripped + '"'
-    [TextConstantToken.new(quoted), ParamSeparatorToken.new(',')]
-  end
-end
-
-# token reader for numeric constants
-class InputNumberTokenBuilder
-  def try(text)
-    @token = ''
-    /\A *([+-]?\d+) *,/.match(text) { |m| @token = m[0] }
-    /\A *([+-]?\d+\.) *,/.match(text) { |m| @token = m[0] }
-    /\A *([+-]?\d+E[+-]?) *\d+,/.match(text) { |m| @token = m[0] }
-    /\A *([+-]?\d+\.E[+-]?\d+) *,/.match(text) { |m| @token = m[0] }
-    /\A *([+-]?\d+\.\d+) *,/.match(text) { |m| @token = m[0] }
-    /\A *([+-]?\d+\.\d+E[+-]?\d+) *,/.match(text) { |m| @token = m[0] }
-    /\A *([+-]?\.\d+) *,/.match(text) { |m| @token = m[0] }
-    /\A *([+-]?\.\d+E[+-]?\d+) *,/.match(text) { |m| @token = m[0] }
-  end
-
-  def count
-    @token.size
-  end
-
-  def token
-    [NumericConstantToken.new(@token[0..-2]), ParamSeparatorToken.new(',')]
-  end
-end
-
-# token reader for text constants
-class InputETextTokenBuilder
-  def try(text)
-    @token = ''
-    /\A *"[^"]*" *\z/.match(text) { |m| @token = m[0] }
-  end
-
-  def count
-    @token.size
-  end
-
-  def token
-    stripped = @token.strip
-    [TextConstantToken.new(stripped)]
-  end
-end
-
-# token reader for text constants
-class InputEBareTextTokenBuilder
-  def try(text)
-    @token = ''
-    /\A *[^,]* *\z/.match(text) { |m| @token = m[0] }
-  end
-
-  def count
-    @token.size
-  end
-
-  def token
-    stripped = @token.strip
-    quoted = '"' + stripped + '"'
+    quoted = '"' + @token + '"'
     [TextConstantToken.new(quoted)]
-  end
-end
-
-# token reader for numeric constants
-class InputENumberTokenBuilder
-  def try(text)
-    @token = ''
-    /\A *([+-]?\d+) *\z/.match(text) { |m| @token = m[0] }
-    /\A *([+-]?\d+\.) *\z/.match(text) { |m| @token = m[0] }
-    /\A *([+-]?\d+E[+-]?\d+) *\z/.match(text) { |m| @token = m[0] }
-    /\A *([+-]?\d+\.E[+-]?\d+) *\z/.match(text) { |m| @token = m[0] }
-    /\A *([+-]?\d+\.\d+) *\z/.match(text) { |m| @token = m[0] }
-    /\A *([+-]?\d+\.\d+E[+-]?\d+) *\z/.match(text) { |m| @token = m[0] }
-    /\A *([+-]?\.\d+) *\z/.match(text) { |m| @token = m[0] }
-    /\A *([+-]?\.\d+E[+-]?\d+) *\z/.match(text) { |m| @token = m[0] }
-  end
-
-  def count
-    @token.size
-  end
-
-  def token
-    [NumericConstantToken.new(@token)]
   end
 end
 
