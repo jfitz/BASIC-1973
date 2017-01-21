@@ -36,7 +36,8 @@ BASIC-1973 is really fussy!
 
 BASIC-1973 keeps the spirit of the original BASIC language, as much as possible.
 Everything must be in upper case, except for text constants in PRINT statements.
-Commands ("RUN", "LIST"), statements ("PRINT", "LET"), function names, and variable names must be in upper case. Lower case causes an error.
+Commands ("RUN", "LIST"), statements ("PRINT", "LET"), function names, and variable names must be in upper case.
+Lower case causes an error.
 
 
 Keywords and tokens
@@ -126,7 +127,10 @@ When the BASIC program ends, BASIC-1973 ends.
 Immediate commands
 ------------------
 
-Immediate commands are executed on the command line. They are not stored as part of the program. They have no line number. They are available only in "run" mode.
+Immediate commands are executed on the command line.
+They are not stored as part of the program.
+They have no line number.
+They are available only in "run" mode.
 
 NEW
 ~~~
@@ -138,7 +142,8 @@ Syntax:	NEW
 
 LOAD
 
-Loads a stored program into memory. Sorts statements by line number.
+Loads a stored program into memory.
+Sorts statements by line number.
 Clears the current program prior to loading the new one.
 
 Syntax:	LOAD filename
@@ -153,6 +158,7 @@ Syntax:	LIST [line specification]
 The line specification may be in the form of a single line number, a range (two numbers separated by a hyphen), or a starting line and a count separated by a plus sign.
 
 Examples:
+
 |==========
 |Command |Result
 |LIST |Lists the entire program.
@@ -225,7 +231,8 @@ Syntax:	SAVE filename
 Variables
 ---------
 
-Variables store numeric and text values. Numeric variables handle integer and floating point values automatically.
+Variables store numeric and text values.
+Numeric variables handle integer and floating point values automatically.
 
 Variable names consist of a single letter and an optional digit and an optional subscript.
 Subscripts are enclosed in parentheses or square brackets.
@@ -469,7 +476,7 @@ DIM
 ~~~
 
 Specifies the number of dimensions and maximum subscripts for each dimension.
-(Without a DIM statement, variables may have a dimension of at most 10.)
+(Without a DIM statement, variables may have a single dimension of at most 10.)
 
 Examples:
 
@@ -504,7 +511,7 @@ Examples:
 
 	20 FILES "test.txt"
 
-File names must be enclosed in double-quotres.
+File names must be enclosed in double-quotes.
 Files must exist at the start of the program, even when the file will be written.
 It is not possible for BASIC to create a file.
 
@@ -625,7 +632,7 @@ Examples:
 	80 INPUT A$
 
 The default prompt is a single question mark (?) character.
-This prompt can be changed to any text value by specifying the value as the first parameter.
+This prompt can be changed to any text value by specifying a text value as the first parameter.
 (This value must be a text constant. You cannot create a variable prompt such as INPUT P$, A$ because the variable for the prompt will be considered a normal variable for input.)
 When multiple values are specified, they may be entered on one line with commas as separators.
 If an insufficient number of values is entered, BASIC will prompt for more data.
@@ -784,7 +791,7 @@ Examples:
 
 The list may include terminating separators.
 A terminating comma or semicolon will write a SPACE and suppress the newline.
-.
+
 	10 PRINT #2; "Processing...";
 	... other statements that generate no output
 	20 PRINT #2; "done"
@@ -829,11 +836,13 @@ Examples:
 
 The number of values in a READ statement do not have to match the number of values in DATA statements.
 The values defined in DATA statements are stored in a single list of use by all READ statements.
-You may READ in pairs and define ten values per DATA statement. You may READ ten items from DATA statements that contain one value each.
+You may READ in pairs and define ten values per DATA statement.
+You may READ ten items from DATA statements that contain one value each.
 
 READing more values than are specified by DATA statements, in total, will cause an error.
 
-BASIC keeps an internal pointer to the next data item. This pointer can be reset with the RESTORE statement.
+BASIC keeps an internal pointer to the next data item.
+This pointer can be reset with the RESTORE statement.
 
 Reading from files
 ^^^^^^^^^^^^^^^^^^
