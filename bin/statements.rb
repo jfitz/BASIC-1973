@@ -549,44 +549,12 @@ class InputStatement < AbstractStatement
   end
 
   def input_values(interpreter)
-    # when parsing user input, we use different tokenizers than the code
-    # each token must end with a comma or a newline
-    # values must be separated by separators
-    # numeric tokens may contain leading signs
-    # values may have leading or trailing spaces (or both)
     values = []
     prompt = @prompt
-    tokenizers = []
-    tokenizers << InputTextTokenBuilder.new
-    tokenizers << InputNumberTokenBuilder.new
-    tokenizers << InputBareTextTokenBuilder.new
-    tokenizers << ListTokenBuilder.new([','], ParamSeparatorToken)
-    tokenizers << WhitespaceTokenBuilder.new
-
-    tokenizer = Tokenizer.new(tokenizers, InvalidTokenBuilder.new)
+    console_io = interpreter.console_io
     while values.size < @expression_list.size
-      print prompt.value
-
-      console_io = interpreter.console_io
-      input_text = console_io.read_line
-      tokens = tokenizer.tokenize(input_text)
-      # drop whitespace
-      tokens.delete_if { |token| token.whitespace? }
-      # verify all even-index tokens are numeric or text
-      evens = tokens.values_at(* tokens.each_index.select { |i| i.even? })
-      evens.each do |token|
-        raise(BASICException, 'Invalid input') if
-          !token.numeric_constant? && !token.text_constant?
-      end
-      # verify all odd-index tokens are separators
-      odds = tokens.values_at(* tokens.each_index.select { |i| i.odd? })
-      odds.each do |token|
-        raise(BASICException, 'Invalid input') if !token.separator?
-      end
-      # convert from tokens to values
-      expressions = ValueScalarExpression.new(tokens)
-      ev = expressions.evaluate(interpreter)
-      values += ev
+      console_io.prompt(prompt)
+      values += console_io.input(interpreter)
 
       prompt = @default_prompt
     end
@@ -1014,7 +982,7 @@ class ReadStatement < AbstractStatement
 
   def execute(interpreter, trace)
     items_lists = @tokens_lists.clone
-    if items_lists.size > 0
+    unless items_lists.size.zero?
       begin
         items_0 = items_lists[0]
         expr = ValueScalarExpression.new(items_0)
@@ -1025,8 +993,8 @@ class ReadStatement < AbstractStatement
           fh = value_0_0
           items_lists.shift
         end
-       rescue BASICException
-       end
+      rescue BASICException
+      end
     end
     expression_list = []
     items_lists.each do |items_list|
