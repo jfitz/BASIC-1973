@@ -13,7 +13,7 @@ class ArgSplitter
       if token.operand? && (!list.empty? && list[-1].operand?)
         lists << list unless list.empty?
         list = [token]
-      elsif token.separator? && parens_level == 0
+      elsif token.separator? && parens_level.zero?
         lists << list unless list.empty?
         lists << token if want_separators
         list = []
@@ -35,7 +35,7 @@ class ArgSplitter
   end
 
   def self.not_in_string(c)
-    if [',', ';'].include?(c) && @parens_level == 0
+    if [',', ';'].include?(c) && @parens_level.zero?
       separator(c)
     elsif c == '('
       open_parens
@@ -59,7 +59,7 @@ class ArgSplitter
 
   def self.close_parens
     @current_arg += ')'
-    @parens_level -= 1 if @parens_level > 0
+    @parens_level -= 1 unless @parens_level.zero?
   end
 end
 
@@ -314,7 +314,7 @@ end
 # CHANGE
 class ChangeStatement < AbstractStatement
   def initialize(line, tokens)
-    super('CHANGE', tokens)
+    super('CHANGE', line)
     tokens = remove_break_tokens(tokens)
     parts = split_on_token(tokens, 'TO')
     raise(BASICException, 'Missing value') if
@@ -335,7 +335,8 @@ class ChangeStatement < AbstractStatement
   def execute(interpreter, trace)
     if @source.content_type == 'TextConstant' &&
        @target.content_type == 'NumericConstant'
-      #string to array
+
+      # string to array
       text = interpreter.get_value(@source)
       array = text.unpack
       dims = array.dimensions
@@ -343,10 +344,11 @@ class ChangeStatement < AbstractStatement
       interpreter.set_dimensions(target_variable, dims)
       values = array.values
       interpreter.set_values(@target, values, trace)
+
     elsif @source.content_type == 'NumericConstant' &&
           @target.content_type == 'TextConstant'
+
       # array to string
-      source_variable = Variable.new(@source)
       dims = interpreter.get_dimensions(@source)
       raise(BASICException, 'Source must have 1 dimension') unless
         dims.size == 1
@@ -360,6 +362,7 @@ class ChangeStatement < AbstractStatement
       array = BASICArray.new(dims, values)
       text = array.pack
       interpreter.set_value(@target, text, trace)
+
     else
       raise BASICException, 'Type mismatch'
     end
@@ -541,11 +544,11 @@ class InputStatement < AbstractStatement
     if fh.nil?
       io = interpreter.console_io
       values =
-        input_values(interpreter, prompt, @default_prompt, expression_list)
+        input_values(interpreter, prompt, @default_prompt, expression_list.size)
       io.implied_newline
     else
       values =
-        file_values(interpreter, expression_list, fh)
+        file_values(interpreter, fh)
     end
     begin
       name_value_pairs =
@@ -568,14 +571,14 @@ class InputStatement < AbstractStatement
     first_list = tokens_lists[0]
     first_list[0]
   end
-  
+
   def first_value(tokens_lists, interpreter)
     first_list = tokens_lists[0]
     expr = ValueScalarExpression.new(first_list)
     values = expr.evaluate(interpreter)
     values[0]
   end
-  
+
   def zip(names, values)
     raise(BASICException, 'Unequal lists') if names.size != values.size
     results = []
@@ -585,10 +588,10 @@ class InputStatement < AbstractStatement
     results
   end
 
-  def input_values(interpreter, prompt, default_prompt, expression_list)
+  def input_values(interpreter, prompt, default_prompt, count)
     values = []
     io = interpreter.console_io
-    while values.size < expression_list.size
+    while values.size < count
       io.prompt(prompt)
       values += io.input(interpreter)
 
@@ -597,7 +600,7 @@ class InputStatement < AbstractStatement
     values
   end
 
-  def file_values(interpreter, expression_list, fh)
+  def file_values(interpreter, fh)
     values = []
     io = interpreter.get_input(fh)
     values += io.input(interpreter)
@@ -1032,7 +1035,7 @@ class ReadStatement < AbstractStatement
         raise(BASICException, 'Invalid variable ' + items_list.map(&:to_s).join)
       end
     end
-    
+
     ds = interpreter.get_data_store(fh)
     expression_list.each do |expression|
       variables = expression.evaluate(interpreter)
@@ -1043,7 +1046,7 @@ class ReadStatement < AbstractStatement
   end
 
   private
-  
+
   def first_value(tokens_lists, interpreter)
     first_list = tokens_lists[0]
     expr = ValueScalarExpression.new(first_list)
@@ -1118,8 +1121,7 @@ class DefineFunctionStatement < AbstractStatement
     interpreter.set_user_function(@name, @arguments, @template)
   end
 
-  def execute(_, _)
-  end
+  def execute(_, _) end
 end
 
 # STOP
