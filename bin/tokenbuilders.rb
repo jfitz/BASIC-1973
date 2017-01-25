@@ -72,15 +72,20 @@ end
 # token reader for numeric constants in input channels (READ, INPUT)
 class InputNumberTokenBuilder
   def try(text)
+    regexes = [
+      /\A[+-]?\d+/,
+      /\A[+-]?\d+\./,
+      /\A[+-]?\d+E[+-]?\d+/,
+      /\A[+-]?\d+\.E[+-]?\d+/,
+      /\A[+-]?\d+\.\d+/,
+      /\A[+-]?\d+\.\d+E[+-]?\d+/,
+      /\A[+-]?\.\d+/,
+      /\A[+-]?\.\d+E[+-]?\d+/
+    ]
+
     @token = ''
-    /\A[+-]?\d+/.match(text) { |m| @token = m[0] }
-    /\A[+-]?\d+\./.match(text) { |m| @token = m[0] }
-    /\A[+-]?\d+E[+-]?\d+/.match(text) { |m| @token = m[0] }
-    /\A[+-]?\d+\.E[+-]?\d+/.match(text) { |m| @token = m[0] }
-    /\A[+-]?\d+\.\d+/.match(text) { |m| @token = m[0] }
-    /\A[+-]?\d+\.\d+E[+-]?\d+/.match(text) { |m| @token = m[0] }
-    /\A[+-]?\.\d+/.match(text) { |m| @token = m[0] }
-    /\A[+-]?\.\d+E[+-]?\d+/.match(text) { |m| @token = m[0] }
+
+    regexes.each { |regex| regex.match(text) { |m| @token = m[0] } }
   end
 
   def count
@@ -95,13 +100,18 @@ end
 # token reader for numeric constants
 class NumberTokenBuilder
   def try(text)
+    regexes = [
+      /\A\d+/,
+      /\A\d+\./,
+      /\A\d+E[+-]?\d+/,
+      /\A\d+\.E[+-]?\d+/,
+      /\A\d+\.\d+(E[+-]?\d+)?/,
+      /\A\.\d+(E[+-]?\d+)?/
+    ]
+
     @token = ''
-    /\A\d+/.match(text) { |m| @token = m[0] }
-    /\A\d+\./.match(text) { |m| @token = m[0] }
-    /\A\d+E[+-]?\d+/.match(text) { |m| @token = m[0] }
-    /\A\d+\.E[+-]?\d+/.match(text) { |m| @token = m[0] }
-    /\A\d+\.\d+(E[+-]?\d+)?/.match(text) { |m| @token = m[0] }
-    /\A\.\d+(E[+-]?\d+)?/.match(text) { |m| @token = m[0] }
+
+    regexes.each { |regex| regex.match(text) { |m| @token = m[0] } }
   end
 
   def count
