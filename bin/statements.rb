@@ -75,11 +75,7 @@ class StatementFactory
     unless m.nil?
       number = NumericConstantToken.new(m[0])
       line_number = LineNumber.new(number)
-      begin
-        line = create(m.post_match)
-      rescue BASICException => e
-        raise(BASICException, e.message + ' in line ' + number.to_s)
-      end
+      line = create(m.post_match)
     end
     [line_number, line]
   end
@@ -109,7 +105,12 @@ class StatementFactory
     tokens_lists.each do |tokens|
       keyword = ''
       keyword << tokens.shift.to_s while !tokens.empty? && tokens[0].keyword?
-      statements << create_regular_statement(keyword, text, tokens)
+      begin
+        statement = create_regular_statement(keyword, text, tokens)
+      rescue BASICException
+        statement = InvalidStatement.new(text)
+      end
+      statements << statement
     end
     Line.new(text, statements, all_tokens)
   end
@@ -263,6 +264,26 @@ class AbstractStatement
 
   def make_coords(r, c)
     [NumericConstant.new(r), NumericConstant.new(c)]
+  end
+end
+
+# unparsed statement
+class InvalidStatement < AbstractStatement
+  def initialize(line)
+    super('', line)
+    @errors << "Invalid statement"
+  end
+
+  def to_s
+    @text
+  end
+
+  def execute(interpreter, _)
+    raise(BASICException, @errors[0])
+  end
+
+  def pre_execute(interpreter)
+    raise(BASICException, @errors[0])
   end
 end
 
