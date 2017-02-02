@@ -811,7 +811,7 @@ class Interpreter
       any_errors = false
       statements.each do |statement|
         statement.errors.each { |error| puts error } if print_errors
-        any_errors |= statement.errors.empty?
+        any_errors |= !statement.errors.empty?
       end
       any_errors
     else
