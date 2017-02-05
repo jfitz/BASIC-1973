@@ -53,7 +53,7 @@ class BASICArray
   attr_reader :dimensions
 
   def initialize(dimensions, values)
-    @dimensions = dimensions  # Array of NumericConstant
+    @dimensions = dimensions
     @values = values
   end
 
@@ -135,7 +135,7 @@ class Matrix
   attr_reader :dimensions
 
   def initialize(dimensions, values)
-    @dimensions = dimensions   # Array of NumericConstant
+    @dimensions = dimensions
     @values = values
   end
 
@@ -646,7 +646,7 @@ class Parser
   def expressions
     raise(BASICException, 'Expression error') unless @operator_stack.empty?
     @parsed_expressions.concat @parens_group unless @parens_group.empty?
-    @parsed_expressions << @current_expression
+    @parsed_expressions << @current_expression unless @current_expression.empty?
     @parsed_expressions
   end
 
@@ -774,7 +774,6 @@ end
 # base class for expressions
 class AbstractExpression
   def initialize(tokens, default_type)
-    raise(Exception, 'Expression cannot be empty') if tokens.empty?
     @unparsed_expression = tokens.map(&:to_s).join
 
     elements = tokens_to_elements(tokens)
@@ -797,8 +796,6 @@ class AbstractExpression
   # returns an Array of values
   def evaluate(interpreter)
     values = interpreter.evaluate(@parsed_expressions)
-    raise(Exception, 'Expected some values') if values.empty?
-    values
   end
 
   def evaluate_with_vars(interpreter, name, user_var_values)
