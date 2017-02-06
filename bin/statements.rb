@@ -701,8 +701,9 @@ end
 
 # common for PRINT, ARR PRINT, MAT PRINT
 class AbstractPrintStatement < AbstractStatement
-  def initialize(keyword, line)
-    super
+  def initialize(keyword, line, final_carriage)
+    super(keyword, line)
+    @final = final_carriage
   end
 
   def to_s
@@ -739,12 +740,17 @@ class AbstractPrintStatement < AbstractStatement
     end
     [file_handle, print_items]
   end
+
+  def add_implied_items(print_items)
+    print_items << CarriageControl.new('NL') if print_items.empty?
+    print_items << @final if print_items[-1].printable?
+  end
 end
 
 # PRINT
 class PrintStatement < AbstractPrintStatement
   def initialize(line, tokens)
-    super('PRINT', line)
+    super('PRINT', line, CarriageControl.new('NL'))
     tokens = remove_break_tokens(tokens)
     @tokens_lists = ArgSplitter.split_tokens(tokens, true)
     @print_items = tokens_to_expressions(@tokens_lists)
@@ -784,11 +790,6 @@ class PrintStatement < AbstractPrintStatement
       line_text = tokens.map(&:to_s).join
       @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
     end
-  end
-
-  def add_implied_items(print_items)
-    print_items << CarriageControl.new('NL') if print_items.empty?
-    print_items << CarriageControl.new('NL') if print_items[-1].printable?
   end
 end
 
@@ -1225,7 +1226,7 @@ end
 # ARR PRINT
 class ArrPrintStatement < AbstractPrintStatement
   def initialize(line, tokens)
-    super('ARR PRINT', line)
+    super('ARR PRINT', line, CarriageControl.new(','))
     tokens = remove_break_tokens(tokens)
     @tokens_lists = ArgSplitter.split_tokens(tokens, true)
     @print_items = tokens_to_expressions(@tokens_lists)
@@ -1259,11 +1260,6 @@ class ArrPrintStatement < AbstractPrintStatement
     end
     add_implied_items(print_items)
     print_items
-  end
-
-  def add_implied_items(print_items)
-    print_items << CarriageControl.new('NL') if print_items.empty?
-    print_items << CarriageControl.new(',') if print_items[-1].printable?
   end
 end
 
@@ -1378,7 +1374,7 @@ end
 # MAT PRINT
 class MatPrintStatement < AbstractPrintStatement
   def initialize(line, tokens)
-    super('MAT PRINT', line)
+    super('MAT PRINT', line, CarriageControl.new(','))
     tokens = remove_break_tokens(tokens)
     @tokens_lists = ArgSplitter.split_tokens(tokens, true)
     @print_items = tokens_to_expressions(@tokens_lists)
@@ -1412,11 +1408,6 @@ class MatPrintStatement < AbstractPrintStatement
     end
     add_implied_items(print_items)
     print_items
-  end
-
-  def add_implied_items(print_items)
-    print_items << CarriageControl.new('NL') if print_items.empty?
-    print_items << CarriageControl.new(',') if print_items[-1].printable?
   end
 end
 
