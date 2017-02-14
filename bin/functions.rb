@@ -321,13 +321,13 @@ class FunctionChr < AbstractScalarFunction
     super
   end
 
-  def evaluate(interpreter, stack)
+  def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['NumericConstant'])
     value = args[0].to_i
-    raise(BASICException, 'Invalid value for CHR$()') if
-      !value.between?(32, 126)
+    raise(BASICException, 'Invalid value for CHR$()') unless
+      value.between?(32, 126)
     text = value.chr
     quoted = '"' + text + '"'
     token = TextConstantToken.new(quoted)
@@ -341,7 +341,7 @@ class FunctionLen < AbstractScalarFunction
     super
   end
 
-  def evaluate(interpreter, stack)
+  def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['TextConstant'])
@@ -358,14 +358,15 @@ class FunctionAsc < AbstractScalarFunction
     super
   end
 
-  def evaluate(interpreter, stack)
+  def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['TextConstant'])
     text = args[0].to_v
     raise(BASICException, 'Empty string in ASC()') if text.empty?
     value = text[0].ord
-    raise(BASICException, 'Invalid value in ASC()') if !value.between?(32, 126)
+    raise(BASICException, 'Invalid value in ASC()') unless
+      value.between?(32, 126)
     token = NumericConstantToken.new(value.to_s)
     NumericConstant.new(token)
   end
@@ -377,7 +378,7 @@ class FunctionPack < AbstractArrayFunction
     super
   end
 
-  def evaluate(interpreter, stack)
+  def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['BASICArray'])
@@ -394,7 +395,7 @@ class FunctionUnpack < AbstractScalarFunction
     super
   end
 
-  def evaluate(interpreter, stack)
+  def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
     check_arg_types(args, ['TextConstant'])
@@ -409,11 +410,11 @@ class FunctionExt < AbstractScalarFunction
     super
   end
 
-  def evaluate(interpreter, stack)
+  def evaluate(_, stack)
     ensure_argument_count(stack, [3])
     args = stack.pop
     check_arg_types(args,
-                    ['TextConstant', 'NumericConstant', 'NumericConstant'])
+                    %w(TextConstant NumericConstant NumericConstant))
     value = args[0].to_v
     start = args[1].to_i
     stop = args[2].to_i
