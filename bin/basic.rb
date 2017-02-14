@@ -744,10 +744,10 @@ class Interpreter
     file_names.each do |name|
       raise(BASICException, 'Invalid file name') unless
         name.class.to_s == 'TextConstant'
-      raise(BASICException, "File '#{name.value}' not found") unless
-        File.file?(name.value)
+      raise(BASICException, "File '#{name.to_v}' not found") unless
+        File.file?(name.to_v)
       file_handle = FileHandle.new(@file_handlers.size + 1)
-      @file_handlers[file_handle] = FileHandler.new(name.value)
+      @file_handlers[file_handle] = FileHandler.new(name.to_v)
     end
   end
 

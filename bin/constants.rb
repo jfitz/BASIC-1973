@@ -131,7 +131,6 @@ end
 
 # beginning of a set of parameters
 class ParamStart < AbstractElement
-
   attr_reader :text
 
   def initialize(element)
@@ -294,7 +293,7 @@ class NumericConstant < AbstractElement
     raise(BASICException, 'Divide by zero') if other == NumericConstant.new(0)
     NumericConstant.new(@value.to_f / other.to_v.to_f)
   end
- 
+
   def power(other)
     NumericConstant.new(@value**other.to_v)
   end
@@ -495,8 +494,9 @@ class BooleanConstant < AbstractElement
   def initialize(obj)
     super()
     @value = false
-    @value = true if obj.class.to_s == 'BooleanConstantToken' && obj.to_s == 'ON'
-    @value = true if obj.class.to_s == 'String' && obj.casecmp('ON') == 0
+    @value = true if
+      obj.class.to_s == 'BooleanConstantToken' && obj.to_s == 'ON'
+    @value = true if obj.class.to_s == 'String' && obj.casecmp('ON').zero?
     @value = true if obj.class.to_s == 'TrueClass'
     @operand = true
     @precedence = 0
@@ -525,7 +525,7 @@ class FileHandle < AbstractElement
   end
 
   def eql?(other)
-    number = other.number
+    number == other.number
   end
 
   def to_s
@@ -700,7 +700,7 @@ class Function < AbstractElement
   end
 
   def counts_to_text(counts)
-    words = %w( zero one two )
+    words = %w(zero one two)
     texts = counts.map { |v| words[v] }
     texts.join(' or ')
   end
@@ -711,18 +711,18 @@ class Function < AbstractElement
   end
 
   def check_value(value, type)
-    raise(BASICException,
-          "Argument #{value} #{value.class} not of type #{type.class}") if
-      value.class.to_s != type
+    if value.class.to_s != type
+      raise(BASICException,
+            "Argument #{value} #{value.class} not of type #{type.class}")
+    end
   end
 
   def check_arg_types(args, types)
     check_args(args)
-    n_types = types.size
-    n_args = args.size
-    raise(BASICException,
-          "Function #{@name} expects #{n_types} argument, found #{n_args}") if
-      n_args != n_types
+    if args.size != types.size
+      raise(BASICException,
+            "Function #{@name} expects #{n_types} argument, found #{n_args}")
+    end
     (0..types.size - 1).each do |i|
       check_value(args[i], types[i])
     end
