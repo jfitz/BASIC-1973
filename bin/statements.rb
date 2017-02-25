@@ -166,6 +166,7 @@ class StatementFactory
       'MATPRINT' => MatPrintStatement,
       'MATREAD' => MatReadStatement,
       'MAT' => MatLetStatement,
+      'ON' => OnStatement,
       'NEXT' => NextStatement,
       'PRINT' => PrintStatement,
       'RANDOMIZE' => RandomizeStatement,
@@ -859,6 +860,59 @@ class ReturnStatement < AbstractStatement
 
   def execute(interpreter, _)
     interpreter.next_line_index = interpreter.pop_return
+  end
+end
+
+# ON GOTO
+class OnStatement < AbstractStatement
+  def initialize(line, tokens)
+    super('ON', line)
+    @tokens = remove_break_tokens(tokens)
+    # ON expression GOTO destinations
+    parts = split_on_token(tokens, 'GOTO')
+    @errors << 'Syntax error' if parts.size != 3
+    expression = parts[0]
+    keyword = parts[1]
+    destinations = parts[2]
+    @errors << 'Missing GOTO' unless keyword.to_s == 'GOTO'
+    begin
+      @expression = ValueScalarExpression.new(expression)
+    rescue BASICException => e
+      @errors << e.message
+    end
+    line_nums = ArgSplitter.split_tokens(destinations, false)
+    @destinations = []
+    line_nums.each do |line_num|
+      if line_num.size == 1
+        destination = line_num[0]
+        if destination.numeric_constant?
+          @destinations << LineNumberIndex.new(LineNumber.new(destination), 0)
+        else
+          @errors << "Invalid line number #{destination}"
+        end
+      else
+        @errors << "Invalid line specification #{line_num}"
+      end
+    end
+  end
+
+  def to_s
+    s = @expression.to_s + ' GOTO ' + @destinations.map(&:to_s).join(', ')
+    @keyword + ' ' + s
+  end
+
+  def execute(interpreter, trace)
+    values = @expression.evaluate(interpreter)
+    raise(BASICException, 'Expecting one value') unless values.size == 1
+    value = values[0]
+    raise(BASICException, 'Invalid value') unless
+      value.class.to_s == 'NumericConstant'
+    puts ' ' + @expression.to_s + ' = ' + value.to_s if trace
+    index = value.to_i
+    raise(BASICException, 'Index out of range') if
+      index < 1 || index > @destinations.size
+    # get destination in list
+    interpreter.next_line_index = @destinations[index - 1]
   end
 end
 
