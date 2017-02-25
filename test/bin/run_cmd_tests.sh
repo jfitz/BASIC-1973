@@ -1,3 +1,4 @@
+TESTROOT=test
 TESTBED=tests
 
 echo Removing old directory
@@ -18,6 +19,12 @@ bash "$TESTROOT/bin/run_cmd_test.sh" "$TESTROOT" "$TESTBED" list_range_2
 bash "$TESTROOT/bin/run_cmd_test.sh" "$TESTROOT" "$TESTBED" list_range_3
 ((ECODE+=$?))
 bash "$TESTROOT/bin/run_cmd_test.sh" "$TESTROOT" "$TESTBED" list_range_4
+((ECODE+=$?))
+bash "$TESTROOT/bin/run_cmd_test.sh" "$TESTROOT" "$TESTBED" list_dup_line
+((ECODE+=$?))
+bash "$TESTROOT/bin/run_cmd_test.sh" "$TESTROOT" "$TESTBED" enter_list
+((ECODE+=$?))
+bash "$TESTROOT/bin/run_cmd_test.sh" "$TESTROOT" "$TESTBED" revise_list
 ((ECODE+=$?))
 
 echo
