@@ -1,0 +1,293 @@
+90 
+
+
+REM *** CONVERTED- TO RSTS/E BV DAVID AHL, DIGITAL 
+
+
+100 
+
+
+REM HURKLE - PEOPLE'S COMPUTER COMPANV, MENLO PARK CA 
+
+
+105 
+
+
+RANDOM 
+
+
+110 
+
+
+N=5 
+
+
+120 
+
+
+6=10 
+
+
+210 
+
+
+PRINT 
+
+
+220 
+
+
+PRINT "A HURKLE IS HIDING ON ft"; G; "BV"; G; "GRID. HOMEBASE" 
+
+
+230 
+
+
+PRINT "ON THE GRID IS POINT 6,8 AND ANV GRIDPOINT IS A" 
+
+
+240 
+
+
+PRINT "PAIR OF WHOLE NUMBERS SEPARATED BV A COMMA. TRV TO 
+
+
+250 
+
+
+PRINT "GUESS THE HURKLE' S GRIDPOINT. VOU GET"; N; "TRIES. " 
+
+
+260 
+
+
+PRINT "AFTER EACH TRV, I WILL TELL VOU THE APPROXIMATE" 
+
+
+270 
+
+
+PRINT "DIRECTION TO GO TO LOOK FOR THE HURKLE. " 
+
+
+2*0 
+
+
+PRINT 
+
+
+255 
+
+
+A=INT&lt;G*RND(0&gt;&gt; 
+
+
+2*6 
+
+
+B=INT&lt;G*RND&lt;0&gt;&gt; 
+
+
+310 
+
+
+FOR K=l TO N 
+
+
+320 
+
+
+PRINT "GUESS #"; K; 
+
+
+330 
+
+
+INPUT X, V 
+
+
+340 
+
+
+IF ABS&lt;X-A&gt;+ABS&lt;:V-B&gt;=0 THEN 586 
+
+
+350 
+
+
+REM PRINT INFO 
+
+
+360 
+
+
+GOSUB 610 
+
+
+370 
+
+
+PRINT 
+
+
+380 
+
+
+NEXT K 
+
+
+410 
+
+
+PRINT- 
+
+
+420 
+
+
+PRINT "SORRV, THAT'S"; N; "GUESSES. " 
+
+
+430 
+
+
+PRINT "THE HURKLE IS AT "; A; ", "; B 
+
+
+440 
+
+
+PRINT 
+
+
+450 
+
+
+PRINT "LET'S PLAV AGAIN. HURKLE IS HIDING. " 
+
+
+460 
+
+
+PRINT 
+
+
+470 
+
+
+GO TO 285 
+
+
+500 
+
+
+REM 
+
+
+510 
+
+
+PRINT 
+
+
+520 
+
+
+PRINT "VOU FOUND HIM IN"; K; "GUESSES ! " 
+
+
+530 
+
+
+FOR 1=1 TO 10SPRINT CHR*&lt;7&gt;; SNEXT I SPRINT 
+
+
+540 
+
+
+GO TO 440 
+
+
+610 
+
+
+PRINT "GO "; 
+
+
+620 
+
+
+IF V=B THEN 670 
+
+
+630 
+
+
+IF V&lt;B THEN 668 
+
+
+640 
+
+
+PRINT "SOUTH"; 
+
+
+650 
+
+
+GO TO 670 
+
+
+6€S 
+
+
+PRINT "NORTH"; 
+
+
+670 
+
+
+IF X=A THEN 720 
+
+
+680 
+
+
+IF X&lt;fi THEN 710 
+
+
+690 
+
+
+PRINT "WEST"; 
+
+
+700 
+
+
+GO TO 720 
+
+
+710 
+
+
+PRINT "EAST"; 
+
+
+720 
+
+
+PRINT 
+
+
+730 
+
+
+RETURN 
+
+
+999 
+
+
+END 
+

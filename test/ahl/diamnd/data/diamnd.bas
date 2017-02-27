@@ -1,0 +1,77 @@
+3 PRINT "FOR fl PRETTY DIAMOND PATTERN," 
+
+4 PRINT "TVPE IN AN ODD NUMBER BETWEEN 5 AND 31. 
+
+5 input rsprint 
+
+6 q=int&lt;:s@/r:j 
+
+8 FOR L=l TO Q 
+
+18 X=1\Y=R\Z=2 
+
+28 FOR N = X TO V STEP Z 
+
+25 PRINT TRB&lt;&lt;R-N&gt;/2); 
+
+28 FOR M = l TO Q. 
+
+29 C = l 
+
+38 FOR R = l TO N 
+
+31 IF C = l THEN 40 
+
+32 IF C=2 THEN 42 
+
+33 IF C = 3 THEN 44 
+35 
+
+
+
+FOR A PRETTV DIAMOND PATTERN, 
+
+TVPE IN AN ODD NUMBER BETWEEN 5 AND 31. 
+
+? 15 
+
+
+
+\GOTO 58 
+SQOTO 47 
+SGOTO 4? 
+
+
+
+PRINT " ! 
+
+PRINT "D 
+
+PRINT "E 
+
+PRINT "C"; 
+
+OC + 1. 
+
+NEXT A 
+
+IF H-Q THEN 60 
+
+PRINT TrtB&lt;R*M+&lt;: 
+
+NEXT M 
+
+PRINT 
+
+NEXT N 
+
+IF KOI THEN 95 
+
+X=R~2\Y=l\Z=-2 
+
+GOTO 28 
+
+NEXT L 
+
+END 
+

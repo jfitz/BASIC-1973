@@ -1,0 +1,98 @@
+100 RANDOMIZE 
+
+110 DIM D&lt;3&gt; 
+
+120 PR I NT "THIS IS ft SIMULATION OF A SLOT MACHINE USING A COMPUTER " 
+
+130 PRINT "EACH TIME YOU 'PULL-' I WILL ASK YOU IF YOU WISH TO PLAY AGAIN. 
+
+II 140 PRINT "JUST ANSWER WITH A ' V FOR YES OR A •' N' FOR NO. " 
+
+II 150 PRINT "PLEASE PLACE 4 QUARTERS ON MY CPU FOR EACH PLAY. " 
+
+fj 160 PRINT 
+
+I 170 FOR Bl=l TO 3 
+
+fj 180 LET D&lt;B1&gt;=INT&lt;RND&lt;0)*6)+1 
+
+I 190 NEXT Bl 
+
+|i 260 FOR Gl = l TO 3 
+
+f] 210 IF D&lt;61&gt;»1 THEN 288 
+
+|| 220 IF D&lt;"G1&gt;=2 THE N 30© 
+
+f! 230 IF D&lt;G1&gt;=3 THEN 320 
+
+}| 240 IF D(G1&gt;*4 THEN 340 
+
+|| 250 IF D&lt;G1&gt;=5 THEN 360 
+
+fj 260 IF D&lt;G1)=6 THEN 380 
+
+fj 270 GOTO 580 
+
+I 280 PRINT TAB&lt;Gl+7&gt;.; " BELL"; 
+
+I 290 GOTO 390 
+
+I 300 PRINT TAB&lt;G1*7&gt;.; " BAR".; 
+
+$ 310 GOTO 390 
+
+i-; 320 PRINT TAB&lt;G1*7&gt;; "CHERRY".; 
+
+|| 330 GOTO 390 
+
+fj 340 PRINT TAB&lt;G1*7&gt;.; "APPLE"; 
+
+|| 350 GOTO 390 
+
+fj 360 PRINT TAB&lt;G1*7&gt;; "LEMON".; 
+
+fj 370 GOTO 390 
+
+*| 380 PRINT TAB&lt;G1*7&gt;; " *"; 
+
+j 390 NEXT Gl 
+
+r | 400 PRINT TAB&lt;28&gt;; 
+
+j 418 IF 'D&lt;l)OD&lt;2&gt; THEN 440 
+
+( 420 IF D&lt;2&gt;=D&lt;3) THEN 530 
+
+| ' 430 IF D&lt;1)=D&lt;2) THEN 460 
+
+ij 440 IF DciXODO) THEN 490 
+
+J 450 GO TO 510 
+
+468 IF D&lt;l&gt;/20INT&lt;D&lt;l&gt;/2&gt; THEN 510 
+
+| 470 LET B=B + 5'\PRINT "KENO. . YOU WIN *5. . TOTAL=*"; B; 
+
+j 486 GO TO 550 
+
+[ 498 LET 6=B-1\PRINT "YOU HAVE LOST *1 — TOTAL=*".; B; 
+
+I 508 GOTO 550 
+
+j 510 LET B=B+1\PRINT "YOU HAVE WON *1 — TOTAL=*"; B; 
+
+! 520 GOTO 550 
+
+I 530 LET B = B + 20\PRINT CHR*&lt;7 &gt;; "JACKPOT. .. *20. .. TOTAL=*".; B; CHR*&lt;7&gt;; 
+
+540 GOTO 550 
+
+'! 550 PRINT "AGAIN?"; 
+
+j 560 INPUT *ft'\PRINTMF A=#V THEN 160SIF AO#N THEN 56© 
+
+570 PRINT" IT'S BEEN NICE OPERATING FOR YOU COME BACK SOON!" 
+
+J 580 END 
+

@@ -1,0 +1,171 @@
+19 REM *** GAME OF HANGMAN BV DfiVE AHL, DIGITAL 
+
+15 REM *** BASED ON A PROGRAM WRITTEN BV KEN AUPPERLE, CLASS OF ' 
+
+28 REM *** HALF HOLLOW HILLS H. S. , DIX HILLS, NV 
+
+25 &amp;"GAME OF HANGMAN" : &amp; : &amp; 
+
+30 DIM P*&lt;±2, 12&gt;,L*&lt;20&gt;,D*&lt;20;&gt;,N*&lt;26&gt;,IK50&gt; 
+
+40 C=l: RANDOMIZE :N=50 
+
+50 D*&lt; I :&gt; = "-" FOR 1=1 TO 20:M=O 
+
+60 N$&lt;I&gt;="" FOR 1=1 TO 26 
+
+70 FOR 1=1 TO 12 .FOR J=l TO 12 : P$&lt;. I, J&gt; = " ".NEXT J : NEXT I 
+
+80 P*&lt;I,1&gt; = "X" FOR 1=1 TO 12 
+
+90 P$&lt;1, I&gt;="X" FOR 1=1 TO 7:P*&lt;2, 7&gt;="X" 
+
+95 IF C&lt;N THEN 1©@ ELSE PRINT "VOU DID ALL THE WORDS !!": STOP 
+
+100 G=INT&lt;N+RND+1&gt; 
+
+110 IF I_KQ&gt;=1 THEN 10© ELSE IKQ&gt;=1 : C=C+1 : RESTORE : T1=0 
+
+150 READ A* FOR 1=1 TO Q 
+
+160 L=LEN&lt;:A*&gt;:L*a&gt;=MID&lt;.A*, I,l&gt; FOR 1=1 TO L 
+
+170 A"HERE ARE THE LETTERS VOU USED." 
+
+ISO FOR 1=1 TO 26:*: N*&lt;I&gt;; : IF N*&lt; I+l&gt; = " " THEN 288 
+
+190 PRINT ", "; .NEXT I 
+
+200 4:*:F0R 1=1 TO L:A D*&lt; -I &gt;i : NEXT I : ii : i&lt; 
+
+210 INPUT "WHAT IS VOUR GUESS"; .Q* : R=0 
+
+220 FOR 1=1 TO 26: IF N*a&gt; = "" THEN 259 
+
+230 IF G*=N*&lt;I&gt; THEN * "VOU GUESSED THAT LETTER BEFORE" : GOTO 170 
+
+240 NEXT 1:&amp; "PROGRAM ERROR. RUN AGAIN. ".STOP 
+
+250 N*&lt;I&gt;=G*:T1=T1+1 
+
+260 FOR 1=1 TO L.IF L*&lt;I&gt;=G* THEN 280 
+
+270 NEXT I: IF R=0 THEN 298 ELSE GOTO 30S 
+
+280 D*a&gt;=G*:R=R+l:GOTO 278 
+
+290 M=M+1 : GOTO 400 
+
+200 FOR 1 = 1 TO L:IF D*a&gt; = "-" THEN 220 
+
+310 NEXT I : GOTO 290 
+
+220 A .FOR 1=1 TO L.A D$a&gt;;:NEXT !:&amp;:&amp; 
+
+228 INPUT "WHAT IS VOUR GUESS FOR THE WORD"; B* 
+
+240 IF B*=ft* THEN 360 
+
+350 A "WRONG. TRV ANOTHER LETTER. " : &amp; : GOTO 170 
+
+360 A"RIGHTM IT TOOK VOU"Tl"GUESSES ! " 
+
+378 INPUT "WANT ANOTHER WORD"; Wf: IF W*="VES" THEN 50 
+
+380 A: A" IT'S BEEN FUN! BVE FOR NOW. " : STOP 
+
+390 A "VOU FOUND THE WORD !" :GOTO 378 
+
+400 A: A. A "SORRV, THAT LETTER ISN'T IN THE WORD. " 
+
+410 ON M GOTO 415, 428, 425, 428, 425, 448, 445, 458, 455, 468 
+
+415 A"FIRST, WE DRAW A HEAD": GOTO 478 
+
+428 A "NOW WE DRAW A BODV":GOTO 470 
+
+425 A "NEXT WE DRAW AN ARM": GOTO 470 
+
+428 A "THIS TIME IT'S THE OTHER ARM": GOTO 470 
+
+425 A"NOW, LET'S DRAW THE RIGHT LEG": GOTO 478 
+
+448 A"THIS TIME WE DRAW THE LEFT LEG": GOTO 478 
+
+445 A "NOW WE PUT UP A HAND ".GOTO 478 
+
+458 A "NEXT THE OTHER HAND": GOTO 470 
+
+455 A "NOW WE DRAW ONE FOOT" : GOTO 478 
+
+468 &amp; "HERE'S THE OTHER FOOT — VOU' RE HUNG!!" 
+
+470 ON M GOTO 480, 49©, 508, 518, 528, 528, 548, 558, 568, 578 
+
+48© P*&lt;2, 6&gt;="-":P*&lt;2, 7&gt; = "-" : P*C2, 8&gt;="-" : P*C4, 5&gt; = " C " : P*C4, 6&gt; = ". " 
+
+481 P*&lt;4, 8&gt; = ". " :P*&lt;4, 9&gt; = "&gt; " : P*K5, 6 ;« = "-" :P$C5, 7&gt; = "-" : P*c!5, 8&gt; = "- n ':Q 
+
+490 P*&lt;I, 7&gt;="X" FOR 1=6 TO 9 : GOTO 588 
+
+500 P$&lt;I, I-1&gt;="S" FOR 1=4 TO 7 .GOTO 588 
+?$(.&amp;, 9&gt; = " 
+GOTO 588 
+GOTO 588 
+
+
+
+:GOTO 588 
+
+
+
+:A P*a, J&gt; 
+
+
+
+".GOTO 588 
+
+
+
+518 P*&lt;4, 11&gt;="/" :P* C5, 1©;' = "/" 
+
+528 P*&lt;10, 6&gt; = "/" :P$C11, 5&gt; = "/" 
+
+528 P* &lt; 10, 8 &gt; = " S " : P* &lt; 11, 9 &gt; = " S " 
+
+540 P* &lt; 2, 11 &gt; = " \ " : GOTO 580 
+
+550 P*&lt;2, 2&gt; = 'V" :GOTO 588 
+
+568 P*&lt;12, 1©&gt; = "S" :P$&lt;:i2, 11&gt; = " 
+
+578 P* &lt; 12, 2 &gt; = " - " : P* &lt; 12, 4 &gt; = " / " 
+
+588 FOR 1=1 TO 12: FOR J=l TO 
+
+59Q A: NEXT I: A: A: IF M=10 THEN 600 ELSE 170 
+
+600 A "SORRV, VOU LOSE. THE WORD WAS "ft* 
+
+610 A "YOU MISSED THAT ONE. DO VOU" .GOTO 270 
+
+708 DATA "GUM", "SIN", "FOR", "CRV", "LUG", "BVE", "FLV" 
+
+710 DATA "UGLV", "EACH", "FROM", "WORK", "TALK", "WITH", "SELF" 
+
+720 DATA "PIZZA", "THING", "FEIGN", "FIEND", "ELBOW", "FAULT", "DIRTV" 
+
+720 DATA "BUDGET", "SPIRIT", "QUAINT", "MAIDEN", "ESCORT", "PICKAX" 
+
+740 DATA "EXAMPLE", "TENSION", "QUININE", "KIDNEY", "REPLICA", "SLEEPER" 
+
+758 DATA "TRIANGLE", "KANGAROO", "MAHOGflNV", "SERGEANT", "SEQUENCE" 
+
+768 DATA "MOUSTACHE", "DANGEROUS", "SCIENTIST", "DIFFERENT", "QUIESCENT" 
+
+77© DATA "MAGISTRATE", "ERRONEOUSLV", "LOUDSPEAKER", "PHVTOTOXIC" 
+
+780 DATA "MATRIMONIAL", "PARASVMPATHOMIMETIC", "THIGMOTROPISM" 
+
+999 END 
+

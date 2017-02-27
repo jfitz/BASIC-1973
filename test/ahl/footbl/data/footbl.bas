@@ -1,0 +1,496 @@
+1 REM 
+
+2 REM 
+
+3 REM 
+'4 REM 
+
+5 REM 
+
+6 REM 
+? REM 
+3 REM 
+9 REM 
+18 REM 
+
+100 RANDOMIZE 
+120 DIM A&lt;20&gt;,B&lt;20&gt; 
+130 DIM M*&lt;2&gt;,D&lt;2&gt; 
+
+140 PRINT "RAMIS ENTERPRISES PRESENTS N. F. U. 
+145 PRINTSPRINT 
+150 PRINT "DO YOU WISH INSTRUCTIONS?",- \ INPUT A* 
+160 JF A**"NO" THEN 290SIF A*&lt;&gt;"VES" THEN 150 
+
+178 PRINT "THIS IS A GAME FOR 2 TEAMS IN WHICH EACH PLAYER MUST" 
+
+180 PRINT "PREPARE A TAPE WITH A DATA STATEMENT (1770 FOR TEAM 1" 
+
+190 PRINT "1780 FOR TEAM 2) IN WHICH EACH TEAM SCRAMBLES NOS. 1-20" 
+
+195 PRINT "THESE NUMBERS ARE THEN ASSIGNED TO 20 GIVEN PLAYS. " 
+
+200 PRINT "A LIST OF NOS. AND THEIR PLAYS ARE PROVIDED WITH" 
+
+210 PRINT "BOTH TEAMS HAVING THE SAME PLAYS. THE MORE SIMILAR THE" 
+
+220 PRINT "PLAYS THE LESS YARDAGE GAINED. SCORES ARE GIVEN" 
+
+223 PRINT "WHENEVER SCORES ARE MADE. SCORES MAY ALSO BE OBTAINED" 
+
+225 PRINT "BY INPUTING 99, $9 FOR PLAY NOS., TO PUNT OR ATTEMPT A" 
+
+227 PRINT "FIELDGOAL.. INPUT 77.- 77 FOR PLAY NOS,. QUESTIONS WILL BE" 
+
+230 PRINT "ASKED THEN. ON 4TH DOWN YOU WILL ALSO BE ASKED WHETHER" 
+
+240 PRINT "VOU WANT TO PUNT OR ATTEMPT A FIELD GOAL. IF THE ANSWER" 
+
+250 PRINT "TO BOTH QUESTIONS IS NO, IT WILL BE ASSUMED YOU WANT TO" 
+
+260 PRINT "TRY AND GAIN YARDAGE. ANSWER ALL QUESTIONS YES OR NO. " 
+
+270 PRINT "GAME IS PLAYED UNTIL PLAYERS TERMINATE &lt;CONTROL-C&gt;. " 
+
+280 PRINT "PLEASE PREPARE A TAPE AND RUN, "SSTOP 
+
+290 PRINTSPRINT "INPUT SCORE LIMIT ON GAME".! \ INPUT E 
+
+390 FOR 1*1 TO 40SREAD NMF I&gt;20 THEN 350 
+
+330 A&lt;N&gt;=ISGOTO 360 
+
+350 B&lt;N&gt;=I-20 
+
+360 C&lt;I')*N\NEXT I 
+
+380 L=OST=l 
+
+410 PRINT " TEAM" T" PLAY CHART" 
+
+420 PRINT "NO. PLAY" SPRINT 
+
+430 PRINT C&lt;1+L)jTAB&lt;6)j "PITCHOUT" 
+
+'♦40 PRINT C&lt;2 + L):.TAB&lt;6).; "TRIPLE REVERSE" 
+
+'450 PRINT C&lt;3 + L&gt;.i TAB&lt;6&gt;.; "DRAW" 
+
+460 PRINT C&lt;4+L&gt;; TAB&lt;6&gt;; "QB SNEAK" 
+
+'470 PRINT C&lt;5 + L);TAB&lt;6:».; "END AROUND" 
+
+480 PRINT C&lt;6 + L); TAB &lt; 6),: "DOUBLE REVERSE" 
+
+490 PRINT C(7+L).iTAB&lt;6); "LEFT SWEEP" 
+
+500 PRINT C&lt;8+L&gt;,TAB&lt;6&gt;; "RIGHT SWEEP" 
+
+510 PRINT C&lt;-9+L&gt;; TAB-: 6).; "OFF TACKLE" 
+
+
+
+520 PRINT C&lt;18+L&gt; 
+530 PRINT C&lt;:il + L&gt; 
+540 PRINT C&lt;12+L&gt; 
+550 PRINT CU3 + L) 
+560 PRINT C(14+L&gt; 
+570 PRINT C':i5+L,&gt; 
+588 PRINT C&lt;16+L&gt; 
+590 PRINT C&lt;17+L) 
+600 PRINT C':i8+L) 
+610 PRINT C-:i9+L) 
+620 PRINT C&lt;20+L) 
+630 L*L+20ST=2 
+640 PRINTSPRINT 
+
+
+
+TAB&lt;6).; "WISHBONE OPTION" 
+TAB&lt;6).i "FLARE PASS" 
+TAB&lt;6).; "SCREEN PASS" 
+TAB &lt; 6 ) ; " ROLL OUT OPT I ON " 
+TAB&lt; &amp;&gt;} "RIGHT CURL" 
+TAB (6).; "LEFT CURL" 
+T A 8 &lt; 6 &gt; ,• " WISH B N E P T 1 N " 
+TAB &lt; 6 ) ,• " S I DEL I NE PASS " 
+TAB&lt;6&gt;; "HALF-BACK OPTION" 
+TABc'6).; "RAZZLE DAZZLE" 
+TAB-:6&gt;,- ''BOMB! !!'!!!!" 
+
+
+
+TEAR OFF HERE 
+
+
+
+66Q 
+
+
+FOR X 
+
+
+670 
+
+
+FOR Z 
+
+
+680 
+
+
+IF L = 
+
+
+690 
+
+
+d &lt; i y- 
+
+
+700 
+
+
+h-:i&gt; = 
+
+
+710 
+
+
+W'll&gt; = 
+
+
+720 
+
+
+v .; i &gt; = 
+
+
+725 
+
+
+GOSUB 
+
+
+730 
+
+
+PRINT 
+
+
+740 
+
+
+T=INT 
+
+
+760 
+
+
+PRINT 
+
+
+765 
+
+
+P=X&lt;T 
+
+
+778 
+
+
+GOSUB 
+
+
+780 
+
+
+K-INT 
+
+
+790 
+
+
+P=P-Y 
+
+
+794 
+
+
+IF W&lt; 
+
+
+795 
+
+
+PRINT 
+
+
+810 
+
+
+PRINT 
+
+
+830 
+
+
+PRINT 
+
+
+840 
+
+
+IF A* 
+
+
+350 
+
+
+IF W&lt; 
+
+
+870 
+
+
+P=Z-:T 
+
+
+880 
+
+
+D=1SS- 
+
+
+385 
+
+
+PRINT 
+
+
+
+2&gt; = "€ " 
+
+
+
+-1 TO 11SPRINTSNEXT ! 
+
+=1 TO 3000SNEXT Z 
+
+20 THEN 410 
+
+0SD&lt; 2 &gt;-3SM$ &lt;!&gt;="— ^&gt;"SM*&lt;2 
+
+0SH &lt; 2 ) =0ST i 1 ) =2ST &lt; 2 &gt; =1 
+
+-1SW&lt;2&gt;=1SX&lt;1)=100SX&lt;2)=0 
+
+IS V &lt; 2 ) *-lSZ &lt; 1 &gt; = 0SZ &lt; 2 &gt; =100 
+
+1910 
+
+"TEAM 1 DEFENDS YD. GOAL — TEAM 2 DEFENDS 100 YD. GOAL" 
+&lt;2*RND&lt;0&gt;+1&gt; 
+
+SPRINT "THE COIN IS FLIPPED" 
+&gt;-V&lt;T&gt;*40 
+
+1860SPRINTSPRINT "TEAM»T"RECE IVES KICK-OFF" 
+&lt;26*RND('O)+40) 
+
+•:t&gt;*k 
+
+t)*p&lt;z&lt;t)+10 then 810sprintsprint "ball went out of endzo 
+
+"—automatic touchback— "sgoto 870 
+sprint "ball went "k" yards, now on "psgosub 1900 
+
+" team" t" do vou want to runback".: si nput a* 
+="ves" then 1430sif a*o"n0" then 830 
+t&gt;*p&lt;z&lt;t&gt; then 880 
+
+)-Wa&gt;*20 
+=?p 
+
+
+
+390 PRINTSPRINT " TEAM" T "DOWN "D "ON "P.; 
+393 IF DOl THEN 900 
+
+395 IF V':T}*cP+V':T&gt;*10&gt;&gt; = X&lt;T&gt; THEN 898 
+897 C=4SG0T0 988 
+
+
+
+398 C=3 
+
+900 IF C=3 THEN 904 
+
+901 PRINT TflB.&lt;27&gt;;10-&lt;Y&lt;T)*P-V&lt;T)*S&gt;; "YARDS TO 1ST DOWN" 
+
+902 GOTO 910 
+
+904 PRINT TAB&lt;27)jX&lt;T)-Y&lt;T)*P.: "YARDS TO GO" 
+
+910 GOSUB 1990S IF D=4 THEN 1189 
+
+928 RANDOMIZE 
+
+938 U=INT&lt;3+RND&lt;0)-1)SG0T0 940 
+
+936 PRINT "ILLEGAL PLAY NUMBER, CHECK AND" 
+
+940 PRINT "INPUT OFFENSIVE PLAY, DEFENSIVE PLAY".; 
+
+959 IF T-2 THEN 970 
+
+960- INPUT P1..P2SG0T0 975 
+
+970 INPUT P2,P1 
+
+975 IF Pl=77 THEN 1180 
+
+980 IF Pl&gt;20 THEN 1880SIF PK1 THEN 1800 
+
+998 IF P2&gt;20 THEN 1880SIF P2&lt;1 THEN 1880 
+
+995 Pi=INT&lt;Pi:&gt;SP2-INT&lt;P2&gt; 
+
+1009 V= I NT &lt; ABS &lt; A &lt; PI :» -B &lt; P2 &gt; &gt; /19* &lt; &lt; X &lt; T ) - V &lt; T ) *P+25 ) +RND &lt; ) -15 ) ) 
+
+1805 PR I NTS IF T = 2 THEN 1015 
+
+1019 IF A&lt;P1K11 THEN 1048SGOTO 1820 
+
+1815 IF B&lt;P2H!1 THEN 1048 
+
+1028 IF UO0 THEN 1035SPRINT "PASS INCOMPLETE TEAM"T 
+
+1038 Y=0SGOTO 1059 
+
+1035 G=RND&lt;0&gt;SIF GC 025 THEN 104OSIF V&gt;2 THEN 1945 
+
+1048 PRINT "QUARTERBACK SCRAMBLED "SGOTO 1050 
+
+1045 PRINT "PASS COMPLETED "SGOTO 105© 
+
+1048 PRINT "THE BALL WAS RUN" 
+
+1950 p=p-wa&gt;*v 
+
+1860 PRINTSPRINT "NET YARDS GAINED ON DOWN"D"ARE "V 
+
+1870 G=RND&lt;0&gt;SIF G&gt;. 025 THEN 1118 
+
+1880 PRINTSPRINT "** LOSS OF POSSESSION FROM TEAM "T" TO TEAM"T(T) 
+
+1100 GOSUB 1850SPRINTST = T':T)SGOTO 838 
+
+1118 IF V&lt;T)*P&gt;«X&lt;T) THEN 1320 
+
+1129 IF U&lt;T)*P&gt;rZ&lt;T) THEN 1238 
+
+1138 if va:&gt;*p-v&lt;T;&gt;+s&gt;=i0 then 888 
+
+1140 D*D+1SIF DOS THEN 885 
+
+1168 PRINTSPRINT "CONVERSION UNSUCCESSFUL TEAM"TST=T&lt;T ) 
+
+1170 GOSUB 1850SGOTO 888 
+
+1188 PRINT "DOES TEAM"T"WANT TO PUNT ".; SI NPUT A* 
+
+1185 IF A$="NO" THEN 1280SIF A*0"VES" THEN 1188 
+
+1190 PRINTSPRINT "TEAM"T"WILL PUNT"SG=RND&lt;0&gt;S I F G&lt;. 825 THEN 
+
+1195 GOSUB 1850SK=INT&lt;25+RND&lt;O&gt;+35&gt;ST*T&lt;T&gt;SGOTO 798 
+
+1280 PRINT "DOES TEAM"T''WANT TO ATTEMPT A FIELD-GOAL"^ MNP 
+
+1210 IF A*="VES" THEN 1648SIF A*O"N0" THEN 1288SG0T0 928 
+
+1238 PRINTSPRINT "SAFETY AGAINST TEAM"T" — - —-- 
+
+1248 H &lt; T &lt; T &gt; ) =*H &lt; T &lt; T ) ) +2SG0SUB 1810 
+
+1280 PRINT " TEAM" T "DO VOU WANT TO PUNT INSTEAD OF A KJCKQFF 
+
+1290 P=Z&lt;T&gt;-W&lt;T&gt;*20SIF A**"VES" THEN 1198 
+
+
+
+1328 printsprint "touchdown bv team "t "**************** 
+
+1340 q=7sg=rnd&lt;0)sif g&gt;. 1 then 1388 
+
+1360 q=6sprint "extra point no good "sgoto 1398 
+
+1380 print "extra point good" 
+
+1390 H':t;&gt;=h&lt;t&gt;+qsg0SUB 1810 
+
+1420 T=T&lt;T)SGOTO 765 
+
+1430 K=INT&lt;9+RND&lt;0&gt;+1&gt; 
+
+1440 R*INT&lt;&lt;&lt;X&lt;T)-YCT)*P+25)*RNO&lt;0)-15)/K) 
+
+1468 P«P-W&lt;T)*R 
+
+1480 PRINTSPRINT "RUNBACK TEAM "T.; R"VARDS " 
+
+1485 RANDOMIZESG=RND&lt;0)SIF G&lt;. 025 THEN 1888 
+
+1498 IF Y&lt;T)*P&gt;sX&lt;T&gt; THEN 1328 
+
+1500 IF W(T)*P&gt;'2(T) THEN 1238SG0T0 888 
+
+1640 PRINTSPRINT "TEAM "T "WILL ATTEMPT A FIELDGOAL" 
+
+1645 RANDC'MIZESG = RND&lt;0)SIF GC. 825 THEN 1888 
+
+1658 F- 1 NT c 35*RND &lt; ) +20 ) 
+
+1660 printsprint "kick is "f "yards long" 
+1688 p=*p-w&lt;t;&gt;*fsrandomizesg-rno&lt;o&gt; 
+
+1698 IFG&lt;. 35THEN1735 
+
+1700 IF Y&lt;T)*P&lt;X&lt;T&gt; THEN 1748 
+
+1719 PRINT "FIELDGOAL GOOD FOR TEflM"T"*****************YEft" 
+
+1728 Q»3SQ0T0 1398 
+
+1735 PR I NT" BALL WENT WIDE" 
+
+1748 PRINT "FIELDGOAL UNSUCCESSFUL TEAM"T" -i ■ 
+
+1742 GOSUB 1850SIF V&lt;T &gt;*P&lt;X&lt;T )+10 THEN 1745ST=T&lt;T &gt; SGOTO 794 
+1745 PRINTSPRINT "BALL NOW ON "P 
+1758 T = T':T)SGOSUB 1988SG0T0 838 
+
+1778 DATA 17, 8, 4, 14, 19, 3, 18, ;l, 7, 11, 15, 9, 5, 28, 13, 18, 16, 2, 12, 
+1788 DATA 20, 2, 17, 5, 8, 18, 12, 11, 1, 4, 19, 14, 18, 7, 9, 15, 6, 13, 1.6, 
+1888 IF P1099 THEN 936 
+
+1818 PRINTSPRINT "TEAM 1 SCORE IS"H(1) 
+1828 PRINT "TEAM 2 SCORE IS"H&lt;2&gt;SPR INT 
+
+1825 IF H&lt;TKE THEN 1838SPRINT "TEAM"T"WINS *************.** 
+1338 IF Pl=99 THEN 948SRETURN 
+1850 PRINT 
+
+1860 PRINT " + + + + + ++ + + +++ +++ + + +++ + + ++++f + 4 + +++ + + 4 + + + + •+ + + + +++ 
++ + + + +".■ 
+1370 RETURN 
+
+1900 PRINT TAB&lt;D&lt;T&gt;+5+P/2&gt;,M*&lt;T) 
+
+1918 PRINT "TEAM 1 CO 18 20 30 40 50 m 
+J TEAM 2" 
+1920 PRINT 
+1938 RETURN 
+2800 END 
+

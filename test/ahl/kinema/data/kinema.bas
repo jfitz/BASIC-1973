@@ -1,0 +1,178 @@
+108 PRINT 
+
+
+
+
+195 PRINT 
+
+
+
+
+106 = 
+
+
+
+
+110 V = 5-UNT&lt;25 + RND(0) ) 
+
+
+
+
+111 PRINT "A BALL IS THROWN UPWARDS AT " V " METER'-": PER '-"Ei" 
+
+
+0ND 
+
+
+112 PRINT 
+
+
+
+
+115 A=V-2/19. 6 
+
+
+
+
+116 PRINT "HOW HIGH WILL IT GO fIN METERS)"; 
+
+
+
+
+117 GOSUB 5O0 
+
+
+
+
+120 A=V/4. 9 
+
+
+
+
+122 PRINT "HOW LONG UNTIL IT RETURNS (IN SECOND'--)"; 
+
+
+
+
+124 GOSUB 500 
+
+
+
+
+130 T=(1-UNT&lt;2 + V + RND(1) ) )/10 
+
+
+
+
+132 A=V-9. 8*T 
+
+
+
+
+134 PRINT "WHAT WILL ITS VELOCITY BE AFTER - T " SECONDS " ; 
+
+
+
+
+136 GOSUB- 500 
+
+
+
+
+140 PRINT 
+
+
+
+
+150 PRINT G "RIGHT OUT OF 2. "; 
+
+
+
+
+160 IF 0&lt;2 THEN 100 
+
+
+
+
+170 PRINT " NOT BAD. " 
+
+
+
+
+180 GO TO 100 
+
+
+
+
+500 INPUT G 
+
+
+
+
+501 G=100+ABS(G-A&gt; 
+
+
+
+
+502 IF G&lt;=ABS(A) THEN 507 
+
+
+
+
+503 IF G&lt;=15+ABS(A) THEN 5:10 
+
+
+
+
+504 PRINT "NOT EVEN CLOSE. 
+
+
+
+
+506 GO TO 512 
+
+
+
+
+507 G = G + 1 
+
+
+
+
+5 S P R I " C R R E C T ' V E R V G D ' 
+
+
+
+
+509 GOT 05 20 
+
+
+
+
+510 PRINT "CLOSE ENOUGH. " 
+
+
+
+
+511 0=0+1 
+
+
+
+
+512 PRINT "CORRECT ANSWER IS"* 
+
+
+
+
+529 PRINT 
+
+
+
+
+530 RETURN 
+
+
+
+
+3 99 END 
+

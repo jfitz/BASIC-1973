@@ -1,0 +1,60 @@
+10 PRINT\PRI 
+20 PR1N7APRI 
+30 PRINT "TH 
+
+40 PRINT "IN 
+50 PRINT' "5 
+60 PRINT »»AL 
+70 PRINT 
+
+50 PRINT\PPI 
+90 PRINT "TO 
+110 PRINT 
+
+115 IF N&gt;* 
+
+116 KOTO 120 
+
+117 If- N&lt;2P 
+120 PHI NT "I 
+21? FOR 1*1 
+300 PRINT\PR 
+310 PRINT »Y 
+320 IF I = -l 
+330 X«I\YsJ\ 
+34« PRINT "1 
+
+41 PI IF A (I.J 
+420 PRINT "S 
+440 'A(T, J')«l 
+5tf0 REM 
+
+5 1 Pi FOR E«-l 
+540 LET X»I + 
+570 IF L*tf T 
+580 IF ACXtY 
+590 NEXT F\N 
+600 REM •** 
+61^ LET Xml 
+650 IF AfX. 
+66« ACX,V)«2 
+710 X«I-EW« 
+7b* IF L«'/ 
+760 f^OTQ 65 
+8ir5(^ REN *** 
+
+810 For 1=1 
+
+840 NEXT J\P 
+90?. REM *** 
+910 L«1\IF X 
+920 IF X&gt;N T 
+930 IF Y&lt;1 T 
+940 IF Y&gt;n T 
+9Si* RETURN 
+970 LET l« l *\ 
+980 PPINTVPP 
+Q B *S PRINT "P 
+990 IF Qsi T 
+999 END 
+

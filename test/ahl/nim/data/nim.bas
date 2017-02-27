@@ -1,0 +1,202 @@
+100 REM THIS PROGRAM U3E8 A STRATEGY AS PRESENTED IN 'GAMES OF FUN AND 
+
+105 REM STRATEGY", A PUBLICATION OF THE MATHEMATICAL SERVICES DEPART- 
+
+110 REM MENT OF COMPUTER CONTROL CO., INC. 
+
+115 PRINT "THIS PROGRAM pLAYS NIM." 
+
+120 PRINT "Do YOU WANT INSTRUCTIONS" »\INPUT QS 
+
+125 IF Q$«»YE8" THEN 135\lF Q$«»NO" THEN 190 
+
+130 PRINT "TYPE YES OR NO."\INPUT QSVGQTO 126 
+
+135 PRINT 
+
+140 print " nzm is played by two people playing alternately, before" 
+145 print "the play starts, an arbitrary number of sticks or objects is" 
+150 print "put into an arbitrary number of piles, in any distribution" 
+155 print "whatever, then each player in his turn removes as many" 
+160 print "sticks as he wishes from any pile—but from only one pile," 
+105 print "and at least one stick, the player who takes the last stick" 
+170 print "is the winner." 
+175 print « this Program allows you to set up the initial arrangement" 
+
+180 pRlN T »oF PILES AND STlCKs. It WILL N T ACCEPT M RE THAN TWENTY" 
+185 PRINT "PILES OR STICKS IN EACH pILE," 
+190 RANDOM 
+
+195 REM— -• — — — -CONFIGURATION INPUT — — — ——— 
+
+200 DIM X(20,4),S(20),L(20),S2(20),N2(4),cC20), 83(20), V(20) 
+
+205 PRINTNPRINT "HOW MANY PILES" jWNPUT P\IF P&gt;20 THEN 215 
+
+210 IF P&gt;INTCP) THEN 215UF P&lt;-0 THEN 215VG0 TO 220 
+
+215 PRINT "ILLEGAL PILE NUMBER. "\PRINT\GO TO 205 
+
+220 PRINTSFOR Z*l TO P 
+
+225 PRINT "HOW MANY STICKS IN PILE»| I?\INPUT L(I)\1F L(I)&gt;20 THEN 235 
+
+230 IF L(I)&gt;INT(L(I)) THEN 235\IF L(I)&lt;«0 THEN 235\G0 TO 240 
+
+235 PRINT "ILLEGAL STICK NijMB£R,«\PRINtNGO T Q 225 
+
+240 NEXT I 
+
+245 FOR !■! TO PVS(I)«L(I)\G«G*LCI)\NEXT I 
+
+250 PRlNTVpRlNT "Do YOU want to so first"; 
+
+255 INPUT 0$\iF QS""YES" ThEN 340VlF Q$««NO« ThEn 390 
+
+260 PRINT "TYPE Y£S OR N0."\G0 TO 255 
+
+265 REM — CONTROL OF GAME REPEATS AND TESTS FOR END OF GAME- — 
+
+270 IF G»0 THEN 2 75MF F«i THEN 390\GO TO 32® 
+
+275 IF F«i THEN 3l 5 
+
+280 PRINt\PRINt "I WON. DO YOu WANt tO p UY AGAIN«j 
+
+285 INPUT Q$MF Q$««N0" THEN 290\IF q$««YEs m tHEN 300\GO tO 295 
+
+290 STOP 
+
+2g5 PRINT "TYPE YES OR NO."\GO TO 2s5 
+
+300 PRINTVPRINT "SAME ARRANGEMENT" \ 
+
+305 INPUT Q$\IF Q$««NO» THEN tf^WT Q$b«YE3« THEN 345 
+
+310 PRINT "TYPE YES OR N0."\G0 TO 305 
+
+3i5 PRINTNPRINT "YOU WON, DO YOU WANT TO PLAY AGAIN»1\G0 TO 285 
+
+320 PRINTNPRINT «PlLE NUMBER", hSTICKS LEFTn 
+
+325 FOR I«l TO P\IF S(I)«0 THEN 330\P«IMT I,S(I) 
+
+330 NEXT I 
+
+335 rEm- — — —.——pLAYER'S MOVE-— 
+
+340 PRINTVPRINT "WHICH pI L E DQ YOU WAnT STICKS FR0M*»\InPUT n 
+
+345 iF N&gt;P ThEN 355\jF N&gt;lNT(N) ThF-N 355\iF N&lt;«0 ThEN 356 
+
+350 IF S(N)»0 THEN 355\G0 TO 360 
+
+355 PRINT "ILLEGAL PILE NUMBER. "\PRINT\GO TO 340 
+
+360 PRINTNPRINT "HOW MANY STICKS" ; MNPUT T 
+
+365 IF T&gt;S(N) THEN 370UF T&gt;InT(T) THEN 370\IF T&lt;«0 THEN 37#\G0 TO 37S 
+
+370 PRINT "ILLEGAL STICK NUMBER, "\PRINT\G0 TO 360 
+
+375 8(N)«S(N)-T\G«G-T 
+
+380 F«1\G0 TO 270 
+
+385 REM. ............ .MACHINE »s MOyE — - — ............. 
+
+390 FOR I«0 TO 4\v(D B 0\NEXT I 
+
+395 FOR !■! TO P 
+
+400 
+
+405 
+
+410 
+
+415 
+
+420 
+
+425 
+
+430 
+
+435 
+
+
+
+SAMPLE RUN 
+
+
+
+CCI)»S(I) 
+
+FOR E«4 TO STEP *1 
+
+IF SCI)&lt;2aE THEN 415sS2(I)«S2(I)+10aE\S(I)«S(I)-2aE 
+NEXT E 
+FOR Y»4 TO STEP -1 
+
+X(I,Y)*INTCS2CI)/10AY)\S2&lt;I)»32(I3.XCI,Y)M0*Y 
+
+V(Y)»V(Y)*X(I,Y) 
+
+
+
+NEXT Y 
+440 NE X T I 
+445 R*0 
+450 FOR Y"4 TO STEP 
+
+
+
+•1 
+
+
+
+455 IF V(Y)/2*INT(VCY)/2)"0 THEN 480 
+
+460 IF R«l THEN 470\Q»InT &lt;P*RnD(X) ) *l 
+
+465 jF X(Q,Y)&lt;&gt;1 THEN 460\X (Q, Y) «0VR»l\GO TO 480 
+
+470 IF X(0,Y)«1 THEN 475\X CQ, Y) »1\G0 TO 480 
+
+475 X(Q,Y)"0 
+
+480 NEXT Y 
+
+485 FOR 1*1 TO P 
+
+490 S2(I)*0 
+
+495 FOR Y«4 TO STEP -1 
+
+500 »3(I)»X(I,Y)*i0AY\S2fI)«82fI)*83(I) 
+
+505 NEXT Y 
+
+510 FOR E«4 TO STEP -1 
+
+515 IF s2(I)&lt;10aE THEN 520\S (I) »8(I )*2aE\s2&lt; I) »S2( I)-10aE 
+
+520 NEXT E 
+
+525 NEXT I 
+
+530 IF R*l THEN 535\Q«INT(P*RNDCX))*l\IF S(Q1«0 THEN 530\8 (0) «S (9) -1 
+
+535 D«C(0)-S(0)VG«G-D 
+
+540 IF D»l THEN 550 
+
+545 PRIN T \PRIN T "I'LL T*KE«|DJ»stICKs FROM PILE" &gt;QJ « ,"\G0 TO 555 
+
+550 PRINTNPKINT "I'LL T*KE 1 STICK FrOM pILE"lQl«,« 
+
+555 F«0\Go TO 270 
+
+560 END 
+
