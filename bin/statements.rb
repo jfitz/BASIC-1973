@@ -181,7 +181,7 @@ class StatementFactory
   def make_tokenizers
     tokenizers = []
 
-    tokenizers << ListTokenBuilder.new(['\\'], StatementSeparatorToken)
+    tokenizers << ListTokenBuilder.new(['\\',':'], StatementSeparatorToken)
 
     keywords = statement_definitions.keys + %w(THEN TO STEP)
     tokenizers << ListTokenBuilder.new(keywords, KeywordToken)
