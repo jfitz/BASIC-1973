@@ -209,8 +209,8 @@ class Interpreter
   attr_accessor :next_line_index
   attr_reader :console_io
 
-  def initialize(print_width, zone_width, output_speed, echo_input,
-                 int_floor, ignore_rnd_arg, implied_semicolon,
+  def initialize(print_width, zone_width, output_speed, newline_speed,
+                 echo_input, int_floor, ignore_rnd_arg, implied_semicolon,
                  respect_randomize)
     @running = false
     @randomizer = Random.new(1)
@@ -218,8 +218,8 @@ class Interpreter
     @int_floor = int_floor
     @ignore_rnd_arg = ignore_rnd_arg
     @console_io =
-      ConsoleIo.new(print_width, zone_width, output_speed, implied_semicolon,
-                    echo_input)
+      ConsoleIo.new(print_width, zone_width, output_speed, newline_speed,
+                    implied_semicolon, echo_input)
     @data_store = DataStore.new
     @respect_randomize = respect_randomize
     @file_handlers = {}
@@ -234,7 +234,7 @@ class Interpreter
   def parse_line(line)
     @statement_factory.parse(line)
   rescue BASICException => e
-    puts "Syntax error: #{e.message}"
+    @console_io.print_line("Syntax error: #{e.message}")
   end
 
   def cmd_list(linespec, list_tokens)
@@ -246,10 +246,10 @@ class Interpreter
         line_numbers = line_number_range.line_numbers
         list_lines_errors(line_numbers, list_tokens)
       rescue BASICException => e
-        puts e
+        @console_io.print_line(e)
       end
     else
-      puts 'No program loaded'
+      @console_io.print_line('No program loaded')
     end
   end
 
@@ -262,10 +262,10 @@ class Interpreter
         line_numbers = line_number_range.line_numbers
         pretty_lines_errors(line_numbers)
       rescue BASICException => e
-        puts e
+        @console_io.print_line(e)
       end
     else
-      puts 'No program loaded'
+      @console_io.print_line('No program loaded')
     end
   end
 
@@ -274,13 +274,12 @@ class Interpreter
   def list_lines_errors(line_numbers, list_tokens)
     line_numbers.each do |line_number|
       line = @program_lines[line_number]
-      puts line_number.to_s + line.list
+      @console_io.print_line(line_number.to_s + line.list)
       statements = line.statements
       statements.each do |statement|
         statement.errors.each { |error| puts ' ' + error }
       end
       tokens = line.tokens
-      puts 'TOKENS: ' + tokens.map(&:to_s).join(' ') if list_tokens
     end
   end
 
@@ -291,7 +290,7 @@ class Interpreter
       ss = []
       statements.each { |statement| ss << statement.pretty }
       text = ss.join(' \\')
-      puts line_number.to_s + text
+      @console_io.print_line(line_number.to_s + text)
       statements.each do |statement|
         statement.errors.each { |error| puts ' ' + error }
       end
@@ -302,7 +301,7 @@ class Interpreter
     line_numbers.each do |line_number|
       line = @program_lines[line_number]
       text = line.list
-      puts line_number.to_s + text
+      @console_io.print_line(line_number.to_s + text)
     end
   end
 
@@ -321,7 +320,7 @@ class Interpreter
 
   def cmd_delete(linespec)
     if @program_lines.empty?
-      puts 'No program loaded'
+      @console_io.print_line('No program loaded')
     else
       delete_lines(linespec.strip)
     end
@@ -339,10 +338,10 @@ class Interpreter
     when :range
       list_and_delete_lines(line_numbers)
     when :all
-      puts 'Type NEW to delete an entire program'
+      @console_io.print_line('Type NEW to delete an entire program')
     end
   rescue BASICException => e
-    puts e
+    @console_io.print_line(e)
   end
 
   def verify_next_line_index
@@ -361,7 +360,7 @@ class Interpreter
     @tron_flag = false
 
     if @program_lines.empty?
-      puts 'No program loaded'
+      @console_io.print_line('No program loaded')
     else
       @running = true
       run_phase_1
@@ -380,7 +379,7 @@ class Interpreter
         statements.each { |statement| statement.pre_execute(self) }
       end
     rescue BASICException => message
-      puts "#{message} in line #{@current_line_number}"
+      @console_io.print_line("#{message} in line #{@current_line_number}")
       stop_running
     end
   end
@@ -408,7 +407,7 @@ class Interpreter
 
   def print_errors(statement)
     line_number = @current_line_index.number
-    puts "Errors in line #{line_number}:"
+    @console_io.print_line("Errors in line #{line_number}:")
     statement.errors.each { |error| puts error }
   end
 
@@ -440,10 +439,10 @@ class Interpreter
       end
     rescue BASICException => message
       if @current_line_index.nil?
-        puts message
+        @console_io.print_line(message)
       else
         line_number = @current_line_index.number
-        puts "#{message} in line #{line_number}"
+        @console_io.print_line("#{message} in line #{line_number}")
       end
       stop_running
     end
@@ -490,28 +489,28 @@ class Interpreter
           @program_lines = {}
           file.each_line do |line|
             line = console_io.ascii_printables(line)
-            puts line if trace_flag
+            @console_io.print_line(line) if trace_flag
             store_program_line(line, false)
           end
         end
         true
       rescue Errno::ENOENT
-        puts "File '#{filename}' not found"
+        @console_io.print_line("File '#{filename}' not found")
         false
       end
     else
-      puts 'Filename not specified'
+      @console_io.print_line('Filename not specified')
       false
     end
   end
 
   def cmd_save(filename)
     if @program_lines.empty?
-      puts 'No program loaded'
+      @console_io.print_line('No program loaded')
     else
       filename = filename.strip
       if filename.empty?
-        puts 'Filename not specified'
+        @console_io.print_line('Filename not specified')
       else
         save_file(filename)
       end
@@ -531,7 +530,7 @@ class Interpreter
         file.close
       end
     rescue Errno::ENOENT
-      puts "File '#{filename}' not opened"
+      @console_io.print_line("File '#{filename}' not opened")
     end
   end
 
@@ -563,14 +562,14 @@ class Interpreter
 
   def dump_vars
     @variables.each do |key, value|
-      puts "#{key}: #{value}"
+      @console_io.print_line("#{key}: #{value}")
     end
     puts
   end
 
   def dump_user_functions
     @user_functions.each do |name, expression|
-      puts "#{name}: #{expression}"
+      @console_io.print_line("#{name}: #{expression}")
     end
     puts
   end
@@ -579,13 +578,13 @@ class Interpreter
     @dimensions.each do |key, value|
       dims = []
       value.each { |nc| dims << nc.to_v }
-      puts "#{key.class}:#{key} (#{dims.join(', ')})"
+      @console_io.print_line("#{key.class}:#{key} (#{dims.join(', ')})")
     end
   end
 
   def stop
     stop_running
-    puts "STOP in line #{@current_line_index.number}"
+    @console_io.print_line("STOP in line #{@current_line_index.number}")
   end
 
   def stop_running
@@ -710,7 +709,7 @@ class Interpreter
       value.class.to_s != variable.content_type
     v = variable.to_s
     @variables[v] = value
-    puts(' ' + variable.to_s + ' = ' + value.to_s) if trace
+    @console_io.print_line(' ' + variable.to_s + ' = ' + value.to_s) if trace
   end
 
   def set_values(name, values, trace)
@@ -787,7 +786,7 @@ class Interpreter
     need_prompt = true
     done = false
     until done
-      puts "READY" if need_prompt
+      @console_io.print_line('READY') if need_prompt
       cmd = @console_io.read_line
       if /\A\d/ =~ cmd
         # starts with a number, so maybe it is a program line
@@ -805,7 +804,7 @@ class Interpreter
     if !line_num.nil? && !line.nil?
       # warn about duplicate lines when loading
       # but not when typing
-      puts "Duplicate line number #{line_num}" if
+      @console_io.print_line("Duplicate line number #{line_num}") if
         @program_lines.key?(line_num) && !print_errors
       @program_lines[line_num] = line
       statements = line.statements
@@ -895,7 +894,7 @@ class Interpreter
   def execute_run_command
     timing = Benchmark.measure { cmd_run(false) }
     print_timing(timing)
-    puts
+    @console_io.print_line('')
   end
 
   def load_and_run(filename, trace_flag, timing_flag)
@@ -919,10 +918,10 @@ class Interpreter
   def print_timing(timing)
     user_time = timing.utime + timing.cutime
     sys_time = timing.stime + timing.cstime
-    puts
-    puts 'CPU time:'
-    puts " user: #{user_time.round(2)}"
-    puts " system: #{sys_time.round(2)}"
+    @console_io.print_line('')
+    @console_io.print_line('CPU time:')
+    @console_io.print_line(" user: #{user_time.round(2)}")
+    @console_io.print_line(" system: #{sys_time.round(2)}")
   end
 
   def int_floor?
@@ -939,6 +938,7 @@ OptionParser.new do |opt|
   opt.on('--trace') { |o| options[:trace] = o }
   opt.on('--notiming') { |o| options[:notiming] = o }
   opt.on('--tty') { |o| options[:tty] = o }
+  opt.on('--tty-lf') { |o| options[:tty_lf] = o }
   opt.on('--print-width WIDTH') { |o| options[:print_width] = o }
   opt.on('--zone-width WIDTH') { |o| options[:zone_width] = o }
   opt.on('--echo-input') { |o| options[:echo_input] = o }
@@ -957,6 +957,8 @@ notiming_flag = options.key?(:notiming) || false
 timing_flag = !notiming_flag
 output_speed = 0
 output_speed = 10 if options.key?(:tty)
+newline_speed = 0
+newline_speed = 10 if options.key?(:tty_lf)
 print_width = 72
 print_width = options[:print_width].to_i if options.key?(:print_width)
 zone_width = 16
@@ -973,25 +975,25 @@ puts 'BASIC-1973 interpreter version -1'
 puts
 if !run_filename.nil?
   interpreter =
-    Interpreter.new(print_width, zone_width, output_speed, echo_input,
-                    int_floor, ignore_rnd_arg, implied_semicolon,
-                    respect_randomize)
+    Interpreter.new(print_width, zone_width, output_speed, newline_speed,
+                    echo_input, int_floor, ignore_rnd_arg,
+                    implied_semicolon, respect_randomize)
   interpreter.load_and_run(run_filename, trace_flag, timing_flag)
 elsif !list_filename.nil?
   interpreter =
-    Interpreter.new(print_width, zone_width, 0, echo_input,
+    Interpreter.new(print_width, zone_width, 0, 0, echo_input,
                     int_floor, ignore_rnd_arg, implied_semicolon,
                     respect_randomize)
   interpreter.load_and_list(list_filename, trace_flag, list_tokens)
 elsif !pretty_filename.nil?
   interpreter =
-    Interpreter.new(print_width, zone_width, 0, echo_input,
+    Interpreter.new(print_width, zone_width, 0, 0, echo_input,
                     int_floor, ignore_rnd_arg, implied_semicolon,
                     respect_randomize)
   interpreter.load_and_pretty(pretty_filename, trace_flag)
 else
   interpreter =
-    Interpreter.new(print_width, zone_width, 0, echo_input,
+    Interpreter.new(print_width, zone_width, 0, 0, echo_input,
                     int_floor, ignore_rnd_arg, implied_semicolon,
                     respect_randomize)
   interpreter.go
