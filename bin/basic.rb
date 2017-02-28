@@ -488,7 +488,7 @@ class Interpreter
         File.open(filename, 'r') do |file|
           @program_lines = {}
           file.each_line do |line|
-            line = console_io.ascii_printables(line)
+            line = @console_io.ascii_printables(line)
             @console_io.print_line(line) if trace_flag
             store_program_line(line, false)
           end
