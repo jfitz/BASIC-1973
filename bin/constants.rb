@@ -382,6 +382,7 @@ class NumericConstant < AbstractElement
 
   def print(printer)
     s = to_formatted_s
+    s = s.upcase
     printer.print_item s
     printer.last_was_numeric
   end
