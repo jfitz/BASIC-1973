@@ -70,7 +70,7 @@ class ConsoleIo
     text.each_char do |c|
       print_out(c)
       @column += 1
-      newline if @column >= @max_width
+      newline if @max_width > 0 && @column >= @max_width
     end
     @last_was_numeric = false
   end
@@ -79,14 +79,16 @@ class ConsoleIo
     print_item(text)
     newline
   end
-  
+
   def last_was_numeric
     @last_was_numeric = true
   end
 
   def tab
     space_after_numeric if @last_was_numeric
-    print_item(' ') while @column > 0 && @column % @zone_width != 0
+    if @zone_width > 0
+      print_item(' ') while @column > 0 && @column % @zone_width != 0
+    end
     @last_was_numeric = false
   end
 
@@ -148,7 +150,7 @@ class ConsoleIo
 
   def print_out(text)
     return if text.nil?
-    
+
     text.each_char do |c|
       print(c)
       delay
