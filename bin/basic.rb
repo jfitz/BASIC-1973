@@ -378,8 +378,8 @@ class Interpreter
         statements = line.statements
         statements.each { |statement| statement.pre_execute(self) }
       end
-    rescue BASICException => message
-      @console_io.print_line("#{message} in line #{@current_line_number}")
+    rescue BASICException => e
+      @console_io.print_line("#{e.message} in line #{@current_line_number}")
       stop_running
     end
   end
@@ -437,12 +437,12 @@ class Interpreter
         verify_next_line_index
         @current_line_index = @next_line_index
       end
-    rescue BASICException => message
+    rescue BASICException => e
       if @current_line_index.nil?
-        @console_io.print_line(message)
+        @console_io.print_line(e.message)
       else
         line_number = @current_line_index.number
-        @console_io.print_line("#{message} in line #{line_number}")
+        @console_io.print_line("#{e.message} in line #{line_number}")
       end
       stop_running
     end
@@ -703,10 +703,18 @@ class Interpreter
   end
 
   def set_value(variable, value, trace)
+    if value.class.to_s == "NumericConstant" && variable.content_type == "TextConstant"
+      val = value.to_s
+      quoted_val = '"' + val + '"'
+      token = TextConstantToken.new(quoted_val)
+      value = TextConstant.new(token)
+    end
+
     # check that value type matches variable type
     raise(BASICException,
           "Type mismatch #{value.class} is not #{variable.content_type}") if
       value.class.to_s != variable.content_type
+
     v = variable.to_s
     @variables[v] = value
     @console_io.print_line(' ' + variable.to_s + ' = ' + value.to_s) if trace
