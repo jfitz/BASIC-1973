@@ -202,11 +202,14 @@ class NumericConstant < AbstractElement
 
   public
 
+  attr_reader :token_chars
+
   def initialize(text)
     super()
     numeric_classes = %w(Fixnum Bignum Float)
     f = text if numeric_classes.include?(text.class.to_s)
     f = text.to_f if text.class.to_s == 'NumericConstantToken'
+    @token_chars = text.to_s
     @value = float_to_possible_int(f)
     @operand = true
     @precedence = 0

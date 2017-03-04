@@ -704,7 +704,7 @@ class Interpreter
 
   def set_value(variable, value, trace)
     if value.class.to_s == "NumericConstant" && variable.content_type == "TextConstant"
-      val = value.to_s
+      val = value.token_chars
       quoted_val = '"' + val + '"'
       token = TextConstantToken.new(quoted_val)
       value = TextConstant.new(token)
