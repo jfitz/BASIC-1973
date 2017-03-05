@@ -280,6 +280,8 @@ class Interpreter
         statement.errors.each { |error| puts ' ' + error }
       end
       tokens = line.tokens
+      text_tokens = tokens.map(&:to_s)
+      @console_io.print_line('TOKENS: ' + text_tokens.to_s) if list_tokens
     end
   end
 
