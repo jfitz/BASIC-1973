@@ -97,6 +97,8 @@ class StatementFactory
     squeezed = squeeze_out_spaces(text)
     return Line.new(text, [EmptyStatement.new], []) if squeezed == ''
     return Line.new(text, [RemarkStatement.new(text)], []) if
+      squeezed[0..5] == 'REMARK'
+    return Line.new(text, [RemStatement.new(text)], []) if
       squeezed[0..2] == 'REM'
 
     statements = []
@@ -321,6 +323,24 @@ end
 
 # REMARK
 class RemarkStatement < AbstractStatement
+  def initialize(line)
+    # override the method to squeeze spaces from line
+    squeezed = line.strip
+    super('REM', line)
+    @rest = squeezed[6..-1]
+  end
+
+  def to_s
+    @keyword + @rest
+  end
+
+  def execute(_, _)
+    0
+  end
+end
+
+# REM
+class RemStatement < AbstractStatement
   def initialize(line)
     # override the method to squeeze spaces from line
     squeezed = line.strip
