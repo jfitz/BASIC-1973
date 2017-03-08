@@ -102,11 +102,10 @@ class StatementFactory
       squeezed[0..2] == 'REM'
 
     statements = []
-    all_tokens = tokenize(squeezed)
+    all_tokens = tokenize(text)
     tokens_lists = split(all_tokens)
     tokens_lists.each do |tokens|
-      keyword = ''
-      keyword << tokens.shift.to_s while !tokens.empty? && tokens[0].keyword?
+      keyword = extract_keyword(tokens)
       begin
         statement = create_regular_statement(keyword, text, tokens)
       rescue BASICException
@@ -115,6 +114,16 @@ class StatementFactory
       statements << statement
     end
     Line.new(text, statements, all_tokens)
+  end
+
+  def extract_keyword(tokens)
+    keyword = ''
+    while !tokens.empty? &&
+          (tokens[0].whitespace? || tokens[0].keyword?)
+      token = tokens.shift
+      keyword << token.to_s if token.keyword?
+    end
+    keyword
   end
 
   def split(tokens)
@@ -208,6 +217,7 @@ class StatementFactory
     tokenizers << NumberTokenBuilder.new
     tokenizers << VariableTokenBuilder.new
     tokenizers << ListTokenBuilder.new(%w(TRUE FALSE), BooleanConstantToken)
+    tokenizers << WhitespaceTokenBuilder.new
   end
 end
 
@@ -240,6 +250,16 @@ class AbstractStatement
 
     tokens.each do |token|
       new_list << token unless token.class.to_s == 'BreakToken'
+    end
+
+    new_list
+  end
+
+  def remove_whitespace_tokens(tokens)
+    new_list = []
+
+    tokens.each do |token|
+      new_list << token unless token.class.to_s == 'WhitespaceToken'
     end
 
     new_list
@@ -345,6 +365,7 @@ class ChangeStatement < AbstractStatement
   def initialize(line, tokens)
     super('CHANGE', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     parts = split_on_token(tokens, 'TO')
     raise(BASICException, 'Missing value') if
       parts.empty? || parts[0].to_s == 'TO'
@@ -403,6 +424,7 @@ class DimStatement < AbstractStatement
   def initialize(line, tokens)
     super('DIM', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     tokens_lists = ArgSplitter.split_tokens(tokens, false)
 
     @errors << 'No variables specified' if tokens_lists.empty?
@@ -440,6 +462,7 @@ class FilesStatement < AbstractStatement
   def initialize(line, tokens)
     super('FILES', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     @expressions = ValueScalarExpression.new(tokens)
   end
 
@@ -462,6 +485,7 @@ class LetStatement < AbstractStatement
   def initialize(line, tokens)
     super('LET', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     begin
       @assignment = ScalarAssignment.new(tokens)
       if @assignment.count_target.zero?
@@ -494,6 +518,7 @@ class LetLessStatement < AbstractStatement
   def initialize(line, tokens)
     super('', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     begin
       @assignment = ScalarAssignment.new(tokens)
       if @assignment.count_target.zero?
@@ -526,6 +551,7 @@ class InputStatement < AbstractStatement
   def initialize(line, tokens)
     super('INPUT', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     @tokens_lists = ArgSplitter.split_tokens(tokens, false)
     # [prompt string] variable [variable]...
 
@@ -642,6 +668,7 @@ class IfStatement < AbstractStatement
   def initialize(line, tokens)
     super('IF', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     parts = split_keywords(tokens)
     if parts.size == 3
       parse_line(parts[0], parts[1], parts[2][0])
@@ -759,6 +786,7 @@ class PrintStatement < AbstractPrintStatement
   def initialize(line, tokens)
     super('PRINT', line, CarriageControl.new('NL'))
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     @tokens_lists = ArgSplitter.split_tokens(tokens, true)
     @print_items = tokens_to_expressions(@tokens_lists)
   end
@@ -805,6 +833,7 @@ class GotoStatement < AbstractStatement
   def initialize(line, tokens)
     super('GOTO', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     if tokens.size == 1
       if tokens[0].numeric_constant?
         @destination = LineNumberIndex.new(LineNumber.new(tokens[0]), 0)
@@ -830,6 +859,7 @@ class GosubStatement < AbstractStatement
   def initialize(line, tokens)
     super('GOSUB', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     if tokens.size == 1
       if tokens[0].numeric_constant?
         @destination = LineNumberIndex.new(LineNumber.new(tokens[0]), 0)
@@ -870,7 +900,8 @@ end
 class OnStatement < AbstractStatement
   def initialize(line, tokens)
     super('ON', line)
-    @tokens = remove_break_tokens(tokens)
+    tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     # ON expression GOTO destinations
     parts = split_on_token(tokens, 'GOTO')
     @errors << 'Syntax error' if parts.size != 3
@@ -969,6 +1000,7 @@ class ForStatement < AbstractStatement
   def initialize(line, tokens)
     super('FOR', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     # parse control variable, '=', numeric_expression, "TO",
     # numeric_expression, "STEP", numeric_expression
     begin
@@ -1061,6 +1093,7 @@ class NextStatement < AbstractStatement
   def initialize(line, tokens)
     super('NEXT', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     # parse control variable
     @control = nil
     if tokens.size == 1
@@ -1144,6 +1177,7 @@ class ReadStatement < AbstractReadStatement
   def initialize(line, tokens)
     super('READ', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     @tokens_lists = ArgSplitter.split_tokens(tokens, false)
   end
 
@@ -1177,6 +1211,7 @@ class DataStatement < AbstractStatement
   def initialize(line, tokens)
     super('DATA', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     @expressions = ValueScalarExpression.new(tokens)
   end
 
@@ -1216,6 +1251,7 @@ class DefineFunctionStatement < AbstractStatement
   def initialize(line, tokens)
     super('DEF', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     @name = ''
     @arguments = []
     @template = ''
@@ -1280,6 +1316,7 @@ class TraceStatement < AbstractStatement
   def initialize(line, tokens)
     super('TRACE', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     @tokens_lists = ArgSplitter.split_tokens(tokens, false)
     @errors << 'TRACE needs one value' if @tokens_lists.size != 1
   end
@@ -1315,6 +1352,7 @@ class ArrPrintStatement < AbstractPrintStatement
   def initialize(line, tokens)
     super('ARR PRINT', line, CarriageControl.new(','))
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     @tokens_lists = ArgSplitter.split_tokens(tokens, true)
     @print_items = tokens_to_expressions(@tokens_lists)
   end
@@ -1356,6 +1394,7 @@ class ArrReadStatement < AbstractReadStatement
   def initialize(line, tokens)
     super('ARR READ', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     @tokens_lists = ArgSplitter.split_tokens(tokens, false)
   end
 
@@ -1412,6 +1451,7 @@ class ArrLetStatement < AbstractStatement
   def initialize(line, tokens)
     super('ARR', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     begin
       @assignment = ArrayAssignment.new(tokens) ###
       if @assignment.count_target.zero?
@@ -1463,6 +1503,7 @@ class MatPrintStatement < AbstractPrintStatement
   def initialize(line, tokens)
     super('MAT PRINT', line, CarriageControl.new(','))
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     @tokens_lists = ArgSplitter.split_tokens(tokens, true)
     @print_items = tokens_to_expressions(@tokens_lists)
   end
@@ -1504,6 +1545,7 @@ class MatReadStatement < AbstractReadStatement
   def initialize(line, tokens)
     super('MAT READ', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     @tokens_lists = ArgSplitter.split_tokens(tokens, false)
   end
 
@@ -1573,6 +1615,7 @@ class MatLetStatement < AbstractStatement
   def initialize(line, tokens)
     super('MAT', line)
     tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
     begin
       @assignment = MatrixAssignment.new(tokens)
       if @assignment.count_target.zero?
