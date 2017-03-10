@@ -894,8 +894,11 @@ end
 
 # RETURN
 class ReturnStatement < AbstractStatement
-  def initialize(keywords, line, _tokens)
+  def initialize(keywords, line, tokens)
     super(keywords, line)
+    unless tokens.size.zero?
+      @errors << 'Extra items'
+    end
   end
 
   def to_s
@@ -1244,8 +1247,11 @@ end
 
 # RESTORE
 class RestoreStatement < AbstractStatement
-  def initialize(keywords, line, _tokens)
+  def initialize(keywords, line, tokens)
     super(keywords, line)
+    unless tokens.size.zero?
+      @errors << 'Extra items'
+    end
   end
 
   def to_s
@@ -1292,8 +1298,11 @@ end
 
 # STOP
 class StopStatement < AbstractStatement
-  def initialize(keywords, line, _tokens)
+  def initialize(keywords, line, tokens)
     super(keywords, line)
+    unless tokens.size.zero?
+      @errors << 'Extra items'
+    end
   end
 
   def to_s
@@ -1309,8 +1318,11 @@ end
 
 # END
 class EndStatement < AbstractStatement
-  def initialize(keywords, line, _tokens)
+  def initialize(keywords, line, tokens)
     super(keywords, line)
+    unless tokens.size.zero?
+      @errors << 'Extra items'
+    end
   end
 
   def to_s
@@ -1672,8 +1684,11 @@ end
 
 # RANDOMIZE
 class RandomizeStatement < AbstractStatement
-  def initialize(keywords, line, _tokens)
+  def initialize(keywords, line, tokens)
     super(keywords, line)
+    unless tokens.size.zero?
+      @errors << 'Extra items'
+    end
   end
 
   def to_s
