@@ -71,6 +71,7 @@ class StatementFactory
 
   def parse(text)
     line_number = nil
+    line = nil
     m = /\A\d+/.match(text)
     unless m.nil?
       number = NumericConstantToken.new(m[0])
@@ -110,31 +111,26 @@ class StatementFactory
                     tokens) if
       squeezed[0..2] == 'REM'
 
+    tokens = tokenize(text)
+    tokens = remove_break_tokens(tokens)
+    tokens = remove_whitespace_tokens(tokens)
+    tokens_lists = split(tokens)
+
     statements = []
-    all_tokens = tokenize(text)
-    tokens_lists = split(all_tokens)
     tokens_lists.each do |tokens|
       keywords = extract_keywords(tokens)
       begin
-        statement = create_regular_statement(keywords, text, tokens)
+        statement = create_statement(keywords, text, tokens)
       rescue BASICException
         statement = InvalidStatement.new(text)
       end
       statements << statement
     end
-    Line.new(text, statements, all_tokens)
+    Line.new(text, statements, tokens)
   end
 
-  def extract_keywords(tokens)
-    keywords = []
-    while !tokens.empty? &&
-          (tokens[0].whitespace? || tokens[0].keyword?)
-      token = tokens.shift
-      keywords << token.to_s if token.keyword?
-    end
-    keywords
-  end
-
+  private
+  
   def split(tokens)
     tokens_lists = []
     statement_tokens = []
@@ -150,7 +146,36 @@ class StatementFactory
     tokens_lists
   end
 
-  def create_regular_statement(keywords, text, tokens)
+  def remove_break_tokens(tokens)
+    new_list = []
+
+    tokens.each do |token|
+      new_list << token unless token.class.to_s == 'BreakToken'
+    end
+
+    new_list
+  end
+
+  def remove_whitespace_tokens(tokens)
+    new_list = []
+
+    tokens.each do |token|
+      new_list << token unless token.class.to_s == 'WhitespaceToken'
+    end
+
+    new_list
+  end
+
+  def extract_keywords(tokens)
+    keywords = []
+    while !tokens.empty? && tokens[0].keyword?
+      token = tokens.shift
+      keywords << token.to_s
+    end
+    keywords
+  end
+
+  def create_statement(keywords, text, tokens)
     statement = UnknownStatement.new(text)
     keyword = keywords.join('')
     statement =
@@ -204,7 +229,10 @@ class StatementFactory
 
     tokenizers << ListTokenBuilder.new(['\\',':'], StatementSeparatorToken)
 
-    keywords = statement_definitions.keys + %w(THEN TO STEP) - %w(ARRREAD ARRPRINT MATREAD MATPRINT)
+    keywords = statement_definitions.keys +
+               %w(THEN TO STEP) -
+               %w(ARRREAD ARRPRINT MATREAD MATPRINT)
+    
     tokenizers << ListTokenBuilder.new(keywords, KeywordToken)
 
     operators = [
@@ -221,7 +249,9 @@ class StatementFactory
 
     tokenizers <<
       ListTokenBuilder.new(FunctionFactory.function_names, FunctionToken)
-    tokenizers << ListTokenBuilder.new(('FNA'..'FNZ').to_a, UserFunctionToken)
+
+    function_names = ('FNA'..'FNZ').to_a
+    tokenizers << ListTokenBuilder.new(function_names, UserFunctionToken)
 
     tokenizers << TextTokenBuilder.new
     tokenizers << NumberTokenBuilder.new
@@ -238,8 +268,7 @@ class AbstractStatement
   def initialize(keywords, text, tokens)
     @keywords = keywords
     @text = text
-    tokens = remove_break_tokens(tokens)
-    @tokens = remove_whitespace_tokens(tokens)
+    @tokens = tokens
     @errors = []
   end
 
@@ -256,26 +285,6 @@ class AbstractStatement
   end
 
   protected
-
-  def remove_break_tokens(tokens)
-    new_list = []
-
-    tokens.each do |token|
-      new_list << token unless token.class.to_s == 'BreakToken'
-    end
-
-    new_list
-  end
-
-  def remove_whitespace_tokens(tokens)
-    new_list = []
-
-    tokens.each do |token|
-      new_list << token unless token.class.to_s == 'WhitespaceToken'
-    end
-
-    new_list
-  end
 
   def split_on_token(tokens, token_to_split)
     results = []
