@@ -1,6 +1,7 @@
 # abstract token
 class AbstractToken
   def initialize
+    @is_whitespace = false
     @is_keyword = false
     @is_operator = false
     @is_separator = false
@@ -13,8 +14,11 @@ class AbstractToken
     @is_statement_separator = false
     @is_groupstart = false
     @is_groupend = false
-    @is_whitespace = false
     @is_invalid = false
+  end
+
+  def whitespace?
+    @is_whitespace
   end
 
   def keyword?
@@ -59,10 +63,6 @@ class AbstractToken
 
   def groupend?
     @is_groupend
-  end
-
-  def whitespace?
-    @is_whitespace
   end
 
   def operand?
@@ -118,6 +118,17 @@ end
 class KeywordToken < AbstractToken
   def initialize(text)
     @is_keyword = true
+    @text = text
+  end
+
+  def to_s
+    @text
+  end
+end
+
+# remark token
+class RemarkToken < AbstractToken
+  def initialize(text)
     @text = text
   end
 
