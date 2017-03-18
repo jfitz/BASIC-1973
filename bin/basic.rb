@@ -1,5 +1,4 @@
 #!/usr/bin/ruby
-
 require 'benchmark'
 require 'optparse'
 
@@ -401,9 +400,9 @@ class Interpreter
 
   private
 
-  def print_trace_info(line)
+  def print_trace_info(statement)
     @console_io.newline_when_needed
-    @console_io.print_out "#{@current_line_index}: #{line}"
+    @console_io.print_out @current_line_index.to_s + ':' + statement.to_s
     @console_io.newline
   end
 

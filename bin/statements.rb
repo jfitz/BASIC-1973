@@ -266,10 +266,42 @@ class AbstractStatement
 
   def pretty
     if @errors.empty?
-      ' ' + to_s
+      to_s
     else
       @text
     end
+  end
+
+  def to_s
+    tokens = []
+    @keywords.each do |keyword|
+      tokens << WhitespaceToken.new(' ')
+      tokens << keyword
+    end
+
+    prev_open_parens = false
+    prev_hash = false
+    prev_operator = false
+    prev_operand = false
+    prev_2_operand = false
+    @tokens.each do |token|
+      tokens << WhitespaceToken.new(' ') unless
+        token.separator? || token.groupstart? || token.groupend? ||
+        prev_open_parens || prev_hash ||
+        (prev_operator && !prev_2_operand)
+      tokens << token
+      prev_open_parens = token.groupstart?
+      prev_hash = (token.operator? && token.hash?)
+      prev_2_operand = prev_operand
+      prev_operand = token.operand?
+      prev_operator = token.operator?
+    end
+
+    s = ''
+    tokens.each do |token|
+      s += token.to_s
+    end
+    s
   end
 
   protected
@@ -357,10 +389,6 @@ class RemarkStatement < AbstractStatement
     @rest = tokens
   end
 
-  def to_s
-    @keywords.join(' ') + @rest.join
-  end
-
   def execute(_, _)
     0
   end
@@ -383,7 +411,7 @@ class ChangeStatement < AbstractStatement
   end
 
   def to_s
-    @keywords.join(' ') + ' ' + @source.to_s + ' TO ' + @target.to_s
+    ' ' + @keywords.join(' ') + ' ' + @source.to_s + ' TO ' + @target.to_s
   end
 
   def execute(interpreter, trace)
@@ -442,10 +470,6 @@ class DimStatement < AbstractStatement
     end
   end
 
-  def to_s
-    @keywords.join(' ') + ' ' + @expression_list.join(', ')
-  end
-
   def execute(interpreter, _)
     @expression_list.each do |expression|
       variables = expression.evaluate(interpreter)
@@ -464,10 +488,6 @@ class FilesStatement < AbstractStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens)
     @expressions = ValueScalarExpression.new(@tokens)
-  end
-
-  def to_s
-    @keywords.join(' ') + ' ' + @expressions.to_s
   end
 
   def pre_execute(interpreter)
@@ -498,7 +518,7 @@ class LetStatement < AbstractStatement
   end
 
   def to_s
-    @keywords.join(' ') + ' ' + @assignment.to_s
+    ' ' + @keywords.join(' ') + ' ' + @assignment.to_s
   end
 
   def execute(interpreter, trace)
@@ -529,7 +549,7 @@ class LetLessStatement < AbstractStatement
   end
 
   def to_s
-    @assignment.to_s
+    ' ' + @assignment.to_s
   end
 
   def execute(interpreter, trace)
@@ -550,16 +570,6 @@ class InputStatement < AbstractStatement
     # [prompt string] variable [variable]...
 
     @default_prompt = TextConstantToken.new('"? "')
-  end
-
-  def to_s
-    list = []
-    @tokens_lists.each do |tokens_list|
-      s = ''
-      tokens_list.each { |token| s += token.to_s }
-      list << s
-    end
-    @keywords.join(' ') + ' ' + list.join(', ')
   end
 
   def execute(interpreter, trace)
@@ -670,7 +680,7 @@ class IfStatement < AbstractStatement
   end
 
   def to_s
-    @keywords.join(' ') + ' ' + @expression.to_s + ' THEN ' + @destination.to_s
+    ' ' + @keywords.join(' ') + ' ' + @expression.to_s + ' THEN ' + @destination.to_s
   end
 
   def execute(interpreter, trace)
@@ -741,9 +751,9 @@ class AbstractPrintStatement < AbstractStatement
     end
 
     if @tokens_lists.size.zero?
-      @keywords.join(' ')
+      ' ' + @keywords.join(' ')
     else
-      @keywords.join(' ') + s
+      ' ' + @keywords.join(' ') + s
     end
   end
 
@@ -833,10 +843,6 @@ class GotoStatement < AbstractStatement
     end
   end
 
-  def to_s
-    @keywords.join(' ') + ' ' + @destination.to_s
-  end
-
   def execute(interpreter, _)
     interpreter.next_line_index = @destination
   end
@@ -857,10 +863,6 @@ class GosubStatement < AbstractStatement
     end
   end
 
-  def to_s
-    @keywords.join(' ') + ' ' + @destination.to_s
-  end
-
   def execute(interpreter, _)
     interpreter.push_return(interpreter.next_line_index)
     interpreter.next_line_index = @destination
@@ -874,10 +876,6 @@ class ReturnStatement < AbstractStatement
     unless @tokens.size.zero?
       @errors << 'Extra items'
     end
-  end
-
-  def to_s
-    @keywords.join(' ')
   end
 
   def execute(interpreter, _)
@@ -915,11 +913,6 @@ class OnStatement < AbstractStatement
         @errors << "Invalid line specification #{line_num}"
       end
     end
-  end
-
-  def to_s
-    s = @expression.to_s + ' GOTO ' + @destinations.map(&:to_s).join(', ')
-    @keywords.join(' ') + ' ' + s
   end
 
   def execute(interpreter, trace)
@@ -1000,9 +993,9 @@ class ForStatement < AbstractStatement
   def to_s
     keywords = @keywords.join(' ')
     if @has_step_value
-      "#{keywords} #{@control} = #{@start} TO #{@end}" + " STEP #{@step_value}"
+      ' ' + "#{keywords} #{@control} = #{@start} TO #{@end}" + " STEP #{@step_value}"
     else
-      "#{keywords} #{@control} = #{@start} TO #{@end}"
+      ' ' + "#{keywords} #{@control} = #{@start} TO #{@end}"
     end
   end
 
@@ -1092,7 +1085,7 @@ class NextStatement < AbstractStatement
   end
 
   def to_s
-    @keywords.join(' ') + ' ' + @control.to_s
+    ' ' + @keywords.join(' ') + ' ' + @control.to_s
   end
 
   def execute(interpreter, trace)
@@ -1126,7 +1119,7 @@ class AbstractReadStatement < AbstractStatement
       tokens_list.each { |token| s += token.to_s }
       list << s
     end
-    @keywords.join(' ') + ' ' + list.join(', ')
+    ' ' + @keywords.join(' ') + ' ' + list.join(', ')
   end
 
   private
@@ -1195,10 +1188,6 @@ class DataStatement < AbstractStatement
     @expressions = ValueScalarExpression.new(@tokens)
   end
 
-  def to_s
-    @keywords.join(' ') + ' ' + @expressions.to_s
-  end
-
   def pre_execute(interpreter)
     ds = interpreter.get_data_store(nil)
     data_list = @expressions.evaluate(interpreter)
@@ -1217,10 +1206,6 @@ class RestoreStatement < AbstractStatement
     unless @tokens.size.zero?
       @errors << 'Extra items'
     end
-  end
-
-  def to_s
-    @keywords.join(' ')
   end
 
   def execute(interpreter, _)
@@ -1248,7 +1233,7 @@ class DefineFunctionStatement < AbstractStatement
   end
 
   def to_s
-    @keywords.join(' ') + ' ' + @name +
+    ' ' + @keywords.join(' ') + ' ' + @name +
       "(#{@arguments.join(',')}) = " + @template.to_s
   end
 
@@ -1268,10 +1253,6 @@ class StopStatement < AbstractStatement
     end
   end
 
-  def to_s
-    @keywords.join(' ')
-  end
-
   def execute(interpreter, _)
     io = interpreter.console_io
     io.newline_when_needed
@@ -1286,10 +1267,6 @@ class EndStatement < AbstractStatement
     unless @tokens.size.zero?
       @errors << 'Extra items'
     end
-  end
-
-  def to_s
-    @keywords.join(' ')
   end
 
   def execute(interpreter, _)
@@ -1312,24 +1289,6 @@ class TraceStatement < AbstractStatement
     expression = ValueScalarExpression.new(first_expression)
     value = expression.evaluate(interpreter)
     interpreter.trace(value)
-  end
-
-  def to_s
-    s = ''
-    @tokens_lists.each do |tokens_list|
-      if tokens_list.class.to_s == 'Array'
-        s << ' '
-        s << tokens_list.map(&:to_s).join
-      else
-        s << tokens_list.to_s
-      end
-    end
-
-    if @tokens_lists.size.zero?
-      @keywords.join(' ')
-    else
-      @keywords.join(' ') + s
-    end
   end
 end
 
@@ -1447,7 +1406,7 @@ class ArrLetStatement < AbstractStatement
   end
 
   def to_s
-    @keywords.join(' ') + ' ' + @assignment.to_s
+    ' ' + @keywords.join(' ') + ' ' + @assignment.to_s
   end
 
   def execute(interpreter, trace)
@@ -1605,7 +1564,7 @@ class MatLetStatement < AbstractStatement
   end
 
   def to_s
-    @keywords.join(' ') + ' ' + @assignment.to_s
+    ' ' + @keywords.join(' ') + ' ' + @assignment.to_s
   end
 
   def execute(interpreter, trace)
@@ -1638,10 +1597,6 @@ class RandomizeStatement < AbstractStatement
     unless @tokens.size.zero?
       @errors << 'Extra items'
     end
-  end
-
-  def to_s
-    @keywords.join(' ')
   end
 
   def execute(interpreter, _)
