@@ -416,10 +416,6 @@ class ChangeStatement < AbstractStatement
     @target = VariableName.new(parts[2][0])
   end
 
-  def to_s
-    ' ' + @keywords.join(' ') + ' ' + @source.to_s + ' TO ' + @target.to_s
-  end
-
   def execute(interpreter, trace)
     if @source.content_type == 'TextConstant' &&
        @target.content_type == 'NumericConstant'
