@@ -519,10 +519,6 @@ class LetStatement < AbstractStatement
     end
   end
 
-  def to_s
-    ' ' + @keywords.join(' ') + ' ' + @assignment.to_s
-  end
-
   def execute(interpreter, trace)
     l_values = @assignment.eval_target(interpreter)
     r_values = @assignment.eval_value(interpreter)
@@ -548,10 +544,6 @@ class LetLessStatement < AbstractStatement
     rescue BASICException => e
       @errors << e.message
     end
-  end
-
-  def to_s
-    ' ' + @assignment.to_s
   end
 
   def execute(interpreter, trace)
@@ -679,10 +671,6 @@ class IfStatement < AbstractStatement
     else
       @errors << 'Syntax error'
     end
-  end
-
-  def to_s
-    ' ' + @keywords.join(' ') + ' ' + @expression.to_s + ' THEN ' + @destination.to_s
   end
 
   def execute(interpreter, trace)
@@ -1361,10 +1349,6 @@ class ArrLetStatement < AbstractStatement
     end
   end
 
-  def to_s
-    ' ' + @keywords.join(' ') + ' ' + @assignment.to_s
-  end
-
   def execute(interpreter, trace)
     r_value = first_value(interpreter)
     dims = r_value.dimensions
@@ -1517,10 +1501,6 @@ class MatLetStatement < AbstractStatement
       @errors << e.message
       @assignment = @rest
     end
-  end
-
-  def to_s
-    ' ' + @keywords.join(' ') + ' ' + @assignment.to_s
   end
 
   def execute(interpreter, trace)
