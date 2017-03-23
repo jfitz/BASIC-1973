@@ -87,6 +87,11 @@ class StatementFactory
     tokens = tokenize(text)
     tokens = remove_break_tokens(tokens)
     tokens = remove_whitespace_tokens(tokens)
+
+    comment = nil
+    if tokens.size > 0 && tokens[-1].comment?
+      comment = tokens.pop
+    end
     tokens_lists = split(tokens)
 
     statements = []
@@ -104,7 +109,7 @@ class StatementFactory
         statements << statement
       end
     end
-    Line.new(text, statements, tokens)
+    Line.new(text, statements, tokens, comment)
   end
 
   private
@@ -212,6 +217,7 @@ class StatementFactory
   def make_tokenizers
     tokenizers = []
 
+    tokenizers << CommentTokenBuilder.new
     tokenizers << RemarkTokenBuilder.new
 
     tokenizers << ListTokenBuilder.new(['\\',':'], StatementSeparatorToken)

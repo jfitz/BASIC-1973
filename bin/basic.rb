@@ -192,14 +192,28 @@ class Line
   attr_reader :statements
   attr_reader :tokens
 
-  def initialize(text, statements, tokens)
+  def initialize(text, statements, tokens, comment)
     @text = text
     @statements = statements
     @tokens = tokens
+    @comment = comment
   end
 
   def list
     @text
+  end
+
+  def pretty
+    ss = []
+    @statements.each { |statement| ss << statement.pretty }
+    text = ss.join(' \\')
+    unless @comment.nil?
+      space = @text.size - (text.size + @comment.to_s.size)
+      space = 5 if space < 5
+      text += ' ' * space
+      text += @comment.to_s
+    end
+    text
   end
 end
 
@@ -287,11 +301,10 @@ class Interpreter
   def pretty_lines_errors(line_numbers)
     line_numbers.each do |line_number|
       line = @program_lines[line_number]
+      number = line_number.to_s
+      pretty = line.pretty
+      @console_io.print_line(number + pretty)
       statements = line.statements
-      ss = []
-      statements.each { |statement| ss << statement.pretty }
-      text = ss.join(' \\')
-      @console_io.print_line(line_number.to_s + text)
       statements.each do |statement|
         statement.errors.each { |error| puts ' ' + error }
       end
