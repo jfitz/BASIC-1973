@@ -21,7 +21,7 @@ class ArgSplitter
         list << token
       end
       parens_level += 1 if token.groupstart?
-      parens_level -= 1 if token.groupend? && parens_level > 0
+      parens_level -= 1 if token.groupend? && !parens_level.zero?
     end
     lists << list unless list.empty?
     lists
@@ -89,9 +89,8 @@ class StatementFactory
     all_tokens = remove_whitespace_tokens(all_tokens)
 
     comment = nil
-    if all_tokens.size > 0 && all_tokens[-1].comment?
-      comment = all_tokens.pop
-    end
+    comment = all_tokens.pop if !all_tokens.empty? && all_tokens[-1].comment?
+
     tokens_lists = split(all_tokens)
 
     statements = []
@@ -112,8 +111,6 @@ class StatementFactory
     Line.new(text, statements, all_tokens, comment)
   end
 
-  private
-  
   def split(tokens)
     tokens_lists = []
     statement_tokens = []
@@ -154,7 +151,7 @@ class StatementFactory
     tokens = []
     saw_non_keyword = false
     all_tokens.each do |token|
-      saw_non_keyword = true if !token.keyword?
+      saw_non_keyword = true unless token.keyword?
       keywords << token unless saw_non_keyword
       tokens << token if saw_non_keyword
     end
@@ -168,9 +165,10 @@ class StatementFactory
       statement = EmptyStatement.new
     else
       keyword = keywords.map(&:to_s).join('')
-      statement =
-        @statement_definitions[keyword].new(keywords, text, tokens) if
-        @statement_definitions.key?(keyword)
+      if @statement_definitions.key?(keyword)
+        statement =
+          @statement_definitions[keyword].new(keywords, text, tokens)
+      end
     end
     statement
   end
@@ -223,13 +221,13 @@ class StatementFactory
     tokenizers << CommentTokenBuilder.new
     tokenizers << RemarkTokenBuilder.new
 
-    tokenizers << ListTokenBuilder.new(['\\',':'], StatementSeparatorToken)
+    tokenizers << ListTokenBuilder.new(['\\', ':'], StatementSeparatorToken)
 
     keywords = statement_definitions.keys +
                %w(THEN TO STEP) -
                %w(REM REMARK) -
                %w(ARRREAD ARRPRINT MATREAD MATPRINT)
-    
+
     tokenizers << ListTokenBuilder.new(keywords, KeywordToken)
 
     operators = [
@@ -304,18 +302,18 @@ end
 class InvalidStatement < AbstractStatement
   def initialize(line)
     super([], line, [])
-    @errors << "Invalid statement"
+    @errors << 'Invalid statement'
   end
 
   def to_s
     @text
   end
 
-  def execute(interpreter, _)
+  def execute(_, _)
     raise(BASICException, @errors[0])
   end
 
-  def pre_execute(interpreter)
+  def pre_execute(_)
     raise(BASICException, @errors[0])
   end
 end
@@ -532,10 +530,9 @@ class InputStatement < AbstractStatement
   def execute(interpreter, trace)
     tokens_lists = @tokens_lists.clone
     prompt = @default_prompt
-    unless tokens_lists.size.zero?
+    unless tokens_lists.empty?
       begin
         value = first_value(tokens_lists, interpreter)
-        fh = nil
         if value.class.to_s == 'FileHandle'
           fh = value
           tokens_lists.shift
@@ -547,6 +544,7 @@ class InputStatement < AbstractStatement
           tokens_lists.shift
         end
       rescue BASICException
+        fh = nil
       end
     end
     expression_list = []
@@ -554,7 +552,8 @@ class InputStatement < AbstractStatement
       begin
         expression_list << TargetExpression.new(items_list, ScalarReference)
       rescue BASICException
-        raise(BASICException, 'Invalid variable ' + items_list.map(&:to_s).join)
+        raise(BASICException,
+              'Invalid variable ' + items_list.map(&:to_s).join)
       end
     end
     if fh.nil?
@@ -695,12 +694,14 @@ class AbstractPrintStatement < AbstractStatement
   def extract_file_handle(print_items, interpreter)
     print_items = print_items.clone
     file_handle = nil
-    unless print_items.size.zero? || print_items[0].class.to_s == 'CarriageControl'
+    unless print_items.empty? ||
+           print_items[0].class.to_s == 'CarriageControl'
       value = first_item(print_items, interpreter)
       if value.class.to_s == 'FileHandle'
         file_handle = value
         print_items.shift
-        print_items.shift if print_items[0].class.to_s == 'CarriageControl'
+        print_items.shift if
+          print_items[0].class.to_s == 'CarriageControl'
       end
     end
     [file_handle, print_items]
@@ -808,9 +809,7 @@ end
 class ReturnStatement < AbstractStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens)
-    unless @tokens.size.zero?
-      @errors << 'Extra items'
-    end
+    @errors << 'Extra items' unless @tokens.empty?
   end
 
   def execute(interpreter, _)
@@ -932,12 +931,15 @@ class ForStatement < AbstractStatement
 
     interpreter.set_value(@control, from, false)
     fornext_control =
-      ForNextControl.new(@control, interpreter.next_line_index, from, to, step)
+      ForNextControl.new(@control,
+                         interpreter.next_line_index, from, to, step)
 
     interpreter.assign_fornext(fornext_control)
     terminated = fornext_control.front_terminated?
-    interpreter.next_line_index =
-      interpreter.find_closing_next(@control) if terminated
+    if terminated
+      interpreter.next_line_index =
+        interpreter.find_closing_next(@control)
+    end
 
     io = interpreter.console_io
     print_trace_info(io, from, to, step, terminated) if
@@ -948,8 +950,10 @@ class ForStatement < AbstractStatement
 
   def make_control(tokens)
     parts = split_on_token(tokens, '=')
-    raise(BASICException, 'Incorrect initialization') if parts.size != 3
-    raise(BASICException, 'Incorrect initialization') if parts[1].to_s != '='
+    raise(BASICException, 'Incorrect initialization') if
+      parts.size != 3
+    raise(BASICException, 'Incorrect initialization') if
+      parts[1].to_s != '='
     if parts[0][0].variable?
       @control = VariableName.new(parts[0][0])
     else
@@ -1038,9 +1042,9 @@ class AbstractReadStatement < AbstractStatement
 
   def extract_file_handle(tokens_lists, interpreter)
     tokens_lists = tokens_lists.clone
-    file_handle = nil
     begin
-      unless tokens_lists.size.zero? || tokens_lists[0].class.to_s == 'CarriageControl'
+      unless tokens_lists.empty? ||
+             tokens_lists[0].class.to_s == 'CarriageControl'
         value = first_value(tokens_lists, interpreter)
         if value.class.to_s == 'FileHandle'
           file_handle = value
@@ -1049,6 +1053,7 @@ class AbstractReadStatement < AbstractStatement
         end
       end
     rescue BASICException
+      file_handle = nil
     end
     [file_handle, tokens_lists]
   end
@@ -1070,7 +1075,7 @@ class ReadStatement < AbstractReadStatement
 
   def execute(interpreter, trace)
     tokens_lists = @tokens_lists
-    unless tokens_lists.size.zero?
+    unless tokens_lists.empty?
       fh, tokens_lists = extract_file_handle(tokens_lists, interpreter)
     end
     expression_list = []
@@ -1078,7 +1083,8 @@ class ReadStatement < AbstractReadStatement
       begin
         expression_list << TargetExpression.new(tokens_list, ScalarReference)
       rescue BASICException
-        raise(BASICException, 'Invalid variable ' + tokens_list.map(&:to_s).join)
+        raise(BASICException,
+              'Invalid variable ' + tokens_list.map(&:to_s).join)
       end
     end
 
@@ -1115,9 +1121,7 @@ end
 class RestoreStatement < AbstractStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens)
-    unless @tokens.size.zero?
-      @errors << 'Extra items'
-    end
+    @errors << 'Extra items' unless @tokens.empty?
   end
 
   def execute(interpreter, _)
@@ -1155,9 +1159,7 @@ end
 class StopStatement < AbstractStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens)
-    unless @tokens.size.zero?
-      @errors << 'Extra items'
-    end
+    @errors << 'Extra items' unless @tokens.empty?
   end
 
   def execute(interpreter, _)
@@ -1171,9 +1173,7 @@ end
 class EndStatement < AbstractStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens)
-    unless @tokens.size.zero?
-      @errors << 'Extra items'
-    end
+    @errors << 'Extra items' unless @tokens.empty?
   end
 
   def execute(interpreter, _)
@@ -1248,7 +1248,7 @@ class ArrReadStatement < AbstractReadStatement
 
   def execute(interpreter, trace)
     tokens_lists = @tokens_lists
-    unless tokens_lists.size.zero?
+    unless tokens_lists.empty?
       fh, tokens_lists = extract_file_handle(tokens_lists, interpreter)
     end
     expression_list = []
@@ -1257,7 +1257,8 @@ class ArrReadStatement < AbstractReadStatement
         expression = TargetExpression.new(tokens_list, ArrayReference)
         expression_list << expression
       rescue BASICException
-        raise(BASICException, 'Invalid variable ' + tokens_list.map(&:to_s).join)
+        raise(BASICException,
+              'Invalid variable ' + tokens_list.map(&:to_s).join)
       end
     end
 
@@ -1389,7 +1390,7 @@ class MatReadStatement < AbstractReadStatement
 
   def execute(interpreter, trace)
     tokens_lists = @tokens_lists
-    unless tokens_lists.size.zero?
+    unless tokens_lists.empty?
       fh, tokens_lists = extract_file_handle(tokens_lists, interpreter)
     end
     expression_list = []
@@ -1398,7 +1399,8 @@ class MatReadStatement < AbstractReadStatement
         expression = TargetExpression.new(tokens_list, MatrixReference)
         expression_list << expression
       rescue BASICException
-        raise(BASICException, 'Invalid variable ' + tokens_list.map(&:to_s).join)
+        raise(BASICException,
+              'Invalid variable ' + tokens_list.map(&:to_s).join)
       end
     end
 
@@ -1493,9 +1495,7 @@ end
 class RandomizeStatement < AbstractStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens)
-    unless @tokens.size.zero?
-      @errors << 'Extra items'
-    end
+    @errors << 'Extra items' unless @tokens.empty?
   end
 
   def execute(interpreter, _)

@@ -17,7 +17,7 @@ end
 # accept characters to match item in list
 class ListTokenBuilder
   attr_reader :count
-  
+
   def initialize(legals, class_name)
     @legals = legals
     @class = class_name
@@ -26,38 +26,38 @@ class ListTokenBuilder
 
   def try(text)
     token = ''
-    candidate = ''
-    i = 0
     best_candidate = ''
     best_count = 0
-    if text.size > 0 && text[0] != ' '
+    if !text.empty? && text[0] != ' '
       refused = false
+      candidate = ''
+      i = 0
       until i == text.size || refused
+        c = text[i]
         # ignore space char
-        unless text[i] == ' '
-          c = text[i]
+        if c == ' '
+          i += 1
+        else
           refused = !accept?(candidate, c)
           unless refused
-            candidate = candidate + c
+            candidate += c
             i += 1
             if @legals.include?(candidate)
               best_candidate = candidate
               best_count = i
             end
           end
-        else
-          i += 1
         end
       end
     end
-    
+
     @count = 0
-    unless best_candidate.size.zero?
+    unless best_candidate.empty?
       @token = best_candidate
       @count = best_count
     end
 
-    @count > 0
+    !@count.zero?
   end
 
   def token
@@ -81,41 +81,40 @@ end
 
 class RemarkTokenBuilder
   attr_reader :count
-  
+
   def initialize
     @legals = %w(REMARK REM)
     @count = 0
   end
 
   def try(text)
-    token = ''
-    candidate = ''
-    i = 0
     best_candidate = ''
     best_count = 0
-    if text.size > 0 && text[0] != ' '
+    if !text.empty? && text[0] != ' '
       refused = false
+      candidate = ''
+      i = 0
       until i == text.size || refused
+        c = text[i]
         # ignore space char
-        unless text[i] == ' '
-          c = text[i]
+        if c == ' '
+          i += 1
+        else
           refused = !accept?(candidate, c)
           unless refused
-            candidate = candidate + c
+            candidate += c
             i += 1
             if @legals.include?(candidate)
               best_candidate = candidate
               best_count = i
             end
           end
-        else
-          i += 1
         end
       end
     end
 
     @count = 0
-    unless best_candidate.size.zero?
+    unless best_candidate.empty?
       @keyword_token = best_candidate
       remark = text[best_count..-1]
       if remark[0] == ' '
@@ -126,7 +125,7 @@ class RemarkTokenBuilder
       @count = text.size
     end
 
-    @count > 0
+    !@count.zero?
   end
 
   def token
@@ -173,10 +172,7 @@ class CommentTokenBuilder
 
   def try(text)
     @token = ''
-
-    if text.size > 0 && text[0] == "'"
-      @token = text
-    end
+    @token = text if !text.empty? && text[0] == "'"
 
     @count = @token.size
   end
@@ -189,21 +185,21 @@ end
 # token reader for text constants
 class TextTokenBuilder
   attr_reader :count
-  
+
   def try(text)
     @token = ''
     candidate = ''
     num_quotes = 0
     i = 0
-    if text.size > 0 && text[0] == '"'
+    if !text.empty? && text[0] == '"'
       until i == text.size || num_quotes == 2
         c = text[i]
-        candidate = candidate + c
+        candidate += c
         num_quotes += 1 if c == '"'
         i += 1
       end
     end
- 
+
     @token = candidate if num_quotes == 2
     @count = @token.size
   end
@@ -244,25 +240,25 @@ end
 # token reader for numeric constants
 class NumberTokenBuilder
   attr_reader :count
-  
+
   def try(text)
     @token = ''
 
     candidate = ''
-    i = 0
-    if text.size > 0 && text[0] != ' '
+    if !text.empty? && text[0] != ' '
+      i = 0
       refused = false
       until i == text.size || refused
+        c = text[i]
         # ignore space char
-        unless text[i] == ' '
-          c = text[i]
+        if c == ' '
+          i += 1
+        else
           refused = !accept?(candidate, c)
           unless refused
-            candidate = candidate + c
+            candidate += c
             i += 1
           end
-        else
-          i += 1
         end
       end
     end
@@ -280,8 +276,8 @@ class NumberTokenBuilder
     @token = ''
     regexes.each { |regex| regex.match(candidate) { |m| @token = m[0] } }
     @count = 0
-    @count = i if @token.size > 0
-    @count > 0
+    @count = i unless @token.empty?
+    !@count.zero?
   end
 
   def token
@@ -295,12 +291,12 @@ class NumberTokenBuilder
     # can always append a digit
     result = true if /[0-9]/.match(c)
     # can append a decimal point if no decimal point and no E
-    result = true if c == '.' && candidate.count('.', 'E') == 0
+    result = true if c == '.' && candidate.count('.', 'E').zero?
     # can append E if no E and at least one digit (not just decimal point)
-    result = true if c == 'E' && candidate.count('0-9') > 0
+    result = true if c == 'E' && !candidate.count('0-9').zero?
     # can append sign if no chars or last char was E
-    result = true if c == '+' && candidate.size.zero? || candidate[-1] == 'E'
-    result = true if c == '-' && candidate.size.zero? || candidate[-1] == 'E'
+    result = true if c == '+' && candidate.empty? || candidate[-1] == 'E'
+    result = true if c == '-' && candidate.empty? || candidate[-1] == 'E'
 
     result
   end
@@ -314,20 +310,20 @@ class VariableTokenBuilder
     @token = ''
 
     candidate = ''
-    i = 0
-    if text.size > 0 && text[0] != ' '
+    if !text.empty? && text[0] != ' '
       refused = false
+      i = 0
       until i == text.size || refused
+        c = text[i]
         # ignore space char
-        unless text[i] == ' '
-          c = text[i]
+        if c == ' '
+          i += 1
+        else
           refused = !accept?(candidate, c)
           unless refused
-            candidate = candidate + c
+            candidate += c
             i += 1
           end
-        else
-          i += 1
         end
       end
     end
@@ -345,8 +341,8 @@ class VariableTokenBuilder
     regexes.each { |regex| regex.match(candidate) { |m| @token = m[0] } }
 
     @count = 0
-    @count = i if @token.size > 0
-    @count > 0
+    @count = i unless @token.empty?
+    !@count.zero?
   end
 
   def token
@@ -358,11 +354,12 @@ class VariableTokenBuilder
   def accept?(candidate, c)
     result = false
     # can always start with an alpha
-    result = true if /[A-Z]/.match(c) && candidate.size.zero?
+    result = true if /[A-Z]/.match(c) && candidate.empty?
     # can append a digit to a single character
     result = true if /[0-9]/.match(c) && candidate.size == 1
     # can append a dollar sign if one is not there
-    result = true if c == '$' && [1, 2].include?(candidate.size) && candidate[-1] != '$'
+    result = true if
+      c == '$' && [1, 2].include?(candidate.size) && candidate[-1] != '$'
 
     result
   end
