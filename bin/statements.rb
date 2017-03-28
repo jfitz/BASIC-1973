@@ -267,6 +267,10 @@ class AbstractStatement
     @errors = []
   end
 
+  def pretty
+    AbstractToken.pretty_tokens(@keywords, @tokens)
+  end
+
   def pre_execute(_)
     0
   end

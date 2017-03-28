@@ -204,7 +204,7 @@ class Line
   end
 
   def pretty
-    text = pretty_tokens
+    text = AbstractToken.pretty_tokens([], @tokens)
     unless @comment.nil?
       space = @text.size - (text.size + @comment.to_s.size)
       space = 5 if space < 5
@@ -212,40 +212,6 @@ class Line
       text += @comment.to_s
     end
     text
-  end
-  
-  def pretty_tokens
-    tokens = []
-
-    prev_open_parens = false
-    prev_hash = false
-    prev_operand = false
-    prev_operator = false
-    prev_variable = false
-    prev_2_operand = false
-    @tokens.each do |token|
-      tokens << WhitespaceToken.new(' ') unless
-        token.separator? ||
-        (token.groupstart? && prev_variable) ||
-        token.groupend? ||
-        prev_open_parens ||
-        prev_hash ||
-        (prev_operator && !prev_2_operand)
-      tokens << token
-      prev_open_parens = token.groupstart?
-      prev_hash = (token.operator? && token.hash?)
-      prev_variable = token.variable? || token.function? ||
-                      token.user_function?
-      prev_2_operand = prev_operand
-      prev_operand = token.operand? || token.groupend?
-      prev_operator = token.operator?
-    end
-
-    s = ''
-    tokens.each do |token|
-      s += token.to_s
-    end
-    s
   end
 end
 
@@ -445,9 +411,9 @@ class Interpreter
 
   private
 
-  def print_trace_info(line)
+  def print_trace_info(statement)
     @console_io.newline_when_needed
-    @console_io.print_out @current_line_index.to_s + ':' + line.pretty
+    @console_io.print_out @current_line_index.to_s + ':' + statement.pretty
     @console_io.newline
   end
 
@@ -463,7 +429,7 @@ class Interpreter
     statements = line.statements
     index = @current_line_index.index
     statement = statements[index]
-    print_trace_info(line) if do_trace
+    print_trace_info(statement) if do_trace
     if statement.errors.empty?
       statement.execute(self, do_trace)
     else
