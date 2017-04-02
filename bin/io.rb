@@ -21,7 +21,7 @@ class ConsoleIo
   end
 
   def read_line
-    input_text = ascii_printables(gets)
+    input_text = gets
     raise(BASICException, 'End of file') if input_text.nil?
     ascii_text = ascii_printables(input_text)
     puts(ascii_text) if @echo_input
@@ -240,32 +240,47 @@ class FileHandler
     # values must be separated by separators
     # numeric tokens may contain leading signs
     # values may have leading or trailing spaces (or both)
+    tokenizers = input_tokenizers
+
+    tokenizer = Tokenizer.new(tokenizers, nil)
+    tokens = tokenizer.tokenize(input_text)
+    # drop whitespace
+    tokens.delete_if(&:whitespace?)
+
+    # verify all even-index tokens are numeric or text
+    # verify all odd-index tokens are separators
+    verify_tokens(tokens)
+
+    # convert from tokens to values
+    expressions = ValueScalarExpression.new(tokens)
+    expressions.evaluate(interpreter)
+  end
+
+  private
+
+  def input_tokenizers
     tokenizers = []
     tokenizers << InputNumberTokenBuilder.new
     tokenizers << InputTextTokenBuilder.new
     tokenizers << InputBareTextTokenBuilder.new
     tokenizers << ListTokenBuilder.new([',', ';'], ParamSeparatorToken)
     tokenizers << WhitespaceTokenBuilder.new
+  end
 
-    tokenizer = Tokenizer.new(tokenizers, nil)
-    tokens = tokenizer.tokenize(input_text)
-    # drop whitespace
-    tokens.delete_if(&:whitespace?)
-    # verify all even-index tokens are numeric
+  def verify_tokens(tokens)
     evens = tokens.values_at(* tokens.each_index.select(&:even?))
     evens.each do |token|
       raise(BASICException, 'Invalid input') unless
         token.numeric_constant? || token.text_constant?
     end
-    # verify all odd-index tokens are separators
+
     odds = tokens.values_at(* tokens.each_index.select(&:odd?))
     odds.each do |token|
       raise(BASICException, 'Invalid input') unless token.separator?
     end
-    # convert from tokens to values
-    expressions = ValueScalarExpression.new(tokens)
-    expressions.evaluate(interpreter)
   end
+
+  public
 
   def print_item(text)
     set_mode(:print)
@@ -309,28 +324,51 @@ class FileHandler
 
   def read
     set_mode(:read)
-    while @data_store.empty?
-      line = @file.gets
+
+    tokenizers = read_tokenizers
+    tokenizer = Tokenizer.new(tokenizers, InvalidTokenBuilder.new)
+
+    @data_store = refill(@data_store, @file, tokenizer)
+
+    @data_store.shift
+  end
+
+  private
+
+  def refill(data_store, file, tokenizer)
+    while data_store.empty?
+      line = file.gets
       raise(BASICException, 'End of file') if line.nil?
       line = line.chomp
 
-      tokenizers = []
-      tokenizers << InputNumberTokenBuilder.new
-      tokenizers << InputTextTokenBuilder.new
-      tokenizers << InputBareTextTokenBuilder.new
-      tokenizers << ListTokenBuilder.new([',', ';'], ParamSeparatorToken)
-      tokenizers << WhitespaceTokenBuilder.new
-
-      tokenizer = Tokenizer.new(tokenizers, InvalidTokenBuilder.new)
-
       tokens = tokenizer.tokenize(line)
       tokens.delete_if { |token| token.separator? || token.whitespace? }
-      tokens.each do |token|
-        t = NumericConstant.new(token) if token.numeric_constant?
-        t = TextConstant.new(token) if token.text_constant?
-        @data_store << t
-      end
+
+      converted = read_convert(tokens)
+      data_store += converted
     end
-    @data_store.shift
+
+    data_store
+  end
+
+  def read_tokenizers
+    tokenizers = []
+    tokenizers << InputNumberTokenBuilder.new
+    tokenizers << InputTextTokenBuilder.new
+    tokenizers << InputBareTextTokenBuilder.new
+    tokenizers << ListTokenBuilder.new([',', ';'], ParamSeparatorToken)
+    tokenizers << WhitespaceTokenBuilder.new
+  end
+
+  def read_convert(tokens)
+    converted = []
+
+    tokens.each do |token|
+      t = NumericConstant.new(token) if token.numeric_constant?
+      t = TextConstant.new(token) if token.text_constant?
+      converted << t
+    end
+
+    converted
   end
 end
