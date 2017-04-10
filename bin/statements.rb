@@ -375,42 +375,55 @@ class ChangeStatement < AbstractStatement
     raise(BASICException, 'Missing \'TO\'') if
       parts.size < 2 || parts[1].to_s != 'TO'
     raise(BASICException, 'Missing target') if parts.size != 3
-    raise(BASICException, 'Invalid source') if parts[0].size != 1
-    @source = VariableName.new(parts[0][0])
-    raise(BASICException, 'Invalid target') if parts[2].size != 1
-    @target = VariableName.new(parts[2][0])
+    @source_tokens = parts[0]
+    @target_tokens = parts[2]
   end
 
   def execute(interpreter, trace)
-    if @source.content_type == 'TextConstant' &&
-       @target.content_type == 'NumericConstant'
+    source = ValueScalarExpression.new(@source_tokens)
+    source_values = source.evaluate(interpreter)
+    source_value = source_values[0]
+
+    if source_value.class.to_s == 'TextConstant'
+      target = TargetExpression.new(@target_tokens, ArrayReference)
+      target_values = target.evaluate(interpreter)
+      target_value = target_values[0]
 
       # string to array
-      text = interpreter.get_value(@source)
-      array = text.unpack
+      array = source_value.unpack
       dims = array.dimensions
-      target_variable = Variable.new(@target)
+      target_variable_token = VariableToken.new(target.to_s)
+      target_variable_name = VariableName.new(target_variable_token)
+      target_variable = Variable.new(target_variable_name)
       interpreter.set_dimensions(target_variable, dims)
       values = array.values
-      interpreter.set_values(@target, values, trace)
+      interpreter.set_values(target_variable_name, values, trace)
 
-    elsif @source.content_type == 'NumericConstant' &&
-          @target.content_type == 'TextConstant'
+    elsif source_value.class.to_s == 'NumericConstant'
+      target = TargetExpression.new(@target_tokens, ScalarReference)
+      target_values = target.evaluate(interpreter)
+      target_value = target_values[0]
 
       # array to string
-      dims = interpreter.get_dimensions(@source)
+      source_variable_token = VariableToken.new(source.to_s)
+      source_variable_name = VariableName.new(source_variable_token)
+      source_variable = Variable.new(source_variable_name)
+      dims = interpreter.get_dimensions(source_variable_name)
+
+      raise(BASICException, 'Source not found') if dims.nil?
+      
       raise(BASICException, 'Source must have 1 dimension') unless
         dims.size == 1
       cols = dims[0].to_i
       values = {}
       (0..cols).each do |col|
-        variable = Variable.new(@source, [col])
+        variable = Variable.new(source_variable_name, [col])
         coord = make_coord(col)
         values[coord] = interpreter.get_value(variable)
       end
       array = BASICArray.new(dims, values)
       text = array.pack
-      interpreter.set_value(@target, text, trace)
+      interpreter.set_value(target_value, text, trace)
 
     else
       raise BASICException, 'Type mismatch'
