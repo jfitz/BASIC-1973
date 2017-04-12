@@ -184,6 +184,7 @@ class StatementFactory
     {
       'ARRPRINT' => ArrPrintStatement,
       'ARRREAD' => ArrReadStatement,
+      'ARRWRITE' => ArrWriteStatement,
       'ARR' => ArrLetStatement,
       'CHANGE' => ChangeStatement,
       'DATA' => DataStatement,
@@ -200,6 +201,7 @@ class StatementFactory
       '' => LetLessStatement,
       'MATPRINT' => MatPrintStatement,
       'MATREAD' => MatReadStatement,
+      'MATWRITE' => MatWriteStatement,
       'MAT' => MatLetStatement,
       'ON' => OnStatement,
       'NEXT' => NextStatement,
@@ -211,7 +213,8 @@ class StatementFactory
       'RESTORE' => RestoreStatement,
       'RETURN' => ReturnStatement,
       'STOP' => StopStatement,
-      'TRACE' => TraceStatement
+      'TRACE' => TraceStatement,
+      'WRITE' => WriteStatement
     }
   end
 
@@ -226,7 +229,7 @@ class StatementFactory
     keywords = statement_definitions.keys +
                %w(THEN TO STEP) -
                %w(REM REMARK) -
-               %w(ARRREAD ARRPRINT MATREAD MATPRINT)
+               %w(ARRREAD ARRPRINT ARRWRITE MATREAD MATPRINT MATWRITE)
 
     tokenizers << ListTokenBuilder.new(keywords, KeywordToken)
 
@@ -1216,6 +1219,86 @@ class TraceStatement < AbstractStatement
   end
 end
 
+# common for WRITE, ARR WRITE, MAT WRITE
+class AbstractWriteStatement < AbstractStatement
+  def initialize(keywords, line, tokens, final_carriage)
+    super(keywords, line, tokens)
+    @final = final_carriage
+  end
+
+  def extract_file_handle(print_items, interpreter)
+    print_items = print_items.clone
+    file_handle = nil
+    unless print_items.empty? ||
+           print_items[0].class.to_s == 'CarriageControl'
+      value = first_item(print_items, interpreter)
+      if value.class.to_s == 'FileHandle'
+        file_handle = value
+        print_items.shift
+        print_items.shift if
+          print_items[0].class.to_s == 'CarriageControl'
+      end
+    end
+    [file_handle, print_items]
+  end
+
+  def first_item(print_items, interpreter)
+    first_list = print_items[0]
+    values = first_list.evaluate(interpreter)
+    values[0]
+  end
+
+  def add_implied_items(print_items)
+    print_items << CarriageControl.new('NL') if print_items.empty?
+    print_items << @final if print_items[-1].printable?
+  end
+end
+
+# WRITE
+class WriteStatement < AbstractWriteStatement
+  def initialize(keywords, line, tokens)
+    super(keywords, line, tokens, CarriageControl.new('NL'))
+    @tokens_lists = ArgSplitter.split_tokens(@tokens, true)
+    @print_items = tokens_to_expressions(@tokens_lists)
+  end
+
+  def execute(interpreter, _)
+    file_handle, print_items = extract_file_handle(@print_items, interpreter)
+    fh = interpreter.get_file_handler(file_handle)
+    print_items.each do |item|
+      item.write(fh, interpreter)
+    end
+  end
+
+  private
+
+  def tokens_to_expressions(tokens_lists)
+    print_items = []
+    tokens_lists.each do |tokens_list|
+      if tokens_list.class.to_s == 'ParamSeparatorToken'
+        print_items << CarriageControl.new(tokens_list.to_s)
+      elsif tokens_list.class.to_s == 'Array'
+        add_expression(print_items, tokens_list)
+      end
+    end
+    add_implied_items(print_items)
+    print_items
+  end
+
+  def add_expression(print_items, tokens)
+    if !print_items.empty? &&
+       print_items[-1].class.to_s == 'ValueScalarExpression'
+      print_items << CarriageControl.new('')
+    end
+    begin
+      print_items << ValueScalarExpression.new(tokens)
+    rescue BASICException
+      line_text = tokens.map(&:to_s).join
+      @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
+    end
+  end
+end
+
 # ARR PRINT
 class ArrPrintStatement < AbstractPrintStatement
   def initialize(keywords, line, tokens)
@@ -1249,6 +1332,86 @@ class ArrPrintStatement < AbstractPrintStatement
         print_items << CarriageControl.new(tokens_list)
       elsif tokens_list.class.to_s == 'Array'
         print_items << ValueArrayExpression.new(tokens_list)
+      end
+    end
+    add_implied_items(print_items)
+    print_items
+  end
+end
+
+# ARR WRITE
+class ArrWriteStatement < AbstractWriteStatement
+  def initialize(keywords, line, tokens)
+    super(keywords, line, tokens, CarriageControl.new(','))
+    @tokens_lists = ArgSplitter.split_tokens(@tokens, true)
+    @print_items = tokens_to_expressions(@tokens_lists)
+  end
+
+  def execute(interpreter, _)
+    file_handle, print_items = extract_file_handle(@print_items, interpreter)
+    fh = interpreter.get_file_handler(file_handle)
+    i = 0
+    print_items.each do |item|
+      if item.printable?
+        carriage = CarriageControl.new('')
+        carriage = print_items[i + 1] if
+          i < print_items.size &&
+          !print_items[i + 1].printable?
+        item.write(fh, interpreter, carriage)
+      end
+      i += 1
+    end
+  end
+
+  private
+
+  def tokens_to_expressions(tokens_lists)
+    print_items = []
+    tokens_lists.each do |tokens_list|
+      if tokens_list.class.to_s == 'ParamSeparatorToken'
+        print_items << CarriageControl.new(tokens_list)
+      elsif tokens_list.class.to_s == 'Array'
+        print_items << ValueArrayExpression.new(tokens_list)
+      end
+    end
+    add_implied_items(print_items)
+    print_items
+  end
+end
+
+# MAT WRITE
+class MatWriteStatement < AbstractWriteStatement
+  def initialize(keywords, line, tokens)
+    super(keywords, line, tokens, CarriageControl.new(','))
+    @tokens_lists = ArgSplitter.split_tokens(@tokens, true)
+    @print_items = tokens_to_expressions(@tokens_lists)
+  end
+
+  def execute(interpreter, _)
+    file_handle, print_items = extract_file_handle(@print_items, interpreter)
+    fh = interpreter.get_file_handler(file_handle)
+    i = 0
+    print_items.each do |item|
+      if item.printable?
+        carriage = CarriageControl.new('')
+        carriage = print_items[i + 1] if
+          i < print_items.size &&
+          !print_items[i + 1].printable?
+        item.write(fh, interpreter, carriage)
+      end
+      i += 1
+    end
+  end
+
+  private
+
+  def tokens_to_expressions(tokens_lists)
+    print_items = []
+    tokens_lists.each do |tokens_list|
+      if tokens_list.class.to_s == 'ParamSeparatorToken'
+        print_items << CarriageControl.new(tokens_list)
+      elsif tokens_list.class.to_s == 'Array'
+        print_items << ValueMatrixExpression.new(tokens_list)
       end
     end
     add_implied_items(print_items)

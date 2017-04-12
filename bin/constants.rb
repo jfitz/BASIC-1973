@@ -390,6 +390,12 @@ class NumericConstant < AbstractElement
     printer.last_was_numeric
   end
 
+  def write(printer)
+    s = to_formatted_s
+    s = s.upcase
+    printer.print_item s
+  end
+
   private
 
   def to_formatted_s
@@ -474,6 +480,11 @@ class TextConstant < AbstractElement
 
   def print(printer)
     printer.print_item @value
+  end
+
+  def write(printer)
+    v = to_s
+    printer.print_item v
   end
 
   def unpack
@@ -600,6 +611,19 @@ class CarriageControl
       printer.newline
     when ''
       printer.implied
+    end
+  end
+
+  def write(printer, _)
+    case @operator
+    when ','
+      printer.print_item(@operator)
+    when ';'
+      printer.print_item(@operator)
+    when 'NL'
+      printer.newline
+    when ''
+      printer.print_item(',')
     end
   end
 end
