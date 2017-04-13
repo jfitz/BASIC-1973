@@ -206,6 +206,7 @@ class StatementFactory
       'ON' => OnStatement,
       'NEXT' => NextStatement,
       'PRINT' => PrintStatement,
+      'RANDOM' => RandomizeStatement,
       'RANDOMIZE' => RandomizeStatement,
       'READ' => ReadStatement,
       'REM' => RemarkStatement,

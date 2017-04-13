@@ -119,7 +119,7 @@ When the BASIC program ends, BASIC-1973 ends.
 |--tty-lf |Similar to --tty but delays only the newline characters, not each individual character. Useful with --trace when debugging.
 |--print-width width |Specifies a print width. Lines will wrap at the specified column. Default value is 72.
 |--zone-width width |Specifies a zone width. PRINT statements will position output separated by commas in zones. Default is 16.
-|--ignore-randomize |Forces the interpreter to ignore the RANDMIZE statement. Successive runs of the interpreter will use the same sequence of numbers from the RND() function. (Useful for testing.)
+|--ignore-randomize |Forces the interpreter to ignore the RANDMIZE nd RANDOM statements. Successive runs of the interpreter will use the same sequence of numbers from the RND() function. (Useful for testing.)
 |--echo-input |Echoes console input to output. Useful in run mode when redirecting input from a text file.
 |--int-floor |The INT function truncates towards negative infinity. (Normally towards zero.)
 |--ignore-rnd-arg |The RND function ignores its argument and provides a number between zero and one. This matches the behavior of certain BASICs, including K&K.
@@ -834,18 +834,19 @@ It is not possible to force a number of decimal places.
 RANDOMIZE
 ~~~~~~~~~
 
-Set a new seed for the random number generator.
+Set a new seed for the random number generator. May be abbreviated as RANDOM.
 
 Syntax:	RANDOMIZE
 
 Examples:
 
-	400 RANDOMIZE
+	4 RANDOMIZE
+	5 RANDOM
 
 Without RANDOMIZE, successive runs of a program will use the same sequence of numbers from the RND() function.
 The RANDOMIZE statement randomizes the sequence, and successive runs will have different numbers.
 
-The –ignore-randomize option disables the RANDOMIZE statement (the interpreter allows it but ignores it).
+The –ignore-randomize option disables RANDOMIZE statements (the interpreter allows then but ignores them).
 
 READ
 ~~~~
