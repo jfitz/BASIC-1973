@@ -83,8 +83,8 @@ Some examples:
 - Lines may contain multiple statements, separated by either a colon or a backslash, and sometimes both are used in the same program
 - The DEF FN statement defines a single-line function or a multiline function, the latter ending with FNEND
 - Most programs use parenthesis for variable subscripts, but one used square brackets
-- The IF/THEN statement has variations of IF expression statement, IF expression THEN statement, IF expression THEN statement ELSE statement, and IF expression THEN multiple statements, all of which are controlled by the expression
-ON v GOTO n, n, n or GOTO v OF n, n, n
+- The IF/THEN statement has variations of IF expression statement, IF expression THEN statement, IF expression THEN statement ELSE statement, and IF expression THEN multiple statements
+- ON v GOTO n, n, n or GOTO v OF n, n, n
 - MIN and MAX as operators in LET expressions
 - RANDOMIZE keyword is sometimes RANDOM
 - SLEEP statement
@@ -603,15 +603,19 @@ The interpreter will execute line 350 repeatedly with no output.
 Unlike the '350 GOTO 350' example, this command will evantually stop, as each iteration adds a return address to an internal stack.
 Eventually, the underlying Ruby process will exhaust available memory and halt.
 
-IF/THEN
+IF/THEN and IF/GOTO
+~~~~~~~~~~~~~~~~~~~
 
-Syntax:	IF boolean expression THEN line number
+Conditionally changes the flow of the program, based on an expression.
 
-The boolean expression must be in the form "expression operator expression" where operator is limited to the comparion operations listed above.
+Syntax:	IF expression THEN line number
+        IF expression GOTO line number
+
+The expression must be in the form "expression operator expression" where operator is limited to the comparion operations.
 Boolean operators such as "and" or "or" are not permitted.
 The two arguments in the boolean expression may be numeric constants, text constants, variables, or arithmetic expressions.
 
-The "target" after the THEN keyword must be a line number; it cannot be a statement.
+The "target" after the THEN or GOTO keyword must be a line number; it cannot be a statement.
 
 Examples:
 
@@ -619,6 +623,7 @@ Examples:
 	110 IF A > B THEN 250
 	120 IF G1 <= G2 THEN 301
 	130 IF A$ = "HELLO" THEN 202
+	140 IF L<>INT(L) GOTO 200
 
 INPUT
 ~~~~~

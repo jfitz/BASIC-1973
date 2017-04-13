@@ -695,7 +695,7 @@ class IfStatement < AbstractStatement
     else
       @errors << "Invalid line number #{destination}"
     end
-    @errors << 'Missing THEN' unless keyword.to_s == 'THEN'
+    @errors << 'Missing THEN' unless ['THEN', 'GOTO'].include?(keyword.to_s)
     begin
       @expression = ValueScalarExpression.new(expression)
     rescue BASICException => e
