@@ -383,15 +383,20 @@ class Interpreter
   def run_phase_1
     # phase 1: do all initialization (store values in DATA lines)
     line_numbers = @program_lines.keys.sort
+    @current_line_index = LineNumberIndex.new(line_numbers[0], 0)
     begin
-      line_numbers.each do |line_number|
-        @current_line_number = line_number
+      until @current_line_index.nil?
+        line_number = @current_line_index.number
+        statement_index = @current_line_index.index
         line = @program_lines[line_number]
         statements = line.statements
-        statements.each { |statement| statement.pre_execute(self) }
+        statement = statements[statement_index]
+        statement.pre_execute(self)
+        @current_line_index = find_next_line_index
       end
     rescue BASICException => e
-      @console_io.print_line("#{e.message} in line #{@current_line_number}")
+      line_number = @current_line_index.number
+      @console_io.print_line("#{e.message} in line #{line_number}")
       stop_running
     end
   end
@@ -460,6 +465,8 @@ class Interpreter
     end
   end
 
+  public
+
   def find_next_line_index
     # find next statement within the current line
     line_number = @current_line_index.number
@@ -481,8 +488,6 @@ class Interpreter
     # nothing left to execute
     nil
   end
-
-  public
 
   def trace(tron_flag)
     @tron_flag = tron_flag
