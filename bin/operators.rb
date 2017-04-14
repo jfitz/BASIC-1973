@@ -175,7 +175,7 @@ class BinaryOperator < AbstractElement
     super()
     @op = text.to_s
     operators = {
-      '=' => 2, '<>' => 2, '>' => 2, '>=' => 2, '<' => 2, '<=' => 2,
+      '=' => 2, '<>' => 2, '#' => 2, '>' => 2, '>=' => 2, '<' => 2, '<=' => 2,
       '+' => 3, '-' => 3, '*' => 4, '/' => 4, '^' => 5
     }
     raise(BASICException, "'#{text}' is not an operator") unless
@@ -330,6 +330,8 @@ class BinaryOperator < AbstractElement
     when '='
       x.b_eq(y)
     when '<>'
+      x.b_ne(y)
+    when '#'
       x.b_ne(y)
     when '<'
       x.b_lt(y)
