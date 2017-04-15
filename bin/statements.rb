@@ -228,7 +228,7 @@ class StatementFactory
     tokenizers << ListTokenBuilder.new(['\\', ':'], StatementSeparatorToken)
 
     keywords = statement_definitions.keys +
-               %w(THEN TO STEP) -
+               %w(OF THEN TO STEP) -
                %w(REM REMARK) -
                %w(ARRREAD ARRPRINT ARRWRITE MATREAD MATPRINT MATWRITE)
 
@@ -294,6 +294,22 @@ class AbstractStatement
       end
     end
     results << list unless list.empty?
+    results
+  end
+
+  def split_keywords(tokens)
+    results = []
+    nonkeywords = []
+    tokens.each do |token|
+      if token.keyword?
+        results << nonkeywords unless nonkeywords.empty?
+        nonkeywords = []
+        results << token
+      else
+        nonkeywords << token
+      end
+    end
+    results << nonkeywords unless nonkeywords.empty?
     results
   end
 
@@ -481,6 +497,91 @@ class FilesStatement < AbstractStatement
 
   def execute(_, _)
     0
+  end
+end
+
+# GOTO
+class GotoStatement < AbstractStatement
+  def initialize(keywords, line, tokens)
+    super(keywords, line, tokens)
+    @destination = nil
+    @destinations = nil
+    if tokens.size == 1
+      if tokens[0].numeric_constant?
+        @destination = LineNumberIndex.new(LineNumber.new(tokens[0]), 0)
+      else
+        @errors << "Invalid line number #{tokens[0]}"
+      end
+    else
+      tokens_lists = split_keywords(tokens)
+      if tokens_lists.size == 3 &&
+         tokens_lists[1].keyword? && tokens_lists[1].to_s == 'OF'
+        expression = tokens_lists[0]
+        begin
+          @expression = ValueScalarExpression.new(expression)
+        rescue BASICException => e
+          @errors << e.message
+        end
+        destinations = tokens_lists[2]
+        line_nums = ArgSplitter.split_tokens(destinations, false)
+        @destinations = []
+        line_nums.each do |line_num|
+          if line_num.size == 1
+            destination = line_num[0]
+            if destination.numeric_constant?
+              @destinations << LineNumberIndex.new(LineNumber.new(destination), 0)
+            else
+              @errors << "Invalid line number #{destination}"
+            end
+          else
+            @errors << "Invalid line specification #{line_num}"
+          end
+        end
+      else
+        @errors << 'Syntax error'
+      end
+    end
+  end
+
+  def execute(interpreter, trace)
+    unless @destination.nil?
+      interpreter.next_line_index = @destination
+    end
+
+    unless @destinations.nil?
+      values = @expression.evaluate(interpreter)
+      raise(BASICException, 'Expecting one value') unless values.size == 1
+      value = values[0]
+      raise(BASICException, 'Invalid value') unless
+        value.class.to_s == 'NumericConstant'
+      puts ' ' + @expression.to_s + ' = ' + value.to_s if trace
+      index = value.to_i
+      raise(BASICException, 'Index out of range') if
+        index < 1 || index > @destinations.size
+      # get destination in list
+      interpreter.next_line_index = @destinations[index - 1]
+    end
+  end
+end
+
+# GOSUB
+class GosubStatement < AbstractStatement
+  def initialize(keywords, line, tokens)
+    super(keywords, line, tokens)
+    if @tokens.size == 1
+      if @tokens[0].numeric_constant?
+        @destination = LineNumberIndex.new(LineNumber.new(@tokens[0]), 0)
+      else
+        @errors << "Invalid line number #{tokens[0]}"
+      end
+    else
+      @errors << 'Syntax error'
+    end
+  end
+
+  def execute(interpreter, _)
+    interpreter.push_return(interpreter.next_line_index)
+    interpreter.next_line_index = @destination
   end
 end
 
@@ -672,22 +773,6 @@ class IfStatement < AbstractStatement
     io.trace_output(s)
   end
 
-  def split_keywords(tokens)
-    results = []
-    nonkeywords = []
-    tokens.each do |token|
-      if token.keyword?
-        results << nonkeywords unless nonkeywords.empty?
-        nonkeywords = []
-        results << token
-      else
-        nonkeywords << token
-      end
-    end
-    results << nonkeywords unless nonkeywords.empty?
-    results
-  end
-
   private
 
   def parse_line(expression, keyword, destination)
@@ -782,47 +867,6 @@ class PrintStatement < AbstractPrintStatement
       line_text = tokens.map(&:to_s).join
       @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
     end
-  end
-end
-
-# GOTO
-class GotoStatement < AbstractStatement
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    if @tokens.size == 1
-      if @tokens[0].numeric_constant?
-        @destination = LineNumberIndex.new(LineNumber.new(@tokens[0]), 0)
-      else
-        @errors << "Invalid line number #{tokens[0]}"
-      end
-    else
-      @errors << 'Syntax error'
-    end
-  end
-
-  def execute(interpreter, _)
-    interpreter.next_line_index = @destination
-  end
-end
-
-# GOSUB
-class GosubStatement < AbstractStatement
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    if @tokens.size == 1
-      if @tokens[0].numeric_constant?
-        @destination = LineNumberIndex.new(LineNumber.new(@tokens[0]), 0)
-      else
-        @errors << "Invalid line number #{tokens[0]}"
-      end
-    else
-      @errors << 'Syntax error'
-    end
-  end
-
-  def execute(interpreter, _)
-    interpreter.push_return(interpreter.next_line_index)
-    interpreter.next_line_index = @destination
   end
 end
 

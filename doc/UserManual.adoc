@@ -578,10 +578,18 @@ Changes the flow of the program.
 
 Syntax:	GO TO line number
 Syntax:	GOTO line number
+Syntax: GOTO expression OF line number, line number, line number, ...
 
 Examples:
 
 	300 GO TO 100
+	310 GOTO 25
+	330 GOTO A OF 100, 130, 180
+	340 GO TO A*2+C OF 500, 550, 620, 750
+
+The GOTO OF form is identical to the ON GOTO statement.
+The expression is evaluated and the integral value is used as an index for the list of line numbers.
+The selected line number is the next line number executed.
 
 Notice that the command "350 GO TO 350" is legal but not sensible.
 The interpreter will execute line 350 repeatedly with no output.
