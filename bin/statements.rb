@@ -236,7 +236,7 @@ class StatementFactory
 
     operators = [
       '+', '-', '*', '/', '^', '#',
-      '<', '<=', '=', '>', '>=', '<>'
+      '<', '<=', '=<', '=', '>', '>=', '=>', '<>'
     ]
     tokenizers << ListTokenBuilder.new(operators, OperatorToken)
 
