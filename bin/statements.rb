@@ -887,30 +887,32 @@ class OnStatement < AbstractStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens)
     # ON expression GOTO destinations
-    parts = split_on_token(@tokens, 'GOTO')
-    @errors << 'Syntax error' if parts.size != 3
-    expression = parts[0]
-    keyword = parts[1]
-    destinations = parts[2]
-    @errors << 'Missing GOTO' unless keyword.to_s == 'GOTO'
-    begin
-      @expression = ValueScalarExpression.new(expression)
-    rescue BASICException => e
-      @errors << e.message
-    end
-    line_nums = ArgSplitter.split_tokens(destinations, false)
-    @destinations = []
-    line_nums.each do |line_num|
-      if line_num.size == 1
-        destination = line_num[0]
-        if destination.numeric_constant?
-          @destinations << LineNumberIndex.new(LineNumber.new(destination), 0)
-        else
-          @errors << "Invalid line number #{destination}"
-        end
-      else
-        @errors << "Invalid line specification #{line_num}"
+    tokens_lists = split_keywords(tokens)
+    if tokens_lists.size == 3 &&
+       tokens_lists[1].keyword? && ['GOTO', 'THEN'].include?(tokens_lists[1].to_s)
+      expression = tokens_lists[0]
+      begin
+        @expression = ValueScalarExpression.new(expression)
+      rescue BASICException => e
+        @errors << e.message
       end
+      destinations = tokens_lists[2]
+      line_nums = ArgSplitter.split_tokens(destinations, false)
+      @destinations = []
+      line_nums.each do |line_num|
+        if line_num.size == 1
+          destination = line_num[0]
+          if destination.numeric_constant?
+            @destinations << LineNumberIndex.new(LineNumber.new(destination), 0)
+          else
+            @errors << "Invalid line number #{destination}"
+          end
+        else
+          @errors << "Invalid line specification #{line_num}"
+        end
+      end
+    else
+      @errors << 'Syntax error'
     end
   end
 
