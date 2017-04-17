@@ -538,8 +538,28 @@ class BooleanConstant < AbstractElement
     self
   end
 
+  def b_eq(other)
+    BooleanConstant.new(@value == other.to_v)
+  end
+
+  def b_ne(other)
+    BooleanConstant.new(@value != other.to_v)
+  end
+
+  def b_and(other)
+    BooleanConstant.new(@value && other.to_v)
+  end
+
+  def b_or(other)
+    BooleanConstant.new(@value || other.to_v)
+  end
+
   def printable?
     true
+  end
+
+  def to_v
+    @value
   end
 
   def to_s

@@ -189,7 +189,8 @@ class BinaryOperator < AbstractElement
     '=' => 2, '<>' => 2, '#' => 2,
     '>' => 2, '>=' => 2, '=>' => 2,
     '<' => 2, '<=' => 2, '=<' => 2,
-    '+' => 3, '-' => 3, '*' => 4, '/' => 4, '^' => 5
+    '+' => 3, '-' => 3, '*' => 4, '/' => 4, '^' => 5,
+    'AND' => 1, 'OR' => 1
   }
 
   def self.operator?(op)
@@ -375,6 +376,10 @@ class BinaryOperator < AbstractElement
       x.b_ge(y)
     when '=>'
       x.b_ge(y)
+    when 'AND'
+      x.b_and(y)
+    when 'OR'
+      x.b_or(y)
     end
   end
 

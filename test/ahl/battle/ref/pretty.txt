@@ -37,18 +37,18 @@
  'A[2]=A[3]=B[2]=B[3]=0' is not a valid assignment
 370 FOR K = 1 TO N
 380 IF M > 1 THEN 460
-390 IF A[K] = 1 O R B[K] = 1 THEN 450
+390 IF A[K] = 1 OR B[K] = 1 THEN 450
 400 IF F[A[K] - 1, B[K] - 1] > 0 THEN 450
-410 IF F[A[K] - 1, B[K]] > 0 A N D F[A[K] - 1, B[K]] = F[A[K], B[K] - 1] THEN 450
+410 IF F[A[K] - 1, B[K]] > 0 AND F[A[K] - 1, B[K]] = F[A[K], B[K] - 1] THEN 450
 420 A[K + 1] = A[K] - 1
 430 B[K + 1] = B[K] - 1
 440 GOTO 530
 450 M = 2
 460 Z1 = ((A[1] M A X A[2]) M A X A[3])
 470 Z2 = ((B[1] M A X B[2]) M A X B[3])
-480 IF Z1 = 6 O R Z2 = 6 THEN 90
+480 IF Z1 = 6 OR Z2 = 6 THEN 90
 490 IF F[Z1 + 1, Z2 + 1] > 0 THEN 90
-500 IF F[Z1, Z2 + 1] > 0 A N D F[Z1, Z2 + 1] = F[Z1 + 1, Z2] THEN 90
+500 IF F[Z1, Z2 + 1] > 0 AND F[Z1, Z2 + 1] = F[Z1 + 1, Z2] THEN 90
 510 A[K + 1] = Z1 + 1
 520 B[K + 1] = Z2 + 1
 530 NEXT K
@@ -81,18 +81,18 @@
  'B[2]=B[3]=0' is not a valid assignment
 780 FOR K = 1 TO N
 790 IF M > 1 THEN 870
-800 IF A[K] = 6 O R B[K] = 1 THEN 860
+800 IF A[K] = 6 OR B[K] = 1 THEN 860
 810 IF F[A[K] + 1, B[K] - 1] > 0 THEN 860
-820 IF F[A[K] + 1, B[K]] > 0 A N D F[A[K] + 1, B[K]] = F[A[K], B[K] - 1] THEN 860
+820 IF F[A[K] + 1, B[K]] > 0 AND F[A[K] + 1, B[K]] = F[A[K], B[K] - 1] THEN 860
 830 A[K + 1] = A[K] + 1
 840 B[K + 1] = B[K] - 1
 850 GOTO 940
 860 M = 2
 870 Z1 = ((A[1] M I N A[2]) M I N A[3])
 880 Z2 = ((B[1] M A X B[2]) M A X B[3])
-890 IF Z1 = 1 O R Z2 = 6 THEN 90
+890 IF Z1 = 1 OR Z2 = 6 THEN 90
 900 IF F[Z1 - 1, Z2 + 1] > 0 THEN 90
-910 IF F[Z1, Z2 + 1] > 0 A N D F[Z1, Z2 + 1] = F[Z1 - 1, Z2] T H E M9 0
+910 IF F[Z1, Z2 + 1] > 0 AND F[Z1, Z2 + 1] = F[Z1 - 1, Z2] T H E M9 0
  Syntax error
 920 A[K + 1] = Z1 - 1
 930 B[K + 1] = Z2 + 1
@@ -125,8 +125,8 @@
  'S=H=0' is not a valid assignment
 1170 PRINT "START GAME"
 1180 INPUT X, Y
-1190 IF X < 1 O R X > 6 O R INT(X) #ABS(X) THEN 1210
-1200 IF Y > 0 A N D Y < 7 A N D I N Y(Y) = ABS(Y) THEN 1230
+1190 IF X < 1 OR X > 6 OR INT(X) #ABS(X) THEN 1210
+1200 IF Y > 0 AND Y < 7 AND I N Y(Y) = ABS(Y) THEN 1230
 1210 PRINT "INVALID INPUT, TRY AGAIN."
 1220 GOTO 1180
 1230 R = 7 - Y
