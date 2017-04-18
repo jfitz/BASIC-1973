@@ -9,7 +9,6 @@ class AbstractToken
     end
 
     prev_open_parens = false
-    prev_hash = false
     prev_operand = false
     prev_operator = false
     prev_variable = false
