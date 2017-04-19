@@ -90,7 +90,8 @@ class StatementFactory
     all_tokens = remove_whitespace_tokens(all_tokens)
 
     comment = nil
-    comment = all_tokens.pop if !all_tokens.empty? && all_tokens[-1].comment?
+    comment = all_tokens.pop if
+      !all_tokens.empty? && all_tokens[-1].comment?
 
     tokens_lists = split(all_tokens)
 

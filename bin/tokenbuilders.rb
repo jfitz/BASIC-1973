@@ -25,21 +25,20 @@ class ListTokenBuilder
   end
 
   def try(text)
-    token = ''
     best_candidate = ''
     best_count = 0
     if !text.empty? && text[0] != ' '
-      refused = false
       candidate = ''
       i = 0
-      until i == text.size || refused
+      accepted = true
+      while i < text.size && accepted
         c = text[i]
         # ignore space char
         if c == ' '
           i += 1
         else
-          refused = !accept?(candidate, c)
-          unless refused
+          accepted = accept?(candidate, c)
+          if accepted
             candidate += c
             i += 1
             if @legals.include?(candidate)
@@ -91,17 +90,17 @@ class RemarkTokenBuilder
     best_candidate = ''
     best_count = 0
     if !text.empty? && text[0] != ' '
-      refused = false
       candidate = ''
       i = 0
-      until i == text.size || refused
+      accepted = true
+      while i < text.size && accepted
         c = text[i]
         # ignore space char
         if c == ' '
           i += 1
         else
-          refused = !accept?(candidate, c)
-          unless refused
+          accepted = accept?(candidate, c)
+          if accepted
             candidate += c
             i += 1
             if @legals.include?(candidate)
@@ -242,20 +241,18 @@ class NumberTokenBuilder
   attr_reader :count
 
   def try(text)
-    @token = ''
-
     candidate = ''
     if !text.empty? && text[0] != ' '
       i = 0
-      refused = false
-      until i == text.size || refused
+      accepted = true
+      while i < text.size && accepted
         c = text[i]
         # ignore space char
         if c == ' '
           i += 1
         else
-          refused = !accept?(candidate, c)
-          unless refused
+          accepted = accept?(candidate, c)
+          if accepted
             candidate += c
             i += 1
           end
@@ -307,20 +304,18 @@ class VariableTokenBuilder
   attr_reader :count
 
   def try(text)
-    @token = ''
-
     candidate = ''
     if !text.empty? && text[0] != ' '
-      refused = false
       i = 0
-      until i == text.size || refused
+      accepted = true
+      while i < text.size && accepted
         c = text[i]
         # ignore space char
         if c == ' '
           i += 1
         else
-          refused = !accept?(candidate, c)
-          unless refused
+          accepted = accept?(candidate, c)
+          if accepted
             candidate += c
             i += 1
           end

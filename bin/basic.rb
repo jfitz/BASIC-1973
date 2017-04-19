@@ -411,7 +411,7 @@ class Interpreter
     rescue Interrupt
       stop_running
     end
-    @file_handlers.each { |fn, fh| fh.close }
+    @file_handlers.each { |_, fh| fh.close }
   end
 
   private
@@ -553,7 +553,6 @@ class Interpreter
 
   # returns an Array of values
   def evaluate(parsed_expressions)
-    expected = parsed_expressions.length
     result_values = []
     parsed_expressions.each do |parsed_expression|
       stack = []
@@ -567,10 +566,6 @@ class Interpreter
       unless act.zero?
         # verify each item is of correct type
         item = stack[0]
-        # raise(Exception,
-        #      "Expected item #{expected_result_class}, "
-        #      "found item type #{item.class} remaining on evaluation stack") if
-        #  item.class.to_s != expected_result_class
         result_values << item
       end
     end
@@ -720,6 +715,7 @@ class Interpreter
   end
 
   def set_value(variable, value, trace)
+    # convert a numeric to a string when a string is expected
     if value.class.to_s == "NumericConstant" && variable.content_type == "TextConstant"
       val = value.token_chars
       quoted_val = '"' + val + '"'
@@ -728,9 +724,10 @@ class Interpreter
     end
 
     # check that value type matches variable type
-    raise(BASICException,
-          "Type mismatch #{value.class} is not #{variable.content_type}") if
-      value.class.to_s != variable.content_type
+    if value.class.to_s != variable.content_type
+      raise(BASICException,
+            "Type mismatch #{value.class} is not #{variable.content_type}")
+    end
 
     v = variable.to_s
     @variables[v] = value
@@ -827,20 +824,9 @@ class Interpreter
   def store_program_line(cmd, print_errors)
     line_num, line = parse_line(cmd)
     if !line_num.nil? && !line.nil?
-      # warn about duplicate lines when loading
-      # but not when typing
-      @console_io.print_line("Duplicate line number #{line_num}") if
-        @program_lines.key?(line_num) && !print_errors
+      check_line_duplicate(line_num)
+      check_line_sequence(line_num, print_errors)
       @program_lines[line_num] = line
-
-      # warn about lines out of sequence
-      # but not when typing
-      max_key = @program_lines.max
-      @console_io.print_line("Line #{line_num} is out of sequence") if
-        @program_lines.size > 0 &&
-        line_num < @program_lines.max[0] &&
-        !print_errors
-      
       statements = line.statements
       any_errors = false
       statements.each do |statement|
@@ -871,6 +857,23 @@ class Interpreter
   end
 
   private
+
+  def check_line_duplicate(line_num)
+    # warn about duplicate lines when loading
+    # but not when typing
+    @console_io.print_line("Duplicate line number #{line_num}") if
+      @program_lines.key?(line_num) && !print_errors
+  end
+
+  def check_line_sequence(line_num, print_errors)
+    # warn about lines out of sequence
+    # but not when typing
+    max_key = @program_lines.max
+    @console_io.print_line("Line #{line_num} is out of sequence") if
+      @program_lines.size > 0 &&
+      line_num < @program_lines.max[0] &&
+      !print_errors
+  end
 
   def simple_command?(text)
     %w(NEW RUN TRACE .VARS .UDFS .DIMS).include?(text)
