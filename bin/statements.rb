@@ -1,69 +1,3 @@
-# split a line into arguments
-class ArgSplitter
-  attr_reader :args
-  @args = []
-  @current_arg = ''
-  @parens_level = 0
-
-  def self.split_tokens(tokens, want_separators)
-    lists = []
-    list = []
-    parens_level = 0
-    tokens.each do |token|
-      if token.operand? &&
-         (!list.empty? && (list[-1].operand? || list[-1].groupend?))
-        lists << list unless list.empty?
-        list = [token]
-      elsif token.separator? && parens_level.zero?
-        lists << list unless list.empty?
-        lists << token if want_separators
-        list = []
-      else
-        list << token
-      end
-      parens_level += 1 if token.groupstart?
-      parens_level -= 1 if token.groupend? && !parens_level.zero?
-    end
-    lists << list unless list.empty?
-    lists
-  end
-
-  def self.in_string(c)
-    @current_arg += c
-    return unless c == '"'
-    @args << @current_arg
-    @current_arg = ''
-  end
-
-  def self.not_in_string(c)
-    if [',', ';'].include?(c) && @parens_level.zero?
-      separator(c)
-    elsif c == '('
-      open_parens
-    elsif c == ')'
-      close_parens
-    else
-      @current_arg += c
-    end
-  end
-
-  def self.separator(c)
-    @args << @current_arg unless @current_arg.empty?
-    @current_arg = ''
-    @args << c
-  end
-
-  def self.open_parens
-    @current_arg += '('
-    @parens_level += 1
-  end
-
-  def self.close_parens
-    @current_arg += ')'
-    @parens_level -= 1 unless @parens_level.zero?
-  end
-end
-
 # Statement factory class
 class StatementFactory
   def initialize
@@ -282,6 +216,29 @@ class AbstractStatement
 
   protected
 
+  def split_tokens(tokens, want_separators)
+    lists = []
+    list = []
+    parens_level = 0
+    tokens.each do |token|
+      if token.operand? &&
+         (!list.empty? && (list[-1].operand? || list[-1].groupend?))
+        lists << list unless list.empty?
+        list = [token]
+      elsif token.separator? && parens_level.zero?
+        lists << list unless list.empty?
+        lists << token if want_separators
+        list = []
+      else
+        list << token
+      end
+      parens_level += 1 if token.groupstart?
+      parens_level -= 1 if token.groupend? && !parens_level.zero?
+    end
+    lists << list unless list.empty?
+    lists
+  end
+
   def split_on_token(tokens, token_to_split)
     results = []
     list = []
@@ -456,7 +413,7 @@ end
 class DimStatement < AbstractStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens)
-    tokens_lists = ArgSplitter.split_tokens(@tokens, false)
+    tokens_lists = split_tokens(@tokens, false)
 
     @errors << 'No variables specified' if tokens_lists.empty?
 
@@ -524,7 +481,7 @@ class GotoStatement < AbstractStatement
           @errors << e.message
         end
         destinations = tokens_lists[2]
-        line_nums = ArgSplitter.split_tokens(destinations, false)
+        line_nums = split_tokens(destinations, false)
         @destinations = []
         line_nums.each do |line_num|
           if line_num.size == 1
@@ -644,7 +601,7 @@ end
 class InputStatement < AbstractStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens)
-    @tokens_lists = ArgSplitter.split_tokens(@tokens, false)
+    @tokens_lists = split_tokens(@tokens, false)
     # [prompt string] variable [variable]...
 
     @default_prompt = TextConstantToken.new('"? "')
@@ -830,7 +787,7 @@ end
 class PrintStatement < AbstractPrintStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens, CarriageControl.new('NL'))
-    @tokens_lists = ArgSplitter.split_tokens(@tokens, true)
+    @tokens_lists = split_tokens(@tokens, true)
     @print_items = tokens_to_expressions(@tokens_lists)
   end
 
@@ -898,7 +855,7 @@ class OnStatement < AbstractStatement
         @errors << e.message
       end
       destinations = tokens_lists[2]
-      line_nums = ArgSplitter.split_tokens(destinations, false)
+      line_nums = split_tokens(destinations, false)
       @destinations = []
       line_nums.each do |line_num|
         if line_num.size == 1
@@ -1138,7 +1095,7 @@ end
 class ReadStatement < AbstractReadStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens)
-    @tokens_lists = ArgSplitter.split_tokens(@tokens, false)
+    @tokens_lists = split_tokens(@tokens, false)
   end
 
   def execute(interpreter, trace)
@@ -1260,7 +1217,7 @@ end
 class TraceStatement < AbstractStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens)
-    @tokens_lists = ArgSplitter.split_tokens(@tokens, false)
+    @tokens_lists = split_tokens(@tokens, false)
     @errors << 'TRACE needs one value' if @tokens_lists.size != 1
   end
 
@@ -1311,7 +1268,7 @@ end
 class WriteStatement < AbstractWriteStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens, CarriageControl.new('NL'))
-    @tokens_lists = ArgSplitter.split_tokens(@tokens, true)
+    @tokens_lists = split_tokens(@tokens, true)
     @print_items = tokens_to_expressions(@tokens_lists)
   end
 
@@ -1356,7 +1313,7 @@ end
 class ArrPrintStatement < AbstractPrintStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens, CarriageControl.new(','))
-    @tokens_lists = ArgSplitter.split_tokens(@tokens, true)
+    @tokens_lists = split_tokens(@tokens, true)
     @print_items = tokens_to_expressions(@tokens_lists)
   end
 
@@ -1396,7 +1353,7 @@ end
 class ArrWriteStatement < AbstractWriteStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens, CarriageControl.new(','))
-    @tokens_lists = ArgSplitter.split_tokens(@tokens, true)
+    @tokens_lists = split_tokens(@tokens, true)
     @print_items = tokens_to_expressions(@tokens_lists)
   end
 
@@ -1436,7 +1393,7 @@ end
 class MatWriteStatement < AbstractWriteStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens, CarriageControl.new(','))
-    @tokens_lists = ArgSplitter.split_tokens(@tokens, true)
+    @tokens_lists = split_tokens(@tokens, true)
     @print_items = tokens_to_expressions(@tokens_lists)
   end
 
@@ -1476,7 +1433,7 @@ end
 class ArrReadStatement < AbstractReadStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens)
-    @tokens_lists = ArgSplitter.split_tokens(@tokens, false)
+    @tokens_lists = split_tokens(@tokens, false)
   end
 
   def execute(interpreter, trace)
@@ -1578,7 +1535,7 @@ end
 class MatPrintStatement < AbstractPrintStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens, CarriageControl.new(','))
-    @tokens_lists = ArgSplitter.split_tokens(@tokens, true)
+    @tokens_lists = split_tokens(@tokens, true)
     @print_items = tokens_to_expressions(@tokens_lists)
   end
 
@@ -1618,7 +1575,7 @@ end
 class MatReadStatement < AbstractReadStatement
   def initialize(keywords, line, tokens)
     super(keywords, line, tokens)
-    @tokens_lists = ArgSplitter.split_tokens(@tokens, false)
+    @tokens_lists = split_tokens(@tokens, false)
   end
 
   def execute(interpreter, trace)
