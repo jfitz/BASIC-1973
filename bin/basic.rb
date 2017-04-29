@@ -380,25 +380,13 @@ class Interpreter
     end
   end
 
+  private
+
   def run_phase_1
     # phase 1: do all initialization (store values in DATA lines)
     line_number = @program_lines.min[0]
     @current_line_index = LineNumberIndex.new(line_number, 0)
-    begin
-      until @current_line_index.nil?
-        line_number = @current_line_index.number
-        statement_index = @current_line_index.index
-        line = @program_lines[line_number]
-        statements = line.statements
-        statement = statements[statement_index]
-        statement.pre_execute(self)
-        @current_line_index = find_next_line_index
-      end
-    rescue BASICException => e
-      line_number = @current_line_index.number
-      @console_io.print_line("#{e.message} in line #{line_number}")
-      stop_running
-    end
+    preexecute_loop
   end
 
   def run_phase_2(trace_flag)
@@ -414,8 +402,36 @@ class Interpreter
     @file_handlers.each { |_, fh| fh.close }
   end
 
-  private
+  def preexecute_a_statement
+    line_number = @current_line_index.number
+    statement_index = @current_line_index.index
+    line = @program_lines[line_number]
 
+    statements = line.statements
+    statement = statements[statement_index]
+
+    if statement.errors.empty?
+      statement.pre_execute(self)
+    else
+      stop_running
+      print_errors(current_line_number, statement)
+    end
+  end
+
+  def preexecute_loop
+    begin
+      while !@current_line_number.nil? && @running
+        preexecute_a_statement
+        @current_line_index = find_next_line_index
+      end
+    rescue BASICException => e
+      line_number = @current_line_index.number
+      message = "#{e.message} in line #{line_number}"
+      @console_io.print_line(message)
+      stop_running
+    end
+  end
+  
   def print_trace_info(statement)
     @console_io.newline_when_needed
     @console_io.print_out @current_line_index.to_s + ':' + statement.pretty
