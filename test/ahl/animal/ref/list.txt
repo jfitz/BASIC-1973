@@ -7,28 +7,26 @@
 500 DIM A$(200)
 525 F$="ANIMAL.GME":ON ERROR GOTO 700
 550 OPEN F$ FOR INPUT AS FILE 1%:INPUT #1%,N$:INPUT #1%,A(I%) FOR I%=1%TO N%:CLOSE 1%:A$(0%)=NUM$(N%):ON ERROR GOTO 0:GOTO 1300
- 'OPENF$FORINPUTASFILE1%' is not a valid assignment
+ Syntax error
+ Syntax error
  'CLOSE1%' is not a valid assignment
  Token 'InvalidToken:%' is not a value or operator
 700 ON ERROR GOTO 1050:F$="$"+F$:RESUME 550
  'RESUME550' is not a valid assignment
 1050 READ A$(I%) FOR I%=0% TO 3%
+ Syntax error
 1100 DATA "4","\QDOES IT SWIM\Y2\N3\","\AFISH","\ABIRD"
 1300 INPUT "ARE YOU THINKING OF AN ANIMAL",Z9$:GOTO 1350 IF LEFT(Z9$,1%)="Y":GOTO 1300 IF LEFT(Z9$,1%)="N"
  Syntax error
  Syntax error
 1310 IF Z9$="SAVE" THEN OPEN "ANIMAL.GME" FOR OUTPUT AS FILE 1%:PRINT #1%,A$(I%) FOR I%=0% TO VAL(A$(0%)):PRINT #1,CHR$(26%):CLOSE 1%:GOTO 1300
  Syntax error
- Syntax error: "#1%" is not a value or operator
- Syntax error: "A$(I%)FORI%=0%TOV" is not a value or operator
- Syntax error: "L(A$(0%))" is not a value or operator
+ Syntax error
  Syntax error: "CHR$(26%)" is not a value or operator
  'CLOSE1%' is not a valid assignment
 1320 IF Z9$="LIST" THEN PRINT "ANIMALS I ALREADY KNOW ARE:":PRINT RIGHT(A$(I%),3%), IF INSTR(1%, A$(I%), "\A") FOR I%=1% TO 200%:PRINT:GOTO 1300
  Syntax error
- Syntax error: "T(A$(I%),3%)" is not a value or operator
- Syntax error: "IFI" is not a value or operator
- Syntax error: "R(1%,A$(I%),"\A")FORI%=1%TO200%" is not a value or operator
+ Syntax error
 1350 K%=1%
  Token 'InvalidToken:%' is not a value or operator
 1400 K%=FNA%(A$(K%)):GOTO 3000 IF LEN(A$(K%))=0%:GOTO 1400 IF LEFT(A$(K%),2%)="\Q":PRINT "IS IT A "RIGHT(A$(K%),3$);:INPUT Z7$:Z7$=LEFT(Z7$,1%)
@@ -56,7 +54,7 @@
  Syntax error: "D(Q$,3%,I" is not a value or operator
  Syntax error: "R(3%,Q$,"\")-3%)" is not a value or operator
  Token 'InvalidToken:%' is not a value or operator
- Token 'KeywordToken:IF' is not a value or operator
+ Syntax error
  Token 'InvalidToken:%' is not a value or operator
  Token 'InvalidToken:%' is not a value or operator
  Token 'InvalidToken:%' is not a value or operator
