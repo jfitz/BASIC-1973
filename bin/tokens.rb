@@ -150,6 +150,7 @@ end
 class BreakToken < AbstractToken
   def initialize(text)
     super
+    @is_break = true
   end
 end
 
