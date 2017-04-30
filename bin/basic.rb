@@ -414,13 +414,13 @@ class Interpreter
       statement.pre_execute(self)
     else
       stop_running
-      print_errors(current_line_number, statement)
+      print_errors(line_number, statement)
     end
   end
 
   def preexecute_loop
     begin
-      while !@current_line_number.nil? && @running
+      while !@current_line_index.nil? && @running
         preexecute_a_statement
         @current_line_index = find_next_line_index
       end
@@ -438,8 +438,7 @@ class Interpreter
     @console_io.newline
   end
 
-  def print_errors(statement)
-    line_number = @current_line_index.number
+  def print_errors(line_number, statement)
     @console_io.print_line("Errors in line #{line_number}:")
     statement.errors.each { |error| puts error }
   end
@@ -455,7 +454,7 @@ class Interpreter
       statement.execute(self, do_trace)
     else
       stop_running
-      print_errors(statement)
+      print_errors(line_number, statement)
     end
   end
 
