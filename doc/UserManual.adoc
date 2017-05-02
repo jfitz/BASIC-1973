@@ -372,6 +372,9 @@ Program statements
 
 Program statements are stored as part of the program.
 Every program statement must have a line number.
+Every statement begins with a keyword except for the LET-less assignment.
+For most statements, the keyword be abbreviated to three letters.
+When a statement begins with multiple keywords (such as MAT PRINT), only the first keyword may be abbreviated.
 
 A line may contain a comment denoted by a single quote.
 Everything to the right of the quote is a comment.
@@ -409,10 +412,11 @@ CHANGE
 Changes string variables to an array of numbers, or an array of numbers to a string variable
 
 Syntax:	CHANGE variable TO variable
+Syntax:	CHA variable TO variable
 
 The two variables must refer to a numeric array and a string variable (one of each).
 
-When converting an array to a string the CHANGE statement is equivalent to an assignment with the PACK() function.
+When converting an array to a string the CHANGE statement is equivalent to an assignment with the PACK$() function.
 When converting a string to an array, the statement is equivalent to an assignment with the UNPACK() function.
 
 Examples:
@@ -429,6 +433,7 @@ DATA
 Specifies values for READ or MAT READ statements
 
 Syntax:	DATA value list
+Syntax:	DAT value list
 
 Values must be numeric separated by commas.
 Expressions may be numeric or string, but must match the variable that will be used in the READ statement.
@@ -588,6 +593,8 @@ Changes the flow of the program.
 Syntax:	GO TO line number
 Syntax:	GOTO line number
 Syntax: GOTO expression OF line number, line number, line number, ...
+Syntax:	GOT line number
+Syntax: GOT expression OF line number, line number, line number, ...
 
 Examples:
 
@@ -610,6 +617,7 @@ GOSUB
 Changes the flow of the program by calling a subroutine.
 
 Syntax:	GOSUB line number
+Syntax:	GOS line number
 
 Examples:
 
@@ -649,6 +657,7 @@ Prompts the user and allows the user to enter a numeric value.
 Non-numeric values are invalid and cause execution to stop.
 
 Syntax:	INPUT [prompt,] variable list
+Syntax:	INP [prompt,] variable list
 
 Examples:
 
@@ -738,6 +747,7 @@ NEXT
 Denotes the end of a FOR loop.
 
 Syntax:	NEXT control variable
+Syntax:	NEX control variable
 
 You can GOTO out of FOR/NEXT loops, and BASIC-1973 follows the examples set by Kemeny and Kurtz.
 
@@ -788,6 +798,8 @@ Printing to console
 ^^^^^^^^^^^^^^^^^^^
 
 Syntax:	PRINT expression list
+Syntax:	PRI expression list
+Syntax:	& expression list
 
 Items in the list are separated by either commas or semicolons.
 A comma forces the next item to the next tab stop (tab stops are every 14 positions).
@@ -824,6 +836,8 @@ Printing to files
 ^^^^^^^^^^^^^^^^^
 
 Syntax:	PRINT #filenum; expression list
+Syntax:	PRI #filenum; expression list
+Syntax:	& #filenum; expression list
 
 Items in the list are separated by either commas or semicolons.
 A comma or semicolon writes a SPACE character to the file.
@@ -856,6 +870,8 @@ RANDOMIZE
 Set a new seed for the random number generator. May be abbreviated as RANDOM.
 
 Syntax:	RANDOMIZE
+Syntax:	RANDOM
+Syntax:	RAN
 
 Examples:
 
@@ -876,6 +892,7 @@ Reading from DATA statements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Syntax:	READ variable list
+Syntax:	REA variable list
 
 Examples:
 
@@ -934,6 +951,7 @@ Resets the internal pointer for the READ statement.
 After a RESTORE statement, a READ statement will read the first data item.
 
 Syntax:	RESTORE
+Syntax:	RES
 
 Examples:
 
@@ -945,6 +963,7 @@ RETURN
 Changes the flow of the program by returning from a subroutine.
 
 Syntax:	RETURN
+Syntax:	RET
 
 Examples:
 
@@ -958,6 +977,7 @@ STOP
 Forces the execution of the program to stop.
 
 Syntax:	STOP
+Syntax:	STO
 
 Examples:
 
@@ -971,6 +991,7 @@ The TRACE command (interactive mode) runs a program and displays information ofr
 The TRACE statement (part of a program) turns tracing on or off, allowing for targeted tracing of programs.
 
 Syntax:	TRACE expression
+Syntax:	TRA expression
 
 Examples:
 
@@ -993,6 +1014,8 @@ Writing to console
 ^^^^^^^^^^^^^^^^^^
 
 Syntax:	WRITE expression list
+Syntax:	WRI expression list
+
 Items in the list are separated by either commas or semicolons.
 
 Examples:
@@ -1022,6 +1045,7 @@ Writing to files
 ^^^^^^^^^^^^^^^^
 
 Syntax:	WRITE #filenum; expression list
+Syntax:	WRI #filenum; expression list
 
 Items in the list are separated by either commas or semicolons.
 A comma or semicolon writes a SPACE character to the file.
@@ -1468,7 +1492,7 @@ Functions may be used in expressions.
 |LEN(t) |numeric |Returns the length of the string value.
 |CHR$(n) |string |Returns a string of one character, defined by n. N must be within the ASCII printable range of 32 to 126.
 |ASC(t) |numeric |Returns the ASCII value of the first character of the string t.
-|PACK(a) |string |Converts a numeric array to a string variable. The first element (index 0) must contain the number of numeric values to convert. (It may be zero.) Each numeric element is converted to the corresponding ASCII character.
+|PACK$(a) |string |Converts a numeric array to a string variable. The first element (index 0) must contain the number of numeric values to convert. (It may be zero.) Each numeric element is converted to the corresponding ASCII character.
 |UNPACK(t)|array |Converts a string variable (or expression) to an array of numeric values. The first element (index 0) contains the number of converted elements. Each element is the ASCII value for the corresponding character in the original string.
 |EXT$(t,i,j) |string |Extract text from string variable t, starting with position i and ending with position j. Error if i or j are less than 1 or greater than the length of the string.
 |==========

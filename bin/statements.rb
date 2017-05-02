@@ -408,7 +408,8 @@ end
 class ChangeStatement < AbstractStatement
   def self.lead_keywords
     [
-      [KeywordToken.new('CHANGE')]
+      [KeywordToken.new('CHANGE')],
+      [KeywordToken.new('CHA')]
     ]
   end
 
@@ -555,7 +556,8 @@ end
 class GotoStatement < AbstractStatement
   def self.lead_keywords
     [
-      [KeywordToken.new('GOTO')]
+      [KeywordToken.new('GOTO')],
+      [KeywordToken.new('GOT')]
     ]
   end
 
@@ -625,7 +627,8 @@ end
 class GosubStatement < AbstractStatement
   def self.lead_keywords
     [
-      [KeywordToken.new('GOSUB')]
+      [KeywordToken.new('GOSUB')],
+      [KeywordToken.new('GOS')]
     ]
   end
 
@@ -735,7 +738,8 @@ end
 class InputStatement < AbstractStatement
   def self.lead_keywords
     [
-      [KeywordToken.new('INPUT')]
+      [KeywordToken.new('INPUT')],
+      [KeywordToken.new('INP')]
     ]
   end
 
@@ -947,7 +951,9 @@ end
 class PrintStatement < AbstractPrintStatement
   def self.lead_keywords
     [
-      [KeywordToken.new('PRINT')]
+      [KeywordToken.new('PRINT')],
+      [KeywordToken.new('PRI')],
+      [KeywordToken.new('&')]
     ]
   end
 
@@ -1007,7 +1013,8 @@ end
 class ReturnStatement < AbstractStatement
   def self.lead_keywords
     [
-      [KeywordToken.new('RETURN')]
+      [KeywordToken.new('RETURN')],
+      [KeywordToken.new('RET')]
     ]
   end
 
@@ -1216,7 +1223,8 @@ end
 class NextStatement < AbstractStatement 
   def self.lead_keywords
     [
-      [KeywordToken.new('NEXT')]
+      [KeywordToken.new('NEXT')],
+      [KeywordToken.new('NEX')]
     ]
   end
 
@@ -1296,7 +1304,8 @@ end
 class ReadStatement < AbstractReadStatement
   def self.lead_keywords
     [
-      [KeywordToken.new('READ')]
+      [KeywordToken.new('READ')],
+      [KeywordToken.new('REA')]
     ]
   end
 
@@ -1342,7 +1351,8 @@ end
 class DataStatement < AbstractStatement
   def self.lead_keywords
     [
-      [KeywordToken.new('DATA')]
+      [KeywordToken.new('DATA')],
+      [KeywordToken.new('DAT')]
     ]
   end
 
@@ -1373,7 +1383,8 @@ end
 class RestoreStatement < AbstractStatement
   def self.lead_keywords
     [
-      [KeywordToken.new('RESTORE')]
+      [KeywordToken.new('RESTORE')],
+      [KeywordToken.new('RES')]
     ]
   end
 
@@ -1435,7 +1446,8 @@ end
 class StopStatement < AbstractStatement
   def self.lead_keywords
     [
-      [KeywordToken.new('STOP')]
+      [KeywordToken.new('STOP')],
+      [KeywordToken.new('STO')]
     ]
   end
 
@@ -1490,7 +1502,8 @@ end
 class TraceStatement < AbstractStatement
   def self.lead_keywords
     [
-      [KeywordToken.new('TRACE')]
+      [KeywordToken.new('TRACE')],
+      [KeywordToken.new('TRA')]
     ]
   end
 
@@ -1555,7 +1568,8 @@ end
 class WriteStatement < AbstractWriteStatement
   def self.lead_keywords
     [
-      [KeywordToken.new('WRITE')]
+      [KeywordToken.new('WRITE')],
+      [KeywordToken.new('WRI')]
     ]
   end
 
@@ -2090,7 +2104,8 @@ class RandomizeStatement < AbstractStatement
   def self.lead_keywords
     [
       [KeywordToken.new('RANDOMIZE')],
-      [KeywordToken.new('RANDOM')]
+      [KeywordToken.new('RANDOM')],
+      [KeywordToken.new('RAN')]
     ]
   end
 
