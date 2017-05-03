@@ -418,11 +418,9 @@ class ChangeStatement < AbstractStatement
     tokens_lists = split_keywords(@tokens)
     template = [[], 'TO', []]
 
-    parts = split_on_token(@tokens, 'TO')
-
     if check_template(tokens_lists, template)
-      @source_tokens = parts[0]
-      @target_tokens = parts[2]
+      @source_tokens = tokens_lists[0]
+      @target_tokens = tokens_lists[2]
     else
       @errors << 'Syntax error'
     end
@@ -748,19 +746,15 @@ class InputStatement < AbstractStatement
     tokens_lists = split_keywords(@tokens)
     template = [[]]
 
-    if check_template(tokens_lists, template)
-      @tokens_lists = split_tokens(@tokens, false)
-      # [prompt string] variable [variable]...
-
-      @default_prompt = TextConstantToken.new('"? "')
-    else
+    unless check_template(tokens_lists, template)
       @errors << 'Syntax error'
     end
   end
 
   def execute(interpreter, trace)
-    tokens_lists = @tokens_lists.clone
-    prompt = @default_prompt
+    tokens_lists = split_tokens(@tokens, false)
+    default_prompt = TextConstantToken.new('"? "')
+    prompt = default_prompt
     unless tokens_lists.empty?
       begin
         value = first_value(tokens_lists, interpreter)
@@ -790,7 +784,7 @@ class InputStatement < AbstractStatement
     if fh.nil?
       io = interpreter.console_io
       values =
-        input_values(interpreter, prompt, @default_prompt, expression_list.size)
+        input_values(interpreter, prompt, default_prompt, expression_list.size)
       io.implied_newline
     else
       values =
@@ -871,9 +865,8 @@ class IfStatement < AbstractStatement
     if check_template(tokens_lists, template1) ||
        check_template(tokens_lists, template2)
       condition = tokens_lists[0]
-      k_then = tokens_lists[1]
       destination = tokens_lists[2]
-      parse_line(condition, k_then, destination[0])
+      parse_line(condition, destination[0])
     else
       @errors << 'Syntax error'
     end
@@ -897,7 +890,7 @@ class IfStatement < AbstractStatement
 
   private
 
-  def parse_line(expression, keyword, destination)
+  def parse_line(expression, destination)
     if destination.numeric_constant?
       @destination = LineNumberIndex.new(LineNumber.new(destination), 0)
     else
@@ -965,8 +958,8 @@ class PrintStatement < AbstractPrintStatement
 
     if check_template(tokens_lists, template1) ||
        check_template(tokens_lists, template2)
-      @tokens_lists = split_tokens(@tokens, true)
-      @print_items = tokens_to_expressions(@tokens_lists)
+      tokens_lists = split_tokens(@tokens, true)
+      @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
     end
@@ -1314,15 +1307,13 @@ class ReadStatement < AbstractReadStatement
     tokens_lists = split_keywords(@tokens)
     template = [[]]
 
-    if check_template(tokens_lists, template)
-      @tokens_lists = split_tokens(@tokens, false)
-    else
+    unless check_template(tokens_lists, template)
       @errors << 'Syntax error'
     end
   end
 
   def execute(interpreter, trace)
-    tokens_lists = @tokens_lists
+    tokens_lists = split_tokens(@tokens, false)
     unless tokens_lists.empty?
       fh, tokens_lists = extract_file_handle(tokens_lists, interpreter)
     end
@@ -1512,17 +1503,15 @@ class TraceStatement < AbstractStatement
     tokens_lists = split_keywords(@tokens)
     template = [[]]
 
-    if check_template(tokens_lists, template)
-      @tokens_lists = split_tokens(@tokens, false)
-      @errors << 'TRACE expects one value' if
-        @tokens_lists.size != 1
-    else
+    unless check_template(tokens_lists, template)
       @errors << 'Syntax error'
     end
   end
 
   def execute(interpreter, _)
-    first_expression = @tokens_lists[0]
+    tokens_lists = split_tokens(@tokens, false)
+    raise(BASICException, 'Too many values') if tokens_lists.size > 1
+    first_expression = tokens_lists[0]
     expression = ValueScalarExpression.new(first_expression)
     value = expression.evaluate(interpreter)
     interpreter.trace(value)
@@ -1579,8 +1568,8 @@ class WriteStatement < AbstractWriteStatement
     template = [[]]
 
     if check_template(tokens_lists, template)
-      @tokens_lists = split_tokens(@tokens, true)
-      @print_items = tokens_to_expressions(@tokens_lists)
+      tokens_lists = split_tokens(@tokens, true)
+      @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
     end
@@ -1637,8 +1626,8 @@ class ArrPrintStatement < AbstractPrintStatement
     template = [[]]
 
     if check_template(tokens_lists, template)
-      @tokens_lists = split_tokens(@tokens, true)
-      @print_items = tokens_to_expressions(@tokens_lists)
+      tokens_lists = split_tokens(@tokens, true)
+      @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
     end
@@ -1690,8 +1679,8 @@ class ArrWriteStatement < AbstractWriteStatement
     template = [[]]
 
     if check_template(tokens_lists, template)
-      @tokens_lists = split_tokens(@tokens, true)
-      @print_items = tokens_to_expressions(@tokens_lists)
+      tokens_lists = split_tokens(@tokens, true)
+      @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
     end
@@ -1743,8 +1732,8 @@ class MatWriteStatement < AbstractWriteStatement
     template = [[]]
 
     if check_template(tokens_lists, template)
-      @tokens_lists = split_tokens(@tokens, true)
-      @print_items = tokens_to_expressions(@tokens_lists)
+      tokens_lists = split_tokens(@tokens, true)
+      @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
     end
@@ -1795,15 +1784,13 @@ class ArrReadStatement < AbstractReadStatement
     tokens_lists = split_keywords(@tokens)
     template = [[]]
 
-    if check_template(tokens_lists, template)
-      @tokens_lists = split_tokens(@tokens, false)
-    else
+    unless check_template(tokens_lists, template)
       @errors << 'Syntax error'
     end
   end
 
   def execute(interpreter, trace)
-    tokens_lists = @tokens_lists
+    tokens_lists = split_tokens(@tokens, false)
     unless tokens_lists.empty?
       fh, tokens_lists = extract_file_handle(tokens_lists, interpreter)
     end
@@ -1924,8 +1911,8 @@ class MatPrintStatement < AbstractPrintStatement
     template = [[]]
 
     if check_template(tokens_lists, template)
-      @tokens_lists = split_tokens(@tokens, true)
-      @print_items = tokens_to_expressions(@tokens_lists)
+      tokens_lists = split_tokens(@tokens, true)
+      @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
     end
@@ -1976,15 +1963,13 @@ class MatReadStatement < AbstractReadStatement
     tokens_lists = split_keywords(@tokens)
     template = [[]]
 
-    if check_template(tokens_lists, template)
-      @tokens_lists = split_tokens(@tokens, false)
-    else
+    unless check_template(tokens_lists, template)
       @errors << 'Syntax error'
     end
   end
 
   def execute(interpreter, trace)
-    tokens_lists = @tokens_lists
+    tokens_lists = split_tokens(@tokens, false)
     unless tokens_lists.empty?
       fh, tokens_lists = extract_file_handle(tokens_lists, interpreter)
     end
