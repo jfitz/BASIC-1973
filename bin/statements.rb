@@ -36,8 +36,9 @@ class StatementFactory
     else
       tokens_lists.each do |tokens_list|
         keywords, tokens = extract_keywords(tokens_list)
+        tokens_lists = split_keywords(tokens)
         begin
-          statement = create_statement(keywords, text, tokens)
+          statement = create_statement(keywords, text, tokens, tokens_lists)
         rescue BASICException
           statement = InvalidStatement.new(text)
         end
@@ -94,7 +95,23 @@ class StatementFactory
     [keywords, tokens]
   end
 
-  def create_statement(keywords, text, tokens)
+  def split_keywords(tokens)
+    results = []
+    nonkeywords = []
+    tokens.each do |token|
+      if token.keyword?
+        results << nonkeywords unless nonkeywords.empty?
+        nonkeywords = []
+        results << token
+      else
+        nonkeywords << token
+      end
+    end
+    results << nonkeywords unless nonkeywords.empty?
+    results
+  end
+
+  def create_statement(keywords, text, tokens, tokens_lists)
     statement = UnknownStatement.new(text)
 
     if keywords.empty? && tokens.empty?
@@ -102,7 +119,7 @@ class StatementFactory
     else
       if @statement_definitions.key?(keywords)
         statement =
-          @statement_definitions[keywords].new(keywords, text, tokens)
+          @statement_definitions[keywords].new(keywords, text, tokens, tokens_lists)
       end
     end
     statement
@@ -214,7 +231,7 @@ end
 class AbstractStatement
   attr_reader :errors
 
-  def initialize(keywords, text, tokens)
+  def initialize(keywords, text, tokens, tokens_lists)
     @keywords = keywords
     @text = text
     @tokens = tokens
@@ -230,22 +247,6 @@ class AbstractStatement
   end
 
   protected
-
-  def split_keywords(tokens)
-    results = []
-    nonkeywords = []
-    tokens.each do |token|
-      if token.keyword?
-        results << nonkeywords unless nonkeywords.empty?
-        nonkeywords = []
-        results << token
-      else
-        nonkeywords << token
-      end
-    end
-    results << nonkeywords unless nonkeywords.empty?
-    results
-  end
 
   def check_template(tokens_lists, template)
     return false unless tokens_lists.size == template.size
@@ -337,7 +338,7 @@ end
 # unparsed statement
 class InvalidStatement < AbstractStatement
   def initialize(line)
-    super([], line, [])
+    super([], line, [], [])
     @errors << 'Invalid statement'
   end
 
@@ -357,7 +358,7 @@ end
 # unknown statement
 class UnknownStatement < AbstractStatement
   def initialize(line)
-    super([], line, [])
+    super([], line, [], [])
     @errors << "Unknown statement '#{@text.strip}'"
   end
 
@@ -373,7 +374,7 @@ end
 # empty statement (line number only)
 class EmptyStatement < AbstractStatement
   def initialize
-    super([], '', [])
+    super([], '', [], [])
   end
 
   def to_s
@@ -394,8 +395,8 @@ class RemarkStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     @rest = tokens
   end
 
@@ -413,9 +414,8 @@ class ChangeStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = [[], 'TO', []]
 
     if check_template(tokens_lists, template)
@@ -486,14 +486,13 @@ class DimStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = [[]]
 
     @expression_list = []
     if check_template(tokens_lists, template)
-      tokens_lists = split_tokens(@tokens, false)
+      tokens_lists = split_tokens(tokens, false)
       tokens_lists.each do |tokens_list|
         begin
           @expression_list <<
@@ -528,13 +527,12 @@ class FilesStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = [[]]
 
     if check_template(tokens_lists, template)
-      @expressions = ValueScalarExpression.new(@tokens)
+      @expressions = ValueScalarExpression.new(tokens)
     else
       @errors << 'Syntax error'
     end
@@ -559,13 +557,12 @@ class GotoStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    @destination = nil
-    @destinations = nil
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template1 = [[1]]
     template2 = [[], 'OF', []]
+    @destination = nil
+    @destinations = nil
 
     if check_template(tokens_lists, template1)
       if tokens[0].numeric_constant?
@@ -630,14 +627,13 @@ class GosubStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = [[1]]
 
     if check_template(tokens_lists, template)
       if @tokens[0].numeric_constant?
-        @destination = LineNumberIndex.new(LineNumber.new(@tokens[0]), 0)
+        @destination = LineNumberIndex.new(LineNumber.new(tokens[0]), 0)
       else
         @errors << "Invalid line number #{tokens[0]}"
       end
@@ -660,14 +656,13 @@ class LetStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = [[]]
 
     if check_template(tokens_lists, template)
       begin
-        @assignment = ScalarAssignment.new(@tokens)
+        @assignment = ScalarAssignment.new(tokens)
         if @assignment.count_target.zero?
           @errors << 'Assignment must have left-hand value(s)'
         end
@@ -700,14 +695,13 @@ class LetLessStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = [[]]
 
     if check_template(tokens_lists, template)
       begin
-        @assignment = ScalarAssignment.new(@tokens)
+        @assignment = ScalarAssignment.new(tokens)
         if @assignment.count_target.zero?
           @errors << 'Assignment must have left-hand value(s)'
         end
@@ -741,9 +735,8 @@ class InputStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = [[]]
 
     unless check_template(tokens_lists, template)
@@ -856,9 +849,8 @@ class IfStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template1 = [[], 'THEN', [1]]
     template2 = [[], 'GOTO', [1]]
 
@@ -907,8 +899,8 @@ end
 
 # common for PRINT, ARR PRINT, MAT PRINT
 class AbstractPrintStatement < AbstractStatement
-  def initialize(keywords, line, tokens, final_carriage)
-    super(keywords, line, tokens)
+  def initialize(keywords, line, tokens, tokens_lists, final_carriage)
+    super(keywords, line, tokens, tokens_lists)
     @final = final_carriage
   end
 
@@ -950,15 +942,14 @@ class PrintStatement < AbstractPrintStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens, CarriageControl.new('NL'))
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super(keywords, line, tokens, tokens_lists, CarriageControl.new('NL'))
     template1 = []
     template2 = [[]]
 
     if check_template(tokens_lists, template1) ||
        check_template(tokens_lists, template2)
-      tokens_lists = split_tokens(@tokens, true)
+      tokens_lists = split_tokens(tokens, true)
       @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
@@ -1011,9 +1002,8 @@ class ReturnStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = []
 
     unless check_template(tokens_lists, template)
@@ -1034,9 +1024,8 @@ class OnStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template1 = [[], 'GOTO', []]
     template2 = [[], 'THEN', []]
 
@@ -1136,9 +1125,8 @@ class ForStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template1 = [[], 'TO', []]
     template2 = [[], 'TO', [], 'STEP', []]
 
@@ -1223,18 +1211,17 @@ class NextStatement < AbstractStatement
 
   attr_reader :control
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = [[1]]
 
     if check_template(tokens_lists, template)
       # parse control variable
       @control = nil
-      if @tokens[0].variable?
-        @control = VariableName.new(@tokens[0])
+      if tokens[0].variable?
+        @control = VariableName.new(tokens[0])
       else
-        @errors << "Invalid control variable #{@tokens[0]}"
+        @errors << "Invalid control variable #{tokens[0]}"
       end
     else
       @errors << 'Syntax error'
@@ -1261,7 +1248,7 @@ end
 
 # common for READ, ARR READ, MAT READ
 class AbstractReadStatement < AbstractStatement
-  def initialize(keywords, line, tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
     super
   end
 
@@ -1302,9 +1289,8 @@ class ReadStatement < AbstractReadStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = [[]]
 
     unless check_template(tokens_lists, template)
@@ -1347,13 +1333,12 @@ class DataStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = [[]]
 
     if check_template(tokens_lists, template)
-      @expressions = ValueScalarExpression.new(@tokens)
+      @expressions = ValueScalarExpression.new(tokens)
     else
       @errors << 'Syntax error'
     end
@@ -1379,9 +1364,8 @@ class RestoreStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = []
 
     unless check_template(tokens_lists, template)
@@ -1403,9 +1387,8 @@ class DefineFunctionStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = [[]]
 
     if check_template(tokens_lists, template)
@@ -1413,7 +1396,7 @@ class DefineFunctionStatement < AbstractStatement
       @arguments = []
       @template = ''
       begin
-        user_function_definition = UserFunctionDefinition.new(@tokens)
+        user_function_definition = UserFunctionDefinition.new(tokens)
         @name = user_function_definition.name
         @arguments = user_function_definition.arguments
         @template = user_function_definition.template
@@ -1442,9 +1425,8 @@ class StopStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = []
 
     unless check_template(tokens_lists, template)
@@ -1467,9 +1449,8 @@ class EndStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = []
 
     unless check_template(tokens_lists, template)
@@ -1498,9 +1479,8 @@ class TraceStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = [[]]
 
     unless check_template(tokens_lists, template)
@@ -1520,8 +1500,8 @@ end
 
 # common for WRITE, ARR WRITE, MAT WRITE
 class AbstractWriteStatement < AbstractStatement
-  def initialize(keywords, line, tokens, final_carriage)
-    super(keywords, line, tokens)
+  def initialize(keywords, line, tokens, tokens_lists, final_carriage)
+    super(keywords, line, tokens, tokens_lists)
     @final = final_carriage
   end
 
@@ -1562,13 +1542,12 @@ class WriteStatement < AbstractWriteStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens, CarriageControl.new('NL'))
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super(keywords, line, tokens, tokens_lists, CarriageControl.new('NL'))
     template = [[]]
 
     if check_template(tokens_lists, template)
-      tokens_lists = split_tokens(@tokens, true)
+      tokens_lists = split_tokens(tokens, true)
       @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
@@ -1620,13 +1599,12 @@ class ArrPrintStatement < AbstractPrintStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens, CarriageControl.new(','))
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super(keywords, line, tokens, tokens_lists, CarriageControl.new(','))
     template = [[]]
 
     if check_template(tokens_lists, template)
-      tokens_lists = split_tokens(@tokens, true)
+      tokens_lists = split_tokens(tokens, true)
       @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
@@ -1673,13 +1651,12 @@ class ArrWriteStatement < AbstractWriteStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens, CarriageControl.new(','))
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super(keywords, line, tokens, tokens_lists, CarriageControl.new(','))
     template = [[]]
 
     if check_template(tokens_lists, template)
-      tokens_lists = split_tokens(@tokens, true)
+      tokens_lists = split_tokens(tokens, true)
       @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
@@ -1726,13 +1703,12 @@ class MatWriteStatement < AbstractWriteStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens, CarriageControl.new(','))
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super(keywords, line, tokens, tokens_lists, CarriageControl.new(','))
     template = [[]]
 
     if check_template(tokens_lists, template)
-      tokens_lists = split_tokens(@tokens, true)
+      tokens_lists = split_tokens(tokens, true)
       @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
@@ -1779,9 +1755,8 @@ class ArrReadStatement < AbstractReadStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = [[]]
 
     unless check_template(tokens_lists, template)
@@ -1846,14 +1821,13 @@ class ArrLetStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = [[]]
 
     if check_template(tokens_lists, template)
       begin
-        @assignment = ArrayAssignment.new(@tokens)
+        @assignment = ArrayAssignment.new(tokens)
         if @assignment.count_target.zero?
           @errors << 'Assignment must have left-hand value(s)'
         end
@@ -1905,13 +1879,12 @@ class MatPrintStatement < AbstractPrintStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens, CarriageControl.new(','))
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super(keywords, line, tokens, tokens_lists, CarriageControl.new(','))
     template = [[]]
 
     if check_template(tokens_lists, template)
-      tokens_lists = split_tokens(@tokens, true)
+      tokens_lists = split_tokens(tokens, true)
       @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
@@ -1958,9 +1931,8 @@ class MatReadStatement < AbstractReadStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = [[]]
 
     unless check_template(tokens_lists, template)
@@ -2038,14 +2010,13 @@ class MatLetStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = [[]]
 
     if check_template(tokens_lists, template)
       begin
-        @assignment = MatrixAssignment.new(@tokens)
+        @assignment = MatrixAssignment.new(tokens)
         if @assignment.count_target.zero?
           @errors << 'Assignment must have left-hand value(s)'
         end
@@ -2094,9 +2065,8 @@ class RandomizeStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, line, tokens)
-    super(keywords, line, tokens)
-    tokens_lists = split_keywords(@tokens)
+  def initialize(keywords, line, tokens, tokens_lists)
+    super
     template = []
 
     unless check_template(tokens_lists, template)
