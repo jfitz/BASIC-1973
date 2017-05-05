@@ -266,6 +266,9 @@ class AbstractStatement
         if control.size == 1
           result &= value.size == control[0]
         end
+        if control.size == 2 && control[1] == '>='
+          result &= value.size >= control[0]
+        end
       end
     end
     result
@@ -397,7 +400,7 @@ class RemarkStatement < AbstractStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super
-    @rest = tokens
+    @rest = tokens_lists[0]
   end
 
   def execute(_, _)
@@ -416,7 +419,7 @@ class ChangeStatement < AbstractStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super
-    template = [[], 'TO', []]
+    template = [[1, '>='], 'TO', [1, '=']]
 
     if check_template(tokens_lists, template)
       @source_tokens = tokens_lists[0]
@@ -488,11 +491,11 @@ class DimStatement < AbstractStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super
-    template = [[]]
+    template = [[1, '>=']]
 
     @expression_list = []
     if check_template(tokens_lists, template)
-      tokens_lists = split_tokens(tokens, false)
+      tokens_lists = split_tokens(tokens_lists[0], false)
       tokens_lists.each do |tokens_list|
         begin
           @expression_list <<
@@ -529,10 +532,10 @@ class FilesStatement < AbstractStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super
-    template = [[]]
+    template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      @expressions = ValueScalarExpression.new(tokens)
+      @expressions = ValueScalarExpression.new(tokens_lists[0])
     else
       @errors << 'Syntax error'
     end
@@ -560,15 +563,15 @@ class GotoStatement < AbstractStatement
   def initialize(keywords, line, tokens, tokens_lists)
     super
     template1 = [[1]]
-    template2 = [[], 'OF', []]
+    template2 = [[1, '>='], 'OF', [1, '>=']]
     @destination = nil
     @destinations = nil
 
     if check_template(tokens_lists, template1)
-      if tokens[0].numeric_constant?
-        @destination = LineNumberIndex.new(LineNumber.new(tokens[0]), 0)
+      if tokens_lists[0][0].numeric_constant?
+        @destination = LineNumberIndex.new(LineNumber.new(tokens_lists[0][0]), 0)
       else
-        @errors << "Invalid line number #{tokens[0]}"
+        @errors << "Invalid line number #{tokens_lists[0][0]}"
       end
     elsif check_template(tokens_lists, template2)
       expression = tokens_lists[0]
@@ -632,10 +635,10 @@ class GosubStatement < AbstractStatement
     template = [[1]]
 
     if check_template(tokens_lists, template)
-      if @tokens[0].numeric_constant?
-        @destination = LineNumberIndex.new(LineNumber.new(tokens[0]), 0)
+      if tokens_lists[0][0].numeric_constant?
+        @destination = LineNumberIndex.new(LineNumber.new(tokens_lists[0][0]), 0)
       else
-        @errors << "Invalid line number #{tokens[0]}"
+        @errors << "Invalid line number #{tokens_lists[0][0]}"
       end
     else
       @errors << 'Syntax error'
@@ -658,11 +661,11 @@ class LetStatement < AbstractStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super
-    template = [[]]
+    template = [[3, '>=']]
 
     if check_template(tokens_lists, template)
       begin
-        @assignment = ScalarAssignment.new(tokens)
+        @assignment = ScalarAssignment.new(tokens_lists[0])
         if @assignment.count_target.zero?
           @errors << 'Assignment must have left-hand value(s)'
         end
@@ -697,11 +700,11 @@ class LetLessStatement < AbstractStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super
-    template = [[]]
+    template = [[3, '>=']]
 
     if check_template(tokens_lists, template)
       begin
-        @assignment = ScalarAssignment.new(tokens)
+        @assignment = ScalarAssignment.new(tokens_lists[0])
         if @assignment.count_target.zero?
           @errors << 'Assignment must have left-hand value(s)'
         end
@@ -737,7 +740,7 @@ class InputStatement < AbstractStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super
-    template = [[]]
+    template = [[1, '>=']]
 
     unless check_template(tokens_lists, template)
       @errors << 'Syntax error'
@@ -851,8 +854,8 @@ class IfStatement < AbstractStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super
-    template1 = [[], 'THEN', [1]]
-    template2 = [[], 'GOTO', [1]]
+    template1 = [[1, '>='], 'THEN', [1]]
+    template2 = [[1, '>='], 'GOTO', [1]]
 
     if check_template(tokens_lists, template1) ||
        check_template(tokens_lists, template2)
@@ -945,11 +948,12 @@ class PrintStatement < AbstractPrintStatement
   def initialize(keywords, line, tokens, tokens_lists)
     super(keywords, line, tokens, tokens_lists, CarriageControl.new('NL'))
     template1 = []
-    template2 = [[]]
+    template2 = [[1, '>=']]
 
-    if check_template(tokens_lists, template1) ||
-       check_template(tokens_lists, template2)
-      tokens_lists = split_tokens(tokens, true)
+    if check_template(tokens_lists, template1)
+      @print_items = tokens_to_expressions([])
+    elsif check_template(tokens_lists, template2)
+      tokens_lists = split_tokens(tokens_lists[0], true)
       @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
@@ -1026,8 +1030,8 @@ class OnStatement < AbstractStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super
-    template1 = [[], 'GOTO', []]
-    template2 = [[], 'THEN', []]
+    template1 = [[1, '>='], 'GOTO', [1, '>=']]
+    template2 = [[1, '>='], 'THEN', [1, '>=']]
 
     if check_template(tokens_lists, template1) ||
        check_template(tokens_lists, template2)
@@ -1127,8 +1131,8 @@ class ForStatement < AbstractStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super
-    template1 = [[], 'TO', []]
-    template2 = [[], 'TO', [], 'STEP', []]
+    template1 = [[1, '>='], 'TO', [1, '>=']]
+    template2 = [[1, '>='], 'TO', [1, '>='], 'STEP', [1, '>=']]
 
     if check_template(tokens_lists, template1)
       begin
@@ -1218,10 +1222,10 @@ class NextStatement < AbstractStatement
     if check_template(tokens_lists, template)
       # parse control variable
       @control = nil
-      if tokens[0].variable?
-        @control = VariableName.new(tokens[0])
+      if tokens_lists[0][0].variable?
+        @control = VariableName.new(tokens_lists[0][0])
       else
-        @errors << "Invalid control variable #{tokens[0]}"
+        @errors << "Invalid control variable #{tokens_lists[0][0]}"
       end
     else
       @errors << 'Syntax error'
@@ -1291,7 +1295,7 @@ class ReadStatement < AbstractReadStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super
-    template = [[]]
+    template = [[1, '>=']]
 
     unless check_template(tokens_lists, template)
       @errors << 'Syntax error'
@@ -1335,10 +1339,10 @@ class DataStatement < AbstractStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super
-    template = [[]]
+    template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      @expressions = ValueScalarExpression.new(tokens)
+      @expressions = ValueScalarExpression.new(tokens_lists[0])
     else
       @errors << 'Syntax error'
     end
@@ -1389,14 +1393,14 @@ class DefineFunctionStatement < AbstractStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super
-    template = [[]]
+    template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
       @name = ''
       @arguments = []
       @template = ''
       begin
-        user_function_definition = UserFunctionDefinition.new(tokens)
+        user_function_definition = UserFunctionDefinition.new(tokens_lists[0])
         @name = user_function_definition.name
         @arguments = user_function_definition.arguments
         @template = user_function_definition.template
@@ -1481,7 +1485,7 @@ class TraceStatement < AbstractStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super
-    template = [[]]
+    template = [[1, '>=']]
 
     unless check_template(tokens_lists, template)
       @errors << 'Syntax error'
@@ -1544,10 +1548,10 @@ class WriteStatement < AbstractWriteStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super(keywords, line, tokens, tokens_lists, CarriageControl.new('NL'))
-    template = [[]]
+    template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      tokens_lists = split_tokens(tokens, true)
+      tokens_lists = split_tokens(tokens_lists[0], true)
       @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
@@ -1601,10 +1605,10 @@ class ArrPrintStatement < AbstractPrintStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super(keywords, line, tokens, tokens_lists, CarriageControl.new(','))
-    template = [[]]
+    template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      tokens_lists = split_tokens(tokens, true)
+      tokens_lists = split_tokens(tokens_lists[0], true)
       @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
@@ -1653,10 +1657,10 @@ class ArrWriteStatement < AbstractWriteStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super(keywords, line, tokens, tokens_lists, CarriageControl.new(','))
-    template = [[]]
+    template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      tokens_lists = split_tokens(tokens, true)
+      tokens_lists = split_tokens(tokens_lists[0], true)
       @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
@@ -1705,10 +1709,10 @@ class MatWriteStatement < AbstractWriteStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super(keywords, line, tokens, tokens_lists, CarriageControl.new(','))
-    template = [[]]
+    template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      tokens_lists = split_tokens(tokens, true)
+      tokens_lists = split_tokens(tokens_lists[0], true)
       @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
@@ -1757,7 +1761,7 @@ class ArrReadStatement < AbstractReadStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super
-    template = [[]]
+    template = [[1, '>=']]
 
     unless check_template(tokens_lists, template)
       @errors << 'Syntax error'
@@ -1823,11 +1827,11 @@ class ArrLetStatement < AbstractStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super
-    template = [[]]
+    template = [[3, '>=']]
 
     if check_template(tokens_lists, template)
       begin
-        @assignment = ArrayAssignment.new(tokens)
+        @assignment = ArrayAssignment.new(tokens_lists[0])
         if @assignment.count_target.zero?
           @errors << 'Assignment must have left-hand value(s)'
         end
@@ -1881,10 +1885,10 @@ class MatPrintStatement < AbstractPrintStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super(keywords, line, tokens, tokens_lists, CarriageControl.new(','))
-    template = [[]]
+    template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      tokens_lists = split_tokens(tokens, true)
+      tokens_lists = split_tokens(tokens_lists[0], true)
       @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
@@ -1933,7 +1937,7 @@ class MatReadStatement < AbstractReadStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super
-    template = [[]]
+    template = [[1, '>=']]
 
     unless check_template(tokens_lists, template)
       @errors << 'Syntax error'
@@ -2012,11 +2016,11 @@ class MatLetStatement < AbstractStatement
 
   def initialize(keywords, line, tokens, tokens_lists)
     super
-    template = [[]]
+    template = [[3, '>=']]
 
     if check_template(tokens_lists, template)
       begin
-        @assignment = MatrixAssignment.new(tokens)
+        @assignment = MatrixAssignment.new(tokens_lists[0])
         if @assignment.count_target.zero?
           @errors << 'Assignment must have left-hand value(s)'
         end
