@@ -895,6 +895,7 @@ class IfStatement < AbstractStatement
       tokens = tokens_lists[2..-1].flatten
       statement_factory = StatementFactory.new
       @statement = statement_factory.create_statement(tokens)
+      @errors += @statement.errors
     else
       @errors << 'Syntax error'
     end
