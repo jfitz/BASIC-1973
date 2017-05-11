@@ -24,6 +24,22 @@ class StatementFactory
     [line_number, line]
   end
 
+  def create_statement(statement_tokens)
+    if statement_tokens.empty?
+      statement = EmptyStatement.new
+    else
+      keywords, tokens = extract_keywords(statement_tokens)
+      if @statement_definitions.key?(keywords)
+        tokens_lists = split_keywords(tokens)
+        statement =
+          @statement_definitions[keywords].new(keywords, tokens_lists)
+      else
+        statement = nil
+      end
+    end
+    statement
+  end
+
   private
 
   def create(text, all_tokens, comment)
@@ -108,22 +124,6 @@ class StatementFactory
     end
     results << nonkeywords unless nonkeywords.empty?
     results
-  end
-
-  def create_statement(statement_tokens)
-    if statement_tokens.empty?
-      statement = EmptyStatement.new
-    else
-      keywords, tokens = extract_keywords(statement_tokens)
-      if @statement_definitions.key?(keywords)
-        tokens_lists = split_keywords(tokens)
-        statement =
-          @statement_definitions[keywords].new(keywords, tokens_lists)
-      else
-        statement = nil
-      end
-    end
-    statement
   end
 
   def tokenize(text)
@@ -250,6 +250,32 @@ class AbstractStatement
 
   def check_template(tokens_lists, template)
     return false unless tokens_lists.size == template.size
+
+    result = true
+    zip = template.zip(tokens_lists)
+    zip.each do |pair|
+      control = pair[0]
+      value = pair[1]
+
+      case control.class.to_s
+      when 'String'
+        result &= (value.keyword? &&
+                   value.to_s == control)
+      when 'Array'
+        result &= (value.class.to_s == 'Array')
+        if control.size == 1
+          result &= value.size == control[0]
+        end
+        if control.size == 2 && control[1] == '>='
+          result &= value.size >= control[0]
+        end
+      end
+    end
+    result
+  end
+
+  def check_template_2(tokens_lists, template)
+    return false unless tokens_lists.size >= template.size
 
     result = true
     zip = template.zip(tokens_lists)
@@ -857,12 +883,18 @@ class IfStatement < AbstractStatement
     super
     template1 = [[1, '>='], 'THEN', [1]]
     template2 = [[1, '>='], 'GOTO', [1]]
+    template3 = [[1, '>='], 'THEN']
 
+    @destination = nil
     if check_template(tokens_lists, template1) ||
        check_template(tokens_lists, template2)
-      condition = tokens_lists[0]
-      destination = tokens_lists[2]
-      parse_line(condition, destination[0])
+      @expression = parse_expression(tokens_lists[0])
+      @destination = parse_destination(tokens_lists[2][0])
+    elsif check_template_2(tokens_lists, template3)
+      @expression = parse_expression(tokens_lists[0])
+      tokens = tokens_lists[2..-1].flatten
+      statement_factory = StatementFactory.new
+      @statement = statement_factory.create_statement(tokens)
     else
       @errors << 'Syntax error'
     end
@@ -878,7 +910,17 @@ class IfStatement < AbstractStatement
     result = values[0]
     raise(BASICException, 'Expression error') unless
       result.class.to_s == 'BooleanConstant'
-    interpreter.next_line_index = @destination if result.value
+    if result.value
+      if !@destination.nil?
+        interpreter.next_line_index = @destination
+      end
+      if !@statement.nil?
+        @statement.execute(interpreter, trace)
+      end
+    else
+      next_line_index = interpreter.find_next_line
+      interpreter.next_line_index = next_line_index
+    end
     return unless trace
     s = ' ' + result.to_s
     io.trace_output(s)
@@ -886,18 +928,24 @@ class IfStatement < AbstractStatement
 
   private
 
-  def parse_line(expression, destination)
-    if destination.numeric_constant?
-      @destination = LineNumberIndex.new(LineNumber.new(destination), 0)
-    else
-      @errors << "Invalid line number #{destination}"
-    end
-
+  def parse_expression(expression_tokens)
+    expression = nil
     begin
-      @expression = ValueScalarExpression.new(expression)
+      expression = ValueScalarExpression.new(expression_tokens)
     rescue BASICException => e
       @errors << e.message
     end
+    expression
+  end
+
+  def parse_destination(destination_token)
+    destination = nil
+    if destination_token.numeric_constant?
+      destination = LineNumberIndex.new(LineNumber.new(destination_token), 0)
+    else
+      @errors << "Invalid line number #{destination}"
+    end
+    destination
   end
 end
 

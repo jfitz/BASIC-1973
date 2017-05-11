@@ -504,6 +504,24 @@ class Interpreter
     nil
   end
 
+  def find_next_line
+    # find next numbered statement
+    line_number = @current_line_index.number
+
+    # find the next line
+    line_numbers = @program_lines.keys.sort
+    line_number = @current_line_index.number
+    index = line_numbers.index(line_number)
+    line_number = line_numbers[index + 1]
+    unless line_number.nil?
+      next_line_index = LineNumberIndex.new(line_number, 0)
+      return next_line_index
+    end
+
+    # nothing left to execute
+    nil
+  end
+
   def trace(tron_flag)
     @tron_flag = tron_flag
   end

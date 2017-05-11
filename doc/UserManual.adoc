@@ -635,12 +635,13 @@ Conditionally changes the flow of the program, based on an expression.
 
 Syntax:	IF expression THEN line number
         IF expression GOTO line number
+	IF expression THEN statement
 
 The expression must be in the form "expression operator expression" where operator is limited to the comparion operations.
 Boolean operators such as "and" or "or" are not permitted.
 The two arguments in the boolean expression may be numeric constants, text constants, variables, or arithmetic expressions.
 
-The "target" after the THEN or GOTO keyword must be a line number; it cannot be a statement.
+The "target" after the THEN keyword must be a line number or a statement. The target after a GOTO keyword must be a line number.
 
 Examples:
 
@@ -649,6 +650,7 @@ Examples:
 	120 IF G1 <= G2 THEN 301
 	130 IF A$ = "HELLO" THEN 202
 	140 IF L<>INT(L) GOTO 200
+	150 IF A = 10 THEN PRINT "SUCCESS"
 
 INPUT
 ~~~~~

@@ -10,24 +10,17 @@
 43 NEXT I
 45 LET P = 4 : LET A = 0 : GOSUB 300
 50 PRINT V "BULL"; : IF V <> 1 THEN PRINT "S";
- Syntax error
 55 IF V = 5 THEN PRINT " - YOU WIN" : GOTO 20
- Syntax error
 60 PRINT W - V "COW"; : IF W <> V + 1 THEN PRINT "S";
- Syntax error
 65 IF J = 0 THEN LET A = 1 : GOTO 200
- Syntax error
 68 GOSUB 400
 70 PRINT " - MY GUESS IS ";
 75 FOR I = 0 TO 4 : PRINT CHR$(D(J, I) + 48); : NEXT I
 80 PRINT " MY SCORE "; : INPUT B(J), C(J) : LET C(J) = C(J) + B(J)
 81 IF B(J) > -1 THEN IF B(J) < 6 THEN IF C(J) < 6 THEN IF C(J) - B(J) > -1 GOTO 80
- Syntax error
 82 PRINT " - RIDICULOUS! !"; : GOTO 70
 83 IF B(J) = 4 THEN IF C(J) = 5 GOTO 82
- Syntax error
 85 IF B(J) = 5 THEN PRINT " - I WIN - MV NUMBER WAS"; : GOTO 100
- Syntax error
 98 GOTO 35
 100 FOR I = 0 TO 4 : PRINT CHR$(D(0, I) + 48); : NEXT I
 110 GOTO 20
@@ -42,9 +35,7 @@
 260 LET J = 1 : GOTO 70
 300 LET V = 0 : LET W = 0
 310 FOR I = 0 TO P : IF D(A, I) = G(I) THEN LET V = V + 1
- Syntax error
 320 FOR K = 0 TO 4 : IF D(A, K) = G(I) THEN LET W = W + 1
- Syntax error
 330 NEXT K
 340 NEXT I
 350 RETURN
@@ -54,14 +45,10 @@
 415 NEXT I
 420 FOR A = 1 TO J : GOSUB 380
 425 IF V <= B(A) THEN IF W <= C(A) THEN IF 4 - P >= C(A) - W THEN IF 4 - P >= B(A) - V GOTO 440
- Syntax error
 430 LET G(P) = G(P) + 3 : IF G(P) > 9 THEN LET G(P) = G(P) - 10
- Syntax error
 432 IF P = 0 THEN IF G(P) = D(1, 0) GOTO 150
- Syntax error
 435 IF G(P) <> D(J, P) GOTO 410
 440 LET P = P - 1 : IF P < 0 THEN GOTO 150
- Syntax error
 445 GOTO 430
 448 NEXT A
 450 LET P = P + 1 : IF P < 5 GOTO 405
