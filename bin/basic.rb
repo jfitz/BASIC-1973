@@ -650,14 +650,27 @@ class Interpreter
   end
 
   def find_closing_next(control_variable)
-    # starting with @next_line_index
+    # move to the next statement
+    line_number = @current_line_index.number
+    line_index = @current_line_index.index + 1
+    line = @program_lines[line_number]
+    statements = line.statements
     line_numbers = @program_lines.keys.sort
-    forward_line_numbers =
-      line_numbers.select do |line_number|
+    if line_index >= statements.size
+      forward_line_numbers =
+        line_numbers.select do |line_number|
         line_number > @current_line_index.number
       end
-    # find a NEXT statement with matching control variable
-    forward_line_numbers.each do |line_number|
+    else
+      forward_line_numbers =
+        line_numbers.select do |line_number|
+        line_number >= @current_line_index.number
+      end
+    end
+
+    # search for a NEXT with the same control variable
+    while forward_line_numbers.size > 0
+      line_number = forward_line_numbers[0]
       line = @program_lines[line_number]
       statements = line.statements
       index = 0
@@ -667,7 +680,10 @@ class Interpreter
           statement.control == control_variable
         index += 1
       end
+
+      forward_line_numbers.shift
     end
+
     raise(BASICException, 'FOR without NEXT') # if none found, error
   end
 
