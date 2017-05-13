@@ -642,7 +642,7 @@ class Interpreter
     upper_bound = 1 if upper_bound <= 0
     upper_bound = 1 if @ignore_rnd_arg
     upper_bound = upper_bound.to_f
-    NumericConstant.new(@randomizer.rand(upper_bound))
+    AutoNumericConstant.new(@randomizer.rand(upper_bound))
   end
 
   def new_random
@@ -722,7 +722,7 @@ class Interpreter
     if @dimensions.key?(variable)
       @dimensions[variable]
     else
-      Array.new(count, NumericConstant.new(10))
+      Array.new(count, AutoNumericConstant.new(10))
     end
   end
 
@@ -731,7 +731,7 @@ class Interpreter
   def check_subscripts(variable, subscripts)
     subscripts.each do |subscript|
       raise(BASICException, "Non-numeric subscript '#{subscript}'") if
-        subscript.class.to_s != 'NumericConstant'
+        subscript.class.to_s != 'AutoNumericConstant'
     end
     dimensions = make_dimensions(variable, subscripts.size)
     raise(BASICException, 'Incorrect number of subscripts') if
@@ -754,7 +754,7 @@ class Interpreter
     if value.nil?
       v = variable.to_s
       default_type = variable.content_type
-      default_value = NumericConstant.new(0)
+      default_value = AutoNumericConstant.new(0)
       default_value = TextConstant.new(TextConstantToken.new('""')) if
         default_type == 'TextConstant'
       @variables[v] = default_value unless @variables.key?(v)
@@ -765,7 +765,7 @@ class Interpreter
 
   def set_value(variable, value, trace)
     # convert a numeric to a string when a string is expected
-    if value.class.to_s == "NumericConstant" && variable.content_type == "TextConstant"
+    if value.class.to_s == "AutoNumericConstant" && variable.content_type == "TextConstant"
       val = value.token_chars
       quoted_val = '"' + val + '"'
       token = TextConstantToken.new(quoted_val)

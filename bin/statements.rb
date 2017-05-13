@@ -356,11 +356,11 @@ class AbstractStatement
   end
 
   def make_coord(c)
-    [NumericConstant.new(c)]
+    [AutoNumericConstant.new(c)]
   end
 
   def make_coords(r, c)
-    [NumericConstant.new(r), NumericConstant.new(c)]
+    [AutoNumericConstant.new(r), AutoNumericConstant.new(c)]
   end
 end
 
@@ -477,7 +477,7 @@ class ChangeStatement < AbstractStatement
       values = array.values
       interpreter.set_values(target_variable_name, values, trace)
 
-    elsif source_value.class.to_s == 'NumericConstant'
+    elsif source_value.class.to_s == 'AutoNumericConstant'
       target = TargetExpression.new(@target_tokens, ScalarReference)
       target_values = target.evaluate(interpreter)
       target_value = target_values[0]
@@ -638,7 +638,7 @@ class GotoStatement < AbstractStatement
       raise(BASICException, 'Expecting one value') unless values.size == 1
       value = values[0]
       raise(BASICException, 'Invalid value') unless
-        value.class.to_s == 'NumericConstant'
+        value.class.to_s == 'AutoNumericConstant'
       puts ' ' + @expression.to_s + ' = ' + value.to_s if trace
       index = value.to_i
       raise(BASICException, 'Index out of range') if
@@ -1116,7 +1116,7 @@ class OnStatement < AbstractStatement
     raise(BASICException, 'Expecting one value') unless values.size == 1
     value = values[0]
     raise(BASICException, 'Invalid value') unless
-      value.class.to_s == 'NumericConstant'
+      value.class.to_s == 'AutoNumericConstant'
     puts ' ' + @expression.to_s + ' = ' + value.to_s if trace
     index = value.to_i
     raise(BASICException, 'Index out of range') if
@@ -1148,7 +1148,7 @@ class ForNextControl
   end
 
   def front_terminated?
-    zero = NumericConstant.new(0)
+    zero = AutoNumericConstant.new(0)
     if @step_value > zero
       @start > @end
     elsif @step_value < zero
@@ -1159,7 +1159,7 @@ class ForNextControl
   end
 
   def terminated?(interpreter)
-    zero = NumericConstant.new(0)
+    zero = AutoNumericConstant.new(0)
     current_value = interpreter.get_value(@control)
     if @step_value > zero
       current_value + @step_value > @end

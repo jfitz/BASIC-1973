@@ -329,7 +329,7 @@ class FileHandler
     converted = []
 
     tokens.each do |token|
-      t = NumericConstant.new(token) if token.numeric_constant?
+      t = AutoNumericConstant.new(token) if token.numeric_constant?
       t = TextConstant.new(token) if token.text_constant?
       converted << t
     end

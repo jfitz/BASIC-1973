@@ -75,11 +75,11 @@ class AbstractElement
   protected
 
   def make_coord(c)
-    [NumericConstant.new(c)]
+    [AutoNumericConstant.new(c)]
   end
 
   def make_coords(r, c)
-    [NumericConstant.new(r), NumericConstant.new(c)]
+    [AutoNumericConstant.new(r), AutoNumericConstant.new(c)]
   end
 end
 
@@ -164,8 +164,8 @@ end
 
 public
 
-# Numeric constants
-class NumericConstant < AbstractElement
+# AutoNumeric constants
+class AutoNumericConstant < AbstractElement
   def self.accept?(token)
     classes = %w(Fixnum Bignum Float NumericConstantToken)
     classes.include?(token.class.to_s)
@@ -269,36 +269,36 @@ class NumericConstant < AbstractElement
   end
 
   def +(other)
-    NumericConstant.new(@value + other.to_v)
+    AutoNumericConstant.new(@value + other.to_v)
   end
 
   def -(other)
-    NumericConstant.new(@value - other.to_v)
+    AutoNumericConstant.new(@value - other.to_v)
   end
 
   def *(other)
-    NumericConstant.new(@value * other.to_v)
+    AutoNumericConstant.new(@value * other.to_v)
   end
 
   def add(other)
-    NumericConstant.new(@value + other.to_v)
+    AutoNumericConstant.new(@value + other.to_v)
   end
 
   def subtract(other)
-    NumericConstant.new(@value - other.to_v)
+    AutoNumericConstant.new(@value - other.to_v)
   end
 
   def multiply(other)
-    NumericConstant.new(@value * other.to_v)
+    AutoNumericConstant.new(@value * other.to_v)
   end
 
   def divide(other)
-    raise(BASICException, 'Divide by zero') if other == NumericConstant.new(0)
-    NumericConstant.new(@value.to_f / other.to_v.to_f)
+    raise(BASICException, 'Divide by zero') if other == AutoNumericConstant.new(0)
+    AutoNumericConstant.new(@value.to_f / other.to_v.to_f)
   end
 
   def power(other)
-    NumericConstant.new(@value**other.to_v)
+    AutoNumericConstant.new(@value**other.to_v)
   end
 
   def array?
@@ -314,50 +314,50 @@ class NumericConstant < AbstractElement
   end
 
   def truncate
-    NumericConstant.new(@value.to_i)
+    AutoNumericConstant.new(@value.to_i)
   end
 
   def floor
-    NumericConstant.new(@value.floor)
+    AutoNumericConstant.new(@value.floor)
   end
 
   def exp
-    NumericConstant.new(Math.exp(@value))
+    AutoNumericConstant.new(Math.exp(@value))
   end
 
   def log
-    NumericConstant.new(@value > 0 ? Math.log(@value) : 0)
+    AutoNumericConstant.new(@value > 0 ? Math.log(@value) : 0)
   end
 
   def abs
-    NumericConstant.new(@value >= 0 ? @value : -@value)
+    AutoNumericConstant.new(@value >= 0 ? @value : -@value)
   end
 
   def sqrt
-    NumericConstant.new(@value > 0 ? Math.sqrt(@value) : 0)
+    AutoNumericConstant.new(@value > 0 ? Math.sqrt(@value) : 0)
   end
 
   def sin
-    NumericConstant.new(Math.sin(@value))
+    AutoNumericConstant.new(Math.sin(@value))
   end
 
   def cos
-    NumericConstant.new(Math.cos(@value))
+    AutoNumericConstant.new(Math.cos(@value))
   end
 
   def tan
-    NumericConstant.new(@value >= 0 ? Math.tan(@value) : 0)
+    AutoNumericConstant.new(@value >= 0 ? Math.tan(@value) : 0)
   end
 
   def atn
-    NumericConstant.new(Math.atan(@value))
+    AutoNumericConstant.new(Math.atan(@value))
   end
 
   def sign
     result = 0
     result = 1 if @value > 0
     result = -1 if @value < 0
-    NumericConstant.new(result)
+    AutoNumericConstant.new(result)
   end
 
   def to_i
@@ -488,14 +488,14 @@ class TextConstant < AbstractElement
   end
 
   def unpack
-    length = NumericConstant.new(@value.size)
+    length = AutoNumericConstant.new(@value.size)
     dims = [length]
     values = {}
-    values[[NumericConstant.new(0)]] = length
+    values[[AutoNumericConstant.new(0)]] = length
     index = 1
     @value.each_char do |char|
-      key = [NumericConstant.new(index)]
-      values[key] = NumericConstant.new(char.ord)
+      key = [AutoNumericConstant.new(index)]
+      values[key] = AutoNumericConstant.new(char.ord)
       index += 1
     end
     BASICArray.new(dims, values)
