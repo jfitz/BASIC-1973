@@ -271,6 +271,22 @@ class NumericConstantToken < AbstractToken
   end
 end
 
+# integer constant token
+class IntegerConstantToken < AbstractToken
+  def initialize(text)
+    super
+    @is_numeric_constant = true
+  end
+
+  def to_f
+    @text.to_f.to_i
+  end
+
+  def to_i
+    @text.to_f.to_i
+  end
+end
+
 # boolean constant token
 class BooleanConstantToken < AbstractToken
   def initialize(text)
@@ -297,6 +313,7 @@ class VariableToken < AbstractToken
 
   def content_type
     return 'TextConstant' if @text.include?('$')
+    return 'IntegerNumericConstant' if @text.include?('%')
     
     'AutoNumericConstant'
   end

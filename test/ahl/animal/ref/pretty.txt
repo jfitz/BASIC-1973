@@ -3,55 +3,43 @@
 150 & "THINK OF AN ANIMAL AND THE COMPUTER WILL TRY TO GUESS IT..." : &
 500 DIM A$(200)
 525 F$ = "ANIMAL.GME" : ON E R R OR GOTO 700
-550 O P E N F$ FOR INPUT A S F I L E1 % : INPUT #1 %, N$ : INPUT #1 %, A(I %) FOR I % =1 % TO N % : C L O S E1 % : A$(0 %) = N U M$(N %) : ON E R R OR GOTO 0 : GOTO 1300
+550 O P E N F$ FOR INPUT A S F I L E1% : INPUT #1%, N$ : INPUT #1%, A(I%) FOR I% = 1% TO N% : C L O S E1% : A$(0%) = N U M$(N%) : ON E R R OR GOTO 0 : GOTO 1300
  Syntax error
  Syntax error
  'CLOSE1%' is not a valid assignment
- Token 'InvalidToken:%' is not a value or operator
 700 ON E R R OR GOTO 1050 : F$ = "$" + F$ : RES U M E5 50
  Syntax error
-1050 READ A$(I %) FOR I % =0 % TO 3 %
+1050 READ A$(I%) FOR I% = 0% TO 3%
  Syntax error
 1100 DATA "4", "\QDOES IT SWIM\Y2\N3\", "\AFISH", "\ABIRD"
-1300 INPUT "ARE YOU THINKING OF AN ANIMAL", Z9$ : GOTO 1350 IF L E F T(Z9$, 1 %) = "Y" : GOTO 1300 IF L E F T(Z9$, 1 %) = "N"
+1300 INPUT "ARE YOU THINKING OF AN ANIMAL", Z9$ : GOTO 1350 IF L E F T(Z9$, 1%) = "Y" : GOTO 1300 IF L E F T(Z9$, 1%) = "N"
  Syntax error
  Syntax error
-1310 IF Z9$ = "SAVE" THEN O P E N "ANIMAL.GME" FOR O U T P U T A S F I L E1 % : PRINT #1 %, A$(I %) FOR I % =0 % TO V A L(A$(0 %)) : PRINT #1, CHR$(26 %) : C L O S E1 % : GOTO 1300
+1310 IF Z9$ = "SAVE" THEN O P E N "ANIMAL.GME" FOR O U T P U T A S F I L E1% : PRINT #1%, A$(I%) FOR I% = 0% TO V A L(A$(0%)) : PRINT #1, CHR$(26%) : C L O S E1% : GOTO 1300
  Syntax error
  Syntax error
- Syntax error: "CHR$(26%)" is not a value or operator
  'CLOSE1%' is not a valid assignment
-1320 IF Z9$ = "LIST" THEN PRINT "ANIMALS I ALREADY KNOW ARE:" : PRINT R I G H T(A$(I %), 3 %), IF I N S T R(1 %, A$(I %), "\A") FOR I % =1 % TO 200 % : PRINT : GOTO 1300
+1320 IF Z9$ = "LIST" THEN PRINT "ANIMALS I ALREADY KNOW ARE:" : PRINT R I G H T(A$(I%), 3%), IF I N S T R(1%, A$(I%), "\A") FOR I% = 1% TO 200% : PRINT : GOTO 1300
  Syntax error
-1350 K % =1 %
- Token 'InvalidToken:%' is not a value or operator
-1400 K % =FNA % (A$(K %)) : GOTO 3000 IF LEN(A$(K %)) = 0 % : GOTO 1400 IF L E F T(A$(K %), 2 %) = "\Q" : PRINT "IS IT A " R I G H T(A$(K %), 3 $); : INPUT Z7$ : Z7$ = L E F T(Z7$, 1 %)
+1350 K% = 1%
+1400 K% = FNA % (A$(K%)) : GOTO 3000 IF LEN(A$(K%)) = 0% : GOTO 1400 IF L E F T(A$(K%), 2%) = "\Q" : PRINT "IS IT A " R I G H T(A$(K%), 3 $); : INPUT Z7$ : Z7$ = L E F T(Z7$, 1%)
  Token 'InvalidToken:%' is not a value or operator
  Syntax error
  Syntax error
  Syntax error: "T(A$(K%),3$)" is not a value or operator
- Token 'InvalidToken:%' is not a value or operator
 1450 IF Z7$ = "Y" THEN PRINT "WHY NOT TRY ANOTHER ANIMAL" : GOTO 1300
 2000 INPUT "THE ANIMAL YOU WERE THINKING OF WAS A "; Z9$
-2050 PRINT "PLEASE TYPE IN A QUESTION THAT WOULD DISTINGUISH A " Z9$ " FROM A " R I G H T(A$(K %), 3 %) : INPUT Z8$
- Syntax error: "T(A$(K%),3%)" is not a value or operator
-2100 PRINT "FOR A " Z9$ " THE ANSWER WOULD BE"; : INPUT Z7$ : Z7$ = L E F T(Z7$, 1 %) : IF Z7$ = "Y" THEN Z6$ = "N" E L S E IF Z7$ = "N" THEN Z6$ = "Y" E L S E PRINT "PLEASE ANSWER 'YES' OR 'NO'" : GOTO 2100
- Token 'InvalidToken:%' is not a value or operator
+2050 PRINT "PLEASE TYPE IN A QUESTION THAT WOULD DISTINGUISH A " Z9$ " FROM A " R I G H T(A$(K%), 3%) : INPUT Z8$
+2100 PRINT "FOR A " Z9$ " THE ANSWER WOULD BE"; : INPUT Z7$ : Z7$ = L E F T(Z7$, 1%) : IF Z7$ = "Y" THEN Z6$ = "N" E L S E IF Z7$ = "N" THEN Z6$ = "Y" E L S E PRINT "PLEASE ANSWER 'YES' OR 'NO'" : GOTO 2100
  Syntax error
-2200 Z1 % =V A L(A S(0 %)) : A$(0 %) = N U M$(Z1 % +2 %) : A$(Z1 %) = A$(K %) : A$(Z1 % +1 %) =     '\A'+Z9$:A$(K%)="\Q"+Z8$+"\"+Z7$+NUM$(Z1%+1%)+"\"+Z6$+NUM$(Z1%)+"\"
- Token 'InvalidToken:%' is not a value or operator
- Token 'InvalidToken:%' is not a value or operator
- Token 'InvalidToken:%' is not a value or operator
+2200 Z1% = V A L(A S(0%)) : A$(0%) = N U M$(Z1% + 2%) : A$(Z1%) = A$(K%) : A$(Z1% + 1%) =     '\A'+Z9$:A$(K%)="\Q"+Z8$+"\"+Z7$+NUM$(Z1%+1%)+"\"+Z6$+NUM$(Z1%)+"\"
  'A$(Z1%+1%)=' is not a valid assignment
 2300 GOTO 1300
-3000 DEF FNA % (Q$) : PRINT M I D(Q$, 3 %, I N S T R(3 %, Q$, "\") - 3 %); : INPUT Z9$ : Z9$ = L E F T(Z9$, 1 %) : Z9$ = "N" IF Z9$ <> "Y" : Z1 % =I N S T R(3 %, Q$, "\" + Z9$) + 2 % : Z2 % =I N S T R(Z1 %, Q$, "\") : FNA % =V A L(M I D(Q$, Z1 %, Z2 % -Z1 %)) : FNE N D
+3000 DEF FNA % (Q$) : PRINT M I D(Q$, 3%, I N S T R(3%, Q$, "\") - 3%); : INPUT Z9$ : Z9$ = L E F T(Z9$, 1%) : Z9$ = "N" IF Z9$ <> "Y" : Z1% = I N S T R(3%, Q$, "\" + Z9$) + 2% : Z2% = I N S T R(Z1%, Q$, "\") : FNA % =V A L(M I D(Q$, Z1%, Z2% - Z1%)) : FNE N D
  'FNA%(Q$)' is not a valid assignment
  Syntax error: "D(Q$,3%,I" is not a value or operator
  Syntax error: "R(3%,Q$,"\")-3%)" is not a value or operator
- Token 'InvalidToken:%' is not a value or operator
  Syntax error
- Token 'InvalidToken:%' is not a value or operator
- Token 'InvalidToken:%' is not a value or operator
  Token 'InvalidToken:%' is not a value or operator
  'FNEND' is not a valid assignment
 9999 END

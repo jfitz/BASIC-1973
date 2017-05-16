@@ -233,11 +233,13 @@ Syntax:	SAVE filename
 Variables
 ---------
 
-Variables store numeric and text values.
-Numeric variables handle integer and floating point values automatically.
+Variables store numeric, integer, and text values.
+Numeric variables handle integer and floating point values automatically; integer variables are limited to integer values.
 
 Variable names consist of a single letter and an optional digit and an optional subscript.
 Subscripts are enclosed in parentheses or square brackets.
+Text variables include a trailing '$' character.
+Integer variables include a trailing '%' character.
 
 |==========
 |Name |Valid or reason it is not valid
@@ -261,6 +263,9 @@ Subscripts are enclosed in parentheses or square brackets.
 |H$(17) |
 |L$(1,0) |
 |B[2] |
+|I% |
+|N2%(4%) |
+|M%(5) |
 |AA |Names may have at most one letter
 |A10 |Names may have at most one digit after one letter
 |9Z |Names must start with a letter
@@ -328,6 +333,7 @@ Numeric values
 --------------
 
 Numeric values are either integers or floating point.
+Integer values may contain a trailing '%' character.
 Integers are stored internally with Ruby's Fixnum class.
 Floating point numbers are stored as Ruby's Float with full precision and printed with six significant digits.
 
@@ -349,10 +355,17 @@ Exponents may be signed or unsigned.
 |-2E3 |
 |1E-2 |
 |2.37E+4 |
+|2% |
 |0A |Only digits 0 through 9 and decimal points (and the 'E' for exponent) are permitted
 |3.03+E3 |The sign for the exponent must be after the 'E'. (This expression will be parsed as the value 3.03 plus the contents of variable E3.)
 1e4 |The 'E' for exponent must be uppercase
 |==========
+
+BASIC-1973 converts integer and numeric values readily.
+Many original variants of BASIC required an exact type match (integer to integer, numeric to numeric).
+BASIC-1973 does not require an exact match.
+It will convert the original value to the expected type.
+The conversion may result in a change of value, as integers cannot hold fractional values.
 
 String values
 -------------
@@ -366,6 +379,8 @@ Constants in the program are enclosed in double quotes.
 |"Hello" |
 |"Anytown, USA" |
 |"A "quoted" string" |Text constants may not contain the double quote character.
+
+BASIC-1973 converts numeric values (floating point or integer) to strings readily.
 
 Program statements
 ------------------
@@ -399,12 +414,12 @@ Examples:
 Multistatement lines
 ~~~~~~~~~~~~~~~~~~~~
 
-Multiple statements may be placed on a single line, separated by backslash characters.
+Multiple statements may be placed on a single line, separated by backslash characters or colon characters.
 
 Examples:
 
 	20 PRINT "HELLO" \ GOSUB 220 \ PRINT "GOODBYE"
-	300 FOR I = 1 TO 10 \ A(I) = I * 2 \ NEXT I
+	300 FOR I = 1 TO 10 : A(I) = I * 2 : NEXT I
 
 CHANGE
 ~~~~~~

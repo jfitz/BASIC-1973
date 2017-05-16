@@ -216,6 +216,14 @@ class AutoNumericConstant < AbstractElement
     raise BASICException, "'#{text}' is not a number" if @value.nil?
   end
 
+  def numeric_constant?
+    true
+  end
+
+  def text_constant?
+    false
+  end
+
   def eql?(other)
     @value == other.to_v
   end
@@ -408,6 +416,230 @@ class AutoNumericConstant < AbstractElement
   end
 end
 
+# IntegerNumeric constants
+class IntegerNumericConstant < AbstractElement
+  def self.accept?(token)
+    classes = %w(Fixnum Bignum Float IntegerConstantToken)
+    classes.include?(token.class.to_s)
+  end
+
+  def self.init?(text)
+    numeric_classes = %w(Fixnum Bignum Float)
+    numeric_classes.include?(text.class.to_s) || !numeric(text).nil?
+  end
+
+  def self.numeric(text)
+    # nnn%
+    if /\A\s*[+-]?\d+%\z/ =~ text
+      text.to_f.to_i
+    end
+  end
+
+  attr_reader :token_chars
+
+  def initialize(text)
+    super()
+    numeric_classes = %w(Fixnum Bignum Float)
+    f = text.to_i if numeric_classes.include?(text.class.to_s)
+    f = text.to_i if text.class.to_s == 'NumericConstantToken'
+    f = text.to_f.to_i if text.class.to_s == 'IntegerConstantToken'
+    @token_chars = text.to_s
+    @value = f
+    @operand = true
+    @precedence = 0
+    raise BASICException, "'#{text}' is not a number" if @value.nil?
+  end
+
+  def numeric_constant?
+    true
+  end
+
+  def text_constant?
+    false
+  end
+
+  def eql?(other)
+    @value == other.to_v
+  end
+
+  def hash
+    @value.hash
+  end
+
+  def ==(other)
+    @value == other.to_v
+  end
+
+  def >(other)
+    @value > other.to_v
+  end
+
+  def >=(other)
+    @value >= other.to_v
+  end
+
+  def <(other)
+    @value < other.to_v
+  end
+
+  def <=(other)
+    @value <= other.to_v
+  end
+
+  def b_eq(other)
+    BooleanConstant.new(@value == other.to_v)
+  end
+
+  def b_ne(other)
+    BooleanConstant.new(@value != other.to_v)
+  end
+
+  def b_gt(other)
+    BooleanConstant.new(@value > other.to_v)
+  end
+
+  def b_ge(other)
+    BooleanConstant.new(@value >= other.to_v)
+  end
+
+  def b_lt(other)
+    BooleanConstant.new(@value < other.to_v)
+  end
+
+  def b_le(other)
+    BooleanConstant.new(@value <= other.to_v)
+  end
+
+  def +(other)
+    IntegerNumericConstant.new(@value + other.to_v)
+  end
+
+  def -(other)
+    IntegerNumericConstant.new(@value - other.to_v)
+  end
+
+  def *(other)
+    IntegerNumericConstant.new(@value * other.to_v)
+  end
+
+  def add(other)
+    IntegerNumericConstant.new(@value + other.to_v)
+  end
+
+  def subtract(other)
+    IntegerNumericConstant.new(@value - other.to_v)
+  end
+
+  def multiply(other)
+    IntegerNumericConstant.new(@value * other.to_v)
+  end
+
+  def divide(other)
+    raise(BASICException, 'Divide by zero') if other == IntegerNumericConstant.new(0)
+    IntegerNumericConstant.new(@value.to_f / other.to_v.to_f)
+  end
+
+  def power(other)
+    IntegerNumericConstant.new(@value**other.to_v)
+  end
+
+  def array?
+    false
+  end
+
+  def matrix?
+    false
+  end
+
+  def evaluate(_, _)
+    self
+  end
+
+  def truncate
+    IntegerNumericConstant.new(@value.to_i)
+  end
+
+  def floor
+    IntegerNumericConstant.new(@value.floor)
+  end
+
+  def exp
+    IntegerNumericConstant.new(Math.exp(@value))
+  end
+
+  def log
+    IntegerNumericConstant.new(@value > 0 ? Math.log(@value) : 0)
+  end
+
+  def abs
+    IntegerNumericConstant.new(@value >= 0 ? @value : -@value)
+  end
+
+  def sqrt
+    IntegerNumericConstant.new(@value > 0 ? Math.sqrt(@value) : 0)
+  end
+
+  def sin
+    IntegerNumericConstant.new(Math.sin(@value))
+  end
+
+  def cos
+    IntegerNumericConstant.new(Math.cos(@value))
+  end
+
+  def tan
+    IntegerNumericConstant.new(@value >= 0 ? Math.tan(@value) : 0)
+  end
+
+  def atn
+    IntegerNumericConstant.new(Math.atan(@value))
+  end
+
+  def sign
+    result = 0
+    result = 1 if @value > 0
+    result = -1 if @value < 0
+    IntegerNumericConstant.new(result)
+  end
+
+  def to_i
+    @value.to_i
+  end
+
+  def to_f
+    @value.to_i
+  end
+
+  def to_v
+    @value
+  end
+
+  def to_s
+    @value.to_s
+  end
+
+  def print(printer)
+    s = to_formatted_s
+    s = s.upcase
+    printer.print_item s
+    printer.last_was_numeric
+  end
+
+  def write(printer)
+    s = to_formatted_s
+    s = s.upcase
+    printer.print_item s
+  end
+
+  private
+
+  def to_formatted_s
+    lead_space = @value >= 0 ? ' ' : ''
+    digits = @value.to_s
+    lead_space + digits
+  end
+end
+
 # Text constants
 class TextConstant < AbstractElement
   def self.accept?(token)
@@ -440,6 +672,14 @@ class TextConstant < AbstractElement
 
   def matrix?
     false
+  end
+
+  def numeric_constant?
+    false
+  end
+
+  def text_constant?
+    true
   end
 
   def b_eq(other)
@@ -524,6 +764,14 @@ class BooleanConstant < AbstractElement
     @value = true if obj.class.to_s == 'TrueClass'
     @operand = true
     @precedence = 0
+  end
+
+  def numeric_constant?
+    false
+  end
+
+  def text_constant?
+    false
   end
 
   def array?
@@ -693,6 +941,25 @@ class VariableName < AbstractElement
     @name.hash
   end
 
+  def is_compatible(value)
+    compatible = false
+
+    numerics = %w(AutoNumericConstant IntegerNumericConstant)
+    strings = %w(TextConstant)
+    
+    if @content_type == 'AutoNumericConstant'
+      compatible = numerics.include?(value.class.to_s)
+    end
+    if @content_type == 'IntegerNumericConstant'
+      compatible = numerics.include?(value.class.to_s)
+    end
+    if @content_type == 'TextConstant'
+      compatible = strings.include?(value.class.to_s)
+    end
+    
+    compatible
+  end
+
   def to_s
     @name.to_s
   end
@@ -719,6 +986,26 @@ class Variable < AbstractElement
 
   def content_type
     @variable_name.content_type
+  end
+
+  def is_compatible(value)
+    content_type = self.content_type
+    compatible = false
+
+    numerics = %w(AutoNumericConstant IntegerNumericConstant)
+    strings = %w(TextConstant)
+    
+    if content_type == 'AutoNumericConstant'
+      compatible = numerics.include?(value.class.to_s)
+    end
+    if content_type == 'IntegerNumericConstant'
+      compatible = numerics.include?(value.class.to_s)
+    end
+    if content_type == 'TextConstant'
+      compatible = strings.include?(value.class.to_s)
+    end
+    
+    compatible
   end
 
   def to_s

@@ -299,6 +299,59 @@ class NumberTokenBuilder
   end
 end
 
+# token reader for integer constants
+class IntegerTokenBuilder
+  attr_reader :count
+
+  def try(text)
+    candidate = ''
+    if !text.empty? && text[0] != ' '
+      i = 0
+      accepted = true
+      while i < text.size && accepted
+        c = text[i]
+        # ignore space char
+        if c == ' '
+          i += 1
+        else
+          accepted = accept?(candidate, c)
+          if accepted
+            candidate += c
+            i += 1
+          end
+        end
+      end
+    end
+
+    # check that string conforms to one of these
+    regexes = [
+      /\A\d+%/
+    ]
+
+    @token = ''
+    regexes.each { |regex| regex.match(candidate) { |m| @token = m[0] } }
+    @count = 0
+    @count = i unless @token.empty?
+    !@count.zero?
+  end
+
+  def token
+    NumericConstantToken.new(@token)
+  end
+
+  private
+
+  def accept?(candidate, c)
+    result = false
+    # can always append one percent char
+    result = true if c == '%' && candidate.count('%').zero?
+    # can append a digit if no percent char
+    result = true if /[0-9]/.match(c) && candidate.count('%').zero?
+
+    result
+  end
+end
+
 # token reader for variables
 class VariableTokenBuilder
   attr_reader :count
@@ -329,7 +382,9 @@ class VariableTokenBuilder
       /\A[A-Z]/,
       /\A[A-Z]\d/,
       /\A[A-Z]\$/,
-      /\A[A-Z]\d\$/
+      /\A[A-Z]\d\$/,
+      /\A[A-Z]\%/,
+      /\A[A-Z]\d\%/
     ]
 
     @token = ''
@@ -355,6 +410,9 @@ class VariableTokenBuilder
     # can append a dollar sign if one is not there
     result = true if
       c == '$' && [1, 2].include?(candidate.size) && candidate[-1] != '$'
+    # can append a percent sign if one is not there
+    result = true if
+      c == '%' && [1, 2].include?(candidate.size) && candidate[-1] != '%'
 
     result
   end

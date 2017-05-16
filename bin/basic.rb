@@ -730,8 +730,8 @@ class Interpreter
 
   def check_subscripts(variable, subscripts)
     subscripts.each do |subscript|
-      raise(BASICException, "Non-numeric subscript '#{subscript}'") if
-        subscript.class.to_s != 'AutoNumericConstant'
+      raise(BASICException, "Non-numeric subscript '#{subscript}'") unless
+        subscript.numeric_constant?
     end
     dimensions = make_dimensions(variable, subscripts.size)
     raise(BASICException, 'Incorrect number of subscripts') if
@@ -764,22 +764,40 @@ class Interpreter
   end
 
   def set_value(variable, value, trace)
+    # assume no conversion needed
+    val = value
+    
     # convert a numeric to a string when a string is expected
-    if value.class.to_s == "AutoNumericConstant" && variable.content_type == "TextConstant"
+    if value.numeric_constant? &&
+       variable.content_type == 'TextConstant'
       val = value.token_chars
       quoted_val = '"' + val + '"'
       token = TextConstantToken.new(quoted_val)
       value = TextConstant.new(token)
     end
 
+    # convert an integer to a numeric
+    if value.class.to_s == 'AutoNumericConstant' &&
+       variable.content_type == 'IntegerNumericConstant'
+      token = IntegerConstantToken.new(value.to_s)
+      value = IntegerNumericConstant.new(token)
+    end
+
+    # convert a numeric to an integer
+    if value.class.to_s == 'IntegerNumericConstant' &&
+       variable.content_type == 'AutoNumericConstant'
+      token = NumericConstantToken.new(value.to_s)
+      value = AutoNumericConstant.new(token)
+    end
+
     # check that value type matches variable type
-    if value.class.to_s != variable.content_type
+    if !variable.is_compatible(value)
       raise(BASICException,
             "Type mismatch #{value.class} is not #{variable.content_type}")
     end
 
-    v = variable.to_s
-    @variables[v] = value
+    var = variable.to_s
+    @variables[var] = value
     @console_io.print_line(' ' + variable.to_s + ' = ' + value.to_s) if trace
   end
 

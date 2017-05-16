@@ -222,6 +222,7 @@ class StatementFactory
 
     tokenizers << TextTokenBuilder.new
     tokenizers << NumberTokenBuilder.new
+    tokenizers << IntegerTokenBuilder.new
     tokenizers << VariableTokenBuilder.new
     tokenizers << ListTokenBuilder.new(%w(TRUE FALSE), BooleanConstantToken)
     tokenizers << WhitespaceTokenBuilder.new
@@ -462,7 +463,7 @@ class ChangeStatement < AbstractStatement
     source_values = source.evaluate(interpreter)
     source_value = source_values[0]
 
-    if source_value.class.to_s == 'TextConstant'
+    if source_value.text_constant?
       target = TargetExpression.new(@target_tokens, ArrayReference)
       target_values = target.evaluate(interpreter)
       target_value = target_values[0]
@@ -477,7 +478,7 @@ class ChangeStatement < AbstractStatement
       values = array.values
       interpreter.set_values(target_variable_name, values, trace)
 
-    elsif source_value.class.to_s == 'AutoNumericConstant'
+    elsif source_value.numeric_constant?
       target = TargetExpression.new(@target_tokens, ScalarReference)
       target_values = target.evaluate(interpreter)
       target_value = target_values[0]
@@ -638,7 +639,7 @@ class GotoStatement < AbstractStatement
       raise(BASICException, 'Expecting one value') unless values.size == 1
       value = values[0]
       raise(BASICException, 'Invalid value') unless
-        value.class.to_s == 'AutoNumericConstant'
+        value.numeric_constant?
       puts ' ' + @expression.to_s + ' = ' + value.to_s if trace
       index = value.to_i
       raise(BASICException, 'Index out of range') if
@@ -1115,8 +1116,7 @@ class OnStatement < AbstractStatement
     values = @expression.evaluate(interpreter)
     raise(BASICException, 'Expecting one value') unless values.size == 1
     value = values[0]
-    raise(BASICException, 'Invalid value') unless
-      value.class.to_s == 'AutoNumericConstant'
+    raise(BASICException, 'Invalid value') unless value.numeric_constant?
     puts ' ' + @expression.to_s + ' = ' + value.to_s if trace
     index = value.to_i
     raise(BASICException, 'Index out of range') if
