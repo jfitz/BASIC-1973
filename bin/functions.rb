@@ -1,3 +1,53 @@
+# function (provides a result)
+class Function < AbstractElement
+  def initialize(text)
+    super()
+    @name = text
+    @function = true
+    @operand = true
+    @precedence = 7
+  end
+
+  private
+
+  def ensure_argument_count(stack, expected)
+    raise(BASICException, @name + ' requires argument') unless
+      previous_is_array(stack)
+    valid = counts_to_text(expected)
+    raise(BASICException, @name + ' requires ' + valid + ' argument') unless
+      expected.include? stack[-1].size
+  end
+
+  def counts_to_text(counts)
+    words = %w(zero one two)
+    texts = counts.map { |v| words[v] }
+    texts.join(' or ')
+  end
+
+  def check_args(args)
+    raise(BASICException, 'No arguments for function') if
+      args.class.to_s != 'Array'
+  end
+
+  def check_value(value, type)
+    if value.class.to_s != type
+      raise(BASICException,
+            "Argument #{value} #{value.class} not of type #{type.class}")
+    end
+  end
+
+  def check_arg_types(args, types)
+    check_args(args)
+    if args.size != types.size
+      raise(BASICException,
+            "Function #{@name} expects #{n_types} argument, found #{n_args}")
+    end
+    (0..types.size - 1).each do |i|
+      check_value(args[i], types[i])
+    end
+  end
+end
+
 # Function that expects scalar parameters
 class AbstractScalarFunction < Function
   def initialize(text)
@@ -6,6 +56,43 @@ class AbstractScalarFunction < Function
 
   def default_type
     ScalarValue
+  end
+end
+
+# User-defined function (provides a scalar value)
+class UserFunction < AbstractScalarFunction
+  def self.accept?(token)
+    classes = %w(UserFunctionToken)
+    classes.include?(token.class.to_s)
+  end
+
+  def self.init?(text)
+    /\AFN[A-Z]\z/.match(text)
+  end
+
+  def initialize(text)
+    text = text.to_s if text.class.to_s == 'UserFunctionToken'
+    raise(BASICException, "'#{text}' is not a valid function") unless
+      UserFunction.init?(text)
+    super
+  end
+
+  # return a single value
+  def evaluate(interpreter, stack)
+    expression = interpreter.get_user_function(@name)
+    # verify function is defined
+    raise(BASICException, "Function #{@name} not defined") if expression.nil?
+
+    # verify arguments
+    user_var_values = stack.pop
+    raise(BASICException, 'No arguments for function') if
+      user_var_values.class.to_s != 'Array'
+    check_arg_types(user_var_values,
+                    ['NumericConstant'] * user_var_values.length)
+
+    # dummy variable names and their (now known) values
+    result = expression.evaluate_with_vars(interpreter, @name, user_var_values)
+    result[0]
   end
 end
 
