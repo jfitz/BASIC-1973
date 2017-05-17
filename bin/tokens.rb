@@ -313,7 +313,7 @@ class VariableToken < AbstractToken
 
   def content_type
     return 'TextConstant' if @text.include?('$')
-    return 'IntegerNumericConstant' if @text.include?('%')
+    return 'IntegerConstant' if @text.include?('%')
     
     'AutoNumericConstant'
   end

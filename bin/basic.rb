@@ -778,13 +778,13 @@ class Interpreter
 
     # convert an integer to a numeric
     if value.class.to_s == 'AutoNumericConstant' &&
-       variable.content_type == 'IntegerNumericConstant'
+       variable.content_type == 'IntegerConstant'
       token = IntegerConstantToken.new(value.to_s)
-      value = IntegerNumericConstant.new(token)
+      value = IntegerConstant.new(token)
     end
 
     # convert a numeric to an integer
-    if value.class.to_s == 'IntegerNumericConstant' &&
+    if value.class.to_s == 'IntegerConstant' &&
        variable.content_type == 'AutoNumericConstant'
       token = NumericConstantToken.new(value.to_s)
       value = AutoNumericConstant.new(token)

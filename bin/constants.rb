@@ -416,8 +416,8 @@ class AutoNumericConstant < AbstractElement
   end
 end
 
-# IntegerNumeric constants
-class IntegerNumericConstant < AbstractElement
+# Integer constants
+class IntegerConstant < AbstractElement
   def self.accept?(token)
     classes = %w(Fixnum Bignum Float IntegerConstantToken)
     classes.include?(token.class.to_s)
@@ -511,36 +511,36 @@ class IntegerNumericConstant < AbstractElement
   end
 
   def +(other)
-    IntegerNumericConstant.new(@value + other.to_v)
+    IntegerConstant.new(@value + other.to_v)
   end
 
   def -(other)
-    IntegerNumericConstant.new(@value - other.to_v)
+    IntegerConstant.new(@value - other.to_v)
   end
 
   def *(other)
-    IntegerNumericConstant.new(@value * other.to_v)
+    IntegerConstant.new(@value * other.to_v)
   end
 
   def add(other)
-    IntegerNumericConstant.new(@value + other.to_v)
+    IntegerConstant.new(@value + other.to_v)
   end
 
   def subtract(other)
-    IntegerNumericConstant.new(@value - other.to_v)
+    IntegerConstant.new(@value - other.to_v)
   end
 
   def multiply(other)
-    IntegerNumericConstant.new(@value * other.to_v)
+    IntegerConstant.new(@value * other.to_v)
   end
 
   def divide(other)
-    raise(BASICException, 'Divide by zero') if other == IntegerNumericConstant.new(0)
-    IntegerNumericConstant.new(@value.to_f / other.to_v.to_f)
+    raise(BASICException, 'Divide by zero') if other == IntegerConstant.new(0)
+    IntegerConstant.new(@value.to_f / other.to_v.to_f)
   end
 
   def power(other)
-    IntegerNumericConstant.new(@value**other.to_v)
+    IntegerConstant.new(@value**other.to_v)
   end
 
   def array?
@@ -556,50 +556,50 @@ class IntegerNumericConstant < AbstractElement
   end
 
   def truncate
-    IntegerNumericConstant.new(@value.to_i)
+    IntegerConstant.new(@value.to_i)
   end
 
   def floor
-    IntegerNumericConstant.new(@value.floor)
+    IntegerConstant.new(@value.floor)
   end
 
   def exp
-    IntegerNumericConstant.new(Math.exp(@value))
+    IntegerConstant.new(Math.exp(@value))
   end
 
   def log
-    IntegerNumericConstant.new(@value > 0 ? Math.log(@value) : 0)
+    IntegerConstant.new(@value > 0 ? Math.log(@value) : 0)
   end
 
   def abs
-    IntegerNumericConstant.new(@value >= 0 ? @value : -@value)
+    IntegerConstant.new(@value >= 0 ? @value : -@value)
   end
 
   def sqrt
-    IntegerNumericConstant.new(@value > 0 ? Math.sqrt(@value) : 0)
+    IntegerConstant.new(@value > 0 ? Math.sqrt(@value) : 0)
   end
 
   def sin
-    IntegerNumericConstant.new(Math.sin(@value))
+    IntegerConstant.new(Math.sin(@value))
   end
 
   def cos
-    IntegerNumericConstant.new(Math.cos(@value))
+    IntegerConstant.new(Math.cos(@value))
   end
 
   def tan
-    IntegerNumericConstant.new(@value >= 0 ? Math.tan(@value) : 0)
+    IntegerConstant.new(@value >= 0 ? Math.tan(@value) : 0)
   end
 
   def atn
-    IntegerNumericConstant.new(Math.atan(@value))
+    IntegerConstant.new(Math.atan(@value))
   end
 
   def sign
     result = 0
     result = 1 if @value > 0
     result = -1 if @value < 0
-    IntegerNumericConstant.new(result)
+    IntegerConstant.new(result)
   end
 
   def to_i
@@ -944,13 +944,13 @@ class VariableName < AbstractElement
   def is_compatible(value)
     compatible = false
 
-    numerics = %w(AutoNumericConstant IntegerNumericConstant)
+    numerics = %w(AutoNumericConstant IntegerConstant)
     strings = %w(TextConstant)
     
     if @content_type == 'AutoNumericConstant'
       compatible = numerics.include?(value.class.to_s)
     end
-    if @content_type == 'IntegerNumericConstant'
+    if @content_type == 'IntegerConstant'
       compatible = numerics.include?(value.class.to_s)
     end
     if @content_type == 'TextConstant'
@@ -992,13 +992,13 @@ class Variable < AbstractElement
     content_type = self.content_type
     compatible = false
 
-    numerics = %w(AutoNumericConstant IntegerNumericConstant)
+    numerics = %w(AutoNumericConstant IntegerConstant)
     strings = %w(TextConstant)
     
     if content_type == 'AutoNumericConstant'
       compatible = numerics.include?(value.class.to_s)
     end
-    if content_type == 'IntegerNumericConstant'
+    if content_type == 'IntegerConstant'
       compatible = numerics.include?(value.class.to_s)
     end
     if content_type == 'TextConstant'
