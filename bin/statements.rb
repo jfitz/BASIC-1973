@@ -357,11 +357,11 @@ class AbstractStatement
   end
 
   def make_coord(c)
-    [AutoNumericConstant.new(c)]
+    [NumericConstant.new(c)]
   end
 
   def make_coords(r, c)
-    [AutoNumericConstant.new(r), AutoNumericConstant.new(c)]
+    [NumericConstant.new(r), NumericConstant.new(c)]
   end
 end
 
@@ -1148,7 +1148,7 @@ class ForNextControl
   end
 
   def front_terminated?
-    zero = AutoNumericConstant.new(0)
+    zero = NumericConstant.new(0)
     if @step_value > zero
       @start > @end
     elsif @step_value < zero
@@ -1159,7 +1159,7 @@ class ForNextControl
   end
 
   def terminated?(interpreter)
-    zero = AutoNumericConstant.new(0)
+    zero = NumericConstant.new(0)
     current_value = interpreter.get_value(@control)
     if @step_value > zero
       current_value + @step_value > @end

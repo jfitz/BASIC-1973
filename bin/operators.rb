@@ -138,12 +138,12 @@ class UnaryOperator < AbstractElement
 
   def posate(a)
     f = a.to_f
-    AutoNumericConstant.new(f)
+    NumericConstant.new(f)
   end
 
   def negate(a)
     f = -a.to_f
-    AutoNumericConstant.new(f)
+    NumericConstant.new(f)
   end
 
   def file_handle(a)
@@ -531,7 +531,7 @@ class BinaryOperator < AbstractElement
 
   def array_to_horizontal(a)
     a_dims = a.dimensions
-    new_dims = [AutoNumericConstant.new(1), a_dims[0]]
+    new_dims = [NumericConstant.new(1), a_dims[0]]
     n_cols = a_dims[0].to_i
     new_values = {}
     (1..n_cols).each do |col|
@@ -558,7 +558,7 @@ class BinaryOperator < AbstractElement
 
   def array_to_vertical(a)
     a_dims = a.dimensions
-    new_dims = [a_dims[0], AutoNumericConstant.new(1)]
+    new_dims = [a_dims[0], NumericConstant.new(1)]
     n_cols = a_dims[0].to_i
     new_values = {}
     (1..n_cols).each do |col|
@@ -592,7 +592,7 @@ class BinaryOperator < AbstractElement
       b_value = b.get_value_2(a_col, r_col)
       f += a_value.to_f * b_value.to_f
     end
-    AutoNumericConstant.new(f)
+    NumericConstant.new(f)
   end
 
   def multiply_matrix_matrix_work(a, b)

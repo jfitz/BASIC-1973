@@ -47,7 +47,7 @@ class FunctionInt < AbstractScalarFunction
   def evaluate(interpreter, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['AutoNumericConstant'])
+    check_arg_types(args, ['NumericConstant'])
     interpreter.int_floor? ? args[0].floor : args[0].truncate
   end
 end
@@ -60,11 +60,11 @@ class FunctionRnd < AbstractScalarFunction
 
   # return a single value
   def evaluate(interpreter, stack)
-    stack.push([AutoNumericConstant.new(1)]) unless previous_is_array(stack)
+    stack.push([NumericConstant.new(1)]) unless previous_is_array(stack)
     ensure_argument_count(stack, [0, 1])
     args = stack.pop
-    args = [AutoNumericConstant.new(1)] if args.empty? || args[0].nil?
-    check_arg_types(args, ['AutoNumericConstant'])
+    args = [NumericConstant.new(1)] if args.empty? || args[0].nil?
+    check_arg_types(args, ['NumericConstant'])
     interpreter.rand(args[0])
   end
 end
@@ -78,7 +78,7 @@ class FunctionExp < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['AutoNumericConstant'])
+    check_arg_types(args, ['NumericConstant'])
     args[0].exp
   end
 end
@@ -92,7 +92,7 @@ class FunctionLog < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['AutoNumericConstant'])
+    check_arg_types(args, ['NumericConstant'])
     args[0].log
   end
 end
@@ -106,7 +106,7 @@ class FunctionAbs < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['AutoNumericConstant'])
+    check_arg_types(args, ['NumericConstant'])
     args[0].abs
   end
 end
@@ -120,7 +120,7 @@ class FunctionSqr < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['AutoNumericConstant'])
+    check_arg_types(args, ['NumericConstant'])
     args[0].sqrt
   end
 end
@@ -134,7 +134,7 @@ class FunctionSin < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['AutoNumericConstant'])
+    check_arg_types(args, ['NumericConstant'])
     args[0].sin
   end
 end
@@ -148,7 +148,7 @@ class FunctionCos < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['AutoNumericConstant'])
+    check_arg_types(args, ['NumericConstant'])
     args[0].cos
   end
 end
@@ -162,7 +162,7 @@ class FunctionTan < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['AutoNumericConstant'])
+    check_arg_types(args, ['NumericConstant'])
     args[0].tan
   end
 end
@@ -176,7 +176,7 @@ class FunctionAtn < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['AutoNumericConstant'])
+    check_arg_types(args, ['NumericConstant'])
     args[0].atn
   end
 end
@@ -190,7 +190,7 @@ class FunctionSgn < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['AutoNumericConstant'])
+    check_arg_types(args, ['NumericConstant'])
     args[0].sign
   end
 end
@@ -220,7 +220,7 @@ class FunctionZer < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1, 2])
     args = stack.pop
-    check_arg_types(args, ['AutoNumericConstant'] * args.size)
+    check_arg_types(args, ['NumericConstant'] * args.size)
     matrix = Matrix.new(args.clone, {})
     Matrix.new(matrix.dimensions, matrix.zero_values)
   end
@@ -235,7 +235,7 @@ class FunctionCon < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1, 2])
     args = stack.pop
-    check_arg_types(args, ['AutoNumericConstant'] * args.size)
+    check_arg_types(args, ['NumericConstant'] * args.size)
     matrix = Matrix.new(args.clone, {})
     Matrix.new(matrix.dimensions, matrix.one_values)
   end
@@ -250,7 +250,7 @@ class FunctionIdn < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1, 2])
     args = stack.pop
-    check_arg_types(args, ['AutoNumericConstant'] * args.size)
+    check_arg_types(args, ['NumericConstant'] * args.size)
     check_square(args) if args.size == 2
     dims = [args[0]] * 2
     matrix = Matrix.new(dims, {})
@@ -305,7 +305,7 @@ class FunctionTab < AbstractScalarFunction
   def evaluate(interpreter, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['AutoNumericConstant'])
+    check_arg_types(args, ['NumericConstant'])
     console_io = interpreter.console_io
     width = console_io.columns_to_advance(args[0].to_v)
     spaces = ' ' * width
@@ -324,7 +324,7 @@ class FunctionChr < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['AutoNumericConstant'])
+    check_arg_types(args, ['NumericConstant'])
     value = args[0].to_i
     raise(BASICException, 'Invalid value for CHR$()') unless
       value.between?(32, 126)
@@ -348,7 +348,7 @@ class FunctionLen < AbstractScalarFunction
     text = args[0].to_v
     length = text.size
     token = NumericConstantToken.new(length.to_s)
-    AutoNumericConstant.new(token)
+    NumericConstant.new(token)
   end
 end
 
@@ -368,7 +368,7 @@ class FunctionAsc < AbstractScalarFunction
     raise(BASICException, 'Invalid value in ASC()') unless
       value.between?(32, 126)
     token = NumericConstantToken.new(value.to_s)
-    AutoNumericConstant.new(token)
+    NumericConstant.new(token)
   end
 end
 
@@ -414,7 +414,7 @@ class FunctionExt < AbstractScalarFunction
     ensure_argument_count(stack, [3])
     args = stack.pop
     check_arg_types(args,
-                    %w(TextConstant AutoNumericConstant AutoNumericConstant))
+                    %w(TextConstant NumericConstant NumericConstant))
     value = args[0].to_v
     start = args[1].to_i
     stop = args[2].to_i

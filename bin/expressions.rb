@@ -84,7 +84,7 @@ class BASICArray
   def get_value(col)
     coords = make_coord(col)
     return @values[coords] if @values.key?(coords)
-    AutoNumericConstant.new(0)
+    NumericConstant.new(0)
   end
 
   def to_s
@@ -128,7 +128,7 @@ class BASICArray
   private
 
   def make_coord(c)
-    [AutoNumericConstant.new(c)]
+    [NumericConstant.new(c)]
   end
 
   def print_1(printer, interpreter, carriage)
@@ -200,13 +200,13 @@ class Matrix
   def get_value_1(col)
     coords = make_coord(col)
     return @values[coords] if @values.key?(coords)
-    AutoNumericConstant.new(0)
+    NumericConstant.new(0)
   end
 
   def get_value_2(row, col)
     coords = make_coords(row, col)
     return @values[coords] if @values.key?(coords)
-    AutoNumericConstant.new(0)
+    NumericConstant.new(0)
   end
 
   def to_s
@@ -290,24 +290,24 @@ class Matrix
   def zero_values
     case @dimensions.size
     when 1
-      make_array(@dimensions, AutoNumericConstant.new(0))
+      make_array(@dimensions, NumericConstant.new(0))
     when 2
-      make_matrix(@dimensions, AutoNumericConstant.new(0))
+      make_matrix(@dimensions, NumericConstant.new(0))
     end
   end
 
   def one_values
     case @dimensions.size
     when 1
-      make_array(@dimensions, AutoNumericConstant.new(1))
+      make_array(@dimensions, NumericConstant.new(1))
     when 2
-      make_matrix(@dimensions, AutoNumericConstant.new(1))
+      make_matrix(@dimensions, NumericConstant.new(1))
     end
   end
 
   def identity_values
-    new_values = make_matrix(@dimensions, AutoNumericConstant.new(0))
-    one = AutoNumericConstant.new(1)
+    new_values = make_matrix(@dimensions, NumericConstant.new(0))
+    one = NumericConstant.new(1)
     (1..@dimensions[0].to_i).each do |row|
       coords = make_coords(row, row)
       new_values[coords] = one
@@ -318,11 +318,11 @@ class Matrix
   private
 
   def make_coord(c)
-    [AutoNumericConstant.new(c)]
+    [NumericConstant.new(c)]
   end
 
   def make_coords(r, c)
-    [AutoNumericConstant.new(r), AutoNumericConstant.new(c)]
+    [NumericConstant.new(r), NumericConstant.new(c)]
   end
 
   def make_array(dims, init_value)
@@ -408,9 +408,9 @@ class Matrix
   end
 
   def determinant_n
-    minus_one = AutoNumericConstant.new(-1)
-    sign = AutoNumericConstant.new(1)
-    det = AutoNumericConstant.new(0)
+    minus_one = NumericConstant.new(-1)
+    sign = NumericConstant.new(1)
+    det = NumericConstant.new(0)
     # for each element in first row
     (1..@dimensions[1].to_i).each do |col|
       v = get_value_2(1, col)
@@ -424,7 +424,7 @@ class Matrix
   end
 
   def submatrix(exclude_row, exclude_col)
-    one = AutoNumericConstant.new(1)
+    one = NumericConstant.new(1)
     new_dims = [@dimensions[0] - one, @dimensions[1] - one]
     new_values = submatrix_values(exclude_row, exclude_col)
     Matrix.new(new_dims, new_values)
@@ -673,7 +673,7 @@ class UserFunction < AbstractScalarFunction
     raise(BASICException, 'No arguments for function') if
       user_var_values.class.to_s != 'Array'
     check_arg_types(user_var_values,
-                    ['AutoNumericConstant'] * user_var_values.length)
+                    ['NumericConstant'] * user_var_values.length)
 
     # dummy variable names and their (now known) values
     result = expression.evaluate_with_vars(interpreter, @name, user_var_values)
@@ -907,7 +907,7 @@ class AbstractExpression
       BinaryOperator,
       BooleanConstant,
       IntegerConstant,
-      AutoNumericConstant,
+      NumericConstant,
       UserFunction,
       VariableName,
       TextConstant
@@ -924,7 +924,7 @@ class AbstractExpression
       UnaryOperator,
       BooleanConstant,
       IntegerConstant,
-      AutoNumericConstant,
+      NumericConstant,
       UserFunction,
       VariableName,
       TextConstant

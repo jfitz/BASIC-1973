@@ -315,6 +315,6 @@ class VariableToken < AbstractToken
     return 'TextConstant' if @text.include?('$')
     return 'IntegerConstant' if @text.include?('%')
     
-    'AutoNumericConstant'
+    'NumericConstant'
   end
 end

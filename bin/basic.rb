@@ -642,7 +642,7 @@ class Interpreter
     upper_bound = 1 if upper_bound <= 0
     upper_bound = 1 if @ignore_rnd_arg
     upper_bound = upper_bound.to_f
-    AutoNumericConstant.new(@randomizer.rand(upper_bound))
+    NumericConstant.new(@randomizer.rand(upper_bound))
   end
 
   def new_random
@@ -722,7 +722,7 @@ class Interpreter
     if @dimensions.key?(variable)
       @dimensions[variable]
     else
-      Array.new(count, AutoNumericConstant.new(10))
+      Array.new(count, NumericConstant.new(10))
     end
   end
 
@@ -754,7 +754,7 @@ class Interpreter
     if value.nil?
       v = variable.to_s
       default_type = variable.content_type
-      default_value = AutoNumericConstant.new(0)
+      default_value = NumericConstant.new(0)
       default_value = TextConstant.new(TextConstantToken.new('""')) if
         default_type == 'TextConstant'
       @variables[v] = default_value unless @variables.key?(v)
@@ -777,7 +777,7 @@ class Interpreter
     end
 
     # convert an integer to a numeric
-    if value.class.to_s == 'AutoNumericConstant' &&
+    if value.class.to_s == 'NumericConstant' &&
        variable.content_type == 'IntegerConstant'
       token = IntegerConstantToken.new(value.to_s)
       value = IntegerConstant.new(token)
@@ -785,9 +785,9 @@ class Interpreter
 
     # convert a numeric to an integer
     if value.class.to_s == 'IntegerConstant' &&
-       variable.content_type == 'AutoNumericConstant'
+       variable.content_type == 'NumericConstant'
       token = NumericConstantToken.new(value.to_s)
-      value = AutoNumericConstant.new(token)
+      value = NumericConstant.new(token)
     end
 
     # check that value type matches variable type
