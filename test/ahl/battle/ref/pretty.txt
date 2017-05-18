@@ -1,6 +1,6 @@
 10 REM -- BATTLE WRITTEN BY RAY WESTERGARD 10/70
-20 REM COPYRIGHT 1971 By THE REGENTS OF THE UNIV. OF CALIF,
-30 REM Produced at the Lawrence Hall of Science, Berkeley
+20 REM COPYRIGHT 1971 BY THE REGENTS OF THE UNIV. OF CALIF,
+30 REM PRODUCED AT THE LAWRENCE HALL OF SCIENCE, BERKELEY
 40 DIM F[6, 6], H[6, 6], A[4], B[4], C[6], L[3]
 50 MAT F = ZER
 60 FOR I = 1 TO 3
@@ -33,8 +33,7 @@
 330 GOTO 990
 340 A[1] = A
 350 B[1] = B
-360 A[2] = A[3] = B[2] = B[3] = 0
- 'A[2]=A[3]=B[2]=B[3]=0' is not a valid assignment
+360 A[2], A[3], B[2], B[3] = 0
 370 FOR K = 1 TO N
 380 IF M > 1 THEN 460
 390 IF A[K] = 1 OR B[K] = 1 THEN 450
@@ -54,8 +53,7 @@
 530 NEXT K
 540 GOTO 960
 550 A[1] = A
-560 A[2] = A[3] = 7
- 'A[2]=A[3]=7' is not a valid assignment
+560 A[2], A[3] = 7
 570 FOR K = 1 TO N
 580 IF M > 1 THEN 640
 590 IF A[K] = 6 THEN 630
@@ -75,10 +73,8 @@
 730 GOTO 990
 740 A[1] = A
 750 B[1] = B
-760 A[2] = A[3] = 7
- 'A[2]=A[3]=7' is not a valid assignment
-770 B[2] = B[3] = 0
- 'B[2]=B[3]=0' is not a valid assignment
+760 A[2], A[3] = 7
+770 B[2], B[3] = 0
 780 FOR K = 1 TO N
 790 IF M > 1 THEN 870
 800 IF A[K] = 6 OR B[K] = 1 THEN 860
@@ -92,8 +88,7 @@
 880 Z2 = ((B[1] M A X B[2]) M A X B[3])
 890 IF Z1 = 1 OR Z2 = 6 THEN 90
 900 IF F[Z1 - 1, Z2 + 1] > 0 THEN 90
-910 IF F[Z1, Z2 + 1] > 0 AND F[Z1, Z2 + 1] = F[Z1 - 1, Z2] T H E M9 0
- Syntax error
+910 IF F[Z1, Z2 + 1] > 0 AND F[Z1, Z2 + 1] = F[Z1 - 1, Z2] THEN 90
 920 A[K + 1] = Z1 - 1
 930 B[K + 1] = Z2 + 1
 940 NEXT K
@@ -115,18 +110,14 @@
 1100 PRINT
 1110 MAT H = ZER
 1120 MAT L = ZER
-1130 C[1] = C[2] = 2
- 'C[1]=C[2]=2' is not a valid assignment
-1140 C[3] = C[4] = 1
- 'C[3]=C[4]=1' is not a valid assignment
-1150 C[5] = C[6] = 0
- 'C[5]=C[6]=0' is not a valid assignment
-1160 S = H = 0
- 'S=H=0' is not a valid assignment
+1130 C[1], C[2] = 2
+1140 C[3], C[4] = 1
+1150 C[5], C[6] = 0
+1160 S, H = 0
 1170 PRINT "START GAME"
 1180 INPUT X, Y
 1190 IF X < 1 OR X > 6 OR INT(X) # ABS(X) THEN 1210
-1200 IF Y > 0 AND Y < 7 AND I N Y(Y) = ABS(Y) THEN 1230
+1200 IF Y > 0 AND Y < 7 AND INT(Y) = ABS(Y) THEN 1230
 1210 PRINT "INVALID INPUT, TRY AGAIN."
 1220 GOTO 1180
 1230 R = 7 - Y
