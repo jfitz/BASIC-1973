@@ -117,11 +117,9 @@ class GroupEnd < AbstractElement
     @operand = true
   end
 
-  def compatible?(start_element)
-    return true if @text == ')' && start_element.text == '('
-    return true if @text == ']' && start_element.text == '['
-
-    false
+  def match?(start_element)
+    (start_element.text == '(' && @text == ')') ||
+    (start_element.text == '[' && @text == ']')
   end
 
   def to_s
@@ -216,6 +214,18 @@ class NumericConstant < AbstractElement
     raise BASICException, "'#{text}' is not a number" if @value.nil?
   end
 
+  def scalar?
+    true
+  end
+
+  def array?
+    false
+  end
+
+  def matrix?
+    false
+  end
+
   def numeric_constant?
     true
   end
@@ -307,14 +317,6 @@ class NumericConstant < AbstractElement
 
   def power(other)
     NumericConstant.new(@value**other.to_v)
-  end
-
-  def array?
-    false
-  end
-
-  def matrix?
-    false
   end
 
   def evaluate(_, _)
@@ -450,6 +452,18 @@ class IntegerConstant < AbstractElement
     raise BASICException, "'#{text}' is not a number" if @value.nil?
   end
 
+  def scalar?
+    true
+  end
+
+  def array?
+    false
+  end
+
+  def matrix?
+    false
+  end
+
   def numeric_constant?
     true
   end
@@ -541,14 +555,6 @@ class IntegerConstant < AbstractElement
 
   def power(other)
     IntegerConstant.new(@value**other.to_v)
-  end
-
-  def array?
-    false
-  end
-
-  def matrix?
-    false
   end
 
   def evaluate(_, _)
@@ -662,8 +668,8 @@ class TextConstant < AbstractElement
     @precedence = 0
   end
 
-  def evaluate(_, _)
-    self
+  def scalar?
+    true
   end
 
   def array?
@@ -680,6 +686,10 @@ class TextConstant < AbstractElement
 
   def text_constant?
     true
+  end
+
+  def evaluate(_, _)
+    self
   end
 
   def b_eq(other)
@@ -766,12 +776,8 @@ class BooleanConstant < AbstractElement
     @precedence = 0
   end
 
-  def numeric_constant?
-    false
-  end
-
-  def text_constant?
-    false
+  def scalar?
+    true
   end
 
   def array?
@@ -779,6 +785,14 @@ class BooleanConstant < AbstractElement
   end
 
   def matrix?
+    false
+  end
+
+  def numeric_constant?
+    false
+  end
+
+  def text_constant?
     false
   end
 
