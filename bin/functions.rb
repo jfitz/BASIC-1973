@@ -30,9 +30,21 @@ class Function < AbstractElement
   end
 
   def check_value(value, type)
-    if value.class.to_s != type
+    compatible = false
+    case type
+    when 'numeric'
+      compatible = value.numeric_constant?
+    when 'text'
+      compatible = value.text_constant?
+    when 'array'
+      compatible = value.array?
+    when 'matrix'
+      compatible = value.matrix?
+    end
+    
+    unless compatible
       raise(BASICException,
-            "Argument #{value} #{value.class} not of type #{type.class}")
+            "Type mismatch value #{value} not #{type}")
     end
   end
 
@@ -88,7 +100,7 @@ class UserFunction < AbstractScalarFunction
     raise(BASICException, 'No arguments for function') if
       user_var_values.class.to_s != 'Array'
     check_arg_types(user_var_values,
-                    ['NumericConstant'] * user_var_values.length)
+                    ['numeric'] * user_var_values.length)
 
     # dummy variable names and their (now known) values
     result = expression.evaluate_with_vars(interpreter, @name, user_var_values)
@@ -134,7 +146,7 @@ class FunctionInt < AbstractScalarFunction
   def evaluate(interpreter, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['NumericConstant'])
+    check_arg_types(args, ['numeric'])
     interpreter.int_floor? ? args[0].floor : args[0].truncate
   end
 end
@@ -151,7 +163,7 @@ class FunctionRnd < AbstractScalarFunction
     ensure_argument_count(stack, [0, 1])
     args = stack.pop
     args = [NumericConstant.new(1)] if args.empty? || args[0].nil?
-    check_arg_types(args, ['NumericConstant'])
+    check_arg_types(args, ['numeric'])
     interpreter.rand(args[0])
   end
 end
@@ -165,7 +177,7 @@ class FunctionExp < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['NumericConstant'])
+    check_arg_types(args, ['numeric'])
     args[0].exp
   end
 end
@@ -179,7 +191,7 @@ class FunctionLog < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['NumericConstant'])
+    check_arg_types(args, ['numeric'])
     args[0].log
   end
 end
@@ -193,7 +205,7 @@ class FunctionAbs < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['NumericConstant'])
+    check_arg_types(args, ['numeric'])
     args[0].abs
   end
 end
@@ -207,7 +219,7 @@ class FunctionSqr < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['NumericConstant'])
+    check_arg_types(args, ['numeric'])
     args[0].sqrt
   end
 end
@@ -221,7 +233,7 @@ class FunctionSin < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['NumericConstant'])
+    check_arg_types(args, ['numeric'])
     args[0].sin
   end
 end
@@ -235,7 +247,7 @@ class FunctionCos < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['NumericConstant'])
+    check_arg_types(args, ['numeric'])
     args[0].cos
   end
 end
@@ -249,7 +261,7 @@ class FunctionTan < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['NumericConstant'])
+    check_arg_types(args, ['numeric'])
     args[0].tan
   end
 end
@@ -263,7 +275,7 @@ class FunctionAtn < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['NumericConstant'])
+    check_arg_types(args, ['numeric'])
     args[0].atn
   end
 end
@@ -277,7 +289,7 @@ class FunctionSgn < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['NumericConstant'])
+    check_arg_types(args, ['numeric'])
     args[0].sign
   end
 end
@@ -291,7 +303,7 @@ class FunctionTrn < AbstractMatrixFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['Matrix'])
+    check_arg_types(args, ['matrix'])
     dims = args[0].dimensions
     new_dims = [dims[1], dims[0]]
     Matrix.new(new_dims, args[0].transpose_values)
@@ -307,7 +319,7 @@ class FunctionZer < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1, 2])
     args = stack.pop
-    check_arg_types(args, ['NumericConstant'] * args.size)
+    check_arg_types(args, ['numeric'] * args.size)
     matrix = Matrix.new(args.clone, {})
     Matrix.new(matrix.dimensions, matrix.zero_values)
   end
@@ -322,7 +334,7 @@ class FunctionCon < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1, 2])
     args = stack.pop
-    check_arg_types(args, ['NumericConstant'] * args.size)
+    check_arg_types(args, ['numeric'] * args.size)
     matrix = Matrix.new(args.clone, {})
     Matrix.new(matrix.dimensions, matrix.one_values)
   end
@@ -337,7 +349,7 @@ class FunctionIdn < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1, 2])
     args = stack.pop
-    check_arg_types(args, ['NumericConstant'] * args.size)
+    check_arg_types(args, ['numeric'] * args.size)
     check_square(args) if args.size == 2
     dims = [args[0]] * 2
     matrix = Matrix.new(dims, {})
@@ -362,7 +374,7 @@ class FunctionDet < AbstractMatrixFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['Matrix'])
+    check_arg_types(args, ['matrix'])
     args[0].determinant
   end
 end
@@ -377,7 +389,7 @@ class FunctionInv < AbstractMatrixFunction
     ensure_argument_count(stack, [1])
     args = stack.pop
     dims = args[0].dimensions
-    check_arg_types(args, ['Matrix'])
+    check_arg_types(args, ['matrix'])
     check_square(dims)
     Matrix.new(dims.clone, args[0].inverse_values)
   end
@@ -392,7 +404,7 @@ class FunctionTab < AbstractScalarFunction
   def evaluate(interpreter, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['NumericConstant'])
+    check_arg_types(args, ['numeric'])
     console_io = interpreter.console_io
     width = console_io.columns_to_advance(args[0].to_v)
     spaces = ' ' * width
@@ -411,7 +423,7 @@ class FunctionChr < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['NumericConstant'])
+    check_arg_types(args, ['numeric'])
     value = args[0].to_i
     raise(BASICException, 'Invalid value for CHR$()') unless
       value.between?(32, 126)
@@ -431,7 +443,7 @@ class FunctionLen < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['TextConstant'])
+    check_arg_types(args, ['text'])
     text = args[0].to_v
     length = text.size
     token = NumericConstantToken.new(length.to_s)
@@ -448,7 +460,7 @@ class FunctionAsc < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['TextConstant'])
+    check_arg_types(args, ['text'])
     text = args[0].to_v
     raise(BASICException, 'Empty string in ASC()') if text.empty?
     value = text[0].ord
@@ -468,7 +480,7 @@ class FunctionPack < AbstractArrayFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['BASICArray'])
+    check_arg_types(args, ['array'])
     array = args[0]
     dims = array.dimensions
     raise(BASICException, @name + ' requires array') unless dims.size == 1
@@ -485,7 +497,7 @@ class FunctionUnpack < AbstractScalarFunction
   def evaluate(_, stack)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    check_arg_types(args, ['TextConstant'])
+    check_arg_types(args, ['text'])
     text = args[0]
     text.unpack
   end
@@ -501,7 +513,7 @@ class FunctionExt < AbstractScalarFunction
     ensure_argument_count(stack, [3])
     args = stack.pop
     check_arg_types(args,
-                    %w(TextConstant NumericConstant NumericConstant))
+                    %w(text numeric numeric))
     value = args[0].to_v
     start = args[1].to_i
     stop = args[2].to_i

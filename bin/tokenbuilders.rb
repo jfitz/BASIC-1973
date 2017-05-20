@@ -336,7 +336,7 @@ class IntegerTokenBuilder
   end
 
   def token
-    NumericConstantToken.new(@token)
+    IntegerConstantToken.new(@token)
   end
 
   private
