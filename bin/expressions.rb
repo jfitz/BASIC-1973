@@ -63,6 +63,16 @@ class BASICArray
     Array.new(@dimensions.clone, @values.clone)
   end
 
+  def numeric_constant?
+    value = get_value(0)
+    value.numeric_constant?
+  end
+
+  def text_constant?
+    value = get_value(0)
+    value.text_constant?
+  end
+
   def scalar?
     false
   end
@@ -169,6 +179,16 @@ class Matrix
 
   def clone
     Matrix.new(@dimensions.clone, @values.clone)
+  end
+
+  def numeric_constant?
+    value = get_value_2(0, 0)
+    value.numeric_constant?
+  end
+
+  def text_constant?
+    value = get_value_2(0, 0)
+    value.text_constant?
   end
 
   def scalar?
