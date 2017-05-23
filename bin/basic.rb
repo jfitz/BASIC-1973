@@ -419,19 +419,17 @@ class Interpreter
   end
 
   def preexecute_loop
-    begin
-      while !@current_line_index.nil? && @running
-        preexecute_a_statement
-        @current_line_index = find_next_line_index
-      end
-    rescue BASICException => e
-      line_number = @current_line_index.number
-      message = "#{e.message} in line #{line_number}"
-      @console_io.print_line(message)
-      stop_running
+    while !@current_line_index.nil? && @running
+      preexecute_a_statement
+      @current_line_index = find_next_line_index
     end
+  rescue BASICException => e
+    line_number = @current_line_index.number
+    message = "#{e.message} in line #{line_number}"
+    @console_io.print_line(message)
+    stop_running
   end
-  
+
   def print_trace_info(statement)
     @console_io.newline_when_needed
     @console_io.print_out @current_line_index.to_s + ':' + statement.pretty
@@ -596,11 +594,12 @@ class Interpreter
       end
       act = stack.length
       raise(BASICException, "Bad expression") if act != exp
-      unless act.zero?
-        # verify each item is of correct type
-        item = stack[0]
-        result_values << item
-      end
+
+      next if act.zero?
+
+      # verify each item is of correct type
+      item = stack[0]
+      result_values << item
     end
     result_values
   end
@@ -1003,10 +1002,10 @@ class Interpreter
 
   def load_and_run(filename, trace_flag, timing_flag)
     @program_lines = {}
-    if cmd_load(filename, false)
-      timing = Benchmark.measure { cmd_run(trace_flag) }
-      print_timing(timing) if timing_flag
-    end
+    return unless cmd_load(filename, false)
+
+    timing = Benchmark.measure { cmd_run(trace_flag) }
+    print_timing(timing) if timing_flag
   end
 
   def load_and_list(filename, trace_flag, list_tokens)

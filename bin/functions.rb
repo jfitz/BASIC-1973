@@ -42,10 +42,8 @@ class Function < AbstractElement
       compatible = value.boolean_constant?
     end
 
-    unless compatible
-      raise(BASICException,
-            "Type mismatch value #{value} not #{type}")
-    end
+    raise(BASICException, "Type mismatch value #{value} not #{type}")  unless
+      compatible
 
     compatible = false
     case shape
@@ -57,10 +55,8 @@ class Function < AbstractElement
       compatible = value.matrix?
     end
     
-    unless compatible
-      raise(BASICException,
-            "Type mismatch value #{value} not #{shape}")
-    end
+    raise(BASICException, "Type mismatch value #{value} not #{shape}") unless
+      compatible
   end
 
   def check_arg_types(args, specs)
