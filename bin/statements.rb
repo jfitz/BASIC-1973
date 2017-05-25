@@ -232,11 +232,15 @@ end
 # parent of all statement classes
 class AbstractStatement
   attr_reader :errors
+  attr_reader :start_index
+  attr_reader :last_index
 
   def initialize(keywords, tokens_lists)
     @keywords = keywords
     @tokens_lists = tokens_lists
     @errors = []
+    @start_index = 0
+    @last_index = 0
   end
 
   def pretty
@@ -244,6 +248,27 @@ class AbstractStatement
   end
 
   def pre_execute(_)
+    0
+  end
+
+  def execute(index, interpreter, trace)
+    case index
+    when -1
+      execute_premodifier(index)
+    when 0
+      execute_core(interpreter, trace)
+    when 1
+      execute_post_modifier(index)
+    end
+  end
+
+  private
+
+  def execute_premodifier(index)
+    0
+  end
+
+  def execute_postmodifier(index)
     0
   end
 
@@ -377,7 +402,7 @@ class InvalidStatement < AbstractStatement
     @text
   end
 
-  def execute(_, _)
+  def execute_core(_, _)
     raise(BASICException, @errors[0])
   end
 
@@ -398,7 +423,7 @@ class UnknownStatement < AbstractStatement
     @text
   end
 
-  def execute(_, _)
+  def execute_core(_, _)
     0
   end
 end
@@ -413,7 +438,7 @@ class EmptyStatement < AbstractStatement
     ''
   end
 
-  def execute(_, _)
+  def execute_core(_, _)
     0
   end
 end
@@ -432,7 +457,7 @@ class RemarkStatement < AbstractStatement
     @rest = tokens_lists[0]
   end
 
-  def execute(_, _)
+  def execute_core(_, _)
     0
   end
 end
@@ -458,7 +483,7 @@ class ChangeStatement < AbstractStatement
     end
   end
 
-  def execute(interpreter, trace)
+  def execute_core(interpreter, trace)
     source = ValueScalarExpression.new(@source_tokens)
     source_values = source.evaluate(interpreter)
     source_value = source_values[0]
@@ -538,7 +563,7 @@ class DimStatement < AbstractStatement
     end
   end
 
-  def execute(interpreter, _)
+  def execute_core(interpreter, _)
     @expression_list.each do |expression|
       variables = expression.evaluate(interpreter)
       variable = variables[0]
@@ -575,7 +600,7 @@ class FilesStatement < AbstractStatement
     interpreter.add_file_names(file_names)
   end
 
-  def execute(_, _)
+  def execute_core(_, _)
     0
   end
 end
@@ -598,7 +623,7 @@ class GotoStatement < AbstractStatement
 
     if check_template(tokens_lists, template1)
       if tokens_lists[0][0].numeric_constant?
-        @destination = LineNumberIndex.new(LineNumber.new(tokens_lists[0][0]), 0)
+        @destination = LineNumberIndex.new(LineNumber.new(tokens_lists[0][0]), 0, 0)
       else
         @errors << "Invalid line number #{tokens_lists[0][0]}"
       end
@@ -616,7 +641,7 @@ class GotoStatement < AbstractStatement
         if line_num.size == 1
           destination = line_num[0]
           if destination.numeric_constant?
-            @destinations << LineNumberIndex.new(LineNumber.new(destination), 0)
+            @destinations << LineNumberIndex.new(LineNumber.new(destination), 0, 0)
           else
             @errors << "Invalid line number #{destination}"
           end
@@ -629,7 +654,7 @@ class GotoStatement < AbstractStatement
     end
   end
 
-  def execute(interpreter, trace)
+  def execute_core(interpreter, trace)
     unless @destination.nil?
       interpreter.next_line_index = @destination
     end
@@ -665,7 +690,7 @@ class GosubStatement < AbstractStatement
 
     if check_template(tokens_lists, template)
       if tokens_lists[0][0].numeric_constant?
-        @destination = LineNumberIndex.new(LineNumber.new(tokens_lists[0][0]), 0)
+        @destination = LineNumberIndex.new(LineNumber.new(tokens_lists[0][0]), 0, 0)
       else
         @errors << "Invalid line number #{tokens_lists[0][0]}"
       end
@@ -674,7 +699,7 @@ class GosubStatement < AbstractStatement
     end
   end
 
-  def execute(interpreter, _)
+  def execute_core(interpreter, _)
     interpreter.push_return(interpreter.next_line_index)
     interpreter.next_line_index = @destination
   end
@@ -709,7 +734,7 @@ class LetStatement < AbstractStatement
     end
   end
 
-  def execute(interpreter, trace)
+  def execute_core(interpreter, trace)
     l_values = @assignment.eval_target(interpreter)
     r_values = @assignment.eval_value(interpreter)
     r_value = r_values[0]
@@ -748,7 +773,7 @@ class LetLessStatement < AbstractStatement
     end
   end
 
-  def execute(interpreter, trace)
+  def execute_core(interpreter, trace)
     l_values = @assignment.eval_target(interpreter)
     r_values = @assignment.eval_value(interpreter)
     r_value = r_values[0]
@@ -778,7 +803,7 @@ class InputStatement < AbstractStatement
     end
   end
 
-  def execute(interpreter, trace)
+  def execute_core(interpreter, trace)
     default_prompt = TextConstantToken.new('"? "')
     prompt = default_prompt
     input_items = @input_items.clone
@@ -902,7 +927,7 @@ class IfStatement < AbstractStatement
     end
   end
 
-  def execute(interpreter, trace)
+  def execute_core(interpreter, trace)
     io = interpreter.console_io
     s = ' ' + @expression.to_s
     io.trace_output(s) if trace
@@ -917,7 +942,7 @@ class IfStatement < AbstractStatement
         interpreter.next_line_index = @destination
       end
       if !@statement.nil?
-        @statement.execute(interpreter, trace)
+        @statement.execute(0, interpreter, trace)
       end
     else
       next_line_index = interpreter.find_next_line
@@ -943,7 +968,7 @@ class IfStatement < AbstractStatement
   def parse_destination(destination_token)
     destination = nil
     if destination_token.numeric_constant?
-      destination = LineNumberIndex.new(LineNumber.new(destination_token), 0)
+      destination = LineNumberIndex.new(LineNumber.new(destination_token), 0, 0)
     else
       @errors << "Invalid line number #{destination}"
     end
@@ -1011,7 +1036,7 @@ class PrintStatement < AbstractPrintStatement
     end
   end
 
-  def execute(interpreter, _)
+  def execute_core(interpreter, _)
     file_handle, print_items = extract_file_handle(@print_items, interpreter)
     fh = interpreter.get_file_handler(file_handle)
     print_items.each do |item|
@@ -1066,7 +1091,7 @@ class ReturnStatement < AbstractStatement
     end
   end
 
-  def execute(interpreter, _)
+  def execute_core(interpreter, _)
     interpreter.next_line_index = interpreter.pop_return
   end
 end
@@ -1099,7 +1124,7 @@ class OnStatement < AbstractStatement
         if line_num.size == 1
           destination = line_num[0]
           if destination.numeric_constant?
-            @destinations << LineNumberIndex.new(LineNumber.new(destination), 0)
+            @destinations << LineNumberIndex.new(LineNumber.new(destination), 0, 0)
           else
             @errors << "Invalid line number #{destination}"
           end
@@ -1112,7 +1137,7 @@ class OnStatement < AbstractStatement
     end
   end
 
-  def execute(interpreter, trace)
+  def execute_core(interpreter, trace)
     values = @expression.evaluate(interpreter)
     raise(BASICException, 'Expecting one value') unless values.size == 1
     value = values[0]
@@ -1209,7 +1234,7 @@ class ForStatement < AbstractStatement
     end
   end
 
-  def execute(interpreter, trace)
+  def execute_core(interpreter, trace)
     from = @start.evaluate(interpreter)[0]
     to = @end.evaluate(interpreter)[0]
     step = @step_value.evaluate(interpreter)[0]
@@ -1282,7 +1307,7 @@ class NextStatement < AbstractStatement
     end
   end
 
-  def execute(interpreter, trace)
+  def execute_core(interpreter, trace)
     fornext_control = interpreter.retrieve_fornext(@control)
     # check control variable value
     # if matches end value, stop here
@@ -1354,7 +1379,7 @@ class ReadStatement < AbstractReadStatement
     end
   end
 
-  def execute(interpreter, trace)
+  def execute_core(interpreter, trace)
     read_items = @read_items.clone
     unless read_items.empty?
       fh, tokens_lists = extract_file_handle(read_items, interpreter)
@@ -1406,7 +1431,7 @@ class DataStatement < AbstractStatement
     ds.store(data_list)
   end
 
-  def execute(_, _)
+  def execute_core(_, _)
     0
   end
 end
@@ -1429,7 +1454,7 @@ class RestoreStatement < AbstractStatement
     end
  end
 
-  def execute(interpreter, _)
+  def execute_core(interpreter, _)
     ds = interpreter.get_data_store(nil)
     ds.reset
   end
@@ -1469,7 +1494,7 @@ class DefineFunctionStatement < AbstractStatement
     interpreter.set_user_function(@name, @arguments, @template)
   end
 
-  def execute(_, _) end
+  def execute_core(_, _) end
 end
 
 # STOP
@@ -1490,7 +1515,7 @@ class StopStatement < AbstractStatement
     end
   end
 
-  def execute(interpreter, _)
+  def execute_core(interpreter, _)
     io = interpreter.console_io
     io.newline_when_needed
     interpreter.stop
@@ -1519,7 +1544,7 @@ class EndStatement < AbstractStatement
     raise(BASICException, 'Statements after END') unless next_line.nil?
   end
 
-  def execute(interpreter, _)
+  def execute_core(interpreter, _)
     io = interpreter.console_io
     io.newline_when_needed
     interpreter.stop
@@ -1546,7 +1571,7 @@ class TraceStatement < AbstractStatement
     end
   end
 
-  def execute(interpreter, _)
+  def execute_core(interpreter, _)
     tokens_lists = @tokens_lists.clone
     raise(BASICException, 'Too many values') if tokens_lists.size > 1
     first_expression = tokens_lists[0]
@@ -1613,7 +1638,7 @@ class WriteStatement < AbstractWriteStatement
     end
   end
 
-  def execute(interpreter, _)
+  def execute_core(interpreter, _)
     file_handle, print_items = extract_file_handle(@print_items, interpreter)
     fh = interpreter.get_file_handler(file_handle)
     print_items.each do |item|
@@ -1670,7 +1695,7 @@ class ArrPrintStatement < AbstractPrintStatement
     end
   end
 
-  def execute(interpreter, _)
+  def execute_core(interpreter, _)
     file_handle, print_items = extract_file_handle(@print_items, interpreter)
     fh = interpreter.get_file_handler(file_handle)
     i = 0
@@ -1722,7 +1747,7 @@ class ArrWriteStatement < AbstractWriteStatement
     end
   end
 
-  def execute(interpreter, _)
+  def execute_core(interpreter, _)
     file_handle, print_items = extract_file_handle(@print_items, interpreter)
     fh = interpreter.get_file_handler(file_handle)
     i = 0
@@ -1774,7 +1799,7 @@ class MatWriteStatement < AbstractWriteStatement
     end
   end
 
-  def execute(interpreter, _)
+  def execute_core(interpreter, _)
     file_handle, print_items = extract_file_handle(@print_items, interpreter)
     fh = interpreter.get_file_handler(file_handle)
     i = 0
@@ -1825,7 +1850,7 @@ class ArrReadStatement < AbstractReadStatement
     end
   end
 
-  def execute(interpreter, trace)
+  def execute_core(interpreter, trace)
     tokens_lists = @read_items.clone
     unless tokens_lists.empty?
       fh, tokens_lists = extract_file_handle(tokens_lists, interpreter)
@@ -1904,7 +1929,7 @@ class ArrLetStatement < AbstractStatement
     end
   end
 
-  def execute(interpreter, trace)
+  def execute_core(interpreter, trace)
     r_value = first_value(interpreter)
     dims = r_value.dimensions
     values = r_value.values
@@ -1952,7 +1977,7 @@ class MatPrintStatement < AbstractPrintStatement
     end
   end
 
-  def execute(interpreter, _)
+  def execute_core(interpreter, _)
     file_handle, print_items = extract_file_handle(@print_items, interpreter)
     fh = interpreter.get_file_handler(file_handle)
     i = 0
@@ -2003,7 +2028,7 @@ class MatReadStatement < AbstractReadStatement
     end
   end
 
-  def execute(interpreter, trace)
+  def execute_core(interpreter, trace)
     tokens_lists = @read_items.clone
     unless tokens_lists.empty?
       fh, tokens_lists = extract_file_handle(tokens_lists, interpreter)
@@ -2095,7 +2120,7 @@ class MatLetStatement < AbstractStatement
     end
   end
 
-  def execute(interpreter, trace)
+  def execute_core(interpreter, trace)
     r_value = first_value(interpreter)
     dims = r_value.dimensions
     values = r_value.values_1 if dims.size == 1
@@ -2137,7 +2162,7 @@ class RandomizeStatement < AbstractStatement
     end
   end
 
-  def execute(interpreter, _)
+  def execute_core(interpreter, _)
     interpreter.new_random
   end
 end
