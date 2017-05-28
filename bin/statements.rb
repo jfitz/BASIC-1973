@@ -169,14 +169,14 @@ class StatementFactory
       WriteStatement
     ]
     lead_keywords = {}
-    
+
     classes.each do |class_name|
       keyword_sets = class_name.lead_keywords
       keyword_sets.each do |set|
         lead_keywords[set] = class_name
       end
     end
- 
+
     lead_keywords
   end
 
@@ -232,15 +232,11 @@ end
 # parent of all statement classes
 class AbstractStatement
   attr_reader :errors
-  attr_reader :start_index
-  attr_reader :last_index
 
   def initialize(keywords, tokens_lists)
     @keywords = keywords
     @tokens_lists = tokens_lists
     @errors = []
-    @start_index = 0
-    @last_index = 0
     @premodifiers = []
     @postmodifiers = []
     # if tokens_lists ends with 'IF' [] then remove last two and
@@ -268,16 +264,24 @@ class AbstractStatement
     end
   end
 
+  def start_index
+    0 - @premodifiers.size
+  end
+
+  def last_index
+    @postmodifiers.size
+  end
+
   private
 
-  def execute_premodifier(interpreter, trace)
+  def execute_premodifier(interpreter, _trace)
     current_line_index = interpreter.current_line_index
     index = current_line_index.index
     modifier = @premodifiers[index]
     modifier.execute(interpreter)
   end
 
-  def execute_postmodifier(interpreter, trace)
+  def execute_postmodifier(interpreter, _trace)
     current_line_index = interpreter.current_line_index
     index = current_line_index.index
     modifier = @postmodifiers[index]
@@ -501,11 +505,9 @@ class ChangeStatement < AbstractStatement
     source_value = source_values[0]
 
     if source_value.text_constant?
-      target = TargetExpression.new(@target_tokens, ArrayReference)
-      target_values = target.evaluate(interpreter)
-      target_value = target_values[0]
-
       # string to array
+      target = TargetExpression.new(@target_tokens, ArrayReference)
+
       array = source_value.unpack
       dims = array.dimensions
       target_variable_token = VariableToken.new(target.to_s)
@@ -516,18 +518,18 @@ class ChangeStatement < AbstractStatement
       interpreter.set_values(target_variable_name, values, trace)
 
     elsif source_value.numeric_constant?
+      # array to string
+      source_variable_token = VariableToken.new(source.to_s)
+      source_variable_name = VariableName.new(source_variable_token)
+
       target = TargetExpression.new(@target_tokens, ScalarReference)
       target_values = target.evaluate(interpreter)
       target_value = target_values[0]
 
-      # array to string
-      source_variable_token = VariableToken.new(source.to_s)
-      source_variable_name = VariableName.new(source_variable_token)
-      source_variable = Variable.new(source_variable_name)
       dims = interpreter.get_dimensions(source_variable_name)
 
       raise(BASICException, 'Source not found') if dims.nil?
-      
+
       raise(BASICException, 'Source must have 1 dimension') unless
         dims.size == 1
       cols = dims[0].to_i
@@ -962,16 +964,15 @@ class IfStatement < AbstractStatement
     raise(BASICException, 'Expression error') unless
       result.class.to_s == 'BooleanConstant'
     if result.value
-      if !@destination.nil?
+      unless @destination.nil?
         line_number = @destination
         index = interpreter.statement_start_index(line_number, 0)
         raise(BASICException, 'Line number not found') if index.nil?
         destination = LineNumberIndex.new(line_number, 0, index)
         interpreter.next_line_index = destination
       end
-      if !@statement.nil?
-        @statement.execute(interpreter, trace)
-      end
+
+      @statement.execute(interpreter, trace) unless @statement.nil?
     else
       next_line_index = interpreter.find_next_line
       interpreter.next_line_index = next_line_index
@@ -1297,11 +1298,11 @@ class ForStatement < AbstractStatement
       parts.size != 3
     raise(BASICException, 'Incorrect initialization') if
       parts[1].to_s != '='
-    
+
     @errors << 'Control variable must be a variable' unless
       parts[0][0].variable?
 
-    return [parts[0], parts[2]]
+    [parts[0], parts[2]]
   end
 
   def print_trace_info(io, from, to, step, terminated)
@@ -1313,7 +1314,7 @@ class ForStatement < AbstractStatement
 end
 
 # NEXT
-class NextStatement < AbstractStatement 
+class NextStatement < AbstractStatement
   def self.lead_keywords
     [
       [KeywordToken.new('NEXT')],
@@ -1485,7 +1486,7 @@ class RestoreStatement < AbstractStatement
     unless check_template(tokens_lists, template)
       @errors << 'Syntax error'
     end
- end
+  end
 
   def execute_core(interpreter, _)
     ds = interpreter.get_data_store(nil)
