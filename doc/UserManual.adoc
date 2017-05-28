@@ -1539,6 +1539,27 @@ The special form allows for parameters to be omitted. The special form is when t
 
 In this special form, the target variable must already exist and have dimensions specified.
 
+Statement modifiers
+-------------------
+
+Statements may be controlled with modifiers, clauses at the end that branch around the statement or perform it multiple times.
+Statements may have zero, one, or multiple modifiers.
+Modifiers are processed from right to left, with the last one on the line being processed first.
+
+IF modifier
+~~~~~~~~~~~
+
+Conditional execution of the statement.
+
+Examples:
+
+	10 PRINT A IF B>0
+	200 GOTO 10 IF A$="YES"
+	240 GOSUB 800 IF C2=4
+
+Notice that there is no 'THEN' clause for the IF modifier.
+The modifier controls the action for just the one line.
+
 Editing programs
 ----------------
 

@@ -224,7 +224,10 @@ class StatementFactory
     tokenizers << NumberTokenBuilder.new
     tokenizers << IntegerTokenBuilder.new
     tokenizers << VariableTokenBuilder.new
-    tokenizers << ListTokenBuilder.new(%w(TRUE FALSE), BooleanConstantToken)
+
+    tokenizers <<
+      ListTokenBuilder.new(%w(TRUE FALSE), BooleanConstantToken)
+
     tokenizers << WhitespaceTokenBuilder.new
   end
 end
@@ -240,13 +243,8 @@ class AbstractStatement
     @modifiers = []
     # if tokens_lists ends with 'IF' [] then remove last two and
     # create IF modifier
-    if tokens_lists.size > 2 && tokens_lists[-2] == 'IF' && tokens_lists[-1].class.to_s == 'Array'
-      modifier_tokens = tokens_lists[-1]
-      modifier = IfModifier.new(modifier_tokens)
-      @modifiers << modifier
-      tokens_lists.pop
-      tokens_lists.pop
-    end
+    modifier_added = true
+    modifier_added = if_modifier(tokens_lists) while modifier_added
   end
 
   def pretty
@@ -279,6 +277,24 @@ class AbstractStatement
   end
 
   private
+
+  def if_modifier(tokens_lists)
+    if tokens_lists.size > 2 &&
+       tokens_lists[-2] == 'IF' &&
+       tokens_lists[-1].class.to_s == 'Array'
+
+      # create the modifier
+      modifier_tokens = tokens_lists[-1]
+      modifier = IfModifier.new(modifier_tokens)
+      @modifiers << modifier
+
+      # remove the tokens used for the modifier
+      tokens_lists.pop
+      tokens_lists.pop
+
+      true
+    end
+  end
 
   def execute_premodifier(interpreter, _trace)
     current_line_index = interpreter.current_line_index
