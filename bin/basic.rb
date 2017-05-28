@@ -12,6 +12,7 @@ require_relative 'functions'
 require_relative 'expressions'
 require_relative 'io'
 require_relative 'statements'
+require_relative 'modifiers'
 
 # Contain line numbers
 class LineNumber
@@ -215,6 +216,7 @@ end
 
 # the interpreter
 class Interpreter
+  attr_reader :current_line_index
   attr_accessor :next_line_index
   attr_reader :console_io
 
@@ -446,7 +448,7 @@ class Interpreter
     statement = statements[statement_index]
     print_trace_info(statement) if do_trace
     if statement.errors.empty?
-      statement.execute(0, self, do_trace)
+      statement.execute(self, do_trace)
     else
       stop_running
       print_errors(line_number, statement)
@@ -486,18 +488,18 @@ class Interpreter
     statement_index = @current_line_index.statement
     statement = statements[statement_index]
 
-    subindex = @current_line_index.index
-    if subindex < statement.last_index
-      subindex += 1
-      return LineNumberIndex.new(line_number, statement_index, subindex)
+    index = @current_line_index.index
+    if index < statement.last_index
+      index += 1
+      return LineNumberIndex.new(line_number, statement_index, index)
     end
 
     # find next statement within the current line
     if statement_index < statements.size - 1
       statement_index += 1
       statement = statements[statement_index]
-      start_index = statement.start_index
-      return LineNumberIndex.new(line_number, statement_index, start_index)
+      index = statement.start_index
+      return LineNumberIndex.new(line_number, statement_index, index)
     end
 
     # find the next line
@@ -509,8 +511,8 @@ class Interpreter
       line = @program_lines[line_number]
       statements = line.statements
       statement = statements[0]
-      start_index = statement.start_index
-      return LineNumberIndex.new(line_number, 0, start_index)
+      index = statement.start_index
+      return LineNumberIndex.new(line_number, 0, index)
     end
 
     # nothing left to execute
@@ -527,12 +529,23 @@ class Interpreter
     index = line_numbers.index(line_number)
     line_number = line_numbers[index + 1]
     unless line_number.nil?
-      next_line_index = LineNumberIndex.new(line_number, 0, 0)
+      line = @program_lines[line_number]
+      statements = line.statements
+      statement = statements[0]
+      index = statement.start_index
+      next_line_index = LineNumberIndex.new(line_number, 0, index)
       return next_line_index
     end
 
     # nothing left to execute
     nil
+  end
+
+  def statement_start_index(line_number, statement_index)
+    line = @program_lines[line_number]
+    statements = line.statements
+    statement = statements[0]
+    statement.start_index
   end
 
   def trace(tron_flag)
@@ -687,12 +700,13 @@ class Interpreter
       line_number = forward_line_numbers[0]
       line = @program_lines[line_number]
       statements = line.statements
-      index = 0
+      statement_index = 0
       statements.each do |statement|
-        return LineNumberIndex.new(line_number, index, 0) if
+        # consider only core statements, not modifiers
+        return LineNumberIndex.new(line_number, statement_index, 0) if
           statement.class.to_s == 'NextStatement' &&
           statement.control == control_variable
-        index += 1
+        statement_index += 1
       end
 
       forward_line_numbers.shift

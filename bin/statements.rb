@@ -241,6 +241,10 @@ class AbstractStatement
     @errors = []
     @start_index = 0
     @last_index = 0
+    @premodifiers = []
+    @postmodifiers = []
+    # if tokens_lists ends with 'IF' [] then remove last two and
+    # create IF modifier
   end
 
   def pretty
@@ -251,25 +255,33 @@ class AbstractStatement
     0
   end
 
-  def execute(index, interpreter, trace)
+  def execute(interpreter, trace)
+    current_line_index = interpreter.current_line_index
+    index = current_line_index.index
     case index
     when -1
-      execute_premodifier(index)
+      execute_premodifier(interpreter, trace)
     when 0
       execute_core(interpreter, trace)
     when 1
-      execute_post_modifier(index)
+      execute_postmodifier(interpreter, trace)
     end
   end
 
   private
 
-  def execute_premodifier(index)
-    0
+  def execute_premodifier(interpreter, trace)
+    current_line_index = interpreter.current_line_index
+    index = current_line_index.index
+    modifier = @premodifiers[index]
+    modifier.execute(interpreter)
   end
 
-  def execute_postmodifier(index)
-    0
+  def execute_postmodifier(interpreter, trace)
+    current_line_index = interpreter.current_line_index
+    index = current_line_index.index
+    modifier = @postmodifiers[index]
+    modifier.execute(interpreter)
   end
 
   protected
@@ -623,7 +635,7 @@ class GotoStatement < AbstractStatement
 
     if check_template(tokens_lists, template1)
       if tokens_lists[0][0].numeric_constant?
-        @destination = LineNumberIndex.new(LineNumber.new(tokens_lists[0][0]), 0, 0)
+        @destination = LineNumber.new(tokens_lists[0][0])
       else
         @errors << "Invalid line number #{tokens_lists[0][0]}"
       end
@@ -641,7 +653,7 @@ class GotoStatement < AbstractStatement
         if line_num.size == 1
           destination = line_num[0]
           if destination.numeric_constant?
-            @destinations << LineNumberIndex.new(LineNumber.new(destination), 0, 0)
+            @destinations << LineNumber.new(destination)
           else
             @errors << "Invalid line number #{destination}"
           end
@@ -656,7 +668,11 @@ class GotoStatement < AbstractStatement
 
   def execute_core(interpreter, trace)
     unless @destination.nil?
-      interpreter.next_line_index = @destination
+      line_number = @destination
+      index = interpreter.statement_start_index(line_number, 0)
+      raise(BASICException, 'Line number not found') if index.nil?
+      destination = LineNumberIndex.new(line_number, 0, index)
+      interpreter.next_line_index = destination
     end
 
     unless @destinations.nil?
@@ -670,7 +686,11 @@ class GotoStatement < AbstractStatement
       raise(BASICException, 'Index out of range') if
         index < 1 || index > @destinations.size
       # get destination in list
-      interpreter.next_line_index = @destinations[index - 1]
+      line_number = @destinations[index - 1]
+      index = interpreter.statement_start_index(line_number, 0)
+      raise(BASICException, 'Line number not found') if index.nil?
+      destination = LineNumberIndex.new(line_number, 0, index)
+      interpreter.next_line_index = destination
     end
   end
 end
@@ -690,7 +710,7 @@ class GosubStatement < AbstractStatement
 
     if check_template(tokens_lists, template)
       if tokens_lists[0][0].numeric_constant?
-        @destination = LineNumberIndex.new(LineNumber.new(tokens_lists[0][0]), 0, 0)
+        @destination = LineNumber.new(tokens_lists[0][0])
       else
         @errors << "Invalid line number #{tokens_lists[0][0]}"
       end
@@ -700,8 +720,12 @@ class GosubStatement < AbstractStatement
   end
 
   def execute_core(interpreter, _)
+    line_number = @destination
+    index = interpreter.statement_start_index(line_number, 0)
+    raise(BASICException, 'Line number not found') if index.nil?
+    destination = LineNumberIndex.new(line_number, 0, index)
     interpreter.push_return(interpreter.next_line_index)
-    interpreter.next_line_index = @destination
+    interpreter.next_line_index = destination
   end
 end
 
@@ -939,10 +963,14 @@ class IfStatement < AbstractStatement
       result.class.to_s == 'BooleanConstant'
     if result.value
       if !@destination.nil?
-        interpreter.next_line_index = @destination
+        line_number = @destination
+        index = interpreter.statement_start_index(line_number, 0)
+        raise(BASICException, 'Line number not found') if index.nil?
+        destination = LineNumberIndex.new(line_number, 0, index)
+        interpreter.next_line_index = destination
       end
       if !@statement.nil?
-        @statement.execute(0, interpreter, trace)
+        @statement.execute(interpreter, trace)
       end
     else
       next_line_index = interpreter.find_next_line
@@ -968,7 +996,7 @@ class IfStatement < AbstractStatement
   def parse_destination(destination_token)
     destination = nil
     if destination_token.numeric_constant?
-      destination = LineNumberIndex.new(LineNumber.new(destination_token), 0, 0)
+      destination = LineNumber.new(destination_token)
     else
       @errors << "Invalid line number #{destination}"
     end
@@ -1124,7 +1152,8 @@ class OnStatement < AbstractStatement
         if line_num.size == 1
           destination = line_num[0]
           if destination.numeric_constant?
-            @destinations << LineNumberIndex.new(LineNumber.new(destination), 0, 0)
+            line_number = LineNumber.new(destination)
+            @destinations << line_number
           else
             @errors << "Invalid line number #{destination}"
           end
@@ -1147,7 +1176,11 @@ class OnStatement < AbstractStatement
     raise(BASICException, 'Index out of range') if
       index < 1 || index > @destinations.size
     # get destination in list
-    interpreter.next_line_index = @destinations[index - 1]
+    line_number = @destinations[index - 1]
+    index = interpreter.statement_start_index(line_number, 0)
+    raise(BASICException, 'Line number not found') if index.nil?
+    destination = LineNumberIndex.new(line_number, 0, index)
+    interpreter.next_line_index = destination
   end
 end
 
