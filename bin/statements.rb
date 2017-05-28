@@ -237,10 +237,16 @@ class AbstractStatement
     @keywords = keywords
     @tokens_lists = tokens_lists
     @errors = []
-    @premodifiers = []
-    @postmodifiers = []
+    @modifiers = []
     # if tokens_lists ends with 'IF' [] then remove last two and
     # create IF modifier
+    if tokens_lists.size > 2 && tokens_lists[-2] == 'IF' && tokens_lists[-1].class.to_s == 'Array'
+      modifier_tokens = tokens_lists[-1]
+      modifier = IfModifier.new(modifier_tokens)
+      @modifiers << modifier
+      tokens_lists.pop
+      tokens_lists.pop
+    end
   end
 
   def pretty
@@ -265,27 +271,27 @@ class AbstractStatement
   end
 
   def start_index
-    0 - @premodifiers.size
+    0 - @modifiers.size
   end
 
   def last_index
-    @postmodifiers.size
+    @modifiers.size
   end
 
   private
 
   def execute_premodifier(interpreter, _trace)
     current_line_index = interpreter.current_line_index
-    index = current_line_index.index
-    modifier = @premodifiers[index]
-    modifier.execute(interpreter)
+    index = 0 - (current_line_index.index + 1)
+    modifier = @modifiers[index]
+    modifier.execute_pre(interpreter)
   end
 
   def execute_postmodifier(interpreter, _trace)
     current_line_index = interpreter.current_line_index
-    index = current_line_index.index
-    modifier = @postmodifiers[index]
-    modifier.execute(interpreter)
+    index = current_line_index.index - 1
+    modifier = @modifiers[index]
+    modifier.execute_post(interpreter)
   end
 
   protected

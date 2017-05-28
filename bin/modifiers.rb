@@ -1,10 +1,10 @@
 # IF
 class IfModifier
   def initialize(tokens_lists)
-    @expression = parse_expression(tokens_lists[0])
+    @expression = parse_expression(tokens_lists)
   end
 
-  def execute(interpreter)
+  def execute_pre(interpreter)
     values = @expression.evaluate(interpreter)
     raise(BASICException, 'Expression error') unless
       values.size == 1
@@ -22,6 +22,9 @@ class IfModifier
     end
   end
 
+  def execute_post(_)
+  end
+
   private
 
   def parse_expression(expression_tokens)
@@ -32,14 +35,5 @@ class IfModifier
       @errors << e.message
     end
     expression
-  end
-end
-
-# IF END
-class IfEndModifier
-  def initialize
-  end
-
-  def execute(_, _)
   end
 end
