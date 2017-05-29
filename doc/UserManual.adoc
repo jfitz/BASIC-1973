@@ -1560,6 +1560,33 @@ Examples:
 Notice that there is no 'THEN' clause for the IF modifier.
 The modifier controls the action for just the one line.
 
+FOR modifier
+~~~~~~~~~~~~
+
+Repeated execution of the statement.
+
+Examples:
+
+	10 DIM A(10)
+	20 A(I) = I _ FOR I = 1 TO 10
+	100 PRINT A(I); FOR I = 1 TO 10
+
+The underscore is required in line 20 to prevent BASIC from parsing "= I FOR" as "= IF OR".
+The tokenizer reports the longest possible token; 'IF' is longer than 'I' so it is the token.
+
+Combining modifiers
+~~~~~~~~~~~~~~~~~~~
+
+BASIC-1973 accepts multiple modifiers on a statement.
+
+Example:
+
+	100 PRINT A(I) IF I/2 = INT(I/2) FOR I = 1 TO 10
+
+Modifiers are processed right-to-left, with the last modifier specified being executed first.
+In the example, the FOR loop is processed first. Each iteration of the FOR loop processes the IF modifier.
+If the expression for the IF modifier is true, the main statement is executed.
+
 Editing programs
 ----------------
 

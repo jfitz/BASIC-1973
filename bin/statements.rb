@@ -241,10 +241,9 @@ class AbstractStatement
     @tokens_lists = tokens_lists
     @errors = []
     @modifiers = []
-    # if tokens_lists ends with 'IF' [] then remove last two and
-    # create IF modifier
     modifier_added = true
-    modifier_added = if_modifier(tokens_lists) while modifier_added
+    modifier_added = make_modifier(tokens_lists) while modifier_added
+    @modifiers.each { |modifier| @errors += modifier.errors }
   end
 
   def pretty
@@ -258,12 +257,12 @@ class AbstractStatement
   def execute(interpreter, trace)
     current_line_index = interpreter.current_line_index
     index = current_line_index.index
-    case index
-    when -1
+    case
+    when index < 0
       execute_premodifier(interpreter, trace)
-    when 0
+    when index == 0
       execute_core(interpreter, trace)
-    when 1
+    when index > 0
       execute_postmodifier(interpreter, trace)
     end
   end
@@ -278,7 +277,7 @@ class AbstractStatement
 
   private
 
-  def if_modifier(tokens_lists)
+  def make_modifier(tokens_lists)
     if tokens_lists.size > 2 &&
        tokens_lists[-2] == 'IF' &&
        tokens_lists[-1].class.to_s == 'Array'
@@ -286,28 +285,51 @@ class AbstractStatement
       # create the modifier
       modifier_tokens = tokens_lists[-1]
       modifier = IfModifier.new(modifier_tokens)
-      @modifiers << modifier
+      @modifiers.unshift(modifier)
 
       # remove the tokens used for the modifier
       tokens_lists.pop
       tokens_lists.pop
 
-      true
+      return true
     end
+
+    if tokens_lists.size > 4 &&
+       tokens_lists[-4] == 'FOR' &&
+       tokens_lists[-3].class.to_s == 'Array' &&
+       tokens_lists[-2] == 'TO' &&
+       tokens_lists[-1].class.to_s == 'Array'
+
+      # create the modifer
+      control_and_start_tokens = tokens_lists[-3]
+      end_tokens = tokens_lists[-1]
+      modifier = ForModifier.new(control_and_start_tokens, end_tokens, nil)
+      @modifiers << modifier
+      
+      # remove the tokens used for the modifier
+      tokens_lists.pop
+      tokens_lists.pop
+      tokens_lists.pop
+      tokens_lists.pop
+
+      return true
+    end
+
+    false
   end
 
-  def execute_premodifier(interpreter, _trace)
+  def execute_premodifier(interpreter, trace)
     current_line_index = interpreter.current_line_index
     index = 0 - (current_line_index.index + 1)
     modifier = @modifiers[index]
-    modifier.execute_pre(interpreter)
+    modifier.execute_pre(interpreter, trace)
   end
 
-  def execute_postmodifier(interpreter, _trace)
+  def execute_postmodifier(interpreter, trace)
     current_line_index = interpreter.current_line_index
     index = current_line_index.index - 1
     modifier = @modifiers[index]
-    modifier.execute_post(interpreter)
+    modifier.execute_post(interpreter, trace)
   end
 
   protected
@@ -1373,7 +1395,9 @@ class NextStatement < AbstractStatement
       s = ' terminated:' + terminated.to_s
       io.trace_output(s)
     end
+
     return if terminated
+
     # set next line from top item
     interpreter.next_line_index = fornext_control.start_line_index
     # change control variable value

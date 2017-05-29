@@ -181,8 +181,9 @@ class LineNumberIndex
   end
 
   def to_s
-    return @number.to_s if @statement == 0
-    @number.to_s + '.' + @statement.to_s
+    return @number.to_s if @statement == 0 && @index == 0
+    return @number.to_s + '.' + @statement.to_s if @index == 0
+    @number.to_s + '.' + @statement.to_s + '.' + @index.to_s
   end
 end
 
