@@ -247,7 +247,9 @@ class AbstractStatement
   end
 
   def pretty
-    AbstractToken.pretty_tokens(@keywords, @tokens_lists.flatten)
+    list = [AbstractToken.pretty_tokens(@keywords, @tokens_lists.flatten)]
+    @modifiers.each { |modifier| list << modifier.pretty }
+    list.join(' ')
   end
 
   def pre_execute(_)

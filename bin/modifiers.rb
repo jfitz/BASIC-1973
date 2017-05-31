@@ -7,14 +7,13 @@ class IfModifier
     @expression = parse_expression(expression_tokens)
   end
 
-  def to_s
+  def pretty
     'IF ' + @expression.to_s
   end
 
   def execute_pre(interpreter, trace)
     io = interpreter.console_io
-    s = 'IF ' + @expression.to_s
-    io.trace_output(s) if trace
+
     values = @expression.evaluate(interpreter)
     raise(BASICException, 'Expression error') unless
       values.size == 1
@@ -82,7 +81,7 @@ class ForModifier
     end
   end
 
-  def to_s
+  def pretty
     if @step.nil?
       "FOR #{@control} = #{@start} TO #{@end}"
     else
@@ -104,8 +103,7 @@ class ForModifier
     terminated = terminated?(@current_value, step_value, end_value)
 
     io = interpreter.console_io
-    print_trace_info(io, terminated) if
-      trace
+    print_trace_info(io, terminated) if trace
 
     return unless terminated
 
@@ -128,7 +126,12 @@ class ForModifier
     @current_value += step_value
     interpreter.set_value(@control, @current_value, trace)
 
-    if terminated?(@current_value, step_value, end_value) 
+    terminated = terminated?(@current_value, step_value, end_value)
+
+    io = interpreter.console_io
+    print_trace_info(io, terminated) if trace
+
+    if terminated
       @current_value = nil
     else
       current_line_index = interpreter.current_line_index
@@ -172,7 +175,6 @@ class ForModifier
   end
 
   def print_trace_info(io, terminated)
-    io.trace_output("FOR  #{@control} = #{@start} TO #{@end}")
-    io.trace_output(" #{@control} = #{@current_value}  terminated:#{terminated}")
+    io.trace_output(" terminated:#{terminated}")
   end
 end
