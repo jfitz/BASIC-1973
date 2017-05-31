@@ -305,8 +305,34 @@ class AbstractStatement
       end_tokens = tokens_lists[-1]
       modifier = ForModifier.new(control_and_start_tokens, end_tokens, nil)
       @modifiers << modifier
-      
+
       # remove the tokens used for the modifier
+      tokens_lists.pop
+      tokens_lists.pop
+      tokens_lists.pop
+      tokens_lists.pop
+
+      return true
+    end
+
+    if tokens_lists.size > 6 &&
+       tokens_lists[-6] == 'FOR' &&
+       tokens_lists[-5].class.to_s == 'Array' &&
+       tokens_lists[-4] == 'TO' &&
+       tokens_lists[-3].class.to_s == 'Array' &&
+       tokens_lists[-2] == 'STEP' &&
+       tokens_lists[-1].class.to_s == 'Array'
+
+      # create the modifer
+      control_and_start_tokens = tokens_lists[-5]
+      end_tokens = tokens_lists[-3]
+      step_tokens = tokens_lists[-1]
+      modifier = ForModifier.new(control_and_start_tokens, end_tokens, step_tokens)
+      @modifiers << modifier
+
+      # remove the tokens used for the modifier
+      tokens_lists.pop
+      tokens_lists.pop
       tokens_lists.pop
       tokens_lists.pop
       tokens_lists.pop

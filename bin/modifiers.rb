@@ -75,20 +75,31 @@ class ForModifier
     @control = VariableName.new(control_tokens[0])
     @start = ValueScalarExpression.new(start_tokens)
     @end = ValueScalarExpression.new(end_tokens)
-    step_tokens = [NumericConstantToken.new(1)] if step_tokens.nil?
-    @step_value = ValueScalarExpression.new(step_tokens)
+    if step_tokens.nil?
+      @step = nil
+    else
+      @step = ValueScalarExpression.new(step_tokens)
+    end
   end
 
   def to_s
-    "FOR #{@control} = #{@start} TO #{@end}"
+    if @step.nil?
+      "FOR #{@control} = #{@start} TO #{@end}"
+    else
+      "FOR #{@control} = #{@start} TO #{@end} STEP #{@step}"
+    end
   end
 
   def execute_pre(interpreter, trace)
-    start = @start.evaluate(interpreter)[0]
-    @current_value = start if @current_value.nil?
+    start_value = @start.evaluate(interpreter)[0]
+    @current_value = start_value if @current_value.nil?
     interpreter.set_value(@control, @current_value, trace)
     end_value = @end.evaluate(interpreter)[0]
-    step_value = @step_value.evaluate(interpreter)[0]
+    if @step.nil?
+      step_value = NumericConstant.new(1)
+    else
+      step_value = @step.evaluate(interpreter)[0]
+    end
 
     terminated = terminated?(@current_value, step_value, end_value)
 
@@ -109,7 +120,11 @@ class ForModifier
 
   def execute_post(interpreter, trace)
     end_value = @end.evaluate(interpreter)[0]
-    step_value = @step_value.evaluate(interpreter)[0]
+    if @step.nil?
+      step_value = NumericConstant.new(1)
+    else
+      step_value = @step.evaluate(interpreter)[0]
+    end
     @current_value += step_value
     interpreter.set_value(@control, @current_value, trace)
 
