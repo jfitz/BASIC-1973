@@ -10,13 +10,13 @@ Invalid function specification
  Syntax error
 5 ! IF T H E P R O G R A M L O S E S A G A M E, I T E R A S E S T H E M O V E T H A T L E D TO DEF E A T . IF I T H I T S A P O S I T I ON F R O M W H I CHA L L M O V E S H A V E B E END E LET E D(T H E Y A L L L E D TO DEF E A T), I T E R A S E S T H E M O V E T H A T GOT I T H E REA N D RES I G N S .
  Syntax error
-10 INPUT "INSTRUCTIONS"; C$ : IF L E F T(C$ * 1%) <> "Y" THEN 110
+10 INPUT "INSTRUCTIONS"; C$ : IF LEFT(C$ * 1%) <> "Y" THEN 110
 20 & : &, "THIS PROGRAM PLAYS THE GAME OF HEXAPAWN." : & "HEXAPAWN IS PLAYED WITH CHESS PAWNS ON A 3 BY 3 BOARD. THE PAWNS ARE" : & "MOVED AS IN CHESS - ONE SPACE FORWARD TO AN EMPTY SPACE OR ONE SPACE"
 30 & "FORWARD AND DIAGONALLY TO CAPTURE AN OPPOSING MAN. " : & : & CHR$(9%); "O THE BOARD. YOUR PAWNS ARE 'O', THE COMPUTER'S PAWNS ARE '*'" : & "AND EMPTY SQUARES ARE '-'. TO ENTER A MOVE, TYPE THE NUMBER OF THE"
 40 & "SQUARE YOU WILL MOVE FROM FOLLOWED BY THE NUMBER OF THE SQUARE" : & "YOU WILL MOVE TO. (THE NUMBERS ARE SEPARATED BY A COMMA.)" : &
 50 & "    THE PROGRAM STARTS A SERIS OF GAMES KNOWING ONLY WHEN THE" : & "GAME IS WON (A DRAW IS IMPOSSIBLE) AND HOW TO MOVE. IT HAS NO" : & "STRATEGY AT FIRST AND JUST MOVES RANDOMLY. HOWEVER, IT LEARNS"
 60 & "FROM EACH GAME. THUS, DEFEATING IT BECOMES MORE AND MORE" : & "DIFFICULT. ALSO, TO HELP OFFSET YOUR INITIAL ADVANTAGE, YOU WILL" : & "NOT BE TOLD HOW TO WIN THE GAME BUT MUST LEARN THIS BY PLAYING" : &
-100 DEF FNC $ (X$, X%, Y$) = L E F T(X$, X%, 1%) + Y$ + R I G H T(X$, X% + LEN(Y$))
+100 DEF FNC $ (X$, X%, Y$) = LEFT(X$, X%, 1%) + Y$ + RIGHT(X$, X% + LEN(Y$))
  Invalid function specification
 105 DEF FNN $ (X%) : X$ = N U M$(X%) : FNN $ =M I D(X$, 2% * LEN(X$) - 2%) : FNE N D
  'FNN$(X%)' is not a valid assignment
@@ -25,7 +25,7 @@ Invalid function specification
 110 DIM P$(50%) : RANDOMIZE : Q% = 0% : PRINT "SINCE I'M A GOOD SPORT, YOU'LL ALWAYS GO FIRST"
 120 P% = 8% : P$ = "XXX--OOO" : & : & "NUMBERING: " : & "123" : & "456" : & "789" : &
 190 D% = -1% : Q$ = "O" : GOSUB 2000 : IF M$ = "" THEN PRINT "YOU CAN'T MOVE. I WIN." : GOTO 510
-200 & : & "BOARD:" : & L E F T(P$, 3%) : & M I D(P$, 4%, 3%) : & R I G H T(P$, 7%) : &
+200 & : & "BOARD:" : & LEFT(P$, 3%) : & M I D(P$, 4%, 3%) : & RIGHT(P$, 7%) : &
 210 INPUT "WHAT IS YOUR MOVE"; A%, B% : IF I N S T R(1%, M$, FNN $ (A$) + FNN $ (B$)) = 0% THEN PRINT "ILLEGAL MOVE." : GOTO 210
  Token 'InvalidToken:$' is not a value or operator
 230 P$ = FNC $ (FNC $ (P$, A%, "-"), B%, "O") : IF I N S T R(1%, P$, "*") = 0% OR I N S T R(1%, P$, "O"), 4 $ THEN PRINT "YOU WIN." : GOTO 500
@@ -33,17 +33,17 @@ Invalid function specification
  Token 'InvalidToken:$' is not a value or operator
 300 P% = P% + 2% ! C O M P U T E R     'S MOVE
  Token 'InvalidToken:!' is not a value or operator
-310 FOR C% = 1% TO Q% : C$ = P$(C%) : IF V A L(L E F T(C$, 1%)) = P% AND M I D(C$, 2%, 9%) = P$ THEN M$ = R I G H T(C$, 11%) : GOTO 400
+310 FOR C% = 1% TO Q% : C$ = P$(C%) : IF V A L(LEFT(C$, 1%)) = P% AND M I D(C$, 2%, 9%) = P$ THEN M$ = RIGHT(C$, 11%) : GOTO 400
 320 NEXT C% : Q$ = "*" : D% = 1% : GOSUB 2000 : C% = Q% : IF M$ = "" THEN PRINT "I CAN'T MOVE, YOU WIN." : GOTO 500
 400 IF M$ = "" THEN PRINT "I RESIGN." : GOTO 500
-410 K$ = L E F T(M$, 2%) : M$ = R I G H T(M S, 3%) : IF RND > .33333333 AND M$ <> "" THEN 410
-420 K% = C% : A% = V A L(L E F T(K$, 1%)) : B% = V A L(R I G H T(K$, 2%)) : P$ = FNC $ (FNC $ (P$, A%, "-"), B%, "*")
+410 K$ = LEFT(M$, 2%) : M$ = RIGHT(M S, 3%) : IF RND > .33333333 AND M$ <> "" THEN 410
+420 K% = C% : A% = V A L(LEFT(K$, 1%)) : B% = V A L(RIGHT(K$, 2%)) : P$ = FNC $ (FNC $ (P$, A%, "-"), B%, "*")
  Token 'InvalidToken:$' is not a value or operator
 430 IF I N S T R(1%, P$, "O") = 0% OR I N S T R(7%, P$, "*") THEN PRINT "I WIN!" : GOTO 510
 440 PRINT "I MOVE FROM" A% "TO" B% : GOTO 190
-500 V2% = W2% + 1% : I% = I N S T R(11%, P$(K%), K$) : P$(K%) = L E F T(P$(K%), I% - 1%) + R I G H T(P$(K%), I% + 2%) IF I% : GOTO 520
+500 V2% = W2% + 1% : I% = I N S T R(11%, P$(K%), K$) : P$(K%) = LEFT(P$(K%), I% - 1%) + RIGHT(P$(K%), I% + 2%) IF I% : GOTO 520
 510 W1% = W1% + 1%
-520 & : & "BOARD:" : & L E F T(P$, 3%) : & M I D(P$, 4%, 3%) : & R I G H T(P$, 7%) : & : & "I HAVE WON" W1% "AND YOU HAVE WON" W2% "OF" W1% + W2% "GAMES"
+520 & : & "BOARD:" : & LEFT(P$, 3%) : & M I D(P$, 4%, 3%) : & RIGHT(P$, 7%) : & : & "I HAVE WON" W1% "AND YOU HAVE WON" W2% "OF" W1% + W2% "GAMES"
 530 INPUT "ANOTHER GAME"; C$ : IF C$ = "NO" THEN 9999 S E1 20
  '9999SE120' is not a valid assignment
 900 ! DATA **=<-OF M O V E I N G A M E > <P O S I T I ON ><L I STO F M O V E S > I N < P O S I T I ON >, -=B L A N K * =C O M P U T E R     'S PAWN, O=PLAYER'S PAWN <LIST OF MOVES> IS <- MOVE FROM><- MOVE TO><LIST OF MOVES>

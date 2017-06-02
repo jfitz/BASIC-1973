@@ -567,6 +567,56 @@ class FunctionExt < AbstractScalarFunction
   end
 end
 
+# function LEFT
+class FunctionLeft < AbstractScalarFunction
+  def initialize(text)
+    super
+  end
+
+  def evaluate(_, stack)
+    ensure_argument_count(stack, [2])
+    args = stack.pop
+    specs = [
+      { 'type' => 'text', 'shape' => 'scalar' },
+      { 'type' => 'numeric', 'shape' => 'scalar' }
+    ]
+    check_arg_types(args, specs)
+    value = args[0].to_v
+    count = args[1].to_i
+    raise(BASICException, "Invalid count for #{@name}()") if count < 0
+    text = value[0..count].chop
+    quoted = '"' + text + '"'
+    token = TextConstantToken.new(quoted)
+    TextConstant.new(token)
+  end
+end
+
+# function RIGHT
+class FunctionRight < AbstractScalarFunction
+  def initialize(text)
+    super
+  end
+
+  def evaluate(_, stack)
+    ensure_argument_count(stack, [2])
+    args = stack.pop
+    specs = [
+      { 'type' => 'text', 'shape' => 'scalar' },
+      { 'type' => 'numeric', 'shape' => 'scalar' }
+    ]
+    check_arg_types(args, specs)
+    value = args[0].to_v
+    count = args[1].to_i
+    raise(BASICException, "Invalid count for #{@name}()") if count < 0
+    start = value.size - count
+    start = 0 if start < 0
+    text = value[start..-1]
+    quoted = '"' + text + '"'
+    token = TextConstantToken.new(quoted)
+    TextConstant.new(token)
+  end
+end
+
 # class to make functions, given the name
 class FunctionFactory
   @functions = {
@@ -593,7 +643,9 @@ class FunctionFactory
     'ASC' => FunctionAsc,
     'PACK$' => FunctionPack,
     'UNPACK' => FunctionUnpack,
-    'EXT$' => FunctionExt
+    'EXT$' => FunctionExt,
+    'LEFT' => FunctionLeft,
+    'RIGHT' => FunctionRight
   }
 
   def self.valid?(text)
