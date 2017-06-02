@@ -18,46 +18,46 @@ Invalid function specification
 60 & "FROM EACH GAME. THUS, DEFEATING IT BECOMES MORE AND MORE" : & "DIFFICULT. ALSO, TO HELP OFFSET YOUR INITIAL ADVANTAGE, YOU WILL" : & "NOT BE TOLD HOW TO WIN THE GAME BUT MUST LEARN THIS BY PLAYING" : &
 100 DEF FNC $ (X$, X%, Y$) = LEFT(X$, X%, 1%) + Y$ + RIGHT(X$, X% + LEN(Y$))
  Invalid function specification
-105 DEF FNN $ (X%) : X$ = N U M$(X%) : FNN $ =M I D(X$, 2% * LEN(X$) - 2%) : FNE N D
+105 DEF FNN $ (X%) : X$ = N U M$(X%) : FNN $ =MID(X$, 2% * LEN(X$) - 2%) : FNE N D
  'FNN$(X%)' is not a valid assignment
  Token 'InvalidToken:$' is not a value or operator
  'FNEND' is not a valid assignment
 110 DIM P$(50%) : RANDOMIZE : Q% = 0% : PRINT "SINCE I'M A GOOD SPORT, YOU'LL ALWAYS GO FIRST"
 120 P% = 8% : P$ = "XXX--OOO" : & : & "NUMBERING: " : & "123" : & "456" : & "789" : &
 190 D% = -1% : Q$ = "O" : GOSUB 2000 : IF M$ = "" THEN PRINT "YOU CAN'T MOVE. I WIN." : GOTO 510
-200 & : & "BOARD:" : & LEFT(P$, 3%) : & M I D(P$, 4%, 3%) : & RIGHT(P$, 7%) : &
-210 INPUT "WHAT IS YOUR MOVE"; A%, B% : IF I N S T R(1%, M$, FNN $ (A$) + FNN $ (B$)) = 0% THEN PRINT "ILLEGAL MOVE." : GOTO 210
+200 & : & "BOARD:" : & LEFT(P$, 3%) : & MID(P$, 4%, 3%) : & RIGHT(P$, 7%) : &
+210 INPUT "WHAT IS YOUR MOVE"; A%, B% : IF INSTR(1%, M$, FNN $ (A$) + FNN $ (B$)) = 0% THEN PRINT "ILLEGAL MOVE." : GOTO 210
  Token 'InvalidToken:$' is not a value or operator
-230 P$ = FNC $ (FNC $ (P$, A%, "-"), B%, "O") : IF I N S T R(1%, P$, "*") = 0% OR I N S T R(1%, P$, "O"), 4 $ THEN PRINT "YOU WIN." : GOTO 500
+230 P$ = FNC $ (FNC $ (P$, A%, "-"), B%, "O") : IF INSTR(1%, P$, "*") = 0% OR INSTR(1%, P$, "O"), 4 $ THEN PRINT "YOU WIN." : GOTO 500
  Token 'InvalidToken:$' is not a value or operator
  Token 'InvalidToken:$' is not a value or operator
 300 P% = P% + 2% ! C O M P U T E R     'S MOVE
  Token 'InvalidToken:!' is not a value or operator
-310 FOR C% = 1% TO Q% : C$ = P$(C%) : IF V A L(LEFT(C$, 1%)) = P% AND M I D(C$, 2%, 9%) = P$ THEN M$ = RIGHT(C$, 11%) : GOTO 400
+310 FOR C% = 1% TO Q% : C$ = P$(C%) : IF V A L(LEFT(C$, 1%)) = P% AND MID(C$, 2%, 9%) = P$ THEN M$ = RIGHT(C$, 11%) : GOTO 400
 320 NEXT C% : Q$ = "*" : D% = 1% : GOSUB 2000 : C% = Q% : IF M$ = "" THEN PRINT "I CAN'T MOVE, YOU WIN." : GOTO 500
 400 IF M$ = "" THEN PRINT "I RESIGN." : GOTO 500
 410 K$ = LEFT(M$, 2%) : M$ = RIGHT(M S, 3%) : IF RND > .33333333 AND M$ <> "" THEN 410
 420 K% = C% : A% = V A L(LEFT(K$, 1%)) : B% = V A L(RIGHT(K$, 2%)) : P$ = FNC $ (FNC $ (P$, A%, "-"), B%, "*")
  Token 'InvalidToken:$' is not a value or operator
-430 IF I N S T R(1%, P$, "O") = 0% OR I N S T R(7%, P$, "*") THEN PRINT "I WIN!" : GOTO 510
+430 IF INSTR(1%, P$, "O") = 0% OR INSTR(7%, P$, "*") THEN PRINT "I WIN!" : GOTO 510
 440 PRINT "I MOVE FROM" A% "TO" B% : GOTO 190
-500 V2% = W2% + 1% : I% = I N S T R(11%, P$(K%), K$) : P$(K%) = LEFT(P$(K%), I% - 1%) + RIGHT(P$(K%), I% + 2%) IF I% : GOTO 520
+500 V2% = W2% + 1% : I% = INSTR(11%, P$(K%), K$) : P$(K%) = LEFT(P$(K%), I% - 1%) + RIGHT(P$(K%), I% + 2%) IF I% : GOTO 520
 510 W1% = W1% + 1%
-520 & : & "BOARD:" : & LEFT(P$, 3%) : & M I D(P$, 4%, 3%) : & RIGHT(P$, 7%) : & : & "I HAVE WON" W1% "AND YOU HAVE WON" W2% "OF" W1% + W2% "GAMES"
+520 & : & "BOARD:" : & LEFT(P$, 3%) : & MID(P$, 4%, 3%) : & RIGHT(P$, 7%) : & : & "I HAVE WON" W1% "AND YOU HAVE WON" W2% "OF" W1% + W2% "GAMES"
 530 INPUT "ANOTHER GAME"; C$ : IF C$ = "NO" THEN 9999 S E1 20
  '9999SE120' is not a valid assignment
 900 ! DATA **=<-OF M O V E I N G A M E > <P O S I T I ON ><L I STO F M O V E S > I N < P O S I T I ON >, -=B L A N K * =C O M P U T E R     'S PAWN, O=PLAYER'S PAWN <LIST OF MOVES> IS <- MOVE FROM><- MOVE TO><LIST OF MOVES>
  Syntax error
 2000 M$ = ""
-2010 FOR J% = 1% TO 9% : IF M I D(P$, J%, 1%) <> Q$ THEN 2050
+2010 FOR J% = 1% TO 9% : IF MID(P$, J%, 1%) <> Q$ THEN 2050
 2015 T% = J% + D% * 3% : IF T% < 1% OR T% > 9% THEN 2025
-2020 IF M I D(P$, T%, 1%) = "-" THEN M$ = M$ + FNN $ (J%) + FNN $ (T%)
+2020 IF MID(P$, T%, 1%) = "-" THEN M$ = M$ + FNN $ (J%) + FNN $ (T%)
  Token 'InvalidToken:$' is not a value or operator
 2025 T% = J% + D% * 2% : IF T% < 1% OR T% > 9% OR (D% = 1% AND (J% = 1% OR J% = 4% OR J% = 7%)) OR (D% = 1% AND (J% = 3% OR J% = 6% OR J% - 9%)) THEN 2035
-2030 IF I N S T R(1%, Q$ + "-", M I D(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN $ (J%) + FNN $ (T%)
+2030 IF INSTR(1%, Q$ + "-", MID(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN $ (J%) + FNN $ (T%)
  Token 'InvalidToken:$' is not a value or operator
 2035 T% = J% + D% * 4% : IF T% < 1% OR T% > 9% OR J% = 3% OR J% = 7% THEN 2050
-2040 IF I N S T R(1%, Q$ + "-", M I D(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN $ (J%) + FNN $ (T%)
+2040 IF INSTR(1%, Q$ + "-", MID(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN $ (J%) + FNN $ (T%)
  Token 'InvalidToken:$' is not a value or operator
 2050 NEXT J% : IF D% = 1% AND M$ <> "" THEN Q% = Q% + 1% : P$(Q%) = FNN $ (P%) + P$ + M$
  Token 'InvalidToken:$' is not a value or operator

@@ -617,35 +617,97 @@ class FunctionRight < AbstractScalarFunction
   end
 end
 
+# function MID
+class FunctionMid < AbstractScalarFunction
+  def initialize(text)
+    super
+  end
+
+  def evaluate(_, stack)
+    ensure_argument_count(stack, [3])
+    args = stack.pop
+    specs = [
+      { 'type' => 'text', 'shape' => 'scalar' },
+      { 'type' => 'numeric', 'shape' => 'scalar' },
+      { 'type' => 'numeric', 'shape' => 'scalar' }
+    ]
+    check_arg_types(args, specs)
+    value = args[0].to_v
+    start = args[1].to_i
+    raise(BASICException, "Invalid start index for #{@name}()") if start < 1
+    start -= 1
+    end_index = args[2].to_i - 1
+    raise(BASICException, "Invalid end index for #{@name}()") if end_index < start
+    text = value[start..end_index]
+    text = '' if text.nil?
+    quoted = '"' + text + '"'
+    token = TextConstantToken.new(quoted)
+    TextConstant.new(token)
+  end
+end
+
+# function INSTR
+class FunctionInstr < AbstractScalarFunction
+  def initialize(text)
+    super
+  end
+
+  def evaluate(_, stack)
+    ensure_argument_count(stack, [3])
+    args = stack.pop
+    specs = [
+      { 'type' => 'numeric', 'shape' => 'scalar' },
+      { 'type' => 'text', 'shape' => 'scalar' },
+      { 'type' => 'text', 'shape' => 'scalar' }
+    ]
+    check_arg_types(args, specs)
+    start = args[0].to_i
+    raise(BASICException, "Invalid start index for #{@name}()") if start < 1
+    start -= 1
+    value = args[1].to_v
+    search = args[2].to_v
+    index = value.index(search, start)
+    if index.nil?
+      index = 0
+    else
+      index += 1
+    end
+    token = IntegerConstantToken.new(index)
+    IntegerConstant.new(token)
+  end
+end
+
 # class to make functions, given the name
 class FunctionFactory
   @functions = {
-    'INT' => FunctionInt,
-    'RND' => FunctionRnd,
-    'EXP' => FunctionExp,
-    'LOG' => FunctionLog,
     'ABS' => FunctionAbs,
-    'SQR' => FunctionSqr,
-    'SIN' => FunctionSin,
-    'COS' => FunctionCos,
-    'TAN' => FunctionTan,
-    'ATN' => FunctionAtn,
-    'SGN' => FunctionSgn,
-    'TRN' => FunctionTrn,
-    'ZER' => FunctionZer,
-    'CON' => FunctionCon,
-    'IDN' => FunctionIdn,
-    'DET' => FunctionDet,
-    'INV' => FunctionInv,
-    'TAB' => FunctionTab,
-    'CHR$' => FunctionChr,
-    'LEN' => FunctionLen,
     'ASC' => FunctionAsc,
-    'PACK$' => FunctionPack,
-    'UNPACK' => FunctionUnpack,
+    'ATN' => FunctionAtn,
+    'CHR$' => FunctionChr,
+    'CON' => FunctionCon,
+    'COS' => FunctionCos,
+    'DET' => FunctionDet,
+    'EXP' => FunctionExp,
     'EXT$' => FunctionExt,
+    'IDN' => FunctionIdn,
+    'INSTR' => FunctionInstr,
+    'INT' => FunctionInt,
+    'INV' => FunctionInv,
     'LEFT' => FunctionLeft,
-    'RIGHT' => FunctionRight
+    'LEN' => FunctionLen,
+    'LOG' => FunctionLog,
+    'MID' => FunctionMid,
+    'PACK$' => FunctionPack,
+    'RIGHT' => FunctionRight,
+    'RND' => FunctionRnd,
+    'SGN' => FunctionSgn,
+    'SIN' => FunctionSin,
+    'SQR' => FunctionSqr,
+    'TAB' => FunctionTab,
+    'TAN' => FunctionTan,
+    'TRN' => FunctionTrn,
+    'UNPACK' => FunctionUnpack,
+    'ZER' => FunctionZer
   }
 
   def self.valid?(text)
