@@ -23,7 +23,7 @@
 2050 PRINT "PLEASE TYPE IN A QUESTION THAT WOULD DISTINGUISH A " Z9$ " FROM A " RIGHT(A$(K%), 3%) : INPUT Z8$
 2100 PRINT "FOR A " Z9$ " THE ANSWER WOULD BE"; : INPUT Z7$ : Z7$ = LEFT(Z7$, 1%) : IF Z7$ = "Y" THEN Z6$ = "N" E L S E IF Z7$ = "N" THEN Z6$ = "Y" E L S E PRINT "PLEASE ANSWER 'YES' OR 'NO'" : GOTO 2100
  Syntax error
-2200 Z1% = VAL(A S(0%)) : A$(0%) = NUM$(Z1% + 2%) : A$(Z1%) = A$(K%) : A$(Z1% + 1%) =     '\A'+Z9$:A$(K%)="\Q"+Z8$+"\"+Z7$+NUM$(Z1%+1%)+"\"+Z6$+NUM$(Z1%)+"\"
+2200 Z1% = VAL(A$(0%)) : A$(0%) = NUM$(Z1% + 2%) : A$(Z1%) = A$(K%) : A$(Z1% + 1%) =     '\A'+Z9$:A$(K%)="\Q"+Z8$+"\"+Z7$+NUM$(Z1%+1%)+"\"+Z6$+NUM$(Z1%)+"\"
  'A$(Z1%+1%)=' is not a valid assignment
 2300 GOTO 1300
 3000 DEF FNA % (Q$) : PRINT MID(Q$, 3%, INSTR(3%, Q$, "\") - 3%); : INPUT Z9$ : Z9$ = LEFT(Z9$, 1%) : Z9$ = "N" IF Z9$ <> "Y" : Z1% = INSTR(3%, Q$, "\" + Z9$) + 2% : Z2% = INSTR(Z1%, Q$, "\") : FNA % =VAL(MID(Q$, Z1%, Z2% - Z1%)) : FNE N D

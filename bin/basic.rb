@@ -822,7 +822,7 @@ class Interpreter
     # check that value type matches variable type
     if !variable.is_compatible(value)
       raise(BASICException,
-            "Type mismatch #{value.class} is not #{variable.content_type}")
+            "Type mismatch '#{value}' is not #{variable.content_type}")
     end
 
     var = variable.to_s
