@@ -220,10 +220,11 @@ class Interpreter
   attr_reader :current_line_index
   attr_accessor :next_line_index
   attr_reader :console_io
+  attr_reader :if_false_next_line
 
   def initialize(print_width, zone_width, output_speed, newline_speed,
                  echo_input, int_floor, ignore_rnd_arg, implied_semicolon,
-                 respect_randomize)
+                 respect_randomize, if_false_next_line)
     @running = false
     @randomizer = Random.new(1)
     @statement_factory = StatementFactory.new
@@ -241,6 +242,7 @@ class Interpreter
     @user_functions = {}
     @user_var_names = {}
     @user_var_values = []
+    @if_false_next_line = if_false_next_line
   end
 
   def parse_line(line)
@@ -544,9 +546,11 @@ class Interpreter
 
   def statement_start_index(line_number, statement_index)
     line = @program_lines[line_number]
-    statements = line.statements
-    statement = statements[0]
-    statement.start_index
+    unless line.nil?
+      statements = line.statements
+      statement = statements[0]
+      statement.start_index unless statement.nil?
+    end
   end
 
   def trace(tron_flag)
@@ -1080,6 +1084,7 @@ OptionParser.new do |opt|
   opt.on('--ignore-rnd-arg') { |o| options[:ignore_rnd_arg] = o }
   opt.on('--implied-semicolon') { |o| options[:implied_semicolon] = o }
   opt.on('--ignore-randomize') { |o| options[:ignore_randomize] = o }
+  opt.on('--if-false-next-line') { |o| options[:if_false_next_line]= o }
 end.parse!
 
 run_filename = options[:run_name]
@@ -1104,11 +1109,12 @@ implied_semicolon = options.key?(:implied_semicolon) || false
 respect_randomize = true
 respect_randomize = !options[:ignore_randomize] if
   options.key?(:ignore_randomize)
+if_false_next_line = options.key?(:if_false_next_line) || false
 
 interpreter =
   Interpreter.new(print_width, zone_width, output_speed, newline_speed,
                   echo_input, int_floor, ignore_rnd_arg,
-                  implied_semicolon, respect_randomize)
+                  implied_semicolon, respect_randomize, if_false_next_line)
 
 if show_heading
   puts 'BASIC-1973 interpreter version -1'

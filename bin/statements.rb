@@ -376,12 +376,15 @@ class AbstractStatement
         result &= (value.keyword? &&
                    value.to_s == control)
       when 'Array'
-        result &= (value.class.to_s == 'Array')
-        if control.size == 1
-          result &= value.size == control[0]
-        end
-        if control.size == 2 && control[1] == '>='
-          result &= value.size >= control[0]
+        if value.class.to_s == 'Array'
+          if control.size == 1
+            result &= value.size == control[0]
+          end
+          if control.size == 2 && control[1] == '>='
+            result &= value.size >= control[0]
+          end
+        else
+          result = false
         end
       end
     end
@@ -1046,8 +1049,11 @@ class IfStatement < AbstractStatement
 
       @statement.execute(interpreter, trace) unless @statement.nil?
     else
-      next_line_index = interpreter.find_next_line
-      interpreter.next_line_index = next_line_index
+      if !@destination.nil? && interpreter.if_false_next_line
+        # go to next numbered line, not next statement
+        next_line_index = interpreter.find_next_line
+        interpreter.next_line_index = next_line_index
+      end
     end
     return unless trace
     s = ' ' + result.to_s
