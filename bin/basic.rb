@@ -224,9 +224,11 @@ class Interpreter
 
   def initialize(print_width, zone_width, output_speed, newline_speed,
                  echo_input, int_floor, ignore_rnd_arg, implied_semicolon,
-                 respect_randomize, if_false_next_line)
+                 randomize, respect_randomize, if_false_next_line)
     @running = false
     @randomizer = Random.new(1)
+    @randomizer = Random.new if randomize && respect_randomize
+    @respect_randomize = respect_randomize
     @statement_factory = StatementFactory.new
     @int_floor = int_floor
     @ignore_rnd_arg = ignore_rnd_arg
@@ -234,7 +236,6 @@ class Interpreter
       ConsoleIo.new(print_width, zone_width, output_speed, newline_speed,
                     implied_semicolon, echo_input)
     @data_store = DataStore.new
-    @respect_randomize = respect_randomize
     @file_handlers = {}
     @return_stack = []
     @fornexts = {}
@@ -1083,6 +1084,7 @@ OptionParser.new do |opt|
   opt.on('--int-floor') { |o| options[:int_floor] = o }
   opt.on('--ignore-rnd-arg') { |o| options[:ignore_rnd_arg] = o }
   opt.on('--implied-semicolon') { |o| options[:implied_semicolon] = o }
+  opt.on('--randomize') { |o| options[:randomize] = o }
   opt.on('--ignore-randomize') { |o| options[:ignore_randomize] = o }
   opt.on('--if-false-next-line') { |o| options[:if_false_next_line]= o }
 end.parse!
@@ -1090,10 +1092,10 @@ end.parse!
 run_filename = options[:run_name]
 list_filename = options[:list_name]
 pretty_filename = options[:pretty_name]
-show_heading = !(options.key?(:no_heading) || false)
-trace_flag = options.key?(:trace) || false
-list_tokens = options.key?(:tokens) || false
-show_timing = !(options.key?(:no_timing) || false)
+show_heading = !options.key?(:no_heading)
+trace_flag = options.key?(:trace)
+list_tokens = options.key?(:tokens)
+show_timing = !options.key?(:no_timing)
 output_speed = 0
 output_speed = 10 if options.key?(:tty)
 newline_speed = 0
@@ -1102,19 +1104,21 @@ print_width = 72
 print_width = options[:print_width].to_i if options.key?(:print_width)
 zone_width = 16
 zone_width = options[:zone_width].to_i if options.key?(:zone_width)
-echo_input = options.key?(:echo_input) || false
-int_floor = options.key?(:int_floor) || false
-ignore_rnd_arg = options.key?(:ignore_rnd_arg) || false
-implied_semicolon = options.key?(:implied_semicolon) || false
+echo_input = options.key?(:echo_input)
+int_floor = options.key?(:int_floor)
+ignore_rnd_arg = options.key?(:ignore_rnd_arg)
+implied_semicolon = options.key?(:implied_semicolon)
+randomize = options.key?(:randomize)
 respect_randomize = true
 respect_randomize = !options[:ignore_randomize] if
   options.key?(:ignore_randomize)
-if_false_next_line = options.key?(:if_false_next_line) || false
+if_false_next_line = options.key?(:if_false_next_line)
 
 interpreter =
   Interpreter.new(print_width, zone_width, output_speed, newline_speed,
                   echo_input, int_floor, ignore_rnd_arg,
-                  implied_semicolon, respect_randomize, if_false_next_line)
+                  implied_semicolon, randomize, respect_randomize,
+                  if_false_next_line)
 
 if show_heading
   puts 'BASIC-1973 interpreter version -1'
