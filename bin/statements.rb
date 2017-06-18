@@ -260,20 +260,14 @@ class AbstractStatement
     ### TODO: add profile for modifiers
   end
 
-  def pre_execute(_)
-  end
+  def pre_execute(_) end
 
   def execute(interpreter, trace)
     current_line_index = interpreter.current_line_index
     index = current_line_index.index
-    case
-    when index < 0
-      execute_premodifier(interpreter, trace)
-    when index == 0
-      execute_core(interpreter, trace)
-    when index > 0
-      execute_postmodifier(interpreter, trace)
-    end
+    execute_premodifier(interpreter, trace) if index < 0
+    execute_core(interpreter, trace) if index.zero?
+    execute_postmodifier(interpreter, trace) if index > 0
   end
 
   def start_index
@@ -336,7 +330,8 @@ class AbstractStatement
       control_and_start_tokens = tokens_lists[-5]
       end_tokens = tokens_lists[-3]
       step_tokens = tokens_lists[-1]
-      modifier = ForModifier.new(control_and_start_tokens, end_tokens, step_tokens)
+      modifier = ForModifier.new(
+        control_and_start_tokens, end_tokens, step_tokens)
       @modifiers << modifier
 
       # remove the tokens used for the modifier
@@ -384,12 +379,9 @@ class AbstractStatement
                    value.to_s == control)
       when 'Array'
         if value.class.to_s == 'Array'
-          if control.size == 1
-            result &= value.size == control[0]
-          end
-          if control.size == 2 && control[1] == '>='
-            result &= value.size >= control[0]
-          end
+          result &= value.size == control[0] if control.size == 1
+          result &= value.size >= control[0] if
+            control.size == 2 && control[1] == '>='
         else
           result = false
         end
@@ -413,12 +405,9 @@ class AbstractStatement
                    value.to_s == control)
       when 'Array'
         result &= (value.class.to_s == 'Array')
-        if control.size == 1
-          result &= value.size == control[0]
-        end
-        if control.size == 2 && control[1] == '>='
-          result &= value.size >= control[0]
-        end
+        result &= value.size == control[0] if control.size == 1
+        result &= value.size >= control[0] if
+          control.size == 2 && control[1] == '>='
       end
     end
     result
@@ -521,8 +510,7 @@ class UnknownStatement < AbstractStatement
     @text
   end
 
-  def execute_core(_, _)
-  end
+  def execute_core(_, _) end
 end
 
 # empty statement (line number only)
@@ -701,8 +689,7 @@ class FilesStatement < AbstractStatement
     @profile_count += 1
   end
 
-  def execute_core(_, _)
-  end
+  def execute_core(_, _) end
 end
 
 # GOTO
@@ -1218,9 +1205,8 @@ class ReturnStatement < AbstractStatement
     super
     template = []
 
-    unless check_template(tokens_lists, template)
-      @errors << 'Syntax error'
-    end
+    @errors << 'Syntax error' unless
+      check_template(tokens_lists, template)
   end
 
   def execute_core(interpreter, _)
@@ -1582,8 +1568,7 @@ class DataStatement < AbstractStatement
     @profile_count += 1
   end
 
-  def execute_core(_, _)
-  end
+  def execute_core(_, _) end
 end
 
 # RESTORE
@@ -1599,9 +1584,8 @@ class RestoreStatement < AbstractStatement
     super
     template = []
 
-    unless check_template(tokens_lists, template)
-      @errors << 'Syntax error'
-    end
+    @errors << 'Syntax error' unless
+      check_template(tokens_lists, template)
   end
 
   def execute_core(interpreter, _)
@@ -1664,9 +1648,8 @@ class StopStatement < AbstractStatement
     super
     template = []
 
-    unless check_template(tokens_lists, template)
-      @errors << 'Syntax error'
-    end
+    @errors << 'Syntax error' unless
+      check_template(tokens_lists, template)
   end
 
   def execute_core(interpreter, _)
@@ -1690,9 +1673,8 @@ class EndStatement < AbstractStatement
     super
     template = []
 
-    unless check_template(tokens_lists, template)
-      @errors << 'Syntax error'
-    end
+    @errors << 'Syntax error' unless
+      check_template(tokens_lists, template)
   end
 
   def pre_execute(interpreter)
@@ -2337,9 +2319,8 @@ class RandomizeStatement < AbstractStatement
     super
     template = []
 
-    unless check_template(tokens_lists, template)
-      @errors << 'Syntax error'
-    end
+    @errors << 'Syntax error' unless
+      check_template(tokens_lists, template)
   end
 
   def execute_core(interpreter, _)

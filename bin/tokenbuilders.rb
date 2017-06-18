@@ -116,11 +116,7 @@ class RemarkTokenBuilder
     unless best_candidate.empty?
       @keyword_token = best_candidate
       remark = text[best_count..-1]
-      if remark[0] == ' '
-        @remark_token = remark[1..-1]
-      else
-        @remark_token = remark
-      end
+      @remark_token = remark[0] == ' ' ? remark[1..-1] : remark
       @count = text.size
     end
 
@@ -299,7 +295,7 @@ class NumberTokenBuilder
     result = false
 
     # can always append a digit
-    result = true if /[0-9]/.match(c)
+    result = true if c =~ /[0-9]/
     # can append a decimal point if no decimal point and no E
     result = true if c == '.' && candidate.count('.', 'E').zero?
     # can append E if no E and at least one digit (not just decimal point)
@@ -361,7 +357,7 @@ class IntegerTokenBuilder
     # can always append one percent char
     result = true if c == '%' && candidate.count('%').zero?
     # can append a digit if no percent char
-    result = true if /[0-9]/.match(c) && candidate.count('%').zero?
+    result = true if c =~ /[0-9]/ && candidate.count('%').zero?
 
     result
   end
@@ -419,9 +415,9 @@ class VariableTokenBuilder
   def accept?(candidate, c)
     result = false
     # can always start with an alpha
-    result = true if /[A-Z]/.match(c) && candidate.empty?
+    result = true if c =~ /[A-Z]/ && candidate.empty?
     # can append a digit to a single character
-    result = true if /[0-9]/.match(c) && candidate.size == 1
+    result = true if c =~ /[0-9]/ && candidate.size == 1
     # can append a dollar sign if one is not there
     result = true if
       c == '$' && [1, 2].include?(candidate.size) && candidate[-1] != '$'
