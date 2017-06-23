@@ -186,7 +186,7 @@ class StatementFactory
     keys.each do |key|
       keywords << key[0].to_s
     end
-    keywords += %w(OF THEN TO STEP)
+    keywords += %w(OF THEN ELSE TO STEP)
     keywords -= %w(REM REMARK)
     keywords.uniq
   end
@@ -1016,23 +1016,144 @@ class IfStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
-    template1 = [[1, '>='], 'THEN', [1]]
-    template2 = [[1, '>='], 'GOTO', [1]]
-    template3 = [[1, '>='], 'THEN']
 
-    @destination = nil
-    if check_template(tokens_lists, template1) ||
-       check_template(tokens_lists, template2)
-      @expression = parse_expression(tokens_lists[0])
-      @destination = parse_destination(tokens_lists[2][0])
-    elsif check_template_2(tokens_lists, template3)
-      @expression = parse_expression(tokens_lists[0])
-      tokens = tokens_lists[2..-1].flatten
-      statement_factory = StatementFactory.new
-      @statement = statement_factory.create_statement(tokens)
-      @errors += @statement.errors
+    if tokens_lists.class.to_s == 'Hash'
+      @expression = parse_expression(tokens_lists['expr'])
+      @destination, @statement = parse_target(tokens_lists['then'])
+      @else_dest = nil
+      @else_dest, @else_stmt = parse_target(tokens_lists['else']) if
+        tokens_lists.key?('else')
     else
-      @errors << 'Syntax error'
+      begin
+        stack = parse_if(tokens_lists)
+        @expression = parse_expression(stack['expr'])
+        @destination, @statement = parse_target(stack['then'])
+        @else_dest = nil
+        @else_dest, @else_stmt = parse_target(stack['else']) if
+          stack.key?('else')
+      rescue
+        @errors << 'Syntax Error'
+      end
+    end
+  end
+
+  def parse_if(tokens_lists)
+    stack = []
+    new_dict = { 'expr' => [], 'then' => [] }
+    stack << new_dict
+    dict = stack[-1]
+    state = 1
+    tokens_lists.each do |tokens_list|
+      handled = false
+      case state
+      when 1
+        if tokens_list == 'THEN'
+          state = 2
+        elsif tokens_list.class.to_s == 'KeywordToken'
+          if tokens_list.to_s == 'GOTO'
+            state = 4
+          else
+            dict['expr'] << tokens_list
+          end
+        else
+          dict['expr'] += tokens_list
+        end
+        handled = true
+      when 2
+        unless handled
+          if tokens_list == 'ELSE'
+            dict['else'] = []
+            state = 3
+          elsif tokens_list == 'IF' && dict['then'].empty?
+            new_dict = { 'expr' => [], 'then' => [] }
+            dict['then' ] = new_dict
+            stack << new_dict
+            dict = stack[-1]
+            state = 1
+          elsif tokens_list.class.to_s == 'KeywordToken'
+            dict['then'] << tokens_list
+          else
+            dict['then'] += tokens_list
+          end
+          handled = true
+        end
+      when 3
+        unless handled
+          if tokens_list == 'ELSE'
+            stack.pop
+            # TODO: exit if stack.empty
+            dict = stack[-1]
+            dict['else'] = []
+          elsif tokens_list == 'IF' && dict['else'].empty?
+            new_dict = { 'expr' => [], 'then' => [] }
+            dict['else'] = new_dict
+            stack << new_dict
+            dict = stack[-1]
+            state = 1
+          elsif tokens_list.class.to_s == 'KeywordToken'
+            dict['else'] << tokens_list
+          else
+            dict['else'] += tokens_list
+          end
+          handled = true
+        end
+      when 4
+        unless handled
+          if dict['then'].empty?
+            dict['then'] += tokens_list
+          else
+            raise(BASICException, 'Syntax Error')
+          end
+          handled = true
+        end
+      end
+    end
+
+    stack[0]
+  end
+
+  def print_dict(dict)
+    expr_s = '['
+    x0 = dict['expr']
+    x0.each do |x|
+      if x.class.to_s == 'Array'
+        expr_s += '[' + x.map(&:to_s).join(', ') + ']'
+      else
+        expr_s += x.to_s
+      end
+      expr_s += ', '
+    end
+    expr_s += ']'
+    x1 = dict['then']
+    if x1.class.to_s == 'Array'
+      ax1 = []
+      x1.each do |x|
+        if x.class.to_s == 'Array'
+          ax1 << '[' + x.map(&:to_s).join(', ') + ']'
+        else
+          ax1 << x.to_s
+        end
+      end
+      then_s = '[' + ax1.join(', ') + ']'
+    else
+      then_s = 'DICT'
+    end
+    else_s = ''
+    if dict.key?('else')
+      x2 = dict['else']
+      if x2.class.to_s == 'Array'
+        ax2 = []
+        x2.each do |x|
+          if x.class.to_s == 'Array'
+            ax2 << '[' + x.map(&:to_s).join(', ') + ']'
+          else
+            ax2 << x.to_s
+          end
+        end
+        else_s = '[' + ax2.join(', ') + ']'
+      else
+        else_s = 'DICT'
+      end
     end
   end
 
@@ -1047,7 +1168,7 @@ class IfStatement < AbstractStatement
     raise(BASICException, 'Expression error') unless
       result.class.to_s == 'BooleanConstant'
     if result.value
-      unless @destination.nil?
+      if !@destination.nil?
         line_number = @destination
         index = interpreter.statement_start_index(line_number, 0)
         raise(BASICException, 'Line number not found') if index.nil?
@@ -1055,13 +1176,23 @@ class IfStatement < AbstractStatement
         interpreter.next_line_index = destination
       end
 
-      @statement.execute(interpreter, trace) unless @statement.nil?
+      @statement.execute(interpreter, trace) if !@statement.nil?
     else
-      if !@statement.nil? && interpreter.if_false_next_line
+      if !@else_dest.nil?
+        line_number = @else_dest
+        index = interpreter.statement_start_index(line_number, 0)
+        raise(BASICException, 'Line number not found') if index.nil?
+        destination = LineNumberIndex.new(line_number, 0, index)
+        interpreter.next_line_index = destination
+      end
+
+      if @else_dest.nil? && @else_stmt.nil? && interpreter.if_false_next_line
         # go to next numbered line, not next statement
         next_line_index = interpreter.find_next_line
         interpreter.next_line_index = next_line_index
       end
+
+      @else_stmt.execute(interpreter, trace) if !@else_stmt.nil?
     end
     return unless trace
     s = ' ' + result.to_s
@@ -1072,24 +1203,29 @@ class IfStatement < AbstractStatement
 
   private
 
-  def parse_expression(expression_tokens)
+  def parse_expression(tokens)
     expression = nil
     begin
-      expression = ValueScalarExpression.new(expression_tokens)
+      expression = ValueScalarExpression.new(tokens)
     rescue BASICException => e
       @errors << e.message
     end
     expression
   end
 
-  def parse_destination(destination_token)
+  def parse_target(tokens)
     destination = nil
-    if destination_token.numeric_constant?
-      destination = LineNumber.new(destination_token)
+    statement = nil
+    if tokens.class.to_s == 'Hash'
+      statement = IfStatement.new(nil, tokens)
+    elsif tokens.size == 1 && tokens[0].numeric_constant?
+      destination = LineNumber.new(tokens[0])
     else
-      @errors << "Invalid line number #{destination}"
+      statement_factory = StatementFactory.new
+      statement = statement_factory.create_statement(tokens.flatten)
+      @errors += statement.errors
     end
-    destination
+    [destination, statement]
   end
 end
 

@@ -677,14 +677,18 @@ The interpreter will execute line 350 repeatedly with no output.
 Unlike the '350 GOTO 350' example, this command will evantually stop, as each iteration adds a return address to an internal stack.
 Eventually, the underlying Ruby process will exhaust available memory and halt.
 
-IF/THEN and IF/GOTO
-~~~~~~~~~~~~~~~~~~~
+IF/THEN, IF/GOTO, IF/THEN/ELSE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Conditionally changes the flow of the program, based on an expression.
 
 Syntax:	IF expression THEN line number
         IF expression GOTO line number
 	IF expression THEN statement
+	IF expression THEN line number ELSE line number
+	IF expression THEN statement ELSE line number
+	IF expression THEN line number ELSE statement
+	IF expression THEN statement ELSE statement
 
 The expression must be in the form "expression operator expression" where operator is limited to the comparion operations.
 Boolean operators such as "and" or "or" are not permitted.
@@ -700,6 +704,9 @@ Examples:
 	130 IF A$ = "HELLO" THEN 202
 	140 IF L<>INT(L) GOTO 200
 	150 IF A = 10 THEN PRINT "SUCCESS"
+	200 IF B > 5 THEN 120 ELSE 300
+	210 IF B > 5 THEN PRINT "B > 5" ELSE PRINT "B <= 5"
+	300 IF C = 0 THEN IF D = 4 THEN PRINT "DONE"
 
 When the expression evaluates as true, the THEN clause is executed. When the clause is a line number, that line is executed next. When the clause is a statement, that statement is executed. After a statement execution, control moves to the next statement, which may be the next line or may be the next statement in a multistatement line.
 
