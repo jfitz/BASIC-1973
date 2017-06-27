@@ -46,9 +46,9 @@ then
   echo Run program...
   if [ -e stdin.txt ]
   then
-    ruby basic.rb --no-timing $OPTIONS --run $TESTNAME.bas --no-heading --echo-input <stdin.txt >stdout.txt $RUN_OPTIONS
+    ruby basic.rb --no-timing $OPTIONS --run $TESTNAME.bas --no-heading --print-width 0 --echo-input <stdin.txt >stdout.txt $RUN_OPTIONS
   else
-    ruby basic.rb --no-timing $OPTIONS --run $TESTNAME.bas --no-heading >stdout.txt $RUN_OPTIONS
+    ruby basic.rb --no-timing $OPTIONS --run $TESTNAME.bas --no-heading --print-width 0 >stdout.txt $RUN_OPTIONS
   fi
   cd ../..
   echo Compare stdout...
