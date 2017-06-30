@@ -152,6 +152,7 @@ class StatementFactory
       InputStatement,
       LetStatement,
       LetLessStatement,
+      LineInputStatement,
       MatPrintStatement,
       MatReadStatement,
       MatWriteStatement,
@@ -1226,6 +1227,123 @@ class IfStatement < AbstractStatement
       @errors += statement.errors
     end
     [destination, statement]
+  end
+end
+
+# LINE INPUT
+class LineInputStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('LINE'), KeywordToken.new('INPUT')],
+      [KeywordToken.new('LINPUT')],
+      [KeywordToken.new('LIN')]
+    ]
+  end
+
+  def initialize(keywords, tokens_lists)
+    super
+    template = [[1, '>=']]
+
+    if check_template(tokens_lists, template)
+      @input_items = split_tokens(tokens_lists[0], false)
+    else
+      @errors << 'Syntax error'
+    end
+  end
+
+  def execute_core(interpreter, trace)
+    default_prompt = TextConstantToken.new('"? "')
+    prompt = default_prompt
+    input_items = @input_items.clone
+    begin
+      value = first_value(input_items, interpreter)
+      if value.class.to_s == 'FileHandle'
+        fh = value
+        input_items.shift
+        value = first_value(input_items, interpreter)
+      end
+      token = first_token(input_items)
+      if token.text_constant?
+        prompt = value
+        input_items.shift
+      end
+    rescue BASICException
+      fh = nil
+    end
+    expression_list = []
+    input_items.each do |items_list|
+      begin
+        expression_list << TargetExpression.new(items_list, ScalarReference)
+      rescue BASICException
+        raise(BASICException,
+              'Invalid variable ' + items_list.map(&:to_s).join)
+      end
+    end
+    if fh.nil?
+      io = interpreter.console_io
+      values =
+        input_values(interpreter, prompt, default_prompt, expression_list.size)
+      io.implied_newline
+    else
+      values =
+        file_values(interpreter, fh)
+    end
+    begin
+      name_value_pairs =
+        zip(expression_list, values[0, expression_list.length])
+    rescue BASICException
+      raise(BASICException, 'End of file') unless fh.nil?
+      raise(BASICException, 'Unequal lists')
+    end
+    name_value_pairs.each do |hash|
+      l_values = hash['name'].evaluate(interpreter)
+      l_value = l_values[0]
+      value = hash['value']
+      interpreter.set_value(l_value, value, trace)
+    end
+
+    @profile_count += 1
+  end
+
+  private
+
+  def first_token(input_items)
+    input_items[0][0]
+  end
+
+  def first_value(input_items, interpreter)
+    first_list = input_items[0]
+    expr = ValueScalarExpression.new(first_list)
+    values = expr.evaluate(interpreter)
+    values[0]
+  end
+
+  def zip(names, values)
+    raise(BASICException, 'Unequal lists') if names.size != values.size
+    results = []
+    (0...names.size).each do |i|
+      results << { 'name' => names[i], 'value' => values[i] }
+    end
+    results
+  end
+
+  def input_values(interpreter, prompt, default_prompt, count)
+    values = []
+    io = interpreter.console_io
+    while values.size < count
+      io.prompt(prompt)
+      values += io.line_input(interpreter)
+
+      prompt = default_prompt
+    end
+    values
+  end
+
+  def file_values(interpreter, fh)
+    values = []
+    io = interpreter.get_input(fh)
+    values += io.line_input(interpreter)
+    values
   end
 end
 

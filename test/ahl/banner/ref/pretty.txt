@@ -7,13 +7,12 @@
 160 REM
 170 REM THIS PROGRAM DESIGNED TO CREATE POSTERS
 180 REM
-190 DIM G S(6), H$(6), B$(9), G(8), A(54)
+190 DIM G$(6), H$(6), B$(9), G(8), A(54)
 200 PRINT "INPUT HEIGHTH, WIDTH IN INCHES"; \ INPUT L, R \ S = 0 \ A = R * 2 \ C = A
 210 PRINT "HOW FAR, IN INCHES FROM THE LEFT HAND SIDE, DO YOU WANT TO PLACE "
 220 PRINT "THE LETTERS"; \ INPUT S \ S = 12 * S
 230 PRINT "INPUT MESSAGE HERE"
-240 L INPUT B$(1), B$(2), B$(3), B$(4), B$(5), B$(6), B$(7), B$(8), B$(9)
- Syntax error
+240 LINPUT B$(1), B$(2), B$(3), B$(4), B$(5), B$(6), B$(7), B$(8), B$(9)
 250 FOR X = 9 TO 1 STEP -1 \ CHANGE B$(X) TO A \ FOR Y = 1 TO 6 \ A(X * 6 - 6 * Y) = A(Y) \ NEXT Y \ NEXT X
 260 FOR X = 1 TO 6 \ READ H$(X) \ NEXT X \ H$ = H$(L) \ GOSUB 940
 270 F = F + 1 \ IF A(F) = 0 THEN 990 \ G(0) = L \ FOR X = 1 TO 6 \ G(X) = A(F) \ NEXT X \ CHANGE G TO G$
@@ -25,7 +24,7 @@
 320 ON A(F) - 64 GOTO 350, 360, 370, 380, 390, 400, 410, 430, 440, 450, 460, 470, 480, 490, 500
 330 IF A > 90 THEN 270 \ ON A(F) - 79 GOTO 510, 520, 540, 550, 560, 570, 580, 590, 600, 610, 620
 340 GOTO 270
-345 FOR X = 1 TO A \ PRINT TAB(S); G$; G S \ NEXT X \ GOTO 270
+345 FOR X = 1 TO A \ PRINT TAB(S); G$; G$ \ NEXT X \ GOTO 270
 350 GOSUB 640 \ GOSUB 690 \ GOSUB 640 \ GOTO 270
 360 GOSUB 640 \ GOSUB 650 \ A = C * .5 \ GOSUB 640 \ A = C \ GOSUB 610 \ GOTO 270
 370 GOSUB 640 \ GOSUB 700 \ GOSUB 700 \ GOTO 270
@@ -67,13 +66,13 @@
 670 FOR X = 1 TO A \ PRINT TAB(S); G$; G$; H$; H$; G$; G$; H$; H$; G$; G$ \ NEXT X \ RETURN
 680 PRINT TAB(S);
 690 FOR X = 1 TO A \ PRINT TAB(4 * L * S); G$; G$; H$; H S; G$; G$ \ NEXT X \ RETURN
-700 FOR X = 1 TO A \ PRINT TAB(S); G$; G S; \ PRINT TAB(8 * L + S); G S; G$ \ NEXT X \ RETURN
+700 FOR X = 1 TO A \ PRINT TAB(S); G$; G$; \ PRINT TAB(8 * L + S); G$; G$ \ NEXT X \ RETURN
 710 IF A = 1 THEN 720 \ GOTO 730
 720 LET A = 1
 730 FOR X = 1 TO A \ PRINT TAB(4 * L * S); G$; G$ \ NEXT X \ RETURN
-740 FOR X = 1 TO A \ PRINT TAB(S); G$; G S \ NEXT X \ RETURN
+740 FOR X = 1 TO A \ PRINT TAB(S); G$; G$ \ NEXT X \ RETURN
 750 FOR X = 1 TO A \ PRINT TAB(S); G$; G$; G$; G$ \ NEXT X \ RETURN
-760 FOR Y = 1 TO A \ PRINT TAB(S); G S; G$; G$; G$; G$; G$; H S; H$; G$; G$ \ NEXT Y \ RETURN
+760 FOR Y = 1 TO A \ PRINT TAB(S); G$; G$; G$; G$; G$; G$; H S; H$; G$; G$ \ NEXT Y \ RETURN
 770 FOR X = 1 TO A \ PRINT TAB(S); G$; G$; H$; H$; G$; G$; G$; G$; G$; G$ \ NEXT X \ RETURN
 780 FOR X = 1 TO A \ PRINT TAB(8 * L * S); G$; G$ \ NEXT X \ RETURN
 790 FOR X = 1 TO A \ PRINT TAB(4 * L * 8); G$; G$; G$; G$; G$; G$ \ NEXT X \ RETURN
@@ -84,17 +83,17 @@
 840 FOR X = 1 TO C / 2 \ PRINT TAB(S); H$(X); \ FOR Y = 1 TO 10 * L - (2 * X) \ PRINT G$(1); \ NEXT Y \ PRINT
 850 NEXT X \ RETURN
 860 FOR X = 4 * L TO 7 * L STEP 14 * L / (C * 6) \ PRINT TAB(X * S); G$; G$; G$;
-870 PRINT TAB(7 * L - X * S); G S; G$; G$ \ NEXT X \ RETURN
-880 FOR X = 0 TO 6 * L STEP 6 * L / C \ PRINT TAB(X + S); G$; G$; G$; G S \ NEXT X \ RETURN
-890 FOR X = 6 * L TO 0 STEP -6 * L / C \ PRINT TAB(X + S); G$; G$; G S; G$ \ NEXT X \ RETURN
-900 FOR X = 0 TO 7 * L STEP (14 * L) / (C * 6) \ PRINT TAB(X + S); G S; G$; G$;
+870 PRINT TAB(7 * L - X * S); G$; G$; G$ \ NEXT X \ RETURN
+880 FOR X = 0 TO 6 * L STEP 6 * L / C \ PRINT TAB(X + S); G$; G$; G$; G$ \ NEXT X \ RETURN
+890 FOR X = 6 * L TO 0 STEP -6 * L / C \ PRINT TAB(X + S); G$; G$; G$; G$ \ NEXT X \ RETURN
+900 FOR X = 0 TO 7 * L STEP (14 * L) / (C * 6) \ PRINT TAB(X + S); G$; G$; G$;
 910 PRINT TAB(7 * L - X * S); G$; G$; G$ \ NEXT X \ RETURN
 920 FOR X = 0 TO 7 * L STEP (7 * L) / (C * 3) \ PRINT TAB(S); G$; G$; TAB(X * S); G$; G$; G$;
 930 PRINT TAB(8 * L * 5); G$; G$ \ NEXT X \ RETURN
 940 FOR X = 1 TO A * 3 \ PRINT \ NEXT X \ RETURN
 950 FOR W = 1 TO X - 3 \ PRINT " "; \ NEXT W \ V = 3 \ GOTO 830
 960 FOR X = 4 * L TO 7 * L STEP L * 4 / C \ PRINT TAB(X * 3); G$; G$; G$ \ NEXT X \ RETURN
-970 FOR X = 7 * L TO 4 * L STEP -4 * L / C \ PRINT TAB(X * S); G$; G S; G$ \ NEXT X \ RETURN
+970 FOR X = 7 * L TO 4 * L STEP -4 * L / C \ PRINT TAB(X * S); G$; G$; G$ \ NEXT X \ RETURN
 980 DATA " ", "  ", "   ", "    ", "     ", "      ", ""
 990 FOR X = 1 TO C * 3 \ PRINT \ NEXT X
 1000 END

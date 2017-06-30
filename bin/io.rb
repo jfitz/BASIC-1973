@@ -31,34 +31,8 @@ module Reader
   end
 end
 
-# Handle tab stops and carriage control
-class ConsoleIo
-  def initialize(max_width, zone_width, print_rate, newline_rate,
-                 implied_semicolon, echo_input)
-    @column = 0
-    @max_width = max_width
-    @zone_width = zone_width
-    @print_rate = print_rate
-    @newline_rate = newline_rate
-    @implied_semicolon = implied_semicolon
-    @last_was_numeric = false
-    @echo_input = echo_input
-  end
-
-  include Reader
-
-  def read_line
-    input_text = gets
-    raise(BASICException, 'End of file') if input_text.nil?
-    ascii_text = ascii_printables(input_text)
-    puts(ascii_text) if @echo_input
-    ascii_text
-  end
-
-  def prompt(text)
-    print text.value
-  end
-
+# Common routines for input
+module Inputter
   def input(interpreter)
     input_text = read_line
 
@@ -76,6 +50,46 @@ class ConsoleIo
     # convert from tokens to values
     expressions = ValueScalarExpression.new(tokens)
     expressions.evaluate(interpreter)
+  end
+
+  def line_input(interpreter)
+    input_text = read_line
+    quoted = '"' + input_text + '"'
+    token = TextConstantToken.new(quoted)
+    tokens = [token]
+    # convert from tokens to values
+    expressions = ValueScalarExpression.new(tokens)
+    expressions.evaluate(interpreter)
+  end
+end
+
+# Handle tab stops and carriage control
+class ConsoleIo
+  def initialize(max_width, zone_width, print_rate, newline_rate,
+                 implied_semicolon, echo_input)
+    @column = 0
+    @max_width = max_width
+    @zone_width = zone_width
+    @print_rate = print_rate
+    @newline_rate = newline_rate
+    @implied_semicolon = implied_semicolon
+    @last_was_numeric = false
+    @echo_input = echo_input
+  end
+
+  include Reader
+  include Inputter
+
+  def read_line
+    input_text = gets
+    raise(BASICException, 'End of file') if input_text.nil?
+    ascii_text = ascii_printables(input_text)
+    puts(ascii_text) if @echo_input
+    ascii_text
+  end
+
+  def prompt(text)
+    print text.value
   end
 
   def print_item(text)
@@ -211,6 +225,7 @@ class FileHandler
   end
 
   include Reader
+  include Inputter
 
   def set_mode(mode)
     if @mode.nil?
@@ -237,25 +252,6 @@ class FileHandler
     raise(BASICException, 'End of file') if input_text.nil?
     input_text = input_text.chomp
     ascii_printables(input_text)
-  end
-
-  def input(interpreter)
-    input_text = read_line
-
-    tokenizers = make_tokenizers
-    tokenizer = Tokenizer.new(tokenizers, nil)
-    tokens = tokenizer.tokenize(input_text)
-
-    # drop whitespace
-    tokens.delete_if(&:whitespace?)
-
-    # verify all even-index tokens are numeric or text
-    # verify all odd-index tokens are separators
-    verify_tokens(tokens)
-
-    # convert from tokens to values
-    expressions = ValueScalarExpression.new(tokens)
-    expressions.evaluate(interpreter)
   end
 
   def print_item(text)

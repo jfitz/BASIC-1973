@@ -5,7 +5,7 @@
 20 OPEN "KB:" AS FILE 1
 30 ON ERROR GO TO 80
 40 C%=1
-50 INPUT LINE #1,B$(C%);B$(C%)=LEFT(B$(C%),LEN(B$(C%))-2%)
+50 INPUT LINE #1,B$(C%):B$(C%)=LEFT(B$(C%),LEN(B$(C%))-2%)
 60 C%=C%+1
 70 GO TO 50
 80 L%=0%

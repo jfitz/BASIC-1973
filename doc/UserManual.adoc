@@ -736,8 +736,7 @@ If A is equal to 10, control is passed to line 200 and no text is printed. If A 
 INPUT
 ~~~~~
 
-Prompts the user and allows the user to enter a numeric value.
-Non-numeric values are invalid and cause execution to stop.
+Prompts the user and allows the user to enter one or more values.
 
 Syntax:	INPUT [prompt,] variable list
 Syntax:	INP [prompt,] variable list
@@ -823,6 +822,38 @@ Examples:
 Expressions may use a combination of operators, functions, and variables.
 
 Targets must have the same type, as the same value is assigned to each target.
+
+LINE INPUT
+~~~~~~~~~~
+
+Prompts the user and allows the user to enter a text value.
+
+Syntax:	LINE INPUT [prompt,] variable list
+Syntax:	LINPUT [prompt,] variable list
+Syntax:	LIN [prompt,] variable list
+
+Examples:
+
+	60 LINE INPUT U$
+	65 LINPUT V$
+	70 LINPUT "Enter address: ", A$
+
+The default prompt is a single question mark (?) character.
+This prompt can be changed to any text value by specifying a text value as the first parameter.
+(This value must be a text constant. You cannot create a variable prompt such as LINPUT P$, A$ because the variable for the prompt will be considered a normal variable for input.)
+
+When parsing input data, reads all text on a line and stores it in the variable.
+Double quotes are not necessary.
+BASIC keeps leading and trailing spaces.
+
+Examples:
+
+	40 LINPUT A$
+	50 LINPUT B$
+
+Can read:
+? GEORGE WASHINGTON
+? 1600 PENN, WASHINGTON DC
 
 NEXT
 ~~~~
