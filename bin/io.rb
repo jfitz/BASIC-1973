@@ -138,7 +138,8 @@ class ConsoleIo
   end
 
   def columns_to_advance(new_column)
-    [new_column - @column, 0].max
+    ## [new_column - @column, 0].max
+    new_column - @column
   end
 
   def trace_output(s)

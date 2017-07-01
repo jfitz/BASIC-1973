@@ -184,18 +184,17 @@ class TextTokenBuilder
   def try(text)
     @token = ''
     candidate = ''
-    num_quotes = 0
     i = 0
     if !text.empty? && text[0] == '"'
-      until i == text.size || num_quotes == 2
+      until i == text.size || candidate.count('"') == 2
         c = text[i]
         candidate += c
-        num_quotes += 1 if c == '"'
         i += 1
       end
     end
 
-    @token = candidate if num_quotes == 2
+    candidate += '"' if candidate.count('"') == 1
+    @token = candidate if candidate.count('"') == 2
     @count = @token.size
   end
 
