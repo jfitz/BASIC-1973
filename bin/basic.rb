@@ -526,6 +526,10 @@ class Interpreter
 
   public
 
+  def has_line_number(line_number)
+    @program_lines.key?(line_number)
+  end
+
   def find_next_line_index
     # find next index with current statement
     line_number = @current_line_index.number
