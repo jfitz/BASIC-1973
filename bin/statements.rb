@@ -605,7 +605,8 @@ class ChangeStatement < AbstractStatement
       cols = dims[0].to_i
       values = {}
       (0..cols).each do |col|
-        variable = Variable.new(source_variable_name, [col])
+        column = IntegerConstant.new(col)
+        variable = Variable.new(source_variable_name, [column])
         coord = make_coord(col)
         values[coord] = interpreter.get_value(variable)
       end
