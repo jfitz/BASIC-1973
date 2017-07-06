@@ -171,12 +171,17 @@ class NumericConstant < AbstractElement
 
   def self.init?(text)
     numeric_classes = %w(Fixnum Bignum Float)
-    numeric_classes.include?(text.class.to_s) || !numeric(text).nil?
+    numeric_classes.include?(text.class.to_s) ||
+      text.class.to_s == 'String' && text == 'PI' ||
+      !numeric(text).nil?
   end
 
   def self.numeric(text)
+    # PI
+    if text == 'PI'
+      3.1415926
     # nnn(E+nn)
-    if /\A\s*[+-]?\d+(E+?\d+)?\z/ =~ text
+    elsif /\A\s*[+-]?\d+(E+?\d+)?\z/ =~ text
       text.to_f.to_i
     # nnn(E-nn)
     elsif /\A\s*[+-]?\d+(E-\d+)?\z/ =~ text
@@ -209,6 +214,7 @@ class NumericConstant < AbstractElement
     f = text.to_f if text.class.to_s == 'NumericConstantToken'
     @token_chars = text.to_s
     @value = float_to_possible_int(f)
+    @value = 3.1415926 if text == 'PI'
     @operand = true
     @precedence = 0
     raise BASICException, "'#{text}' is not a number" if @value.nil?

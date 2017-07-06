@@ -236,39 +236,45 @@ class NumberTokenBuilder
   attr_reader :count
 
   def try(text)
-    candidate = ''
-    if !text.empty? && text[0] != ' '
-      i = 0
-      accepted = true
-      while i < text.size && accepted
-        c = text[i]
-        # ignore space char
-        if c == ' '
-          i += 1
-        else
-          accepted = accept?(candidate, c)
-          if accepted
-            candidate += c
+    if text.size >= 2 && text[0..1] == 'PI'
+      candidate = 'PI'
+      i = 2
+    else
+      candidate = ''
+      if !text.empty? && text[0] != ' '
+        i = 0
+        accepted = true
+        while i < text.size && accepted
+          c = text[i]
+          # ignore space char
+          if c == ' '
             i += 1
+          else
+            accepted = accept?(candidate, c)
+            if accepted
+              candidate += c
+              i += 1
+            end
           end
         end
       end
-    end
 
-    # if the candidate ends with 'E', remove it
-    # the tokenizer takes as many as possible,
-    # but a trailing 'E' is not valid
-    if candidate[-1] == 'E'
-      candidate = candidate[0..-2]
-      i -= 1
+      # if the candidate ends with 'E', remove it
+      # the tokenizer takes as many as possible,
+      # but a trailing 'E' is not valid
+      if candidate[-1] == 'E'
+        candidate = candidate[0..-2]
+        i -= 1
 
-      # back up to the 'E' in the input text
-      # (there may be spaces)
-      i -= 1 while text[i] != 'E'
+        # back up to the 'E' in the input text
+        # (there may be spaces)
+        i -= 1 while text[i] != 'E'
+      end
     end
 
     # check that string conforms to one of these
     regexes = [
+      /PI/,
       /\A\d+\z/,
       /\A\d+\.\z/,
       /\A\d+E[+-]?\d+\z/,
