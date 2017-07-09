@@ -1,0 +1,17 @@
+animal.bas
+
+Why does BASIC-1973 not run this program?
+
+BASIC-1973 does not have the DEF/FNEND construct, or the multi-statement user-defined function.
+
+DEF/FNEND raises a number of issues.
+One is in parsing: how to handle a function name on the left-hand side of an assignment.
+Another is in the assignment values to arguments.
+Specifically, if a multi-statement user-defined function is called with A as parameter X, what is the behavior if the function contains an assignment to X?
+Or an assignment to A?
+
+Should an assignment to A flow through to X?
+Should the assignment to X remain local to the function?
+Or should it flow back to A?
+
+What is the behavior if a user-defined function invokes another user-defined function, and we have the same questions but with two levels of functions?
