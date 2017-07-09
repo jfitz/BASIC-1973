@@ -415,6 +415,7 @@ class Interpreter
       statements = line.statements
       statements.each do |statement|
         statement.profile_count = 0
+        statement.profile_time = 0
       end
     end
 
@@ -495,7 +496,11 @@ class Interpreter
     statement = statements[statement_index]
     print_trace_info(statement) if trace_flag
     if statement.errors.empty?
-      statement.execute(self, trace_flag)
+      timing = Benchmark.measure { statement.execute(self, trace_flag) }
+      user_time = timing.utime + timing.cutime
+      sys_time = timing.stime + timing.cstime
+      time = user_time + sys_time
+      statement.profile_time += time
     else
       stop_running
       print_errors(line_number, statement)

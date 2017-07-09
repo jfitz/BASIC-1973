@@ -237,6 +237,7 @@ end
 class AbstractStatement
   attr_reader :errors
   attr_accessor :profile_count
+  attr_accessor :profile_time
 
   def initialize(keywords, tokens_lists)
     @keywords = keywords
@@ -247,6 +248,7 @@ class AbstractStatement
     modifier_added = make_modifier(tokens_lists) while modifier_added
     @modifiers.each { |modifier| @errors += modifier.errors }
     @profile_count = 0
+    @profile_time = 0
   end
 
   def pretty
@@ -255,13 +257,13 @@ class AbstractStatement
     list.join(' ')
   end
 
+  def pre_execute(_) end
+
   def profile
     text = AbstractToken.pretty_tokens(@keywords, @tokens_lists.flatten)
-    ' (' + @profile_count.to_s + ')' + text
+    ' (' + @profile_time.to_s + '/' + @profile_count.to_s + ')' + text
     ### TODO: add profile for modifiers
   end
-
-  def pre_execute(_) end
 
   def execute(interpreter, trace)
     current_line_index = interpreter.current_line_index
@@ -1219,11 +1221,12 @@ class IfStatement < AbstractStatement
 
       @else_stmt.execute(interpreter, trace) if !@else_stmt.nil?
     end
+
+    @profile_count += 1
+
     return unless trace
     s = ' ' + result.to_s
     io.trace_output(s)
-
-    @profile_count += 1
   end
 
   private
