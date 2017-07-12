@@ -227,18 +227,15 @@ class Interpreter
   attr_reader :console_io
   attr_reader :if_false_next_line
 
-  def initialize(print_width, zone_width, output_speed, newline_speed,
-                 echo_input, int_floor, ignore_rnd_arg, implied_semicolon,
-                 randomize, respect_randomize, if_false_next_line)
+  def initialize(console_io, int_floor, ignore_rnd_arg, randomize,
+                 respect_randomize, if_false_next_line)
     @running = false
     @randomizer = Random.new(1)
     @randomizer = Random.new if randomize && respect_randomize
     @respect_randomize = respect_randomize
     @int_floor = int_floor
     @ignore_rnd_arg = ignore_rnd_arg
-    @console_io =
-      ConsoleIo.new(print_width, zone_width, output_speed, newline_speed,
-                    implied_semicolon, echo_input)
+    @console_io = console_io
     @data_store = DataStore.new
     @file_handlers = {}
     @return_stack = []
@@ -248,6 +245,7 @@ class Interpreter
     @user_var_names = {}
     @user_var_values = []
     @program_lines = {}
+    @variables = {}
     @if_false_next_line = if_false_next_line
   end
 
@@ -767,9 +765,9 @@ class Interpreter
 end
 
 class Shell
-  def initialize(interpreter)
+  def initialize(console_io, interpreter)
     @interpreter = interpreter
-    @console_io = interpreter.console_io
+    @console_io = console_io
     @program_lines = {}
     @statement_factory = StatementFactory.new
   end
@@ -1227,18 +1225,19 @@ respect_randomize = !options[:ignore_randomize] if
   options.key?(:ignore_randomize)
 if_false_next_line = options.key?(:if_false_next_line)
 
+console_io =
+  ConsoleIo.new(print_width, zone_width, output_speed, newline_speed,
+                implied_semicolon, echo_input)
 interpreter =
-  Interpreter.new(print_width, zone_width, output_speed, newline_speed,
-                  echo_input, int_floor, ignore_rnd_arg,
-                  implied_semicolon, randomize, respect_randomize,
-                  if_false_next_line)
+  Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
+                  respect_randomize, if_false_next_line)
 
 if show_heading
   puts 'BASIC-1973 interpreter version -1'
   puts
 end
 
-shell = Shell.new(interpreter)
+shell = Shell.new(console_io, interpreter)
 if !run_filename.nil?
   shell.load_and_run(run_filename, trace_flag, show_timing, profile_flag)
 elsif !list_filename.nil?
