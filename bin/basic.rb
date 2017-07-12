@@ -23,11 +23,10 @@ class LineNumber
   end
 
   def initialize(line_number)
-    if line_number.class.to_s == 'NumericConstantToken'
-      @line_number = line_number.to_i
-    else
-      raise BASICException, "Invalid line number '#{line_number}'"
-    end
+    raise BASICException, "Invalid line number '#{line_number}'" unless
+      line_number.class.to_s == 'NumericConstantToken'
+    
+    @line_number = line_number.to_i
   end
 
   def eql?(other)
@@ -181,8 +180,8 @@ class LineNumberIndex
   end
 
   def to_s
-    return @number.to_s if @statement == 0 && @index == 0
-    return @number.to_s + '.' + @statement.to_s if @index == 0
+    return @number.to_s if @statement.zero? && @index.zero?
+    return @number.to_s + '.' + @statement.to_s if @index.zero?
     @number.to_s + '.' + @statement.to_s + '.' + @index.to_s
   end
 end
@@ -253,9 +252,9 @@ class Interpreter
     raise BASICException, 'Program terminated without END' if
       @next_line_index.nil?
     line_numbers = @program_lines.keys
-    raise(BASICException,
-          "Line number #{@next_line_index.number} not found") unless
-      line_numbers.include?(@next_line_index.number)
+    unless line_numbers.include?(@next_line_index.number)
+      raise(BASICException, "Line number #{@next_line_index.number} not found")
+    end
   end
 
   public
@@ -380,8 +379,6 @@ class Interpreter
     end
   end
 
-  public
-
   def has_line_number(line_number)
     @program_lines.key?(line_number)
   end
@@ -428,9 +425,6 @@ class Interpreter
 
   def find_next_line
     # find next numbered statement
-    line_number = @current_line_index.number
-
-    # find the next line
     line_numbers = @program_lines.keys.sort
     line_number = @current_line_index.number
     index = line_numbers.index(line_number)
@@ -448,13 +442,13 @@ class Interpreter
     nil
   end
 
-  def statement_start_index(line_number, statement_index)
+  def statement_start_index(line_number, _statement_index)
     line = @program_lines[line_number]
-    unless line.nil?
-      statements = line.statements
-      statement = statements[0]
-      statement.start_index unless statement.nil?
-    end
+    return if line.nil?
+    
+    statements = line.statements
+    statement = statements[0]
+    statement.start_index unless statement.nil?
   end
 
   def trace(tron_flag)
@@ -476,7 +470,7 @@ class Interpreter
         stack.push value
       end
       act = stack.length
-      raise(BASICException, "Bad expression") if act != exp
+      raise(BASICException, 'Bad expression') if act != exp
 
       next if act.zero?
 
@@ -540,18 +534,14 @@ class Interpreter
     line_numbers = @program_lines.keys.sort
     if statement_index < statements.size
       forward_line_numbers =
-        line_numbers.select do |line_number|
-        line_number >= @current_line_index.number
-      end
+        line_numbers.select { |ln| ln >= @current_line_index.number }
     else
       forward_line_numbers =
-        line_numbers.select do |line_number|
-        line_number > @current_line_index.number
-      end
+        line_numbers.select { |ln| ln > @current_line_index.number }
     end
 
     # search for a NEXT with the same control variable
-    while forward_line_numbers.size > 0
+    until forward_line_numbers.empty?
       line_number = forward_line_numbers[0]
       line = @program_lines[line_number]
       statements = line.statements
@@ -578,7 +568,7 @@ class Interpreter
 
   def normalize_subscripts(subscripts)
     raise(Exception, 'Invalid subscripts container') unless
-      subscripts.class.to_s == "Array"
+      subscripts.class.to_s == 'Array'
     int_subscripts = []
     subscripts.each do |subscript|
       raise(Excaption, "Invalid subscript #{subscript}") unless
@@ -657,9 +647,6 @@ class Interpreter
   end
 
   def set_value(variable, value, trace)
-    # assume no conversion needed
-    val = value
-    
     # convert a numeric to a string when a string is expected
     if value.numeric_constant? &&
        variable.content_type == 'TextConstant'
@@ -684,7 +671,7 @@ class Interpreter
     end
 
     # check that value type matches variable type
-    if !variable.is_compatible(value)
+    unless variable.is_compatible(value)
       raise(BASICException,
             "Type mismatch '#{value}' is not #{variable.content_type}")
     end
@@ -764,6 +751,7 @@ class Interpreter
   end
 end
 
+# interactive shell
 class Shell
   def initialize(console_io, interpreter)
     @interpreter = interpreter
@@ -772,7 +760,7 @@ class Shell
     @statement_factory = StatementFactory.new
   end
 
-  def run(interpreter)
+  def run
     need_prompt = true
     done = false
     until done
@@ -1108,9 +1096,8 @@ class Shell
   def check_line_sequence(line_num, print_errors)
     # warn about lines out of sequence
     # but not when typing
-    max_key = @program_lines.max
     @console_io.print_line("Line #{line_num} is out of sequence") if
-      @program_lines.size > 0 &&
+      !@program_lines.empty? &&
       line_num < @program_lines.max[0] &&
       !print_errors
   end
@@ -1196,7 +1183,7 @@ OptionParser.new do |opt|
   opt.on('--implied-semicolon') { |o| options[:implied_semicolon] = o }
   opt.on('--randomize') { |o| options[:randomize] = o }
   opt.on('--ignore-randomize') { |o| options[:ignore_randomize] = o }
-  opt.on('--if-false-next-line') { |o| options[:if_false_next_line]= o }
+  opt.on('--if-false-next-line') { |o| options[:if_false_next_line] = o }
 end.parse!
 
 list_filename = options[:list_name]
@@ -1245,7 +1232,7 @@ elsif !list_filename.nil?
 elsif !pretty_filename.nil?
   shell.load_and_pretty(pretty_filename, trace_flag)
 else
-  shell.run(interpreter)
+  shell.run
 end
 
 if show_heading
