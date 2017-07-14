@@ -261,7 +261,7 @@ class AbstractStatement
 
   def profile
     text = AbstractToken.pretty_tokens(@keywords, @tokens_lists.flatten)
-    ' (' + @profile_time.to_s + '/' + @profile_count.to_s + ')' + text
+    ' (' + @profile_time.round(3).to_s + '/' + @profile_count.to_s + ')' + text
     ### TODO: add profile for modifiers
   end
 
