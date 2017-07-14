@@ -95,7 +95,9 @@ class ConsoleIo
   def print_item(text)
     text.each_char do |c|
       print_out(c)
-      @column += 1
+      incr = c == "\b" ? -1 :1
+      @column += incr
+      @column = 0 if @column < 0
       newline if @max_width > 0 && @column >= @max_width
     end
     @last_was_numeric = false
@@ -129,12 +131,6 @@ class ConsoleIo
   def implied
     semicolon if @implied_semicolon
     # nothing else otherwise
-  end
-
-  def tabto(new_column)
-    space_after_numeric if @last_was_numeric
-    print_item(' ') while @column < new_column && @column < @max_width
-    @last_was_numeric = false
   end
 
   def columns_to_advance(new_column)
@@ -288,11 +284,6 @@ class FileHandler
   def implied
     set_mode(:print)
     @file.putc ' '
-  end
-
-  def tabto(_)
-    # for a file, this function does nothing
-    set_mode(:print)
   end
 
   def read

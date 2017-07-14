@@ -17,7 +17,7 @@ Duplicate line number 250
 240 LINPUT B$
 250 CHANGE B$ TO A
 260 FOR X = 1 TO 6 \ READ H$(X) \ NEXT X \ H$ = H$(L) \ GOSUB 940
-270 F = F + 1 \ IF A(F) = 0 THEN 990 \ G(0) = L \ FOR X = 1 TO 6 \ G(X) = A(F) \ NEXT X \ CHANGE G TO G$
+270 F = F + 1 \ IF F > A(0) THEN 990 \ G(0) = L \ FOR X = 1 TO 6 \ G(X) = A(F) \ NEXT X \ CHANGE G TO G$
 280 FOR X = 1 TO 6 \ G(0) = X \ CHANGE G TO G$(X) \ NEXT X
 290 FOR X = 1 TO A / 2 \ PRINT \ NEXT X
 300 IF A(F) = 46 THEN 345 \ IF A(F) = 36 THEN 990 \ IF A(F) = 32 THEN 630 \ IF A(F) < 48 THEN 270
@@ -85,7 +85,7 @@ Duplicate line number 250
 840 FOR X = 1 TO C / 2 \ PRINT TAB(S); H$(X); \ FOR Y = 1 TO 10 * L - (2 + X) \ PRINT G$(1); \ NEXT Y \ PRINT
 850 NEXT X \ RETURN
 860 FOR X = 4 * L TO 7 * L STEP 14 * L / (C * 6) \ PRINT TAB(X + S); G$; G$; G$;
-870 PRINT TAB(7 * L - X * S); G$; G$; G$ \ NEXT X \ RETURN
+870 PRINT TAB(7 * L - X + S); G$; G$; G$ \ NEXT X \ RETURN
 880 FOR X = 0 TO 6 * L STEP 6 * L / C \ PRINT TAB(X + S); G$; G$; G$; G$ \ NEXT X \ RETURN
 890 FOR X = 6 * L TO 0 STEP -6 * L / C \ PRINT TAB(X + S); G$; G$; G$; G$ \ NEXT X \ RETURN
 900 FOR X = 0 TO 7 * L STEP (14 * L) / (C * 6) \ PRINT TAB(X + S); G$; G$; G$;

@@ -625,10 +625,12 @@ class FunctionTab < AbstractScalarFunction
     check_arg_types(args, [spec])
     console_io = interpreter.console_io
     width = console_io.columns_to_advance(args[0].to_v)
-    if width >= 0
+    if width > 0
       spaces = ' ' * width
+    elsif width < 0
+      spaces = "\b" * -width
     else
-      spaces = '' ## "\r" + (' ' * -width)
+      spaces = ''
     end
     quoted = '"' + spaces + '"'
     v = TextConstantToken.new(quoted)
