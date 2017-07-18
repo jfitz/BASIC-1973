@@ -236,12 +236,14 @@ end
 # parent of all statement classes
 class AbstractStatement
   attr_reader :errors
+  attr_reader :keywords
+  attr_reader :tokens
   attr_accessor :profile_count
   attr_accessor :profile_time
 
   def initialize(keywords, tokens_lists)
     @keywords = keywords
-    @tokens_lists = tokens_lists
+    @tokens = tokens_lists.flatten
     @errors = []
     @modifiers = []
     modifier_added = true
@@ -252,7 +254,7 @@ class AbstractStatement
   end
 
   def pretty
-    list = [AbstractToken.pretty_tokens(@keywords, @tokens_lists.flatten)]
+    list = [AbstractToken.pretty_tokens(@keywords, @tokens)]
     @modifiers.each { |modifier| list << modifier.pretty }
     list.join(' ')
   end
@@ -260,10 +262,12 @@ class AbstractStatement
   def pre_execute(_) end
 
   def profile
-    text = AbstractToken.pretty_tokens(@keywords, @tokens_lists.flatten)
+    text = AbstractToken.pretty_tokens(@keywords, @tokens)
     ' (' + @profile_time.round(3).to_s + '/' + @profile_count.to_s + ')' + text
     ### TODO: add profile for modifiers
   end
+
+  def renumber(_) end
 
   def execute(interpreter, trace)
     current_line_index = interpreter.current_line_index
@@ -773,6 +777,20 @@ class GotoStatement < AbstractStatement
       interpreter.next_line_index = destination
     end
   end
+
+  def renumber(renumber_map)
+    unless @destination.nil?
+      @destination = renumber_map[@destination]
+      @tokens[-1] = NumericConstantToken.new(@destination.line_number)
+    end
+
+    unless @destinations.nil?
+      new_destinations = []
+      @destinations.each do |destination|
+        new_destinations << renumber_map[destination]
+      end
+    end
+  end
 end
 
 # GOSUB
@@ -811,6 +829,11 @@ class GosubStatement < AbstractStatement
     destination = LineNumberIndex.new(line_number, 0, index)
     interpreter.push_return(interpreter.next_line_index)
     interpreter.next_line_index = destination
+  end
+
+  def renumber(renumber_map)
+    @destination = renumber_map[@destination]
+    @tokens[-1] = NumericConstantToken.new(@destination.line_number)
   end
 end
 
@@ -1207,6 +1230,20 @@ class IfStatement < AbstractStatement
     io.trace_output(s)
   end
 
+  def renumber(renumber_map)
+    unless @destination.nil?
+      @destination = renumber_map[@destination]
+      index = 0
+      i = 0
+      @tokens.each { |token| index = i if token.to_s == 'THEN'; i += 1 }
+      @tokens[index + 1] = NumericConstantToken.new(@destination.line_number)
+    end
+    unless @else_dest.nil?
+      @else_dest = renumber_map[@else_dest]
+      @tokens[-1] = NumericConstantToken.new(@else_dest.line_number)
+    end
+  end
+
   private
 
   def parse_expression(tokens)
@@ -1533,6 +1570,14 @@ class OnStatement < AbstractStatement
     raise(BASICException, 'Line number not found') if index.nil?
     destination = LineNumberIndex.new(line_number, 0, index)
     interpreter.next_line_index = destination
+  end
+
+  def renumber(renumber_map)
+    new_destinations = []
+    @destinations.each do |destination|
+      new_destinations << @renumber_map[destination]
+    end
+    @destinations = new_destinations
   end
 end
 
