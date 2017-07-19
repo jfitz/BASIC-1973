@@ -259,6 +259,10 @@ class AbstractStatement
     list.join(' ')
   end
 
+  def program_check(_, _, _)
+    true
+  end
+
   def pre_execute(_) end
 
   def profile
@@ -739,15 +743,24 @@ class GotoStatement < AbstractStatement
     end
   end
 
-  def pre_execute(interpreter)
-    raise(BASICException, "Line number #{@destination} not found") unless
-      @destination.nil? || interpreter.has_line_number(@destination)
+  def program_check(program, console_io, line_number_index)
+    retval = true
+    
+    unless @destination.nil? || program.has_line_number(@destination)
+      console_io.print_line("Line number #{@destination} not found in line #{line_number_index}")
+      retval = false
+    end
+
     unless @destinations.nil?
       @destinations.each do |destination|
-        raise(BASICException, "Line number #{destination} not found") unless
-          interpreter.has_line_number(destination)
+        unless program.has_line_number(destination)
+          console_io.print_line("Line number #{destination} not found in line #{line_number_index}")
+          retval = false
+        end
       end
     end
+    
+    retval
   end
 
   def execute_core(interpreter, trace)
@@ -817,9 +830,10 @@ class GosubStatement < AbstractStatement
     end
   end
 
-  def pre_execute(interpreter)
-    raise(BASICException, "Line number #{@destination} not found") unless
-      interpreter.has_line_number(@destination)
+  def program_check(program, console_io, line_number_index)
+    return true if program.has_line_number(@destination)
+    console_io.print_line("Line number #{@destination} not found in line #{line_number_index}")
+    false
   end
 
   def execute_core(interpreter, _)
@@ -1180,11 +1194,20 @@ class IfStatement < AbstractStatement
     end
   end
 
-  def pre_execute(interpreter)
-    raise(BASICException, "Line number #{@destination} not found") unless
-      @destination.nil? || interpreter.has_line_number(@destination)
-    raise(BASICException, "Line number #{@else_dest} not found") unless
-      @else_dest.nil? || interpreter.has_line_number(@else_dest)
+  def program_check(program, console_io, line_number_index)
+    retval = true
+
+    unless @destination.nil? || program.has_line_number(@destination)
+      console_io.print_line("Line number #{@destination} not found in line #{line_number_index}")
+      retval = false
+    end
+
+    unless @else_dest.nil? || program.has_line_number(@else_dest)
+      console_io.print_line("Line number #{@else_dest} not found in line #{line_number_index}")
+      retval = false
+    end
+
+    retval
   end
 
   def execute_core(interpreter, trace)
@@ -1548,11 +1571,19 @@ class OnStatement < AbstractStatement
     end
   end
 
-  def pre_execute(interpreter)
-    @destinations.each do |destination|
-      raise(BASICException, "Line number #{destination} not found") unless
-        interpreter.has_line_number(destination)
+  def program_check(program, console_io, line_number_index)
+    retval = true
+    
+    unless @destinations.nil?
+      @destinations.each do |destination|
+        unless program.has_line_number(destination)
+          console_io.print_line("Line number #{destination} not found in line #{line_number_index}")
+          retval = false
+        end
+      end
     end
+    
+    retval
   end
 
   def execute_core(interpreter, trace)
@@ -1966,9 +1997,11 @@ class EndStatement < AbstractStatement
       check_template(tokens_lists, template)
   end
 
-  def pre_execute(interpreter)
-    next_line = interpreter.find_next_line_index
-    raise(BASICException, 'Statements after END') unless next_line.nil?
+  def program_check(program, console_io, line_number_index)
+    next_line = program.find_next_line_index(line_number_index)
+    return true if next_line.nil?
+    console_io.print_line("Statements after END in line #{line_number_index}")
+    false
   end
 
   def execute_core(interpreter, _)

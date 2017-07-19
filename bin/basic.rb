@@ -231,6 +231,18 @@ class Line
     text = AbstractToken.pretty_tokens([], tokens.flatten)
     Line.new(text, @statements, tokens.flatten, @comment)
   end
+
+  def check(program, console_io, line_number)
+    retval = true
+    index = 0
+    @statements.each do |statement|
+      line_number_index = LineNumberIndex.new(line_number, index, 0)
+      r = statement.program_check(program, console_io, line_number_index)
+      retval &&= r
+      index += 1
+    end
+    retval
+  end
 end
 
 # the interpreter
@@ -276,6 +288,7 @@ class Interpreter
   public
 
   def run(program, trace_flag)
+    @program = program
     @program_lines = program.lines
 
     # reset profile metrics
@@ -345,7 +358,7 @@ class Interpreter
   def preexecute_loop
     while !@current_line_index.nil? && @running
       preexecute_a_statement
-      @current_line_index = find_next_line_index
+      @current_line_index = @program.find_next_line_index(@current_line_index)
     end
   rescue BASICException => e
     line_number = @current_line_index.number
@@ -376,7 +389,7 @@ class Interpreter
 
   def program_loop(trace_flag)
     # pick the next line number
-    @next_line_index = find_next_line_index
+    @next_line_index = @program.find_next_line_index(@current_line_index)
     begin
       execute_a_statement(trace_flag)
       # set the next line number
@@ -400,63 +413,8 @@ class Interpreter
     @program_lines.key?(line_number)
   end
 
-  def find_next_line_index
-    # find next index with current statement
-    line_number = @current_line_index.number
-    line = @program_lines[line_number]
-
-    statements = line.statements
-    statement_index = @current_line_index.statement
-    statement = statements[statement_index]
-
-    index = @current_line_index.index
-    if index < statement.last_index
-      index += 1
-      return LineNumberIndex.new(line_number, statement_index, index)
-    end
-
-    # find next statement within the current line
-    if statement_index < statements.size - 1
-      statement_index += 1
-      statement = statements[statement_index]
-      index = statement.start_index
-      return LineNumberIndex.new(line_number, statement_index, index)
-    end
-
-    # find the next line
-    line_numbers = @program_lines.keys.sort
-    line_number = @current_line_index.number
-    index = line_numbers.index(line_number)
-    line_number = line_numbers[index + 1]
-    unless line_number.nil?
-      line = @program_lines[line_number]
-      statements = line.statements
-      statement = statements[0]
-      index = statement.start_index
-      return LineNumberIndex.new(line_number, 0, index)
-    end
-
-    # nothing left to execute
-    nil
-  end
-
   def find_next_line
-    # find next numbered statement
-    line_numbers = @program_lines.keys.sort
-    line_number = @current_line_index.number
-    index = line_numbers.index(line_number)
-    line_number = line_numbers[index + 1]
-    unless line_number.nil?
-      line = @program_lines[line_number]
-      statements = line.statements
-      statement = statements[0]
-      index = statement.start_index
-      next_line_index = LineNumberIndex.new(line_number, 0, index)
-      return next_line_index
-    end
-
-    # nothing left to execute
-    nil
+    @program.find_next_line(@current_line_index)
   end
 
   def statement_start_index(line_number, _statement_index)
@@ -780,6 +738,10 @@ class Program
     @program_lines.empty?
   end
 
+  def has_line_number(line_number)
+    @program_lines.key?(line_number)
+  end
+
   def lines
     @program_lines
   end
@@ -1047,6 +1009,74 @@ class Program
     answer = @console_io.read_line
     delete_specific_lines(line_numbers) if answer == 'YES'
   end
+
+  def check
+    result = true
+    @program_lines.keys.sort.each do |line_number|
+      r = @program_lines[line_number].check(self, @console_io, line_number)
+      result &&= r
+    end
+    result
+  end
+
+  def find_next_line_index(current_line_index)
+    # find next index with current statement
+    line_number = current_line_index.number
+    line = @program_lines[line_number]
+
+    statements = line.statements
+    statement_index = current_line_index.statement
+    statement = statements[statement_index]
+
+    index = current_line_index.index
+    if index < statement.last_index
+      index += 1
+      return LineNumberIndex.new(line_number, statement_index, index)
+    end
+
+    # find next statement within the current line
+    if statement_index < statements.size - 1
+      statement_index += 1
+      statement = statements[statement_index]
+      index = statement.start_index
+      return LineNumberIndex.new(line_number, statement_index, index)
+    end
+
+    # find the next line
+    line_numbers = @program_lines.keys.sort
+    line_number = current_line_index.number
+    index = line_numbers.index(line_number)
+    line_number = line_numbers[index + 1]
+    unless line_number.nil?
+      line = @program_lines[line_number]
+      statements = line.statements
+      statement = statements[0]
+      index = statement.start_index
+      return LineNumberIndex.new(line_number, 0, index)
+    end
+
+    # nothing left to execute
+    nil
+  end
+
+  def find_next_line(current_line_index)
+    # find next numbered statement
+    line_numbers = @program_lines.keys.sort
+    line_number = current_line_index.number
+    index = line_numbers.index(line_number)
+    line_number = line_numbers[index + 1]
+    unless line_number.nil?
+      line = @program_lines[line_number]
+      statements = line.statements
+      statement = statements[0]
+      index = statement.start_index
+      next_line_index = LineNumberIndex.new(line_number, 0, index)
+      return next_line_index
+    end
+
+    # nothing left to execute
+    nil
+  end
 end
 
 # interactive shell
@@ -1169,21 +1199,21 @@ class Shell
   def execute_8_command(cmd, rest)
     case cmd
     when 'RENUMBER'
-      @program.renumber
+      @program.renumber if @program.check
     end
   end
 
   def execute_run_command
     timing = Benchmark.measure { cmd_run(false) }
     print_timing(timing, @console_io)
-    @console_io.print_line('')
+    @console_io.newline
   end
 
   def cmd_run(trace_flag)
-    if @program.empty?
-      @console_io.print_line('No program loaded')
+    unless @program.empty?
+      @interpreter.run(@program, trace_flag) if @program.check
     else
-      @interpreter.run(@program, trace_flag)
+      @console_io.print_line('No program loaded')
     end
   end
 
@@ -1269,7 +1299,7 @@ end
 
 if !run_filename.nil?
   program = Program.new(console_io)
-  if program.load(run_filename)
+  if program.load(run_filename) && program.check
     interpreter =
       Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
                       respect_randomize, if_false_next_line)
