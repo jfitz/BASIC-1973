@@ -44,6 +44,7 @@ Keywords and tokens
 -------------------
 
 This implementation of BASIC tokenizes the program text and then parses the tokens.
+When tokenizing, BASIC builds the longest legal token from available text.
 This can lead to some problems, when legal constructs can be confused for keywords.
 
 For example:
@@ -69,7 +70,31 @@ The corrected program is:
 	50 NEXT I
 	99 END
 
-The underscore stops the tokenizer and forces it to accept S as a variable and then procede with TOP which will be tokenized as 'TO' and P (as there is no 'TOP' keyword).
+The underscore stops the tokenizer and forces it to accept S as a token and then procede with TOP which will be tokenized as 'TO' and P (as there is no 'TOP' keyword).
+
+Keep in mind that many statement words can be abbreviated to three letters (DAT, PRI, INP).
+These abbreviations may be identified as tokens.
+The following revision shows an example of this:
+
+	10 LET S = 1
+	20 LET E = 10
+	30 FOR I = S TO E
+	40 PRINT I
+	50 NEXT I
+	99 END
+
+While 'STOE' is not a keyword or reserved token, 'STO' is.
+(It is the three-letter abbreviation of 'STOP'.)
+This program also needs the underscore character:
+
+	10 LET S = 1
+	20 LET E = 10
+	30 FOR I = S _ TO E
+	40 PRINT I
+	50 NEXT I
+	99 END
+
+The 'TOKENS' command displays the tokens identified in each line.
 
 Inconsistencies in Ahl's various BASIC interpreters
 ---------------------------------------------------
@@ -179,6 +204,15 @@ PRETTY
 Lists the current program on the screen, adjusting the spacing between keywords, variable names, and constants.
 
 Syntax:	PRETTY [line specification]
+
+The line specification is the same as the line specification for the LIST command.
+
+TOKENS
+~~~~~~
+
+Lists the current program and for each line displays the tokens identified on that line.
+
+Syntax: TOKENS [line specification]
 
 The line specification is the same as the line specification for the LIST command.
 
