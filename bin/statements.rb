@@ -273,12 +273,12 @@ class AbstractStatement
 
   def renumber(_) end
 
-  def execute(interpreter, trace)
+  def execute(interpreter)
     current_line_index = interpreter.current_line_index
     index = current_line_index.index
-    execute_premodifier(interpreter, trace) if index < 0
-    execute_core(interpreter, trace) if index.zero?
-    execute_postmodifier(interpreter, trace) if index > 0
+    execute_premodifier(interpreter) if index < 0
+    execute_core(interpreter) if index.zero?
+    execute_postmodifier(interpreter) if index > 0
   end
 
   def start_index
@@ -359,18 +359,18 @@ class AbstractStatement
     false
   end
 
-  def execute_premodifier(interpreter, trace)
+  def execute_premodifier(interpreter)
     current_line_index = interpreter.current_line_index
     index = 0 - (current_line_index.index + 1)
     modifier = @modifiers[index]
-    modifier.execute_pre(interpreter, trace)
+    modifier.execute_pre(interpreter)
   end
 
-  def execute_postmodifier(interpreter, trace)
+  def execute_postmodifier(interpreter)
     current_line_index = interpreter.current_line_index
     index = current_line_index.index - 1
     modifier = @modifiers[index]
-    modifier.execute_post(interpreter, trace)
+    modifier.execute_post(interpreter)
   end
 
   protected
@@ -500,11 +500,11 @@ class InvalidStatement < AbstractStatement
     @text
   end
 
-  def execute_core(_, _)
+  def pre_execute(_)
     raise(BASICException, @errors[0])
   end
 
-  def pre_execute(_)
+  def execute_core(_)
     raise(BASICException, @errors[0])
   end
 end
@@ -521,7 +521,7 @@ class UnknownStatement < AbstractStatement
     @text
   end
 
-  def execute_core(_, _) end
+  def execute_core(_) end
 end
 
 # empty statement (line number only)
@@ -534,7 +534,7 @@ class EmptyStatement < AbstractStatement
     ''
   end
 
-  def execute_core(_, _) end
+  def execute_core(_) end
 end
 
 # REMARK
@@ -551,7 +551,7 @@ class RemarkStatement < AbstractStatement
     @rest = tokens_lists[0]
   end
 
-  def execute_core(_, _) end
+  def execute_core(_) end
 end
 
 # CHANGE
@@ -575,7 +575,7 @@ class ChangeStatement < AbstractStatement
     end
   end
 
-  def execute_core(interpreter, trace)
+  def execute_core(interpreter)
     source = ValueScalarExpression.new(@source_tokens)
     source_values = source.evaluate(interpreter)
     source_value = source_values[0]
@@ -591,7 +591,7 @@ class ChangeStatement < AbstractStatement
       target_variable = Variable.new(target_variable_name)
       interpreter.set_dimensions(target_variable, dims)
       values = array.values
-      interpreter.set_values(target_variable_name, values, trace)
+      interpreter.set_values(target_variable_name, values)
 
     elsif source_value.numeric_constant?
       # array to string
@@ -618,7 +618,7 @@ class ChangeStatement < AbstractStatement
       end
       array = BASICArray.new(dims, values)
       text = array.pack
-      interpreter.set_value(target_value, text, trace)
+      interpreter.set_value(target_value, text)
 
     else
       raise BASICException, 'Type mismatch'
@@ -654,7 +654,7 @@ class DimStatement < AbstractStatement
     end
   end
 
-  def execute_core(interpreter, _)
+  def execute_core(interpreter)
     @expression_list.each do |expression|
       variables = expression.evaluate(interpreter)
       variable = variables[0]
@@ -691,7 +691,7 @@ class FilesStatement < AbstractStatement
     interpreter.add_file_names(file_names)
   end
 
-  def execute_core(_, _) end
+  def execute_core(_) end
 end
 
 # GOTO
@@ -763,7 +763,7 @@ class GotoStatement < AbstractStatement
     retval
   end
 
-  def execute_core(interpreter, trace)
+  def execute_core(interpreter)
     unless @destination.nil?
       line_number = @destination
       index = interpreter.statement_start_index(line_number, 0)
@@ -778,7 +778,8 @@ class GotoStatement < AbstractStatement
       value = values[0]
       raise(BASICException, 'Invalid value') unless
         value.numeric_constant?
-      puts ' ' + @expression.to_s + ' = ' + value.to_s if trace
+      io = interpreter.trace_out
+      io.trace_output(' ' + @expression.to_s + ' = ' + value.to_s)
       index = value.to_i
       raise(BASICException, 'Index out of range') if
         index < 1 || index > @destinations.size
@@ -836,7 +837,7 @@ class GosubStatement < AbstractStatement
     false
   end
 
-  def execute_core(interpreter, _)
+  def execute_core(interpreter)
     line_number = @destination
     index = interpreter.statement_start_index(line_number, 0)
     raise(BASICException, 'Line number not found') if index.nil?
@@ -880,12 +881,12 @@ class LetStatement < AbstractStatement
     end
   end
 
-  def execute_core(interpreter, trace)
+  def execute_core(interpreter)
     l_values = @assignment.eval_target(interpreter)
     r_values = @assignment.eval_value(interpreter)
     r_value = r_values[0]
     l_values.each do |l_value|
-      interpreter.set_value(l_value, r_value, trace)
+      interpreter.set_value(l_value, r_value)
     end
   end
 end
@@ -919,12 +920,12 @@ class LetLessStatement < AbstractStatement
     end
   end
 
-  def execute_core(interpreter, trace)
+  def execute_core(interpreter)
     l_values = @assignment.eval_target(interpreter)
     r_values = @assignment.eval_value(interpreter)
     r_value = r_values[0]
     l_values.each do |l_value|
-      interpreter.set_value(l_value, r_value, trace)
+      interpreter.set_value(l_value, r_value)
     end
   end
 end
@@ -949,7 +950,7 @@ class InputStatement < AbstractStatement
     end
   end
 
-  def execute_core(interpreter, trace)
+  def execute_core(interpreter)
     default_prompt = TextConstantToken.new('"? "')
     prompt = default_prompt
     input_items = @input_items.clone
@@ -997,7 +998,7 @@ class InputStatement < AbstractStatement
       l_values = hash['name'].evaluate(interpreter)
       l_value = l_values[0]
       value = hash['value']
-      interpreter.set_value(l_value, value, trace)
+      interpreter.set_value(l_value, value)
     end
   end
 
@@ -1210,10 +1211,10 @@ class IfStatement < AbstractStatement
     retval
   end
 
-  def execute_core(interpreter, trace)
-    io = interpreter.console_io
+  def execute_core(interpreter)
+    io = interpreter.trace_out
     s = ' ' + @expression.to_s
-    io.trace_output(s) if trace
+    io.trace_output(s)
     values = @expression.evaluate(interpreter)
     raise(BASICException, 'Expression error') unless
       values.size == 1
@@ -1229,7 +1230,7 @@ class IfStatement < AbstractStatement
         interpreter.next_line_index = destination
       end
 
-      @statement.execute(interpreter, trace) if !@statement.nil?
+      @statement.execute(interpreter) if !@statement.nil?
     else
       if !@else_dest.nil?
         line_number = @else_dest
@@ -1245,10 +1246,9 @@ class IfStatement < AbstractStatement
         interpreter.next_line_index = next_line_index
       end
 
-      @else_stmt.execute(interpreter, trace) if !@else_stmt.nil?
+      @else_stmt.execute(interpreter) if !@else_stmt.nil?
     end
 
-    return unless trace
     s = ' ' + result.to_s
     io.trace_output(s)
   end
@@ -1316,7 +1316,7 @@ class LineInputStatement < AbstractStatement
     end
   end
 
-  def execute_core(interpreter, trace)
+  def execute_core(interpreter)
     default_prompt = TextConstantToken.new('"? "')
     prompt = default_prompt
     input_items = @input_items.clone
@@ -1364,7 +1364,7 @@ class LineInputStatement < AbstractStatement
       l_values = hash['name'].evaluate(interpreter)
       l_value = l_values[0]
       value = hash['value']
-      interpreter.set_value(l_value, value, trace)
+      interpreter.set_value(l_value, value)
     end
   end
 
@@ -1470,7 +1470,7 @@ class PrintStatement < AbstractPrintStatement
     end
   end
 
-  def execute_core(interpreter, _)
+  def execute_core(interpreter)
     file_handle, print_items = extract_file_handle(@print_items, interpreter)
     fh = interpreter.get_file_handler(file_handle)
     print_items.each do |item|
@@ -1524,7 +1524,7 @@ class ReturnStatement < AbstractStatement
       check_template(tokens_lists, template)
   end
 
-  def execute_core(interpreter, _)
+  def execute_core(interpreter)
     interpreter.next_line_index = interpreter.pop_return
   end
 end
@@ -1586,12 +1586,13 @@ class OnStatement < AbstractStatement
     retval
   end
 
-  def execute_core(interpreter, trace)
+  def execute_core(interpreter)
     values = @expression.evaluate(interpreter)
     raise(BASICException, 'Expecting one value') unless values.size == 1
     value = values[0]
     raise(BASICException, 'Invalid value') unless value.numeric_constant?
-    puts ' ' + @expression.to_s + ' = ' + value.to_s if trace
+    io = interpreter.trace_out
+    io.trace_output(' ' + @expression.to_s + ' = ' + value.to_s)
     index = value.to_i
     raise(BASICException, 'Index out of range') if
       index < 1 || index > @destinations.size
@@ -1628,9 +1629,9 @@ class ForNextControl
     @current_value = start
   end
 
-  def bump_control(interpreter, trace)
+  def bump_control(interpreter)
     @current_value += @step_value
-    interpreter.set_value(@control, @current_value, trace)
+    interpreter.set_value(@control, @current_value)
   end
 
   def front_terminated?
@@ -1695,12 +1696,12 @@ class ForStatement < AbstractStatement
     end
   end
 
-  def execute_core(interpreter, trace)
+  def execute_core(interpreter)
     from = @start.evaluate(interpreter)[0]
     to = @end.evaluate(interpreter)[0]
     step = @step_value.evaluate(interpreter)[0]
 
-    interpreter.set_value(@control, from, false)
+    interpreter.set_value(@control, from)
     fornext_control =
       ForNextControl.new(@control,
                          interpreter.next_line_index, from, to, step)
@@ -1712,9 +1713,8 @@ class ForStatement < AbstractStatement
         interpreter.find_closing_next(@control)
     end
 
-    io = interpreter.console_io
-    print_trace_info(io, from, to, step, terminated) if
-      trace
+    io = interpreter.trace_out
+    print_trace_info(io, from, to, step, terminated)
   end
 
   private
@@ -1768,23 +1768,21 @@ class NextStatement < AbstractStatement
     end
   end
 
-  def execute_core(interpreter, trace)
+  def execute_core(interpreter)
     fornext_control = interpreter.retrieve_fornext(@control)
     # check control variable value
     # if matches end value, stop here
     terminated = fornext_control.terminated?(interpreter)
-    if trace
-      io = interpreter.console_io
-      s = ' terminated:' + terminated.to_s
-      io.trace_output(s)
-    end
+    io = interpreter.trace_out
+    s = ' terminated:' + terminated.to_s
+    io.trace_output(s)
 
     return if terminated
 
     # set next line from top item
     interpreter.next_line_index = fornext_control.start_line_index
     # change control variable value
-    fornext_control.bump_control(interpreter, trace)
+    fornext_control.bump_control(interpreter)
   end
 end
 
@@ -1842,7 +1840,7 @@ class ReadStatement < AbstractReadStatement
     end
   end
 
-  def execute_core(interpreter, trace)
+  def execute_core(interpreter)
     read_items = @read_items.clone
     unless read_items.empty?
       fh, tokens_lists = extract_file_handle(read_items, interpreter)
@@ -1862,7 +1860,7 @@ class ReadStatement < AbstractReadStatement
       targets = expression.evaluate(interpreter)
       targets.each do |target|
         value = ds.read
-        interpreter.set_value(target, value, trace)
+        interpreter.set_value(target, value)
       end
     end
   end
@@ -1894,7 +1892,7 @@ class DataStatement < AbstractStatement
     ds.store(data_list)
   end
 
-  def execute_core(_, _) end
+  def execute_core(_) end
 end
 
 # RESTORE
@@ -1914,7 +1912,7 @@ class RestoreStatement < AbstractStatement
       check_template(tokens_lists, template)
   end
 
-  def execute_core(interpreter, _)
+  def execute_core(interpreter)
     ds = interpreter.get_data_store(nil)
     ds.reset
   end
@@ -1942,7 +1940,6 @@ class DefineFunctionStatement < AbstractStatement
         @arguments = user_function_definition.arguments
         @template = user_function_definition.template
       rescue BASICException => e
-        puts e.message
         @errors << e.message
       end
     else
@@ -1954,7 +1951,7 @@ class DefineFunctionStatement < AbstractStatement
     interpreter.set_user_function(@name, @arguments, @template)
   end
 
-  def execute_core(_, _) end
+  def execute_core(_) end
 end
 
 # STOP
@@ -1974,7 +1971,7 @@ class StopStatement < AbstractStatement
       check_template(tokens_lists, template)
   end
 
-  def execute_core(interpreter, _)
+  def execute_core(interpreter)
     io = interpreter.console_io
     io.newline_when_needed
     interpreter.stop
@@ -2004,7 +2001,7 @@ class EndStatement < AbstractStatement
     false
   end
 
-  def execute_core(interpreter, _)
+  def execute_core(interpreter)
     io = interpreter.console_io
     io.newline_when_needed
     interpreter.stop
@@ -2031,7 +2028,7 @@ class TraceStatement < AbstractStatement
     end
   end
 
-  def execute_core(interpreter, _)
+  def execute_core(interpreter)
     tokens_lists = @tokens_lists.clone
     raise(BASICException, 'Too many values') if tokens_lists.size > 1
     first_expression = tokens_lists[0]
@@ -2098,7 +2095,7 @@ class WriteStatement < AbstractWriteStatement
     end
   end
 
-  def execute_core(interpreter, _)
+  def execute_core(interpreter)
     file_handle, print_items = extract_file_handle(@print_items, interpreter)
     fh = interpreter.get_file_handler(file_handle)
     print_items.each do |item|
@@ -2155,7 +2152,7 @@ class ArrPrintStatement < AbstractPrintStatement
     end
   end
 
-  def execute_core(interpreter, _)
+  def execute_core(interpreter)
     file_handle, print_items = extract_file_handle(@print_items, interpreter)
     fh = interpreter.get_file_handler(file_handle)
     i = 0
@@ -2207,7 +2204,7 @@ class ArrWriteStatement < AbstractWriteStatement
     end
   end
 
-  def execute_core(interpreter, _)
+  def execute_core(interpreter)
     file_handle, print_items = extract_file_handle(@print_items, interpreter)
     fh = interpreter.get_file_handler(file_handle)
     i = 0
@@ -2259,7 +2256,7 @@ class MatWriteStatement < AbstractWriteStatement
     end
   end
 
-  def execute_core(interpreter, _)
+  def execute_core(interpreter)
     file_handle, print_items = extract_file_handle(@print_items, interpreter)
     fh = interpreter.get_file_handler(file_handle)
     i = 0
@@ -2310,7 +2307,7 @@ class ArrReadStatement < AbstractReadStatement
     end
   end
 
-  def execute_core(interpreter, trace)
+  def execute_core(interpreter)
     tokens_lists = @read_items.clone
     unless tokens_lists.empty?
       fh, tokens_lists = extract_file_handle(tokens_lists, interpreter)
@@ -2332,30 +2329,30 @@ class ArrReadStatement < AbstractReadStatement
       targets.each do |target|
         interpreter.set_dimensions(target, target.dimensions) if
           target.dimensions?
-        read_values(target.name, interpreter, ds, trace)
+        read_values(target.name, interpreter, ds)
       end
     end
   end
 
   private
 
-  def read_values(name, interpreter, ds, trace)
+  def read_values(name, interpreter, ds)
     dims = interpreter.get_dimensions(name)
     case dims.size
     when 1
-      read_array(name, dims, interpreter, ds, trace)
+      read_array(name, dims, interpreter, ds)
     else
       raise(BASICException, 'Dimensions for ARR READ must be 1')
     end
   end
 
-  def read_array(name, dims, interpreter, ds, trace)
+  def read_array(name, dims, interpreter, ds)
     values = {}
     (0..dims[0].to_i).each do |col|
       coord = make_coord(col)
       values[coord] = ds.read
     end
-    interpreter.set_values(name, values, trace)
+    interpreter.set_values(name, values)
   end
 end
 
@@ -2389,7 +2386,7 @@ class ArrLetStatement < AbstractStatement
     end
   end
 
-  def execute_core(interpreter, trace)
+  def execute_core(interpreter)
     r_value = first_value(interpreter)
     dims = r_value.dimensions
     values = r_value.values
@@ -2397,7 +2394,7 @@ class ArrLetStatement < AbstractStatement
     l_values = @assignment.eval_target(interpreter)
     l_values.each do |l_value|
       interpreter.set_dimensions(l_value, dims)
-      interpreter.set_values(l_value.name, values, trace)
+      interpreter.set_values(l_value.name, values)
     end
   end
 
@@ -2437,7 +2434,7 @@ class MatPrintStatement < AbstractPrintStatement
     end
   end
 
-  def execute_core(interpreter, _)
+  def execute_core(interpreter)
     file_handle, print_items = extract_file_handle(@print_items, interpreter)
     fh = interpreter.get_file_handler(file_handle)
     i = 0
@@ -2488,7 +2485,7 @@ class MatReadStatement < AbstractReadStatement
     end
   end
 
-  def execute_core(interpreter, trace)
+  def execute_core(interpreter)
     tokens_lists = @read_items.clone
     unless tokens_lists.empty?
       fh, tokens_lists = extract_file_handle(tokens_lists, interpreter)
@@ -2510,35 +2507,35 @@ class MatReadStatement < AbstractReadStatement
       targets.each do |target|
         interpreter.set_dimensions(target, target.dimensions) if
           target.dimensions?
-        read_values(target.name, interpreter, ds, trace)
+        read_values(target.name, interpreter, ds)
       end
     end
   end
 
   private
 
-  def read_values(name, interpreter, ds, trace)
+  def read_values(name, interpreter, ds)
     dims = interpreter.get_dimensions(name)
     case dims.size
     when 1
-      read_vector(name, dims, interpreter, ds, trace)
+      read_vector(name, dims, interpreter, ds)
     when 2
-      read_matrix(name, dims, interpreter, ds, trace)
+      read_matrix(name, dims, interpreter, ds)
     else
       raise(BASICException, 'Dimensions for MAT READ must be 1 or 2')
     end
   end
 
-  def read_vector(name, dims, interpreter, ds, trace)
+  def read_vector(name, dims, interpreter, ds)
     values = {}
     (1..dims[0].to_i).each do |col|
       coord = make_coord(col)
       values[coord] = ds.read
     end
-    interpreter.set_values(name, values, trace)
+    interpreter.set_values(name, values)
   end
 
-  def read_matrix(name, dims, interpreter, ds, trace)
+  def read_matrix(name, dims, interpreter, ds)
     values = {}
     (1..dims[0].to_i).each do |row|
       (1..dims[1].to_i).each do |col|
@@ -2546,7 +2543,7 @@ class MatReadStatement < AbstractReadStatement
         values[coords] = ds.read
       end
     end
-    interpreter.set_values(name, values, trace)
+    interpreter.set_values(name, values)
   end
 end
 
@@ -2580,7 +2577,7 @@ class MatLetStatement < AbstractStatement
     end
   end
 
-  def execute_core(interpreter, trace)
+  def execute_core(interpreter)
     r_value = first_value(interpreter)
     dims = r_value.dimensions
     values = r_value.values_1 if dims.size == 1
@@ -2589,7 +2586,7 @@ class MatLetStatement < AbstractStatement
     l_values = @assignment.eval_target(interpreter)
     l_values.each do |l_value|
       interpreter.set_dimensions(l_value, dims)
-      interpreter.set_values(l_value.name, values, trace)
+      interpreter.set_values(l_value.name, values)
     end
   end
 
@@ -2621,7 +2618,7 @@ class RandomizeStatement < AbstractStatement
       check_template(tokens_lists, template)
   end
 
-  def execute_core(interpreter, _)
+  def execute_core(interpreter)
     interpreter.new_random
   end
 end

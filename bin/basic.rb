@@ -250,6 +250,7 @@ class Interpreter
   attr_reader :current_line_index
   attr_accessor :next_line_index
   attr_reader :console_io
+  attr_reader :trace_out
   attr_reader :if_false_next_line
 
   def initialize(console_io, int_floor, ignore_rnd_arg, randomize,
@@ -290,6 +291,7 @@ class Interpreter
   def run(program, trace_flag)
     @program = program
     @program_lines = program.lines
+    @trace_flag = trace_flag
 
     # reset profile metrics
     @program_lines.keys.sort.each do |line_number|
@@ -301,12 +303,14 @@ class Interpreter
       end
     end
 
+    @null_out = NullOut.new
+
     # run the program
     @variables = {}
-    @tron_flag = false
+    @trace_out = @trace_flag ? @console_io : @null_out
     @running = true
     run_phase_1
-    run_phase_2(trace_flag) if @running
+    run_phase_2 if @running
   end
 
   def run_phase_1
@@ -316,13 +320,13 @@ class Interpreter
     preexecute_loop
   end
 
-  def run_phase_2(trace_flag)
+  def run_phase_2
     # phase 2: run each command
     # start with the first line number
     line_number = @program_lines.min[0]
     @current_line_index = LineNumberIndex.new(line_number, 0, 0)
     begin
-      program_loop(trace_flag || @tron_flag) while @running
+      program_loop while @running
     rescue Interrupt
       stop_running
     end
@@ -330,9 +334,9 @@ class Interpreter
   end
 
   def print_trace_info(statement)
-    @console_io.newline_when_needed
-    @console_io.print_out @current_line_index.to_s + ':' + statement.pretty
-    @console_io.newline
+    @trace_out.newline_when_needed
+    @trace_out.print_out @current_line_index.to_s + ':' + statement.pretty
+    @trace_out.newline
   end
 
   def print_errors(line_number, statement)
@@ -367,15 +371,15 @@ class Interpreter
     stop_running
   end
 
-  def execute_a_statement(trace_flag)
+  def execute_a_statement
     line_number = @current_line_index.number
     line = @program_lines[line_number]
     statements = line.statements
     statement_index = @current_line_index.statement
     statement = statements[statement_index]
-    print_trace_info(statement) if trace_flag
+    print_trace_info(statement)
     if statement.errors.empty?
-      timing = Benchmark.measure { statement.execute(self, trace_flag) }
+      timing = Benchmark.measure { statement.execute(self) }
       user_time = timing.utime + timing.cutime
       sys_time = timing.stime + timing.cstime
       time = user_time + sys_time
@@ -387,11 +391,11 @@ class Interpreter
     end
   end
 
-  def program_loop(trace_flag)
+  def program_loop
     # pick the next line number
     @next_line_index = @program.find_next_line_index(@current_line_index)
     begin
-      execute_a_statement(trace_flag)
+      execute_a_statement
       # set the next line number
       @current_line_index = nil
       if @running
@@ -427,7 +431,7 @@ class Interpreter
   end
 
   def trace(tron_flag)
-    @tron_flag = tron_flag
+    @trace_out = (@trace_flag || tron_flag) ? @console_io : @null_out
   end
 
   def clear_variables
@@ -621,7 +625,7 @@ class Interpreter
     value
   end
 
-  def set_value(variable, value, trace)
+  def set_value(variable, value)
     # convert a numeric to a string when a string is expected
     if value.numeric_constant? &&
        variable.content_type == 'TextConstant'
@@ -653,13 +657,13 @@ class Interpreter
 
     var = variable.to_s
     @variables[var] = value
-    @console_io.print_line(' ' + variable.to_s + ' = ' + value.to_s) if trace
+    @trace_out.print_line(' ' + variable.to_s + ' = ' + value.to_s)
   end
 
-  def set_values(name, values, trace)
+  def set_values(name, values)
     values.each do |coords, value|
       variable = Variable.new(name, coords)
-      set_value(variable, value, trace)
+      set_value(variable, value)
     end
   end
 

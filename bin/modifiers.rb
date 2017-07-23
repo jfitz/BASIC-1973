@@ -11,8 +11,8 @@ class IfModifier
     'IF ' + @expression.to_s
   end
 
-  def execute_pre(interpreter, trace)
-    io = interpreter.console_io
+  def execute_pre(interpreter)
+    io = interpreter.trace_out
 
     values = @expression.evaluate(interpreter)
     raise(BASICException, 'Expression error') unless
@@ -23,7 +23,7 @@ class IfModifier
       result.class.to_s == 'BooleanConstant'
 
     s = ' ' + result.to_s
-    io.trace_output(s) if trace
+    io.trace_output(s)
     return if result.value
 
     current_line_index = interpreter.current_line_index
@@ -35,7 +35,7 @@ class IfModifier
     interpreter.next_line_index = destination
   end
 
-  def execute_post(_, _) end
+  def execute_post(_) end
 
   private
 
@@ -89,10 +89,10 @@ class ForModifier
     end
   end
 
-  def execute_pre(interpreter, trace)
+  def execute_pre(interpreter)
     start_value = @start.evaluate(interpreter)[0]
     @current_value = start_value if @current_value.nil?
-    interpreter.set_value(@control, @current_value, trace)
+    interpreter.set_value(@control, @current_value)
     end_value = @end.evaluate(interpreter)[0]
     if @step.nil?
       step_value = NumericConstant.new(1)
@@ -102,8 +102,8 @@ class ForModifier
 
     terminated = terminated?(@current_value, step_value, end_value)
 
-    io = interpreter.console_io
-    print_trace_info(io, terminated) if trace
+    io = interpreter.trace_out
+    print_trace_info(io, terminated)
 
     return unless terminated
 
@@ -116,7 +116,7 @@ class ForModifier
     interpreter.next_line_index = destination
   end
 
-  def execute_post(interpreter, trace)
+  def execute_post(interpreter)
     end_value = @end.evaluate(interpreter)[0]
     if @step.nil?
       step_value = NumericConstant.new(1)
@@ -124,12 +124,12 @@ class ForModifier
       step_value = @step.evaluate(interpreter)[0]
     end
     @current_value += step_value
-    interpreter.set_value(@control, @current_value, trace)
+    interpreter.set_value(@control, @current_value)
 
     terminated = terminated?(@current_value, step_value, end_value)
 
-    io = interpreter.console_io
-    print_trace_info(io, terminated) if trace
+    io = interpreter.trace_out
+    print_trace_info(io, terminated)
 
     if terminated
       @current_value = nil
