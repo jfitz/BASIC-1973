@@ -272,6 +272,7 @@ class Interpreter
     @user_var_values = []
     @program_lines = {}
     @variables = {}
+    @get_value_seen = []
     @if_false_next_line = if_false_next_line
   end
 
@@ -389,6 +390,7 @@ class Interpreter
       stop_running
       print_errors(line_number, statement)
     end
+    @get_value_seen = []
   end
 
   def program_loop
@@ -439,13 +441,15 @@ class Interpreter
   end
 
   # returns an Array of values
-  def evaluate(parsed_expressions)
+  def evaluate(parsed_expressions, trace)
+    old_trace_flag = @trace_flag
+    @trace_flag = trace
     result_values = []
     parsed_expressions.each do |parsed_expression|
       stack = []
       exp = parsed_expression.empty? ? 0 : 1
       parsed_expression.each do |element|
-        value = element.evaluate(self, stack)
+        value = element.evaluate(self, stack, trace)
         stack.push value
       end
       act = stack.length
@@ -457,6 +461,7 @@ class Interpreter
       item = stack[0]
       result_values << item
     end
+    @trace_flag = old_trace_flag
     result_values
   end
 
@@ -604,7 +609,7 @@ class Interpreter
     end
   end
 
-  def get_value(variable)
+  def get_value(variable, trace)
     value = nil
     # first look in user function values stack
     length = @user_var_values.length
@@ -621,6 +626,11 @@ class Interpreter
         default_type == 'TextConstant'
       @variables[v] = default_value unless @variables.key?(v)
       value = @variables[v]
+    end
+    seen = @get_value_seen.include?(variable)
+    if @trace_flag && trace && !seen
+      @trace_out.print_line(' ' + variable.to_s + ' = ' + value.to_s)
+      @get_value_seen << variable
     end
     value
   end

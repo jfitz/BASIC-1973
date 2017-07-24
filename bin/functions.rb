@@ -103,7 +103,7 @@ class UserFunction < AbstractScalarFunction
   end
 
   # return a single value
-  def evaluate(interpreter, stack)
+  def evaluate(interpreter, stack, trace)
     expression = interpreter.get_user_function(@name)
     # verify function is defined
     raise(BASICException, "Function #{@name} not defined") if expression.nil?
@@ -117,7 +117,7 @@ class UserFunction < AbstractScalarFunction
     check_arg_types(user_var_values, specs)
 
     # dummy variable names and their (now known) values
-    result = expression.evaluate_with_vars(interpreter, @name, user_var_values)
+    result = expression.evaluate_with_vars(interpreter, @name, user_var_values, trace)
     result[0]
   end
 end
@@ -156,7 +156,7 @@ class FunctionAbs < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
@@ -171,7 +171,7 @@ class FunctionAsc < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'text', 'shape' => 'scalar' }
@@ -192,7 +192,7 @@ class FunctionAtn < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
@@ -207,7 +207,7 @@ class FunctionChr < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
@@ -228,7 +228,7 @@ class FunctionCon < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1, 2])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
@@ -244,7 +244,7 @@ class FunctionCos < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
@@ -259,7 +259,7 @@ class FunctionDet < AbstractMatrixFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'matrix' }
@@ -274,7 +274,7 @@ class FunctionExp < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
@@ -289,7 +289,7 @@ class FunctionExt < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [3])
     args = stack.pop
     specs = [
@@ -316,7 +316,7 @@ class FunctionIdn < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1, 2])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
@@ -342,7 +342,7 @@ class FunctionInstr < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [3])
     args = stack.pop
     specs = [
@@ -374,7 +374,7 @@ class FunctionInt < AbstractScalarFunction
   end
 
   # return a single value
-  def evaluate(interpreter, stack)
+  def evaluate(interpreter, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
@@ -389,7 +389,7 @@ class FunctionInv < AbstractMatrixFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     dims = args[0].dimensions
@@ -406,7 +406,7 @@ class FunctionLeft < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [2])
     args = stack.pop
     specs = [
@@ -430,7 +430,7 @@ class FunctionLen < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'text', 'shape' => 'scalar' }
@@ -448,7 +448,7 @@ class FunctionLog < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
@@ -463,7 +463,7 @@ class FunctionMid < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [3])
     args = stack.pop
     specs = [
@@ -493,7 +493,7 @@ class FunctionNum < AbstractScalarFunction
   end
 
   # return a single value
-  def evaluate(interpreter, stack)
+  def evaluate(interpreter, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
@@ -511,7 +511,7 @@ class FunctionPack < AbstractArrayFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'array' }
@@ -529,7 +529,7 @@ class FunctionRight < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [2])
     args = stack.pop
     specs = [
@@ -556,7 +556,7 @@ class FunctionRnd < AbstractScalarFunction
   end
 
   # return a single value
-  def evaluate(interpreter, stack)
+  def evaluate(interpreter, stack, _)
     stack.push([NumericConstant.new(1)]) unless previous_is_array(stack)
     ensure_argument_count(stack, [0, 1])
     args = stack.pop
@@ -573,7 +573,7 @@ class FunctionSgn < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
@@ -588,7 +588,7 @@ class FunctionSin < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
@@ -603,7 +603,7 @@ class FunctionSqr < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
@@ -618,7 +618,7 @@ class FunctionTab < AbstractScalarFunction
     super
   end
 
-  def evaluate(interpreter, stack)
+  def evaluate(interpreter, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
@@ -644,7 +644,7 @@ class FunctionTan < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
@@ -659,7 +659,7 @@ class FunctionTrn < AbstractMatrixFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'matrix' }
@@ -676,7 +676,7 @@ class FunctionUnpack < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'text', 'shape' => 'scalar' }
@@ -692,7 +692,7 @@ class FunctionVal < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'text', 'shape' => 'scalar' }
@@ -709,7 +709,7 @@ class FunctionZer < AbstractScalarFunction
     super
   end
 
-  def evaluate(_, stack)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1, 2])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }

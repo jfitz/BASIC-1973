@@ -577,7 +577,7 @@ class ChangeStatement < AbstractStatement
 
   def execute_core(interpreter)
     source = ValueScalarExpression.new(@source_tokens)
-    source_values = source.evaluate(interpreter)
+    source_values = source.evaluate(interpreter, false)
     source_value = source_values[0]
 
     if source_value.text_constant?
@@ -599,7 +599,7 @@ class ChangeStatement < AbstractStatement
       source_variable_name = VariableName.new(source_variable_token)
 
       target = TargetExpression.new(@target_tokens, ScalarReference)
-      target_values = target.evaluate(interpreter)
+      target_values = target.evaluate(interpreter, false)
       target_value = target_values[0]
 
       dims = interpreter.get_dimensions(source_variable_name)
@@ -614,7 +614,7 @@ class ChangeStatement < AbstractStatement
         column = IntegerConstant.new(col)
         variable = Variable.new(source_variable_name, [column])
         coord = make_coord(col)
-        values[coord] = interpreter.get_value(variable)
+        values[coord] = interpreter.get_value(variable, true)
       end
       array = BASICArray.new(dims, values)
       text = array.pack
@@ -656,7 +656,7 @@ class DimStatement < AbstractStatement
 
   def execute_core(interpreter)
     @expression_list.each do |expression|
-      variables = expression.evaluate(interpreter)
+      variables = expression.evaluate(interpreter, false)
       variable = variables[0]
       subscripts = variable.subscripts
       if subscripts.empty?
@@ -687,7 +687,7 @@ class FilesStatement < AbstractStatement
   end
 
   def pre_execute(interpreter)
-    file_names = @expressions.evaluate(interpreter)
+    file_names = @expressions.evaluate(interpreter, false)
     interpreter.add_file_names(file_names)
   end
 
@@ -773,7 +773,7 @@ class GotoStatement < AbstractStatement
     end
 
     unless @destinations.nil?
-      values = @expression.evaluate(interpreter)
+      values = @expression.evaluate(interpreter, false)
       raise(BASICException, 'Expecting one value') unless values.size == 1
       value = values[0]
       raise(BASICException, 'Invalid value') unless
@@ -995,7 +995,7 @@ class InputStatement < AbstractStatement
       raise(BASICException, 'Unequal lists')
     end
     name_value_pairs.each do |hash|
-      l_values = hash['name'].evaluate(interpreter)
+      l_values = hash['name'].evaluate(interpreter, false)
       l_value = l_values[0]
       value = hash['value']
       interpreter.set_value(l_value, value)
@@ -1011,7 +1011,7 @@ class InputStatement < AbstractStatement
   def first_value(input_items, interpreter)
     first_list = input_items[0]
     expr = ValueScalarExpression.new(first_list)
-    values = expr.evaluate(interpreter)
+    values = expr.evaluate(interpreter, false)
     values[0]
   end
 
@@ -1215,7 +1215,7 @@ class IfStatement < AbstractStatement
     io = interpreter.trace_out
     s = ' ' + @expression.to_s
     io.trace_output(s)
-    values = @expression.evaluate(interpreter)
+    values = @expression.evaluate(interpreter, true)
     raise(BASICException, 'Expression error') unless
       values.size == 1
     result = values[0]
@@ -1361,7 +1361,7 @@ class LineInputStatement < AbstractStatement
       raise(BASICException, 'Unequal lists')
     end
     name_value_pairs.each do |hash|
-      l_values = hash['name'].evaluate(interpreter)
+      l_values = hash['name'].evaluate(interpreter, false)
       l_value = l_values[0]
       value = hash['value']
       interpreter.set_value(l_value, value)
@@ -1377,7 +1377,7 @@ class LineInputStatement < AbstractStatement
   def first_value(input_items, interpreter)
     first_list = input_items[0]
     expr = ValueScalarExpression.new(first_list)
-    values = expr.evaluate(interpreter)
+    values = expr.evaluate(interpreter, false)
     values[0]
   end
 
@@ -1435,7 +1435,7 @@ class AbstractPrintStatement < AbstractStatement
 
   def first_item(print_items, interpreter)
     first_list = print_items[0]
-    values = first_list.evaluate(interpreter)
+    values = first_list.evaluate(interpreter, false)
     values[0]
   end
 
@@ -1587,7 +1587,7 @@ class OnStatement < AbstractStatement
   end
 
   def execute_core(interpreter)
-    values = @expression.evaluate(interpreter)
+    values = @expression.evaluate(interpreter, true)
     raise(BASICException, 'Expecting one value') unless values.size == 1
     value = values[0]
     raise(BASICException, 'Invalid value') unless value.numeric_constant?
@@ -1647,7 +1647,7 @@ class ForNextControl
 
   def terminated?(interpreter)
     zero = NumericConstant.new(0)
-    current_value = interpreter.get_value(@control)
+    current_value = interpreter.get_value(@control, true)
     if @step_value > zero
       current_value + @step_value > @end
     elsif @step_value < zero
@@ -1697,9 +1697,9 @@ class ForStatement < AbstractStatement
   end
 
   def execute_core(interpreter)
-    from = @start.evaluate(interpreter)[0]
-    to = @end.evaluate(interpreter)[0]
-    step = @step_value.evaluate(interpreter)[0]
+    from = @start.evaluate(interpreter, true)[0]
+    to = @end.evaluate(interpreter, true)[0]
+    step = @step_value.evaluate(interpreter, true)[0]
 
     interpreter.set_value(@control, from)
     fornext_control =
@@ -1815,7 +1815,7 @@ class AbstractReadStatement < AbstractStatement
   def first_value(tokens_lists, interpreter)
     first_list = tokens_lists[0]
     expr = ValueScalarExpression.new(first_list)
-    values = expr.evaluate(interpreter)
+    values = expr.evaluate(interpreter, false)
     values[0]
   end
 end
@@ -1857,7 +1857,7 @@ class ReadStatement < AbstractReadStatement
 
     ds = interpreter.get_data_store(fh)
     expression_list.each do |expression|
-      targets = expression.evaluate(interpreter)
+      targets = expression.evaluate(interpreter, false)
       targets.each do |target|
         value = ds.read
         interpreter.set_value(target, value)
@@ -1888,7 +1888,7 @@ class DataStatement < AbstractStatement
 
   def pre_execute(interpreter)
     ds = interpreter.get_data_store(nil)
-    data_list = @expressions.evaluate(interpreter)
+    data_list = @expressions.evaluate(interpreter, false)
     ds.store(data_list)
   end
 
@@ -2033,7 +2033,7 @@ class TraceStatement < AbstractStatement
     raise(BASICException, 'Too many values') if tokens_lists.size > 1
     first_expression = tokens_lists[0]
     expression = ValueScalarExpression.new(first_expression)
-    values = expression.evaluate(interpreter)
+    values = expression.evaluate(interpreter, true)
     value = values[0]
     interpreter.trace(value.to_v)
   end
@@ -2064,7 +2064,7 @@ class AbstractWriteStatement < AbstractStatement
 
   def first_item(print_items, interpreter)
     first_list = print_items[0]
-    values = first_list.evaluate(interpreter)
+    values = first_list.evaluate(interpreter, true)
     values[0]
   end
 
@@ -2325,7 +2325,7 @@ class ArrReadStatement < AbstractReadStatement
 
     ds = interpreter.get_data_store(fh)
     expression_list.each do |expression|
-      targets = expression.evaluate(interpreter)
+      targets = expression.evaluate(interpreter, false)
       targets.each do |target|
         interpreter.set_dimensions(target, target.dimensions) if
           target.dimensions?
@@ -2503,7 +2503,7 @@ class MatReadStatement < AbstractReadStatement
 
     ds = interpreter.get_data_store(fh)
     expression_list.each do |expression|
-      targets = expression.evaluate(interpreter)
+      targets = expression.evaluate(interpreter, false)
       targets.each do |target|
         interpreter.set_dimensions(target, target.dimensions) if
           target.dimensions?

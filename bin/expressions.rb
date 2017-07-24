@@ -18,14 +18,14 @@ class ScalarValue < Variable
   public
 
   # return a single value
-  def evaluate(interpreter, stack)
+  def evaluate(interpreter, stack, trace)
     if previous_is_array(stack)
       subscripts = get_subscripts(stack)
       @subscripts = interpreter.normalize_subscripts(subscripts)
       interpreter.check_subscripts(@variable_name, @subscripts)
-      interpreter.get_value(self)
+      interpreter.get_value(self, trace)
     else
-      interpreter.get_value(@variable_name)
+      interpreter.get_value(@variable_name, trace)
     end
   end
 end
@@ -37,7 +37,7 @@ class ScalarReference < Variable
   end
 
   # return a single value, a reference to this object
-  def evaluate(interpreter, stack)
+  def evaluate(interpreter, stack, trace)
     if previous_is_array(stack)
       subscripts = stack.pop
       @subscripts = interpreter.normalize_subscripts(subscripts)
@@ -544,22 +544,22 @@ class ArrayValue < Variable
     super
   end
 
-  def evaluate(interpreter, _)
+  def evaluate(interpreter, _, trace)
     dims = interpreter.get_dimensions(@variable_name)
     raise(BASICException, 'Variable has no dimensions') if dims.nil?
     raise(BASICException, 'Array requires one dimension') if dims.size != 1
-    values = evaluate_1(interpreter, dims[0].to_i)
+    values = evaluate_1(interpreter, dims[0].to_i, trace)
     BASICArray.new(dims, values)
   end
 
   private
 
-  def evaluate_1(interpreter, n_cols)
+  def evaluate_1(interpreter, n_cols, trace)
     values = {}
     (0..n_cols).each do |col|
       coords = make_coord(col)
       variable = Variable.new(@variable_name, coords)
-      values[coords] = interpreter.get_value(variable)
+      values[coords] = interpreter.get_value(variable, trace)
     end
     values
   end
@@ -580,7 +580,7 @@ class CompoundReference < Variable
   end
 
   # return a single value, a reference to this object
-  def evaluate(interpreter, stack)
+  def evaluate(interpreter, stack, trace)
     if previous_is_array(stack)
       subscripts = stack.pop
       @subscripts = interpreter.normalize_subscripts(subscripts)
@@ -608,40 +608,40 @@ class MatrixValue < Variable
     super
   end
 
-  def evaluate(interpreter, _)
+  def evaluate(interpreter, _, trace)
     dims = interpreter.get_dimensions(@variable_name)
     raise(BASICException, 'Variable has no dimensions') if dims.nil?
-    values = evaluate_n(interpreter, dims)
+    values = evaluate_n(interpreter, dims, trace)
     Matrix.new(dims, values)
   end
 
   private
 
-  def evaluate_n(interpreter, dims)
+  def evaluate_n(interpreter, dims, trace)
     values = {}
-    values = evaluate_1(interpreter, dims[0].to_i) if dims.size == 1
-    values = evaluate_2(interpreter, dims[0].to_i, dims[1].to_i) if
+    values = evaluate_1(interpreter, dims[0].to_i, trace) if dims.size == 1
+    values = evaluate_2(interpreter, dims[0].to_i, dims[1].to_i, trace) if
       dims.size == 2
     values
   end
 
-  def evaluate_1(interpreter, n_cols)
+  def evaluate_1(interpreter, n_cols, trace)
     values = {}
     (1..n_cols).each do |col|
       coords = make_coord(col)
       variable = Variable.new(@variable_name, coords)
-      values[coords] = interpreter.get_value(variable)
+      values[coords] = interpreter.get_value(variable, trace)
     end
     values
   end
 
-  def evaluate_2(interpreter, n_rows, n_cols)
+  def evaluate_2(interpreter, n_rows, n_cols, trace)
     values = {}
     (1..n_rows).each do |row|
       (1..n_cols).each do |col|
         coords = make_coords(row, col)
         variable = Variable.new(@variable_name, coords)
-        values[coords] = interpreter.get_value(variable)
+        values[coords] = interpreter.get_value(variable, trace)
       end
     end
     values
@@ -662,7 +662,7 @@ class VariableDimension < Variable
   end
 
   # return a single value, a reference to this object
-  def evaluate(_, stack)
+  def evaluate(_, stack, trace)
     if previous_is_array(stack)
       @subscripts = stack.pop
       num_args = @subscripts.length
@@ -854,13 +854,13 @@ class AbstractExpression
   end
 
   # returns an Array of values
-  def evaluate(interpreter)
-    interpreter.evaluate(@parsed_expressions)
+  def evaluate(interpreter, trace)
+    interpreter.evaluate(@parsed_expressions, trace)
   end
 
-  def evaluate_with_vars(interpreter, name, user_var_values)
+  def evaluate_with_vars(interpreter, name, user_var_values, trace)
     interpreter.set_user_var_values(name, user_var_values)
-    result = evaluate(interpreter)
+    result = evaluate(interpreter, trace)
     interpreter.clear_user_var_values
     result
   end
@@ -937,13 +937,13 @@ class ValueScalarExpression < AbstractExpression
   end
 
   def print(printer, interpreter)
-    numeric_constants = evaluate(interpreter)
+    numeric_constants = evaluate(interpreter, true)
     numeric_constant = numeric_constants[0]
     numeric_constant.print(printer)
   end
 
   def write(printer, interpreter)
-    numeric_constants = evaluate(interpreter)
+    numeric_constants = evaluate(interpreter, true)
     numeric_constant = numeric_constants[0]
     numeric_constant.write(printer)
   end
@@ -960,13 +960,13 @@ class ValueCompoundExpression < AbstractExpression
   end
 
   def print(printer, interpreter, carriage)
-    compounds = evaluate(interpreter)
+    compounds = evaluate(interpreter, true)
     compound = compounds[0]
     compound.print(printer, interpreter, carriage)
   end
 
   def write(printer, interpreter, carriage)
-    compounds = evaluate(interpreter)
+    compounds = evaluate(interpreter, true)
     compound = compounds[0]
     compound.write(printer, interpreter, carriage)
   end
@@ -1138,7 +1138,7 @@ class AbstractAssignment
   end
 
   def eval_target(interpreter)
-    @target.evaluate(interpreter)
+    @target.evaluate(interpreter, false)
   end
 
   def to_s
@@ -1163,7 +1163,7 @@ class ScalarAssignment < AbstractAssignment
   end
 
   def eval_value(interpreter)
-    @expression.evaluate(interpreter)
+    @expression.evaluate(interpreter, true)
   end
 end
 
@@ -1180,7 +1180,7 @@ class ArrayAssignment < AbstractAssignment
   end
 
   def eval_value(interpreter)
-    @expression.evaluate(interpreter)
+    @expression.evaluate(interpreter, true)
   end
 end
 
@@ -1214,7 +1214,7 @@ class MatrixAssignment < AbstractAssignment
   def eval_value(interpreter)
     if @special_form
       # special form obtains variable name and dimensions at run-time
-      vs = @target.evaluate(interpreter)
+      vs = @target.evaluate(interpreter, false)
       v = vs[0]
       raise(Exception, 'Expected matrix reference') if
         v.class.to_s != 'MatrixReference'
@@ -1222,10 +1222,10 @@ class MatrixAssignment < AbstractAssignment
       dims = interpreter.get_dimensions(name)
 
       f = @functions[@expression].new('')
-      matrix = f.evaluate(interpreter, [dims])
+      matrix = f.evaluate(interpreter, [dims], true)
       [matrix]
     else
-      @expression.evaluate(interpreter)
+      @expression.evaluate(interpreter, true)
     end
   end
 end
