@@ -65,11 +65,12 @@ end
 
 # Handle tab stops and carriage control
 class ConsoleIo
-  def initialize(max_width, zone_width, print_rate, newline_rate,
+  def initialize(max_width, zone_width, back_tab, print_rate, newline_rate,
                  implied_semicolon, echo_input)
     @column = 0
     @max_width = max_width
     @zone_width = zone_width
+    @back_tab = back_tab
     @print_rate = print_rate
     @newline_rate = newline_rate
     @implied_semicolon = implied_semicolon
@@ -134,8 +135,7 @@ class ConsoleIo
   end
 
   def columns_to_advance(new_column)
-    ## [new_column - @column, 0].max
-    new_column - @column
+    @back_tab ? new_column - @column : [new_column - @column, 0].max
   end
 
   def trace_output(s)

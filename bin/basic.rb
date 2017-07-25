@@ -1268,6 +1268,7 @@ OptionParser.new do |opt|
   opt.on('--tty-lf') { |o| options[:tty_lf] = o }
   opt.on('--print-width WIDTH') { |o| options[:print_width] = o }
   opt.on('--zone-width WIDTH') { |o| options[:zone_width] = o }
+  opt.on('--back-tab') { |o| options[:back_tab] = o }
   opt.on('--int-floor') { |o| options[:int_floor] = o }
   opt.on('--ignore-rnd-arg') { |o| options[:ignore_rnd_arg] = o }
   opt.on('--implied-semicolon') { |o| options[:implied_semicolon] = o }
@@ -1293,6 +1294,7 @@ print_width = 72
 print_width = options[:print_width].to_i if options.key?(:print_width)
 zone_width = 16
 zone_width = options[:zone_width].to_i if options.key?(:zone_width)
+back_tab = options.key?(:back_tab)
 int_floor = options.key?(:int_floor)
 ignore_rnd_arg = options.key?(:ignore_rnd_arg)
 implied_semicolon = options.key?(:implied_semicolon)
@@ -1303,8 +1305,8 @@ respect_randomize = !options[:ignore_randomize] if
 if_false_next_line = options.key?(:if_false_next_line)
 
 console_io =
-  ConsoleIo.new(print_width, zone_width, output_speed, newline_speed,
-                implied_semicolon, echo_input)
+  ConsoleIo.new(print_width, zone_width, back_tab, output_speed,
+                newline_speed, implied_semicolon, echo_input)
 
 if show_heading
   console_io.print_line('BASIC-1973 interpreter version -1')
