@@ -951,8 +951,7 @@ class InputStatement < AbstractStatement
   end
 
   def execute_core(interpreter)
-    default_prompt = TextConstantToken.new('"? "')
-    prompt = default_prompt
+    prompt = nil
     input_items = @input_items.clone
     begin
       value = first_value(input_items, interpreter)
@@ -981,7 +980,7 @@ class InputStatement < AbstractStatement
     if fh.nil?
       io = interpreter.console_io
       values =
-        input_values(interpreter, prompt, default_prompt, expression_list.size)
+        input_values(interpreter, prompt, expression_list.size)
       io.implied_newline
     else
       values =
@@ -1024,14 +1023,14 @@ class InputStatement < AbstractStatement
     results
   end
 
-  def input_values(interpreter, prompt, default_prompt, count)
+  def input_values(interpreter, prompt, count)
     values = []
     io = interpreter.console_io
     while values.size < count
       io.prompt(prompt)
       values += io.input(interpreter)
 
-      prompt = default_prompt
+      prompt = nil
     end
     values
   end
@@ -1317,8 +1316,7 @@ class LineInputStatement < AbstractStatement
   end
 
   def execute_core(interpreter)
-    default_prompt = TextConstantToken.new('"? "')
-    prompt = default_prompt
+    prompt = nil
     input_items = @input_items.clone
     begin
       value = first_value(input_items, interpreter)
@@ -1347,7 +1345,7 @@ class LineInputStatement < AbstractStatement
     if fh.nil?
       io = interpreter.console_io
       values =
-        input_values(interpreter, prompt, default_prompt, expression_list.size)
+        input_values(interpreter, prompt, expression_list.size)
       io.implied_newline
     else
       values =
@@ -1390,14 +1388,14 @@ class LineInputStatement < AbstractStatement
     results
   end
 
-  def input_values(interpreter, prompt, default_prompt, count)
+  def input_values(interpreter, prompt, count)
     values = []
     io = interpreter.console_io
     while values.size < count
       io.prompt(prompt)
       values += io.line_input(interpreter)
 
-      prompt = default_prompt
+      prompt = nil
     end
     values
   end

@@ -66,7 +66,8 @@ end
 # Handle tab stops and carriage control
 class ConsoleIo
   def initialize(max_width, zone_width, back_tab, print_rate, newline_rate,
-                 implied_semicolon, echo_input)
+                 implied_semicolon, default_prompt, qmark_after_prompt,
+                 echo_input)
     @column = 0
     @max_width = max_width
     @zone_width = zone_width
@@ -74,8 +75,10 @@ class ConsoleIo
     @print_rate = print_rate
     @newline_rate = newline_rate
     @implied_semicolon = implied_semicolon
-    @last_was_numeric = false
+    @default_prompt = default_prompt
     @echo_input = echo_input
+    @qmark_after_prompt = qmark_after_prompt
+    @last_was_numeric = false
   end
 
   include Reader
@@ -90,7 +93,12 @@ class ConsoleIo
   end
 
   def prompt(text)
-    print text.value
+    if text.nil?
+      print @default_prompt.value
+    else
+      print text.value
+      print @default_prompt.value if @qmark_after_prompt
+    end
   end
 
   def print_item(text)
