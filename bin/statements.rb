@@ -140,6 +140,7 @@ class StatementFactory
       ArrWriteStatement,
       ArrLetStatement,
       ChangeStatement,
+      CloseStatement,
       DataStatement,
       DefineFunctionStatement,
       DimStatement,
@@ -159,6 +160,7 @@ class StatementFactory
       MatLetStatement,
       NextStatement,
       OnStatement,
+      OpenStatement,
       PrintStatement,
       RandomizeStatement,
       ReadStatement,
@@ -187,7 +189,7 @@ class StatementFactory
     keys.each do |key|
       keywords << key[0].to_s
     end
-    keywords += %w(OF THEN ELSE TO STEP)
+    keywords += %w(OF THEN ELSE TO STEP OUTPUT AS FILE)
     keywords -= %w(REM REMARK)
     keywords.uniq
   end
@@ -379,15 +381,19 @@ class AbstractStatement
     return false unless tokens_lists.size == template.size
 
     result = true
-    zip = template.zip(tokens_lists)
-    zip.each do |pair|
+    pairs = template.zip(tokens_lists)
+    pairs.each do |pair|
       control = pair[0]
       value = pair[1]
 
       case control.class.to_s
       when 'String'
-        result &= (value.keyword? &&
-                   value.to_s == control)
+        if value.class.to_s == 'KeywordToken'
+          result &= (value.keyword? &&
+                     value.to_s == control)
+        else
+          result = false
+        end
       when 'Array'
         if value.class.to_s == 'Array'
           result &= value.size == control[0] if control.size == 1
@@ -623,6 +629,34 @@ class ChangeStatement < AbstractStatement
     else
       raise BASICException, 'Type mismatch'
     end
+  end
+end
+
+# CLOSE
+class CloseStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('CLOSE')],
+      [KeywordToken.new('CLO')]
+    ]
+  end
+
+  def initialize(keywords, tokens_lists)
+    super
+    template = [[1, '>=']]
+
+    @filenum_expression = []
+    if check_template(tokens_lists, template)
+      @filenum_expression = ValueScalarExpression.new(tokens_lists[-1])
+    else
+      @errors << 'Syntax error'
+    end
+  end
+
+  def execute_core(interpreter)
+    fns = @filenum_expression.evaluate(interpreter, true)
+    fh = fns[0]
+    interpreter.close_file(fh)
   end
 end
 
@@ -1405,6 +1439,44 @@ class LineInputStatement < AbstractStatement
     io = interpreter.get_input(fh)
     values += io.line_input(interpreter)
     values
+  end
+end
+
+# OPEN
+class OpenStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('OPEN')],
+      [KeywordToken.new('OPE')]
+    ]
+  end
+
+  def initialize(keywords, tokens_lists)
+    super
+    template_input_as = [[1, '>='], 'FOR', 'INPUT', 'AS', [1, '>=']]
+    template_output_as = [[1, '>='], 'FOR', 'OUTPUT', 'AS', [1, '>=']]
+
+    @filename_expression = []
+    @filenum_expression = []
+    if check_template(tokens_lists, template_input_as)
+      @filename_expression = ValueScalarExpression.new(tokens_lists[0])
+      @filenum_expression = ValueScalarExpression.new(tokens_lists[-1])
+      @mode = :read
+    elsif check_template(tokens_lists, template_output_as)
+      @filename_expression = ValueScalarExpression.new(tokens_lists[0])
+      @filenum_expression = ValueScalarExpression.new(tokens_lists[-1])
+      @mode = :print
+    else
+      @errors << 'Syntax error'
+    end
+  end
+
+  def execute_core(interpreter)
+    filenames = @filename_expression.evaluate(interpreter, true)
+    filename = filenames[0]
+    fhs = @filenum_expression.evaluate(interpreter, true)
+    fh = fhs[0]
+    interpreter.open_file(filename, fh, @mode)
   end
 end
 

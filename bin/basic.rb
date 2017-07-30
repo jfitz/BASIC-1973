@@ -708,6 +708,23 @@ class Interpreter
     end
   end
 
+  def open_file(filename, fh, mode)
+    raise(BASICException, 'Invalid file name') unless
+      filename.class.to_s == 'TextConstant'
+    ### todo: check for already open handle
+    fhr = FileHandler.new(filename.to_v)
+    fhr.set_mode(mode)
+    @file_handlers[fh] = fhr
+  end
+
+  def close_file(fh)
+    raise(BASICException, 'Unknown file handle') unless
+      @file_handlers.key?(fh)
+    fhr = @file_handlers[fh]
+    fhr.close
+    ### todo: remove file handle
+  end
+  
   def get_file_handler(file_handle)
     return @console_io if file_handle.nil?
 

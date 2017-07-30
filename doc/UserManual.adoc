@@ -555,6 +555,16 @@ Examples:
 
 The array of numeric values contains the length in the zero position and one value for each character in the corresponding string.
 
+CLOSE
+~~~~~
+
+Closes a file.
+
+Syntax: CLOSE #1
+Syntax: CLO #4
+
+The CLOSE command should not be used with files opened with a FILES command.
+
 DATA
 ~~~~
 
@@ -670,6 +680,8 @@ The files (or at least devices) existed and were ready to receive instructions.
 Disk-based files were considered in the same light, and the operating system had commands for the definition of files and the allocation of space to files.
 A program could no more create a file than it could create a magnetic tape.
 I have kept this flavor of operation for the FILES command.
+
+The FILES method of accessing files should not be combined with the OPEN/CLOSE method of accessing files.
 
 FOR
 ~~~
@@ -981,6 +993,22 @@ Examples:
 
 Traditionally, target line numbers are listed in increasing order.
 Line numbers may appear in any order.
+
+OPEN
+~~~~
+
+Opens a file
+
+Syntax: OPEN "FILE.TXT" FOR INPUT AS #1
+Syntax: OPE "OUTPUT.TXT" FOR OUTPUT AS #2
+
+Opens the file and prepares it for access.
+When opening a file for output, it does not need to exist.
+(This is different from the FILES command.)
+
+The file name may be any file name suitable for your environment.
+It may contain lower case letters.
+The file name may contain device and directory names.
 
 PRINT
 ~~~~~
