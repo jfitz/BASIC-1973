@@ -656,6 +656,18 @@ class CloseStatement < AbstractStatement
   def execute_core(interpreter)
     fns = @filenum_expression.evaluate(interpreter, true)
     fh = fns[0]
+    case fh.class.to_s
+    when 'Fixnum'
+      fh = FileHandle.new(fh)
+    when 'NumericConstant'
+      fh = FileHandle.new(fh.to_i)
+    when 'IntegerConstant'
+      fh = FileHandle.new(fh.to_i)
+    when 'FileHandle'
+      ;
+    else
+      raise(BASICException, "Invalid file number #{fh.class}:#{fh}")
+    end
     interpreter.close_file(fh)
   end
 end
@@ -1476,6 +1488,18 @@ class OpenStatement < AbstractStatement
     filename = filenames[0]
     fhs = @filenum_expression.evaluate(interpreter, true)
     fh = fhs[0]
+    case fh.class.to_s
+    when 'Fixnum'
+      fh = FileHandle.new(fh)
+    when 'NumericConstant'
+      fh = FileHandle.new(fh.to_i)
+    when 'IntegerConstant'
+      fh = FileHandle.new(fh.to_i)
+    when 'FileHandle'
+      ;
+    else
+      raise(BASICException, "Invalid file number #{fh.class}:#{fh}")
+    end
     interpreter.open_file(filename, fh, @mode)
   end
 end
