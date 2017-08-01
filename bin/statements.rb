@@ -29,12 +29,16 @@ class StatementFactory
       statement = EmptyStatement.new
     else
       keywords, tokens = extract_keywords(statement_tokens)
-      if @statement_definitions.key?(keywords)
-        tokens_lists = split_keywords(tokens)
-        statement =
-          @statement_definitions[keywords].new(keywords, tokens_lists)
-      else
-        statement = nil
+      statement = nil
+      while statement.nil?
+        if @statement_definitions.key?(keywords)
+          tokens_lists = split_keywords(tokens)
+          statement =
+            @statement_definitions[keywords].new(keywords, tokens_lists)
+        else
+          keyword = keywords.pop
+          tokens.unshift(keyword)
+        end
       end
     end
     statement
@@ -644,9 +648,11 @@ class CloseStatement < AbstractStatement
   def initialize(keywords, tokens_lists)
     super
     template = [[1, '>=']]
+    template_file = ['FILE', [1, '>=']]
 
     @filenum_expression = []
-    if check_template(tokens_lists, template)
+    if check_template(tokens_lists, template) ||
+       check_template(tokens_lists, template_file)
       @filenum_expression = ValueScalarExpression.new(tokens_lists[-1])
     else
       @errors << 'Syntax error'
@@ -1466,15 +1472,19 @@ class OpenStatement < AbstractStatement
   def initialize(keywords, tokens_lists)
     super
     template_input_as = [[1, '>='], 'FOR', 'INPUT', 'AS', [1, '>=']]
+    template_input_as_file = [[1, '>='], 'FOR', 'INPUT', 'AS', 'FILE', [1, '>=']]
     template_output_as = [[1, '>='], 'FOR', 'OUTPUT', 'AS', [1, '>=']]
+    template_output_as_file = [[1, '>='], 'FOR', 'OUTPUT', 'AS', 'FILE', [1, '>=']]
 
     @filename_expression = []
     @filenum_expression = []
-    if check_template(tokens_lists, template_input_as)
+    if check_template(tokens_lists, template_input_as) ||
+       check_template(tokens_lists, template_input_as_file)
       @filename_expression = ValueScalarExpression.new(tokens_lists[0])
       @filenum_expression = ValueScalarExpression.new(tokens_lists[-1])
       @mode = :read
-    elsif check_template(tokens_lists, template_output_as)
+    elsif check_template(tokens_lists, template_output_as) ||
+          check_template(tokens_lists, template_output_as_file)
       @filename_expression = ValueScalarExpression.new(tokens_lists[0])
       @filenum_expression = ValueScalarExpression.new(tokens_lists[-1])
       @mode = :print
