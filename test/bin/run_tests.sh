@@ -12,8 +12,10 @@ echo Running all tests...
 ECODE=0
 
 for F in "$TESTROOT/$TESTGROUP"/*; do
-    bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" "$TESTGROUP" ${F##*/}
-    ((ECODE+=$?))
+    if [ -d "$F" ]; then
+	bash "$TESTROOT/bin/run_test.sh" "$TESTROOT" "$TESTBED" "$TESTGROUP" ${F##*/}
+	((ECODE+=$?))
+    fi
 done
 
 echo
