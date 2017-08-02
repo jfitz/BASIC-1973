@@ -1,7 +1,8 @@
 # Statement factory class
 class StatementFactory
-  def initialize
+  def initialize(statement_separators)
     @statement_definitions = statement_definitions
+    @tokenizers = make_tokenizers(statement_separators)
   end
 
   def parse(text)
@@ -131,9 +132,8 @@ class StatementFactory
   end
 
   def tokenize(text)
-    tokenizers = make_tokenizers
     invalid_tokenizer = InvalidTokenBuilder.new
-    tokenizer = Tokenizer.new(tokenizers, invalid_tokenizer)
+    tokenizer = Tokenizer.new(@tokenizers, invalid_tokenizer)
     tokenizer.tokenize(text)
   end
 
@@ -198,13 +198,16 @@ class StatementFactory
     keywords.uniq
   end
 
-  def make_tokenizers
+  def make_tokenizers(statement_separators)
     tokenizers = []
 
     tokenizers << CommentTokenBuilder.new
     tokenizers << RemarkTokenBuilder.new
 
-    tokenizers << ListTokenBuilder.new(['\\', ':'], StatementSeparatorToken)
+    tokenizers <<
+      ListTokenBuilder.new(
+      statement_separators, StatementSeparatorToken
+    ) unless statement_separators.empty?
 
     keywords = keywords_definitions(statement_definitions)
 

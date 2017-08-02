@@ -759,10 +759,10 @@ end
 
 # program container
 class Program
-  def initialize(console_io)
+  def initialize(console_io, statement_seps)
     @console_io = console_io
     @program_lines = {}
-    @statement_factory = StatementFactory.new
+    @statement_factory = StatementFactory.new(statement_seps)
   end
 
   def empty?
@@ -1283,6 +1283,7 @@ OptionParser.new do |opt|
   opt.on('--no-timing') { |o| options[:no_timing] = o }
   opt.on('--tty') { |o| options[:tty] = o }
   opt.on('--tty-lf') { |o| options[:tty_lf] = o }
+  opt.on('--no-colon-separator') { |o| options[:no_colon_sep] = o }
   opt.on('--print-width WIDTH') { |o| options[:print_width] = o }
   opt.on('--zone-width WIDTH') { |o| options[:zone_width] = o }
   opt.on('--back-tab') { |o| options[:back_tab] = o }
@@ -1308,6 +1309,8 @@ output_speed = 0
 output_speed = 10 if options.key?(:tty)
 newline_speed = 0
 newline_speed = 10 if options.key?(:tty_lf)
+colon_separator = !options.key?(:no_colon_sep)
+backslash_separator = true
 print_width = 72
 print_width = options[:print_width].to_i if options.key?(:print_width)
 zone_width = 16
@@ -1322,6 +1325,9 @@ respect_randomize = true
 respect_randomize = !options[:ignore_randomize] if
   options.key?(:ignore_randomize)
 if_false_next_line = options.key?(:if_false_next_line)
+statement_seps = []
+statement_seps << '\\' if backslash_separator
+statement_seps << ':' if colon_separator
 
 default_prompt = TextConstantToken.new('"? "')
 console_io =
@@ -1335,7 +1341,7 @@ if show_heading
 end
 
 if !run_filename.nil?
-  program = Program.new(console_io)
+  program = Program.new(console_io, statement_seps)
   if program.load(run_filename) && program.check
     interpreter =
       Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
@@ -1345,17 +1351,17 @@ if !run_filename.nil?
     program.print_profile if show_profile
   end
 elsif !list_filename.nil?
-  program = Program.new(console_io)
+  program = Program.new(console_io, statement_seps)
   if program.load(list_filename)
     program.list('', list_tokens)
   end
 elsif !pretty_filename.nil?
-  program = Program.new(console_io)
+  program = Program.new(console_io, statement_seps)
   if program.load(pretty_filename)
     program.pretty('')
   end
 else
-  program = Program.new(console_io)
+  program = Program.new(console_io, statement_seps)
   interpreter =
     Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
                     respect_randomize, if_false_next_line)
