@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 require 'benchmark'
 require 'optparse'
+require 'singleton'
 
 require_relative 'exceptions'
 require_relative 'tokens'
@@ -759,10 +760,11 @@ end
 
 # program container
 class Program
-  def initialize(console_io, statement_seps)
+  def initialize(console_io, statement_separators)
     @console_io = console_io
     @program_lines = {}
-    @statement_factory = StatementFactory.new(statement_seps)
+    @statement_factory = StatementFactory.instance
+    @statement_factory.statement_separators = statement_separators
   end
 
   def empty?

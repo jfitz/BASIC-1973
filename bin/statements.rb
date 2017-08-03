@@ -1,8 +1,12 @@
 # Statement factory class
 class StatementFactory
-  def initialize(statement_separators)
+  include Singleton
+
+  attr_writer :statement_separators
+
+  def initialize
     @statement_definitions = statement_definitions
-    @tokenizers = make_tokenizers(statement_separators)
+    @statement_separators = []
   end
 
   def parse(text)
@@ -133,7 +137,8 @@ class StatementFactory
 
   def tokenize(text)
     invalid_tokenizer = InvalidTokenBuilder.new
-    tokenizer = Tokenizer.new(@tokenizers, invalid_tokenizer)
+    tokenizers = make_tokenizers(@statement_separators)
+    tokenizer = Tokenizer.new(tokenizers, invalid_tokenizer)
     tokenizer.tokenize(text)
   end
 
@@ -1123,7 +1128,7 @@ class IfStatement < AbstractStatement
         @else_dest = nil
         @else_dest, @else_stmt = parse_target(stack['else']) if
           stack.key?('else')
-      rescue
+      rescue BASICException
         @errors << 'Syntax Error'
       end
     end
@@ -1341,7 +1346,7 @@ class IfStatement < AbstractStatement
     elsif tokens.size == 1 && tokens[0].numeric_constant?
       destination = LineNumber.new(tokens[0])
     else
-      statement_factory = StatementFactory.new
+      statement_factory = StatementFactory.instance
       statement = statement_factory.create_statement(tokens.flatten)
       @errors += statement.errors
     end
