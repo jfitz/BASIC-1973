@@ -760,11 +760,12 @@ end
 
 # program container
 class Program
-  def initialize(console_io, statement_separators)
+  def initialize(console_io, statement_separators, comment_leads)
     @console_io = console_io
     @program_lines = {}
     @statement_factory = StatementFactory.instance
     @statement_factory.statement_separators = statement_separators
+    @statement_factory.comment_leads = comment_leads
   end
 
   def empty?
@@ -1286,6 +1287,7 @@ OptionParser.new do |opt|
   opt.on('--tty') { |o| options[:tty] = o }
   opt.on('--tty-lf') { |o| options[:tty_lf] = o }
   opt.on('--no-colon-separator') { |o| options[:no_colon_sep] = o }
+  opt.on('--bang-comment') { |o| options[:bang_comment] = o }
   opt.on('--print-width WIDTH') { |o| options[:print_width] = o }
   opt.on('--zone-width WIDTH') { |o| options[:zone_width] = o }
   opt.on('--back-tab') { |o| options[:back_tab] = o }
@@ -1313,6 +1315,8 @@ newline_speed = 0
 newline_speed = 10 if options.key?(:tty_lf)
 colon_separator = !options.key?(:no_colon_sep)
 backslash_separator = true
+apostrophe_comment = true
+bang_comment = options.key?(:bang_comment)
 print_width = 72
 print_width = options[:print_width].to_i if options.key?(:print_width)
 zone_width = 16
@@ -1330,6 +1334,9 @@ if_false_next_line = options.key?(:if_false_next_line)
 statement_seps = []
 statement_seps << '\\' if backslash_separator
 statement_seps << ':' if colon_separator
+comment_leads = []
+comment_leads << "'" if apostrophe_comment
+comment_leads << '!' if bang_comment
 
 default_prompt = TextConstantToken.new('"? "')
 console_io =
@@ -1343,7 +1350,7 @@ if show_heading
 end
 
 if !run_filename.nil?
-  program = Program.new(console_io, statement_seps)
+  program = Program.new(console_io, statement_seps, comment_leads)
   if program.load(run_filename) && program.check
     interpreter =
       Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
@@ -1353,17 +1360,17 @@ if !run_filename.nil?
     program.print_profile if show_profile
   end
 elsif !list_filename.nil?
-  program = Program.new(console_io, statement_seps)
+  program = Program.new(console_io, statement_seps, comment_leads)
   if program.load(list_filename)
     program.list('', list_tokens)
   end
 elsif !pretty_filename.nil?
-  program = Program.new(console_io, statement_seps)
+  program = Program.new(console_io, statement_seps, comment_leads)
   if program.load(pretty_filename)
     program.pretty('')
   end
 else
-  program = Program.new(console_io, statement_seps)
+  program = Program.new(console_io, statement_seps, comment_leads)
   interpreter =
     Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
                     respect_randomize, if_false_next_line)

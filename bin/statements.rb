@@ -3,10 +3,12 @@ class StatementFactory
   include Singleton
 
   attr_writer :statement_separators
+  attr_writer :comment_leads
 
   def initialize
     @statement_definitions = statement_definitions
     @statement_separators = []
+    @comment_leads = []
   end
 
   def parse(text)
@@ -137,7 +139,7 @@ class StatementFactory
 
   def tokenize(text)
     invalid_tokenizer = InvalidTokenBuilder.new
-    tokenizers = make_tokenizers(@statement_separators)
+    tokenizers = make_tokenizers(@statement_separators, @comment_leads)
     tokenizer = Tokenizer.new(tokenizers, invalid_tokenizer)
     tokenizer.tokenize(text)
   end
@@ -203,10 +205,10 @@ class StatementFactory
     keywords.uniq
   end
 
-  def make_tokenizers(statement_separators)
+  def make_tokenizers(statement_separators, comment_leads)
     tokenizers = []
 
-    tokenizers << CommentTokenBuilder.new
+    tokenizers << CommentTokenBuilder.new(comment_leads)
     tokenizers << RemarkTokenBuilder.new
 
     tokenizers <<

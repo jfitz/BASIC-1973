@@ -165,9 +165,13 @@ end
 class CommentTokenBuilder
   attr_reader :count
 
+  def initialize(lead_chars)
+    @lead_chars = lead_chars
+  end
+
   def try(text)
     @token = ''
-    @token = text if !text.empty? && text[0] == "'"
+    @token = text if !text.empty? && @lead_chars.include?(text[0])
 
     @count = @token.size
   end

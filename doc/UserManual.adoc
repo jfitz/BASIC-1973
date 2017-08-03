@@ -143,6 +143,7 @@ When the BASIC program ends, BASIC-1973 ends.
 |--tty |Print output slowly, emulating the speed of an ASR-33 Teletype. Provides a better experience with some programs (often games) in which slow output lets your anticipation build. The fast output of modern computers displays information quickly, and TTY mode lets you read each line as it is "printed".
 |--tty-lf |Similar to --tty but delays only the newline characters, not each individual character. Useful with --trace when debugging.
 |--no-colon-separator |Do not allow colon separator for statements. The backslash is still allowed.
+|--bang-comment |Allow comments that start with an exclamation point. The apostrophe comments are still allowed.
 |--print-width width |Specifies a print width. Lines will wrap at the specified column. Default value is 72.
 |--zone-width width |Specifies a zone width. PRINT statements will position output separated by commas in zones. Default is 16.
 |--randomize |Forces new sequences of numbers from the RND() function on successive runs.
@@ -505,8 +506,8 @@ Every statement begins with a keyword except for the LET-less assignment.
 For most statements, the keyword be abbreviated to three letters.
 When a statement begins with multiple keywords (such as MAT PRINT), only the first keyword may be abbreviated.
 
-A line may contain a comment denoted by a single quote.
-Everything to the right of the quote is a comment.
+A line may contain a comment denoted by a single quote (or an exclamation mark, with the --bang-comment option).
+Everything to the right of the comment lead character is a comment.
 
 Line numbers
 ~~~~~~~~~~~~

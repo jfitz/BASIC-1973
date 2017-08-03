@@ -11,19 +11,24 @@ echo Create testbed...
 mkdir "$TESTBED/$TESTNAME"
 cp bin/* "$TESTROOT/$TESTGROUP/$TESTNAME/data"/* "$TESTBED/$TESTNAME"
 
+if [ -e "$TESTROOT/$TESTGROUP/options.txt" ]
+then
+    GROUP_OPTIONS=$(<"$TESTROOT/$TESTGROUP/options.txt")
+fi
+
+if [ -e "$TESTROOT/$TESTGROUP/$TESTNAME/data/options.txt" ]
+then
+    TEST_OPTIONS=$(<"$TESTROOT/$TESTGROUP/$TESTNAME/data/options.txt")
+fi
+
 # execute program
 ECODE=0
 
 if [ -e "$TESTROOT/$TESTGROUP/$TESTNAME/ref/list.txt" ]
 then
-    if [ -e "$TESTROOT/$TESTGROUP/options.txt" ]
-    then
-	GROUP_OPTIONS=$(<"$TESTROOT/$TESTGROUP/options.txt")
-    fi
-
     echo List program...
     cd "$TESTBED/$TESTNAME"
-    ruby basic.rb --list $TESTNAME.bas --no-heading --print-width 0 >list.txt $GROUP_OPTIONS
+    ruby basic.rb --list $TESTNAME.bas --no-heading --print-width 0 >list.txt $GROUP_OPTIONS $TEST_OPTIONS
     cd ../..
     echo Compare list...
     diff "$TESTBED/$TESTNAME/list.txt" "$TESTROOT/$TESTGROUP/$TESTNAME/ref/list.txt"
@@ -32,14 +37,9 @@ fi
 
 if [ -e "$TESTROOT/$TESTGROUP/$TESTNAME/ref/pretty.txt" ]
 then
-    if [ -e "$TESTROOT/$TESTGROUP/options.txt" ]
-    then
-	GROUP_OPTIONS=$(<"$TESTROOT/$TESTGROUP/options.txt")
-    fi
-
     echo Pretty program...
     cd "$TESTBED/$TESTNAME"
-    ruby basic.rb --pretty $TESTNAME.bas --no-heading --print-width 0 >pretty.txt $GROUP_OPTIONS
+    ruby basic.rb --pretty $TESTNAME.bas --no-heading --print-width 0 >pretty.txt $GROUP_OPTIONS $TEST_OPTIONS
     cd ../..
     echo Compare pretty...
     diff "$TESTBED/$TESTNAME/pretty.txt" "$TESTROOT/$TESTGROUP/$TESTNAME/ref/pretty.txt"
@@ -48,22 +48,18 @@ fi
 
 if [ -e "$TESTROOT/$TESTGROUP/$TESTNAME/ref/stdout.txt" ]
 then
-    if [ -e "$TESTROOT/$TESTGROUP/options.txt" ]
-    then
-	GROUP_OPTIONS=$(<"$TESTROOT/$TESTGROUP/options.txt")
-    fi
     if [ -e "$TESTROOT/$TESTGROUP/$TESTNAME/data/run_options.txt" ]
     then
-	TEST_OPTIONS=$(<"$TESTROOT/$TESTGROUP/$TESTNAME/data/run_options.txt")
+	RUN_OPTIONS=$(<"$TESTROOT/$TESTGROUP/$TESTNAME/data/run_options.txt")
     fi
 
     cd "$TESTBED/$TESTNAME"
-    echo Run program with options $GROUP_OPTIONS $TEST_OPTIONS
+    echo Run program with options $GROUP_OPTIONS $TEST_OPTIONS $RUN_OPTIONS
     if [ -e stdin.txt ]
     then
-	ruby basic.rb --no-timing $OPTIONS --run $TESTNAME.bas --no-heading --print-width 0 --echo-input <stdin.txt >stdout.txt $GROUP_OPTIONS $TEST_OPTIONS
+	ruby basic.rb --no-timing $OPTIONS --run $TESTNAME.bas --no-heading --print-width 0 --echo-input <stdin.txt >stdout.txt $GROUP_OPTIONS $RUN_OPTIONS
     else
-	ruby basic.rb --no-timing $OPTIONS --run $TESTNAME.bas --no-heading --print-width 0 >stdout.txt $GROUP_OPTIONS $TEST_OPTIONS
+	ruby basic.rb --no-timing $OPTIONS --run $TESTNAME.bas --no-heading --print-width 0 >stdout.txt $GROUP_OPTIONS $RUN_OPTIONS
     fi
     cd ../..
     echo Compare stdout...
