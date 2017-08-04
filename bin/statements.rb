@@ -2,13 +2,11 @@
 class StatementFactory
   include Singleton
 
-  attr_writer :statement_separators
-  attr_writer :comment_leads
+  attr_writer :tokenizers
 
   def initialize
     @statement_definitions = statement_definitions
-    @statement_separators = []
-    @comment_leads = []
+    @tokenizers = []
   end
 
   def parse(text)
@@ -51,7 +49,68 @@ class StatementFactory
     statement
   end
 
+  def keywords_definitions
+    keys = statement_definitions.keys
+    keywords = []
+    keys.each do |key|
+      keywords << key[0].to_s
+    end
+    keywords += %w(OF THEN ELSE TO STEP OUTPUT AS FILE)
+    keywords -= %w(REM REMARK)
+    keywords.uniq
+  end
+
   private
+
+  def statement_definitions
+    classes = [
+      ArrPrintStatement,
+      ArrReadStatement,
+      ArrWriteStatement,
+      ArrLetStatement,
+      ChangeStatement,
+      CloseStatement,
+      DataStatement,
+      DefineFunctionStatement,
+      DimStatement,
+      EndStatement,
+      FilesStatement,
+      ForStatement,
+      GosubStatement,
+      GotoStatement,
+      IfStatement,
+      InputStatement,
+      LetStatement,
+      LetLessStatement,
+      LineInputStatement,
+      MatPrintStatement,
+      MatReadStatement,
+      MatWriteStatement,
+      MatLetStatement,
+      NextStatement,
+      OnStatement,
+      OpenStatement,
+      PrintStatement,
+      RandomizeStatement,
+      ReadStatement,
+      RemarkStatement,
+      RestoreStatement,
+      ReturnStatement,
+      StopStatement,
+      TraceStatement,
+      WriteStatement
+    ]
+    lead_keywords = {}
+
+    classes.each do |class_name|
+      keyword_sets = class_name.lead_keywords
+      keyword_sets.each do |set|
+        lead_keywords[set] = class_name
+      end
+    end
+
+    lead_keywords
+  end
 
   def create(text, all_tokens, comment)
     statements = []
@@ -139,113 +198,8 @@ class StatementFactory
 
   def tokenize(text)
     invalid_tokenizer = InvalidTokenBuilder.new
-    tokenizers = make_tokenizers(@statement_separators, @comment_leads)
-    tokenizer = Tokenizer.new(tokenizers, invalid_tokenizer)
+    tokenizer = Tokenizer.new(@tokenizers, invalid_tokenizer)
     tokenizer.tokenize(text)
-  end
-
-  def statement_definitions
-    classes = [
-      ArrPrintStatement,
-      ArrReadStatement,
-      ArrWriteStatement,
-      ArrLetStatement,
-      ChangeStatement,
-      CloseStatement,
-      DataStatement,
-      DefineFunctionStatement,
-      DimStatement,
-      EndStatement,
-      FilesStatement,
-      ForStatement,
-      GosubStatement,
-      GotoStatement,
-      IfStatement,
-      InputStatement,
-      LetStatement,
-      LetLessStatement,
-      LineInputStatement,
-      MatPrintStatement,
-      MatReadStatement,
-      MatWriteStatement,
-      MatLetStatement,
-      NextStatement,
-      OnStatement,
-      OpenStatement,
-      PrintStatement,
-      RandomizeStatement,
-      ReadStatement,
-      RemarkStatement,
-      RestoreStatement,
-      ReturnStatement,
-      StopStatement,
-      TraceStatement,
-      WriteStatement
-    ]
-    lead_keywords = {}
-
-    classes.each do |class_name|
-      keyword_sets = class_name.lead_keywords
-      keyword_sets.each do |set|
-        lead_keywords[set] = class_name
-      end
-    end
-
-    lead_keywords
-  end
-
-  def keywords_definitions(statement_definitions)
-    keys = statement_definitions.keys
-    keywords = []
-    keys.each do |key|
-      keywords << key[0].to_s
-    end
-    keywords += %w(OF THEN ELSE TO STEP OUTPUT AS FILE)
-    keywords -= %w(REM REMARK)
-    keywords.uniq
-  end
-
-  def make_tokenizers(statement_separators, comment_leads)
-    tokenizers = []
-
-    tokenizers << CommentTokenBuilder.new(comment_leads)
-    tokenizers << RemarkTokenBuilder.new
-
-    tokenizers <<
-      ListTokenBuilder.new(
-      statement_separators, StatementSeparatorToken
-    ) unless statement_separators.empty?
-
-    keywords = keywords_definitions(statement_definitions)
-
-    tokenizers << ListTokenBuilder.new(keywords, KeywordToken)
-
-    un_ops = UnaryOperator.operators
-    bi_ops = BinaryOperator.operators
-    operators = (un_ops + bi_ops).uniq
-    tokenizers << ListTokenBuilder.new(operators, OperatorToken)
-
-    tokenizers << BreakTokenBuilder.new
-
-    tokenizers << ListTokenBuilder.new(['(', '['], GroupStartToken)
-    tokenizers << ListTokenBuilder.new([')', ']'], GroupEndToken)
-    tokenizers << ListTokenBuilder.new([',', ';'], ParamSeparatorToken)
-
-    tokenizers <<
-      ListTokenBuilder.new(FunctionFactory.function_names, FunctionToken)
-
-    function_names = ('FNA'..'FNZ').to_a
-    tokenizers << ListTokenBuilder.new(function_names, UserFunctionToken)
-
-    tokenizers << TextTokenBuilder.new
-    tokenizers << NumberTokenBuilder.new
-    tokenizers << IntegerTokenBuilder.new
-    tokenizers << VariableTokenBuilder.new
-
-    tokenizers <<
-      ListTokenBuilder.new(%w(TRUE FALSE), BooleanConstantToken)
-
-    tokenizers << WhitespaceTokenBuilder.new
   end
 end
 
