@@ -264,39 +264,39 @@ class AbstractValueElement < AbstractElement
   end
 
   def b_and(other)
-    raise(BASICException, 'Invalid operator')
+    raise(BASICException, 'Invalid operator AND')
   end
 
   def b_or(other)
-    raise(BASICException, 'Invalid operator')
+    raise(BASICException, 'Invalid operator OR')
   end
 
   def +(other)
-    raise(BASICException, 'Invalid operator')
+    raise(BASICException, 'Invalid operator +')
   end
 
   def -(other)
-    raise(BASICException, 'Invalid operator')
+    raise(BASICException, 'Invalid operator -')
   end
 
   def add(other)
-    raise(BASICException, 'Invalid operator')
+    raise(BASICException, 'Invalid operator add')
   end
 
   def subtract(other)
-    raise(BASICException, 'Invalid operator')
+    raise(BASICException, 'Invalid operator subtract')
   end
 
   def multiply(other)
-    raise(BASICException, 'Invalid operator')
+    raise(BASICException, 'Invalid operator multiply')
   end
 
   def divide(other)
-    raise(BASICException, 'Invalid operator')
+    raise(BASICException, 'Invalid operator divide')
   end
 
   def power(other)
-    raise(BASICException, 'Invalid operator')
+    raise(BASICException, 'Invalid operator power')
   end
 
   def printable?
@@ -687,6 +687,20 @@ class TextConstant < AbstractValueElement
     @operand = true
     @precedence = 0
     @text_constant = true
+  end
+
+  def +(other)
+    unquoted = @value + other.to_v
+    quoted = '"' + unquoted + '"'
+    token = TextConstantToken.new(quoted)
+    TextConstant.new(token)
+  end
+
+  def add(other)
+    unquoted = @value + other.to_v
+    quoted = '"' + unquoted + '"'
+    token = TextConstantToken.new(quoted)
+    TextConstant.new(token)
   end
 
   def to_s

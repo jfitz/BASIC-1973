@@ -402,6 +402,13 @@ BASIC-1973 supports the following arithmetic operations for numeric variables:
 |Exponent |^ |1
 |==========
 
+BASIC-1973 supports the following operations for string variables:
+
+|==========
+|Operation |Symbol |Precedence
+|Concatenation |+ |3
+|==========
+
 Parentheses may be used to force computations is a specific order.
 The expression A+B*C performs the multiplication first; the expression (A+B)*C performs the addition first.
 
@@ -1469,6 +1476,15 @@ Certain operations are available for certain combinations of operands:
 |Array |Power |Scalar ||Elements from the array are raised to the scalar value
 |==========
 
+Text operations are available for certain combinations of operands:
+
+|==========
+|First operand |Operation |Second operand |Restrictions |Actions
+|Array |Concatenation |Array |Arrays must have identical dimensions |Corresponding elements are concatenated
+|Scalar |Concatenation |Array ||Elements from the array are concatenated to the scalar value
+|Array |Concatenation |Scalar ||The scalar value is concatenated to each element
+|==========
+
 Ahl makes no mention of the 'ARR' statement or any derived statements ('ARR PRINT', 'ARR READ').
 But it makes sense to include them.
 
@@ -1677,6 +1693,15 @@ Certain operations are available for certain combinations of operands:
 |Matrix |Multiplication |Scalar ||Elements from the matrix are multiplied by the scalar value
 |Matrix |Division |Scalar ||Elements from the matrix are divided by the scalar value
 |Matrix |Power |Scalar | |Elements from the matrix are raised to the scalar value
+|==========
+
+Text operations are available for certain combinations of operands:
+
+|==========
+|First operand |Operation |Second operand |Restrictions |Actions
+|Matrix |Concatenation |Matrix |Matrices must have identical dimensions |Corresponding elements are concatenated
+|Scalar |Concatenation |Matrix ||Elements from the matrix are concatenated to the scalar value
+|Matrix |Concatenation |Scalar ||The scalar is concatenated to each element
 |==========
 
 K&K BASIC restricts the assignment of a variable used in a matrix multiplication operation.

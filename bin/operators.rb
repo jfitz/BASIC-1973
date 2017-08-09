@@ -441,8 +441,8 @@ class BinaryOperator < AbstractElement
     n_cols = a_dims[0].to_i
     values = {}
     (1..n_cols).each do |col|
-      a_value = a.get_value_(col)
-      b_value = b.get_value_(col)
+      a_value = a.get_value_1(col)
+      b_value = b.get_value_1(col)
       coords = make_coord(col)
       values[coords] = a_value.send(:add, b_value)
     end
