@@ -1233,9 +1233,11 @@ class IfStatement < AbstractStatement
     values = @expression.evaluate(interpreter, true)
     raise(BASICException, 'Expression error') unless
       values.size == 1
+
     result = values[0]
-    raise(BASICException, 'Expression error') unless
+    result = BooleanConstant.new(result) unless
       result.class.to_s == 'BooleanConstant'
+
     if result.value
       if !@destination.nil?
         line_number = @destination

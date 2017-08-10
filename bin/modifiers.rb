@@ -19,13 +19,16 @@ class IfModifier
       values.size == 1
 
     result = values[0]
-    raise(BASICException, 'Expression error') unless
+    result = BooleanConstant.new(result) unless
       result.class.to_s == 'BooleanConstant'
 
     s = ' ' + result.to_s
     io.trace_output(s)
+    
+    # if true then continue execution normally
     return if result.value
 
+    # if false then transfer to our post modifier
     current_line_index = interpreter.current_line_index
     number = current_line_index.number
     statement_index = current_line_index.statement

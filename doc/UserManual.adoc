@@ -790,11 +790,12 @@ Syntax:	IF expression THEN line number
 	IF expression THEN line number ELSE statement
 	IF expression THEN statement ELSE statement
 
-The expression must be in the form "expression operator expression" where operator is limited to the comparion operations.
-Boolean operators such as "and" or "or" are not permitted.
-The two arguments in the boolean expression may be numeric constants, text constants, variables, or arithmetic expressions.
+The "target" after the THEN keyword must be a line number or a statement.
+The target after a GOTO keyword must be a line number.
 
-The "target" after the THEN keyword must be a line number or a statement. The target after a GOTO keyword must be a line number.
+The expression may evaluate to a true or false value, or may evaluate to a numeric or text value.
+Numeric values of zero are treated as false; other values are considered true.
+String values of "" are treated as false; other values (including "false", "no", "F") are considered true.
 
 Examples:
 
@@ -808,7 +809,10 @@ Examples:
 	210 IF B > 5 THEN PRINT "B > 5" ELSE PRINT "B <= 5"
 	300 IF C = 0 THEN IF D = 4 THEN PRINT "DONE"
 
-When the expression evaluates as true, the THEN clause is executed. When the clause is a line number, that line is executed next. When the clause is a statement, that statement is executed. After a statement execution, control moves to the next statement, which may be the next line or may be the next statement in a multistatement line.
+When the expression evaluates as true, the THEN clause is executed.
+When the clause is a line number, that line is executed next.
+When the clause is a statement, that statement is executed.
+After a statement execution, control moves to the next statement, which may be the next line or may be the next statement in a multistatement line.
 
 in the code:
 

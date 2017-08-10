@@ -750,6 +750,9 @@ class BooleanConstant < AbstractValueElement
     @value =
       (obj_class == 'BooleanConstantToken' && obj.to_s == 'TRUE') ||
       (obj_class == 'String' && obj.casecmp('TRUE').zero?) ||
+      (obj_class == 'NumericConstant' && !obj.to_f.zero?) ||
+      (obj_class == 'IntegerConstant' && !obj.to_i.zero?) ||
+      (obj_class == 'TextConstant' && !obj.value.strip.size.zero?) ||
       obj_class == 'TrueClass'
     @operand = true
     @precedence = 0
