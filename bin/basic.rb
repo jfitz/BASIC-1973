@@ -2,6 +2,7 @@
 require 'benchmark'
 require 'optparse'
 require 'singleton'
+require 'io/console'
 
 require_relative 'exceptions'
 require_relative 'tokens'

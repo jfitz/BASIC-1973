@@ -80,6 +80,7 @@ class StatementFactory
       GotoStatement,
       IfStatement,
       InputStatement,
+      InputCharStatement,
       LetStatement,
       LetLessStatement,
       LineInputStatement,
@@ -868,84 +869,6 @@ class GosubStatement < AbstractStatement
   end
 end
 
-# LET
-class LetStatement < AbstractStatement
-  def self.lead_keywords
-    [
-      [KeywordToken.new('LET')]
-    ]
-  end
-
-  def initialize(keywords, tokens_lists)
-    super
-    template = [[3, '>=']]
-
-    if check_template(tokens_lists, template)
-      begin
-        @assignment = ScalarAssignment.new(tokens_lists[0])
-        if @assignment.count_target.zero?
-          @errors << 'Assignment must have left-hand value(s)'
-        end
-        if @assignment.count_value != 1
-          @errors << 'Assignment must have only one right-hand value'
-        end
-      rescue BASICException => e
-        @errors << e.message
-      end
-    else
-      @errors << 'Syntax error'
-    end
-  end
-
-  def execute_core(interpreter)
-    l_values = @assignment.eval_target(interpreter)
-    r_values = @assignment.eval_value(interpreter)
-    r_value = r_values[0]
-    l_values.each do |l_value|
-      interpreter.set_value(l_value, r_value)
-    end
-  end
-end
-
-# LET-less assignment
-class LetLessStatement < AbstractStatement
-  def self.lead_keywords
-    [
-      []
-    ]
-  end
-
-  def initialize(keywords, tokens_lists)
-    super
-    template = [[3, '>=']]
-
-    if check_template(tokens_lists, template)
-      begin
-        @assignment = ScalarAssignment.new(tokens_lists[0])
-        if @assignment.count_target.zero?
-          @errors << 'Assignment must have left-hand value(s)'
-        end
-        if @assignment.count_value != 1
-          @errors << 'Assignment must have only one right-hand value'
-        end
-      rescue BASICException => e
-        @errors << e.message
-      end
-    else
-      @errors << 'Syntax error'
-    end
-  end
-
-  def execute_core(interpreter)
-    l_values = @assignment.eval_target(interpreter)
-    r_values = @assignment.eval_value(interpreter)
-    r_value = r_values[0]
-    l_values.each do |l_value|
-      interpreter.set_value(l_value, r_value)
-    end
-  end
-end
-
 # INPUT
 class InputStatement < AbstractStatement
   def self.lead_keywords
@@ -1056,6 +979,150 @@ class InputStatement < AbstractStatement
     io = interpreter.get_input(fh)
     values += io.input(interpreter)
     values
+  end
+end
+
+# INPUT$
+class InputCharStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('INPUT$')]
+    ]
+  end
+
+  def initialize(keywords, tokens_lists)
+    super
+    template = [[1, '>=']]
+
+    if check_template(tokens_lists, template)
+      @input_items = split_tokens(tokens_lists[0], false)
+    else
+      @errors << 'Syntax error'
+    end
+  end
+
+  def execute_core(interpreter)
+    input_items = @input_items.clone
+    expression_list = []
+    input_items.each do |items_list|
+      begin
+        expression_list << TargetExpression.new(items_list, ScalarReference)
+      rescue BASICException
+        raise(BASICException,
+              'Invalid variable ' + items_list.map(&:to_s).join)
+      end
+    end
+    values = input_values(interpreter, expression_list.size)
+    begin
+      name_value_pairs =
+        zip(expression_list, values[0, expression_list.length])
+    rescue BASICException
+      raise(BASICException, 'Unequal lists')
+    end
+    name_value_pairs.each do |hash|
+      l_values = hash['name'].evaluate(interpreter, false)
+      l_value = l_values[0]
+      value = NumericConstant.new(hash['value'].ord)
+      interpreter.set_value(l_value, value)
+    end
+  end
+
+  private
+
+  def zip(names, values)
+    raise(BASICException, 'Unequal lists') if names.size != values.size
+    results = []
+    (0...names.size).each do |i|
+      results << { 'name' => names[i], 'value' => values[i] }
+    end
+    results
+  end
+
+  def input_values(interpreter, count)
+    values = []
+    io = interpreter.console_io
+    while values.size < count
+      values << io.read_char
+    end
+    values
+  end
+end
+
+# LET
+class LetStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('LET')]
+    ]
+  end
+
+  def initialize(keywords, tokens_lists)
+    super
+    template = [[3, '>=']]
+
+    if check_template(tokens_lists, template)
+      begin
+        @assignment = ScalarAssignment.new(tokens_lists[0])
+        if @assignment.count_target.zero?
+          @errors << 'Assignment must have left-hand value(s)'
+        end
+        if @assignment.count_value != 1
+          @errors << 'Assignment must have only one right-hand value'
+        end
+      rescue BASICException => e
+        @errors << e.message
+      end
+    else
+      @errors << 'Syntax error'
+    end
+  end
+
+  def execute_core(interpreter)
+    l_values = @assignment.eval_target(interpreter)
+    r_values = @assignment.eval_value(interpreter)
+    r_value = r_values[0]
+    l_values.each do |l_value|
+      interpreter.set_value(l_value, r_value)
+    end
+  end
+end
+
+# LET-less assignment
+class LetLessStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      []
+    ]
+  end
+
+  def initialize(keywords, tokens_lists)
+    super
+    template = [[3, '>=']]
+
+    if check_template(tokens_lists, template)
+      begin
+        @assignment = ScalarAssignment.new(tokens_lists[0])
+        if @assignment.count_target.zero?
+          @errors << 'Assignment must have left-hand value(s)'
+        end
+        if @assignment.count_value != 1
+          @errors << 'Assignment must have only one right-hand value'
+        end
+      rescue BASICException => e
+        @errors << e.message
+      end
+    else
+      @errors << 'Syntax error'
+    end
+  end
+
+  def execute_core(interpreter)
+    l_values = @assignment.eval_target(interpreter)
+    r_values = @assignment.eval_value(interpreter)
+    r_value = r_values[0]
+    l_values.each do |l_value|
+      interpreter.set_value(l_value, r_value)
+    end
   end
 end
 

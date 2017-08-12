@@ -117,6 +117,9 @@ Some examples:
 - Symbols '$' and '#' in front of a variable name convert the data to a different form (text or character)
 - Symbol '#' used in an expression as 'not equals' operator
 
+BASIC-1973 allows as many of these conflicting options as possible.
+Command-line options enable and disable certain behaviors.
+
 Running BASIC-1973
 ------------------
 
@@ -889,6 +892,38 @@ Or:
 Not the same (because of trailing spaces inside quotes):
 ? "  GEORGE WASHINGTON"
 ? "1600 PENN  ", "WASHINGTON, DC"
+
+INPUT$
+~~~~~~
+
+Reads a character from the keyboard without waiting for a RETURN key.
+
+Syntax: INPUT$ [variable list]
+
+Examples:
+
+	40 INPUT$ A
+	50 INPUT$ A, B, C
+
+Characters are converted to ASCII values and stored in numeric variables.
+String variables are not used.
+
+The source programs which show this statement use the form
+
+    40 INPUT $A
+
+with the '$' character immediately before the variable.
+They also show this statement with only one variable.
+BASIC-1973 takes advantage of the 'ignore spaces' philosophy of BASIC.
+The following statements are identical:
+
+    40 INPUT $A
+    40 INPUT$A
+    40 INPUT$ A
+    
+BASIC-1973 creates a new statement named 'INPUT$'.
+It was easier than modifying the INPUT statement to recognize the '$'-variable sequence and use different behavior.
+BASIC-1973 allows for multiple variables in a single INPUT$ statement, reading multiple keys from the user.
 
 LET
 ~~~

@@ -84,6 +84,13 @@ class ConsoleIo
   include Reader
   include Inputter
 
+  def read_char
+    input_text = STDIN.getch
+    ascii_text = ascii_printables(input_text)
+    print(ascii_text) if @echo_input
+    ascii_text
+  end
+
   def read_line
     input_text = gets
     raise(BASICException, 'End of file') if input_text.nil?
