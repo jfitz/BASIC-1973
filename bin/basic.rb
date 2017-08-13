@@ -1273,7 +1273,7 @@ class Shell
   end
 end
 
-def make_tokenizers(statement_separators, comment_leads)
+def make_tokenizers(statement_separators, comment_leads, allow_hash_constant)
   tokenizers = []
 
   tokenizers << CommentTokenBuilder.new(comment_leads)
@@ -1307,7 +1307,7 @@ def make_tokenizers(statement_separators, comment_leads)
   tokenizers << ListTokenBuilder.new(function_names, UserFunctionToken)
 
   tokenizers << TextTokenBuilder.new
-  tokenizers << NumberTokenBuilder.new
+  tokenizers << NumberTokenBuilder.new(allow_hash_constant)
   tokenizers << IntegerTokenBuilder.new
   tokenizers << VariableTokenBuilder.new
 
@@ -1342,6 +1342,7 @@ OptionParser.new do |opt|
   opt.on('--randomize') { |o| options[:randomize] = o }
   opt.on('--ignore-randomize') { |o| options[:ignore_randomize] = o }
   opt.on('--if-false-next-line') { |o| options[:if_false_next_line] = o }
+  opt.on('--hash-constant') { |o| options[:hash_constant] = o }
 end.parse!
 
 list_filename = options[:list_name]
@@ -1381,6 +1382,7 @@ statement_seps << ':' if colon_separator
 comment_leads = []
 comment_leads << "'" if apostrophe_comment
 comment_leads << '!' if bang_comment
+allow_hash_constant = options.key?(:hash_constant)
 
 default_prompt = TextConstantToken.new('"? "')
 console_io =
@@ -1388,7 +1390,7 @@ console_io =
                 newline_speed, implied_semicolon, default_prompt,
                 qmark_after_prompt, echo_input)
 
-tokenizers = make_tokenizers(statement_seps, comment_leads)
+tokenizers = make_tokenizers(statement_seps, comment_leads, allow_hash_constant)
 
 if show_heading
   console_io.print_line('BASIC-1973 interpreter version -1')

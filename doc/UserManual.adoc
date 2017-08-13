@@ -158,6 +158,7 @@ When the BASIC program ends, BASIC-1973 ends.
 |--back-tab |Allows the TAB() function to move to the left. Normally, it moves only to the right or not at all.
 |--qmark-after-prompt |On an INPUT line, print the question mark after the prompt.
 |--if-false-next-line |When an IF without an ELSE and with a statement (not a destination line number) evaluates its condition as false, change execution to the next numbered line, not the next statement in a multistatment line.
+|--hash-constant |Allow numeric constants in the form '#c' where c is any single character. Disables file handle operator and the not-equals operator, which are also represented by '#'.
 |==========
 
 Immediate commands
@@ -479,9 +480,10 @@ Exponents may be signed or unsigned.
 |1E-2 |
 |2.37E+4 |
 |2% |
-|0A |Only digits 0 through 9 and decimal points (and the 'E' for exponent) are permitted
+|0A |Only digits 0 through 9 and decimal points (and the 'E' for exponent) are permitted.
 |3.03+E3 |The sign for the exponent must be after the 'E'. (This expression will be parsed as the value 3.03 plus the contents of variable E3.)
-1e4 |The 'E' for exponent must be uppercase
+|1e4 |The 'E' for exponent must be uppercase.
+|#A | Converted to 65, the ASCII value of A. Legal only with option --hash-constant.
 |==========
 
 BASIC-1973 converts integer and numeric values readily.

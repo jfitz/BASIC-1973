@@ -239,9 +239,16 @@ end
 class NumberTokenBuilder
   attr_reader :count
 
+  def initialize(allow_hash_constant)
+    @allow_hash_constant = allow_hash_constant
+  end
+
   def try(text)
     if text.size >= 2 && text[0..1] == 'PI'
       candidate = 'PI'
+      i = 2
+    elsif @allow_hash_constant && text.size >= 2 && text[0] == '#'
+      candidate = text[0..1]
       i = 2
     else
       candidate = ''
@@ -279,6 +286,7 @@ class NumberTokenBuilder
     # check that string conforms to one of these
     regexes = [
       /PI/,
+      /#./,
       /\A\d+\z/,
       /\A\d+\.\z/,
       /\A\d+E[+-]?\d+\z/,
@@ -303,17 +311,21 @@ class NumberTokenBuilder
   def accept?(candidate, c)
     result = false
 
-    # can always append a digit
-    result = true if c =~ /[0-9]/
-    # can append a decimal point if no decimal point and no E
-    result = true if c == '.' && candidate.count('.', 'E').zero?
-    # can append E if no E and at least one digit (not just decimal point)
-    result = true if c == 'E' &&
-                     candidate.count('E').zero? &&
-                     !candidate.count('0-9').zero?
-    # can append sign if no chars or last char was E
-    result = true if c == '+' && (candidate.empty? || candidate[-1] == 'E')
-    result = true if c == '-' && (candidate.empty? || candidate[-1] == 'E')
+    if candidate.size .zero? || candidate[0] != '#'
+      # can always append a digit
+      result = true if c =~ /[0-9]/
+      # can append a decimal point if no decimal point and no E
+      result = true if c == '.' && candidate.count('.', 'E').zero?
+      # can append E if no E and at least one digit (not just decimal point)
+      result = true if c == 'E' &&
+                       candidate.count('E').zero? &&
+                       !candidate.count('0-9').zero?
+      # can append sign if no chars or last char was E
+      result = true if c == '+' && (candidate.empty? || candidate[-1] == 'E')
+      result = true if c == '-' && (candidate.empty? || candidate[-1] == 'E')
+    else
+      result = candidate.size == 1
+    end
 
     result
   end
