@@ -1273,7 +1273,8 @@ class Shell
   end
 end
 
-def make_tokenizers(statement_separators, comment_leads, allow_hash_constant)
+def make_tokenizers(statement_separators, comment_leads, allow_hash_constant,
+                    min_max_op)
   tokenizers = []
 
   tokenizers << CommentTokenBuilder.new(comment_leads)
@@ -1290,7 +1291,7 @@ def make_tokenizers(statement_separators, comment_leads, allow_hash_constant)
   tokenizers << ListTokenBuilder.new(keywords, KeywordToken)
 
   un_ops = UnaryOperator.operators
-  bi_ops = BinaryOperator.operators
+  bi_ops = BinaryOperator.operators(min_max_op)
   operators = (un_ops + bi_ops).uniq
   tokenizers << ListTokenBuilder.new(operators, OperatorToken)
 
@@ -1343,6 +1344,7 @@ OptionParser.new do |opt|
   opt.on('--ignore-randomize') { |o| options[:ignore_randomize] = o }
   opt.on('--if-false-next-line') { |o| options[:if_false_next_line] = o }
   opt.on('--hash-constant') { |o| options[:hash_constant] = o }
+  opt.on('--min-max-op') { |o| options[:min_max_op] = o }
 end.parse!
 
 list_filename = options[:list_name]
@@ -1383,6 +1385,7 @@ comment_leads = []
 comment_leads << "'" if apostrophe_comment
 comment_leads << '!' if bang_comment
 allow_hash_constant = options.key?(:hash_constant)
+min_max_op = options.key?(:min_max_op)
 
 default_prompt = TextConstantToken.new('"? "')
 console_io =
@@ -1390,7 +1393,8 @@ console_io =
                 newline_speed, implied_semicolon, default_prompt,
                 qmark_after_prompt, echo_input)
 
-tokenizers = make_tokenizers(statement_seps, comment_leads, allow_hash_constant)
+tokenizers = make_tokenizers(statement_seps, comment_leads, allow_hash_constant,
+                             min_max_op)
 
 if show_heading
   console_io.print_line('BASIC-1973 interpreter version -1')

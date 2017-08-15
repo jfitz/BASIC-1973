@@ -187,11 +187,12 @@ class BinaryOperator < AbstractElement
   end
 
   @operators = {
-    '=' => 2, '<>' => 2, '#' => 2,
-    '>' => 2, '>=' => 2, '=>' => 2,
-    '<' => 2, '<=' => 2, '=<' => 2,
-    '+' => 3, '-' => 3, '*' => 4, '/' => 4, '^' => 5,
-    'AND' => 1, 'OR' => 1
+    '=' => 3, '<>' => 3, '#' => 3,
+    '>' => 3, '>=' => 3, '=>' => 3,
+    '<' => 3, '<=' => 3, '=<' => 3,
+    '+' => 4, '-' => 4, '*' => 5, '/' => 5, '^' => 6,
+    'AND' => 1, 'OR' => 1,
+    'MAX' => 2, 'MIN' => 2
   }
 
   def self.operator?(op)
@@ -202,8 +203,10 @@ class BinaryOperator < AbstractElement
     @operators[op]
   end
 
-  def self.operators
-    @operators.keys
+  def self.operators(min_max_op)
+    op = @operators.keys
+    op = op - ['MIN', 'MAX'] unless min_max_op
+    op
   end
 
   def initialize(text)
@@ -251,7 +254,9 @@ class BinaryOperator < AbstractElement
       '-' => :subtract,
       '*' => :multiply,
       '/' => :divide,
-      '^' => :power
+      '^' => :power,
+      'MAX' => :maximum,
+      'MIN' => :minimum
     }
 
     op_sym = op_table[@op]
@@ -267,7 +272,9 @@ class BinaryOperator < AbstractElement
       '-' => :subtract,
       '*' => :multiply,
       '/' => :divide,
-      '^' => :power
+      '^' => :power,
+      'MAX' => :maximum,
+      'MIN' => :minimum
     }
 
     op_sym = op_table[@op]
@@ -283,7 +290,9 @@ class BinaryOperator < AbstractElement
       '-' => :subtract,
       '*' => :multiply,
       '/' => :divide,
-      '^' => :power
+      '^' => :power,
+      'MAX' => :maximum,
+      'MIN' => :minimum
     }
 
     op_sym = op_table[@op]
@@ -299,7 +308,9 @@ class BinaryOperator < AbstractElement
       '-' => :subtract,
       '*' => :multiply,
       '/' => :divide,
-      '^' => :power
+      '^' => :power,
+      'MAX' => :maximum,
+      'MIN' => :minimum
     }
 
     op_sym = op_table[@op]
@@ -315,7 +326,9 @@ class BinaryOperator < AbstractElement
       '-' => :subtract,
       '*' => :multiply,
       '/' => :divide,
-      '^' => :power
+      '^' => :power,
+      'MAX' => :maximum,
+      'MIN' => :minimum
     }
 
     op_sym = op_table[@op]
@@ -331,7 +344,9 @@ class BinaryOperator < AbstractElement
       '-' => :subtract,
       '*' => :multiply,
       '/' => :divide,
-      '^' => :power
+      '^' => :power,
+      'MAX' => :maximum,
+      'MIN' => :minimum
     }
 
     op_sym = op_table[@op]
@@ -358,7 +373,9 @@ class BinaryOperator < AbstractElement
       '>=' => :b_ge,
       '=>' => :b_ge,
       'AND' => :b_and,
-      'OR' => :b_or
+      'OR' => :b_or,
+      'MAX' => :maximum,
+      'MIN' => :minimum
     }
 
     op_sym = op_table[@op]
@@ -511,6 +528,45 @@ class BinaryOperator < AbstractElement
     raise(BASICException, 'Matrix dimensions do not match') if a_dims != b_dims
     values = subtract_matrix_matrix_1(a, b) if a_dims.size == 1
     values = subtract_matrix_matrix_2(a, b) if a_dims.size == 2
+    Matrix.new(a_dims, values)
+  end
+
+  def maximum_matrix_matrix_1(a, b)
+    a_dims = a.dimensions
+    n_cols = a_dims[0].to_i
+    values = {}
+    (1..n_cols).each do |col|
+      a_value = a.get_value_1(col)
+      b_value = b.get_value_1(col)
+      coords = make_coord(col)
+      values[coords] = a_value.send(:maximum, b_value)
+    end
+    values
+  end
+
+  def maximum_matrix_matrix_2(a, b)
+    a_dims = a.dimensions
+    n_rows = a_dims[0].to_i
+    n_cols = a_dims[1].to_i
+    values = {}
+    (1..n_rows).each do |row|
+      (1..n_cols).each do |col|
+        a_value = a.get_value_2(row, col)
+        b_value = b.get_value_2(row, col)
+        coords = make_coords(row, col)
+        values[coords] = a_value.send(:maximum, b_value)
+      end
+    end
+    values
+  end
+
+  def maximum_matrix_matrix(a, b)
+    # verify dimensions match
+    a_dims = a.dimensions
+    b_dims = b.dimensions
+    raise(BASICException, 'Matrix dimensions do not match') if a_dims != b_dims
+    values = maximum_matrix_matrix_1(a, b) if a_dims.size == 1
+    values = maximum_matrix_matrix_2(a, b) if a_dims.size == 2
     Matrix.new(a_dims, values)
   end
 
@@ -702,6 +758,10 @@ class BinaryOperator < AbstractElement
       divide_matrix_matrix(a, b)
     when :power
       power_matrix_matrix(a, b)
+    when :maximum
+      maximum_matrix_matrix(a, b)
+    when :minimum
+      minimum_matrix_matrix(a, b)
     end
   end
 end

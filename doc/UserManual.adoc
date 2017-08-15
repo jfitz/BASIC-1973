@@ -159,6 +159,7 @@ When the BASIC program ends, BASIC-1973 ends.
 |--qmark-after-prompt |On an INPUT line, print the question mark after the prompt.
 |--if-false-next-line |When an IF without an ELSE and with a statement (not a destination line number) evaluates its condition as false, change execution to the next numbered line, not the next statement in a multistatment line.
 |--hash-constant |Allow numeric constants in the form '#c' where c is any single character. Disables file handle operator and the not-equals operator, which are also represented by '#'.
+|--min-max-op | Enable the MIN and MAX operators.
 |==========
 
 Immediate commands
@@ -399,11 +400,13 @@ BASIC-1973 supports the following arithmetic operations for numeric variables:
 
 |==========
 |Operation |Symbol |Precedence
-|Addition |+ |3
-|Subtraction |- |3
-|Multiplication |* |2
-|Division |/ |2
+|Addition |+ |4
+|Subtraction |- |4
+|Multiplication |* |3
+|Division |/ |3
 |Exponent |^ |1
+|Minimum |MIN |2
+|Maximum |MAX |2
 |==========
 
 BASIC-1973 supports the following operations for string variables:

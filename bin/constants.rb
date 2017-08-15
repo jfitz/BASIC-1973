@@ -299,6 +299,14 @@ class AbstractValueElement < AbstractElement
     raise(BASICException, 'Invalid operator power')
   end
 
+  def max(other)
+    raise(BASICException, 'Invalid operator MAX')
+  end
+
+  def min(other)
+    raise(BASICException, 'Invalid operator MIN')
+  end
+
   def printable?
     true
   end
@@ -429,6 +437,16 @@ class NumericConstant < AbstractValueElement
     NumericConstant.new(@value**other.to_v)
   end
 
+  def maximum(other)
+    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    NumericConstant.new([@value, other.to_v].max)
+  end
+
+  def minimum(other)
+    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    NumericConstant.new([@value, other.to_v].min)
+  end
+
   def truncate
     NumericConstant.new(@value.to_i)
   end
@@ -467,6 +485,16 @@ class NumericConstant < AbstractValueElement
 
   def atn
     NumericConstant.new(Math.atan(@value))
+  end
+
+  def max(other)
+    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    @value = [to_v, other.to_v].max
+  end
+
+  def min(other)
+    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    @value = [to_v, other.to_v].min
   end
 
   def sign
@@ -592,6 +620,16 @@ class IntegerConstant < AbstractValueElement
     IntegerConstant.new(@value**other.to_v)
   end
 
+  def maximum(other)
+    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    IntegerConstant.new([@value, other.to_v].max)
+  end
+
+  def minimum(other)
+    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    IntegerConstant.new([@value, other.to_v].min)
+  end
+
   def truncate
     IntegerConstant.new(@value.to_i)
   end
@@ -630,6 +668,16 @@ class IntegerConstant < AbstractValueElement
 
   def atn
     IntegerConstant.new(Math.atan(@value))
+  end
+
+  def max(other)
+    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    @value = [to_v, other.to_v].max
+  end
+
+  def min(other)
+    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    @value = [to_v, other.to_v].min
   end
 
   def sign
@@ -712,6 +760,16 @@ class TextConstant < AbstractValueElement
     quoted = '"' + unquoted + '"'
     token = TextConstantToken.new(quoted)
     TextConstant.new(token)
+  end
+
+  def maximum(other)
+    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    TextConstant.new([@value, other.to_v].max)
+  end
+
+  def minimum(other)
+    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    TextConstant.new([@value, other.to_v].min)
   end
 
   def to_s
