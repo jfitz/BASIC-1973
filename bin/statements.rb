@@ -50,19 +50,21 @@ class StatementFactory
   end
 
   def keywords_definitions
-    keys = statement_definitions.keys
     keywords = []
-    keys.each do |key|
-      keywords << key[0].to_s
+
+    statement_classes.each do |cl|
+      kwds = cl.lead_keywords.flatten
+      kwds.each { |kwd| keywords << kwd.to_s }
+
+      keywords += cl.extra_keywords
     end
-    keywords += %w(OF THEN ELSE TO STEP OUTPUT AS FILE)
-    keywords -= %w(REM REMARK)
+
     keywords.uniq
   end
 
   private
 
-  def statement_definitions
+  def statement_classes
     classes = [
       ArrPrintStatement,
       ArrReadStatement,
@@ -101,9 +103,12 @@ class StatementFactory
       TraceStatement,
       WriteStatement
     ]
+  end
+
+  def statement_definitions
     lead_keywords = {}
 
-    classes.each do |class_name|
+    statement_classes.each do |class_name|
       keyword_sets = class_name.lead_keywords
       keyword_sets.each do |set|
         lead_keywords[set] = class_name
@@ -211,6 +216,10 @@ class AbstractStatement
   attr_reader :tokens
   attr_accessor :profile_count
   attr_accessor :profile_time
+
+  def self.extra_keywords
+    []
+  end
 
   def initialize(keywords, tokens_lists)
     @keywords = keywords
@@ -538,6 +547,10 @@ class ChangeStatement < AbstractStatement
     ]
   end
 
+  def self.extra_keywords
+    ['TO']
+  end
+
   def initialize(keywords, tokens_lists)
     super
     template = [[1, '>='], 'TO', [1, '=']]
@@ -718,6 +731,10 @@ class GotoStatement < AbstractStatement
       [KeywordToken.new('GOTO')],
       [KeywordToken.new('GOT')]
     ]
+  end
+
+  def self.extra_keywords
+    ['OF']
   end
 
   def initialize(keywords, tokens_lists)
@@ -1134,6 +1151,10 @@ class IfStatement < AbstractStatement
     ]
   end
 
+  def self.extra_keywords
+    ['THEN', 'ELSE']
+  end
+
   def initialize(keywords, tokens_lists)
     super
 
@@ -1502,6 +1523,10 @@ class OpenStatement < AbstractStatement
     ]
   end
 
+  def self.extra_keywords
+    ['FOR', 'INPUT', 'OUTPUT', 'AS', 'FILE']
+  end
+
   def initialize(keywords, tokens_lists)
     super
     template_input_as = [[1, '>='], 'FOR', 'INPUT', 'AS', [1, '>=']]
@@ -1674,6 +1699,10 @@ class OnStatement < AbstractStatement
     ]
   end
 
+  def self.extra_keywords
+    ['GOTO', 'THEN']
+  end
+
   def initialize(keywords, tokens_lists)
     super
     template1 = [[1, '>='], 'GOTO', [1, '>=']]
@@ -1801,6 +1830,10 @@ class ForStatement < AbstractStatement
     [
       [KeywordToken.new('FOR')]
     ]
+  end
+
+  def self.extra_keywords
+    ['TO', 'STEP']
   end
 
   def initialize(keywords, tokens_lists)
