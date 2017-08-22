@@ -33,7 +33,7 @@ class AbstractToken
   end
 
   def initialize(text)
-    @text = text
+    @text = text.to_s
     @is_break = false
     @is_whitespace = false
     @is_comment = false
