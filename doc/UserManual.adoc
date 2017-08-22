@@ -105,17 +105,14 @@ Sometimes these capabilities conflict with one another.
 
 Some examples:
 
+- For variable subscripts, most programs use parentheses but some use square brackets
 - Lines may contain multiple statements, separated by either a colon or a backslash, and sometimes both are used in the same program
-- The DEF FN statement defines a single-line function or a multiline function, the latter ending with FNEND
-- Most programs use parenthesis for variable subscripts, but one used square brackets
-- The IF/THEN statement has variations of IF expression statement, IF expression THEN statement, IF expression THEN statement ELSE statement, and IF expression THEN multiple statements
-- ON v GOTO n, n, n or GOTO v OF n, n, n
-- MIN and MAX as operators in LET expressions
+- The IF/THEN statement on a multistatement line, when its condition is false, in some BASICs changes control to the next statement on the line, and in other BASICs sends control to the next numbered line
+- ON v GOTO n, n, n is also possible as GOTO v OF n, n, n
 - RANDOMIZE keyword is sometimes RANDOM
-- SLEEP statement
 - CHAIN to another BASIC program, or to "DEMON"
-- Symbols '$' and '#' in front of a variable name convert the data to a different form (text or character)
-- Symbol '#' used in an expression as 'not equals' operator
+- RUN statement to restart the current program
+- Symbol '#' used in an expression as 'not equals' operator, or as a file number prefix, or to convert a character to numeric
 
 BASIC-1973 allows as many of these conflicting options as possible.
 Command-line options enable and disable certain behaviors.
@@ -405,6 +402,7 @@ BASIC-1973 supports the following arithmetic operations for numeric variables:
 |Multiplication |* |3
 |Division |/ |3
 |Exponent |^ |1
+|Exponent |** |1
 |Minimum |MIN |2
 |Maximum |MAX |2
 |==========

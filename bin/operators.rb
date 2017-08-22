@@ -190,7 +190,7 @@ class BinaryOperator < AbstractElement
     '=' => 3, '<>' => 3, '#' => 3,
     '>' => 3, '>=' => 3, '=>' => 3,
     '<' => 3, '<=' => 3, '=<' => 3,
-    '+' => 4, '-' => 4, '*' => 5, '/' => 5, '^' => 6,
+    '+' => 4, '-' => 4, '*' => 5, '/' => 5, '^' => 6, '**' => 6,
     'AND' => 1, 'OR' => 1,
     'MAX' => 2, 'MIN' => 2
   }
@@ -255,6 +255,7 @@ class BinaryOperator < AbstractElement
       '*' => :multiply,
       '/' => :divide,
       '^' => :power,
+      '**' => :power,
       'MAX' => :maximum,
       'MIN' => :minimum
     }
@@ -273,6 +274,7 @@ class BinaryOperator < AbstractElement
       '*' => :multiply,
       '/' => :divide,
       '^' => :power,
+      '**' => :power,
       'MAX' => :maximum,
       'MIN' => :minimum
     }
@@ -291,6 +293,7 @@ class BinaryOperator < AbstractElement
       '*' => :multiply,
       '/' => :divide,
       '^' => :power,
+      '**' => :power,
       'MAX' => :maximum,
       'MIN' => :minimum
     }
@@ -309,6 +312,7 @@ class BinaryOperator < AbstractElement
       '*' => :multiply,
       '/' => :divide,
       '^' => :power,
+      '**' => :power,
       'MAX' => :maximum,
       'MIN' => :minimum
     }
@@ -327,6 +331,7 @@ class BinaryOperator < AbstractElement
       '*' => :multiply,
       '/' => :divide,
       '^' => :power,
+      '**' => :power,
       'MAX' => :maximum,
       'MIN' => :minimum
     }
@@ -345,6 +350,7 @@ class BinaryOperator < AbstractElement
       '*' => :multiply,
       '/' => :divide,
       '^' => :power,
+      '**' => :power,
       'MAX' => :maximum,
       'MIN' => :minimum
     }
@@ -363,6 +369,7 @@ class BinaryOperator < AbstractElement
       '*' => :multiply,
       '/' => :divide,
       '^' => :power,
+      '**' => :power,
       '=' => :b_eq,
       '<>' => :b_ne,
       '#' => :b_ne,
