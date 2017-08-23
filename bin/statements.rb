@@ -99,6 +99,7 @@ class StatementFactory
       RemarkStatement,
       RestoreStatement,
       ReturnStatement,
+      SleepStatement,
       StopStatement,
       TraceStatement,
       WriteStatement
@@ -2151,6 +2152,37 @@ class ReturnStatement < AbstractStatement
 
   def execute_core(interpreter)
     interpreter.next_line_index = interpreter.pop_return
+  end
+end
+
+# SLEEP
+class SleepStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('SLEEP')],
+      [KeywordToken.new('SLE')]
+    ]
+  end
+
+  def initialize(keywords, tokens_lists)
+    super
+    template = [[1, '>=']]
+
+    if check_template(tokens_lists, template)
+      @tokens_lists = split_tokens(tokens_lists[0], false)
+    else
+      @errors << 'Syntax error'
+    end
+  end
+
+  def execute_core(interpreter)
+    tokens_lists = @tokens_lists.clone
+    raise(BASICException, 'Too many values') if tokens_lists.size > 1
+    first_expression = tokens_lists[0]
+    expression = ValueScalarExpression.new(first_expression)
+    values = expression.evaluate(interpreter, true)
+    value = values[0]
+    sleep(value.to_v)
   end
 end
 
