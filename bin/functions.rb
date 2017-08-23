@@ -486,8 +486,8 @@ class FunctionMid < AbstractScalarFunction
   end
 end
 
-# function NUM
-class FunctionNum < AbstractScalarFunction
+# function STR$ and NUM$
+class FunctionStr < AbstractScalarFunction
   def initialize(text)
     super
   end
@@ -739,13 +739,14 @@ class FunctionFactory
     'LEN' => FunctionLen,
     'LOG' => FunctionLog,
     'MID' => FunctionMid,
-    'NUM$' => FunctionNum,
+    'NUM$' => FunctionStr,
     'PACK$' => FunctionPack,
     'RIGHT' => FunctionRight,
     'RND' => FunctionRnd,
     'SGN' => FunctionSgn,
     'SIN' => FunctionSin,
     'SQR' => FunctionSqr,
+    'STR$' => FunctionStr,
     'TAB' => FunctionTab,
     'TAN' => FunctionTan,
     'TRN' => FunctionTrn,
