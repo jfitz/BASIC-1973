@@ -5,7 +5,7 @@ class UnaryOperator < AbstractElement
     classes.include?(token.class.to_s)
   end
 
-  @operators = { '+' => 5, '-' => 5, '#' => 4, 'NOT' => 1 }
+  @operators = { '+' => 5, '-' => 5, '#' => 4, ':' => 4, 'NOT' => 1 }
 
   def self.operator?(op)
     @operators.key?(op)
@@ -15,8 +15,10 @@ class UnaryOperator < AbstractElement
     @operators[op]
   end
 
-  def self.operators
-    @operators.keys
+  def self.operators(colon_file)
+    op = @operators.keys
+    op = op - [':'] unless colon_file
+    op
   end
 
   def initialize(text)
@@ -58,6 +60,8 @@ class UnaryOperator < AbstractElement
       when '-'
         negate(x)
       when '#'
+        file_handle(x)
+      when ':'
         file_handle(x)
       when 'NOT'
         opposite(x)

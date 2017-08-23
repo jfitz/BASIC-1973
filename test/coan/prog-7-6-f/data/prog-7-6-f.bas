@@ -15,7 +15,7 @@
 220          IF A1 <= B1 THEN 270
 230       SETW 2 TO 6*(I-1) + 1
 240       WRITE :2, M$,B1
-250       SET2 2 TO 6*(J-1) + 1
+250       SETW 2 TO 6*(J-1) + 1
 260       WRITE :2, N$,A1
 270    NEXT J
 280 NEXT I

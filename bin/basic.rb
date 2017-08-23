@@ -1274,7 +1274,7 @@ class Shell
 end
 
 def make_tokenizers(statement_separators, comment_leads, allow_hash_constant,
-                    min_max_op)
+                    min_max_op, colon_file)
   tokenizers = []
 
   tokenizers << CommentTokenBuilder.new(comment_leads)
@@ -1290,7 +1290,7 @@ def make_tokenizers(statement_separators, comment_leads, allow_hash_constant,
 
   tokenizers << ListTokenBuilder.new(keywords, KeywordToken)
 
-  un_ops = UnaryOperator.operators
+  un_ops = UnaryOperator.operators(colon_file)
   bi_ops = BinaryOperator.operators(min_max_op)
   operators = (un_ops + bi_ops).uniq
   tokenizers << ListTokenBuilder.new(operators, OperatorToken)
@@ -1332,6 +1332,7 @@ OptionParser.new do |opt|
   opt.on('--tty') { |o| options[:tty] = o }
   opt.on('--tty-lf') { |o| options[:tty_lf] = o }
   opt.on('--no-colon-separator') { |o| options[:no_colon_sep] = o }
+  opt.on('--colon-file') { |o| options[:colon_file] = o }
   opt.on('--bang-comment') { |o| options[:bang_comment] = o }
   opt.on('--print-width WIDTH') { |o| options[:print_width] = o }
   opt.on('--zone-width WIDTH') { |o| options[:zone_width] = o }
@@ -1361,6 +1362,8 @@ output_speed = 10 if options.key?(:tty)
 newline_speed = 0
 newline_speed = 10 if options.key?(:tty_lf)
 colon_separator = !options.key?(:no_colon_sep)
+colon_file = options.key?(:colon_file)
+colon_separator = false if colon_file
 backslash_separator = true
 apostrophe_comment = true
 bang_comment = options.key?(:bang_comment)
@@ -1394,7 +1397,7 @@ console_io =
                 qmark_after_prompt, echo_input)
 
 tokenizers = make_tokenizers(statement_seps, comment_leads, allow_hash_constant,
-                             min_max_op)
+                             min_max_op, colon_file)
 
 if show_heading
   console_io.print_line('BASIC-1973 interpreter version -1')
