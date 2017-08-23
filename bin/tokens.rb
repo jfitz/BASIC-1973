@@ -21,7 +21,7 @@ class AbstractToken
         (token.groupstart? && prev_is_variable) ||
         token.groupend? ||
         token1.groupstart? ||
-        (token1.operator? && !prev2_is_operand)
+        (token1.operator? && token1.to_s != 'NOT' && !prev2_is_operand)
 
       pretty_tokens << token
 

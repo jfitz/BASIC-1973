@@ -5,7 +5,7 @@ class UnaryOperator < AbstractElement
     classes.include?(token.class.to_s)
   end
 
-  @operators = { '+' => 5, '-' => 5, '#' => 4 }
+  @operators = { '+' => 5, '-' => 5, '#' => 4, 'NOT' => 1 }
 
   def self.operator?(op)
     @operators.key?(op)
@@ -39,6 +39,8 @@ class UnaryOperator < AbstractElement
         posate_matrix(x)
       when '-'
         negate_matrix(x)
+      else
+        raise(BASICException, "Invalid operator '#{@op}'")
       end
     elsif x.array?
       case @op
@@ -46,6 +48,8 @@ class UnaryOperator < AbstractElement
         posate_array(x)
       when '-'
         negate_array(x)
+      else
+        raise(BASICException, "Invalid operator '#{@op}'")
       end
     else
       case @op
@@ -55,6 +59,10 @@ class UnaryOperator < AbstractElement
         negate(x)
       when '#'
         file_handle(x)
+      when 'NOT'
+        opposite(x)
+      else
+        raise(BASICException, "Invalid operator '#{@op}'")
       end
     end
   end
@@ -150,6 +158,11 @@ class UnaryOperator < AbstractElement
   def file_handle(a)
     num = a.to_i
     FileHandle.new(num)
+  end
+
+  def opposite(a)
+    b = a.to_b
+    BooleanConstant.new(!b)
   end
 
   def posate_array(a)

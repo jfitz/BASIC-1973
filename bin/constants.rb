@@ -516,6 +516,10 @@ class NumericConstant < AbstractValueElement
     @value.to_s
   end
 
+  def to_b
+    !@value.to_f.zero?
+  end
+
   def six_digits(value)
     # ensure only 6 digits of precision
     decimals = 5 - (value != 0 ? Math.log(value.abs, 10).to_i : 0)
@@ -699,6 +703,10 @@ class IntegerConstant < AbstractValueElement
     @value.to_s
   end
 
+  def to_b
+    !@value.to_i.zero?
+  end
+
   def print(printer)
     s = to_formatted_s
     s = s.upcase
@@ -776,6 +784,10 @@ class TextConstant < AbstractValueElement
     "\"#{@value}\""
   end
 
+  def to_b
+    !@value.size.zero?
+  end
+
   def print(printer)
     printer.print_item @value
   end
@@ -838,6 +850,10 @@ class BooleanConstant < AbstractValueElement
 
   def to_s
     @value ? 'true' : 'false'
+  end
+
+  def to_b
+    @value
   end
 end
 
