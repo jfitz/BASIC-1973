@@ -37,7 +37,7 @@ class ScalarReference < Variable
   end
 
   # return a single value, a reference to this object
-  def evaluate(interpreter, stack, trace)
+  def evaluate(interpreter, stack, _)
     if previous_is_array(stack)
       subscripts = stack.pop
       @subscripts = interpreter.normalize_subscripts(subscripts)
@@ -580,7 +580,7 @@ class CompoundReference < Variable
   end
 
   # return a single value, a reference to this object
-  def evaluate(interpreter, stack, trace)
+  def evaluate(interpreter, stack, _)
     if previous_is_array(stack)
       subscripts = stack.pop
       @subscripts = interpreter.normalize_subscripts(subscripts)
@@ -662,7 +662,7 @@ class VariableDimension < Variable
   end
 
   # return a single value, a reference to this object
-  def evaluate(_, stack, trace)
+  def evaluate(_, stack, _)
     if previous_is_array(stack)
       @subscripts = stack.pop
       num_args = @subscripts.length

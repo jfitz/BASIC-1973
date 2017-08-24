@@ -17,7 +17,7 @@ class UnaryOperator < AbstractElement
 
   def self.operators(colon_file)
     op = @operators.keys
-    op = op - [':'] unless colon_file
+    op -= [':'] unless colon_file
     op
   end
 
@@ -222,7 +222,7 @@ class BinaryOperator < AbstractElement
 
   def self.operators(min_max_op)
     op = @operators.keys
-    op = op - ['MIN', 'MAX'] unless min_max_op
+    op -= %w(MIN MAX) unless min_max_op
     op
   end
 

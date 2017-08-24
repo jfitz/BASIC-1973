@@ -27,7 +27,7 @@ class LineNumber
   def initialize(line_number)
     raise BASICException, "Invalid line number '#{line_number}'" unless
       line_number.class.to_s == 'NumericConstantToken'
-    
+
     @line_number = line_number.to_i
   end
 
@@ -309,7 +309,7 @@ class Interpreter
     @null_out = NullOut.new
 
     timing = Benchmark.measure { run_and_time }
-    print_timing(timing, console_io) if show_timing
+    print_timing(timing) if show_timing
   end
 
   def run_and_time
@@ -321,7 +321,7 @@ class Interpreter
     run_phase_2 if @running
   end
 
-  def print_timing(timing, console_io)
+  def print_timing(timing)
     user_time = timing.utime + timing.cutime
     sys_time = timing.stime + timing.cstime
     @console_io.newline
@@ -432,7 +432,7 @@ class Interpreter
     end
   end
 
-  def has_line_number(line_number)
+  def line_number?(line_number)
     @program_lines.key?(line_number)
   end
 
@@ -443,7 +443,7 @@ class Interpreter
   def statement_start_index(line_number, _statement_index)
     line = @program_lines[line_number]
     return if line.nil?
-    
+
     statements = line.statements
     statement = statements[0]
     statement.start_index unless statement.nil?
@@ -677,7 +677,7 @@ class Interpreter
     end
 
     # check that value type matches variable type
-    unless variable.is_compatible(value)
+    unless variable.compatible?(value)
       raise(BASICException,
             "Type mismatch '#{value}' is not #{variable.content_type}")
     end
@@ -741,7 +741,7 @@ class Interpreter
     fhr.close
     ### todo: remove file handle
   end
-  
+
   def get_file_handler(file_handle)
     return @console_io if file_handle.nil?
 
@@ -787,7 +787,7 @@ class Program
     @program_lines.empty?
   end
 
-  def has_line_number(line_number)
+  def line_number?(line_number)
     @program_lines.key?(line_number)
   end
 
@@ -1245,7 +1245,7 @@ class Shell
     %w(RENUMBER).include?(text)
   end
 
-  def execute_8_command(cmd, rest)
+  def execute_8_command(cmd, _)
     case cmd
     when 'RENUMBER'
       @program.renumber if @program.check
@@ -1253,10 +1253,10 @@ class Shell
   end
 
   def cmd_run(trace_flag, show_timing)
-    unless @program.empty?
-      @interpreter.run(@program, trace_flag, show_timing) if @program.check
-    else
+    if @program.empty?
       @console_io.print_line('No program loaded')
+    else
+      @interpreter.run(@program, trace_flag, show_timing) if @program.check
     end
   end
 
@@ -1280,10 +1280,10 @@ def make_tokenizers(statement_separators, comment_leads, allow_hash_constant,
   tokenizers << CommentTokenBuilder.new(comment_leads)
   tokenizers << RemarkTokenBuilder.new
 
-  tokenizers <<
-    ListTokenBuilder.new(
-    statement_separators, StatementSeparatorToken
-  ) unless statement_separators.empty?
+  unless statement_separators.empty?
+    tokenizers <<
+      ListTokenBuilder.new(statement_separators, StatementSeparatorToken)
+  end
 
   statement_factory = StatementFactory.instance
   keywords = statement_factory.keywords_definitions
@@ -1404,8 +1404,8 @@ if show_heading
   console_io.newline
 end
 
+program = Program.new(console_io, tokenizers)
 if !run_filename.nil?
-  program = Program.new(console_io, tokenizers)
   if program.load(run_filename) && program.check
     interpreter =
       Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
@@ -1413,17 +1413,10 @@ if !run_filename.nil?
     interpreter.run(program, trace_flag, show_timing)
   end
 elsif !list_filename.nil?
-  program = Program.new(console_io, tokenizers)
-  if program.load(list_filename)
-    program.list('', list_tokens)
-  end
+  program.list('', list_tokens) if program.load(list_filename)
 elsif !pretty_filename.nil?
-  program = Program.new(console_io, tokenizers)
-  if program.load(pretty_filename)
-    program.pretty('')
-  end
+  program.pretty('') if program.load(pretty_filename)
 else
-  program = Program.new(console_io, tokenizers)
   interpreter =
     Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
                     respect_randomize, if_false_next_line)

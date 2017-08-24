@@ -65,7 +65,7 @@ class StatementFactory
   private
 
   def statement_classes
-    classes = [
+    [
       ArrPrintStatement,
       ArrReadStatement,
       ArrWriteStatement,
@@ -322,8 +322,8 @@ class AbstractStatement
       control_and_start_tokens = tokens_lists[-5]
       end_tokens = tokens_lists[-3]
       step_tokens = tokens_lists[-1]
-      modifier = ForModifier.new(
-        control_and_start_tokens, end_tokens, step_tokens)
+      modifier =
+        ForModifier.new(control_and_start_tokens, end_tokens, step_tokens)
       @modifiers << modifier
 
       # remove the tokens used for the modifier
@@ -626,7 +626,7 @@ class CloseStatement < AbstractStatement
     when 'IntegerConstant'
       fh = FileHandle.new(fh.to_i)
     when 'FileHandle'
-      ;
+      fh = fns[0]
     else
       raise(BASICException, "Invalid file number #{fh.class}:#{fh}")
     end
@@ -953,8 +953,10 @@ class GosubStatement < AbstractStatement
   end
 
   def program_check(program, console_io, line_number_index)
-    return true if program.has_line_number(@destination)
-    console_io.print_line("Line number #{@destination} not found in line #{line_number_index}")
+    return true if program.line_number?(@destination)
+    console_io.print_line(
+      "Line number #{@destination} not found in line #{line_number_index}"
+    )
     false
   end
 
@@ -1029,20 +1031,24 @@ class GotoStatement < AbstractStatement
   def program_check(program, console_io, line_number_index)
     retval = true
     
-    unless @destination.nil? || program.has_line_number(@destination)
-      console_io.print_line("Line number #{@destination} not found in line #{line_number_index}")
+    unless @destination.nil? || program.line_number?(@destination)
+      console_io.print_line(
+        "Line number #{@destination} not found in line #{line_number_index}"
+      )
       retval = false
     end
 
     unless @destinations.nil?
       @destinations.each do |destination|
-        unless program.has_line_number(destination)
-          console_io.print_line("Line number #{destination} not found in line #{line_number_index}")
+        unless program.line_number?(destination)
+          console_io.print_line(
+            "Line number #{destination} not found in line #{line_number_index}"
+          )
           retval = false
         end
       end
     end
-    
+
     retval
   end
 
@@ -1154,7 +1160,7 @@ class IfStatement < AbstractStatement
             state = 3
           elsif tokens_list == 'IF' && dict['then'].empty?
             new_dict = { 'expr' => [], 'then' => [] }
-            dict['then' ] = new_dict
+            dict['then'] = new_dict
             stack << new_dict
             dict = stack[-1]
             state = 1
@@ -1248,13 +1254,17 @@ class IfStatement < AbstractStatement
   def program_check(program, console_io, line_number_index)
     retval = true
 
-    unless @destination.nil? || program.has_line_number(@destination)
-      console_io.print_line("Line number #{@destination} not found in line #{line_number_index}")
+    unless @destination.nil? || program.line_number?(@destination)
+      console_io.print_line(
+        "Line number #{@destination} not found in line #{line_number_index}"
+      )
       retval = false
     end
 
-    unless @else_dest.nil? || program.has_line_number(@else_dest)
-      console_io.print_line("Line number #{@else_dest} not found in line #{line_number_index}")
+    unless @else_dest.nil? || program.line_number?(@else_dest)
+      console_io.print_line(
+        "Line number #{@else_dest} not found in line #{line_number_index}"
+      )
       retval = false
     end
 
@@ -1274,7 +1284,7 @@ class IfStatement < AbstractStatement
       result.class.to_s == 'BooleanConstant'
 
     if result.value
-      if !@destination.nil?
+      unless @destination.nil?
         line_number = @destination
         index = interpreter.statement_start_index(line_number, 0)
         raise(BASICException, 'Line number not found') if index.nil?
@@ -1282,9 +1292,9 @@ class IfStatement < AbstractStatement
         interpreter.next_line_index = destination
       end
 
-      @statement.execute(interpreter) if !@statement.nil?
+      @statement.execute(interpreter) unless @statement.nil?
     else
-      if !@else_dest.nil?
+      unless @else_dest.nil?
         line_number = @else_dest
         index = interpreter.statement_start_index(line_number, 0)
         raise(BASICException, 'Line number not found') if index.nil?
@@ -1298,7 +1308,7 @@ class IfStatement < AbstractStatement
         interpreter.next_line_index = next_line_index
       end
 
-      @else_stmt.execute(interpreter) if !@else_stmt.nil?
+      @else_stmt.execute(interpreter) unless @else_stmt.nil?
     end
 
     s = ' ' + result.to_s
@@ -1310,7 +1320,10 @@ class IfStatement < AbstractStatement
       @destination = renumber_map[@destination]
       index = 0
       i = 0
-      @tokens.each { |token| index = i if token.to_s == 'THEN'; i += 1 }
+      @tokens.each do |token|
+        index = i if token.to_s == 'THEN'
+        i += 1
+      end
       @tokens[index + 1] = NumericConstantToken.new(@destination.line_number)
     end
     unless @else_dest.nil?
@@ -1812,16 +1825,18 @@ class OnStatement < AbstractStatement
 
   def program_check(program, console_io, line_number_index)
     retval = true
-    
+
     unless @destinations.nil?
       @destinations.each do |destination|
-        unless program.has_line_number(destination)
-          console_io.print_line("Line number #{destination} not found in line #{line_number_index}")
+        unless program.line_number?(destination)
+          console_io.print_line(
+            "Line number #{destination} not found in line #{line_number_index}"
+          )
           retval = false
         end
       end
     end
-    
+
     retval
   end
 
@@ -1846,7 +1861,7 @@ class OnStatement < AbstractStatement
   def renumber(renumber_map)
     new_destinations = []
     @destinations.each do |destination|
-      new_destinations << @renumber_map[destination]
+      new_destinations << renumber_map[destination]
     end
     @destinations = new_destinations
   end
@@ -1862,15 +1877,17 @@ class OpenStatement < AbstractStatement
   end
 
   def self.extra_keywords
-    ['FOR', 'INPUT', 'OUTPUT', 'AS', 'FILE']
+    %w(FOR INPUT OUTPUT AS FILE)
   end
 
   def initialize(keywords, tokens_lists)
     super
     template_input_as = [[1, '>='], 'FOR', 'INPUT', 'AS', [1, '>=']]
-    template_input_as_file = [[1, '>='], 'FOR', 'INPUT', 'AS', 'FILE', [1, '>=']]
+    template_input_as_file =
+      [[1, '>='], 'FOR', 'INPUT', 'AS', 'FILE', [1, '>=']]
     template_output_as = [[1, '>='], 'FOR', 'OUTPUT', 'AS', [1, '>=']]
-    template_output_as_file = [[1, '>='], 'FOR', 'OUTPUT', 'AS', 'FILE', [1, '>=']]
+    template_output_as_file =
+      [[1, '>='], 'FOR', 'OUTPUT', 'AS', 'FILE', [1, '>=']]
 
     @filename_expression = []
     @filenum_expression = []
@@ -1902,7 +1919,7 @@ class OpenStatement < AbstractStatement
     when 'IntegerConstant'
       fh = FileHandle.new(fh.to_i)
     when 'FileHandle'
-      ;
+      fh = fhs[0]
     else
       raise(BASICException, "Invalid file number #{fh.class}:#{fh}")
     end

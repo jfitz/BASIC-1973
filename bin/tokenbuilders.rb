@@ -78,6 +78,7 @@ class ListTokenBuilder
   end
 end
 
+# Remark tokens (returns 2)
 class RemarkTokenBuilder
   attr_reader :count
 

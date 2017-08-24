@@ -24,7 +24,7 @@ class IfModifier
 
     s = ' ' + result.to_s
     io.trace_output(s)
-    
+
     # if true then continue execution normally
     return if result.value
 
@@ -71,7 +71,7 @@ class ForModifier
 
     @errors << 'Control variable must be a variable' unless
       control_tokens.class.to_s == 'Array' &&
-      control_tokens.size > 0 &&
+      !control_tokens.empty? &&
       control_tokens[0].variable?
 
     @control = VariableName.new(control_tokens[0])

@@ -86,7 +86,7 @@ class AbstractElement
   def matrix?
     @matrix
   end
-  
+
   protected
 
   def make_coord(c)
@@ -263,47 +263,47 @@ class AbstractValueElement < AbstractElement
     BooleanConstant.new(@value <= other.to_v)
   end
 
-  def b_and(other)
+  def b_and(_)
     raise(BASICException, 'Invalid operator AND')
   end
 
-  def b_or(other)
+  def b_or(_)
     raise(BASICException, 'Invalid operator OR')
   end
 
-  def +(other)
+  def +(_)
     raise(BASICException, 'Invalid operator +')
   end
 
-  def -(other)
+  def -(_)
     raise(BASICException, 'Invalid operator -')
   end
 
-  def add(other)
+  def add(_)
     raise(BASICException, 'Invalid operator add')
   end
 
-  def subtract(other)
+  def subtract(_)
     raise(BASICException, 'Invalid operator subtract')
   end
 
-  def multiply(other)
+  def multiply(_)
     raise(BASICException, 'Invalid operator multiply')
   end
 
-  def divide(other)
+  def divide(_)
     raise(BASICException, 'Invalid operator divide')
   end
 
-  def power(other)
+  def power(_)
     raise(BASICException, 'Invalid operator power')
   end
 
-  def max(other)
+  def max(_)
     raise(BASICException, 'Invalid operator MAX')
   end
 
-  def min(other)
+  def min(_)
     raise(BASICException, 'Invalid operator MIN')
   end
 
@@ -346,7 +346,7 @@ class NumericConstant < AbstractValueElement
     if text == 'PI'
       3.1415926
     # #c constant
-    elsif text.size == 2 && text[0] = '#'
+    elsif text.size == 2 && text[0] == '#'
       text[1].ord
     # nnn(E+nn)
     elsif /\A\s*[+-]?\d+(E+?\d+)?\z/ =~ text
@@ -381,7 +381,7 @@ class NumericConstant < AbstractValueElement
     f = text if numeric_classes.include?(text.class.to_s)
     if text.class.to_s == 'NumericConstantToken'
       t = text.to_s
-      if t.size > 0 && t[0] == '#'
+      if !t.empty? && t[0] == '#'
         f = t[1].ord
       else
         f = text.to_f
@@ -983,12 +983,12 @@ class VariableName < AbstractElement
     @name.hash
   end
 
-  def is_compatible(value)
+  def compatible?(value)
     compatible = false
 
     numerics = %w(NumericConstant IntegerConstant)
     strings = %w(TextConstant)
-    
+
     if @content_type == 'NumericConstant'
       compatible = numerics.include?(value.class.to_s)
     end
@@ -998,7 +998,7 @@ class VariableName < AbstractElement
     if @content_type == 'TextConstant'
       compatible = strings.include?(value.class.to_s)
     end
-    
+
     compatible
   end
 
@@ -1030,13 +1030,13 @@ class Variable < AbstractElement
     @variable_name.content_type
   end
 
-  def is_compatible(value)
+  def compatible?(value)
     content_type = self.content_type
     compatible = false
 
     numerics = %w(NumericConstant IntegerConstant)
     strings = %w(TextConstant)
-    
+
     if content_type == 'NumericConstant'
       compatible = numerics.include?(value.class.to_s)
     end
@@ -1046,7 +1046,7 @@ class Variable < AbstractElement
     if content_type == 'TextConstant'
       compatible = strings.include?(value.class.to_s)
     end
-    
+
     compatible
   end
 
@@ -1062,7 +1062,7 @@ class Variable < AbstractElement
 
   def normalize_subscripts(subscripts)
     raise(Exception, 'Invalid subscripts container') unless
-      subscripts.class.to_s == "Array"
+      subscripts.class.to_s == 'Array'
     int_subscripts = []
     subscripts.each do |subscript|
       raise(Excaption, "Invalid subscript #{subscript}") unless

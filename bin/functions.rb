@@ -42,7 +42,7 @@ class Function < AbstractElement
       compatible = value.boolean_constant?
     end
 
-    raise(BASICException, "Type mismatch value #{value} not #{type}")  unless
+    raise(BASICException, "Type mismatch value #{value} not #{type}") unless
       compatible
 
     compatible = false
@@ -54,7 +54,7 @@ class Function < AbstractElement
     when 'matrix'
       compatible = value.matrix?
     end
-    
+
     raise(BASICException, "Type mismatch value #{value} not #{shape}") unless
       compatible
   end
@@ -117,7 +117,9 @@ class UserFunction < AbstractScalarFunction
     check_arg_types(user_var_values, specs)
 
     # dummy variable names and their (now known) values
-    result = expression.evaluate_with_vars(interpreter, @name, user_var_values, trace)
+    result =
+      expression.evaluate_with_vars(interpreter, @name,
+                                    user_var_values, trace)
     result[0]
   end
 end
@@ -477,7 +479,8 @@ class FunctionMid < AbstractScalarFunction
     raise(BASICException, "Invalid start index for #{@name}()") if start < 1
     start -= 1
     end_index = args[2].to_i - 1
-    raise(BASICException, "Invalid end index for #{@name}()") if end_index < start
+    raise(BASICException, "Invalid end index for #{@name}()") if
+      end_index < start
     text = value[start..end_index]
     text = '' if text.nil?
     quoted = '"' + text + '"'
@@ -493,7 +496,7 @@ class FunctionStr < AbstractScalarFunction
   end
 
   # return a single value
-  def evaluate(interpreter, stack, _)
+  def evaluate(_, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
