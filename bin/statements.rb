@@ -94,6 +94,7 @@ class StatementFactory
       OnStatement,
       OpenStatement,
       PrintStatement,
+      PrintUsingStatement,
       RandomizeStatement,
       ReadStatement,
       RemarkStatement,
@@ -1996,6 +1997,104 @@ class PrintStatement < AbstractPrintStatement
   end
 
   private
+
+  def tokens_to_expressions(tokens_lists)
+    print_items = []
+    tokens_lists.each do |tokens_list|
+      if tokens_list.class.to_s == 'ParamSeparatorToken'
+        print_items << CarriageControl.new(tokens_list.to_s)
+      elsif tokens_list.class.to_s == 'Array'
+        add_expression(print_items, tokens_list)
+      end
+    end
+    add_implied_items(print_items)
+    print_items
+  end
+
+  def add_expression(print_items, tokens)
+    if !print_items.empty? &&
+       print_items[-1].class.to_s == 'ValueScalarExpression'
+      print_items << CarriageControl.new('')
+    end
+    begin
+      print_items << ValueScalarExpression.new(tokens)
+    rescue BASICException
+      line_text = tokens.map(&:to_s).join
+      @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
+    end
+  end
+end
+
+# PRINT USING
+class PrintUsingStatement < AbstractPrintStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('PRINT'), KeywordToken.new('USING')]
+    ]
+  end
+
+  def initialize(keywords, tokens_lists)
+    super(keywords, tokens_lists, CarriageControl.new('NL'))
+    template = [[1, '>=']]
+
+    if check_template(tokens_lists, template)
+      tokens_lists = split_tokens(tokens_lists[0], true)
+      @print_items = tokens_to_expressions(tokens_lists)
+    else
+      @errors << 'Syntax error'
+    end
+  end
+
+  def execute_core(interpreter)
+    format, print_items = extract_format(@print_items, interpreter)
+    # split format
+    formats = split_format(format)
+    fh = interpreter.console_io
+    formats.each do |format|
+      constant = nil
+      if format.wants_item
+        item = print_items.shift
+        raise(BASICException, 'Too few print items for format') if item.nil?
+        constants = item.evaluate(interpreter, false)
+        constant = constants[0]
+      end
+      text = format.format(constant)
+      text.print(fh)
+    end
+    item = print_items.shift
+    item.print(fh, interpreter)
+  end
+
+  private
+
+  def extract_format(print_items, interpreter)
+    print_items = print_items.clone
+    format = nil
+    unless print_items.empty? ||
+           print_items[0].class.to_s != 'ValueScalarExpression'
+      value = first_item(print_items, interpreter)
+      if value.text_constant?
+        format = value
+        print_items.shift
+        print_items.shift if
+          print_items[0].class.to_s == 'CarriageControl'
+      end
+    end
+    [format, print_items]
+  end
+
+  def split_format(format)
+    format_text = format.to_v
+    tokenbuilders = [
+      ConstantFormatTokenBuilder.new,
+      PaddedStringFormatTokenBuilder.new,
+      PlainStringFormatTokenBuilder.new,
+      CharFormatTokenBuilder.new,
+      NumericFormatTokenBuilder.new
+    ]
+    tokenizer = Tokenizer.new(tokenbuilders, nil)
+    tokens = tokenizer.tokenize(format_text)
+  end
 
   def tokens_to_expressions(tokens_lists)
     print_items = []

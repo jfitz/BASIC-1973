@@ -499,3 +499,95 @@ class BreakTokenBuilder
     BreakToken.new(@token)
   end
 end
+
+# token reader for PRINT USING numeric
+class NumericFormatTokenBuilder
+  def try(text)
+    @token = ''
+    while text.size > 0 && text[0] == '#'
+      @token += text[0]
+      text = text[1..-1]
+    end
+  end
+
+  def count
+    @token.size
+  end
+
+  def token
+    NumericFormatToken.new(@token)
+  end
+end
+
+# token reader for PRINT USING character
+class CharFormatTokenBuilder
+  def try(text)
+    @token = ''
+    if text.size > 0 && text[0] == '!'
+      @token += text[0]
+      text = text[1..-1]
+    end
+  end
+
+  def count
+    @token.size
+  end
+
+  def token
+    CharFormatToken.new(@token)
+  end
+end
+
+# token reader for PRINT USING plain string
+class PlainStringFormatTokenBuilder
+  def try(text)
+    @token = ''
+    if text.size > 0 && text[0] == '&'
+      @token += text[0]
+      text = text[1..-1]
+    end
+  end
+
+  def count
+    @token.size
+  end
+
+  def token
+    PlainStringFormatToken.new(@token)
+  end
+end
+
+# token reader for PRINT USING padded string
+class PaddedStringFormatTokenBuilder
+  def try(text)
+    @token = ''
+    /\A\\ *\\/.match(text) { |m| @token = m[0] }
+  end
+
+  def count
+    @token.size
+  end
+
+  def token
+    PaddedStringFormatToken.new(@token)
+  end
+end
+
+# token reader for PRINT USING constant
+class ConstantFormatTokenBuilder
+  def try(text)
+    @token = ''
+    while text.size > 0 && !'#!&\\'.include?(text[0])
+      @token += text[0]
+      text = text[1..-1]
+    end
+  end
+
+  def count
+    @token.size
+  end
+
+  def token
+    ConstantFormatToken.new(@token)
+  end
+end

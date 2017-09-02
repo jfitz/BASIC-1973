@@ -1148,6 +1148,36 @@ Numbers are printed with automatic formatting.
 BASIC-1965 will print a number with the necessary number of decimal places.
 It is not possible to force a number of decimal places.
 
+PRINT USING
+~~~~~~~~~~~
+
+Displays a series of expressions to the console, formatting each item.
+
+Syntax: PRINT USING formatstring, expression [,expressions]
+
+The format string may be a constant or variable or an expression.
+
+There are four specifications for formatting in the format string: numeric, character, total string, and padded string.
+The numeric format is indicated with '#' characters (one or more) and formats a numeric value as right-justified and padded with spaces.
+The character format is indicated with a '!' character (just one) and prints the first character of a string value.
+The total string format is indicated with a '&' character (just one) and prints the entire string.
+The padded string format is indicated with a pair of backslash characters ('\') enclosing zero or more space characters and prints the string left-justified and padded with space characters.
+All other characters in the format string are treated as constant text which is printed as is.
+
+Examples:
+
+	240 PRINT USING "###", N
+	250 PRINT USING "!", A$		' PRINT FIRST CHARACTER
+	260 PRINT USING "NAME: &", A$	' PRINT ENTIRE STRING
+	270 PRINT USING "TOKENS: \  \, \  \", T1$, T2$
+
+	300 PRINT USING "NAME: &, AMOUNT: #######", N$, A
+
+Format strings may contain multiple specifications.
+The number of specifications must match the number of values given after the format string.
+Separators between values (commas and semicolons) do not have their usual effect of spacing values.
+A comma or semicolon at the end of the list of values does have its usual effect on the carriage (space to next zone or suppress carriage return).
+
 RANDOMIZE
 ~~~~~~~~~
 

@@ -318,3 +318,90 @@ class VariableToken < AbstractToken
     'NumericConstant'
   end
 end
+
+# PRINT USING token for numeric
+class NumericFormatToken < AbstractToken
+  def initialize(text)
+    super
+  end
+
+  def wants_item
+    true
+  end
+
+  def format(numeric_constant)
+    text = numeric_constant.to_v.to_s
+    text = ' ' + text while text.size < @text.size
+    token = TextConstantToken.new('"' + text + '"')
+    constant = TextConstant.new(token)
+  end
+end
+
+# PRINT USING token for character
+class CharFormatToken < AbstractToken
+  def initialize(text)
+    super
+  end
+
+  def wants_item
+    true
+  end
+
+  def format(text_constant)
+    text = text_constant.to_v
+    text = text[0]
+    token = TextConstantToken.new('"' + text + '"')
+    constant = TextConstant.new(token)
+  end
+end
+
+# PRINT USING token for plain string
+class PlainStringFormatToken < AbstractToken
+  def initialize(text)
+    super
+  end
+
+  def wants_item
+    true
+  end
+
+  def format(text_constant)
+    text = text_constant.to_v
+    token = TextConstantToken.new('"' + text + '"')
+    constant = TextConstant.new(token)
+  end
+end
+
+# PRINT USING token for padded string
+class PaddedStringFormatToken < AbstractToken
+  def initialize(text)
+    super
+  end
+
+  def wants_item
+    true
+  end
+
+  def format(text_constant)
+    text = text_constant.to_v
+    text = text + ' ' while text.size < @text.size
+    token = TextConstantToken.new('"' + text + '"')
+    constant = TextConstant.new(token)
+  end
+end
+
+# PRINT USING token for constant text
+class ConstantFormatToken < AbstractToken
+  def initialize(text)
+    super
+  end
+
+  def wants_item
+    false
+  end
+
+  def format(text_constant)
+    token = TextConstantToken.new('"' + @text + '"')
+    constant = TextConstant.new(token)
+  end
+end
