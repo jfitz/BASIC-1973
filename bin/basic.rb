@@ -254,6 +254,7 @@ class Interpreter
   attr_reader :console_io
   attr_reader :trace_out
   attr_reader :if_false_next_line
+  attr_reader :start_time
 
   def initialize(console_io, int_floor, ignore_rnd_arg, randomize,
                  respect_randomize, if_false_next_line)
@@ -276,6 +277,7 @@ class Interpreter
     @variables = {}
     @get_value_seen = []
     @if_false_next_line = if_false_next_line
+    @start_time = nil
   end
 
   private
@@ -308,6 +310,7 @@ class Interpreter
 
     @null_out = NullOut.new
 
+    @start_time = Time.now
     timing = Benchmark.measure { run_and_time }
     print_timing(timing) if show_timing
   end

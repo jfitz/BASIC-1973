@@ -656,20 +656,22 @@ class FunctionTan < AbstractScalarFunction
   end
 end
 
-# function TRN
-class FunctionTrn < AbstractMatrixFunction
+# function TIME
+class FunctionTime < AbstractMatrixFunction
   def initialize(text)
     super
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(interpreter, stack, _)
     ensure_argument_count(stack, [1])
     args = stack.pop
-    spec = { 'type' => 'numeric', 'shape' => 'matrix' }
+    spec = { 'type' => 'numeric', 'shape' => 'scalar' }
     check_arg_types(args, [spec])
-    dims = args[0].dimensions
-    new_dims = [dims[1], dims[0]]
-    Matrix.new(new_dims, args[0].transpose_values)
+    # ignore argument
+    now = Time.now
+    start = interpreter.start_time
+    result = now - start
+    NumericConstant.new(result)
   end
 end
 
@@ -686,6 +688,23 @@ class FunctionUnpack < AbstractScalarFunction
     check_arg_types(args, [spec])
     text = args[0]
     text.unpack
+  end
+end
+
+# function TRN
+class FunctionTrn < AbstractMatrixFunction
+   def initialize(text)
+     super
+   end
+ 
+  def evaluate(_, stack, _)
+    ensure_argument_count(stack, [1])
+    args = stack.pop
+    spec = { 'type' => 'numeric', 'shape' => 'matrix' }
+    check_arg_types(args, [spec])
+    dims = args[0].dimensions
+    new_dims = [dims[1], dims[0]]
+    Matrix.new(new_dims, args[0].transpose_values)
   end
 end
 
@@ -752,6 +771,7 @@ class FunctionFactory
     'STR$' => FunctionStr,
     'TAB' => FunctionTab,
     'TAN' => FunctionTan,
+    'TIME' => FunctionTime,
     'TRN' => FunctionTrn,
     'UNPACK' => FunctionUnpack,
     'VAL' => FunctionVal,
