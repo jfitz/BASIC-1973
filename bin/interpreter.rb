@@ -8,7 +8,7 @@ class Interpreter
   attr_reader :start_time
 
   def initialize(console_io, int_floor, ignore_rnd_arg, randomize,
-                 respect_randomize, if_false_next_line)
+                 respect_randomize, if_false_next_line, require_initialized)
     @running = false
     @randomizer = Random.new(1)
     @randomizer = Random.new if randomize && respect_randomize
@@ -28,6 +28,7 @@ class Interpreter
     @variables = {}
     @get_value_seen = []
     @if_false_next_line = if_false_next_line
+    @require_initialized = require_initialized
     @start_time = nil
   end
 
@@ -395,7 +396,10 @@ class Interpreter
       default_value = NumericConstant.new(0)
       default_value = TextConstant.new(TextConstantToken.new('""')) if
         default_type == 'TextConstant'
-      @variables[v] = default_value unless @variables.key?(v)
+      unless @variables.key?(v)
+        raise(BASICException, "Uninitialized variable #{v}") if @require_initialized
+        @variables[v] = default_value
+      end
       value = @variables[v]
     end
     seen = @get_value_seen.include?(variable)

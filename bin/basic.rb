@@ -466,6 +466,7 @@ OptionParser.new do |opt|
   opt.on('--randomize') { |o| options[:randomize] = o }
   opt.on('--ignore-randomize') { |o| options[:ignore_randomize] = o }
   opt.on('--if-false-next-line') { |o| options[:if_false_next_line] = o }
+  opt.on('--require-initialized') { |o| options[:require_initialized] = o }
   opt.on('--hash-constant') { |o| options[:hash_constant] = o }
   opt.on('--min-max-op') { |o| options[:min_max_op] = o }
 end.parse!
@@ -504,6 +505,7 @@ respect_randomize = true
 respect_randomize = !options[:ignore_randomize] if
   options.key?(:ignore_randomize)
 if_false_next_line = options.key?(:if_false_next_line)
+require_initialized = options.key?(:require_initialized)
 statement_seps = []
 statement_seps << '\\' if backslash_separator
 statement_seps << ':' if colon_separator
@@ -532,7 +534,8 @@ if !run_filename.nil?
   if program.load(run_filename) && program.check
     interpreter =
       Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
-                      respect_randomize, if_false_next_line)
+                      respect_randomize, if_false_next_line,
+                      require_initialized)
     interpreter.run(program, trace_flag, show_timing)
   end
 elsif !list_filename.nil?
@@ -542,7 +545,8 @@ elsif !pretty_filename.nil?
 else
   interpreter =
     Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
-                    respect_randomize, if_false_next_line)
+                    respect_randomize, if_false_next_line,
+                    require_initialized)
   shell = Shell.new(console_io, interpreter, program)
   shell.run
 end

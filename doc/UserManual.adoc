@@ -142,6 +142,7 @@ When the BASIC program ends, BASIC-1973 ends.
 |--trace |Print each statement prior to executing it (useful for debugging). Does the same thing as the 'TRACE' command in interactive mode, but from the command line.
 |--tty |Print output slowly, emulating the speed of an ASR-33 Teletype. Provides a better experience with some programs (often games) in which slow output lets your anticipation build. The fast output of modern computers displays information quickly, and TTY mode lets you read each line as it is "printed".
 |--tty-lf |Similar to --tty but delays only the newline characters, not each individual character. Useful with --trace when debugging.
+|--input-high-bit |Changes the values returned from INPUT$ statements to set the high bit on.
 |--no-colon-separator |Do not allow colon separator for statements. The backslash is still allowed.
 |--colon-file |Allow ':' to mark a file number (in addition to '#'). Forces the --no-colon-separator option.
 |--bang-comment |Allow comments that start with an exclamation point. The apostrophe comments are still allowed.
@@ -156,6 +157,7 @@ When the BASIC program ends, BASIC-1973 ends.
 |--back-tab |Allows the TAB() function to move to the left. Normally, it moves only to the right or not at all.
 |--qmark-after-prompt |On an INPUT line, print the question mark after the prompt.
 |--if-false-next-line |When an IF without an ELSE and with a statement (not a destination line number) evaluates its condition as false, change execution to the next numbered line, not the next statement in a multistatment line.
+|--require-initialized |Require that variables are initialized before they are used.
 |--hash-constant |Allow numeric constants in the form '#c' where c is any single character. Disables file handle operator and the not-equals operator, which are also represented by '#'.
 |--min-max-op | Enable the MIN and MAX operators.
 |==========
@@ -887,6 +889,9 @@ Text values containing space characters must be enclosed in quotes. The quotes w
 
 BASIC removes leading and trailing spaces from unquoted items.
 
+INPUT statements are not affected by the --input-high-bit option.
+(Only the INPUT$ statement is affected.)
+
 Examples:
 
 	40 INPUT A$
@@ -939,6 +944,11 @@ The following statements are identical:
 BASIC-1973 creates a new statement named 'INPUT$'.
 It was easier than modifying the INPUT statement to recognize the '$'-variable sequence and use different behavior.
 BASIC-1973 allows for multiple variables in a single INPUT$ statement, reading multiple keys from the user.
+
+The --input-high-bit changes the behavior of the INPUT$ statement to return values with the high bit set.
+The key 'A' normally generates code 65; with --input-high-bit the code is 65 + 128 or 193.
+
+The key combinations CTRL-A through CTRL-G will interrupt the INPUT$ statement and stop the program.
 
 LET
 ~~~
