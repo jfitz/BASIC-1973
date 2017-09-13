@@ -1334,6 +1334,7 @@ OptionParser.new do |opt|
   opt.on('--no-timing') { |o| options[:no_timing] = o }
   opt.on('--tty') { |o| options[:tty] = o }
   opt.on('--tty-lf') { |o| options[:tty_lf] = o }
+  opt.on('--input-high-bit') { |o| options[:input_high_bit] = o }
   opt.on('--no-colon-separator') { |o| options[:no_colon_sep] = o }
   opt.on('--colon-file') { |o| options[:colon_file] = o }
   opt.on('--bang-comment') { |o| options[:bang_comment] = o }
@@ -1364,6 +1365,7 @@ output_speed = 0
 output_speed = 10 if options.key?(:tty)
 newline_speed = 0
 newline_speed = 10 if options.key?(:tty_lf)
+input_high_bit = options.key?(:input_high_bit)
 colon_separator = !options.key?(:no_colon_sep)
 colon_file = options.key?(:colon_file)
 colon_separator = false if colon_file
@@ -1397,7 +1399,7 @@ default_prompt = TextConstantToken.new('"? "')
 console_io =
   ConsoleIo.new(print_width, zone_width, back_tab, output_speed,
                 newline_speed, implied_semicolon, default_prompt,
-                qmark_after_prompt, echo_input)
+                qmark_after_prompt, echo_input, input_high_bit)
 
 tokenizers = make_tokenizers(statement_seps, comment_leads, allow_hash_constant,
                              min_max_op, colon_file)

@@ -67,7 +67,7 @@ end
 class ConsoleIo
   def initialize(max_width, zone_width, back_tab, print_rate, newline_rate,
                  implied_semicolon, default_prompt, qmark_after_prompt,
-                 echo_input)
+                 echo_input, input_high_bit)
     @column = 0
     @max_width = max_width
     @zone_width = zone_width
@@ -77,6 +77,7 @@ class ConsoleIo
     @implied_semicolon = implied_semicolon
     @default_prompt = default_prompt
     @echo_input = echo_input
+    @input_high_bit = input_high_bit
     @qmark_after_prompt = qmark_after_prompt
     @last_was_numeric = false
   end
@@ -86,8 +87,10 @@ class ConsoleIo
 
   def read_char
     input_text = STDIN.getch
+    input_text.bytes.collect { |c| raise(BASICException, 'BREAK') if c < 8 }
     ascii_text = ascii_printables(input_text)
     print(ascii_text) if @echo_input
+    ascii_text = high_bits(input_text) if @input_high_bit
     ascii_text
   end
 
@@ -167,6 +170,10 @@ class ConsoleIo
       print_item(' ')
       count -= 1
     end
+  end
+
+  def high_bits(text)
+    text.bytes.collect { |c| (c | 0x80).chr }.join
   end
 
   public
