@@ -5,10 +5,12 @@ class Interpreter
   attr_reader :console_io
   attr_reader :trace_out
   attr_reader :if_false_next_line
+  attr_reader :fornext_one_beyond
   attr_reader :start_time
 
   def initialize(console_io, int_floor, ignore_rnd_arg, randomize,
-                 respect_randomize, if_false_next_line, require_initialized)
+                 respect_randomize, if_false_next_line, fornext_one_beyond,
+                 require_initialized)
     @running = false
     @randomizer = Random.new(1)
     @randomizer = Random.new if randomize && respect_randomize
@@ -28,6 +30,7 @@ class Interpreter
     @variables = {}
     @get_value_seen = []
     @if_false_next_line = if_false_next_line
+    @fornext_one_beyond = fornext_one_beyond
     @require_initialized = require_initialized
     @start_time = nil
   end

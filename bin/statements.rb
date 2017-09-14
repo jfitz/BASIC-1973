@@ -1769,7 +1769,10 @@ class NextStatement < AbstractStatement
     s = ' terminated:' + terminated.to_s
     io.trace_output(s)
 
-    return if terminated
+    if terminated
+      fornext_control.bump_control(interpreter) if interpreter.fornext_one_beyond
+      return
+    end
 
     # set next line from top item
     interpreter.next_line_index = fornext_control.start_line_index
