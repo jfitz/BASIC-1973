@@ -206,15 +206,21 @@ class Line
     @text
   end
 
-  def pretty
-    text = AbstractToken.pretty_tokens([], @tokens)
-    unless @comment.nil?
-      space = @text.size - (text.size + @comment.to_s.size)
-      space = 5 if space < 5
-      text += ' ' * space
-      text += @comment.to_s
+  def pretty(multiline)
+    if multiline
+      pretty_lines = AbstractToken.pretty_multiline([], @tokens)
+    else
+      pretty_lines = AbstractToken.pretty_tokens([], @tokens)
     end
-    text
+    unless @comment.nil?
+      line_0 = pretty_lines[0]
+      space = @text.size - (line_0.size + @comment.to_s.size)
+      space = 5 if space < 5
+      line_0 += ' ' * space
+      line_0 += @comment.to_s
+      pretty_lines[0] = line_0
+    end
+    pretty_lines
   end
 
   def profile
@@ -445,6 +451,7 @@ OptionParser.new do |opt|
   opt.on('--tokens') { |o| options[:tokens] = o }
   opt.on('-p', '--pretty SOURCE') { |o| options[:pretty_name] = o }
   opt.on('-r', '--run SOURCE') { |o| options[:run_name] = o }
+  opt.on('--pretty-multiline') { |o| options[:pretty_multiline] = o }
   opt.on('--profile') { |o| options[:profile] = o }
   opt.on('--no-heading') { |o| options[:no_heading] = o }
   opt.on('--echo-input') { |o| options[:echo_input] = o }
@@ -475,6 +482,7 @@ end.parse!
 list_filename = options[:list_name]
 list_tokens = options.key?(:tokens)
 pretty_filename = options[:pretty_name]
+pretty_multiline = options.key?(:pretty_multiline)
 run_filename = options[:run_name]
 show_profile = options.key?(:profile)
 show_heading = !options.key?(:no_heading)
@@ -531,7 +539,8 @@ if show_heading
   console_io.newline
 end
 
-program = Program.new(console_io, tokenizers)
+program = Program.new(console_io, tokenizers, pretty_multiline)
+
 if !run_filename.nil?
   if program.load(run_filename) && program.check
     interpreter =

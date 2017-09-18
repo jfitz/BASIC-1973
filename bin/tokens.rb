@@ -29,7 +29,46 @@ class AbstractToken
       token1 = token
     end
 
-    pretty_tokens.map(&:to_s).join
+    [pretty_tokens.map(&:to_s).join]
+  end
+
+  def self.pretty_multiline(keywords, tokens)
+    pretty_lines = []
+    pretty_tokens = []
+
+    keywords.each do |token|
+      pretty_tokens << WhitespaceToken.new(' ')
+      pretty_tokens << token
+    end
+
+    token1 = WhitespaceToken.new(' ')
+    token2 = WhitespaceToken.new(' ')
+    tokens.each do |token|
+      prev_is_variable = token1.variable? ||
+                         token1.function? ||
+                         token1.user_function?
+
+      prev2_is_operand = token2.operand? || token2.groupend?
+      pretty_tokens << WhitespaceToken.new(' ') unless
+        token.separator? ||
+        (token.groupstart? && prev_is_variable) ||
+        token.groupend? ||
+        token1.groupstart? ||
+        (token1.operator? && token1.to_s != 'NOT' && !prev2_is_operand)
+
+      pretty_tokens << token
+      if token.statement_separator?
+        pretty_line = pretty_tokens.map(&:to_s).join
+        pretty_lines << pretty_line
+        pretty_tokens = []
+      end
+
+      token2 = token1
+      token1 = token
+    end
+
+    pretty_line = pretty_tokens.map(&:to_s).join
+    pretty_lines << pretty_line
   end
 
   def initialize(text)

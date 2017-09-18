@@ -1,10 +1,11 @@
 # program container
 class Program
-  def initialize(console_io, tokenizers)
+  def initialize(console_io, tokenizers, pretty_multiline)
     @console_io = console_io
     @program_lines = {}
     @statement_factory = StatementFactory.instance
     @statement_factory.tokenizers = tokenizers
+    @pretty_multiline = pretty_multiline
   end
 
   def empty?
@@ -241,8 +242,11 @@ class Program
     line_numbers.each do |line_number|
       line = @program_lines[line_number]
       number = line_number.to_s
-      pretty = line.pretty
-      @console_io.print_line(number + pretty)
+      pretty_lines = line.pretty(@pretty_multiline)
+      pretty_lines.each do |pretty_line|
+        @console_io.print_line(number + pretty_line)
+        number = ' ' * number.size
+      end
       statements = line.statements
       statements.each do |statement|
         statement.errors.each { |error| puts ' ' + error }

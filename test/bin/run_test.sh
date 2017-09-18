@@ -37,9 +37,14 @@ fi
 
 if [ -e "$TESTROOT/$TESTGROUP/$TESTNAME/ref/pretty.txt" ]
 then
+    if [ -e "$TESTROOT/$TESTGROUP/$TESTNAME/data/pretty_options.txt" ]
+    then
+	PRETTY_OPTIONS=$(<"$TESTROOT/$TESTGROUP/$TESTNAME/data/pretty_options.txt")
+    fi
+
     echo Pretty program...
     cd "$TESTBED/$TESTNAME"
-    ruby basic.rb --pretty $TESTNAME.bas --no-heading --print-width 0 >pretty.txt $GROUP_OPTIONS $TEST_OPTIONS
+    ruby basic.rb --pretty $TESTNAME.bas --no-heading --print-width 0 >pretty.txt $GROUP_OPTIONS $TEST_OPTIONS $PRETTY_OPTIONS
     cd ../..
     echo Compare pretty...
     diff "$TESTBED/$TESTNAME/pretty.txt" "$TESTROOT/$TESTGROUP/$TESTNAME/ref/pretty.txt"
