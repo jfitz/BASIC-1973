@@ -272,7 +272,7 @@ class NumberTokenBuilder
       end
 
       # if the candidate ends with 'E', remove it
-      # the tokenizer takes as many as possible,
+      # the tokenbuilder takes as many as possible,
       # but a trailing 'E' is not valid
       if candidate[-1] == 'E'
         candidate = candidate[0..-2]

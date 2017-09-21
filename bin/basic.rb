@@ -400,49 +400,49 @@ class Shell
   end
 end
 
-def make_tokenizers(statement_separators, comment_leads, allow_hash_constant,
-                    min_max_op, colon_file)
-  tokenizers = []
+def make_tokenbuilders(statement_separators, comment_leads, allow_hash_constant,
+                      min_max_op, colon_file)
+  tokenbuilders = []
 
-  tokenizers << CommentTokenBuilder.new(comment_leads)
-  tokenizers << RemarkTokenBuilder.new
+  tokenbuilders << CommentTokenBuilder.new(comment_leads)
+  tokenbuilders << RemarkTokenBuilder.new
 
   unless statement_separators.empty?
-    tokenizers <<
+    tokenbuilders <<
       ListTokenBuilder.new(statement_separators, StatementSeparatorToken)
   end
 
   statement_factory = StatementFactory.instance
   keywords = statement_factory.keywords_definitions
 
-  tokenizers << ListTokenBuilder.new(keywords, KeywordToken)
+  tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
   un_ops = UnaryOperator.operators(colon_file)
   bi_ops = BinaryOperator.operators(min_max_op)
   operators = (un_ops + bi_ops).uniq
-  tokenizers << ListTokenBuilder.new(operators, OperatorToken)
+  tokenbuilders << ListTokenBuilder.new(operators, OperatorToken)
 
-  tokenizers << BreakTokenBuilder.new
+  tokenbuilders << BreakTokenBuilder.new
 
-  tokenizers << ListTokenBuilder.new(['(', '['], GroupStartToken)
-  tokenizers << ListTokenBuilder.new([')', ']'], GroupEndToken)
-  tokenizers << ListTokenBuilder.new([',', ';'], ParamSeparatorToken)
+  tokenbuilders << ListTokenBuilder.new(['(', '['], GroupStartToken)
+  tokenbuilders << ListTokenBuilder.new([')', ']'], GroupEndToken)
+  tokenbuilders << ListTokenBuilder.new([',', ';'], ParamSeparatorToken)
 
-  tokenizers <<
+  tokenbuilders <<
     ListTokenBuilder.new(FunctionFactory.function_names, FunctionToken)
 
   function_names = ('FNA'..'FNZ').to_a
-  tokenizers << ListTokenBuilder.new(function_names, UserFunctionToken)
+  tokenbuilders << ListTokenBuilder.new(function_names, UserFunctionToken)
 
-  tokenizers << TextTokenBuilder.new
-  tokenizers << NumberTokenBuilder.new(allow_hash_constant)
-  tokenizers << IntegerTokenBuilder.new
-  tokenizers << VariableTokenBuilder.new
+  tokenbuilders << TextTokenBuilder.new
+  tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
+  tokenbuilders << IntegerTokenBuilder.new
+  tokenbuilders << VariableTokenBuilder.new
 
-  tokenizers <<
+  tokenbuilders <<
     ListTokenBuilder.new(%w(TRUE FALSE), BooleanConstantToken)
 
-  tokenizers << WhitespaceTokenBuilder.new
+  tokenbuilders << WhitespaceTokenBuilder.new
 end
 
 options = {}
@@ -531,15 +531,16 @@ console_io =
                 newline_speed, implied_semicolon, default_prompt,
                 qmark_after_prompt, echo_input, input_high_bit)
 
-tokenizers = make_tokenizers(statement_seps, comment_leads, allow_hash_constant,
-                             min_max_op, colon_file)
+tokenbuilders =
+  make_tokenbuilders(statement_seps, comment_leads, allow_hash_constant,
+                     min_max_op, colon_file)
 
 if show_heading
   console_io.print_line('BASIC-1973 interpreter version -1')
   console_io.newline
 end
 
-program = Program.new(console_io, tokenizers, pretty_multiline)
+program = Program.new(console_io, tokenbuilders, pretty_multiline)
 
 if !run_filename.nil?
   if program.load(run_filename) && program.check

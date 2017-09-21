@@ -1,10 +1,10 @@
 # program container
 class Program
-  def initialize(console_io, tokenizers, pretty_multiline)
+  def initialize(console_io, tokenbuilders, pretty_multiline)
     @console_io = console_io
     @program_lines = {}
     @statement_factory = StatementFactory.instance
-    @statement_factory.tokenizers = tokenizers
+    @statement_factory.tokenbuilders = tokenbuilders
     @pretty_multiline = pretty_multiline
   end
 
