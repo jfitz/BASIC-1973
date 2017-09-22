@@ -474,6 +474,7 @@ OptionParser.new do |opt|
   opt.on('--ignore-randomize') { |o| options[:ignore_randomize] = o }
   opt.on('--if-false-next-line') { |o| options[:if_false_next_line] = o }
   opt.on('--fornext-one-beyond' ) { |o| options[:fornext_one_beyond] = o }
+  opt.on('--lock-fornext') { |o| options[:lock_fornext] = o }
   opt.on('--require-initialized') { |o| options[:require_initialized] = o }
   opt.on('--hash-constant') { |o| options[:hash_constant] = o }
   opt.on('--min-max-op') { |o| options[:min_max_op] = o }
@@ -515,6 +516,7 @@ respect_randomize = !options[:ignore_randomize] if
   options.key?(:ignore_randomize)
 if_false_next_line = options.key?(:if_false_next_line)
 fornext_one_beyond = options.key?(:fornext_one_beyond)
+lock_fornext = options.key?(:lock_fornext)
 require_initialized = options.key?(:require_initialized)
 statement_seps = []
 statement_seps << '\\' if backslash_separator
@@ -547,7 +549,7 @@ if !run_filename.nil?
     interpreter =
       Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
                       respect_randomize, if_false_next_line,
-                      fornext_one_beyond, require_initialized)
+                      fornext_one_beyond, lock_fornext, require_initialized)
     interpreter.run(program, trace_flag, show_timing)
   end
 elsif !list_filename.nil?
@@ -558,7 +560,7 @@ else
   interpreter =
     Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
                     respect_randomize, if_false_next_line,
-                    fornext_one_beyond, require_initialized)
+                    fornext_one_beyond, lock_fornext, require_initialized)
   shell = Shell.new(console_io, interpreter, program)
   shell.run
 end

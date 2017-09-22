@@ -816,7 +816,9 @@ class ForNextControl
   def bump_control(interpreter)
     current_value = interpreter.get_value(@control, false)
     current_value += @step_value
+    interpreter.unlock_variable(@control)
     interpreter.set_value(@control, current_value)
+    interpreter.lock_variable(@control)
   end
 
   def front_terminated?
@@ -895,10 +897,12 @@ class ForStatement < AbstractStatement
       ForNextControl.new(@control, interpreter, from, to, step)
 
     interpreter.assign_fornext(fornext_control)
+    interpreter.lock_variable(@control)
     terminated = fornext_control.front_terminated?
     if terminated
       interpreter.next_line_index =
         interpreter.find_closing_next(@control)
+      interpreter.unlock_variable(@control)
     end
 
     io = interpreter.trace_out
@@ -1770,13 +1774,13 @@ class NextStatement < AbstractStatement
 
     if terminated
       fornext_control.bump_control(interpreter) if interpreter.fornext_one_beyond
-      return
+      interpreter.unlock_variable(@control)
+    else
+      # set next line from top item
+      interpreter.next_line_index = fornext_control.start_line_index
+      # change control variable value
+      fornext_control.bump_control(interpreter)
     end
-
-    # set next line from top item
-    interpreter.next_line_index = fornext_control.start_line_index
-    # change control variable value
-    fornext_control.bump_control(interpreter)
   end
 end
 

@@ -159,6 +159,7 @@ When the BASIC program ends, BASIC-1973 ends.
 |--qmark-after-prompt |On an INPUT line, print the question mark after the prompt.
 |--if-false-next-line |When an IF without an ELSE and with a statement (not a destination line number) evaluates its condition as false, change execution to the next numbered line, not the next statement in a multistatment line.
 |--fornext-one-beyond |When a FOR/NEXT loop ends, the index value is one step (usually 1) beyond the end value. (Normally index value is the end value.)
+|--lock-fornext |Lock control variables to FOR/NEXT loops. Variables can be read but not changed.
 |--require-initialized |Require that variables are initialized before they are used.
 |--hash-constant |Allow numeric constants in the form '#c' where c is any single character. Disables file handle operator and the not-equals operator, which are also represented by '#'.
 |--min-max-op | Enable the MIN and MAX operators.
@@ -759,6 +760,11 @@ It is possible to change the value of the control value within the loop. You can
 	40 NEXT I
 
 This will lock the program into a permanent loop, as the value of I will never reach 10.
+
+The --lock-fornext option prevents such changes.
+When --lock-fornext is specified, an attempt to change a control variable causes an error.
+The variable may be changed after the FOR/NEXT loop terminates.
+Note that a GOTO to outside of the FOR/NEXT loop does not terminate the loop or unlock the variable.
 
 GO TO
 ~~~~~

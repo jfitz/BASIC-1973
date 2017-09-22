@@ -10,7 +10,7 @@ class Interpreter
 
   def initialize(console_io, int_floor, ignore_rnd_arg, randomize,
                  respect_randomize, if_false_next_line, fornext_one_beyond,
-                 require_initialized)
+                 lock_fornext, require_initialized)
     @running = false
     @randomizer = Random.new(1)
     @randomizer = Random.new if randomize && respect_randomize
@@ -31,6 +31,8 @@ class Interpreter
     @get_value_seen = []
     @if_false_next_line = if_false_next_line
     @fornext_one_beyond = fornext_one_beyond
+    @lock_fornext = lock_fornext
+    @locked_variables = []
     @require_initialized = require_initialized
     @start_time = nil
   end
@@ -414,6 +416,9 @@ class Interpreter
   end
 
   def set_value(variable, value)
+    raise(BASICException, "Cannot change locked variable #{variable}") if
+      @lock_fornext && @locked_variables.include?(variable)
+    
     # convert a numeric to a string when a string is expected
     if value.numeric_constant? &&
        variable.content_type == 'TextConstant'
@@ -453,6 +458,24 @@ class Interpreter
       variable = Variable.new(name, coords)
       set_value(variable, value)
     end
+  end
+
+  def lock_variable(variable)
+    return unless @lock_fornext
+    if @locked_variables.include?(variable)
+      raise(BASICExeption,
+            "Attempt to lock an already locked variable #{variable}")
+    end
+    @locked_variables << variable
+  end
+
+  def unlock_variable(variable)
+    return unless @lock_fornext
+    unless @locked_variables.include?(variable)
+      raise(BASICException,
+            "Attempt to unlock a variable #{variable} not locked")
+    end
+    @locked_variables.delete(variable)
   end
 
   def push_return(destination)
