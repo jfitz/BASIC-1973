@@ -532,7 +532,8 @@ class NumericFormatTokenBuilder
     result = false
 
     result = true if c == '#'
-    result = true if c == '.' # && !candidate.empty? && !candidate.include('.')
+    result = true if c == '.' && !candidate.empty? && !candidate.include?('.')
+    result = true if c == '*' && (candidate.empty? || candidate[-1] == '*')
 
     result
   end
@@ -596,7 +597,7 @@ end
 class ConstantFormatTokenBuilder
   def try(text)
     @token = ''
-    while text.size > 0 && !'#!&\\'.include?(text[0])
+    while text.size > 0 && !'#!&\\*'.include?(text[0])
       @token += text[0]
       text = text[1..-1]
     end

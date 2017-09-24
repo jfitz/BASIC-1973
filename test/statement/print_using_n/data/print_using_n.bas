@@ -14,4 +14,8 @@
 100 PRINT USING "FLOAT [###.##]", F
 110 PRINT USING "FLOAT [#####.#####]", L
 120 PRINT USING "FLOAT [##########.#]", L
+130 PRINT USING "FLOAT [*****#.####]", F
+140 PRINT USING "FLOAT [*****#.####]", L
+150 PRINT USING "FLOAT [$****#.####]", F
+160 PRINT USING "FLOAT [$****#.####]", L
 999 END

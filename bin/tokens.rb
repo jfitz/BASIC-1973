@@ -380,6 +380,9 @@ class NumericFormatToken < AbstractToken
       spec = '%' + width.to_s + '.0f'
       text = sprintf(spec, numeric_constant.to_v)
     end
+    if @text.include?('*')
+      text.gsub!(' ', '*')
+    end
     token = TextConstantToken.new('"' + text + '"')
     constant = TextConstant.new(token)
   end
