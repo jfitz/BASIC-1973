@@ -369,8 +369,17 @@ class NumericFormatToken < AbstractToken
   end
 
   def format(numeric_constant)
-    text = numeric_constant.to_v.to_s
-    text = ' ' + text while text.size < @text.size
+    if @text.include?('.')
+      width = @text.size
+      parts = @text.split('.')
+      decimals = parts[1].size
+      spec = '%' + width.to_s + '.' + decimals.to_s + 'f'
+      text = sprintf(spec, numeric_constant.to_v)
+    else
+      width = @text.size
+      spec = '%' + width.to_s + '.0f'
+      text = sprintf(spec, numeric_constant.to_v)
+    end
     token = TextConstantToken.new('"' + text + '"')
     constant = TextConstant.new(token)
   end

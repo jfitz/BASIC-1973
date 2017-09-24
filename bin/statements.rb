@@ -2052,14 +2052,15 @@ class PrintUsingStatement < AbstractPrintStatement
   end
 
   def execute_core(interpreter)
-    format, print_items = extract_format(@print_items, interpreter)
+    format_spec, print_items = extract_format(@print_items, interpreter)
     # split format
-    formats = split_format(format)
+    formats = split_format(format_spec)
     fh = interpreter.console_io
     formats.each do |format|
       constant = nil
       if format.wants_item
         item = print_items.shift
+        item = print_items.shift while item.class.to_s == 'CarriageControl'
         raise(BASICException, 'Too few print items for format') if item.nil?
         constants = item.evaluate(interpreter, false)
         constant = constants[0]

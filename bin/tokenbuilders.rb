@@ -503,11 +503,19 @@ end
 # token reader for PRINT USING numeric
 class NumericFormatTokenBuilder
   def try(text)
-    @token = ''
-    while text.size > 0 && text[0] == '#'
-      @token += text[0]
-      text = text[1..-1]
+    candidate = ''
+    i = 0
+    accepted = true
+    while i < text.size && accepted
+      c = text[i]
+      accepted = accept?(candidate, c)
+      if accepted
+        candidate += c
+        i += 1
+      end
     end
+
+    @token = candidate
   end
 
   def count
@@ -516,6 +524,17 @@ class NumericFormatTokenBuilder
 
   def token
     NumericFormatToken.new(@token)
+  end
+
+  private
+
+  def accept?(candidate, c)
+    result = false
+
+    result = true if c == '#'
+    result = true if c == '.' # && !candidate.empty? && !candidate.include('.')
+
+    result
   end
 end
 
