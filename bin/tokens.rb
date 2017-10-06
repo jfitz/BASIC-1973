@@ -71,6 +71,8 @@ class AbstractToken
     pretty_lines << pretty_line
   end
 
+  attr_reader :text
+
   def initialize(text)
     @text = text.to_s
     @is_break = false
@@ -280,6 +282,18 @@ class FunctionToken < AbstractToken
     super
     @is_function = true
   end
+
+  def ==(other)
+    @text == other.text
+  end
+
+  def hash
+    @text.hash
+  end
+
+  def <=>(other)
+    @text <=> other.text
+  end
 end
 
 # text constant token
@@ -291,6 +305,22 @@ class TextConstantToken < AbstractToken
 
   def value
     @text[1..-2]
+  end
+
+  def eql?(other)
+    value == other.value
+  end
+
+  def ==(other)
+    value == other.value
+  end
+
+  def hash
+    @text.hash
+  end
+
+  def <=>(other)
+    value <=> other.value
   end
 end
 
@@ -308,6 +338,22 @@ class NumericConstantToken < AbstractToken
   def to_i
     @text.to_f.to_i
   end
+
+  def eql?(other)
+    @text.to_f == other.to_f
+  end
+
+  def ==(other)
+    @text.to_f == other.to_f
+  end
+
+  def hash
+    @text.hash
+  end
+
+  def <=>(other)
+    @text.to_f <=> other.to_f
+  end
 end
 
 # integer constant token
@@ -323,6 +369,22 @@ class IntegerConstantToken < AbstractToken
 
   def to_i
     @text.to_f.to_i
+  end
+
+  def eql?(other)
+    @text.to_f == other.to_f
+  end
+
+  def ==(other)
+    @text.to_f == other.to_f
+  end
+
+  def hash
+    @text.hash
+  end
+
+  def <=>(other)
+    @text.to_f <=> other.to_f
   end
 end
 
@@ -340,6 +402,18 @@ class UserFunctionToken < AbstractToken
     super
     @is_user_function = true
   end
+
+  def ==(other)
+    @text == other.text
+  end
+
+  def hash
+    @text.hash
+  end
+
+  def <=>(other)
+    @text <=> other.text
+  end
 end
 
 # variable token
@@ -355,6 +429,18 @@ class VariableToken < AbstractToken
     return 'IntegerConstant' if @text.include?('%')
 
     'NumericConstant'
+  end
+
+  def ==(other)
+    @text == other.text
+  end
+
+  def hash
+    @text.hash
+  end
+
+  def <=>(other)
+    @text <=> other.text
   end
 end
 
