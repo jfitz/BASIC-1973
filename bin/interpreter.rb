@@ -35,6 +35,7 @@ class Interpreter
     @locked_variables = []
     @require_initialized = require_initialized
     @start_time = nil
+    @null_out = NullOut.new
   end
 
   private
@@ -50,7 +51,7 @@ class Interpreter
 
   public
 
-  def run(program, trace_flag, show_timing)
+  def run(program, trace_flag, show_timing, show_profile)
     @program = program
     @program_lines = program.lines
     @trace_flag = trace_flag
@@ -65,11 +66,10 @@ class Interpreter
       end
     end
 
-    @null_out = NullOut.new
-
     @start_time = Time.now
     timing = Benchmark.measure { run_and_time }
     print_timing(timing) if show_timing
+    @program.profile('') if show_profile
   end
 
   def run_and_time

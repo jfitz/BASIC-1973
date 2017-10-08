@@ -29,7 +29,7 @@ class AbstractToken
       token1 = token
     end
 
-    [pretty_tokens.map(&:to_s).join]
+    pretty_tokens.map(&:to_s).join
   end
 
   def self.pretty_multiline(keywords, tokens)
@@ -307,18 +307,6 @@ class TextConstantToken < AbstractToken
     @text[1..-2]
   end
 
-  def eql?(other)
-    value == other.value
-  end
-
-  def ==(other)
-    value == other.value
-  end
-
-  def hash
-    @text.hash
-  end
-
   def <=>(other)
     value <=> other.value
   end
@@ -339,18 +327,6 @@ class NumericConstantToken < AbstractToken
     @text.to_f.to_i
   end
 
-  def eql?(other)
-    @text.to_f == other.to_f
-  end
-
-  def ==(other)
-    @text.to_f == other.to_f
-  end
-
-  def hash
-    @text.hash
-  end
-
   def <=>(other)
     @text.to_f <=> other.to_f
   end
@@ -369,18 +345,6 @@ class IntegerConstantToken < AbstractToken
 
   def to_i
     @text.to_f.to_i
-  end
-
-  def eql?(other)
-    @text.to_f == other.to_f
-  end
-
-  def ==(other)
-    @text.to_f == other.to_f
-  end
-
-  def hash
-    @text.hash
   end
 
   def <=>(other)

@@ -210,7 +210,7 @@ class Line
     if multiline
       pretty_lines = AbstractToken.pretty_multiline([], @tokens)
     else
-      pretty_lines = AbstractToken.pretty_tokens([], @tokens)
+      pretty_lines = [AbstractToken.pretty_tokens([], @tokens)]
     end
     unless @comment.nil?
       line_0 = pretty_lines[0]
@@ -385,7 +385,9 @@ class Shell
     if @program.empty?
       @console_io.print_line('No program loaded')
     else
-      @interpreter.run(@program, trace_flag, show_timing) if @program.check
+      if @program.check
+        @interpreter.run(@program, trace_flag, show_timing, false)
+      end
     end
   end
 
@@ -403,7 +405,7 @@ class Shell
 end
 
 def make_tokenbuilders(statement_separators, comment_leads, allow_hash_constant,
-                      min_max_op, colon_file)
+                       min_max_op, colon_file)
   tokenbuilders = []
 
   tokenbuilders << CommentTokenBuilder.new(comment_leads)
@@ -475,7 +477,7 @@ OptionParser.new do |opt|
   opt.on('--randomize') { |o| options[:randomize] = o }
   opt.on('--ignore-randomize') { |o| options[:ignore_randomize] = o }
   opt.on('--if-false-next-line') { |o| options[:if_false_next_line] = o }
-  opt.on('--fornext-one-beyond' ) { |o| options[:fornext_one_beyond] = o }
+  opt.on('--fornext-one-beyond') { |o| options[:fornext_one_beyond] = o }
   opt.on('--lock-fornext') { |o| options[:lock_fornext] = o }
   opt.on('--require-initialized') { |o| options[:require_initialized] = o }
   opt.on('--hash-constant') { |o| options[:hash_constant] = o }
@@ -552,7 +554,7 @@ if !run_filename.nil?
       Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
                       respect_randomize, if_false_next_line,
                       fornext_one_beyond, lock_fornext, require_initialized)
-    interpreter.run(program, trace_flag, show_timing)
+    interpreter.run(program, trace_flag, show_timing, show_profile)
   end
 elsif !list_filename.nil?
   program.list('', list_tokens) if program.load(list_filename)
