@@ -1,3 +1,19 @@
+# line reference for cross reference
+class LineRef
+  def initialize(line_num, assignment)
+    @line_num = line_num
+    @assignment = assignment
+  end
+
+  def to_s
+    if @assignment
+      @line_num.to_s + '='
+    else
+      @line_num.to_s
+    end
+  end
+end
+
 # program container
 class Program
   def initialize(console_io, tokenbuilders, pretty_multiline)
@@ -185,84 +201,84 @@ class Program
   end
 
   def numeric_refs
-    nums_list = {}
+    refs = {}
     @program_lines.keys.sort.each do |line_number|
       line = @program_lines[line_number]
       statements = line.statements
 
-      nums = []
+      rs = []
       statements.each do |statement|
-        nums += statement.numerics
+        rs += statement.numerics
       end
-      nums_list[line_number] = nums
+      refs[line_number] = rs
     end
-    nums_list
+    refs
   end
 
   def strings_refs
-    strs_list = {}
+    refs = {}
     @program_lines.keys.sort.each do |line_number|
       line = @program_lines[line_number]
       statements = line.statements
 
-      strs = []
+      rs = []
       statements.each do |statement|
-        strs += statement.strings
+        rs += statement.strings
       end
-      strs_list[line_number] = strs
+      refs[line_number] = rs
     end
-    strs_list
+    refs
   end
 
   def function_refs
-    funcs_list = {}
+    refs = {}
     @program_lines.keys.sort.each do |line_number|
       line = @program_lines[line_number]
       statements = line.statements
 
-      funcs = []
+      rs = []
       statements.each do |statement|
-        funcs = statement.functions
+        rs = statement.functions
       end
-      funcs_list[line_number] = funcs
+      refs[line_number] = rs
     end
-    funcs_list
+    refs
   end
 
   def user_function_refs
-    udfs_list = {}
+    refs = {}
     @program_lines.keys.sort.each do |line_number|
       line = @program_lines[line_number]
       statements = line.statements
 
-      udfs = []
+      rs = []
       statements.each do |statement|
-        udfs += statement.userfuncs
+        rs += statement.userfuncs
       end
-      udfs_list[line_number] = udfs
+      refs[line_number] = rs
     end
-    udfs_list
+    refs
   end
 
   def variables_refs
-    vars_list = {}
+    refs = {}
     @program_lines.keys.sort.each do |line_number|
       line = @program_lines[line_number]
       statements = line.statements
 
-      vars = []
+      rs = []
       statements.each do |statement|
-        vars = statement.variables
+        rs = statement.variables
       end
-      vars_list[line_number] = vars
+      refs[line_number] = rs
     end
-    vars_list
+    refs
   end
 
   def print_refs(refs)
-    refs.keys.sort.each do |num|
-      lines = refs[num]
-      puts num.to_s + ":\t" + lines.map(&:to_s).uniq.join(', ')
+    refs.keys.sort.each do |line_number|
+      lines = refs[line_number]
+      puts line_number.to_s + ":\t" + lines.map(&:to_s).uniq.join(', ')
     end
   end
 
@@ -305,13 +321,10 @@ class Program
   def make_summary(list)
     summary = {}
     list.each do |line_number, refs|
+      line_ref = LineRef.new(line_number, false)
       refs.each do |ref|
-        if summary.key?(ref)
-          entries = summary[ref]
-          entries << line_number
-        else
-          entries = [line_number]
-        end
+        entries = summary.key?(ref) ? summary[ref] : []
+        entries << line_ref
         summary[ref] = entries
       end
     end
