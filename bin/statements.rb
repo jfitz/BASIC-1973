@@ -514,11 +514,11 @@ class InvalidStatement < AbstractStatement
   end
 
   def pre_execute(_)
-    raise(BASICException, @errors[0])
+    raise(BASICRuntimeError, @errors[0])
   end
 
   def execute_core(_)
-    raise(BASICException, @errors[0])
+    raise(BASICRuntimeError, @errors[0])
   end
 end
 
@@ -621,9 +621,9 @@ class ChangeStatement < AbstractStatement
 
       dims = interpreter.get_dimensions(source_variable_name)
 
-      raise(BASICException, 'Source not found') if dims.nil?
+      raise(BASICRuntimeError, 'Source not found') if dims.nil?
 
-      raise(BASICException, 'Source must have 1 dimension') unless
+      raise(BASICRuntimeError, 'Source must have 1 dimension') unless
         dims.size == 1
       cols = dims[0].to_i
       values = {}
@@ -638,7 +638,7 @@ class ChangeStatement < AbstractStatement
       interpreter.set_value(target_value, text)
 
     else
-      raise BASICException, 'Type mismatch'
+      raise BASICRuntimeError, 'Type mismatch'
     end
   end
 end
@@ -679,7 +679,7 @@ class CloseStatement < AbstractStatement
     when 'FileHandle'
       fh = fns[0]
     else
-      raise(BASICException, "Invalid file number #{fh.class}:#{fh}")
+      raise(BASICRuntimeError, "Invalid file number #{fh.class}:#{fh}")
     end
     interpreter.close_file(fh)
   end
@@ -784,7 +784,7 @@ class DimStatement < AbstractStatement
       variable = variables[0]
       subscripts = variable.subscripts
       if subscripts.empty?
-        raise BASICException, 'DIM statement requires subscript range'
+        raise BASICRuntimeError, 'DIM statement requires subscript range'
       end
       interpreter.set_dimensions(variable, subscripts)
     end
@@ -1017,7 +1017,7 @@ class GosubStatement < AbstractStatement
   def execute_core(interpreter)
     line_number = @destination
     index = interpreter.statement_start_index(line_number, 0)
-    raise(BASICException, 'Line number not found') if index.nil?
+    raise(BASICRuntimeError, 'Line number not found') if index.nil?
     destination = LineNumberIndex.new(line_number, 0, index)
     interpreter.push_return(interpreter.next_line_index)
     interpreter.next_line_index = destination
@@ -1110,26 +1110,26 @@ class GotoStatement < AbstractStatement
     unless @destination.nil?
       line_number = @destination
       index = interpreter.statement_start_index(line_number, 0)
-      raise(BASICException, 'Line number not found') if index.nil?
+      raise(BASICRuntimeError, 'Line number not found') if index.nil?
       destination = LineNumberIndex.new(line_number, 0, index)
       interpreter.next_line_index = destination
     end
 
     unless @destinations.nil?
       values = @expression.evaluate(interpreter, false)
-      raise(BASICException, 'Expecting one value') unless values.size == 1
+      raise(BASICRuntimeError, 'Expecting one value') unless values.size == 1
       value = values[0]
-      raise(BASICException, 'Invalid value') unless
+      raise(BASICRuntimeError, 'Invalid value') unless
         value.numeric_constant?
       io = interpreter.trace_out
       io.trace_output(' ' + @expression.to_s + ' = ' + value.to_s)
       index = value.to_i
-      raise(BASICException, 'Index out of range') if
+      raise(BASICRuntimeError, 'Index out of range') if
         index < 1 || index > @destinations.size
       # get destination in list
       line_number = @destinations[index - 1]
       index = interpreter.statement_start_index(line_number, 0)
-      raise(BASICException, 'Line number not found') if index.nil?
+      raise(BASICRuntimeError, 'Line number not found') if index.nil?
       destination = LineNumberIndex.new(line_number, 0, index)
       interpreter.next_line_index = destination
     end
@@ -1330,7 +1330,7 @@ class IfStatement < AbstractStatement
     s = ' ' + @expression.to_s
     io.trace_output(s)
     values = @expression.evaluate(interpreter, true)
-    raise(BASICException, 'Expression error') unless
+    raise(BASICRuntimeError, 'Expression error') unless
       values.size == 1
 
     result = values[0]
@@ -1341,7 +1341,7 @@ class IfStatement < AbstractStatement
       unless @destination.nil?
         line_number = @destination
         index = interpreter.statement_start_index(line_number, 0)
-        raise(BASICException, 'Line number not found') if index.nil?
+        raise(BASICRuntimeError, 'Line number not found') if index.nil?
         destination = LineNumberIndex.new(line_number, 0, index)
         interpreter.next_line_index = destination
       end
@@ -1351,7 +1351,7 @@ class IfStatement < AbstractStatement
       unless @else_dest.nil?
         line_number = @else_dest
         index = interpreter.statement_start_index(line_number, 0)
-        raise(BASICException, 'Line number not found') if index.nil?
+        raise(BASICRuntimeError, 'Line number not found') if index.nil?
         destination = LineNumberIndex.new(line_number, 0, index)
         interpreter.next_line_index = destination
       end
@@ -1449,15 +1449,15 @@ class InputStatement < AbstractStatement
         prompt = value
         input_items.shift
       end
-    rescue BASICException
+    rescue BASICRuntimeError
       fh = nil
     end
     expression_list = []
     input_items.each do |items_list|
       begin
         expression_list << TargetExpression.new(items_list, ScalarReference)
-      rescue BASICException
-        raise(BASICException,
+      rescue BASICRuntimeError
+        raise(BASICRuntimeError,
               'Invalid variable ' + items_list.map(&:to_s).join)
       end
     end
@@ -1473,9 +1473,9 @@ class InputStatement < AbstractStatement
     begin
       name_value_pairs =
         zip(expression_list, values[0, expression_list.length])
-    rescue BASICException
-      raise(BASICException, 'End of file') unless fh.nil?
-      raise(BASICException, 'Unequal lists')
+    rescue BASICRuntimeError
+      raise(BASICRuntimeError, 'End of file') unless fh.nil?
+      raise(BASICRuntimeError, 'Unequal lists')
     end
     name_value_pairs.each do |hash|
       l_values = hash['name'].evaluate(interpreter, false)
@@ -1552,8 +1552,8 @@ class InputCharStatement < AbstractStatement
     input_items.each do |items_list|
       begin
         expression_list << TargetExpression.new(items_list, ScalarReference)
-      rescue BASICException
-        raise(BASICException,
+      rescue BASICRuntimeError
+        raise(BASICRuntimeError,
               'Invalid variable ' + items_list.map(&:to_s).join)
       end
     end
@@ -1561,8 +1561,8 @@ class InputCharStatement < AbstractStatement
     begin
       name_value_pairs =
         zip(expression_list, values[0, expression_list.length])
-    rescue BASICException
-      raise(BASICException, 'Unequal lists')
+    rescue BASICRuntimeError
+      raise(BASICRuntimeError, 'Unequal lists')
     end
     name_value_pairs.each do |hash|
       l_values = hash['name'].evaluate(interpreter, false)
@@ -1575,7 +1575,7 @@ class InputCharStatement < AbstractStatement
   private
 
   def zip(names, values)
-    raise(BASICException, 'Unequal lists') if names.size != values.size
+    raise(BASICRuntimeError, 'Unequal lists') if names.size != values.size
     results = []
     (0...names.size).each do |i|
       results << { 'name' => names[i], 'value' => values[i] }
@@ -1707,15 +1707,15 @@ class LineInputStatement < AbstractStatement
         prompt = value
         input_items.shift
       end
-    rescue BASICException
+    rescue BASICRuntimeError
       fh = nil
     end
     expression_list = []
     input_items.each do |items_list|
       begin
         expression_list << TargetExpression.new(items_list, ScalarReference)
-      rescue BASICException
-        raise(BASICException,
+      rescue BASICRuntimeError
+        raise(BASICRuntimeError,
               'Invalid variable ' + items_list.map(&:to_s).join)
       end
     end
@@ -1731,9 +1731,9 @@ class LineInputStatement < AbstractStatement
     begin
       name_value_pairs =
         zip(expression_list, values[0, expression_list.length])
-    rescue BASICException
-      raise(BASICException, 'End of file') unless fh.nil?
-      raise(BASICException, 'Unequal lists')
+    rescue BASICRuntimeError
+      raise(BASICRuntimeError, 'End of file') unless fh.nil?
+      raise(BASICRuntimeError, 'Unequal lists')
     end
     name_value_pairs.each do |hash|
       l_values = hash['name'].evaluate(interpreter, false)
@@ -1757,7 +1757,7 @@ class LineInputStatement < AbstractStatement
   end
 
   def zip(names, values)
-    raise(BASICException, 'Unequal lists') if names.size != values.size
+    raise(BASICRuntimeError, 'Unequal lists') if names.size != values.size
     results = []
     (0...names.size).each do |i|
       results << { 'name' => names[i], 'value' => values[i] }
@@ -1899,18 +1899,18 @@ class OnStatement < AbstractStatement
 
   def execute_core(interpreter)
     values = @expression.evaluate(interpreter, true)
-    raise(BASICException, 'Expecting one value') unless values.size == 1
+    raise(BASICRuntimeError, 'Expecting one value') unless values.size == 1
     value = values[0]
-    raise(BASICException, 'Invalid value') unless value.numeric_constant?
+    raise(BASICRuntimeError, 'Invalid value') unless value.numeric_constant?
     io = interpreter.trace_out
     io.trace_output(' ' + @expression.to_s + ' = ' + value.to_s)
     index = value.to_i
-    raise(BASICException, 'Index out of range') if
+    raise(BASICRuntimeError, 'Index out of range') if
       index < 1 || index > @destinations.size
     # get destination in list
     line_number = @destinations[index - 1]
     index = interpreter.statement_start_index(line_number, 0)
-    raise(BASICException, 'Line number not found') if index.nil?
+    raise(BASICRuntimeError, 'Line number not found') if index.nil?
     destination = LineNumberIndex.new(line_number, 0, index)
     interpreter.next_line_index = destination
   end
@@ -1978,7 +1978,7 @@ class OpenStatement < AbstractStatement
     when 'FileHandle'
       fh = fhs[0]
     else
-      raise(BASICException, "Invalid file number #{fh.class}:#{fh}")
+      raise(BASICRuntimeError, "Invalid file number #{fh.class}:#{fh}")
     end
     interpreter.open_file(filename, fh, @mode)
   end
@@ -2111,7 +2111,7 @@ class PrintUsingStatement < AbstractPrintStatement
       if format.wants_item
         item = print_items.shift
         item = print_items.shift while item.class.to_s == 'CarriageControl'
-        raise(BASICException, 'Too few print items for format') if item.nil?
+        raise(BASICRuntimeError, 'Too few print items for format') if item.nil?
         constants = item.evaluate(interpreter, false)
         constant = constants[0]
       end
@@ -2266,8 +2266,8 @@ class ReadStatement < AbstractReadStatement
     tokens_lists.each do |tokens_list|
       begin
         expression_list << TargetExpression.new(tokens_list, ScalarReference)
-      rescue BASICException
-        raise(BASICException,
+      rescue BASICRuntimeError
+        raise(BASICRuntimeError,
               'Invalid variable ' + tokens_list.map(&:to_s).join)
       end
     end
@@ -2350,7 +2350,7 @@ class SleepStatement < AbstractStatement
 
   def execute_core(interpreter)
     tokens_lists = @tokens_lists.clone
-    raise(BASICException, 'Too many values') if tokens_lists.size > 1
+    raise(BASICRuntimeError, 'Too many values') if tokens_lists.size > 1
     first_expression = tokens_lists[0]
     expression = ValueScalarExpression.new(first_expression)
     values = expression.evaluate(interpreter, true)
@@ -2405,7 +2405,7 @@ class TraceStatement < AbstractStatement
 
   def execute_core(interpreter)
     tokens_lists = @tokens_lists.clone
-    raise(BASICException, 'Too many values') if tokens_lists.size > 1
+    raise(BASICRuntimeError, 'Too many values') if tokens_lists.size > 1
     first_expression = tokens_lists[0]
     expression = ValueScalarExpression.new(first_expression)
     values = expression.evaluate(interpreter, true)
@@ -2588,8 +2588,8 @@ class ArrReadStatement < AbstractReadStatement
       begin
         expression = TargetExpression.new(tokens_list, ArrayReference)
         expression_list << expression
-      rescue BASICException
-        raise(BASICException,
+      rescue BASICRuntimeError
+        raise(BASICRuntimeError,
               'Invalid variable ' + tokens_list.map(&:to_s).join)
       end
     end
@@ -2613,7 +2613,7 @@ class ArrReadStatement < AbstractReadStatement
     when 1
       read_array(name, dims, interpreter, ds)
     else
-      raise(BASICException, 'Dimensions for ARR READ must be 1')
+      raise(BASICRuntimeError, 'Dimensions for ARR READ must be 1')
     end
   end
 
@@ -2731,7 +2731,7 @@ class ArrLetStatement < AbstractStatement
   def first_value(interpreter)
     r_values = @assignment.eval_value(interpreter)
     r_value = r_values[0]
-    raise(BASICException, 'Expected Array') if
+    raise(BASICRuntimeError, 'Expected Array') if
       r_value.class.to_s != 'BASICArray'
     r_value
   end
@@ -2818,8 +2818,8 @@ class MatReadStatement < AbstractReadStatement
       begin
         expression = TargetExpression.new(tokens_list, MatrixReference)
         expression_list << expression
-      rescue BASICException
-        raise(BASICException,
+      rescue BASICRuntimeError
+        raise(BASICRuntimeError,
               'Invalid variable ' + tokens_list.map(&:to_s).join)
       end
     end
@@ -2845,7 +2845,7 @@ class MatReadStatement < AbstractReadStatement
     when 2
       read_matrix(name, dims, interpreter, ds)
     else
-      raise(BASICException, 'Dimensions for MAT READ must be 1 or 2')
+      raise(BASICRuntimeError, 'Dimensions for MAT READ must be 1 or 2')
     end
   end
 

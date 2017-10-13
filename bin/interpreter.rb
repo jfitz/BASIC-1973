@@ -41,11 +41,11 @@ class Interpreter
   private
 
   def verify_next_line_index
-    raise BASICException, 'Program terminated without END' if
+    raise BASICRuntimeError, 'Program terminated without END' if
       @next_line_index.nil?
     line_numbers = @program_lines.keys
     unless line_numbers.include?(@next_line_index.number)
-      raise(BASICException, "Line number #{@next_line_index.number} not found")
+      raise(BASICRuntimeError, "Line number #{@next_line_index.number} not found")
     end
   end
 
@@ -142,7 +142,7 @@ class Interpreter
       preexecute_a_statement
       @current_line_index = @program.find_next_line_index(@current_line_index)
     end
-  rescue BASICException => e
+  rescue BASICRuntimeError => e
     line_number = @current_line_index.number
     message = "#{e.message} in line #{line_number}"
     @console_io.print_line(message)
@@ -181,7 +181,7 @@ class Interpreter
         verify_next_line_index
         @current_line_index = @next_line_index
       end
-    rescue BASICException => e
+    rescue BASICRuntimeError => e
       if @current_line_index.nil?
         @console_io.print_line(e.message)
       else
@@ -230,7 +230,7 @@ class Interpreter
         stack.push value
       end
       act = stack.length
-      raise(BASICException, 'Bad expression') if act != exp
+      raise(BASICRuntimeError, 'Bad expression') if act != exp
 
       next if act.zero?
 
@@ -318,7 +318,7 @@ class Interpreter
       forward_line_numbers.shift
     end
 
-    raise(BASICException, 'FOR without NEXT') # if none found, error
+    raise(BASICRuntimeError, 'FOR without NEXT') # if none found, error
   end
 
   def set_dimensions(variable, subscripts)
@@ -378,10 +378,10 @@ class Interpreter
   def check_subscripts(variable, subscripts)
     int_subscripts = normalize_subscripts(subscripts)
     dimensions = make_dimensions(variable, int_subscripts.size)
-    raise(BASICException, 'Incorrect number of subscripts') if
+    raise(BASICRuntimeError, 'Incorrect number of subscripts') if
       int_subscripts.size != dimensions.size
     int_subscripts.zip(dimensions).each do |pair|
-      raise(BASICException, "Subscript #{pair[0]} out of range #{pair[1]}") if
+      raise(BASICRuntimeError, "Subscript #{pair[0]} out of range #{pair[1]}") if
         pair[0] > pair[1]
     end
   end
@@ -402,7 +402,7 @@ class Interpreter
       default_value = TextConstant.new(TextConstantToken.new('""')) if
         default_type == 'TextConstant'
       unless @variables.key?(v)
-        raise(BASICException, "Uninitialized variable #{v}") if @require_initialized
+        raise(BASICRuntimeError, "Uninitialized variable #{v}") if @require_initialized
         @variables[v] = default_value
       end
       value = @variables[v]
@@ -416,7 +416,7 @@ class Interpreter
   end
 
   def set_value(variable, value)
-    raise(BASICException, "Cannot change locked variable #{variable}") if
+    raise(BASICRuntimeError, "Cannot change locked variable #{variable}") if
       @lock_fornext && @locked_variables.include?(variable)
     
     # convert a numeric to a string when a string is expected
@@ -444,7 +444,7 @@ class Interpreter
 
     # check that value type matches variable type
     unless variable.compatible?(value)
-      raise(BASICException,
+      raise(BASICRuntimeError,
             "Type mismatch '#{value}' is not #{variable.content_type}")
     end
 
@@ -463,7 +463,7 @@ class Interpreter
   def lock_variable(variable)
     return unless @lock_fornext
     if @locked_variables.include?(variable)
-      raise(BASICExeption,
+      raise(BASICRuntimeError,
             "Attempt to lock an already locked variable #{variable}")
     end
     @locked_variables << variable
@@ -472,7 +472,7 @@ class Interpreter
   def unlock_variable(variable)
     return unless @lock_fornext
     unless @locked_variables.include?(variable)
-      raise(BASICException,
+      raise(BASICRuntimeError,
             "Attempt to unlock a variable #{variable} not locked")
     end
     @locked_variables.delete(variable)
@@ -483,7 +483,7 @@ class Interpreter
   end
 
   def pop_return
-    raise(BASICException, 'RETURN without GOSUB') if @return_stack.empty?
+    raise(BASICRuntimeError, 'RETURN without GOSUB') if @return_stack.empty?
     @return_stack.pop
   end
 
@@ -494,15 +494,15 @@ class Interpreter
 
   def retrieve_fornext(control_variable)
     fornext = @fornexts[control_variable]
-    raise(BASICException, 'NEXT without FOR') if fornext.nil?
+    raise(BASICRuntimeError, 'NEXT without FOR') if fornext.nil?
     fornext
   end
 
   def add_file_names(file_names)
     file_names.each do |name|
-      raise(BASICException, 'Invalid file name') unless
+      raise(BASICRuntimeError, 'Invalid file name') unless
         name.class.to_s == 'TextConstant'
-      raise(BASICException, "File '#{name.to_v}' not found") unless
+      raise(BASICRuntimeError, "File '#{name.to_v}' not found") unless
         File.file?(name.to_v)
       file_handle = FileHandle.new(@file_handlers.size + 1)
       @file_handlers[file_handle] = FileHandler.new(name.to_v)
@@ -510,7 +510,7 @@ class Interpreter
   end
 
   def open_file(filename, fh, mode)
-    raise(BASICException, 'Invalid file name') unless
+    raise(BASICRuntimeError, 'Invalid file name') unless
       filename.class.to_s == 'TextConstant'
     ### todo: check for already open handle
     fhr = FileHandler.new(filename.to_v)
@@ -519,7 +519,7 @@ class Interpreter
   end
 
   def close_file(fh)
-    raise(BASICException, 'Unknown file handle') unless
+    raise(BASICRuntimeError, 'Unknown file handle') unless
       @file_handlers.key?(fh)
     fhr = @file_handlers[fh]
     fhr.close
@@ -529,7 +529,7 @@ class Interpreter
   def get_file_handler(file_handle)
     return @console_io if file_handle.nil?
 
-    raise(BASICException, 'Unknown file handle') unless
+    raise(BASICRuntimeError, 'Unknown file handle') unless
       @file_handlers.key?(file_handle)
     fh = @file_handlers[file_handle]
     fh.set_mode(:print)
@@ -537,7 +537,7 @@ class Interpreter
   end
 
   def get_input(file_handle)
-    raise(BASICException, 'Unknown file handle') unless
+    raise(BASICRuntimeError, 'Unknown file handle') unless
       @file_handlers.key?(file_handle)
     fh = @file_handlers[file_handle]
     fh.set_mode(:read)
@@ -546,7 +546,7 @@ class Interpreter
 
   def get_data_store(file_handle)
     return @data_store if file_handle.nil?
-    raise(BASICException, 'Unknown file handle') unless
+    raise(BASICRuntimeError, 'Unknown file handle') unless
       @file_handlers.key?(file_handle)
     fh = @file_handlers[file_handle]
     fh.set_mode(:read)

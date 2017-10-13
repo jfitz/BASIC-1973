@@ -209,102 +209,102 @@ class AbstractValueElement < AbstractElement
   end
 
   def ==(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     @value == other.to_v
   end
 
   def >(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     @value > other.to_v
   end
 
   def >=(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     @value >= other.to_v
   end
 
   def <(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     @value < other.to_v
   end
 
   def <=(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     @value <= other.to_v
   end
 
   def b_eq(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     BooleanConstant.new(@value == other.to_v)
   end
 
   def b_ne(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     BooleanConstant.new(@value != other.to_v)
   end
 
   def b_gt(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     BooleanConstant.new(@value > other.to_v)
   end
 
   def b_ge(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     BooleanConstant.new(@value >= other.to_v)
   end
 
   def b_lt(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     BooleanConstant.new(@value < other.to_v)
   end
 
   def b_le(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     BooleanConstant.new(@value <= other.to_v)
   end
 
   def b_and(_)
-    raise(BASICException, 'Invalid operator AND')
+    raise(BASICRuntimeError, 'Invalid operator AND')
   end
 
   def b_or(_)
-    raise(BASICException, 'Invalid operator OR')
+    raise(BASICRuntimeError, 'Invalid operator OR')
   end
 
   def +(_)
-    raise(BASICException, 'Invalid operator +')
+    raise(BASICRuntimeError, 'Invalid operator +')
   end
 
   def -(_)
-    raise(BASICException, 'Invalid operator -')
+    raise(BASICRuntimeError, 'Invalid operator -')
   end
 
   def add(_)
-    raise(BASICException, 'Invalid operator add')
+    raise(BASICRuntimeError, 'Invalid operator add')
   end
 
   def subtract(_)
-    raise(BASICException, 'Invalid operator subtract')
+    raise(BASICRuntimeError, 'Invalid operator subtract')
   end
 
   def multiply(_)
-    raise(BASICException, 'Invalid operator multiply')
+    raise(BASICRuntimeError, 'Invalid operator multiply')
   end
 
   def divide(_)
-    raise(BASICException, 'Invalid operator divide')
+    raise(BASICRuntimeError, 'Invalid operator divide')
   end
 
   def power(_)
-    raise(BASICException, 'Invalid operator power')
+    raise(BASICRuntimeError, 'Invalid operator power')
   end
 
   def max(_)
-    raise(BASICException, 'Invalid operator MAX')
+    raise(BASICRuntimeError, 'Invalid operator MAX')
   end
 
   def min(_)
-    raise(BASICException, 'Invalid operator MIN')
+    raise(BASICRuntimeError, 'Invalid operator MIN')
   end
 
   def printable?
@@ -393,57 +393,57 @@ class NumericConstant < AbstractValueElement
     @operand = true
     @precedence = 0
     @numeric_constant = true
-    raise BASICException, "'#{text}' is not a number" if @value.nil?
+    raise BASICRuntimeError, "'#{text}' is not a number" if @value.nil?
   end
 
   def +(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     NumericConstant.new(@value + other.to_v)
   end
 
   def -(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     NumericConstant.new(@value - other.to_v)
   end
 
   def *(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     NumericConstant.new(@value * other.to_v)
   end
 
   def add(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     NumericConstant.new(@value + other.to_v)
   end
 
   def subtract(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     NumericConstant.new(@value - other.to_v)
   end
 
   def multiply(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     NumericConstant.new(@value * other.to_v)
   end
 
   def divide(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
-    raise(BASICException, 'Divide by zero') if other == NumericConstant.new(0)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Divide by zero') if other == NumericConstant.new(0)
     NumericConstant.new(@value.to_f / other.to_v.to_f)
   end
 
   def power(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     NumericConstant.new(@value**other.to_v)
   end
 
   def maximum(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     NumericConstant.new([@value, other.to_v].max)
   end
 
   def minimum(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     NumericConstant.new([@value, other.to_v].min)
   end
 
@@ -488,12 +488,12 @@ class NumericConstant < AbstractValueElement
   end
 
   def max(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     @value = [to_v, other.to_v].max
   end
 
   def min(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     @value = [to_v, other.to_v].min
   end
 
@@ -616,7 +616,7 @@ class IntegerConstant < AbstractValueElement
   end
 
   def divide(other)
-    raise(BASICException, 'Divide by zero') if other == IntegerConstant.new(0)
+    raise(BASICRuntimeError, 'Divide by zero') if other == IntegerConstant.new(0)
     IntegerConstant.new(@value.to_f / other.to_v.to_f)
   end
 
@@ -625,12 +625,12 @@ class IntegerConstant < AbstractValueElement
   end
 
   def maximum(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     IntegerConstant.new([@value, other.to_v].max)
   end
 
   def minimum(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     IntegerConstant.new([@value, other.to_v].min)
   end
 
@@ -675,12 +675,12 @@ class IntegerConstant < AbstractValueElement
   end
 
   def max(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     @value = [to_v, other.to_v].max
   end
 
   def min(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     @value = [to_v, other.to_v].min
   end
 
@@ -771,12 +771,12 @@ class TextConstant < AbstractValueElement
   end
 
   def maximum(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     TextConstant.new([@value, other.to_v].max)
   end
 
   def minimum(other)
-    raise(BASICException, 'Type mismatch') unless compatible?(other)
+    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
     TextConstant.new([@value, other.to_v].min)
   end
 
@@ -863,9 +863,9 @@ class FileHandle < AbstractElement
 
   def initialize(num)
     super()
-    raise(BASICException, 'Invalid file reference') unless
+    raise(BASICRuntimeError, 'Invalid file reference') unless
       num.class.to_s == 'Fixnum'
-    raise(BASICException, 'Invalid file number') if num < 0
+    raise(BASICRuntimeError, 'Invalid file number') if num < 0
     @number = num
     @file_handle = true
   end
@@ -896,7 +896,7 @@ class CarriageControl
   end
 
   def initialize(token)
-    raise(BASICException, "'#{token}' is not a valid separator") unless
+    raise(BASICRuntimeError, "'#{token}' is not a valid separator") unless
       CarriageControl.init?(token)
     text = token.to_s
     @operator = text

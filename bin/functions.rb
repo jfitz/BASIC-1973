@@ -11,10 +11,10 @@ class Function < AbstractElement
   private
 
   def ensure_argument_count(stack, expected)
-    raise(BASICException, @name + ' requires argument') unless
+    raise(BASICRuntimeError, @name + ' requires argument') unless
       previous_is_array(stack)
     valid = counts_to_text(expected)
-    raise(BASICException, @name + ' requires ' + valid + ' argument') unless
+    raise(BASICRuntimeError, @name + ' requires ' + valid + ' argument') unless
       expected.include? stack[-1].size
   end
 
@@ -25,7 +25,7 @@ class Function < AbstractElement
   end
 
   def check_args(args)
-    raise(BASICException, 'No arguments for function') if
+    raise(BASICRuntimeError, 'No arguments for function') if
       args.class.to_s != 'Array'
   end
 
@@ -42,7 +42,7 @@ class Function < AbstractElement
       compatible = value.boolean_constant?
     end
 
-    raise(BASICException, "Type mismatch value #{value} not #{type}") unless
+    raise(BASICRuntimeError, "Type mismatch value #{value} not #{type}") unless
       compatible
 
     compatible = false
@@ -55,7 +55,7 @@ class Function < AbstractElement
       compatible = value.matrix?
     end
 
-    raise(BASICException, "Type mismatch value #{value} not #{shape}") unless
+    raise(BASICRuntimeError, "Type mismatch value #{value} not #{shape}") unless
       compatible
   end
 
@@ -64,7 +64,7 @@ class Function < AbstractElement
     n_specs = specs.size
     n_args = args.size
     if n_args != n_specs
-      raise(BASICException,
+      raise(BASICRuntimeError,
             "Function #{@name} expects #{n_specs} argument, found #{n_args}")
     end
     (0..n_specs - 1).each do |i|
@@ -97,7 +97,7 @@ class UserFunction < AbstractScalarFunction
 
   def initialize(text)
     text = text.to_s if text.class.to_s == 'UserFunctionToken'
-    raise(BASICException, "'#{text}' is not a valid function") unless
+    raise(BASICRuntimeError, "'#{text}' is not a valid function") unless
       UserFunction.init?(text)
     super
   end
@@ -106,11 +106,11 @@ class UserFunction < AbstractScalarFunction
   def evaluate(interpreter, stack, trace)
     expression = interpreter.get_user_function(@name)
     # verify function is defined
-    raise(BASICException, "Function #{@name} not defined") if expression.nil?
+    raise(BASICRuntimeError, "Function #{@name} not defined") if expression.nil?
 
     # verify arguments
     user_var_values = stack.pop
-    raise(BASICException, 'No arguments for function') if
+    raise(BASICRuntimeError, 'No arguments for function') if
       user_var_values.class.to_s != 'Array'
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
     specs = [spec] * user_var_values.length
@@ -146,8 +146,8 @@ class AbstractMatrixFunction < Function
   end
 
   def check_square(dims)
-    raise(BASICException, @name + ' requires matrix') unless dims.size == 2
-    raise(BASICException, @name + ' requires square matrix') unless
+    raise(BASICRuntimeError, @name + ' requires matrix') unless dims.size == 2
+    raise(BASICRuntimeError, @name + ' requires square matrix') unless
       dims[1] == dims[0]
   end
 end
@@ -179,9 +179,9 @@ class FunctionAsc < AbstractScalarFunction
     spec = { 'type' => 'text', 'shape' => 'scalar' }
     check_arg_types(args, [spec])
     text = args[0].to_v
-    raise(BASICException, 'Empty string in ASC()') if text.empty?
+    raise(BASICRuntimeError, 'Empty string in ASC()') if text.empty?
     value = text[0].ord
-    raise(BASICException, 'Invalid value in ASC()') unless
+    raise(BASICRuntimeError, 'Invalid value in ASC()') unless
       value.between?(32, 126)
     token = NumericConstantToken.new(value.to_s)
     NumericConstant.new(token)
@@ -215,7 +215,7 @@ class FunctionChr < AbstractScalarFunction
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
     check_arg_types(args, [spec])
     value = args[0].to_i
-    raise(BASICException, 'Invalid value for CHR$()') unless
+    raise(BASICRuntimeError, 'Invalid value for CHR$()') unless
       value.between?(32, 126)
     text = value.chr
     quoted = '"' + text + '"'
@@ -303,7 +303,7 @@ class FunctionExt < AbstractScalarFunction
     value = args[0].to_v
     start = args[1].to_i
     stop = args[2].to_i
-    raise(BASICException, 'Invalid index for EXT$()') if
+    raise(BASICRuntimeError, 'Invalid index for EXT$()') if
       start < 1 || start > value.size || stop < start || stop > value.size
     text = value[(start - 1)..(stop - 1)]
     quoted = '"' + text + '"'
@@ -332,8 +332,8 @@ class FunctionIdn < AbstractScalarFunction
   private
 
   def check_square(dims)
-    raise(BASICException, @name + ' requires matrix') unless dims.size == 2
-    raise(BASICException, @name + ' requires square matrix') unless
+    raise(BASICRuntimeError, @name + ' requires matrix') unless dims.size == 2
+    raise(BASICRuntimeError, @name + ' requires square matrix') unless
       dims[1] == dims[0]
   end
 end
@@ -354,7 +354,7 @@ class FunctionInstr < AbstractScalarFunction
     ]
     check_arg_types(args, specs)
     start = args[0].to_i
-    raise(BASICException, "Invalid start index for #{@name}()") if start < 1
+    raise(BASICRuntimeError, "Invalid start index for #{@name}()") if start < 1
     start -= 1
     value = args[1].to_v
     search = args[2].to_v
@@ -418,7 +418,7 @@ class FunctionLeft < AbstractScalarFunction
     check_arg_types(args, specs)
     value = args[0].to_v
     count = args[1].to_i
-    raise(BASICException, "Invalid count for #{@name}()") if count < 0
+    raise(BASICRuntimeError, "Invalid count for #{@name}()") if count < 0
     text = value[0..count].chop
     quoted = '"' + text + '"'
     token = TextConstantToken.new(quoted)
@@ -476,10 +476,10 @@ class FunctionMid < AbstractScalarFunction
     check_arg_types(args, specs)
     value = args[0].to_v
     start = args[1].to_i
-    raise(BASICException, "Invalid start index for #{@name}()") if start < 1
+    raise(BASICRuntimeError, "Invalid start index for #{@name}()") if start < 1
     start -= 1
     end_index = args[2].to_i - 1
-    raise(BASICException, "Invalid end index for #{@name}()") if
+    raise(BASICRuntimeError, "Invalid end index for #{@name}()") if
       end_index < start
     text = value[start..end_index]
     text = '' if text.nil?
@@ -521,7 +521,7 @@ class FunctionPack < AbstractArrayFunction
     check_arg_types(args, [spec])
     array = args[0]
     dims = array.dimensions
-    raise(BASICException, @name + ' requires array') unless dims.size == 1
+    raise(BASICRuntimeError, @name + ' requires array') unless dims.size == 1
     array.pack
   end
 end
@@ -542,7 +542,7 @@ class FunctionRight < AbstractScalarFunction
     check_arg_types(args, specs)
     value = args[0].to_v
     count = args[1].to_i
-    raise(BASICException, "Invalid count for #{@name}()") if count < 0
+    raise(BASICRuntimeError, "Invalid count for #{@name}()") if count < 0
     start = value.size - count
     start = 0 if start < 0
     text = value[start..-1]

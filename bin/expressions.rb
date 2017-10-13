@@ -43,7 +43,7 @@ class ScalarReference < Variable
       @subscripts = interpreter.normalize_subscripts(subscripts)
       num_args = @subscripts.length
       if num_args.zero?
-        raise(BASICException,
+        raise(BASICRuntimeError,
               'Variable expects subscripts, found empty parentheses')
       end
       interpreter.check_subscripts(@variable_name, @subscripts)
@@ -110,22 +110,22 @@ class BASICArray
   def print(printer, interpreter, carriage)
     case @dimensions.size
     when 0
-      raise BASICException, 'Need dimension in array'
+      raise BASICRuntimeError, 'Need dimension in array'
     when 1
       print_1(printer, interpreter, carriage)
     else
-      raise BASICException, 'Too many dimensions in array'
+      raise BASICRuntimeError, 'Too many dimensions in array'
     end
   end
 
   def write(printer, interpreter, carriage)
     case @dimensions.size
     when 0
-      raise BASICException, 'Need dimension in array'
+      raise BASICRuntimeError, 'Need dimension in array'
     when 1
       write_1(printer, interpreter, carriage)
     else
-      raise BASICException, 'Too many dimensions in array'
+      raise BASICRuntimeError, 'Too many dimensions in array'
     end
   end
 
@@ -246,31 +246,31 @@ class Matrix
   def print(printer, interpreter, carriage)
     case @dimensions.size
     when 0
-      raise BASICException, 'Need dimensions in matrix'
+      raise BASICRuntimeError, 'Need dimensions in matrix'
     when 1
       print_1(printer, interpreter, carriage)
     when 2
       print_2(printer, interpreter, carriage)
     else
-      raise BASICException, 'Too many dimensions in matrix'
+      raise BASICRuntimeError, 'Too many dimensions in matrix'
     end
   end
 
   def write(printer, interpreter, carriage)
     case @dimensions.size
     when 0
-      raise BASICException, 'Need dimensions in matrix'
+      raise BASICRuntimeError, 'Need dimensions in matrix'
     when 1
       write_1(printer, interpreter, carriage)
     when 2
       write_2(printer, interpreter, carriage)
     else
-      raise BASICException, 'Too many dimensions in matrix'
+      raise BASICRuntimeError, 'Too many dimensions in matrix'
     end
   end
 
   def transpose_values
-    raise(BASICException, 'TRN requires matrix') unless @dimensions.size == 2
+    raise(BASICRuntimeError, 'TRN requires matrix') unless @dimensions.size == 2
     new_values = {}
     (1..@dimensions[0].to_i).each do |row|
       (1..@dimensions[1].to_i).each do |col|
@@ -283,8 +283,8 @@ class Matrix
   end
 
   def determinant
-    raise(BASICException, 'DET requires matrix') unless @dimensions.size == 2
-    raise(BASICException, 'DET requires square matrix') if
+    raise(BASICRuntimeError, 'DET requires matrix') unless @dimensions.size == 2
+    raise(BASICRuntimeError, 'DET requires square matrix') if
       @dimensions[1] != @dimensions[0]
     case @dimensions[0].to_i
     when 1
@@ -546,8 +546,8 @@ class ArrayValue < Variable
 
   def evaluate(interpreter, _, trace)
     dims = interpreter.get_dimensions(@variable_name)
-    raise(BASICException, 'Variable has no dimensions') if dims.nil?
-    raise(BASICException, 'Array requires one dimension') if dims.size != 1
+    raise(BASICRuntimeError, 'Variable has no dimensions') if dims.nil?
+    raise(BASICRuntimeError, 'Array requires one dimension') if dims.size != 1
     values = evaluate_1(interpreter, dims[0].to_i, trace)
     BASICArray.new(dims, values)
   end
@@ -586,7 +586,7 @@ class CompoundReference < Variable
       @subscripts = interpreter.normalize_subscripts(subscripts)
       num_args = @subscripts.length
       if num_args.zero?
-        raise(BASICException,
+        raise(BASICRuntimeError,
               'Variable expects subscripts, found empty parentheses')
       end
       interpreter.check_subscripts(@variable_name, @subscripts)
@@ -610,7 +610,7 @@ class MatrixValue < Variable
 
   def evaluate(interpreter, _, trace)
     dims = interpreter.get_dimensions(@variable_name)
-    raise(BASICException, 'Variable has no dimensions') if dims.nil?
+    raise(BASICRuntimeError, 'Variable has no dimensions') if dims.nil?
     values = evaluate_n(interpreter, dims, trace)
     Matrix.new(dims, values)
   end
@@ -667,7 +667,7 @@ class VariableDimension < Variable
       @subscripts = stack.pop
       num_args = @subscripts.length
       if num_args.zero?
-        raise(BASICException,
+        raise(BASICRuntimeError,
               'Variable expects subscripts, found empty parentheses')
       end
     end
@@ -704,7 +704,7 @@ class Parser
   end
 
   def expressions
-    raise(BASICException, 'Expression error') unless @operator_stack.empty?
+    raise(BASICRuntimeError, 'Expression error') unless @operator_stack.empty?
     @parsed_expressions.concat @parens_group unless @parens_group.empty?
     @parsed_expressions << @current_expression unless @current_expression.empty?
     @parsed_expressions
@@ -779,12 +779,12 @@ class Parser
   def end_group(group_end_element)
     stack_to_expression(@operator_stack, @current_expression)
     @parens_group << @current_expression
-    raise(BASICException, 'Expression error') if @operator_stack.empty?
+    raise(BASICRuntimeError, 'Expression error') if @operator_stack.empty?
     # remove the '(' or '[' starter
     start_op = @operator_stack.pop
     error = 'Bracket/parenthesis mismatch, found ' + group_end_element.to_s +
             ' to match ' + start_op.to_s
-    raise(BASICException, error) unless group_end_element.match?(start_op)
+    raise(BASICRuntimeError, error) unless group_end_element.match?(start_op)
     if start_op.param_start?
       list = List.new(@parens_group)
       @operator_stack.push(list)
@@ -885,7 +885,7 @@ class AbstractExpression
       element = c.new(token) if element.nil? && c.accept?(token)
     end
     if element.nil?
-      raise(BASICException,
+      raise(BASICRuntimeError,
             "Token '#{token.class}:#{token}' is not a value or operator")
     end
     element
@@ -1003,13 +1003,13 @@ class TargetExpression < AbstractExpression
   private
 
   def check_length
-    raise(BASICException, 'Value list is empty (length 0)') if
+    raise(BASICRuntimeError, 'Value list is empty (length 0)') if
       @parsed_expressions.empty?
   end
 
   def check_all_lengths
     @parsed_expressions.each do |parsed_expression|
-      raise(BASICException, 'Value is not assignable (length 0)') if
+      raise(BASICRuntimeError, 'Value is not assignable (length 0)') if
         parsed_expression.empty?
     end
   end
@@ -1017,7 +1017,7 @@ class TargetExpression < AbstractExpression
   def check_resolve_types
     @parsed_expressions.each do |parsed_expression|
       if parsed_expression[-1].class.to_s != 'ScalarValue'
-        raise(BASICException,
+        raise(BASICRuntimeError,
               "Value is not assignable (type #{parsed_expression[-1].class})")
       end
     end
@@ -1035,7 +1035,7 @@ class UserFunctionDefinition
     # parse into name '=' expression
     line_text = tokens.map(&:to_s).join
     parts = split_tokens(tokens)
-    raise(BASICException, "'#{line_text}' is not a valid assignment") if
+    raise(BASICRuntimeError, "'#{line_text}' is not a valid assignment") if
       parts.size != 3
     user_function_prototype = UserFunctionPrototype.new(parts[0])
     @name = user_function_prototype.name
@@ -1074,7 +1074,7 @@ class UserFunctionPrototype
     @name = tokens[0].to_s
     @arguments = variables.map(&:to_s)
     # arguments must be unique
-    raise(BASICException, 'Duplicate parameters') unless
+    raise(BASICRuntimeError, 'Duplicate parameters') unless
       @arguments.uniq.size == @arguments.size
   end
 
@@ -1086,7 +1086,7 @@ class UserFunctionPrototype
 
   # verify tokens are UserFunction, open, close
   def check_tokens(tokens)
-    raise(BASICException, 'Invalid function specification') unless
+    raise(BASICRuntimeError, 'Invalid function specification') unless
       tokens.size >= 3 && tokens[0].user_function? &&
       tokens[1].groupstart? && tokens[-1].groupend?
   end
@@ -1095,11 +1095,11 @@ class UserFunctionPrototype
   def check_params(params)
     variables = params.values_at(* params.each_index.select(&:even?))
     variables.each do |variable|
-      raise(BASICException, 'Invalid parameter') unless variable.variable?
+      raise(BASICRuntimeError, 'Invalid parameter') unless variable.variable?
     end
     separators = params.values_at(* params.each_index.select(&:odd?))
     separators.each do |separator|
-      raise(BASICException, 'Invalid list separator') unless
+      raise(BASICRuntimeError, 'Invalid list separator') unless
         separator.separator?
     end
     variables
@@ -1112,7 +1112,7 @@ class AbstractAssignment
     # parse into variable, '=', expression
     @token_lists = split_tokens(tokens)
     line_text = tokens.map(&:to_s).join
-    raise(BASICException, "'#{line_text}' is not a valid assignment") if
+    raise(BASICRuntimeError, "'#{line_text}' is not a valid assignment") if
       @token_lists.size != 3 ||
       !(@token_lists[1].operator? && @token_lists[1].equals?)
   end
