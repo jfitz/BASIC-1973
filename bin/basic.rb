@@ -316,11 +316,10 @@ class Shell
           line_number_range = @program.line_list_spec(rest)
           @program.list(line_number_range, false)
         when 'LOAD'
-          rest = cmd[4..-1]
-          @program.load(rest)
+          @program.load(tokens[1..-1])
         when 'SAVE'
           rest = cmd[4..-1]
-          @program.save(rest)
+          @program.save(tokens[1..-1])
         when 'TOKENS'
           rest = cmd[6..-1]
           line_number_range = @program.line_list_spec(rest)
@@ -433,6 +432,7 @@ def make_command_tokenbuilders(colon_file, min_max_op, allow_hash_constant)
 
   tokenbuilders << TextTokenBuilder.new
   tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
+  tokenbuilders << InputBareTextTokenBuilder.new
 
   tokenbuilders << WhitespaceTokenBuilder.new
 end

@@ -73,39 +73,79 @@ class Program
     end
   end
 
-  def load(filename)
-    filename = filename.strip
-    if !filename.empty?
-      begin
-        File.open(filename, 'r') do |file|
-          @program_lines = {}
-          file.each_line do |line|
-            line = @console_io.ascii_printables(line)
-            store_program_line(line, false)
-          end
-        end
-        true
-      rescue Errno::ENOENT
-        @console_io.print_line("File '#{filename}' not found")
-        false
-      end
-    else
+  def load(tokens)
+    if tokens.empty?
       @console_io.print_line('Filename not specified')
+      return false
+    end
+
+    if tokens.size > 1
+      @console_io.print_line('Too many items specified')
+      return false
+    end
+
+    token = tokens[0]
+
+    if !token.text_constant?
+      @console_io.print_line('File name must be quoted literal')
+      return false
+    end
+
+    filename = token.value.strip
+    if filename.empty?
+      @console_io.print_line('Filename not specified')
+      return false
+    end
+
+    load_file(filename)
+  end
+
+  def load_file(filename)
+    begin
+      File.open(filename, 'r') do |file|
+        @program_lines = {}
+        file.each_line do |line|
+          line = @console_io.ascii_printables(line)
+          store_program_line(line, false)
+        end
+      end
+      true
+    rescue Errno::ENOENT
+      @console_io.print_line("File '#{filename}' not found")
       false
     end
   end
 
-  def save(filename)
+  def save(tokens)
+    if tokens.empty?
+      @console_io.print_line('Filename not specified')
+      return false
+    end
+
+    if tokens.size > 1
+      @console_io.print_line('Too many items specified')
+      return false
+    end
+
+    token = tokens[0]
+
+    if !token.text_constant?
+      @console_io.print_line('File name must be text')
+      return false
+    end
+
+    filename = token.value.strip
+    if filename.empty?
+      @console_io.print_line('Filename not specified')
+      return false
+    end
+    
     if @program_lines.empty?
       @console_io.print_line('No program loaded')
-    else
-      filename = filename.strip
-      if filename.empty?
-        @console_io.print_line('Filename not specified')
-      else
-        save_file(filename)
-      end
+      return false
     end
+
+    save_file(filename)
   end
 
   def save_file(filename)
@@ -114,9 +154,7 @@ class Program
       File.open(filename, 'w') do |file|
         line_numbers.each do |line_num|
           line = @program_lines[line_num]
-          statements = line.statements
-          text = statements.join('\\')
-          file.puts line_num + ' ' + text
+          file.puts line_num.to_s + ' ' + line.list
         end
         file.close
       end
