@@ -257,10 +257,13 @@ end
 
 # interactive shell
 class Shell
-  def initialize(console_io, interpreter, program)
+  def initialize(console_io, interpreter, program, colon_file, min_max_op,
+                 allow_hash_constant)
     @console_io = console_io
     @interpreter = interpreter
     @program = program
+    @tokenbuilders =
+      make_command_tokenbuilders(colon_file, min_max_op, allow_hash_constant)
   end
 
   def run
@@ -283,15 +286,18 @@ class Shell
   private
 
   def execute_command(cmd)
-    return false if cmd.empty?
-    return true if cmd == 'EXIT'
-    cmd4 = cmd[0..3]
-    cmd6 = cmd[0..5]
-    cmd7 = cmd[0..6]
-    cmd8 = cmd[0..7]
+    # tokenize
+    invalid_tokenbuilder = InvalidTokenBuilder.new
+    tokenizer = Tokenizer.new(@tokenbuilders, invalid_tokenbuilder)
+    tokens = tokenizer.tokenize(cmd)
+    tokens.delete_if(&:whitespace?)
+    
+    return false if tokens.empty?
     begin
-      if %w(NEW RUN TRACE .VARS .UDFS .DIMS).include?(cmd)
-        case cmd
+      if tokens[0].keyword?
+        case tokens[0].to_s
+        when 'EXIT'
+          return true
         when 'NEW'
           @program.cmd_new
           @interpreter.clear_variables
@@ -305,41 +311,32 @@ class Shell
           dump_user_functions
         when '.DIMS'
           dump_dims
-        end
-      elsif %w(LIST LOAD SAVE).include?(cmd4)
-        rest = cmd[4..-1]
-        case cmd4
         when 'LIST'
+          rest = cmd[4..-1]
           line_number_range = @program.line_list_spec(rest)
           @program.list(line_number_range, false)
         when 'LOAD'
+          rest = cmd[4..-1]
           @program.load(rest)
         when 'SAVE'
+          rest = cmd[4..-1]
           @program.save(rest)
-        end
-      elsif %w(TOKENS PRETTY DELETE).include?(cmd6)
-        rest = cmd[6..-1]
-        case cmd6
         when 'TOKENS'
+          rest = cmd[6..-1]
           line_number_range = @program.line_list_spec(rest)
           @program.list(line_number_range, true)
         when 'PRETTY'
+          rest = cmd[6..-1]
           line_number_range = @program.line_list_spec(rest)
           @program.pretty(line_number_range)
         when 'DELETE'
+          rest = cmd[6..-1]
           line_number_range = @program.line_list_spec(rest)
           @program.delete(line_number_range)
-        end
-      elsif %w(PROFILE).include?(cmd7)
-        rest = cmd[7..-1]
-        case cmd7
         when 'PROFILE'
+          rest = cmd[7..-1]
           line_number_range = @program.line_list_spec(rest)
           @program.profile(line_number_range)
-        end
-      elsif %w(RENUMBER CROSSREF).include?(cmd8)
-        rest = cmd[8..-1]
-        case cmd
         when 'RENUMBER'
           @program.renumber if @program.check
         when 'CROSSREF'
@@ -351,7 +348,8 @@ class Shell
     rescue BASICCommandError => e
       @console_io.print_line(e.to_s)
      end
-     false
+
+    false
   end
   
   def cmd_run(trace_flag, show_timing)
@@ -377,8 +375,8 @@ class Shell
   end
 end
 
-def make_tokenbuilders(statement_separators, comment_leads, allow_hash_constant,
-                       min_max_op, colon_file)
+def make_interpreter_tokenbuilders(statement_separators, comment_leads,
+                                   allow_hash_constant, min_max_op, colon_file)
   tokenbuilders = []
 
   tokenbuilders << CommentTokenBuilder.new(comment_leads)
@@ -418,6 +416,23 @@ def make_tokenbuilders(statement_separators, comment_leads, allow_hash_constant,
 
   tokenbuilders <<
     ListTokenBuilder.new(%w(TRUE FALSE), BooleanConstantToken)
+
+  tokenbuilders << WhitespaceTokenBuilder.new
+end
+
+def make_command_tokenbuilders(colon_file, min_max_op, allow_hash_constant)
+  tokenbuilders = []
+
+  keywords = %w(CROSSREF DELETE EXIT LIST LOAD NEW PRETTY PROFILE RENUMBER RUN SAVE TOKENS TRACE .DIMS .UDFS .VARS)
+  tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
+
+  un_ops = UnaryOperator.operators(colon_file)
+  bi_ops = BinaryOperator.operators(min_max_op)
+  operators = (un_ops + bi_ops).uniq
+  tokenbuilders << ListTokenBuilder.new(operators, OperatorToken)
+
+  tokenbuilders << TextTokenBuilder.new
+  tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
 
   tokenbuilders << WhitespaceTokenBuilder.new
 end
@@ -511,8 +526,8 @@ console_io =
                 qmark_after_prompt, echo_input, input_high_bit)
 
 tokenbuilders =
-  make_tokenbuilders(statement_seps, comment_leads, allow_hash_constant,
-                     min_max_op, colon_file)
+  make_interpreter_tokenbuilders(statement_seps, comment_leads,
+                                 allow_hash_constant, min_max_op, colon_file)
 
 if show_heading
   console_io.print_line('BASIC-1973 interpreter version -1')
@@ -544,7 +559,9 @@ else
     Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
                     respect_randomize, if_false_next_line,
                     fornext_one_beyond, lock_fornext, require_initialized)
-  shell = Shell.new(console_io, interpreter, program)
+  shell =
+    Shell.new(console_io, interpreter, program, colon_file, min_max_op,
+              allow_hash_constant)
   shell.run
 end
 
