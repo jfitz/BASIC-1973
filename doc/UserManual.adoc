@@ -1977,3 +1977,15 @@ Lines that begin with numbers are considered part of the program; lines without 
 
 To replace a line, enter a line with the number of the old line.
 You must enter the entire line; there are no 'line editing' capabilities.
+
+Frequently asked questions
+--------------------------
+
+Why does the cross-reference output list only positive numeric values?
+Why does it convert negative values to positive values?
+
+When BASIC tokenizes a line, it converts expressions into groups of tokens.
+A unary minus is separate from the numeric value.
+All numeric values are stored as positive values.
+When the program runs, the expression is evaluated and the value becomes negative.
+A statement like LET X = -5 or DATA 3,4,-1,-14 stores what we humans interpret as '-5' in two tokens, the unary minus and the value 5.
