@@ -45,7 +45,7 @@ class Interpreter
   def make_debug_tokenbuilders
     tokenbuilders = []
 
-    keywords = %w(GO STOP)
+    keywords = %w(GO STOP STEP LIST DELETE PRINT LET DIM)
     tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
     un_ops = UnaryOperator.operators(false)
@@ -80,6 +80,7 @@ class Interpreter
     @program = program
     @program_lines = program.lines
     @trace_flag = trace_flag
+    @step_mode = false
 
     # reset profile metrics
     @program_lines.keys.sort.each do |line_number|
@@ -205,6 +206,9 @@ class Interpreter
     when 'STOP'
       @debug_done = true
       stop_running
+    when 'STEP'
+      @step_mode = true
+      @debug_done = true
     else
       print "Unknown command #{keyword}\n"
     end
@@ -217,6 +221,7 @@ class Interpreter
     line = @program_lines[current_line_number]
     @console_io.newline_when_needed
     @console_io.print_line('DEBUG ' + current_line_number.to_s + ': ' + line.pretty(false).join(''))
+    @step_mode = false
     @debug_done = false
     until @debug_done
       cmd = @console_io.read_line
@@ -244,7 +249,8 @@ class Interpreter
   def program_loop
     current_line_number = @current_line_index.number
     current_line_index = @current_line_index.statement
-    if current_line_index == 0 && @breakpoints.key?(current_line_number)
+    if current_line_index == 0 &&
+       (@step_mode || @breakpoints.key?(current_line_number))
       debug_shell
     end
     
