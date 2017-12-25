@@ -49,6 +49,27 @@ class StatementFactory
     statement
   end
 
+  def create(text, all_tokens, comment)
+    statements = []
+    statements_tokens = split_on_separators(all_tokens)
+    if statements_tokens.empty?
+      statement = EmptyStatement.new
+      statements << statement
+    else
+      statements_tokens.each do |statement_tokens|
+        begin
+          statement = create_statement(statement_tokens)
+        rescue BASICException
+          statement = InvalidStatement.new(text)
+        end
+        statement = UnknownStatement.new(text) if statement.nil?
+        statements << statement
+      end
+    end
+
+    Line.new(text, statements, all_tokens, comment)
+  end
+
   def keywords_definitions
     keywords = []
 
@@ -118,27 +139,6 @@ class StatementFactory
     end
 
     lead_keywords
-  end
-
-  def create(text, all_tokens, comment)
-    statements = []
-    statements_tokens = split_on_separators(all_tokens)
-    if statements_tokens.empty?
-      statement = EmptyStatement.new
-      statements << statement
-    else
-      statements_tokens.each do |statement_tokens|
-        begin
-          statement = create_statement(statement_tokens)
-        rescue BASICException
-          statement = InvalidStatement.new(text)
-        end
-        statement = UnknownStatement.new(text) if statement.nil?
-        statements << statement
-      end
-    end
-
-    Line.new(text, statements, all_tokens, comment)
   end
 
   def split_on_separators(tokens)

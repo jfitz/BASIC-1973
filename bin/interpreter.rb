@@ -53,9 +53,23 @@ class Interpreter
     operators = (un_ops + bi_ops).uniq
     tokenbuilders << ListTokenBuilder.new(operators, OperatorToken)
 
+    tokenbuilders << BreakTokenBuilder.new
+
+    tokenbuilders << ListTokenBuilder.new(['(', '['], GroupStartToken)
+    tokenbuilders << ListTokenBuilder.new([')', ']'], GroupEndToken)
     tokenbuilders << ListTokenBuilder.new([',', ';'], ParamSeparatorToken)
 
+    tokenbuilders <<
+      ListTokenBuilder.new(FunctionFactory.function_names, FunctionToken)
+
+    function_names = ('FNA'..'FNZ').to_a
+    tokenbuilders << ListTokenBuilder.new(function_names, UserFunctionToken)
+
+    tokenbuilders << TextTokenBuilder.new
     tokenbuilders << NumberTokenBuilder.new(false)
+    tokenbuilders << IntegerTokenBuilder.new
+    tokenbuilders << VariableTokenBuilder.new
+    tokenbuilders << ListTokenBuilder.new(%w(TRUE FALSE), BooleanConstantToken)
 
     tokenbuilders << WhitespaceTokenBuilder.new
   end
@@ -199,7 +213,7 @@ class Interpreter
     @get_value_seen = []
   end
 
-  def execute_debug_command(keyword, args)
+  def execute_debug_command(keyword, args, cmd)
     case keyword.to_s
     when 'GO'
       @debug_done = true
@@ -221,8 +235,15 @@ class Interpreter
     when 'PROFILE'
       line_number_range = @program.line_list_spec(args)
       @program.profile(line_number_range)
+    when 'PRINT'
+      statement = PrintStatement.new([keyword], [args])
+      if statement.errors.empty?
+        statement.execute(self)
+      else
+        statement.errors.each { |error| puts error }
+      end
     else
-      print "Unknown command #{keyword}\n"
+      print "Unknown command #{cmd}\n"
     end
   rescue BASICCommandError => e
     @console_io.print_line(e.to_s)
@@ -250,7 +271,7 @@ class Interpreter
         args = tokens[1..-1]
 
         if keyword.keyword?
-          execute_debug_command(keyword, args)
+          execute_debug_command(keyword, args, cmd)
         else
           print "Unknown command #{cmd}\n"
         end
