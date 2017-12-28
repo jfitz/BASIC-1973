@@ -735,7 +735,7 @@ class DefineFunctionStatement < AbstractStatement
         @name = user_function_definition.name
         @arguments = user_function_definition.arguments
         @template = user_function_definition.template
-      rescue BASICException => e
+      rescue BASICRuntimeError => e
         @errors << e.message
       end
     else
@@ -769,7 +769,7 @@ class DimStatement < AbstractStatement
         begin
           @expression_list <<
             TargetExpression.new(tokens_list, VariableDimension)
-        rescue BASICException
+        rescue BASICRuntimeError
           @errors << 'Invalid variable ' + tokens_list.map(&:to_s).join
         end
       end
@@ -919,7 +919,7 @@ class ForStatement < AbstractStatement
         @start = ValueScalarExpression.new(tokens2)
         @end = ValueScalarExpression.new(tokens_lists[2])
         @step_value = ValueScalarExpression.new([NumericConstantToken.new(1)])
-      rescue BASICException => e
+      rescue BASICRuntimeError => e
         @errors << e.message
       end
     elsif check_template(tokens_lists, template2)
@@ -929,7 +929,7 @@ class ForStatement < AbstractStatement
         @start = ValueScalarExpression.new(tokens2)
         @end = ValueScalarExpression.new(tokens_lists[2])
         @step_value = ValueScalarExpression.new(tokens_lists[4])
-      rescue BASICException => e
+      rescue BASICRuntimeError => e
         @errors << e.message
       end
     else
@@ -942,7 +942,6 @@ class ForStatement < AbstractStatement
     to = @end.evaluate(interpreter, true)[0]
     step = @step_value.evaluate(interpreter, true)[0]
 
-    interpreter.set_value(@control, from)
     fornext_control =
       ForNextControl.new(@control, interpreter, from, to, step)
 
@@ -975,9 +974,9 @@ class ForStatement < AbstractStatement
   end
 
   def print_trace_info(io, from, to, step, terminated)
-    io.trace_output(" #{@start} = #{from}")
-    io.trace_output(" #{@end} = #{to}")
-    io.trace_output(" #{@step_value} = #{step}")
+    io.trace_output(" #{@start} = #{from}") unless @start.numeric_constant?
+    io.trace_output(" #{@end} = #{to}") unless @end.numeric_constant?
+    io.trace_output(" #{@step_value} = #{step}") unless @step_value.numeric_constant?
     io.trace_output(" terminated:#{terminated}")
   end
 end
@@ -1059,7 +1058,7 @@ class GotoStatement < AbstractStatement
       expression = tokens_lists[0]
       begin
         @expression = ValueScalarExpression.new(expression)
-      rescue BASICException => e
+      rescue BASICRuntimeException => e
         @errors << e.message
       end
       destinations = tokens_lists[2]
@@ -1179,7 +1178,7 @@ class IfStatement < AbstractStatement
         @else_dest = nil
         @else_dest, @else_stmt = parse_target(stack['else']) if
           stack.key?('else')
-      rescue BASICException
+      rescue BASICRuntimeException
         @errors << 'Syntax Error'
       end
     end
@@ -1614,7 +1613,7 @@ class LetStatement < AbstractStatement
         if @assignment.count_value != 1
           @errors << 'Assignment must have only one right-hand value'
         end
-      rescue BASICException => e
+      rescue BASICRuntimeError => e
         @errors << e.message
       end
     else
@@ -1653,7 +1652,7 @@ class LetLessStatement < AbstractStatement
         if @assignment.count_value != 1
           @errors << 'Assignment must have only one right-hand value'
         end
-      rescue BASICException => e
+      rescue BASICRuntimeError => e
         @errors << e.message
       end
     else
@@ -1856,7 +1855,7 @@ class OnStatement < AbstractStatement
       expression = tokens_lists[0]
       begin
         @expression = ValueScalarExpression.new(expression)
-      rescue BASICException => e
+      rescue BASICRunTimeError => e
         @errors << e.message
       end
       destinations = tokens_lists[2]
@@ -2074,7 +2073,7 @@ class PrintStatement < AbstractPrintStatement
     end
     begin
       print_items << ValueScalarExpression.new(tokens)
-    rescue BASICException
+    rescue BASICRuntimeError
       line_text = tokens.map(&:to_s).join
       @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
     end
@@ -2700,7 +2699,7 @@ class ArrLetStatement < AbstractStatement
         if @assignment.count_value != 1
           @errors << 'Assignment must have only one right-hand value'
         end
-      rescue BASICException => e
+      rescue BASICRuntimeError => e
         @errors << e.message
         @assignment = @rest
       end
@@ -2943,7 +2942,7 @@ class MatLetStatement < AbstractStatement
         if @assignment.count_value != 1
           @errors << 'Assignment must have only one right-hand value'
         end
-      rescue BASICException => e
+      rescue BASICRuntimeError => e
         @errors << e.message
         @assignment = @rest
       end
