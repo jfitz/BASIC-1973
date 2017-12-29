@@ -268,16 +268,15 @@ class Interpreter
       tokens = tokenizer.tokenize(cmd)
       tokens.delete_if(&:whitespace?)
 
-      unless tokens.empty?
-        keyword = tokens[0]
-        args = tokens[1..-1]
+      next if tokens.empty?
 
-        if keyword.keyword?
-          execute_debug_command(keyword, args, cmd)
-        else
-          print "Unknown command #{cmd}\n"
-        end
+      keyword = tokens[0]
+      args = tokens[1..-1]
 
+      if keyword.keyword?
+        execute_debug_command(keyword, args, cmd)
+      else
+        print "Unknown command #{cmd}\n"
       end
     end
   end
@@ -337,12 +336,15 @@ class Interpreter
     else
       tokens_lists = split_breakpoint_tokens(tokens)
       tokens_lists.each do |tokens_list|
-        if tokens_list.size == 1 && tokens_list[0].numeric_constant?
+        if tokens_list.size == 1 &&
+           tokens_list[0].numeric_constant?
           line_number = LineNumber.new(tokens_list[0])
           condition = ''
           @breakpoints[line_number] = condition
         end
-        if tokens_list.size == 2 && tokens_list[0].text == '-' && tokens_list[1].numeric_constant?
+        if tokens_list.size == 2 &&
+           tokens_list[0].text == '-' &&
+           tokens_list[1].numeric_constant?
           line_number = LineNumber.new(tokens_list[1])
           @breakpoints.delete(line_number)
         end
@@ -555,8 +557,10 @@ class Interpreter
     raise(BASICRuntimeError, 'Incorrect number of subscripts') if
       int_subscripts.size != dimensions.size
     int_subscripts.zip(dimensions).each do |pair|
-      raise(BASICRuntimeError, "Subscript #{pair[0]} out of range #{pair[1]}") if
-        pair[0] > pair[1]
+      if pair[0] > pair[1]
+        raise(BASICRuntimeError,
+              "Subscript #{pair[0]} out of range #{pair[1]}")
+      end
     end
   end
 
@@ -576,7 +580,9 @@ class Interpreter
       default_value = TextConstant.new(TextConstantToken.new('""')) if
         default_type == 'TextConstant'
       unless @variables.key?(v)
-        raise(BASICRuntimeError, "Uninitialized variable #{v}") if @require_initialized
+        if @require_initialized
+          raise(BASICRuntimeError, "Uninitialized variable #{v}")
+        end
         @variables[v] = default_value
       end
       value = @variables[v]

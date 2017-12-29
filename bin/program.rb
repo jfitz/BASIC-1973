@@ -26,13 +26,22 @@ class LineListSpec
     if tokens.empty?
       @line_numbers = program_line_numbers
       @range_type = :all
-    elsif tokens.size == 1 && tokens[0].numeric_constant?
+    elsif tokens.size == 1 &&
+          tokens[0].numeric_constant?
       make_single(tokens[0], program_line_numbers)
-    elsif tokens.size == 3 && tokens[0].numeric_constant? && tokens[1].to_s == '-' && tokens[2].numeric_constant?
+    elsif tokens.size == 3 &&
+          tokens[0].numeric_constant? &&
+          tokens[1].to_s == '-' &&
+          tokens[2].numeric_constant?
       make_range(tokens, program_line_numbers)
-    elsif tokens.size == 2 && tokens[0].numeric_constant? && tokens[1].to_s =='+'
+    elsif tokens.size == 2 &&
+          tokens[0].numeric_constant? &&
+          tokens[1].to_s == '+'
       make_count_range(tokens, program_line_numbers)
-    elsif tokens.size == 3 && tokens[0].numeric_constant? && tokens[1].to_s == '+' && tokens[2].numeric_constant?
+    elsif tokens.size == 3 &&
+          tokens[0].numeric_constant? &&
+          tokens[1].to_s == '+' &&
+          tokens[2].numeric_constant?
       make_count_range(tokens, program_line_numbers)
     else
       raise(BASICCommandError, 'Invalid list specification')
@@ -137,7 +146,7 @@ class Program
 
     token = tokens[0]
 
-    if !token.text_constant?
+    unless token.text_constant?
       @console_io.print_line('File name must be quoted literal')
       return false
     end
@@ -152,19 +161,17 @@ class Program
   end
 
   def load_file(filename)
-    begin
-      File.open(filename, 'r') do |file|
-        @program_lines = {}
-        file.each_line do |line|
-          line = @console_io.ascii_printables(line)
-          store_program_line(line, false)
-        end
+    File.open(filename, 'r') do |file|
+      @program_lines = {}
+      file.each_line do |line|
+        line = @console_io.ascii_printables(line)
+        store_program_line(line, false)
       end
-      true
-    rescue Errno::ENOENT
-      @console_io.print_line("File '#{filename}' not found")
-      false
     end
+    true
+  rescue Errno::ENOENT
+    @console_io.print_line("File '#{filename}' not found")
+    false
   end
 
   def save(tokens)
@@ -180,7 +187,7 @@ class Program
 
     token = tokens[0]
 
-    if !token.text_constant?
+    unless token.text_constant?
       @console_io.print_line('File name must be text')
       return false
     end
@@ -190,7 +197,7 @@ class Program
       @console_io.print_line('Filename not specified')
       return false
     end
-    
+
     if @program_lines.empty?
       @console_io.print_line('No program loaded')
       return false
@@ -235,7 +242,7 @@ class Program
 
     raise(BASICCommandError, 'Type NEW to delete an entire program') if
       line_number_range.range_type == :all
-    
+
     line_numbers = line_number_range.line_numbers
     delete_specific_lines(line_numbers)
   end
@@ -246,7 +253,7 @@ class Program
 
     raise(BASICCommandError, 'You cannot delete an entire program') if
       line_number_range.range_type == :all
-    
+
     line_numbers = line_number_range.line_numbers
     enblank_specific_lines(line_numbers)
   end
@@ -493,7 +500,6 @@ class Program
   end
 
   def enblank_specific_lines(line_numbers)
-    factory = StatementFactory.instance
     line_numbers.each do |line_number|
       blank_line = line_number.to_s
       line_num, line = @statement_factory.parse(blank_line)
