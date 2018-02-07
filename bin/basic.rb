@@ -113,6 +113,18 @@ class LineNumberIndex
     @index = index
   end
 
+  def eql?(other)
+    @number == other.number && @index == other.index
+  end
+
+  def ==(other)
+    @number == other.number && @index == other.index
+  end
+
+  def hash
+    @number.hash + @index.hash
+  end
+
   def to_s
     return @number.to_s if @statement.zero? && @index.zero?
     return @number.to_s + '.' + @statement.to_s if @index.zero?

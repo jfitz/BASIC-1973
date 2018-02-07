@@ -45,7 +45,7 @@ class Interpreter
   def make_debug_tokenbuilders
     tokenbuilders = []
 
-    keywords = %w(GO STOP STEP BREAK LIST PRETTY DELETE PROFILE PRINT LET DIM)
+    keywords = %w(GO STOP STEP BREAK LIST PRETTY DELETE PROFILE DIM GOTO LET PRINT)
     tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
     un_ops = UnaryOperator.operators(false)
@@ -237,6 +237,20 @@ class Interpreter
     when 'PROFILE'
       line_number_range = @program.line_list_spec(args)
       @program.profile(line_number_range)
+    when 'GOTO'
+      statement = GotoStatement.new([keyword], [args])
+      if statement.errors.empty?
+        statement.execute(self)
+      else
+        statement.errors.each { |error| puts error }
+      end
+    when 'LET'
+      statement = LetStatement.new([keyword], [args])
+      if statement.errors.empty?
+        statement.execute(self)
+      else
+        statement.errors.each { |error| puts error }
+      end
     when 'PRINT'
       statement = PrintStatement.new([keyword], [args])
       if statement.errors.empty?
@@ -282,15 +296,25 @@ class Interpreter
   end
 
   def program_loop
+    # pick the next line number
+    @next_line_index = @program.find_next_line_index(@current_line_index)
+    next_line_index = nil
+    next_line_index = @next_line_index.clone unless @next_line_index.nil?
+
+    # debug shell may change @next_line_index
     current_line_number = @current_line_index.number
-    current_line_index = @current_line_index.statement
+    current_line_index = @current_line_index.index
     if current_line_index == 0 &&
        (@step_mode || @breakpoints.key?(current_line_number))
       debug_shell
     end
+
+    # if next line number has changed, debug_shell executed a GOTO
+    if @next_line_index != next_line_index
+      @current_line_index = @next_line_index
+      @next_line_index = @program.find_next_line_index(@current_line_index)
+    end
     
-    # pick the next line number
-    @next_line_index = @program.find_next_line_index(@current_line_index)
     begin
       execute_a_statement
       # set the next line number
