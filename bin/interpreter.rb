@@ -305,10 +305,12 @@ class Interpreter
     next_line_index = @next_line_index.clone unless @next_line_index.nil?
 
     # debug shell may change @next_line_index
-    current_line_number = @current_line_index.number
-    current_line_index = @current_line_index.index
-    if current_line_index == 0 &&
-       (@step_mode || @breakpoints.key?(current_line_number))
+    line_number = @current_line_index.number
+    line_statement = @current_line_index.statement
+    line_index = @current_line_index.index
+    if line_index == 0 &&
+       line_statement == 0 &&
+       (@step_mode || @breakpoints.key?(line_number))
       debug_shell
     end
 
