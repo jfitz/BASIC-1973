@@ -348,7 +348,7 @@ class Program
 
       rs = []
       statements.each do |statement|
-        rs = statement.variables
+        rs.concat statement.variables
       end
       refs[line_number] = rs
     end
