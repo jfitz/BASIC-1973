@@ -1366,7 +1366,7 @@ class IfStatement < AbstractStatement
     expression = nil
     begin
       expression = ValueScalarExpression.new(tokens)
-    rescue BASICException => e
+    rescue BASICRuntimeError => e
       @errors << e.message
     end
     expression

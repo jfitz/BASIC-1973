@@ -51,6 +51,22 @@ then
     ((ECODE+=$?))
 fi
 
+if [ -e "$TESTROOT/$TESTGROUP/$TESTNAME/ref/crossref.txt" ]
+then
+    if [ -e "$TESTROOT/$TESTGROUP/$TESTNAME/data/crossref_options.txt" ]
+    then
+	CROSSREF_OPTIONS=$(<"$TESTROOT/$TESTGROUP/$TESTNAME/data/crossref_options.txt")
+    fi
+
+    echo Crossref program...
+    cd "$TESTBED/$TESTNAME"
+    ruby basic.rb --crossref $TESTNAME.bas --no-heading --print-width 0 >crossref.txt $GROUP_OPTIONS $TEST_OPTIONS $CROSSREF_OPTIONS
+    cd ../..
+    echo Compare crossref...
+    diff "$TESTBED/$TESTNAME/crossref.txt" "$TESTROOT/$TESTGROUP/$TESTNAME/ref/crossref.txt"
+    ((ECODE+=$?))
+fi
+
 if [ -e "$TESTROOT/$TESTGROUP/$TESTNAME/ref/stdout.txt" ]
 then
     if [ -e "$TESTROOT/$TESTGROUP/$TESTNAME/data/run_options.txt" ]
