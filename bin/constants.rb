@@ -592,7 +592,7 @@ class IntegerConstant < AbstractValueElement
     @operand = true
     @precedence = 0
     @numeric_constant = true
-    raise BASICException, "'#{text}' is not a number" if @value.nil?
+    raise BASICError, "'#{text}' is not a number" if @value.nil?
   end
 
   def zero?
@@ -758,7 +758,7 @@ class TextConstant < AbstractValueElement
     super()
     @value = nil
     @value = text.value if text.class.to_s == 'TextConstantToken'
-    raise(BASICException, "'#{text}' is not a text constant") if @value.nil?
+    raise(BASICError, "'#{text}' is not a text constant") if @value.nil?
     @operand = true
     @precedence = 0
     @text_constant = true
@@ -970,7 +970,7 @@ class VariableName < AbstractElement
 
   def initialize(token)
     super()
-    raise(BASICException, "'#{token}' is not a variable name") unless
+    raise(BASICError, "'#{token}' is not a variable name") unless
       token.class.to_s == 'VariableToken'
     @name = token
     @variable = true
@@ -1021,7 +1021,7 @@ class Variable < AbstractElement
 
   def initialize(variable_name, subscripts = [])
     super()
-    raise(BASICException, "'#{variable_name}' is not a variable name") if
+    raise(BASICError, "'#{variable_name}' is not a variable name") if
       variable_name.class.to_s != 'VariableName'
     @variable_name = variable_name
     @subscripts = normalize_subscripts(subscripts)

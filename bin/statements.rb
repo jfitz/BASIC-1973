@@ -59,7 +59,7 @@ class StatementFactory
       statements_tokens.each do |statement_tokens|
         begin
           statement = create_statement(statement_tokens)
-        rescue BASICException
+        rescue BASICError
           statement = InvalidStatement.new(text)
         end
         statement = UnknownStatement.new(text) if statement.nil?
@@ -937,9 +937,9 @@ class ForStatement < AbstractStatement
 
   def control_and_start(tokens)
     parts = split_on_token(tokens, '=')
-    raise(BASICException, 'Incorrect initialization') if
+    raise(BASICError, 'Incorrect initialization') if
       parts.size != 3
-    raise(BASICException, 'Incorrect initialization') if
+    raise(BASICError, 'Incorrect initialization') if
       parts[1].to_s != '='
 
     @errors << 'Control variable must be a variable' unless
@@ -1224,7 +1224,7 @@ class IfStatement < AbstractStatement
           if dict['then'].empty?
             dict['then'] += tokens_list
           else
-            raise(BASICException, 'Syntax Error')
+            raise(BASICError, 'Syntax Error')
           end
           handled = true
         end
@@ -1473,7 +1473,7 @@ class InputStatement < AbstractStatement
   end
 
   def zip(names, values)
-    raise(BASICException, 'Unequal lists') if names.size != values.size
+    raise(BASICError, 'Unequal lists') if names.size != values.size
     results = []
     (0...names.size).each do |i|
       results << { 'name' => names[i], 'value' => values[i] }
@@ -2147,7 +2147,7 @@ class PrintUsingStatement < AbstractPrintStatement
     end
     begin
       print_items << ValueScalarExpression.new(tokens)
-    rescue BASICException
+    rescue BASICError
       line_text = tokens.map(&:to_s).join
       @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
     end
@@ -2197,7 +2197,7 @@ class AbstractReadStatement < AbstractStatement
           tokens_lists.shift if tokens_lists[0].class.to_s == 'CarriageControl'
         end
       end
-    rescue BASICException
+    rescue BASICError
       file_handle = nil
     end
     [file_handle, tokens_lists]
@@ -2474,7 +2474,7 @@ class WriteStatement < AbstractWriteStatement
     end
     begin
       print_items << ValueScalarExpression.new(tokens)
-    rescue BASICException
+    rescue BASICError
       line_text = tokens.map(&:to_s).join
       @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
     end
@@ -2944,7 +2944,7 @@ class MatLetStatement < AbstractStatement
   def first_value(interpreter)
     r_values = @assignment.eval_value(interpreter)
     r_value = r_values[0]
-    raise(BASICException, 'Expected Matrix') if r_value.class.to_s != 'Matrix'
+    raise(BASICError, 'Expected Matrix') if r_value.class.to_s != 'Matrix'
     r_value
   end
 end
