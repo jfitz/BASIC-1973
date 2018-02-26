@@ -110,7 +110,7 @@ class AbstractToken
   end
 
   def dump
-    @text + ':' + self.class.to_s
+    self.class.to_s + ':' + @text
   end
 
   def break?

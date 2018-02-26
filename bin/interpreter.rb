@@ -328,7 +328,7 @@ class Interpreter
         verify_next_line_index
         @current_line_index = @next_line_index
       end
-    rescue BASICRuntimeError => e
+    rescue BASICExpressionError, BASICRuntimeError => e
       if @current_line_index.nil?
         @console_io.print_line(e.message)
       else

@@ -25,7 +25,7 @@ class UnaryOperator < AbstractElement
     super()
     @op = text.to_s
 
-    raise(BASICRuntimeError, "'#{text}' is not an operator") unless
+    raise(BASICExpressionError, "'#{text}' is not an operator") unless
       self.class.operator?(@op)
 
     @precedence = self.class.precedence(@op)
@@ -33,7 +33,7 @@ class UnaryOperator < AbstractElement
   end
 
   def evaluate(_, stack, _)
-    raise(BASICRuntimeError, 'Not enough operands') if stack.empty?
+    raise(BASICExpressionError, 'Not enough operands') if stack.empty?
     x = stack.pop
     if x.matrix?
       case @op
@@ -42,7 +42,7 @@ class UnaryOperator < AbstractElement
       when '-'
         negate_matrix(x)
       else
-        raise(BASICRuntimeError, "Invalid operator '#{@op}'")
+        raise(BASICExpressionError, "Invalid operator '#{@op}'")
       end
     elsif x.array?
       case @op
@@ -51,7 +51,7 @@ class UnaryOperator < AbstractElement
       when '-'
         negate_array(x)
       else
-        raise(BASICRuntimeError, "Invalid operator '#{@op}'")
+        raise(BASICExpressionError, "Invalid operator '#{@op}'")
       end
     else
       case @op
@@ -66,7 +66,7 @@ class UnaryOperator < AbstractElement
       when 'NOT'
         opposite(x)
       else
-        raise(BASICRuntimeError, "Invalid operator '#{@op}'")
+        raise(BASICExpressionError, "Invalid operator '#{@op}'")
       end
     end
   end
@@ -230,14 +230,14 @@ class BinaryOperator < AbstractElement
     super()
     @op = text.to_s
 
-    raise(BASICRuntimeError, "'#{text}' is not an operator") unless
+    raise(BASICExpressionError, "'#{text}' is not an operator") unless
       self.class.operator?(@op)
     @precedence = self.class.precedence(@op)
     @operator = true
   end
 
   def evaluate(_, stack, _)
-    raise(BASICRuntimeError, 'Not enough operands') if stack.size < 2
+    raise(BASICExpressionError, 'Not enough operands') if stack.size < 2
     y = stack.pop
     x = stack.pop
     if x.matrix? && y.matrix?
@@ -253,7 +253,7 @@ class BinaryOperator < AbstractElement
     elsif x.scalar? && y.array?
       scalar_array(x, y)
     else
-      raise(BASICRuntimeError, 'Type mismatch') unless
+      raise(BASICExpressionError, 'Type mismatch') unless
         x.class.to_s == y.class.to_s
       op_scalar_scalar(x, y)
     end
@@ -279,7 +279,7 @@ class BinaryOperator < AbstractElement
 
     op_sym = op_table[@op]
 
-    raise BASICRuntimeError, 'Invalid operation' if op_sym.nil?
+    raise BASICExpressionError, 'Invalid operation' if op_sym.nil?
 
     op_matrix_matrix(op_sym, x, y)
   end
@@ -298,7 +298,7 @@ class BinaryOperator < AbstractElement
 
     op_sym = op_table[@op]
 
-    raise BASICRuntimeError, 'Invalid operation' if op_sym.nil?
+    raise BASICExpressionError, 'Invalid operation' if op_sym.nil?
 
     op_matrix_scalar(op_sym, x, y)
   end
@@ -317,7 +317,7 @@ class BinaryOperator < AbstractElement
 
     op_sym = op_table[@op]
 
-    raise BASICRuntimeError, 'Invalid operation' if op_sym.nil?
+    raise BASICExpressionError, 'Invalid operation' if op_sym.nil?
 
     op_scalar_matrix(op_sym, x, y)
   end
@@ -336,7 +336,7 @@ class BinaryOperator < AbstractElement
 
     op_sym = op_table[@op]
 
-    raise BASICRuntimeError, 'Invalid operation' if op_sym.nil?
+    raise BASICExpressionError, 'Invalid operation' if op_sym.nil?
 
     op_array_array(op_sym, x, y)
   end
@@ -355,7 +355,7 @@ class BinaryOperator < AbstractElement
 
     op_sym = op_table[@op]
 
-    raise BASICRuntimeError, 'Invalid operation' if op_sym.nil?
+    raise BASICExpressionError, 'Invalid operation' if op_sym.nil?
 
     op_array_scalar(op_sym, x, y)
   end
@@ -374,7 +374,7 @@ class BinaryOperator < AbstractElement
 
     op_sym = op_table[@op]
 
-    raise BASICRuntimeError, 'Invalid operation' if op_sym.nil?
+    raise BASICExpressionError, 'Invalid operation' if op_sym.nil?
 
     op_scalar_array(op_sym, x, y)
   end
@@ -404,7 +404,7 @@ class BinaryOperator < AbstractElement
 
     op_sym = op_table[@op]
 
-    raise BASICRuntimeError, 'Invalid operation' if op_sym.nil?
+    raise BASICExpressionError, 'Invalid operation' if op_sym.nil?
 
     x.public_send(op_sym, y)
   end
@@ -720,16 +720,16 @@ class BinaryOperator < AbstractElement
     elsif dim_counts == [2, 2]
       multiply_matrix_matrix_2_2(a, b)
     else
-      raise(BASICRuntimeError, 'Matrix multiplication must have two matrices')
+      raise(BASICExpressionError, 'Matrix multiplication must have two matrices')
     end
   end
 
   def divide_matrix_matrix(_, _)
-    raise BASICRuntimeError, 'Cannot divide matrix by matrix'
+    raise BASICExpressionError, 'Cannot divide matrix by matrix'
   end
 
   def power_matrix_matrix(_, _)
-    raise BASICRuntimeError, 'Cannot raise matrix to matrix power'
+    raise BASICExpressionError, 'Cannot raise matrix to matrix power'
   end
 
   def op_array_array(op, a, b)

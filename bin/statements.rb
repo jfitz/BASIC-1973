@@ -35,6 +35,7 @@ class StatementFactory
     else
       keywords, tokens = extract_keywords(statement_tokens)
       statement = nil
+      
       while statement.nil?
         if @statement_definitions.key?(keywords)
           tokens_lists = split_keywords(tokens)
@@ -52,6 +53,7 @@ class StatementFactory
   def create(text, all_tokens, comment)
     statements = []
     statements_tokens = split_on_separators(all_tokens)
+
     if statements_tokens.empty?
       statement = EmptyStatement.new
       statements << statement
@@ -59,8 +61,8 @@ class StatementFactory
       statements_tokens.each do |statement_tokens|
         begin
           statement = create_statement(statement_tokens)
-        rescue BASICError
-          statement = InvalidStatement.new(text)
+        rescue BASICExpressionError, BASICRuntimeError => e
+          statement = InvalidStatement.new(text, all_tokens, e)
         end
         statement = UnknownStatement.new(text) if statement.nil?
         statements << statement
@@ -478,10 +480,10 @@ end
 
 # unparsed statement
 class InvalidStatement < AbstractStatement
-  def initialize(text)
-    super([], [])
+  def initialize(text, all_tokens, error)
+    super([], all_tokens)
     @text = text
-    @errors << 'Invalid statement'
+    @errors << 'Invalid statement: ' + error.message
   end
 
   def to_s
@@ -613,7 +615,7 @@ class ChangeStatement < AbstractStatement
       interpreter.set_value(target_value, text)
 
     else
-      raise BASICRuntimeError, 'Type mismatch'
+      raise BASICExpressionError, 'Type mismatch'
     end
   end
 end
@@ -710,7 +712,7 @@ class DefineFunctionStatement < AbstractStatement
         @name = user_function_definition.name
         @arguments = user_function_definition.arguments
         @template = user_function_definition.template
-      rescue BASICRuntimeError => e
+      rescue BASICExpressionError => e
         @errors << e.message
       end
     else
@@ -744,7 +746,7 @@ class DimStatement < AbstractStatement
         begin
           @expression_list <<
             TargetExpression.new(tokens_list, VariableDimension)
-        rescue BASICRuntimeError
+        rescue BASICExpressionError
           @errors << 'Invalid variable ' + tokens_list.map(&:to_s).join
         end
       end
@@ -894,7 +896,7 @@ class ForStatement < AbstractStatement
         @start = ValueScalarExpression.new(tokens2)
         @end = ValueScalarExpression.new(tokens_lists[2])
         @step_value = ValueScalarExpression.new([NumericConstantToken.new(1)])
-      rescue BASICRuntimeError => e
+      rescue BASICExpressionError => e
         @errors << e.message
       end
     elsif check_template(tokens_lists, template2)
@@ -904,7 +906,7 @@ class ForStatement < AbstractStatement
         @start = ValueScalarExpression.new(tokens2)
         @end = ValueScalarExpression.new(tokens_lists[2])
         @step_value = ValueScalarExpression.new(tokens_lists[4])
-      rescue BASICRuntimeError => e
+      rescue BASICExpressionError => e
         @errors << e.message
       end
     else
@@ -937,9 +939,9 @@ class ForStatement < AbstractStatement
 
   def control_and_start(tokens)
     parts = split_on_token(tokens, '=')
-    raise(BASICError, 'Incorrect initialization') if
+    raise(BASICExpressionError, 'Incorrect initialization') if
       parts.size != 3
-    raise(BASICError, 'Incorrect initialization') if
+    raise(BASICExpressionError, 'Incorrect initialization') if
       parts[1].to_s != '='
 
     @errors << 'Control variable must be a variable' unless
@@ -1033,7 +1035,7 @@ class GotoStatement < AbstractStatement
       expression = tokens_lists[0]
       begin
         @expression = ValueScalarExpression.new(expression)
-      rescue BASICRuntimeException => e
+      rescue BASICExpressionException => e
         @errors << e.message
       end
       destinations = tokens_lists[2]
@@ -1091,7 +1093,7 @@ class GotoStatement < AbstractStatement
 
     unless @destinations.nil?
       values = @expression.evaluate(interpreter, false)
-      raise(BASICRuntimeError, 'Expecting one value') unless values.size == 1
+      raise(BASICExpressionError, 'Expecting one value') unless values.size == 1
       value = values[0]
       raise(BASICRuntimeError, 'Invalid value') unless
         value.numeric_constant?
@@ -1153,8 +1155,8 @@ class IfStatement < AbstractStatement
         @else_dest = nil
         @else_dest, @else_stmt = parse_target(stack['else']) if
           stack.key?('else')
-      rescue BASICRuntimeException
-        @errors << 'Syntax Error'
+      rescue BASICExpressionError => e
+        @errors << 'Syntax Error: ' + e.message
       end
     end
   end
@@ -1304,7 +1306,7 @@ class IfStatement < AbstractStatement
     s = ' ' + @expression.to_s
     io.trace_output(s)
     values = @expression.evaluate(interpreter, true)
-    raise(BASICRuntimeError, 'Expression error') unless
+    raise(BASICExpressionError, 'Too many or too few values') unless
       values.size == 1
 
     result = values[0]
@@ -1366,7 +1368,7 @@ class IfStatement < AbstractStatement
     expression = nil
     begin
       expression = ValueScalarExpression.new(tokens)
-    rescue BASICRuntimeError => e
+    rescue BASICExpressionError => e
       @errors << e.message
     end
     expression
@@ -1430,8 +1432,8 @@ class InputStatement < AbstractStatement
     input_items.each do |items_list|
       begin
         expression_list << TargetExpression.new(items_list, ScalarReference)
-      rescue BASICRuntimeError
-        raise(BASICRuntimeError,
+      rescue BASICExpressionError
+        raise(BASICExpressionError,
               'Invalid variable ' + items_list.map(&:to_s).join)
       end
     end
@@ -1473,7 +1475,7 @@ class InputStatement < AbstractStatement
   end
 
   def zip(names, values)
-    raise(BASICError, 'Unequal lists') if names.size != values.size
+    raise(BASICRuntimeError, 'Unequal lists') if names.size != values.size
     results = []
     (0...names.size).each do |i|
       results << { 'name' => names[i], 'value' => values[i] }
@@ -1526,8 +1528,8 @@ class InputCharStatement < AbstractStatement
     input_items.each do |items_list|
       begin
         expression_list << TargetExpression.new(items_list, ScalarReference)
-      rescue BASICRuntimeError
-        raise(BASICRuntimeError,
+      rescue BASICExpressionError
+        raise(BASICExpressionError,
               'Invalid variable ' + items_list.map(&:to_s).join)
       end
     end
@@ -1588,7 +1590,7 @@ class LetStatement < AbstractStatement
         if @assignment.count_value != 1
           @errors << 'Assignment must have only one right-hand value'
         end
-      rescue BASICRuntimeError => e
+      rescue BASICExpressionError => e
         @errors << e.message
       end
     else
@@ -1627,7 +1629,7 @@ class LetLessStatement < AbstractStatement
         if @assignment.count_value != 1
           @errors << 'Assignment must have only one right-hand value'
         end
-      rescue BASICRuntimeError => e
+      rescue BASICExpressionError => e
         @errors << e.message
       end
     else
@@ -1688,8 +1690,8 @@ class LineInputStatement < AbstractStatement
     input_items.each do |items_list|
       begin
         expression_list << TargetExpression.new(items_list, ScalarReference)
-      rescue BASICRuntimeError
-        raise(BASICRuntimeError,
+      rescue BASICExpressionError
+        raise(BASICExpressionError,
               'Invalid variable ' + items_list.map(&:to_s).join)
       end
     end
@@ -1830,7 +1832,7 @@ class OnStatement < AbstractStatement
       expression = tokens_lists[0]
       begin
         @expression = ValueScalarExpression.new(expression)
-      rescue BASICRunTimeError => e
+      rescue BASICExpressionError => e
         @errors << e.message
       end
       destinations = tokens_lists[2]
@@ -1873,9 +1875,9 @@ class OnStatement < AbstractStatement
 
   def execute_core(interpreter)
     values = @expression.evaluate(interpreter, true)
-    raise(BASICRuntimeError, 'Expecting one value') unless values.size == 1
+    raise(BASICExpressionError, 'Expecting one value') unless values.size == 1
     value = values[0]
-    raise(BASICRuntimeError, 'Invalid value') unless value.numeric_constant?
+    raise(BASICExpressionError, 'Invalid value') unless value.numeric_constant?
     io = interpreter.trace_out
     io.trace_output(' ' + @expression.to_s + ' = ' + value.to_s)
     index = value.to_i
@@ -2048,7 +2050,7 @@ class PrintStatement < AbstractPrintStatement
     end
     begin
       print_items << ValueScalarExpression.new(tokens)
-    rescue BASICRuntimeError
+    rescue BASICExpressionError
       line_text = tokens.map(&:to_s).join
       @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
     end
@@ -2147,7 +2149,7 @@ class PrintUsingStatement < AbstractPrintStatement
     end
     begin
       print_items << ValueScalarExpression.new(tokens)
-    rescue BASICError
+    rescue BASICExpressionError
       line_text = tokens.map(&:to_s).join
       @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
     end
@@ -2197,7 +2199,7 @@ class AbstractReadStatement < AbstractStatement
           tokens_lists.shift if tokens_lists[0].class.to_s == 'CarriageControl'
         end
       end
-    rescue BASICError
+    rescue BASICExpressionError
       file_handle = nil
     end
     [file_handle, tokens_lists]
@@ -2240,8 +2242,8 @@ class ReadStatement < AbstractReadStatement
     tokens_lists.each do |tokens_list|
       begin
         expression_list << TargetExpression.new(tokens_list, ScalarReference)
-      rescue BASICRuntimeError
-        raise(BASICRuntimeError,
+      rescue BASICExpressionError
+        raise(BASICExpressionError,
               'Invalid variable ' + tokens_list.map(&:to_s).join)
       end
     end
@@ -2474,7 +2476,7 @@ class WriteStatement < AbstractWriteStatement
     end
     begin
       print_items << ValueScalarExpression.new(tokens)
-    rescue BASICError
+    rescue BASICExpressionError
       line_text = tokens.map(&:to_s).join
       @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
     end
@@ -2562,8 +2564,8 @@ class ArrReadStatement < AbstractReadStatement
       begin
         expression = TargetExpression.new(tokens_list, ArrayReference)
         expression_list << expression
-      rescue BASICRuntimeError
-        raise(BASICRuntimeError,
+      rescue BASICExpressionError
+        raise(BASICExpressionError,
               'Invalid variable ' + tokens_list.map(&:to_s).join)
       end
     end
@@ -2674,7 +2676,7 @@ class ArrLetStatement < AbstractStatement
         if @assignment.count_value != 1
           @errors << 'Assignment must have only one right-hand value'
         end
-      rescue BASICRuntimeError => e
+      rescue BASICExpressionError => e
         @errors << e.message
         @assignment = @rest
       end
@@ -2792,8 +2794,8 @@ class MatReadStatement < AbstractReadStatement
       begin
         expression = TargetExpression.new(tokens_list, MatrixReference)
         expression_list << expression
-      rescue BASICRuntimeError
-        raise(BASICRuntimeError,
+      rescue BASICExpressionError
+        raise(BASICExpressionError,
               'Invalid variable ' + tokens_list.map(&:to_s).join)
       end
     end
@@ -2944,7 +2946,7 @@ class MatLetStatement < AbstractStatement
   def first_value(interpreter)
     r_values = @assignment.eval_value(interpreter)
     r_value = r_values[0]
-    raise(BASICError, 'Expected Matrix') if r_value.class.to_s != 'Matrix'
+    raise(BASICExpressionError, 'Expected Matrix') if r_value.class.to_s != 'Matrix'
     r_value
   end
 end

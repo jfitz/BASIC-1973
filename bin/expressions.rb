@@ -704,7 +704,7 @@ class Parser
   end
 
   def expressions
-    raise(BASICRuntimeError, 'Expression error') unless @operator_stack.empty?
+    raise(BASICExpressionError, 'Too many operators') unless @operator_stack.empty?
     @parsed_expressions.concat @parens_group unless @parens_group.empty?
     @parsed_expressions << @current_expression unless @current_expression.empty?
     @parsed_expressions
@@ -779,12 +779,12 @@ class Parser
   def end_group(group_end_element)
     stack_to_expression(@operator_stack, @current_expression)
     @parens_group << @current_expression
-    raise(BASICRuntimeError, 'Expression error') if @operator_stack.empty?
+    raise(BASICExpressionError, 'Too few operators') if @operator_stack.empty?
     # remove the '(' or '[' starter
     start_op = @operator_stack.pop
     error = 'Bracket/parenthesis mismatch, found ' + group_end_element.to_s +
             ' to match ' + start_op.to_s
-    raise(BASICRuntimeError, error) unless group_end_element.match?(start_op)
+    raise(BASICExpressionError, error) unless group_end_element.match?(start_op)
     if start_op.param_start?
       list = List.new(@parens_group)
       @operator_stack.push(list)
@@ -895,7 +895,7 @@ class AbstractExpression
       element = c.new(token) if element.nil? && c.accept?(token)
     end
     if element.nil?
-      raise(BASICRuntimeError,
+      raise(BASICExpressionError,
             "Token '#{token.class}:#{token}' is not a value or operator")
     end
     element
@@ -1045,7 +1045,7 @@ class UserFunctionDefinition
     # parse into name '=' expression
     line_text = tokens.map(&:to_s).join
     parts = split_tokens(tokens)
-    raise(BASICRuntimeError, "'#{line_text}' is not a valid assignment") if
+    raise(BASICExpressionError, "'#{line_text}' is not a valid assignment") if
       parts.size != 3
     user_function_prototype = UserFunctionPrototype.new(parts[0])
     @name = user_function_prototype.name
@@ -1084,7 +1084,7 @@ class UserFunctionPrototype
     @name = tokens[0].to_s
     @arguments = variables.map(&:to_s)
     # arguments must be unique
-    raise(BASICRuntimeError, 'Duplicate parameters') unless
+    raise(BASICExpressionError, 'Duplicate parameters') unless
       @arguments.uniq.size == @arguments.size
   end
 
@@ -1096,7 +1096,7 @@ class UserFunctionPrototype
 
   # verify tokens are UserFunction, open, close
   def check_tokens(tokens)
-    raise(BASICRuntimeError, 'Invalid function specification') unless
+    raise(BASICExpressionError, 'Invalid function specification') unless
       tokens.size >= 3 && tokens[0].user_function? &&
       tokens[1].groupstart? && tokens[-1].groupend?
   end
@@ -1105,11 +1105,11 @@ class UserFunctionPrototype
   def check_params(params)
     variables = params.values_at(* params.each_index.select(&:even?))
     variables.each do |variable|
-      raise(BASICRuntimeError, 'Invalid parameter') unless variable.variable?
+      raise(BASICExpressionError, 'Invalid parameter') unless variable.variable?
     end
     separators = params.values_at(* params.each_index.select(&:odd?))
     separators.each do |separator|
-      raise(BASICRuntimeError, 'Invalid list separator') unless
+      raise(BASICExpressionError, 'Invalid list separator') unless
         separator.separator?
     end
     variables
@@ -1122,7 +1122,7 @@ class AbstractAssignment
     # parse into variable, '=', expression
     @token_lists = split_tokens(tokens)
     line_text = tokens.map(&:to_s).join
-    raise(BASICRuntimeError, "'#{line_text}' is not a valid assignment") if
+    raise(BASICExpressionError, "'#{line_text}' is not a valid assignment") if
       @token_lists.size != 3 ||
       !(@token_lists[1].operator? && @token_lists[1].equals?)
   end

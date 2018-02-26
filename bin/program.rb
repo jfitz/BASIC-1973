@@ -448,12 +448,16 @@ class Program
       line = @program_lines[line_number]
       @console_io.print_line(line_number.to_s + line.list)
       statements = line.statements
+
       statements.each do |statement|
         statement.errors.each { |error| puts ' ' + error }
       end
+
+      next unless list_tokens
+
       tokens = line.tokens
       text_tokens = tokens.map(&:to_s)
-      @console_io.print_line('TOKENS: ' + text_tokens.to_s) if list_tokens
+      @console_io.print_line('TOKENS: ' + text_tokens.to_s)
     end
   end
 
