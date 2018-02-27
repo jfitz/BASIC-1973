@@ -210,12 +210,19 @@ class AbstractStatement
     @tokens = tokens_lists.flatten
     @errors = []
     @modifiers = []
-    modifier_added = true
-    modifier_added = make_modifier(tokens_lists) while modifier_added
-    @modifiers.each { |modifier| @errors += modifier.errors }
     @profile_count = 0
     @profile_time = 0
   end
+
+  private
+
+  def extract_modifiers(tokens_lists)
+    modifier_added = true
+    modifier_added = make_modifier(tokens_lists) while modifier_added
+    @modifiers.each { |modifier| @errors += modifier.errors }
+  end
+
+  public
 
   def pretty
     list = [AbstractToken.pretty_tokens(@keywords, @tokens)]
@@ -301,66 +308,52 @@ class AbstractStatement
   private
 
   def make_modifier(tokens_lists)
+    template_if = ['IF', [1, '=']]
     if tokens_lists.size > 2 &&
-       tokens_lists[-2] == 'IF' &&
-       tokens_lists[-1].class.to_s == 'Array'
+       check_template(tokens_lists.last(2), template_if)
 
       # create the modifier
-      modifier_tokens = tokens_lists[-1]
+      modifier_tokens = tokens_lists.last
       modifier = IfModifier.new(modifier_tokens)
       @modifiers.unshift(modifier)
 
       # remove the tokens used for the modifier
-      tokens_lists.pop
-      tokens_lists.pop
+      tokens_lists.pop(2)
 
       return true
     end
 
+    template_for_to = ['FOR', [1, '>='], 'TO', [1, '>=']]
+    template_for_to_step = ['FOR', [1, '>='], 'TO', [1, '='], 'STEP', [1, '>=']]
+
     if tokens_lists.size > 4 &&
-       tokens_lists[-4] == 'FOR' &&
-       tokens_lists[-3].class.to_s == 'Array' &&
-       tokens_lists[-2] == 'TO' &&
-       tokens_lists[-1].class.to_s == 'Array'
+       check_template(tokens_lists.last(4), template_for_to)
 
       # create the modifer
       control_and_start_tokens = tokens_lists[-3]
-      end_tokens = tokens_lists[-1]
+      end_tokens = tokens_lists.last
       modifier = ForModifier.new(control_and_start_tokens, end_tokens, nil)
       @modifiers << modifier
 
       # remove the tokens used for the modifier
-      tokens_lists.pop
-      tokens_lists.pop
-      tokens_lists.pop
-      tokens_lists.pop
+      tokens_lists.pop(4)
 
       return true
     end
 
     if tokens_lists.size > 6 &&
-       tokens_lists[-6] == 'FOR' &&
-       tokens_lists[-5].class.to_s == 'Array' &&
-       tokens_lists[-4] == 'TO' &&
-       tokens_lists[-3].class.to_s == 'Array' &&
-       tokens_lists[-2] == 'STEP' &&
-       tokens_lists[-1].class.to_s == 'Array'
+       check_template(tokens_lists.last(6), template_for_to_step)
 
       # create the modifer
       control_and_start_tokens = tokens_lists[-5]
       end_tokens = tokens_lists[-3]
-      step_tokens = tokens_lists[-1]
+      step_tokens = tokens_lists.last
       modifier =
         ForModifier.new(control_and_start_tokens, end_tokens, step_tokens)
       @modifiers << modifier
 
       # remove the tokens used for the modifier
-      tokens_lists.pop
-      tokens_lists.pop
-      tokens_lists.pop
-      tokens_lists.pop
-      tokens_lists.pop
-      tokens_lists.pop
+      tokens_lists.pop(6)
 
       return true
     end
@@ -482,6 +475,7 @@ end
 class InvalidStatement < AbstractStatement
   def initialize(text, all_tokens, error)
     super([], all_tokens)
+
     @text = text
     @errors << 'Invalid statement: ' + error.message
   end
@@ -503,6 +497,7 @@ end
 class UnknownStatement < AbstractStatement
   def initialize(text)
     super([], [])
+
     @text = text
     @errors << "Unknown statement '#{text.strip}'"
   end
@@ -538,6 +533,7 @@ class RemarkStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
     @rest = tokens_lists[0]
   end
 
@@ -559,6 +555,9 @@ class ChangeStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = [[1, '>='], 'TO', [1, '=']]
 
     if check_template(tokens_lists, template)
@@ -631,6 +630,9 @@ class CloseStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = [[1, '>=']]
     template_file = ['FILE', [1, '>=']]
 
@@ -673,6 +675,7 @@ class DataStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -701,6 +704,7 @@ class DefineFunctionStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -737,6 +741,7 @@ class DimStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
     template = [[1, '>=']]
 
     @expression_list = []
@@ -778,6 +783,7 @@ class EndStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
     template = []
 
     @errors << 'Syntax error' unless
@@ -808,6 +814,7 @@ class FilesStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -886,6 +893,7 @@ class ForStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
     template1 = [[1, '>='], 'TO', [1, '>=']]
     template2 = [[1, '>='], 'TO', [1, '>='], 'STEP', [1, '>=']]
 
@@ -969,6 +977,9 @@ class GosubStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = [[1]]
 
     if check_template(tokens_lists, template)
@@ -1020,6 +1031,9 @@ class GotoStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template1 = [[1]]
     template2 = [[1, '>='], 'OF', [1, '>=']]
     @destination = nil
@@ -1401,6 +1415,9 @@ class InputStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -1513,6 +1530,9 @@ class InputCharStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -1579,6 +1599,9 @@ class LetStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = [[3, '>=']]
 
     if check_template(tokens_lists, template)
@@ -1618,6 +1641,9 @@ class LetLessStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = [[3, '>=']]
 
     if check_template(tokens_lists, template)
@@ -1659,6 +1685,9 @@ class LineInputStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -1774,6 +1803,7 @@ class NextStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
     template = [[1]]
 
     if check_template(tokens_lists, template)
@@ -1824,6 +1854,7 @@ class OnStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
     template1 = [[1, '>='], 'GOTO', [1, '>=']]
     template2 = [[1, '>='], 'THEN', [1, '>=']]
 
@@ -1915,6 +1946,9 @@ class OpenStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template_input_as = [[1, '>='], 'FOR', 'INPUT', 'AS', [1, '>=']]
     template_input_as_file =
       [[1, '>='], 'FOR', 'INPUT', 'AS', 'FILE', [1, '>=']]
@@ -2007,6 +2041,9 @@ class PrintStatement < AbstractPrintStatement
 
   def initialize(keywords, tokens_lists)
     super(keywords, tokens_lists, CarriageControl.new('NL'))
+
+    extract_modifiers(tokens_lists)
+
     template1 = []
     template2 = [[1, '>=']]
 
@@ -2067,6 +2104,9 @@ class PrintUsingStatement < AbstractPrintStatement
 
   def initialize(keywords, tokens_lists)
     super(keywords, tokens_lists, CarriageControl.new('NL'))
+
+    extract_modifiers(tokens_lists)
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -2168,6 +2208,9 @@ class RandomizeStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = []
 
     @errors << 'Syntax error' unless
@@ -2224,6 +2267,9 @@ class ReadStatement < AbstractReadStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -2270,6 +2316,9 @@ class RestoreStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = []
 
     @errors << 'Syntax error' unless
@@ -2293,6 +2342,9 @@ class ReturnStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = []
 
     @errors << 'Syntax error' unless
@@ -2315,6 +2367,9 @@ class SleepStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -2346,6 +2401,9 @@ class StopStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = []
 
     @errors << 'Syntax error' unless
@@ -2370,6 +2428,9 @@ class TraceStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -2436,6 +2497,9 @@ class WriteStatement < AbstractWriteStatement
 
   def initialize(keywords, tokens_lists)
     super(keywords, tokens_lists, CarriageControl.new('NL'))
+
+    extract_modifiers(tokens_lists)
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -2493,6 +2557,9 @@ class ArrPrintStatement < AbstractPrintStatement
 
   def initialize(keywords, tokens_lists)
     super(keywords, tokens_lists, CarriageControl.new(','))
+
+    extract_modifiers(tokens_lists)
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -2545,6 +2612,9 @@ class ArrReadStatement < AbstractReadStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -2613,6 +2683,9 @@ class ArrWriteStatement < AbstractWriteStatement
 
   def initialize(keywords, tokens_lists)
     super(keywords, tokens_lists, CarriageControl.new(','))
+
+    extract_modifiers(tokens_lists)
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -2665,6 +2738,9 @@ class ArrLetStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = [[3, '>=']]
 
     if check_template(tokens_lists, template)
@@ -2723,6 +2799,9 @@ class MatPrintStatement < AbstractPrintStatement
 
   def initialize(keywords, tokens_lists)
     super(keywords, tokens_lists, CarriageControl.new(','))
+
+    extract_modifiers(tokens_lists)
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -2775,6 +2854,9 @@ class MatReadStatement < AbstractReadStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -2856,6 +2938,9 @@ class MatWriteStatement < AbstractWriteStatement
 
   def initialize(keywords, tokens_lists)
     super(keywords, tokens_lists, CarriageControl.new(','))
+
+    extract_modifiers(tokens_lists)
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -2908,6 +2993,9 @@ class MatLetStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
+    extract_modifiers(tokens_lists)
+
     template = [[3, '>=']]
 
     if check_template(tokens_lists, template)
