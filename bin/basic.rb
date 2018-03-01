@@ -199,13 +199,14 @@ end
 
 # interactive shell
 class Shell
-  def initialize(console_io, interpreter, program, colon_file, min_max_op,
-                 allow_hash_constant)
+  def initialize(console_io, interpreter, program, colon_file, quotes,
+                 min_max_op, allow_hash_constant)
     @console_io = console_io
     @interpreter = interpreter
     @program = program
     @tokenbuilders =
-      make_command_tokenbuilders(colon_file, min_max_op, allow_hash_constant)
+      make_command_tokenbuilders(quotes, colon_file, min_max_op,
+                                 allow_hash_constant)
   end
 
   def run
@@ -308,7 +309,7 @@ class Shell
   end
 end
 
-def make_interpreter_tokenbuilders(statement_separators, comment_leads,
+def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads,
                                    allow_hash_constant, min_max_op, colon_file)
   tokenbuilders = []
 
@@ -342,7 +343,7 @@ def make_interpreter_tokenbuilders(statement_separators, comment_leads,
   function_names = ('FNA'..'FNZ').to_a
   tokenbuilders << ListTokenBuilder.new(function_names, UserFunctionToken)
 
-  tokenbuilders << TextTokenBuilder.new
+  tokenbuilders << TextTokenBuilder.new(quotes)
   tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
   tokenbuilders << IntegerTokenBuilder.new
   tokenbuilders << VariableTokenBuilder.new
@@ -353,7 +354,8 @@ def make_interpreter_tokenbuilders(statement_separators, comment_leads,
   tokenbuilders << WhitespaceTokenBuilder.new
 end
 
-def make_command_tokenbuilders(colon_file, min_max_op, allow_hash_constant)
+def make_command_tokenbuilders(quotes, colon_file, min_max_op,
+                               allow_hash_constant)
   tokenbuilders = []
 
   keywords = %w(
@@ -369,7 +371,7 @@ def make_command_tokenbuilders(colon_file, min_max_op, allow_hash_constant)
 
   tokenbuilders << ListTokenBuilder.new([',', ';'], ParamSeparatorToken)
 
-  tokenbuilders << TextTokenBuilder.new
+  tokenbuilders << TextTokenBuilder.new(quotes)
   tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
 
   tokenbuilders << WhitespaceTokenBuilder.new
@@ -409,6 +411,7 @@ OptionParser.new do |opt|
   opt.on('--require-initialized') { |o| options[:require_initialized] = o }
   opt.on('--hash-constant') { |o| options[:hash_constant] = o }
   opt.on('--min-max-op') { |o| options[:min_max_op] = o }
+  opt.on('--single-quote-strings') { |o| options[:single_quote_strings] = o }
 end.parse!
 
 list_filename = options[:list_name]
@@ -453,8 +456,12 @@ require_initialized = options.key?(:require_initialized)
 statement_seps = []
 statement_seps << '\\' if backslash_separator
 statement_seps << ':' if colon_separator
+single_quote_strings = options.key?(:single_quote_strings)
+quotes = []
+quotes << '"'
+quotes << "'" if single_quote_strings
 comment_leads = []
-comment_leads << "'" if apostrophe_comment
+comment_leads << "'" if apostrophe_comment and !single_quote_strings
 comment_leads << '!' if bang_comment
 allow_hash_constant = options.key?(:hash_constant)
 min_max_op = options.key?(:min_max_op)
@@ -466,7 +473,7 @@ console_io =
                 qmark_after_prompt, echo_input, input_high_bit)
 
 tokenbuilders =
-  make_interpreter_tokenbuilders(statement_seps, comment_leads,
+  make_interpreter_tokenbuilders(quotes, statement_seps, comment_leads,
                                  allow_hash_constant, min_max_op, colon_file)
 
 if show_heading
@@ -512,8 +519,8 @@ else
                     respect_randomize, if_false_next_line,
                     fornext_one_beyond, lock_fornext, require_initialized)
   shell =
-    Shell.new(console_io, interpreter, program, colon_file, min_max_op,
-              allow_hash_constant)
+    Shell.new(console_io, interpreter, program, colon_file, quotes,
+              min_max_op, allow_hash_constant)
   shell.run
 end
 

@@ -163,7 +163,8 @@ When the BASIC program ends, BASIC-1973 ends.
 |--lock-fornext |Lock control variables to FOR/NEXT loops. Variables can be read but not changed.
 |--require-initialized |Require that variables are initialized before they are used.
 |--hash-constant |Allow numeric constants in the form '#c' where c is any single character. Disables file handle operator and the not-equals operator, which are also represented by '#'.
-|--min-max-op | Enable the MIN and MAX operators.
+|--min-max-op |Enable the MIN and MAX operators.
+|--single-quote-strings |Allow text strings (in the program and in input) to be enclosed in single quotes. Disables the single-quote comments. Bang comments are still allowed.
 |==========
 
 Immediate commands
@@ -619,12 +620,16 @@ String values
 String values are text.
 Constants in the program are enclosed in double quotes.
 
+The --single-quote-strings option allows strings in single quotes, in addition to double-quote strings.
+It is not possible to disable double-quote strings.
+
 |==========
 |Text constant |Valid or reason not valid
 |"A" |
 |"Hello" |
 |"Anytown, USA" |
-|"A "quoted" string" |Text constants may not contain the double quote character.
+|"A "quoted" string" |Text constants may not contain the double quote character
+|'A "quoted" string' |Valid if --single-quote-strings is specified
 
 BASIC-1973 converts numeric values (floating point or integer) to strings readily.
 
@@ -710,7 +715,7 @@ Syntax:	DAT value list
 
 Values must be numeric separated by commas.
 Expressions may be numeric or string, but must match the variable that will be used in the READ statement.
-Text constants must be enclosed in double quotes.
+Text constants must be enclosed in quotes.
 
 Examples:
 
@@ -802,7 +807,7 @@ Examples:
 
 	20 FILES "test.txt"
 
-File names must be enclosed in double-quotes.
+File names must be enclosed in quotes.
 Files must exist at the start of the program, even when the file will be written.
 It is not possible for BASIC to create a file.
 
@@ -997,8 +1002,8 @@ These prompts are always the question mark, not the specified prompt.
 When parsing input data, BASIC splits the input on commas. Each item is read as either a number or a text item.
 If a value can be read as a number, it must be stored as a numeric variable.
 
-Input values may be enclosed in double quotes. These values will be treated as string variables, even when the contents are numeric.
-Commas enclosed in double quotes are part of the data, not used to split the data items.
+Input values may be enclosed in quotes. These values will be treated as string variables, even when the contents are numeric.
+Commas enclosed in quotes are part of the data, not used to split the data items.
 
 Text values containing space characters must be enclosed in quotes. The quotes will not be part of the variable contents.
 
@@ -1122,7 +1127,7 @@ This prompt can be changed to any text value by specifying a text value as the f
 (This value must be a text constant. You cannot create a variable prompt such as LINPUT P$, A$ because the variable for the prompt will be considered a normal variable for input.)
 
 When parsing input data, reads all text on a line and stores it in the variable.
-Double quotes are not necessary.
+Quotes are not necessary.
 BASIC keeps leading and trailing spaces.
 
 Examples:

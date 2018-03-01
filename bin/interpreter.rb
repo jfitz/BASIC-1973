@@ -17,6 +17,7 @@ class Interpreter
     @respect_randomize = respect_randomize
     @int_floor = int_floor
     @ignore_rnd_arg = ignore_rnd_arg
+    @quotes = ['"']
     @console_io = console_io
     @data_store = DataStore.new
     @file_handlers = {}
@@ -65,7 +66,7 @@ class Interpreter
     function_names = ('FNA'..'FNZ').to_a
     tokenbuilders << ListTokenBuilder.new(function_names, UserFunctionToken)
 
-    tokenbuilders << TextTokenBuilder.new
+    tokenbuilders << TextTokenBuilder.new(@quotes)
     tokenbuilders << NumberTokenBuilder.new(false)
     tokenbuilders << IntegerTokenBuilder.new
     tokenbuilders << VariableTokenBuilder.new

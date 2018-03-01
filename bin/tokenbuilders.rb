@@ -186,20 +186,29 @@ end
 class TextTokenBuilder
   attr_reader :count
 
+  def initialize(quotes)
+    @quotes = quotes
+  end
+
   def try(text)
     @token = ''
     candidate = ''
     i = 0
-    if !text.empty? && text[0] == '"'
-      until i == text.size || candidate.count('"') == 2
+    if !text.empty? && @quotes.include?(text[0])
+      until i == text.size ||
+            (candidate.size >= 2 && candidate[-1] == candidate[0])
         c = text[i]
         candidate += c
         i += 1
       end
     end
 
-    candidate += '"' if candidate.count('"') == 1
-    @token = candidate if candidate.count('"') == 2
+    if candidate.size > 0
+      lead_quote = text[0]
+      candidate += lead_quote if candidate.count(lead_quote) == 1
+      @token = candidate if candidate.count(lead_quote) == 2
+    end
+    
     @count = @token.size
   end
 

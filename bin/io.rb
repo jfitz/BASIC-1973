@@ -8,9 +8,9 @@ module Reader
     ascii_text
   end
 
-  def make_tokenbuilders
+  def make_tokenbuilders(quotes)
     tokenbuilders = []
-    tokenbuilders << InputTextTokenBuilder.new
+    tokenbuilders << InputTextTokenBuilder.new(quotes)
     tokenbuilders << InputNumberTokenBuilder.new
     tokenbuilders << InputBareTextTokenBuilder.new
     tokenbuilders << ListTokenBuilder.new([',', ';'], ParamSeparatorToken)
@@ -36,7 +36,7 @@ module Inputter
   def input(interpreter)
     input_text = read_line
 
-    tokenbuilders = make_tokenbuilders
+    tokenbuilders = make_tokenbuilders(@quotes)
     tokenizer = Tokenizer.new(tokenbuilders, nil)
     tokens = tokenizer.tokenize(input_text)
 
@@ -68,6 +68,7 @@ class ConsoleIo
   def initialize(max_width, zone_width, back_tab, print_rate, newline_rate,
                  implied_semicolon, default_prompt, qmark_after_prompt,
                  echo_input, input_high_bit)
+    @quotes = ['"']
     @column = 0
     @max_width = max_width
     @zone_width = zone_width
@@ -268,6 +269,7 @@ end
 # reads values from file and writes values to file
 class FileHandler
   def initialize(file_name)
+    @quotes = ['"']
     @file_name = file_name
     @mode = nil
     @file = nil
@@ -342,7 +344,7 @@ class FileHandler
   def read
     set_mode(:read)
 
-    tokenbuilders = make_tokenbuilders
+    tokenbuilders = make_tokenbuilders(@quotes)
     tokenizer = Tokenizer.new(tokenbuilders, InvalidTokenBuilder.new)
     @data_store = refill(@data_store, @file, tokenizer)
     @data_store.shift
