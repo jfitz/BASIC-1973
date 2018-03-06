@@ -25,7 +25,6 @@ class Interpreter
     @fornexts = {}
     @dimensions = {}
     @user_functions = {}
-    @user_var_names = {}
     @user_var_values = []
     @program_lines = {}
     @variables = {}
@@ -549,9 +548,8 @@ class Interpreter
     @dimensions[variable]
   end
 
-  def set_user_function(name, variable_names, expressions)
-    @user_var_names[name] = variable_names
-    @user_functions[name] = expressions
+  def set_user_function(name, definition)
+    @user_functions[name] = definition
   end
 
   def get_user_function(name)
@@ -559,7 +557,8 @@ class Interpreter
   end
 
   def set_user_var_values(name, user_var_values)
-    param_names = @user_var_names[name]
+    definition = @user_functions[name]
+    param_names = definition.arguments
     param_names_values = param_names.zip(user_var_values)
     names_and_values = Hash[param_names_values]
     @user_var_values.push(names_and_values)

@@ -104,22 +104,25 @@ class UserFunction < AbstractScalarFunction
 
   # return a single value
   def evaluate(interpreter, stack, trace)
-    expression = interpreter.get_user_function(@name)
+    definition = interpreter.get_user_function(@name)
     # verify function is defined
-    raise(BASICRuntimeError, "Function #{@name} not defined") if expression.nil?
+    raise(BASICRuntimeError, "Function #{@name} not defined") if definition.nil?
 
     # verify arguments
     user_var_values = stack.pop
+
     raise(BASICRuntimeError, 'No arguments for function') if
       user_var_values.class.to_s != 'Array'
+
     spec = { 'type' => 'numeric', 'shape' => 'scalar' }
     specs = [spec] * user_var_values.length
     check_arg_types(user_var_values, specs)
 
     # dummy variable names and their (now known) values
-    result =
-      expression.evaluate_with_vars(interpreter, @name,
-                                    user_var_values, trace)
+    expression = definition.expression
+    result = expression.evaluate_with_vars(interpreter, @name,
+                                           user_var_values, trace)
+
     result[0]
   end
 end
