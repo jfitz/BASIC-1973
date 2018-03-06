@@ -1039,7 +1039,7 @@ end
 class UserFunctionDefinition
   attr_reader :name
   attr_reader :arguments
-  attr_reader :template
+  attr_reader :expression
 
   def initialize(tokens)
     # parse into name '=' expression
@@ -1050,7 +1050,7 @@ class UserFunctionDefinition
     user_function_prototype = UserFunctionPrototype.new(parts[0])
     @name = user_function_prototype.name
     @arguments = user_function_prototype.arguments
-    @template = ValueScalarExpression.new(parts[2])
+    @expression = ValueScalarExpression.new(parts[2])
   end
 
   private

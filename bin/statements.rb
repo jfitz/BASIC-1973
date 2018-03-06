@@ -710,12 +710,12 @@ class DefineFunctionStatement < AbstractStatement
     if check_template(tokens_lists, template)
       @name = ''
       @arguments = []
-      @template = ''
+      @expression = ''
       begin
         user_function_definition = UserFunctionDefinition.new(tokens_lists[0])
         @name = user_function_definition.name
         @arguments = user_function_definition.arguments
-        @template = user_function_definition.template
+        @expression = user_function_definition.expression
       rescue BASICExpressionError => e
         @errors << e.message
       end
@@ -725,7 +725,7 @@ class DefineFunctionStatement < AbstractStatement
   end
 
   def pre_execute(interpreter)
-    interpreter.set_user_function(@name, @arguments, @template)
+    interpreter.set_user_function(@name, @arguments, @expression)
   end
 
   def execute_core(_) end
