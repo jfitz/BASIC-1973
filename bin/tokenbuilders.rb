@@ -462,9 +462,20 @@ end
 
 # token reader for text constants in input channels (READ, INPUT)
 class InputTextTokenBuilder
+  def initialize(quotes)
+    @quotes = quotes
+  end
+
   def try(text)
     @token = ''
-    /\A"[^"]*"/.match(text) { |m| @token = m[0] }
+
+    if @quotes.include?('"')
+      /\A"[^"]*"/.match(text) { |m| @token = m[0] }
+    end
+
+    if @quotes.include?("'")
+      /\A'[^']*'/.match(text) { |m| @token = m[0] }
+    end
   end
 
   def count
