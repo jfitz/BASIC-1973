@@ -145,7 +145,14 @@ class Interpreter
     # phase 2: run each command
     # start with the first line number
     line_number = @program_lines.min[0]
-    @current_line_index = LineNumberIndex.new(line_number, 0, 0)
+    line = @program_lines[line_number]
+    statements = line.statements
+    modifier = 0
+    unless statements.empty?
+      statement = statements[0]
+      modifier = statement.start_index
+    end
+    @current_line_index = LineNumberIndex.new(line_number, 0, modifier)
     begin
       program_loop while @running
     rescue Interrupt
