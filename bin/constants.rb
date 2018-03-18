@@ -209,57 +209,68 @@ class AbstractValueElement < AbstractElement
   end
 
   def ==(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in =="
+    raise(BASICRuntimeError, message) unless compatible?(other)
     @value == other.to_v
   end
 
   def >(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in >"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     @value > other.to_v
   end
 
   def >=(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in >="
+    raise(BASICRuntimeError, message) unless compatible?(other)
     @value >= other.to_v
   end
 
   def <(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in <"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     @value < other.to_v
   end
 
   def <=(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in <="
+    raise(BASICRuntimeError, message) unless compatible?(other)
     @value <= other.to_v
   end
 
   def b_eq(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in b_eq()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     BooleanConstant.new(@value == other.to_v)
   end
 
   def b_ne(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in b_ne()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     BooleanConstant.new(@value != other.to_v)
   end
 
   def b_gt(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in b_gt()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     BooleanConstant.new(@value > other.to_v)
   end
 
   def b_ge(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in b_ge()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     BooleanConstant.new(@value >= other.to_v)
   end
 
   def b_lt(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in b_lt()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     BooleanConstant.new(@value < other.to_v)
   end
 
   def b_le(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in b_le()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     BooleanConstant.new(@value <= other.to_v)
   end
 
@@ -400,54 +411,68 @@ class NumericConstant < AbstractValueElement
     @value.zero?
   end
 
+  def content_type
+    'numeric'
+  end
+
   def +(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in +()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     NumericConstant.new(@value + other.to_v)
   end
 
   def -(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in -()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     NumericConstant.new(@value - other.to_v)
   end
 
   def *(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in *()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     NumericConstant.new(@value * other.to_v)
   end
 
   def add(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in add()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     NumericConstant.new(@value + other.to_v)
   end
 
   def subtract(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in subtract()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     NumericConstant.new(@value - other.to_v)
   end
 
   def multiply(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in multiply()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     NumericConstant.new(@value * other.to_v)
   end
 
   def divide(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in divide()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     raise(BASICRuntimeError, 'Divide by zero') if other.zero?
     NumericConstant.new(@value.to_f / other.to_v.to_f)
   end
 
   def power(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in power()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     NumericConstant.new(@value**other.to_v)
   end
 
   def maximum(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in maximum()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     NumericConstant.new([@value, other.to_v].max)
   end
 
   def minimum(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in minimum()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     NumericConstant.new([@value, other.to_v].min)
   end
 
@@ -492,12 +517,14 @@ class NumericConstant < AbstractValueElement
   end
 
   def max(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in max()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     @value = [to_v, other.to_v].max
   end
 
   def min(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in min()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     @value = [to_v, other.to_v].min
   end
 
@@ -599,46 +626,68 @@ class IntegerConstant < AbstractValueElement
     @value.zero?
   end
 
+  def content_type
+    'integer'
+  end
+
   def +(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in +()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     IntegerConstant.new(@value + other.to_v)
   end
 
   def -(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in -()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     IntegerConstant.new(@value - other.to_v)
   end
 
   def *(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in *()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     IntegerConstant.new(@value * other.to_v)
   end
 
   def add(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in add()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     IntegerConstant.new(@value + other.to_v)
   end
 
   def subtract(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in subtract()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     IntegerConstant.new(@value - other.to_v)
   end
 
   def multiply(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in multiply()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     IntegerConstant.new(@value * other.to_v)
   end
 
   def divide(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in divide()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     raise(BASICRuntimeError, 'Divide by zero') if other.zero?
     IntegerConstant.new(@value.to_f / other.to_v.to_f)
   end
 
   def power(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in power()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     IntegerConstant.new(@value**other.to_v)
   end
 
   def maximum(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in maximum()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     IntegerConstant.new([@value, other.to_v].max)
   end
 
   def minimum(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in minimum()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     IntegerConstant.new([@value, other.to_v].min)
   end
 
@@ -683,12 +732,14 @@ class IntegerConstant < AbstractValueElement
   end
 
   def max(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in max()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     @value = [to_v, other.to_v].max
   end
 
   def min(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in =="
+    raise(BASICRuntimeError, message) unless compatible?(other)
     @value = [to_v, other.to_v].min
   end
 
@@ -764,7 +815,13 @@ class TextConstant < AbstractValueElement
     @text_constant = true
   end
 
+  def content_type
+    'string'
+  end
+
   def +(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in +()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     unquoted = @value + other.to_v
     quoted = '"' + unquoted + '"'
     token = TextConstantToken.new(quoted)
@@ -772,6 +829,8 @@ class TextConstant < AbstractValueElement
   end
 
   def add(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in add()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     unquoted = @value + other.to_v
     quoted = '"' + unquoted + '"'
     token = TextConstantToken.new(quoted)
@@ -779,12 +838,14 @@ class TextConstant < AbstractValueElement
   end
 
   def maximum(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in maximum()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     TextConstant.new([@value, other.to_v].max)
   end
 
   def minimum(other)
-    raise(BASICRuntimeError, 'Type mismatch') unless compatible?(other)
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in minimum()"
+    raise(BASICRuntimeError, message) unless compatible?(other)
     TextConstant.new([@value, other.to_v].min)
   end
 

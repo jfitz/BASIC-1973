@@ -238,8 +238,10 @@ class BinaryOperator < AbstractElement
 
   def evaluate(_, stack, _)
     raise(BASICExpressionError, 'Not enough operands') if stack.size < 2
+
     y = stack.pop
     x = stack.pop
+
     if x.matrix? && y.matrix?
       matrix_matrix(x, y)
     elsif x.matrix? && y.scalar?
@@ -252,10 +254,11 @@ class BinaryOperator < AbstractElement
       array_scalar(x, y)
     elsif x.scalar? && y.array?
       scalar_array(x, y)
-    else
-      raise(BASICExpressionError, 'Type mismatch') unless
-        x.class.to_s == y.class.to_s
+    elsif x.class.to_s == y.class.to_s
       op_scalar_scalar(x, y)
+    else
+      message = "Type mismatch (#{x.content_type}/#{y.content_type}) in operator #{@op}"
+      raise(BASICExpressionError, message)
     end
   end
 
