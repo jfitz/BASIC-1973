@@ -1048,11 +1048,14 @@ class UserFunctionDefinition
 
   def signature
     numeric_spec = { 'type' => 'numeric', 'shape' => 'scalar' }
+    text_spec = { 'type' => 'text', 'shape' => 'scalar' }
+    integer_spec = { 'type' => 'integer', 'shape' => 'scalar' }
     sig = []
 
     @arguments.each do |arg|
-      # arguments can only be numeric and scalar
-      sig << numeric_spec
+      sig << numeric_spec if arg.content_type == 'NumericConstant'
+      sig << text_spec if arg.content_type == 'TextConstant'
+      sig << integer_spec if arg.content_type == 'IntegerConstant'
     end
 
     sig
@@ -1085,12 +1088,12 @@ class UserFunctionPrototype
 
   def initialize(tokens)
     check_tokens(tokens)
-    variables = check_params(tokens[2..-2])
     @name = tokens[0].to_s
-    @arguments = variables.map(&:to_s)
+    @arguments = check_params(tokens[2..-2])
+    names = @arguments.map(&:to_s)
     # arguments must be unique
     raise(BASICExpressionError, 'Duplicate parameters') unless
-      @arguments.uniq.size == @arguments.size
+      names.uniq.size == names.size
   end
 
   def to_s

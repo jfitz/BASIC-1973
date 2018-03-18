@@ -26,6 +26,8 @@ class Function < AbstractElement
       type_compatible = value.numeric_constant?
     when 'text'
       type_compatible = value.text_constant?
+    when 'integer'
+      type_compatible = value.numeric_constant?
     when 'boolean'
       type_compatible = value.boolean_constant?
     end
@@ -79,7 +81,7 @@ class UserFunction < AbstractScalarFunction
   end
 
   def self.init?(text)
-    /\AFN[A-Z]\z/.match(text)
+    /\AFN[A-Z][\$\%]?\z/.match(text)
   end
 
   def initialize(text)
@@ -867,5 +869,12 @@ class FunctionFactory
 
   def self.function_names
     @functions.keys
+  end
+
+  def self.user_function_names
+    functions_numeric = ('FNA'..'FNZ').to_a
+    functions_string = ('FNA$'..'FNZ$').to_a
+    functions_integer = ('FNA%'..'FNZ%').to_a
+    functions_numeric + functions_string + functions_integer
   end
 end
