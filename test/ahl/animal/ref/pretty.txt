@@ -30,13 +30,12 @@
      PRINT :
      GOTO 1300
 1350 K% = 1%
-1400 K% = FNA % (A$(K%)) :
+1400 K% = FNA%(A$(K%)) :
      GOTO 3000 IF LEN(A$(K%)) = 0% :
      GOTO 1400 IF LEFT(A$(K%), 2%) = "\Q" :
      PRINT "IS IT A " RIGHT(A$(K%), 3%); :
      INPUT Z7$ :
      Z7$ = LEFT(Z7$, 1%)
- Token 'InvalidToken:%' is not a value or operator
 1450 IF Z7$ = "Y" THEN PRINT "WHY NOT TRY ANOTHER ANIMAL" :
      GOTO 1300
 2000 INPUT "THE ANIMAL YOU WERE THINKING OF WAS A "; Z9$
@@ -53,16 +52,16 @@
      A$(Z1% + 1%) = '\A' + Z9$ :
      A$(K%) = "\Q" + Z8$ + "\" + Z7$ + NUM$(Z1% + 1%) + "\" + Z6$ + NUM$(Z1%) + "\"
 2300 GOTO 1300
-3000 DEF FNA % (Q$) :
+3000 DEF FNA%(Q$) :
      PRINT MID(Q$, 3%, INSTR(3%, Q$, "\") - 3%); :
      INPUT Z9$ :
      Z9$ = LEFT(Z9$, 1%) :
      Z9$ = "N" IF Z9$ <> "Y" :
      Z1% = INSTR(3%, Q$, "\" + Z9$) + 2% :
      Z2% = INSTR(Z1%, Q$, "\") :
-     FNA % =VAL(MID(Q$, Z1%, Z2% - Z1%)) :
+     FNA% = VAL(MID(Q$, Z1%, Z2% - Z1%)) :
      FNE N D
  'FNA%(Q$)' is not a valid assignment
- Token 'InvalidToken:%' is not a value or operator
+ Invalid statement: Value is not assignable (type UserFunction)
  'FNEND' is not a valid assignment
 9999 END
