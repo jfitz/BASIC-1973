@@ -855,6 +855,10 @@ class AbstractExpression
     @parsed_expressions.length
   end
 
+  def dump_parsed
+    @parsed_expressions
+  end
+
   def numeric_constant?
     @numeric_constant
   end
@@ -868,7 +872,34 @@ class AbstractExpression
     interpreter.evaluate(@parsed_expressions, trace)
   end
 
+  def variables
+    parsed_expressions_variables(@parsed_expressions)
+  end
+
   private
+
+  def parsed_expressions_variables(parsed_expressions)
+    vars = []
+    parsed_expressions.each do |expression|
+      previous = nil
+      expression.each do |thing|
+        if thing.list?
+          # recurse into expressions in list
+          sublist = thing.list
+          vars += parsed_expressions_variables(sublist)
+        elsif thing.variable?
+          if !previous.nil? && previous.list?
+            commas = ',' * (previous.count - 1)
+            vars << thing.to_s + '(' + commas + ')'
+          else
+            vars << thing.to_s
+          end
+        end
+        previous = thing
+      end
+    end
+    vars
+  end
 
   def tokens_to_elements(tokens)
     elements = []
@@ -1149,6 +1180,10 @@ class AbstractAssignment
     end
     results << nonkeywords unless nonkeywords.empty?
     results
+  end
+
+  def variables
+    @target.variables + @expression.variables
   end
 
   def count_target

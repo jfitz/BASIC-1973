@@ -277,16 +277,19 @@ class AbstractStatement
   def functions
     funcs = @tokens.clone
     funcs.keep_if(&:function?)
+    funcs.map(&:to_s)
   end
 
   def userfuncs
     udfs = @tokens.clone
     udfs.keep_if(&:user_function?)
+    udfs.map(&:to_s)
   end
 
   def variables
     vars = @tokens.clone
     vars.keep_if(&:variable?)
+    vars.map(&:to_s)
   end
 
   def execute(interpreter)
@@ -617,6 +620,25 @@ class ChangeStatement < AbstractStatement
       raise BASICExpressionError, 'Type mismatch'
     end
   end
+
+  def variables
+    vars = []
+
+    unless @source_tokens.nil?
+      source = ValueScalarExpression.new(@source_tokens)
+      vars += source.variables
+
+      unless @target_tokens.nil? 
+        if @source_tokens[0].content_type == 'string'
+          target = TargetExpression.new(@target_tokens, ArrayReference)
+        else
+          target = TargetExpression.new(@target_tokens, ScalarReference)
+        end
+      end
+    end
+
+    vars
+  end
 end
 
 # CLOSE
@@ -661,6 +683,10 @@ class CloseStatement < AbstractStatement
       raise(BASICRuntimeError, "Invalid file number #{fh.class}:#{fh}")
     end
     interpreter.close_file(fh)
+  end
+
+  def variables
+    @filenum_expression.variables
   end
 end
 
@@ -767,6 +793,14 @@ class DimStatement < AbstractStatement
       interpreter.set_dimensions(variable, subscripts)
     end
   end
+
+  def variables
+    vars = []
+    @expression_list.each do |expression|
+      vars += expression.variables
+    end
+    vars
+  end
 end
 
 # END
@@ -826,6 +860,10 @@ class FilesStatement < AbstractStatement
   end
 
   def execute_core(_) end
+
+  def variables
+    @expressions.variables
+  end
 end
 
 # Helper class for FOR/NEXT
@@ -939,6 +977,14 @@ class ForStatement < AbstractStatement
     print_trace_info(io, from, to, step, terminated)
   end
 
+  def variables
+    vars = []
+    vars << @control.to_s
+    vars += @start.variables
+    vars += @end.variables
+    vars += @step_value.variables
+  end
+
   private
 
   def control_and_start(tokens)
@@ -1034,6 +1080,7 @@ class GotoStatement < AbstractStatement
     template2 = [[1, '>='], 'OF', [1, '>=']]
     @destination = nil
     @destinations = nil
+    @expression = nil
 
     if check_template(tokens_lists, template1)
       if tokens_lists[0][0].numeric_constant?
@@ -1133,6 +1180,12 @@ class GotoStatement < AbstractStatement
         new_destinations << renumber_map[destination]
       end
     end
+  end
+
+  def variables
+    vars = []
+    vars += @expression.variables unless @expression.nil?
+    vars
   end
 end
 
@@ -1370,6 +1423,14 @@ class IfStatement < AbstractStatement
       @else_dest = renumber_map[@else_dest]
       @tokens[-1] = NumericConstantToken.new(@else_dest.line_number)
     end
+  end
+
+  def variables
+    vars = []
+    vars += @expression.variables unless @expression.nil?
+    vars += @statement.variables unless @statement.nil?
+    vars += @else_stmt.variables unless @else_stmt.nil?
+    vars
   end
 
   private
@@ -1625,6 +1686,10 @@ class LetStatement < AbstractStatement
       interpreter.set_value(l_value, r_value)
     end
   end
+  
+  def variables
+    @assignment.variables
+  end
 end
 
 # LET-less assignment
@@ -1666,6 +1731,12 @@ class LetLessStatement < AbstractStatement
     l_values.each do |l_value|
       interpreter.set_value(l_value, r_value)
     end
+  end
+  
+  def variables
+    vars = []
+    vars += @assignment.variables unless @assignment.nil?
+    vars
   end
 end
 
@@ -1850,6 +1921,8 @@ class OnStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+    @destinations = nil
+    @expression = nil
 
     template1 = [[1, '>='], 'GOTO', [1, '>=']]
     template2 = [[1, '>='], 'THEN', [1, '>=']]
@@ -1924,6 +1997,12 @@ class OnStatement < AbstractStatement
       new_destinations << renumber_map[destination]
     end
     @destinations = new_destinations
+  end
+
+  def variables
+    vars = []
+    vars += @expression.variables unless @expression.nil?
+    vars
   end
 end
 
