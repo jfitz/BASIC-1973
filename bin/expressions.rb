@@ -2,6 +2,7 @@
 class ScalarValue < Variable
   def initialize(variable_name)
     super
+    @scalar = true
   end
 
   private
@@ -34,6 +35,7 @@ end
 class ScalarReference < Variable
   def initialize(variable_value)
     super(variable_value.name)
+    @scalar = true
   end
 
   # return a single value, a reference to this object
@@ -542,6 +544,7 @@ end
 class ArrayValue < Variable
   def initialize(variable_name)
     super
+    @array = true
   end
 
   def evaluate(interpreter, _, trace)
@@ -599,6 +602,7 @@ end
 class ArrayReference < CompoundReference
   def initialize(variable_value)
     super(variable_value.name)
+    @array = true
   end
 end
 
@@ -606,6 +610,7 @@ end
 class MatrixValue < Variable
   def initialize(variable_name)
     super
+    @matrix = true
   end
 
   def evaluate(interpreter, _, trace)
@@ -652,6 +657,7 @@ end
 class MatrixReference < CompoundReference
   def initialize(variable_value)
     super(variable_value.name)
+    @matrix = true
   end
 end
 
@@ -882,19 +888,24 @@ class AbstractExpression
     vars = []
     parsed_expressions.each do |expression|
       previous = nil
+
       expression.each do |thing|
         if thing.list?
           # recurse into expressions in list
           sublist = thing.list
           vars += parsed_expressions_variables(sublist)
         elsif thing.variable?
-          if !previous.nil? && previous.list?
-            commas = ',' * (previous.count - 1)
-            vars << thing.to_s + '(' + commas + ')'
-          else
-            vars << thing.to_s
+          suffix = ''
+          suffix = '()' if thing.array?
+          suffix = '(,)' if thing.matrix?
+          if suffix == '' && !previous.nil?
+            if previous.list?
+              suffix = '(' + (',' * (previous.size - 1)) + ')'
+            end
           end
+          vars << thing.to_s + suffix
         end
+
         previous = thing
       end
     end
@@ -964,6 +975,7 @@ end
 class ValueScalarExpression < AbstractExpression
   def initialize(tokens)
     super(tokens, ScalarValue)
+    @scalar = true
   end
 
   def printable?
@@ -1010,6 +1022,7 @@ end
 class ValueArrayExpression < ValueCompoundExpression
   def initialize(tokens)
     super(tokens, ArrayValue)
+    @array = true
   end
 end
 
@@ -1017,6 +1030,7 @@ end
 class ValueMatrixExpression < ValueCompoundExpression
   def initialize(tokens)
     super(tokens, MatrixValue)
+    @matrix = true
   end
 end
 
@@ -1198,8 +1212,8 @@ class AbstractAssignment
     @target.to_s + ' = ' + @expression.to_s
   end
 
-  def to_postfix_s
-    @expression.to_postfix_s
+  def dump
+    @target.dump_parsed.to_s + ' = ' + @expression.dump_parsed.to_s
   end
 end
 
