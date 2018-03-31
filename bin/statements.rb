@@ -2545,20 +2545,26 @@ class AbstractWriteStatement < AbstractStatement
     @final = final_carriage
   end
 
-  def extract_file_handle(print_items, interpreter)
+  def extract_file_handle(print_items)
     print_items = print_items.clone
-    file_handle = nil
+    file_tokens = nil
     unless print_items.empty? ||
            print_items[0].class.to_s == 'CarriageControl'
-      value = first_item(print_items, interpreter)
-      if value.class.to_s == 'FileHandle'
-        file_handle = value
-        print_items.shift
+      candidate_file_tokens = print_items[0]
+
+      if candidate_file_tokens.filehandle?
+        file_tokens = print_items.shift
         print_items.shift if
           print_items[0].class.to_s == 'CarriageControl'
       end
     end
-    [file_handle, print_items]
+    [file_tokens, print_items]
+  end
+
+  def get_file_handle(interpreter)
+    file_handles = @file_tokens.evaluate(interpreter, false)
+    file_handle = file_handles[0]
+    interpreter.get_file_handler(file_handle)
   end
 
   def first_item(print_items, interpreter)
@@ -2591,16 +2597,18 @@ class WriteStatement < AbstractWriteStatement
 
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], true)
-      @print_items = tokens_to_expressions(tokens_lists)
+      print_items = tokens_to_expressions(tokens_lists)
+      @file_tokens, @print_items = extract_file_handle(print_items)
     else
       @errors << 'Syntax error'
     end
   end
 
   def execute_core(interpreter)
-    file_handle, print_items = extract_file_handle(@print_items, interpreter)
-    fh = interpreter.get_file_handler(file_handle)
-    print_items.each do |item|
+    fh = interpreter.console_io
+    fh = get_file_handle(interpreter) unless @file_tokens.nil?
+
+    @print_items.each do |item|
       item.write(fh, interpreter)
     end
   end
@@ -2779,22 +2787,24 @@ class ArrWriteStatement < AbstractWriteStatement
 
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], true)
-      @print_items = tokens_to_expressions(tokens_lists)
+      print_items = tokens_to_expressions(tokens_lists)
+      @file_tokens, @print_items = extract_file_handle(print_items)
     else
       @errors << 'Syntax error'
     end
   end
 
   def execute_core(interpreter)
-    file_handle, print_items = extract_file_handle(@print_items, interpreter)
-    fh = interpreter.get_file_handler(file_handle)
+    fh = interpreter.console_io
+    fh = get_file_handle(interpreter) unless @file_tokens.nil?
+
     i = 0
-    print_items.each do |item|
+    @print_items.each do |item|
       if item.printable?
         carriage = CarriageControl.new('')
-        carriage = print_items[i + 1] if
-          i < print_items.size &&
-          !print_items[i + 1].printable?
+        carriage = @print_items[i + 1] if
+          i < @print_items.size &&
+          !@print_items[i + 1].printable?
         item.write(fh, interpreter, carriage)
       end
       i += 1
@@ -3036,22 +3046,24 @@ class MatWriteStatement < AbstractWriteStatement
 
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], true)
-      @print_items = tokens_to_expressions(tokens_lists)
+      print_items = tokens_to_expressions(tokens_lists)
+      @file_tokens, @print_items = extract_file_handle(print_items)
     else
       @errors << 'Syntax error'
     end
   end
 
   def execute_core(interpreter)
-    file_handle, print_items = extract_file_handle(@print_items, interpreter)
-    fh = interpreter.get_file_handler(file_handle)
+    fh = interpreter.console_io
+    fh = get_file_handle(interpreter) unless @file_tokens.nil?
+
     i = 0
-    print_items.each do |item|
+    @print_items.each do |item|
       if item.printable?
         carriage = CarriageControl.new('')
-        carriage = print_items[i + 1] if
-          i < print_items.size &&
-          !print_items[i + 1].printable?
+        carriage = @print_items[i + 1] if
+          i < @print_items.size &&
+          !@print_items[i + 1].printable?
         item.write(fh, interpreter, carriage)
       end
       i += 1
