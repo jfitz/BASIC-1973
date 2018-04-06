@@ -1688,7 +1688,9 @@ class LetStatement < AbstractStatement
   end
   
   def variables
-    @assignment.variables
+    vars = []
+    vars = @assignment.variables unless @assignment.nil?
+    vars
   end
 end
 
@@ -2094,14 +2096,7 @@ class AbstractPrintStatement < AbstractStatement
 
   def get_file_handle(interpreter)
     file_handles = @file_tokens.evaluate(interpreter, false)
-    file_handle = file_handles[0]
-    interpreter.get_file_handler(file_handle)
-  end
-
-  def first_item(print_items, interpreter)
-    first_list = print_items[0]
-    values = first_list.evaluate(interpreter, false)
-    values[0]
+    file_handles[0]
   end
 
   def add_implied_items(print_items)
@@ -2140,11 +2135,12 @@ class PrintStatement < AbstractPrintStatement
   end
 
   def execute_core(interpreter)
-    fh = interpreter.console_io
+    fh = nil
     fh = get_file_handle(interpreter) unless @file_tokens.nil?
+    fhr = interpreter.get_file_handler(fh)
 
     @print_items.each do |item|
-      item.print(fh, interpreter)
+      item.print(fhr, interpreter)
     end
   end
 
@@ -2194,6 +2190,7 @@ class PrintUsingStatement < AbstractPrintStatement
 
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], true)
+      @file_tokens = nil
       @print_items = tokens_to_expressions(tokens_lists)
     else
       @errors << 'Syntax error'
@@ -2201,10 +2198,17 @@ class PrintUsingStatement < AbstractPrintStatement
   end
 
   def execute_core(interpreter)
+    fh = nil
+    fh = get_file_handle(interpreter) unless @file_tokens.nil?
+    fhr = interpreter.get_file_handler(fh)
+
     format_spec, print_items = extract_format(@print_items, interpreter)
+
+    raise(BASICRuntimeError, 'No print format') if format_spec.nil?
+
     # split format
     formats = split_format(format_spec)
-    fh = interpreter.console_io
+    fhr = interpreter.console_io
     formats.each do |format|
       constant = nil
       if format.wants_item
@@ -2215,10 +2219,10 @@ class PrintUsingStatement < AbstractPrintStatement
         constant = constants[0]
       end
       text = format.format(constant)
-      text.print(fh)
+      text.print(fhr)
     end
     item = print_items.shift
-    item.print(fh, interpreter)
+    item.print(fhr, interpreter)
   end
 
   private
@@ -2237,6 +2241,12 @@ class PrintUsingStatement < AbstractPrintStatement
       end
     end
     [format, print_items]
+  end
+
+  def first_item(print_items, interpreter)
+    first_list = print_items[0]
+    values = first_list.evaluate(interpreter, false)
+    values[0]
   end
 
   def split_format(format)
@@ -2313,30 +2323,26 @@ class AbstractReadStatement < AbstractStatement
 
   private
 
-  def extract_file_handle(tokens_lists, interpreter)
-    tokens_lists = tokens_lists.clone
-    begin
-      unless tokens_lists.empty? ||
-             tokens_lists[0].class.to_s == 'CarriageControl'
-        value = first_value(tokens_lists, interpreter)
-        if value.class.to_s == 'FileHandle'
-          file_handle = value
-          tokens_lists.shift
-          tokens_lists.shift if tokens_lists[0].class.to_s == 'CarriageControl'
-        end
-      end
-    rescue BASICExpressionError
-      file_handle = nil
-    end
-    [file_handle, tokens_lists]
-  end
+  def extract_file_handle(print_items)
+    print_items = print_items.clone
+    file_tokens = nil
+    unless print_items.empty? ||
+           print_items[0].class.to_s == 'CarriageControl'
+      candidate_file_tokens = print_items[0]
 
-  def first_value(tokens_lists, interpreter)
-    first_list = tokens_lists[0]
-    expr = ValueScalarExpression.new(first_list)
-    values = expr.evaluate(interpreter, false)
-    values[0]
+      if candidate_file_tokens.filehandle?
+        file_tokens = print_items.shift
+        print_items.shift if
+          print_items[0].class.to_s == 'CarriageControl'
+      end
+    end
+    [file_tokens, print_items]
   end
+  
+  def get_file_handle(interpreter)
+    file_handles = @file_tokens.evaluate(interpreter, false)
+    file_handles[0]
+   end
 end
 
 # READ
@@ -2356,35 +2362,49 @@ class ReadStatement < AbstractReadStatement
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      @read_items = split_tokens(tokens_lists[0], false)
+      read_items = split_tokens(tokens_lists[0], false)
+      read_items = tokens_to_expressions(read_items)
+      @file_tokens, @read_items = extract_file_handle(read_items)
     else
       @errors << 'Syntax error'
     end
   end
 
   def execute_core(interpreter)
-    read_items = @read_items.clone
-    unless read_items.empty?
-      fh, tokens_lists = extract_file_handle(read_items, interpreter)
-    end
-    expression_list = []
-    tokens_lists.each do |tokens_list|
-      begin
-        expression_list << TargetExpression.new(tokens_list, ScalarReference)
-      rescue BASICExpressionError
-        raise(BASICExpressionError,
-              'Invalid variable ' + tokens_list.map(&:to_s).join)
-      end
-    end
-
+    fh = nil
+    fh = get_file_handle(interpreter) unless @file_tokens.nil?
     ds = interpreter.get_data_store(fh)
-    expression_list.each do |expression|
-      targets = expression.evaluate(interpreter, false)
+
+    @read_items.each do |item|
+      targets = item.evaluate(interpreter, false)
       targets.each do |target|
         value = ds.read
         interpreter.set_value(target, value)
       end
     end
+  end
+
+  private
+
+  def tokens_to_expressions(tokens_lists)
+    print_items = []
+    tokens_lists.each do |tokens_list|
+      if tokens_list.class.to_s == 'Array'
+        add_expression(print_items, tokens_list)
+      end
+    end
+    print_items
+  end
+
+  def add_expression(print_items, tokens)
+    if tokens[0].operator? && tokens[0].to_s == '#'
+      print_items << ValueScalarExpression.new(tokens)
+    else
+      print_items << TargetExpression.new(tokens, ScalarReference)
+    end
+  rescue BASICExpressionError
+    line_text = tokens.map(&:to_s).join
+    @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
   end
 end
 
@@ -2563,14 +2583,7 @@ class AbstractWriteStatement < AbstractStatement
 
   def get_file_handle(interpreter)
     file_handles = @file_tokens.evaluate(interpreter, false)
-    file_handle = file_handles[0]
-    interpreter.get_file_handler(file_handle)
-  end
-
-  def first_item(print_items, interpreter)
-    first_list = print_items[0]
-    values = first_list.evaluate(interpreter, true)
-    values[0]
+    file_handles[0]
   end
 
   def add_implied_items(print_items)
@@ -2605,11 +2618,12 @@ class WriteStatement < AbstractWriteStatement
   end
 
   def execute_core(interpreter)
-    fh = interpreter.console_io
+    fh = nil
     fh = get_file_handle(interpreter) unless @file_tokens.nil?
+    fhr = interpreter.get_file_handler(fh)
 
     @print_items.each do |item|
-      item.write(fh, interpreter)
+      item.write(fhr, interpreter)
     end
   end
 
@@ -2617,6 +2631,7 @@ class WriteStatement < AbstractWriteStatement
 
   def tokens_to_expressions(tokens_lists)
     print_items = []
+
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'ParamSeparatorToken'
         print_items << CarriageControl.new(tokens_list.to_s)
@@ -2624,6 +2639,7 @@ class WriteStatement < AbstractWriteStatement
         add_expression(print_items, tokens_list)
       end
     end
+
     add_implied_items(print_items)
     print_items
   end
@@ -2633,6 +2649,7 @@ class WriteStatement < AbstractWriteStatement
        print_items[-1].class.to_s == 'ValueScalarExpression'
       print_items << CarriageControl.new('')
     end
+
     begin
       print_items << ValueScalarExpression.new(tokens)
     rescue BASICExpressionError
@@ -2667,8 +2684,9 @@ class ArrPrintStatement < AbstractPrintStatement
   end
 
   def execute_core(interpreter)
-    fh = interpreter.console_io
+    fh = nil
     fh = get_file_handle(interpreter) unless @file_tokens.nil?
+    fhr = interpreter.get_file_handler(fh)
 
     i = 0
     @print_items.each do |item|
@@ -2677,7 +2695,7 @@ class ArrPrintStatement < AbstractPrintStatement
         carriage = @print_items[i + 1] if
           i < @print_items.size &&
           !@print_items[i + 1].printable?
-        item.print(fh, interpreter, carriage)
+        item.print(fhr, interpreter, carriage)
       end
       i += 1
     end
@@ -2715,31 +2733,21 @@ class ArrReadStatement < AbstractReadStatement
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      @read_items = split_tokens(tokens_lists[0], false)
+      read_items = split_tokens(tokens_lists[0], false)
+      read_items = tokens_to_expressions(read_items)
+      @file_tokens, @read_items = extract_file_handle(read_items)
     else
       @errors << 'Syntax error'
     end
   end
 
   def execute_core(interpreter)
-    tokens_lists = @read_items.clone
-    unless tokens_lists.empty?
-      fh, tokens_lists = extract_file_handle(tokens_lists, interpreter)
-    end
-    expression_list = []
-    tokens_lists.each do |tokens_list|
-      begin
-        expression = TargetExpression.new(tokens_list, ArrayReference)
-        expression_list << expression
-      rescue BASICExpressionError
-        raise(BASICExpressionError,
-              'Invalid variable ' + tokens_list.map(&:to_s).join)
-      end
-    end
-
+    fh = nil
+    fh = get_file_handle(interpreter) unless @file_tokens.nil?
     ds = interpreter.get_data_store(fh)
-    expression_list.each do |expression|
-      targets = expression.evaluate(interpreter, false)
+
+    @read_items.each do |item|
+      targets = item.evaluate(interpreter, false)
       targets.each do |target|
         interpreter.set_dimensions(target, target.dimensions) if
           target.dimensions?
@@ -2749,6 +2757,29 @@ class ArrReadStatement < AbstractReadStatement
   end
 
   private
+
+  def tokens_to_expressions(tokens_lists)
+    print_items = []
+
+    tokens_lists.each do |tokens_list|
+      if tokens_list.class.to_s == 'Array'
+        add_expression(print_items, tokens_list)
+      end
+    end
+
+    print_items
+  end
+
+  def add_expression(print_items, tokens)
+    if tokens[0].operator? && tokens[0].to_s == '#'
+      print_items << ValueScalarExpression.new(tokens)
+    else
+      print_items << TargetExpression.new(tokens, ArrayReference)
+    end
+  rescue BASICExpressionError
+    line_text = tokens.map(&:to_s).join
+    @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
+  end
 
   def read_values(name, interpreter, ds)
     dims = interpreter.get_dimensions(name)
@@ -2762,10 +2793,12 @@ class ArrReadStatement < AbstractReadStatement
 
   def read_array(name, dims, interpreter, ds)
     values = {}
+
     (0..dims[0].to_i).each do |col|
       coord = make_coord(col)
       values[coord] = ds.read
     end
+
     interpreter.set_values(name, values)
   end
 end
@@ -2795,8 +2828,9 @@ class ArrWriteStatement < AbstractWriteStatement
   end
 
   def execute_core(interpreter)
-    fh = interpreter.console_io
+    fh = nil
     fh = get_file_handle(interpreter) unless @file_tokens.nil?
+    fhr = interpreter.get_file_handler(fh)
 
     i = 0
     @print_items.each do |item|
@@ -2805,8 +2839,9 @@ class ArrWriteStatement < AbstractWriteStatement
         carriage = @print_items[i + 1] if
           i < @print_items.size &&
           !@print_items[i + 1].printable?
-        item.write(fh, interpreter, carriage)
+        item.write(fhr, interpreter, carriage)
       end
+
       i += 1
     end
   end
@@ -2815,6 +2850,7 @@ class ArrWriteStatement < AbstractWriteStatement
 
   def tokens_to_expressions(tokens_lists)
     print_items = []
+
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'ParamSeparatorToken'
         print_items << CarriageControl.new(tokens_list)
@@ -2822,6 +2858,7 @@ class ArrWriteStatement < AbstractWriteStatement
         print_items << ValueArrayExpression.new(tokens_list)
       end
     end
+
     add_implied_items(print_items)
     print_items
   end
@@ -2882,6 +2919,7 @@ class ArrLetStatement < AbstractStatement
   def first_value(interpreter)
     r_values = @assignment.eval_value(interpreter)
     r_value = r_values[0]
+
     raise(BASICRuntimeError, 'Expected Array') if
       r_value.class.to_s != 'BASICArray'
     r_value
@@ -2913,8 +2951,9 @@ class MatPrintStatement < AbstractPrintStatement
   end
 
   def execute_core(interpreter)
-    fh = interpreter.console_io
+    fh = nil
     fh = get_file_handle(interpreter) unless @file_tokens.nil?
+    fhr = interpreter.get_file_handler(fh)
 
     i = 0
     @print_items.each do |item|
@@ -2923,8 +2962,9 @@ class MatPrintStatement < AbstractPrintStatement
         carriage = @print_items[i + 1] if
           i < @print_items.size &&
           !@print_items[i + 1].printable?
-        item.print(fh, interpreter, carriage)
+        item.print(fhr, interpreter, carriage)
       end
+
       i += 1
     end
   end
@@ -2961,31 +3001,21 @@ class MatReadStatement < AbstractReadStatement
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      @read_items = split_tokens(tokens_lists[0], false)
+      read_items = split_tokens(tokens_lists[0], false)
+      read_items = tokens_to_expressions(read_items)
+      @file_tokens, @read_items = extract_file_handle(read_items)
     else
       @errors << 'Syntax error'
     end
   end
 
   def execute_core(interpreter)
-    tokens_lists = @read_items.clone
-    unless tokens_lists.empty?
-      fh, tokens_lists = extract_file_handle(tokens_lists, interpreter)
-    end
-    expression_list = []
-    tokens_lists.each do |tokens_list|
-      begin
-        expression = TargetExpression.new(tokens_list, MatrixReference)
-        expression_list << expression
-      rescue BASICExpressionError
-        raise(BASICExpressionError,
-              'Invalid variable ' + tokens_list.map(&:to_s).join)
-      end
-    end
-
+    fh = nil
+    fh = get_file_handle(interpreter) unless @file_tokens.nil?
     ds = interpreter.get_data_store(fh)
-    expression_list.each do |expression|
-      targets = expression.evaluate(interpreter, false)
+
+    @read_items.each do |item|
+      targets = item.evaluate(interpreter, false)
       targets.each do |target|
         interpreter.set_dimensions(target, target.dimensions) if
           target.dimensions?
@@ -2996,8 +3026,32 @@ class MatReadStatement < AbstractReadStatement
 
   private
 
+  def tokens_to_expressions(tokens_lists)
+    print_items = []
+
+    tokens_lists.each do |tokens_list|
+      if tokens_list.class.to_s == 'Array'
+        add_expression(print_items, tokens_list)
+      end
+    end
+
+    print_items
+  end
+
+  def add_expression(print_items, tokens)
+    if tokens[0].operator? && tokens[0].to_s == '#'
+      print_items << ValueScalarExpression.new(tokens)
+    else
+      print_items << TargetExpression.new(tokens, MatrixReference)
+    end
+  rescue BASICExpressionError
+    line_text = tokens.map(&:to_s).join
+    @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
+  end
+
   def read_values(name, interpreter, ds)
     dims = interpreter.get_dimensions(name)
+
     case dims.size
     when 1
       read_vector(name, dims, interpreter, ds)
@@ -3010,21 +3064,25 @@ class MatReadStatement < AbstractReadStatement
 
   def read_vector(name, dims, interpreter, ds)
     values = {}
+
     (1..dims[0].to_i).each do |col|
       coord = make_coord(col)
       values[coord] = ds.read
     end
+
     interpreter.set_values(name, values)
   end
 
   def read_matrix(name, dims, interpreter, ds)
     values = {}
+
     (1..dims[0].to_i).each do |row|
       (1..dims[1].to_i).each do |col|
         coords = make_coords(row, col)
         values[coords] = ds.read
       end
     end
+
     interpreter.set_values(name, values)
   end
 end
@@ -3054,8 +3112,9 @@ class MatWriteStatement < AbstractWriteStatement
   end
 
   def execute_core(interpreter)
-    fh = interpreter.console_io
+    fh = nil
     fh = get_file_handle(interpreter) unless @file_tokens.nil?
+    fhr = interpreter.get_file_handler(fh)
 
     i = 0
     @print_items.each do |item|
@@ -3064,9 +3123,10 @@ class MatWriteStatement < AbstractWriteStatement
         carriage = @print_items[i + 1] if
           i < @print_items.size &&
           !@print_items[i + 1].printable?
-        item.write(fh, interpreter, carriage)
+        item.write(fhr, interpreter, carriage)
       end
       i += 1
+
     end
   end
 
@@ -3074,6 +3134,7 @@ class MatWriteStatement < AbstractWriteStatement
 
   def tokens_to_expressions(tokens_lists)
     print_items = []
+
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'ParamSeparatorToken'
         print_items << CarriageControl.new(tokens_list)
@@ -3081,6 +3142,7 @@ class MatWriteStatement < AbstractWriteStatement
         print_items << ValueMatrixExpression.new(tokens_list)
       end
     end
+
     add_implied_items(print_items)
     print_items
   end
@@ -3104,12 +3166,15 @@ class MatLetStatement < AbstractStatement
     if check_template(tokens_lists, template)
       begin
         @assignment = MatrixAssignment.new(tokens_lists[0])
+
         if @assignment.count_target.zero?
           @errors << 'Assignment must have left-hand value(s)'
         end
+
         if @assignment.count_value != 1
           @errors << 'Assignment must have only one right-hand value'
         end
+
       rescue BASICRuntimeError => e
         @errors << e.message
         @assignment = @rest
@@ -3137,7 +3202,9 @@ class MatLetStatement < AbstractStatement
   def first_value(interpreter)
     r_values = @assignment.eval_value(interpreter)
     r_value = r_values[0]
+
     raise(BASICExpressionError, 'Expected Matrix') if r_value.class.to_s != 'Matrix'
+
     r_value
   end
 end

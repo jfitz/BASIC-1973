@@ -1058,6 +1058,10 @@ class TargetExpression < AbstractExpression
     end
   end
 
+  def filehandle?
+    false
+  end
+
   private
 
   def check_length
