@@ -412,6 +412,7 @@ OptionParser.new do |opt|
   opt.on('--hash-constant') { |o| options[:hash_constant] = o }
   opt.on('--min-max-op') { |o| options[:min_max_op] = o }
   opt.on('--single-quote-strings') { |o| options[:single_quote_strings] = o }
+  opt.on('--crlf-on-line-input') { |o| options[:crlf_on_line_input] = o }
 end.parse!
 
 list_filename = options[:list_name]
@@ -445,6 +446,7 @@ int_floor = options.key?(:int_floor)
 ignore_rnd_arg = options.key?(:ignore_rnd_arg)
 implied_semicolon = options.key?(:implied_semicolon)
 qmark_after_prompt = options.key?(:qmark_after_prompt)
+crlf_on_line_input = options.key?(:crlf_on_line_input)
 randomize = options.key?(:randomize)
 respect_randomize = true
 respect_randomize = !options[:ignore_randomize] if
@@ -470,7 +472,8 @@ default_prompt = TextConstantToken.new('"? "')
 console_io =
   ConsoleIo.new(print_width, zone_width, back_tab, output_speed,
                 newline_speed, implied_semicolon, default_prompt,
-                qmark_after_prompt, echo_input, input_high_bit)
+                qmark_after_prompt, echo_input, input_high_bit,
+                crlf_on_line_input)
 
 tokenbuilders =
   make_interpreter_tokenbuilders(quotes, statement_seps, comment_leads,

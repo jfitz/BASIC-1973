@@ -54,6 +54,7 @@ module Inputter
 
   def line_input(interpreter)
     input_text = read_line
+    input_text += "\r\n" if @crlf_on_line_input
     quoted = '"' + input_text + '"'
     token = TextConstantToken.new(quoted)
     tokens = [token]
@@ -67,7 +68,7 @@ end
 class ConsoleIo
   def initialize(max_width, zone_width, back_tab, print_rate, newline_rate,
                  implied_semicolon, default_prompt, qmark_after_prompt,
-                 echo_input, input_high_bit)
+                 echo_input, input_high_bit, crlf_on_line_input)
     @quotes = ['"']
     @column = 0
     @max_width = max_width
@@ -80,6 +81,7 @@ class ConsoleIo
     @echo_input = echo_input
     @input_high_bit = input_high_bit
     @qmark_after_prompt = qmark_after_prompt
+    @crlf_on_line_input = crlf_on_line_input
     @last_was_numeric = false
   end
 

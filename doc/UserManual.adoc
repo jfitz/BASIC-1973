@@ -157,7 +157,8 @@ When the BASIC program ends, BASIC-1973 ends.
 |--ignore-rnd-arg |The RND function ignores its argument and provides a number between zero and one. This matches the behavior of certain BASICs, including K&K.
 |--implied-semicolon |When printing items not delimited by a comma or semicolon, provide spacing as if a semicolon was provided. (Normally the items have no spaces between them.)
 |--back-tab |Allows the TAB() function to move to the left. Normally, it moves only to the right or not at all.
-|--qmark-after-prompt |On an INPUT line, print the question mark after the prompt.
+|--qmark-after-prompt |On an INPUT statement, print the question mark after the prompt.
+|--crlf-on-line-input |On LINE INPUT statement, include the CR/LF as part of the value stored in the variable.
 |--if-false-next-line |When an IF without an ELSE and with a statement (not a destination line number) evaluates its condition as false, change execution to the next numbered line, not the next statement in a multistatment line.
 |--fornext-one-beyond |When a FOR/NEXT loop ends, the index value is one step (usually 1) beyond the end value. (Normally index value is the end value.)
 |--lock-fornext |Lock control variables to FOR/NEXT loops. Variables can be read but not changed.
@@ -1033,6 +1034,8 @@ Not the same (because of trailing spaces inside quotes):
 ? "  GEORGE WASHINGTON"
 ? "1600 PENN  ", "WASHINGTON, DC"
 
+The LINE INPUT statement is similar to this statement, but reads an entire line at one time.
+
 INPUT$
 ~~~~~~
 
@@ -1115,12 +1118,14 @@ Prompts the user and allows the user to enter a text value.
 Syntax:	LINE INPUT [prompt,] variable list
 Syntax:	LINPUT [prompt,] variable list
 Syntax:	LIN [prompt,] variable list
+Syntax:	INPUT LINE [prompt,] variable list
 
 Examples:
 
 	60 LINE INPUT U$
 	65 LINPUT V$
 	70 LINPUT "Enter address: ", A$
+	80 INPUT LINE U$
 
 The default prompt is a single question mark (?) character.
 This prompt can be changed to any text value by specifying a text value as the first parameter.

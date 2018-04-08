@@ -1813,6 +1813,7 @@ class LineInputStatement < AbstractStatement
   def self.lead_keywords
     [
       [KeywordToken.new('LINE'), KeywordToken.new('INPUT')],
+      [KeywordToken.new('INPUT'), KeywordToken.new('LINE')],
       [KeywordToken.new('LINPUT')],
       [KeywordToken.new('LIN')]
     ]
