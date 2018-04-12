@@ -839,6 +839,8 @@ end
 
 # base class for expressions
 class AbstractExpression
+  attr_reader :parsed_expressions
+
   def initialize(tokens, default_type)
     @unparsed_expression = tokens.map(&:to_s).join
     @numeric_constant = tokens.size == 1 && tokens[0].numeric_constant?
@@ -860,10 +862,6 @@ class AbstractExpression
 
   def count
     @parsed_expressions.length
-  end
-
-  def dump_parsed
-    @parsed_expressions
   end
 
   def numeric_constant?
@@ -985,6 +983,11 @@ class ValueScalarExpression < AbstractExpression
 
   def printable?
     true
+  end
+
+  def content_type
+    last_expression = @parsed_expressions[0][-1]
+    last_expression.content_type
   end
 
   def filehandle?
@@ -1231,10 +1234,6 @@ class AbstractAssignment
 
   def to_s
     @target.to_s + ' = ' + @expression.to_s
-  end
-
-  def dump
-    @target.dump_parsed.to_s + ' = ' + @expression.dump_parsed.to_s
   end
 end
 

@@ -564,46 +564,58 @@ class ChangeStatement < AbstractStatement
     template = [[1, '>='], 'TO', [1, '=']]
 
     if check_template(tokens_lists, template)
-      @source_tokens = tokens_lists[0]
-      @target_tokens = tokens_lists[2]
+      source_tokens = tokens_lists[0]
+      target_tokens = tokens_lists[2]
+
+      @source = ValueScalarExpression.new(source_tokens)
+
+      if @source.content_type == 'TextConstant'
+        # string to array
+        @target = TargetExpression.new(target_tokens, ArrayReference)
+      elsif @source.content_type == 'NumericConstant'
+        # array to string
+        @target = TargetExpression.new(target_tokens, ScalarReference)
+      else
+        raise BASICExpressionError, 'Type mismatch'
+      end
     else
       @errors << 'Syntax error'
     end
   end
 
   def execute_core(interpreter)
-    source = ValueScalarExpression.new(@source_tokens)
-    source_values = source.evaluate(interpreter, false)
+    source_values = @source.evaluate(interpreter, false)
     source_value = source_values[0]
 
     if source_value.text_constant?
       # string to array
-      target = TargetExpression.new(@target_tokens, ArrayReference)
 
       array = source_value.unpack
       dims = array.dimensions
-      target_variable_token = VariableToken.new(target.to_s)
+
+      target_variable_token = VariableToken.new(@target.to_s)
       target_variable_name = VariableName.new(target_variable_token)
       target_variable = Variable.new(target_variable_name)
       interpreter.set_dimensions(target_variable, dims)
+
       values = array.values
       interpreter.set_values(target_variable_name, values)
 
     elsif source_value.numeric_constant?
       # array to string
-      source_variable_token = VariableToken.new(source.to_s)
+      source_variable_token = VariableToken.new(@source.to_s)
       source_variable_name = VariableName.new(source_variable_token)
 
-      target = TargetExpression.new(@target_tokens, ScalarReference)
-      target_values = target.evaluate(interpreter, false)
+      target_values = @target.evaluate(interpreter, false)
       target_value = target_values[0]
 
       dims = interpreter.get_dimensions(source_variable_name)
 
-      raise(BASICRuntimeError, 'Source not found') if dims.nil?
+      raise(BASICRuntimeError, 'Source not an array') if dims.nil?
 
       raise(BASICRuntimeError, 'Source must have 1 dimension') unless
         dims.size == 1
+
       cols = dims[0].to_i
       values = {}
       (0..cols).each do |col|
@@ -614,6 +626,7 @@ class ChangeStatement < AbstractStatement
       end
       array = BASICArray.new(dims, values)
       text = array.pack
+
       interpreter.set_value(target_value, text)
 
     else
@@ -623,19 +636,9 @@ class ChangeStatement < AbstractStatement
 
   def variables
     vars = []
-
-    unless @source_tokens.nil?
-      source = ValueScalarExpression.new(@source_tokens)
-      vars += source.variables
-
-      unless @target_tokens.nil? 
-        if @source_tokens[0].content_type == 'string'
-          target = TargetExpression.new(@target_tokens, ArrayReference)
-        else
-          target = TargetExpression.new(@target_tokens, ScalarReference)
-        end
-      end
-    end
+    
+    vars += @source.variables unless @source.nil?
+    vars += @target.variables unless @target.nil? 
 
     vars
   end
