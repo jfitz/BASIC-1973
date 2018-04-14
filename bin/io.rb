@@ -301,6 +301,10 @@ class FileHandler
     @file.close unless @file.nil?
   end
 
+  def to_s
+    @file_name
+  end
+
   def read_line
     input_text = @file.gets
     raise(BASICRuntimeError, 'End of file') if input_text.nil?
