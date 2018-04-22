@@ -1113,11 +1113,10 @@ class Variable < AbstractElement
   end
 
   def compatible?(value)
-    content_type = self.content_type
-    compatible = false
-
     numerics = %w(NumericConstant IntegerConstant)
     strings = %w(TextConstant)
+
+    compatible = false
 
     if content_type == 'NumericConstant'
       compatible = numerics.include?(value.class.to_s)
@@ -1145,14 +1144,26 @@ class Variable < AbstractElement
   def normalize_subscripts(subscripts)
     raise(Exception, 'Invalid subscripts container') unless
       subscripts.class.to_s == 'Array'
+
     int_subscripts = []
     subscripts.each do |subscript|
       raise(Excaption, "Invalid subscript #{subscript}") unless
         subscript.numeric_constant?
+
       int_subscripts << subscript.truncate
     end
+
     int_subscripts
   end
+end
+
+class Value < Variable
+end
+
+class Reference < Variable
+end
+
+class Declaration < Variable
 end
 
 # A list (needed because it has precedence value)

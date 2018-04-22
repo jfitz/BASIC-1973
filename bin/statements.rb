@@ -626,7 +626,7 @@ class ChangeStatement < AbstractStatement
 
       target_variable_token = VariableToken.new(@target.to_s)
       target_variable_name = VariableName.new(target_variable_token)
-      target_variable = Variable.new(target_variable_name)
+      target_variable = Reference.new(target_variable_name)
       interpreter.set_dimensions(target_variable, dims)
 
       values = array.values
@@ -651,7 +651,7 @@ class ChangeStatement < AbstractStatement
       values = {}
       (0..cols).each do |col|
         column = IntegerConstant.new(col)
-        variable = Variable.new(source_variable_name, [column])
+        variable = Value.new(source_variable_name, [column])
         coord = make_coord(col)
         values[coord] = interpreter.get_value(variable, true)
       end
@@ -806,7 +806,7 @@ class DimStatement < AbstractStatement
       tokens_lists.each do |tokens_list|
         begin
           @expression_list <<
-            TargetExpression.new(tokens_list, VariableDimension)
+            TargetExpression.new(tokens_list, CompoundDeclaration)
         rescue BASICExpressionError
           @errors << 'Invalid variable ' + tokens_list.map(&:to_s).join
         end
