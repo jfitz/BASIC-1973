@@ -1,0 +1,1783 @@
+10 PRINT "THIS IS A DEMONSTRATION OF PDP-11 BASIC"
+ ITEMS
+ TextConstant:"THIS IS A DEMONSTRATION OF PDP-11 BASIC"
+ CarriageControl:NL
+20 PRINT "IF YOU NEED INSTRUCTIONS FOR PLAYING FOOTBALL, TYPE A 1"
+ ITEMS
+ TextConstant:"IF YOU NEED INSTRUCTIONS FOR PLAYING FOOTBALL, TYPE A 1"
+ CarriageControl:NL
+30 INPUT I
+ ScalarReference:I
+40 IF I<>1 THEN 340
+ ScalarValue:I
+ NumericConstant:1
+ BinaryOperator:<>
+50 PRINT
+ ITEMS
+ CarriageControl:NL
+60 PRINT
+ ITEMS
+ CarriageControl:NL
+70 PRINT "WHEN IT ASKS YOU A QUESTION TO BE ANSWERED YES OR"
+ ITEMS
+ TextConstant:"WHEN IT ASKS YOU A QUESTION TO BE ANSWERED YES OR"
+ CarriageControl:NL
+80 PRINT "NO, TYPE IN FOR NO OR 1 FOR YES,"
+ ITEMS
+ TextConstant:"NO, TYPE IN FOR NO OR 1 FOR YES,"
+ CarriageControl:NL
+90 PRINT
+ ITEMS
+ CarriageControl:NL
+100 PRINT "ON OFFENSE YOU HAVE THE FOLLOWING PERMITTED PLAYS"
+ ITEMS
+ TextConstant:"ON OFFENSE YOU HAVE THE FOLLOWING PERMITTED PLAYS"
+ CarriageControl:NL
+110 PRINT "PLAY","CODE"
+ ITEMS
+ TextConstant:"PLAY"
+ CarriageControl:,
+ TextConstant:"CODE"
+ CarriageControl:NL
+120 PRINT "RUN", "10" 
+ ITEMS
+ TextConstant:"RUN"
+ CarriageControl:,
+ TextConstant:"10"
+ CarriageControl:NL
+130 PRINT "PASS", "11"
+ ITEMS
+ TextConstant:"PASS"
+ CarriageControl:,
+ TextConstant:"11"
+ CarriageControl:NL
+140 PRINT "SWEEP", "12"
+ ITEMS
+ TextConstant:"SWEEP"
+ CarriageControl:,
+ TextConstant:"12"
+ CarriageControl:NL
+150 PRINT "SCREEN PASS", "13"
+ ITEMS
+ TextConstant:"SCREEN PASS"
+ CarriageControl:,
+ TextConstant:"13"
+ CarriageControl:NL
+160 PRINT "LONG PASS","14"
+ ITEMS
+ TextConstant:"LONG PASS"
+ CarriageControl:,
+ TextConstant:"14"
+ CarriageControl:NL
+170 PRINT "DRAW PLAY", "15"
+ ITEMS
+ TextConstant:"DRAW PLAY"
+ CarriageControl:,
+ TextConstant:"15"
+ CarriageControl:NL
+180 PRINT "PUNT", "16"
+ ITEMS
+ TextConstant:"PUNT"
+ CarriageControl:,
+ TextConstant:"16"
+ CarriageControl:NL
+190 PRINT "FIELDGOAL","l7"
+ ITEMS
+ TextConstant:"FIELDGOAL"
+ CarriageControl:,
+ TextConstant:"l7"
+ CarriageControl:NL
+200 PRINT
+ ITEMS
+ CarriageControl:NL
+210 PRINT "ON DEFENSE, YOU MAY TRY ONE OF THE FOLLOWING:"
+ ITEMS
+ TextConstant:"ON DEFENSE, YOU MAY TRY ONE OF THE FOLLOWING:"
+ CarriageControl:NL
+220 PRINT "DEFENSE", "CODE"
+ ITEMS
+ TextConstant:"DEFENSE"
+ CarriageControl:,
+ TextConstant:"CODE"
+ CarriageControl:NL
+230 PRINT "NORMAL", "4", "GOOD AGAINST SWEEP AND SCREEN"
+ ITEMS
+ TextConstant:"NORMAL"
+ CarriageControl:,
+ TextConstant:"4"
+ CarriageControl:,
+ TextConstant:"GOOD AGAINST SWEEP AND SCREEN"
+ CarriageControl:NL
+240 PRINT "HOLD", "5", "GOOD AGAINST RUN, PASS AND DRAW"
+ ITEMS
+ TextConstant:"HOLD"
+ CarriageControl:,
+ TextConstant:"5"
+ CarriageControl:,
+ TextConstant:"GOOD AGAINST RUN, PASS AND DRAW"
+ CarriageControl:NL
+250 PRINT "BlITZ","6","600D AGAINST PASS OR LONG PASS"
+ ITEMS
+ TextConstant:"BlITZ"
+ CarriageControl:,
+ TextConstant:"6"
+ CarriageControl:,
+ TextConstant:"600D AGAINST PASS OR LONG PASS"
+ CarriageControl:NL
+260 PRINT "INTERCEPT", "7", "INCREASES ThE ODDS FOR AN INTERCEPTION"
+ ITEMS
+ TextConstant:"INTERCEPT"
+ CarriageControl:,
+ TextConstant:"7"
+ CarriageControl:,
+ TextConstant:"INCREASES ThE ODDS FOR AN INTERCEPTION"
+ CarriageControl:NL
+270 PRINT "BLOCK", "8", "GIVES YOU A CHANCE TO BLOCK A KICK,"
+ ITEMS
+ TextConstant:"BLOCK"
+ CarriageControl:,
+ TextConstant:"8"
+ CarriageControl:,
+ TextConstant:"GIVES YOU A CHANCE TO BLOCK A KICK,"
+ CarriageControl:NL
+280 PRINT " ", " ", "BUT DECREASES THE DISTANCE RUNBACK"
+ ITEMS
+ TextConstant:" "
+ CarriageControl:,
+ TextConstant:" "
+ CarriageControl:,
+ TextConstant:"BUT DECREASES THE DISTANCE RUNBACK"
+ CarriageControl:NL
+290 PRINT
+ ITEMS
+ CarriageControl:NL
+300 PRINT "TO CALL A PARTICULR PLAY JUST TYPE ITS CODE NUMBER"
+ ITEMS
+ TextConstant:"TO CALL A PARTICULR PLAY JUST TYPE ITS CODE NUMBER"
+ CarriageControl:NL
+310 PRINT "ALSO, AT ANY TIME DURING PLAY YOU MAY CALL TIME OUT"
+ ITEMS
+ TextConstant:"ALSO, AT ANY TIME DURING PLAY YOU MAY CALL TIME OUT"
+ CarriageControl:NL
+320 PRINT "BY TYPING A 12', HOWEVER YOU ARE PERMITTED ONLY THREE"
+ ITEMS
+ TextConstant:"BY TYPING A 12', HOWEVER YOU ARE PERMITTED ONLY THREE"
+ CarriageControl:NL
+330 PRINT "TIMEOUTS PER HALF,"
+ ITEMS
+ TextConstant:"TIMEOUTS PER HALF,"
+ CarriageControl:NL
+340 PRINT
+ ITEMS
+ CarriageControl:NL
+350 PRINT
+ ITEMS
+ CarriageControl:NL
+360 DEF FNT(X)=SIN(X)/COS(X)
+ ScalarValue:X
+ FunctionSin
+ ScalarValue:X
+ FunctionCos
+ BinaryOperator:/
+370 DIM R(17)
+ NumericConstant:17
+ CompoundDeclaration:R
+380 FOR I=0 TO 17
+ control: VariableToken:I
+ start:   ["NumericConstant:0"]
+ end:     ["NumericConstant:17"]
+ step:    ["NumericConstant:1"]
+390 READ R(I)
+ ScalarValue:I
+ ScalarReference:R
+400 NEXT I
+ VariableToken:I
+410 DATA 9,13,10,0,9,10,12,11,12,0,1,5,3,4,6,2,8,7
+ NumericConstant:9
+ NumericConstant:13
+ NumericConstant:10
+ NumericConstant:0
+ NumericConstant:9
+ NumericConstant:10
+ NumericConstant:12
+ NumericConstant:11
+ NumericConstant:12
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:5
+ NumericConstant:3
+ NumericConstant:4
+ NumericConstant:6
+ NumericConstant:2
+ NumericConstant:8
+ NumericConstant:7
+420 RANDOMIZE
+ 
+430 LET F=0
+ ScalarReference:F
+ NumericConstant:0
+ AssignmentOperator:=
+440 LET Z3=0
+ ScalarReference:Z3
+ NumericConstant:0
+ AssignmentOperator:=
+450 LET O=0
+ ScalarReference:O
+ NumericConstant:0
+ AssignmentOperator:=
+460 LET L=0
+ ScalarReference:L
+ NumericConstant:0
+ AssignmentOperator:=
+470 DIM Z(5,3),P(2),D(2,5)
+ NumericConstant:5
+ NumericConstant:3
+ CompoundDeclaration:Z
+ NumericConstant:2
+ CompoundDeclaration:P
+ NumericConstant:2
+ NumericConstant:5
+ CompoundDeclaration:D
+480 FOR A=0 TO 5
+ control: VariableToken:A
+ start:   ["NumericConstant:0"]
+ end:     ["NumericConstant:5"]
+ step:    ["NumericConstant:1"]
+490 FOR B=0 TO 2
+ control: VariableToken:B
+ start:   ["NumericConstant:0"]
+ end:     ["NumericConstant:2"]
+ step:    ["NumericConstant:1"]
+500 READ Z(A,B),D(B,A)
+ ScalarValue:A
+ ScalarValue:B
+ ScalarReference:Z
+ ScalarValue:B
+ ScalarValue:A
+ ScalarReference:D
+505 LET P(B)=0
+ ScalarValue:B
+ ScalarReference:P
+ NumericConstant:0
+ AssignmentOperator:=
+510 NEXT B
+ VariableToken:B
+520 READ Z(A,3)
+ ScalarValue:A
+ NumericConstant:3
+ ScalarReference:Z
+530 NEXT A
+ VariableToken:A
+540 PRINT "DO YOU WANT TO RECEIVE";
+ ITEMS
+ TextConstant:"DO YOU WANT TO RECEIVE"
+ CarriageControl:;
+550 LET X=1
+ ScalarReference:X
+ NumericConstant:1
+ AssignmentOperator:=
+560 GOSUB 3610
+ LineNumber:3610
+570 LET S=2-SGN(13-Q)
+ ScalarReference:S
+ NumericConstant:2
+ NumericConstant:13
+ ScalarValue:Q
+ BinaryOperator:-
+ FunctionSgn
+ BinaryOperator:-
+ AssignmentOperator:=
+580 LET K=S
+ ScalarReference:K
+ ScalarValue:S
+ AssignmentOperator:=
+590 LET T1=120
+ ScalarReference:T1
+ NumericConstant:120
+ AssignmentOperator:=
+600 LET U2=3
+ ScalarReference:U2
+ NumericConstant:3
+ AssignmentOperator:=
+610 LET U=3
+ ScalarReference:U
+ NumericConstant:3
+ AssignmentOperator:=
+620 LET C=900
+ ScalarReference:C
+ NumericConstant:900
+ AssignmentOperator:=
+630 GOSUB 2250
+ LineNumber:2250
+640 LET F1=50
+ ScalarReference:F1
+ NumericConstant:50
+ AssignmentOperator:=
+650 LET B=INT(F1+O*20*RND(0)+(1-O)*29*(2*RND(0)^7-RND(0)^(3-Z2)))
+ ScalarReference:B
+ ScalarValue:F1
+ ScalarValue:O
+ NumericConstant:20
+ BinaryOperator:*
+ NumericConstant:0
+ FunctionRnd
+ BinaryOperator:*
+ BinaryOperator:+
+ NumericConstant:1
+ ScalarValue:O
+ BinaryOperator:-
+ NumericConstant:29
+ BinaryOperator:*
+ NumericConstant:2
+ NumericConstant:0
+ FunctionRnd
+ NumericConstant:7
+ BinaryOperator:^
+ BinaryOperator:*
+ NumericConstant:0
+ FunctionRnd
+ NumericConstant:3
+ ScalarValue:Z2
+ BinaryOperator:-
+ BinaryOperator:^
+ BinaryOperator:-
+ BinaryOperator:*
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+660 LET O=0
+ ScalarReference:O
+ NumericConstant:0
+ AssignmentOperator:=
+670 LET Z9=8
+ ScalarReference:Z9
+ NumericConstant:8
+ AssignmentOperator:=
+680 GOSUB 1490
+ LineNumber:1490
+690 LET L=0
+ ScalarReference:L
+ NumericConstant:0
+ AssignmentOperator:=
+700 IF B<99 THEN 2340
+ ScalarValue:B
+ NumericConstant:99
+ BinaryOperator:<
+710 PRINT "A TOUCHBACK"
+ ITEMS
+ TextConstant:"A TOUCHBACK"
+ CarriageControl:NL
+720 LET B=20
+ ScalarReference:B
+ NumericConstant:20
+ AssignmentOperator:=
+730 LET L=0
+ ScalarReference:L
+ NumericConstant:0
+ AssignmentOperator:=
+740 IF S=2 THEN 770
+ ScalarValue:S
+ NumericConstant:2
+ BinaryOperator:=
+750 PRINT "MY ";
+ ITEMS
+ TextConstant:"MY "
+ CarriageControl:;
+760 GOTO 780
+ LineNumber:780
+770 PRINT "YOUR ";
+ ITEMS
+ TextConstant:"YOUR "
+ CarriageControl:;
+780 GOSUB 3290
+ LineNumber:3290
+790 GOSUB 2980
+ LineNumber:2980
+800 LET D=1
+ ScalarReference:D
+ NumericConstant:1
+ AssignmentOperator:=
+810 LET F2=.03
+ ScalarReference:F2
+ NumericConstant:0.03
+ AssignmentOperator:=
+820 LET O=0
+ ScalarReference:O
+ NumericConstant:0
+ AssignmentOperator:=
+830 IF C<=0 THEN 2770
+ ScalarValue:C
+ NumericConstant:0
+ BinaryOperator:<=
+840 GOSUB 2530
+ LineNumber:2530
+850 LET Z2=1
+ ScalarReference:Z2
+ NumericConstant:1
+ AssignmentOperator:=
+860 LET Z3=.3
+ ScalarReference:Z3
+ NumericConstant:0.3
+ AssignmentOperator:=
+870 IF C<=F*T1 THEN 2920
+ ScalarValue:C
+ ScalarValue:F
+ ScalarValue:T1
+ BinaryOperator:*
+ BinaryOperator:<=
+880 IF C<=0 THEN 2770
+ ScalarValue:C
+ NumericConstant:0
+ BinaryOperator:<=
+890 IF L=0 THEN 910
+ ScalarValue:L
+ NumericConstant:0
+ BinaryOperator:=
+900 PRINT "TIME TO GO--";
+ ITEMS
+ TextConstant:"TIME TO GO--"
+ CarriageControl:;
+910 PRINT INT(C/60);"MIN.";C-60*INT(C/60);" SEC.  ";
+ ITEMS
+ ScalarValue:C
+ NumericConstant:60
+ BinaryOperator:/
+ FunctionInt
+ CarriageControl:;
+ TextConstant:"MIN."
+ CarriageControl:;
+ ScalarValue:C
+ NumericConstant:60
+ ScalarValue:C
+ NumericConstant:60
+ BinaryOperator:/
+ FunctionInt
+ BinaryOperator:*
+ BinaryOperator:-
+ CarriageControl:;
+ TextConstant:" SEC.  "
+ CarriageControl:;
+920 PRINT "YOUR PLAY";
+ ITEMS
+ TextConstant:"YOUR PLAY"
+ CarriageControl:;
+930 GOSUB 3610
+ LineNumber:3610
+940 IF S=1 THEN 980
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:=
+950 IF Q>8 THEN 920
+ ScalarValue:Q
+ NumericConstant:8
+ BinaryOperator:>
+960 LET M=Q
+ ScalarReference:M
+ ScalarValue:Q
+ AssignmentOperator:=
+970 GOTO 1000
+ LineNumber:1000
+980 LET Y=Q-8
+ ScalarReference:Y
+ ScalarValue:Q
+ NumericConstant:8
+ BinaryOperator:-
+ AssignmentOperator:=
+990 IF ABS(Q-10.5)^2>3 THEN 920
+ ScalarValue:Q
+ NumericConstant:10.5
+ BinaryOperator:-
+ FunctionAbs
+ NumericConstant:2
+ BinaryOperator:^
+ NumericConstant:3
+ BinaryOperator:>
+1000 LET C=INT(C-L*(5+23*RND(X)))
+ ScalarReference:C
+ ScalarValue:C
+ ScalarValue:L
+ NumericConstant:5
+ NumericConstant:23
+ ScalarValue:X
+ FunctionRnd
+ BinaryOperator:*
+ BinaryOperator:+
+ BinaryOperator:*
+ BinaryOperator:-
+ FunctionInt
+ AssignmentOperator:=
+1010 LET L=1
+ ScalarReference:L
+ NumericConstant:1
+ AssignmentOperator:=
+1020 IF M=7 THEN 1760
+ ScalarValue:M
+ NumericConstant:7
+ BinaryOperator:=
+1030 IF M=8 THEN 1920
+ ScalarValue:M
+ NumericConstant:8
+ BinaryOperator:=
+1040 LET Y1=Y-1
+ ScalarReference:Y1
+ ScalarValue:Y
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+1050 IF RND(X)>Z(M-1,Y1) THEN 1240
+ ScalarValue:X
+ FunctionRnd
+ ScalarValue:M
+ NumericConstant:1
+ BinaryOperator:-
+ ScalarValue:Y1
+ ScalarValue:Z
+ BinaryOperator:>
+1060 LET A=2
+ ScalarReference:A
+ NumericConstant:2
+ AssignmentOperator:=
+1070 GOSUB 3020
+ LineNumber:3020
+1080 IF M<4 THEN 1110
+ ScalarValue:M
+ NumericConstant:4
+ BinaryOperator:<
+1090 PRINT "PASS COMPLETE..";
+ ITEMS
+ TextConstant:"PASS COMPLETE.."
+ CarriageControl:;
+1100 LET L=SGN(INT(4*RNO(0)))
+ ScalarReference:L
+ NumericConstant:4
+ ScalarValue:R
+ ScalarValue:N
+ NumericConstant:0
+ ScalarValue:O
+ BinaryOperator:*
+ FunctionInt
+ FunctionSgn
+ AssignmentOperator:=
+1110 IF RND(X)<F2 THEN 2510
+ ScalarValue:X
+ FunctionRnd
+ ScalarValue:F2
+ BinaryOperator:<
+1120 IF G>0 THEN 1210
+ ScalarValue:G
+ NumericConstant:0
+ BinaryOperator:>
+1130 IF G=0 THEN 1170
+ ScalarValue:G
+ NumericConstant:0
+ BinaryOperator:=
+1140 IF G+B<1 THEN 2170
+ ScalarValue:G
+ ScalarValue:B
+ BinaryOperator:+
+ NumericConstant:1
+ BinaryOperator:<
+1150 PRINT "LOSS OF";-G;
+ ITEMS
+ TextConstant:"LOSS OF"
+ CarriageControl:;
+ ScalarValue:G
+ UnaryOperator:-
+ CarriageControl:;
+1160 GOTO 1610
+ LineNumber:1610
+1170 PRINT "NO GAIN"
+ ITEMS
+ TextConstant:"NO GAIN"
+ CarriageControl:NL
+1180 LET Z9=2
+ ScalarReference:Z9
+ NumericConstant:2
+ AssignmentOperator:=
+1190 GOSUB 1490 
+ LineNumber:1490
+1200 GOTO 1670
+ LineNumber:1670
+1210 IF B+G>99 THEN 1650
+ ScalarValue:B
+ ScalarValue:G
+ BinaryOperator:+
+ NumericConstant:99
+ BinaryOperator:>
+1220 PRINT "GAIN OF";G;
+ ITEMS
+ TextConstant:"GAIN OF"
+ CarriageControl:;
+ ScalarValue:G
+ CarriageControl:;
+1230 GOTO 1610 
+ LineNumber:1610
+1240 IF M>3 THEN 1280
+ ScalarValue:M
+ NumericConstant:3
+ BinaryOperator:>
+1250 LET A=1
+ ScalarReference:A
+ NumericConstant:1
+ AssignmentOperator:=
+1260 GOSUB 3020
+ LineNumber:3020
+1270 GOTO 1120
+ LineNumber:1120
+1280 IF RND(X)<.06*(2-SGN(Y-3)) THEN 1360
+ ScalarValue:X
+ FunctionRnd
+ NumericConstant:0.06
+ NumericConstant:2
+ ScalarValue:Y
+ NumericConstant:3
+ BinaryOperator:-
+ FunctionSgn
+ BinaryOperator:-
+ BinaryOperator:*
+ BinaryOperator:<
+1290 IF RND(0)<.05*INT(Y/3.5)/5 THEN 1510
+ NumericConstant:0
+ FunctionRnd
+ NumericConstant:0.05
+ ScalarValue:Y
+ NumericConstant:3.5
+ BinaryOperator:/
+ FunctionInt
+ BinaryOperator:*
+ NumericConstant:5
+ BinaryOperator:/
+ BinaryOperator:<
+1300 LET Z9=6
+ ScalarReference:Z9
+ NumericConstant:6
+ AssignmentOperator:=
+1310 GOSUB 1490
+ LineNumber:1490
+1320 PRINT "PASS INCOMPLETE"
+ ITEMS
+ TextConstant:"PASS INCOMPLETE"
+ CarriageControl:NL
+1330 LET L=0
+ ScalarReference:L
+ NumericConstant:0
+ AssignmentOperator:=
+1340 LET G=0
+ ScalarReference:G
+ NumericConstant:0
+ AssignmentOperator:=
+1350 GOTO 3120
+ LineNumber:3120
+1360 PRINT "PASS **INTERCEPTED**"
+ ITEMS
+ TextConstant:"PASS **INTERCEPTED**"
+ CarriageControl:NL
+1370 LET A=1
+ ScalarReference:A
+ NumericConstant:1
+ AssignmentOperator:=
+1380 GOSUB 3020
+ LineNumber:3020
+1390 IF B<40 THEN 1410
+ ScalarValue:B
+ NumericConstant:40
+ BinaryOperator:<
+1400 LET G=20*(1+SGN(G))
+ ScalarReference:G
+ NumericConstant:20
+ NumericConstant:1
+ ScalarValue:G
+ FunctionSgn
+ BinaryOperator:+
+ BinaryOperator:*
+ AssignmentOperator:=
+1410 LET B=100-B-G
+ ScalarReference:B
+ NumericConstant:100
+ ScalarValue:B
+ BinaryOperator:-
+ ScalarValue:G
+ BinaryOperator:-
+ AssignmentOperator:=
+1420 LET S=3-S
+ ScalarReference:S
+ NumericConstant:3
+ ScalarValue:S
+ BinaryOperator:-
+ AssignmentOperator:=
+1430 LET Z9=9
+ ScalarReference:Z9
+ NumericConstant:9
+ AssignmentOperator:=
+1440 GOSUB 1490
+ LineNumber:1490
+1450 IF B<1 THEN 710
+ ScalarValue:B
+ NumericConstant:1
+ BinaryOperator:<
+1460 IF B>99 THEN 1650
+ ScalarValue:B
+ NumericConstant:99
+ BinaryOperator:>
+1470 PRINT "AT ";
+ ITEMS
+ TextConstant:"AT "
+ CarriageControl:;
+1480 GOTO 2360
+ LineNumber:2360
+1490 LET C=C-INT(4+Z9/2*(1+RND(0)))
+ ScalarReference:C
+ ScalarValue:C
+ NumericConstant:4
+ ScalarValue:Z9
+ NumericConstant:2
+ BinaryOperator:/
+ NumericConstant:1
+ NumericConstant:0
+ FunctionRnd
+ BinaryOperator:+
+ BinaryOperator:*
+ BinaryOperator:+
+ FunctionInt
+ BinaryOperator:-
+ AssignmentOperator:=
+1500 RETURN
+ 
+1510 LET G=-(5+INT(10*RND(X)))
+ ScalarReference:G
+ NumericConstant:5
+ NumericConstant:10
+ ScalarValue:X
+ FunctionRnd
+ BinaryOperator:*
+ FunctionInt
+ BinaryOperator:+
+ UnaryOperator:-
+ AssignmentOperator:=
+1520 PRINT "THE QUARTERBACK "
+ ITEMS
+ TextConstant:"THE QUARTERBACK "
+ CarriageControl:NL
+1530 IF RND(X)>.5 THEN 1560
+ ScalarValue:X
+ FunctionRnd
+ NumericConstant:0.5
+ BinaryOperator:>
+1540 PRINT "IS THROWN FOR A ";
+ ITEMS
+ TextConstant:"IS THROWN FOR A "
+ CarriageControl:;
+1550 GOTO 1110
+ LineNumber:1110
+1560 LET G=-(2*G*8)
+ ScalarReference:G
+ NumericConstant:2
+ ScalarValue:G
+ BinaryOperator:*
+ NumericConstant:8
+ BinaryOperator:*
+ UnaryOperator:-
+ AssignmentOperator:=
+1570 LET M=B
+ ScalarReference:M
+ ScalarValue:B
+ AssignmentOperator:=
+1580 LET A=1
+ ScalarReference:A
+ NumericConstant:1
+ AssignmentOperator:=
+1590 PRINT "SCRAMBLES FOR A ";
+ ITEMS
+ TextConstant:"SCRAMBLES FOR A "
+ CarriageControl:;
+1600 GOTO 1110
+ LineNumber:1110
+1610 LET B=B+G
+ ScalarReference:B
+ ScalarValue:B
+ ScalarValue:G
+ BinaryOperator:+
+ AssignmentOperator:=
+1620 PRINT "TO ";
+ ITEMS
+ TextConstant:"TO "
+ CarriageControl:;
+1630 GOSUB 3300
+ LineNumber:3300
+1640 IF B<99 THEN 1670
+ ScalarValue:B
+ NumericConstant:99
+ BinaryOperator:<
+1650 GOSUB 1990
+ LineNumber:1990
+1660 GOTO 630
+ LineNumber:630
+1670 IF B1>B THEN 3120
+ ScalarValue:B1
+ ScalarValue:B
+ BinaryOperator:>
+1680 IF B1<B THEN 1730
+ ScalarValue:B1
+ ScalarValue:B
+ BinaryOperator:<
+1690 IF RND(0)>.5 THEN 1730
+ NumericConstant:0
+ FunctionRnd
+ NumericConstant:0.5
+ BinaryOperator:>
+1700 PRINT "**MEASUREMENT**"
+ ITEMS
+ TextConstant:"**MEASUREMENT**"
+ CarriageControl:NL
+1710 GOSUB 3520
+ LineNumber:3520
+1720 IF RND(X)<.5 THEN 3120
+ ScalarValue:X
+ FunctionRnd
+ NumericConstant:0.5
+ BinaryOperator:<
+1730 GOSUB 2980
+ LineNumber:2980
+1740 LET D=0
+ ScalarReference:D
+ NumericConstant:0
+ AssignmentOperator:=
+1750 GOTO 3120
+ LineNumber:3120
+1760 IF RND(X)<.06 THEN 1890
+ ScalarValue:X
+ FunctionRnd
+ NumericConstant:0.06
+ BinaryOperator:<
+1770 LET B=B+30*INT(15*(1*RND(0)^3))
+ ScalarReference:B
+ ScalarValue:B
+ NumericConstant:30
+ NumericConstant:15
+ NumericConstant:1
+ NumericConstant:0
+ FunctionRnd
+ NumericConstant:3
+ BinaryOperator:^
+ BinaryOperator:*
+ BinaryOperator:*
+ FunctionInt
+ BinaryOperator:*
+ BinaryOperator:+
+ AssignmentOperator:=
+1780 LET Z9=2
+ ScalarReference:Z9
+ NumericConstant:2
+ AssignmentOperator:=
+1790 GOSUB 1490
+ LineNumber:1490
+1800 IF B<=99 THEN 1550
+ ScalarValue:B
+ NumericConstant:99
+ BinaryOperator:<=
+1810 LET P1=3
+ ScalarReference:P1
+ NumericConstant:3
+ AssignmentOperator:=
+1820 GOSUB 2030
+ LineNumber:2030
+1830 IF P1=0 THEN 710
+ ScalarValue:P1
+ NumericConstant:0
+ BinaryOperator:=
+1840 GOTO 630
+ LineNumber:630
+1850 PRINT "THE KICK IS ";
+ ITEMS
+ TextConstant:"THE KICK IS "
+ CarriageControl:;
+1860 LET Z2=0
+ ScalarReference:Z2
+ NumericConstant:0
+ AssignmentOperator:=
+1870 LET S=3-S
+ ScalarReference:S
+ NumericConstant:3
+ ScalarValue:S
+ BinaryOperator:-
+ AssignmentOperator:=
+1880 GOTO 2340
+ LineNumber:2340
+1890 PRINT "**BLOCKED** RECOVERED..";
+ ITEMS
+ TextConstant:"**BLOCKED** RECOVERED.."
+ CarriageControl:;
+1900 LET G=INT(14*RND(X))
+ ScalarReference:G
+ NumericConstant:14
+ ScalarValue:X
+ FunctionRnd
+ BinaryOperator:*
+ FunctionInt
+ AssignmentOperator:=
+1910 GOTO 1410
+ LineNumber:1410
+1920 PRINT "THE PUNT IS ";
+ ITEMS
+ TextConstant:"THE PUNT IS "
+ CarriageControl:;
+1930 IF RND(X)<.06 THEN 1890
+ ScalarValue:X
+ FunctionRnd
+ NumericConstant:0.06
+ BinaryOperator:<
+1940 LET F1=B
+ ScalarReference:F1
+ ScalarValue:B
+ AssignmentOperator:=
+1950 LET Z2=1
+ ScalarReference:Z2
+ NumericConstant:1
+ AssignmentOperator:=
+1960 LET S=3-S
+ ScalarReference:S
+ NumericConstant:3
+ ScalarValue:S
+ BinaryOperator:-
+ AssignmentOperator:=
+1970 LET Z3=.65
+ ScalarReference:Z3
+ NumericConstant:0.65
+ AssignmentOperator:=
+1980 GOTO 650
+ LineNumber:650
+1990 PRINT "**TOUCHDOWN**"
+ ITEMS
+ TextConstant:"**TOUCHDOWN**"
+ CarriageControl:NL
+2000 LET P1=1 
+ ScalarReference:P1
+ NumericConstant:1
+ AssignmentOperator:=
+2010 LET P(S)=P(S)+6
+ ScalarValue:S
+ ScalarReference:P
+ ScalarValue:S
+ ScalarValue:P
+ NumericConstant:6
+ BinaryOperator:+
+ AssignmentOperator:=
+2020 LET B=130
+ ScalarReference:B
+ NumericConstant:130
+ AssignmentOperator:=
+2030 PRINT "THE KICK IS ";
+ ITEMS
+ TextConstant:"THE KICK IS "
+ CarriageControl:;
+2040 IF RND(X)<(B/132)^4 THEN 2070
+ ScalarValue:X
+ FunctionRnd
+ ScalarValue:B
+ NumericConstant:132
+ BinaryOperator:/
+ NumericConstant:4
+ BinaryOperator:^
+ BinaryOperator:<
+2050 LET P1=0
+ ScalarReference:P1
+ NumericConstant:0
+ AssignmentOperator:=
+2060 PRINT "NO ";
+ ITEMS
+ TextConstant:"NO "
+ CarriageControl:;
+2070 PRINT "GOOD"
+ ITEMS
+ TextConstant:"GOOD"
+ CarriageControl:NL
+2080 LET P(S)=P(S)+P1
+ ScalarValue:S
+ ScalarReference:P
+ ScalarValue:S
+ ScalarValue:P
+ ScalarValue:P1
+ BinaryOperator:+
+ AssignmentOperator:=
+2090 GOSUB 2120
+ LineNumber:2120
+2100 LET S=3-S
+ ScalarReference:S
+ NumericConstant:3
+ ScalarValue:S
+ BinaryOperator:-
+ AssignmentOperator:=
+2110 RETURN
+ 
+2120 PRINT "SCORE! ME";P(1);" YOU";P(2)
+ ITEMS
+ TextConstant:"SCORE! ME"
+ CarriageControl:;
+ NumericConstant:1
+ ScalarValue:P
+ CarriageControl:;
+ TextConstant:" YOU"
+ CarriageControl:;
+ NumericConstant:2
+ ScalarValue:P
+ CarriageControl:NL
+2130 LET L=0
+ ScalarReference:L
+ NumericConstant:0
+ AssignmentOperator:=
+2140 IF X<5 THEN 2160
+ ScalarValue:X
+ NumericConstant:5
+ BinaryOperator:<
+2150 IF P(1)<>P(2) THEN 2770
+ NumericConstant:1
+ ScalarValue:P
+ NumericConstant:2
+ ScalarValue:P
+ BinaryOperator:<>
+2160 RETURN
+ 
+2170 PRINT "**SAFETY**"
+ ITEMS
+ TextConstant:"**SAFETY**"
+ CarriageControl:NL
+2180 LET P(3-S)=P(3-S)+2
+ NumericConstant:3
+ ScalarValue:S
+ BinaryOperator:-
+ ScalarReference:P
+ NumericConstant:3
+ ScalarValue:S
+ BinaryOperator:-
+ ScalarValue:P
+ NumericConstant:2
+ BinaryOperator:+
+ AssignmentOperator:=
+2190 LET F1=30
+ ScalarReference:F1
+ NumericConstant:30
+ AssignmentOperator:=
+2200 LET S=3-S
+ ScalarReference:S
+ NumericConstant:3
+ ScalarValue:S
+ BinaryOperator:-
+ AssignmentOperator:=
+2210 GOSUB 2120
+ LineNumber:2120
+2220 GOSUB 3440
+ LineNumber:3440
+2230 PRINT "FROM THE 20"
+ ITEMS
+ TextConstant:"FROM THE 20"
+ CarriageControl:NL
+2240 GOTO 650
+ LineNumber:650
+2250 GOSUB 3440
+ LineNumber:3440
+2260 IF S=2 THEN 2330
+ ScalarValue:S
+ NumericConstant:2
+ BinaryOperator:=
+2270 PRINT "ON-SIDE";
+ ITEMS
+ TextConstant:"ON-SIDE"
+ CarriageControl:;
+2280 GOSUB 3610
+ LineNumber:3610
+2290 IF Q<>13 THEN 2330
+ ScalarValue:Q
+ NumericConstant:13
+ BinaryOperator:<>
+2300 LET F2=.15
+ ScalarReference:F2
+ NumericConstant:0.15
+ AssignmentOperator:=
+2310 LET Z2=1
+ ScalarReference:Z2
+ NumericConstant:1
+ AssignmentOperator:=
+2320 LET O=1
+ ScalarReference:O
+ NumericConstant:1
+ AssignmentOperator:=
+2330 RETURN
+ 
+2340 LET B=100-B
+ ScalarReference:B
+ NumericConstant:100
+ ScalarValue:B
+ BinaryOperator:-
+ AssignmentOperator:=
+2350 PRINT "RECEIVED AT ";
+ ITEMS
+ TextConstant:"RECEIVED AT "
+ CarriageControl:;
+2360 GOSUB 3300
+ LineNumber:3300
+2370 IF Z2*RND(X)>Z3 THEN 2490
+ ScalarValue:Z2
+ ScalarValue:X
+ FunctionRnd
+ BinaryOperator:*
+ ScalarValue:Z3
+ BinaryOperator:>
+2380 IF RND(X)<F2 THEN 2500
+ ScalarValue:X
+ FunctionRnd
+ ScalarValue:F2
+ BinaryOperator:<
+2390 LET G=5*INT(100*RND(0))
+ ScalarReference:G
+ NumericConstant:5
+ NumericConstant:100
+ NumericConstant:0
+ FunctionRnd
+ BinaryOperator:*
+ FunctionInt
+ BinaryOperator:*
+ AssignmentOperator:=
+2400 IF RND(0)<.15 THEN 2430
+ NumericConstant:0
+ FunctionRnd
+ NumericConstant:0.15
+ BinaryOperator:<
+2410 LET G=INT(24*(1-RND(X)^2))
+ ScalarReference:G
+ NumericConstant:24
+ NumericConstant:1
+ ScalarValue:X
+ FunctionRnd
+ NumericConstant:2
+ BinaryOperator:^
+ BinaryOperator:-
+ BinaryOperator:*
+ FunctionInt
+ AssignmentOperator:=
+2420 IF G=0 THEN 2490
+ ScalarValue:G
+ NumericConstant:0
+ BinaryOperator:=
+2430 LET B=B+G
+ ScalarReference:B
+ ScalarValue:B
+ ScalarValue:G
+ BinaryOperator:+
+ AssignmentOperator:=
+2440 PRINT " AND RUN BACK...";
+ ITEMS
+ TextConstant:" AND RUN BACK..."
+ CarriageControl:;
+2450 LET L=1
+ ScalarReference:L
+ NumericConstant:1
+ AssignmentOperator:=
+2460 IF B>99 THEN 1650
+ ScalarValue:B
+ NumericConstant:99
+ BinaryOperator:>
+2470 PRINT " TO ";
+ ITEMS
+ TextConstant:" TO "
+ CarriageControl:;
+2480 GOSUB 3300
+ LineNumber:3300
+2490 IF RND(0)>F2 THEN 3260
+ NumericConstant:0
+ FunctionRnd
+ ScalarValue:F2
+ BinaryOperator:>
+2500 LET G=0
+ ScalarReference:G
+ NumericConstant:0
+ AssignmentOperator:=
+2510 PRINT "**FUMBLE**";
+ ITEMS
+ TextConstant:"**FUMBLE**"
+ CarriageControl:;
+2520 GOTO 1410
+ LineNumber:1410
+2530 IF S=1 THEN 2560
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:=
+2540 LET Y=INT(1+3.5*RND(0))
+ ScalarReference:Y
+ NumericConstant:1
+ NumericConstant:3.5
+ NumericConstant:0
+ FunctionRnd
+ BinaryOperator:*
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+2550 RETURN
+ 
+2560 LET M=INT(55*RND(0)/10.5)+1
+ ScalarReference:M
+ NumericConstant:55
+ NumericConstant:0
+ FunctionRnd
+ BinaryOperator:*
+ NumericConstant:10.5
+ BinaryOperator:/
+ FunctionInt
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+2570 IF (B1-B)/(5-D)<3 THEN 2590
+ ScalarValue:B1
+ ScalarValue:B
+ BinaryOperator:-
+ NumericConstant:5
+ ScalarValue:D
+ BinaryOperator:-
+ BinaryOperator:/
+ NumericConstant:3
+ BinaryOperator:<
+2580 LET M=INT(6-4*RND(0)^2)
+ ScalarReference:M
+ NumericConstant:6
+ NumericConstant:4
+ NumericConstant:0
+ FunctionRnd
+ NumericConstant:2
+ BinaryOperator:^
+ BinaryOperator:*
+ BinaryOperator:-
+ FunctionInt
+ AssignmentOperator:=
+2590 IF L*F*60>=C THEN 2670
+ ScalarValue:L
+ ScalarValue:F
+ BinaryOperator:*
+ NumericConstant:60
+ BinaryOperator:*
+ ScalarValue:C
+ BinaryOperator:>=
+2600 IF D<4 THEN 2550
+ ScalarValue:D
+ NumericConstant:4
+ BinaryOperator:<
+2610 PRINT "I'LL ";
+ ITEMS
+ TextConstant:"I'LL "
+ CarriageControl:;
+2620 IF B55 THEN 2720
+ NumericConstant:5
+ ScalarValue:B5
+2630 IF 0<4*RND(0)-B1+B THEN 2750
+ NumericConstant:0
+ NumericConstant:4
+ NumericConstant:0
+ FunctionRnd
+ BinaryOperator:*
+ ScalarValue:B1
+ BinaryOperator:-
+ ScalarValue:B
+ BinaryOperator:+
+ BinaryOperator:<
+2640 PRINT "TRY FOR A FIELD GOAL"
+ ITEMS
+ TextConstant:"TRY FOR A FIELD GOAL"
+ CarriageControl:NL
+2650 LET M=7
+ ScalarReference:M
+ NumericConstant:7
+ AssignmentOperator:=
+2660 RETURN
+ 
+2670 IF P(2)*U2<=P(1)*U2 THEN 2600
+ NumericConstant:2
+ ScalarValue:P
+ ScalarValue:U2
+ BinaryOperator:*
+ NumericConstant:1
+ ScalarValue:P
+ ScalarValue:U2
+ BinaryOperator:*
+ BinaryOperator:<=
+2680 PRINT "TIME OUT"
+ ITEMS
+ TextConstant:"TIME OUT"
+ CarriageControl:NL
+2690 LET U2=U2-1
+ ScalarReference:U2
+ ScalarValue:U2
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+2700 GOSUB 3520
+ LineNumber:3520
+2710 GOTO 2600
+ LineNumber:2600
+2720 PRINT "PUNT"
+ ITEMS
+ TextConstant:"PUNT"
+ CarriageControl:NL
+2730 LET M=8
+ ScalarReference:M
+ NumericConstant:8
+ AssignmentOperator:=
+2740 RETURN
+ 
+2750 PRINT "GO FOR IT"
+ ITEMS
+ TextConstant:"GO FOR IT"
+ CarriageControl:NL
+2760 RETURN
+ 
+2770 IF X<4 THEN 2830
+ ScalarValue:X
+ NumericConstant:4
+ BinaryOperator:<
+2780 IF P(1)=P(2) THEN 2830
+ NumericConstant:1
+ ScalarValue:P
+ NumericConstant:2
+ ScalarValue:P
+ BinaryOperator:=
+2790 PRINT "THE GAME IS OVER"
+ ITEMS
+ TextConstant:"THE GAME IS OVER"
+ CarriageControl:NL
+2800 PRINT "FINAL ";
+ ITEMS
+ TextConstant:"FINAL "
+ CarriageControl:;
+2810 GOSUB 2120
+ LineNumber:2120
+2820 STOP
+ 
+2830 PRINT "END OF PERIOD";X
+ ITEMS
+ TextConstant:"END OF PERIOD"
+ CarriageControl:;
+ ScalarValue:X
+ CarriageControl:NL
+2840 GOSUB 2120
+ LineNumber:2120
+2850 LET F=1-F
+ ScalarReference:F
+ NumericConstant:1
+ ScalarValue:F
+ BinaryOperator:-
+ AssignmentOperator:=
+2860 GOSUB 3520
+ LineNumber:3520
+2870 LET C=900
+ ScalarReference:C
+ NumericConstant:900
+ AssignmentOperator:=
+2880 LET X=X+1
+ ScalarReference:X
+ ScalarValue:X
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+2890 IF F<>0 THEN 810
+ ScalarValue:F
+ NumericConstant:0
+ BinaryOperator:<>
+2900 LET S=3-K
+ ScalarReference:S
+ NumericConstant:3
+ ScalarValue:K
+ BinaryOperator:-
+ AssignmentOperator:=
+2910 GOTO 580
+ LineNumber:580
+2920 IF T1=0 THEN 2770
+ ScalarValue:T1
+ NumericConstant:0
+ BinaryOperator:=
+2930 PRINT "2 MINUTE WARNING"
+ ITEMS
+ TextConstant:"2 MINUTE WARNING"
+ CarriageControl:NL
+2940 GOSUB 3520
+ LineNumber:3520
+2950 LET T1=0
+ ScalarReference:T1
+ NumericConstant:0
+ AssignmentOperator:=
+2960 LET C=120
+ ScalarReference:C
+ NumericConstant:120
+ AssignmentOperator:=
+2970 GOTO 880
+ LineNumber:880
+2980 LET B1=B+10
+ ScalarReference:B1
+ ScalarValue:B
+ NumericConstant:10
+ BinaryOperator:+
+ AssignmentOperator:=
+2990 IF B1<=100 THEN 3010
+ ScalarValue:B1
+ NumericConstant:100
+ BinaryOperator:<=
+3000 LET B1=100
+ ScalarReference:B1
+ NumericConstant:100
+ AssignmentOperator:=
+3010 RETURN
+ 
+3020 LET Q=1.3*(A*RND(0)-1)-.06
+ ScalarReference:Q
+ NumericConstant:1.3
+ ScalarValue:A
+ NumericConstant:0
+ FunctionRnd
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:-
+ BinaryOperator:*
+ NumericConstant:0.06
+ BinaryOperator:-
+ AssignmentOperator:=
+3030 LET A=1
+ ScalarReference:A
+ NumericConstant:1
+ AssignmentOperator:=
+3040 IF Q>=0 THEN 3070
+ ScalarValue:Q
+ NumericConstant:0
+ BinaryOperator:>=
+3050 LET A=0
+ ScalarReference:A
+ NumericConstant:0
+ AssignmentOperator:=
+3060 LET Q=-Q
+ ScalarReference:Q
+ ScalarValue:Q
+ UnaryOperator:-
+ AssignmentOperator:=
+3070 LET M=M-1
+ ScalarReference:M
+ ScalarValue:M
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+3080 LET G=D(A,M1)+FNT(Q)*(D(2,M1)-D(A,M1))/3.5
+ ScalarReference:G
+ ScalarValue:A
+ ScalarValue:M1
+ ScalarValue:D
+ ScalarValue:Q
+ UserFunction
+ NumericConstant:2
+ ScalarValue:M1
+ ScalarValue:D
+ ScalarValue:A
+ ScalarValue:M1
+ ScalarValue:D
+ BinaryOperator:-
+ BinaryOperator:*
+ NumericConstant:3.5
+ BinaryOperator:/
+ BinaryOperator:+
+ AssignmentOperator:=
+3090 LET G=G+INT(RND(0)+.02)*A+100*RND(0)
+ ScalarReference:G
+ ScalarValue:G
+ NumericConstant:0
+ FunctionRnd
+ NumericConstant:0.02
+ BinaryOperator:+
+ FunctionInt
+ ScalarValue:A
+ BinaryOperator:*
+ BinaryOperator:+
+ NumericConstant:100
+ NumericConstant:0
+ FunctionRnd
+ BinaryOperator:*
+ BinaryOperator:+
+ AssignmentOperator:=
+3100 LET G=INT(G)
+ ScalarReference:G
+ ScalarValue:G
+ FunctionInt
+ AssignmentOperator:=
+3110 RETURN
+ 
+3120 LET D=D+1
+ ScalarReference:D
+ ScalarValue:D
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+3130 IF D=5 THEN 3240
+ ScalarValue:D
+ NumericConstant:5
+ BinaryOperator:=
+3140 IF D<> 1 THEN 3160
+ ScalarValue:D
+ NumericConstant:1
+ BinaryOperator:<>
+3150 PRINT "1ST";
+ ITEMS
+ TextConstant:"1ST"
+ CarriageControl:;
+3160 IF D<>2 THEN 3180
+ ScalarValue:D
+ NumericConstant:2
+ BinaryOperator:<>
+3170 PRINT "2ND";
+ ITEMS
+ TextConstant:"2ND"
+ CarriageControl:;
+3180 IF D<>3 THEN 3200
+ ScalarValue:D
+ NumericConstant:3
+ BinaryOperator:<>
+3190 PRINT "3RD";
+ ITEMS
+ TextConstant:"3RD"
+ CarriageControl:;
+3200 IF D<4 THEN 3220
+ ScalarValue:D
+ NumericConstant:4
+ BinaryOperator:<
+3210 PRINT "4TH";
+ ITEMS
+ TextConstant:"4TH"
+ CarriageControl:;
+3220 PRINT " AND";B1-B;"    ";
+ ITEMS
+ TextConstant:" AND"
+ CarriageControl:;
+ ScalarValue:B1
+ ScalarValue:B
+ BinaryOperator:-
+ CarriageControl:;
+ TextConstant:"    "
+ CarriageControl:;
+3230 GOTO 810
+ LineNumber:810
+3240 LET S=3-S
+ ScalarReference:S
+ NumericConstant:3
+ ScalarValue:S
+ BinaryOperator:-
+ AssignmentOperator:=
+3250 LET B=100-B
+ ScalarReference:B
+ NumericConstant:100
+ ScalarValue:B
+ BinaryOperator:-
+ AssignmentOperator:=
+3260 IF S=2 THEN 770
+ ScalarValue:S
+ NumericConstant:2
+ BinaryOperator:=
+3270 PRINT "MY ";
+ ITEMS
+ TextConstant:"MY "
+ CarriageControl:;
+3280 GOTO 780
+ LineNumber:780
+3290 PRINT "BALL ON ";
+ ITEMS
+ TextConstant:"BALL ON "
+ CarriageControl:;
+3300 IF B=50 THEN 3400
+ ScalarValue:B
+ NumericConstant:50
+ BinaryOperator:=
+3310 LET V=50-ABS(B-50)
+ ScalarReference:V
+ NumericConstant:50
+ ScalarValue:B
+ NumericConstant:50
+ BinaryOperator:-
+ FunctionAbs
+ BinaryOperator:-
+ AssignmentOperator:=
+3320 LET C=C-INT(7+3*RND(0))
+ ScalarReference:C
+ ScalarValue:C
+ NumericConstant:7
+ NumericConstant:3
+ NumericConstant:0
+ FunctionRnd
+ BinaryOperator:*
+ BinaryOperator:+
+ FunctionInt
+ BinaryOperator:-
+ AssignmentOperator:=
+3330 IF S=1 THEN 3420
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:=
+3340 IF B<50 THEN 3370
+ ScalarValue:B
+ NumericConstant:50
+ BinaryOperator:<
+3350 PRINT "MY ";
+ ITEMS
+ TextConstant:"MY "
+ CarriageControl:;
+3360 GOTO 3380
+ LineNumber:3380
+3370 PRINT "YOUR ";
+ ITEMS
+ TextConstant:"YOUR "
+ CarriageControl:;
+3380 PRINT V
+ ITEMS
+ ScalarValue:V
+ CarriageControl:NL
+3390 RETURN
+ 
+3400 PRINT "THE 50"
+ ITEMS
+ TextConstant:"THE 50"
+ CarriageControl:NL
+3410 RETURN
+ 
+3420 IF B<50 THEN 3350
+ ScalarValue:B
+ NumericConstant:50
+ BinaryOperator:<
+3430 GOTO 3370
+ LineNumber:3370
+3440 IF S=2 THEN 3470
+ ScalarValue:S
+ NumericConstant:2
+ BinaryOperator:=
+3450 PRINT "YOU";
+ ITEMS
+ TextConstant:"YOU"
+ CarriageControl:;
+3460 GOTO 3480
+ LineNumber:3480
+3470 PRINT "I";
+ ITEMS
+ TextConstant:"I"
+ CarriageControl:;
+3480 PRINT " KICK OFF."
+ ITEMS
+ TextConstant:" KICK OFF."
+ CarriageControl:NL
+3490 LET F2=.06
+ ScalarReference:F2
+ NumericConstant:0.06
+ AssignmentOperator:=
+3500 LET Z2=0
+ ScalarReference:Z2
+ NumericConstant:0
+ AssignmentOperator:=
+3510 RETURN
+ 
+3520 LET L=0
+ ScalarReference:L
+ NumericConstant:0
+ AssignmentOperator:=
+3530 PRINT "TIMEOUT CALLED..."
+ ITEMS
+ TextConstant:"TIMEOUT CALLED..."
+ CarriageControl:NL
+3540 PRINT
+ ITEMS
+ CarriageControl:NL
+3550 RETURN
+ 
+3560 IF U=0 THEN 3600
+ ScalarValue:U
+ NumericConstant:0
+ BinaryOperator:=
+3570 LET U=U+1
+ ScalarReference:U
+ ScalarValue:U
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+3580 GOSUB 3520
+ LineNumber:3520
+3590 GOTO 3610
+ LineNumber:3610
+3600 PRINT "..WRONG, TRY AGAIN"
+ ITEMS
+ TextConstant:"..WRONG, TRY AGAIN"
+ CarriageControl:NL
+3610 INPUT A
+ ScalarReference:A
+3620 IF ABS(INT(A))>17 THEN 3600
+ ScalarValue:A
+ FunctionInt
+ FunctionAbs
+ NumericConstant:17
+ BinaryOperator:>
+3630 LET Q=R(INT(ABS(A)))
+ ScalarReference:Q
+ ScalarValue:A
+ FunctionAbs
+ FunctionInt
+ ScalarValue:R
+ AssignmentOperator:=
+3640 IF Q=0 THEN 3600
+ ScalarValue:Q
+ NumericConstant:0
+ BinaryOperator:=
+3650 IF Q=100 THEN 3600
+ ScalarValue:Q
+ NumericConstant:100
+ BinaryOperator:=
+3660 RETURN
+ 
+3670 DATA .5,-2,.25,4,.5,13,.55
+ NumericConstant:0.5
+ NumericConstant:2
+ UnaryOperator:-
+ NumericConstant:0.25
+ NumericConstant:4
+ NumericConstant:0.5
+ NumericConstant:13
+ NumericConstant:0.55
+3680 DATA .4,-2,.3,7,.65,15,.75
+ NumericConstant:0.4
+ NumericConstant:2
+ UnaryOperator:-
+ NumericConstant:0.3
+ NumericConstant:7
+ NumericConstant:0.65
+ NumericConstant:15
+ NumericConstant:0.75
+3690 DATA .4,-2,.3,6,.6,15,.35
+ NumericConstant:0.4
+ NumericConstant:2
+ UnaryOperator:-
+ NumericConstant:0.3
+ NumericConstant:6
+ NumericConstant:0.6
+ NumericConstant:15
+ NumericConstant:0.35
+3700 DATA .65,-2,.65,6,.6,17,.9
+ NumericConstant:0.65
+ NumericConstant:2
+ UnaryOperator:-
+ NumericConstant:0.65
+ NumericConstant:6
+ NumericConstant:0.6
+ NumericConstant:17
+ NumericConstant:0.9
+3710 DATA .4,2,.7,10,.4,27,.2
+ NumericConstant:0.4
+ NumericConstant:2
+ NumericConstant:0.7
+ NumericConstant:10
+ NumericConstant:0.4
+ NumericConstant:27
+ NumericConstant:0.2
+3720 DATA .1,19,.4,35,.2,100,.1
+ NumericConstant:0.1
+ NumericConstant:19
+ NumericConstant:0.4
+ NumericConstant:35
+ NumericConstant:0.2
+ NumericConstant:100
+ NumericConstant:0.1
+3730 END
+ 

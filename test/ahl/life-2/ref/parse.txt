@@ -1,0 +1,390 @@
+1 DIMN1(6,6),K1(18),A1(16),X(2),Y(2)
+ NumericConstant:6
+ NumericConstant:6
+ CompoundDeclaration:N1
+ NumericConstant:18
+ CompoundDeclaration:K1
+ NumericConstant:16
+ CompoundDeclaration:A1
+ NumericConstant:2
+ CompoundDeclaration:X
+ NumericConstant:2
+ CompoundDeclaration:Y
+3 DATA 3,102,103,120,130,121,112,111,12
+ NumericConstant:3
+ NumericConstant:102
+ NumericConstant:103
+ NumericConstant:120
+ NumericConstant:130
+ NumericConstant:121
+ NumericConstant:112
+ NumericConstant:111
+ NumericConstant:12
+4 DATA 21,30,1020,1030,1011,1021,1003,1002,1012
+ NumericConstant:21
+ NumericConstant:30
+ NumericConstant:1020
+ NumericConstant:1030
+ NumericConstant:1011
+ NumericConstant:1021
+ NumericConstant:1003
+ NumericConstant:1002
+ NumericConstant:1012
+10 FORM=1TO18:READK1(M):NEXTM
+ control: VariableToken:M
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:18"]
+ step:    ["NumericConstant:1"]
+ ScalarValue:M
+ ScalarReference:K1
+ VariableToken:M
+13 DATA-1,0,1,0,0,-1,0,1,-1,-1,1,-1,-1,1,1,1
+ NumericConstant:1
+ UnaryOperator:-
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ UnaryOperator:-
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:1
+ UnaryOperator:-
+ NumericConstant:1
+ UnaryOperator:-
+ NumericConstant:1
+ NumericConstant:1
+ UnaryOperator:-
+ NumericConstant:1
+ UnaryOperator:-
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+14 FORO1=1TO16:READA1(O1):NEXTO1
+ control: VariableToken:O1
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:16"]
+ step:    ["NumericConstant:1"]
+ ScalarValue:O1
+ ScalarReference:A1
+ VariableToken:O1
+20 GOTO 500
+ LineNumber:500
+50 FORJ=1TO5
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:5"]
+ step:    ["NumericConstant:1"]
+51 FORK=1TO5
+ control: VariableToken:K
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:5"]
+ step:    ["NumericConstant:1"]
+55 IFN1(J,K)>99THENGOSUB200
+ ScalarValue:J
+ ScalarValue:K
+ ScalarValue:N1
+ NumericConstant:99
+ BinaryOperator:>
+ LineNumber:200
+60 NEXTK
+ VariableToken:K
+65 NEXTJ
+ VariableToken:J
+90 LETK=0:LETM2=0:LETM3=0
+ ScalarReference:K
+ NumericConstant:0
+ AssignmentOperator:=
+ ScalarReference:M2
+ NumericConstant:0
+ AssignmentOperator:=
+ ScalarReference:M3
+ NumericConstant:0
+ AssignmentOperator:=
+99 FORJ=0TO6:PRINT
+ control: VariableToken:J
+ start:   ["NumericConstant:0"]
+ end:     ["NumericConstant:6"]
+ step:    ["NumericConstant:1"]
+ ITEMS
+ CarriageControl:NL
+100 FORK=0TO6
+ control: VariableToken:K
+ start:   ["NumericConstant:0"]
+ end:     ["NumericConstant:6"]
+ step:    ["NumericConstant:1"]
+101 IFJ<>0THENIFJ<>6THEN105
+ ScalarValue:J
+ NumericConstant:0
+ BinaryOperator:<>
+ ScalarValue:J
+ NumericConstant:6
+ BinaryOperator:<>
+102 IFK=6THENPRINT0;:GOTO 125
+ ScalarValue:K
+ NumericConstant:6
+ BinaryOperator:=
+ ITEMS
+ NumericConstant:0
+ CarriageControl:;
+ LineNumber:125
+103 PRINTK;:GOTO120
+ ITEMS
+ ScalarValue:K
+ CarriageControl:;
+ LineNumber:120
+105 IFK<>0THENIFK<>6THEN110
+ ScalarValue:K
+ NumericConstant:0
+ BinaryOperator:<>
+ ScalarValue:K
+ NumericConstant:6
+ BinaryOperator:<>
+106 IFJ=6THENPRINT0;:GOTO 126
+ ScalarValue:J
+ NumericConstant:6
+ BinaryOperator:=
+ ITEMS
+ NumericConstant:0
+ CarriageControl:;
+ LineNumber:126
+107 PRINTJ;:GOTO120
+ ITEMS
+ ScalarValue:J
+ CarriageControl:;
+ LineNumber:120
+110 GOSUB300
+ LineNumber:300
+120 NEXTK
+ VariableToken:K
+125 NEXTJ
+ VariableToken:J
+126 RETURN
+ 
+200 LETB=1:IFN1(J,K)>999THENLETB=10
+ ScalarReference:B
+ NumericConstant:1
+ AssignmentOperator:=
+ ScalarValue:J
+ ScalarValue:K
+ ScalarValue:N1
+ NumericConstant:999
+ BinaryOperator:>
+ ScalarReference:B
+ NumericConstant:10
+ AssignmentOperator:=
+220 FORO1=1TO15STEP2
+ control: VariableToken:O1
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:15"]
+ step:    ["NumericConstant:2"]
+230 LETN1(J+A1(O1),K+A1(O1+1))=N1(J+A1(O1),K+A1(O1+1))+B
+ ScalarValue:J
+ ScalarValue:O1
+ ScalarValue:A1
+ BinaryOperator:+
+ ScalarValue:K
+ ScalarValue:O1
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarValue:A1
+ BinaryOperator:+
+ ScalarReference:N1
+ ScalarValue:J
+ ScalarValue:O1
+ ScalarValue:A1
+ BinaryOperator:+
+ ScalarValue:K
+ ScalarValue:O1
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarValue:A1
+ BinaryOperator:+
+ ScalarValue:N1
+ ScalarValue:B
+ BinaryOperator:+
+ AssignmentOperator:=
+231 NEXTO1
+ VariableToken:O1
+239 RETURN
+ 
+300 IFN1(J,K)<3THEN399
+ ScalarValue:J
+ ScalarValue:K
+ ScalarValue:N1
+ NumericConstant:3
+ BinaryOperator:<
+305 FORO1=1TO18
+ control: VariableToken:O1
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:18"]
+ step:    ["NumericConstant:1"]
+310 IFN1(J,K)=K1(O1)THEN350
+ ScalarValue:J
+ ScalarValue:K
+ ScalarValue:N1
+ ScalarValue:O1
+ ScalarValue:K1
+ BinaryOperator:=
+315 NEXTO1
+ VariableToken:O1
+320 GO TO 399
+ LineNumber:399
+350 IFO1>9THEN360
+ ScalarValue:O1
+ NumericConstant:9
+ BinaryOperator:>
+351 LETN1(J,K)=100:LETM2=M2+1:PRINT" * ";
+ ScalarValue:J
+ ScalarValue:K
+ ScalarReference:N1
+ NumericConstant:100
+ AssignmentOperator:=
+ ScalarReference:M2
+ ScalarValue:M2
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+ ITEMS
+ TextConstant:" * "
+ CarriageControl:;
+355 RETURN
+ 
+360 LETN1(J,K)=1000:LETM3=M3+1:PRINT" # ";
+ ScalarValue:J
+ ScalarValue:K
+ ScalarReference:N1
+ NumericConstant:1000
+ AssignmentOperator:=
+ ScalarReference:M3
+ ScalarValue:M3
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+ ITEMS
+ TextConstant:" # "
+ CarriageControl:;
+365 RETURN
+ 
+399 LETN1(J,K)=0:PRINT"   ";:RETURN
+ ScalarValue:J
+ ScalarValue:K
+ ScalarReference:N1
+ NumericConstant:0
+ AssignmentOperator:=
+ ITEMS
+ TextConstant:"   "
+ CarriageControl:;
+ 
+500 PRINTTAB(10);"U.B LIFE GAME"
+ ITEMS
+ NumericConstant:10
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"U.B LIFE GAME"
+ CarriageControl:NL
+505 LETM2=0:LETM3=0
+ ScalarReference:M2
+ NumericConstant:0
+ AssignmentOperator:=
+ ScalarReference:M3
+ NumericConstant:0
+ AssignmentOperator:=
+510 FORJ=1TO5
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:5"]
+ step:    ["NumericConstant:1"]
+511 FORK=1TO5
+ control: VariableToken:K
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:5"]
+ step:    ["NumericConstant:1"]
+515 LETN1(J,K)=0
+ ScalarValue:J
+ ScalarValue:K
+ ScalarReference:N1
+ NumericConstant:0
+ AssignmentOperator:=
+516 NEXTK
+ VariableToken:K
+517 NEXTJ
+ VariableToken:J
+519 FORB=1TO2:LETP1=3:IFB=2THENLETP1=30
+ control: VariableToken:B
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:2"]
+ step:    ["NumericConstant:1"]
+ ScalarReference:P1
+ NumericConstant:3
+ AssignmentOperator:=
+ ScalarValue:B
+ NumericConstant:2
+ BinaryOperator:=
+ ScalarReference:P1
+ NumericConstant:30
+ AssignmentOperator:=
+520 PRINT"PLAYER";B;"3 LIVE PIECES"
+ ITEMS
+ TextConstant:"PLAYER"
+ CarriageControl:;
+ ScalarValue:B
+ CarriageControl:;
+ TextConstant:"3 LIVE PIECES"
+ CarriageControl:NL
+535 FORK1=1TO3:GOSUB700
+ control: VariableToken:K1
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+ step:    ["NumericConstant:1"]
+ LineNumber:700
+540 LETN1(X(B),Y(B))=P1:NEXTK1
+ ScalarValue:B
+ ScalarValue:X
+ ScalarValue:B
+ ScalarValue:Y
+ ScalarReference:N1
+ ScalarValue:P1
+ AssignmentOperator:=
+ VariableToken:K1
+542 NEXTB
+ VariableToken:B
+559 GOSUB90
+ LineNumber:90
+560 PRINT:GOSUB50
+ ITEMS
+ CarriageControl:NL
+ LineNumber:50
+570 IFM2=0THENIFM3=0THEN574
+ ScalarValue:M2
+ NumericConstant:0
+ BinaryOperator:=
+ ScalarValue:M3
+ NumericConstant:0
+ BinaryOperator:=
+571 IFM3=0THENLETB=1:GOTO575
+ ScalarValue:M3
+ NumericConstant:0
+ BinaryOperator:=
+ ScalarReference:B
+ NumericConstant:1
+ AssignmentOperator:=
+ LineNumber:575
+572 IFM2=0THENLETB=2:GOTO575
+ ScalarValue:M2
+ NumericConstant:0
+ BinaryOperator:=
+ ScalarReference:B
+ NumericConstant:2
+ AssignmentOperator:=
+ LineNumber:575
+573 GOTO580
+ LineNumber:580
+574 PRINT:PRINT"A DRAW":RUN
+ 'RUN' is not a valid assignment
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"A DRAW"
+ CarriageControl:NL

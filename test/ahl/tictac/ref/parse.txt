@@ -1,0 +1,946 @@
+100 PRINT"YOU HAVE THE OPPORTUNITY OF TRYING TO BEAT THE COMPUTER"
+ ITEMS
+ TextConstant:"YOU HAVE THE OPPORTUNITY OF TRYING TO BEAT THE COMPUTER"
+ CarriageControl:NL
+130 PRINT"AT TIC-TAC-TOE, ENTER YOUR MOVES AS FOLLOWS:"
+ ITEMS
+ TextConstant:"AT TIC-TAC-TOE, ENTER YOUR MOVES AS FOLLOWS:"
+ CarriageControl:NL
+140 PRINT
+ ITEMS
+ CarriageControl:NL
+150 DIM C(11)
+ NumericConstant:11
+ CompoundDeclaration:C
+160 DIM D(11)
+ NumericConstant:11
+ CompoundDeclaration:D
+170 FOR K=1 TO 11
+ control: VariableToken:K
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:11"]
+ step:    ["NumericConstant:1"]
+180 READ C(K),D(K)
+ ScalarValue:K
+ ScalarReference:C
+ ScalarValue:K
+ ScalarReference:D
+190 NEXT K
+ VariableToken:K
+200 PRINT H
+ ITEMS
+ ScalarValue:H
+ CarriageControl:NL
+210 PRINT
+ ITEMS
+ CarriageControl:NL
+220 PRINT"ROWS ARE HORIZONTAL (ACROSS), COLUMNS ARE VERTICAL(UP + DOWN)"
+ ITEMS
+ TextConstant:"ROWS ARE HORIZONTAL (ACROSS), COLUMNS ARE VERTICAL(UP + DOWN)"
+ CarriageControl:NL
+230 DIM B(9)
+ NumericConstant:9
+ CompoundDeclaration:B
+240 DIM A(3,3)
+ NumericConstant:3
+ NumericConstant:3
+ CompoundDeclaration:A
+250 PRINT
+ ITEMS
+ CarriageControl:NL
+260 PRINT "NEW GAME STARTED NOW............................."
+ ITEMS
+ TextConstant:"NEW GAME STARTED NOW............................."
+ CarriageControl:NL
+270 FOR J=1 TO 3
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+ step:    ["NumericConstant:1"]
+280 FOR I=1 TO 3
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+ step:    ["NumericConstant:1"]
+290 LET A(I,J)=0
+ ScalarValue:I
+ ScalarValue:J
+ ScalarReference:A
+ NumericConstant:0
+ AssignmentOperator:=
+300 NEXT I
+ VariableToken:I
+301 LET I=I-1
+ ScalarReference:I
+ ScalarValue:I
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+310 NEXT J
+ VariableToken:J
+311 LET J=J-1
+ ScalarReference:J
+ ScalarValue:J
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+320 LET Z= 0
+ ScalarReference:Z
+ NumericConstant:0
+ AssignmentOperator:=
+330 PRINT "YOUR MOVE",
+ ITEMS
+ TextConstant:"YOUR MOVE"
+ CarriageControl:,
+340 INPUT R,C
+ ScalarReference:R
+ ScalarReference:C
+350 PRINT
+ ITEMS
+ CarriageControl:NL
+360 IF R>3 THEN 620
+ ScalarValue:R
+ NumericConstant:3
+ BinaryOperator:>
+370 IF C>3 THEN 620
+ ScalarValue:C
+ NumericConstant:3
+ BinaryOperator:>
+380 IF A(R,C) <> 0 THEN 620 
+ ScalarValue:R
+ ScalarValue:C
+ ScalarValue:A
+ NumericConstant:0
+ BinaryOperator:<>
+390 LET A(R,C)=-1
+ ScalarValue:R
+ ScalarValue:C
+ ScalarReference:A
+ NumericConstant:1
+ UnaryOperator:-
+ AssignmentOperator:=
+400 GOSUB 1660
+ LineNumber:1660
+410 IF Z =1 THEN 2070
+ ScalarValue:Z
+ NumericConstant:1
+ BinaryOperator:=
+420 REM MACHINE MOVE...
+ RemarkToken:MACHINE MOVE...
+430 GOSUB 1100
+ LineNumber:1100
+440 REM TEST FOR GAME WIN...
+ RemarkToken:TEST FOR GAME WIN...
+450 GOSUB 1660
+ LineNumber:1660
+460 IF Z=0 THEN 650
+ ScalarValue:Z
+ NumericConstant:0
+ BinaryOperator:=
+470 REM PRINT GAME BOARD...
+ RemarkToken:PRINT GAME BOARD...
+480 GO TO 490
+ LineNumber:490
+490 PRINT
+ ITEMS
+ CarriageControl:NL
+500 FOR K=1 TO 3
+ control: VariableToken:K
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+ step:    ["NumericConstant:1"]
+510 LET B=A(K,1)
+ ScalarReference:B
+ ScalarValue:K
+ NumericConstant:1
+ ScalarValue:A
+ AssignmentOperator:=
+520 LET D=A(K,2)
+ ScalarReference:D
+ ScalarValue:K
+ NumericConstant:2
+ ScalarValue:A
+ AssignmentOperator:=
+530 LET F=A(K,3)
+ ScalarReference:F
+ ScalarValue:K
+ NumericConstant:3
+ ScalarValue:A
+ AssignmentOperator:=
+540 GOSUB 840
+ LineNumber:840
+550 IF K>2 THEN 570
+ ScalarValue:K
+ NumericConstant:2
+ BinaryOperator:>
+560 PRINT "***************"
+ ITEMS
+ TextConstant:"***************"
+ CarriageControl:NL
+570 NEXT K
+ VariableToken:K
+571 LET K=K-1
+ ScalarReference:K
+ ScalarValue:K
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+580 PRINT
+ ITEMS
+ CarriageControl:NL
+590 IF Z <>0 THEN 2070
+ ScalarValue:Z
+ NumericConstant:0
+ BinaryOperator:<>
+600 GO TO 330
+ LineNumber:330
+610 STOP
+ 
+620 PRINT "---- ILLEGAL MOVE  TRY AGAIN ---"
+ ITEMS
+ TextConstant:"---- ILLEGAL MOVE  TRY AGAIN ---"
+ CarriageControl:NL
+630 PRINT
+ ITEMS
+ CarriageControl:NL
+640 GO TO 330
+ LineNumber:330
+650LET T2=0
+ ScalarReference:T2
+ NumericConstant:0
+ AssignmentOperator:=
+660 FOR J=1 TO 3
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+ step:    ["NumericConstant:1"]
+670 FOR I=1 TO 3
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+ step:    ["NumericConstant:1"]
+680 IF A(I,J)<>0 THEN 700
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:A
+ NumericConstant:0
+ BinaryOperator:<>
+690 LET T2=T2+1
+ ScalarReference:T2
+ ScalarValue:T2
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+700 NEXT I
+ VariableToken:I
+701 LET I=I-1
+ ScalarReference:I
+ ScalarValue:I
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+710 NEXT J
+ VariableToken:J
+711 LET J=J-1
+ ScalarReference:J
+ ScalarValue:J
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+720 IF  T2>0 THEN 750
+ ScalarValue:T2
+ NumericConstant:0
+ BinaryOperator:>
+730 GOSUB 1340
+ LineNumber:1340
+740 GO TO 480
+ LineNumber:480
+750 IF T2>1 THEN 480
+ ScalarValue:T2
+ NumericConstant:1
+ BinaryOperator:>
+760 FOR J=1 TO 8
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:8"]
+ step:    ["NumericConstant:1"]
+770 IF B(J)=-2 THEN 800
+ ScalarValue:J
+ ScalarValue:B
+ NumericConstant:2
+ UnaryOperator:-
+ BinaryOperator:=
+780 NEXT J
+ VariableToken:J
+781 LET J=J-1
+ ScalarReference:J
+ ScalarValue:J
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+790 GO TO 730
+ LineNumber:730
+800 GOSUB 2000
+ LineNumber:2000
+810 GO TO 480
+ LineNumber:480
+820 REM PRINT TIC-TAC-TOE BOARD ROW
+ RemarkToken:PRINT TIC-TAC-TOE BOARD ROW
+830 REM
+840 IF B<>0 THEN 910
+ ScalarValue:B
+ NumericConstant:0
+ BinaryOperator:<>
+850 PRINT "    * ";
+ ITEMS
+ TextConstant:"    * "
+ CarriageControl:;
+860 IF D<>0 THEN 940
+ ScalarValue:D
+ NumericConstant:0
+ BinaryOperator:<>
+870 PRINT "    * ";
+ ITEMS
+ TextConstant:"    * "
+ CarriageControl:;
+880 IF F<>0 THEN 970
+ ScalarValue:F
+ NumericConstant:0
+ BinaryOperator:<>
+890 PRINT "    "
+ ITEMS
+ TextConstant:"    "
+ CarriageControl:NL
+900 GO TO 1070
+ LineNumber:1070
+910 IF B>0 THEN 1000
+ ScalarValue:B
+ NumericConstant:0
+ BinaryOperator:>
+920 PRINT "YOU * ";
+ ITEMS
+ TextConstant:"YOU * "
+ CarriageControl:;
+930 GO TO 860
+ LineNumber:860
+940 IF D>0 THEN 1020
+ ScalarValue:D
+ NumericConstant:0
+ BinaryOperator:>
+950 PRINT "YOU * ";
+ ITEMS
+ TextConstant:"YOU * "
+ CarriageControl:;
+960 GO TO 880
+ LineNumber:880
+970 IF F>0 THEN 1040
+ ScalarValue:F
+ NumericConstant:0
+ BinaryOperator:>
+980 PRINT "YOU"
+ ITEMS
+ TextConstant:"YOU"
+ CarriageControl:NL
+990 GO TO 900
+ LineNumber:900
+1000 PRINT "PDP * ";
+ ITEMS
+ TextConstant:"PDP * "
+ CarriageControl:;
+1010 GO TO 860
+ LineNumber:860
+1020 PRINT "PDP * ";
+ ITEMS
+ TextConstant:"PDP * "
+ CarriageControl:;
+1030 GO TO 880
+ LineNumber:880
+1040 PRINT "PDP"
+ ITEMS
+ TextConstant:"PDP"
+ CarriageControl:NL
+1050 GO TO900
+ LineNumber:900
+1060 REM PRINT LEGENDS..
+ RemarkToken:PRINT LEGENDS..
+1070 PRINT "    *     * "
+ ITEMS
+ TextConstant:"    *     * "
+ CarriageControl:NL
+1080 RETURN
+ 
+1090 REM PROGRAM TO MAKE MOVE FOR THE MACHINE....
+ RemarkToken:PROGRAM TO MAKE MOVE FOR THE MACHINE....
+1100 LET M=INT(3.33*RND(1))
+ ScalarReference:M
+ NumericConstant:3.33
+ NumericConstant:1
+ FunctionRnd
+ BinaryOperator:*
+ FunctionInt
+ AssignmentOperator:=
+1110 LET N=INT(3.33333*RND(N))
+ ScalarReference:N
+ NumericConstant:3.33333
+ ScalarValue:N
+ FunctionRnd
+ BinaryOperator:*
+ FunctionInt
+ AssignmentOperator:=
+1120 IF M=0 THEN 1100
+ ScalarValue:M
+ NumericConstant:0
+ BinaryOperator:=
+1130 IF M>3 THEN 1100
+ ScalarValue:M
+ NumericConstant:3
+ BinaryOperator:>
+1140 IF N=0 THEN 1110
+ ScalarValue:N
+ NumericConstant:0
+ BinaryOperator:=
+1150 IF N>3 THEN 1110
+ ScalarValue:N
+ NumericConstant:3
+ BinaryOperator:>
+1160 LET C(2)=M
+ NumericConstant:2
+ ScalarReference:C
+ ScalarValue:M
+ AssignmentOperator:=
+1170 LET D(2)=N
+ NumericConstant:2
+ ScalarReference:D
+ ScalarValue:N
+ AssignmentOperator:=
+1180 LET C(3)=N
+ NumericConstant:3
+ ScalarReference:C
+ ScalarValue:N
+ AssignmentOperator:=
+1190 LET D(3)=M
+ NumericConstant:3
+ ScalarReference:D
+ ScalarValue:M
+ AssignmentOperator:=
+1200 FOR I=1 TO 8
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:8"]
+ step:    ["NumericConstant:1"]
+1210 IF B(I)>1 THEN 1370
+ ScalarValue:I
+ ScalarValue:B
+ NumericConstant:1
+ BinaryOperator:>
+1220 NEXT I
+ VariableToken:I
+1221 LET I=I-1
+ ScalarReference:I
+ ScalarValue:I
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+1230 FOR I=1 TO 8
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:8"]
+ step:    ["NumericConstant:1"]
+1240 IF B(I)<-1 THEN 1370
+ ScalarValue:I
+ ScalarValue:B
+ NumericConstant:1
+ UnaryOperator:-
+ BinaryOperator:<
+1250 NEXT I
+ VariableToken:I
+1251 LET I=I-1
+ ScalarReference:I
+ ScalarValue:I
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+1260 IF R+C=0 THEN 1550
+ ScalarValue:R
+ ScalarValue:C
+ BinaryOperator:+
+ NumericConstant:0
+ BinaryOperator:=
+1270 FOR K=1 TO 11
+ control: VariableToken:K
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:11"]
+ step:    ["NumericConstant:1"]
+1280 LET I=C(K)
+ ScalarReference:I
+ ScalarValue:K
+ ScalarValue:C
+ AssignmentOperator:=
+1300 IF A(I,J)<>0 THEN 1330
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:A
+ NumericConstant:0
+ BinaryOperator:<>
+1310 LET A(I,J)=1
+ ScalarValue:I
+ ScalarValue:J
+ ScalarReference:A
+ NumericConstant:1
+ AssignmentOperator:=
+1320 GO TO 1360
+ LineNumber:1360
+1330 NEXT K
+ VariableToken:K
+1331 LET K=K-1
+ ScalarReference:K
+ ScalarValue:K
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+1340 PRINT " ... TIE GAME ... "
+ ITEMS
+ TextConstant:" ... TIE GAME ... "
+ CarriageControl:NL
+1350 LET Z=3
+ ScalarReference:Z
+ NumericConstant:3
+ AssignmentOperator:=
+1360 RETURN
+ 
+1370 IF I>3 THEN 1440
+ ScalarValue:I
+ NumericConstant:3
+ BinaryOperator:>
+1380 FOR J=1 TO 3
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+ step:    ["NumericConstant:1"]
+1390 IF A(I,J)=0 THEN 1420
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:A
+ NumericConstant:0
+ BinaryOperator:=
+1400 NEXT J
+ VariableToken:J
+1401 LET J=J-1
+ ScalarReference:J
+ ScalarValue:J
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+1410 GO TO 1360
+ LineNumber:1360
+1420 LET A(I,J)=1
+ ScalarValue:I
+ ScalarValue:J
+ ScalarReference:A
+ NumericConstant:1
+ AssignmentOperator:=
+1430 GO TO 1360
+ LineNumber:1360
+1440 IF I>6 THEN 1510 
+ ScalarValue:I
+ NumericConstant:6
+ BinaryOperator:>
+1450 FOR J=1 TO 3
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+ step:    ["NumericConstant:1"]
+1460 IF A(J,I-3)=0 THEN 1490
+ ScalarValue:J
+ ScalarValue:I
+ NumericConstant:3
+ BinaryOperator:-
+ ScalarValue:A
+ NumericConstant:0
+ BinaryOperator:=
+1470 NEXT J
+ VariableToken:J
+1471 LET J=J-1
+ ScalarReference:J
+ ScalarValue:J
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+1480 GO TO 1360
+ LineNumber:1360
+1490 LET A(J,I-3)=1
+ ScalarValue:J
+ ScalarValue:I
+ NumericConstant:3
+ BinaryOperator:-
+ ScalarReference:A
+ NumericConstant:1
+ AssignmentOperator:=
+1500 GO TO 1360
+ LineNumber:1360
+1510 IF I>7 THEN 1550
+ ScalarValue:I
+ NumericConstant:7
+ BinaryOperator:>
+1520 FOR J=1 TO 3
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+ step:    ["NumericConstant:1"]
+1530 IF A(J,J)=0 THEN 1590
+ ScalarValue:J
+ ScalarValue:J
+ ScalarValue:A
+ NumericConstant:0
+ BinaryOperator:=
+1540 NEXT J
+ VariableToken:J
+1541 LET J=J-1
+ ScalarReference:J
+ ScalarValue:J
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+1550 IF A(1,3)=0 THEN 1610
+ NumericConstant:1
+ NumericConstant:3
+ ScalarValue:A
+ NumericConstant:0
+ BinaryOperator:=
+1560 IF A(3,1)=0 THEN 1630
+ NumericConstant:3
+ NumericConstant:1
+ ScalarValue:A
+ NumericConstant:0
+ BinaryOperator:=
+1570 LET A(2,2)=1
+ NumericConstant:2
+ NumericConstant:2
+ ScalarReference:A
+ NumericConstant:1
+ AssignmentOperator:=
+1580 GO TO 1360
+ LineNumber:1360
+1590 LET A(J,J)=1
+ ScalarValue:J
+ ScalarValue:J
+ ScalarReference:A
+ NumericConstant:1
+ AssignmentOperator:=
+1600 GO TO 1360 
+ LineNumber:1360
+1610 LET A(1,3)=1
+ NumericConstant:1
+ NumericConstant:3
+ ScalarReference:A
+ NumericConstant:1
+ AssignmentOperator:=
+1620 GO TO 1360
+ LineNumber:1360
+1630 LET A(3,1)=1
+ NumericConstant:3
+ NumericConstant:1
+ ScalarReference:A
+ NumericConstant:1
+ AssignmentOperator:=
+1640 GO TO 1360
+ LineNumber:1360
+1650 REM PROGRAM TO TEST FOR GAME WINNER....
+ RemarkToken:PROGRAM TO TEST FOR GAME WINNER....
+1660 LET T1=0
+ ScalarReference:T1
+ NumericConstant:0
+ AssignmentOperator:=
+1670 FOR J=1 TO 9
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:9"]
+ step:    ["NumericConstant:1"]
+1680 LET B(J)=0
+ ScalarValue:J
+ ScalarReference:B
+ NumericConstant:0
+ AssignmentOperator:=
+1690 NEXT J
+ VariableToken:J
+1691 LET J=J-1
+ ScalarReference:J
+ ScalarValue:J
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+1700 FOR J=1 TO 3
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+ step:    ["NumericConstant:1"]
+1710 FOR I=1 TO 3
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+ step:    ["NumericConstant:1"]
+1720 IF A(J,1)<>A(J,I) THEN 1750
+ ScalarValue:J
+ NumericConstant:1
+ ScalarValue:A
+ ScalarValue:J
+ ScalarValue:I
+ ScalarValue:A
+ BinaryOperator:<>
+1730 NEXT I
+ VariableToken:I
+1731 LET I=I-1
+ ScalarReference:I
+ ScalarValue:I
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+1740 LET T1=A(J,I)
+ ScalarReference:T1
+ ScalarValue:J
+ ScalarValue:I
+ ScalarValue:A
+ AssignmentOperator:=
+1750 NEXT J
+ VariableToken:J
+1751 LET J=J-1
+ ScalarReference:J
+ ScalarValue:J
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+1760 FOR J=1 TO 3
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+ step:    ["NumericConstant:1"]
+1770 FOR I=1 TO 3
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+ step:    ["NumericConstant:1"]
+1780 IF A(1,J)<>A(I,J) THEN 1810
+ NumericConstant:1
+ ScalarValue:J
+ ScalarValue:A
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:A
+ BinaryOperator:<>
+1790 NEXT I
+ VariableToken:I
+1791 LET I=I-1
+ ScalarReference:I
+ ScalarValue:I
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+1800 LET T1=A(I,J)
+ ScalarReference:T1
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:A
+ AssignmentOperator:=
+1810 NEXT J
+ VariableToken:J
+1811 LET J=J-1
+ ScalarReference:J
+ ScalarValue:J
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+1820 IF A(1,1)=A(3,3) THEN 1930
+ NumericConstant:1
+ NumericConstant:1
+ ScalarValue:A
+ NumericConstant:3
+ NumericConstant:3
+ ScalarValue:A
+ BinaryOperator:=
+1830 IF A(3,1)=A(1,3) THEN 1970
+ NumericConstant:3
+ NumericConstant:1
+ ScalarValue:A
+ NumericConstant:1
+ NumericConstant:3
+ ScalarValue:A
+ BinaryOperator:=
+1840 IF T1<>0 THEN 1990
+ ScalarValue:T1
+ NumericConstant:0
+ BinaryOperator:<>
+1850 FOR J=1 TO 3
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+ step:    ["NumericConstant:1"]
+1860 FOR I=1 TO 3
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+ step:    ["NumericConstant:1"]
+1870 LET B(J)=B(J)+A(J,I)
+ ScalarValue:J
+ ScalarReference:B
+ ScalarValue:J
+ ScalarValue:B
+ ScalarValue:J
+ ScalarValue:I
+ ScalarValue:A
+ BinaryOperator:+
+ AssignmentOperator:=
+1880 LET B(J+3)=B(J+3)+A(I,J)
+ ScalarValue:J
+ NumericConstant:3
+ BinaryOperator:+
+ ScalarReference:B
+ ScalarValue:J
+ NumericConstant:3
+ BinaryOperator:+
+ ScalarValue:B
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:A
+ BinaryOperator:+
+ AssignmentOperator:=
+1890 NEXT I
+ VariableToken:I
+1891 LET I=I-1
+ ScalarReference:I
+ ScalarValue:I
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+1900 NEXT J
+ VariableToken:J
+1901 LET J=J-1
+ ScalarReference:J
+ ScalarValue:J
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+1910 LET B(7)=A(1,1)+A(2,2)+A(3,3)
+ NumericConstant:7
+ ScalarReference:B
+ NumericConstant:1
+ NumericConstant:1
+ ScalarValue:A
+ NumericConstant:2
+ NumericConstant:2
+ ScalarValue:A
+ BinaryOperator:+
+ NumericConstant:3
+ NumericConstant:3
+ ScalarValue:A
+ BinaryOperator:+
+ AssignmentOperator:=
+1920 RETURN
+ 
+1930 IF A(2,2)=A(3,3) THEN 1950
+ NumericConstant:2
+ NumericConstant:2
+ ScalarValue:A
+ NumericConstant:3
+ NumericConstant:3
+ ScalarValue:A
+ BinaryOperator:=
+1940 GO TO 1830
+ LineNumber:1830
+1950 LET T1=A(2,2)
+ ScalarReference:T1
+ NumericConstant:2
+ NumericConstant:2
+ ScalarValue:A
+ AssignmentOperator:=
+1960 GO TO 1840
+ LineNumber:1840
+1970 IF A(2,2)=A(1,3) THEN 1950
+ NumericConstant:2
+ NumericConstant:2
+ ScalarValue:A
+ NumericConstant:1
+ NumericConstant:3
+ ScalarValue:A
+ BinaryOperator:=
+1980 GO TO 1840
+ LineNumber:1840
+1990 IF T1>0 THEN 2030
+ ScalarValue:T1
+ NumericConstant:0
+ BinaryOperator:>
+2000 PRINT " ...YOU WIN THIS TIME..."
+ ITEMS
+ TextConstant:" ...YOU WIN THIS TIME..."
+ CarriageControl:NL
+2010 LET Z=1
+ ScalarReference:Z
+ NumericConstant:1
+ AssignmentOperator:=
+2020 GO TO 1850
+ LineNumber:1850
+2030 PRINT " ... THE PDP-8 WINS THIS TIME ..."
+ ITEMS
+ TextConstant:" ... THE PDP-8 WINS THIS TIME ..."
+ CarriageControl:NL
+2040 LET Z=2
+ ScalarReference:Z
+ NumericConstant:2
+ AssignmentOperator:=
+2050 GO TO 1850
+ LineNumber:1850
+2060 REM END OF TEST WINNER PROGRAM......
+ RemarkToken:END OF TEST WINNER PROGRAM......
+2070 PRINT "DO YOU WANT TO PLAY ANOTHER GAME: YES(1) NO(0)";
+ ITEMS
+ TextConstant:"DO YOU WANT TO PLAY ANOTHER GAME: YES(1) NO(0)"
+ CarriageControl:;
+2080 INPUT X1
+ ScalarReference:X1
+2090 IF X1 = 1 THEN 250
+ ScalarValue:X1
+ NumericConstant:1
+ BinaryOperator:=
+2100 IF XI = 0 THEN 2130
+ ScalarValue:X
+ ScalarValue:I
+ NumericConstant:0
+ BinaryOperator:=
+2110 PRINT "I SAID ONE OR ZEROS TRY AGAIN"
+ ITEMS
+ TextConstant:"I SAID ONE OR ZEROS TRY AGAIN"
+ CarriageControl:NL
+2120 GO TO 2080
+ LineNumber:2080
+2130 PRINT"IT'S BEEN FUN, COME AGAIN SOMETIME"
+ ITEMS
+ TextConstant:"IT'S BEEN FUN, COME AGAIN SOMETIME"
+ CarriageControl:NL
+2140 GO TO 2160
+ LineNumber:2160
+2150 DATA 2,2,0,0,0,0,1,1,3,3,1,3,3,1,1,2,3,2,2,3,2,1
+ NumericConstant:2
+ NumericConstant:2
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:3
+ NumericConstant:3
+ NumericConstant:1
+ NumericConstant:3
+ NumericConstant:3
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:2
+ NumericConstant:3
+ NumericConstant:2
+ NumericConstant:2
+ NumericConstant:3
+ NumericConstant:2
+ NumericConstant:1
+2160 REM CHAIN "DEMON "
+ RemarkToken:CHAIN "DEMON "
+2170 END
+ 

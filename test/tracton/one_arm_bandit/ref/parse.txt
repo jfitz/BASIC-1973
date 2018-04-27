@@ -1,0 +1,286 @@
+10 REM THIS PROGRAM SIMULATES THEN MECHANICAL
+ RemarkToken:THIS PROGRAM SIMULATES THEN MECHANICAL
+20 REM THREE WHEEL ONE-ARM BANDIT
+ RemarkToken:THREE WHEEL ONE-ARM BANDIT
+30 PRINT "ARE INSTRUCTIONS REQUIRED"
+ ITEMS
+ TextConstant:"ARE INSTRUCTIONS REQUIRED"
+ CarriageControl:NL
+40 PRINT "TYPE EITHER YES OR NO"
+ ITEMS
+ TextConstant:"TYPE EITHER YES OR NO"
+ CarriageControl:NL
+50 INPUT L$
+ ScalarReference:L$
+60 IF L$ = "YES" THEN 100
+ ScalarValue:L$
+ TextConstant:"YES"
+ BinaryOperator:=
+70 IF L$ = "NO" THEN 170
+ ScalarValue:L$
+ TextConstant:"NO"
+ BinaryOperator:=
+80 PRINT "INVALID COMMAND"
+ ITEMS
+ TextConstant:"INVALID COMMAND"
+ CarriageControl:NL
+90 GOTO 30
+ LineNumber:30
+100 PRINT "SCORING IS SIMPLE; 3 ORANGES, LEMONS OR"
+ ITEMS
+ TextConstant:"SCORING IS SIMPLE; 3 ORANGES, LEMONS OR"
+ CarriageControl:NL
+110 PRINT "BANANAS EARN $10. 3 CHERRIES EARN $90."
+ ITEMS
+ TextConstant:"BANANAS EARN $10. 3 CHERRIES EARN $90."
+ CarriageControl:NL
+120 PRINT "IF THE FIRST FRUIT IS AN APPLE YOU EARN #$2"
+ ITEMS
+ TextConstant:"IF THE FIRST FRUIT IS AN APPLE YOU EARN #$2"
+ CarriageControl:NL
+130 PRINT "IF THE 1ST AND 2ND ARE APPLES YOU EARN $3"
+ ITEMS
+ TextConstant:"IF THE 1ST AND 2ND ARE APPLES YOU EARN $3"
+ CarriageControl:NL
+140 PRINT "IF THE LAST FRUIT IS A CHERRY AND THE"
+ ITEMS
+ TextConstant:"IF THE LAST FRUIT IS A CHERRY AND THE"
+ CarriageControl:NL
+150 PRINT "OTHER TWO ARE THE SAME BUT NOT APPLES YOU"
+ ITEMS
+ TextConstant:"OTHER TWO ARE THE SAME BUT NOT APPLES YOU"
+ CarriageControl:NL
+160 PRINT "EARN $10. EACH TURN COSTS $1. GOOD-LUCK"
+ ITEMS
+ TextConstant:"EARN $10. EACH TURN COSTS $1. GOOD-LUCK"
+ CarriageControl:NL
+170 LET J = 0
+ ScalarReference:J
+ NumericConstant:0
+ AssignmentOperator:=
+180 PRINT
+ ITEMS
+ CarriageControl:NL
+190 GOSUB 590
+ LineNumber:590
+200 LET S1 = S
+ ScalarReference:S1
+ ScalarValue:S
+ AssignmentOperator:=
+210 GOSUB 590
+ LineNumber:590
+220 LET S2 = S
+ ScalarReference:S2
+ ScalarValue:S
+ AssignmentOperator:=
+230 GOSUB 590
+ LineNumber:590
+240 LET S3 = S
+ ScalarReference:S3
+ ScalarValue:S
+ AssignmentOperator:=
+250 LET S = S1
+ ScalarReference:S
+ ScalarValue:S1
+ AssignmentOperator:=
+260 GOSUB 610
+ LineNumber:610
+270 LET S1$ = S$
+ ScalarReference:S1$
+ ScalarValue:S$
+ AssignmentOperator:=
+280 LET S = S2
+ ScalarReference:S
+ ScalarValue:S2
+ AssignmentOperator:=
+290 GOSUB 610
+ LineNumber:610
+300 LET S2$ = S$
+ ScalarReference:S2$
+ ScalarValue:S$
+ AssignmentOperator:=
+310 LET S = S3
+ ScalarReference:S
+ ScalarValue:S3
+ AssignmentOperator:=
+320 GOSUB 610
+ LineNumber:610
+330 LET S3$ = S$
+ ScalarReference:S3$
+ ScalarValue:S$
+ AssignmentOperator:=
+340 IF S1$ = "CHERRY" THEN 380
+ ScalarValue:S1$
+ TextConstant:"CHERRY"
+ BinaryOperator:=
+350 IF S1$ = "APPLE" THEN 420
+ ScalarValue:S1$
+ TextConstant:"APPLE"
+ BinaryOperator:=
+360 IF S1$ = S2$ THEN 440
+ ScalarValue:S1$
+ ScalarValue:S2$
+ BinaryOperator:=
+370 GOTO 460
+ LineNumber:460
+380 IF S1$ = S2$ THEN 400
+ ScalarValue:S1$
+ ScalarValue:S2$
+ BinaryOperator:=
+390 GOTO 460
+ LineNumber:460
+400 IF S2$ = S3$ THEN 480
+ ScalarValue:S2$
+ ScalarValue:S3$
+ BinaryOperator:=
+410 GOTO 460
+ LineNumber:460
+420 IF S1$ = S2$ THEN 500
+ ScalarValue:S1$
+ ScalarValue:S2$
+ BinaryOperator:=
+430 GOTO 520
+ LineNumber:520
+440 IF S2$ = S3$ THEN 540
+ ScalarValue:S2$
+ ScalarValue:S3$
+ BinaryOperator:=
+450 IF S3$ = "CHERRY" THEN 540
+ ScalarValue:S3$
+ TextConstant:"CHERRY"
+ BinaryOperator:=
+460 LET J = J - 1
+ ScalarReference:J
+ ScalarValue:J
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+470 GOTO 550
+ LineNumber:550
+480 LET J = J + 89
+ ScalarReference:J
+ ScalarValue:J
+ NumericConstant:89
+ BinaryOperator:+
+ AssignmentOperator:=
+490 GOTO 550
+ LineNumber:550
+500 LET J = J + 2
+ ScalarReference:J
+ ScalarValue:J
+ NumericConstant:2
+ BinaryOperator:+
+ AssignmentOperator:=
+510 GOTO 550
+ LineNumber:550
+520 LET J = J + 1
+ ScalarReference:J
+ ScalarValue:J
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+530 GOTO 550
+ LineNumber:550
+540 LET J = J + 9
+ ScalarReference:J
+ ScalarValue:J
+ NumericConstant:9
+ BinaryOperator:+
+ AssignmentOperator:=
+550 PRINT
+ ITEMS
+ CarriageControl:NL
+560 PRINT S1$;" ";S2$;" ";S3$
+ ITEMS
+ ScalarValue:S1$
+ CarriageControl:;
+ TextConstant:" "
+ CarriageControl:;
+ ScalarValue:S2$
+ CarriageControl:;
+ TextConstant:" "
+ CarriageControl:;
+ ScalarValue:S3$
+ CarriageControl:NL
+570 PRINT "YOUR EARNINGS ARE NOW $";J
+ ITEMS
+ TextConstant:"YOUR EARNINGS ARE NOW $"
+ CarriageControl:;
+ ScalarValue:J
+ CarriageControl:NL
+580 GOTO 720
+ LineNumber:720
+590 LET S = 1 + INT(5*RND)
+ ScalarReference:S
+ NumericConstant:1
+ NumericConstant:5
+ FunctionRnd
+ BinaryOperator:*
+ FunctionInt
+ BinaryOperator:+
+ AssignmentOperator:=
+600 RETURN
+ 
+610 ON S GOTO 620, 640, 660, 680, 700
+ ScalarValue:S
+ LineNumber:620
+ LineNumber:640
+ LineNumber:660
+ LineNumber:680
+ LineNumber:700
+620 LET S$ = "CHERRY"
+ ScalarReference:S$
+ TextConstant:"CHERRY"
+ AssignmentOperator:=
+630 GOTO 710
+ LineNumber:710
+640 LET S$ = "APPLE"
+ ScalarReference:S$
+ TextConstant:"APPLE"
+ AssignmentOperator:=
+650 GOTO 710
+ LineNumber:710
+660 LET S$ = "LEMON"
+ ScalarReference:S$
+ TextConstant:"LEMON"
+ AssignmentOperator:=
+670 GOTO 710
+ LineNumber:710
+680 LET S$ = "ORANGE"
+ ScalarReference:S$
+ TextConstant:"ORANGE"
+ AssignmentOperator:=
+690 GOTO 710
+ LineNumber:710
+700 LET S$ = "BANANA"
+ ScalarReference:S$
+ TextConstant:"BANANA"
+ AssignmentOperator:=
+710 RETURN
+ 
+720 PRINT
+ ITEMS
+ CarriageControl:NL
+730 PRINT "TO CONTINUE TYPE Y, IF NOT TYPE N"
+ ITEMS
+ TextConstant:"TO CONTINUE TYPE Y, IF NOT TYPE N"
+ CarriageControl:NL
+740 INPUT Z$
+ ScalarReference:Z$
+750 IF Z$ = "Y" THEN 780
+ ScalarValue:Z$
+ TextConstant:"Y"
+ BinaryOperator:=
+760 PRINT "ONE-ARM BANDIT SAYS GOOD-BYE"
+ ITEMS
+ TextConstant:"ONE-ARM BANDIT SAYS GOOD-BYE"
+ CarriageControl:NL
+770 STOP
+ 
+780 PRINT
+ ITEMS
+ CarriageControl:NL
+790 GOTO 190
+ LineNumber:190
+800 END
+ 

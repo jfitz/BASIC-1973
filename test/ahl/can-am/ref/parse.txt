@@ -1,0 +1,1123 @@
+100 ' CAN-AM*** (BASIC PROGRAM BEGINS AT LINE 610) WAS PROGRAMMED BY MARK
+110 ' MANASSE, TO REPLACE THE AILING VERSION HE WROTE AS A SIXTH GRADER
+120 ' AT HANOVER ELEMENTARY SCHOOL.
+130 ' LAST CHANGE 12/27/72 BY DIANE MATHER, KIEWIT
+140 '
+150 ' DESCRIPTION  THE PROGRAM ALLOWS YOU TO RACE AROUND A HIGHLY
+160 ' PERILOUS COURSE, RISKING BOTH LIFE AND MACHINE, IN AN
+170 ' EFFORT TO RACE FRIENDS OR THE COMPUTER'S VERY OWN SLOW-
+180 ' POKE SLIM, WILDMAN WILLY, AND HOTSHOT HARRY
+190 '
+200 ' INSTRUCTIONS--
+210 ' YOU ARE ABOUT TO RACE. RACE ON ONE OF THE FASTEST COURSES
+220 ' IN THE WORLD. A ROAD COURSE. A LONG ONE. 5.3 MILES. SPEEDS
+230 ' UP TO 200 MPH. YOU CAN RACE FRIENDS(?) OR THE COMPUTER.
+240 ' TO RACE THE COMPUTER, TYPE THE SEQUENCE:
+250 '
+260 ' /OLD CAN-AM***/RUN
+270 '
+280 ' TO RACE FRIENDS, TYPE:
+290 '
+300 ' /OLD CAN-AM***/LINK <KEYWORD>,N
+310 '
+320 ' REPLACE <KEYWORD> WITH ANY WORD OF LENGTH 1 THROUGH 8 INCLUSIVE
+330 ' THAT YOU CHOOSE. REPLACE N WITH THE NUMBER OF PLAYERS COUNTING
+340 ' YOURSELF. HAVE YOUR FRIENDS TYPE:
+350 '
+360 ' JOIN <KEYWORD>
+370 '
+380 ' <KEYWORD> SHOULD BE THE KEYWORD YOU USED IN THE 'LINK' COMMAND
+390 ' 
+400 ' WHEN THE COMPUTER TYPES A QUESTION OF THE FORM
+410 '    STRAIGHT A?      OR      CURVE 1:
+420 ' RESPOND BY TYPING THE SPEED (IN MPH) YOU DESIRE TO TRAVEL AT,
+430 ' AND HIT THE RETURN KEY. GOOD LUCK. YOU MAY NEED IT.
+440 '
+450 ' IF YOU ARE USING A TERMINAL WITH BOTH UPPER AND LOWERCASE, TYPE
+460 ' WORD ANSWERS (SUCH AS YES OR NO) IN CAPITAL LETTERS.
+470 '
+480 ' TO STOP THIS LISTING, PRESS THE 'S' OR 'ATTN' KEY.
+490 '
+500 ' FOR MORE INFORMATION ON MULTIPLE-TERMINAL PROGRAMMING, (AS
+510 ' WHEN SEVERAL PEOPLE RACE EACH OTHER), SEE TM009 WHICH IS
+520 ' AVAILABLE FROM THE KIEWIT DOCUMENT CENTER (SECRETARIAL AREA),
+530 ' KIEWIT COMPUTATION CENTER, HANOVER, N. H. 03755, PHONE
+540 ' (603) 645-2643.
+550 '
+560 ' EXPLANATION OF CHANGES--
+570 '    12/27/72  TO REWORD INSTRUCTIONS.
+580 '
+590 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+600
+610 REM   PLEASE REFER ALL BUGS OR COMMENTS TO DIANE
+ RemarkToken:  PLEASE REFER ALL BUGS OR COMMENTS TO DIANE
+620 REM   MATHER, PROGRAM LIBRARIAN, 105 KIEWIT
+ RemarkToken:  MATHER, PROGRAM LIBRARIAN, 105 KIEWIT
+630
+640 LET O(0)=2                          'STANDARD MOTIF HEADER 
+ NumericConstant:0
+ ScalarReference:O
+ NumericConstant:2
+ AssignmentOperator:=
+650 LET O(1) = ASC(SOH)
+ NumericConstant:1
+ ScalarReference:O
+ ScalarValue:S
+ ScalarValue:O
+ ScalarValue:H
+ FunctionAsc
+ AssignmentOperator:=
+660 LET O(2) = ASC("N")
+ NumericConstant:2
+ ScalarReference:O
+ TextConstant:"N"
+ FunctionAsc
+ AssignmentOperator:=
+670 CHANGE O TO O1$
+ ScalarValue:O
+ ScalarReference:O1$
+680 LET O(2) = ASC("Q")
+ NumericConstant:2
+ ScalarReference:O
+ TextConstant:"Q"
+ FunctionAsc
+ AssignmentOperator:=
+690 CHANGE O TO O$
+ ScalarValue:O
+ ScalarReference:O$
+700 PRINT O1$;O$;CHR$(13);"XX ARE YOU FAMILIAR WITH THE WAY THIS GAME WORKS'";
+ ITEMS
+ ScalarValue:O1$
+ CarriageControl:;
+ ScalarValue:O$
+ CarriageControl:;
+ NumericConstant:13
+ FunctionChr
+ CarriageControl:;
+ TextConstant:"XX ARE YOU FAMILIAR WITH THE WAY THIS GAME WORKS'"
+ CarriageControl:;
+710 DATA "NON","OUI","PARLEZ-VOUS ANGLAIS ?","NEIN","JA","SPRECHEN SIE ENGLISCH?"
+ TextConstant:"NON"
+ TextConstant:"OUI"
+ TextConstant:"PARLEZ-VOUS ANGLAIS ?"
+ TextConstant:"NEIN"
+ TextConstant:"JA"
+ TextConstant:"SPRECHEN SIE ENGLISCH?"
+720 DATA "NOPE","YUP","COMPUTERS ARE SOPHISTICATED MACHINES. USE APPROPRIATE LANGUAGE."
+ TextConstant:"NOPE"
+ TextConstant:"YUP"
+ TextConstant:"COMPUTERS ARE SOPHISTICATED MACHINES. USE APPROPRIATE LANGUAGE."
+730 LET K9=5                            'TWICE NUMBER OF KNOWN LANGUAGES 
+ ScalarReference:K9
+ NumericConstant:5
+ AssignmentOperator:=
+740 FOR X=1 TO K9-1 STEP 2
+ control: VariableToken:X
+ start:   ["NumericConstant:1"]
+ end:     ["ScalarValue:K9", "NumericConstant:1", "BinaryOperator:-"]
+ step:    ["NumericConstant:2"]
+750      READ F$(X),F$(X+1),R$((X-1)/2+1)
+ ScalarValue:X
+ ScalarReference:F$
+ ScalarValue:X
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarReference:F$
+ ScalarValue:X
+ NumericConstant:1
+ BinaryOperator:-
+ NumericConstant:2
+ BinaryOperator:/
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarReference:R$
+760 NEXT X
+ VariableToken:X
+770 REM WE HAVE JUST LEARNED FOREIGN LANGUAGES
+ RemarkToken:WE HAVE JUST LEARNED FOREIGN LANGUAGES
+780 DATA "WILDMAN WILLY", "HOTSHOT HARRY", "SLOWPOKE SAM" 'NAMES OF DRIVERS WHO COMPETE AGAINST ONLY ONE PERSON. (AUTO-PILOTS)
+ TextConstant:"WILDMAN WILLY"
+ TextConstant:"HOTSHOT HARRY"
+ TextConstant:"SLOWPOKE SAM"
+790 MAT READ Q$(3)                      'NAME ARRAY
+ NumericConstant:3
+ MatrixReference:Q$
+800 DATA -2.9,-2.9,-5                   'AMT. SPEED TO BE SUBTRACTED FROM AUTO-PILOT* SPEEDS
+ NumericConstant:2.9
+ UnaryOperator:-
+ NumericConstant:2.9
+ UnaryOperator:-
+ NumericConstant:5
+ UnaryOperator:-
+810 MAT READ Q(3)
+ NumericConstant:3
+ MatrixReference:Q
+820 MAT READ M$(3)                      'READ NAMES OF TYPES OF ROADWAY
+ NumericConstant:3
+ MatrixReference:M$
+830 READ X$                             'DEATH MESSAGE
+ ScalarReference:X$
+840 INPUT A$                            'RESPONSE TO DO YOU KNOW WHAT YOU'RE DOING?
+ ScalarReference:A$
+850 IF A$>"09" THEN 890                 'IF BETWEEN 01 AND 09, THEN MULTI-TERMINAL 
+ ScalarValue:A$
+ TextConstant:"09"
+ BinaryOperator:>
+860 IF A$<"01" THEN 890
+ ScalarValue:A$
+ TextConstant:"01"
+ BinaryOperator:<
+870 LET O9 = VAL(A$)
+ ScalarReference:O9
+ ScalarValue:A$
+ FunctionVal
+ AssignmentOperator:=
+880 GOTO 960
+ LineNumber:960
+890 LET O$=""                           'SET THINGS UP FOR SINGLE TERMINAL
+ ScalarReference:O$
+ TextConstant:""
+ AssignmentOperator:=
+900 GOSUB 2190
+ LineNumber:2190
+910 IF A$="NO" THEN 1070
+ ScalarValue:A$
+ TextConstant:"NO"
+ BinaryOperator:=
+920 PRINT "RATE YOURSELF AS A DRIVER.  (1-BEST,3-WORST )";
+ ITEMS
+ TextConstant:"RATE YOURSELF AS A DRIVER.  (1-BEST,3-WORST )"
+ CarriageControl:;
+930 INPUT O
+ ScalarReference:O
+940 LET Q(3)=Q(3)*O
+ NumericConstant:3
+ ScalarReference:Q
+ NumericConstant:3
+ ScalarValue:Q
+ ScalarValue:O
+ BinaryOperator:*
+ AssignmentOperator:=
+950 GOTO 1050
+ LineNumber:1050
+960 LET O(2) = ASC(A)                   'CREATE O$ ARRAY FOR MULTI-TERMINAL
+ NumericConstant:2
+ ScalarReference:O
+ ScalarValue:A
+ FunctionAsc
+ AssignmentOperator:=
+980 FOR I = O TO O9
+ control: VariableToken:I
+ start:   ["ScalarValue:O"]
+ end:     ["ScalarValue:O9"]
+ step:    ["NumericConstant:1"]
+990      LET O(2) = ASC(C) + I
+ NumericConstant:2
+ ScalarReference:O
+ ScalarValue:C
+ FunctionAsc
+ ScalarValue:I
+ BinaryOperator:+
+ AssignmentOperator:=
+1000      CHANGE O TO O$(I)
+ ScalarValue:O
+ ScalarValue:I
+ ScalarReference:O$
+1010 NEXT I
+ VariableToken:I
+1020 PRINT O$(10);"YOU MAY 'DRAFT' (SLIPSTREAM) OFF-OF ANY CAR AHEAD"
+ ITEMS
+ NumericConstant:10
+ ScalarValue:O$
+ CarriageControl:;
+ TextConstant:"YOU MAY 'DRAFT' (SLIPSTREAM) OFF-OF ANY CAR AHEAD"
+ CarriageControl:NL
+1030 PRINT "OF YOU. (BUT NOT MORE THAN 1 SECOND AHEAD). TO DO THIS"
+ ITEMS
+ TextConstant:"OF YOU. (BUT NOT MORE THAN 1 SECOND AHEAD). TO DO THIS"
+ CarriageControl:NL
+1040 PRINT "TYPE HIS CAR NUMBER+1000 AS YOUR SPEED."
+ ITEMS
+ TextConstant:"TYPE HIS CAR NUMBER+1000 AS YOUR SPEED."
+ CarriageControl:NL
+1050 RANDOMIZE
+ 
+1060 IF A$="YES" THEN 1110
+ ScalarValue:A$
+ TextConstant:"YES"
+ BinaryOperator:=
+1070 PRINT O$(0)
+ ITEMS
+ NumericConstant:0
+ ScalarValue:O$
+ CarriageControl:NL
+1080 PRINT "FOR INSTRUCTIONS, PLEASE TYPE LIST AFTER THE COMPUTER SAYS READY."
+ ITEMS
+ TextConstant:"FOR INSTRUCTIONS, PLEASE TYPE LIST AFTER THE COMPUTER SAYS READY."
+ CarriageControl:NL
+1090 PRINT
+ ITEMS
+ CarriageControl:NL
+1100 IF A$="NO" THEN 2290
+ ScalarValue:A$
+ TextConstant:"NO"
+ BinaryOperator:=
+1110 LET F2=INT(RND*10)+6
+ ScalarReference:F2
+ FunctionRnd
+ NumericConstant:10
+ BinaryOperator:*
+ FunctionInt
+ NumericConstant:6
+ BinaryOperator:+
+ AssignmentOperator:=
+1120 FOR A=0 TO O9 'ASSIGN NUMBERS AND ADHESION FACTORS 
+ control: VariableToken:A
+ start:   ["NumericConstant:0"]
+ end:     ["ScalarValue:O9"]
+ step:    ["NumericConstant:1"]
+1130       PRINT O$(A);"YOUR DRIVING NUM3ER IS" ;F2*(A+1)+A 'ADHESION FACTOR IS HOW WELL YOUR CAR GRIPS THE ROAD
+ ITEMS
+ ScalarValue:A
+ ScalarValue:O$
+ CarriageControl:;
+ TextConstant:"YOUR DRIVING NUM3ER IS"
+ CarriageControl:;
+ ScalarValue:F2
+ ScalarValue:A
+ NumericConstant:1
+ BinaryOperator:+
+ BinaryOperator:*
+ ScalarValue:A
+ BinaryOperator:+
+ CarriageControl:NL
+1140       LET A(R)=RND*.05+.05
+ ScalarValue:R
+ ScalarReference:A
+ FunctionRnd
+ NumericConstant:0.05
+ BinaryOperator:*
+ NumericConstant:0.05
+ BinaryOperator:+
+ AssignmentOperator:=
+1150       PRINT O$(A);"ADHESION FACTOR"; A(A)*100-5;".  (THE LOWER THE BETTER)"
+ ITEMS
+ ScalarValue:A
+ ScalarValue:O$
+ CarriageControl:;
+ TextConstant:"ADHESION FACTOR"
+ CarriageControl:;
+ ScalarValue:A
+ ScalarValue:A
+ NumericConstant:100
+ BinaryOperator:*
+ NumericConstant:5
+ BinaryOperator:-
+ CarriageControl:;
+ TextConstant:".  (THE LOWER THE BETTER)"
+ CarriageControl:NL
+1160 NEXT A
+ VariableToken:A
+1170 PRINT O$(10);"YOUR MAX. SPEED IS 200 MPH. TO SEE STANDINGS INPUT"
+ ITEMS
+ NumericConstant:10
+ ScalarValue:O$
+ CarriageControl:;
+ TextConstant:"YOUR MAX. SPEED IS 200 MPH. TO SEE STANDINGS INPUT"
+ CarriageControl:NL
+1180 PRINT "0 AS YOUR SPEED"
+ ITEMS
+ TextConstant:"0 AS YOUR SPEED"
+ CarriageControl:NL
+1190 PRINT O$(0);"WOULD YOU LIKE TO SEE THE COURSE";CHR$(63*SGN(O9));O$; 'PRINT ? IF ULT-TERM, OTHERWISE DON'T
+ ITEMS
+ NumericConstant:0
+ ScalarValue:O$
+ CarriageControl:;
+ TextConstant:"WOULD YOU LIKE TO SEE THE COURSE"
+ CarriageControl:;
+ NumericConstant:63
+ ScalarValue:O9
+ FunctionSgn
+ BinaryOperator:*
+ FunctionChr
+ CarriageControl:;
+ ScalarValue:O$
+ CarriageControl:;
+1200 MAT INPUT A$
+ Syntax error
+ Unimplemented
+1210 PRINT O$(10);
+ ITEMS
+ NumericConstant:10
+ ScalarValue:O$
+ CarriageControl:;
+1220 LET A$=A$(NUM)
+ ScalarReference:A$
+ ScalarValue:N
+ ScalarValue:U
+ ScalarValue:M
+ ScalarValue:A$
+ AssignmentOperator:=
+1230 GOSUB 2190
+ LineNumber:2190
+1240 IF A$="NO" THEN 1450
+ ScalarValue:A$
+ TextConstant:"NO"
+ BinaryOperator:=
+1250 IF A$<>"YES" THEN 1190
+ ScalarValue:A$
+ TextConstant:"YES"
+ BinaryOperator:<>
+1260 PRINTTAB(4);"--------------" 'PRINT COURSE
+ ITEMS
+ NumericConstant:4
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"--------------"
+ CarriageControl:NL
+1270 PRINTTAB(3);"/1";TAB(11);"B";TAB(19);"2\"
+ ITEMS
+ NumericConstant:3
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"/1"
+ CarriageControl:;
+ NumericConstant:11
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"B"
+ CarriageControl:;
+ NumericConstant:19
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"2\"
+ CarriageControl:NL
+1280 PRINTTAB(2);"/A";TAB(20);"C\"
+ ITEMS
+ NumericConstant:2
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"/A"
+ CarriageControl:;
+ NumericConstant:20
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"C\"
+ CarriageControl:NL
+1290 PRINTTAB(1);"/";TAB(22);"\"
+ ITEMS
+ NumericConstant:1
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"/"
+ CarriageControl:;
+ NumericConstant:22
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"\"
+ CarriageControl:NL
+1300 PRINT "/";TAB(21);"3I"
+ ITEMS
+ TextConstant:"/"
+ CarriageControl:;
+ NumericConstant:21
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"3I"
+ CarriageControl:NL
+1310 PRINT "^-START*FINISH";TAB(22);"I"
+ ITEMS
+ TextConstant:"^-START*FINISH"
+ CarriageControl:;
+ NumericConstant:22
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"I"
+ CarriageControl:NL
+1320 PRINT "^";TAB(22);"I"
+ ITEMS
+ TextConstant:"^"
+ CarriageControl:;
+ NumericConstant:22
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"I"
+ CarriageControl:NL
+1330 PRINT "^";TAB(21);"DI"
+ ITEMS
+ TextConstant:"^"
+ CarriageControl:;
+ NumericConstant:21
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"DI"
+ CarriageControl:NL
+1340 PRINT "^";TAB(22);"I"
+ ITEMS
+ TextConstant:"^"
+ CarriageControl:;
+ NumericConstant:22
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"I"
+ CarriageControl:NL
+1350 PRINT "^";TAB(22);"I"
+ ITEMS
+ TextConstant:"^"
+ CarriageControl:;
+ NumericConstant:22
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"I"
+ CarriageControl:NL
+1360 PRINT "^H";TAB(22);"I"
+ ITEMS
+ TextConstant:"^H"
+ CarriageControl:;
+ NumericConstant:22
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"I"
+ CarriageControl:NL
+1370 PRINT "^";TAB(22);"I"
+ ITEMS
+ TextConstant:"^"
+ CarriageControl:;
+ NumericConstant:22
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"I"
+ CarriageControl:NL
+1380 PRINT "^";TAB(21);"4I"
+ ITEMS
+ TextConstant:"^"
+ CarriageControl:;
+ NumericConstant:21
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"4I"
+ CarriageControl:NL
+1390 PRINT "^";TAB(16);"______/"
+ ITEMS
+ TextConstant:"^"
+ CarriageControl:;
+ NumericConstant:16
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"______/"
+ CarriageControl:NL
+1400 PRINT"^8";TAB(15);"T5 E"
+ ITEMS
+ TextConstant:"^8"
+ CarriageControl:;
+ NumericConstant:15
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"T5 E"
+ CarriageControl:NL
+1410 PRINT "^";TAB(16);"\"
+ ITEMS
+ TextConstant:"^"
+ CarriageControl:;
+ NumericConstant:16
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"\"
+ CarriageControl:NL
+1420 PRINT "\";TAB(17);"-------------)";CHR$(13);TAB(20);"/PITS\"
+ ITEMS
+ TextConstant:"\"
+ CarriageControl:;
+ NumericConstant:17
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"-------------)"
+ CarriageControl:;
+ NumericConstant:13
+ FunctionChr
+ CarriageControl:;
+ NumericConstant:20
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"/PITS\"
+ CarriageControl:NL
+1430 PRINT " \7";TAB(14);"G";TAB(21);"F^";TAB(27);"EI"
+ ITEMS
+ TextConstant:" \7"
+ CarriageControl:;
+ NumericConstant:14
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"G"
+ CarriageControl:;
+ NumericConstant:21
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"F^"
+ CarriageControl:;
+ NumericConstant:27
+ FunctionTab
+ CarriageControl:;
+ TextConstant:"EI"
+ CarriageControl:NL
+1440 PRINT"  \_________________________/"
+ ITEMS
+ TextConstant:"  \_________________________/"
+ CarriageControl:NL
+1450 LET N=RND*3+1 
+ ScalarReference:N
+ FunctionRnd
+ NumericConstant:3
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+1460 PRINT"NOTE: THIS IS A";INT(N);"LAP RACE."
+ ITEMS
+ TextConstant:"NOTE: THIS IS A"
+ CarriageControl:;
+ ScalarValue:N
+ FunctionInt
+ CarriageControl:;
+ TextConstant:"LAP RACE."
+ CarriageControl:NL
+1470 PRINT"GENTLEMEN, START YOUR ENGINES! THE GREEN GOES DOWN AND"
+ ITEMS
+ TextConstant:"GENTLEMEN, START YOUR ENGINES! THE GREEN GOES DOWN AND"
+ CarriageControl:NL
+1480 PRINT"OFF YOU GO!"
+ ITEMS
+ TextConstant:"OFF YOU GO!"
+ CarriageControl:NL
+1490 DATA "STRAIGHT", "HAIRPIN", "CURVE"
+ TextConstant:"STRAIGHT"
+ TextConstant:"HAIRPIN"
+ TextConstant:"CURVE"
+1500 DATA "MAY I SHOW YOU TO A PLOT? WE HAVE A NICE CHOICE OF HEADSTONES."
+ TextConstant:"MAY I SHOW YOU TO A PLOT? WE HAVE A NICE CHOICE OF HEADSTONES."
+1510 LET O=-1
+ ScalarReference:O
+ NumericConstant:1
+ UnaryOperator:-
+ AssignmentOperator:=
+1520 LET H=INT(N)
+ ScalarReference:H
+ ScalarValue:N
+ FunctionInt
+ AssignmentOperator:=
+1530 FOR V=1 TO N                      'WORKING PORTION
+ control: VariableToken:V
+ start:   ["NumericConstant:1"]
+ end:     ["ScalarValue:N"]
+ step:    ["NumericConstant:1"]
+1540       LET Y=FNA(M$(1),200,1,3/10,65) 'STRAIGHT R, 200 MAX., 3/10 MILE LONG 
+ ScalarReference:Y
+ NumericConstant:1
+ ScalarValue:M$
+ NumericConstant:200
+ NumericConstant:1
+ NumericConstant:3
+ NumericConstant:10
+ BinaryOperator:/
+ NumericConstant:65
+ UserFunction
+ AssignmentOperator:=
+1550       LET Y=FNA(M$(3),125,1,1/10,49) 'CURVE 1, 125 MAX., 1/10 MILE LONG 
+ ScalarReference:Y
+ NumericConstant:3
+ ScalarValue:M$
+ NumericConstant:125
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:10
+ BinaryOperator:/
+ NumericConstant:49
+ UserFunction
+ AssignmentOperator:=
+1560       LET Y=FNA(M$(1),200,2,13/2Q,65) 'STRAIGHT 3, 200 MAX., 13/20 MILE LONG 
+ ScalarReference:Y
+ NumericConstant:1
+ ScalarValue:M$
+ NumericConstant:200
+ NumericConstant:2
+ NumericConstant:13
+ NumericConstant:2
+ ScalarValue:Q
+ BinaryOperator:/
+ NumericConstant:65
+ UserFunction
+ AssignmentOperator:=
+1570       LET Y=FNA(M$(3),125,1,1/10,50) 'CURVE 2, 125 MAX., 1/10 NILE LONG 
+ ScalarReference:Y
+ NumericConstant:3
+ ScalarValue:M$
+ NumericConstant:125
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:10
+ BinaryOperator:/
+ NumericConstant:50
+ UserFunction
+ AssignmentOperator:=
+1580       LET Y=FNR(M$(1),200,1,1/5,67) 'STRAIGHT C, 200 MAX., 1/5 MILE LONG 
+ ScalarReference:Y
+ NumericConstant:1
+ ScalarValue:M$
+ NumericConstant:200
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:5
+ BinaryOperator:/
+ NumericConstant:67
+ UserFunction
+ AssignmentOperator:=
+1590       LET Y=FNA(M$(3),150,1,3/20,51) 'CURVE 3, 150 MAX., 3/20 MILE LONG 
+ ScalarReference:Y
+ NumericConstant:3
+ ScalarValue:M$
+ NumericConstant:150
+ NumericConstant:1
+ NumericConstant:3
+ NumericConstant:20
+ BinaryOperator:/
+ NumericConstant:51
+ UserFunction
+ AssignmentOperator:=
+1600       LET Y=FNA(M$(1),200,2,3/5,68) 'STRAIGHT D, 200 MAX,, 3/5 MILE LONG 
+ ScalarReference:Y
+ NumericConstant:1
+ ScalarValue:M$
+ NumericConstant:200
+ NumericConstant:2
+ NumericConstant:3
+ NumericConstant:5
+ BinaryOperator:/
+ NumericConstant:68
+ UserFunction
+ AssignmentOperator:=
+1610       LET Y=FNA(M$(3),125,1,1/10,52) 'CURVE 4, 125 MAX., 1/10 MILE LONG 
+ ScalarReference:Y
+ NumericConstant:3
+ ScalarValue:M$
+ NumericConstant:125
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:10
+ BinaryOperator:/
+ NumericConstant:52
+ UserFunction
+ AssignmentOperator:=
+1620       LET Y=FNA(M$(1),200,1,1/4,69) 'STRAIGHT E, 200 MAX., 1/4 MILE LONG 
+ ScalarReference:Y
+ NumericConstant:1
+ ScalarValue:M$
+ NumericConstant:200
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:4
+ BinaryOperator:/
+ NumericConstant:69
+ UserFunction
+ AssignmentOperator:=
+1630       LET Y=FNA(M$(2),100,.75,3/20,53) 'HAIRPIN 5, 100 MAX., 3/20 MILE LONG 
+ ScalarReference:Y
+ NumericConstant:2
+ ScalarValue:M$
+ NumericConstant:100
+ NumericConstant:0.75
+ NumericConstant:3
+ NumericConstant:20
+ BinaryOperator:/
+ NumericConstant:53
+ UserFunction
+ AssignmentOperator:=
+1640       LET Y=FNA(M$(1),200,1.5,9/20,70) 'STRAIGHT F, 200 MAX., 9/20 MILE LONG 
+ ScalarReference:Y
+ NumericConstant:1
+ ScalarValue:M$
+ NumericConstant:200
+ NumericConstant:1.5
+ NumericConstant:9
+ NumericConstant:20
+ BinaryOperator:/
+ NumericConstant:70
+ UserFunction
+ AssignmentOperator:=
+1650       LET Y=FNA(M$(2),100,.75,3/20,54) 'HAIRPIN 5, 100 MAX., 3/20 MILE LONG 
+ ScalarReference:Y
+ NumericConstant:2
+ ScalarValue:M$
+ NumericConstant:100
+ NumericConstant:0.75
+ NumericConstant:3
+ NumericConstant:20
+ BinaryOperator:/
+ NumericConstant:54
+ UserFunction
+ AssignmentOperator:=
+1660       LET Y=FNA(M$(1),200,2,1,71) 'STRAIGHT G, 200 MAX., 1 MILE LONG 
+ ScalarReference:Y
+ NumericConstant:1
+ ScalarValue:M$
+ NumericConstant:200
+ NumericConstant:2
+ NumericConstant:1
+ NumericConstant:71
+ UserFunction
+ AssignmentOperator:=
+1670       LET Y=FNA(M$(3),125,1,1/10,55) 'CURVE 7, 125 MAX., 1/10 MILE LONG 
+ ScalarReference:Y
+ NumericConstant:3
+ ScalarValue:M$
+ NumericConstant:125
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:10
+ BinaryOperator:/
+ NumericConstant:55
+ UserFunction
+ AssignmentOperator:=
+1680       LET Y=FNA(M$(3),150,1,3/20,56) 'CURVE 8, 150 MAX., 3/20 MILE LONG 
+ ScalarReference:Y
+ NumericConstant:3
+ ScalarValue:M$
+ NumericConstant:150
+ NumericConstant:1
+ NumericConstant:3
+ NumericConstant:20
+ BinaryOperator:/
+ NumericConstant:56
+ UserFunction
+ AssignmentOperator:=
+1690       LET Y=FNA(M$(1),200,2,7/10,72) 'STRAIGHT H, 20C MAX., 7/10 MILE LONG 
+ ScalarReference:Y
+ NumericConstant:1
+ ScalarValue:M$
+ NumericConstant:200
+ NumericConstant:2
+ NumericConstant:7
+ NumericConstant:10
+ BinaryOperator:/
+ NumericConstant:72
+ UserFunction
+ AssignmentOperator:=
+1700       IF V = H THEN 1740
+ ScalarValue:V
+ ScalarValue:H
+ BinaryOperator:=
+1710       LET Y=FNA("START-FINISH (CURVE 9)",150,1,3/20,127)
+ ScalarReference:Y
+ TextConstant:"START-FINISH (CURVE 9)"
+ NumericConstant:150
+ NumericConstant:1
+ NumericConstant:3
+ NumericConstant:20
+ BinaryOperator:/
+ NumericConstant:127
+ UserFunction
+ AssignmentOperator:=
+1720       REM        NAME OF TRACK          ,MAX,#,LEN ,ASC
+ RemarkToken:       NAME OF TRACK          ,MAX,#,LEN ,ASC
+1730       REM        START-FINISH, 150 MAX., 3/20 MILE LONG
+ RemarkToken:       START-FINISH, 150 MAX., 3/20 MILE LONG
+1740 NEXT V
+ VariableToken:V
+1750 IF G1=1 THEN 2040                  'ALL DEAD?
+ ScalarValue:G1
+ NumericConstant:1
+ BinaryOperator:=
+1760 PRINT O$(10);"DO YOU MEAN THAT EVERYONE ISN'T DEAD? WELL, HERE ARE " 'NO, SO PRINT OUT RESULTS OF RACE
+ ITEMS
+ NumericConstant:10
+ ScalarValue:O$
+ CarriageControl:;
+ TextConstant:"DO YOU MEAN THAT EVERYONE ISN'T DEAD? WELL, HERE ARE "
+ CarriageControl:NL
+1770 PRINT"THE RESULTS STRAIGHT FROM THE CHECKERED FLAG:"
+ ITEMS
+ TextConstant:"THE RESULTS STRAIGHT FROM THE CHECKERED FLAG:"
+ CarriageControl:NL
+1780 LET W=1E+37
+ ScalarReference:W
+ NumericConstant:9999999999999999538762658202121142272
+ AssignmentOperator:=
+1790 IF G9=0 THEN 1820
+ ScalarValue:G9
+ NumericConstant:0
+ BinaryOperator:=
+1800 LET G5=O9
+ ScalarReference:G5
+ ScalarValue:O9
+ AssignmentOperator:=
+1810 GOTO 1830
+ LineNumber:1830
+1820 LET G5=3
+ ScalarReference:G5
+ NumericConstant:3
+ AssignmentOperator:=
+1830 FOR Z=G TO G5
+ control: VariableToken:Z
+ start:   ["ScalarValue:G"]
+ end:     ["ScalarValue:G5"]
+ step:    ["NumericConstant:1"]
+1840      IF O9>0 THEN 1380
+ ScalarValue:O9
+ NumericConstant:0
+ BinaryOperator:>
+1850      IF Z=0 THEN 1880
+ ScalarValue:Z
+ NumericConstant:0
+ BinaryOperator:=
+1860      PRINT Q$(Z);
+ ITEMS
+ ScalarValue:Z
+ ScalarValue:Q$
+ CarriageControl:;
+1870      GOTO 1890
+ LineNumber:1890
+1880      PRINT"GUY #";F2*(Z+1)+Z;
+ ITEMS
+ TextConstant:"GUY #"
+ CarriageControl:;
+ ScalarValue:F2
+ ScalarValue:Z
+ NumericConstant:1
+ BinaryOperator:+
+ BinaryOperator:*
+ ScalarValue:Z
+ BinaryOperator:+
+ CarriageControl:;
+1890      IF D(Z) = 0 THEN 1950
+ ScalarValue:Z
+ ScalarValue:D
+ NumericConstant:0
+ BinaryOperator:=
+1900      PRINT" IS LOOKIN' AT THEM PEARLY GATES."
+ ITEMS
+ TextConstant:" IS LOOKIN' AT THEM PEARLY GATES."
+ CarriageControl:NL
+1910      IF O9=0 THEN 1990
+ ScalarValue:O9
+ NumericConstant:0
+ BinaryOperator:=
+1920      PRINT O$(Z);"TELL ST. LUCIFER NOT TO EXPECT ME, O.K.?"
+ ITEMS
+ ScalarValue:Z
+ ScalarValue:O$
+ CarriageControl:;
+ TextConstant:"TELL ST. LUCIFER NOT TO EXPECT ME, O.K.?"
+ CarriageControl:NL
+1930      PRINT O$(10);
+ ITEMS
+ NumericConstant:10
+ ScalarValue:O$
+ CarriageControl:;
+1940      GOTO 1990
+ LineNumber:1990
+1950      PRINT" TOOK";T(Z);"SECONDS. WHICH AVERAGES OUT TO ";3600*5.3*H/T(Z);"MPH" 'T ARRAY IS TIME ARRAY
+ ITEMS
+ TextConstant:" TOOK"
+ CarriageControl:;
+ ScalarValue:Z
+ ScalarValue:T
+ CarriageControl:;
+ TextConstant:"SECONDS. WHICH AVERAGES OUT TO "
+ CarriageControl:;
+ NumericConstant:3600
+ NumericConstant:5.3
+ BinaryOperator:*
+ ScalarValue:H
+ BinaryOperator:*
+ ScalarValue:Z
+ ScalarValue:T
+ BinaryOperator:/
+ CarriageControl:;
+ TextConstant:"MPH"
+ CarriageControl:NL
+1960      IF T(Z)>W THEN 1990
+ ScalarValue:Z
+ ScalarValue:T
+ ScalarValue:W
+ BinaryOperator:>
+1970      LET W=T(Z)                      'NEW LEADING TIME AND DRIVER
+ ScalarReference:W
+ ScalarValue:Z
+ ScalarValue:T
+ AssignmentOperator:=
+1980      LET N=F2*(Z+1)+Z 
+ ScalarReference:N
+ ScalarValue:F2
+ ScalarValue:Z
+ NumericConstant:1
+ BinaryOperator:+
+ BinaryOperator:*
+ ScalarValue:Z
+ BinaryOperator:+
+ AssignmentOperator:=
+1990 NEXT Z
+ VariableToken:Z
+2000 IF O9>0 THEN 2020
+ ScalarValue:O9
+ NumericConstant:0
+ BinaryOperator:>
+2010 IF N>F2 THEN 2040
+ ScalarValue:N
+ ScalarValue:F2
+ BinaryOperator:>
+2020 PRINT OS((N-F2)/(F2+1));"NICE RACE, MR";N
+ ITEMS
+ ScalarValue:O
+ CarriageControl:
+ ScalarValue:N
+ ScalarValue:F2
+ BinaryOperator:-
+ ScalarValue:F2
+ NumericConstant:1
+ BinaryOperator:+
+ BinaryOperator:/
+ ScalarValue:S
+ CarriageControl:;
+ TextConstant:"NICE RACE, MR"
+ CarriageControl:;
+ ScalarValue:N
+ CarriageControl:NL
+2030 PRINT O$(10);"AND THAT MEANS THAT GUY #";N;"WINS!!!"
+ ITEMS
+ NumericConstant:10
+ ScalarValue:O$
+ CarriageControl:;
+ TextConstant:"AND THAT MEANS THAT GUY #"
+ CarriageControl:;
+ ScalarValue:N
+ CarriageControl:;
+ TextConstant:"WINS!!!"
+ CarriageControl:NL
+2040 PRINT O$(0);"ANOTHER RACE";CHR$(63*SGN(O9));O$;
+ ITEMS
+ NumericConstant:0
+ ScalarValue:O$
+ CarriageControl:;
+ TextConstant:"ANOTHER RACE"
+ CarriageControl:;
+ NumericConstant:63
+ ScalarValue:O9
+ FunctionSgn
+ BinaryOperator:*
+ FunctionChr
+ CarriageControl:;
+ ScalarValue:O$
+ CarriageControl:;
+2050 MAT INPUT A$
+ Syntax error
+ Unimplemented
+2060 LET A$=A$(NUM)
+ ScalarReference:A$
+ ScalarValue:N
+ ScalarValue:U
+ ScalarValue:M
+ ScalarValue:A$
+ AssignmentOperator:=
+2070 GOSUB 2190
+ LineNumber:2190
+2080 IF A$="NO" THEN 2290
+ ScalarValue:A$
+ TextConstant:"NO"
+ BinaryOperator:=
+2090 IF A$<>"YES" THEN 2040
+ ScalarValue:A$
+ TextConstant:"YES"
+ BinaryOperator:<>
+2100 FOR Z=0 TO 10                         'RESET FOR NEXT GRME 
+ control: VariableToken:Z
+ start:   ["NumericConstant:0"]
+ end:     ["NumericConstant:10"]
+ step:    ["NumericConstant:1"]
+2110      LET T(Z),D(Z)=0
+ ScalarValue:Z
+ ScalarReference:T
+ ScalarValue:Z
+ ScalarReference:D
+ NumericConstant:0
+ AssignmentOperator:=
+2120 NEXT Z
+ VariableToken:Z
+2130 PRINT O$(10);"NEW SET-UP. NO RAIN, NO DEBRIS";
+ ITEMS
+ NumericConstant:10
+ ScalarValue:O$
+ CarriageControl:;
+ TextConstant:"NEW SET-UP. NO RAIN, NO DEBRIS"
+ CarriageControl:;
+2140 IF G1=0 THEN 2160                     'IF EVERYBODY'S DEAD, BE NASTY.
+ ScalarValue:G1
+ NumericConstant:0
+ BinaryOperator:=
+2150 PRINT ", AND (PLEASE!) BETTER DRIVERS."
+ ITEMS
+ TextConstant:", AND (PLEASE!) BETTER DRIVERS."
+ CarriageControl:NL
+2160 PRINT
+ ITEMS
+ CarriageControl:NL
+2170 LET G1,F5=0                           'UNKILL EVERYBODY AND UNOIL THE TRACK 
+ ScalarReference:G1
+ ScalarReference:F5
+ NumericConstant:0
+ AssignmentOperator:=
+2180 GOTO 1110
+ LineNumber:1110
+2190 FOR X=1 TO K5                         'FOREIGN LANGUAGE HANDLER 
+ control: VariableToken:X
+ start:   ["NumericConstant:1"]
+ end:     ["ScalarValue:K5"]
+ step:    ["NumericConstant:1"]
+2200      IF R$=F$(X) THEN 2230
+ ScalarValue:R$
+ ScalarValue:X
+ ScalarValue:F$
+ BinaryOperator:=
+2210 NEXT X 
+ VariableToken:X
+2220 GOTO 2280
+ LineNumber:2280
+2230 PRINT O$(0);R$((X-1)/2*1)
+ ITEMS
+ NumericConstant:0
+ ScalarValue:O$
+ CarriageControl:;
+ ScalarValue:X
+ NumericConstant:1
+ BinaryOperator:-
+ NumericConstant:2
+ BinaryOperator:/
+ NumericConstant:1
+ BinaryOperator:*
+ ScalarValue:R$
+ CarriageControl:NL
+2240 IF X=INT(X/2)*2 THEN 2270
+ ScalarValue:X
+ ScalarValue:X
+ NumericConstant:2
+ BinaryOperator:/
+ FunctionInt
+ NumericConstant:2
+ BinaryOperator:*
+ BinaryOperator:=
+2250 LET R$="NO"
+ ScalarReference:R$
+ TextConstant:"NO"
+ AssignmentOperator:=
+2260 GOTO 2280
+ LineNumber:2280
+2270 LET A$="YES"
+ ScalarReference:A$
+ TextConstant:"YES"
+ AssignmentOperator:=
+2280 RETURN
+ 
+2290 STOP
+ 
+2300                                       ' -------- --------
+2310 DEF FNA(A$,R,B,C,D)                   'KIND TRACK, MAX. SPEED, ADHESION FUDGE FACTOR, LENGTH 
+ 'FNA(A$,R,B,C,D)' is not a valid assignment

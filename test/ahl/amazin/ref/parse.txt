@@ -1,0 +1,907 @@
+100 RANDOMIZE 
+ 
+110 DIM W(25, 103), V(25,103)
+ NumericConstant:25
+ NumericConstant:103
+ CompoundDeclaration:W
+ NumericConstant:25
+ NumericConstant:103
+ CompoundDeclaration:V
+120 PRINT "WHAT ARE YOUR WIDTH AND LENGTH?"
+ ITEMS
+ TextConstant:"WHAT ARE YOUR WIDTH AND LENGTH?"
+ CarriageControl:NL
+121 INPUT H, V
+ ScalarReference:H
+ ScalarReference:V
+122 PRINT
+ ITEMS
+ CarriageControl:NL
+130 IF H<>1 THEN 150
+ ScalarValue:H
+ NumericConstant:1
+ BinaryOperator:<>
+131 IF V<>1 THEN 150
+ ScalarValue:V
+ NumericConstant:1
+ BinaryOperator:<>
+132 PRINT "MEANINGLESS DIMENSIONS, TRY AGAIN"
+ ITEMS
+ TextConstant:"MEANINGLESS DIMENSIONS, TRY AGAIN"
+ CarriageControl:NL
+140 PRINT
+ ITEMS
+ CarriageControl:NL
+141 GO TO 120
+ LineNumber:120
+150 PRINT
+ ITEMS
+ CarriageControl:NL
+151 PRINT
+ ITEMS
+ CarriageControl:NL
+160 LET Q=0
+ ScalarReference:Q
+ NumericConstant:0
+ AssignmentOperator:=
+161 LET Z=0
+ ScalarReference:Z
+ NumericConstant:0
+ AssignmentOperator:=
+162 LET X=INT(RND(0)*H+1)
+ ScalarReference:X
+ NumericConstant:0
+ FunctionRnd
+ ScalarValue:H
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+163 FOR I=1 TO H
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["ScalarValue:H"]
+ step:    ["NumericConstant:1"]
+170 IF I=X THEN 173
+ ScalarValue:I
+ ScalarValue:X
+ BinaryOperator:=
+171 PRINT ":--";
+ ITEMS
+ TextConstant:":--"
+ CarriageControl:;
+172 GO TO 180
+ LineNumber:180
+173 PRINT ":  ";
+ ITEMS
+ TextConstant:":  "
+ CarriageControl:;
+180 NEXT I
+ VariableToken:I
+190 PRINT ":"
+ ITEMS
+ TextConstant:":"
+ CarriageControl:NL
+191 LET C=1
+ ScalarReference:C
+ NumericConstant:1
+ AssignmentOperator:=
+192 LET W(X, 1)=C
+ ScalarValue:X
+ NumericConstant:1
+ ScalarReference:W
+ ScalarValue:C
+ AssignmentOperator:=
+193 LET C = C + 1
+ ScalarReference:C
+ ScalarValue:C
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+200 LET R=X
+ ScalarReference:R
+ ScalarValue:X
+ AssignmentOperator:=
+201 LET S=1
+ ScalarReference:S
+ NumericConstant:1
+ AssignmentOperator:=
+202 GO TO 260
+ LineNumber:260
+210 IF R<>H THEN 240
+ ScalarValue:R
+ ScalarValue:H
+ BinaryOperator:<>
+211 IF S<>V THEN 230
+ ScalarValue:S
+ ScalarValue:V
+ BinaryOperator:<>
+220 LET R=1
+ ScalarReference:R
+ NumericConstant:1
+ AssignmentOperator:=
+221 LET S=1
+ ScalarReference:S
+ NumericConstant:1
+ AssignmentOperator:=
+222 GO TO 250
+ LineNumber:250
+230 LET R=1
+ ScalarReference:R
+ NumericConstant:1
+ AssignmentOperator:=
+231 LET S=S+1
+ ScalarReference:S
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+232 GO TO 250
+ LineNumber:250
+240 LET R=R+1
+ ScalarReference:R
+ ScalarValue:R
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+250 IF W(R,S)=0 THEN 210
+ ScalarValue:R
+ ScalarValue:S
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:=
+260 IF R-1=0 THEN 530
+ ScalarValue:R
+ NumericConstant:1
+ BinaryOperator:-
+ NumericConstant:0
+ BinaryOperator:=
+261 IF W(R-1,S)<>0 THEN 530
+ ScalarValue:R
+ NumericConstant:1
+ BinaryOperator:-
+ ScalarValue:S
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:<>
+270 IF S-1=0 THEN 390
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:-
+ NumericConstant:0
+ BinaryOperator:=
+280 IF W(R,S-1)<>0 THEN 390
+ ScalarValue:R
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:-
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:<>
+290 IF R=H THEN 330 
+ ScalarValue:R
+ ScalarValue:H
+ BinaryOperator:=
+300 IF W(R+1, S)<>0 THEN 320
+ ScalarValue:R
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarValue:S
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:<>
+310 LET X=INT(RND(0)*3+1)
+ ScalarReference:X
+ NumericConstant:0
+ FunctionRnd
+ NumericConstant:3
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+320 IF X=1 THEN 790
+ ScalarValue:X
+ NumericConstant:1
+ BinaryOperator:=
+321 IF X=2 THEN 820
+ ScalarValue:X
+ NumericConstant:2
+ BinaryOperator:=
+323 IF X=3 THEN 860
+ ScalarValue:X
+ NumericConstant:3
+ BinaryOperator:=
+330 IF S<>V THEN 340
+ ScalarValue:S
+ ScalarValue:V
+ BinaryOperator:<>
+331 IF Z=1 THEN 370
+ ScalarValue:Z
+ NumericConstant:1
+ BinaryOperator:=
+332 LET Q=1
+ ScalarReference:Q
+ NumericConstant:1
+ AssignmentOperator:=
+333 GO TO 350
+ LineNumber:350
+340 IF W(R, S+1)<>0 THEN 370
+ ScalarValue:R
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:<>
+350 LET X=INT(RND(0)*3+1)
+ ScalarReference:X
+ NumericConstant:0
+ FunctionRnd
+ NumericConstant:3
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+360 IF X=1 THEN 790
+ ScalarValue:X
+ NumericConstant:1
+ BinaryOperator:=
+361 IF X=2 THEN 820
+ ScalarValue:X
+ NumericConstant:2
+ BinaryOperator:=
+362 IF X=3 THEN 910
+ ScalarValue:X
+ NumericConstant:3
+ BinaryOperator:=
+370 LET X=INT(RND(0)*2+1)
+ ScalarReference:X
+ NumericConstant:0
+ FunctionRnd
+ NumericConstant:2
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+380 IF X=1 THEN 790
+ ScalarValue:X
+ NumericConstant:1
+ BinaryOperator:=
+381 IF X=2 THEN 820
+ ScalarValue:X
+ NumericConstant:2
+ BinaryOperator:=
+390 IF R=H THEN 470
+ ScalarValue:R
+ ScalarValue:H
+ BinaryOperator:=
+400 IF W(R+1,S)<>0 THEN 470
+ ScalarValue:R
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarValue:S
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:<>
+401 IF S<>V THEN 420
+ ScalarValue:S
+ ScalarValue:V
+ BinaryOperator:<>
+410 IF Z=1 THEN 450
+ ScalarValue:Z
+ NumericConstant:1
+ BinaryOperator:=
+411 LET Q=1
+ ScalarReference:Q
+ NumericConstant:1
+ AssignmentOperator:=
+412 GO TO 430
+ LineNumber:430
+420 IF W(R, S+1)<>0 THEN 450
+ ScalarValue:R
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:<>
+430 LET X=INT(RND(0)*2+1)
+ ScalarReference:X
+ NumericConstant:0
+ FunctionRnd
+ NumericConstant:2
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+440 IF X=1 THEN 790
+ ScalarValue:X
+ NumericConstant:1
+ BinaryOperator:=
+441 IF X=2 THEN 860
+ ScalarValue:X
+ NumericConstant:2
+ BinaryOperator:=
+442 IF X=3 THEN 910
+ ScalarValue:X
+ NumericConstant:3
+ BinaryOperator:=
+450 LET X=INT(RND(0)*2+1)
+ ScalarReference:X
+ NumericConstant:0
+ FunctionRnd
+ NumericConstant:2
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+460 IF X=1 THEN 790
+ ScalarValue:X
+ NumericConstant:1
+ BinaryOperator:=
+461 IF X=2 THEN 860
+ ScalarValue:X
+ NumericConstant:2
+ BinaryOperator:=
+470 IF S<>V THEN 490
+ ScalarValue:S
+ ScalarValue:V
+ BinaryOperator:<>
+480 IF Z=1 THEN 520
+ ScalarValue:Z
+ NumericConstant:1
+ BinaryOperator:=
+481 LET Q=1
+ ScalarReference:Q
+ NumericConstant:1
+ AssignmentOperator:=
+482 GO TO 500
+ LineNumber:500
+490 IF W(R, S+1)<>0 THEN 520
+ ScalarValue:R
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:<>
+500 LET X=INT(RND(0)*2+1)
+ ScalarReference:X
+ NumericConstant:0
+ FunctionRnd
+ NumericConstant:2
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+510 IF X=1 THEN 790
+ ScalarValue:X
+ NumericConstant:1
+ BinaryOperator:=
+511 IF X=2 THEN 910
+ ScalarValue:X
+ NumericConstant:2
+ BinaryOperator:=
+520 GO TO 790
+ LineNumber:790
+530 IF S-1=0 THEN 670
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:-
+ NumericConstant:0
+ BinaryOperator:=
+540 IF W(R, S-1)<>0 THEN 670
+ ScalarValue:R
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:-
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:<>
+541 IF R=H THEN 610
+ ScalarValue:R
+ ScalarValue:H
+ BinaryOperator:=
+542 IF W(R+1,S)<>0 THEN 610
+ ScalarValue:R
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarValue:S
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:<>
+550 IF S<>V THEN 560
+ ScalarValue:S
+ ScalarValue:V
+ BinaryOperator:<>
+551 IF Z=1 THEN 590
+ ScalarValue:Z
+ NumericConstant:1
+ BinaryOperator:=
+552 LET Q=1
+ ScalarReference:Q
+ NumericConstant:1
+ AssignmentOperator:=
+553 GO TO 570
+ LineNumber:570
+560 IF W(R, S+1)<>0 THEN 590
+ ScalarValue:R
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:<>
+570 LET X=INT(RND(0)*3+1)
+ ScalarReference:X
+ NumericConstant:0
+ FunctionRnd
+ NumericConstant:3
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+580 IF X=1 THEN 820
+ ScalarValue:X
+ NumericConstant:1
+ BinaryOperator:=
+581 IF X=2 THEN 860
+ ScalarValue:X
+ NumericConstant:2
+ BinaryOperator:=
+582 IF X=3 THEN 910
+ ScalarValue:X
+ NumericConstant:3
+ BinaryOperator:=
+590 LET X=INT(RND(0)*2+1)
+ ScalarReference:X
+ NumericConstant:0
+ FunctionRnd
+ NumericConstant:2
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+600 IF X=1 THEN 820
+ ScalarValue:X
+ NumericConstant:1
+ BinaryOperator:=
+601 IF X=2 THEN 860
+ ScalarValue:X
+ NumericConstant:2
+ BinaryOperator:=
+610 IF S<>V THEN 630
+ ScalarValue:S
+ ScalarValue:V
+ BinaryOperator:<>
+620 IF Z=1 THEN 660
+ ScalarValue:Z
+ NumericConstant:1
+ BinaryOperator:=
+621 LET Q=1
+ ScalarReference:Q
+ NumericConstant:1
+ AssignmentOperator:=
+622 GO TO 640
+ LineNumber:640
+630 IF W(R, S+1)<>0 THEN 660
+ ScalarValue:R
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:<>
+640 LET X=INT(RND(0)*2+1)
+ ScalarReference:X
+ NumericConstant:0
+ FunctionRnd
+ NumericConstant:2
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+650 IF X=1 THEN 820
+ ScalarValue:X
+ NumericConstant:1
+ BinaryOperator:=
+651 IF X=2 THEN 910
+ ScalarValue:X
+ NumericConstant:2
+ BinaryOperator:=
+660 GO TO 820
+ LineNumber:820
+670 IF R=H THEN 740
+ ScalarValue:R
+ ScalarValue:H
+ BinaryOperator:=
+680 IF W(R+1,S)<>0 THEN 740
+ ScalarValue:R
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarValue:S
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:<>
+681 IF S<>V THEN 700
+ ScalarValue:S
+ ScalarValue:V
+ BinaryOperator:<>
+690 IF Z=1 THEN 730
+ ScalarValue:Z
+ NumericConstant:1
+ BinaryOperator:=
+691 LET Q=1
+ ScalarReference:Q
+ NumericConstant:1
+ AssignmentOperator:=
+692 GO TO 830
+ LineNumber:830
+700 IF W(R,S+1)<>0 THEN 730
+ ScalarValue:R
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:<>
+710 LET X=INT(RND(0)*2+1)
+ ScalarReference:X
+ NumericConstant:0
+ FunctionRnd
+ NumericConstant:2
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+720 IF X=1 THEN 860
+ ScalarValue:X
+ NumericConstant:1
+ BinaryOperator:=
+721 IF X=2 THEN 910
+ ScalarValue:X
+ NumericConstant:2
+ BinaryOperator:=
+730 GO TO 860
+ LineNumber:860
+740 IF S<>V THEN 760
+ ScalarValue:S
+ ScalarValue:V
+ BinaryOperator:<>
+750 IF Z=1 THEN 780
+ ScalarValue:Z
+ NumericConstant:1
+ BinaryOperator:=
+751 LET Q=1
+ ScalarReference:Q
+ NumericConstant:1
+ AssignmentOperator:=
+752 GO TO 770
+ LineNumber:770
+760 IF W(R, S+1)<>O THEN 780
+ ScalarValue:R
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarValue:W
+ ScalarValue:O
+ BinaryOperator:<>
+770 GO TO 910
+ LineNumber:910
+780 GO TO 1000
+ LineNumber:1000
+790 LET W(R-1, S)=C
+ ScalarValue:R
+ NumericConstant:1
+ BinaryOperator:-
+ ScalarValue:S
+ ScalarReference:W
+ ScalarValue:C
+ AssignmentOperator:=
+800 LET C=C+1
+ ScalarReference:C
+ ScalarValue:C
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+801 LET V(R-1, S)=2
+ ScalarValue:R
+ NumericConstant:1
+ BinaryOperator:-
+ ScalarValue:S
+ ScalarReference:V
+ NumericConstant:2
+ AssignmentOperator:=
+802 LET R=R-1
+ ScalarReference:R
+ ScalarValue:R
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+810 IF C=H*V+1 THEN 1010
+ ScalarValue:C
+ ScalarValue:H
+ ScalarValue:V
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ BinaryOperator:=
+811 LET Q=0
+ ScalarReference:Q
+ NumericConstant:0
+ AssignmentOperator:=
+812 GO TO 260
+ LineNumber:260
+820 LET W(R,S-1)=C
+ ScalarValue:R
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:-
+ ScalarReference:W
+ ScalarValue:C
+ AssignmentOperator:=
+830 LET C=C+1
+ ScalarReference:C
+ ScalarValue:C
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+840 LET V(R,S-1)=1
+ ScalarValue:R
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:-
+ ScalarReference:V
+ NumericConstant:1
+ AssignmentOperator:=
+841 LET S=S-1
+ ScalarReference:S
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+842 IF C=H*V+1 THEN 1010
+ ScalarValue:C
+ ScalarValue:H
+ ScalarValue:V
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ BinaryOperator:=
+850 LET Q=0
+ ScalarReference:Q
+ NumericConstant:0
+ AssignmentOperator:=
+851 GO TO 260
+ LineNumber:260
+860 LET W(R+1,S)=C
+ ScalarValue:R
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarValue:S
+ ScalarReference:W
+ ScalarValue:C
+ AssignmentOperator:=
+870 LET C=C+1
+ ScalarReference:C
+ ScalarValue:C
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+871 IF V(R,S)=0 THEN 880
+ ScalarValue:R
+ ScalarValue:S
+ ScalarValue:V
+ NumericConstant:0
+ BinaryOperator:=
+872 LET V(R,S)=3
+ ScalarValue:R
+ ScalarValue:S
+ ScalarReference:V
+ NumericConstant:3
+ AssignmentOperator:=
+873 GO TO 890
+ LineNumber:890
+880 LET V(R,S)=2
+ ScalarValue:R
+ ScalarValue:S
+ ScalarReference:V
+ NumericConstant:2
+ AssignmentOperator:=
+890 LET R=R+1
+ ScalarReference:R
+ ScalarValue:R
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+900 IF C=H*V+1 THEN 1010
+ ScalarValue:C
+ ScalarValue:H
+ ScalarValue:V
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ BinaryOperator:=
+902 GO TO 530
+ LineNumber:530
+910 IF Q=1 THEN 960
+ ScalarValue:Q
+ NumericConstant:1
+ BinaryOperator:=
+920 LET W(R,S+1)=C
+ ScalarValue:R
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarReference:W
+ ScalarValue:C
+ AssignmentOperator:=
+921 LET C=C+1
+ ScalarReference:C
+ ScalarValue:C
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+922 IF V(R,S)=0 THEN 940
+ ScalarValue:R
+ ScalarValue:S
+ ScalarValue:V
+ NumericConstant:0
+ BinaryOperator:=
+930 LET V(R,S)=3
+ ScalarValue:R
+ ScalarValue:S
+ ScalarReference:V
+ NumericConstant:3
+ AssignmentOperator:=
+931 GO TO 950
+ LineNumber:950
+940 LET V(R,S)=1
+ ScalarValue:R
+ ScalarValue:S
+ ScalarReference:V
+ NumericConstant:1
+ AssignmentOperator:=
+950 LET S=S+1
+ ScalarReference:S
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+951 IF C=H*V+1 THEN 1010
+ ScalarValue:C
+ ScalarValue:H
+ ScalarValue:V
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ BinaryOperator:=
+952 GO TO 260
+ LineNumber:260
+960 LET Z=1
+ ScalarReference:Z
+ NumericConstant:1
+ AssignmentOperator:=
+970 IF V(R,S)=0 THEN 980
+ ScalarValue:R
+ ScalarValue:S
+ ScalarValue:V
+ NumericConstant:0
+ BinaryOperator:=
+971 LET V(R,S)=3
+ ScalarValue:R
+ ScalarValue:S
+ ScalarReference:V
+ NumericConstant:3
+ AssignmentOperator:=
+972 LET Q=0
+ ScalarReference:Q
+ NumericConstant:0
+ AssignmentOperator:=
+973 GO TO 1000
+ LineNumber:1000
+980 LET V(R,S)=1
+ ScalarValue:R
+ ScalarValue:S
+ ScalarReference:V
+ NumericConstant:1
+ AssignmentOperator:=
+981 LET Q=0
+ ScalarReference:Q
+ NumericConstant:0
+ AssignmentOperator:=
+982 LET R=1
+ ScalarReference:R
+ NumericConstant:1
+ AssignmentOperator:=
+990 LET S=1
+ ScalarReference:S
+ NumericConstant:1
+ AssignmentOperator:=
+991 GO TO 250
+ LineNumber:250
+1000 GO TO 210
+ LineNumber:210
+1010 FOR J=1 TO V
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["ScalarValue:V"]
+ step:    ["NumericConstant:1"]
+1011  PRINT"!";
+ ITEMS
+ TextConstant:"!"
+ CarriageControl:;
+1012  FOR I=1 TO H
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["ScalarValue:H"]
+ step:    ["NumericConstant:1"]
+1013   IF V(I,J)<2 THEN 1030
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:V
+ NumericConstant:2
+ BinaryOperator:<
+1020   PRINT"   ";
+ ITEMS
+ TextConstant:"   "
+ CarriageControl:;
+1021   GO TO 1040
+ LineNumber:1040
+1030   PRINT"  !";
+ ITEMS
+ TextConstant:"  !"
+ CarriageControl:;
+1040  NEXT I 
+ VariableToken:I
+1041  PRINT
+ ITEMS
+ CarriageControl:NL
+1042  FOR I=1 TO H
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["ScalarValue:H"]
+ step:    ["NumericConstant:1"]
+1045   IF V(I,J)=0 THEN 1060
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:V
+ NumericConstant:0
+ BinaryOperator:=
+1050   IF V(I,J)=2 THEN 1060
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:V
+ NumericConstant:2
+ BinaryOperator:=
+1051   PRINT":  ";
+ ITEMS
+ TextConstant:":  "
+ CarriageControl:;
+1052   GO TO 1070 
+ LineNumber:1070
+1060   PRINT ":--";
+ ITEMS
+ TextConstant:":--"
+ CarriageControl:;
+1070  NEXT I
+ VariableToken:I
+1071  PRINT":"
+ ITEMS
+ TextConstant:":"
+ CarriageControl:NL
+1072 NEXT J
+ VariableToken:J
+1073 END
+ 

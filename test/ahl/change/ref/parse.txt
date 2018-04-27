@@ -1,0 +1,285 @@
+2 PRINT "I, YOUR FRIENDLY EDUSYSTEM COMPUTER, WILL DETERMINE"
+ ITEMS
+ TextConstant:"I, YOUR FRIENDLY EDUSYSTEM COMPUTER, WILL DETERMINE"
+ CarriageControl:NL
+3 PRINT "THE CORRECT CHANGE FOR ITEMS COSTING UP TO $100."
+ ITEMS
+ TextConstant:"THE CORRECT CHANGE FOR ITEMS COSTING UP TO $100."
+ CarriageControl:NL
+4 PRINT\PRINT
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+10 PRINT "COST OF ITEM";\INPUT A\PRINT "AMOUNT OF PAYMENT";\INPUT P
+ ITEMS
+ TextConstant:"COST OF ITEM"
+ CarriageControl:;
+ ScalarReference:A
+ ITEMS
+ TextConstant:"AMOUNT OF PAYMENT"
+ CarriageControl:;
+ ScalarReference:P
+20 C=P-A\M=C\IF C<>0 THEN 90\PRINT "CORRECT AMOUNT, THANK YOU"
+ ScalarReference:C
+ ScalarValue:P
+ ScalarValue:A
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarReference:M
+ ScalarValue:C
+ AssignmentOperator:=
+ ScalarValue:C
+ NumericConstant:0
+ BinaryOperator:<>
+ ITEMS
+ TextConstant:"CORRECT AMOUNT, THANK YOU"
+ CarriageControl:NL
+30 GO TO 10
+ LineNumber:10
+90 IF C>0 THEN 120 \PRINT "SORRY, YOU HAVE SHORT CHANGED ME $";A-P
+ ScalarValue:C
+ NumericConstant:0
+ BinaryOperator:>
+ ITEMS
+ TextConstant:"SORRY, YOU HAVE SHORT CHANGED ME $"
+ CarriageControl:;
+ ScalarValue:A
+ ScalarValue:P
+ BinaryOperator:-
+ CarriageControl:NL
+100 GO TO 10
+ LineNumber:10
+120 PRINT "YOUR CHANGE, $";C\D=INT(C/10)\IF D=0 THEN 155
+ ITEMS
+ TextConstant:"YOUR CHANGE, $"
+ CarriageControl:;
+ ScalarValue:C
+ CarriageControl:NL
+ ScalarReference:D
+ ScalarValue:C
+ NumericConstant:10
+ BinaryOperator:/
+ FunctionInt
+ AssignmentOperator:=
+ ScalarValue:D
+ NumericConstant:0
+ BinaryOperator:=
+150 PRINT D;"TEN DOLLAR BILL(S)"
+ ITEMS
+ ScalarValue:D
+ CarriageControl:;
+ TextConstant:"TEN DOLLAR BILL(S)"
+ CarriageControl:NL
+155 C=M-(D*10)\E=INT(C/5)\IF E=0 THEN 185
+ ScalarReference:C
+ ScalarValue:M
+ ScalarValue:D
+ NumericConstant:10
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarReference:E
+ ScalarValue:C
+ NumericConstant:5
+ BinaryOperator:/
+ FunctionInt
+ AssignmentOperator:=
+ ScalarValue:E
+ NumericConstant:0
+ BinaryOperator:=
+180 PRINT E;"FIVE DOLLAR BILL(S)"
+ ITEMS
+ ScalarValue:E
+ CarriageControl:;
+ TextConstant:"FIVE DOLLAR BILL(S)"
+ CarriageControl:NL
+185 C=M-(D*10+E*5)\F=INT(C)\IF F=0 THEN 215
+ ScalarReference:C
+ ScalarValue:M
+ ScalarValue:D
+ NumericConstant:10
+ BinaryOperator:*
+ ScalarValue:E
+ NumericConstant:5
+ BinaryOperator:*
+ BinaryOperator:+
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarReference:F
+ ScalarValue:C
+ FunctionInt
+ AssignmentOperator:=
+ ScalarValue:F
+ NumericConstant:0
+ BinaryOperator:=
+210 PRINT F;"ONE DOLLAR BILL(S)"
+ ITEMS
+ ScalarValue:F
+ CarriageControl:;
+ TextConstant:"ONE DOLLAR BILL(S)"
+ CarriageControl:NL
+215 C=M-(D*10+E*5+F)\C=C*100\N=C\G=INT(C/50)\IF G=0 THEN 255
+ ScalarReference:C
+ ScalarValue:M
+ ScalarValue:D
+ NumericConstant:10
+ BinaryOperator:*
+ ScalarValue:E
+ NumericConstant:5
+ BinaryOperator:*
+ BinaryOperator:+
+ ScalarValue:F
+ BinaryOperator:+
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarReference:C
+ ScalarValue:C
+ NumericConstant:100
+ BinaryOperator:*
+ AssignmentOperator:=
+ ScalarReference:N
+ ScalarValue:C
+ AssignmentOperator:=
+ ScalarReference:G
+ ScalarValue:C
+ NumericConstant:50
+ BinaryOperator:/
+ FunctionInt
+ AssignmentOperator:=
+ ScalarValue:G
+ NumericConstant:0
+ BinaryOperator:=
+250 PRINT G;"ONE-HALF DOLLAR(S)"
+ ITEMS
+ ScalarValue:G
+ CarriageControl:;
+ TextConstant:"ONE-HALF DOLLAR(S)"
+ CarriageControl:NL
+255 C=N-(G*50)\H=INT(C/25)\IF H=0 THEN 285
+ ScalarReference:C
+ ScalarValue:N
+ ScalarValue:G
+ NumericConstant:50
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarReference:H
+ ScalarValue:C
+ NumericConstant:25
+ BinaryOperator:/
+ FunctionInt
+ AssignmentOperator:=
+ ScalarValue:H
+ NumericConstant:0
+ BinaryOperator:=
+280 PRINT H;"QUARTER(S)"
+ ITEMS
+ ScalarValue:H
+ CarriageControl:;
+ TextConstant:"QUARTER(S)"
+ CarriageControl:NL
+285 C=N-(G*50+H*25)\I=INT(C/10)\IF I=0 THEN 315
+ ScalarReference:C
+ ScalarValue:N
+ ScalarValue:G
+ NumericConstant:50
+ BinaryOperator:*
+ ScalarValue:H
+ NumericConstant:25
+ BinaryOperator:*
+ BinaryOperator:+
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarReference:I
+ ScalarValue:C
+ NumericConstant:10
+ BinaryOperator:/
+ FunctionInt
+ AssignmentOperator:=
+ ScalarValue:I
+ NumericConstant:0
+ BinaryOperator:=
+310 PRINT I;"DIME(S)"
+ ITEMS
+ ScalarValue:I
+ CarriageControl:;
+ TextConstant:"DIME(S)"
+ CarriageControl:NL
+315 C=N-(G*50+H*25+I*10)\J=INT(C/5)\IF J=0 THEN 345
+ ScalarReference:C
+ ScalarValue:N
+ ScalarValue:G
+ NumericConstant:50
+ BinaryOperator:*
+ ScalarValue:H
+ NumericConstant:25
+ BinaryOperator:*
+ BinaryOperator:+
+ ScalarValue:I
+ NumericConstant:10
+ BinaryOperator:*
+ BinaryOperator:+
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarReference:J
+ ScalarValue:C
+ NumericConstant:5
+ BinaryOperator:/
+ FunctionInt
+ AssignmentOperator:=
+ ScalarValue:J
+ NumericConstant:0
+ BinaryOperator:=
+340 PRINT J;"NICKEL(S)"
+ ITEMS
+ ScalarValue:J
+ CarriageControl:;
+ TextConstant:"NICKEL(S)"
+ CarriageControl:NL
+345 C=N-(G*50+H*25+I*10+J*5)\K=INT(C+.5)\IF K=0 THEN 380
+ ScalarReference:C
+ ScalarValue:N
+ ScalarValue:G
+ NumericConstant:50
+ BinaryOperator:*
+ ScalarValue:H
+ NumericConstant:25
+ BinaryOperator:*
+ BinaryOperator:+
+ ScalarValue:I
+ NumericConstant:10
+ BinaryOperator:*
+ BinaryOperator:+
+ ScalarValue:J
+ NumericConstant:5
+ BinaryOperator:*
+ BinaryOperator:+
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarReference:K
+ ScalarValue:C
+ NumericConstant:0.5
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+ ScalarValue:K
+ NumericConstant:0
+ BinaryOperator:=
+370 PRINT K;"PENNY(S)"
+ ITEMS
+ ScalarValue:K
+ CarriageControl:;
+ TextConstant:"PENNY(S)"
+ CarriageControl:NL
+380 PRINT "THANK YOU,COME AGAIN"\PRINT \PRINT \GO TO 10
+ ITEMS
+ TextConstant:"THANK YOU,COME AGAIN"
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ LineNumber:10
+999 END
+ 

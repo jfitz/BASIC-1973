@@ -1,0 +1,729 @@
+100 RANDOMIZE
+ 
+120 PRINT"Y0U ARE NOW GOING TO PLAY A COMPUTERIZED VERSION OF BINGO--"
+ ITEMS
+ TextConstant:"Y0U ARE NOW GOING TO PLAY A COMPUTERIZED VERSION OF BINGO--"
+ CarriageControl:NL
+180 LET F=1
+ ScalarReference:F
+ NumericConstant:1
+ AssignmentOperator:=
+190 DIM B(10,10)
+ NumericConstant:10
+ NumericConstant:10
+ CompoundDeclaration:B
+200 DIM L(75)
+ NumericConstant:75
+ CompoundDeclaration:L
+210 MAT READ A$(5)
+ NumericConstant:5
+ MatrixReference:A$
+220 DATA "B" ,"I" ,"N" ,"G" ,"O"
+ TextConstant:"B"
+ TextConstant:"I"
+ TextConstant:"N"
+ TextConstant:"G"
+ TextConstant:"O"
+235 REM THIS SEQUENCE GENERATES THE CARD NUMBERS (LINES 240-430)
+ RemarkToken:THIS SEQUENCE GENERATES THE CARD NUMBERS (LINES 240-430)
+240 FOR K1=1 TO 75
+ control: VariableToken:K1
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:75"]
+ step:    ["NumericConstant:1"]
+250 LET L(K1)=0
+ ScalarValue:K1
+ ScalarReference:L
+ NumericConstant:0
+ AssignmentOperator:=
+260 NEXT K1
+ VariableToken:K1
+270 PRINT" "," HERE'S ";
+ ITEMS
+ TextConstant:" "
+ CarriageControl:,
+ TextConstant:" HERE'S "
+ CarriageControl:;
+280 IF F>1 THEN 310
+ ScalarValue:F
+ NumericConstant:1
+ BinaryOperator:>
+290 PRINT"YOUR CARD"
+ ITEMS
+ TextConstant:"YOUR CARD"
+ CarriageControl:NL
+300 GOTO 320
+ LineNumber:320
+310 PRINT"MY CARD"
+ ITEMS
+ TextConstant:"MY CARD"
+ CarriageControl:NL
+320 LET M=16
+ ScalarReference:M
+ NumericConstant:16
+ AssignmentOperator:=
+330 LET G=F+4
+ ScalarReference:G
+ ScalarValue:F
+ NumericConstant:4
+ BinaryOperator:+
+ AssignmentOperator:=
+340 FOR Y=F TO G
+ control: VariableToken:Y
+ start:   ["ScalarValue:F"]
+ end:     ["ScalarValue:G"]
+ step:    ["NumericConstant:1"]
+350 FOR X=F TO G
+ control: VariableToken:X
+ start:   ["ScalarValue:F"]
+ end:     ["ScalarValue:G"]
+ step:    ["NumericConstant:1"]
+360 LET R=INT(M*RND)
+ ScalarReference:R
+ ScalarValue:M
+ FunctionRnd
+ BinaryOperator:*
+ FunctionInt
+ AssignmentOperator:=
+370 IF R<M-15 THEN 360
+ ScalarValue:R
+ ScalarValue:M
+ NumericConstant:15
+ BinaryOperator:-
+ BinaryOperator:<
+380 IF L(R)<>0 THEN 360
+ ScalarValue:R
+ ScalarValue:L
+ NumericConstant:0
+ BinaryOperator:<>
+390 LET B(X,Y)=R
+ ScalarValue:X
+ ScalarValue:Y
+ ScalarReference:B
+ ScalarValue:R
+ AssignmentOperator:=
+400 LET L(R)=1
+ ScalarValue:R
+ ScalarReference:L
+ NumericConstant:1
+ AssignmentOperator:=
+410 NEXT X
+ VariableToken:X
+420 LET M=M+15
+ ScalarReference:M
+ ScalarValue:M
+ NumericConstant:15
+ BinaryOperator:+
+ AssignmentOperator:=
+430 NEXT Y
+ VariableToken:Y
+435 REM THIS SEQUENCE PRINTS THE CARD (LINES 440-670) 
+ RemarkToken:THIS SEQUENCE PRINTS THE CARD (LINES 440-670) 
+440 PRINT
+ ITEMS
+ CarriageControl:NL
+450 PRINT"--B--","--I--","--N--","--G--","--O--"
+ ITEMS
+ TextConstant:"--B--"
+ CarriageControl:,
+ TextConstant:"--I--"
+ CarriageControl:,
+ TextConstant:"--N--"
+ CarriageControl:,
+ TextConstant:"--G--"
+ CarriageControl:,
+ TextConstant:"--O--"
+ CarriageControl:NL
+460 FOR X=F TO G
+ control: VariableToken:X
+ start:   ["ScalarValue:F"]
+ end:     ["ScalarValue:G"]
+ step:    ["NumericConstant:1"]
+470 PRINT
+ ITEMS
+ CarriageControl:NL
+480 PRINT
+ ITEMS
+ CarriageControl:NL
+490 PRINT
+ ITEMS
+ CarriageControl:NL
+500 FOR Y=F TO G
+ control: VariableToken:Y
+ start:   ["ScalarValue:F"]
+ end:     ["ScalarValue:G"]
+ step:    ["NumericConstant:1"]
+510 IF B(X,Y)=B(F+2,F+2) THEN 540
+ ScalarValue:X
+ ScalarValue:Y
+ ScalarValue:B
+ ScalarValue:F
+ NumericConstant:2
+ BinaryOperator:+
+ ScalarValue:F
+ NumericConstant:2
+ BinaryOperator:+
+ ScalarValue:B
+ BinaryOperator:=
+520 PRINT B(X,Y),
+ ITEMS
+ ScalarValue:X
+ ScalarValue:Y
+ ScalarValue:B
+ CarriageControl:,
+530 GOTO 550
+ LineNumber:550
+540 PRINT"FREE",
+ ITEMS
+ TextConstant:"FREE"
+ CarriageControl:,
+550 NEXT Y
+ VariableToken:Y
+560 NEXT X
+ VariableToken:X
+570 PRINT
+ ITEMS
+ CarriageControl:NL
+580 PRINT
+ ITEMS
+ CarriageControl:NL
+590 PRINT
+ ITEMS
+ CarriageControl:NL
+600 PRINT"--------------------------------------------------------------"
+ ITEMS
+ TextConstant:"--------------------------------------------------------------"
+ CarriageControl:NL
+610 PRINT" [TEAR OFF AFTER MACHINE AUTOMATICALLY ADVANCES PAPER]"
+ ITEMS
+ TextConstant:" [TEAR OFF AFTER MACHINE AUTOMATICALLY ADVANCES PAPER]"
+ CarriageControl:NL
+620 FOR K9 = 1 TO 9
+ control: VariableToken:K9
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:9"]
+ step:    ["NumericConstant:1"]
+630 PRINT
+ ITEMS
+ CarriageControl:NL
+640 NEXT K9
+ VariableToken:K9
+650 IF F=6 THEN 680
+ ScalarValue:F
+ NumericConstant:6
+ BinaryOperator:=
+660 LET F=6
+ ScalarReference:F
+ NumericConstant:6
+ AssignmentOperator:=
+670 GOTO 240
+ LineNumber:240
+680 PRINT
+ ITEMS
+ CarriageControl:NL
+690 PRINT "MOW WE'RE ALL SET TO PLAY THE GAME, USE A PENCIL TO MARK OFF"
+ ITEMS
+ TextConstant:"MOW WE'RE ALL SET TO PLAY THE GAME, USE A PENCIL TO MARK OFF"
+ CarriageControl:NL
+700 PRINT"THE NUMBERS ON YOUR. CARD AS THEY ARE CALLED,"
+ ITEMS
+ TextConstant:"THE NUMBERS ON YOUR. CARD AS THEY ARE CALLED,"
+ CarriageControl:NL
+710 PRINT" (PLEASE PLAY MY CARD AS WELL AS YOUR OWN)"
+ ITEMS
+ TextConstant:" (PLEASE PLAY MY CARD AS WELL AS YOUR OWN)"
+ CarriageControl:NL
+720 PRINT"***D0N'T GET SMART, I'LL BE PLAYING BOTH YOUR CARD AND MINE"
+ ITEMS
+ TextConstant:"***D0N'T GET SMART, I'LL BE PLAYING BOTH YOUR CARD AND MINE"
+ CarriageControl:NL
+730 PRINT " UP HERE IN BOSTON, (SO THERE--)"
+ ITEMS
+ TextConstant:" UP HERE IN BOSTON, (SO THERE--)"
+ CarriageControl:NL
+740 PRINT
+ ITEMS
+ CarriageControl:NL
+750 PRINT "ARE YOU READY";
+ ITEMS
+ TextConstant:"ARE YOU READY"
+ CarriageControl:;
+760 INPUT R$
+ ScalarReference:R$
+770 IF R$<>"NO" THEN 820
+ ScalarValue:R$
+ TextConstant:"NO"
+ BinaryOperator:<>
+780 PRINT 
+ ITEMS
+ CarriageControl:NL
+790 PRINT"*********:HURRY UP:**********"
+ ITEMS
+ TextConstant:"*********:HURRY UP:**********"
+ CarriageControl:NL
+800 GOTO 740
+ LineNumber:740
+810 REM
+820 FOR K1 = 1 TO 75
+ control: VariableToken:K1
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:75"]
+ step:    ["NumericConstant:1"]
+830 LET L(K1)=0
+ ScalarValue:K1
+ ScalarReference:L
+ NumericConstant:0
+ AssignmentOperator:=
+840 NEXT K1
+ VariableToken:K1
+850 PRINT
+ ITEMS
+ CarriageControl:NL
+860 LET B(3,3)=0
+ NumericConstant:3
+ NumericConstant:3
+ ScalarReference:B
+ NumericConstant:0
+ AssignmentOperator:=
+870 LET B(8,8)=0
+ NumericConstant:8
+ NumericConstant:8
+ ScalarReference:B
+ NumericConstant:0
+ AssignmentOperator:=
+875 REM THIS SEQUENCE GENERATES THE BINGO NUMBERS (LINES 880-1100)
+ RemarkToken:THIS SEQUENCE GENERATES THE BINGO NUMBERS (LINES 880-1100)
+880 LET U=INT(75*RND)+1
+ ScalarReference:U
+ NumericConstant:75
+ FunctionRnd
+ BinaryOperator:*
+ FunctionInt
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+910 IF L(U)<>0 THEN 880
+ ScalarValue:U
+ ScalarValue:L
+ NumericConstant:0
+ BinaryOperator:<>
+920 LET L(U)=1
+ ScalarValue:U
+ ScalarReference:L
+ NumericConstant:1
+ AssignmentOperator:=
+930 PRINT
+ ITEMS
+ CarriageControl:NL
+940 IF RND > .5 THEN 970
+ FunctionRnd
+ NumericConstant:0.5
+ BinaryOperator:>
+950 PRINT"THE NUMBER COMES UP:",
+ ITEMS
+ TextConstant:"THE NUMBER COMES UP:"
+ CarriageControl:,
+960 GOTO 980
+ LineNumber:980
+970 PRINT"THE NEXT ONE IS:",
+ ITEMS
+ TextConstant:"THE NEXT ONE IS:"
+ CarriageControl:,
+980 PRINT A$(INT((U-1)/15)+1);U
+ ITEMS
+ ScalarValue:U
+ NumericConstant:1
+ BinaryOperator:-
+ NumericConstant:15
+ BinaryOperator:/
+ FunctionInt
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarValue:A$
+ CarriageControl:;
+ ScalarValue:U
+ CarriageControl:NL
+1105 REM THIS IS THE "NUMBER ON CARD?" SEQUENCE (LINES 1110-1260)
+ RemarkToken:THIS IS THE "NUMBER ON CARD?" SEQUENCE (LINES 1110-1260)
+1110 FOR Y=1 TO 10
+ control: VariableToken:Y
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:10"]
+ step:    ["NumericConstant:1"]
+1120 FOR X=1 TO 10
+ control: VariableToken:X
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:10"]
+ step:    ["NumericConstant:1"]
+1130 IF B(X,Y)=U THEN 1250
+ ScalarValue:X
+ ScalarValue:Y
+ ScalarValue:B
+ ScalarValue:U
+ BinaryOperator:=
+1140 NEXT X
+ VariableToken:X
+1150 NEXT Y
+ VariableToken:Y
+1160 LET F=1
+ ScalarReference:F
+ NumericConstant:1
+ AssignmentOperator:=
+1170 GOSUB 1270
+ LineNumber:1270
+1180 LET F=6
+ ScalarReference:F
+ NumericConstant:6
+ AssignmentOperator:=
+1190 GOSUB 1270
+ LineNumber:1270
+1200 IF V=0 THEN 1230
+ ScalarValue:V
+ NumericConstant:0
+ BinaryOperator:=
+1210 IF W=1 THEN 1980
+ ScalarValue:W
+ NumericConstant:1
+ BinaryOperator:=
+1220 GOTO 2050
+ LineNumber:2050
+1230 IF W=0 THEN 880 
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:=
+1240 GOTO 2120
+ LineNumber:2120
+1250 LET B(X,Y)=0
+ ScalarValue:X
+ ScalarValue:Y
+ ScalarReference:B
+ NumericConstant:0
+ AssignmentOperator:=
+1260 GOTO 1140
+ LineNumber:1140
+1265 REM THIS IS THE BINGO DETERMINING SEQUENCE (LINES 1270-1950)
+ RemarkToken:THIS IS THE BINGO DETERMINING SEQUENCE (LINES 1270-1950)
+1266
+1267 REM THIS IS THE VERTICAL CHECK FOR BINGO*** (LINES 1270-1430)
+ RemarkToken:THIS IS THE VERTICAL CHECK FOR BINGO*** (LINES 1270-1430)
+1270 LET G=F+4
+ ScalarReference:G
+ ScalarValue:F
+ NumericConstant:4
+ BinaryOperator:+
+ AssignmentOperator:=
+1280 FOR Y=F TO G
+ control: VariableToken:Y
+ start:   ["ScalarValue:F"]
+ end:     ["ScalarValue:G"]
+ step:    ["NumericConstant:1"]
+1290 FOR X=F TO G
+ control: VariableToken:X
+ start:   ["ScalarValue:F"]
+ end:     ["ScalarValue:G"]
+ step:    ["NumericConstant:1"]
+1300 IF B(X,Y)<>0 THEN 1430
+ ScalarValue:X
+ ScalarValue:Y
+ ScalarValue:B
+ NumericConstant:0
+ BinaryOperator:<>
+1310 IF X<F+4 THEN 1420
+ ScalarValue:X
+ ScalarValue:F
+ NumericConstant:4
+ BinaryOperator:+
+ BinaryOperator:<
+1320 IF F=6 THEN 1370
+ ScalarValue:F
+ NumericConstant:6
+ BinaryOperator:=
+1330 PRINT
+ ITEMS
+ CarriageControl:NL
+1340 PRINT"YOU'VE GOT A BINGO***"
+ ITEMS
+ TextConstant:"YOU'VE GOT A BINGO***"
+ CarriageControl:NL
+1350 LET W=1
+ ScalarReference:W
+ NumericConstant:1
+ AssignmentOperator:=
+1360 RETURN
+ 
+1370 PRINT
+ ITEMS
+ CarriageControl:NL
+1380 PRINT"I'VE GOT A BINGO*****"
+ ITEMS
+ TextConstant:"I'VE GOT A BINGO*****"
+ CarriageControl:NL
+1390 LET V=1
+ ScalarReference:V
+ NumericConstant:1
+ AssignmentOperator:=
+1410 GO TO 1450 
+ LineNumber:1450
+1420 NEXT X
+ VariableToken:X
+1430 NEXT Y
+ VariableToken:Y
+1440 REM THIS IS THE HORIZONTAL CHECK FOR BINGO*** (LINES 1450-1610)
+ RemarkToken:THIS IS THE HORIZONTAL CHECK FOR BINGO*** (LINES 1450-1610)
+1450 LET G=F+4
+ ScalarReference:G
+ ScalarValue:F
+ NumericConstant:4
+ BinaryOperator:+
+ AssignmentOperator:=
+1460 FOR X=F TO G
+ control: VariableToken:X
+ start:   ["ScalarValue:F"]
+ end:     ["ScalarValue:G"]
+ step:    ["NumericConstant:1"]
+1470 FOR Y=F TO G
+ control: VariableToken:Y
+ start:   ["ScalarValue:F"]
+ end:     ["ScalarValue:G"]
+ step:    ["NumericConstant:1"]
+1480 IF B(X,Y)<>0 THEN 1610 
+ ScalarValue:X
+ ScalarValue:Y
+ ScalarValue:B
+ NumericConstant:0
+ BinaryOperator:<>
+1490 IF Y<F+4 THEN 1600
+ ScalarValue:Y
+ ScalarValue:F
+ NumericConstant:4
+ BinaryOperator:+
+ BinaryOperator:<
+1500 IF F=6 THEN 1550
+ ScalarValue:F
+ NumericConstant:6
+ BinaryOperator:=
+1510 PRINT
+ ITEMS
+ CarriageControl:NL
+1520 PRINT"YOU'VE GOT A BINGO***"
+ ITEMS
+ TextConstant:"YOU'VE GOT A BINGO***"
+ CarriageControl:NL
+1530 LET W=1
+ ScalarReference:W
+ NumericConstant:1
+ AssignmentOperator:=
+1540 RETURN
+ 
+1550 PRINT
+ ITEMS
+ CarriageControl:NL
+1560 PRINT"I'VE GOT A BINGO*****"
+ ITEMS
+ TextConstant:"I'VE GOT A BINGO*****"
+ CarriageControl:NL
+1570 LET V=1
+ ScalarReference:V
+ NumericConstant:1
+ AssignmentOperator:=
+1590 GOTO 1620
+ LineNumber:1620
+1600 NEXT Y
+ VariableToken:Y
+1610 NEXT X
+ VariableToken:X
+1615 REM THIS IS THE SLANT CHECK (M=-1) FOR BINGO*** (LINES 1620-1770)
+ RemarkToken:THIS IS THE SLANT CHECK (M=-1) FOR BINGO*** (LINES 1620-1770)
+1620 LET X=F
+ ScalarReference:X
+ ScalarValue:F
+ AssignmentOperator:=
+1630 LET Y=F
+ ScalarReference:Y
+ ScalarValue:F
+ AssignmentOperator:=
+1640 IF B(X,Y)<>0 THEN 1770
+ ScalarValue:X
+ ScalarValue:Y
+ ScalarValue:B
+ NumericConstant:0
+ BinaryOperator:<>
+1650 LET X=X+1
+ ScalarReference:X
+ ScalarValue:X
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+1660 LET Y=Y+1
+ ScalarReference:Y
+ ScalarValue:Y
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+1670 IF Y<F+5 THEN 1640
+ ScalarValue:Y
+ ScalarValue:F
+ NumericConstant:5
+ BinaryOperator:+
+ BinaryOperator:<
+1680 IF Y=11 THEN 1740
+ ScalarValue:Y
+ NumericConstant:11
+ BinaryOperator:=
+1690 LET W=1
+ ScalarReference:W
+ NumericConstant:1
+ AssignmentOperator:=
+1700 PRINT
+ ITEMS
+ CarriageControl:NL
+1710 PRINT"YOU'VE GOT A BINGO***"
+ ITEMS
+ TextConstant:"YOU'VE GOT A BINGO***"
+ CarriageControl:NL
+1730 RETURN
+ 
+1740 PRINT"I'VE GOT A BINGO*****"
+ ITEMS
+ TextConstant:"I'VE GOT A BINGO*****"
+ CarriageControl:NL
+1750 LET V=1
+ ScalarReference:V
+ NumericConstant:1
+ AssignmentOperator:=
+1770 RETURN
+ 
+1775 REM THIS IS THE SLANT CHECK (M=1) FOR BINGO*** (LINES 1780-1950)
+ RemarkToken:THIS IS THE SLANT CHECK (M=1) FOR BINGO*** (LINES 1780-1950)
+1780 LET X=F+4
+ ScalarReference:X
+ ScalarValue:F
+ NumericConstant:4
+ BinaryOperator:+
+ AssignmentOperator:=
+1790 LET Y=X
+ ScalarReference:Y
+ ScalarValue:X
+ AssignmentOperator:=
+1800 IF B(X,Y)<>0 THEN 1950
+ ScalarValue:X
+ ScalarValue:Y
+ ScalarValue:B
+ NumericConstant:0
+ BinaryOperator:<>
+1810 LET X=X-1
+ ScalarReference:X
+ ScalarValue:X
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+1820 LET Y=Y+1
+ ScalarReference:Y
+ ScalarValue:Y
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+1830 IF Y<F+5 THEN 1800
+ ScalarValue:Y
+ ScalarValue:F
+ NumericConstant:5
+ BinaryOperator:+
+ BinaryOperator:<
+1840 IF Y=11 THEN 1900
+ ScalarValue:Y
+ NumericConstant:11
+ BinaryOperator:=
+1850 PRINT
+ ITEMS
+ CarriageControl:NL
+1860 PRINT"YOU'VE GOT A BINGO***"
+ ITEMS
+ TextConstant:"YOU'VE GOT A BINGO***"
+ CarriageControl:NL
+1870 LET W=1
+ ScalarReference:W
+ NumericConstant:1
+ AssignmentOperator:=
+1890 RETURN
+ 
+1900 PRINT
+ ITEMS
+ CarriageControl:NL
+1910 PRINT"I'VE GOT A BINGO*****"
+ ITEMS
+ TextConstant:"I'VE GOT A BINGO*****"
+ CarriageControl:NL
+1920 LET V=1
+ ScalarReference:V
+ NumericConstant:1
+ AssignmentOperator:=
+1950 RETURN
+ 
+1970 REM THIS THE TIE PRINTOUT SEQUENCE
+ RemarkToken:THIS THE TIE PRINTOUT SEQUENCE
+1980 PRINT
+ ITEMS
+ CarriageControl:NL
+1990 PRINT"*********** IT'S A TIE ************"
+ ITEMS
+ TextConstant:"*********** IT'S A TIE ************"
+ CarriageControl:NL
+1995 REM THIS IS THE "PLAY AGAIN?" SEQUENCE
+ RemarkToken:THIS IS THE "PLAY AGAIN?" SEQUENCE
+2000 PRINT
+ ITEMS
+ CarriageControl:NL
+2010 PRINT "DO YOU WANT TO PLAY AGAIN";
+ ITEMS
+ TextConstant:"DO YOU WANT TO PLAY AGAIN"
+ CarriageControl:;
+2020 INPUT E$
+ ScalarReference:E$
+2025 PRINT
+ ITEMS
+ CarriageControl:NL
+2030 IF E$="YES" THEN 180
+ ScalarValue:E$
+ TextConstant:"YES"
+ BinaryOperator:=
+2040 STOP
+ 
+2045 REM THIS IS THE "I WIN" SEQUENCE
+ RemarkToken:THIS IS THE "I WIN" SEQUENCE
+2050 PRINT
+ ITEMS
+ CarriageControl:NL
+2060 FOR S=1 TO 6
+ control: VariableToken:S
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:6"]
+ step:    ["NumericConstant:1"]
+2070 PRINT"I WIN. ";
+ ITEMS
+ TextConstant:"I WIN. "
+ CarriageControl:;
+2080 NEXT S
+ VariableToken:S
+2090 PRINT
+ ITEMS
+ CarriageControl:NL
+2100 PRINT
+ ITEMS
+ CarriageControl:NL
+2110 GOTO 2000
+ LineNumber:2000
+2115 REM THIS IS THE "YOU WIN" SEQUENCE
+ RemarkToken:THIS IS THE "YOU WIN" SEQUENCE
+2120 PRINT
+ ITEMS
+ CarriageControl:NL
+2130 PRINT" YOU WIN..... YOU WIN...... YOU WIN......."
+ ITEMS
+ TextConstant:" YOU WIN..... YOU WIN...... YOU WIN......."
+ CarriageControl:NL
+2140 GOTO 2000
+ LineNumber:2000
+2145 REM THIS IS THE "END" OF THE LIST OF PROGRAM ENTITLED "BINGO"
+ RemarkToken:THIS IS THE "END" OF THE LIST OF PROGRAM ENTITLED "BINGO"
+2150 END
+ 

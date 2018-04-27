@@ -1,0 +1,179 @@
+Duplicate line number 250
+100 REM ***23 MATCHES
+ RemarkToken:***23 MATCHES
+110 PRINT "LET'S PLAY 23. MATCHES. WE START WITH 23 MATCHES."
+ ITEMS
+ TextConstant:"LET'S PLAY 23. MATCHES. WE START WITH 23 MATCHES."
+ CarriageControl:NL
+115 PRINT "YOU MOVE FIRST. YOU MAY TAKE 1,2 OR 3 MATCHES."
+ ITEMS
+ TextConstant:"YOU MOVE FIRST. YOU MAY TAKE 1,2 OR 3 MATCHES."
+ CarriageControl:NL
+120 PRINT "THEN I MOVE... I MAY TAKE 1,2 OR 3 MATCHES."
+ ITEMS
+ TextConstant:"THEN I MOVE... I MAY TAKE 1,2 OR 3 MATCHES."
+ CarriageControl:NL
+125 PRINT "YOU MOVE, I MOVE AND SO ON. THE ONE WHO HAS TO"
+ ITEMS
+ TextConstant:"YOU MOVE, I MOVE AND SO ON. THE ONE WHO HAS TO"
+ CarriageControl:NL
+130 PRINT "TAKE THE LAST MATCH LOSES."
+ ITEMS
+ TextConstant:"TAKE THE LAST MATCH LOSES."
+ CarriageControl:NL
+135 PRINT "GOOD LUCK AND MAY THE BEST COMPUTER (HA HA) WIN."
+ ITEMS
+ TextConstant:"GOOD LUCK AND MAY THE BEST COMPUTER (HA HA) WIN."
+ CarriageControl:NL
+140 PRINT 
+ ITEMS
+ CarriageControl:NL
+150 LET M=23
+ ScalarReference:M
+ NumericConstant:23
+ AssignmentOperator:=
+200 REM ***THE HUMAN MOVES
+ RemarkToken:***THE HUMAN MOVES
+205 PRINT
+ ITEMS
+ CarriageControl:NL
+210 PRINT "THERE ARE NOW";M;"MATCHES."
+ ITEMS
+ TextConstant:"THERE ARE NOW"
+ CarriageControl:;
+ ScalarValue:M
+ CarriageControl:;
+ TextConstant:"MATCHES."
+ CarriageControl:NL
+215 PRINT
+ ITEMS
+ CarriageControl:NL
+220 PRINT "HOW MANY DO YOU TAKE";
+ ITEMS
+ TextConstant:"HOW MANY DO YOU TAKE"
+ CarriageControl:;
+230 INPUT H
+ ScalarReference:H
+240 IF H>M THEN 510
+ ScalarValue:H
+ ScalarValue:M
+ BinaryOperator:>
+250 IF H<=0 THEN 510
+ ScalarValue:H
+ NumericConstant:0
+ BinaryOperator:<=
+270 IF H>=4 THEN 510
+ ScalarValue:H
+ NumericConstant:4
+ BinaryOperator:>=
+280 LET M=M-H
+ ScalarReference:M
+ ScalarValue:M
+ ScalarValue:H
+ BinaryOperator:-
+ AssignmentOperator:=
+290 IF M=0 THEN 410
+ ScalarValue:M
+ NumericConstant:0
+ BinaryOperator:=
+300 REM ***THE COMPUTER MOVES
+ RemarkToken:***THE COMPUTER MOVES
+305 IF M=1 THEN 440
+ ScalarValue:M
+ NumericConstant:1
+ BinaryOperator:=
+310 LET R= M-4*INT(M/4)
+ ScalarReference:R
+ ScalarValue:M
+ NumericConstant:4
+ ScalarValue:M
+ NumericConstant:4
+ BinaryOperator:/
+ FunctionInt
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+320 IF R<>1 THEN 350
+ ScalarValue:R
+ NumericConstant:1
+ BinaryOperator:<>
+330 LET C=INT(3+RND(0))+1
+ ScalarReference:C
+ NumericConstant:3
+ NumericConstant:0
+ FunctionRnd
+ BinaryOperator:+
+ FunctionInt
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+340 GO TO 360
+ LineNumber:360
+350 LET C=(R+3)-4*INT((R+3)/4)
+ ScalarReference:C
+ ScalarValue:R
+ NumericConstant:3
+ BinaryOperator:+
+ NumericConstant:4
+ ScalarValue:R
+ NumericConstant:3
+ BinaryOperator:+
+ NumericConstant:4
+ BinaryOperator:/
+ FunctionInt
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+360 LET M=M-C
+ ScalarReference:M
+ ScalarValue:M
+ ScalarValue:C
+ BinaryOperator:-
+ AssignmentOperator:=
+370 IF M=0 THEN 440
+ ScalarValue:M
+ NumericConstant:0
+ BinaryOperator:=
+375 PRINT
+ ITEMS
+ CarriageControl:NL
+380 PRINT "I TOOK";C;"...";
+ ITEMS
+ TextConstant:"I TOOK"
+ CarriageControl:;
+ ScalarValue:C
+ CarriageControl:;
+ TextConstant:"..."
+ CarriageControl:;
+390 GO TO 210
+ LineNumber:210
+400 REM ***SOMEBODY WON (SEE LINES 290,205,370)
+ RemarkToken:***SOMEBODY WON (SEE LINES 290,205,370)
+410 PRINT
+ ITEMS
+ CarriageControl:NL
+420 PRINT "I WON!!! BETTER LUCK NEXT TIME."
+ ITEMS
+ TextConstant:"I WON!!! BETTER LUCK NEXT TIME."
+ CarriageControl:NL
+430 GO TO 140
+ LineNumber:140
+440 PRINT
+ ITEMS
+ CarriageControl:NL
+450 PRINT "O.K. SO YOU WON. LET'S PLAY AGAIN."
+ ITEMS
+ TextConstant:"O.K. SO YOU WON. LET'S PLAY AGAIN."
+ CarriageControl:NL
+460 GO TO 140
+ LineNumber:140
+500 REM ***THE HUMAN CHEATED! (SEE LINES 240 THRU 270)
+ RemarkToken:***THE HUMAN CHEATED! (SEE LINES 240 THRU 270)
+510 PRINT "YOU CHEATED! BUT I'LL GIVE YOU ANOTHER CHANCE."
+ ITEMS
+ TextConstant:"YOU CHEATED! BUT I'LL GIVE YOU ANOTHER CHANCE."
+ CarriageControl:NL
+520 GO TO 215
+ LineNumber:215
+999 END
+ 

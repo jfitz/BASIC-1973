@@ -1,0 +1,1318 @@
+10 PRINT "DO YOU WANT INSTRUCTIONS (IF SO TYPE A 1)";
+ ITEMS
+ TextConstant:"DO YOU WANT INSTRUCTIONS (IF SO TYPE A 1)"
+ CarriageControl:;
+15 INPUT K
+ ScalarReference:K
+25 IF K<>1 THEN 85
+ ScalarValue:K
+ NumericConstant:1
+ BinaryOperator:<>
+30 PRINT
+ ITEMS
+ CarriageControl:NL
+35 PRINT
+ ITEMS
+ CarriageControl:NL
+40 PRINT
+ ITEMS
+ CarriageControl:NL
+45 PRINT
+ ITEMS
+ CarriageControl:NL
+50 PRINT"THIS IS A GAME OF BLACKJACK, LAS VEGAS STYLE."
+ ITEMS
+ TextConstant:"THIS IS A GAME OF BLACKJACK, LAS VEGAS STYLE."
+ CarriageControl:NL
+55 PRINT"HERE ARE THE RULES OF THE HOUSE. THE DEALER"
+ ITEMS
+ TextConstant:"HERE ARE THE RULES OF THE HOUSE. THE DEALER"
+ CarriageControl:NL
+60 PRINT"MUST HIT ON 16 OR LESS AND WILL STAY ON 17 OR"
+ ITEMS
+ TextConstant:"MUST HIT ON 16 OR LESS AND WILL STAY ON 17 OR"
+ CarriageControl:NL
+65 PRINT"MORE. YOU MAY SPLIT TWO CARDS IF THEY ARE THE"
+ ITEMS
+ TextConstant:"MORE. YOU MAY SPLIT TWO CARDS IF THEY ARE THE"
+ CarriageControl:NL
+70 PRINT"SAME AND PLAY ONE HAND WITH EACH OF THEM. ALSO"
+ ITEMS
+ TextConstant:"SAME AND PLAY ONE HAND WITH EACH OF THEM. ALSO"
+ CarriageControl:NL
+75 PRINT"YOU MAY DOUBLE YOUR SET AND RECEIVE EXACTLY ONE"
+ ITEMS
+ TextConstant:"YOU MAY DOUBLE YOUR SET AND RECEIVE EXACTLY ONE"
+ CarriageControl:NL
+80 PRINT"MORE CARD ANY TIME ON YOUR FIRST HIT, THE TYPING"
+ ITEMS
+ TextConstant:"MORE CARD ANY TIME ON YOUR FIRST HIT, THE TYPING"
+ CarriageControl:NL
+85 PRINT"INSTRUCTIONS ARE: 0-NO HIT; 1 HIT; 2-DOUBLE; AND"
+ ITEMS
+ TextConstant:"INSTRUCTIONS ARE: 0-NO HIT; 1 HIT; 2-DOUBLE; AND"
+ CarriageControl:NL
+90 PRINT "3-SPLIT A PAIR."
+ ITEMS
+ TextConstant:"3-SPLIT A PAIR."
+ CarriageControl:NL
+95 IF K<>1 THEN 155
+ ScalarValue:K
+ NumericConstant:1
+ BinaryOperator:<>
+100 PRINT"WHEN THE DEALER HAS AN EXPOSED ACE HE WILL ASK"
+ ITEMS
+ TextConstant:"WHEN THE DEALER HAS AN EXPOSED ACE HE WILL ASK"
+ CarriageControl:NL
+105 PRINT"YOU FOR AN INSURANCE BET, AN INSURANCE BET WILL"
+ ITEMS
+ TextConstant:"YOU FOR AN INSURANCE BET, AN INSURANCE BET WILL"
+ CarriageControl:NL
+110 PRINT"RISK HALF YOUR BET FOR AN AMOUNT EQUAL TO YOUR BET"
+ ITEMS
+ TextConstant:"RISK HALF YOUR BET FOR AN AMOUNT EQUAL TO YOUR BET"
+ CarriageControl:NL
+115 PRINT"IF YOU WIN, YOU WIN IF THE DEALER HAS A BLACKJACK"
+ ITEMS
+ TextConstant:"IF YOU WIN, YOU WIN IF THE DEALER HAS A BLACKJACK"
+ CarriageControl:NL
+120 PRINT"AND LOSE IF HE DOESN'T, THE HOUSE LIMIT IS $500.00"
+ ITEMS
+ TextConstant:"AND LOSE IF HE DOESN'T, THE HOUSE LIMIT IS $500.00"
+ CarriageControl:NL
+125 PRINT"GOOD LUCK, OH, BY THE WAY, THE DEALER IS NOTED FOR"
+ ITEMS
+ TextConstant:"GOOD LUCK, OH, BY THE WAY, THE DEALER IS NOTED FOR"
+ CarriageControl:NL
+130 PRINT"DEALING OFF THE BOTTOM OF THE DECK, WATCH HIM, VERY"
+ ITEMS
+ TextConstant:"DEALING OFF THE BOTTOM OF THE DECK, WATCH HIM, VERY"
+ CarriageControl:NL
+135 PRINT"CLOSELY, HERE HE IS NOW."
+ ITEMS
+ TextConstant:"CLOSELY, HERE HE IS NOW."
+ CarriageControl:NL
+140 PRINT
+ ITEMS
+ CarriageControl:NL
+145 PRINT
+ ITEMS
+ CarriageControl:NL
+150 PRINT
+ ITEMS
+ CarriageControl:NL
+155 LET K=0
+ ScalarReference:K
+ NumericConstant:0
+ AssignmentOperator:=
+160 LET W1=0
+ ScalarReference:W1
+ NumericConstant:0
+ AssignmentOperator:=
+165 RANDOMIZE
+ 
+170 LET N=INT(1945*RND(0)+1)
+ ScalarReference:N
+ NumericConstant:1945
+ NumericConstant:0
+ FunctionRnd
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+175 PRINT
+ ITEMS
+ CarriageControl:NL
+180 PRINT"ANY TIME YOU WANT ME TO RESHUFFLE THE CARDS SIMPLY"
+ ITEMS
+ TextConstant:"ANY TIME YOU WANT ME TO RESHUFFLE THE CARDS SIMPLY"
+ CarriageControl:NL
+185 PRINT"TYPE 7777 WHEN I ASK FOR YOUR WAGER AND I'LL BE VERY"
+ ITEMS
+ TextConstant:"TYPE 7777 WHEN I ASK FOR YOUR WAGER AND I'LL BE VERY"
+ CarriageControl:NL
+190 PRINT"HAPPY TO OBLIGE, O.K., HERE IS THE FIRST HAND."
+ ITEMS
+ TextConstant:"HAPPY TO OBLIGE, O.K., HERE IS THE FIRST HAND."
+ CarriageControl:NL
+200 LET X=INT(10*RND(0))
+ ScalarReference:X
+ NumericConstant:10
+ NumericConstant:0
+ FunctionRnd
+ BinaryOperator:*
+ FunctionInt
+ AssignmentOperator:=
+210 DIM D(52),E(5),V(5),T(5),W(5)
+ NumericConstant:52
+ CompoundDeclaration:D
+ NumericConstant:5
+ CompoundDeclaration:E
+ NumericConstant:5
+ CompoundDeclaration:V
+ NumericConstant:5
+ CompoundDeclaration:T
+ NumericConstant:5
+ CompoundDeclaration:W
+215 FOR A=1 TO 52
+ control: VariableToken:A
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:52"]
+ step:    ["NumericConstant:1"]
+220 LET D(A)=0
+ ScalarValue:A
+ ScalarReference:D
+ NumericConstant:0
+ AssignmentOperator:=
+225 NEXT A
+ VariableToken:A
+230 DIM Q(52)
+ NumericConstant:52
+ CompoundDeclaration:Q
+235 FOR A=0 TO 39 STEP 13 
+ control: VariableToken:A
+ start:   ["NumericConstant:0"]
+ end:     ["NumericConstant:39"]
+ step:    ["NumericConstant:13"]
+240 FOR C=1 TO 13
+ control: VariableToken:C
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:13"]
+ step:    ["NumericConstant:1"]
+245 LET Q(A+C)=C
+ ScalarValue:A
+ ScalarValue:C
+ BinaryOperator:+
+ ScalarReference:Q
+ ScalarValue:C
+ AssignmentOperator:=
+250 NEXT C
+ VariableToken:C
+255 NEXT A
+ VariableToken:A
+260 PRINT
+ ITEMS
+ CarriageControl:NL
+265 LET K=K+1
+ ScalarReference:K
+ ScalarValue:K
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+270 FOR P=1 TO 5
+ control: VariableToken:P
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:5"]
+ step:    ["NumericConstant:1"]
+275 LET E(P)=0
+ ScalarValue:P
+ ScalarReference:E
+ NumericConstant:0
+ AssignmentOperator:=
+280 LET V(P)=0
+ ScalarValue:P
+ ScalarReference:V
+ NumericConstant:0
+ AssignmentOperator:=
+285 LET T(P)=0
+ ScalarValue:P
+ ScalarReference:T
+ NumericConstant:0
+ AssignmentOperator:=
+290 NEXT P
+ VariableToken:P
+295 LET V(3)=1
+ NumericConstant:3
+ ScalarReference:V
+ NumericConstant:1
+ AssignmentOperator:=
+300 PRINT
+ ITEMS
+ CarriageControl:NL
+305 PRINT
+ ITEMS
+ CarriageControl:NL
+310 PRINT
+ ITEMS
+ CarriageControl:NL
+315 PRINT"WAGER";
+ ITEMS
+ TextConstant:"WAGER"
+ CarriageControl:;
+320 LET P=1
+ ScalarReference:P
+ NumericConstant:1
+ AssignmentOperator:=
+325 INPUT W
+ ScalarReference:W
+330 LET W(2)=W
+ NumericConstant:2
+ ScalarReference:W
+ ScalarValue:W
+ AssignmentOperator:=
+335 IF W<=0 THEN 1685
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:<=
+340 IF W<=500 THEN 370
+ ScalarValue:W
+ NumericConstant:500
+ BinaryOperator:<=
+345 IF W<>7777 THEN 360
+ ScalarValue:W
+ NumericConstant:7777
+ BinaryOperator:<>
+350 GOSUB 1645
+ LineNumber:1645
+355 GOTO 315
+ LineNumber:315
+360 PRINT"THAT'S TOO MUCH - HOUSE LIMIT IS $500"
+ ITEMS
+ TextConstant:"THAT'S TOO MUCH - HOUSE LIMIT IS $500"
+ CarriageControl:NL
+365 GOTO 315
+ LineNumber:315
+370 PRINT
+ ITEMS
+ CarriageControl:NL
+375 PRINT "I SHOW",
+ ITEMS
+ TextConstant:"I SHOW"
+ CarriageControl:,
+380 GOSUB 865
+ LineNumber:865
+385 IF E(1)=0 THEN 395
+ NumericConstant:1
+ ScalarValue:E
+ NumericConstant:0
+ BinaryOperator:=
+390 LET V(4)=1
+ NumericConstant:4
+ ScalarReference:V
+ NumericConstant:1
+ AssignmentOperator:=
+395 LET V(5)=1
+ NumericConstant:5
+ ScalarReference:V
+ NumericConstant:1
+ AssignmentOperator:=
+400 GOSUB 865
+ LineNumber:865
+405 LET M=X
+ ScalarReference:M
+ ScalarValue:X
+ AssignmentOperator:=
+410 LET P=2
+ ScalarReference:P
+ NumericConstant:2
+ AssignmentOperator:=
+415 PRINT"FIRST CARD IS",
+ ITEMS
+ TextConstant:"FIRST CARD IS"
+ CarriageControl:,
+420 GOSUB 865
+ LineNumber:865
+425 LET G=X
+ ScalarReference:G
+ ScalarValue:X
+ AssignmentOperator:=
+430 PRINT"NEXT CARD IS",
+ ITEMS
+ TextConstant:"NEXT CARD IS"
+ CarriageControl:,
+435 GOSUB 865
+ LineNumber:865
+440 IF V(2)>0 THEN 605
+ NumericConstant:2
+ ScalarValue:V
+ NumericConstant:0
+ BinaryOperator:>
+445 LET S=X 
+ ScalarReference:S
+ ScalarValue:X
+ AssignmentOperator:=
+450 IF V(3)<>1 THEN 605
+ NumericConstant:3
+ ScalarValue:V
+ NumericConstant:1
+ BinaryOperator:<>
+455 IF T(P)<>21 THEN 505
+ ScalarValue:P
+ ScalarValue:T
+ NumericConstant:21
+ BinaryOperator:<>
+460 PRINT "***BLACKJACK***"
+ ITEMS
+ TextConstant:"***BLACKJACK***"
+ CarriageControl:NL
+465 PRINT
+ ITEMS
+ CarriageControl:NL
+470 PRINT"THAT'S GETTING A BIT RIDICULOUS!!!"
+ ITEMS
+ TextConstant:"THAT'S GETTING A BIT RIDICULOUS!!!"
+ CarriageControl:NL
+475 PRINT
+ ITEMS
+ CarriageControl:NL
+480 PRINT "MY HOLE CARD WAS",
+ ITEMS
+ TextConstant:"MY HOLE CARD WAS"
+ CarriageControl:,
+485 LET X=M
+ ScalarReference:X
+ ScalarValue:M
+ AssignmentOperator:=
+490 GOSUB 1035
+ LineNumber:1035
+495 LET W1=W1+1.5*W
+ ScalarReference:W1
+ ScalarValue:W1
+ NumericConstant:1.5
+ ScalarValue:W
+ BinaryOperator:*
+ BinaryOperator:+
+ AssignmentOperator:=
+500 GOSUB 1335
+ LineNumber:1335
+505 IF V(4)=0 THEN 570
+ NumericConstant:4
+ ScalarValue:V
+ NumericConstant:0
+ BinaryOperator:=
+510 PRINT"INSURANCE ANYONE   (TYPE 1 OR 0, 1 MEANS YES)"
+ ITEMS
+ TextConstant:"INSURANCE ANYONE   (TYPE 1 OR 0, 1 MEANS YES)"
+ CarriageControl:NL
+515 INPUT I
+ ScalarReference:I
+520 PRINT
+ ITEMS
+ CarriageControl:NL
+525 IF I=0 THEN 570
+ ScalarValue:I
+ NumericConstant:0
+ BinaryOperator:=
+530 IF T(1)<>21 THEN 555
+ NumericConstant:1
+ ScalarValue:T
+ NumericConstant:21
+ BinaryOperator:<>
+535 LET W1=W1+W 
+ ScalarReference:W1
+ ScalarValue:W1
+ ScalarValue:W
+ BinaryOperator:+
+ AssignmentOperator:=
+540 PRINT 
+ ITEMS
+ CarriageControl:NL
+545 PRINT "YOU WIN $"W;" ON YOUR INSURANCE BET"
+ ITEMS
+ TextConstant:"YOU WIN $"
+ CarriageControl:
+ ScalarValue:W
+ CarriageControl:;
+ TextConstant:" ON YOUR INSURANCE BET"
+ CarriageControl:NL
+550 GOTO 570
+ LineNumber:570
+555 LET W1=W1-W/2
+ ScalarReference:W1
+ ScalarValue:W1
+ ScalarValue:W
+ NumericConstant:2
+ BinaryOperator:/
+ BinaryOperator:-
+ AssignmentOperator:=
+560 PRINT
+ ITEMS
+ CarriageControl:NL
+565 PRINT"YOU LOST $"W/2;" ON YOUR INSURANCE BET - I DON'T HAVE BLACKJACK"
+ ITEMS
+ TextConstant:"YOU LOST $"
+ CarriageControl:
+ ScalarValue:W
+ NumericConstant:2
+ BinaryOperator:/
+ CarriageControl:;
+ TextConstant:" ON YOUR INSURANCE BET - I DON'T HAVE BLACKJACK"
+ CarriageControl:NL
+570 IF T(1)<>21 THEN 605
+ NumericConstant:1
+ ScalarValue:T
+ NumericConstant:21
+ BinaryOperator:<>
+575 PRINT
+ ITEMS
+ CarriageControl:NL
+580 PRINT"**I HAVE BLACKJACK**"
+ ITEMS
+ TextConstant:"**I HAVE BLACKJACK**"
+ CarriageControl:NL
+585 PRINT "MY HOLE CARD WAS",
+ ITEMS
+ TextConstant:"MY HOLE CARD WAS"
+ CarriageControl:,
+590 LET X=M
+ ScalarReference:X
+ ScalarValue:M
+ AssignmentOperator:=
+595 GOSUB 1035
+ LineNumber:1035
+600 GOTO 1300
+ LineNumber:1300
+605 IF T(P)<=21 THEN 650
+ ScalarValue:P
+ ScalarValue:T
+ NumericConstant:21
+ BinaryOperator:<=
+610 IF E(P)>0 THEN 640
+ ScalarValue:P
+ ScalarValue:E
+ NumericConstant:0
+ BinaryOperator:>
+615 PRINT"YOU BUSTED, ";
+ ITEMS
+ TextConstant:"YOU BUSTED, "
+ CarriageControl:;
+620 PRINT"YOUR TOTAL IS "T(P) 
+ ITEMS
+ TextConstant:"YOUR TOTAL IS "
+ CarriageControl:
+ ScalarValue:P
+ ScalarValue:T
+ CarriageControl:NL
+625 LET C1=T(P)-5*(INT(T(P)/5))
+ ScalarReference:C1
+ ScalarValue:P
+ ScalarValue:T
+ NumericConstant:5
+ ScalarValue:P
+ ScalarValue:T
+ NumericConstant:5
+ BinaryOperator:/
+ FunctionInt
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+630 IF V(2)=1 THEN 775
+ NumericConstant:2
+ ScalarValue:V
+ NumericConstant:1
+ BinaryOperator:=
+635 GOTO 1175
+ LineNumber:1175
+640 LET E(P)=E(P)-1
+ ScalarValue:P
+ ScalarReference:E
+ ScalarValue:P
+ ScalarValue:E
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+645 LET T(P)=T(P)-10
+ ScalarValue:P
+ ScalarReference:T
+ ScalarValue:P
+ ScalarValue:T
+ NumericConstant:10
+ BinaryOperator:-
+ AssignmentOperator:=
+650 IF V(1)=2 THEN 620
+ NumericConstant:1
+ ScalarValue:V
+ NumericConstant:2
+ BinaryOperator:=
+655 LET V(3)=V(3)+1
+ NumericConstant:3
+ ScalarReference:V
+ NumericConstant:3
+ ScalarValue:V
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+660 PRINT"HIT ";
+ ITEMS
+ TextConstant:"HIT "
+ CarriageControl:;
+665 INPUT V(1)
+ NumericConstant:1
+ ScalarReference:V
+670 IF V(1)<>3 THEN 830
+ NumericConstant:1
+ ScalarValue:V
+ NumericConstant:3
+ BinaryOperator:<>
+675 IF V(2)>0 THEN 820
+ NumericConstant:2
+ ScalarValue:V
+ NumericConstant:0
+ BinaryOperator:>
+680 IF V(3)<>2 THEN 820
+ NumericConstant:3
+ ScalarValue:V
+ NumericConstant:2
+ BinaryOperator:<>
+685 IF Q(G)=Q(8) THEN 700
+ ScalarValue:G
+ ScalarValue:Q
+ NumericConstant:8
+ ScalarValue:Q
+ BinaryOperator:=
+690 PRINT"N0W IS THAT A PAIR?"
+ ITEMS
+ TextConstant:"N0W IS THAT A PAIR?"
+ CarriageControl:NL
+695 GOTO 660
+ LineNumber:660
+700 LET V(2)=1
+ NumericConstant:2
+ ScalarReference:V
+ NumericConstant:1
+ AssignmentOperator:=
+705 IF Q(G)<>1 THEN 715
+ ScalarValue:G
+ ScalarValue:Q
+ NumericConstant:1
+ BinaryOperator:<>
+710 LET V(1)=2
+ NumericConstant:1
+ ScalarReference:V
+ NumericConstant:2
+ AssignmentOperator:=
+715 LET P=3
+ ScalarReference:P
+ NumericConstant:3
+ AssignmentOperator:=
+720 PRINT" PLAY HAND ONE NOW"
+ ITEMS
+ TextConstant:" PLAY HAND ONE NOW"
+ CarriageControl:NL
+725 PRINT"FIRST CARD IS ",
+ ITEMS
+ TextConstant:"FIRST CARD IS "
+ CarriageControl:,
+730 LET W(3)=W
+ NumericConstant:3
+ ScalarReference:W
+ ScalarValue:W
+ AssignmentOperator:=
+735 LET X=G
+ ScalarReference:X
+ ScalarValue:G
+ AssignmentOperator:=
+740 GOSUB 750
+ LineNumber:750
+745 GOTO 430
+ LineNumber:430
+750 GOSUB 990
+ LineNumber:990
+755 GOSUB 1035
+ LineNumber:1035
+760 LET V(3)=1
+ NumericConstant:3
+ ScalarReference:V
+ NumericConstant:1
+ AssignmentOperator:=
+765 LET T(P)=C
+ ScalarValue:P
+ ScalarReference:T
+ ScalarValue:C
+ AssignmentOperator:=
+770 RETURN
+ 
+775 LET P=2
+ ScalarReference:P
+ NumericConstant:2
+ AssignmentOperator:=
+780 LET V(2)=2
+ NumericConstant:2
+ ScalarReference:V
+ NumericConstant:2
+ AssignmentOperator:=
+785 PRINT" PLAY HAND TWO NOW"
+ ITEMS
+ TextConstant:" PLAY HAND TWO NOW"
+ CarriageControl:NL
+790 PRINT"FIRST CARD IS",
+ ITEMS
+ TextConstant:"FIRST CARD IS"
+ CarriageControl:,
+795 LET X=S
+ ScalarReference:X
+ ScalarValue:S
+ AssignmentOperator:=
+800 GOSUB 750
+ LineNumber:750
+805 IF Q(G)=1 THEN 815
+ ScalarValue:G
+ ScalarValue:Q
+ NumericConstant:1
+ BinaryOperator:=
+810 LET V(1)=0
+ NumericConstant:1
+ ScalarReference:V
+ NumericConstant:0
+ AssignmentOperator:=
+815 GOTO 430
+ LineNumber:430
+820 PRINT"NO SPLITS NOW  TR AGAIN"
+ ITEMS
+ TextConstant:"NO SPLITS NOW  TR AGAIN"
+ CarriageControl:NL
+825 GOTO 660
+ LineNumber:660
+830 IF V(1)<>2 THEN 855
+ NumericConstant:1
+ ScalarValue:V
+ NumericConstant:2
+ BinaryOperator:<>
+835 IF V(3)=2 THEN 850
+ NumericConstant:3
+ ScalarValue:V
+ NumericConstant:2
+ BinaryOperator:=
+840 PRINT"TOO LATE TO DOUBLE, ChARLIE"
+ ITEMS
+ TextConstant:"TOO LATE TO DOUBLE, ChARLIE"
+ CarriageControl:NL
+845 GOTO 660
+ LineNumber:660
+850 LET W(P)=2*W(P)
+ ScalarValue:P
+ ScalarReference:W
+ NumericConstant:2
+ ScalarValue:P
+ ScalarValue:W
+ BinaryOperator:*
+ AssignmentOperator:=
+855 IF V(1)>0 THEN 430
+ NumericConstant:1
+ ScalarValue:V
+ NumericConstant:0
+ BinaryOperator:>
+860 GOTO 620
+ LineNumber:620
+865 GOSUB 900
+ LineNumber:900
+870 LET T(P)=T(P)+C
+ ScalarValue:P
+ ScalarReference:T
+ ScalarValue:P
+ ScalarValue:T
+ ScalarValue:C
+ BinaryOperator:+
+ AssignmentOperator:=
+875 IF V(5)=0 THEN 890
+ NumericConstant:5
+ ScalarValue:V
+ NumericConstant:0
+ BinaryOperator:=
+880 LET V(5)=0
+ NumericConstant:5
+ ScalarReference:V
+ NumericConstant:0
+ AssignmentOperator:=
+885 RETURN
+ 
+890 GOSUB 1035
+ LineNumber:1035
+895 RETURN
+ 
+900 IF R>=50 THEN 945
+ ScalarValue:R
+ NumericConstant:50
+ BinaryOperator:>=
+905 LET N=10*(1+ABS(COS(N+W1)))
+ ScalarReference:N
+ NumericConstant:10
+ NumericConstant:1
+ ScalarValue:N
+ ScalarValue:W1
+ BinaryOperator:+
+ FunctionCos
+ FunctionAbs
+ BinaryOperator:+
+ BinaryOperator:*
+ AssignmentOperator:=
+910 FOR A=1 TO N
+ control: VariableToken:A
+ start:   ["NumericConstant:1"]
+ end:     ["ScalarValue:N"]
+ step:    ["NumericConstant:1"]
+915 LET X=INT(52.999999*RND(Y))
+ ScalarReference:X
+ NumericConstant:52.999999
+ ScalarValue:Y
+ FunctionRnd
+ BinaryOperator:*
+ FunctionInt
+ AssignmentOperator:=
+920 IF X=0 THEN 915
+ ScalarValue:X
+ NumericConstant:0
+ BinaryOperator:=
+925 NEXT A
+ VariableToken:A
+930 IF D(X)=0 THEN 980
+ ScalarValue:X
+ ScalarValue:D
+ NumericConstant:0
+ BinaryOperator:=
+935 LET R=R+1
+ ScalarReference:R
+ ScalarValue:R
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+940 IF R<50 THEN 900
+ ScalarValue:R
+ NumericConstant:50
+ BinaryOperator:<
+945 FOR A=1 TO 52
+ control: VariableToken:A
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:52"]
+ step:    ["NumericConstant:1"]
+950 IF D(A)=K THEN 960
+ ScalarValue:A
+ ScalarValue:D
+ ScalarValue:K
+ BinaryOperator:=
+955 LET D(A)=0
+ ScalarValue:A
+ ScalarReference:D
+ NumericConstant:0
+ AssignmentOperator:=
+960 NEXT A
+ VariableToken:A
+965 LET R=0
+ ScalarReference:R
+ NumericConstant:0
+ AssignmentOperator:=
+970 PRINT" I RESHUFFLED ";
+ ITEMS
+ TextConstant:" I RESHUFFLED "
+ CarriageControl:;
+975 GOTO 900
+ LineNumber:900
+980 LET R=0
+ ScalarReference:R
+ NumericConstant:0
+ AssignmentOperator:=
+985 LET D(X)=K
+ ScalarValue:X
+ ScalarReference:D
+ ScalarValue:K
+ AssignmentOperator:=
+990 IF Q(X)<>1 THEN 1010
+ ScalarValue:X
+ ScalarValue:Q
+ NumericConstant:1
+ BinaryOperator:<>
+995 LET C=11
+ ScalarReference:C
+ NumericConstant:11
+ AssignmentOperator:=
+1000 LET E(P)=E(P)+1
+ ScalarValue:P
+ ScalarReference:E
+ ScalarValue:P
+ ScalarValue:E
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+1005 RETURN
+ 
+1010 IF Q(X)>10 THEN 1025
+ ScalarValue:X
+ ScalarValue:Q
+ NumericConstant:10
+ BinaryOperator:>
+1015 LET C=Q(X)
+ ScalarReference:C
+ ScalarValue:X
+ ScalarValue:Q
+ AssignmentOperator:=
+1020 RETURN
+ 
+1025 LET C=10
+ ScalarReference:C
+ NumericConstant:10
+ AssignmentOperator:=
+1030 RETURN
+ 
+1035 GOSUB 1050
+ LineNumber:1050
+1040 GOSUB 1120
+ LineNumber:1120
+1045 RETURN
+ 
+1050 IF Q(X)<>1 THEN 1065
+ ScalarValue:X
+ ScalarValue:Q
+ NumericConstant:1
+ BinaryOperator:<>
+1055 PRINT" ACE ";
+ ITEMS
+ TextConstant:" ACE "
+ CarriageControl:;
+1060 RETURN
+ 
+1065 IF Q(X)>10 THEN 1080
+ ScalarValue:X
+ ScalarValue:Q
+ NumericConstant:10
+ BinaryOperator:>
+1070 PRINT Q(X);" ";
+ ITEMS
+ ScalarValue:X
+ ScalarValue:Q
+ CarriageControl:;
+ TextConstant:" "
+ CarriageControl:;
+1075 RETURN
+ 
+1080 IF Q(X)>11 THEN 1095
+ ScalarValue:X
+ ScalarValue:Q
+ NumericConstant:11
+ BinaryOperator:>
+1085 PRINT "JACK ";
+ ITEMS
+ TextConstant:"JACK "
+ CarriageControl:;
+1090 RETURN
+ 
+1095 IF Q(X)>12 THEN 1110
+ ScalarValue:X
+ ScalarValue:Q
+ NumericConstant:12
+ BinaryOperator:>
+1100 PRINT" QUEEN ";
+ ITEMS
+ TextConstant:" QUEEN "
+ CarriageControl:;
+1105 RETURN
+ 
+1110 PRINT" KING ";
+ ITEMS
+ TextConstant:" KING "
+ CarriageControl:;
+1115 RETURN
+ 
+1120 IF X>39 THEN 1145
+ ScalarValue:X
+ NumericConstant:39
+ BinaryOperator:>
+1125 IF X>26 THEN 1155
+ ScalarValue:X
+ NumericConstant:26
+ BinaryOperator:>
+1130 IF X>13 THEN 1165
+ ScalarValue:X
+ NumericConstant:13
+ BinaryOperator:>
+1135 PRINT"OF SPADES"
+ ITEMS
+ TextConstant:"OF SPADES"
+ CarriageControl:NL
+1140 RETURN
+ 
+1145 PRINT"OF CLUBS"
+ ITEMS
+ TextConstant:"OF CLUBS"
+ CarriageControl:NL
+1150 RETURN
+ 
+1155 PRINT"OF HEARTS"
+ ITEMS
+ TextConstant:"OF HEARTS"
+ CarriageControl:NL
+1160 RETURN
+ 
+1165 PRINT"OF DIAMONDS"
+ ITEMS
+ TextConstant:"OF DIAMONDS"
+ CarriageControl:NL
+1170 RETURN
+ 
+1175 LET P=2
+ ScalarReference:P
+ NumericConstant:2
+ AssignmentOperator:=
+1180 PRINT "MY HOLE CARD WAS ",
+ ITEMS
+ TextConstant:"MY HOLE CARD WAS "
+ CarriageControl:,
+1185 LET X=M
+ ScalarReference:X
+ ScalarValue:M
+ AssignmentOperator:=
+1190 GOSUB 1035
+ LineNumber:1035
+1195 IF T(2)<22 THEN 1210
+ NumericConstant:2
+ ScalarValue:T
+ NumericConstant:22
+ BinaryOperator:<
+1200 IF V(2)=0 THEN 1300
+ NumericConstant:2
+ ScalarValue:V
+ NumericConstant:0
+ BinaryOperator:=
+1205 IF T(3)>21 THEN 1300
+ NumericConstant:3
+ ScalarValue:T
+ NumericConstant:21
+ BinaryOperator:>
+1210 LET P=1
+ ScalarReference:P
+ NumericConstant:1
+ AssignmentOperator:=
+1215 IF T(1)<17 THEN 1360
+ NumericConstant:1
+ ScalarValue:T
+ NumericConstant:17
+ BinaryOperator:<
+1220 IF T(1)>17 THEN 1230
+ NumericConstant:1
+ ScalarValue:T
+ NumericConstant:17
+ BinaryOperator:>
+1225 IF E(1)>0 THEN 1360
+ NumericConstant:1
+ ScalarValue:E
+ NumericConstant:0
+ BinaryOperator:>
+1230 IF T(1)>21 THEN 1375
+ NumericConstant:1
+ ScalarValue:T
+ NumericConstant:21
+ BinaryOperator:>
+1235 LET P=2
+ ScalarReference:P
+ NumericConstant:2
+ AssignmentOperator:=
+1240 PRINT"MY TOTAL IS "T(1)
+ ITEMS
+ TextConstant:"MY TOTAL IS "
+ CarriageControl:
+ NumericConstant:1
+ ScalarValue:T
+ CarriageControl:NL
+1245 IF T(P)>21 THEN 1300
+ ScalarValue:P
+ ScalarValue:T
+ NumericConstant:21
+ BinaryOperator:>
+1250 IF T(1)>21 THEN 1265
+ NumericConstant:1
+ ScalarValue:T
+ NumericConstant:21
+ BinaryOperator:>
+1255 IF T(1)>T(P) THEN 1300
+ NumericConstant:1
+ ScalarValue:T
+ ScalarValue:P
+ ScalarValue:T
+ BinaryOperator:>
+1260 IF T(1)=T(P) THEN 1330
+ NumericConstant:1
+ ScalarValue:T
+ ScalarValue:P
+ ScalarValue:T
+ BinaryOperator:=
+1265 LET W1=W1+W(P)
+ ScalarReference:W1
+ ScalarValue:W1
+ ScalarValue:P
+ ScalarValue:W
+ BinaryOperator:+
+ AssignmentOperator:=
+1270 IF C1>3 THEN 1445
+ ScalarValue:C1
+ NumericConstant:3
+ BinaryOperator:>
+1275 IF C1>2 THEN 1465
+ ScalarValue:C1
+ NumericConstant:2
+ BinaryOperator:>
+1280 IF C1>1 THEN 1485
+ ScalarValue:C1
+ NumericConstant:1
+ BinaryOperator:>
+1285 IF C1>0 THEN 1505
+ ScalarValue:C1
+ NumericConstant:0
+ BinaryOperator:>
+1290 GOTO 1525
+ LineNumber:1525
+1295 GOTO 1330
+ LineNumber:1330
+1300 LET W1=W-W(P)
+ ScalarReference:W1
+ ScalarValue:W
+ ScalarValue:P
+ ScalarValue:W
+ BinaryOperator:-
+ AssignmentOperator:=
+1305 IF C1>3 THEN 1545
+ ScalarValue:C1
+ NumericConstant:3
+ BinaryOperator:>
+1310 IF C1>2 THEN 1565
+ ScalarValue:C1
+ NumericConstant:2
+ BinaryOperator:>
+1315 IF C1>1 THEN 1585
+ ScalarValue:C1
+ NumericConstant:1
+ BinaryOperator:>
+1320 IF C1>0 THEN 1605
+ ScalarValue:C1
+ NumericConstant:0
+ BinaryOperator:>
+1325 GOTO 1625
+ LineNumber:1625
+1330 IF V(2)>0 THEN 1345
+ NumericConstant:2
+ ScalarValue:V
+ NumericConstant:0
+ BinaryOperator:>
+1335 GOSUB 1405
+ LineNumber:1405
+1340 GOTO 265
+ LineNumber:265
+1345 LET P=3
+ ScalarReference:P
+ NumericConstant:3
+ AssignmentOperator:=
+1350 LET V(2)=0
+ NumericConstant:2
+ ScalarReference:V
+ NumericConstant:0
+ AssignmentOperator:=
+1355 GOTO 1245
+ LineNumber:1245
+1360 PRINT "I DRAW",
+ ITEMS
+ TextConstant:"I DRAW"
+ CarriageControl:,
+1365 GOSUB 865
+ LineNumber:865
+1370 GOTO 1210
+ LineNumber:1210
+1375 IF E(1)=0 THEN 1395
+ NumericConstant:1
+ ScalarValue:E
+ NumericConstant:0
+ BinaryOperator:=
+1380 LET E(1)=E(1)-1
+ NumericConstant:1
+ ScalarReference:E
+ NumericConstant:1
+ ScalarValue:E
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+1385 LET T(1)=T(1)-10
+ NumericConstant:1
+ ScalarReference:T
+ NumericConstant:1
+ ScalarValue:T
+ NumericConstant:10
+ BinaryOperator:-
+ AssignmentOperator:=
+1390 GOTO 1210
+ LineNumber:1210
+1395 PRINT"I BUSTED*****"
+ ITEMS
+ TextConstant:"I BUSTED*****"
+ CarriageControl:NL
+1400 GOTO 1235
+ LineNumber:1235
+1405 IF W1<0 THEN 1425
+ ScalarValue:W1
+ NumericConstant:0
+ BinaryOperator:<
+1410 IF W1=0 THEN 1435
+ ScalarValue:W1
+ NumericConstant:0
+ BinaryOperator:=
+1415 PRINT"YOU'RE AHEAD $"W1
+ ITEMS
+ TextConstant:"YOU'RE AHEAD $"
+ CarriageControl:
+ ScalarValue:W1
+ CarriageControl:NL
+1420 RETURN
+ 
+1425 PRINT USING "YOU'RE BEHIND $**##,.##", -W1
+ ITEMS
+ TextConstant:"YOU'RE BEHIND $**##,.##"
+ CarriageControl:,
+ ScalarValue:W1
+ UnaryOperator:-
+ CarriageControl:NL
+1430 RETURN
+ 
+1435 PRINT"YOU'RE EVEN"
+ ITEMS
+ TextConstant:"YOU'RE EVEN"
+ CarriageControl:NL
+1440 RETURN
+ 
+1445 PRINT
+ ITEMS
+ CarriageControl:NL
+1450 PRINT "I MUST HAVE DEALT WRONG."
+ ITEMS
+ TextConstant:"I MUST HAVE DEALT WRONG."
+ CarriageControl:NL
+1455 PRINT
+ ITEMS
+ CarriageControl:NL
+1460 GOTO 1330
+ LineNumber:1330
+1465 PRINT
+ ITEMS
+ CarriageControl:NL
+1470 PRINT"YOU LUCKED OUT AGAIN."
+ ITEMS
+ TextConstant:"YOU LUCKED OUT AGAIN."
+ CarriageControl:NL
+1475 PRINT
+ ITEMS
+ CarriageControl:NL
+1480 GOTO 1330
+ LineNumber:1330
+1485 PRINT
+ ITEMS
+ CarriageControl:NL
+1490 PRINT"YOU MUST HAVE BEEN PEEKING."
+ ITEMS
+ TextConstant:"YOU MUST HAVE BEEN PEEKING."
+ CarriageControl:NL
+1495 PRINT
+ ITEMS
+ CarriageControl:NL
+1500 GOTO 1330
+ LineNumber:1330
+1505 PRINT
+ ITEMS
+ CarriageControl:NL
+1510 PRINT"I COULD LOSE MY JOB THIS WAY."
+ ITEMS
+ TextConstant:"I COULD LOSE MY JOB THIS WAY."
+ CarriageControl:NL
+1515 PRINT
+ ITEMS
+ CarriageControl:NL
+1520 GOTO 1330
+ LineNumber:1330
+1525 PRINT
+ ITEMS
+ CarriageControl:NL
+1530 PRINT"THE CARDS HAVE TURNED AGAINST ME."
+ ITEMS
+ TextConstant:"THE CARDS HAVE TURNED AGAINST ME."
+ CarriageControl:NL
+1535 PRINT
+ ITEMS
+ CarriageControl:NL
+1540 GOTO 1330
+ LineNumber:1330
+1545 PRINT
+ ITEMS
+ CarriageControl:NL
+1550 PRINT"THE BOTTOM OF THE DECK STRIKES AGAIN."
+ ITEMS
+ TextConstant:"THE BOTTOM OF THE DECK STRIKES AGAIN."
+ CarriageControl:NL
+1555 PRINT
+ ITEMS
+ CarriageControl:NL
+1560 GOTO 1330
+ LineNumber:1330
+1565 PRINT
+ ITEMS
+ CarriageControl:NL
+1570 PRINT"A VICTORY FOR US GOOD GUYS."
+ ITEMS
+ TextConstant:"A VICTORY FOR US GOOD GUYS."
+ CarriageControl:NL
+1575 PRINT
+ ITEMS
+ CarriageControl:NL
+1580 GOTO 1330
+ LineNumber:1330
+1585 PRINT
+ ITEMS
+ CarriageControl:NL
+1590 PRINT"YOU CAN'T BEAT SKILL."
+ ITEMS
+ TextConstant:"YOU CAN'T BEAT SKILL."
+ CarriageControl:NL
+1595 PRINT
+ ITEMS
+ CarriageControl:NL
+1600 GOTO 1330
+ LineNumber:1330
+1605 PRINT
+ ITEMS
+ CarriageControl:NL
+1610 PRINT"YOU CAN'T WIN 'EM ALL."
+ ITEMS
+ TextConstant:"YOU CAN'T WIN 'EM ALL."
+ CarriageControl:NL
+1615 PRINT
+ ITEMS
+ CarriageControl:NL
+1620 GOTO 1330
+ LineNumber:1330
+1625 PRINT
+ ITEMS
+ CarriageControl:NL
+1630 PRINT"BABY GETS A NEW PAIR OF SHOES."
+ ITEMS
+ TextConstant:"BABY GETS A NEW PAIR OF SHOES."
+ CarriageControl:NL
+1635 PRINT
+ ITEMS
+ CarriageControl:NL
+1640 GOTO 1330
+ LineNumber:1330
+1645 FOR M9=1 TO 52
+ control: VariableToken:M9
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:52"]
+ step:    ["NumericConstant:1"]
+1650 LET D(M9)=0
+ ScalarValue:M9
+ ScalarReference:D
+ NumericConstant:0
+ AssignmentOperator:=
+1655 NEXT M9
+ VariableToken:M9
+1660 LET R=0
+ ScalarReference:R
+ NumericConstant:0
+ AssignmentOperator:=
+1665 PRINT
+ ITEMS
+ CarriageControl:NL
+1670 PRINT" I RESHUFFLED"
+ ITEMS
+ TextConstant:" I RESHUFFLED"
+ CarriageControl:NL
+1675 PRINT""
+ ITEMS
+ TextConstant:""
+ CarriageControl:NL
+1680 RETURN
+ 
+1685 END
+ 

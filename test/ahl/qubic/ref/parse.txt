@@ -1,0 +1,1310 @@
+0 REM "  QUBIC-  "
+ RemarkToken:"  QUBIC-  "
+5 PRINT "DO YOU WANT INSTRUCTIONS";
+ ITEMS
+ TextConstant:"DO YOU WANT INSTRUCTIONS"
+ CarriageControl:;
+6 INPUT C$
+ ScalarReference:C$
+7 IF C$="NO" THEN 20
+ ScalarValue:C$
+ TextConstant:"NO"
+ BinaryOperator:=
+8 IF C$="YES" THEN 13
+ ScalarValue:C$
+ TextConstant:"YES"
+ BinaryOperator:=
+9 PRINT "INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'";
+ ITEMS
+ TextConstant:"INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'"
+ CarriageControl:;
+10 GOTO 6
+ LineNumber:6
+13 PRINT "THE GAME IS TIC-TAC-TOE IN A 4 X 4 X 4 CUBE."
+ ITEMS
+ TextConstant:"THE GAME IS TIC-TAC-TOE IN A 4 X 4 X 4 CUBE."
+ CarriageControl:NL
+14 PRINT "EACH MOVE IS INDICATED BY A 3 DIGIT NUMBER, WITH EACH"
+ ITEMS
+ TextConstant:"EACH MOVE IS INDICATED BY A 3 DIGIT NUMBER, WITH EACH"
+ CarriageControl:NL
+15 PRINT "DIGIT BETWEEN 1 AND 4 INCLUSIVE. THE DIGITS INDICATE THE"
+ ITEMS
+ TextConstant:"DIGIT BETWEEN 1 AND 4 INCLUSIVE. THE DIGITS INDICATE THE"
+ CarriageControl:NL
+16 PRINT "LEVEL, COLUMN, AND ROW, RESPECTIVELY, OF THE OCCUPIED PLACE,"
+ ITEMS
+ TextConstant:"LEVEL, COLUMN, AND ROW, RESPECTIVELY, OF THE OCCUPIED PLACE,"
+ CarriageControl:NL
+20 DIM X(64),L(76),M(76,4),Y(16)
+ NumericConstant:64
+ CompoundDeclaration:X
+ NumericConstant:76
+ CompoundDeclaration:L
+ NumericConstant:76
+ NumericConstant:4
+ CompoundDeclaration:M
+ NumericConstant:16
+ CompoundDeclaration:Y
+21 FOR I=1 TO 16
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:16"]
+ step:    ["NumericConstant:1"]
+22 READ Y(I)
+ ScalarValue:I
+ ScalarReference:Y
+23 NEXT I
+ VariableToken:I
+24FOR I=1 TO 76
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:76"]
+ step:    ["NumericConstant:1"]
+25FOR J = 1 TO 4
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:4"]
+ step:    ["NumericConstant:1"]
+26 READM(I,J)
+ ScalarValue:I
+ ScalarValue:J
+ ScalarReference:M
+27 NEXT J 
+ VariableToken:J
+28 NEXT I
+ VariableToken:I
+35 FOR I = 1 TO 64
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:64"]
+ step:    ["NumericConstant:1"]
+40 LET X (I) =0
+ ScalarValue:I
+ ScalarReference:X
+ NumericConstant:0
+ AssignmentOperator:=
+50 NEXT I
+ VariableToken:I
+54 LET Z=1
+ ScalarReference:Z
+ NumericConstant:1
+ AssignmentOperator:=
+55 PRINT "DO YOU WANT TO MOVE FIRST";
+ ITEMS
+ TextConstant:"DO YOU WANT TO MOVE FIRST"
+ CarriageControl:;
+60 INPUT S$
+ ScalarReference:S$
+66 IF S$="NO" THEN 110
+ ScalarValue:S$
+ TextConstant:"NO"
+ BinaryOperator:=
+67 IF S$="YES" THEN 70
+ ScalarValue:S$
+ TextConstant:"YES"
+ BinaryOperator:=
+68 PRINT "INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'";
+ ITEMS
+ TextConstant:"INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'"
+ CarriageControl:;
+69 GOTO 60
+ LineNumber:60
+70 PRINT " "
+ ITEMS
+ TextConstant:" "
+ CarriageControl:NL
+72 PRINT "YOUR MOVE";
+ ITEMS
+ TextConstant:"YOUR MOVE"
+ CarriageControl:;
+80INPUTJ1
+ ScalarReference:J1
+85 GOSUB 1800
+ LineNumber:1800
+90 LETK1=INT(J1/100)
+ ScalarReference:K1
+ ScalarValue:J1
+ NumericConstant:100
+ BinaryOperator:/
+ FunctionInt
+ AssignmentOperator:=
+95 LET J2=(J1-K1*100)
+ ScalarReference:J2
+ ScalarValue:J1
+ ScalarValue:K1
+ NumericConstant:100
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+96 LET K2=INT(J2/10)
+ ScalarReference:K2
+ ScalarValue:J2
+ NumericConstant:10
+ BinaryOperator:/
+ FunctionInt
+ AssignmentOperator:=
+97 LET K3= J1 - K1*100 -K2*10
+ ScalarReference:K3
+ ScalarValue:J1
+ ScalarValue:K1
+ NumericConstant:100
+ BinaryOperator:*
+ BinaryOperator:-
+ ScalarValue:K2
+ NumericConstant:10
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+98 LET M=16*K1+4*K2+K3-20
+ ScalarReference:M
+ NumericConstant:16
+ ScalarValue:K1
+ BinaryOperator:*
+ NumericConstant:4
+ ScalarValue:K2
+ BinaryOperator:*
+ BinaryOperator:+
+ ScalarValue:K3
+ BinaryOperator:+
+ NumericConstant:20
+ BinaryOperator:-
+ AssignmentOperator:=
+99 IF X(M)=0 THEN 109
+ ScalarValue:M
+ ScalarValue:X
+ NumericConstant:0
+ BinaryOperator:=
+100 PRINT "THAT SQUARE IS USED, TRY AGAIN"
+ ITEMS
+ TextConstant:"THAT SQUARE IS USED, TRY AGAIN"
+ CarriageControl:NL
+101 GOTO 70
+ LineNumber:70
+109 LET X(M)=1
+ ScalarValue:M
+ ScalarReference:X
+ NumericConstant:1
+ AssignmentOperator:=
+110 GOSUB 1050
+ LineNumber:1050
+180 FOR J=1 TO 3
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+ step:    ["NumericConstant:1"]
+190 FOR I=1 TO 76
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:76"]
+ step:    ["NumericConstant:1"]
+200 IF J=1 THEN 210
+ ScalarValue:J
+ NumericConstant:1
+ BinaryOperator:=
+201 IF J=2 THEN 220
+ ScalarValue:J
+ NumericConstant:2
+ BinaryOperator:=
+203 IF J=3 THEN 235
+ ScalarValue:J
+ NumericConstant:3
+ BinaryOperator:=
+205 NEXT I
+ VariableToken:I
+206 NEXTJ
+ VariableToken:J
+207 GOTO 400
+ LineNumber:400
+210 IF L(I)<>4 THEN 205
+ ScalarValue:I
+ ScalarValue:L
+ NumericConstant:4
+ BinaryOperator:<>
+211 PRINT "YOU WIN AS FOLLOWS";
+ ITEMS
+ TextConstant:"YOU WIN AS FOLLOWS"
+ CarriageControl:;
+212 FOR J=1 TO 4
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:4"]
+ step:    ["NumericConstant:1"]
+213 LET M=M(I,J)
+ ScalarReference:M
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:M
+ AssignmentOperator:=
+214 GOSUB 1000
+ LineNumber:1000
+216 NEXT J
+ VariableToken:J
+217 GOTO 500
+ LineNumber:500
+220 IF L(I)<>15 THEN 205
+ ScalarValue:I
+ ScalarValue:L
+ NumericConstant:15
+ BinaryOperator:<>
+221 FOR J=1 TO 4
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:4"]
+ step:    ["NumericConstant:1"]
+222 LET M=M(I,J)
+ ScalarReference:M
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:M
+ AssignmentOperator:=
+223 IF X(M)<>0 THEN 227
+ ScalarValue:M
+ ScalarValue:X
+ NumericConstant:0
+ BinaryOperator:<>
+224 LET X(M)=5
+ ScalarValue:M
+ ScalarReference:X
+ NumericConstant:5
+ AssignmentOperator:=
+225 PRINT "MACHINE MOVES TO";
+ ITEMS
+ TextConstant:"MACHINE MOVES TO"
+ CarriageControl:;
+226 GOSUB 1000
+ LineNumber:1000
+227 NEXT J
+ VariableToken:J
+228 PRINT ", AND WINS AS FOLLOWS"
+ ITEMS
+ TextConstant:", AND WINS AS FOLLOWS"
+ CarriageControl:NL
+229 FOR J=1 TO 4
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:4"]
+ step:    ["NumericConstant:1"]
+230 LET M=M(I,J)
+ ScalarReference:M
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:M
+ AssignmentOperator:=
+231 GOSUB 1000
+ LineNumber:1000
+233 NEXT J
+ VariableToken:J
+234 GOTO 500
+ LineNumber:500
+235 IF L(I)<>3 THEN 205
+ ScalarValue:I
+ ScalarValue:L
+ NumericConstant:3
+ BinaryOperator:<>
+236 PRINT "NICE TRY MACHINE MOVES TO";
+ ITEMS
+ TextConstant:"NICE TRY MACHINE MOVES TO"
+ CarriageControl:;
+237 FOR J=1 TO 4
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:4"]
+ step:    ["NumericConstant:1"]
+238 LET M=M(I,J)
+ ScalarReference:M
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:M
+ AssignmentOperator:=
+239 IF X(M)<>0 THEN 245
+ ScalarValue:M
+ ScalarValue:X
+ NumericConstant:0
+ BinaryOperator:<>
+240 LET X(M)=5
+ ScalarValue:M
+ ScalarReference:X
+ NumericConstant:5
+ AssignmentOperator:=
+241 GOSUB 1000
+ LineNumber:1000
+243 GOTO 70
+ LineNumber:70
+245 NEXT J
+ VariableToken:J
+248 GOTO 400
+ LineNumber:400
+250 FOR I = 1 TO 76
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:76"]
+ step:    ["NumericConstant:1"]
+251 LET L(I)=X(M(I,1))+X(M(I,2))+X(M(I,3))+X(M(I,4))
+ ScalarValue:I
+ ScalarReference:L
+ ScalarValue:I
+ NumericConstant:1
+ ScalarValue:M
+ ScalarValue:X
+ ScalarValue:I
+ NumericConstant:2
+ ScalarValue:M
+ ScalarValue:X
+ BinaryOperator:+
+ ScalarValue:I
+ NumericConstant:3
+ ScalarValue:M
+ ScalarValue:X
+ BinaryOperator:+
+ ScalarValue:I
+ NumericConstant:4
+ ScalarValue:M
+ ScalarValue:X
+ BinaryOperator:+
+ AssignmentOperator:=
+252 LET L = L(I)
+ ScalarReference:L
+ ScalarValue:I
+ ScalarValue:L
+ AssignmentOperator:=
+255 IF L <2 THEN 290
+ ScalarValue:L
+ NumericConstant:2
+ BinaryOperator:<
+260 IF L>=3 THEN 290
+ ScalarValue:L
+ NumericConstant:3
+ BinaryOperator:>=
+265 IF L>2 THEN 1600
+ ScalarValue:L
+ NumericConstant:2
+ BinaryOperator:>
+270 FOR J = 1 TO 4
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:4"]
+ step:    ["NumericConstant:1"]
+275 IF X(M(I,J))<>0 THEN 285
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:M
+ ScalarValue:X
+ NumericConstant:0
+ BinaryOperator:<>
+280 LET X(M(I,J))=1/8
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:M
+ ScalarReference:X
+ NumericConstant:1
+ NumericConstant:8
+ BinaryOperator:/
+ AssignmentOperator:=
+285 NEXT J
+ VariableToken:J
+290 NEXT I
+ VariableToken:I
+295 GOSUB 1050
+ LineNumber:1050
+300 FOR I = 1 TO 76
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:76"]
+ step:    ["NumericConstant:1"]
+305 IF L(I)=1/2 THEN 1700
+ ScalarValue:I
+ ScalarValue:L
+ NumericConstant:1
+ NumericConstant:2
+ BinaryOperator:/
+ BinaryOperator:=
+310 IF L(I)=1 + 3/8 THEN 1700
+ ScalarValue:I
+ ScalarValue:L
+ NumericConstant:1
+ NumericConstant:3
+ NumericConstant:8
+ BinaryOperator:/
+ BinaryOperator:+
+ BinaryOperator:=
+315 NEXT I
+ VariableToken:I
+320 GOTO 1300
+ LineNumber:1300
+360LET Z = 1
+ ScalarReference:Z
+ NumericConstant:1
+ AssignmentOperator:=
+362 IF X(Y(Z))=0 THEN 380
+ ScalarValue:Z
+ ScalarValue:Y
+ ScalarValue:X
+ NumericConstant:0
+ BinaryOperator:=
+365 LET Z=Z+1
+ ScalarReference:Z
+ ScalarValue:Z
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+368 IF Z<>17 THEN 362
+ ScalarValue:Z
+ NumericConstant:17
+ BinaryOperator:<>
+375 GOTO 1200
+ LineNumber:1200
+380 LET M=Y(Z)
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:Y
+ AssignmentOperator:=
+381 LET X(M)=5
+ ScalarValue:M
+ ScalarReference:X
+ NumericConstant:5
+ AssignmentOperator:=
+385 PRINT "MACHINE MOVES TO";
+ ITEMS
+ TextConstant:"MACHINE MOVES TO"
+ CarriageControl:;
+389 GOSUB 1000
+ LineNumber:1000
+390 GOTO 70
+ LineNumber:70
+400 LET X=X
+ ScalarReference:X
+ ScalarValue:X
+ AssignmentOperator:=
+410 FOR I=1 TO 76
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:76"]
+ step:    ["NumericConstant:1"]
+412 LET L(I)=X(M(I,1))+X(M(I,2))+X(M(I,3))+X(M(I,4))
+ ScalarValue:I
+ ScalarReference:L
+ ScalarValue:I
+ NumericConstant:1
+ ScalarValue:M
+ ScalarValue:X
+ ScalarValue:I
+ NumericConstant:2
+ ScalarValue:M
+ ScalarValue:X
+ BinaryOperator:+
+ ScalarValue:I
+ NumericConstant:3
+ ScalarValue:M
+ ScalarValue:X
+ BinaryOperator:+
+ ScalarValue:I
+ NumericConstant:4
+ ScalarValue:M
+ ScalarValue:X
+ BinaryOperator:+
+ AssignmentOperator:=
+415 LET L=L(I)
+ ScalarReference:L
+ ScalarValue:I
+ ScalarValue:L
+ AssignmentOperator:=
+420 IF L<10 THEN 455
+ ScalarValue:L
+ NumericConstant:10
+ BinaryOperator:<
+425 IF L>=11 THEN 455
+ ScalarValue:L
+ NumericConstant:11
+ BinaryOperator:>=
+430 IF L>10 THEN 1600
+ ScalarValue:L
+ NumericConstant:10
+ BinaryOperator:>
+435 FOR J=1 TO 4
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:4"]
+ step:    ["NumericConstant:1"]
+440 IF X(M(I,J))<>0 THEN 450
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:M
+ ScalarValue:X
+ NumericConstant:0
+ BinaryOperator:<>
+445 LET X(M(I,J))=1/8
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:M
+ ScalarReference:X
+ NumericConstant:1
+ NumericConstant:8
+ BinaryOperator:/
+ AssignmentOperator:=
+450 NEXT J
+ VariableToken:J
+455 NEXT I
+ VariableToken:I
+470 GOSUB 1050
+ LineNumber:1050
+475 FOR I=1 TO 76
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:76"]
+ step:    ["NumericConstant:1"]
+480 IF L(I)=.5 THEN 1700
+ ScalarValue:I
+ ScalarValue:L
+ NumericConstant:0.5
+ BinaryOperator:=
+485 IF L(I)=5+3/8 THEN 1700
+ ScalarValue:I
+ ScalarValue:L
+ NumericConstant:5
+ NumericConstant:3
+ NumericConstant:8
+ BinaryOperator:/
+ BinaryOperator:+
+ BinaryOperator:=
+490 NEXT I
+ VariableToken:I
+492 GOSUB 1800
+ LineNumber:1800
+493 GOTO 250
+ LineNumber:250
+500 PRINT " "
+ ITEMS
+ TextConstant:" "
+ CarriageControl:NL
+505 PRINT "DO YOU WANT TO TRY ANOTHER GAME";
+ ITEMS
+ TextConstant:"DO YOU WANT TO TRY ANOTHER GAME"
+ CarriageControl:;
+510 INPUT X$
+ ScalarReference:X$
+515 IF X$="YES" THEN 35
+ ScalarValue:X$
+ TextConstant:"YES"
+ BinaryOperator:=
+516 IF X$="NO" THEN 520
+ ScalarValue:X$
+ TextConstant:"NO"
+ BinaryOperator:=
+517 PRINT "INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'";
+ ITEMS
+ TextConstant:"INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'"
+ CarriageControl:;
+518 GOTO 510
+ LineNumber:510
+520 STOP
+ 
+1000 LET K1=INT((M-1)/16)+1
+ ScalarReference:K1
+ ScalarValue:M
+ NumericConstant:1
+ BinaryOperator:-
+ NumericConstant:16
+ BinaryOperator:/
+ FunctionInt
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+1010 LET J2=M-16*(K1-1)
+ ScalarReference:J2
+ ScalarValue:M
+ NumericConstant:16
+ ScalarValue:K1
+ NumericConstant:1
+ BinaryOperator:-
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+1030 LET K2=INT((J2-1)/4)+1
+ ScalarReference:K2
+ ScalarValue:J2
+ NumericConstant:1
+ BinaryOperator:-
+ NumericConstant:4
+ BinaryOperator:/
+ FunctionInt
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+1035 LET K3=M-(K1-1)*16-(K2-1)*4
+ ScalarReference:K3
+ ScalarValue:M
+ ScalarValue:K1
+ NumericConstant:1
+ BinaryOperator:-
+ NumericConstant:16
+ BinaryOperator:*
+ BinaryOperator:-
+ ScalarValue:K2
+ NumericConstant:1
+ BinaryOperator:-
+ NumericConstant:4
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+1040 LET M=K1*100+K2*10+K3
+ ScalarReference:M
+ ScalarValue:K1
+ NumericConstant:100
+ BinaryOperator:*
+ ScalarValue:K2
+ NumericConstant:10
+ BinaryOperator:*
+ BinaryOperator:+
+ ScalarValue:K3
+ BinaryOperator:+
+ AssignmentOperator:=
+1042 PRINT M;
+ ITEMS
+ ScalarValue:M
+ CarriageControl:;
+1045 RETURN
+ 
+1050 FOR S=1 TO 76
+ control: VariableToken:S
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:76"]
+ step:    ["NumericConstant:1"]
+1060 LET J1 = M(S,1)
+ ScalarReference:J1
+ ScalarValue:S
+ NumericConstant:1
+ ScalarValue:M
+ AssignmentOperator:=
+1070 LET J2=M(S,2)
+ ScalarReference:J2
+ ScalarValue:S
+ NumericConstant:2
+ ScalarValue:M
+ AssignmentOperator:=
+1080 LET J3=M(S,3)
+ ScalarReference:J3
+ ScalarValue:S
+ NumericConstant:3
+ ScalarValue:M
+ AssignmentOperator:=
+1090 LET J4=M(S,4)
+ ScalarReference:J4
+ ScalarValue:S
+ NumericConstant:4
+ ScalarValue:M
+ AssignmentOperator:=
+1100 LET L(S)=X(J1)+X(J2)+X(J3)+X(J4)
+ ScalarValue:S
+ ScalarReference:L
+ ScalarValue:J1
+ ScalarValue:X
+ ScalarValue:J2
+ ScalarValue:X
+ BinaryOperator:+
+ ScalarValue:J3
+ ScalarValue:X
+ BinaryOperator:+
+ ScalarValue:J4
+ ScalarValue:X
+ BinaryOperator:+
+ AssignmentOperator:=
+1110 NEXT S
+ VariableToken:S
+1120 RETURN
+ 
+1200 FOR I=1 TO 64
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:64"]
+ step:    ["NumericConstant:1"]
+1210 IF X(I)<>0 THEN 1250
+ ScalarValue:I
+ ScalarValue:X
+ NumericConstant:0
+ BinaryOperator:<>
+1220 LET X(I)=5
+ ScalarValue:I
+ ScalarReference:X
+ NumericConstant:5
+ AssignmentOperator:=
+1225 LET M=I
+ ScalarReference:M
+ ScalarValue:I
+ AssignmentOperator:=
+1226 PRINT "MACHINE LIKES";
+ ITEMS
+ TextConstant:"MACHINE LIKES"
+ CarriageControl:;
+1227 GOSUB 1000
+ LineNumber:1000
+1228 PRINT " "
+ ITEMS
+ TextConstant:" "
+ CarriageControl:NL
+1230 GOTO 70
+ LineNumber:70
+1250 NEXT I
+ VariableToken:I
+1252 PRINT "THE GAME IS A DRAW"
+ ITEMS
+ TextConstant:"THE GAME IS A DRAW"
+ CarriageControl:NL
+1255 GOTO 500
+ LineNumber:500
+1300 FOR K=1 TO 18
+ control: VariableToken:K
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:18"]
+ step:    ["NumericConstant:1"]
+1305 LET P=0
+ ScalarReference:P
+ NumericConstant:0
+ AssignmentOperator:=
+1310 FOR I=4*K-3 TO 4*K
+ control: VariableToken:I
+ start:   ["NumericConstant:4", "ScalarValue:K", "BinaryOperator:*", "NumericConstant:3", "BinaryOperator:-"]
+ end:     ["NumericConstant:4", "ScalarValue:K", "BinaryOperator:*"]
+ step:    ["NumericConstant:1"]
+1315 FOR J=1 TO 4
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:4"]
+ step:    ["NumericConstant:1"]
+1320 LET P=P+X(M(I,J))
+ ScalarReference:P
+ ScalarValue:P
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:M
+ ScalarValue:X
+ BinaryOperator:+
+ AssignmentOperator:=
+1325 NEXT J
+ VariableToken:J
+1330 NEXT I
+ VariableToken:I
+1345 IF P<4 THEN 1390
+ ScalarValue:P
+ NumericConstant:4
+ BinaryOperator:<
+1350 IF P<5 THEN 1400
+ ScalarValue:P
+ NumericConstant:5
+ BinaryOperator:<
+1355 IF P<9 THEN 1390
+ ScalarValue:P
+ NumericConstant:9
+ BinaryOperator:<
+1360 IF P<10 THEN 1400
+ ScalarValue:P
+ NumericConstant:10
+ BinaryOperator:<
+1390 NEXT K
+ VariableToken:K
+1395 GOSUB 1800
+ LineNumber:1800
+1396 GOTO 360
+ LineNumber:360
+1400 LET S=1/8
+ ScalarReference:S
+ NumericConstant:1
+ NumericConstant:8
+ BinaryOperator:/
+ AssignmentOperator:=
+1405 FOR I=4*K-3 TO 4*K
+ control: VariableToken:I
+ start:   ["NumericConstant:4", "ScalarValue:K", "BinaryOperator:*", "NumericConstant:3", "BinaryOperator:-"]
+ end:     ["NumericConstant:4", "ScalarValue:K", "BinaryOperator:*"]
+ step:    ["NumericConstant:1"]
+1410 GOTO 1703
+ LineNumber:1703
+1415 NEXT I
+ VariableToken:I
+1420 LET S=0
+ ScalarReference:S
+ NumericConstant:0
+ AssignmentOperator:=
+1425 GOTO 1405
+ LineNumber:1405
+1500 DATA 1,49,52,4,13,61,64,16,22,39,23,38,26,42,27,43
+ NumericConstant:1
+ NumericConstant:49
+ NumericConstant:52
+ NumericConstant:4
+ NumericConstant:13
+ NumericConstant:61
+ NumericConstant:64
+ NumericConstant:16
+ NumericConstant:22
+ NumericConstant:39
+ NumericConstant:23
+ NumericConstant:38
+ NumericConstant:26
+ NumericConstant:42
+ NumericConstant:27
+ NumericConstant:43
+1510DATA 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
+ NumericConstant:1
+ NumericConstant:2
+ NumericConstant:3
+ NumericConstant:4
+ NumericConstant:5
+ NumericConstant:6
+ NumericConstant:7
+ NumericConstant:8
+ NumericConstant:9
+ NumericConstant:10
+ NumericConstant:11
+ NumericConstant:12
+ NumericConstant:13
+ NumericConstant:14
+ NumericConstant:15
+ NumericConstant:16
+ NumericConstant:17
+ NumericConstant:18
+ NumericConstant:19
+ NumericConstant:20
+1520 DATA 21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38
+ NumericConstant:21
+ NumericConstant:22
+ NumericConstant:23
+ NumericConstant:24
+ NumericConstant:25
+ NumericConstant:26
+ NumericConstant:27
+ NumericConstant:28
+ NumericConstant:29
+ NumericConstant:30
+ NumericConstant:31
+ NumericConstant:32
+ NumericConstant:33
+ NumericConstant:34
+ NumericConstant:35
+ NumericConstant:36
+ NumericConstant:37
+ NumericConstant:38
+1521 DATA 39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56
+ NumericConstant:39
+ NumericConstant:40
+ NumericConstant:41
+ NumericConstant:42
+ NumericConstant:43
+ NumericConstant:44
+ NumericConstant:45
+ NumericConstant:46
+ NumericConstant:47
+ NumericConstant:48
+ NumericConstant:49
+ NumericConstant:50
+ NumericConstant:51
+ NumericConstant:52
+ NumericConstant:53
+ NumericConstant:54
+ NumericConstant:55
+ NumericConstant:56
+1522 DATA 57,58,59,60,61,62,63,64
+ NumericConstant:57
+ NumericConstant:58
+ NumericConstant:59
+ NumericConstant:60
+ NumericConstant:61
+ NumericConstant:62
+ NumericConstant:63
+ NumericConstant:64
+1523DATA1,17,33,49,5,21,37,53,9,25,41,57,13,29,45,61
+ NumericConstant:1
+ NumericConstant:17
+ NumericConstant:33
+ NumericConstant:49
+ NumericConstant:5
+ NumericConstant:21
+ NumericConstant:37
+ NumericConstant:53
+ NumericConstant:9
+ NumericConstant:25
+ NumericConstant:41
+ NumericConstant:57
+ NumericConstant:13
+ NumericConstant:29
+ NumericConstant:45
+ NumericConstant:61
+1524 DATA 2,18,34,50,6,22,38,54,10,26,42,58,14,30,46,62
+ NumericConstant:2
+ NumericConstant:18
+ NumericConstant:34
+ NumericConstant:50
+ NumericConstant:6
+ NumericConstant:22
+ NumericConstant:38
+ NumericConstant:54
+ NumericConstant:10
+ NumericConstant:26
+ NumericConstant:42
+ NumericConstant:58
+ NumericConstant:14
+ NumericConstant:30
+ NumericConstant:46
+ NumericConstant:62
+1525DATA 3,19,35,51,7,23,39,55,11,27,43,59,15,31,47,63
+ NumericConstant:3
+ NumericConstant:19
+ NumericConstant:35
+ NumericConstant:51
+ NumericConstant:7
+ NumericConstant:23
+ NumericConstant:39
+ NumericConstant:55
+ NumericConstant:11
+ NumericConstant:27
+ NumericConstant:43
+ NumericConstant:59
+ NumericConstant:15
+ NumericConstant:31
+ NumericConstant:47
+ NumericConstant:63
+1527 DATA 4,20,36,52,8,24,40,56,12,28,44,60,16,32,48,64
+ NumericConstant:4
+ NumericConstant:20
+ NumericConstant:36
+ NumericConstant:52
+ NumericConstant:8
+ NumericConstant:24
+ NumericConstant:40
+ NumericConstant:56
+ NumericConstant:12
+ NumericConstant:28
+ NumericConstant:44
+ NumericConstant:60
+ NumericConstant:16
+ NumericConstant:32
+ NumericConstant:48
+ NumericConstant:64
+1529 DATA 1,5,9,13,17,21,25,29,33,37,41,45,49,53,57,61
+ NumericConstant:1
+ NumericConstant:5
+ NumericConstant:9
+ NumericConstant:13
+ NumericConstant:17
+ NumericConstant:21
+ NumericConstant:25
+ NumericConstant:29
+ NumericConstant:33
+ NumericConstant:37
+ NumericConstant:41
+ NumericConstant:45
+ NumericConstant:49
+ NumericConstant:53
+ NumericConstant:57
+ NumericConstant:61
+1532 DATA 2,6,10,14,18,22,26,30,34,38,42,46,50,54,58,62
+ NumericConstant:2
+ NumericConstant:6
+ NumericConstant:10
+ NumericConstant:14
+ NumericConstant:18
+ NumericConstant:22
+ NumericConstant:26
+ NumericConstant:30
+ NumericConstant:34
+ NumericConstant:38
+ NumericConstant:42
+ NumericConstant:46
+ NumericConstant:50
+ NumericConstant:54
+ NumericConstant:58
+ NumericConstant:62
+1534 DATA 3,7,11,15,19,23,27,31,35,39,43,47,51,55,59,63
+ NumericConstant:3
+ NumericConstant:7
+ NumericConstant:11
+ NumericConstant:15
+ NumericConstant:19
+ NumericConstant:23
+ NumericConstant:27
+ NumericConstant:31
+ NumericConstant:35
+ NumericConstant:39
+ NumericConstant:43
+ NumericConstant:47
+ NumericConstant:51
+ NumericConstant:55
+ NumericConstant:59
+ NumericConstant:63
+1536 DATA4,8,12,16,20,24,28,32,36,40,44,48,52,56,60,64
+ NumericConstant:4
+ NumericConstant:8
+ NumericConstant:12
+ NumericConstant:16
+ NumericConstant:20
+ NumericConstant:24
+ NumericConstant:28
+ NumericConstant:32
+ NumericConstant:36
+ NumericConstant:40
+ NumericConstant:44
+ NumericConstant:48
+ NumericConstant:52
+ NumericConstant:56
+ NumericConstant:60
+ NumericConstant:64
+1538 DATA1,6,11,16,17,22,27,32,33,38,43,48,49,54,59,64
+ NumericConstant:1
+ NumericConstant:6
+ NumericConstant:11
+ NumericConstant:16
+ NumericConstant:17
+ NumericConstant:22
+ NumericConstant:27
+ NumericConstant:32
+ NumericConstant:33
+ NumericConstant:38
+ NumericConstant:43
+ NumericConstant:48
+ NumericConstant:49
+ NumericConstant:54
+ NumericConstant:59
+ NumericConstant:64
+1540 DATA 13,10,7,4,29,26,23,20,45,42,39,36,61,58,55,52
+ NumericConstant:13
+ NumericConstant:10
+ NumericConstant:7
+ NumericConstant:4
+ NumericConstant:29
+ NumericConstant:26
+ NumericConstant:23
+ NumericConstant:20
+ NumericConstant:45
+ NumericConstant:42
+ NumericConstant:39
+ NumericConstant:36
+ NumericConstant:61
+ NumericConstant:58
+ NumericConstant:55
+ NumericConstant:52
+1542 DATA1,21,41,61,2,22,42,62,3,23,43,63,4,24,44,64
+ NumericConstant:1
+ NumericConstant:21
+ NumericConstant:41
+ NumericConstant:61
+ NumericConstant:2
+ NumericConstant:22
+ NumericConstant:42
+ NumericConstant:62
+ NumericConstant:3
+ NumericConstant:23
+ NumericConstant:43
+ NumericConstant:63
+ NumericConstant:4
+ NumericConstant:24
+ NumericConstant:44
+ NumericConstant:64
+1544DATA 49,37,25,13,50,38,26,14,51,39,27,15,52,40,28,16
+ NumericConstant:49
+ NumericConstant:37
+ NumericConstant:25
+ NumericConstant:13
+ NumericConstant:50
+ NumericConstant:38
+ NumericConstant:26
+ NumericConstant:14
+ NumericConstant:51
+ NumericConstant:39
+ NumericConstant:27
+ NumericConstant:15
+ NumericConstant:52
+ NumericConstant:40
+ NumericConstant:28
+ NumericConstant:16
+1546DATA 1,18,35,52,5,22,39,56,9,26,43,60,13,30,47,64
+ NumericConstant:1
+ NumericConstant:18
+ NumericConstant:35
+ NumericConstant:52
+ NumericConstant:5
+ NumericConstant:22
+ NumericConstant:39
+ NumericConstant:56
+ NumericConstant:9
+ NumericConstant:26
+ NumericConstant:43
+ NumericConstant:60
+ NumericConstant:13
+ NumericConstant:30
+ NumericConstant:47
+ NumericConstant:64
+1548DATA 49,34,19,4,53,38,23,8,57,42,27,12,61,46,31,16
+ NumericConstant:49
+ NumericConstant:34
+ NumericConstant:19
+ NumericConstant:4
+ NumericConstant:53
+ NumericConstant:38
+ NumericConstant:23
+ NumericConstant:8
+ NumericConstant:57
+ NumericConstant:42
+ NumericConstant:27
+ NumericConstant:12
+ NumericConstant:61
+ NumericConstant:46
+ NumericConstant:31
+ NumericConstant:16
+1550DATA 1,22,43,64,16,27,38,49,4,23,42,61,13,26,39,52
+ NumericConstant:1
+ NumericConstant:22
+ NumericConstant:43
+ NumericConstant:64
+ NumericConstant:16
+ NumericConstant:27
+ NumericConstant:38
+ NumericConstant:49
+ NumericConstant:4
+ NumericConstant:23
+ NumericConstant:42
+ NumericConstant:61
+ NumericConstant:13
+ NumericConstant:26
+ NumericConstant:39
+ NumericConstant:52
+1600 FOR J=1 TO 4
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:4"]
+ step:    ["NumericConstant:1"]
+1605 IF X(M(I,J))<>1/8 THEN 1650
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:M
+ ScalarValue:X
+ NumericConstant:1
+ NumericConstant:8
+ BinaryOperator:/
+ BinaryOperator:<>
+1610 LET X(M(I,J))=5
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:M
+ ScalarReference:X
+ NumericConstant:5
+ AssignmentOperator:=
+1615 IF L(I)<5 THEN 1625
+ ScalarValue:I
+ ScalarValue:L
+ NumericConstant:5
+ BinaryOperator:<
+1620 PRINT "LET'S SEE YOU GET OUT OF THIS! MACHINE MOVES TO";
+ ITEMS
+ TextConstant:"LET'S SEE YOU GET OUT OF THIS! MACHINE MOVES TO"
+ CarriageControl:;
+1622 GOTO 1626
+ LineNumber:1626
+1625 PRINT "YOU FOX. JUST IN THE NICK OF TIME, MACHINE MOVES TO";
+ ITEMS
+ TextConstant:"YOU FOX. JUST IN THE NICK OF TIME, MACHINE MOVES TO"
+ CarriageControl:;
+1626 LET M=M(I,J)
+ ScalarReference:M
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:M
+ AssignmentOperator:=
+1630 GOSUB 1000
+ LineNumber:1000
+1640 GOTO 70
+ LineNumber:70
+1650 NEXT J
+ VariableToken:J
+1660 PRINT "MACHINE CONCEDES THIS GAME."
+ ITEMS
+ TextConstant:"MACHINE CONCEDES THIS GAME."
+ CarriageControl:NL
+1665 GOTO 500
+ LineNumber:500
+1700 LET S=1/8
+ ScalarReference:S
+ NumericConstant:1
+ NumericConstant:8
+ BinaryOperator:/
+ AssignmentOperator:=
+1703 IF I-INT(I/4)*4>1 THEN 1715
+ ScalarValue:I
+ ScalarValue:I
+ NumericConstant:4
+ BinaryOperator:/
+ FunctionInt
+ NumericConstant:4
+ BinaryOperator:*
+ BinaryOperator:-
+ NumericConstant:1
+ BinaryOperator:>
+1705 LET A=1
+ ScalarReference:A
+ NumericConstant:1
+ AssignmentOperator:=
+1710 GOTO 1720
+ LineNumber:1720
+1715 LET A=2
+ ScalarReference:A
+ NumericConstant:2
+ AssignmentOperator:=
+1720 FOR J=A TO 5-A _ STEP 5-2*A
+ control: VariableToken:J
+ start:   ["ScalarValue:A"]
+ end:     ["NumericConstant:5", "ScalarValue:A", "BinaryOperator:-"]
+ step:    ["NumericConstant:5", "NumericConstant:2", "ScalarValue:A", "BinaryOperator:*", "BinaryOperator:-"]
+1725 IF X(M(I,J))=S THEN 1750
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:M
+ ScalarValue:X
+ ScalarValue:S
+ BinaryOperator:=
+1730 NEXT J
+ VariableToken:J
+1735 GOTO 1415
+ LineNumber:1415
+1750 LET X(M(I,J))=5
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:M
+ ScalarReference:X
+ NumericConstant:5
+ AssignmentOperator:=
+1755 LET M=M(I,J)
+ ScalarReference:M
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:M
+ AssignmentOperator:=
+1760 PRINT "MACHINE TAKES";
+ ITEMS
+ TextConstant:"MACHINE TAKES"
+ CarriageControl:;
+1770 GOSUB 1000
+ LineNumber:1000
+1780 GOTO 70
+ LineNumber:70
+1800 FOR I=1 TO 64
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:64"]
+ step:    ["NumericConstant:1"]
+1810 IF X(I)<>1/8 THEN 1850
+ ScalarValue:I
+ ScalarValue:X
+ NumericConstant:1
+ NumericConstant:8
+ BinaryOperator:/
+ BinaryOperator:<>
+1815 LET X(I)=0
+ ScalarValue:I
+ ScalarReference:X
+ NumericConstant:0
+ AssignmentOperator:=
+1850 NEXT I
+ VariableToken:I
+1860 RETURN
+ 
+2000 END
+ 

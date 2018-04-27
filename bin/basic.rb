@@ -69,6 +69,10 @@ class LineNumber
     @line_number <= other.line_number
   end
 
+  def dump
+    self.class.to_s + ':' + @line_number.to_s
+  end
+
   def to_s
     @line_number.to_s
   end
@@ -154,6 +158,7 @@ class Line
     else
       pretty_lines = [AbstractToken.pretty_tokens([], @tokens)]
     end
+
     unless @comment.nil?
       line_0 = pretty_lines[0]
       space = @text.size - (line_0.size + @comment.to_s.size)
@@ -162,7 +167,13 @@ class Line
       line_0 += @comment.to_s
       pretty_lines[0] = line_0
     end
+
     pretty_lines
+  end
+
+  def parse
+    texts = []
+    @statements.each { |statement| texts << statement.dump }
   end
 
   def profile
@@ -268,12 +279,6 @@ class Shell
       @interpreter.set_breakpoints(args)
     when 'TRACE'
       @interpreter.run(@program, true, false, false) if @program.check
-    when '.VARS'
-      @interpreter.dump_vars
-    when '.UDFS'
-      @interpreter.dump_user_functions
-    when '.DIMS'
-      @interpreter.dump_dims
     when 'LOAD'
       @interpreter.clear_breakpoints
       @program.load(args)
@@ -282,9 +287,6 @@ class Shell
     when 'LIST'
       line_number_range = @program.line_list_spec(args)
       @program.list(line_number_range, false)
-    when 'TOKENS'
-      line_number_range = @program.line_list_spec(args)
-      @program.list(line_number_range, true)
     when 'PRETTY'
       line_number_range = @program.line_list_spec(args)
       @program.pretty(line_number_range)
@@ -301,6 +303,18 @@ class Shell
       end
     when 'CROSSREF'
       @program.crossref if @program.check
+    when '.DIMS'
+      @interpreter.dump_dims
+    when '.PARSE'
+      line_number_range = @program.line_list_spec(args)
+      @program.parse(line_number_range)
+    when '.TOKENS'
+      line_number_range = @program.line_list_spec(args)
+      @program.list(line_number_range, true)
+    when '.UDFS'
+      @interpreter.dump_user_functions
+    when '.VARS'
+      @interpreter.dump_vars
     else
       print "Unknown command #{keyword}\n"
     end
@@ -360,7 +374,7 @@ def make_command_tokenbuilders(quotes, colon_file, min_max_op,
 
   keywords = %w(
     BREAK CROSSREF DELETE EXIT LIST LOAD NEW PRETTY PROFILE RENUMBER RUN SAVE
-    TOKENS TRACE .DIMS .UDFS .VARS
+    TRACE .DIMS .PARSE .TOKENS. UDFS .VARS
   )
   tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
@@ -382,10 +396,11 @@ OptionParser.new do |opt|
   opt.on('-l', '--list SOURCE') { |o| options[:list_name] = o }
   opt.on('--tokens') { |o| options[:tokens] = o }
   opt.on('-p', '--pretty SOURCE') { |o| options[:pretty_name] = o }
-  opt.on('-r', '--run SOURCE') { |o| options[:run_name] = o }
-  opt.on('-c', '--crossref SOURCE') { |o| options[:cref_name] = o }
   opt.on('--pretty-multiline') { |o| options[:pretty_multiline] = o }
+  opt.on('-r', '--run SOURCE') { |o| options[:run_name] = o }
   opt.on('--profile') { |o| options[:profile] = o }
+  opt.on('-c', '--crossref SOURCE') { |o| options[:cref_name] = o }
+  opt.on('--parse SOURCE') { |o| options[:parse_name] = o }
   opt.on('--no-heading') { |o| options[:no_heading] = o }
   opt.on('--echo-input') { |o| options[:echo_input] = o }
   opt.on('--trace') { |o| options[:trace] = o }
@@ -419,6 +434,7 @@ list_filename = options[:list_name]
 list_tokens = options.key?(:tokens)
 pretty_filename = options[:pretty_name]
 pretty_multiline = options.key?(:pretty_multiline)
+parse_filename = options[:parse_name]
 run_filename = options[:run_name]
 cref_filename = options[:cref_name]
 show_profile = options.key?(:profile)
@@ -502,6 +518,13 @@ elsif !list_filename.nil?
   if program.load(nametokens)
     line_list_spec = program.line_list_spec('')
     program.list(line_list_spec, list_tokens)
+  end
+elsif !parse_filename.nil?
+  token = TextConstantToken.new('"' + parse_filename + '"')
+  nametokens = [TextConstant.new(token)]
+  if program.load(nametokens)
+    line_list_spec = program.line_list_spec('')
+    program.parse(line_list_spec)
   end
 elsif !pretty_filename.nil?
   token = TextConstantToken.new('"' + pretty_filename + '"')

@@ -1,0 +1,283 @@
+10 REM *** MODIFIED AND CONVERTED TO RSTS/E BV DAVID AHL, DIGITAL
+ RemarkToken:*** MODIFIED AND CONVERTED TO RSTS/E BV DAVID AHL, DIGITAL
+90 RANDOMIZE
+ 
+100 PRINT"THIS COMPUTER DEMONSTRATION SIMULATES THE"
+ ITEMS
+ TextConstant:"THIS COMPUTER DEMONSTRATION SIMULATES THE"
+ CarriageControl:NL
+110 PRINT"RESULTS OF FIRING A FIELD ARTILLERY' WEAPON."
+ ITEMS
+ TextConstant:"RESULTS OF FIRING A FIELD ARTILLERY' WEAPON."
+ CarriageControl:NL
+120 PRINT
+ ITEMS
+ CarriageControl:NL
+130 PRINT"YOU ARE THE OFFICER-IN-CHARGE, GIVING ORDERS TO THE GUN"
+ ITEMS
+ TextConstant:"YOU ARE THE OFFICER-IN-CHARGE, GIVING ORDERS TO THE GUN"
+ CarriageControl:NL
+140 PRINT"CREW, TELLING THEM THE DEGREES OF ELEVATION YOU ESTIMATE"
+ ITEMS
+ TextConstant:"CREW, TELLING THEM THE DEGREES OF ELEVATION YOU ESTIMATE"
+ CarriageControl:NL
+150 PRINT"WILL PLACE THE PROJECTILE ON TARGET. A HIT WITHIN 100 YARDS"
+ ITEMS
+ TextConstant:"WILL PLACE THE PROJECTILE ON TARGET. A HIT WITHIN 100 YARDS"
+ CarriageControl:NL
+160 PRINT "OF THE TARGET WILL DESTROY IT. TAKE MORE THAN 5 SHOTS,"
+ ITEMS
+ TextConstant:"OF THE TARGET WILL DESTROY IT. TAKE MORE THAN 5 SHOTS,"
+ CarriageControl:NL
+170 PRINT "AND THE ENEMY WILL DESTROY YOU! "\PRINT
+ ITEMS
+ TextConstant:"AND THE ENEMY WILL DESTROY YOU! "
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+180 PRINT "MAXIMUM RANGE OF VOUR GUN IS 46500 YARDS."
+ ITEMS
+ TextConstant:"MAXIMUM RANGE OF VOUR GUN IS 46500 YARDS."
+ CarriageControl:NL
+185 Z=0
+ ScalarReference:Z
+ NumericConstant:0
+ AssignmentOperator:=
+190 PRINT
+ ITEMS
+ CarriageControl:NL
+195 S1=0
+ ScalarReference:S1
+ NumericConstant:0
+ AssignmentOperator:=
+200 LET T=43000-30000*RND(X)
+ ScalarReference:T
+ NumericConstant:43000
+ NumericConstant:30000
+ ScalarValue:X
+ FunctionRnd
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+210 LET S=0
+ ScalarReference:S
+ NumericConstant:0
+ AssignmentOperator:=
+220 GO TO 370
+ LineNumber:370
+230 PRINT"MINIMUM ELEVATION OF GUN IS ONE DEGREE."
+ ITEMS
+ TextConstant:"MINIMUM ELEVATION OF GUN IS ONE DEGREE."
+ CarriageControl:NL
+240 GO TO 390
+ LineNumber:390
+250 PRINT"MAXIMUM ELEVATION OF GUN IS 89 DEGREES."
+ ITEMS
+ TextConstant:"MAXIMUM ELEVATION OF GUN IS 89 DEGREES."
+ CarriageControl:NL
+260 GO TO 390
+ LineNumber:390
+270 PRINT"OVER TARGET BY";ABS(E);"YARDS."
+ ITEMS
+ TextConstant:"OVER TARGET BY"
+ CarriageControl:;
+ ScalarValue:E
+ FunctionAbs
+ CarriageControl:;
+ TextConstant:"YARDS."
+ CarriageControl:NL
+280 GO TO 390
+ LineNumber:390
+290 PRINT "SHORT OF TARGET BY";ABS(E);"YARDS."
+ ITEMS
+ TextConstant:"SHORT OF TARGET BY"
+ CarriageControl:;
+ ScalarValue:E
+ FunctionAbs
+ CarriageControl:;
+ TextConstant:"YARDS."
+ CarriageControl:NL
+300 GO TO 390
+ LineNumber:390
+310 GO TO 320
+ LineNumber:320
+320 PRINT"***TARGET DESTROYED***";S;"ROUNDS OF AMMUNITION EXPENDED"
+ ITEMS
+ TextConstant:"***TARGET DESTROYED***"
+ CarriageControl:;
+ ScalarValue:S
+ CarriageControl:;
+ TextConstant:"ROUNDS OF AMMUNITION EXPENDED"
+ CarriageControl:NL
+322 GOSUB 600
+ LineNumber:600
+325 S1=S1+S
+ ScalarReference:S1
+ ScalarValue:S1
+ ScalarValue:S
+ BinaryOperator:+
+ AssignmentOperator:=
+330 IF Z=4 THEN 490
+ ScalarValue:Z
+ NumericConstant:4
+ BinaryOperator:=
+340 Z=Z+1
+ ScalarReference:Z
+ ScalarValue:Z
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+345 PRINT
+ ITEMS
+ CarriageControl:NL
+350 PRINT"THE FORWARD OBSERVER HAS SIGHTED MORE ENEMY ACTIVITY."
+ ITEMS
+ TextConstant:"THE FORWARD OBSERVER HAS SIGHTED MORE ENEMY ACTIVITY."
+ CarriageControl:NL
+360 GO TO 200
+ LineNumber:200
+370 PRINT"DISTANCE TO THE TARGET IS";INT(T);"YARDS"
+ ITEMS
+ TextConstant:"DISTANCE TO THE TARGET IS"
+ CarriageControl:;
+ ScalarValue:T
+ FunctionInt
+ CarriageControl:;
+ TextConstant:"YARDS"
+ CarriageControl:NL
+380 PRINT
+ ITEMS
+ CarriageControl:NL
+390 PRINT
+ ITEMS
+ CarriageControl:NL
+400 PRINT "ELEVATION:";
+ ITEMS
+ TextConstant:"ELEVATION:"
+ CarriageControl:;
+410 INPUT B
+ ScalarReference:B
+420 IF B>89 THEN 250
+ ScalarValue:B
+ NumericConstant:89
+ BinaryOperator:>
+430 IF B<1 THEN 230
+ ScalarValue:B
+ NumericConstant:1
+ BinaryOperator:<
+440 LET S=S+1
+ ScalarReference:S
+ ScalarValue:S
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+442 IF S<6 THEN 450
+ ScalarValue:S
+ NumericConstant:6
+ BinaryOperator:<
+444 PRINT\PRINT "BOOM!!! YOU HAVE JUST BEEN DESTROYED ";
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"BOOM!!! YOU HAVE JUST BEEN DESTROYED "
+ CarriageControl:;
+445 GOSUB 600
+ LineNumber:600
+446 PRINT "BY THE ENEMY"\PRINT\PRINT\GOTO 495
+ ITEMS
+ TextConstant:"BY THE ENEMY"
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ LineNumber:495
+450 LET B2=2*B/57.3\LET I=46500*SIN(B2)\LET X=T-I\LET E=INT(X)
+ ScalarReference:B2
+ NumericConstant:2
+ ScalarValue:B
+ BinaryOperator:*
+ NumericConstant:57.3
+ BinaryOperator:/
+ AssignmentOperator:=
+ ScalarReference:I
+ NumericConstant:46500
+ ScalarValue:B2
+ FunctionSin
+ BinaryOperator:*
+ AssignmentOperator:=
+ ScalarReference:X
+ ScalarValue:T
+ ScalarValue:I
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarReference:E
+ ScalarValue:X
+ FunctionInt
+ AssignmentOperator:=
+460 IF ABS(E)<100 THEN 210
+ ScalarValue:E
+ FunctionAbs
+ NumericConstant:100
+ BinaryOperator:<
+470 IF E>100 THEN 290
+ ScalarValue:E
+ NumericConstant:100
+ BinaryOperator:>
+480 IF E<-100 THEN 270
+ ScalarValue:E
+ NumericConstant:100
+ UnaryOperator:-
+ BinaryOperator:<
+490 PRINT\PRINT\PRINT "TOTAL ROUNDS EXPENDED WERE";S1
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"TOTAL ROUNDS EXPENDED WERE"
+ CarriageControl:;
+ ScalarValue:S1
+ CarriageControl:NL
+491 IF S1<15 THEN 495\PRINT "NICE SHOOTING!! "\GOSUB 600\GOTO 500
+ ScalarValue:S1
+ NumericConstant:15
+ BinaryOperator:<
+ ITEMS
+ TextConstant:"NICE SHOOTING!! "
+ CarriageControl:NL
+ LineNumber:600
+ LineNumber:500
+495 PRINT "BETTER GO BACK TO FORT SILL FOR REFRESHER TRAINING!"
+ ITEMS
+ TextConstant:"BETTER GO BACK TO FORT SILL FOR REFRESHER TRAINING!"
+ CarriageControl:NL
+500 PRINT\PRINT "THANK YOU FOR PLAYING!"
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"THANK YOU FOR PLAYING!"
+ CarriageControl:NL
+505 PRINT\PRINT "TRY AGAIN"\PRINT\GOTO 180
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"TRY AGAIN"
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ LineNumber:180
+600 FOR N=1 TO 10\PRINT CHR$(7);\NEXT N
+ control: VariableToken:N
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:10"]
+ step:    ["NumericConstant:1"]
+ ITEMS
+ NumericConstant:7
+ FunctionChr
+ CarriageControl:;
+ VariableToken:N
+610 RETURN
+ 
+999 END
+ 

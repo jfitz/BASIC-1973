@@ -1,0 +1,415 @@
+5 PRINT "WELCOME TO DIGITAL EDUSYSTEM COMPUTER BLACKJACK!!"
+ ITEMS
+ TextConstant:"WELCOME TO DIGITAL EDUSYSTEM COMPUTER BLACKJACK!!"
+ CarriageControl:NL
+6 PRINT\PRINT "YOUR DEALER TONIGHT IS PETEY P. EIGHT."
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"YOUR DEALER TONIGHT IS PETEY P. EIGHT."
+ CarriageControl:NL
+7 PRINT "WATCH HIM CLOSELY. ... HE HAS A REPUTATION FOR"
+ ITEMS
+ TextConstant:"WATCH HIM CLOSELY. ... HE HAS A REPUTATION FOR"
+ CarriageControl:NL
+8 PRINT "DEALING OFF THE BOTTOM OF THE DECK. "\PRINT
+ ITEMS
+ TextConstant:"DEALING OFF THE BOTTOM OF THE DECK. "
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+9 RANDOMIZE
+ 
+19 DIM A(13)
+ NumericConstant:13
+ CompoundDeclaration:A
+20 PRINT "QUESTIONS REQUIRING A YES OR NO ANSWER"
+ ITEMS
+ TextConstant:"QUESTIONS REQUIRING A YES OR NO ANSWER"
+ CarriageControl:NL
+25 PRINT "SHOULD BE ANSWERED WITH A 'Y' FOR YES, 'N' FOR NO. "\PRINT
+ ITEMS
+ TextConstant:"SHOULD BE ANSWERED WITH A 'Y' FOR YES, 'N' FOR NO. "
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+30 PRINT "DON'T START PLAYING WITH LESS THAN $180. HAVE FUN! "\PRINT
+ ITEMS
+ TextConstant:"DON'T START PLAYING WITH LESS THAN $180. HAVE FUN! "
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+40 PRINT "HOW MANY DOLLARS ARE YOU STARTING WITH";
+ ITEMS
+ TextConstant:"HOW MANY DOLLARS ARE YOU STARTING WITH"
+ CarriageControl:;
+41 INPUT F
+ ScalarReference:F
+42 PRINT
+ ITEMS
+ CarriageControl:NL
+43 F1 = F
+ ScalarReference:F1
+ ScalarValue:F
+ AssignmentOperator:=
+50 PRINT "WHAT IS YOUR WAGER THIS TIME";
+ ITEMS
+ TextConstant:"WHAT IS YOUR WAGER THIS TIME"
+ CarriageControl:;
+51 INPUT W
+ ScalarReference:W
+52 PRINT
+ ITEMS
+ CarriageControl:NL
+53 IF W>F GOTO 56
+ ScalarValue:W
+ ScalarValue:F
+ BinaryOperator:>
+54 IF W<10 GOTO 58
+ ScalarValue:W
+ NumericConstant:10
+ BinaryOperator:<
+55 GOTO 100
+ LineNumber:100
+56 PRINT "YOUR BET EXCEEDS YOUR REMAINING DOLLARS. "
+ ITEMS
+ TextConstant:"YOUR BET EXCEEDS YOUR REMAINING DOLLARS. "
+ CarriageControl:NL
+57 GOTO 50
+ LineNumber:50
+58 PRINT "MINIMUM WAGER IS $10."
+ ITEMS
+ TextConstant:"MINIMUM WAGER IS $10."
+ CarriageControl:NL
+59 GOTO 50
+ LineNumber:50
+100 GOSUB 780
+ LineNumber:780
+102 P1=I
+ ScalarReference:P1
+ ScalarValue:I
+ AssignmentOperator:=
+104 PRINT "YOUR FIRST CARD IS "CHR$(L)
+ ITEMS
+ TextConstant:"YOUR FIRST CARD IS "
+ CarriageControl:
+ ScalarValue:L
+ FunctionChr
+ CarriageControl:NL
+106 GOSUB 780
+ LineNumber:780
+110 P2=I
+ ScalarReference:P2
+ ScalarValue:I
+ AssignmentOperator:=
+112 PRINT "YOUR SECOND CARD IS "CHR$(L)
+ ITEMS
+ TextConstant:"YOUR SECOND CARD IS "
+ CarriageControl:
+ ScalarValue:L
+ FunctionChr
+ CarriageControl:NL
+115 GOTO 200
+ LineNumber:200
+117 PRINT "YOU HAVE "P3" SHOWING."
+ ITEMS
+ TextConstant:"YOU HAVE "
+ CarriageControl:
+ ScalarValue:P3
+ CarriageControl:
+ TextConstant:" SHOWING."
+ CarriageControl:NL
+119 GOSUB 760
+ LineNumber:760
+120 P3=P3+I
+ ScalarReference:P3
+ ScalarValue:P3
+ ScalarValue:I
+ BinaryOperator:+
+ AssignmentOperator:=
+122 PRINT "YOU GOT A "CHR$(L)
+ ITEMS
+ TextConstant:"YOU GOT A "
+ CarriageControl:
+ ScalarValue:L
+ FunctionChr
+ CarriageControl:NL
+123 IF P3>21 GOTO 820
+ ScalarValue:P3
+ NumericConstant:21
+ BinaryOperator:>
+124 GOTO 117
+ LineNumber:117
+200 GOSUB 780
+ LineNumber:780
+201 P3=P1+P2
+ ScalarReference:P3
+ ScalarValue:P1
+ ScalarValue:P2
+ BinaryOperator:+
+ AssignmentOperator:=
+202 D1=I
+ ScalarReference:D1
+ ScalarValue:I
+ AssignmentOperator:=
+204 GOSUB 780
+ LineNumber:780
+206 D2=I
+ ScalarReference:D2
+ ScalarValue:I
+ AssignmentOperator:=
+208 PRINT "DEALER SHOWS A "CHR$(L)
+ ITEMS
+ TextConstant:"DEALER SHOWS A "
+ CarriageControl:
+ ScalarValue:L
+ FunctionChr
+ CarriageControl:NL
+210 GOTO 117
+ LineNumber:117
+212 D3=D1+D2
+ ScalarReference:D3
+ ScalarValue:D1
+ ScalarValue:D2
+ BinaryOperator:+
+ AssignmentOperator:=
+214 PRINT "DEALER HAS "D3
+ ITEMS
+ TextConstant:"DEALER HAS "
+ CarriageControl:
+ ScalarValue:D3
+ CarriageControl:NL
+216 IF D3>16 GOTO 222
+ ScalarValue:D3
+ NumericConstant:16
+ BinaryOperator:>
+217 GOSUB 780
+ LineNumber:780
+218 PRINT "DEALER GETS A "CHR$(L)
+ ITEMS
+ TextConstant:"DEALER GETS A "
+ CarriageControl:
+ ScalarValue:L
+ FunctionChr
+ CarriageControl:NL
+219 D3=D3+I
+ ScalarReference:D3
+ ScalarValue:D3
+ ScalarValue:I
+ BinaryOperator:+
+ AssignmentOperator:=
+220 GOTO 214
+ LineNumber:214
+222 IF D3<22 GOTO 800
+ ScalarValue:D3
+ NumericConstant:22
+ BinaryOperator:<
+224 PRINT "DEALER BUSTED."
+ ITEMS
+ TextConstant:"DEALER BUSTED."
+ CarriageControl:NL
+226 GOTO 802
+ LineNumber:802
+760 PRINT "DO YOU WANT A HIT?";
+ ITEMS
+ TextConstant:"DO YOU WANT A HIT?"
+ CarriageControl:;
+762 INPUT $K
+ ScalarReference:K
+764 PRINT
+ ITEMS
+ CarriageControl:NL
+766 IF K = #N GOTO 212
+ ScalarValue:K
+ NumericConstant:78
+ BinaryOperator:=
+768 GOSUB 780
+ LineNumber:780
+770 RETURN
+ 
+780 I=INT(13*RND(0)+1)
+ ScalarReference:I
+ NumericConstant:13
+ NumericConstant:0
+ FunctionRnd
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+782 F1(I)=F1(I)+1
+ ScalarValue:I
+ ScalarReference:F1
+ ScalarValue:I
+ ScalarValue:F1
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+784 IF F1(I)>4 GOTO 780
+ ScalarValue:I
+ ScalarValue:F1
+ NumericConstant:4
+ BinaryOperator:>
+786 GOSUB 900
+ LineNumber:900
+788 RETURN
+ 
+800 IF D3>=P3 GOTO 820
+ ScalarValue:D3
+ ScalarValue:P3
+ BinaryOperator:>=
+802 F=F+W
+ ScalarReference:F
+ ScalarValue:F
+ ScalarValue:W
+ BinaryOperator:+
+ AssignmentOperator:=
+806 PRINT "YOU WIN. YOU NOW HAVE $"F
+ ITEMS
+ TextConstant:"YOU WIN. YOU NOW HAVE $"
+ CarriageControl:
+ ScalarValue:F
+ CarriageControl:NL
+808 GOTO 980
+ LineNumber:980
+820 F = F-W
+ ScalarReference:F
+ ScalarValue:F
+ ScalarValue:W
+ BinaryOperator:-
+ AssignmentOperator:=
+822 PRINT "YOU LOSE. YOU NOW HAVE $"F
+ ITEMS
+ TextConstant:"YOU LOSE. YOU NOW HAVE $"
+ CarriageControl:
+ ScalarValue:F
+ CarriageControl:NL
+824 GOTO 980
+ LineNumber:980
+900 IF I<>1 GOTO 910
+ ScalarValue:I
+ NumericConstant:1
+ BinaryOperator:<>
+904 I=11
+ ScalarReference:I
+ NumericConstant:11
+ AssignmentOperator:=
+906 L = #A
+ ScalarReference:L
+ NumericConstant:65
+ AssignmentOperator:=
+908 GOTO 942
+ LineNumber:942
+910 IF 1<>13 GOTO 920
+ NumericConstant:1
+ NumericConstant:13
+ BinaryOperator:<>
+912 I=16
+ ScalarReference:I
+ NumericConstant:16
+ AssignmentOperator:=
+914 L = #K
+ ScalarReference:L
+ NumericConstant:75
+ AssignmentOperator:=
+916 GOTO 942
+ LineNumber:942
+920 IF 1012 GOTO 330
+ NumericConstant:1012
+922 I=10
+ ScalarReference:I
+ NumericConstant:10
+ AssignmentOperator:=
+924 L=#Q
+ ScalarReference:L
+ NumericConstant:81
+ AssignmentOperator:=
+926 GOTO 942
+ LineNumber:942
+930 IF I<>11 GOTO 937
+ ScalarValue:I
+ NumericConstant:11
+ BinaryOperator:<>
+932 I=10
+ ScalarReference:I
+ NumericConstant:10
+ AssignmentOperator:=
+934 L = #J
+ ScalarReference:L
+ NumericConstant:74
+ AssignmentOperator:=
+936 GOTO 942
+ LineNumber:942
+937 IF I<>10 GOTO 940
+ ScalarValue:I
+ NumericConstant:10
+ BinaryOperator:<>
+938 L=#T
+ ScalarReference:L
+ NumericConstant:84
+ AssignmentOperator:=
+939 GOTO 942
+ LineNumber:942
+940 L=I+48
+ ScalarReference:L
+ ScalarValue:I
+ NumericConstant:48
+ BinaryOperator:+
+ AssignmentOperator:=
+942 RETURN
+ 
+980 PRINT "DO YOU WISH TO PLAY AGAIN?";
+ ITEMS
+ TextConstant:"DO YOU WISH TO PLAY AGAIN?"
+ CarriageControl:;
+982 INPUT $K
+ ScalarReference:K
+984 PRINT\PRINT
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+986 IF K=#Y GOTO 50
+ ScalarValue:K
+ NumericConstant:89
+ BinaryOperator:=
+987 PRINT\PRINT\PRINT\IF F>F1 THEN 995
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ ScalarValue:F
+ ScalarValue:F1
+ BinaryOperator:>
+988 PRINT "TOO BAD! YOU LOST " F1-F "DOLLARS AT THE EDUSYSTEM CASINO."
+ ITEMS
+ TextConstant:"TOO BAD! YOU LOST "
+ CarriageControl:
+ ScalarValue:F1
+ ScalarValue:F
+ BinaryOperator:-
+ CarriageControl:
+ TextConstant:"DOLLARS AT THE EDUSYSTEM CASINO."
+ CarriageControl:NL
+990 GOTO 998
+ LineNumber:998
+995 PRINT "NOT BAD! YOU WON"F-F1"DOLLARS AT THE EDUSYSTEM CASINO."
+ ITEMS
+ TextConstant:"NOT BAD! YOU WON"
+ CarriageControl:
+ ScalarValue:F
+ ScalarValue:F1
+ BinaryOperator:-
+ CarriageControl:
+ TextConstant:"DOLLARS AT THE EDUSYSTEM CASINO."
+ CarriageControl:NL
+998 PRINT\PRINT "HOPE YOU ENJOYED YOURSELF. THANKS FOR PLAYING."
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"HOPE YOU ENJOYED YOURSELF. THANKS FOR PLAYING."
+ CarriageControl:NL
+999 END
+ 

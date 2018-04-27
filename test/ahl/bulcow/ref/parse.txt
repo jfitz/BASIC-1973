@@ -1,0 +1,476 @@
+5 GOSUB500
+ LineNumber:500
+10 DIMD(10,4),B(10),C(18),G(10)
+ NumericConstant:10
+ NumericConstant:4
+ CompoundDeclaration:D
+ NumericConstant:10
+ CompoundDeclaration:B
+ NumericConstant:18
+ CompoundDeclaration:C
+ NumericConstant:10
+ CompoundDeclaration:G
+15 RANDOMIZE:PRINT:PRINT:PRINT
+ 
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+20 LETA=0:GOTO200
+ ScalarReference:A
+ NumericConstant:0
+ AssignmentOperator:=
+ LineNumber:200
+30 PRINT:PRINT:PRINT:LETJ=0
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ ScalarReference:J
+ NumericConstant:0
+ AssignmentOperator:=
+35 PRINT"YOUR GUESS";:INPUTN:LETN=(N+.1)/100000
+ ITEMS
+ TextConstant:"YOUR GUESS"
+ CarriageControl:;
+ ScalarReference:N
+ ScalarReference:N
+ ScalarValue:N
+ NumericConstant:0.1
+ BinaryOperator:+
+ NumericConstant:100000
+ BinaryOperator:/
+ AssignmentOperator:=
+40 FORI=0TO4:LETG(I)=INT(10*N):LETN=10*N-INT(10*N)
+ control: VariableToken:I
+ start:   ["NumericConstant:0"]
+ end:     ["NumericConstant:4"]
+ step:    ["NumericConstant:1"]
+ ScalarValue:I
+ ScalarReference:G
+ NumericConstant:10
+ ScalarValue:N
+ BinaryOperator:*
+ FunctionInt
+ AssignmentOperator:=
+ ScalarReference:N
+ NumericConstant:10
+ ScalarValue:N
+ BinaryOperator:*
+ NumericConstant:10
+ ScalarValue:N
+ BinaryOperator:*
+ FunctionInt
+ BinaryOperator:-
+ AssignmentOperator:=
+41 FORK=0TOI-1:IFG(I)=G(K)GOTO170
+ control: VariableToken:K
+ start:   ["NumericConstant:0"]
+ end:     ["ScalarValue:I", "NumericConstant:1", "BinaryOperator:-"]
+ step:    ["NumericConstant:1"]
+ ScalarValue:I
+ ScalarValue:G
+ ScalarValue:K
+ ScalarValue:G
+ BinaryOperator:=
+42 NEXTK
+ VariableToken:K
+43 NEXTI
+ VariableToken:I
+45 LETP=4:LETA=0:GOSUB300
+ ScalarReference:P
+ NumericConstant:4
+ AssignmentOperator:=
+ ScalarReference:A
+ NumericConstant:0
+ AssignmentOperator:=
+ LineNumber:300
+50 PRINTV"BULL";:IFV<>1THENPRINT"S";
+ ITEMS
+ ScalarValue:V
+ CarriageControl:
+ TextConstant:"BULL"
+ CarriageControl:;
+ ScalarValue:V
+ NumericConstant:1
+ BinaryOperator:<>
+ ITEMS
+ TextConstant:"S"
+ CarriageControl:;
+55 IFV=5THENPRINT" - YOU WIN":GOTO20
+ ScalarValue:V
+ NumericConstant:5
+ BinaryOperator:=
+ ITEMS
+ TextConstant:" - YOU WIN"
+ CarriageControl:NL
+ LineNumber:20
+60 PRINTW-V"COW";:IFW<>V+1THENPRINT"S";
+ ITEMS
+ ScalarValue:W
+ ScalarValue:V
+ BinaryOperator:-
+ CarriageControl:
+ TextConstant:"COW"
+ CarriageControl:;
+ ScalarValue:W
+ ScalarValue:V
+ NumericConstant:1
+ BinaryOperator:+
+ BinaryOperator:<>
+ ITEMS
+ TextConstant:"S"
+ CarriageControl:;
+65 IFJ=0THENLETA=1:GOTO200
+ ScalarValue:J
+ NumericConstant:0
+ BinaryOperator:=
+ ScalarReference:A
+ NumericConstant:1
+ AssignmentOperator:=
+ LineNumber:200
+68 GOSUB400
+ LineNumber:400
+70 PRINT" - MY GUESS IS ";
+ ITEMS
+ TextConstant:" - MY GUESS IS "
+ CarriageControl:;
+75 FORI=0TO4:PRINTCHR$(D(J,I)+48);:NEXTI
+ control: VariableToken:I
+ start:   ["NumericConstant:0"]
+ end:     ["NumericConstant:4"]
+ step:    ["NumericConstant:1"]
+ ITEMS
+ ScalarValue:J
+ ScalarValue:I
+ ScalarValue:D
+ NumericConstant:48
+ BinaryOperator:+
+ FunctionChr
+ CarriageControl:;
+ VariableToken:I
+80 PRINT " MY SCORE ";:INPUTB(J),C(J):LETC(J)=C(J)+B(J)
+ ITEMS
+ TextConstant:" MY SCORE "
+ CarriageControl:;
+ ScalarValue:J
+ ScalarReference:B
+ ScalarValue:J
+ ScalarReference:C
+ ScalarValue:J
+ ScalarReference:C
+ ScalarValue:J
+ ScalarValue:C
+ ScalarValue:J
+ ScalarValue:B
+ BinaryOperator:+
+ AssignmentOperator:=
+81 IFB(J)>-1THENIFB(J)<6THENIFC(J)<6THENIFC(J)-B(J)>-1GOTO80
+ ScalarValue:J
+ ScalarValue:B
+ NumericConstant:1
+ UnaryOperator:-
+ BinaryOperator:>
+ ScalarValue:J
+ ScalarValue:B
+ NumericConstant:6
+ BinaryOperator:<
+ ScalarValue:J
+ ScalarValue:C
+ NumericConstant:6
+ BinaryOperator:<
+ ScalarValue:J
+ ScalarValue:C
+ ScalarValue:J
+ ScalarValue:B
+ BinaryOperator:-
+ NumericConstant:1
+ UnaryOperator:-
+ BinaryOperator:>
+82 PRINT" - RIDICULOUS! !";: GOTO 70
+ ITEMS
+ TextConstant:" - RIDICULOUS! !"
+ CarriageControl:;
+ LineNumber:70
+83 IFB(J)=4THENIFC(J)=5GOTO82
+ ScalarValue:J
+ ScalarValue:B
+ NumericConstant:4
+ BinaryOperator:=
+ ScalarValue:J
+ ScalarValue:C
+ NumericConstant:5
+ BinaryOperator:=
+85 IFB(J)=5THENPRINT" - I WIN - MY NUMBER WAS";:GOTO100
+ ScalarValue:J
+ ScalarValue:B
+ NumericConstant:5
+ BinaryOperator:=
+ ITEMS
+ TextConstant:" - I WIN - MY NUMBER WAS"
+ CarriageControl:;
+ LineNumber:100
+98 GOTO35
+ LineNumber:35
+100 FORI=0TO4:PRINTCHR$(D(0,I)+48);:NEXTI
+ control: VariableToken:I
+ start:   ["NumericConstant:0"]
+ end:     ["NumericConstant:4"]
+ step:    ["NumericConstant:1"]
+ ITEMS
+ NumericConstant:0
+ ScalarValue:I
+ ScalarValue:D
+ NumericConstant:48
+ BinaryOperator:+
+ FunctionChr
+ CarriageControl:;
+ VariableToken:I
+110 GOTO20
+ LineNumber:20
+150 PRINT:PRINT "YOU HAVE GIVEN ME IMPOSSIBLE SCORES - GAME SPOILED":GOTO 5
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"YOU HAVE GIVEN ME IMPOSSIBLE SCORES - GAME SPOILED"
+ CarriageControl:NL
+ LineNumber:5
+170 PRINT"REPEATED DIGITS NOT ALLOWED":GOTO35
+ ITEMS
+ TextConstant:"REPEATED DIGITS NOT ALLOWED"
+ CarriageControl:NL
+ LineNumber:35
+200 FORP=0TO4
+ control: VariableToken:P
+ start:   ["NumericConstant:0"]
+ end:     ["NumericConstant:4"]
+ step:    ["NumericConstant:1"]
+210 LETD(A,P)=INT(10*RND(1))
+ ScalarValue:A
+ ScalarValue:P
+ ScalarReference:D
+ NumericConstant:10
+ NumericConstant:1
+ FunctionRnd
+ BinaryOperator:*
+ FunctionInt
+ AssignmentOperator:=
+220 FORI=0TOP-1:IFD(A,I)=D(A,P)GOTO210
+ control: VariableToken:I
+ start:   ["NumericConstant:0"]
+ end:     ["ScalarValue:P", "NumericConstant:1", "BinaryOperator:-"]
+ step:    ["NumericConstant:1"]
+ ScalarValue:A
+ ScalarValue:I
+ ScalarValue:D
+ ScalarValue:A
+ ScalarValue:P
+ ScalarValue:D
+ BinaryOperator:=
+230 NEXTI
+ VariableToken:I
+240 NEXTP
+ VariableToken:P
+250 IFA=0GOTO30
+ ScalarValue:A
+ NumericConstant:0
+ BinaryOperator:=
+260 LETJ=1:GOTO70
+ ScalarReference:J
+ NumericConstant:1
+ AssignmentOperator:=
+ LineNumber:70
+300 LETV=0:LETW=0
+ ScalarReference:V
+ NumericConstant:0
+ AssignmentOperator:=
+ ScalarReference:W
+ NumericConstant:0
+ AssignmentOperator:=
+310 FORI=0TOP:IFD(A,I)=G(I)THENLETV=V+1
+ control: VariableToken:I
+ start:   ["NumericConstant:0"]
+ end:     ["ScalarValue:P"]
+ step:    ["NumericConstant:1"]
+ ScalarValue:A
+ ScalarValue:I
+ ScalarValue:D
+ ScalarValue:I
+ ScalarValue:G
+ BinaryOperator:=
+ ScalarReference:V
+ ScalarValue:V
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+320 FORK=0TO4:IFD(A,K)=G(I)THENLETW=W+1
+ control: VariableToken:K
+ start:   ["NumericConstant:0"]
+ end:     ["NumericConstant:4"]
+ step:    ["NumericConstant:1"]
+ ScalarValue:A
+ ScalarValue:K
+ ScalarValue:D
+ ScalarValue:I
+ ScalarValue:G
+ BinaryOperator:=
+ ScalarReference:W
+ ScalarValue:W
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+330 NEXTK
+ VariableToken:K
+340 NEXTI
+ VariableToken:I
+350 RETURN
+ 
+400 LETP=0
+ ScalarReference:P
+ NumericConstant:0
+ AssignmentOperator:=
+405 LETG(P)=D(J,P)
+ ScalarValue:P
+ ScalarReference:G
+ ScalarValue:J
+ ScalarValue:P
+ ScalarValue:D
+ AssignmentOperator:=
+410 FORI=0TOP-1:IFG(I)=G(P)GOTO430
+ control: VariableToken:I
+ start:   ["NumericConstant:0"]
+ end:     ["ScalarValue:P", "NumericConstant:1", "BinaryOperator:-"]
+ step:    ["NumericConstant:1"]
+ ScalarValue:I
+ ScalarValue:G
+ ScalarValue:P
+ ScalarValue:G
+ BinaryOperator:=
+415 NEXTI
+ VariableToken:I
+420 FORA=1TOJ:GOSUB380
+ control: VariableToken:A
+ start:   ["NumericConstant:1"]
+ end:     ["ScalarValue:J"]
+ step:    ["NumericConstant:1"]
+ LineNumber:380
+425 IFV<=B(A)THENIFW<=C(A)THENIF4-P>=C(A)-WTHENIF4-P>=B(A)-VGOTO440
+ ScalarValue:V
+ ScalarValue:A
+ ScalarValue:B
+ BinaryOperator:<=
+ ScalarValue:W
+ ScalarValue:A
+ ScalarValue:C
+ BinaryOperator:<=
+ NumericConstant:4
+ ScalarValue:P
+ BinaryOperator:-
+ ScalarValue:A
+ ScalarValue:C
+ ScalarValue:W
+ BinaryOperator:-
+ BinaryOperator:>=
+ NumericConstant:4
+ ScalarValue:P
+ BinaryOperator:-
+ ScalarValue:A
+ ScalarValue:B
+ ScalarValue:V
+ BinaryOperator:-
+ BinaryOperator:>=
+430 LETG(P)=G(P)+3:IFG(P)>9THENLETG(P)=G(P)-10
+ ScalarValue:P
+ ScalarReference:G
+ ScalarValue:P
+ ScalarValue:G
+ NumericConstant:3
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:P
+ ScalarValue:G
+ NumericConstant:9
+ BinaryOperator:>
+ ScalarValue:P
+ ScalarReference:G
+ ScalarValue:P
+ ScalarValue:G
+ NumericConstant:10
+ BinaryOperator:-
+ AssignmentOperator:=
+432 IFP=0THENIFG(P)=D(1,0)GOTO150
+ ScalarValue:P
+ NumericConstant:0
+ BinaryOperator:=
+ ScalarValue:P
+ ScalarValue:G
+ NumericConstant:1
+ NumericConstant:0
+ ScalarValue:D
+ BinaryOperator:=
+435 IFG(P)<>D(J,P)GOTO410
+ ScalarValue:P
+ ScalarValue:G
+ ScalarValue:J
+ ScalarValue:P
+ ScalarValue:D
+ BinaryOperator:<>
+440 LETP=P-1:IFP<0THENGOTO150
+ ScalarReference:P
+ ScalarValue:P
+ NumericConstant:1
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarValue:P
+ NumericConstant:0
+ BinaryOperator:<
+ LineNumber:150
+445 GOTO430
+ LineNumber:430
+448 NEXTA
+ VariableToken:A
+450 LETP=P+1:IFP<5GOTO405
+ ScalarReference:P
+ ScalarValue:P
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:P
+ NumericConstant:5
+ BinaryOperator:<
+455 LETJ=J+1
+ ScalarReference:J
+ ScalarValue:J
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+460 FORI=0TO4:LETD(J,I)=G(I):NEXTI
+ control: VariableToken:I
+ start:   ["NumericConstant:0"]
+ end:     ["NumericConstant:4"]
+ step:    ["NumericConstant:1"]
+ ScalarValue:J
+ ScalarValue:I
+ ScalarReference:D
+ ScalarValue:I
+ ScalarValue:G
+ AssignmentOperator:=
+ VariableToken:I
+465 RETURN
+ 
+500 PRINT:PRINT:PRINT"                 BRADFORD UNIVERSITY BULLS AND COWS GAME"
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"                 BRADFORD UNIVERSITY BULLS AND COWS GAME"
+ CarriageControl:NL
+510 GOTO10
+ LineNumber:10
+999 END
+ 

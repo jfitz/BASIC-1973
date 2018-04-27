@@ -1,0 +1,172 @@
+100 PRINT
+ ITEMS
+ CarriageControl:NL
+105 PRINT
+ ITEMS
+ CarriageControl:NL
+106 Q=0
+ ScalarReference:Q
+ NumericConstant:0
+ AssignmentOperator:=
+110 V = 5+INT(35*RND(0))
+ ScalarReference:V
+ NumericConstant:5
+ NumericConstant:35
+ NumericConstant:0
+ FunctionRnd
+ BinaryOperator:*
+ FunctionInt
+ BinaryOperator:+
+ AssignmentOperator:=
+111 PRINT "A BALL IS THROWN UPWARDS AT "V" METERS PER SECOND"
+ ITEMS
+ TextConstant:"A BALL IS THROWN UPWARDS AT "
+ CarriageControl:
+ ScalarValue:V
+ CarriageControl:
+ TextConstant:" METERS PER SECOND"
+ CarriageControl:NL
+112 PRINT
+ ITEMS
+ CarriageControl:NL
+115 A=V^2/19.6
+ ScalarReference:A
+ ScalarValue:V
+ NumericConstant:2
+ BinaryOperator:^
+ NumericConstant:19.6
+ BinaryOperator:/
+ AssignmentOperator:=
+116 PRINT "HOW HIGH WILL IT GO (IN METERS)";
+ ITEMS
+ TextConstant:"HOW HIGH WILL IT GO (IN METERS)"
+ CarriageControl:;
+117 GOSUB 500
+ LineNumber:500
+120 A=V/4.9
+ ScalarReference:A
+ ScalarValue:V
+ NumericConstant:4.9
+ BinaryOperator:/
+ AssignmentOperator:=
+122 PRINT "HOW LONG UNTIL IT RETURNS (IN SECONDS)";
+ ITEMS
+ TextConstant:"HOW LONG UNTIL IT RETURNS (IN SECONDS)"
+ CarriageControl:;
+124 GOSUB 500
+ LineNumber:500
+130 T=(1+INT(2*V+RND(1)))/10
+ ScalarReference:T
+ NumericConstant:1
+ NumericConstant:2
+ ScalarValue:V
+ BinaryOperator:*
+ NumericConstant:1
+ FunctionRnd
+ BinaryOperator:+
+ FunctionInt
+ BinaryOperator:+
+ NumericConstant:10
+ BinaryOperator:/
+ AssignmentOperator:=
+132 A=V-9.8*T
+ ScalarReference:A
+ ScalarValue:V
+ NumericConstant:9.8
+ ScalarValue:T
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+134 PRINT "WHAT WILL ITS VELOCITY BE AFTER"T"SECONDS ";
+ ITEMS
+ TextConstant:"WHAT WILL ITS VELOCITY BE AFTER"
+ CarriageControl:
+ ScalarValue:T
+ CarriageControl:
+ TextConstant:"SECONDS "
+ CarriageControl:;
+136 GOSUB 500
+ LineNumber:500
+140 PRINT
+ ITEMS
+ CarriageControl:NL
+150 PRINT Q"RIGHT OUT OF 3.";
+ ITEMS
+ ScalarValue:Q
+ CarriageControl:
+ TextConstant:"RIGHT OUT OF 3."
+ CarriageControl:;
+160 IF Q<2 THEN 100
+ ScalarValue:Q
+ NumericConstant:2
+ BinaryOperator:<
+170 PRINT " NOT BAD. "
+ ITEMS
+ TextConstant:" NOT BAD. "
+ CarriageControl:NL
+180 GO TO 100
+ LineNumber:100
+500 INPUT G
+ ScalarReference:G
+501 G=100*ABS(G-A)
+ ScalarReference:G
+ NumericConstant:100
+ ScalarValue:G
+ ScalarValue:A
+ BinaryOperator:-
+ FunctionAbs
+ BinaryOperator:*
+ AssignmentOperator:=
+502 IF G<=ABS(A) THEN 507
+ ScalarValue:G
+ ScalarValue:A
+ FunctionAbs
+ BinaryOperator:<=
+503 IF G<=15+ABS(A) THEN 510
+ ScalarValue:G
+ NumericConstant:15
+ ScalarValue:A
+ FunctionAbs
+ BinaryOperator:+
+ BinaryOperator:<=
+504 PRINT "NOT EVEN CLOSE."
+ ITEMS
+ TextConstant:"NOT EVEN CLOSE."
+ CarriageControl:NL
+506 GO TO 512
+ LineNumber:512
+507 G=G+1
+ ScalarReference:G
+ ScalarValue:G
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+508 PRI"CORRECT! VERY GOOD!"
+ ITEMS
+ TextConstant:"CORRECT! VERY GOOD!"
+ CarriageControl:NL
+509 GOTO 520
+ LineNumber:520
+510 PRINT "CLOSE ENOUGH."
+ ITEMS
+ TextConstant:"CLOSE ENOUGH."
+ CarriageControl:NL
+511 Q=Q+1
+ ScalarReference:Q
+ ScalarValue:Q
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+512 PRINT "CORRECT ANSWER IS"A
+ ITEMS
+ TextConstant:"CORRECT ANSWER IS"
+ CarriageControl:
+ ScalarValue:A
+ CarriageControl:NL
+520 PRINT
+ ITEMS
+ CarriageControl:NL
+530 RETURN
+ 
+999 END
+ 

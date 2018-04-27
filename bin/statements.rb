@@ -230,6 +230,10 @@ class AbstractStatement
     list.join(' ')
   end
 
+  def dump
+    ['Unimplemented']
+  end
+
   def program_check(_, _, _)
     true
   end
@@ -518,6 +522,10 @@ class EmptyStatement < AbstractStatement
     super([], [])
   end
 
+  def dump
+    []
+  end
+
   def to_s
     ''
   end
@@ -538,6 +546,12 @@ class RemarkStatement < AbstractStatement
     super
 
     @rest = tokens_lists[0]
+  end
+
+  def dump
+    lines = []
+    lines += @rest.map(&:dump) unless @rest.nil?
+    lines
   end
 
   def execute_core(_) end
@@ -612,6 +626,12 @@ class ChangeStatement < AbstractStatement
     else
       @errors << 'Syntax error'
     end
+  end
+
+  def dump
+    lines = []
+    lines += @source.dump
+    lines += @target.dump
   end
 
   def execute_core(interpreter)
@@ -701,6 +721,10 @@ class CloseStatement < AbstractStatement
     end
   end
 
+  def dump
+    @filenum_expression.dump
+  end
+
   def execute_core(interpreter)
     fns = @filenum_expression.evaluate(interpreter, true)
     fh = fns[0]
@@ -745,6 +769,10 @@ class DataStatement < AbstractStatement
     end
   end
 
+  def dump
+    @expressions.dump
+  end
+
   def pre_execute(interpreter)
     ds = interpreter.get_data_store(nil)
     data_list = @expressions.evaluate(interpreter, false)
@@ -777,6 +805,10 @@ class DefineFunctionStatement < AbstractStatement
     else
       @errors << 'Syntax error'
     end
+  end
+
+  def dump
+    @definition.dump
   end
 
   def pre_execute(interpreter)
@@ -814,6 +846,12 @@ class DimStatement < AbstractStatement
     else
       @errors << 'Syntax error'
     end
+  end
+
+  def dump
+    lines = []
+    @expression_list.each { |expression| lines += expression.dump }
+    lines
   end
 
   def execute_core(interpreter)
@@ -854,6 +892,10 @@ class EndStatement < AbstractStatement
       check_template(tokens_lists, template)
   end
 
+  def dump
+    ['']
+  end
+
   def program_check(program, console_io, line_number_index)
     next_line = program.find_next_line_index(line_number_index)
     return true if next_line.nil?
@@ -886,6 +928,10 @@ class FilesStatement < AbstractStatement
     else
       @errors << 'Syntax error'
     end
+  end
+
+  def dump
+    @expressions.dump
   end
 
   def pre_execute(interpreter)
@@ -990,6 +1036,15 @@ class ForStatement < AbstractStatement
     end
   end
 
+  def dump
+    lines = []
+    lines << 'control: ' + @control.dump
+    lines << 'start:   ' + @start.dump.to_s
+    lines << 'end:     ' + @end.dump.to_s
+    lines << 'step:    ' + @step_value.dump.to_s
+    lines
+  end
+
   def execute_core(interpreter)
     from = @start.evaluate(interpreter, true)[0]
     to = @end.evaluate(interpreter, true)[0]
@@ -1067,6 +1122,10 @@ class GosubStatement < AbstractStatement
     else
       @errors << 'Syntax error'
     end
+  end
+
+  def dump
+    [@destination.dump]
   end
 
   def program_check(program, console_io, line_number_index)
@@ -1147,6 +1206,16 @@ class GotoStatement < AbstractStatement
     else
       @errors << 'Syntax error'
     end
+  end
+
+  def dump
+    lines = []
+    lines << @destination.dump unless @destination.nil?
+    lines += @expression.dump unless @expression.nil?
+    unless @destinations.nil?
+      @destinations.each { |destination| lines << destination.dump }
+    end
+    lines
   end
 
   def program_check(program, console_io, line_number_index)
@@ -1257,6 +1326,8 @@ class IfStatement < AbstractStatement
       end
     end
   end
+
+  private
 
   def parse_if(tokens_lists)
     stack = []
@@ -1376,6 +1447,16 @@ class IfStatement < AbstractStatement
         else_s = 'DICT'
       end
     end
+  end
+
+  public
+
+  def dump
+    lines = []
+    lines += @expression.dump unless @expression.nil?
+    lines += @statement.dump unless @statement.nil?
+    lines += @else_stmt.dump unless @else_stmt.nil?
+    lines
   end
 
   def program_check(program, console_io, line_number_index)
@@ -1526,6 +1607,12 @@ class InputStatement < AbstractStatement
     end
   end
 
+  def dump
+    lines = []
+    @input_items.each { |item| lines += item.dump }
+    lines
+  end
+
   def execute_core(interpreter)
     fh = get_file_handle(interpreter, @file_tokens)
     fhr = interpreter.get_file_handler(fh, :read)
@@ -1674,6 +1761,12 @@ class InputCharStatement < AbstractStatement
     end
   end
 
+  def dump
+    lines = []
+    @input_items.each { |item| lines += item.dump }
+    lines
+  end
+
   def execute_core(interpreter)
     fh = get_file_handle(interpreter, @file_tokens)
     fhr = interpreter.get_file_handler(fh, :read)
@@ -1782,14 +1875,7 @@ class InputCharStatement < AbstractStatement
   end
 end
 
-# LET
-class LetStatement < AbstractStatement
-  def self.lead_keywords
-    [
-      [KeywordToken.new('LET')]
-    ]
-  end
-
+class AbstractLetStatement < AbstractStatement
   def initialize(keywords, tokens_lists)
     super
 
@@ -1812,6 +1898,12 @@ class LetStatement < AbstractStatement
     else
       @errors << 'Syntax error'
     end
+  end
+
+  def dump
+    lines = []
+    lines += @assignment.dump unless @assignment.nil?
+    lines
   end
 
   def execute_core(interpreter)
@@ -1830,8 +1922,21 @@ class LetStatement < AbstractStatement
   end
 end
 
+# LET
+class LetStatement < AbstractLetStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('LET')]
+    ]
+  end
+
+  def initialize(keywords, tokens_lists)
+    super
+  end
+end
+
 # LET-less assignment
-class LetLessStatement < AbstractStatement
+class LetLessStatement < AbstractLetStatement
   def self.lead_keywords
     [
       []
@@ -1840,41 +1945,6 @@ class LetLessStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
-
-    extract_modifiers(tokens_lists)
-
-    template = [[3, '>=']]
-
-    if check_template(tokens_lists, template)
-      begin
-        @assignment = ScalarAssignment.new(tokens_lists[0])
-        if @assignment.count_target.zero?
-          @errors << 'Assignment must have left-hand value(s)'
-        end
-        if @assignment.count_value != 1
-          @errors << 'Assignment must have only one right-hand value'
-        end
-      rescue BASICExpressionError => e
-        @errors << e.message
-      end
-    else
-      @errors << 'Syntax error'
-    end
-  end
-
-  def execute_core(interpreter)
-    l_values = @assignment.eval_target(interpreter)
-    r_values = @assignment.eval_value(interpreter)
-    r_value = r_values[0]
-    l_values.each do |l_value|
-      interpreter.set_value(l_value, r_value)
-    end
-  end
-  
-  def variables
-    vars = []
-    vars += @assignment.variables unless @assignment.nil?
-    vars
   end
 end
 
@@ -1909,6 +1979,12 @@ class LineInputStatement < AbstractStatement
     else
       @errors << 'Syntax error'
     end
+  end
+
+  def dump
+    lines = []
+    @input_items.each { |item| lines += item.dump }
+    lines
   end
 
   def execute_core(interpreter) 
@@ -2051,6 +2127,10 @@ class NextStatement < AbstractStatement
     end
   end
 
+  def dump
+    [@control.dump]
+  end
+
   def execute_core(interpreter)
     fornext_control = interpreter.retrieve_fornext(@control)
     # check control variable value
@@ -2119,6 +2199,13 @@ class OnStatement < AbstractStatement
     else
       @errors << 'Syntax error'
     end
+  end
+
+  def dump
+    lines = []
+    lines += @expression.dump
+    @destinations.each { |destination| lines << destination.dump }
+    lines
   end
 
   def program_check(program, console_io, line_number_index)
@@ -2213,6 +2300,13 @@ class OpenStatement < AbstractStatement
     end
   end
 
+  def dump
+    lines = []
+    lines += @filename_expression.dump
+    lines += @filenum_expression.dump
+    lines
+  end
+
   def execute_core(interpreter)
     filenames = @filename_expression.evaluate(interpreter, true)
     filename = filenames[0]
@@ -2239,6 +2333,20 @@ class AbstractPrintStatement < AbstractStatement
   def initialize(keywords, tokens_lists, final_carriage)
     super(keywords, tokens_lists)
     @final = final_carriage
+  end
+
+  def dump
+    lines = []
+
+    unless @file_tokens.nil?
+      lines << 'FILE'
+      lines += @file_tokens.dump
+    end
+
+    lines << 'ITEMS'
+    @print_items.each { |item| lines += item.dump }
+
+    lines
   end
 
   def variables
@@ -2468,6 +2576,10 @@ class RandomizeStatement < AbstractStatement
       check_template(tokens_lists, template)
   end
 
+  def dump
+    ['']
+  end
+
   def execute_core(interpreter)
     interpreter.new_random
   end
@@ -2477,6 +2589,12 @@ end
 class AbstractReadStatement < AbstractStatement
   def initialize(keywords, tokens_lists)
     super
+  end
+
+  def dump
+    lines = []
+    @read_items.each { |item| lines += item.dump }
+    lines
   end
 
   def variables
@@ -2580,6 +2698,10 @@ class RestoreStatement < AbstractStatement
       check_template(tokens_lists, template)
   end
 
+  def dump
+    ['']
+  end
+
   def execute_core(interpreter)
     ds = interpreter.get_data_store(nil)
     ds.reset
@@ -2606,6 +2728,10 @@ class ReturnStatement < AbstractStatement
       check_template(tokens_lists, template)
   end
 
+  def dump
+    ['']
+  end
+
   def execute_core(interpreter)
     interpreter.next_line_index = interpreter.pop_return
   end
@@ -2625,21 +2751,30 @@ class SleepStatement < AbstractStatement
 
     extract_modifiers(tokens_lists)
 
-    template = [[1, '>=']]
+    template_0 = []
+    template_1 = [[1, '>=']]
 
-    if check_template(tokens_lists, template)
-      @tokens_lists = split_tokens(tokens_lists[0], false)
+    if check_template(tokens_lists, template_0)
+      token_lists = [[NumericConstantToken.new('5')]]
+    elsif check_template(tokens_lists, template_1)
+      token_lists = split_tokens(tokens_lists[0], false)
     else
       @errors << 'Syntax error'
     end
+
+    if token_lists.size > 1
+      @errors << 'Too many values'
+    end
+
+    @expression = ValueScalarExpression.new(token_lists[0])
+  end
+
+  def dump
+    @expression.dump
   end
 
   def execute_core(interpreter)
-    tokens_lists = @tokens_lists.clone
-    raise(BASICRuntimeError, 'Too many values') if tokens_lists.size > 1
-    first_expression = tokens_lists[0]
-    expression = ValueScalarExpression.new(first_expression)
-    values = expression.evaluate(interpreter, true)
+    values = @expression.evaluate(interpreter, true)
     value = values[0]
     sleep(value.to_v)
   end
@@ -2663,6 +2798,10 @@ class StopStatement < AbstractStatement
 
     @errors << 'Syntax error' unless
       check_template(tokens_lists, template)
+  end
+
+  def dump
+    ['']
   end
 
   def execute_core(interpreter)
@@ -2693,8 +2832,13 @@ class TraceStatement < AbstractStatement
     else
       @errors << 'Syntax error'
     end
+
     @errors << 'Too many values' if @tokens_lists.size > 1
     @expression = ValueScalarExpression.new(tokens_lists[0])
+  end
+
+  def dump
+    @expression.dump
   end
 
   def execute_core(interpreter)
@@ -2715,6 +2859,12 @@ class AbstractWriteStatement < AbstractStatement
   def initialize(keywords, tokens_lists, final_carriage)
     super(keywords, tokens_lists)
     @final = final_carriage
+  end
+
+  def dump
+    lines = []
+    @print_items.each { |item| lines += item.dump }
+    lines
   end
 
   def variables

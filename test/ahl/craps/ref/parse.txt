@@ -1,0 +1,487 @@
+80 RANDOMIZE
+ 
+90 FOR I = 1 TO 10\PRINT\NEXT I
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:10"]
+ step:    ["NumericConstant:1"]
+ ITEMS
+ CarriageControl:NL
+ VariableToken:I
+100 PRINT"THIS DEMONSTRATION SIMULATES A CRAP GAME WITH THE COMPUTER"
+ ITEMS
+ TextConstant:"THIS DEMONSTRATION SIMULATES A CRAP GAME WITH THE COMPUTER"
+ CarriageControl:NL
+110 PRINT"AS YOUR OPPONENT.  THE RULES ARE SIMPLE:"
+ ITEMS
+ TextConstant:"AS YOUR OPPONENT.  THE RULES ARE SIMPLE:"
+ CarriageControl:NL
+120 PRINT
+ ITEMS
+ CarriageControl:NL
+130 PRINT"  *A 7 OR 11 ON THE FIRST ROLL WINS"
+ ITEMS
+ TextConstant:"  *A 7 OR 11 ON THE FIRST ROLL WINS"
+ CarriageControl:NL
+140 PRINT"  *A 2, 3 OR 12 ON THE FIRST ROLL LOSES"
+ ITEMS
+ TextConstant:"  *A 2, 3 OR 12 ON THE FIRST ROLL LOSES"
+ CarriageControl:NL
+150 PRINT
+ ITEMS
+ CarriageControl:NL
+160 PRINT"ANY OTHER NUMBER ROLLED BECOMES YOUR 'POINT'* YOU CONTINUE"
+ ITEMS
+ TextConstant:"ANY OTHER NUMBER ROLLED BECOMES YOUR 'POINT'* YOU CONTINUE"
+ CarriageControl:NL
+170 PRINT"TO ROLL.  IF YOU GET YOUR POINT, YOU WIN. IF YOU ROLL A 7,"
+ ITEMS
+ TextConstant:"TO ROLL.  IF YOU GET YOUR POINT, YOU WIN. IF YOU ROLL A 7,"
+ CarriageControl:NL
+180 PRINT"YOU LOSE. THE CHANGE HANDS WHEN THIS HAPPENS."
+ ITEMS
+ TextConstant:"YOU LOSE. THE CHANGE HANDS WHEN THIS HAPPENS."
+ CarriageControl:NL
+185 PRINT "JUST BET $0 TO QUIT."
+ ITEMS
+ TextConstant:"JUST BET $0 TO QUIT."
+ CarriageControl:NL
+190 PRINT
+ ITEMS
+ CarriageControl:NL
+200 PRINT
+ ITEMS
+ CarriageControl:NL
+210 LET Z=5*INT(10+11*RND(0))
+ ScalarReference:Z
+ NumericConstant:5
+ NumericConstant:10
+ NumericConstant:11
+ NumericConstant:0
+ FunctionRnd
+ BinaryOperator:*
+ BinaryOperator:+
+ FunctionInt
+ BinaryOperator:*
+ AssignmentOperator:=
+215 PRINT"ARE YOU READY";\INPUT B$
+ ITEMS
+ TextConstant:"ARE YOU READY"
+ CarriageControl:;
+ ScalarReference:B$
+216 IF B$="YES" THEN 220\IF B$="NO" THEN PRINT "I'LL REPEAT MYSELF THEN"
+ ScalarValue:B$
+ TextConstant:"YES"
+ BinaryOperator:=
+ ScalarValue:B$
+ TextConstant:"NO"
+ BinaryOperator:=
+ ITEMS
+ TextConstant:"I'LL REPEAT MYSELF THEN"
+ CarriageControl:NL
+217 GOTO 90
+ LineNumber:90
+220 PRINT "SPLENDID... YOU ARE GIVEN ";Z;"DOLLARS TO PLAY WITH."
+ ITEMS
+ TextConstant:"SPLENDID... YOU ARE GIVEN "
+ CarriageControl:;
+ ScalarValue:Z
+ CarriageControl:;
+ TextConstant:"DOLLARS TO PLAY WITH."
+ CarriageControl:NL
+230 PRINT
+ ITEMS
+ CarriageControl:NL
+240 PRINT
+ ITEMS
+ CarriageControl:NL
+250 IF N-2*INT(N/2)=0 THEN 310
+ ScalarValue:N
+ NumericConstant:2
+ ScalarValue:N
+ NumericConstant:2
+ BinaryOperator:/
+ FunctionInt
+ BinaryOperator:*
+ BinaryOperator:-
+ NumericConstant:0
+ BinaryOperator:=
+260 LET W=-1
+ ScalarReference:W
+ NumericConstant:1
+ UnaryOperator:-
+ AssignmentOperator:=
+270 PRINT "I'LL ROLL FIRST..."
+ ITEMS
+ TextConstant:"I'LL ROLL FIRST..."
+ CarriageControl:NL
+280 PRINT
+ ITEMS
+ CarriageControl:NL
+290 PRINT
+ ITEMS
+ CarriageControl:NL
+300 GOTO 350
+ LineNumber:350
+310 LET W=1
+ ScalarReference:W
+ NumericConstant:1
+ AssignmentOperator:=
+320 PRINT "YOU ROLL FIRST..."
+ ITEMS
+ TextConstant:"YOU ROLL FIRST..."
+ CarriageControl:NL
+330 PRINT
+ ITEMS
+ CarriageControl:NL
+340 PRINT
+ ITEMS
+ CarriageControl:NL
+350 LET Q=0
+ ScalarReference:Q
+ NumericConstant:0
+ AssignmentOperator:=
+360 PRINT "HOW MUCH DO YOU WANT TO BET";
+ ITEMS
+ TextConstant:"HOW MUCH DO YOU WANT TO BET"
+ CarriageControl:;
+370 INPUT B
+ ScalarReference:B
+380 PRINT
+ ITEMS
+ CarriageControl:NL
+390 IF B=INT(B) THEN 430
+ ScalarValue:B
+ ScalarValue:B
+ FunctionInt
+ BinaryOperator:=
+400
+410 PRINT "NO COINS PERMITTED... JUST BILLS, PLEASE."
+ ITEMS
+ TextConstant:"NO COINS PERMITTED... JUST BILLS, PLEASE."
+ CarriageControl:NL
+420 GOTO 360
+ LineNumber:360
+430 IF B=0 THEN 1090
+ ScalarValue:B
+ NumericConstant:0
+ BinaryOperator:=
+440 IF B<Z+1 THEN 470
+ ScalarValue:B
+ ScalarValue:Z
+ NumericConstant:1
+ BinaryOperator:+
+ BinaryOperator:<
+450 PRINT "DON'T TRY MORE THAN YOU HAVE, PLEASE."
+ ITEMS
+ TextConstant:"DON'T TRY MORE THAN YOU HAVE, PLEASE."
+ CarriageControl:NL
+460 GOTO 360
+ LineNumber:360
+470 LET D1=INT(6*RND(0)+1)
+ ScalarReference:D1
+ NumericConstant:6
+ NumericConstant:0
+ FunctionRnd
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+480 LET D2=INT(6*RND(0)+1)
+ ScalarReference:D2
+ NumericConstant:6
+ NumericConstant:0
+ FunctionRnd
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+490 LET Q=Q+1
+ ScalarReference:Q
+ ScalarValue:Q
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+500 S=D1+D2
+ ScalarReference:S
+ ScalarValue:D1
+ ScalarValue:D2
+ BinaryOperator:+
+ AssignmentOperator:=
+510 IF W>0 THEN 540
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:>
+520 PRINT "  I ROLL  ";D1;"AND  ";D2;
+ ITEMS
+ TextConstant:"  I ROLL  "
+ CarriageControl:;
+ ScalarValue:D1
+ CarriageControl:;
+ TextConstant:"AND  "
+ CarriageControl:;
+ ScalarValue:D2
+ CarriageControl:;
+530 GOTO 550
+ LineNumber:550
+540 PRINT "YOU ROLL  ";D1;"AND  ";D2;
+ ITEMS
+ TextConstant:"YOU ROLL  "
+ CarriageControl:;
+ ScalarValue:D1
+ CarriageControl:;
+ TextConstant:"AND  "
+ CarriageControl:;
+ ScalarValue:D2
+ CarriageControl:;
+550 IF Q<>1 THEN 860
+ ScalarValue:Q
+ NumericConstant:1
+ BinaryOperator:<>
+560 IF (S-2)*(S-3)*(S-12)=0 THEN 640
+ ScalarValue:S
+ NumericConstant:2
+ BinaryOperator:-
+ ScalarValue:S
+ NumericConstant:3
+ BinaryOperator:-
+ BinaryOperator:*
+ ScalarValue:S
+ NumericConstant:12
+ BinaryOperator:-
+ BinaryOperator:*
+ NumericConstant:0
+ BinaryOperator:=
+570 IF (S-7)*(S-11)=0 THEN 710
+ ScalarValue:S
+ NumericConstant:7
+ BinaryOperator:-
+ ScalarValue:S
+ NumericConstant:11
+ BinaryOperator:-
+ BinaryOperator:*
+ NumericConstant:0
+ BinaryOperator:=
+580 IF W>0 THEN 610
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:>
+590 PRINT "SO MY POINT IS";S
+ ITEMS
+ TextConstant:"SO MY POINT IS"
+ CarriageControl:;
+ ScalarValue:S
+ CarriageControl:NL
+600 GOTO 620
+ LineNumber:620
+610 PRINT "SO YOUR POINT IS";S
+ ITEMS
+ TextConstant:"SO YOUR POINT IS"
+ CarriageControl:;
+ ScalarValue:S
+ CarriageControl:NL
+620 LET P=S
+ ScalarReference:P
+ ScalarValue:S
+ AssignmentOperator:=
+630 GOTO 470
+ LineNumber:470
+640 PRINT "AND CRAP OUT..."
+ ITEMS
+ TextConstant:"AND CRAP OUT..."
+ CarriageControl:NL
+650 LET C=1
+ ScalarReference:C
+ NumericConstant:1
+ AssignmentOperator:=
+660 IF W>0 THEN 690
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:>
+670 LET Z=Z+B
+ ScalarReference:Z
+ ScalarValue:Z
+ ScalarValue:B
+ BinaryOperator:+
+ AssignmentOperator:=
+680 GOTO 770
+ LineNumber:770
+690 LET Z=Z-B
+ ScalarReference:Z
+ ScalarValue:Z
+ ScalarValue:B
+ BinaryOperator:-
+ AssignmentOperator:=
+700 GOTO 770
+ LineNumber:770
+710 PRINT "AND PASS..."
+ ITEMS
+ TextConstant:"AND PASS..."
+ CarriageControl:NL
+720 LET C=1
+ ScalarReference:C
+ NumericConstant:1
+ AssignmentOperator:=
+730 IF W>0 THEN 760
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:>
+740 LET Z=Z-B
+ ScalarReference:Z
+ ScalarValue:Z
+ ScalarValue:B
+ BinaryOperator:-
+ AssignmentOperator:=
+750 GOTO 770
+ LineNumber:770
+760 LET Z=Z+B
+ ScalarReference:Z
+ ScalarValue:Z
+ ScalarValue:B
+ BinaryOperator:+
+ AssignmentOperator:=
+770 PRINT
+ ITEMS
+ CarriageControl:NL
+780 IF Z<1 THEN 1060
+ ScalarValue:Z
+ NumericConstant:1
+ BinaryOperator:<
+790 PRINT "YOU NOW HAVE";Z;"DOLLARS"
+ ITEMS
+ TextConstant:"YOU NOW HAVE"
+ CarriageControl:;
+ ScalarValue:Z
+ CarriageControl:;
+ TextConstant:"DOLLARS"
+ CarriageControl:NL
+800 IF C>0 THEN 830
+ ScalarValue:C
+ NumericConstant:0
+ BinaryOperator:>
+810 PRINT "CHANGE DICE NOW..."
+ ITEMS
+ TextConstant:"CHANGE DICE NOW..."
+ CarriageControl:NL
+820 PRINT
+ ITEMS
+ CarriageControl:NL
+830 LET W=W+C
+ ScalarReference:W
+ ScalarValue:W
+ ScalarValue:C
+ BinaryOperator:+
+ AssignmentOperator:=
+840 LET Q=0
+ ScalarReference:Q
+ NumericConstant:0
+ AssignmentOperator:=
+850 GOTO 360
+ LineNumber:360
+860 IF S<>7 THEN 940
+ ScalarValue:S
+ NumericConstant:7
+ BinaryOperator:<>
+870 PRINT "AND LOSE..."
+ ITEMS
+ TextConstant:"AND LOSE..."
+ CarriageControl:NL
+880 LET C=-1
+ ScalarReference:C
+ NumericConstant:1
+ UnaryOperator:-
+ AssignmentOperator:=
+890 IF W>0 THEN 920
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:>
+900 LET Z=Z+B
+ ScalarReference:Z
+ ScalarValue:Z
+ ScalarValue:B
+ BinaryOperator:+
+ AssignmentOperator:=
+910 GOTO 770
+ LineNumber:770
+920 LET Z=Z-B
+ ScalarReference:Z
+ ScalarValue:Z
+ ScalarValue:B
+ BinaryOperator:-
+ AssignmentOperator:=
+930 GOTO 770
+ LineNumber:770
+940 IF S=P THEN 970
+ ScalarValue:S
+ ScalarValue:P
+ BinaryOperator:=
+950 PRINT "   ROLL AGAIN."
+ ITEMS
+ TextConstant:"   ROLL AGAIN."
+ CarriageControl:NL
+960 GOTO 470
+ LineNumber:470
+970 IF W>0 THEN 1020
+ ScalarValue:W
+ NumericConstant:0
+ BinaryOperator:>
+980 PRINT "AND MAKE MY POINT"
+ ITEMS
+ TextConstant:"AND MAKE MY POINT"
+ CarriageControl:NL
+990 LET C=1
+ ScalarReference:C
+ NumericConstant:1
+ AssignmentOperator:=
+1000 LET Z=Z-B
+ ScalarReference:Z
+ ScalarValue:Z
+ ScalarValue:B
+ BinaryOperator:-
+ AssignmentOperator:=
+1010 GOTO 770
+ LineNumber:770
+1020 PRINT "AND MAKE YOUR POINT"
+ ITEMS
+ TextConstant:"AND MAKE YOUR POINT"
+ CarriageControl:NL
+1030 LET C=1
+ ScalarReference:C
+ NumericConstant:1
+ AssignmentOperator:=
+1040 LET Z=Z+B
+ ScalarReference:Z
+ ScalarValue:Z
+ ScalarValue:B
+ BinaryOperator:+
+ AssignmentOperator:=
+1050 GOTO 700
+ LineNumber:700
+1060 PRINT
+ ITEMS
+ CarriageControl:NL
+1070 PRINT "YOU HAVE RUN OUT OF MONEY... SORRY ABOUT THAT."
+ ITEMS
+ TextConstant:"YOU HAVE RUN OUT OF MONEY... SORRY ABOUT THAT."
+ CarriageControl:NL
+1080 GOTO 1110
+ LineNumber:1110
+1090 PRINT "THANKS FOR THE GAME... AND CONGRATULATIONS"
+ ITEMS
+ TextConstant:"THANKS FOR THE GAME... AND CONGRATULATIONS"
+ CarriageControl:NL
+1100 PRINT "FOR BEING ABLE TO QUIT WHILE YOU WERE AHEAD."
+ ITEMS
+ TextConstant:"FOR BEING ABLE TO QUIT WHILE YOU WERE AHEAD."
+ CarriageControl:NL
+1110 PRINT\PRINT\PRINT
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+1120 CHAIN$ "DEMOES"
+ Syntax error

@@ -1,0 +1,625 @@
+10 REM *** GAME OF HANGMAN BY DAVE AHL, DIGITAL
+ RemarkToken:*** GAME OF HANGMAN BY DAVE AHL, DIGITAL
+15 REM *** BASED ON A PROGRAM WRITTEN BY KEN AUPPERLE, CLASS OF '75
+ RemarkToken:*** BASED ON A PROGRAM WRITTEN BY KEN AUPPERLE, CLASS OF '75
+20 REM *** HALF HOLLOW HILLS H.S., DIX HILLS, NV
+ RemarkToken:*** HALF HOLLOW HILLS H.S., DIX HILLS, NV
+25 &"GAME OF HANGMAN":&:&
+ ITEMS
+ TextConstant:"GAME OF HANGMAN"
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+30 DIM P$(12, 12),L$(20),D$(20),N$(26),U(50)
+ NumericConstant:12
+ NumericConstant:12
+ CompoundDeclaration:P$
+ NumericConstant:20
+ CompoundDeclaration:L$
+ NumericConstant:20
+ CompoundDeclaration:D$
+ NumericConstant:26
+ CompoundDeclaration:N$
+ NumericConstant:50
+ CompoundDeclaration:U
+40 C=1:RANDOMIZE:N=50
+ ScalarReference:C
+ NumericConstant:1
+ AssignmentOperator:=
+ 
+ ScalarReference:N
+ NumericConstant:50
+ AssignmentOperator:=
+50 D$(I)="-" FOR I=1 TO 20:M=0
+ ScalarValue:I
+ ScalarReference:D$
+ TextConstant:"-"
+ AssignmentOperator:=
+ ScalarReference:M
+ NumericConstant:0
+ AssignmentOperator:=
+60 N$(I)="" FOR I=1 TO 26
+ ScalarValue:I
+ ScalarReference:N$
+ TextConstant:""
+ AssignmentOperator:=
+70 FOR I=1 TO 12:FOR J=1 TO 12:P$(I,J)=" ":NEXT J:NEXT I
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:12"]
+ step:    ["NumericConstant:1"]
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:12"]
+ step:    ["NumericConstant:1"]
+ ScalarValue:I
+ ScalarValue:J
+ ScalarReference:P$
+ TextConstant:" "
+ AssignmentOperator:=
+ VariableToken:J
+ VariableToken:I
+80 P$(I,1)="X" FOR I=1 TO 12
+ ScalarValue:I
+ NumericConstant:1
+ ScalarReference:P$
+ TextConstant:"X"
+ AssignmentOperator:=
+90 P$(1,I)="X" FOR I=1 TO 7:P$(2,7)="X"
+ NumericConstant:1
+ ScalarValue:I
+ ScalarReference:P$
+ TextConstant:"X"
+ AssignmentOperator:=
+ NumericConstant:2
+ NumericConstant:7
+ ScalarReference:P$
+ TextConstant:"X"
+ AssignmentOperator:=
+95 IF C<N THEN 100 ELSE PRINT "YOU DID ALL THE WORDS!!":STOP
+ ScalarValue:C
+ ScalarValue:N
+ BinaryOperator:<
+ ITEMS
+ TextConstant:"YOU DID ALL THE WORDS!!"
+ CarriageControl:NL
+ 
+100 Q=INT(N*RND+1)
+ ScalarReference:Q
+ ScalarValue:N
+ FunctionRnd
+ BinaryOperator:*
+ NumericConstant:1
+ BinaryOperator:+
+ FunctionInt
+ AssignmentOperator:=
+110 IF U(Q)=1 THEN 100 ELSE U(Q)=1:C=C+1:RESTORE:T1=0
+ ScalarValue:Q
+ ScalarValue:U
+ NumericConstant:1
+ BinaryOperator:=
+ ScalarValue:Q
+ ScalarReference:U
+ NumericConstant:1
+ AssignmentOperator:=
+ ScalarReference:C
+ ScalarValue:C
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+ 
+ ScalarReference:T1
+ NumericConstant:0
+ AssignmentOperator:=
+150 READ A$ FOR I=1 TO Q
+ ScalarReference:A$
+160 L=LEN(A$):L$(I)=MID(A$,I,I) FOR I=1 TO L
+ ScalarReference:L
+ ScalarValue:A$
+ FunctionLen
+ AssignmentOperator:=
+ ScalarValue:I
+ ScalarReference:L$
+ ScalarValue:A$
+ ScalarValue:I
+ ScalarValue:I
+ FunctionMid
+ AssignmentOperator:=
+170 &"HERE ARE THE LETTERS YOU USED."
+ ITEMS
+ TextConstant:"HERE ARE THE LETTERS YOU USED."
+ CarriageControl:NL
+190 PRINT ", ";:NEXT I
+ ITEMS
+ TextConstant:", "
+ CarriageControl:;
+ VariableToken:I
+200 &:&:FOR I=1 TO L:& D$(I);:NEXT I:&:&
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["ScalarValue:L"]
+ step:    ["NumericConstant:1"]
+ ITEMS
+ ScalarValue:I
+ ScalarValue:D$
+ CarriageControl:;
+ VariableToken:I
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+210 INPUT "WHAT IS YOUR GUESS";G$:R=0
+ ScalarReference:G$
+ ScalarReference:R
+ NumericConstant:0
+ AssignmentOperator:=
+220 FOR I=1 TO 26:IF N$(G)="" THEN 250
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:26"]
+ step:    ["NumericConstant:1"]
+ ScalarValue:G
+ ScalarValue:N$
+ TextConstant:""
+ BinaryOperator:=
+230 IF G$=N$(I) THEN & "YOU GUESSED THAT LETTER BEFORE":GOTO 170
+ ScalarValue:G$
+ ScalarValue:I
+ ScalarValue:N$
+ BinaryOperator:=
+ ITEMS
+ TextConstant:"YOU GUESSED THAT LETTER BEFORE"
+ CarriageControl:NL
+ LineNumber:170
+240 NEXT I:& "PROGRAM ERROR. RUN AGAIN.":STOP
+ VariableToken:I
+ ITEMS
+ TextConstant:"PROGRAM ERROR. RUN AGAIN."
+ CarriageControl:NL
+ 
+250 N$(I)=G$:T1=T1+1
+ ScalarValue:I
+ ScalarReference:N$
+ ScalarValue:G$
+ AssignmentOperator:=
+ ScalarReference:T1
+ ScalarValue:T1
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+260 FOR I=1 TO L:IF L$(I)=G$ THEN 280
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["ScalarValue:L"]
+ step:    ["NumericConstant:1"]
+ ScalarValue:I
+ ScalarValue:L$
+ ScalarValue:G$
+ BinaryOperator:=
+270 NEXT I:IF R=0 THEN 290 ELSE GOTO 300
+ VariableToken:I
+ ScalarValue:R
+ NumericConstant:0
+ BinaryOperator:=
+ LineNumber:300
+280 D$(I)=Q$:R=R+1:GOTO 270
+ ScalarValue:I
+ ScalarReference:D$
+ ScalarValue:Q$
+ AssignmentOperator:=
+ ScalarReference:R
+ ScalarValue:R
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+ LineNumber:270
+290 M=M+1:GOTO 400
+ ScalarReference:M
+ ScalarValue:M
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+ LineNumber:400
+300 FOR I=1 TO L:IF D$(I)="-" THEN 320
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["ScalarValue:L"]
+ step:    ["NumericConstant:1"]
+ ScalarValue:I
+ ScalarValue:D$
+ TextConstant:"-"
+ BinaryOperator:=
+310 NEXT I:GOTO 290
+ VariableToken:I
+ LineNumber:290
+320 &:FOR I=1 TO L:& D$(I):NEXT I:&:&
+ ITEMS
+ CarriageControl:NL
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["ScalarValue:L"]
+ step:    ["NumericConstant:1"]
+ ITEMS
+ ScalarValue:I
+ ScalarValue:D$
+ CarriageControl:NL
+ VariableToken:I
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+330 INPUT "WHAT IS YOUR GUESS FOR THE WORD"; B$
+ ScalarReference:B$
+340 IF B$=A$ THEN 360
+ ScalarValue:B$
+ ScalarValue:A$
+ BinaryOperator:=
+350 & "WRONG. TRY ANOTHER LETTER.":&:GOTO 170
+ ITEMS
+ TextConstant:"WRONG. TRY ANOTHER LETTER."
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ LineNumber:170
+360 &"RIGHT!! IT TOOK YOU"T1"GUESSES!"
+ ITEMS
+ TextConstant:"RIGHT!! IT TOOK YOU"
+ CarriageControl:
+ ScalarValue:T1
+ CarriageControl:
+ TextConstant:"GUESSES!"
+ CarriageControl:NL
+370 INPUT "WANT ANOTHER WORD"; W$:IF W$="YES" THEN 50
+ ScalarReference:W$
+ ScalarValue:W$
+ TextConstant:"YES"
+ BinaryOperator:=
+380 &: &"IT'S BEEN FUN! BYE FOR NOW.":STOP
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"IT'S BEEN FUN! BYE FOR NOW."
+ CarriageControl:NL
+ 
+390 & "YOU FOUND THE WORD!":GOTO 370
+ ITEMS
+ TextConstant:"YOU FOUND THE WORD!"
+ CarriageControl:NL
+ LineNumber:370
+400 &:&:&"SORRY, THAT LETTER ISN'T IN THE WORD."
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"SORRY, THAT LETTER ISN'T IN THE WORD."
+ CarriageControl:NL
+410 ON M GOTO 415, 420, 425, 430, 435, 440, 445, 450, 455, 460
+ ScalarValue:M
+ LineNumber:415
+ LineNumber:420
+ LineNumber:425
+ LineNumber:430
+ LineNumber:435
+ LineNumber:440
+ LineNumber:445
+ LineNumber:450
+ LineNumber:455
+ LineNumber:460
+415 &"FIRST, WE DRAW A HEAD":GOTO 470
+ ITEMS
+ TextConstant:"FIRST, WE DRAW A HEAD"
+ CarriageControl:NL
+ LineNumber:470
+420 &"NOW WE DRAW A BODY":GOTO 470
+ ITEMS
+ TextConstant:"NOW WE DRAW A BODY"
+ CarriageControl:NL
+ LineNumber:470
+425 &"NEXT WE DRAW AN ARM":GOTO 470
+ ITEMS
+ TextConstant:"NEXT WE DRAW AN ARM"
+ CarriageControl:NL
+ LineNumber:470
+430 &"THIS TIME IT'S THE OTHER ARM":GOTO 470
+ ITEMS
+ TextConstant:"THIS TIME IT'S THE OTHER ARM"
+ CarriageControl:NL
+ LineNumber:470
+435 &"NOW, LET'S DRAW THE RIGHT LEG":GOTO 470
+ ITEMS
+ TextConstant:"NOW, LET'S DRAW THE RIGHT LEG"
+ CarriageControl:NL
+ LineNumber:470
+440 &"THIS TIME WE DRAW THE LEFT LEG":GOTO 470
+ ITEMS
+ TextConstant:"THIS TIME WE DRAW THE LEFT LEG"
+ CarriageControl:NL
+ LineNumber:470
+445 &"NOW WE PUT UP A HAND ":GOTO 470
+ ITEMS
+ TextConstant:"NOW WE PUT UP A HAND "
+ CarriageControl:NL
+ LineNumber:470
+450 &"NEXT THE OTHER HAND":GOTO 470
+ ITEMS
+ TextConstant:"NEXT THE OTHER HAND"
+ CarriageControl:NL
+ LineNumber:470
+455 &"NOW WE DRAW ONE FOOT":GOTO 470
+ ITEMS
+ TextConstant:"NOW WE DRAW ONE FOOT"
+ CarriageControl:NL
+ LineNumber:470
+460 &"HERE'S THE OTHER FOOT  YOU'RE HUNG!!"
+ ITEMS
+ TextConstant:"HERE'S THE OTHER FOOT  YOU'RE HUNG!!"
+ CarriageControl:NL
+470 ON M GOTO 480,490,500,510,520,530,540,550,560,570
+ ScalarValue:M
+ LineNumber:480
+ LineNumber:490
+ LineNumber:500
+ LineNumber:510
+ LineNumber:520
+ LineNumber:530
+ LineNumber:540
+ LineNumber:550
+ LineNumber:560
+ LineNumber:570
+480 P$(2,6)="-":P$(2,7)="-":P$(2,8)="-":P$(4,5)="(":P$(4,6)=" "
+ NumericConstant:2
+ NumericConstant:6
+ ScalarReference:P$
+ TextConstant:"-"
+ AssignmentOperator:=
+ NumericConstant:2
+ NumericConstant:7
+ ScalarReference:P$
+ TextConstant:"-"
+ AssignmentOperator:=
+ NumericConstant:2
+ NumericConstant:8
+ ScalarReference:P$
+ TextConstant:"-"
+ AssignmentOperator:=
+ NumericConstant:4
+ NumericConstant:5
+ ScalarReference:P$
+ TextConstant:"("
+ AssignmentOperator:=
+ NumericConstant:4
+ NumericConstant:6
+ ScalarReference:P$
+ TextConstant:" "
+ AssignmentOperator:=
+481 P$(4,8)=".":P$(4,9)=")":P$(5,6)="-":P$(5,7)="-":P$(5,8)="-":GOTO 500
+ NumericConstant:4
+ NumericConstant:8
+ ScalarReference:P$
+ TextConstant:"."
+ AssignmentOperator:=
+ NumericConstant:4
+ NumericConstant:9
+ ScalarReference:P$
+ TextConstant:")"
+ AssignmentOperator:=
+ NumericConstant:5
+ NumericConstant:6
+ ScalarReference:P$
+ TextConstant:"-"
+ AssignmentOperator:=
+ NumericConstant:5
+ NumericConstant:7
+ ScalarReference:P$
+ TextConstant:"-"
+ AssignmentOperator:=
+ NumericConstant:5
+ NumericConstant:8
+ ScalarReference:P$
+ TextConstant:"-"
+ AssignmentOperator:=
+ LineNumber:500
+490 P$(I,7)="X" FOR I=6 TO 9:GOTO 580
+ ScalarValue:I
+ NumericConstant:7
+ ScalarReference:P$
+ TextConstant:"X"
+ AssignmentOperator:=
+ LineNumber:580
+500 P4(I,I-1)="\" FOR I = 4 TO 7:GOTO 580
+ ScalarValue:I
+ ScalarValue:I
+ NumericConstant:1
+ BinaryOperator:-
+ ScalarReference:P4
+ TextConstant:"\"
+ AssignmentOperator:=
+ LineNumber:580
+510 P$(4,11)="/":P$(5,10)="/":P$(6,9)="\":P$(7,8)="/":GOTO 580
+ NumericConstant:4
+ NumericConstant:11
+ ScalarReference:P$
+ TextConstant:"/"
+ AssignmentOperator:=
+ NumericConstant:5
+ NumericConstant:10
+ ScalarReference:P$
+ TextConstant:"/"
+ AssignmentOperator:=
+ NumericConstant:6
+ NumericConstant:9
+ ScalarReference:P$
+ TextConstant:"\"
+ AssignmentOperator:=
+ NumericConstant:7
+ NumericConstant:8
+ ScalarReference:P$
+ TextConstant:"/"
+ AssignmentOperator:=
+ LineNumber:580
+520 P$(10,6)="/":P$(11,5)="/":GOTO 580
+ NumericConstant:10
+ NumericConstant:6
+ ScalarReference:P$
+ TextConstant:"/"
+ AssignmentOperator:=
+ NumericConstant:11
+ NumericConstant:5
+ ScalarReference:P$
+ TextConstant:"/"
+ AssignmentOperator:=
+ LineNumber:580
+530 P$(10,8)="\":P$(11,9)="\":GOTO 580
+ NumericConstant:10
+ NumericConstant:8
+ ScalarReference:P$
+ TextConstant:"\"
+ AssignmentOperator:=
+ NumericConstant:11
+ NumericConstant:9
+ ScalarReference:P$
+ TextConstant:"\"
+ AssignmentOperator:=
+ LineNumber:580
+540 P$(3,11)="\":GOTO 580
+ NumericConstant:3
+ NumericConstant:11
+ ScalarReference:P$
+ TextConstant:"\"
+ AssignmentOperator:=
+ LineNumber:580
+550 P$(3,3)="/":GOTO 580
+ NumericConstant:3
+ NumericConstant:3
+ ScalarReference:P$
+ TextConstant:"/"
+ AssignmentOperator:=
+ LineNumber:580
+560 P$(12,10)="\":P$(12,11)="-":GOTO 580
+ NumericConstant:12
+ NumericConstant:10
+ ScalarReference:P$
+ TextConstant:"\"
+ AssignmentOperator:=
+ NumericConstant:12
+ NumericConstant:11
+ ScalarReference:P$
+ TextConstant:"-"
+ AssignmentOperator:=
+ LineNumber:580
+570 P$(12,3)="-":P$(12,4)="/"
+ NumericConstant:12
+ NumericConstant:3
+ ScalarReference:P$
+ TextConstant:"-"
+ AssignmentOperator:=
+ NumericConstant:12
+ NumericConstant:4
+ ScalarReference:P$
+ TextConstant:"/"
+ AssignmentOperator:=
+580 FOR I=1 TO 12:FOR J=1 TO 12:& P$(I,J):NEXT J
+ control: VariableToken:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:12"]
+ step:    ["NumericConstant:1"]
+ control: VariableToken:J
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:12"]
+ step:    ["NumericConstant:1"]
+ ITEMS
+ ScalarValue:I
+ ScalarValue:J
+ ScalarValue:P$
+ CarriageControl:NL
+ VariableToken:J
+590 &:NEXT I:&:&:IF M=10 THEN 600 ELSE 170
+ ITEMS
+ CarriageControl:NL
+ VariableToken:I
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ ScalarValue:M
+ NumericConstant:10
+ BinaryOperator:=
+600 &"SORRY, YOU LOSE. THE WORD WAS "A$
+ ITEMS
+ TextConstant:"SORRY, YOU LOSE. THE WORD WAS "
+ CarriageControl:
+ ScalarValue:A$
+ CarriageControl:NL
+610 &"YOU MISSED THAT ONE. DO YOU":GOTO 370
+ ITEMS
+ TextConstant:"YOU MISSED THAT ONE. DO YOU"
+ CarriageControl:NL
+ LineNumber:370
+700 DATA "GUM","SIN","FOR","CRY","LUG","BYE","FLY"
+ TextConstant:"GUM"
+ TextConstant:"SIN"
+ TextConstant:"FOR"
+ TextConstant:"CRY"
+ TextConstant:"LUG"
+ TextConstant:"BYE"
+ TextConstant:"FLY"
+710 DATA "UGLY","EACH","FROM","WORK","TALK","WITH","SELF"
+ TextConstant:"UGLY"
+ TextConstant:"EACH"
+ TextConstant:"FROM"
+ TextConstant:"WORK"
+ TextConstant:"TALK"
+ TextConstant:"WITH"
+ TextConstant:"SELF"
+720 DATA "PIZZA","THING","FEIGN","FIEND","ELBOW","FAULT","DIRTY"
+ TextConstant:"PIZZA"
+ TextConstant:"THING"
+ TextConstant:"FEIGN"
+ TextConstant:"FIEND"
+ TextConstant:"ELBOW"
+ TextConstant:"FAULT"
+ TextConstant:"DIRTY"
+730 DATA "BUDGET","SPIRIT","QUAINT","MAIDEN","ESCORT","PICKAX"
+ TextConstant:"BUDGET"
+ TextConstant:"SPIRIT"
+ TextConstant:"QUAINT"
+ TextConstant:"MAIDEN"
+ TextConstant:"ESCORT"
+ TextConstant:"PICKAX"
+740 DATA "EXAMPLE","TENSION","QUININE","KIDNEY","REPLICA","SLEEPER"
+ TextConstant:"EXAMPLE"
+ TextConstant:"TENSION"
+ TextConstant:"QUININE"
+ TextConstant:"KIDNEY"
+ TextConstant:"REPLICA"
+ TextConstant:"SLEEPER"
+750 DATA "TRIANGLE","KANGAROO","MAHOGANY","SERGEANT","SEQUENCE"
+ TextConstant:"TRIANGLE"
+ TextConstant:"KANGAROO"
+ TextConstant:"MAHOGANY"
+ TextConstant:"SERGEANT"
+ TextConstant:"SEQUENCE"
+760 DATA "MOUSTACHE","DANGEROUS","SCIENTIST","DIFFERENT","QUIESCENT"
+ TextConstant:"MOUSTACHE"
+ TextConstant:"DANGEROUS"
+ TextConstant:"SCIENTIST"
+ TextConstant:"DIFFERENT"
+ TextConstant:"QUIESCENT"
+770 DATA "MAGISTRATE","ERRONEOUSLY","LOUDSPEAKER","PHYTOTOXIC"
+ TextConstant:"MAGISTRATE"
+ TextConstant:"ERRONEOUSLY"
+ TextConstant:"LOUDSPEAKER"
+ TextConstant:"PHYTOTOXIC"
+780 DATA "MATRIMONIAL","PARASYMPATHOMIMETIC", "THIGMOTROPISM"
+ TextConstant:"MATRIMONIAL"
+ TextConstant:"PARASYMPATHOMIMETIC"
+ TextConstant:"THIGMOTROPISM"
+999 END
+ 

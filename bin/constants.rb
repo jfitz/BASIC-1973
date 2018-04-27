@@ -20,6 +20,10 @@ class AbstractElement
     @list = false
   end
 
+  def dump
+    self.class.to_s + ':' + 'Unimplemented'
+  end
+
   def operator?
     @operator
   end
@@ -191,6 +195,10 @@ class AbstractValueElement < AbstractElement
     @boolean_constant = false
     @scalar = true
     @value = nil
+  end
+
+  def dump
+    self.class.to_s + ':' + to_s
   end
 
   def numeric_constant?
@@ -993,8 +1001,8 @@ class CarriageControl
     end
   end
 
-  def dump_parsed
-    []
+  def dump
+    [self.class.to_s + ':' + @operator]
   end
 
   def variables
@@ -1065,6 +1073,10 @@ class VariableName < AbstractElement
     @name.hash
   end
 
+  def dump
+    @name.dump
+  end
+
   def compatible?(value)
     compatible = false
 
@@ -1102,6 +1114,10 @@ class Variable < AbstractElement
     @variable = true
     @operand = true
     @precedence = 7
+  end
+
+  def dump
+    self.class.to_s + ':' + @variable_name.to_s
   end
 
   def name
@@ -1178,6 +1194,14 @@ class List < AbstractElement
 
   def list
     @parsed_expressions
+  end
+
+  def dump
+    lines = []
+    @parsed_expressions.each do |expression|
+      expression.each { |exp| lines << exp.dump }
+    end
+    lines
   end
 
   def evaluate(interpreter, _, trace)

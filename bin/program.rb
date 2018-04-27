@@ -115,6 +115,15 @@ class Program
     end
   end
 
+  def parse(line_number_range)
+    if !@program_lines.empty?
+      line_numbers = line_number_range.line_numbers
+      parse_lines_errors(line_numbers)
+    else
+      @console_io.print_line('No program loaded')
+    end
+  end
+
   def pretty(line_number_range)
     if !@program_lines.empty?
       line_numbers = line_number_range.line_numbers
@@ -455,9 +464,12 @@ class Program
   def list_lines_errors(line_numbers, list_tokens)
     line_numbers.each do |line_number|
       line = @program_lines[line_number]
+
+      # print the line
       @console_io.print_line(line_number.to_s + line.list)
       statements = line.statements
 
+      # print the errors
       statements.each do |statement|
         statement.errors.each { |error| puts ' ' + error }
       end
@@ -470,15 +482,40 @@ class Program
     end
   end
 
+  def parse_lines_errors(line_numbers)
+    line_numbers.each do |line_number|
+      line = @program_lines[line_number]
+
+      # print the line
+      @console_io.print_line(line_number.to_s + line.list)
+      statements = line.statements
+
+      # print the errors
+      statements.each do |statement|
+        statement.errors.each { |error| @console_io.print_line(' ' + error) }
+      end
+
+      # print the line components
+      statements.each do |statement|
+        texts = statement.dump
+        texts.each { |text| @console_io.print_line(' ' + text) }
+      end
+    end
+  end
+
   def pretty_lines_errors(line_numbers)
     line_numbers.each do |line_number|
       line = @program_lines[line_number]
+
+      # print the line
       number = line_number.to_s
       pretty_lines = line.pretty(@pretty_multiline)
       pretty_lines.each do |pretty_line|
         @console_io.print_line(number + pretty_line)
         number = ' ' * number.size
       end
+
+      # print the errors
       statements = line.statements
       statements.each do |statement|
         statement.errors.each { |error| puts ' ' + error }
