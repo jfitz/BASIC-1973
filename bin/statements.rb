@@ -1578,8 +1578,92 @@ class IfStatement < AbstractStatement
   end
 end
 
+# common functions for INPUT statements
+class AbstractInputStatement < AbstractStatement
+  def dump
+    lines = []
+
+    unless @input_items.nil?
+      @input_items.each { |item| lines += item.dump }
+    end
+
+    lines
+  end
+
+  def variables
+    vars = []
+
+    vars += @file_tokens.variables unless @file_tokens.nil?
+
+    unless @input_items.nil?
+      @input_items.each { |item| vars += item.variables }
+    end
+
+    vars
+  end
+
+  private
+
+  include FileFunctions
+
+  def extract_prompt(print_items)
+    print_items = print_items.clone
+    prompt = nil
+
+    unless print_items.empty? ||
+           print_items[0].class.to_s == 'CarriageControl'
+      candidate_prompt_tokens = print_items[0]
+
+      if candidate_prompt_tokens.text_constant?
+        prompt = print_items.shift
+        print_items.shift if
+          print_items[0].class.to_s == 'CarriageControl'
+      end
+    end
+
+    [prompt, print_items]
+  end
+  
+  def tokens_to_expressions(tokens_lists)
+    print_items = []
+
+    tokens_lists.each do |tokens_list|
+      if tokens_list.class.to_s == 'Array'
+        add_expression(print_items, tokens_list)
+      end
+    end
+
+    print_items
+  end
+
+  def add_expression(print_items, tokens)
+    if tokens[0].operator? && tokens[0].to_s == '#'
+      print_items << ValueScalarExpression.new(tokens)
+    elsif tokens[0].text_constant?
+      print_items << ValueScalarExpression.new(tokens)
+    else
+      print_items << TargetExpression.new(tokens, ScalarReference)
+    end
+
+  rescue BASICExpressionError
+    line_text = tokens.map(&:to_s).join
+    @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
+  end
+
+  def zip(names, values)
+    raise(BASICRuntimeError, 'Too few items') if values.size < names.size
+
+    results = []
+    (0...names.size).each do |i|
+      results << { 'name' => names[i], 'value' => values[i] }
+    end
+
+    results
+  end
+end
+
 # INPUT
-class InputStatement < AbstractStatement
+class InputStatement < AbstractInputStatement
   def self.lead_keywords
     [
       [KeywordToken.new('INPUT')],
@@ -1607,16 +1691,6 @@ class InputStatement < AbstractStatement
     else
       @errors << 'Syntax error'
     end
-  end
-
-  def dump
-    lines = []
-
-    unless @input_items.nil?
-      @input_items.each { |item| lines += item.dump }
-    end
-
-    lines
   end
 
   def execute_core(interpreter)
@@ -1650,79 +1724,7 @@ class InputStatement < AbstractStatement
     end
   end
 
-  def variables
-    vars = []
-
-    vars += @file_tokens.variables unless @file_tokens.nil?
-
-    unless @input_items.nil?
-      @input_items.each { |item| vars += item.variables }
-    end
-
-    vars
-  end
-
   private
-
-  include FileFunctions
-
-  def extract_prompt(print_items)
-    print_items = print_items.clone
-    prompt = nil
-
-    unless print_items.empty? ||
-           print_items[0].class.to_s == 'CarriageControl'
-      candidate_prompt_tokens = print_items[0]
-
-      if candidate_prompt_tokens.text_constant?
-        prompt = print_items.shift
-        print_items.shift if
-          print_items[0].class.to_s == 'CarriageControl'
-      end
-    end
-
-    [prompt, print_items]
-  end
-  
-  def tokens_to_expressions(tokens_lists)
-    print_items = []
-
-    tokens_lists.each do |tokens_list|
-      if tokens_list.class.to_s == 'Array'
-        add_expression(print_items, tokens_list)
-      end
-    end
-
-    print_items
-  end
-
-  def add_expression(print_items, tokens)
-    if tokens[0].operator? && tokens[0].to_s == '#'
-      print_items << ValueScalarExpression.new(tokens)
-    elsif tokens[0].text_constant?
-      print_items << ValueScalarExpression.new(tokens)
-    else
-      print_items << TargetExpression.new(tokens, ScalarReference)
-    end
-
-  rescue BASICExpressionError
-    line_text = tokens.map(&:to_s).join
-    @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
-  end
-
-  def zip(names, values)
-    raise(BASICRuntimeError, 'Too few values') if values.size < names.size
-
-    results = []
-    (0...names.size).each do |i|
-      raise(BASICRuntimeError, names[i].to_s + ' is not assignable') unless
-        names[i].target?
-
-      results << { 'name' => names[i], 'value' => values[i] }
-    end
-
-    results
-  end
 
   def input_values(fhr, interpreter, prompt, count)
     values = []
@@ -1739,7 +1741,7 @@ class InputStatement < AbstractStatement
 end
 
 # INPUT$
-class InputCharStatement < AbstractStatement
+class InputCharStatement < AbstractInputStatement
   def self.lead_keywords
     [
       [KeywordToken.new('INPUT$')]
@@ -1766,16 +1768,6 @@ class InputCharStatement < AbstractStatement
     else
       @errors << 'Syntax error'
     end
-  end
-
-  def dump
-    lines = []
-
-    unless @input_items.nil?
-      @input_items.each { |item| lines += item.dump }
-    end
-
-    lines
   end
 
   def execute_core(interpreter)
@@ -1806,75 +1798,7 @@ class InputCharStatement < AbstractStatement
     end
   end
 
-  def variables
-    vars = []
-
-    vars += @file_tokens.variables unless @file_tokens.nil?
-
-    unless @input_items.nil?
-      @input_items.each { |item| vars += item.variables }
-    end
-
-    vars
-  end
-
   private
-
-  include FileFunctions
-
-  def extract_prompt(print_items)
-    print_items = print_items.clone
-    prompt = nil
-
-    unless print_items.empty? ||
-           print_items[0].class.to_s == 'CarriageControl'
-      candidate_prompt_tokens = print_items[0]
-
-      if candidate_prompt_tokens.text_constant?
-        prompt = print_items.shift
-        print_items.shift if
-          print_items[0].class.to_s == 'CarriageControl'
-      end
-    end
-
-    [prompt, print_items]
-  end
-  
-  def tokens_to_expressions(tokens_lists)
-    print_items = []
-
-    tokens_lists.each do |tokens_list|
-      if tokens_list.class.to_s == 'Array'
-        add_expression(print_items, tokens_list)
-      end
-    end
-
-    print_items
-  end
-
-  def add_expression(print_items, tokens)
-    if tokens[0].operator? && tokens[0].to_s == '#'
-      print_items << ValueScalarExpression.new(tokens)
-    elsif tokens[0].text_constant?
-      print_items << ValueScalarExpression.new(tokens)
-    else
-      print_items << TargetExpression.new(tokens, ScalarReference)
-    end
-  rescue BASICExpressionError
-    line_text = tokens.map(&:to_s).join
-    @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
-  end
-
-  def zip(names, values)
-    raise(BASICRuntimeError, 'Too few items') if values.size < names.size
-
-    results = []
-    (0...names.size).each do |i|
-      results << { 'name' => names[i], 'value' => values[i] }
-    end
-
-    results
-  end
 
   def input_values(fhr, interpreter, count)
     values = []
@@ -1961,7 +1885,7 @@ class LetLessStatement < AbstractLetStatement
 end
 
 # LINE INPUT
-class LineInputStatement < AbstractStatement
+class LineInputStatement < AbstractInputStatement
   def self.lead_keywords
     [
       [KeywordToken.new('LINE'), KeywordToken.new('INPUT')],
@@ -1993,12 +1917,6 @@ class LineInputStatement < AbstractStatement
     end
   end
 
-  def dump
-    lines = []
-    @input_items.each { |item| lines += item.dump }
-    lines
-  end
-
   def execute_core(interpreter) 
     fh = get_file_handle(interpreter, @file_tokens)
     fhr = interpreter.get_file_handler(fh, :read)
@@ -2027,76 +1945,7 @@ class LineInputStatement < AbstractStatement
     end
   end
 
-  def variables
-    vars = []
-
-    vars += @file_tokens.variables unless @file_tokens.nil?
-
-    unless @input_items.nil?
-      @input_items.each { |item| vars += item.variables }
-    end
-
-    vars
-  end
-
   private
-
-  include FileFunctions
-
-  def extract_prompt(print_items)
-    print_items = print_items.clone
-    prompt = nil
-
-    unless print_items.empty? ||
-           print_items[0].class.to_s == 'CarriageControl'
-      candidate_prompt_tokens = print_items[0]
-
-      if candidate_prompt_tokens.text_constant?
-        prompt = print_items.shift
-        print_items.shift if
-          print_items[0].class.to_s == 'CarriageControl'
-      end
-    end
-
-    [prompt, print_items]
-  end
-  
-  def tokens_to_expressions(tokens_lists)
-    print_items = []
-
-    tokens_lists.each do |tokens_list|
-      if tokens_list.class.to_s == 'Array'
-        add_expression(print_items, tokens_list)
-      end
-    end
-
-    print_items
-  end
-
-  def add_expression(print_items, tokens)
-    if tokens[0].operator? && tokens[0].to_s == '#'
-      print_items << ValueScalarExpression.new(tokens)
-    elsif tokens[0].text_constant?
-      print_items << ValueScalarExpression.new(tokens)
-    else
-      print_items << TargetExpression.new(tokens, ScalarReference)
-    end
-
-  rescue BASICExpressionError
-    line_text = tokens.map(&:to_s).join
-    @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
-  end
-
-  def zip(names, values)
-    raise(BASICRuntimeError, 'Too few items') if values.size < names.size
-
-    results = []
-    (0...names.size).each do |i|
-      results << { 'name' => names[i], 'value' => values[i] }
-    end
-
-    results
-  end
 
   def input_values(fhr, interpreter, prompt, count)
     values = []
