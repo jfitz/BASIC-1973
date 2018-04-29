@@ -12,7 +12,7 @@
  NumericConstant:20
  CompoundDeclaration:A
 140 REM *** N=NUMBER OF NUMBERS
- RemarkToken:*** N=NUMBER OF NUMBERS
+ Remark:*** N=NUMBER OF NUMBERS
 150 N = 9
  ScalarReference:N
  NumericConstant:9
@@ -26,7 +26,7 @@
 190 GOSUB 710
  LineNumber:710
 200 REM *** MAKE A RANDOM LIST A(1) TO A(N)
- RemarkToken:*** MAKE A RANDOM LIST A(1) TO A(N)
+ Remark:*** MAKE A RANDOM LIST A(1) TO A(N)
 210 A(1) = INT((N-1)*RND)+2
  NumericConstant:1
  ScalarReference:A
@@ -40,7 +40,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 220 FOR K=2 TO N
- control: VariableToken:K
+ control: VariableName:K
  start:   ["NumericConstant:2"]
  end:     ["ScalarValue:N"]
  step:    ["NumericConstant:1"]
@@ -55,7 +55,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 240 FOR J=1 TO K-1
- control: VariableToken:J
+ control: VariableName:J
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:K", "NumericConstant:1", "BinaryOperator:-"]
  step:    ["NumericConstant:1"]
@@ -66,10 +66,10 @@
  ScalarValue:A
  BinaryOperator:=
 260 NEXT J\NEXT K
- VariableToken:J
- VariableToken:K
+ VariableName:J
+ VariableName:K
 280 REM *** PRINT ORIGNIAL LIST AND START GAME
- RemarkToken:*** PRINT ORIGNIAL LIST AND START GAME
+ Remark:*** PRINT ORIGNIAL LIST AND START GAME
 290 PRINT\PRINT "HERE WE GO ... THE LIST IS:"
  ITEMS
  CarriageControl:NL
@@ -106,9 +106,9 @@
  BinaryOperator:+
  AssignmentOperator:=
 400 REM *** REVERSE R NUMBERS AND PRINT NEW LIST
- RemarkToken:*** REVERSE R NUMBERS AND PRINT NEW LIST
+ Remark:*** REVERSE R NUMBERS AND PRINT NEW LIST
 410 FOR K = 1 TO INT(R/2)
- control: VariableToken:K
+ control: VariableName:K
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:R", "NumericConstant:2", "BinaryOperator:/", "FunctionInt"]
  step:    ["NumericConstant:1"]
@@ -137,13 +137,13 @@
  ScalarValue:Z
  AssignmentOperator:=
 450 NEXT K
- VariableToken:K
+ VariableName:K
 460 GOSUB 610
  LineNumber:610
 470 REM *** CHECK FOR A WIN
- RemarkToken:*** CHECK FOR A WIN
+ Remark:*** CHECK FOR A WIN
 480 FOR K = 1 TO N
- control: VariableToken:K
+ control: VariableName:K
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:N"]
  step:    ["NumericConstant:1"]
@@ -153,7 +153,7 @@
  ScalarValue:K
  BinaryOperator:<>
 500 NEXT K
- VariableToken:K
+ VariableName:K
 510 PRINT "YOU WON IT IN"T"MOVES !!!"\PRINT
  ITEMS
  TextConstant:"YOU WON IT IN"
@@ -178,11 +178,11 @@
  CarriageControl:NL
  LineNumber:999
 600 REM *** SUBROUTINE TO PRINT LIST
- RemarkToken:*** SUBROUTINE TO PRINT LIST
+ Remark:*** SUBROUTINE TO PRINT LIST
 610 PRINT\FOR K=1 TO N\PRINT A(K);\NEXT K
  ITEMS
  CarriageControl:NL
- control: VariableToken:K
+ control: VariableName:K
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:N"]
  step:    ["NumericConstant:1"]
@@ -190,7 +190,7 @@
  ScalarValue:K
  ScalarValue:A
  CarriageControl:;
- VariableToken:K
+ VariableName:K
 650 PRINT\PRINT\RETURN
  ITEMS
  CarriageControl:NL
@@ -198,7 +198,7 @@
  CarriageControl:NL
  
 700 REM *** SUBROUTINE TO PRINT THE RULES
- RemarkToken:*** SUBROUTINE TO PRINT THE RULES
+ Remark:*** SUBROUTINE TO PRINT THE RULES
 710 PRINT\PRINT "THIS IS THE GAME OF 'REVERSE'. TO WIN, ALL YOU HAVE"
  ITEMS
  CarriageControl:NL

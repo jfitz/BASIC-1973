@@ -545,13 +545,12 @@ class RemarkStatement < AbstractStatement
   def initialize(keywords, tokens_lists)
     super
 
-    @rest = tokens_lists[0]
+    @rest = Remark.new(nil)
+    @rest = Remark.new(tokens_lists[0]) unless tokens_lists.empty?
   end
 
   def dump
-    lines = []
-    lines += @rest.map(&:dump) unless @rest.nil?
-    lines
+    [@rest.dump]
   end
 
   def execute_core(_) end
@@ -630,8 +629,9 @@ class ChangeStatement < AbstractStatement
 
   def dump
     lines = []
-    lines += @source.dump
-    lines += @target.dump
+    lines += @source.dump unless @source.nil?
+    lines += @target.dump unless @target.nil?
+    lines
   end
 
   def execute_core(interpreter)
@@ -808,7 +808,9 @@ class DefineFunctionStatement < AbstractStatement
   end
 
   def dump
-    @definition.dump
+    lines = []
+    lines += @definition.dump unless @definition.nil?
+    lines
   end
 
   def pre_execute(interpreter)
@@ -1609,7 +1611,11 @@ class InputStatement < AbstractStatement
 
   def dump
     lines = []
-    @input_items.each { |item| lines += item.dump }
+
+    unless @input_items.nil?
+      @input_items.each { |item| lines += item.dump }
+    end
+
     lines
   end
 
@@ -1648,8 +1654,9 @@ class InputStatement < AbstractStatement
     vars = []
 
     vars += @file_tokens.variables unless @file_tokens.nil?
-    @input_items.each do |item|
-      vars += item.variables
+
+    unless @input_items.nil?
+      @input_items.each { |item| vars += item.variables }
     end
 
     vars
@@ -1763,7 +1770,11 @@ class InputCharStatement < AbstractStatement
 
   def dump
     lines = []
-    @input_items.each { |item| lines += item.dump }
+
+    unless @input_items.nil?
+      @input_items.each { |item| lines += item.dump }
+    end
+
     lines
   end
 
@@ -1799,8 +1810,9 @@ class InputCharStatement < AbstractStatement
     vars = []
 
     vars += @file_tokens.variables unless @file_tokens.nil?
-    @input_items.each do |item|
-      vars += item.variables
+
+    unless @input_items.nil?
+      @input_items.each { |item| vars += item.variables }
     end
 
     vars
@@ -2019,8 +2031,9 @@ class LineInputStatement < AbstractStatement
     vars = []
 
     vars += @file_tokens.variables unless @file_tokens.nil?
-    @input_items.each do |item|
-      vars += item.variables
+
+    unless @input_items.nil?
+      @input_items.each { |item| vars += item.variables }
     end
 
     vars
@@ -2166,6 +2179,7 @@ class OnStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
+
     @destinations = nil
     @expression = nil
 
@@ -2283,8 +2297,6 @@ class OpenStatement < AbstractStatement
     template_output_as_file =
       [[1, '>='], 'FOR', 'OUTPUT', 'AS', 'FILE', [1, '>=']]
 
-    @filename_expression = []
-    @filenum_expression = []
     if check_template(tokens_lists, template_input_as) ||
        check_template(tokens_lists, template_input_as_file)
       @filename_expression = ValueScalarExpression.new(tokens_lists[0])
@@ -2302,8 +2314,8 @@ class OpenStatement < AbstractStatement
 
   def dump
     lines = []
-    lines += @filename_expression.dump
-    lines += @filenum_expression.dump
+    lines += @filename_expression.dump unless @filename_expression.nil?
+    lines += @filenum_expression.dump unless @filenum_expression.nil?
     lines
   end
 
@@ -2332,6 +2344,7 @@ end
 class AbstractPrintStatement < AbstractStatement
   def initialize(keywords, tokens_lists, final_carriage)
     super(keywords, tokens_lists)
+
     @final = final_carriage
   end
 
@@ -2344,7 +2357,9 @@ class AbstractPrintStatement < AbstractStatement
     end
 
     lines << 'ITEMS'
-    @print_items.each { |item| lines += item.dump }
+    unless @print_items.nil?
+      @print_items.each { |item| lines += item.dump }
+    end
 
     lines
   end
@@ -2353,8 +2368,9 @@ class AbstractPrintStatement < AbstractStatement
     vars = []
 
     vars += @file_tokens.variables unless @file_tokens.nil?
-    @print_items.each do |item|
-      vars += item.variables
+
+    unless @print_items.nil?
+      @print_items.each { |item| vars += item.variables }
     end
 
     vars
@@ -2593,7 +2609,11 @@ class AbstractReadStatement < AbstractStatement
 
   def dump
     lines = []
-    @read_items.each { |item| lines += item.dump }
+
+    unless @read_items.nil?
+      @read_items.each { |item| lines += item.dump }
+    end
+
     lines
   end
 
@@ -2601,8 +2621,9 @@ class AbstractReadStatement < AbstractStatement
     vars = []
 
     vars += @file_tokens.variables unless @file_tokens.nil?
-    @read_items.each do |item|
-      vars += item.variables
+
+    unless @read_items.nil?
+      @read_items.each { |item| vars += item.variables }
     end
 
     vars
@@ -2858,12 +2879,17 @@ end
 class AbstractWriteStatement < AbstractStatement
   def initialize(keywords, tokens_lists, final_carriage)
     super(keywords, tokens_lists)
+
     @final = final_carriage
   end
 
   def dump
     lines = []
-    @print_items.each { |item| lines += item.dump }
+
+    unless @print_items.nil?
+      @print_items.each { |item| lines += item.dump }
+    end
+
     lines
   end
 
@@ -2871,8 +2897,9 @@ class AbstractWriteStatement < AbstractStatement
     vars = []
 
     vars += @file_tokens.variables unless @file_tokens.nil?
-    @print_items.each do |item|
-      vars += item.variables
+
+    unless @print_items.nil?
+      @print_items.each { |item| vars += item.variables }
     end
 
     vars

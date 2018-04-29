@@ -22,3 +22,2092 @@
 7 OPEN "PRPRTY" AS FILE 1: DIM #1 ,Q$(40%)=25,L%(40),P(40%),R(40%)
  Syntax error
  Invalid statement: Value is not assignable (type UnaryOperator)
+ Unimplemented
+8 FOR I=1 TO 39:L%(I),H%(I)=0:NEXT I:FOR I=1 TO 8:U(I)=0:NEXT I
+ control: VariableName:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:39"]
+ step:    ["NumericConstant:1"]
+ ScalarValue:I
+ ScalarReference:L%
+ ScalarValue:I
+ ScalarReference:H%
+ NumericConstant:0
+ AssignmentOperator:=
+ VariableName:I
+ control: VariableName:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:8"]
+ step:    ["NumericConstant:1"]
+ ScalarValue:I
+ ScalarReference:U
+ NumericConstant:0
+ AssignmentOperator:=
+ VariableName:I
+9 DEF FNR=(H%(I(Z))*R(I(Z))*10%)
+ Invalid function specification
+10 OPEN "MESAJ" AS FILE 3: DIM #3,C$(10)=50%,Z$(10)=50%,M$(20)=50%
+ Syntax error
+ Invalid statement: Value is not assignable (type UnaryOperator)
+ Unimplemented
+15 & M$(1):& :& :& "**RULES**":& M$(2):& M$(3):& M$(4):& M$(5)
+ ITEMS
+ NumericConstant:1
+ ScalarValue:M$
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"**RULES**"
+ CarriageControl:NL
+ ITEMS
+ NumericConstant:2
+ ScalarValue:M$
+ CarriageControl:NL
+ ITEMS
+ NumericConstant:3
+ ScalarValue:M$
+ CarriageControl:NL
+ ITEMS
+ NumericConstant:4
+ ScalarValue:M$
+ CarriageControl:NL
+ ITEMS
+ NumericConstant:5
+ ScalarValue:M$
+ CarriageControl:NL
+30 INPUT"WHO IS PLAYER #1";N$(1): INPUT"WHO IS PLAYER #2";N$(2)
+ NumericConstant:1
+ ScalarReference:N$
+ NumericConstant:2
+ ScalarReference:N$
+100 PRINT: PRINT "**"N$(1)"'S TURN**********":           F=0
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"**"
+ CarriageControl:
+ NumericConstant:1
+ ScalarValue:N$
+ CarriageControl:
+ TextConstant:"'S TURN**********"
+ CarriageControl:NL
+ ScalarReference:F
+ NumericConstant:0
+ AssignmentOperator:=
+102 Z=1%: GOSUB 1000: GOSUB 2000
+ ScalarReference:Z
+ IntegerConstant:1
+ AssignmentOperator:=
+ LineNumber:1000
+ LineNumber:2000
+115 IF D=D1 THEN F=F+1: IF F<3 THEN PRINT M$(9): GOTO 102
+ ScalarValue:D
+ ScalarValue:D1
+ BinaryOperator:=
+ ScalarReference:F
+ ScalarValue:F
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:F
+ NumericConstant:3
+ BinaryOperator:<
+ ITEMS
+ NumericConstant:9
+ ScalarValue:M$
+ CarriageControl:NL
+ LineNumber:102
+117 IF F=3 THEN PRINT M$(10): I(Z)=10: M(Z)=M(Z)-50%
+ ScalarValue:F
+ NumericConstant:3
+ BinaryOperator:=
+ ITEMS
+ NumericConstant:10
+ ScalarValue:M$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:I
+ NumericConstant:10
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:50
+ BinaryOperator:-
+ AssignmentOperator:=
+200 PRINT: PRINT "**"N$(2)"'S TURN**********":           F=0
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"**"
+ CarriageControl:
+ NumericConstant:2
+ ScalarValue:N$
+ CarriageControl:
+ TextConstant:"'S TURN**********"
+ CarriageControl:NL
+ ScalarReference:F
+ NumericConstant:0
+ AssignmentOperator:=
+202 Z=2%: GOSUB 1000: GOSUB 2000
+ ScalarReference:Z
+ IntegerConstant:2
+ AssignmentOperator:=
+ LineNumber:1000
+ LineNumber:2000
+215 IF D=D1 THEN F=F+1: IF F<3 THEN PRINT M$(9): GOTO 202
+ ScalarValue:D
+ ScalarValue:D1
+ BinaryOperator:=
+ ScalarReference:F
+ ScalarValue:F
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:F
+ NumericConstant:3
+ BinaryOperator:<
+ ITEMS
+ NumericConstant:9
+ ScalarValue:M$
+ CarriageControl:NL
+ LineNumber:202
+217 IF F=3 THEN PRINT M$(10): I(Z)=10: M(Z)=M(Z)-50%
+ ScalarValue:F
+ NumericConstant:3
+ BinaryOperator:=
+ ITEMS
+ NumericConstant:10
+ ScalarValue:M$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:I
+ NumericConstant:10
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:50
+ BinaryOperator:-
+ AssignmentOperator:=
+225 PRINT M$(11);:INPUT F$: IF F$="QUIT" THEN 30000 ELSE 100
+ ITEMS
+ NumericConstant:11
+ ScalarValue:M$
+ CarriageControl:;
+ ScalarReference:F$
+ ScalarValue:F$
+ TextConstant:"QUIT"
+ BinaryOperator:=
+1000 PRINT M$(6);:INPUT F$: RANDOMIZE: X=RND(0): Y=RND(0) !DICE ROLL
+ ITEMS
+ NumericConstant:6
+ ScalarValue:M$
+ CarriageControl:;
+ ScalarReference:F$
+ 
+ ScalarReference:X
+ NumericConstant:0
+ FunctionRnd
+ AssignmentOperator:=
+ ScalarReference:Y
+ NumericConstant:0
+ FunctionRnd
+ AssignmentOperator:=
+1002 IF X>=0 AND X<=.16 THEN D=1
+ ScalarValue:X
+ NumericConstant:0
+ BinaryOperator:>=
+ ScalarValue:X
+ NumericConstant:0.16
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ScalarReference:D
+ NumericConstant:1
+ AssignmentOperator:=
+1003 IF X>.16 AND X<=.32 THEN D=2
+ ScalarValue:X
+ NumericConstant:0.16
+ BinaryOperator:>
+ ScalarValue:X
+ NumericConstant:0.32
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ScalarReference:D
+ NumericConstant:2
+ AssignmentOperator:=
+1004 IF X>.32 AND X<=.48 THEN D=3
+ ScalarValue:X
+ NumericConstant:0.32
+ BinaryOperator:>
+ ScalarValue:X
+ NumericConstant:0.48
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ScalarReference:D
+ NumericConstant:3
+ AssignmentOperator:=
+1005 IF X>.48 AND X<=.64 THEN D=4
+ ScalarValue:X
+ NumericConstant:0.48
+ BinaryOperator:>
+ ScalarValue:X
+ NumericConstant:0.64
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ScalarReference:D
+ NumericConstant:4
+ AssignmentOperator:=
+1006 IF X>.64 AND X<=.81 THEN D=5
+ ScalarValue:X
+ NumericConstant:0.64
+ BinaryOperator:>
+ ScalarValue:X
+ NumericConstant:0.81
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ScalarReference:D
+ NumericConstant:5
+ AssignmentOperator:=
+1007 IF X>.81 AND X<=1 THEN D=6
+ ScalarValue:X
+ NumericConstant:0.81
+ BinaryOperator:>
+ ScalarValue:X
+ NumericConstant:1
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ScalarReference:D
+ NumericConstant:6
+ AssignmentOperator:=
+1009 IF Y>=0 AND Y<=.16 THEN D1=1
+ ScalarValue:Y
+ NumericConstant:0
+ BinaryOperator:>=
+ ScalarValue:Y
+ NumericConstant:0.16
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ScalarReference:D1
+ NumericConstant:1
+ AssignmentOperator:=
+1010 IF Y>.16 AND Y<=.32 THEN D1=2
+ ScalarValue:Y
+ NumericConstant:0.16
+ BinaryOperator:>
+ ScalarValue:Y
+ NumericConstant:0.32
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ScalarReference:D1
+ NumericConstant:2
+ AssignmentOperator:=
+1011 IF Y>.32 AND Y<=.48 THEN D1=3
+ ScalarValue:Y
+ NumericConstant:0.32
+ BinaryOperator:>
+ ScalarValue:Y
+ NumericConstant:0.48
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ScalarReference:D1
+ NumericConstant:3
+ AssignmentOperator:=
+1012 IF Y>.48 AND Y<=.64 THEN D1=4
+ ScalarValue:Y
+ NumericConstant:0.48
+ BinaryOperator:>
+ ScalarValue:Y
+ NumericConstant:0.64
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ScalarReference:D1
+ NumericConstant:4
+ AssignmentOperator:=
+1013 IF Y>.64 AND Y<=.81 THEN D1=5
+ ScalarValue:Y
+ NumericConstant:0.64
+ BinaryOperator:>
+ ScalarValue:Y
+ NumericConstant:0.81
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ScalarReference:D1
+ NumericConstant:5
+ AssignmentOperator:=
+1014 IF Y>.81 AND Y<=1 THEN D1=6
+ ScalarValue:Y
+ NumericConstant:0.81
+ BinaryOperator:>
+ ScalarValue:Y
+ NumericConstant:1
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ScalarReference:D1
+ NumericConstant:6
+ AssignmentOperator:=
+1015 PRINT "YOU ROLLED A"D"AND A"D1:I(Z)=I(Z)+(D+D1)
+ ITEMS
+ TextConstant:"YOU ROLLED A"
+ CarriageControl:
+ ScalarValue:D
+ CarriageControl:
+ TextConstant:"AND A"
+ CarriageControl:
+ ScalarValue:D1
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:I
+ ScalarValue:Z
+ ScalarValue:I
+ ScalarValue:D
+ ScalarValue:D1
+ BinaryOperator:+
+ BinaryOperator:+
+ AssignmentOperator:=
+1016 IF I(Z)>40% THEN I(Z)=I(Z)-40%:M(Z)=M(Z)+200%
+ ScalarValue:Z
+ ScalarValue:I
+ IntegerConstant:40
+ BinaryOperator:>
+ ScalarValue:Z
+ ScalarReference:I
+ ScalarValue:Z
+ ScalarValue:I
+ IntegerConstant:40
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:200
+ BinaryOperator:+
+ AssignmentOperator:=
+1017 RETURN
+ 
+2000 PRINT"YOU ARE ON ";G$(I(Z)) !PLACEMENT
+ ITEMS
+ TextConstant:"YOU ARE ON "
+ CarriageControl:;
+ ScalarValue:Z
+ ScalarValue:I
+ ScalarValue:G$
+ CarriageControl:NL
+2002 IF I(Z)=2 OR I(Z)=17 OR I(Z)=33 THEN 4100       !COM CHEST
+ ScalarValue:Z
+ ScalarValue:I
+ NumericConstant:2
+ BinaryOperator:=
+ ScalarValue:Z
+ ScalarValue:I
+ NumericConstant:17
+ BinaryOperator:=
+ BinaryOperator:OR
+ ScalarValue:Z
+ ScalarValue:I
+ NumericConstant:33
+ BinaryOperator:=
+ BinaryOperator:OR
+2004 IF I(Z)=4 THEN M(Z)=M(Z)-200%:RETURN            !INC TAX
+ ScalarValue:Z
+ ScalarValue:I
+ NumericConstant:4
+ BinaryOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:200
+ BinaryOperator:-
+ AssignmentOperator:=
+ 
+2006 IF I(Z)=7 OR I(Z)=22 OR I(Z)=36 THEN 4400       !CHANCE
+ ScalarValue:Z
+ ScalarValue:I
+ NumericConstant:7
+ BinaryOperator:=
+ ScalarValue:Z
+ ScalarValue:I
+ NumericConstant:22
+ BinaryOperator:=
+ BinaryOperator:OR
+ ScalarValue:Z
+ ScalarValue:I
+ NumericConstant:36
+ BinaryOperator:=
+ BinaryOperator:OR
+2008 IF I(Z)=10 OR I(Z)=20 THEN RETURN               !VISIT IN JAIL & FREE PARKING
+ ScalarValue:Z
+ ScalarValue:I
+ NumericConstant:10
+ BinaryOperator:=
+ ScalarValue:Z
+ ScalarValue:I
+ NumericConstant:20
+ BinaryOperator:=
+ BinaryOperator:OR
+ 
+2010 IF I(Z)=30 THEN M(Z)=M(Z)-50%: I(Z)=10: RETURN  !JAIL
+ ScalarValue:Z
+ ScalarValue:I
+ NumericConstant:30
+ BinaryOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:50
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarReference:I
+ NumericConstant:10
+ AssignmentOperator:=
+ 
+2011 IF I(Z)=38 THEN M(Z)=M(Z)-75%: RETURN           !LUX TAX
+ ScalarValue:Z
+ ScalarValue:I
+ NumericConstant:38
+ BinaryOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:75
+ BinaryOperator:-
+ AssignmentOperator:=
+ 
+2012 IF I(Z)=40 THEN M(Z)=M(Z)+200%: I(Z)=01: RETURN !GO
+ ScalarValue:Z
+ ScalarValue:I
+ NumericConstant:40
+ BinaryOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:200
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarReference:I
+ NumericConstant:1
+ AssignmentOperator:=
+ 
+2018 IF L%(I(Z))=Z THEN PRINT M$(12): GOTO 3100
+ ScalarValue:Z
+ ScalarValue:I
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ ITEMS
+ NumericConstant:12
+ ScalarValue:M$
+ CarriageControl:NL
+ LineNumber:3100
+2019 IF (H%(I(Z))=0 AND L%(I(Z))>0 AND L%(I(Z))<>Z) THEN 2128
+ ScalarValue:Z
+ ScalarValue:I
+ ScalarValue:H%
+ NumericConstant:0
+ BinaryOperator:=
+ ScalarValue:Z
+ ScalarValue:I
+ ScalarValue:L%
+ NumericConstant:0
+ BinaryOperator:>
+ BinaryOperator:AND
+ ScalarValue:Z
+ ScalarValue:I
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:<>
+ BinaryOperator:AND
+2020 IF (H%(I(Z))>0 AND L%(I(Z))>0 AND L%(I(Z))<>Z) THEN 2100
+ ScalarValue:Z
+ ScalarValue:I
+ ScalarValue:H%
+ NumericConstant:0
+ BinaryOperator:>
+ ScalarValue:Z
+ ScalarValue:I
+ ScalarValue:L%
+ NumericConstant:0
+ BinaryOperator:>
+ BinaryOperator:AND
+ ScalarValue:Z
+ ScalarValue:I
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:<>
+ BinaryOperator:AND
+2022 PRINT M$(7);P(I(Z));"DOLLARS"
+ ITEMS
+ NumericConstant:7
+ ScalarValue:M$
+ CarriageControl:;
+ ScalarValue:Z
+ ScalarValue:I
+ ScalarValue:P
+ CarriageControl:;
+ TextConstant:"DOLLARS"
+ CarriageControl:NL
+2024 PRINT M$(8):INPUT F$: IF F$<>"BUY" THEN 3100
+ ITEMS
+ NumericConstant:8
+ ScalarValue:M$
+ CarriageControl:NL
+ ScalarReference:F$
+ ScalarValue:F$
+ TextConstant:"BUY"
+ BinaryOperator:<>
+2026M(Z)=M(Z)-P(I(Z)):PRINT "YOU NOW HAVE"M(Z) "DOLLARS
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:Z
+ ScalarValue:I
+ ScalarValue:P
+ BinaryOperator:-
+ AssignmentOperator:=
+ ITEMS
+ TextConstant:"YOU NOW HAVE"
+ CarriageControl:
+ ScalarValue:Z
+ ScalarValue:M
+ CarriageControl:
+ TextConstant:"DOLLARS"
+ CarriageControl:NL
+2027 L%(I(Z))=Z:GOTO 3100
+ ScalarValue:Z
+ ScalarValue:I
+ ScalarReference:L%
+ ScalarValue:Z
+ AssignmentOperator:=
+ LineNumber:3100
+2100 IF Z=1 THEN M(Z)=M(Z)-FNR: M(2)=M(2)+FNR
+ ScalarValue:Z
+ NumericConstant:1
+ BinaryOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ UserFunction
+ BinaryOperator:-
+ AssignmentOperator:=
+ NumericConstant:2
+ ScalarReference:M
+ NumericConstant:2
+ ScalarValue:M
+ UserFunction
+ BinaryOperator:+
+ AssignmentOperator:=
+2101 PRINT "YOU OWE"FNR"DOLLARS RENT":RETURN
+ ITEMS
+ TextConstant:"YOU OWE"
+ CarriageControl:
+ UserFunction
+ CarriageControl:
+ TextConstant:"DOLLARS RENT"
+ CarriageControl:NL
+ 
+2102 IF Z=2 THEN M(Z)=M(Z)-FNR: M(1)=M(1)+FNR
+ ScalarValue:Z
+ NumericConstant:2
+ BinaryOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ UserFunction
+ BinaryOperator:-
+ AssignmentOperator:=
+ NumericConstant:1
+ ScalarReference:M
+ NumericConstant:1
+ ScalarValue:M
+ UserFunction
+ BinaryOperator:+
+ AssignmentOperator:=
+2103 PRINT "YOU OWE"FNR"DOLLARS RENT":RETURN
+ ITEMS
+ TextConstant:"YOU OWE"
+ CarriageControl:
+ UserFunction
+ CarriageControl:
+ TextConstant:"DOLLARS RENT"
+ CarriageControl:NL
+ 
+2125 IF Z=1 THEN M(Z)=M(Z)-R(I(Z)):M(2)=M(2)+R(I(Z))
+ ScalarValue:Z
+ NumericConstant:1
+ BinaryOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:Z
+ ScalarValue:I
+ ScalarValue:R
+ BinaryOperator:-
+ AssignmentOperator:=
+ NumericConstant:2
+ ScalarReference:M
+ NumericConstant:2
+ ScalarValue:M
+ ScalarValue:Z
+ ScalarValue:I
+ ScalarValue:R
+ BinaryOperator:+
+ AssignmentOperator:=
+2126 PRINT "YOU OWE"R(I(Z))"DOLLARS RENT":RETURN
+ ITEMS
+ TextConstant:"YOU OWE"
+ CarriageControl:
+ ScalarValue:Z
+ ScalarValue:I
+ ScalarValue:R
+ CarriageControl:
+ TextConstant:"DOLLARS RENT"
+ CarriageControl:NL
+ 
+2127 IF Z=2 THEN M(Z)=M(Z)-R(I(Z)):M(1)=M(1)+R(I(Z))
+ ScalarValue:Z
+ NumericConstant:2
+ BinaryOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:Z
+ ScalarValue:I
+ ScalarValue:R
+ BinaryOperator:-
+ AssignmentOperator:=
+ NumericConstant:1
+ ScalarReference:M
+ NumericConstant:1
+ ScalarValue:M
+ ScalarValue:Z
+ ScalarValue:I
+ ScalarValue:R
+ BinaryOperator:+
+ AssignmentOperator:=
+2128 PRINT "YOU OWE"R(I(Z))"DOLLARS RENT":RETURN
+ ITEMS
+ TextConstant:"YOU OWE"
+ CarriageControl:
+ ScalarValue:Z
+ ScalarValue:I
+ ScalarValue:R
+ CarriageControl:
+ TextConstant:"DOLLARS RENT"
+ CarriageControl:NL
+ 
+3100 PRINT M$(13):PRINT M$(14):INPUT F$:IF F$="SELL" THEN GOSUB 3150
+ ITEMS
+ NumericConstant:13
+ ScalarValue:M$
+ CarriageControl:NL
+ ITEMS
+ NumericConstant:14
+ ScalarValue:M$
+ CarriageControl:NL
+ ScalarReference:F$
+ ScalarValue:F$
+ TextConstant:"SELL"
+ BinaryOperator:=
+ LineNumber:3150
+3105 PRINT M$(19):INPUT H$: IF H$="HOUSE" THEN 3200 ELSE RETURN
+ ITEMS
+ NumericConstant:19
+ ScalarValue:M$
+ CarriageControl:NL
+ ScalarReference:H$
+ ScalarValue:H$
+ TextConstant:"HOUSE"
+ BinaryOperator:=
+ 
+3150 PRINT M$(15):INPUT F$: IF F$="LIST" THEN GOSUB 3170
+ ITEMS
+ NumericConstant:15
+ ScalarValue:M$
+ CarriageControl:NL
+ ScalarReference:F$
+ ScalarValue:F$
+ TextConstant:"LIST"
+ BinaryOperator:=
+ LineNumber:3170
+3152 PRINT M$(17):INPUT V$: INPUT "HOW MUCH DO YOU WANT FOR IT";V
+ ITEMS
+ NumericConstant:17
+ ScalarValue:M$
+ CarriageControl:NL
+ ScalarReference:V$
+ ScalarReference:V
+3154 FOR I=1 TO 39
+ control: VariableName:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:39"]
+ step:    ["NumericConstant:1"]
+3156 IF V$=G$(I) THEN IF L%(I)=0 THEN PRINT M$(16): RETURN
+ ScalarValue:V$
+ ScalarValue:I
+ ScalarValue:G$
+ BinaryOperator:=
+ ScalarValue:I
+ ScalarValue:L%
+ NumericConstant:0
+ BinaryOperator:=
+ ITEMS
+ NumericConstant:16
+ ScalarValue:M$
+ CarriageControl:NL
+ 
+3158 IF V$=G$(I) THEN IF L%(I)=1 THEN M(1)=M(1)+V:M(2)=M(2)-V: L%(I)=2: GOTO 3165
+ ScalarValue:V$
+ ScalarValue:I
+ ScalarValue:G$
+ BinaryOperator:=
+ ScalarValue:I
+ ScalarValue:L%
+ NumericConstant:1
+ BinaryOperator:=
+ NumericConstant:1
+ ScalarReference:M
+ NumericConstant:1
+ ScalarValue:M
+ ScalarValue:V
+ BinaryOperator:+
+ AssignmentOperator:=
+ NumericConstant:2
+ ScalarReference:M
+ NumericConstant:2
+ ScalarValue:M
+ ScalarValue:V
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarValue:I
+ ScalarReference:L%
+ NumericConstant:2
+ AssignmentOperator:=
+ LineNumber:3165
+3160 IF V$=G$(I) THEN IF L%(I)=2 THEN M(2)=M(2)+V:M(1)=M(1)-V: L%(I)=1: GOTO 3165
+ ScalarValue:V$
+ ScalarValue:I
+ ScalarValue:G$
+ BinaryOperator:=
+ ScalarValue:I
+ ScalarValue:L%
+ NumericConstant:2
+ BinaryOperator:=
+ NumericConstant:2
+ ScalarReference:M
+ NumericConstant:2
+ ScalarValue:M
+ ScalarValue:V
+ BinaryOperator:+
+ AssignmentOperator:=
+ NumericConstant:1
+ ScalarReference:M
+ NumericConstant:1
+ ScalarValue:M
+ ScalarValue:V
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarValue:I
+ ScalarReference:L%
+ NumericConstant:1
+ AssignmentOperator:=
+ LineNumber:3165
+3162 NEXT I
+ VariableName:I
+3165 PRINT M$(18);:INPUT F$: IF F$="YES" THEN 3152 ELSE RETURN
+ ITEMS
+ NumericConstant:18
+ ScalarValue:M$
+ CarriageControl:;
+ ScalarReference:F$
+ ScalarValue:F$
+ TextConstant:"YES"
+ BinaryOperator:=
+ 
+3170 C,D=0: FOR I=1 TO 39
+ ScalarReference:C
+ ScalarReference:D
+ NumericConstant:0
+ AssignmentOperator:=
+ control: VariableName:I
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:39"]
+ step:    ["NumericConstant:1"]
+3172 IF L%(I)=1 THEN C=C+1: A$(C)=G$(I)
+ ScalarValue:I
+ ScalarValue:L%
+ NumericConstant:1
+ BinaryOperator:=
+ ScalarReference:C
+ ScalarValue:C
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:C
+ ScalarReference:A$
+ ScalarValue:I
+ ScalarValue:G$
+ AssignmentOperator:=
+3174 IF L%(I)=2 THEN D=D+1: B$(D)=G$(I)
+ ScalarValue:I
+ ScalarValue:L%
+ NumericConstant:2
+ BinaryOperator:=
+ ScalarReference:D
+ ScalarValue:D
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:D
+ ScalarReference:B$
+ ScalarValue:I
+ ScalarValue:G$
+ AssignmentOperator:=
+3175 NEXT I
+ VariableName:I
+3176 PRINT N$(1)"'S PROPERTY": FOR I=1 TO C:PRINT A$(I): NEXT I
+ ITEMS
+ NumericConstant:1
+ ScalarValue:N$
+ CarriageControl:
+ TextConstant:"'S PROPERTY"
+ CarriageControl:NL
+ control: VariableName:I
+ start:   ["NumericConstant:1"]
+ end:     ["ScalarValue:C"]
+ step:    ["NumericConstant:1"]
+ ITEMS
+ ScalarValue:I
+ ScalarValue:A$
+ CarriageControl:NL
+ VariableName:I
+3178 PRINT N$(2)"'S PROPERTY": FOR I=1 TO D:PRINT B$(I): NEXT I:RETURN
+ ITEMS
+ NumericConstant:2
+ ScalarValue:N$
+ CarriageControl:
+ TextConstant:"'S PROPERTY"
+ CarriageControl:NL
+ control: VariableName:I
+ start:   ["NumericConstant:1"]
+ end:     ["ScalarValue:D"]
+ step:    ["NumericConstant:1"]
+ ITEMS
+ ScalarValue:I
+ ScalarValue:B$
+ CarriageControl:NL
+ VariableName:I
+ 
+3200 IF L%(1)=Z AND L%(3)=Z THEN &"HOW MANY HOUSES AT $50 EACH DO YOU WANT ON":PRINT G$(1)" "G$(3);:INPUT U:GOSUB 3250
+ NumericConstant:1
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ NumericConstant:3
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ BinaryOperator:AND
+ ITEMS
+ TextConstant:"HOW MANY HOUSES AT $50 EACH DO YOU WANT ON"
+ CarriageControl:NL
+ ITEMS
+ NumericConstant:1
+ ScalarValue:G$
+ CarriageControl:
+ TextConstant:" "
+ CarriageControl:
+ NumericConstant:3
+ ScalarValue:G$
+ CarriageControl:;
+ ScalarReference:U
+ LineNumber:3250
+3202 IF L%(6)=Z AND L%(8)=Z AND L%(9)=Z THEN PRINT "HOW MANY HOUSES AT $50 EACH DO YOU WANT ON":PRINT G$(6)" "G$(8)" "G$(9);:INPUT U:GOSUB 3252
+ NumericConstant:6
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ NumericConstant:8
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ BinaryOperator:AND
+ NumericConstant:9
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ BinaryOperator:AND
+ ITEMS
+ TextConstant:"HOW MANY HOUSES AT $50 EACH DO YOU WANT ON"
+ CarriageControl:NL
+ ITEMS
+ NumericConstant:6
+ ScalarValue:G$
+ CarriageControl:
+ TextConstant:" "
+ CarriageControl:
+ NumericConstant:8
+ ScalarValue:G$
+ CarriageControl:
+ TextConstant:" "
+ CarriageControl:
+ NumericConstant:9
+ ScalarValue:G$
+ CarriageControl:;
+ ScalarReference:U
+ LineNumber:3252
+3204 IF L%(11)=Z AND L%(13)=Z AND L%(14)=Z THEN PRINT "HOW MANY HOUSES AT $100 EACH DO YOOU WANT ON":PRINT G$(11)" "G$(13)" "G$(14);:INPUT U:GOSUB 3254
+ NumericConstant:11
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ NumericConstant:13
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ BinaryOperator:AND
+ NumericConstant:14
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ BinaryOperator:AND
+ ITEMS
+ TextConstant:"HOW MANY HOUSES AT $100 EACH DO YOOU WANT ON"
+ CarriageControl:NL
+ ITEMS
+ NumericConstant:11
+ ScalarValue:G$
+ CarriageControl:
+ TextConstant:" "
+ CarriageControl:
+ NumericConstant:13
+ ScalarValue:G$
+ CarriageControl:
+ TextConstant:" "
+ CarriageControl:
+ NumericConstant:14
+ ScalarValue:G$
+ CarriageControl:;
+ ScalarReference:U
+ LineNumber:3254
+3206 IF L%(16)=Z AND L%(18)=Z AND L%(19)=Z THEN PRINT "HOW MANY HOUSES AT $100 EACH DO YOU WANT ON":PRINT G$(16)" "G$(18)" "G$(19);:INPUT U:GOSUB 3256
+ NumericConstant:16
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ NumericConstant:18
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ BinaryOperator:AND
+ NumericConstant:19
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ BinaryOperator:AND
+ ITEMS
+ TextConstant:"HOW MANY HOUSES AT $100 EACH DO YOU WANT ON"
+ CarriageControl:NL
+ ITEMS
+ NumericConstant:16
+ ScalarValue:G$
+ CarriageControl:
+ TextConstant:" "
+ CarriageControl:
+ NumericConstant:18
+ ScalarValue:G$
+ CarriageControl:
+ TextConstant:" "
+ CarriageControl:
+ NumericConstant:19
+ ScalarValue:G$
+ CarriageControl:;
+ ScalarReference:U
+ LineNumber:3256
+3208 IF L%(21)=Z AND L%(23)=Z AND L%(24)=Z THEN PRINT "HOW MANY HOUSES AT $150 EACH DO YOU WANT ON":PRINT G$(21)" "G$(23)" "G$(24);:INPUT U:GOSUB 3258
+ NumericConstant:21
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ NumericConstant:23
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ BinaryOperator:AND
+ NumericConstant:24
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ BinaryOperator:AND
+ ITEMS
+ TextConstant:"HOW MANY HOUSES AT $150 EACH DO YOU WANT ON"
+ CarriageControl:NL
+ ITEMS
+ NumericConstant:21
+ ScalarValue:G$
+ CarriageControl:
+ TextConstant:" "
+ CarriageControl:
+ NumericConstant:23
+ ScalarValue:G$
+ CarriageControl:
+ TextConstant:" "
+ CarriageControl:
+ NumericConstant:24
+ ScalarValue:G$
+ CarriageControl:;
+ ScalarReference:U
+ LineNumber:3258
+3210 IF L%(26)=Z AND L%(27)=Z AND L%(29)=Z THEN PRINT "HOW MANY HOUSES AT $150 EACH DO YOU WANT ON":PRINT G$(26)" "G$(27)" "G$(29);:INPUT U:GOSUB 3260
+ NumericConstant:26
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ NumericConstant:27
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ BinaryOperator:AND
+ NumericConstant:29
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ BinaryOperator:AND
+ ITEMS
+ TextConstant:"HOW MANY HOUSES AT $150 EACH DO YOU WANT ON"
+ CarriageControl:NL
+ ITEMS
+ NumericConstant:26
+ ScalarValue:G$
+ CarriageControl:
+ TextConstant:" "
+ CarriageControl:
+ NumericConstant:27
+ ScalarValue:G$
+ CarriageControl:
+ TextConstant:" "
+ CarriageControl:
+ NumericConstant:29
+ ScalarValue:G$
+ CarriageControl:;
+ ScalarReference:U
+ LineNumber:3260
+3212 IF L%(31)=Z AND L%(32)=Z AND L%(34)=Z THEN PRINT "HOW MANY HOUSES AT $200 EACH DO YOU WANT ON":PRINT G$(31)" "G$(32)" "G$(34);:INPUT U:GOSUB 3262
+ NumericConstant:31
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ NumericConstant:32
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ BinaryOperator:AND
+ NumericConstant:34
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ BinaryOperator:AND
+ ITEMS
+ TextConstant:"HOW MANY HOUSES AT $200 EACH DO YOU WANT ON"
+ CarriageControl:NL
+ ITEMS
+ NumericConstant:31
+ ScalarValue:G$
+ CarriageControl:
+ TextConstant:" "
+ CarriageControl:
+ NumericConstant:32
+ ScalarValue:G$
+ CarriageControl:
+ TextConstant:" "
+ CarriageControl:
+ NumericConstant:34
+ ScalarValue:G$
+ CarriageControl:;
+ ScalarReference:U
+ LineNumber:3262
+3214 IF L%(37)=Z AND L%(39)=Z THEN PRINT "HOW MANY HOUSES AT $200 EACH DO YOU WANT ON":PRINT G$(37)" "G$(39):INPUT U:GOSUB 3264
+ NumericConstant:37
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ NumericConstant:39
+ ScalarValue:L%
+ ScalarValue:Z
+ BinaryOperator:=
+ BinaryOperator:AND
+ ITEMS
+ TextConstant:"HOW MANY HOUSES AT $200 EACH DO YOU WANT ON"
+ CarriageControl:NL
+ ITEMS
+ NumericConstant:37
+ ScalarValue:G$
+ CarriageControl:
+ TextConstant:" "
+ CarriageControl:
+ NumericConstant:39
+ ScalarValue:G$
+ CarriageControl:NL
+ ScalarReference:U
+ LineNumber:3264
+3220 RETURN
+ 
+3250 U(1)=U(1)+U:M(Z)=M(Z)-(U*100%):IF M(Z)=0 THEN PRINT M$(20):M(Z)=M(Z)+(U*100%):U(1)=U:RETURN
+ NumericConstant:1
+ ScalarReference:U
+ NumericConstant:1
+ ScalarValue:U
+ ScalarValue:U
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:U
+ IntegerConstant:100
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarValue:M
+ NumericConstant:0
+ BinaryOperator:=
+ ITEMS
+ NumericConstant:20
+ ScalarValue:M$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:U
+ IntegerConstant:100
+ BinaryOperator:*
+ BinaryOperator:+
+ AssignmentOperator:=
+ NumericConstant:1
+ ScalarReference:U
+ ScalarValue:U
+ AssignmentOperator:=
+ 
+3251 H%(1),H%(3)=U(1): RETURN
+ NumericConstant:1
+ ScalarReference:H%
+ NumericConstant:3
+ ScalarReference:H%
+ NumericConstant:1
+ ScalarValue:U
+ AssignmentOperator:=
+ 
+3252 U(2)=U(2)+U: M(Z)=M(Z)-(U*150%): IF M(Z)<0 THEN PRINT M$(20):M(Z)=M(Z)+(U*150%): U(2)=U(2)-U: RETURN
+ NumericConstant:2
+ ScalarReference:U
+ NumericConstant:2
+ ScalarValue:U
+ ScalarValue:U
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:U
+ IntegerConstant:150
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarValue:M
+ NumericConstant:0
+ BinaryOperator:<
+ ITEMS
+ NumericConstant:20
+ ScalarValue:M$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:U
+ IntegerConstant:150
+ BinaryOperator:*
+ BinaryOperator:+
+ AssignmentOperator:=
+ NumericConstant:2
+ ScalarReference:U
+ NumericConstant:2
+ ScalarValue:U
+ ScalarValue:U
+ BinaryOperator:-
+ AssignmentOperator:=
+ 
+3253 H%(6),H%(8),H%(9)=U(2): RETURN
+ NumericConstant:6
+ ScalarReference:H%
+ NumericConstant:8
+ ScalarReference:H%
+ NumericConstant:9
+ ScalarReference:H%
+ NumericConstant:2
+ ScalarValue:U
+ AssignmentOperator:=
+ 
+3254 U(3)=U(3)+U: M(Z)=M(Z)-(U*150%): IF M(Z)<0 THEN PRINT M$(20):M(Z)=M(Z)+(U*150%): U(3)=U(3)-U: RETURN 
+ NumericConstant:3
+ ScalarReference:U
+ NumericConstant:3
+ ScalarValue:U
+ ScalarValue:U
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:U
+ IntegerConstant:150
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarValue:M
+ NumericConstant:0
+ BinaryOperator:<
+ ITEMS
+ NumericConstant:20
+ ScalarValue:M$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:U
+ IntegerConstant:150
+ BinaryOperator:*
+ BinaryOperator:+
+ AssignmentOperator:=
+ NumericConstant:3
+ ScalarReference:U
+ NumericConstant:3
+ ScalarValue:U
+ ScalarValue:U
+ BinaryOperator:-
+ AssignmentOperator:=
+ 
+3255 H%(11),H%(13),H%(14)=U(3): RETURN
+ NumericConstant:11
+ ScalarReference:H%
+ NumericConstant:13
+ ScalarReference:H%
+ NumericConstant:14
+ ScalarReference:H%
+ NumericConstant:3
+ ScalarValue:U
+ AssignmentOperator:=
+ 
+3256 U(4)=U(4)+U: M(Z)=M(Z)-(U*300%): IF M(Z)<0 THEN PRINT M$(20):M(Z)=M(Z)+(U*300%): U(4)=U(4)-U: RETURN
+ NumericConstant:4
+ ScalarReference:U
+ NumericConstant:4
+ ScalarValue:U
+ ScalarValue:U
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:U
+ IntegerConstant:300
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarValue:M
+ NumericConstant:0
+ BinaryOperator:<
+ ITEMS
+ NumericConstant:20
+ ScalarValue:M$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:U
+ IntegerConstant:300
+ BinaryOperator:*
+ BinaryOperator:+
+ AssignmentOperator:=
+ NumericConstant:4
+ ScalarReference:U
+ NumericConstant:4
+ ScalarValue:U
+ ScalarValue:U
+ BinaryOperator:-
+ AssignmentOperator:=
+ 
+3257 H%(16),H%(18),HX(19)=U(4): RETURN
+ NumericConstant:16
+ ScalarReference:H%
+ NumericConstant:18
+ ScalarReference:H%
+ ScalarValue:H
+ NumericConstant:19
+ ScalarReference:X
+ NumericConstant:4
+ ScalarValue:U
+ AssignmentOperator:=
+ 
+3258 U(6)=U(5)+U: M(Z)=M(Z)-(U*450%): IF M(Z)<0 THEN PRINT M$(20):M(Z)=M(Z)+(U*450%): U(5)=U(5)-U: RETURN
+ NumericConstant:6
+ ScalarReference:U
+ NumericConstant:5
+ ScalarValue:U
+ ScalarValue:U
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:U
+ IntegerConstant:450
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarValue:M
+ NumericConstant:0
+ BinaryOperator:<
+ ITEMS
+ NumericConstant:20
+ ScalarValue:M$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:U
+ IntegerConstant:450
+ BinaryOperator:*
+ BinaryOperator:+
+ AssignmentOperator:=
+ NumericConstant:5
+ ScalarReference:U
+ NumericConstant:5
+ ScalarValue:U
+ ScalarValue:U
+ BinaryOperator:-
+ AssignmentOperator:=
+ 
+3259 H%(21),H%(23),HX(24)=U(5): RETURN
+ NumericConstant:21
+ ScalarReference:H%
+ NumericConstant:23
+ ScalarReference:H%
+ ScalarValue:H
+ NumericConstant:24
+ ScalarReference:X
+ NumericConstant:5
+ ScalarValue:U
+ AssignmentOperator:=
+ 
+3260 U(6)=U(6)+U: M(Z)=M(Z)-(U*450%): IF M(Z)<0 THEN PRINT M$(20):M(Z)=M(Z)+(U*450%): U(6)=U(6)-U: RETURN
+ NumericConstant:6
+ ScalarReference:U
+ NumericConstant:6
+ ScalarValue:U
+ ScalarValue:U
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:U
+ IntegerConstant:450
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarValue:M
+ NumericConstant:0
+ BinaryOperator:<
+ ITEMS
+ NumericConstant:20
+ ScalarValue:M$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:U
+ IntegerConstant:450
+ BinaryOperator:*
+ BinaryOperator:+
+ AssignmentOperator:=
+ NumericConstant:6
+ ScalarReference:U
+ NumericConstant:6
+ ScalarValue:U
+ ScalarValue:U
+ BinaryOperator:-
+ AssignmentOperator:=
+ 
+3261 H%(26),H%(27),H%(29)=U(6): RETURN
+ NumericConstant:26
+ ScalarReference:H%
+ NumericConstant:27
+ ScalarReference:H%
+ NumericConstant:29
+ ScalarReference:H%
+ NumericConstant:6
+ ScalarValue:U
+ AssignmentOperator:=
+ 
+3262 U(7)=U(7)+U: M(Z)=M(Z)-(U*600%): IF M(Z)<0 THEN PRINT M$(20):M(Z)=M(Z)+(U*600%): U(7)=U(7)-U: RETURN
+ NumericConstant:7
+ ScalarReference:U
+ NumericConstant:7
+ ScalarValue:U
+ ScalarValue:U
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:U
+ IntegerConstant:600
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarValue:M
+ NumericConstant:0
+ BinaryOperator:<
+ ITEMS
+ NumericConstant:20
+ ScalarValue:M$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:U
+ IntegerConstant:600
+ BinaryOperator:*
+ BinaryOperator:+
+ AssignmentOperator:=
+ NumericConstant:7
+ ScalarReference:U
+ NumericConstant:7
+ ScalarValue:U
+ ScalarValue:U
+ BinaryOperator:-
+ AssignmentOperator:=
+ 
+3263 H%(31),H%(32),H%(34)=U(7): RETURN
+ NumericConstant:31
+ ScalarReference:H%
+ NumericConstant:32
+ ScalarReference:H%
+ NumericConstant:34
+ ScalarReference:H%
+ NumericConstant:7
+ ScalarValue:U
+ AssignmentOperator:=
+ 
+3264 U(8)=U(8)+U: M(Z)=M(Z)-(U*400%): IF M(Z)<0 THEN PRINT M$(20):M(Z)=M(Z)+(U*400%): U(8)=U(8)-U: RETURN
+ NumericConstant:8
+ ScalarReference:U
+ NumericConstant:8
+ ScalarValue:U
+ ScalarValue:U
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:U
+ IntegerConstant:400
+ BinaryOperator:*
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarValue:M
+ NumericConstant:0
+ BinaryOperator:<
+ ITEMS
+ NumericConstant:20
+ ScalarValue:M$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ ScalarValue:U
+ IntegerConstant:400
+ BinaryOperator:*
+ BinaryOperator:+
+ AssignmentOperator:=
+ NumericConstant:8
+ ScalarReference:U
+ NumericConstant:8
+ ScalarValue:U
+ ScalarValue:U
+ BinaryOperator:-
+ AssignmentOperator:=
+ 
+3265 H%(37),H%(39)=U(8): RETURN
+ NumericConstant:37
+ ScalarReference:H%
+ NumericConstant:39
+ ScalarReference:H%
+ NumericConstant:8
+ ScalarValue:U
+ AssignmentOperator:=
+ 
+4100 RANDOMIZE: L=RND(0) !COMMUNITY CHEST
+ 
+ ScalarReference:L
+ NumericConstant:0
+ FunctionRnd
+ AssignmentOperator:=
+4102 IF L>=0 AND L<=.1 THEN PRINT Z$(1): M(Z)=M(Z)+100%: RETURN
+ ScalarValue:L
+ NumericConstant:0
+ BinaryOperator:>=
+ ScalarValue:L
+ NumericConstant:0.1
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:1
+ ScalarValue:Z$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:100
+ BinaryOperator:+
+ AssignmentOperator:=
+ 
+4104 IF L>.1 AND L<=.2 THEN PRINT Z$(2): M(Z)=M(Z)+100%: RETURN
+ ScalarValue:L
+ NumericConstant:0.1
+ BinaryOperator:>
+ ScalarValue:L
+ NumericConstant:0.2
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:2
+ ScalarValue:Z$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:100
+ BinaryOperator:+
+ AssignmentOperator:=
+ 
+4106 IF L>.2 AND L<=.3 THEN PRINT Z$(3): M(Z)=M(Z)+20%: RETURN
+ ScalarValue:L
+ NumericConstant:0.2
+ BinaryOperator:>
+ ScalarValue:L
+ NumericConstant:0.3
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:3
+ ScalarValue:Z$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:20
+ BinaryOperator:+
+ AssignmentOperator:=
+ 
+4108 IF L>.3 AND L<=.4 THEN PRINT Z$(4): M(Z)=M(Z)-50%: RETURN
+ ScalarValue:L
+ NumericConstant:0.3
+ BinaryOperator:>
+ ScalarValue:L
+ NumericConstant:0.4
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:4
+ ScalarValue:Z$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:50
+ BinaryOperator:-
+ AssignmentOperator:=
+ 
+4110 IF L>.4 AND L<=.5 THEN PRINT Z$(5): M(Z)=M(Z)+100%: RETURN
+ ScalarValue:L
+ NumericConstant:0.4
+ BinaryOperator:>
+ ScalarValue:L
+ NumericConstant:0.5
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:5
+ ScalarValue:Z$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:100
+ BinaryOperator:+
+ AssignmentOperator:=
+ 
+4112 IF L>.5 AND L<=.6 THEN PRINT Z$(6): M(Z)=M(Z)+200%: I(Z)=0: RETURN
+ ScalarValue:L
+ NumericConstant:0.5
+ BinaryOperator:>
+ ScalarValue:L
+ NumericConstant:0.6
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:6
+ ScalarValue:Z$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:200
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarReference:I
+ NumericConstant:0
+ AssignmentOperator:=
+ 
+4114 IF L>.6 AND L<=.7 THEN PRINT Z$(7): M(Z)=M(Z)-100%: RETURN
+ ScalarValue:L
+ NumericConstant:0.6
+ BinaryOperator:>
+ ScalarValue:L
+ NumericConstant:0.7
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:7
+ ScalarValue:Z$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:100
+ BinaryOperator:-
+ AssignmentOperator:=
+ 
+4116 IF L>.7 AND L<=.8 THEN PRINT Z$(8): M(Z)=M(Z)-50%: I(Z)=10: RETURN
+ ScalarValue:L
+ NumericConstant:0.7
+ BinaryOperator:>
+ ScalarValue:L
+ NumericConstant:0.8
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:8
+ ScalarValue:Z$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:50
+ BinaryOperator:-
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarReference:I
+ NumericConstant:10
+ AssignmentOperator:=
+ 
+4118 IF L>.8 AND L<=.9 THEN PRINT Z$(9): M(Z)=M(Z)-50%: RETURN
+ ScalarValue:L
+ NumericConstant:0.8
+ BinaryOperator:>
+ ScalarValue:L
+ NumericConstant:0.9
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:9
+ ScalarValue:Z$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:50
+ BinaryOperator:-
+ AssignmentOperator:=
+ 
+4120 IF L>,9 AND L<=1 THEN PRINT Z$(10): M(Z)=M(Z)+200%: RETURN
+ ScalarValue:L
+ BinaryOperator:>
+ NumericConstant:9
+ ScalarValue:L
+ NumericConstant:1
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:10
+ ScalarValue:Z$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:200
+ BinaryOperator:+
+ AssignmentOperator:=
+ 
+4400 RANDOMIZE: L=RND(0) !CHANCE
+ 
+ ScalarReference:L
+ NumericConstant:0
+ FunctionRnd
+ AssignmentOperator:=
+4402 IF L>=0 AND L<=.1 THEN PRINT C$(1): M(Z)=M(Z)-15%: RETURN
+ ScalarValue:L
+ NumericConstant:0
+ BinaryOperator:>=
+ ScalarValue:L
+ NumericConstant:0.1
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:1
+ ScalarValue:C$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:15
+ BinaryOperator:-
+ AssignmentOperator:=
+ 
+4404 IF L>.1 AND L<=.2 THEN PRINT C$(2): I(Z)=24: GOSUB 2000: RETURN
+ ScalarValue:L
+ NumericConstant:0.1
+ BinaryOperator:>
+ ScalarValue:L
+ NumericConstant:0.2
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:2
+ ScalarValue:C$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:I
+ NumericConstant:24
+ AssignmentOperator:=
+ LineNumber:2000
+ 
+4406 IF L>.2 AND L<=.3 THEN PRINT C$(3): I(Z)=I(Z)+3: GOSUB 2000: RETURN
+ ScalarValue:L
+ NumericConstant:0.2
+ BinaryOperator:>
+ ScalarValue:L
+ NumericConstant:0.3
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:3
+ ScalarValue:C$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:I
+ ScalarValue:Z
+ ScalarValue:I
+ NumericConstant:3
+ BinaryOperator:+
+ AssignmentOperator:=
+ LineNumber:2000
+ 
+4408 IF L>.3 AND L<=.4 THEN PRINT C$(4): I(Z)=0: M(Z)=M(Z)+200%: RETURN
+ ScalarValue:L
+ NumericConstant:0.3
+ BinaryOperator:>
+ ScalarValue:L
+ NumericConstant:0.4
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:4
+ ScalarValue:C$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:I
+ NumericConstant:0
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:200
+ BinaryOperator:+
+ AssignmentOperator:=
+ 
+4410 IF L>.4 AND L<=.5 THEN PRINT C$(S): M(Z)=M(Z)+50%: RETURN
+ ScalarValue:L
+ NumericConstant:0.4
+ BinaryOperator:>
+ ScalarValue:L
+ NumericConstant:0.5
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ ScalarValue:S
+ ScalarValue:C$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:50
+ BinaryOperator:+
+ AssignmentOperator:=
+ 
+4412 IF L>.5 AND L<=.6 THEN PRINT C$(6): I(Z)=5: M(Z)=M(Z)+200%: GOSUB 2000: RETURN
+ ScalarValue:L
+ NumericConstant:0.5
+ BinaryOperator:>
+ ScalarValue:L
+ NumericConstant:0.6
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:6
+ ScalarValue:C$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:I
+ NumericConstant:5
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:200
+ BinaryOperator:+
+ AssignmentOperator:=
+ LineNumber:2000
+ 
+4414 IF L>.6 AND L<=.7 THEN PRINT C$(7): I(Z)=10: M(Z)=M(Z)-50%: RETURN
+ ScalarValue:L
+ NumericConstant:0.6
+ BinaryOperator:>
+ ScalarValue:L
+ NumericConstant:0.7
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:7
+ ScalarValue:C$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:I
+ NumericConstant:10
+ AssignmentOperator:=
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:50
+ BinaryOperator:-
+ AssignmentOperator:=
+ 
+4416 IF L>.7 AND L<=.8 THEN PRINT C$(8): M(Z)=M(Z)+150%: RETURN
+ ScalarValue:L
+ NumericConstant:0.7
+ BinaryOperator:>
+ ScalarValue:L
+ NumericConstant:0.8
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:8
+ ScalarValue:C$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:M
+ ScalarValue:Z
+ ScalarValue:M
+ IntegerConstant:150
+ BinaryOperator:+
+ AssignmentOperator:=
+ 
+4418 IF L>.8 AND L<=.9 THEN PRINT C$(9): I(Z)=39: GOSUB 2000: RETURN
+ ScalarValue:L
+ NumericConstant:0.8
+ BinaryOperator:>
+ ScalarValue:L
+ NumericConstant:0.9
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:9
+ ScalarValue:C$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:I
+ NumericConstant:39
+ AssignmentOperator:=
+ LineNumber:2000
+ 
+4420 IF L>.9 AND L<=1 THEN PRINT C$(10): I(Z)=11: GOSUB 2000: RETURN
+ ScalarValue:L
+ NumericConstant:0.9
+ BinaryOperator:>
+ ScalarValue:L
+ NumericConstant:1
+ BinaryOperator:<=
+ BinaryOperator:AND
+ ITEMS
+ NumericConstant:10
+ ScalarValue:C$
+ CarriageControl:NL
+ ScalarValue:Z
+ ScalarReference:I
+ NumericConstant:11
+ AssignmentOperator:=
+ LineNumber:2000
+ 
+30000 C,D=0
+ ScalarReference:C
+ ScalarReference:D
+ NumericConstant:0
+ AssignmentOperator:=
+30002 FOR I=I TO 39
+ control: VariableName:I
+ start:   ["ScalarValue:I"]
+ end:     ["NumericConstant:39"]
+ step:    ["NumericConstant:1"]
+30004 IF L%(I)=1 THEN C=C+1:A$(C)=G$(I)
+ ScalarValue:I
+ ScalarValue:L%
+ NumericConstant:1
+ BinaryOperator:=
+ ScalarReference:C
+ ScalarValue:C
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:C
+ ScalarReference:A$
+ ScalarValue:I
+ ScalarValue:G$
+ AssignmentOperator:=
+30006 IF L%(I)=2 THEN D=D+1:B$(D)=G$(I)
+ ScalarValue:I
+ ScalarValue:L%
+ NumericConstant:2
+ BinaryOperator:=
+ ScalarReference:D
+ ScalarValue:D
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:D
+ ScalarReference:B$
+ ScalarValue:I
+ ScalarValue:G$
+ AssignmentOperator:=
+30008 NEXT I:PRINT:PRINT
+ VariableName:I
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+30009 PRINT N$(1);" OWNED THE FOLLOWING PROPERTY":FOR I=1 TO C:PRINT A$(I):NEXT I
+ ITEMS
+ NumericConstant:1
+ ScalarValue:N$
+ CarriageControl:;
+ TextConstant:" OWNED THE FOLLOWING PROPERTY"
+ CarriageControl:NL
+ control: VariableName:I
+ start:   ["NumericConstant:1"]
+ end:     ["ScalarValue:C"]
+ step:    ["NumericConstant:1"]
+ ITEMS
+ ScalarValue:I
+ ScalarValue:A$
+ CarriageControl:NL
+ VariableName:I
+30010 PRINT "AND HAD";M(1);"DOLLARS AT THE END OF THE GAME"
+ ITEMS
+ TextConstant:"AND HAD"
+ CarriageControl:;
+ NumericConstant:1
+ ScalarValue:M
+ CarriageControl:;
+ TextConstant:"DOLLARS AT THE END OF THE GAME"
+ CarriageControl:NL
+30011 PRINT N$(2);" OWNED THE FOLLOWING PROPERTY";FOR I=1 TO D:PRINT B$(I):NEXT I
+ ITEMS
+ NumericConstant:2
+ ScalarValue:N$
+ CarriageControl:;
+ TextConstant:" OWNED THE FOLLOWING PROPERTY"
+ CarriageControl:;
+ ITEMS
+ ScalarValue:I
+ ScalarValue:B$
+ CarriageControl:NL
+ VariableName:I
+30012 PRINT "AND HAD";M(2);"DOLLARS AT THE END OF THE GAME"
+ ITEMS
+ TextConstant:"AND HAD"
+ CarriageControl:;
+ NumericConstant:2
+ ScalarValue:M
+ CarriageControl:;
+ TextConstant:"DOLLARS AT THE END OF THE GAME"
+ CarriageControl:NL
+30013 CLOSE 1,3:END
+ NumericConstant:1
+ NumericConstant:3
+ 

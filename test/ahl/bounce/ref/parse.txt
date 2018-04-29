@@ -77,7 +77,7 @@
  FunctionInt
  AssignmentOperator:=
 190 FOR I=1 TO S1
- control: VariableToken:I
+ control: VariableName:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:S1"]
  step:    ["NumericConstant:1"]
@@ -95,9 +95,9 @@
  BinaryOperator:/
  AssignmentOperator:=
 210 NEXT I
- VariableToken:I
+ VariableName:I
 220 FOR H=INT(-16*(V/32)^2+V^2/32+.5) TO 0 STEP -.5
- control: VariableToken:H
+ control: VariableName:H
  start:   ["NumericConstant:16", "UnaryOperator:-", "ScalarValue:V", "NumericConstant:32", "BinaryOperator:/", "NumericConstant:2", "BinaryOperator:^", "BinaryOperator:*", "ScalarValue:V", "NumericConstant:2", "BinaryOperator:^", "NumericConstant:32", "BinaryOperator:/", "BinaryOperator:+", "NumericConstant:0.5", "BinaryOperator:+", "FunctionInt"]
  end:     ["NumericConstant:0"]
  step:    ["NumericConstant:0.5", "UnaryOperator:-"]
@@ -115,12 +115,12 @@
  NumericConstant:0
  AssignmentOperator:=
 230 FOR I=1 TO S1
- control: VariableToken:I
+ control: VariableName:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:S1"]
  step:    ["NumericConstant:1"]
 240 FOR T=0 TO T(I) STEP S2
- control: VariableToken:T
+ control: VariableName:T
  start:   ["NumericConstant:0"]
  end:     ["ScalarValue:I", "ScalarValue:T"]
  step:    ["ScalarValue:S2"]
@@ -164,7 +164,7 @@
  TextConstant:"0"
  CarriageControl:;
 270 NEXT T
- VariableToken:T
+ VariableName:T
 275 T=T(I+1)/2
  ScalarReference:T
  ScalarValue:I
@@ -194,19 +194,19 @@
  ScalarValue:H
  BinaryOperator:<
 280 NEXT I
- VariableToken:I
+ VariableName:I
 290 PRINT
  ITEMS
  CarriageControl:NL
 300 NEXT H
- VariableToken:H
+ VariableName:H
 310 PRINT TAB(1);
  ITEMS
  NumericConstant:1
  FunctionTab
  CarriageControl:;
 320 FOR I=1 TO INT(L+1)/S2+1
- control: VariableToken:I
+ control: VariableName:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:L", "NumericConstant:1", "BinaryOperator:+", "FunctionInt", "ScalarValue:S2", "BinaryOperator:/", "NumericConstant:1", "BinaryOperator:+"]
  step:    ["NumericConstant:1"]
@@ -215,7 +215,7 @@
  TextConstant:" "
  CarriageControl:;
 340 NEXT I
- VariableToken:I
+ VariableName:I
 350 PRINT
  ITEMS
  CarriageControl:NL
@@ -224,7 +224,7 @@
  TextConstant:" O"
  CarriageControl:;
 360 FOR I=1 TO INT(L+.9995)
- control: VariableToken:I
+ control: VariableName:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:L", "NumericConstant:0.9995", "BinaryOperator:+", "FunctionInt"]
  step:    ["NumericConstant:1"]
@@ -239,7 +239,7 @@
  ScalarValue:I
  CarriageControl:;
 390 NEXT I
- VariableToken:I
+ VariableName:I
 400 PRINT
  ITEMS
  CarriageControl:NL

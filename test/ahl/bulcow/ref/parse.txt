@@ -46,7 +46,7 @@
  BinaryOperator:/
  AssignmentOperator:=
 40 FORI=0TO4:LETG(I)=INT(10*N):LETN=10*N-INT(10*N)
- control: VariableToken:I
+ control: VariableName:I
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:4"]
  step:    ["NumericConstant:1"]
@@ -68,7 +68,7 @@
  BinaryOperator:-
  AssignmentOperator:=
 41 FORK=0TOI-1:IFG(I)=G(K)GOTO170
- control: VariableToken:K
+ control: VariableName:K
  start:   ["NumericConstant:0"]
  end:     ["ScalarValue:I", "NumericConstant:1", "BinaryOperator:-"]
  step:    ["NumericConstant:1"]
@@ -78,9 +78,9 @@
  ScalarValue:G
  BinaryOperator:=
 42 NEXTK
- VariableToken:K
+ VariableName:K
 43 NEXTI
- VariableToken:I
+ VariableName:I
 45 LETP=4:LETA=0:GOSUB300
  ScalarReference:P
  NumericConstant:4
@@ -140,7 +140,7 @@
  TextConstant:" - MY GUESS IS "
  CarriageControl:;
 75 FORI=0TO4:PRINTCHR$(D(J,I)+48);:NEXTI
- control: VariableToken:I
+ control: VariableName:I
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:4"]
  step:    ["NumericConstant:1"]
@@ -152,7 +152,7 @@
  BinaryOperator:+
  FunctionChr
  CarriageControl:;
- VariableToken:I
+ VariableName:I
 80 PRINT " MY SCORE ";:INPUTB(J),C(J):LETC(J)=C(J)+B(J)
  ITEMS
  TextConstant:" MY SCORE "
@@ -217,7 +217,7 @@
 98 GOTO35
  LineNumber:35
 100 FORI=0TO4:PRINTCHR$(D(0,I)+48);:NEXTI
- control: VariableToken:I
+ control: VariableName:I
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:4"]
  step:    ["NumericConstant:1"]
@@ -229,7 +229,7 @@
  BinaryOperator:+
  FunctionChr
  CarriageControl:;
- VariableToken:I
+ VariableName:I
 110 GOTO20
  LineNumber:20
 150 PRINT:PRINT "YOU HAVE GIVEN ME IMPOSSIBLE SCORES - GAME SPOILED":GOTO 5
@@ -245,7 +245,7 @@
  CarriageControl:NL
  LineNumber:35
 200 FORP=0TO4
- control: VariableToken:P
+ control: VariableName:P
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:4"]
  step:    ["NumericConstant:1"]
@@ -260,7 +260,7 @@
  FunctionInt
  AssignmentOperator:=
 220 FORI=0TOP-1:IFD(A,I)=D(A,P)GOTO210
- control: VariableToken:I
+ control: VariableName:I
  start:   ["NumericConstant:0"]
  end:     ["ScalarValue:P", "NumericConstant:1", "BinaryOperator:-"]
  step:    ["NumericConstant:1"]
@@ -272,9 +272,9 @@
  ScalarValue:D
  BinaryOperator:=
 230 NEXTI
- VariableToken:I
+ VariableName:I
 240 NEXTP
- VariableToken:P
+ VariableName:P
 250 IFA=0GOTO30
  ScalarValue:A
  NumericConstant:0
@@ -292,7 +292,7 @@
  NumericConstant:0
  AssignmentOperator:=
 310 FORI=0TOP:IFD(A,I)=G(I)THENLETV=V+1
- control: VariableToken:I
+ control: VariableName:I
  start:   ["NumericConstant:0"]
  end:     ["ScalarValue:P"]
  step:    ["NumericConstant:1"]
@@ -308,7 +308,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 320 FORK=0TO4:IFD(A,K)=G(I)THENLETW=W+1
- control: VariableToken:K
+ control: VariableName:K
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:4"]
  step:    ["NumericConstant:1"]
@@ -324,9 +324,9 @@
  BinaryOperator:+
  AssignmentOperator:=
 330 NEXTK
- VariableToken:K
+ VariableName:K
 340 NEXTI
- VariableToken:I
+ VariableName:I
 350 RETURN
  
 400 LETP=0
@@ -341,7 +341,7 @@
  ScalarValue:D
  AssignmentOperator:=
 410 FORI=0TOP-1:IFG(I)=G(P)GOTO430
- control: VariableToken:I
+ control: VariableName:I
  start:   ["NumericConstant:0"]
  end:     ["ScalarValue:P", "NumericConstant:1", "BinaryOperator:-"]
  step:    ["NumericConstant:1"]
@@ -351,9 +351,9 @@
  ScalarValue:G
  BinaryOperator:=
 415 NEXTI
- VariableToken:I
+ VariableName:I
 420 FORA=1TOJ:GOSUB380
- control: VariableToken:A
+ control: VariableName:A
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:J"]
  step:    ["NumericConstant:1"]
@@ -432,7 +432,7 @@
 445 GOTO430
  LineNumber:430
 448 NEXTA
- VariableToken:A
+ VariableName:A
 450 LETP=P+1:IFP<5GOTO405
  ScalarReference:P
  ScalarValue:P
@@ -449,7 +449,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 460 FORI=0TO4:LETD(J,I)=G(I):NEXTI
- control: VariableToken:I
+ control: VariableName:I
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:4"]
  step:    ["NumericConstant:1"]
@@ -459,7 +459,7 @@
  ScalarValue:I
  ScalarValue:G
  AssignmentOperator:=
- VariableToken:I
+ VariableName:I
 465 RETURN
  
 500 PRINT:PRINT:PRINT"                 BRADFORD UNIVERSITY BULLS AND COWS GAME"

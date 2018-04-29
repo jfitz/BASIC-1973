@@ -61,12 +61,12 @@
  UnaryOperator:-
  NumericConstant:15
 1200 FOR X=1TO8
- control: VariableToken:X
+ control: VariableName:X
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
  step:    ["NumericConstant:1"]
 1300 FOR Y=1TO8
- control: VariableToken:Y
+ control: VariableName:Y
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
  step:    ["NumericConstant:1"]
@@ -91,10 +91,11 @@
  ScalarValue:Y
  ScalarReference:S
 2000 NEXT Y
- VariableToken:Y
+ VariableName:Y
 2100 NEXT X
- VariableToken:X
+ VariableName:X
 2200 REM
+ Remark:
 2300LETL=-1*L
  ScalarReference:L
  NumericConstant:1
@@ -103,12 +104,12 @@
  BinaryOperator:*
  AssignmentOperator:=
 2400 FOR X=1TO8
- control: VariableToken:X
+ control: VariableName:X
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
  step:    ["NumericConstant:1"]
 2500 FOR Y=1TO8
- control: VariableToken:Y
+ control: VariableName:Y
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
  step:    ["NumericConstant:1"]
@@ -165,9 +166,9 @@
 3700RETURN
  
 3800NEXT Y
- VariableToken:Y
+ VariableName:Y
 3900NEXT X
- VariableToken:X
+ VariableName:X
 4000PRINT
  ITEMS
  CarriageControl:NL
@@ -176,7 +177,7 @@
 4200 GOTO 2300
  LineNumber:2300
 4300 FOR A=-1TO1 STEP 2
- control: VariableToken:A
+ control: VariableName:A
  start:   ["NumericConstant:1", "UnaryOperator:-"]
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:2"]
@@ -269,18 +270,18 @@
 6200 GOSUB 9100
  LineNumber:9100
 6300 NEXT A
- VariableToken:A
+ VariableName:A
 6400 RETURN
  
 6500 REM KING MOVES
- RemarkToken:KING MOVES
+ Remark:KING MOVES
 6600 FOR A=-1TO1 STEP 2
- control: VariableToken:A
+ control: VariableName:A
  start:   ["NumericConstant:1", "UnaryOperator:-"]
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:2"]
 6700 FOR B=-1TO1 STEP 2
- control: VariableToken:B
+ control: VariableName:B
  start:   ["NumericConstant:1", "UnaryOperator:-"]
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:2"]
@@ -373,14 +374,15 @@
 8600 GOSUB 9100
  LineNumber:9100
 8700 NEXT B
- VariableToken:B
+ VariableName:B
 8800 NEXT A
- VariableToken:A
+ VariableName:A
 8900 RETURN
  
 9000 GOTO 14200
  LineNumber:14200
 9100 REM
+ Remark:
 9200 LET P=P+1
  ScalarReference:P
  ScalarValue:P
@@ -420,6 +422,7 @@
  BinaryOperator:-
  AssignmentOperator:=
 9800 REM
+ Remark:
 9900 IF U<>1 THEN 10100
  ScalarValue:U
  NumericConstant:1
@@ -441,7 +444,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 10300 FOR C=-1TO1 STEP 2
- control: VariableToken:C
+ control: VariableName:C
  start:   ["NumericConstant:1", "UnaryOperator:-"]
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:2"]
@@ -478,10 +481,11 @@
  BinaryOperator:-
  AssignmentOperator:=
 10800 REM THIS WAS THE EVALUATION SECTION
- RemarkToken:THIS WAS THE EVALUATION SECTION
+ Remark:THIS WAS THE EVALUATION SECTION
 10900 REM
+ Remark:
 11000 NEXT C
- VariableToken:C
+ VariableName:C
 11100 LET R(P)=Q
  ScalarValue:P
  ScalarReference:R
@@ -498,12 +502,12 @@
  NumericConstant:0
  BinaryOperator:=
 11500 FOR J=10TO-10 STEP -1
- control: VariableToken:J
+ control: VariableName:J
  start:   ["NumericConstant:10"]
  end:     ["NumericConstant:10", "UnaryOperator:-"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
 11600 FOR F=1TOP
- control: VariableToken:F
+ control: VariableName:F
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:P"]
  step:    ["NumericConstant:1"]
@@ -513,9 +517,9 @@
  ScalarValue:J
  BinaryOperator:=
 11800 NEXT F
- VariableToken:F
+ VariableName:F
 11900 NEXT J
- VariableToken:J
+ VariableName:J
 12000 LET K=F+P
  ScalarReference:K
  ScalarValue:F
@@ -629,12 +633,12 @@
  ITEMS
  CarriageControl:NL
 14200 FOR Y=8TO1 STEP -1
- control: VariableToken:Y
+ control: VariableName:Y
  start:   ["NumericConstant:8"]
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
 14300 FOR X=1TO8
- control: VariableToken:X
+ control: VariableName:X
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
  step:    ["NumericConstant:1"]
@@ -722,12 +726,12 @@
  TextConstant:"*"
  CarriageControl:;
 15500 NEXT X
- VariableToken:X
+ VariableName:X
 15600 PRINT
  ITEMS
  CarriageControl:NL
 15700 NEXT Y
- VariableToken:Y
+ VariableName:Y
 15800 PRINT
  ITEMS
  CarriageControl:NL
@@ -792,7 +796,7 @@
 17400 GOTO 16700
  LineNumber:16700
 17500 REM LET S(A$B)=S(E,H)
- RemarkToken:LET S(A$B)=S(E,H)
+ Remark:LET S(A$B)=S(E,H)
 17600 LET S(A,B)=S(E,H)
  ScalarValue:A
  ScalarValue:B
@@ -850,21 +854,21 @@
  BinaryOperator:*
  AssignmentOperator:=
 18300 FOR X=8TO8 
- control: VariableToken:X
+ control: VariableName:X
  start:   ["NumericConstant:8"]
  end:     ["NumericConstant:8"]
  step:    ["NumericConstant:1"]
 18400 FOR Y=8TO8
- control: VariableToken:Y
+ control: VariableName:Y
  start:   ["NumericConstant:8"]
  end:     ["NumericConstant:8"]
  step:    ["NumericConstant:1"]
 18500 RETURN
  
 18600 NEXT Y
- VariableToken:Y
+ VariableName:Y
 18700 NEXT X
- VariableToken:X
+ VariableName:X
 18800 PRINT"    VERY GOOD, YOU WIN!"
  ITEMS
  TextConstant:"    VERY GOOD, YOU WIN!"

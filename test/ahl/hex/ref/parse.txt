@@ -88,3 +88,513 @@
  'FNN$(X%)' is not a valid assignment
  Invalid statement: Value is not assignable (type UserFunction)
  'FNEND' is not a valid assignment
+ ScalarReference:X$
+ ScalarValue:X%
+ FunctionStr
+ AssignmentOperator:=
+ Unimplemented
+110 DIM P$(50%):RANDOMIZE:Q%=0%:PRINT "SINCE I'M A GOOD SPORT, YOU'LL ALWAYS GO FIRST"
+ IntegerConstant:50
+ CompoundDeclaration:P$
+ 
+ ScalarReference:Q%
+ IntegerConstant:0
+ AssignmentOperator:=
+ ITEMS
+ TextConstant:"SINCE I'M A GOOD SPORT, YOU'LL ALWAYS GO FIRST"
+ CarriageControl:NL
+120 P%=8%: P$="XXX--OOO":&:&"NUMBERING: ": &"123": &"456": &"789": &
+ ScalarReference:P%
+ IntegerConstant:8
+ AssignmentOperator:=
+ ScalarReference:P$
+ TextConstant:"XXX--OOO"
+ AssignmentOperator:=
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"NUMBERING: "
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"123"
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"456"
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"789"
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+190 D%=-1%: Q$="O": GOSUB 2000: IF M$="" THEN PRINT "YOU CAN'T MOVE. I WIN.": GOTO 510
+ ScalarReference:D%
+ IntegerConstant:1
+ UnaryOperator:-
+ AssignmentOperator:=
+ ScalarReference:Q$
+ TextConstant:"O"
+ AssignmentOperator:=
+ LineNumber:2000
+ ScalarValue:M$
+ TextConstant:""
+ BinaryOperator:=
+ ITEMS
+ TextConstant:"YOU CAN'T MOVE. I WIN."
+ CarriageControl:NL
+ LineNumber:510
+200 &: &"BOARD:": &LEFT(P$, 3%): &MID(P$,4%,3%): &RIGHT(P$,7%): &
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"BOARD:"
+ CarriageControl:NL
+ ITEMS
+ ScalarValue:P$
+ IntegerConstant:3
+ FunctionLeft
+ CarriageControl:NL
+ ITEMS
+ ScalarValue:P$
+ IntegerConstant:4
+ IntegerConstant:3
+ FunctionMid
+ CarriageControl:NL
+ ITEMS
+ ScalarValue:P$
+ IntegerConstant:7
+ FunctionRight
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+210 INPUT "WHAT IS YOUR MOVE"; A%,B%: IF INSTR(1%,M$,FNN$(A$)+FNN$(B$))=0% THEN PRINT "ILLEGAL MOVE.": GOTO 210
+ ScalarReference:A%
+ ScalarReference:B%
+ IntegerConstant:1
+ ScalarValue:M$
+ ScalarValue:A$
+ UserFunction
+ ScalarValue:B$
+ UserFunction
+ BinaryOperator:+
+ FunctionInstr
+ IntegerConstant:0
+ BinaryOperator:=
+ ITEMS
+ TextConstant:"ILLEGAL MOVE."
+ CarriageControl:NL
+ LineNumber:210
+230 P$=FNC$(FNC$(P$,A%,"-"),B%,"O"): IF INSTR(1%,P$,"*")=0% OR INSTR(1%,P$,"O"),4$ THEN PRINT "YOU WIN.": GOTO 500
+ Token 'InvalidToken:$' is not a value or operator
+ ScalarReference:P$
+ ScalarValue:P$
+ ScalarValue:A%
+ TextConstant:"-"
+ UserFunction
+ ScalarValue:B%
+ TextConstant:"O"
+ UserFunction
+ AssignmentOperator:=
+ ITEMS
+ TextConstant:"YOU WIN."
+ CarriageControl:NL
+ LineNumber:500
+300 P%=P%+2% ! COMPUTER'S MOVE
+ ScalarReference:P%
+ ScalarValue:P%
+ IntegerConstant:2
+ BinaryOperator:+
+ AssignmentOperator:=
+310 FOR C%=1% TO Q%: C$=P$(C%): IF VAL(LEFT(C$,1%))=P% AND MID(C$,2%,9%)=P$ THEN M$=RIGHT(C$,11%) : GOTO 400
+ control: VariableName:C%
+ start:   ["IntegerConstant:1"]
+ end:     ["ScalarValue:Q%"]
+ step:    ["NumericConstant:1"]
+ ScalarReference:C$
+ ScalarValue:C%
+ ScalarValue:P$
+ AssignmentOperator:=
+ ScalarValue:C$
+ IntegerConstant:1
+ FunctionLeft
+ FunctionVal
+ ScalarValue:P%
+ BinaryOperator:=
+ ScalarValue:C$
+ IntegerConstant:2
+ IntegerConstant:9
+ FunctionMid
+ ScalarValue:P$
+ BinaryOperator:=
+ BinaryOperator:AND
+ ScalarReference:M$
+ ScalarValue:C$
+ IntegerConstant:11
+ FunctionRight
+ AssignmentOperator:=
+ LineNumber:400
+320 NEXT C%: Q$="*": D%=1%: GOSUB 2000: C%=Q%: IF M$="" THEN PRINT "I CAN'T MOVE, YOU WIN.": GOTO 500
+ VariableName:C%
+ ScalarReference:Q$
+ TextConstant:"*"
+ AssignmentOperator:=
+ ScalarReference:D%
+ IntegerConstant:1
+ AssignmentOperator:=
+ LineNumber:2000
+ ScalarReference:C%
+ ScalarValue:Q%
+ AssignmentOperator:=
+ ScalarValue:M$
+ TextConstant:""
+ BinaryOperator:=
+ ITEMS
+ TextConstant:"I CAN'T MOVE, YOU WIN."
+ CarriageControl:NL
+ LineNumber:500
+400 IF M$="" THEN PRINT "I RESIGN.": GOTO 500
+ ScalarValue:M$
+ TextConstant:""
+ BinaryOperator:=
+ ITEMS
+ TextConstant:"I RESIGN."
+ CarriageControl:NL
+ LineNumber:500
+410 K$=LEFT(M$,2%): M$=RIGHT(MS,3%): IF RND>.33333333 AND M$<>"" THEN 410
+ ScalarReference:K$
+ ScalarValue:M$
+ IntegerConstant:2
+ FunctionLeft
+ AssignmentOperator:=
+ ScalarReference:M$
+ ScalarValue:M
+ ScalarValue:S
+ IntegerConstant:3
+ FunctionRight
+ AssignmentOperator:=
+ FunctionRnd
+ NumericConstant:0.33333333
+ BinaryOperator:>
+ ScalarValue:M$
+ TextConstant:""
+ BinaryOperator:<>
+ BinaryOperator:AND
+420 K%=C%: A%=VAL(LEFT(K$,1%)): B%=VAL(RIGHT(K$,2%)): P$=FNC$(FNC$(P$,A%,"-"),B%,"*")
+ ScalarReference:K%
+ ScalarValue:C%
+ AssignmentOperator:=
+ ScalarReference:A%
+ ScalarValue:K$
+ IntegerConstant:1
+ FunctionLeft
+ FunctionVal
+ AssignmentOperator:=
+ ScalarReference:B%
+ ScalarValue:K$
+ IntegerConstant:2
+ FunctionRight
+ FunctionVal
+ AssignmentOperator:=
+ ScalarReference:P$
+ ScalarValue:P$
+ ScalarValue:A%
+ TextConstant:"-"
+ UserFunction
+ ScalarValue:B%
+ TextConstant:"*"
+ UserFunction
+ AssignmentOperator:=
+430 IF INSTR(1%,P$,"O")=0% OR INSTR(7%,P$,"*") THEN PRINT "I WIN!": GOTO 510
+ IntegerConstant:1
+ ScalarValue:P$
+ TextConstant:"O"
+ FunctionInstr
+ IntegerConstant:0
+ BinaryOperator:=
+ IntegerConstant:7
+ ScalarValue:P$
+ TextConstant:"*"
+ FunctionInstr
+ BinaryOperator:OR
+ ITEMS
+ TextConstant:"I WIN!"
+ CarriageControl:NL
+ LineNumber:510
+440 PRINT "I MOVE FROM" A% "TO" B%: GOTO 190
+ ITEMS
+ TextConstant:"I MOVE FROM"
+ CarriageControl:
+ ScalarValue:A%
+ CarriageControl:
+ TextConstant:"TO"
+ CarriageControl:
+ ScalarValue:B%
+ CarriageControl:NL
+ LineNumber:190
+500 V2%=W2%+1%: I%=INSTR(11%,P$(K%),K$) :P$(K%)=LEFT(P$(K%),I%-1%)+RIGHT(P$(K%),I%+2%) IF I%: GOTO 520
+ ScalarReference:V2%
+ ScalarValue:W2%
+ IntegerConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarReference:I%
+ IntegerConstant:11
+ ScalarValue:K%
+ ScalarValue:P$
+ ScalarValue:K$
+ FunctionInstr
+ AssignmentOperator:=
+ ScalarValue:K%
+ ScalarReference:P$
+ ScalarValue:K%
+ ScalarValue:P$
+ ScalarValue:I%
+ IntegerConstant:1
+ BinaryOperator:-
+ FunctionLeft
+ ScalarValue:K%
+ ScalarValue:P$
+ ScalarValue:I%
+ IntegerConstant:2
+ BinaryOperator:+
+ FunctionRight
+ BinaryOperator:+
+ AssignmentOperator:=
+ LineNumber:520
+510 W1%=W1%+1%
+ ScalarReference:W1%
+ ScalarValue:W1%
+ IntegerConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+520 &: &"BOARD:": &LEFT(P$,3%): &MID(P$,4%,3%): &RIGHT(P$,7%): &: & "I HAVE WON" W1% "AND YOU HAVE WON" W2% "OF" W1%+W2% "GAMES"
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"BOARD:"
+ CarriageControl:NL
+ ITEMS
+ ScalarValue:P$
+ IntegerConstant:3
+ FunctionLeft
+ CarriageControl:NL
+ ITEMS
+ ScalarValue:P$
+ IntegerConstant:4
+ IntegerConstant:3
+ FunctionMid
+ CarriageControl:NL
+ ITEMS
+ ScalarValue:P$
+ IntegerConstant:7
+ FunctionRight
+ CarriageControl:NL
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"I HAVE WON"
+ CarriageControl:
+ ScalarValue:W1%
+ CarriageControl:
+ TextConstant:"AND YOU HAVE WON"
+ CarriageControl:
+ ScalarValue:W2%
+ CarriageControl:
+ TextConstant:"OF"
+ CarriageControl:
+ ScalarValue:W1%
+ ScalarValue:W2%
+ BinaryOperator:+
+ CarriageControl:
+ TextConstant:"GAMES"
+ CarriageControl:NL
+530 INPUT "ANOTHER GAME"; C$: IF C$="NO" THEN 9999 ELSE 120
+ ScalarReference:C$
+ ScalarValue:C$
+ TextConstant:"NO"
+ BinaryOperator:=
+900 ! DATA**= <- OF MOVE IN GAME><POSITION><LIST OF MOVES> IN <POSITION>, -=BLANK *=COMPUTER'S PAWN, O=PLAYER'S PAWN <LIST OF MOVES> IS <- MOVE FROM><- MOVE TO><LIST OF MOVES>
+2000 M$=""
+ ScalarReference:M$
+ TextConstant:""
+ AssignmentOperator:=
+2010 FOR J%=1% TO 9%: IF MID(P$,J%,1%)<>Q$ THEN 2050
+ control: VariableName:J%
+ start:   ["IntegerConstant:1"]
+ end:     ["IntegerConstant:9"]
+ step:    ["NumericConstant:1"]
+ ScalarValue:P$
+ ScalarValue:J%
+ IntegerConstant:1
+ FunctionMid
+ ScalarValue:Q$
+ BinaryOperator:<>
+2015 T%=J%+D%*3%: IF T%<1% OR T%>9% THEN 2025
+ ScalarReference:T%
+ ScalarValue:J%
+ ScalarValue:D%
+ IntegerConstant:3
+ BinaryOperator:*
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:T%
+ IntegerConstant:1
+ BinaryOperator:<
+ ScalarValue:T%
+ IntegerConstant:9
+ BinaryOperator:>
+ BinaryOperator:OR
+2020 IF MID(P$,T%,1%)="-" THEN M$=M$+FNN$(J%)+FNN$(T%)
+ ScalarValue:P$
+ ScalarValue:T%
+ IntegerConstant:1
+ FunctionMid
+ TextConstant:"-"
+ BinaryOperator:=
+ ScalarReference:M$
+ ScalarValue:M$
+ ScalarValue:J%
+ UserFunction
+ BinaryOperator:+
+ ScalarValue:T%
+ UserFunction
+ BinaryOperator:+
+ AssignmentOperator:=
+2025 T%=J%+D%*2%: IF T%<1% OR T%>9% OR (D%=1% AND (J%=1% OR J%=4% OR J%=7%)) OR (D%=1% AND (J%=3% OR J%=6% OR J%-9%)) THEN 2035
+ ScalarReference:T%
+ ScalarValue:J%
+ ScalarValue:D%
+ IntegerConstant:2
+ BinaryOperator:*
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:T%
+ IntegerConstant:1
+ BinaryOperator:<
+ ScalarValue:T%
+ IntegerConstant:9
+ BinaryOperator:>
+ BinaryOperator:OR
+ ScalarValue:D%
+ IntegerConstant:1
+ BinaryOperator:=
+ ScalarValue:J%
+ IntegerConstant:1
+ BinaryOperator:=
+ ScalarValue:J%
+ IntegerConstant:4
+ BinaryOperator:=
+ BinaryOperator:OR
+ ScalarValue:J%
+ IntegerConstant:7
+ BinaryOperator:=
+ BinaryOperator:OR
+ BinaryOperator:AND
+ BinaryOperator:OR
+ ScalarValue:D%
+ IntegerConstant:1
+ BinaryOperator:=
+ ScalarValue:J%
+ IntegerConstant:3
+ BinaryOperator:=
+ ScalarValue:J%
+ IntegerConstant:6
+ BinaryOperator:=
+ BinaryOperator:OR
+ ScalarValue:J%
+ IntegerConstant:9
+ BinaryOperator:-
+ BinaryOperator:OR
+ BinaryOperator:AND
+ BinaryOperator:OR
+2030 IF INSTR(1%,Q$+"-",MID(P$,T%,1%))=0% THEN M$=M$+FNN$(J%)+FNN$(T%)
+ IntegerConstant:1
+ ScalarValue:Q$
+ TextConstant:"-"
+ BinaryOperator:+
+ ScalarValue:P$
+ ScalarValue:T%
+ IntegerConstant:1
+ FunctionMid
+ FunctionInstr
+ IntegerConstant:0
+ BinaryOperator:=
+ ScalarReference:M$
+ ScalarValue:M$
+ ScalarValue:J%
+ UserFunction
+ BinaryOperator:+
+ ScalarValue:T%
+ UserFunction
+ BinaryOperator:+
+ AssignmentOperator:=
+2035 T%=J%+D%*4%: IF T%<1% OR T%>9% OR J%=3% OR J%=7% THEN 2050
+ ScalarReference:T%
+ ScalarValue:J%
+ ScalarValue:D%
+ IntegerConstant:4
+ BinaryOperator:*
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:T%
+ IntegerConstant:1
+ BinaryOperator:<
+ ScalarValue:T%
+ IntegerConstant:9
+ BinaryOperator:>
+ BinaryOperator:OR
+ ScalarValue:J%
+ IntegerConstant:3
+ BinaryOperator:=
+ BinaryOperator:OR
+ ScalarValue:J%
+ IntegerConstant:7
+ BinaryOperator:=
+ BinaryOperator:OR
+2040 IF INSTR(1%,Q$+"-",MID(P$,T%,1%))=0% THEN M$=M$+FNN$(J%)+FNN$(T%)
+ IntegerConstant:1
+ ScalarValue:Q$
+ TextConstant:"-"
+ BinaryOperator:+
+ ScalarValue:P$
+ ScalarValue:T%
+ IntegerConstant:1
+ FunctionMid
+ FunctionInstr
+ IntegerConstant:0
+ BinaryOperator:=
+ ScalarReference:M$
+ ScalarValue:M$
+ ScalarValue:J%
+ UserFunction
+ BinaryOperator:+
+ ScalarValue:T%
+ UserFunction
+ BinaryOperator:+
+ AssignmentOperator:=
+2050 NEXT J%: IF D%=1% AND M$<>"" THEN Q%=Q%+1%: P$(Q%)=FNN$(P%)+P$+M$
+ VariableName:J%
+ ScalarValue:D%
+ IntegerConstant:1
+ BinaryOperator:=
+ ScalarValue:M$
+ TextConstant:""
+ BinaryOperator:<>
+ BinaryOperator:AND
+ ScalarReference:Q%
+ ScalarValue:Q%
+ IntegerConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+ ScalarValue:Q%
+ ScalarReference:P$
+ ScalarValue:P%
+ UserFunction
+ ScalarValue:P$
+ BinaryOperator:+
+ ScalarValue:M$
+ BinaryOperator:+
+ AssignmentOperator:=
+2060 RETURN
+ 
+9999 END
+ 

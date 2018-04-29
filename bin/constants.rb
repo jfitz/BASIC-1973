@@ -1074,7 +1074,7 @@ class VariableName < AbstractElement
   end
 
   def dump
-    @name.dump
+    self.class.to_s + ':' + @name.to_s
   end
 
   def compatible?(value)
@@ -1218,5 +1218,18 @@ class List < AbstractElement
 
   def count
     @parsed_expressions.count
+  end
+end
+
+# class to hold REM text
+class Remark < AbstractElement
+  def initialize(tokens)
+    super()
+    @texts = []
+    @texts = tokens.map(&:to_s) unless tokens.nil?
+  end
+
+  def dump
+    self.class.to_s + ':' + @texts.join
   end
 end

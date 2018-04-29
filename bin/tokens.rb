@@ -93,10 +93,6 @@ class AbstractToken
     @is_invalid = false
   end
 
-  def dump
-    self.class.to_s + ':' + @text
-  end
-
   def eql?(other)
     @text == other.to_s
   end

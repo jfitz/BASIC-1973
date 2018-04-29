@@ -63,11 +63,11 @@
  CarriageControl:NL
  LineNumber:110
 210 FOR I=1 TO N\FOR J=1 TO N\A(X,Y)=0\NEXT J\NEXT I
- control: VariableToken:I
+ control: VariableName:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:N"]
  step:    ["NumericConstant:1"]
- control: VariableToken:J
+ control: VariableName:J
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:N"]
  step:    ["NumericConstant:1"]
@@ -76,8 +76,8 @@
  ScalarReference:A
  NumericConstant:0
  AssignmentOperator:=
- VariableToken:J
- VariableToken:I
+ VariableName:J
+ VariableName:I
 300 PRINT\PRINT "WE ALTERNATE MOVES. YOU GO FIRST..."\PRINT
  ITEMS
  CarriageControl:NL
@@ -131,13 +131,13 @@
  NumericConstant:1
  AssignmentOperator:=
 500 REM *** THE COMPUTER TRIES AN 'INTELLIGENT' MOVE ***
- RemarkToken:*** THE COMPUTER TRIES AN 'INTELLIGENT' MOVE ***
+ Remark:*** THE COMPUTER TRIES AN 'INTELLIGENT' MOVE ***
 510 FOR E=-1 TO 1\FOR F=-1 TO 1\IF E+F-E*F=0 THEN 590
- control: VariableToken:E
+ control: VariableName:E
  start:   ["NumericConstant:1", "UnaryOperator:-"]
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:1"]
- control: VariableToken:F
+ control: VariableName:F
  start:   ["NumericConstant:1", "UnaryOperator:-"]
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:1"]
@@ -173,10 +173,10 @@
  NumericConstant:1
  BinaryOperator:=
 590 NEXT F\NEXT E
- VariableToken:F
- VariableToken:E
+ VariableName:F
+ VariableName:E
 600 REM *** COMPUTER TRIES A RANDOM MOVE ***
- RemarkToken:*** COMPUTER TRIES A RANDOM MOVE ***
+ Remark:*** COMPUTER TRIES A RANDOM MOVE ***
 610 LET X=INT(N*RND(0))+1\LET Y=INT(N*RND(0))+1\GOSUB 910\IF L=0 THEN 610
  ScalarReference:X
  ScalarValue:N
@@ -233,13 +233,13 @@
 760 GOTO 650
  LineNumber:650
 800 REM *** PRINT THE BOARD ***
- RemarkToken:*** PRINT THE BOARD ***
+ Remark:*** PRINT THE BOARD ***
 810 FOR I=1 TO N\FOR J=1 TO N\PRINT A(I,J);
- control: VariableToken:I
+ control: VariableName:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:N"]
  step:    ["NumericConstant:1"]
- control: VariableToken:J
+ control: VariableName:J
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:N"]
  step:    ["NumericConstant:1"]
@@ -249,15 +249,15 @@
  ScalarValue:A
  CarriageControl:;
 840 NEXT J\PRINT\NEXT I\PRINT \RETURN
- VariableToken:J
+ VariableName:J
  ITEMS
  CarriageControl:NL
- VariableToken:I
+ VariableName:I
  ITEMS
  CarriageControl:NL
  
 900 REM *** CHECK WHETHER MOVE IS LEGAL ***
- RemarkToken:*** CHECK WHETHER MOVE IS LEGAL ***
+ Remark:*** CHECK WHETHER MOVE IS LEGAL ***
 910 L=1\IF X<1 THEN 970
  ScalarReference:L
  NumericConstant:1

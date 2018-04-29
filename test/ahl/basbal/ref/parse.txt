@@ -8,7 +8,7 @@
  NumericConstant:19
  CompoundDeclaration:Z
 110 FORX=1TO19\READC(X),Z(X),P(X)\NEXTX\LETX=1
- control: VariableToken:X
+ control: VariableName:X
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:19"]
  step:    ["NumericConstant:1"]
@@ -18,7 +18,7 @@
  ScalarReference:Z
  ScalarValue:X
  ScalarReference:P
- VariableToken:X
+ VariableName:X
  ScalarReference:X
  NumericConstant:1
  AssignmentOperator:=
@@ -31,7 +31,7 @@
  TextConstant:"THE PDP-8 PANTHERS AND (YOUR NAME PLEASE) THE "
  CarriageControl:;
 140 FOR A=1 TO 99\INPUT $T(A)\IF T(A)=141 THEN 150\NEXT A
- control: VariableToken:A
+ control: VariableName:A
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:99"]
  step:    ["NumericConstant:1"]
@@ -41,7 +41,7 @@
  ScalarValue:T
  NumericConstant:141
  BinaryOperator:=
- VariableToken:A
+ VariableName:A
 150 LETT=A\PRINT\PRINT"A HIGHLY PARTISAN CROWD OF";
  ScalarReference:T
  ScalarValue:A
@@ -52,7 +52,7 @@
  TextConstant:"A HIGHLY PARTISAN CROWD OF"
  CarriageControl:;
 160 FORA=1TOT\LETB=2*RND(0)\NEXTA
- control: VariableToken:A
+ control: VariableName:A
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:T"]
  step:    ["NumericConstant:1"]
@@ -62,7 +62,7 @@
  FunctionRnd
  BinaryOperator:*
  AssignmentOperator:=
- VariableToken:A
+ VariableName:A
 170 LET A=INT(70000*RND(1))\PRINTA;
  ScalarReference:A
  NumericConstant:70000
@@ -119,7 +119,7 @@
  TextConstant:"THE PANTHERS ARE TAKING THE FIELD NOW AS ANDREWS OF THE"
  CarriageControl:NL
 250 FOR A=1 TO T-1\PRINT CHR$(T(A));\NEXT A
- control: VariableToken:A
+ control: VariableName:A
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:T", "NumericConstant:1", "BinaryOperator:-"]
  step:    ["NumericConstant:1"]
@@ -128,7 +128,7 @@
  ScalarValue:T
  FunctionChr
  CarriageControl:;
- VariableToken:A
+ VariableName:A
 260 PRINT"ADVANCES TO THE PLATE. PLEASE WAIT AS THE COMPUTER SINGS"
  ITEMS
  TextConstant:"ADVANCES TO THE PLATE. PLEASE WAIT AS THE COMPUTER SINGS"
@@ -415,3 +415,5 @@
  
 580 CHAIN"BASBL1"
  Syntax error
+590 END
+ 

@@ -2,7 +2,7 @@
  ITEMS
  CarriageControl:NL
 100 REM *** INITIALIZE
- RemarkToken:*** INITIALIZE
+ Remark:*** INITIALIZE
 110 DIM T(7,3)
  NumericConstant:7
  NumericConstant:3
@@ -12,12 +12,12 @@
  NumericConstant:0
  AssignmentOperator:=
 130 FOR D=1 TO 7
- control: VariableToken:D
+ control: VariableName:D
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
  step:    ["NumericConstant:1"]
 140 FOR N=1 TO 3
- control: VariableToken:N
+ control: VariableName:N
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
  step:    ["NumericConstant:1"]
@@ -28,9 +28,9 @@
  NumericConstant:0
  AssignmentOperator:=
 160 NEXT N
- VariableToken:N
+ VariableName:N
 170 NEXT D
- VariableToken:D
+ VariableName:D
 180 PRINT "TOWERS OF HANOI PUZZLE"\PRINT
  ITEMS
  TextConstant:"TOWERS OF HANOI PUZZLE"
@@ -64,7 +64,7 @@
  NumericConstant:0
  AssignmentOperator:=
 240 FOR Q=1 TO 7
- control: VariableToken:Q
+ control: VariableName:Q
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
  step:    ["NumericConstant:1"]
@@ -73,7 +73,7 @@
  ScalarValue:S
  BinaryOperator:=
 260 NEXT Q
- VariableToken:Q
+ VariableName:Q
 270 E=E+1
  ScalarReference:E
  ScalarValue:E
@@ -99,7 +99,7 @@
  CarriageControl:NL
  
 340 REM *** STORE DISKS FROM SMALLEST TO LARGEST
- RemarkToken:*** STORE DISKS FROM SMALLEST TO LARGEST
+ Remark:*** STORE DISKS FROM SMALLEST TO LARGEST
 350 PRINT "IN THIS PROGRAM, WE SHALL REFER TO DISKS BY A NUMERICAL CODE."
  ITEMS
  TextConstant:"IN THIS PROGRAM, WE SHALL REFER TO DISKS BY A NUMERICAL CODE."
@@ -144,7 +144,7 @@
  NumericConstant:15
  AssignmentOperator:=
 420 FOR X=S _ TO 1 STEP -1
- control: VariableToken:X
+ control: VariableName:X
  start:   ["ScalarValue:S"]
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
@@ -165,7 +165,7 @@
  BinaryOperator:-
  AssignmentOperator:=
 460 NEXT X
- VariableToken:X
+ VariableName:X
 470 GOSUB 1230
  LineNumber:1230
 480 PRINT "WHICH DISK WOULD YOU LIKE TO MOVE";\E=0
@@ -230,14 +230,14 @@
  CarriageControl:NL
  
 580 REM *** CHECK IF REQUESTED DISK IS BELOW ANOTHER
- RemarkToken:*** CHECK IF REQUESTED DISK IS BELOW ANOTHER
+ Remark:*** CHECK IF REQUESTED DISK IS BELOW ANOTHER
 590 FOR R=1 TO 7
- control: VariableToken:R
+ control: VariableName:R
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
  step:    ["NumericConstant:1"]
 600 FOR C=1 TO 3
- control: VariableToken:C
+ control: VariableName:C
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
  step:    ["NumericConstant:1"]
@@ -248,10 +248,10 @@
  ScalarValue:D
  BinaryOperator:=
 620 NEXT C\NEXT R
- VariableToken:C
- VariableToken:R
+ VariableName:C
+ VariableName:R
 640 FOR Q=R TO 1 STEP -1
- control: VariableToken:Q
+ control: VariableName:Q
  start:   ["ScalarValue:R"]
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
@@ -268,7 +268,7 @@
  ScalarValue:D
  BinaryOperator:<
 660 NEXT Q
- VariableToken:Q
+ VariableName:Q
 670 GOTO 700
  LineNumber:700
 680 PRINT "THAT DISK IS BELOW ANOTHER ONE. MAKE ANOTHER CHOICE. "\GOTO 480
@@ -328,9 +328,9 @@
  CarriageControl:NL
  
 795 REM *** LOCATE DISK TO BE MOVED
- RemarkToken:*** LOCATE DISK TO BE MOVED
+ Remark:*** LOCATE DISK TO BE MOVED
 800 FOR R=1 TO 7
- control: VariableToken:R
+ control: VariableName:R
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
  step:    ["NumericConstant:1"]
@@ -341,11 +341,11 @@
  NumericConstant:0
  BinaryOperator:<>
 820 NEXT R
- VariableToken:R
+ VariableName:R
 830 GOTO 880
  LineNumber:880
 835 REM *** CHECK IF DISK TO BE PLACED ON A LARGER ONE
- RemarkToken:*** CHECK IF DISK TO BE PLACED ON A LARGER ONE
+ Remark:*** CHECK IF DISK TO BE PLACED ON A LARGER ONE
 840 IF D,T(R,N) THEN 880
  ScalarValue:D
  ScalarValue:R
@@ -364,13 +364,13 @@
  CarriageControl:;
  LineNumber:480
 875 REM *** RELOCATE MOVED DISK
- RemarkToken:*** RELOCATE MOVED DISK
+ Remark:*** RELOCATE MOVED DISK
 880 FOR V=1 TO 7\FOR W=1 TO 3
- control: VariableToken:V
+ control: VariableName:V
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
  step:    ["NumericConstant:1"]
- control: VariableToken:W
+ control: VariableName:W
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
  step:    ["NumericConstant:1"]
@@ -381,12 +381,12 @@
  ScalarValue:D
  BinaryOperator:=
 910 NEXT W\NEXT V
- VariableToken:W
- VariableToken:V
+ VariableName:W
+ VariableName:V
 925 REM *** LOCATE FIRST EMPTY SPACE ON NEEDLE N
- RemarkToken:*** LOCATE FIRST EMPTY SPACE ON NEEDLE N
+ Remark:*** LOCATE FIRST EMPTY SPACE ON NEEDLE N
 930 FOR U=1 TO 7
- control: VariableToken:U
+ control: VariableName:U
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
  step:    ["NumericConstant:1"]
@@ -397,11 +397,11 @@
  NumericConstant:0
  BinaryOperator:<>
 950 NEXT U
- VariableToken:U
+ VariableName:U
 960 GOTO 980
  LineNumber:980
 965 REM *** MOVE DISK AND SET OLD LOCATION TO 0
- RemarkToken:*** MOVE DISK AND SET OLD LOCATION TO 0
+ Remark:*** MOVE DISK AND SET OLD LOCATION TO 0
 970 U=U-1
  ScalarReference:U
  ScalarValue:U
@@ -422,11 +422,11 @@
  NumericConstant:0
  AssignmentOperator:=
 995 REM +** PRINT OUT CURRENT STATUS
- RemarkToken:+** PRINT OUT CURRENT STATUS
+ Remark:+** PRINT OUT CURRENT STATUS
 1000 GOSUB 1230
  LineNumber:1230
 1010 REM *** CHECK IF DONE
- RemarkToken:*** CHECK IF DONE
+ Remark:*** CHECK IF DONE
 1020 M=M+1
  ScalarReference:M
  ScalarValue:M
@@ -434,11 +434,11 @@
  BinaryOperator:+
  AssignmentOperator:=
 1030 FOR R=1 TO 7\FOR C=1 TO 2
- control: VariableToken:R
+ control: VariableName:R
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
  step:    ["NumericConstant:1"]
- control: VariableToken:C
+ control: VariableName:C
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:2"]
  step:    ["NumericConstant:1"]
@@ -449,8 +449,8 @@
  NumericConstant:0
  BinaryOperator:<>
 1060 NEXT C\NEXT R
- VariableToken:C
- VariableToken:R
+ VariableName:C
+ VariableName:R
 1080 GOTO 1120
  LineNumber:1120
 1090 IF M<=128 THEN 480
@@ -510,9 +510,9 @@
  ScalarReference:A$
  LineNumber:1160
 1230 REM *** PRINT SUBROUTINE
- RemarkToken:*** PRINT SUBROUTINE
+ Remark:*** PRINT SUBROUTINE
 1240 FOR K=1 TO 7
- control: VariableToken:K
+ control: VariableName:K
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
  step:    ["NumericConstant:1"]
@@ -521,7 +521,7 @@
  NumericConstant:10
  AssignmentOperator:=
 1260 FOR J=1 TO 3
- control: VariableToken:J
+ control: VariableName:J
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
  step:    ["NumericConstant:1"]
@@ -544,7 +544,7 @@
  FunctionTab
  CarriageControl:;
 1290 FOR V=1 TO T(K,J)
- control: VariableToken:V
+ control: VariableName:V
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:K", "ScalarValue:J", "ScalarValue:T"]
  step:    ["NumericConstant:1"]
@@ -553,7 +553,7 @@
  TextConstant:"*"
  CarriageControl:;
 1310 NEXT V
- VariableToken:V
+ VariableName:V
 1320 GOTO 1340
  LineNumber:1340
 1330 PRINT TAB(Z);"*";
@@ -570,12 +570,12 @@
  BinaryOperator:+
  AssignmentOperator:=
 1350 NEXT J
- VariableToken:J
+ VariableName:J
 1360 PRINT
  ITEMS
  CarriageControl:NL
 1370 NEXT K
- VariableToken:K
+ VariableName:K
 1380 RETURN
  
 1390 PRINT\PRINT "THANKS FOR THE GAME!"\PRINT\END

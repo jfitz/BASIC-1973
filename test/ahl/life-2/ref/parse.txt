@@ -31,13 +31,13 @@
  NumericConstant:1002
  NumericConstant:1012
 10 FORM=1TO18:READK1(M):NEXTM
- control: VariableToken:M
+ control: VariableName:M
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:18"]
  step:    ["NumericConstant:1"]
  ScalarValue:M
  ScalarReference:K1
- VariableToken:M
+ VariableName:M
 13 DATA-1,0,1,0,0,-1,0,1,-1,-1,1,-1,-1,1,1,1
  NumericConstant:1
  UnaryOperator:-
@@ -62,22 +62,22 @@
  NumericConstant:1
  NumericConstant:1
 14 FORO1=1TO16:READA1(O1):NEXTO1
- control: VariableToken:O1
+ control: VariableName:O1
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:16"]
  step:    ["NumericConstant:1"]
  ScalarValue:O1
  ScalarReference:A1
- VariableToken:O1
+ VariableName:O1
 20 GOTO 500
  LineNumber:500
 50 FORJ=1TO5
- control: VariableToken:J
+ control: VariableName:J
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
  step:    ["NumericConstant:1"]
 51 FORK=1TO5
- control: VariableToken:K
+ control: VariableName:K
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
  step:    ["NumericConstant:1"]
@@ -89,9 +89,9 @@
  BinaryOperator:>
  LineNumber:200
 60 NEXTK
- VariableToken:K
+ VariableName:K
 65 NEXTJ
- VariableToken:J
+ VariableName:J
 90 LETK=0:LETM2=0:LETM3=0
  ScalarReference:K
  NumericConstant:0
@@ -103,14 +103,14 @@
  NumericConstant:0
  AssignmentOperator:=
 99 FORJ=0TO6:PRINT
- control: VariableToken:J
+ control: VariableName:J
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:6"]
  step:    ["NumericConstant:1"]
  ITEMS
  CarriageControl:NL
 100 FORK=0TO6
- control: VariableToken:K
+ control: VariableName:K
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:6"]
  step:    ["NumericConstant:1"]
@@ -157,9 +157,9 @@
 110 GOSUB300
  LineNumber:300
 120 NEXTK
- VariableToken:K
+ VariableName:K
 125 NEXTJ
- VariableToken:J
+ VariableName:J
 126 RETURN
  
 200 LETB=1:IFN1(J,K)>999THENLETB=10
@@ -175,7 +175,7 @@
  NumericConstant:10
  AssignmentOperator:=
 220 FORO1=1TO15STEP2
- control: VariableToken:O1
+ control: VariableName:O1
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:15"]
  step:    ["NumericConstant:2"]
@@ -206,7 +206,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 231 NEXTO1
- VariableToken:O1
+ VariableName:O1
 239 RETURN
  
 300 IFN1(J,K)<3THEN399
@@ -216,7 +216,7 @@
  NumericConstant:3
  BinaryOperator:<
 305 FORO1=1TO18
- control: VariableToken:O1
+ control: VariableName:O1
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:18"]
  step:    ["NumericConstant:1"]
@@ -228,7 +228,7 @@
  ScalarValue:K1
  BinaryOperator:=
 315 NEXTO1
- VariableToken:O1
+ VariableName:O1
 320 GO TO 399
  LineNumber:399
 350 IFO1>9THEN360
@@ -292,12 +292,12 @@
  NumericConstant:0
  AssignmentOperator:=
 510 FORJ=1TO5
- control: VariableToken:J
+ control: VariableName:J
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
  step:    ["NumericConstant:1"]
 511 FORK=1TO5
- control: VariableToken:K
+ control: VariableName:K
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
  step:    ["NumericConstant:1"]
@@ -308,11 +308,11 @@
  NumericConstant:0
  AssignmentOperator:=
 516 NEXTK
- VariableToken:K
+ VariableName:K
 517 NEXTJ
- VariableToken:J
+ VariableName:J
 519 FORB=1TO2:LETP1=3:IFB=2THENLETP1=30
- control: VariableToken:B
+ control: VariableName:B
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:2"]
  step:    ["NumericConstant:1"]
@@ -334,7 +334,7 @@
  TextConstant:"3 LIVE PIECES"
  CarriageControl:NL
 535 FORK1=1TO3:GOSUB700
- control: VariableToken:K1
+ control: VariableName:K1
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
  step:    ["NumericConstant:1"]
@@ -347,9 +347,9 @@
  ScalarReference:N1
  ScalarValue:P1
  AssignmentOperator:=
- VariableToken:K1
+ VariableName:K1
 542 NEXTB
- VariableToken:B
+ VariableName:B
 559 GOSUB90
  LineNumber:90
 560 PRINT:GOSUB50
@@ -388,3 +388,144 @@
  ITEMS
  TextConstant:"A DRAW"
  CarriageControl:NL
+575 PRINT:PRINT"PLAYER ";B;"IS THE WINNER":RUN
+ 'RUN' is not a valid assignment
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"PLAYER "
+ CarriageControl:;
+ ScalarValue:B
+ CarriageControl:;
+ TextConstant:"IS THE WINNER"
+ CarriageControl:NL
+580 FORB=1TO2:PRINT:PRINT"PLAYER";B1:GOSUB700
+ control: VariableName:B
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:2"]
+ step:    ["NumericConstant:1"]
+ ITEMS
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"PLAYER"
+ CarriageControl:;
+ ScalarValue:B1
+ CarriageControl:NL
+ LineNumber:700
+581 IFB=99THEN560
+ ScalarValue:B
+ NumericConstant:99
+ BinaryOperator:=
+582 NEXTB
+ VariableName:B
+586 LETN1(X(1),Y(1))=100:LETN1(X(2),Y(2))=1000
+ NumericConstant:1
+ ScalarValue:X
+ NumericConstant:1
+ ScalarValue:Y
+ ScalarReference:N1
+ NumericConstant:100
+ AssignmentOperator:=
+ NumericConstant:2
+ ScalarValue:X
+ NumericConstant:2
+ ScalarValue:Y
+ ScalarReference:N1
+ NumericConstant:1000
+ AssignmentOperator:=
+596 GOTO 560
+ LineNumber:560
+700 PRINT"X,Y":PRINT"XXXX";CHR$(13);"@@@@";CHR$(13):INPUTY(B),X(B)
+ ITEMS
+ TextConstant:"X,Y"
+ CarriageControl:NL
+ ITEMS
+ TextConstant:"XXXX"
+ CarriageControl:;
+ NumericConstant:13
+ FunctionChr
+ CarriageControl:;
+ TextConstant:"@@@@"
+ CarriageControl:;
+ NumericConstant:13
+ FunctionChr
+ CarriageControl:NL
+ ScalarValue:B
+ ScalarReference:Y
+ ScalarValue:B
+ ScalarReference:X
+705 IFX(B)<=5THENIFX(B)>0THEN708
+ ScalarValue:B
+ ScalarValue:X
+ NumericConstant:5
+ BinaryOperator:<=
+ ScalarValue:B
+ ScalarValue:X
+ NumericConstant:0
+ BinaryOperator:>
+706 GOTO750
+ LineNumber:750
+708 IFY(B)<=5THENIFY(B)>0THEN715
+ ScalarValue:B
+ ScalarValue:Y
+ NumericConstant:5
+ BinaryOperator:<=
+ ScalarValue:B
+ ScalarValue:Y
+ NumericConstant:0
+ BinaryOperator:>
+710 GOTO750
+ LineNumber:750
+715 IFN1(X(B),Y(B))<>0THEN750
+ ScalarValue:B
+ ScalarValue:X
+ ScalarValue:B
+ ScalarValue:Y
+ ScalarValue:N1
+ NumericConstant:0
+ BinaryOperator:<>
+720 IFB=1 THEN RETURN
+ ScalarValue:B
+ NumericConstant:1
+ BinaryOperator:=
+ 
+725 IFX(1)=X(2)THENIFY(1)=Y(2)THEN740
+ NumericConstant:1
+ ScalarValue:X
+ NumericConstant:2
+ ScalarValue:X
+ BinaryOperator:=
+ NumericConstant:1
+ ScalarValue:Y
+ NumericConstant:2
+ ScalarValue:Y
+ BinaryOperator:=
+730 RETURN
+ 
+740 PRINT"SAME COORD. SET TO 0"
+ ITEMS
+ TextConstant:"SAME COORD. SET TO 0"
+ CarriageControl:NL
+741 LETN1(X(B)+1,Y(B)+1)=0:LETB=99:RETURN
+ ScalarValue:B
+ ScalarValue:X
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarValue:B
+ ScalarValue:Y
+ NumericConstant:1
+ BinaryOperator:+
+ ScalarReference:N1
+ NumericConstant:0
+ AssignmentOperator:=
+ ScalarReference:B
+ NumericConstant:99
+ AssignmentOperator:=
+ 
+750 PRINT"ILLEGAL COORDS. RETYPE": GOTO700
+ ITEMS
+ TextConstant:"ILLEGAL COORDS. RETYPE"
+ CarriageControl:NL
+ LineNumber:700
+900 END
+ 
