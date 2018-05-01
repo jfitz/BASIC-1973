@@ -510,6 +510,8 @@ if !run_filename.nil?
       Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
                       respect_randomize, if_false_next_line,
                       fornext_one_beyond, lock_fornext, require_initialized)
+
+    interpreter.set_default_args('RND', NumericConstant.new(1))
     interpreter.run(program, trace_flag, show_timing, show_profile)
   end
 elsif !list_filename.nil?
@@ -544,9 +546,13 @@ else
     Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
                     respect_randomize, if_false_next_line,
                     fornext_one_beyond, lock_fornext, require_initialized)
+
+  interpreter.set_default_args('RND', NumericConstant.new(1))
+
   shell =
     Shell.new(console_io, interpreter, program, colon_file, quotes,
               min_max_op, allow_hash_constant)
+
   shell.run
 end
 
