@@ -3372,14 +3372,31 @@ class MatLetStatement < AbstractStatement
   end
 
   def execute_core(interpreter)
-    r_value = first_value(interpreter)
-    dims = r_value.dimensions
-    values = r_value.values_1 if dims.size == 1
-    values = r_value.values_2 if dims.size == 2
-
     l_values = @assignment.eval_target(interpreter)
+    l_value = l_values[0]
+    l_dims = interpreter.get_dimensions(l_value.name)
+
+    interpreter.set_default_args('CON', l_dims)
+    interpreter.set_default_args('IDN', l_dims)
+    interpreter.set_default_args('ZER', l_dims)
+
+    # evaluate, use default args if needed
+    r_values = @assignment.eval_value(interpreter)
+    r_value = r_values[0]
+
+    raise(BASICRuntimeError, 'Expected Matrix') if
+      r_value.class.to_s != 'Matrix'
+
+    interpreter.set_default_args('CON', nil)
+    interpreter.set_default_args('IDN', nil)
+    interpreter.set_default_args('ZER', nil)
+
+    r_dims = r_value.dimensions
+    values = r_value.values_1 if r_dims.size == 1
+    values = r_value.values_2 if r_dims.size == 2
+
     l_values.each do |l_value|
-      interpreter.set_dimensions(l_value, dims)
+      interpreter.set_dimensions(l_value, r_dims)
       interpreter.set_values(l_value.name, values)
     end
   end
@@ -3388,16 +3405,5 @@ class MatLetStatement < AbstractStatement
     vars = []
     vars = @assignment.variables unless @assignment.nil?
     vars
-  end
-
-  private
-
-  def first_value(interpreter)
-    r_values = @assignment.eval_value(interpreter)
-    r_value = r_values[0]
-
-    raise(BASICExpressionError, 'Expected Matrix') if r_value.class.to_s != 'Matrix'
-
-    r_value
   end
 end

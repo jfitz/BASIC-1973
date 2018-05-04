@@ -2,6 +2,7 @@
 class ScalarValue < Value
   def initialize(variable_name)
     super
+
     @scalar = true
   end
 
@@ -35,6 +36,7 @@ end
 class ScalarReference < Reference
   def initialize(variable_value)
     super(variable_value.name)
+
     @scalar = true
   end
 
@@ -572,6 +574,7 @@ end
 class ArrayValue < Value
   def initialize(variable_name)
     super
+
     @array = true
   end
 
@@ -635,6 +638,7 @@ end
 class ArrayReference < CompoundReference
   def initialize(variable_value)
     super(variable_value.name)
+
     @array = true
   end
 end
@@ -643,6 +647,7 @@ end
 class MatrixValue < Value
   def initialize(variable_name)
     super
+
     @matrix = true
   end
 
@@ -696,6 +701,7 @@ end
 class MatrixReference < CompoundReference
   def initialize(variable_value)
     super(variable_value.name)
+
     @matrix = true
   end
 end
@@ -1046,6 +1052,7 @@ end
 class ValueScalarExpression < AbstractExpression
   def initialize(tokens)
     super(tokens, ScalarValue)
+
     @scalar = true
   end
 
@@ -1108,6 +1115,7 @@ end
 class ValueArrayExpression < ValueCompoundExpression
   def initialize(tokens)
     super(tokens, ArrayValue)
+
     @array = true
   end
 end
@@ -1116,6 +1124,7 @@ end
 class ValueMatrixExpression < ValueCompoundExpression
   def initialize(tokens)
     super(tokens, MatrixValue)
+
     @matrix = true
   end
 end
@@ -1276,6 +1285,8 @@ end
 
 # Abstract assignment
 class AbstractAssignment
+  attr_reader :target
+
   def initialize(tokens)
     # parse into variable, '=', expression
     @token_lists = split_tokens(tokens)
@@ -1325,6 +1336,7 @@ end
 class ScalarAssignment < AbstractAssignment
   def initialize(tokens)
     super
+
     @target = TargetExpression.new(@token_lists[0], ScalarReference)
     @expression = ValueScalarExpression.new(@token_lists[2])
   end
@@ -1349,6 +1361,7 @@ end
 class ArrayAssignment < AbstractAssignment
   def initialize(tokens)
     super
+
     @target = TargetExpression.new(@token_lists[0], ArrayReference)
     @expression = ValueArrayExpression.new(@token_lists[2])
   end
@@ -1366,50 +1379,17 @@ end
 class MatrixAssignment < AbstractAssignment
   def initialize(tokens)
     super
+
     @target = TargetExpression.new(@token_lists[0], MatrixReference)
-
-    @functions = {
-      'CON' => FunctionCon,
-      'ZER' => FunctionZer,
-      'IDN' => FunctionIdn
-    }
-
-    @special_form = @token_lists[2].size == 1 &&
-                    @functions.key?(@token_lists[2][0].to_s)
-
-    @expression = if @special_form
-                    @token_lists[2][0].to_s
-                  else
-                    ValueMatrixExpression.new(@token_lists[2])
-                  end
+    @expression = ValueMatrixExpression.new(@token_lists[2])
   end
 
   def count_value
-    if @special_form
-      1
-    else
-      @expression.count
-    end
+    @expression.count
   end
 
   def eval_value(interpreter)
-    if @special_form
-      # special form obtains variable name and dimensions at run-time
-      vs = @target.evaluate(interpreter, false)
-      v = vs[0]
-
-      raise(Exception, 'Expected matrix reference') if
-        v.class.to_s != 'MatrixReference'
-
-      name = v.name
-      dims = interpreter.get_dimensions(name)
-
-      f = @functions[@expression].new('')
-      matrix = f.evaluate(interpreter, [dims], true)
-      [matrix]
-    else
-      @expression.evaluate(interpreter, true)
-    end
+    @expression.evaluate(interpreter, true)
   end
 
   def variables
