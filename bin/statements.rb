@@ -619,13 +619,13 @@ module InputFunctions
     prompt = nil
 
     unless print_items.empty? ||
-           print_items[0].class.to_s == 'CarriageControl'
+           print_items[0].carriage_control?
       candidate_prompt_tokens = print_items[0]
 
       if candidate_prompt_tokens.text_constant?
         prompt = print_items.shift
         print_items.shift if
-          print_items[0].class.to_s == 'CarriageControl'
+          print_items[0].carriage_control?
       end
     end
 
@@ -2346,7 +2346,7 @@ class PrintUsingStatement < AbstractPrintStatement
       constant = nil
       if format.wants_item
         item = print_items.shift
-        item = print_items.shift while item.class.to_s == 'CarriageControl'
+        item = print_items.shift while item.carriage_control?
         raise(BASICRuntimeError, 'Too few print items for format') if item.nil?
         constants = item.evaluate(interpreter, false)
         constant = constants[0]
@@ -2370,7 +2370,7 @@ class PrintUsingStatement < AbstractPrintStatement
         format = value
         print_items.shift
         print_items.shift if
-          print_items[0].class.to_s == 'CarriageControl'
+          print_items[0].carriage_control?
       end
     end
     [format, print_items]
