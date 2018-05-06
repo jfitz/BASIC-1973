@@ -69,6 +69,13 @@
 340 PRINT
  ITEMS
  CarriageControl:NL
+350 INPUT "CONTINUE", A$
+ ScalarReference:A$
+360 IF A$ <> "Y" THEN STOP
+ ScalarValue:A$
+ TextConstant:"Y"
+ BinaryOperator:<>
+ 
 400 REM *** CALCULATE NEIGHBORS
  Remark:*** CALCULATE NEIGHBORS
 410 DIM B$(11,11)
@@ -199,8 +206,8 @@
  VariableName:J
 740 NEXT I
  VariableName:I
-800 REM *** CONTINUE FOREVER
- Remark:*** CONTINUE FOREVER
+800 REM *** NEXT ITERATION
+ Remark:*** NEXT ITERATION
 810 GOTO 300
  LineNumber:300
 999 END
