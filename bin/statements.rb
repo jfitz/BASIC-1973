@@ -564,14 +564,18 @@ module FileFunctions
 
     unless print_items.empty? ||
            print_items[0].carriage_control?
+
       candidate_file_tokens = print_items[0]
 
       if candidate_file_tokens.filehandle?
         file_tokens = print_items.shift
+
         print_items.shift if
+          !print_items.empty? &&
           print_items[0].carriage_control?
       end
     end
+
     [file_tokens, print_items]
  end
 
@@ -620,11 +624,14 @@ module InputFunctions
 
     unless print_items.empty? ||
            print_items[0].carriage_control?
+
       candidate_prompt_tokens = print_items[0]
 
       if candidate_prompt_tokens.text_constant?
         prompt = print_items.shift
+
         print_items.shift if
+          !print_items.empty? &&
           print_items[0].carriage_control?
       end
     end
@@ -696,10 +703,11 @@ class ChangeStatement < AbstractStatement
 
       @source = ValueScalarExpression.new(source_tokens)
 
-      if @source.content_type == 'TextConstant'
+      case @source.content_type
+      when 'string'
         # string to array
         @target = TargetExpression.new(target_tokens, ArrayReference)
-      elsif @source.content_type == 'NumericConstant'
+      when 'numeric'
         # array to string
         @target = TargetExpression.new(target_tokens, ScalarReference)
       else
@@ -2342,18 +2350,28 @@ class PrintUsingStatement < AbstractPrintStatement
     # split format
     formats = split_format(format_spec)
     fhr = interpreter.console_io
+
     formats.each do |format|
       constant = nil
+
       if format.wants_item
         item = print_items.shift
-        item = print_items.shift while item.carriage_control?
-        raise(BASICRuntimeError, 'Too few print items for format') if item.nil?
+
+        item = print_items.shift while
+          !print_items.empty? &&
+          item.carriage_control?
+
+        raise(BASICRuntimeError, 'Too few print items for format') if
+          item.nil?
+
         constants = item.evaluate(interpreter, false)
         constant = constants[0]
       end
+
       text = format.format(constant)
       text.print(fhr)
     end
+
     item = print_items.shift
     item.print(fhr, interpreter)
   end
@@ -2363,16 +2381,22 @@ class PrintUsingStatement < AbstractPrintStatement
   def extract_format(print_items, interpreter)
     print_items = print_items.clone
     format = nil
+
     unless print_items.empty? ||
            print_items[0].class.to_s != 'ValueScalarExpression'
+
       value = first_item(print_items, interpreter)
+
       if value.text_constant?
         format = value
         print_items.shift
+
         print_items.shift if
+          !print_items.empty? &&
           print_items[0].carriage_control?
       end
     end
+
     [format, print_items]
   end
 

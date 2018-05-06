@@ -351,7 +351,6 @@ class AbstractValueElement < AbstractElement
   private
 
   def compatible?(other)
-    puts 'COMPAT: ' + other.content_type.to_s + ' == ' + content_type.to_s
     other.content_type == content_type
   end
 end
@@ -907,6 +906,10 @@ class BooleanConstant < AbstractValueElement
     @boolean_constant = true
   end
 
+  def content_type
+    'bool'
+  end
+
   def b_and(other)
     BooleanConstant.new(@value && other.to_v)
   end
@@ -1061,19 +1064,21 @@ class VariableName < AbstractElement
   end
 
   def compatible?(value)
+    numerics = %w(numeric integer)
+    strings = %w(string)
+
     compatible = false
 
-    numerics = %w(NumericConstant IntegerConstant)
-    strings = %w(TextConstant)
+    if content_type == 'numeric'
+      compatible = numerics.include?(value.content_type)
+    end
 
-    if @content_type == 'NumericConstant'
-      compatible = numerics.include?(value.class.to_s)
+    if content_type == 'string'
+      compatible = strings.include?(value.content_type)
     end
-    if @content_type == 'IntegerConstant'
-      compatible = numerics.include?(value.class.to_s)
-    end
-    if @content_type == 'TextConstant'
-      compatible = strings.include?(value.class.to_s)
+
+    if content_type == 'integer'
+      compatible = numerics.include?(value.content_type)
     end
 
     compatible
@@ -1112,19 +1117,21 @@ class Variable < AbstractElement
   end
 
   def compatible?(value)
-    numerics = %w(NumericConstant IntegerConstant)
-    strings = %w(TextConstant)
+    numerics = %w(numeric integer)
+    strings = %w(string)
 
     compatible = false
 
-    if content_type == 'NumericConstant'
-      compatible = numerics.include?(value.class.to_s)
+    if content_type == 'numeric'
+      compatible = numerics.include?(value.content_type)
     end
-    if content_type == 'IntegerConstant'
-      compatible = numerics.include?(value.class.to_s)
+
+    if content_type == 'string'
+      compatible = strings.include?(value.content_type)
     end
-    if content_type == 'TextConstant'
-      compatible = strings.include?(value.class.to_s)
+
+    if content_type == 'integer'
+      compatible = numerics.include?(value.content_type)
     end
 
     compatible

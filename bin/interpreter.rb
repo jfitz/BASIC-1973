@@ -631,7 +631,7 @@ class Interpreter
       default_type = variable.content_type
       default_value = NumericConstant.new(0)
       default_value = TextConstant.new(TextConstantToken.new('""')) if
-        default_type == 'TextConstant'
+        default_type == 'string'
       unless @variables.key?(v)
         if @require_initialized
           raise(BASICRuntimeError, "Uninitialized variable #{v}")
@@ -669,7 +669,7 @@ class Interpreter
     
     # convert a numeric to a string when a string is expected
     if value.numeric_constant? &&
-       variable.content_type == 'TextConstant'
+       variable.content_type == 'string'
       val = value.token_chars
       quoted_val = '"' + val + '"'
       token = TextConstantToken.new(quoted_val)
@@ -677,15 +677,15 @@ class Interpreter
     end
 
     # convert an integer to a numeric
-    if value.class.to_s == 'NumericConstant' &&
-       variable.content_type == 'IntegerConstant'
+    if value.content_type == 'numeric' &&
+       variable.content_type == 'integer'
       token = IntegerConstantToken.new(value.to_s)
       value = IntegerConstant.new(token)
     end
 
     # convert a numeric to an integer
-    if value.class.to_s == 'IntegerConstant' &&
-       variable.content_type == 'NumericConstant'
+    if value.content_type == 'integer' &&
+       variable.content_type == 'numeric'
       token = NumericConstantToken.new(value.to_s)
       value = NumericConstant.new(token)
     end
@@ -750,9 +750,11 @@ class Interpreter
   def add_file_names(file_names)
     file_names.each do |name|
       raise(BASICRuntimeError, 'Invalid file name') unless
-        name.class.to_s == 'TextConstant'
+        name.content_type == 'string'
+
       raise(BASICRuntimeError, "File '#{name.to_v}' not found") unless
         File.file?(name.to_v)
+
       file_handle = FileHandle.new(@file_handlers.size + 1)
       @file_handlers[file_handle] = FileHandler.new(name.to_v)
     end
@@ -760,7 +762,8 @@ class Interpreter
 
   def open_file(filename, fh, mode)
     raise(BASICRuntimeError, 'Invalid file name') unless
-      filename.class.to_s == 'TextConstant'
+      filename.text_constant?
+
     ### todo: check for already open handle
     fhr = FileHandler.new(filename.to_v)
     fhr.set_mode(mode)
@@ -770,6 +773,7 @@ class Interpreter
   def close_file(fh)
     raise(BASICRuntimeError, 'Unknown file handle') unless
       @file_handlers.key?(fh)
+
     fhr = @file_handlers[fh]
     fhr.close
     ### todo: remove file handle

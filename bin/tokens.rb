@@ -398,17 +398,15 @@ end
 
 # variable token
 class VariableToken < AbstractToken
+  attr_reader :content_type
+
   def initialize(text)
     super
     raise(Exception, 'invalid token') unless text.class.to_s == 'String'
     @is_variable = true
-  end
-
-  def content_type
-    return 'TextConstant' if @text.include?('$')
-    return 'IntegerConstant' if @text.include?('%')
-
-    'NumericConstant'
+    @content_type = 'numeric'
+    @content_type = 'string' if text.include?('$')
+    @content_type = 'integer' if text.include?('%')
   end
 
   def ==(other)

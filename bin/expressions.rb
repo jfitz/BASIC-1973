@@ -1066,12 +1066,14 @@ class ValueScalarExpression < AbstractExpression
   end
 
   def content_type
-    last_expression = @parsed_expressions[0][-1]
-    last_expression.content_type
+    first_expression = @parsed_expressions[0]
+    last_token = first_expression[-1]
+    last_token.content_type
   end
 
   def filehandle?
-    last_token = @parsed_expressions[0][-1]
+    first_expression = @parsed_expressions[0]
+    last_token = first_expression[-1]
     last_token.operator? && last_token.to_s == '#'
   end
 
@@ -1210,9 +1212,9 @@ class UserFunctionDefinition
     sig = []
 
     @arguments.each do |arg|
-      sig << numeric_spec if arg.content_type == 'NumericConstant'
-      sig << text_spec if arg.content_type == 'TextConstant'
-      sig << integer_spec if arg.content_type == 'IntegerConstant'
+      sig << numeric_spec if arg.content_type == 'numeric'
+      sig << text_spec if arg.content_type == 'string'
+      sig << integer_spec if arg.content_type == 'integer'
     end
 
     sig
