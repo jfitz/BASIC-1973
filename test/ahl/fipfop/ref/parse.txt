@@ -1,7 +1,7 @@
-5 REM *** CONVERTED TO RSTS/E BV DAVID AHL, DIGITAL
- Remark:*** CONVERTED TO RSTS/E BV DAVID AHL, DIGITAL
-10 REM *** CREATED BV MICHAEL KASS   HERRICKS HS, NV
- Remark:*** CREATED BV MICHAEL KASS   HERRICKS HS, NV
+5 REM *** CONVERTED TO RSTS/E BY DAVID AHL, DIGITAL
+ Remark:*** CONVERTED TO RSTS/E BY DAVID AHL, DIGITAL
+10 REM *** CREATED BY MICHAEL KASS   HERRICKS HS, NV
+ Remark:*** CREATED BY MICHAEL KASS   HERRICKS HS, NV
 20 PRINT "THE OBJECT OF THIS PUZZLE IS TO CHANGE THIS:"
  ITEMS
  TextConstant:"THE OBJECT OF THIS PUZZLE IS TO CHANGE THIS:"
@@ -163,12 +163,13 @@
  BinaryOperator:*
  BinaryOperator:+
  AssignmentOperator:=
-430 LET N=R-INT(R)
+430 LET N=ABS(R-INT(R))
  ScalarReference:N
  ScalarValue:R
  ScalarValue:R
  FunctionInt
  BinaryOperator:-
+ FunctionAbs
  AssignmentOperator:=
 440 LET N=INT(10*N)
  ScalarReference:N
@@ -293,8 +294,8 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
  step:    ["NumericConstant:1"]
-660 IF A$(2)<>"O" THEN 320
- NumericConstant:2
+660 IF A$(Z)<>"O" THEN 320
+ ScalarValue:Z
  ScalarValue:A$
  TextConstant:"O"
  BinaryOperator:<>
@@ -322,11 +323,11 @@
  CarriageControl:
  TextConstant:"GUESSES"
  CarriageControl:NL
-728 PRINT "DO VOU WANT TO DO ANOTHER PUZZLE";
+720 PRINT "DO YOU WANT TO DO ANOTHER PUZZLE";
  ITEMS
- TextConstant:"DO VOU WANT TO DO ANOTHER PUZZLE"
+ TextConstant:"DO YOU WANT TO DO ANOTHER PUZZLE"
  CarriageControl:;
-738 INPUT X$
+730 INPUT X$
  ScalarReference:X$
 740 IF X$="NO" THEN 780
  ScalarValue:X$

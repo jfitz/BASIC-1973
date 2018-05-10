@@ -29,8 +29,8 @@
  ScalarReference:B$
  ITEMS
  CarriageControl:NL
-50 IF B4="YES" THEN 70
- ScalarValue:B4
+50 IF B$="YES" THEN 70
+ ScalarValue:B$
  TextConstant:"YES"
  BinaryOperator:=
 55 IF B$="NO" THEN 80
@@ -208,13 +208,13 @@
  ScalarReference:D$
  ITEMS
  CarriageControl:NL
-210 IF D$="TOO MU" THEN 220
+210 IF D$="TOO MUCH" THEN 220
  ScalarValue:D$
- TextConstant:"TOO MU"
+ TextConstant:"TOO MUCH"
  BinaryOperator:=
-213 IF D$="TOG LI" THEN 230
+213 IF D$="TOO LITTLE" THEN 230
  ScalarValue:D$
- TextConstant:"TOG LI"
+ TextConstant:"TOO LITTLE"
  BinaryOperator:=
 215 PRI "DON'T GET ALL SHOOK ";\GOS 500\PRI ",JUST ANSWER THE QUESTION
  ITEMS
@@ -420,20 +420,12 @@
  VariableName:N
 410 GOT 10
  LineNumber:10
-500 T=A$(0)\FOR I=1 TO INT(T/6+1)\PRINT A$(I);\NEXT I
- ScalarReference:T
- NumericConstant:0
- ScalarValue:A$
- AssignmentOperator:=
- control: VariableName:I
- start:   ["NumericConstant:1"]
- end:     ["ScalarValue:T", "NumericConstant:6", "BinaryOperator:/", "NumericConstant:1", "BinaryOperator:+", "FunctionInt"]
- step:    ["NumericConstant:1"]
+500 REM T=A$(0)\FOR I=1 TO INT(T/6+1)\PRINT A$(I);\NEXT I
+ Remark:T=A$(0)\FOR I=1 TO INT(T/6+1)\PRINT A$(I);\NEXT I
+502 PRINT A$;
  ITEMS
- ScalarValue:I
  ScalarValue:A$
  CarriageControl:;
- VariableName:I
 510 RETURN
  
 999 END
