@@ -92,7 +92,7 @@ class ConsoleIo
     input_text = STDIN.getch
     input_text.bytes.collect { |c| raise(BASICRuntimeError, 'BREAK') if c < 8 }
     ascii_text = ascii_printables(input_text)
-    print(ascii_text) if @echo_input
+    print(ascii_text)
     ascii_text = high_bits(input_text) if @input_high_bit
     ascii_text
   end
