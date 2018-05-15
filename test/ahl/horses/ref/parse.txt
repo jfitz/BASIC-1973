@@ -225,8 +225,7 @@
  start:   ["NumericConstant:2"]
  end:     ["ScalarValue:I"]
  step:    ["NumericConstant:1"]
-56 ON SGN(H(B(J-1))-H(B(J)))4-2 GO TO 60,58,62
- NumericConstant:4
+56 ON SGN(H(B(J-1))-H(B(J)))+2 GO TO 60,58,62
  ScalarValue:J
  NumericConstant:1
  BinaryOperator:-
@@ -238,7 +237,7 @@
  BinaryOperator:-
  FunctionSgn
  NumericConstant:2
- BinaryOperator:-
+ BinaryOperator:+
  LineNumber:60
  LineNumber:58
  LineNumber:62
@@ -452,13 +451,13 @@
  BinaryOperator:+
  FunctionChr
  CarriageControl:;
-138 IF M<>0 THEN 139 \ PRINT "."
+138 IF M<>0 THEN 139 \ PRINT ".";
  ScalarValue:M
  NumericConstant:0
  BinaryOperator:<>
  ITEMS
  TextConstant:"."
- CarriageControl:NL
+ CarriageControl:;
 139 NEXT M
  VariableName:M
 140 PRINT "0";
@@ -542,7 +541,7 @@
  TextConstant:"ON "
  CarriageControl:;
  LineNumber:172
-166 IF H(T(J))>3 THEN 166 \ PRINT "NEXT TIME, BUY A SHOW"; \ GO TO 170
+166 IF H(T(J))>3 THEN 168 \ PRINT "NEXT TIME, BUY A SHOW"; \ GO TO 170
  ScalarValue:J
  ScalarValue:T
  ScalarValue:H

@@ -127,12 +127,12 @@
  ScalarValue:L
  NumericConstant:5
  BinaryOperator:<>
-205 M=0:Q=1
+205 M=0:Q=0
  ScalarReference:M
  NumericConstant:0
  AssignmentOperator:=
  ScalarReference:Q
- NumericConstant:1
+ NumericConstant:0
  AssignmentOperator:=
 210 FOR I=1 TO 5
  control: VariableName:I
@@ -150,33 +150,33 @@
  ScalarValue:J
  ScalarValue:L
  BinaryOperator:<>
-231 P(Q)=L(J)
+231 Q=Q+1
+ ScalarReference:Q
+ ScalarValue:Q
+ NumericConstant:1
+ BinaryOperator:+
+ AssignmentOperator:=
+232 P(Q)=L(J)
  ScalarValue:Q
  ScalarReference:P
  ScalarValue:J
  ScalarValue:L
  AssignmentOperator:=
-232 G=G+1
- ScalarReference:G
- ScalarValue:G
- NumericConstant:1
- BinaryOperator:+
- AssignmentOperator:=
-233 IF I<>J THEN 250
+233 IF I<>J THEN 260
  ScalarValue:I
  ScalarValue:J
  BinaryOperator:<>
-240 A(J)=L(J)
- ScalarValue:J
- ScalarReference:A
- ScalarValue:J
- ScalarValue:L
- AssignmentOperator:=
-250 M=M+1
+240 M=M+1
  ScalarReference:M
  ScalarValue:M
  NumericConstant:1
  BinaryOperator:+
+ AssignmentOperator:=
+250 A(I)=L(J)
+ ScalarValue:I
+ ScalarReference:A
+ ScalarValue:J
+ ScalarValue:L
  AssignmentOperator:=
 260 NEXT J
  VariableName:J
@@ -187,10 +187,10 @@
  ScalarReference:A
  NumericConstant:5
  AssignmentOperator:=
-272 P(0)=M
+272 P(0)=Q
  NumericConstant:0
  ScalarReference:P
- ScalarValue:M
+ ScalarValue:Q
  AssignmentOperator:=
 275 CHANGE A TO A$
  ScalarValue:A

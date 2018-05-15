@@ -14,7 +14,7 @@
 150 PRINT
  ITEMS
  CarriageControl:NL
-160 IF A$="NO" THEN 370
+160 IF A$="NO" THEN 330
  ScalarValue:A$
  TextConstant:"NO"
  BinaryOperator:=
@@ -52,13 +52,13 @@
 250 PRINT
  ITEMS
  CarriageControl:NL
-260 PRINT "TO THF QUESTION 'ENTER DISTANCE' ENTER THE MAXIMUM DISTANCE"
+260 PRINT "TO THE QUESTION 'ENTER DISTANCE' ENTER THE MAXIMUM DISTANCE"
  ITEMS
- TextConstant:"TO THF QUESTION 'ENTER DISTANCE' ENTER THE MAXIMUM DISTANCE"
+ TextConstant:"TO THE QUESTION 'ENTER DISTANCE' ENTER THE MAXIMUM DISTANCE"
  CarriageControl:NL
-270 PRINT "YOU CAN HIT FR?OM THE TARGET AND STILL DESTROY IT. THIS IS"
+270 PRINT "YOU CAN HIT FROM THE TARGET AND STILL DESTROY IT. THIS IS"
  ITEMS
- TextConstant:"YOU CAN HIT FR?OM THE TARGET AND STILL DESTROY IT. THIS IS"
+ TextConstant:"YOU CAN HIT FROM THE TARGET AND STILL DESTROY IT. THIS IS"
  CarriageControl:NL
 280 PRINT "THE KILL RADIUS AND 5000 IS SUGGESTED FOR STARTERS."
  ITEMS
@@ -218,21 +218,21 @@
  ScalarValue:K
  FunctionAbs
  AssignmentOperator:=
-610 IF K1<D THEN 650
+610 K1=ABS(K-D)
+ ScalarReference:K1
+ ScalarValue:K
+ ScalarValue:D
+ BinaryOperator:-
+ FunctionAbs
+ AssignmentOperator:=
+620 IF K1>D THEN 720
+ ScalarValue:K1
+ ScalarValue:D
+ BinaryOperator:>
+630 IF K1<D THEN 740
  ScalarValue:K1
  ScalarValue:D
  BinaryOperator:<
-620 IF K>D THEN 720
- ScalarValue:K
- ScalarValue:D
- BinaryOperator:>
-630 IF K<-D THEN 740
- ScalarValue:K
- ScalarValue:D
- UnaryOperator:-
- BinaryOperator:<
-640 STOP
- 
 650 PRINT "*** TARGET DESTROYED ***"
  ITEMS
  TextConstant:"*** TARGET DESTROYED ***"
@@ -267,9 +267,9 @@
  CarriageControl:NL
 730 GOTO 745
  LineNumber:745
-740 PRINT "OVER TARGFT BY "K1"YARDS"
+740 PRINT "OVER TARGET BY "K1"YARDS"
  ITEMS
- TextConstant:"OVER TARGFT BY "
+ TextConstant:"OVER TARGET BY "
  CarriageControl:
  ScalarValue:K1
  CarriageControl:
@@ -325,9 +325,9 @@
  AssignmentOperator:=
 790 GOTO 500
  LineNumber:500
-800 PRINT "MAXIMUM EVEVATION IS 89 DEGREES"
+800 PRINT "MAXIMUM ELEVATION IS 89 DEGREES"
  ITEMS
- TextConstant:"MAXIMUM EVEVATION IS 89 DEGREES"
+ TextConstant:"MAXIMUM ELEVATION IS 89 DEGREES"
  CarriageControl:NL
 810 GOTO 530
  LineNumber:530
