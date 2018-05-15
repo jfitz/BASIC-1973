@@ -399,6 +399,8 @@ class NumericConstant < AbstractValueElement
   def initialize(text)
     super()
     numeric_classes = %w(Fixnum Bignum Float)
+    f = nil
+    f = text.to_f if text.class.to_s == 'Rational'
     f = text if numeric_classes.include?(text.class.to_s)
     if text.class.to_s == 'NumericConstantToken'
       t = text.to_s
@@ -408,6 +410,9 @@ class NumericConstant < AbstractValueElement
         f = text.to_f
       end
     end
+
+    raise(Exception, "Cannot parse '#{text.class}:#{text}'") if f.nil?
+
     @token_chars = text.to_s
     @value = float_to_possible_int(f)
     @value = 3.1415926 if text == 'PI'
