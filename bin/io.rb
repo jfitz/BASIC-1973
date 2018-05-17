@@ -89,9 +89,22 @@ class ConsoleIo
   include Inputter
 
   def read_char
-    input_text = STDIN.getch
+    if STDIN.tty?
+      input_text = STDIN.getch
+    else
+      input_text = STDIN.getc
+    end
+
+    raise(BASICRuntimeError, 'End of file') if input_text.nil?
+
+    raise(BASICRuntimeError, 'End of file') if input_text.empty?
+
     input_text.bytes.collect { |c| raise(BASICRuntimeError, 'BREAK') if c < 8 }
+
     ascii_text = ascii_printables(input_text)
+
+    raise(BASICRuntimeError, 'End of file') if ascii_text.empty?
+
     print(ascii_text)
     ascii_text = high_bits(input_text) if @input_high_bit
     ascii_text
