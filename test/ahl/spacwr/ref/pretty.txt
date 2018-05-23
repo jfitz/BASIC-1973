@@ -93,7 +93,7 @@
 1210 A$ = " * " : Z1 = R1 : Z2 = R2
 1240 GOSUB 5510
 1250 NEXT I
-1260 GOSUB 4120
+1260 GOSUB 4111
 1270 INPUT "COMMAND:"; A
 1290 IF A = 0 GOTO 1410
 1291 IF A = 1 GOTO 1260
@@ -350,32 +350,30 @@
 4320 IF E < E0 * .1 THEN 4370
 4330 C$ = "GREEN"
 4340 GOTO 4380
-4350 C$ = "REO" : GOTO 4380
+4350 C$ = "RED" : GOTO 4380
 4370 C$ = "YELLOW" :
 4380 IF D(2) >= 0 THEN 4430
 4390 PRINT : PRINT "*** SHORT RANGE SENSORS ARE OUT ***" : PRINT
 4420 GOTO 4530
 4430 O1$ = "----------------------------"
-4435 PRINT USING O1$
+4435 PRINT O1$
 4440 O2$ = " \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \"
-4445 PRINT USING O2$, MID(O$, 1, 3), MID(O$, 4, 3), MID(O$, 7, 3), MID(O$, 10, 3), MID(O$, 13, 3), MID(O$, 16, 3), MID(O$, 19, 35), MID(O$, 22, 3)
-4450 O3$ = O2$ + "        STARDATE         #####"
-4455 PRINT USING O3$, MID(O$, 25, 3), MID(O$, 28, 3), MID(O$, 31, 3), MID(O$, 34, 3), MID(O$, 37, 3), MID(O$, 40, 3), MID(O$, 43, 35), MID(O$, 46, 3), T
-4460 O4$ = O2$ + "        CONDITION        \    \"
-4465 PRINT USING O4$, MID(O$, 49, 3), MID(O$, 52, 3), MID(O$, 55, 3), MID(O$, 58, 3), MID(O$, 61, 3), MID(O$, 64, 3), MID(O$, 67, 35), MID(O$, 70, 3), C$
-4470 O5$ = O2$ + "        QUADRANT         "
-4475 PRINT USING O5$, MID(R$, 1, 3), MID(R$, 4, 3), MID(R$, 7, 3), MID(R$, 10, 3), MID(R$, 13, 3), MID(R$, 16, 3), MID(R$, 19, 35), MID(R$, 22, 3), Q1
-4476 PRINT ","; Q2
-4480 O6$ = O2$ + "        SECTOR           #"
-4485 PRINT USING O6$, MID(R$, 25, 3), MID(R$, 28, 3), MID(R$, 31, 3), MID(R$, 34, 3), MID(R$, 37, 3), MID(R$, 40, 3), MID(R$, 43, 35), MID(R$, 46, 3), S1;
-4486 PRINT ","; S2
+4445 PRINT USING O2$, MID(Q$, 1, 3), MID(Q$, 4, 3), MID(Q$, 7, 3), MID(Q$, 10, 3), MID(Q$, 13, 3), MID(Q$, 16, 3), MID(Q$, 19, 3), MID(Q$, 22, 3)
+4450 O3$ = O2$ + "        STARDATE        #####"
+4455 PRINT USING O3$, MID(O$, 25, 3), MID(Q$, 28, 3), MID(Q$, 31, 3), MID(Q$, 34, 3), MID(Q$, 37, 3), MID(Q$, 40, 3), MID(Q$, 43, 3), MID(Q$, 46, 3), T
+4460 O4$ = O2$ + "        CONDITION      \    \"
+4465 PRINT USING O4$, MID(Q$, 49, 3), MID(Q$, 52, 3), MID(Q$, 55, 3), MID(Q$, 58, 3), MID(Q$, 61, 3), MID(Q$, 64, 3), MID(Q$, 67, 3), MID(Q$, 70, 3), C$
+4470 O5$ = O2$ + "        QUADRANT          # #"
+4475 PRINT USING O5$, MID(R$, 1, 3), MID(R$, 4, 3), MID(R$, 7, 3), MID(R$, 10, 3), MID(R$, 13, 3), MID(R$, 16, 3), MID(R$, 19, 3), MID(R$, 22, 3), Q1, Q2
+4480 O6$ = O2$ + "        SECTOR            # #"
+4485 PRINT USING O6$, MID(R$, 25, 3), MID(R$, 28, 3), MID(R$, 31, 3), MID(R$, 34, 3), MID(R$, 37, 3), MID(R$, 40, 3), MID(R$, 43, 3), MID(R$, 46, 3), S1, S2
 4490 O7$ = O2$ + "        TOTAL ENERGY   ######"
-4495 PRINT USING O7$, MID(R$, 49, 3), MID(R$, 52, 3), MID(R$, 55, 3), MID(R$, 58, 3), MID(R$, 61, 3), MID(R$, 64, 3), MID(R$, 67, 35), MID(R$, 70, 3), E
+4495 PRINT USING O7$, MID(R$, 49, 3), MID(R$, 52, 3), MID(R$, 55, 3), MID(R$, 58, 3), MID(R$, 61, 3), MID(R$, 64, 3), MID(R$, 67, 3), MID(R$, 70, 3), E
 4500 O8$ = O2$ + "        PHOTON TORPEDOES  ###"
-4505 PRINT USING O8$, MID(S$, 1, 3), MID(S$, 4, 3), MID(S$, 7, 3), MID(S$, 10, 3), MID(S$, 13, 3), MID(S$, 16, 3), MID(S$, 19, 35), MID(S$, 22, 3), P
-4510 O9$ = O2 + "         SHIELDS        ######"
-4515 PRINT USING O6$, MID(S$, 25, 3), MID(S$, 28, 3), MID(S$, 31, 3), MID(S$, 34, 3), MID(S$, 37, 3), MID(S$, 40, 3), MID(S$, 43, 35), MID(S$, 46, 3), S
-4520 PRINT USING O1$
+4505 PRINT USING O8$, MID(S$, 1, 3), MID(S$, 4, 3), MID(S$, 7, 3), MID(S$, 10, 3), MID(S$, 13, 3), MID(S$, 16, 3), MID(S$, 19, 3), MID(S$, 22, 3), P
+4510 O9$ = O2$ + "        SHIELDS        ######"
+4515 PRINT USING O9$, MID(S$, 25, 3), MID(S$, 28, 3), MID(S$, 31, 3), MID(S$, 34, 3), MID(S$, 37, 3), MID(S$, 40, 3), MID(S$, 43, 3), MID(S$, 46, 3), S
+4520 PRINT O1$
 4530 RETURN
 4620 REM *** LIBRARY COMPUTER CODE BEGINS HERE"
 4630 IF D(8) >= 0 THEN 4660
@@ -444,7 +442,7 @@
 5310 IF A$ <> "NO" THEN 5280
 5320 GOTO 1270
 5321 REM *** END OF. LIBRARY COMPUTER CODE
-5380 R1 = INT(RND(1) * 8 + 1) : R2 = INT(RND(1) * 8 + 1) : A$ = "    " : Z1 = R1 : Z2 = R2
+5380 R1 = INT(RND(1) * 8 + 1) : R2 = INT(RND(1) * 8 + 1) : A$ = "   " : Z1 = R1 : Z2 = R2
 5430 GOSUB 5680
 5440 IF Z3 = 0 THEN 5380
 5450 RETURN
