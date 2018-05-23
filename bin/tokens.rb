@@ -499,7 +499,7 @@ class PaddedStringFormatToken < AbstractToken
 
   def format(text_constant)
     text = text_constant.to_v
-    text = text + ' ' while text.size < @text.size
+    text += ' ' while text.size < @text.size
     token = TextConstantToken.new('"' + text + '"')
     constant = TextConstant.new(token)
   end

@@ -2372,8 +2372,10 @@ class PrintUsingStatement < AbstractPrintStatement
       text.print(fhr)
     end
 
-    item = print_items.shift
-    item.print(fhr, interpreter)
+    until print_items.empty?
+      item = print_items.shift
+      item.print(fhr, interpreter) unless item.nil?
+    end
   end
 
   private
