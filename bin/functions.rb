@@ -564,12 +564,18 @@ class FunctionMid < AbstractScalarFunction
     if match_args_to_signature(args, @signature)
       value = args[0].to_v
       start = args[1].to_i
-      raise(BASICRuntimeError, "Invalid start index for #{@name}()") if start < 1
-      start -= 1
-      end_index = args[2].to_i - 1
+      length = args[2].to_i
+
+      raise(BASICRuntimeError, "Invalid start index for #{@name}()") if
+        start < 1
+
+      start_index = start - 1
+      end_index = start_index + length - 1
+
       raise(BASICRuntimeError, "Invalid end index for #{@name}()") if
-        end_index < start
-      text = value[start..end_index]
+        end_index < start_index
+
+      text = value[start_index..end_index]
       text = '' if text.nil?
       quoted = '"' + text + '"'
       token = TextConstantToken.new(quoted)
