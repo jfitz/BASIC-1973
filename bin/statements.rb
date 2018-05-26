@@ -24,12 +24,12 @@ class StatementFactory
       comment = all_tokens.pop if
         !all_tokens.empty? && all_tokens[-1].comment?
 
-      line = create(line_text, all_tokens, comment)
+      line = create(line_text, all_tokens, comment, line_number)
     end
     [line_number, line]
   end
 
-  def create_statement(statement_tokens)
+  def create_statement(statement_tokens, line_index)
     if statement_tokens.empty?
       statement = EmptyStatement.new
     else
@@ -40,7 +40,7 @@ class StatementFactory
         if @statement_definitions.key?(keywords)
           tokens_lists = split_keywords(tokens)
           statement =
-            @statement_definitions[keywords].new(keywords, tokens_lists)
+            @statement_definitions[keywords].new(keywords, tokens_lists, line_index)
         else
           keyword = keywords.pop
           tokens.unshift(keyword)
@@ -50,7 +50,7 @@ class StatementFactory
     statement
   end
 
-  def create(text, all_tokens, comment)
+  def create(text, all_tokens, comment, line_number)
     statements = []
     statements_tokens = split_on_separators(all_tokens)
 
@@ -58,14 +58,17 @@ class StatementFactory
       statement = EmptyStatement.new
       statements << statement
     else
+      statement_index = 0
       statements_tokens.each do |statement_tokens|
+        line_index = LineNumberIndex.new(line_number, statement_index, 0)
         begin
-          statement = create_statement(statement_tokens)
+          statement = create_statement(statement_tokens, line_index)
         rescue BASICExpressionError, BASICRuntimeError => e
           statement = InvalidStatement.new(text, all_tokens, e)
         end
         statement = UnknownStatement.new(text) if statement.nil?
         statements << statement
+        statement_index += 1
       end
     end
 
@@ -100,6 +103,7 @@ class StatementFactory
       DimStatement,
       EndStatement,
       FilesStatement,
+      FnendStatement,
       ForStatement,
       GosubStatement,
       GotoStatement,
@@ -200,6 +204,7 @@ class AbstractStatement
   attr_reader :tokens
   attr_accessor :profile_count
   attr_accessor :profile_time
+  attr_accessor :part_of_user_function
 
   def self.extra_keywords
     []
@@ -212,6 +217,7 @@ class AbstractStatement
     @modifiers = []
     @profile_count = 0
     @profile_time = 0
+    @part_of_user_function = false
   end
 
   private
@@ -310,6 +316,14 @@ class AbstractStatement
 
   def last_index
     @modifiers.size
+  end
+
+  def multidef?
+    false
+  end
+
+  def multiend?
+    false
   end
 
   private
@@ -542,8 +556,8 @@ class RemarkStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     @rest = Remark.new(nil)
     @rest = Remark.new(tokens_lists[0]) unless tokens_lists.empty?
@@ -690,8 +704,8 @@ class ChangeStatement < AbstractStatement
     ['TO']
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 
@@ -795,8 +809,8 @@ class CloseStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 
@@ -848,8 +862,8 @@ class DataStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     template = [[1, '>=']]
 
@@ -881,21 +895,25 @@ class DefineFunctionStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, line_index)
+    super(keywords, tokens_lists)
 
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
       @definition = nil
       begin
-        @definition = UserFunctionDefinition.new(tokens_lists[0])
+        @definition = UserFunctionDefinition.new(tokens_lists[0], line_index)
       rescue BASICExpressionError => e
         @errors << e.message
       end
     else
       @errors << 'Syntax error'
     end
+  end
+
+  def multidef?
+    @definition.multidef?
   end
 
   def dump
@@ -920,8 +938,8 @@ class DimStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     template = [[1, '>=']]
 
@@ -976,8 +994,8 @@ class EndStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     template = []
 
@@ -1011,8 +1029,8 @@ class FilesStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     template = [[1, '>=']]
 
@@ -1036,6 +1054,36 @@ class FilesStatement < AbstractStatement
 
   def variables
     @expressions.variables
+  end
+end
+
+# FNEND
+class FnendStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('FNEND')]
+    ]
+  end
+
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
+
+    template = []
+
+    @errors << 'Syntax error' unless
+      check_template(tokens_lists, template)
+  end
+
+  def multiend?
+    true
+  end
+
+  def dump
+    ['']
+  end
+
+  def execute_core(interpreter)
+    interpreter.exit_user_function
   end
 end
 
@@ -1098,8 +1146,8 @@ class ForStatement < AbstractStatement
     ['TO', 'STEP']
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     template1 = [[1, '>='], 'TO', [1, '>=']]
     template2 = [[1, '>='], 'TO', [1, '>='], 'STEP', [1, '>=']]
@@ -1199,8 +1247,8 @@ class GosubStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 
@@ -1257,8 +1305,8 @@ class GotoStatement < AbstractStatement
     ['OF']
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 
@@ -1397,8 +1445,8 @@ class IfStatement < AbstractStatement
     ['THEN', 'ELSE']
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     if tokens_lists.class.to_s == 'Hash'
       @expression = parse_expression(tokens_lists['expr'])
@@ -1657,12 +1705,12 @@ class IfStatement < AbstractStatement
     destination = nil
     statement = nil
     if tokens.class.to_s == 'Hash'
-      statement = IfStatement.new(nil, tokens)
+      statement = IfStatement.new(nil, tokens, nil)
     elsif tokens.size == 1 && tokens[0].numeric_constant?
       destination = LineNumber.new(tokens[0])
     else
       statement_factory = StatementFactory.instance
-      statement = statement_factory.create_statement(tokens.flatten)
+      statement = statement_factory.create_statement(tokens.flatten, nil)
       @errors += statement.errors
     end
     [destination, statement]
@@ -1678,8 +1726,8 @@ class InputStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 
@@ -1758,8 +1806,8 @@ class InputCharStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 
@@ -1879,8 +1927,8 @@ class LetStatement < AbstractLetStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
   end
 end
 
@@ -1892,8 +1940,8 @@ class LetLessStatement < AbstractLetStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
   end
 end
 
@@ -1908,8 +1956,8 @@ class LineInputStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 
@@ -1987,8 +2035,8 @@ class NextStatement < AbstractStatement
 
   attr_reader :control
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     template = [[1]]
 
@@ -2042,8 +2090,8 @@ class OnStatement < AbstractStatement
     ['GOTO', 'THEN']
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     @destinations = nil
     @expression = nil
@@ -2150,8 +2198,8 @@ class OpenStatement < AbstractStatement
     %w(FOR INPUT OUTPUT AS FILE)
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 
@@ -2256,7 +2304,7 @@ class PrintStatement < AbstractPrintStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
+  def initialize(keywords, tokens_lists, _)
     super(keywords, tokens_lists, CarriageControl.new('NL'))
 
     extract_modifiers(tokens_lists)
@@ -2323,7 +2371,7 @@ class PrintUsingStatement < AbstractPrintStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
+  def initialize(keywords, tokens_lists, _)
     super(keywords, tokens_lists, CarriageControl.new('NL'))
 
     extract_modifiers(tokens_lists)
@@ -2460,8 +2508,8 @@ class RandomizeStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 
@@ -2522,8 +2570,8 @@ class ReadStatement < AbstractReadStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 
@@ -2587,8 +2635,8 @@ class RestoreStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 
@@ -2617,8 +2665,8 @@ class ReturnStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 
@@ -2646,8 +2694,8 @@ class SleepStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 
@@ -2689,8 +2737,8 @@ class StopStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 
@@ -2720,8 +2768,8 @@ class TraceStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 
@@ -2798,7 +2846,7 @@ class WriteStatement < AbstractWriteStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
+  def initialize(keywords, tokens_lists, _)
     super(keywords, tokens_lists, CarriageControl.new('NL'))
 
     extract_modifiers(tokens_lists)
@@ -2862,7 +2910,7 @@ class ArrPrintStatement < AbstractPrintStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
+  def initialize(keywords, tokens_lists, _)
     super(keywords, tokens_lists, CarriageControl.new(','))
 
     extract_modifiers(tokens_lists)
@@ -2921,8 +2969,8 @@ class ArrReadStatement < AbstractReadStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 
@@ -3007,7 +3055,7 @@ class ArrWriteStatement < AbstractWriteStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
+  def initialize(keywords, tokens_lists, _)
     super(keywords, tokens_lists, CarriageControl.new(','))
 
     extract_modifiers(tokens_lists)
@@ -3067,8 +3115,8 @@ class ArrLetStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 
@@ -3135,7 +3183,7 @@ class MatPrintStatement < AbstractPrintStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
+  def initialize(keywords, tokens_lists, _)
     super(keywords, tokens_lists, CarriageControl.new(','))
 
     extract_modifiers(tokens_lists)
@@ -3195,8 +3243,8 @@ class MatReadStatement < AbstractReadStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 
@@ -3297,7 +3345,7 @@ class MatWriteStatement < AbstractWriteStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
+  def initialize(keywords, tokens_lists, _)
     super(keywords, tokens_lists, CarriageControl.new(','))
 
     extract_modifiers(tokens_lists)
@@ -3357,8 +3405,8 @@ class MatLetStatement < AbstractStatement
     ]
   end
 
-  def initialize(keywords, tokens_lists)
-    super
+  def initialize(keywords, tokens_lists, _)
+    super(keywords, tokens_lists)
 
     extract_modifiers(tokens_lists)
 

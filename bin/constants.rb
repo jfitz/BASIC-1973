@@ -1043,8 +1043,9 @@ class VariableName < AbstractElement
 
   def initialize(token)
     super()
-    raise(BASICError, "'#{token}' is not a variable name") unless
-      token.class.to_s == 'VariableToken'
+    raise(Exception, "'#{token}' is not a variable name") unless
+      token.class.to_s == 'VariableToken' ||
+      token.class.to_s == 'UserFunctionToken'
     @name = token
     @variable = true
     @operand = true
@@ -1100,8 +1101,9 @@ class Variable < AbstractElement
 
   def initialize(variable_name, subscripts = [])
     super()
-    raise(BASICError, "'#{variable_name}' is not a variable name") if
-      variable_name.class.to_s != 'VariableName'
+    raise(Exception, "'#{variable_name.class}:#{variable_name}' is not a variable name") if
+      variable_name.class.to_s != 'VariableName' &&
+      variable_name.class.to_s != 'UserFunctionToken'
     @variable_name = variable_name
     @subscripts = normalize_subscripts(subscripts)
     @variable = true

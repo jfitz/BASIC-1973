@@ -85,14 +85,21 @@
  FunctionRight
  BinaryOperator:+
 105 DEF FNN$(X%):X$=NUM$(X%):FNN$=MID(X$,2%*LEN(X$)-2%):FNEND
- 'FNN$(X%)' is not a valid assignment
- Invalid statement: Value is not assignable (type UserFunction)
- 'FNEND' is not a valid assignment
  ScalarReference:X$
  ScalarValue:X%
  FunctionStr
  AssignmentOperator:=
- Unimplemented
+ ScalarReference:FNN$
+ ScalarValue:X$
+ IntegerConstant:2
+ ScalarValue:X$
+ FunctionLen
+ BinaryOperator:*
+ IntegerConstant:2
+ BinaryOperator:-
+ FunctionMid
+ AssignmentOperator:=
+ 
 110 DIM P$(50%):RANDOMIZE:Q%=0%:PRINT "SINCE I'M A GOOD SPORT, YOU'LL ALWAYS GO FIRST"
  IntegerConstant:50
  CompoundDeclaration:P$

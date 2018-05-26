@@ -39,6 +39,7 @@ class Interpreter
     @null_out = NullOut.new
     @tokenbuilders = make_debug_tokenbuilders
     @breakpoints = {}
+    @function_stack = []
   end
 
   private
@@ -173,12 +174,16 @@ class Interpreter
     statement.errors.each { |error| puts error }
   end
 
-  def preexecute_a_statement
+  def preexecute_a_statement(part_of_user_function)
     line_number = @current_line_index.number
     line = @program_lines[line_number]
     statements = line.statements
     statement_index = @current_line_index.statement
     statement = statements[statement_index]
+
+    part_of_user_function = true if statement.multidef?
+    statement.part_of_user_function = part_of_user_function
+    part_of_user_function = false if statement.multiend?
 
     if statement.errors.empty?
       statement.pre_execute(self)
@@ -186,11 +191,14 @@ class Interpreter
       stop_running
       print_errors(line_number, statement)
     end
+
+    part_of_user_function
   end
 
   def preexecute_loop
+    part_of_user_function = false
     while !@current_line_index.nil? && @running
-      preexecute_a_statement
+      part_of_user_function = preexecute_a_statement(part_of_user_function)
       @current_line_index = @program.find_next_line_index(@current_line_index)
     end
   rescue BASICRuntimeError => e
@@ -206,19 +214,43 @@ class Interpreter
     statements = line.statements
     statement_index = @current_line_index.statement
     statement = statements[statement_index]
+
     print_trace_info(statement)
+
     if statement.errors.empty?
-      timing = Benchmark.measure { statement.execute(self) }
-      user_time = timing.utime + timing.cutime
-      sys_time = timing.stime + timing.cstime
-      time = user_time + sys_time
-      statement.profile_time += time
-      statement.profile_count += 1
+      if !statement.part_of_user_function || @function_running
+        timing = Benchmark.measure { statement.execute(self) }
+        user_time = timing.utime + timing.cutime
+        sys_time = timing.stime + timing.cstime
+        time = user_time + sys_time
+        statement.profile_time += time
+        statement.profile_count += 1
+      end
     else
       stop_running
       print_errors(line_number, statement)
     end
+
     @get_value_seen = []
+  end
+
+  def run_user_function(line_index)
+    @function_stack.push [@current_line_index, @next_line_index]
+
+    # run program at line_index
+    @current_line_index = line_index
+    @function_running = true
+    begin
+      program_loop while @running && @function_running
+    rescue Interrupt
+      stop_running
+    end
+
+    @current_line_index, @next_line_index = @function_stack.pop
+  end
+
+  def exit_user_function
+    @function_running = false
   end
 
   def execute_debug_command(keyword, args, cmd)
@@ -621,7 +653,8 @@ class Interpreter
     legals = [
       'VariableName',
       'Value',
-      'ScalarValue'
+      'ScalarValue',
+      'UserFunctionToken'
     ]
 
     raise(Exception, "#{variable.class}:#{variable} is not a variable") unless
@@ -669,7 +702,8 @@ class Interpreter
       'Value',
       'Variable',
       'VariableName',
-      'ScalarReference'
+      'ScalarReference',
+      'UserFunctionToken'
     ]
     
     raise(Exception, "#{variable.class}:#{variable} is not a variable name") unless

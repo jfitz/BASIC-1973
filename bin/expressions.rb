@@ -1172,7 +1172,8 @@ class TargetExpression < AbstractExpression
 
   def check_resolve_types
     @parsed_expressions.each do |parsed_expression|
-      if parsed_expression[-1].class.to_s != 'ScalarValue'
+      if parsed_expression[-1].class.to_s != 'ScalarValue' &&
+         parsed_expression[-1].class.to_s != 'UserFunction'
         raise(BASICRuntimeError,
               "Value is not assignable (type #{parsed_expression[-1].class})")
       end
@@ -1186,23 +1187,32 @@ class UserFunctionDefinition
   attr_reader :name
   attr_reader :arguments
   attr_reader :expression
+  attr_reader :line_index
 
-  def initialize(tokens)
+  def initialize(tokens, line_index)
     # parse into name '=' expression
     line_text = tokens.map(&:to_s).join
     parts = split_tokens(tokens)
 
     raise(BASICExpressionError, "'#{line_text}' is not a valid assignment") if
-      parts.size != 3
+      parts.size != 3 && parts.size != 1
 
     user_function_prototype = UserFunctionPrototype.new(parts[0])
     @name = user_function_prototype.name
     @arguments = user_function_prototype.arguments
-    @expression = ValueScalarExpression.new(parts[2])
+    @expression = nil
+    @expression = ValueScalarExpression.new(parts[2]) if parts.size == 3
+    @line_index = line_index
+  end
+
+  def multidef?
+    @expression.nil?
   end
 
   def dump
-    @expression.dump
+    lines = []
+    lines += @expression.dump unless @expression.nil?
+    lines
   end
 
   def signature

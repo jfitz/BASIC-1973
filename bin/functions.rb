@@ -1,5 +1,7 @@
 # function (provides a result)
 class Function < AbstractElement
+  attr_reader :name
+
   def initialize(text)
     super()
 
@@ -117,7 +119,13 @@ class UserFunction < AbstractScalarFunction
       interpreter.define_user_var_values(names_and_values)
 
       expression = definition.expression
-      results = expression.evaluate(interpreter, trace)
+      if !expression.nil?
+        results = expression.evaluate(interpreter, trace)
+      else
+        interpreter.run_user_function(definition.line_index)
+
+        results = [interpreter.get_value(@name, trace)]
+      end
 
       interpreter.clear_user_var_values
       results[0]
