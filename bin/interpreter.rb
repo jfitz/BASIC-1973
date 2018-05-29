@@ -25,7 +25,8 @@ class Interpreter
     @fornexts = {}
     @dimensions = {}
     @default_args = {}
-    @user_functions = {}
+    @user_function_defs = {}
+    @user_function_lines = {}
     @user_var_values = []
     @program_lines = {}
     @variables = {}
@@ -165,6 +166,11 @@ class Interpreter
 
   def print_trace_info(statement)
     @trace_out.newline_when_needed
+
+    unless statement.part_of_user_function.nil?
+      @trace_out.print_out '(' + statement.part_of_user_function.to_s + ') '
+    end
+
     @trace_out.print_out @current_line_index.to_s + ':' + statement.pretty
     @trace_out.newline
   end
@@ -181,9 +187,22 @@ class Interpreter
     statement_index = @current_line_index.statement
     statement = statements[statement_index]
 
-    part_of_user_function = true if statement.multidef?
+    if part_of_user_function && statement.multidef?
+      stop_running
+      # print this error
+      @console_io.print_line("Error in line #{line_number}:")
+      @console_io.print_line("Missing FNEND before DEF")
+      return false
+    end
+
+    if statement.multidef?
+      function_name = statement.function_name
+      @user_function_lines[function_name] = @current_line_index
+      part_of_user_function = function_name
+    end
+
     statement.part_of_user_function = part_of_user_function
-    part_of_user_function = false if statement.multiend?
+    part_of_user_function = nil if statement.multiend?
 
     if statement.errors.empty?
       statement.pre_execute(self)
@@ -196,7 +215,7 @@ class Interpreter
   end
 
   def preexecute_loop
-    part_of_user_function = false
+    part_of_user_function = nil
     while !@current_line_index.nil? && @running
       part_of_user_function = preexecute_a_statement(part_of_user_function)
       @current_line_index = @program.find_next_line_index(@current_line_index)
@@ -218,7 +237,7 @@ class Interpreter
     print_trace_info(statement)
 
     if statement.errors.empty?
-      if !statement.part_of_user_function || @function_running
+      if statement.part_of_user_function.nil? || @function_running
         timing = Benchmark.measure { statement.execute(self) }
         user_time = timing.utime + timing.cutime
         sys_time = timing.stime + timing.cstime
@@ -234,12 +253,17 @@ class Interpreter
     @get_value_seen = []
   end
 
-  def run_user_function(line_index)
+  def run_user_function(name)
+    line_index = @user_function_lines[name]
+
+    raise(BASICRuntimeError, "Function #{name} not defined") if line_index.nil?
+    
     @function_stack.push [@current_line_index, @next_line_index]
 
     # run program at line_index
     @current_line_index = line_index
     @function_running = true
+
     begin
       program_loop while @running && @function_running
     rescue Interrupt
@@ -247,6 +271,9 @@ class Interpreter
     end
 
     @current_line_index, @next_line_index = @function_stack.pop
+
+    # one user-def function may invoke a second
+    @function_running = !@function_stack.empty?
   end
 
   def exit_user_function
@@ -504,7 +531,7 @@ class Interpreter
   end
 
   def dump_user_functions
-    @user_functions.each do |name, expression|
+    @user_function_defs.each do |name, expression|
       @console_io.print_line("#{name}: #{expression}")
     end
     puts
@@ -598,11 +625,11 @@ class Interpreter
   end
 
   def set_user_function(name, definition)
-    @user_functions[name] = definition
+    @user_function_defs[name] = definition
   end
 
   def get_user_function(name)
-    @user_functions[name]
+    @user_function_defs[name]
   end
 
   def define_user_var_values(names_and_values)

@@ -122,7 +122,7 @@ class UserFunction < AbstractScalarFunction
       if !expression.nil?
         results = expression.evaluate(interpreter, trace)
       else
-        interpreter.run_user_function(definition.line_index)
+        interpreter.run_user_function(@name)
 
         results = [interpreter.get_value(@name, trace)]
       end

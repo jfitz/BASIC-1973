@@ -1187,9 +1187,8 @@ class UserFunctionDefinition
   attr_reader :name
   attr_reader :arguments
   attr_reader :expression
-  attr_reader :line_index
 
-  def initialize(tokens, line_index)
+  def initialize(tokens)
     # parse into name '=' expression
     line_text = tokens.map(&:to_s).join
     parts = split_tokens(tokens)
@@ -1202,7 +1201,6 @@ class UserFunctionDefinition
     @arguments = user_function_prototype.arguments
     @expression = nil
     @expression = ValueScalarExpression.new(parts[2]) if parts.size == 3
-    @line_index = line_index
   end
 
   def multidef?

@@ -730,8 +730,10 @@ DEF
 ~~~
 
 Specifies a user-defined function.
+User-defined functions may be expression-based or statement-based.
 
 Syntax:	DEF name(parameters) = expression
+Syntax: DEF name(parameters)
 
 User-defined functions have names in the form 'FNx' where 'x' is a single letter.
 
@@ -740,8 +742,9 @@ They are not variable names.
 The invokation of the function may provide a variable name.
 (See examples below.)
 
-The definition for a user-defined function is an expression, similar to the right-hand side of the assignment in a LET statement.
 The parameters specified in the definition are substituted into the expression at run-time; other variables specified in the expression are evaluated as usual, using the existing values at the time of execution.
+
+The definition for an expression-based user-defined function is an expression, similar to the right-hand side of the assignment in a LET statement.
 
 Examples:
 
@@ -754,6 +757,19 @@ Examples:
 	120 LET B1 = FNB(30/P1)
 	130 LET A = 30/3.1416
 	131 LET A1 = FNC(45/P1)
+
+The definition for a statement-based user-defined function is a set of lines ending with an FNEND statement.
+
+Examples:
+
+	10 DEF FNA(H)
+	20 FNA = H - 7
+	30 FNEND
+
+	100 DEF FNB(Q) : R1 = RND(0)*Q : FNB = INT(R1) : FNEND
+
+You can GOTO or GOSUB within a function.
+You cannot GOTO or GOSUB into the body of a user-defined function, or out of the body of a user-defined function, or from one user-defined function to another user-defined function.
 
 The DEF statement is processed before the program runs, and processed only once.
 Thus, it does not have to appear before it is used in a LET statement.
