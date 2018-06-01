@@ -289,6 +289,8 @@ class Program
     renumber_map
   end
 
+  private
+
   def numeric_refs
     refs = {}
     @program_lines.keys.sort.each do |line_number|
@@ -382,6 +384,8 @@ class Program
     puts ''
   end
 
+  public
+
   # generate cross-reference list
   def crossref
     puts 'Cross reference'
@@ -408,6 +412,8 @@ class Program
     print_refs('Variables', variables)
   end
 
+  private
+
   def make_summary(list)
     summary = {}
     list.each do |line_number, refs|
@@ -420,6 +426,8 @@ class Program
     end
     summary
   end
+
+  public
 
   def store_program_line(cmd, print_errors)
     line_num, line = parse_line(cmd)
@@ -460,6 +468,8 @@ class Program
       line_num < @program_lines.max[0] &&
       !print_errors
   end
+
+  private
 
   def list_lines_errors(line_numbers, list_tokens)
     line_numbers.each do |line_number|
@@ -557,6 +567,8 @@ class Program
     end
   end
 
+  public
+
   def list_and_delete_lines(line_numbers)
     list_lines(line_numbers)
     print 'DELETE THESE LINES? '
@@ -566,10 +578,12 @@ class Program
 
   def check
     result = true
+
     @program_lines.keys.sort.each do |line_number|
       r = @program_lines[line_number].check(self, @console_io, line_number)
       result &&= r
     end
+
     result
   end
 
@@ -583,6 +597,7 @@ class Program
     statement = statements[statement_index]
 
     index = current_line_index.index
+
     if index < statement.last_index
       index += 1
       return LineNumberIndex.new(line_number, statement_index, index)
@@ -601,6 +616,7 @@ class Program
     line_number = current_line_index.number
     index = line_numbers.index(line_number)
     line_number = line_numbers[index + 1]
+
     unless line_number.nil?
       line = @program_lines[line_number]
       statements = line.statements
