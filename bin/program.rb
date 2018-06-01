@@ -1,3 +1,193 @@
+# Contain line numbers
+class LineNumber
+  attr_reader :line_number
+
+  def self.init?(text)
+    /\A\d+\z/.match(text)
+  end
+
+  def initialize(line_number)
+    raise BASICError, "Invalid line number '#{line_number}'" unless
+      line_number.class.to_s == 'NumericConstantToken'
+
+    @line_number = line_number.to_i
+  end
+
+  def eql?(other)
+    @line_number == other.line_number
+  end
+
+  def ==(other)
+    @line_number == other.line_number
+  end
+
+  def hash
+    @line_number.hash
+  end
+
+  def succ
+    LineNumber.new(@line_number + 1)
+  end
+
+  def <=>(other)
+    @line_number <=> other.line_number
+  end
+
+  def >(other)
+    @line_number > other.line_number
+  end
+
+  def >=(other)
+    @line_number >= other.line_number
+  end
+
+  def <(other)
+    @line_number < other.line_number
+  end
+
+  def <=(other)
+    @line_number <= other.line_number
+  end
+
+  def dump
+    self.class.to_s + ':' + @line_number.to_s
+  end
+
+  def to_s
+    @line_number.to_s
+  end
+end
+
+# line number range, in form start-end
+class LineNumberRange
+  attr_reader :list
+
+  def initialize(start, endline, program_line_numbers)
+     @list = []
+     program_line_numbers.each do |line_number|
+      @list << line_number if line_number >= start && line_number <= endline
+    end
+  end
+end
+
+# line number range, in form start-count (count default is 20)
+class LineNumberCountRange
+  attr_reader :list
+
+  def initialize(start, count, program_line_numbers)
+    @list = []
+    program_line_numbers.each do |line_number|
+      if line_number >= start && count >= 0
+        @list << line_number
+        count -= 1
+      end
+    end
+  end
+end
+
+# LineNumberIndex class to hold line number and index within line
+class LineNumberIndex
+  attr_reader :number
+  attr_reader :statement
+  attr_reader :index
+
+  def initialize(number, statement, index)
+    @number = number
+    @statement = statement
+    @index = index
+  end
+
+  def eql?(other)
+    @number == other.number && @index == other.index
+  end
+
+  def ==(other)
+    @number == other.number && @index == other.index
+  end
+
+  def hash
+    @number.hash + @index.hash
+  end
+
+  def to_s
+    return @number.to_s if @statement.zero? && @index.zero?
+    return @number.to_s + '.' + @statement.to_s if @index.zero?
+    @number.to_s + '.' + @statement.to_s + '.' + @index.to_s
+  end
+end
+
+# Line class to hold a line of code
+class Line
+  attr_reader :statements
+  attr_reader :tokens
+
+  def initialize(text, statements, tokens, comment)
+    @text = text
+    @statements = statements
+    @tokens = tokens
+    @comment = comment
+  end
+
+  def list
+    @text
+  end
+
+  def pretty(multiline)
+    if multiline
+      pretty_lines = AbstractToken.pretty_multiline([], @tokens)
+    else
+      pretty_lines = [AbstractToken.pretty_tokens([], @tokens)]
+    end
+
+    unless @comment.nil?
+      line_0 = pretty_lines[0]
+      space = @text.size - (line_0.size + @comment.to_s.size)
+      space = 5 if space < 5
+      line_0 += ' ' * space
+      line_0 += @comment.to_s
+      pretty_lines[0] = line_0
+    end
+
+    pretty_lines
+  end
+
+  def parse
+    texts = []
+    @statements.each { |statement| texts << statement.dump }
+  end
+
+  def profile
+    texts = []
+    @statements.each { |statement| texts << statement.profile }
+  end
+
+  def renumber(renumber_map)
+    tokens = []
+    separator = StatementSeparatorToken.new('\\')
+    @statements.each do |statement|
+      statement.renumber(renumber_map)
+      tokens << statement.keywords
+      tokens << statement.tokens
+      tokens << separator
+    end
+    tokens.pop
+    text = AbstractToken.pretty_tokens([], tokens.flatten)
+    Line.new(text, @statements, tokens.flatten, @comment)
+  end
+
+  def check(program, console_io, line_number)
+    retval = true
+    index = 0
+    @statements.each do |statement|
+      line_number_index = LineNumberIndex.new(line_number, index, 0)
+      r = statement.program_check(program, console_io, line_number_index)
+      retval &&= r
+      index += 1
+    end
+    retval
+  end
+end
+
 # line reference for cross reference
 class LineRef
   def initialize(line_num, assignment)
