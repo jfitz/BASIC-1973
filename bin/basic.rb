@@ -85,11 +85,11 @@ class Shell
       @interpreter.clear_variables
       @interpreter.clear_breakpoints
     when 'RUN'
-      @interpreter.run(@program, false, true, false) if @program.check
+      @program.run(@interpreter, false, true, false) if @program.check
     when 'BREAK'
       @interpreter.set_breakpoints(args)
     when 'TRACE'
-      @interpreter.run(@program, true, false, false) if @program.check
+      @program.run(@interpreter, true, false, false) if @program.check
     when 'LOAD'
       @interpreter.clear_breakpoints
       @program.load(args)
@@ -323,7 +323,7 @@ if !run_filename.nil?
                       fornext_one_beyond, lock_fornext, require_initialized)
 
     interpreter.set_default_args('RND', NumericConstant.new(1))
-    interpreter.run(program, trace_flag, show_timing, show_profile)
+    program.run(interpreter, trace_flag, show_timing, show_profile)
   end
 elsif !list_filename.nil?
   token = TextConstantToken.new('"' + list_filename + '"')
