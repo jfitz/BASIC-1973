@@ -1624,14 +1624,13 @@ class IfStatement < AbstractStatement
   end
 
   def execute_core(interpreter)
-    io = interpreter.trace_out
-    s = ' ' + @expression.to_s
-    io.trace_output(s)
     values = @expression.evaluate(interpreter, true)
+
     raise(BASICExpressionError, 'Too many or too few values') unless
       values.size == 1
 
     result = values[0]
+
     result = BooleanConstant.new(result) unless
       result.class.to_s == 'BooleanConstant'
 
@@ -1663,7 +1662,8 @@ class IfStatement < AbstractStatement
       @else_stmt.execute(interpreter) unless @else_stmt.nil?
     end
 
-    s = ' ' + result.to_s
+    s = ' ' + @expression.to_s + ': ' + result.to_s
+    io = interpreter.trace_out
     io.trace_output(s)
   end
 
