@@ -36,7 +36,6 @@ class Interpreter
     @lock_fornext = lock_fornext
     @locked_variables = []
     @require_initialized = require_initialized
-    @start_time = nil
     @null_out = NullOut.new
     @tokenbuilders = make_debug_tokenbuilders
     @breakpoints = {}
@@ -89,39 +88,28 @@ class Interpreter
   public
 
   def run(program, trace_flag, show_timing, show_profile)
-    if program.empty?
-      @console_io.print_line('No program loaded')
-      return
-    end
-
     @program = program
     @program_lines = program.lines
     @trace_flag = trace_flag
     @step_mode = false
 
-    # reset profile metrics
-    @program_lines.keys.sort.each do |line_number|
-      line = @program_lines[line_number]
-      statements = line.statements
-      statements.each do |statement|
-        statement.profile_count = 0
-        statement.profile_time = 0
-      end
+    @variables = {}
+    @trace_out = @trace_flag ? @console_io : @null_out
+
+    if show_timing
+      timing = Benchmark.measure { run_all_phases }
+      print_timing(timing)
+    else
+      run_all_phases
     end
 
-    @start_time = Time.now
-    timing = Benchmark.measure { run_and_time }
-    print_timing(timing) if show_timing
     if show_profile
       line_list_spec = program.line_list_spec('')
       @program.profile(line_list_spec)
     end
   end
 
-  def run_and_time
-    # run the program
-    @variables = {}
-    @trace_out = @trace_flag ? @console_io : @null_out
+  def run_all_phases
     @running = true
     run_phase_1
     run_phase_2 if @running
