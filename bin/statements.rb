@@ -912,6 +912,8 @@ class DefineFunctionStatement < AbstractStatement
   end
 
   def multidef?
+    return false if @definition.nil?
+
     @definition.multidef?
   end
 
