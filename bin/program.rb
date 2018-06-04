@@ -269,35 +269,35 @@ end
 class Program
   def initialize(console_io, tokenbuilders, pretty_multiline)
     @console_io = console_io
-    @program_lines = {}
+    @lines = {}
     @statement_factory = StatementFactory.instance
     @statement_factory.tokenbuilders = tokenbuilders
     @pretty_multiline = pretty_multiline
   end
 
   def empty?
-    @program_lines.empty?
+    @lines.empty?
   end
 
   def line_number?(line_number)
-    @program_lines.key?(line_number)
+    @lines.key?(line_number)
   end
 
   def lines
-    @program_lines
+    @lines
   end
 
   def cmd_new
-    @program_lines = {}
+    @lines = {}
   end
 
   def line_list_spec(tokens)
-    line_numbers = @program_lines.keys.sort
+    line_numbers = @lines.keys.sort
     LineListSpec.new(tokens, line_numbers)
   end
 
   def list(line_number_range, list_tokens)
-    if !@program_lines.empty?
+    if !@lines.empty?
       line_numbers = line_number_range.line_numbers
       list_lines_errors(line_numbers, list_tokens)
     else
@@ -306,7 +306,7 @@ class Program
   end
 
   def parse(line_number_range)
-    if !@program_lines.empty?
+    if !@lines.empty?
       line_numbers = line_number_range.line_numbers
       parse_lines_errors(line_numbers)
     else
@@ -315,7 +315,7 @@ class Program
   end
 
   def pretty(line_number_range)
-    if !@program_lines.empty?
+    if !@lines.empty?
       line_numbers = line_number_range.line_numbers
       pretty_lines_errors(line_numbers)
     else
@@ -326,8 +326,8 @@ class Program
   private
 
   def reset_profile_metrics
-    @program_lines.keys.sort.each do |line_number|
-      line = @program_lines[line_number]
+    @lines.keys.sort.each do |line_number|
+      line = @lines[line_number]
       statements = line.statements
       statements.each do |statement|
         statement.profile_count = 0
@@ -339,7 +339,7 @@ class Program
   public
 
   def run(interpreter, trace_flag, show_timing, show_profile)
-    if !@program_lines.empty?
+    if !@lines.empty?
       reset_profile_metrics
       interpreter.run(self, trace_flag, show_timing, show_profile)
     else
@@ -348,13 +348,31 @@ class Program
   end
 
   def profile(line_number_range)
-    if !@program_lines.empty?
+    if !@lines.empty?
       line_numbers = line_number_range.line_numbers
       profile_lines_errors(line_numbers)
     else
       @console_io.print_line('No program loaded')
     end
   end
+
+  private
+
+  def load_file(filename)
+    File.open(filename, 'r') do |file|
+      @lines = {}
+      file.each_line do |line|
+        line = @console_io.ascii_printables(line)
+        store_program_line(line, false)
+      end
+    end
+    true
+  rescue Errno::ENOENT
+    @console_io.print_line("File '#{filename}' not found")
+    false
+  end
+
+  public
 
   def load(tokens)
     if tokens.empty?
@@ -383,19 +401,24 @@ class Program
     load_file(filename)
   end
 
-  def load_file(filename)
-    File.open(filename, 'r') do |file|
-      @program_lines = {}
-      file.each_line do |line|
-        line = @console_io.ascii_printables(line)
-        store_program_line(line, false)
+  private
+
+  def save_file(filename)
+    line_numbers = @lines.keys.sort
+    begin
+      File.open(filename, 'w') do |file|
+        line_numbers.each do |line_num|
+          line = @lines[line_num]
+          file.puts line_num.to_s + ' ' + line.list
+        end
+        file.close
       end
+    rescue Errno::ENOENT
+      @console_io.print_line("File '#{filename}' not opened")
     end
-    true
-  rescue Errno::ENOENT
-    @console_io.print_line("File '#{filename}' not found")
-    false
   end
+
+  public
 
   def save(tokens)
     if tokens.empty?
@@ -421,7 +444,7 @@ class Program
       return false
     end
 
-    if @program_lines.empty?
+    if @lines.empty?
       @console_io.print_line('No program loaded')
       return false
     end
@@ -429,24 +452,9 @@ class Program
     save_file(filename)
   end
 
-  def save_file(filename)
-    line_numbers = @program_lines.keys.sort
-    begin
-      File.open(filename, 'w') do |file|
-        line_numbers.each do |line_num|
-          line = @program_lines[line_num]
-          file.puts line_num.to_s + ' ' + line.list
-        end
-        file.close
-      end
-    rescue Errno::ENOENT
-      @console_io.print_line("File '#{filename}' not opened")
-    end
-  end
-
   def print_profile
-    @program_lines.keys.sort.each do |line_number|
-      line = @program_lines[line_number]
+    @lines.keys.sort.each do |line_number|
+      line = @lines[line_number]
       number = line_number.to_s
       statements = line.statements
       statement_index = 0
@@ -461,7 +469,7 @@ class Program
 
   def delete(line_number_range)
     raise(BASICCommandError, 'No program loaded') if
-      @program_lines.empty?
+      @lines.empty?
 
     raise(BASICCommandError, 'Type NEW to delete an entire program') if
       line_number_range.range_type == :all
@@ -472,7 +480,7 @@ class Program
 
   def enblank(line_number_range)
     raise(BASICCommandError, 'No program loaded') if
-      @program_lines.empty?
+      @lines.empty?
 
     raise(BASICCommandError, 'You cannot delete an entire program') if
       line_number_range.range_type == :all
@@ -485,21 +493,21 @@ class Program
   def renumber
     renumber_map = {}
     new_number = 10
-    @program_lines.keys.sort.each do |line_number|
+    @lines.keys.sort.each do |line_number|
       number_token = NumericConstantToken.new(new_number)
       new_line_number = LineNumber.new(number_token)
       renumber_map[line_number] = new_line_number
       new_number += 10
     end
     # assign new line numbers
-    new_program_lines = {}
-    @program_lines.keys.sort.each do |line_number|
-      line = @program_lines[line_number]
+    new_lines = {}
+    @lines.keys.sort.each do |line_number|
+      line = @lines[line_number]
       new_line_number = renumber_map[line_number]
-      new_program_lines[new_line_number] = line.renumber(renumber_map)
+      new_lines[new_line_number] = line.renumber(renumber_map)
     end
 
-    @program_lines = new_program_lines
+    @lines = new_lines
     renumber_map
   end
 
@@ -507,8 +515,8 @@ class Program
 
   def numeric_refs
     refs = {}
-    @program_lines.keys.sort.each do |line_number|
-      line = @program_lines[line_number]
+    @lines.keys.sort.each do |line_number|
+      line = @lines[line_number]
       statements = line.statements
 
       rs = []
@@ -522,8 +530,8 @@ class Program
 
   def strings_refs
     refs = {}
-    @program_lines.keys.sort.each do |line_number|
-      line = @program_lines[line_number]
+    @lines.keys.sort.each do |line_number|
+      line = @lines[line_number]
       statements = line.statements
 
       rs = []
@@ -537,8 +545,8 @@ class Program
 
   def function_refs
     refs = {}
-    @program_lines.keys.sort.each do |line_number|
-      line = @program_lines[line_number]
+    @lines.keys.sort.each do |line_number|
+      line = @lines[line_number]
       statements = line.statements
 
       rs = []
@@ -552,8 +560,8 @@ class Program
 
   def user_function_refs
     refs = {}
-    @program_lines.keys.sort.each do |line_number|
-      line = @program_lines[line_number]
+    @lines.keys.sort.each do |line_number|
+      line = @lines[line_number]
       statements = line.statements
 
       rs = []
@@ -567,8 +575,8 @@ class Program
 
   def variables_refs
     refs = {}
-    @program_lines.keys.sort.each do |line_number|
-      line = @program_lines[line_number]
+    @lines.keys.sort.each do |line_number|
+      line = @lines[line_number]
       statements = line.statements
 
       rs = []
@@ -596,6 +604,19 @@ class Program
       puts ref.to_s + ":\t" + lines.map(&:to_s).uniq.join(', ')
     end
     puts ''
+  end
+
+  def make_summary(list)
+    summary = {}
+    list.each do |line_number, refs|
+      line_ref = LineRef.new(line_number, false)
+      refs.each do |ref|
+        entries = summary.key?(ref) ? summary[ref] : []
+        entries << line_ref
+        summary[ref] = entries
+      end
+    end
+    summary
   end
 
   public
@@ -628,17 +649,26 @@ class Program
 
   private
 
-  def make_summary(list)
-    summary = {}
-    list.each do |line_number, refs|
-      line_ref = LineRef.new(line_number, false)
-      refs.each do |ref|
-        entries = summary.key?(ref) ? summary[ref] : []
-        entries << line_ref
-        summary[ref] = entries
-      end
-    end
-    summary
+  def parse_line(line)
+    @statement_factory.parse(line)
+  rescue BASICError => e
+    @console_io.print_line("Syntax error: #{e.message}")
+  end
+
+  def check_line_duplicate(line_num, print_errors)
+    # warn about duplicate lines when loading
+    # but not when typing
+    @console_io.print_line("Duplicate line number #{line_num}") if
+      @lines.key?(line_num) && !print_errors
+  end
+
+  def check_line_sequence(line_num, print_errors)
+    # warn about lines out of sequence
+    # but not when typing
+    @console_io.print_line("Line #{line_num} is out of sequence") if
+      !@lines.empty? &&
+      line_num < @lines.max[0] &&
+      !print_errors
   end
 
   public
@@ -648,7 +678,7 @@ class Program
     if !line_num.nil? && !line.nil?
       check_line_duplicate(line_num, print_errors)
       check_line_sequence(line_num, print_errors)
-      @program_lines[line_num] = line
+      @lines[line_num] = line
       statements = line.statements
       any_errors = false
       statements.each do |statement|
@@ -661,33 +691,11 @@ class Program
     end
   end
 
-  def parse_line(line)
-    @statement_factory.parse(line)
-  rescue BASICError => e
-    @console_io.print_line("Syntax error: #{e.message}")
-  end
-
-  def check_line_duplicate(line_num, print_errors)
-    # warn about duplicate lines when loading
-    # but not when typing
-    @console_io.print_line("Duplicate line number #{line_num}") if
-      @program_lines.key?(line_num) && !print_errors
-  end
-
-  def check_line_sequence(line_num, print_errors)
-    # warn about lines out of sequence
-    # but not when typing
-    @console_io.print_line("Line #{line_num} is out of sequence") if
-      !@program_lines.empty? &&
-      line_num < @program_lines.max[0] &&
-      !print_errors
-  end
-
   private
 
   def list_lines_errors(line_numbers, list_tokens)
     line_numbers.each do |line_number|
-      line = @program_lines[line_number]
+      line = @lines[line_number]
 
       # print the line
       @console_io.print_line(line_number.to_s + line.list)
@@ -708,7 +716,7 @@ class Program
 
   def parse_lines_errors(line_numbers)
     line_numbers.each do |line_number|
-      line = @program_lines[line_number]
+      line = @lines[line_number]
 
       # print the line
       @console_io.print_line(line_number.to_s + line.list)
@@ -729,7 +737,7 @@ class Program
 
   def pretty_lines_errors(line_numbers)
     line_numbers.each do |line_number|
-      line = @program_lines[line_number]
+      line = @lines[line_number]
 
       # print the line
       number = line_number.to_s
@@ -749,7 +757,7 @@ class Program
 
   def profile_lines_errors(line_numbers)
     line_numbers.each do |line_number|
-      line = @program_lines[line_number]
+      line = @lines[line_number]
       number = line_number.to_s
       statements = line.statements
       statement_index = 0
@@ -763,25 +771,11 @@ class Program
 
   def list_lines(line_numbers)
     line_numbers.each do |line_number|
-      line = @program_lines[line_number]
+      line = @lines[line_number]
       text = line.list
       @console_io.print_line(line_number.to_s + text)
     end
   end
-
-  def delete_specific_lines(line_numbers)
-    line_numbers.each { |line_number| @program_lines.delete(line_number) }
-  end
-
-  def enblank_specific_lines(line_numbers)
-    line_numbers.each do |line_number|
-      blank_line = line_number.to_s
-      line_num, line = @statement_factory.parse(blank_line)
-      @program_lines[line_num] = line
-    end
-  end
-
-  public
 
   def list_and_delete_lines(line_numbers)
     list_lines(line_numbers)
@@ -790,11 +784,25 @@ class Program
     delete_specific_lines(line_numbers) if answer == 'YES'
   end
 
+  def delete_specific_lines(line_numbers)
+    line_numbers.each { |line_number| @lines.delete(line_number) }
+  end
+
+  def enblank_specific_lines(line_numbers)
+    line_numbers.each do |line_number|
+      blank_line = line_number.to_s
+      line_num, line = @statement_factory.parse(blank_line)
+      @lines[line_num] = line
+    end
+  end
+
+  public
+
   def check
     result = true
 
-    @program_lines.keys.sort.each do |line_number|
-      r = @program_lines[line_number].check(self, @console_io, line_number)
+    @lines.keys.sort.each do |line_number|
+      r = @lines[line_number].check(self, @console_io, line_number)
       result &&= r
     end
 
@@ -804,7 +812,7 @@ class Program
   def find_next_line_index(current_line_index)
     # find next index with current statement
     line_number = current_line_index.number
-    line = @program_lines[line_number]
+    line = @lines[line_number]
 
     statements = line.statements
     statement_index = current_line_index.statement
@@ -826,13 +834,13 @@ class Program
     end
 
     # find the next line
-    line_numbers = @program_lines.keys.sort
+    line_numbers = @lines.keys.sort
     line_number = current_line_index.number
     index = line_numbers.index(line_number)
     line_number = line_numbers[index + 1]
 
     unless line_number.nil?
-      line = @program_lines[line_number]
+      line = @lines[line_number]
       statements = line.statements
       statement = statements[0]
       index = statement.start_index
@@ -845,12 +853,12 @@ class Program
 
   def find_next_line(current_line_index)
     # find next numbered statement
-    line_numbers = @program_lines.keys.sort
+    line_numbers = @lines.keys.sort
     line_number = current_line_index.number
     index = line_numbers.index(line_number)
     line_number = line_numbers[index + 1]
     unless line_number.nil?
-      line = @program_lines[line_number]
+      line = @lines[line_number]
       statements = line.statements
       statement = statements[0]
       index = statement.start_index
