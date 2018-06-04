@@ -270,6 +270,7 @@ class Program
   def initialize(console_io, tokenbuilders, pretty_multiline)
     @console_io = console_io
     @lines = {}
+    @errors = []
     @statement_factory = StatementFactory.instance
     @statement_factory.tokenbuilders = tokenbuilders
     @pretty_multiline = pretty_multiline
@@ -287,8 +288,17 @@ class Program
     @lines
   end
 
+  private
+
+  def check_program
+    []
+  end
+
+  public
+
   def cmd_new
     @lines = {}
+    @errors = check_program
   end
 
   def line_list_spec(tokens)
@@ -300,6 +310,7 @@ class Program
     if !@lines.empty?
       line_numbers = line_number_range.line_numbers
       list_lines_errors(line_numbers, list_tokens)
+      @errors.each { |error| puts error }
     else
       @console_io.print_line('No program loaded')
     end
@@ -318,6 +329,7 @@ class Program
     if !@lines.empty?
       line_numbers = line_number_range.line_numbers
       pretty_lines_errors(line_numbers)
+      @errors.each { |error| puts error }
     else
       @console_io.print_line('No program loaded')
     end
@@ -340,8 +352,12 @@ class Program
 
   def run(interpreter, trace_flag, show_timing, show_profile)
     if !@lines.empty?
-      reset_profile_metrics
-      interpreter.run(self, trace_flag, show_timing, show_profile)
+      if @errors.empty?
+        reset_profile_metrics
+        interpreter.run(self, trace_flag, show_timing, show_profile)
+      else
+        @errors.each { |error| puts error }
+      end
     else
       @console_io.print_line('No program loaded')
     end
@@ -399,6 +415,7 @@ class Program
     end
 
     load_file(filename)
+    @errors = check_program
   end
 
   private
@@ -476,6 +493,7 @@ class Program
 
     line_numbers = line_number_range.line_numbers
     delete_specific_lines(line_numbers)
+    @errors = check_program
   end
 
   def enblank(line_number_range)
@@ -508,6 +526,7 @@ class Program
     end
 
     @lines = new_lines
+    @errors = check_program
     renumber_map
   end
 
@@ -685,6 +704,7 @@ class Program
         statement.errors.each { |error| puts error } if print_errors
         any_errors |= !statement.errors.empty?
       end
+      @errors = check_program
       any_errors
     else
       true
