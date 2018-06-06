@@ -185,7 +185,7 @@ def make_command_tokenbuilders(quotes, colon_file, min_max_op,
 
   keywords = %w(
     BREAK CROSSREF DELETE EXIT LIST LOAD NEW PRETTY PROFILE RENUMBER RUN SAVE
-    TRACE .DIMS .PARSE .TOKENS. UDFS .VARS
+    TRACE .DIMS .PARSE .TOKENS .UDFS .VARS
   )
   tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
