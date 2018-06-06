@@ -288,10 +288,62 @@ class Program
     @lines
   end
 
+  def assign_function_markers
+    user_function_lines = {}
+    part_of_user_function = nil
+
+    line_numbers = @lines.keys.sort
+
+    line_numbers.each do |line_number|
+      line = @lines[line_number]
+      statements = line.statements
+      statement_index = 0
+      statements.each do |statement|
+        if statement.multidef?
+          function_name = statement.function_name
+          line_index = LineNumberIndex.new(line_number, statement_index, 0)
+          user_function_lines[function_name] = line_index
+          part_of_user_function = function_name
+        end
+
+        statement.part_of_user_function = part_of_user_function
+
+        part_of_user_function = nil if statement.multiend?
+
+        statement_index += 1
+      end
+    end
+
+    user_function_lines
+  end
+
   private
 
   def check_program
-    []
+    errors = []
+
+    part_of_user_function = nil?
+
+    line_numbers = lines.keys.sort
+
+    line_numbers.each do |line_number|
+      line = @lines[line_number]
+      statements = line.statements
+      statements.each do |statement|
+        if part_of_user_function && statement.multidef?
+          errors << "Missing FNEND before DEF in line #{line_number}"
+        end
+
+        if statement.multidef?
+          function_name = statement.function_name
+          part_of_user_function = function_name
+        end
+
+        part_of_user_function = nil if statement.multiend?
+      end
+    end
+
+    errors
   end
 
   public

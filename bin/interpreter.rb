@@ -89,12 +89,14 @@ class Interpreter
 
   def run(program, trace_flag, show_timing, show_profile)
     @program = program
-    @program_lines = program.lines
+
     @trace_flag = trace_flag
     @step_mode = false
 
-    @variables = {}
     @trace_out = @trace_flag ? @console_io : @null_out
+    @variables = {}
+    @user_function_lines = @program.assign_function_markers
+    @program_lines = program.lines
 
     if show_timing
       timing = Benchmark.measure { run_all_phases }
@@ -111,8 +113,8 @@ class Interpreter
 
   def run_all_phases
     @running = true
-    run_phase_1
-    run_phase_2 if @running
+    run_phase_1(@program_lines)
+    run_phase_2(@program_lines) if @running
   end
 
   def print_timing(timing)
@@ -125,18 +127,18 @@ class Interpreter
     @console_io.newline
   end
 
-  def run_phase_1
+  def run_phase_1(program_lines)
     # phase 1: do all initialization (store values in DATA lines)
-    line_number = @program_lines.min[0]
+    line_number = program_lines.min[0]
     @current_line_index = LineNumberIndex.new(line_number, 0, 0)
-    preexecute_loop
+    preexecute_loop(program_lines)
   end
 
-  def run_phase_2
+  def run_phase_2(program_lines)
     # phase 2: run each command
     # start with the first line number
-    line_number = @program_lines.min[0]
-    line = @program_lines[line_number]
+    line_number = program_lines.min[0]
+    line = program_lines[line_number]
     statements = line.statements
     modifier = 0
     unless statements.empty?
@@ -145,7 +147,7 @@ class Interpreter
     end
     @current_line_index = LineNumberIndex.new(line_number, 0, modifier)
     begin
-      program_loop while @running
+      program_loop(program_lines) while @running
     rescue Interrupt
       stop_running
     end
@@ -168,29 +170,12 @@ class Interpreter
     statement.errors.each { |error| puts error }
   end
 
-  def preexecute_a_statement(part_of_user_function)
+  def preexecute_a_statement(program_lines)
     line_number = @current_line_index.number
-    line = @program_lines[line_number]
+    line = program_lines[line_number]
     statements = line.statements
     statement_index = @current_line_index.statement
     statement = statements[statement_index]
-
-    if part_of_user_function && statement.multidef?
-      stop_running
-      # print this error
-      @console_io.print_line("Error in line #{line_number}:")
-      @console_io.print_line("Missing FNEND before DEF")
-      return false
-    end
-
-    if statement.multidef?
-      function_name = statement.function_name
-      @user_function_lines[function_name] = @current_line_index
-      part_of_user_function = function_name
-    end
-
-    statement.part_of_user_function = part_of_user_function
-    part_of_user_function = nil if statement.multiend?
 
     if statement.errors.empty?
       statement.pre_execute(self)
@@ -198,14 +183,11 @@ class Interpreter
       stop_running
       print_errors(line_number, statement)
     end
-
-    part_of_user_function
   end
 
-  def preexecute_loop
-    part_of_user_function = nil
+  def preexecute_loop(program_lines)
     while !@current_line_index.nil? && @running
-      part_of_user_function = preexecute_a_statement(part_of_user_function)
+      preexecute_a_statement(program_lines)
       @current_line_index = @program.find_next_line_index(@current_line_index)
     end
   rescue BASICRuntimeError => e
@@ -215,9 +197,9 @@ class Interpreter
     stop_running
   end
 
-  def execute_a_statement
+  def execute_a_statement(program_lines)
     line_number = @current_line_index.number
-    line = @program_lines[line_number]
+    line = program_lines[line_number]
     statements = line.statements
     statement_index = @current_line_index.statement
     statement = statements[statement_index]
@@ -253,7 +235,7 @@ class Interpreter
     @function_running = true
 
     begin
-      program_loop while @running && @function_running
+      program_loop(@program_lines) while @running && @function_running
     rescue Interrupt
       stop_running
     end
@@ -353,7 +335,7 @@ class Interpreter
     end
   end
 
-  def program_loop
+  def program_loop(program_lines)
     # pick the next line number
     @next_line_index = @program.find_next_line_index(@current_line_index)
     next_line_index = nil
@@ -376,7 +358,7 @@ class Interpreter
     end
     
     begin
-      execute_a_statement
+      execute_a_statement(program_lines)
       # set the next line number
       @current_line_index = nil
       if @running
