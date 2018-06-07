@@ -128,7 +128,7 @@ class Interpreter
   end
 
   def run_phase_1(program_lines)
-    # phase 1: do all initialization (store values in DATA lines)
+    # do all initialization (store values in DATA lines)
     line_number = program_lines.min[0]
     @current_line_index = LineNumberIndex.new(line_number, 0, 0)
     preexecute_loop(program_lines)
@@ -167,16 +167,10 @@ class Interpreter
 
   def print_errors(line_number, statement)
     @console_io.print_line("Errors in line #{line_number}:")
-    statement.errors.each { |error| puts error }
+    statement.print_errors(@console_io)
   end
 
-  def preexecute_a_statement(program_lines)
-    line_number = @current_line_index.number
-    line = program_lines[line_number]
-    statements = line.statements
-    statement_index = @current_line_index.statement
-    statement = statements[statement_index]
-
+  def preexecute_a_statement(line_number, statement)
     if statement.errors.empty?
       statement.pre_execute(self)
     else
@@ -186,9 +180,12 @@ class Interpreter
   end
 
   def preexecute_loop(program_lines)
-    while !@current_line_index.nil? && @running
-      preexecute_a_statement(program_lines)
-      @current_line_index = @program.find_next_line_index(@current_line_index)
+    program_lines.keys.sort.each do |line_number|
+      line = program_lines[line_number]
+      statements = line.statements
+      statements.each do |statement|
+        preexecute_a_statement(line_number, statement)
+      end
     end
   rescue BASICRuntimeError => e
     line_number = @current_line_index.number
