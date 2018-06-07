@@ -60,12 +60,14 @@ class StatementFactory
     else
       statement_index = 0
       statements_tokens.each do |statement_tokens|
+        statement = UnknownStatement.new(text)
+
         begin
           statement = create_statement(statement_tokens)
         rescue BASICExpressionError, BASICRuntimeError => e
           statement = InvalidStatement.new(text, all_tokens, e)
         end
-        statement = UnknownStatement.new(text) if statement.nil?
+
         statements << statement
         statement_index += 1
       end
@@ -239,11 +241,33 @@ class AbstractStatement
     ['Unimplemented']
   end
 
+  def print_errors(console_io)
+    @errors.each { |error| console_io.print_line(error) }
+  end
+
   def program_check(_, _, _)
     true
   end
 
+  def print_errors(console_io)
+    @errors.each { |error| console_io.print_line(error) }
+  end
+
+  def preexecute_a_statement(line_number, interpreter, console_io)
+    if errors.empty?
+      pre_execute(interpreter)
+    else
+      interpreter.stop_running
+      console_io.print_line("Errors in line #{line_number}:")
+      print_errors(console_io)
+    end
+  end
+
+  private
+
   def pre_execute(_) end
+
+  public
 
   def profile
     text = AbstractToken.pretty_tokens(@keywords, @tokens)
@@ -2165,8 +2189,10 @@ class OnStatement < AbstractStatement
     io = interpreter.trace_out
     io.trace_output(' ' + @expression.to_s + ' = ' + value.to_s)
     index = value.to_i
+
     raise(BASICRuntimeError, 'Index out of range') if
       index < 1 || index > @destinations.size
+
     # get destination in list
     line_number = @destinations[index - 1]
     index = interpreter.statement_start_index(line_number, 0)
