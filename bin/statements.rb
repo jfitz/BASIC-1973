@@ -203,8 +203,6 @@ class AbstractStatement
   attr_reader :errors
   attr_reader :keywords
   attr_reader :tokens
-  attr_accessor :profile_count
-  attr_accessor :profile_time
   attr_accessor :part_of_user_function
 
   def self.extra_keywords
@@ -270,6 +268,11 @@ class AbstractStatement
 
   public
 
+  def reset_profile_metrics
+    @profile_count = 0
+    @profile_time = 0
+  end
+
   def profile
     text = AbstractToken.pretty_tokens(@keywords, @tokens)
     ' (' + @profile_time.round(3).to_s + '/' + @profile_count.to_s + ')' + text
@@ -326,12 +329,41 @@ class AbstractStatement
     vars.map(&:to_s)
   end
 
+  private
+
   def execute(interpreter)
     current_line_index = interpreter.current_line_index
     index = current_line_index.index
     execute_premodifier(interpreter) if index < 0
     execute_core(interpreter) if index.zero?
     execute_postmodifier(interpreter) if index > 0
+  end
+
+  def print_trace_info(trace_out, current_line_index)
+    trace_out.newline_when_needed
+
+    unless part_of_user_function.nil?
+      trace_out.print_out '(' + part_of_user_function.to_s + ') '
+    end
+
+    trace_out.print_out current_line_index.to_s + ':' + pretty
+    trace_out.newline
+  end
+
+  public
+
+  def execute_a_statement(interpreter, trace_out, current_line_index,
+                          function_running)
+    print_trace_info(trace_out, current_line_index)
+    
+    if part_of_user_function.nil? || function_running
+      timing = Benchmark.measure { execute(interpreter) }
+      user_time = timing.utime + timing.cutime
+      sys_time = timing.stime + timing.cstime
+      time = user_time + sys_time
+      @profile_time += time
+      @profile_count += 1
+    end
   end
 
   def start_index
@@ -1234,7 +1266,7 @@ class ForStatement < AbstractStatement
     end
 
     io = interpreter.trace_out
-    print_trace_info(io, from, to, step, terminated)
+    print_more_trace_info(io, from, to, step, terminated)
   end
 
   def variables
@@ -1260,7 +1292,7 @@ class ForStatement < AbstractStatement
     [parts[0], parts[2]]
   end
 
-  def print_trace_info(io, from, to, step, terminated)
+  def print_more_trace_info(io, from, to, step, terminated)
     io.trace_output(" #{@start} = #{from}") unless @start.numeric_constant?
     io.trace_output(" #{@end} = #{to}") unless @end.numeric_constant?
     io.trace_output(" #{@step_value} = #{step}") unless @step_value.numeric_constant?

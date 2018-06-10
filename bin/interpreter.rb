@@ -128,13 +128,14 @@ class Interpreter
   end
 
   def run_statements(program_lines)
-    # run each command
+    # run each statement
     # start with the first line number
     line_number = program_lines.min[0]
     line = program_lines[line_number]
     statements = line.statements
     modifier = 0
 
+    # start with the modifier, if any
     unless statements.empty?
       statement = statements[0]
       modifier = statement.start_index
@@ -152,17 +153,6 @@ class Interpreter
     @file_handlers.each { |_, fh| fh.close }
   end
 
-  def print_trace_info(statement)
-    @trace_out.newline_when_needed
-
-    unless statement.part_of_user_function.nil?
-      @trace_out.print_out '(' + statement.part_of_user_function.to_s + ') '
-    end
-
-    @trace_out.print_out @current_line_index.to_s + ':' + statement.pretty
-    @trace_out.newline
-  end
-
   def print_errors(line_number, statement)
     @console_io.print_line("Errors in line #{line_number}:")
     statement.print_errors(@console_io)
@@ -175,23 +165,8 @@ class Interpreter
     statement_index = @current_line_index.statement
     statement = statements[statement_index]
 
-    print_trace_info(statement)
-
-    if statement.errors.empty?
-      if statement.part_of_user_function.nil? || @function_running
-        timing = Benchmark.measure { statement.execute(self) }
-        user_time = timing.utime + timing.cutime
-        sys_time = timing.stime + timing.cstime
-        time = user_time + sys_time
-        statement.profile_time += time
-        statement.profile_count += 1
-      end
-    else
-      stop_running
-      print_errors(line_number, statement)
-    end
-
-    @get_value_seen = []
+    statement.execute_a_statement(
+      self, @trace_out, @current_line_index, @function_running)
   end
 
   def run_user_function(name)
@@ -330,6 +305,7 @@ class Interpreter
     
     begin
       execute_a_statement(program_lines)
+      @get_value_seen = []
       # set the next line number
       @current_line_index = nil
       if @running

@@ -394,8 +394,7 @@ class Program
       line = @lines[line_number]
       statements = line.statements
       statements.each do |statement|
-        statement.profile_count = 0
-        statement.profile_time = 0
+        statement.reset_profile_metrics
       end
     end
   end
