@@ -459,28 +459,22 @@ class AbstractStatement
 
     result = true
     pairs = template.zip(tokens_lists)
+
     pairs.each do |pair|
       control = pair[0]
       value = pair[1]
 
-      case control.class.to_s
-      when 'String'
-        if value.class.to_s == 'KeywordToken'
-          result &= (value.keyword? &&
-                     value.to_s == control)
-        else
-          result = false
-        end
-      when 'Array'
-        if value.class.to_s == 'Array'
-          result &= value.size == control[0] if control.size == 1
-          result &= value.size >= control[0] if
-            control.size == 2 && control[1] == '>='
-        else
-          result = false
-        end
+      if control.class.to_s == 'String' && value.class.to_s == 'KeywordToken'
+        result &= value.to_s == control
+      elsif control.class.to_s == 'Array' && value.class.to_s == 'Array'
+        result &= value.size == control[0] if control.size == 1
+        result &= value.size >= control[0] if
+          control.size == 2 && control[1] == '>='
+      else
+        result = false
       end
     end
+
     result
   end
 
@@ -1665,6 +1659,10 @@ class IfStatement < AbstractStatement
   def program_check(program, console_io, line_number_index)
     retval = true
 
+    if @destination.nil? && @statement.nil?
+      console_io.print_line("Invalid or missing line number in line #{line_number}")
+    end
+
     unless @destination.nil? || program.line_number?(@destination)
       console_io.print_line(
         "Line number #{@destination} not found in line #{line_number_index}"
@@ -1702,7 +1700,7 @@ class IfStatement < AbstractStatement
         interpreter.next_line_index = destination
       end
 
-      @statement.execute(interpreter) unless @statement.nil?
+      @statement.execute_core(interpreter) unless @statement.nil?
     else
       unless @else_dest.nil?
         line_number = @else_dest
@@ -1718,7 +1716,7 @@ class IfStatement < AbstractStatement
         interpreter.next_line_index = next_line_index
       end
 
-      @else_stmt.execute(interpreter) unless @else_stmt.nil?
+      @else_stmt.execute_core(interpreter) unless @else_stmt.nil?
     end
 
     s = ' ' + @expression.to_s + ': ' + result.to_s
