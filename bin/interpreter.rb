@@ -99,10 +99,10 @@ class Interpreter
     @program_lines = program.lines
 
     if show_timing
-      timing = Benchmark.measure { run_all_phases }
+      timing = Benchmark.measure { run_program }
       print_timing(timing)
     else
-      run_all_phases
+      run_program
     end
 
     if show_profile
@@ -111,10 +111,10 @@ class Interpreter
     end
   end
 
-  def run_all_phases
-    @running = true
-    run_phase_1
-    run_phase_2(@program_lines) if @running
+  def run_program
+    if @program.preexecute_loop(self)
+      run_statements(@program_lines)
+    end
   end
 
   def print_timing(timing)
@@ -127,28 +127,28 @@ class Interpreter
     @console_io.newline
   end
 
-  def run_phase_1
-    # do all initialization (store values in DATA lines)
-    @program.preexecute_loop(self)
-  end
-
-  def run_phase_2(program_lines)
-    # phase 2: run each command
+  def run_statements(program_lines)
+    # run each command
     # start with the first line number
     line_number = program_lines.min[0]
     line = program_lines[line_number]
     statements = line.statements
     modifier = 0
+
     unless statements.empty?
       statement = statements[0]
       modifier = statement.start_index
     end
+
     @current_line_index = LineNumberIndex.new(line_number, 0, modifier)
+    @running = true
+
     begin
       program_loop(program_lines) while @running
     rescue Interrupt
       stop_running
     end
+
     @file_handlers.each { |_, fh| fh.close }
   end
 
