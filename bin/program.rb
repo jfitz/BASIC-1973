@@ -420,6 +420,43 @@ class Program
     false
   end
 
+  def find_closing_next(control_variable, current_line_index)
+    # move to the next statement
+    line_number = current_line_index.number
+    line = @lines[line_number]
+    statements = line.statements
+    statement_index = current_line_index.statement + 1
+    line_numbers = @lines.keys.sort
+
+    if statement_index < statements.size
+      forward_line_numbers =
+        line_numbers.select { |ln| ln >= current_line_index.number }
+    else
+      forward_line_numbers =
+        line_numbers.select { |ln| ln > current_line_index.number }
+    end
+
+    # search for a NEXT with the same control variable
+    until forward_line_numbers.empty?
+      line_number = forward_line_numbers[0]
+      line = @lines[line_number]
+      statements = line.statements
+      statement_index = 0
+      statements.each do |statement|
+        # consider only core statements, not modifiers
+        return LineNumberIndex.new(line_number, statement_index, 0) if
+          statement.class.to_s == 'NextStatement' &&
+          statement.control == control_variable
+        statement_index += 1
+      end
+
+      forward_line_numbers.shift
+    end
+
+    # if none found, error
+    raise(BASICRuntimeError, 'FOR without NEXT')
+  end
+
   def run(interpreter, trace_flag, show_timing, show_profile)
     if !@lines.empty?
       if @errors.empty?

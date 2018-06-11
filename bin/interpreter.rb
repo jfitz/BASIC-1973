@@ -484,41 +484,6 @@ class Interpreter
     @randomizer = Random.new if @respect_randomize
   end
 
-  def find_closing_next(control_variable)
-    # move to the next statement
-    line_number = @current_line_index.number
-    line = @program_lines[line_number]
-    statements = line.statements
-    statement_index = @current_line_index.statement + 1
-    line_numbers = @program_lines.keys.sort
-    if statement_index < statements.size
-      forward_line_numbers =
-        line_numbers.select { |ln| ln >= @current_line_index.number }
-    else
-      forward_line_numbers =
-        line_numbers.select { |ln| ln > @current_line_index.number }
-    end
-
-    # search for a NEXT with the same control variable
-    until forward_line_numbers.empty?
-      line_number = forward_line_numbers[0]
-      line = @program_lines[line_number]
-      statements = line.statements
-      statement_index = 0
-      statements.each do |statement|
-        # consider only core statements, not modifiers
-        return LineNumberIndex.new(line_number, statement_index, 0) if
-          statement.class.to_s == 'NextStatement' &&
-          statement.control == control_variable
-        statement_index += 1
-      end
-
-      forward_line_numbers.shift
-    end
-
-    raise(BASICRuntimeError, 'FOR without NEXT') # if none found, error
-  end
-
   def set_dimensions(variable, subscripts)
     name = variable.name
     int_subscripts = normalize_subscripts(subscripts)
@@ -539,6 +504,10 @@ class Interpreter
 
   def get_dimensions(variable)
     @dimensions[variable]
+  end
+
+  def find_closing_next(control)
+    @program.find_closing_next(control, @current_line_index)
   end
 
   def set_user_function(name, definition)
