@@ -106,8 +106,7 @@ class Interpreter
     end
 
     if show_profile
-      line_list_spec = program.line_list_spec('')
-      @program.profile(line_list_spec)
+      @program.profile('')
     end
   end
 
@@ -212,17 +211,13 @@ class Interpreter
     when 'BREAK'
       set_breakpoints(args)
     when 'LIST'
-      line_number_range = @program.line_list_spec(args)
-      @program.list(line_number_range, false)
+      @program.list(args, false)
     when 'PRETTY'
-      line_number_range = @program.line_list_spec(args)
-      @program.pretty(line_number_range)
+      @program.pretty(args)
     when 'DELETE'
-      line_number_range = @program.line_list_spec(args)
-      @program.enblank(line_number_range)
+      @program.enblank(args)
     when 'PROFILE'
-      line_number_range = @program.line_list_spec(args)
-      @program.profile(line_number_range)
+      @program.profile(args)
     when 'GOTO'
       statement = GotoStatement.new([keyword], [args])
       if statement.errors.empty?

@@ -346,6 +346,11 @@ class Program
     errors
   end
 
+  def line_list_spec(tokens)
+    line_numbers = @lines.keys.sort
+    LineListSpec.new(tokens, line_numbers)
+  end
+
   public
 
   def cmd_new
@@ -353,12 +358,9 @@ class Program
     @errors = check_program
   end
 
-  def line_list_spec(tokens)
-    line_numbers = @lines.keys.sort
-    LineListSpec.new(tokens, line_numbers)
-  end
+  def list(args, list_tokens)
+    line_number_range = line_list_spec(args)
 
-  def list(line_number_range, list_tokens)
     if !@lines.empty?
       line_numbers = line_number_range.line_numbers
       list_lines_errors(line_numbers, list_tokens)
@@ -368,7 +370,9 @@ class Program
     end
   end
 
-  def parse(line_number_range)
+  def parse(args)
+    line_number_range = line_list_spec(args)
+
     if !@lines.empty?
       line_numbers = line_number_range.line_numbers
       parse_lines_errors(line_numbers)
@@ -377,7 +381,9 @@ class Program
     end
   end
 
-  def pretty(line_number_range)
+  def pretty(args)
+    line_number_range = line_list_spec(args)
+
     if !@lines.empty?
       line_numbers = line_number_range.line_numbers
       pretty_lines_errors(line_numbers)
@@ -470,7 +476,9 @@ class Program
     end
   end
 
-  def profile(line_number_range)
+  def profile(args)
+    line_number_range = line_list_spec(args)
+
     if !@lines.empty?
       line_numbers = line_number_range.line_numbers
       profile_lines_errors(line_numbers)
@@ -591,7 +599,9 @@ class Program
     end
   end
 
-  def delete(line_number_range)
+  def delete(args)
+    line_number_range = line_list_spec(args)
+
     raise(BASICCommandError, 'No program loaded') if
       @lines.empty?
 
@@ -603,7 +613,9 @@ class Program
     @errors = check_program
   end
 
-  def enblank(line_number_range)
+  def enblank(args)
+    line_number_range = line_list_spec(args)
+
     raise(BASICCommandError, 'No program loaded') if
       @lines.empty?
 
@@ -618,12 +630,14 @@ class Program
   def renumber
     renumber_map = {}
     new_number = 10
+
     @lines.keys.sort.each do |line_number|
       number_token = NumericConstantToken.new(new_number)
       new_line_number = LineNumber.new(number_token)
       renumber_map[line_number] = new_line_number
       new_number += 10
     end
+
     # assign new line numbers
     new_lines = {}
     @lines.keys.sort.each do |line_number|
@@ -641,6 +655,7 @@ class Program
 
   def numeric_refs
     refs = {}
+
     @lines.keys.sort.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
@@ -651,11 +666,13 @@ class Program
       end
       refs[line_number] = rs
     end
+
     refs
   end
 
   def strings_refs
     refs = {}
+
     @lines.keys.sort.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
@@ -666,11 +683,13 @@ class Program
       end
       refs[line_number] = rs
     end
+
     refs
   end
 
   def function_refs
     refs = {}
+
     @lines.keys.sort.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
@@ -681,11 +700,13 @@ class Program
       end
       refs[line_number] = rs
     end
+
     refs
   end
 
   def user_function_refs
     refs = {}
+
     @lines.keys.sort.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
@@ -696,11 +717,13 @@ class Program
       end
       refs[line_number] = rs
     end
+
     refs
   end
 
   def variables_refs
     refs = {}
+
     @lines.keys.sort.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
@@ -711,29 +734,35 @@ class Program
       end
       refs[line_number] = rs
     end
+
     refs
   end
 
   def print_refs(title, refs)
     puts title
+
     refs.keys.sort.each do |ref|
       lines = refs[ref]
       puts ref + ":\t" + lines.map(&:to_s).uniq.join(', ')
     end
+
     puts ''
   end
 
   def print_num_refs(title, refs)
     puts title
+
     refs.keys.sort.each do |ref|
       lines = refs[ref]
       puts ref.to_s + ":\t" + lines.map(&:to_s).uniq.join(', ')
     end
+
     puts ''
   end
 
   def make_summary(list)
     summary = {}
+
     list.each do |line_number, refs|
       line_ref = LineRef.new(line_number, false)
       refs.each do |ref|
@@ -742,6 +771,7 @@ class Program
         summary[ref] = entries
       end
     end
+
     summary
   end
 
@@ -801,6 +831,7 @@ class Program
 
   def store_program_line(cmd, print_errors)
     line_num, line = parse_line(cmd)
+
     if !line_num.nil? && !line.nil?
       check_line_duplicate(line_num, print_errors)
       check_line_sequence(line_num, print_errors)
@@ -984,6 +1015,7 @@ class Program
     line_number = current_line_index.number
     index = line_numbers.index(line_number)
     line_number = line_numbers[index + 1]
+
     unless line_number.nil?
       line = @lines[line_number]
       statements = line.statements
