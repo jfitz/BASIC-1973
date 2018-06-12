@@ -126,9 +126,14 @@ class Interpreter
     @console_io.newline
   end
 
-  def run_statements(program_lines)
-    # run each statement
-    # start with the first line number
+  private
+
+  def close_all_files
+    @file_handlers.each { |_, fh| fh.close }
+  end
+
+  def find_first_statement(program_lines)
+    # set next line to first statement
     line_number = program_lines.min[0]
     line = program_lines[line_number]
     statements = line.statements
@@ -140,7 +145,28 @@ class Interpreter
       modifier = statement.start_index
     end
 
-    @current_line_index = LineNumberIndex.new(line_number, 0, modifier)
+    LineNumberIndex.new(line_number, 0, modifier)
+  end
+
+  public
+
+  def rerun
+    @variables = {}
+
+    @function_stack = []
+    @function_running = false
+
+    @data_store.reset
+
+    close_all_files
+
+    @next_line_index = find_first_statement(@program_lines)
+  end
+
+  def run_statements(program_lines)
+    # run each statement
+    @current_line_index = find_first_statement(program_lines)
+
     @running = true
 
     begin
@@ -149,7 +175,7 @@ class Interpreter
       stop_running
     end
 
-    @file_handlers.each { |_, fh| fh.close }
+    close_all_files
   end
 
   def print_errors(line_number, statement)

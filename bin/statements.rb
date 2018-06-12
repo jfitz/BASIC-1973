@@ -128,6 +128,7 @@ class StatementFactory
       RemarkStatement,
       RestoreStatement,
       ReturnStatement,
+      RunStatement,
       SleepStatement,
       StopStatement,
       TraceStatement,
@@ -2744,6 +2745,34 @@ class ReturnStatement < AbstractStatement
 
   def execute_core(interpreter)
     interpreter.next_line_index = interpreter.pop_return
+  end
+end
+
+# RUN
+class RunStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('RUN')]
+    ]
+  end
+
+  def initialize(keywords, tokens_lists)
+    super
+
+    extract_modifiers(tokens_lists)
+
+    template = []
+
+    @errors << 'Syntax error' unless
+      check_template(tokens_lists, template)
+  end
+
+  def dump
+    ['']
+  end
+
+  def execute_core(interpreter)
+    interpreter.rerun
   end
 end
 
