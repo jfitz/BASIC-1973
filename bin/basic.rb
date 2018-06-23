@@ -231,6 +231,7 @@ OptionParser.new do |opt|
   opt.on('--require-initialized') { |o| options[:require_initialized] = o }
   opt.on('--hash-constant') { |o| options[:hash_constant] = o }
   opt.on('--min-max-op') { |o| options[:min_max_op] = o }
+  opt.on('--chr-allow-all') { |o| options[:chr_allow_all] = o }
   opt.on('--single-quote-strings') { |o| options[:single_quote_strings] = o }
   opt.on('--crlf-on-line-input') { |o| options[:crlf_on_line_input] = o }
 end.parse!
@@ -288,6 +289,7 @@ comment_leads << "'" if apostrophe_comment and !single_quote_strings
 comment_leads << '!' if bang_comment
 allow_hash_constant = options.key?(:hash_constant)
 min_max_op = options.key?(:min_max_op)
+chr_allow_all = options.key?(:chr_allow_all)
 
 default_prompt = TextConstantToken.new('"? "')
 console_io =
@@ -314,7 +316,8 @@ if !run_filename.nil?
     interpreter =
       Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
                       respect_randomize, if_false_next_line,
-                      fornext_one_beyond, lock_fornext, require_initialized)
+                      fornext_one_beyond, lock_fornext, require_initialized,
+                      chr_allow_all)
 
     interpreter.set_default_args('RND', NumericConstant.new(1))
     program.run(interpreter, trace_flag, show_timing, show_profile)
@@ -347,7 +350,8 @@ else
   interpreter =
     Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
                     respect_randomize, if_false_next_line,
-                    fornext_one_beyond, lock_fornext, require_initialized)
+                    fornext_one_beyond, lock_fornext, require_initialized,
+                    chr_allow_all)
 
   interpreter.set_default_args('RND', NumericConstant.new(1))
 

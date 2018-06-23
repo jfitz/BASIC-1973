@@ -6,11 +6,12 @@ class Interpreter
   attr_reader :trace_out
   attr_reader :if_false_next_line
   attr_reader :fornext_one_beyond
+  attr_reader :chr_allow_all
   attr_reader :start_time
 
   def initialize(console_io, int_floor, ignore_rnd_arg, randomize,
                  respect_randomize, if_false_next_line, fornext_one_beyond,
-                 lock_fornext, require_initialized)
+                 lock_fornext, require_initialized, chr_allow_all)
     @running = false
     @randomizer = Random.new(1)
     @randomizer = Random.new if randomize && respect_randomize
@@ -36,6 +37,7 @@ class Interpreter
     @lock_fornext = lock_fornext
     @locked_variables = []
     @require_initialized = require_initialized
+    @chr_allow_all = chr_allow_all
     @null_out = NullOut.new
     @tokenbuilders = make_debug_tokenbuilders
     @breakpoints = {}

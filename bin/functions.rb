@@ -231,12 +231,12 @@ class FunctionChr < AbstractScalarFunction
     @signature = [{ 'type' => 'numeric', 'shape' => 'scalar' }]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(interpreter, stack, _)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       value = args[0].to_i
       raise(BASICRuntimeError, 'Invalid value for CHR$()') unless
-        value.between?(32, 126)
+        value.between?(32, 126) || interpreter.chr_allow_all
       text = value.chr
       quoted = '"' + text + '"'
       token = TextConstantToken.new(quoted)
