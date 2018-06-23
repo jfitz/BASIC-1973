@@ -98,9 +98,9 @@
  VariableName:I
 220 FOR H=INT(-16*(V/32)^2+V^2/32+.5) TO 0 STEP -.5
  control: VariableName:H
- start:   ["NumericConstant:16", "UnaryOperator:-", "ScalarValue:V", "NumericConstant:32", "BinaryOperator:/", "NumericConstant:2", "BinaryOperator:^", "BinaryOperator:*", "ScalarValue:V", "NumericConstant:2", "BinaryOperator:^", "NumericConstant:32", "BinaryOperator:/", "BinaryOperator:+", "NumericConstant:0.5", "BinaryOperator:+", "FunctionInt"]
+ start:   ["NumericConstant:16", "UnaryOperator:-", "ScalarValue:V", "NumericConstant:32", "BinaryOperator:/", "NumericConstant:2", "BinaryOperator:^", "BinaryOperator:*", "ScalarValue:V", "NumericConstant:2", "BinaryOperator:^", "NumericConstant:32", "BinaryOperator:/", "BinaryOperator:+", "NumericConstant:.5", "BinaryOperator:+", "FunctionInt"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:0.5", "UnaryOperator:-"]
+ step:    ["NumericConstant:.5", "UnaryOperator:-"]
 221 IF INT(H)<>H THEN 225
  ScalarValue:H
  FunctionInt
@@ -132,7 +132,7 @@
  AssignmentOperator:=
 250 IF ABS(H-(.5*(-32)*T^2+V*C^(I-1)*T))>.25 THEN 270
  ScalarValue:H
- NumericConstant:0.5
+ NumericConstant:.5
  NumericConstant:32
  UnaryOperator:-
  BinaryOperator:*
@@ -152,7 +152,7 @@
  BinaryOperator:+
  BinaryOperator:-
  FunctionAbs
- NumericConstant:0.25
+ NumericConstant:.25
  BinaryOperator:>
 260 PRINT TAB(L/S2);"0";
  ITEMS
@@ -226,7 +226,7 @@
 360 FOR I=1 TO INT(L+.9995)
  control: VariableName:I
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:L", "NumericConstant:0.9995", "BinaryOperator:+", "FunctionInt"]
+ end:     ["ScalarValue:L", "NumericConstant:.9995", "BinaryOperator:+", "FunctionInt"]
  step:    ["NumericConstant:1"]
 380 PRINT TAB(INT(I/S2));I;
  ITEMS

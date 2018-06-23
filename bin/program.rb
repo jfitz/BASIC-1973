@@ -411,6 +411,7 @@ class Program
     okay = true
 
     @lines.keys.sort.each do |line_number|
+      @line_number = line_number
       line = @lines[line_number]
       statements = line.statements
       statements.each do |statement|
@@ -421,7 +422,7 @@ class Program
 
     okay
   rescue BASICRuntimeError => e
-    message = "#{e.message} in line #{line_number}"
+    message = "#{e.message} in line #{@line_number}"
     @console_io.print_line(message)
     false
   end
@@ -670,7 +671,24 @@ class Program
     refs
   end
 
-  def strings_refs
+  def numeric_symbol_refs
+    refs = {}
+
+    @lines.keys.sort.each do |line_number|
+      line = @lines[line_number]
+      statements = line.statements
+
+      rs = []
+      statements.each do |statement|
+        rs += statement.numeric_symbol_constants
+      end
+      refs[line_number] = rs
+    end
+
+    refs
+  end
+
+  def text_refs
     refs = {}
 
     @lines.keys.sort.each do |line_number|
@@ -680,6 +698,23 @@ class Program
       rs = []
       statements.each do |statement|
         rs += statement.strings
+      end
+      refs[line_number] = rs
+    end
+
+    refs
+  end
+
+  def text_symbol_refs
+    refs = {}
+
+    @lines.keys.sort.each do |line_number|
+      line = @lines[line_number]
+      statements = line.statements
+
+      rs = []
+      statements.each do |statement|
+        rs += statement.text_symbol_constants
       end
       refs[line_number] = rs
     end
@@ -778,7 +813,7 @@ class Program
   public
 
   # generate cross-reference list
-  def crossref
+  def crossref(numeric_syms, text_syms)
     puts 'Cross reference'
     puts ''
 
@@ -786,9 +821,21 @@ class Program
     numerics = make_summary(nums_list)
     print_num_refs('Numeric constants', numerics)
 
-    strs_list = strings_refs
+    if numeric_syms
+      num_syms_list = numeric_symbol_refs
+      num_symbols = make_summary(num_syms_list)
+      print_num_refs('Numeric symbol constants', num_symbols)
+    end
+
+    strs_list = text_refs
     strings = make_summary(strs_list)
     print_num_refs('String constants', strings)
+
+    if text_syms
+      text_syms_list = text_symbol_refs
+      text_symbols = make_summary(text_syms_list)
+      print_num_refs('Text symbol constants', text_symbols)
+    end
 
     funcs_list = function_refs
     functions = make_summary(funcs_list)

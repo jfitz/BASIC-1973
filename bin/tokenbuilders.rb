@@ -254,10 +254,7 @@ class NumberTokenBuilder
   end
 
   def try(text)
-    if text.size >= 2 && text[0..1] == 'PI'
-      candidate = 'PI'
-      i = 2
-    elsif @allow_hash_constant && text.size >= 2 && text[0] == '#'
+    if @allow_hash_constant && text.size >= 2 && text[0] == '#'
       candidate = text[0..1]
       i = 2
     else
@@ -295,7 +292,6 @@ class NumberTokenBuilder
 
     # check that string conforms to one of these
     regexes = [
-      /PI/,
       /#./,
       /\A\d+\z/,
       /\A\d+\.\z/,
@@ -391,6 +387,66 @@ class IntegerTokenBuilder
     result = true if c =~ /[0-9]/ && candidate.count('%').zero?
 
     result
+  end
+end
+
+# token reader for numeric symbols
+class NumericSymbolTokenBuilder
+  attr_reader :count
+
+  def try(text)
+    legals = [ 'PI' ]
+
+    candidate = ''
+    i = 0
+
+    legals.each do |symbol|
+      if text.start_with?(symbol) && symbol.size > candidate.size
+        candidate = symbol
+        i = symbol.size
+      end
+    end
+
+    @token = ''
+    @token = candidate if legals.include?(candidate)
+
+    @count = 0
+    @count = i unless @token.empty?
+    !@count.zero?
+  end
+
+  def token
+    NumericSymbolToken.new(@token)
+  end
+end
+
+# token reader for text symbols
+class TextSymbolTokenBuilder
+  attr_reader :count
+
+  def try(text)
+    legals = %w(NUL SOH STX ETX EOT ENQ ACK BEL BS HT LF VT FF CR SO SI DLE DC1 DC2 DC3 DC4 NAK SYN ETB CAN EM SUB ESC FS GS RS US)
+
+    candidate = ''
+    i = 0
+
+    legals.each do |symbol|
+      if text.start_with?(symbol) && symbol.size > candidate.size
+        candidate = symbol
+        i = symbol.size
+      end
+    end
+
+    @token = ''
+    @token = candidate if legals.include?(candidate)
+
+    @count = 0
+    @count = i unless @token.empty?
+    !@count.zero?
+  end
+
+  def token
+    TextSymbolToken.new(@token)
   end
 end
 

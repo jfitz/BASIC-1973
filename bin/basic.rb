@@ -22,13 +22,15 @@ require_relative 'program'
 # interactive shell
 class Shell
   def initialize(console_io, interpreter, program, colon_file, quotes,
-                 min_max_op, allow_hash_constant)
+                 min_max_op, allow_hash_constant, numeric_syms, text_syms)
     @console_io = console_io
     @interpreter = interpreter
     @program = program
     @tokenbuilders =
       make_command_tokenbuilders(quotes, colon_file, min_max_op,
                                  allow_hash_constant)
+    @numeric_symbols = numeric_syms
+    @text_symbols = text_syms
   end
 
   def run
@@ -109,7 +111,7 @@ class Shell
         @interpreter.renumber_breakpoints(renumber_map)
       end
     when 'CROSSREF'
-      @program.crossref if @program.check
+      @program.crossref(@numeric_symbols, @text_symbols) if @program.check
     when '.DIMS'
       @interpreter.dump_dims
     when '.PARSE'
@@ -129,7 +131,8 @@ class Shell
 end
 
 def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads,
-                                   allow_hash_constant, min_max_op, colon_file)
+                                   allow_hash_constant, min_max_op, colon_file,
+                                   allow_pi, allow_ascii)
   tokenbuilders = []
 
   tokenbuilders << CommentTokenBuilder.new(comment_leads)
@@ -165,6 +168,8 @@ def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads,
   tokenbuilders << TextTokenBuilder.new(quotes)
   tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
   tokenbuilders << IntegerTokenBuilder.new
+  tokenbuilders << NumericSymbolTokenBuilder.new if allow_pi
+  tokenbuilders << TextSymbolTokenBuilder.new if allow_ascii
   tokenbuilders << VariableTokenBuilder.new
 
   tokenbuilders <<
@@ -230,7 +235,10 @@ OptionParser.new do |opt|
   opt.on('--lock-fornext') { |o| options[:lock_fornext] = o }
   opt.on('--require-initialized') { |o| options[:require_initialized] = o }
   opt.on('--hash-constant') { |o| options[:hash_constant] = o }
+  opt.on('--define-pi') { |o| options[:allow_pi] = o }
+  opt.on('--define-ascii') { |o| options[:allow_ascii] = o }
   opt.on('--min-max-op') { |o| options[:min_max_op] = o }
+  opt.on('--asc-allow-all') { |o| options[:asc_allow_all] = o }
   opt.on('--chr-allow-all') { |o| options[:chr_allow_all] = o }
   opt.on('--single-quote-strings') { |o| options[:single_quote_strings] = o }
   opt.on('--crlf-on-line-input') { |o| options[:crlf_on_line_input] = o }
@@ -288,7 +296,10 @@ comment_leads = []
 comment_leads << "'" if apostrophe_comment and !single_quote_strings
 comment_leads << '!' if bang_comment
 allow_hash_constant = options.key?(:hash_constant)
+allow_pi = options.key?(:allow_pi)
+allow_ascii = options.key?(:allow_ascii)
 min_max_op = options.key?(:min_max_op)
+asc_allow_all = options.key?(:asc_allow_all)
 chr_allow_all = options.key?(:chr_allow_all)
 
 default_prompt = TextConstantToken.new('"? "')
@@ -300,7 +311,8 @@ console_io =
 
 tokenbuilders =
   make_interpreter_tokenbuilders(quotes, statement_seps, comment_leads,
-                                 allow_hash_constant, min_max_op, colon_file)
+                                 allow_hash_constant, min_max_op, colon_file,
+                                 allow_pi, allow_ascii)
 
 if show_heading
   console_io.print_line('BASIC-1973 interpreter version -1')
@@ -317,7 +329,7 @@ if !run_filename.nil?
       Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
                       respect_randomize, if_false_next_line,
                       fornext_one_beyond, lock_fornext, require_initialized,
-                      chr_allow_all)
+                      asc_allow_all, chr_allow_all)
 
     interpreter.set_default_args('RND', NumericConstant.new(1))
     program.run(interpreter, trace_flag, show_timing, show_profile)
@@ -344,20 +356,20 @@ elsif !cref_filename.nil?
   token = TextConstantToken.new('"' + cref_filename + '"')
   nametokens = [TextConstant.new(token)]
   if program.load(nametokens)
-    program.crossref
+    program.crossref(allow_pi, allow_ascii)
   end
 else
   interpreter =
     Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
                     respect_randomize, if_false_next_line,
                     fornext_one_beyond, lock_fornext, require_initialized,
-                    chr_allow_all)
+                    asc_allow_all, chr_allow_all)
 
   interpreter.set_default_args('RND', NumericConstant.new(1))
 
   shell =
     Shell.new(console_io, interpreter, program, colon_file, quotes,
-              min_max_op, allow_hash_constant)
+              min_max_op, allow_hash_constant, allow_pi, allow_ascii)
 
   shell.run
 end

@@ -164,6 +164,7 @@ When the BASIC program ends, BASIC-1973 ends.
 |--hash-constant |Allow numeric constants in the form '#c' where c is any single character. Disables file handle operator and the not-equals operator, which are also represented by '#'.
 |--min-max-op |Enable the MIN and MAX operators.
 |--single-quote-strings |Allow text strings (in the program and in input) to be enclosed in single quotes. Disables the single-quote comments. Bang comments are still allowed.
+|--asc-allow-all |The ASC() function allows any characters. The default behavior is to limit characters to printable ASCII (32d to 126d).
 |--chr-allow-all |The CHR$() function allows any output characters. The default behavior is to limit characters to printable ASCII (32d to 126d).
 |==========
 
@@ -1985,7 +1986,7 @@ Functions may be used in expressions.
 |==========
 |Function |Return type |Result
 |ABS(x) |numeric |Computes the absolute value of x.
-|ASC(t) |numeric |Returns the ASCII value of the first character of the string t.
+|ASC(t) |numeric |Returns the ASCII value of the first character of the string t. The character must be in the printable range of 32 to 126.
 |ATN(x) |numeric |Computes the arctangent of x, providing the answer in radians.
 |CHR$(n) |string |Returns a string of one character, defined by n. N must be within the ASCII printable range of 32 to 126.
 |CON(n) |numeric array |Creates an array containing all ones, with n columns

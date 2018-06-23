@@ -62,9 +62,7 @@
 650 LET O(1) = ASC(SOH)
  NumericConstant:1
  ScalarReference:O
- ScalarValue:S
- ScalarValue:O
- ScalarValue:H
+ TextConstant:""
  FunctionAsc
  AssignmentOperator:=
 660 LET O(2) = ASC("N")
@@ -295,9 +293,9 @@
  ScalarValue:R
  ScalarReference:A
  FunctionRnd
- NumericConstant:0.05
+ NumericConstant:.05
  BinaryOperator:*
- NumericConstant:0.05
+ NumericConstant:.05
  BinaryOperator:+
  AssignmentOperator:=
 1150       PRINT O$(A);"ADHESION FACTOR"; A(A)*100-5;".  (THE LOWER THE BETTER)"
@@ -725,7 +723,7 @@
  NumericConstant:2
  ScalarValue:M$
  NumericConstant:100
- NumericConstant:0.75
+ NumericConstant:.75
  NumericConstant:3
  NumericConstant:20
  BinaryOperator:/
@@ -749,7 +747,7 @@
  NumericConstant:2
  ScalarValue:M$
  NumericConstant:100
- NumericConstant:0.75
+ NumericConstant:.75
  NumericConstant:3
  NumericConstant:20
  BinaryOperator:/
@@ -840,7 +838,7 @@
  CarriageControl:NL
 1780 LET W=1E+37
  ScalarReference:W
- NumericConstant:9999999999999999538762658202121142272
+ NumericConstant:1E+37
  AssignmentOperator:=
 1790 IF G9=0 THEN 1820
  ScalarValue:G9
@@ -1154,7 +1152,7 @@
  ScalarValue:R
  NumericConstant:1
  FunctionRnd
- NumericConstant:0.1
+ NumericConstant:.1
  BinaryOperator:*
  BinaryOperator:+
  BinaryOperator:*
@@ -1529,7 +1527,7 @@
  CarriageControl:NL
 2950 LET E=.2
  ScalarReference:E
- NumericConstant:0.2
+ NumericConstant:.2
  AssignmentOperator:=
 2960 GOTO 3130
  LineNumber:3130
@@ -1539,18 +1537,18 @@
  BinaryOperator:=
 2980 IF RND>.025+G8 THEN 3130                 'SEE IF IT SHOULD BE STOPPED OR STARTED 
  FunctionRnd
- NumericConstant:0.025
+ NumericConstant:.025
  ScalarValue:G8
  BinaryOperator:+
  BinaryOperator:>
 2990 IF R(O)<.1 THEN 3080                     'IS IT RAINING?
  ScalarValue:O
  ScalarValue:R
- NumericConstant:0.1
+ NumericConstant:.1
  BinaryOperator:<
 3000 IF RND>.5 THEN 3130                      'STOP IT?
  FunctionRnd
- NumericConstant:0.5
+ NumericConstant:.5
  BinaryOperator:>
 3010 PRINT "GLORY BE, THE RAIN HAS STOPPED! BUT REMEMBER IT IS STILL WET"
  ITEMS
@@ -1570,12 +1568,12 @@
  ScalarReference:A
  ScalarValue:A
  ScalarValue:A
- NumericConstant:0.075
+ NumericConstant:.075
  BinaryOperator:-
  AssignmentOperator:=
 3050      LET G8=.025                         'MAKE IT LESS LIKELY TO RAIN IN LATER RACES 
  ScalarReference:G8
- NumericConstant:0.025
+ NumericConstant:.025
  AssignmentOperator:=
 3060 NEXT A
  VariableName:A
@@ -1595,12 +1593,12 @@
  ScalarReference:A
  ScalarValue:A
  ScalarValue:A
- NumericConstant:0.1
+ NumericConstant:.1
  BinaryOperator:+
  AssignmentOperator:=
 3110      LET G8=.1
  ScalarReference:G8
- NumericConstant:0.1
+ NumericConstant:.1
  AssignmentOperator:=
 3120 NEXT A
  VariableName:A
@@ -1612,7 +1610,7 @@
  BinaryOperator:<>
 3140 IF RND <.125 THEN 3210
  FunctionRnd
- NumericConstant:0.125
+ NumericConstant:.125
  BinaryOperator:<
 3150 FOR X=0 TO O9
  control: VariableName:X
@@ -1624,7 +1622,7 @@
  ScalarValue:O9
  FunctionSgn
  BinaryOperator:*
- NumericConstant:0.75
+ NumericConstant:.75
  BinaryOperator:<
 3170 IF D(X)=1 THEN 3200
  ScalarValue:X
@@ -1844,10 +1842,10 @@
  ScalarValue:R4
  ScalarValue:T
  BinaryOperator:-
- NumericConstant:0.5
+ NumericConstant:.5
  BinaryOperator:-
  FunctionAbs
- NumericConstant:0.5
+ NumericConstant:.5
  BinaryOperator:=>
 3590 GOTO 3700                                'HE DID!!!
  LineNumber:3700
@@ -1947,7 +1945,7 @@
  ScalarValue:B
  BinaryOperator:*
  ScalarValue:B
- NumericConstant:0.1
+ NumericConstant:.1
  BinaryOperator:+
  ScalarValue:E
  BinaryOperator:+
@@ -1964,7 +1962,7 @@
  AssignmentOperator:=
 3800      IF (B+.1+G8+E)*S/B<=R THEN 3850
  ScalarValue:B
- NumericConstant:0.1
+ NumericConstant:.1
  BinaryOperator:+
  ScalarValue:G8
  BinaryOperator:+

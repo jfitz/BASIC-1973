@@ -84,6 +84,7 @@ class AbstractToken
     @is_function = false
     @is_text_constant = false
     @is_numeric_constant = false
+    @is_symbol_constant = false
     @is_boolean_constant = false
     @is_user_function = false
     @is_variable = false
@@ -145,6 +146,10 @@ class AbstractToken
     @is_numeric_constant
   end
 
+  def symbol_constant?
+    @is_symbol_constant
+  end
+
   def boolean_constant?
     @is_boolean_constant
   end
@@ -183,6 +188,7 @@ end
 class InvalidToken < AbstractToken
   def initialize(text)
     super
+
     @is_invalid = true
   end
 end
@@ -191,6 +197,7 @@ end
 class BreakToken < AbstractToken
   def initialize(text)
     super
+
     @is_break = true
   end
 end
@@ -199,6 +206,7 @@ end
 class WhitespaceToken < AbstractToken
   def initialize(text)
     super
+
     @is_whitespace = true
   end
 end
@@ -207,6 +215,7 @@ end
 class KeywordToken < AbstractToken
   def initialize(text)
     super
+
     @is_keyword = true
   end
 end
@@ -215,6 +224,7 @@ end
 class CommentToken < AbstractToken
   def initialize(text)
     super
+
     @is_comment = true
   end
 end
@@ -230,6 +240,7 @@ end
 class StatementSeparatorToken < AbstractToken
   def initialize(text)
     super
+
     @is_statement_separator = true
   end
 end
@@ -238,6 +249,7 @@ end
 class OperatorToken < AbstractToken
   def initialize(text)
     super
+
     @is_operator = true
   end
 
@@ -256,6 +268,7 @@ end
 class GroupStartToken < AbstractToken
   def initialize(text)
     super
+
     @is_groupstart = true
   end
 end
@@ -264,6 +277,7 @@ end
 class GroupEndToken < AbstractToken
   def initialize(text)
     super
+
     @is_groupend = true
   end
 end
@@ -272,6 +286,7 @@ end
 class ParamSeparatorToken < AbstractToken
   def initialize(text)
     super
+
     @is_separator = true
   end
 end
@@ -280,6 +295,7 @@ end
 class FunctionToken < AbstractToken
   def initialize(text)
     super
+
     @is_function = true
   end
 
@@ -300,6 +316,7 @@ end
 class TextConstantToken < AbstractToken
   def initialize(text)
     super
+
     @is_text_constant = true
   end
 
@@ -316,6 +333,7 @@ end
 class NumericConstantToken < AbstractToken
   def initialize(text)
     super
+
     @is_numeric_constant = true
   end
 
@@ -344,6 +362,7 @@ end
 class IntegerConstantToken < AbstractToken
   def initialize(text)
     super
+
     @is_numeric_constant = true
   end
 
@@ -368,11 +387,91 @@ class IntegerConstantToken < AbstractToken
   end
 end
 
+# numeric symbol token
+class NumericSymbolToken < AbstractToken
+  def initialize(text)
+    super
+
+    @is_numeric_constant = true
+    @is_symbol_constant = true
+
+    @values = {
+      'PI' => 3.1415926
+    }
+  end
+
+  def value
+    @values[@text]
+  end
+end
+
+# text symbol token
+class TextSymbolToken < AbstractToken
+  def initialize(text)
+    super
+
+    @is_text_constant = true
+    @is_symbol_constant = true
+
+    @values = {
+      'NUL' => "\0",
+      'SOH' => "\1",
+      'STX' => "\2",
+      'ETX' => "\3",
+      'EOT' => "\4",
+      'ENQ' => "\5",
+      'ACK' => "\6",
+      'BEL' => "\7",
+      'BS' => "\8",
+      'HT' => "\9",
+      'LF' => "\10",
+      'VT' => "\11",
+      'FF' => "\12",
+      'CR' => "\13",
+      'SO' => "\14",
+      'SI' => "\15",
+      'DLE' => "\16",
+      'DC1' => "\17",
+      'DC2' => "\18",
+      'DC3' => "\19",
+      'DC4' => "\20",
+      'NAK' => "\21",
+      'SYN' => "\22",
+      'ETB' => "\23",
+      'CAN' => "\24",
+      'EM' => "\25",
+      'SUB' => "\26",
+      'ESC' => "\27",
+      'FS' => "\28",
+      'GS' => "\29",
+      'RS' => "\30",
+      'US' => "\31"
+    }
+  end
+
+  def value
+    @values[@text]
+  end
+end
+
 # boolean constant token
 class BooleanConstantToken < AbstractToken
   def initialize(text)
     super
+
     @is_boolean_constant = true
+  end
+
+  def to_f
+    @text.to_f.to_i
+  end
+
+  def to_i
+    @text.to_f.to_i
+  end
+
+  def <=>(other)
+    @text.to_f <=> other.to_f
   end
 end
 
@@ -382,6 +481,7 @@ class UserFunctionToken < AbstractToken
 
   def initialize(text)
     super
+
     @is_user_function = true
     @content_type = 'numeric'
     @content_type = 'string' if text.include?('$')
@@ -407,6 +507,7 @@ class VariableToken < AbstractToken
 
   def initialize(text)
     super
+
     raise(Exception, 'invalid token') unless text.class.to_s == 'String'
     @is_variable = true
     @content_type = 'numeric'

@@ -123,6 +123,7 @@ class GroupStart < AbstractElement
 
   def initialize(element)
     super()
+
     @text = element.to_s
     @group_start = true
   end
@@ -141,6 +142,7 @@ class GroupEnd < AbstractElement
 
   def initialize(element)
     super()
+
     @text = element.to_s
     @group_end = true
     @operand = true
@@ -162,6 +164,7 @@ class ParamStart < AbstractElement
 
   def initialize(element)
     super()
+
     @text = element.to_s
     @param_start = true
   end
@@ -180,6 +183,7 @@ class ParamSeparator < AbstractElement
 
   def initialize(token)
     super()
+
     @text = token.to_s
     @separator = true
   end
@@ -195,6 +199,7 @@ public
 class AbstractValueElement < AbstractElement
   def initialize
     super
+
     @numeric_constant = false
     @text_constant = false
     @boolean_constant = false
@@ -358,16 +363,13 @@ end
 # Numeric constants
 class NumericConstant < AbstractValueElement
   def self.accept?(token)
-    classes = %w(Fixnum Bignum Float NumericConstantToken)
+    classes = %w(Fixnum Bignum Float NumericConstantToken NumericSymbolToken)
     classes.include?(token.class.to_s)
   end
 
   def self.numeric(text)
-    # PI
-    if text == 'PI'
-      3.1415926
     # #c constant
-    elsif text.size == 2 && text[0] == '#'
+    if text.size == 2 && text[0] == '#'
       text[1].ord
     # nnn(E+nn)
     elsif /\A\s*[+-]?\d+(E+?\d+)?\z/ =~ text
@@ -398,10 +400,12 @@ class NumericConstant < AbstractValueElement
 
   def initialize(text)
     super()
+
     numeric_classes = %w(Fixnum Bignum Float)
     f = nil
     f = text.to_f if text.class.to_s == 'Rational'
     f = text if numeric_classes.include?(text.class.to_s)
+
     if text.class.to_s == 'NumericConstantToken'
       t = text.to_s
       if !t.empty? && t[0] == '#'
@@ -411,15 +415,21 @@ class NumericConstant < AbstractValueElement
       end
     end
 
+    f = text.value if text.class.to_s == 'NumericSymbolToken'
+
     raise(Exception, "Cannot parse '#{text.class}:#{text}'") if f.nil?
 
     @token_chars = text.to_s
     @value = float_to_possible_int(f)
-    @value = 3.1415926 if text == 'PI'
     @operand = true
     @precedence = 0
     @numeric_constant = true
+
     raise BASICRuntimeError, "'#{text}' is not a number" if @value.nil?
+  end
+
+  def dump
+    self.class.to_s + ':' + @token_chars
   end
 
   def zero?
@@ -620,6 +630,7 @@ class IntegerConstant < AbstractValueElement
 
   def initialize(text)
     super()
+
     numeric_classes = %w(Fixnum Bignum Float)
     f = text.to_i if numeric_classes.include?(text.class.to_s)
     f = text.to_i if text.class.to_s == 'NumericConstantToken'
@@ -629,6 +640,7 @@ class IntegerConstant < AbstractValueElement
     @operand = true
     @precedence = 0
     @numeric_constant = true
+
     raise BASICError, "'#{text}' is not a number" if @value.nil?
   end
 
@@ -805,7 +817,7 @@ end
 # Text constants
 class TextConstant < AbstractValueElement
   def self.accept?(token)
-    classes = %w(TextConstantToken)
+    classes = %w(TextConstantToken TextSymbolToken)
     classes.include?(token.class.to_s)
   end
 
@@ -813,9 +825,13 @@ class TextConstant < AbstractValueElement
 
   def initialize(text)
     super()
+
     @value = nil
     @value = text.value if text.class.to_s == 'TextConstantToken'
+    @value = text.value if text.class.to_s == 'TextSymbolToken'
+    
     raise(BASICError, "'#{text}' is not a text constant") if @value.nil?
+
     @operand = true
     @precedence = 0
     @text_constant = true
@@ -898,6 +914,7 @@ class BooleanConstant < AbstractValueElement
 
   def initialize(obj)
     super()
+
     obj_class = obj.class.to_s
     @value =
       (obj_class == 'BooleanConstantToken' && obj.to_s == 'TRUE') ||
@@ -938,9 +955,12 @@ class FileHandle < AbstractElement
 
   def initialize(num)
     super()
+
     raise(BASICRuntimeError, 'Invalid file reference') unless
       num.class.to_s == 'Fixnum'
+
     raise(BASICRuntimeError, 'Invalid file number') if num < 0
+
     @number = num
     @file_handle = true
   end
@@ -1043,9 +1063,11 @@ class VariableName < AbstractElement
 
   def initialize(token)
     super()
+
     raise(Exception, "'#{token}' is not a variable name") unless
       token.class.to_s == 'VariableToken' ||
       token.class.to_s == 'UserFunctionToken'
+
     @name = token
     @variable = true
     @operand = true
@@ -1101,9 +1123,11 @@ class Variable < AbstractElement
 
   def initialize(variable_name, subscripts = [])
     super()
+
     raise(Exception, "'#{variable_name.class}:#{variable_name}' is not a variable name") if
       variable_name.class.to_s != 'VariableName' &&
       variable_name.class.to_s != 'UserFunctionToken'
+
     @variable_name = variable_name
     @subscripts = normalize_subscripts(subscripts)
     @variable = true
@@ -1183,6 +1207,7 @@ end
 class List < AbstractElement
   def initialize(parsed_expressions)
     super()
+
     @list = true
     @parsed_expressions = parsed_expressions
     @variable = true
@@ -1222,6 +1247,7 @@ end
 class Remark < AbstractElement
   def initialize(tokens)
     super()
+
     @texts = []
     @texts = tokens.map(&:to_s) unless tokens.nil?
   end

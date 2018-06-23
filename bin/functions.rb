@@ -189,14 +189,14 @@ class FunctionAsc < AbstractScalarFunction
     @signature = [{ 'type' => 'text', 'shape' => 'scalar' }]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(interpreter, stack, _)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       text = args[0].to_v
       raise(BASICRuntimeError, 'Empty string in ASC()') if text.empty?
       value = text[0].ord
       raise(BASICRuntimeError, 'Invalid value in ASC()') unless
-        value.between?(32, 126)
+        value.between?(32, 126) || interpreter.asc_allow_all
       token = NumericConstantToken.new(value.to_s)
       NumericConstant.new(token)
     else

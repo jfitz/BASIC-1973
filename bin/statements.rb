@@ -293,7 +293,7 @@ class AbstractStatement
     prev_operand = false
     @tokens.each do |token|
       negate = !negate if prev_unary_minus
-      if token.numeric_constant?
+      if token.numeric_constant? && !token.symbol_constant?
         if negate
           nums << token.clone.negate
         else
@@ -301,15 +301,31 @@ class AbstractStatement
         end
       end
       prev_unary_minus = token.operator? && token.to_s == '-' && !prev_operand
-      prev_operand = token.groupend? || token.numeric_constant? || token.variable?
+      prev_operand =
+        token.groupend? ||
+        token.numeric_constant?||
+        token.variable?
     end
 
     nums
   end
 
+  def numeric_symbol_constants
+    syms = @tokens.clone
+    syms.keep_if(&:symbol_constant?)
+    syms.keep_if(&:numeric_constant?)
+  end
+
   def strings
     strs = @tokens.clone
     strs.keep_if(&:text_constant?)
+    strs.delete_if(&:symbol_constant?)
+  end
+
+  def text_symbol_constants
+    syms = @tokens.clone
+    syms.keep_if(&:symbol_constant?)
+    syms.keep_if(&:text_constant?)
   end
 
   def functions
