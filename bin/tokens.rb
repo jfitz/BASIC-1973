@@ -338,11 +338,7 @@ class NumericConstantToken < AbstractToken
   end
 
   def negate
-    if @text[0] == '-'
-      @text = @text[1..-1]
-    else
-      @text = '-' + @text
-    end
+    @text = @text[0] == '-' ? @text[1..-1] : '-' + @text
   end
 
   def to_f
@@ -367,11 +363,7 @@ class IntegerConstantToken < AbstractToken
   end
 
   def negate
-    if @text[0] == '-'
-      @text = @text[1..-1]
-    else
-      @text = '-' + @text
-    end
+    @text = @text[0] == '-' ? @text[1..-1] : '-' + @text
   end
 
   def to_f
@@ -539,22 +531,21 @@ class NumericFormatToken < AbstractToken
   end
 
   def format(numeric_constant)
+    width = @text.size
+
     if @text.include?('.')
-      width = @text.size
       parts = @text.split('.')
       decimals = parts[1].size
       spec = '%' + width.to_s + '.' + decimals.to_s + 'f'
-      text = sprintf(spec, numeric_constant.to_v)
     else
-      width = @text.size
       spec = '%' + width.to_s + '.0f'
-      text = sprintf(spec, numeric_constant.to_v)
     end
-    if @text.include?('*')
-      text.gsub!(' ', '*')
-    end
+
+    text = sprintf(spec, numeric_constant.to_v)
+   
+    text.tr!(' ', '*') if @text.include?('*')
     token = TextConstantToken.new('"' + text + '"')
-    constant = TextConstant.new(token)
+    TextConstant.new(token)
   end
 end
 
@@ -572,7 +563,7 @@ class CharFormatToken < AbstractToken
     text = text_constant.to_v
     text = text[0]
     token = TextConstantToken.new('"' + text + '"')
-    constant = TextConstant.new(token)
+    TextConstant.new(token)
   end
 end
 
@@ -589,7 +580,7 @@ class PlainStringFormatToken < AbstractToken
   def format(text_constant)
     text = text_constant.to_v
     token = TextConstantToken.new('"' + text + '"')
-    constant = TextConstant.new(token)
+    TextConstant.new(token)
   end
 end
 
@@ -607,7 +598,7 @@ class PaddedStringFormatToken < AbstractToken
     text = text_constant.to_v
     text += ' ' while text.size < @text.size
     token = TextConstantToken.new('"' + text + '"')
-    constant = TextConstant.new(token)
+    TextConstant.new(token)
   end
 end
 
@@ -623,6 +614,6 @@ class ConstantFormatToken < AbstractToken
 
   def format(text_constant)
     token = TextConstantToken.new('"' + @text + '"')
-    constant = TextConstant.new(token)
+    TextConstant.new(token)
   end
 end

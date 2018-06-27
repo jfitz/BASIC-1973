@@ -203,12 +203,12 @@ class TextTokenBuilder
       end
     end
 
-    if candidate.size > 0
+    if !candidate.empty?
       lead_quote = text[0]
       candidate += lead_quote if candidate.count(lead_quote) == 1
       @token = candidate if candidate.count(lead_quote) == 2
     end
-    
+
     @count = @token.size
   end
 
@@ -395,7 +395,7 @@ class NumericSymbolTokenBuilder
   attr_reader :count
 
   def try(text)
-    legals = [ 'PI' ]
+    legals = %w(PI)
 
     candidate = ''
     i = 0
@@ -525,13 +525,9 @@ class InputTextTokenBuilder
   def try(text)
     @token = ''
 
-    if @quotes.include?('"')
-      /\A"[^"]*"/.match(text) { |m| @token = m[0] }
-    end
+    /\A"[^"]*"/.match(text) { |m| @token = m[0] } if @quotes.include?('"')
 
-    if @quotes.include?("'")
-      /\A'[^']*'/.match(text) { |m| @token = m[0] }
-    end
+    /\A'[^']*'/.match(text) { |m| @token = m[0] } if @quotes.include?("'")
   end
 
   def count
@@ -619,10 +615,7 @@ end
 class CharFormatTokenBuilder
   def try(text)
     @token = ''
-    if text.size > 0 && text[0] == '!'
-      @token += text[0]
-      text = text[1..-1]
-    end
+    @token += text[0] if !text.empty? && text[0] == '!'
   end
 
   def count
@@ -638,10 +631,7 @@ end
 class PlainStringFormatTokenBuilder
   def try(text)
     @token = ''
-    if text.size > 0 && text[0] == '&'
-      @token += text[0]
-      text = text[1..-1]
-    end
+    @token += text[0] if text.size > 0 && text[0] == '&'
   end
 
   def count
@@ -673,7 +663,7 @@ end
 class ConstantFormatTokenBuilder
   def try(text)
     @token = ''
-    while text.size > 0 && !'#!&\\*'.include?(text[0])
+    while !text.empty? && !'#!&\\*'.include?(text[0])
       @token += text[0]
       text = text[1..-1]
     end

@@ -35,7 +35,7 @@ class StatementFactory
     else
       keywords, tokens = extract_keywords(statement_tokens)
       statement = nil
-      
+
       while statement.nil?
         if @statement_definitions.key?(keywords)
           tokens_lists = split_keywords(tokens)
@@ -50,7 +50,7 @@ class StatementFactory
     statement
   end
 
-  def create(text, all_tokens, comment, line_number)
+  def create(text, all_tokens, comment, _)
     statements = []
     statements_tokens = split_on_separators(all_tokens)
 
@@ -248,10 +248,6 @@ class AbstractStatement
     true
   end
 
-  def print_errors(console_io)
-    @errors.each { |error| console_io.print_line(error) }
-  end
-
   def preexecute_a_statement(line_number, interpreter, console_io)
     if errors.empty?
       pre_execute(interpreter)
@@ -293,6 +289,7 @@ class AbstractStatement
     prev_operand = false
     @tokens.each do |token|
       negate = !negate if prev_unary_minus
+
       if token.numeric_constant? && !token.symbol_constant?
         if negate
           nums << token.clone.negate
@@ -300,10 +297,11 @@ class AbstractStatement
           nums << token
         end
       end
+
       prev_unary_minus = token.operator? && token.to_s == '-' && !prev_operand
       prev_operand =
         token.groupend? ||
-        token.numeric_constant?||
+        token.numeric_constant? ||
         token.variable?
     end
 
@@ -372,7 +370,7 @@ class AbstractStatement
   def execute_a_statement(interpreter, trace_out, current_line_index,
                           function_running)
     print_trace_info(trace_out, current_line_index)
-    
+
     if part_of_user_function.nil? || function_running
       timing = Benchmark.measure { execute(interpreter) }
       user_time = timing.utime + timing.cutime
@@ -658,11 +656,11 @@ module FileFunctions
     end
 
     [file_tokens, print_items]
- end
+  end
 
   def get_file_handle(interpreter, file_tokens)
     return nil if file_tokens.nil?
-    
+
     file_handles = file_tokens.evaluate(interpreter, false)
     file_handles[0]
   end
@@ -677,23 +675,14 @@ end
 module InputFunctions
   def dump
     lines = []
-
-    unless @input_items.nil?
-      @input_items.each { |item| lines += item.dump }
-    end
-
+    @input_items.each { |item| lines += item.dump } unless @input_items.nil?
     lines
   end
 
   def variables
     vars = []
-
     vars += @file_tokens.variables unless @file_tokens.nil?
-
-    unless @input_items.nil?
-      @input_items.each { |item| vars += item.variables }
-    end
-
+    @input_items.each { |item| vars += item.variables } unless @input_items.nil?
     vars
   end
 
@@ -719,7 +708,7 @@ module InputFunctions
 
     [prompt, print_items]
   end
-  
+
   def tokens_to_expressions(tokens_lists)
     print_items = []
 
@@ -859,10 +848,8 @@ class ChangeStatement < AbstractStatement
 
   def variables
     vars = []
-    
     vars += @source.variables unless @source.nil?
-    vars += @target.variables unless @target.nil? 
-
+    vars += @target.variables unless @target.nil?
     vars
   end
 end
@@ -1216,7 +1203,7 @@ class ForStatement < AbstractStatement
   end
 
   def self.extra_keywords
-    ['TO', 'STEP']
+    %w(TO STEP)
   end
 
   def initialize(keywords, tokens_lists)
@@ -1285,7 +1272,7 @@ class ForStatement < AbstractStatement
     vars << @control.to_s
     vars += @start.variables
     vars += @end.variables
-    vars += @step_value.variables
+    vars + @step_value.variables
   end
 
   private
@@ -1434,7 +1421,7 @@ class GotoStatement < AbstractStatement
 
   def program_check(program, console_io, line_number_index)
     retval = true
-    
+
     unless @destination.nil? || program.line_number?(@destination)
       console_io.print_line(
         "Line number #{@destination} not found in line #{line_number_index}"
@@ -1515,7 +1502,7 @@ class IfStatement < AbstractStatement
   end
 
   def self.extra_keywords
-    ['THEN', 'ELSE']
+    %w(THEN ELSE)
   end
 
   def initialize(keywords, tokens_lists)
@@ -1752,10 +1739,11 @@ class IfStatement < AbstractStatement
       end
       @tokens[index + 1] = NumericConstantToken.new(@destination.line_number)
     end
-    unless @else_dest.nil?
-      @else_dest = renumber_map[@else_dest]
-      @tokens[-1] = NumericConstantToken.new(@else_dest.line_number)
-    end
+
+    return if @else_dest.nil?
+
+    @else_dest = renumber_map[@else_dest]
+    @tokens[-1] = NumericConstantToken.new(@else_dest.line_number)
   end
 
   def variables
@@ -1815,7 +1803,7 @@ class InputStatement < AbstractStatement
       input_items = tokens_to_expressions(input_items)
       @file_tokens, input_items = extract_file_handle(input_items)
       @prompt, @input_items = extract_prompt(input_items)
- 
+
       if !@input_items.empty? && @input_items[0].text_constant?
         @prompt = input_items[0]
         @input_items = @input_items[1..-1]
@@ -1895,7 +1883,7 @@ class InputCharStatement < AbstractStatement
       input_items = tokens_to_expressions(input_items)
       @file_tokens, input_items = extract_file_handle(input_items)
       @prompt, @input_items = extract_prompt(input_items)
- 
+
       if !@input_items.empty? && @input_items[0].text_constant?
         @prompt = input_items[0]
         @input_items = @input_items[1..-1]
@@ -1938,17 +1926,14 @@ class InputCharStatement < AbstractStatement
 
   private
 
-  def input_values(fhr, interpreter, count)
+  def input_values(fhr, _, count)
     values = []
-
-    while values.size < count
-      values << fhr.read_char
-    end
-
+    values << fhr.read_char while values.size < count
     values
   end
 end
 
+# common functions for LET and LET-less statements
 class AbstractLetStatement < AbstractStatement
   def initialize(keywords, tokens_lists)
     super
@@ -1988,7 +1973,7 @@ class AbstractLetStatement < AbstractStatement
       interpreter.set_value(l_value, r_value)
     end
   end
-  
+
   def variables
     vars = []
     vars = @assignment.variables unless @assignment.nil?
@@ -2045,7 +2030,7 @@ class LineInputStatement < AbstractStatement
       input_items = tokens_to_expressions(input_items)
       @file_tokens, input_items = extract_file_handle(input_items)
       @prompt, @input_items = extract_prompt(input_items)
- 
+
       if !@input_items.empty? && @input_items[0].text_constant?
         @prompt = input_items[0]
         @input_items = @input_items[1..-1]
@@ -2058,7 +2043,7 @@ class LineInputStatement < AbstractStatement
   include FileFunctions
   include InputFunctions
 
-  def execute_core(interpreter) 
+  def execute_core(interpreter)
     fh = get_file_handle(interpreter, @file_tokens)
     fhr = interpreter.get_file_handler(fh, :read)
 
@@ -2144,7 +2129,9 @@ class NextStatement < AbstractStatement
     io.trace_output(s)
 
     if terminated
-      fornext_control.bump_control(interpreter) if interpreter.fornext_one_beyond
+      fornext_control.bump_control(interpreter) if
+        interpreter.fornext_one_beyond
+
       interpreter.unlock_variable(@control)
     else
       # set next line from top item
@@ -2164,7 +2151,7 @@ class OnStatement < AbstractStatement
   end
 
   def self.extra_keywords
-    ['GOTO', 'THEN']
+    %w(GOTO THEN)
   end
 
   def initialize(keywords, tokens_lists)
@@ -2349,26 +2336,16 @@ class AbstractPrintStatement < AbstractStatement
     end
 
     lines << 'ITEMS'
-    unless @print_items.nil?
-      @print_items.each { |item| lines += item.dump }
-    end
-
+    @print_items.each { |item| lines += item.dump } unless @print_items.nil?
     lines
   end
 
   def variables
     vars = []
-
     vars += @file_tokens.variables unless @file_tokens.nil?
-
-    unless @print_items.nil?
-      @print_items.each { |item| vars += item.variables }
-    end
-
+    @print_items.each { |item| vars += item.variables } unless @print_items.nil?
     vars
   end
-
-  private
 
   include FileFunctions
 end
@@ -2545,7 +2522,7 @@ class PrintUsingStatement < AbstractPrintStatement
       NumericFormatTokenBuilder.new
     ]
     tokenizer = Tokenizer.new(tokenbuilders, nil)
-    tokens = tokenizer.tokenize(format_text)
+    tokenizer.tokenize(format_text)
   end
 
   def tokens_to_expressions(tokens_lists)
@@ -2615,27 +2592,16 @@ class AbstractReadStatement < AbstractStatement
 
   def dump
     lines = []
-
-    unless @read_items.nil?
-      @read_items.each { |item| lines += item.dump }
-    end
-
+    @read_items.each { |item| lines += item.dump } unless @read_items.nil?
     lines
   end
 
   def variables
     vars = []
-
     vars += @file_tokens.variables unless @file_tokens.nil?
-
-    unless @read_items.nil?
-      @read_items.each { |item| vars += item.variables }
-    end
-
+    @read_items.each { |item| vars += item.variables } unless @read_items.nil?
     vars
   end
-
-  private
 
   include FileFunctions
 end
@@ -2817,9 +2783,7 @@ class SleepStatement < AbstractStatement
       @errors << 'Syntax error'
     end
 
-    if token_lists.size > 1
-      @errors << 'Too many values'
-    end
+    @errors << 'Too many values' if token_lists.size > 1
 
     @expression = ValueScalarExpression.new(token_lists[0])
   end
@@ -2919,27 +2883,16 @@ class AbstractWriteStatement < AbstractStatement
 
   def dump
     lines = []
-
-    unless @print_items.nil?
-      @print_items.each { |item| lines += item.dump }
-    end
-
+    @print_items.each { |item| lines += item.dump } unless @print_items.nil?
     lines
   end
 
   def variables
     vars = []
-
     vars += @file_tokens.variables unless @file_tokens.nil?
-
-    unless @print_items.nil?
-      @print_items.each { |item| vars += item.variables }
-    end
-
+    @print_items.each { |item| vars += item.variables } unless @print_items.nil?
     vars
   end
-
-  private
 
   include FileFunctions
 end
@@ -3258,7 +3211,7 @@ class ArrLetStatement < AbstractStatement
       interpreter.set_values(l_value.name, values)
     end
   end
-  
+
   def variables
     vars = []
     vars = @assignment.variables unless @assignment.nil?
@@ -3481,8 +3434,8 @@ class MatWriteStatement < AbstractWriteStatement
           !@print_items[i + 1].printable?
         item.write(fhr, interpreter, carriage)
       end
-      i += 1
 
+      i += 1
     end
   end
 
@@ -3569,7 +3522,7 @@ class MatLetStatement < AbstractStatement
       interpreter.set_values(l_value.name, values)
     end
   end
-  
+
   def variables
     vars = []
     vars = @assignment.variables unless @assignment.nil?

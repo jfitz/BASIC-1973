@@ -411,8 +411,8 @@ class Program
     okay = true
 
     @lines.keys.sort.each do |line_number|
-      @line_number = line_number
       line = @lines[line_number]
+      @line_number = line_number
       statements = line.statements
       statements.each do |statement|
         okay &=
