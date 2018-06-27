@@ -4,8 +4,16 @@ TESTROOT=test
 TESTBED=tests
 TESTGROUP=$1
 
-echo Removing old directory
-if [ -d "$TESTBED" ] ; then rm -r "$TESTBED" ; fi
+if [ ! -d "$TESTROOT" ]
+then
+    mkdir "$TESTROOT"
+fi
+
+if [ -d "$TESTBED" ]
+then
+    echo Removing old directory
+    rm -r "$TESTBED"
+fi
 
 echo Creating directory $TESTBED
 mkdir "$TESTBED"
@@ -22,4 +30,3 @@ done
 
 echo
 echo Failures: $ECODE
-
