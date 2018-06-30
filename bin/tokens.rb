@@ -542,7 +542,7 @@ class NumericFormatToken < AbstractToken
     end
 
     text = sprintf(spec, numeric_constant.to_v)
-   
+
     text.tr!(' ', '*') if @text.include?('*')
     token = TextConstantToken.new('"' + text + '"')
     TextConstant.new(token)

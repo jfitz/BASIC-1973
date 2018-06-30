@@ -827,7 +827,7 @@ class TextConstant < AbstractValueElement
     @value = nil
     @value = text.value if text.class.to_s == 'TextConstantToken'
     @value = text.value if text.class.to_s == 'TextSymbolToken'
-    
+
     raise(BASICError, "'#{text}' is not a text constant") if @value.nil?
 
     @operand = true

@@ -203,7 +203,7 @@ class Interpreter
     line_index = @user_function_lines[name]
 
     raise(BASICRuntimeError, "Function #{name} not defined") if line_index.nil?
-    
+
     @function_stack.push [@current_line_index, @next_line_index]
 
     # run program at line_index
@@ -328,7 +328,7 @@ class Interpreter
       @current_line_index = @next_line_index
       @next_line_index = @program.find_next_line_index(@current_line_index)
     end
-    
+
     begin
       execute_a_statement(program_lines)
       @get_value_seen = []
@@ -644,13 +644,13 @@ class Interpreter
       'ScalarReference',
       'UserFunctionToken'
     ]
-    
+
     raise(Exception, "#{variable.class}:#{variable} is not a variable name") unless
       legals.include?(variable.class.to_s)
 
     raise(BASICRuntimeError, "Cannot change locked variable #{variable}") if
       @lock_fornext && @locked_variables.include?(variable)
-    
+
     # convert a numeric to a string when a string is expected
     if value.numeric_constant? &&
        variable.content_type == 'string'

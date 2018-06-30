@@ -124,7 +124,7 @@ class UserFunction < AbstractScalarFunction
 
     # verify arguments
     arguments = stack.pop
-    
+
     if match_args_to_signature(arguments, signature)
       # dummy variable names and their (now known) values
       params = definition.arguments

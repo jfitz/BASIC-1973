@@ -2865,7 +2865,7 @@ class TraceStatement < AbstractStatement
     value = values[0]
     interpreter.trace(value.to_v)
   end
-  
+
   def variables
     vars = []
     vars += @expression.variables unless @expression.nil?
