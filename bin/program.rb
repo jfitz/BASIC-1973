@@ -213,6 +213,7 @@ class LineListSpec
   def initialize(tokens, program_line_numbers)
     @line_numbers = []
     @range_type = :empty
+
     if tokens.empty?
       @line_numbers = program_line_numbers
       @range_type = :all
@@ -364,7 +365,7 @@ class Program
     if !@lines.empty?
       line_numbers = line_number_range.line_numbers
       list_lines_errors(line_numbers, list_tokens)
-      @errors.each { |error| puts error }
+      @errors.each { |error| @console_io.print_line(error) }
     else
       @console_io.print_line('No program loaded')
     end
@@ -387,7 +388,7 @@ class Program
     if !@lines.empty?
       line_numbers = line_number_range.line_numbers
       pretty_lines_errors(line_numbers)
-      @errors.each { |error| puts error }
+      @errors.each { |error| @console_io.print_line(error) }
     else
       @console_io.print_line('No program loaded')
     end
@@ -470,7 +471,7 @@ class Program
         reset_profile_metrics
         interpreter.run(self, trace_flag, show_timing, show_profile)
       else
-        @errors.each { |error| puts error }
+        @errors.each { |error| @console_io.print_line(error) }
       end
     else
       @console_io.print_line('No program loaded')
@@ -594,7 +595,7 @@ class Program
       statements.each do |statement|
         profile = statement.profile
         text = number.to_s + '.' + statement_index.to_s + profile
-        puts text
+        @console_io.print_line(text)
         statement_index += 1
       end
     end
@@ -774,25 +775,25 @@ class Program
   end
 
   def print_refs(title, refs)
-    puts title
+    @console_io.print_line(title)
 
     refs.keys.sort.each do |ref|
       lines = refs[ref]
-      puts ref + ":\t" + lines.map(&:to_s).uniq.join(', ')
+      @console_io.print_line(ref + ":\t" + lines.map(&:to_s).uniq.join(', '))
     end
 
-    puts ''
+    @console_io.print_line('')
   end
 
   def print_num_refs(title, refs)
-    puts title
+    @console_io.print_line(title)
 
     refs.keys.sort.each do |ref|
       lines = refs[ref]
-      puts ref.to_s + ":\t" + lines.map(&:to_s).uniq.join(', ')
+      @console_io.print_line(ref.to_s + ":\t" + lines.map(&:to_s).uniq.join(', '))
     end
 
-    puts ''
+    @console_io.print_line('')
   end
 
   def make_summary(list)
@@ -814,8 +815,8 @@ class Program
 
   # generate cross-reference list
   def crossref(numeric_syms, text_syms)
-    puts 'Cross reference'
-    puts ''
+    @console_io.print_line('Cross reference')
+    @console_io.print_line('')
 
     nums_list = numeric_refs
     numerics = make_summary(nums_list)
@@ -886,7 +887,9 @@ class Program
       statements = line.statements
       any_errors = false
       statements.each do |statement|
-        statement.errors.each { |error| puts error } if print_errors
+        statement.errors.each { |error| @console_io.print_line(error) } if
+          print_errors
+
         any_errors |= !statement.errors.empty?
       end
       @errors = check_program
@@ -908,7 +911,7 @@ class Program
 
       # print the errors
       statements.each do |statement|
-        statement.errors.each { |error| puts ' ' + error }
+        statement.errors.each { |error| @console_io.print_line(' ' + error) }
       end
 
       next unless list_tokens
@@ -955,7 +958,7 @@ class Program
       # print the errors
       statements = line.statements
       statements.each do |statement|
-        statement.errors.each { |error| puts ' ' + error }
+        statement.errors.each { |error| @console_io.print_line(' ' + error) }
       end
     end
   end

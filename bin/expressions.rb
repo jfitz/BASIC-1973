@@ -832,7 +832,9 @@ class Parser
   def end_group(group_end_element)
     stack_to_expression(@operator_stack, @current_expression)
     @parens_group << @current_expression
+
     raise(BASICExpressionError, 'Too few operators') if @operator_stack.empty?
+
     # remove the '(' or '[' starter
     start_op = @operator_stack.pop
 
@@ -901,11 +903,7 @@ class AbstractExpression
 
     elements = tokens_to_elements(tokens)
     parser = Parser.new(default_type)
-
-    elements.each do |element|
-      parser.parse(element)
-    end
-
+    elements.each { |element| parser.parse(element) }
     @parsed_expressions = parser.expressions
   end
 
@@ -961,6 +959,7 @@ class AbstractExpression
 
   def parsed_expressions_variables(parsed_expressions)
     vars = []
+
     parsed_expressions.each do |expression|
       previous = nil
 
@@ -974,11 +973,8 @@ class AbstractExpression
           suffix = '()' if thing.array?
           suffix = '(,)' if thing.matrix?
 
-          if suffix == '' && !previous.nil?
-            if previous.list?
-              suffix = '(' + (',' * (previous.size - 1)) + ')'
-            end
-          end
+          suffix = '(' + (',' * (previous.size - 1)) + ')' if
+            suffix == '' && !previous.nil? && previous.list?
 
           vars << thing.to_s + suffix
         end
@@ -986,6 +982,7 @@ class AbstractExpression
         previous = thing
       end
     end
+
     vars
   end
 
@@ -1245,6 +1242,7 @@ class UserFunctionDefinition
     end
 
     results << nonkeywords unless nonkeywords.empty?
+
     results
   end
 end

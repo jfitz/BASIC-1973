@@ -241,7 +241,7 @@ class AbstractStatement
   end
 
   def print_errors(console_io)
-    @errors.each { |error| console_io.print_line(error) }
+    @errors.each { |error| console_io.print_line(' ' + error) }
   end
 
   def program_check(_, _, _)

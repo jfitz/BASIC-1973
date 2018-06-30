@@ -32,31 +32,44 @@ class Function < AbstractElement
     texts.join(' or ')
   end
 
-  def match_arg_type_shape(value, spec)
-    type = spec['type']
-    shape = spec['shape']
-
-    type_compatible = false
+  def match_arg_type(value, type)
     case type
     when 'numeric'
-      type_compatible = value.numeric_constant?
+      compatible = value.numeric_constant?
     when 'text'
-      type_compatible = value.text_constant?
+      compatible = value.text_constant?
     when 'integer'
-      type_compatible = value.numeric_constant?
+      compatible = value.numeric_constant?
     when 'boolean'
-      type_compatible = value.boolean_constant?
+      compatible = value.boolean_constant?
+    else
+      compatible = false
     end
 
-    shape_compatible = false
+    compatible
+  end
+
+  def match_arg_shape(value, shape)
     case shape
     when 'scalar'
-      shape_compatible = value.scalar?
+      compatible = value.scalar?
     when 'array'
-      shape_compatible = value.array?
+      compatible = value.array?
     when 'matrix'
-      shape_compatible = value.matrix?
+      compatible = value.matrix?
+    else
+      compatible = false
     end
+
+    compatible
+  end
+
+  def match_arg_type_shape(value, spec)
+    type = spec['type']
+    type_compatible = match_arg_type(value, type)
+
+    shape = spec['shape']
+    shape_compatible = match_arg_shape(value, shape)
 
     type_compatible && shape_compatible
   end
@@ -103,6 +116,7 @@ class UserFunction < AbstractScalarFunction
   # return a single value
   def evaluate(interpreter, stack, trace)
     definition = interpreter.get_user_function(@name)
+
     # verify function is defined
     raise(BASICRuntimeError, "Function #{@name} not defined") if definition.nil?
 
@@ -193,10 +207,14 @@ class FunctionAsc < AbstractScalarFunction
     args = stack.pop
     if match_args_to_signature(args, @signature)
       text = args[0].to_v
+
       raise(BASICRuntimeError, 'Empty string in ASC()') if text.empty?
+
       value = text[0].ord
+
       raise(BASICRuntimeError, 'Invalid value in ASC()') unless
         value.between?(32, 126) || interpreter.asc_allow_all
+
       token = NumericConstantToken.new(value.to_s)
       NumericConstant.new(token)
     else
@@ -235,8 +253,10 @@ class FunctionChr < AbstractScalarFunction
     args = stack.pop
     if match_args_to_signature(args, @signature)
       value = args[0].to_i
+
       raise(BASICRuntimeError, 'Invalid value for CHR$()') unless
         value.between?(32, 126) || interpreter.chr_allow_all
+
       text = value.chr
       quoted = '"' + text + '"'
       token = TextConstantToken.new(quoted)
@@ -358,8 +378,10 @@ class FunctionExt < AbstractScalarFunction
       value = args[0].to_v
       start = args[1].to_i
       stop = args[2].to_i
+
       raise(BASICRuntimeError, 'Invalid index for EXT$()') if
         start < 1 || start > value.size || stop < start || stop > value.size
+
       text = value[(start - 1)..(stop - 1)]
       quoted = '"' + text + '"'
       token = TextConstantToken.new(quoted)
@@ -505,7 +527,9 @@ class FunctionLeft < AbstractScalarFunction
     if match_args_to_signature(args, @signature)
       value = args[0].to_v
       count = args[1].to_i
+
       raise(BASICRuntimeError, "Invalid count for #{@name}()") if count < 0
+
       text = value[0..count].chop
       quoted = '"' + text + '"'
       token = TextConstantToken.new(quoted)

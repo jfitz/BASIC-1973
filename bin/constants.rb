@@ -402,30 +402,25 @@ class NumericConstant < AbstractValueElement
     super()
 
     numeric_classes = %w(Fixnum Bignum Float)
+    float_classes = %w(Rational NumericConstantToken)
     f = nil
-    f = text.to_f if text.class.to_s == 'Rational'
+    f = text.to_f if float_classes.include?(text.class.to_s)
     f = text if numeric_classes.include?(text.class.to_s)
 
     if text.class.to_s == 'NumericConstantToken'
       t = text.to_s
-      if !t.empty? && t[0] == '#'
-        f = t[1].ord
-      else
-        f = text.to_f
-      end
+      f = t[1].ord if !t.empty? && t[0] == '#'
     end
 
     f = text.value if text.class.to_s == 'NumericSymbolToken'
 
-    raise(Exception, "Cannot parse '#{text.class}:#{text}'") if f.nil?
+    raise BASICRuntimeError, "'#{text}' is not a number" if f.nil?
 
     @token_chars = text.to_s
     @value = float_to_possible_int(f)
     @operand = true
     @precedence = 0
     @numeric_constant = true
-
-    raise BASICRuntimeError, "'#{text}' is not a number" if @value.nil?
   end
 
   def dump
@@ -602,8 +597,10 @@ class NumericConstant < AbstractValueElement
     lead_space = @value >= 0 ? ' ' : ''
     digits = six_digits(@value).to_s
     # remove trailing zeros and decimal point
+
     digits = digits.sub(/0+\z/, '').sub(/\.\z/, '') if
       digits.include?('.') && !digits.include?('e')
+
     lead_space + digits
   end
 
@@ -631,17 +628,18 @@ class IntegerConstant < AbstractValueElement
   def initialize(text)
     super()
 
-    numeric_classes = %w(Fixnum Bignum Float)
+    numeric_classes = %w(Fixnum Bignum Float NumericConstantToken)
+    f = nil
     f = text.to_i if numeric_classes.include?(text.class.to_s)
-    f = text.to_i if text.class.to_s == 'NumericConstantToken'
     f = text.to_f.to_i if text.class.to_s == 'IntegerConstantToken'
+
+    raise BASICError, "'#{text}' is not a number" if f.nil?
+
     @token_chars = text.to_s
     @value = f
     @operand = true
     @precedence = 0
     @numeric_constant = true
-
-    raise BASICError, "'#{text}' is not a number" if @value.nil?
   end
 
   def zero?
