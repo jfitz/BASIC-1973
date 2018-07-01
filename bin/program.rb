@@ -268,6 +268,8 @@ end
 
 # program container
 class Program
+  attr_reader :lines
+
   def initialize(console_io, tokenbuilders, pretty_multiline)
     @console_io = console_io
     @lines = {}
@@ -285,8 +287,8 @@ class Program
     @lines.key?(line_number)
   end
 
-  def lines
-    @lines
+  def first_line_number
+    @lines.min[0]
   end
 
   def assign_function_markers

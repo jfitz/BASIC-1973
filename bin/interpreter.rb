@@ -31,7 +31,6 @@ class Interpreter
     @user_function_defs = {}
     @user_function_lines = {}
     @user_var_values = []
-    @program_lines = {}
     @variables = {}
     @get_value_seen = []
     @if_false_next_line = if_false_next_line
@@ -84,10 +83,10 @@ class Interpreter
   def verify_next_line_index
     raise BASICRuntimeError, 'Program terminated without END' if
       @next_line_index.nil?
-    line_numbers = @program_lines.keys
-    unless line_numbers.include?(@next_line_index.number)
-      raise(BASICRuntimeError, "Line number #{@next_line_index.number} not found")
-    end
+
+    return if @program.line_number?(@next_line_index.number)
+
+    raise(BASICRuntimeError, "Line number #{@next_line_index.number} not found")
   end
 
   public
@@ -101,7 +100,6 @@ class Interpreter
     @trace_out = @trace_flag ? @console_io : @null_out
     @variables = {}
     @user_function_lines = @program.assign_function_markers
-    @program_lines = program.lines
 
     if show_timing
       timing = Benchmark.measure { run_program }
@@ -110,15 +108,12 @@ class Interpreter
       run_program
     end
 
-    if show_profile
-      @program.profile('')
-    end
+   
+    @program.profile('') if show_profile
   end
 
   def run_program
-    if @program.preexecute_loop(self)
-      run_statements(@program_lines)
-    end
+    run_statements if @program.preexecute_loop(self)
   end
 
   def print_timing(timing)
@@ -139,8 +134,8 @@ class Interpreter
 
   def find_first_statement(program_lines)
     # set next line to first statement
-    line_number = program_lines.min[0]
-    line = program_lines[line_number]
+    line_number = @program.first_line_number
+    line = @program.lines[line_number]
     statements = line.statements
     modifier = 0
 
@@ -165,17 +160,17 @@ class Interpreter
 
     close_all_files
 
-    @next_line_index = find_first_statement(@program_lines)
+    @next_line_index = find_first_statement(@program.lines)
   end
 
-  def run_statements(program_lines)
+  def run_statements
     # run each statement
-    @current_line_index = find_first_statement(program_lines)
+    @current_line_index = find_first_statement(@program.lines)
 
     @running = true
 
     begin
-      program_loop(program_lines) while @running
+      program_loop while @running
     rescue Interrupt
       stop_running
     end
@@ -188,9 +183,9 @@ class Interpreter
     statement.print_errors(@console_io)
   end
 
-  def execute_a_statement(program_lines)
+  def execute_a_statement
     line_number = @current_line_index.number
-    line = program_lines[line_number]
+    line = @program.lines[line_number]
     statements = line.statements
     statement_index = @current_line_index.statement
     statement = statements[statement_index]
@@ -211,7 +206,7 @@ class Interpreter
     @function_running = true
 
     begin
-      program_loop(@program_lines) while @running && @function_running
+      program_loop while @running && @function_running
     rescue Interrupt
       stop_running
     end
@@ -279,7 +274,7 @@ class Interpreter
 
   def debug_shell
     current_line_number = @current_line_index.number
-    line = @program_lines[current_line_number]
+    line = @program.lines[current_line_number]
     @console_io.newline_when_needed
     @console_io.print_line(current_line_number.to_s + ': ' + line.pretty(false).join(''))
     @step_mode = false
@@ -307,7 +302,7 @@ class Interpreter
     end
   end
 
-  def program_loop(program_lines)
+  def program_loop
     # pick the next line number
     @next_line_index = @program.find_next_line_index(@current_line_index)
     next_line_index = nil
@@ -330,7 +325,7 @@ class Interpreter
     end
 
     begin
-      execute_a_statement(program_lines)
+      execute_a_statement
       @get_value_seen = []
       # set the next line number
       @current_line_index = nil
@@ -408,7 +403,7 @@ class Interpreter
   end
 
   def line_number?(line_number)
-    @program_lines.key?(line_number)
+    @program.line_number?(line_number)
   end
 
   def find_next_line
@@ -416,7 +411,7 @@ class Interpreter
   end
 
   def statement_start_index(line_number, _statement_index)
-    line = @program_lines[line_number]
+    line = @program.lines[line_number]
     return if line.nil?
 
     statements = line.statements
