@@ -781,7 +781,8 @@ class Program
 
     refs.keys.sort.each do |ref|
       lines = refs[ref]
-      @console_io.print_line(ref + ":\t" + lines.map(&:to_s).uniq.join(', '))
+      line = ref + ":\t" + lines.map(&:to_s).uniq.join(', ')
+      @console_io.print_line(line)
     end
 
     @console_io.print_line('')
@@ -792,10 +793,11 @@ class Program
 
     refs.keys.sort.each do |ref|
       lines = refs[ref]
-      @console_io.print_line(ref.to_s + ":\t" + lines.map(&:to_s).uniq.join(', '))
+      line = ref.to_s + ":\t" + lines.map(&:to_s).uniq.join(', ')
+      @console_io.print_line(line)
     end
 
-    @console_io.print_line('')
+    @console_io.newline
   end
 
   def make_summary(list)
@@ -818,7 +820,7 @@ class Program
   # generate cross-reference list
   def crossref(numeric_syms, text_syms)
     @console_io.print_line('Cross reference')
-    @console_io.print_line('')
+    @console_io.newline
 
     nums_list = numeric_refs
     numerics = make_summary(nums_list)

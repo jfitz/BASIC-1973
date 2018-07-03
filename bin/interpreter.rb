@@ -101,14 +101,9 @@ class Interpreter
     @variables = {}
     @user_function_lines = @program.assign_function_markers
 
-    if show_timing
-      timing = Benchmark.measure { run_program }
-      print_timing(timing)
-    else
-      run_program
-    end
+    timing = Benchmark.measure { run_program }
 
-   
+    print_timing(timing) if show_timing
     @program.profile('') if show_profile
   end
 
@@ -249,21 +244,21 @@ class Interpreter
       if statement.errors.empty?
         statement.execute(self)
       else
-        statement.errors.each { |error| puts error }
+        statement.errors.each { |error| @console_io.print_line(error) }
       end
     when 'LET'
       statement = LetStatement.new([keyword], [args])
       if statement.errors.empty?
         statement.execute(self)
       else
-        statement.errors.each { |error| puts error }
+        statement.errors.each { |error| @console_io.print_line(error) }
       end
     when 'PRINT'
       statement = PrintStatement.new([keyword], [args])
       if statement.errors.empty?
         statement.execute(self)
       else
-        statement.errors.each { |error| puts error }
+        statement.errors.each { |error| @console_io.print_line(error) }
       end
     else
       print "Unknown command #{cmd}\n"
@@ -465,14 +460,16 @@ class Interpreter
     @variables.each do |key, value|
       @console_io.print_line("#{key}: #{value}")
     end
-    puts
+
+    @console_io.newline
   end
 
   def dump_user_functions
     @user_function_defs.each do |name, expression|
       @console_io.print_line("#{name}: #{expression}")
     end
-    puts
+
+    @console_io.newline
   end
 
   def dump_dims
