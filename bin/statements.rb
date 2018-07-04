@@ -97,6 +97,7 @@ class StatementFactory
       ArrReadStatement,
       ArrWriteStatement,
       ArrLetStatement,
+      ChainStatement,
       ChangeStatement,
       CloseStatement,
       DataStatement,
@@ -744,6 +745,52 @@ module InputFunctions
     end
 
     results
+  end
+end
+
+# CHAIN
+class ChainStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('CHAIN')]
+    ]
+  end
+
+  def initialize(keywords, tokens_lists)
+    super
+
+    extract_modifiers(tokens_lists)
+
+    template = [[1, '>']]
+
+    @errors << 'Syntax error' unless
+      check_template(tokens_lists, template)
+
+    target_tokens = tokens_lists[0]
+    @target = ValueScalarExpression.new(target_tokens)
+  end
+
+  def dump
+    ['']
+  end
+
+  def execute_core(interpreter)
+    target_values = @target.evaluate(interpreter, false)
+    target_value = target_values[0]
+
+    raise(BASICExpressionError, "Target must be text item.") unless
+      target_value.text_constant?
+
+    text = target_value.value
+
+    # 'DEMON' is a special case
+    if text.rstrip == 'DEMON'
+      io = interpreter.console_io
+      io.newline_when_needed
+      interpreter.stop
+    else
+      interpreter.chain(target_values)
+    end
   end
 end
 

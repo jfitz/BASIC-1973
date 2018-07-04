@@ -666,6 +666,24 @@ Examples:
 	20 PRINT "HELLO" \ GOSUB 220 \ PRINT "GOODBYE"
 	300 FOR I = 1 TO 10 : A(I) = I * 2 : NEXT I
 
+CHAIN
+~~~~~
+
+Transfers control to a second BASIC program.
+Execution begins at the first line of the second program.
+
+Syntax: CHAIN "filename"
+
+The file name may contain a path.
+Trailing whitespace characters are removed from the file name.
+
+If the file name is 'DEMON' (in all uppercase), execution stops.
+This matches the behavior of some old BASIC interpreters, which exited by transferring control to the 'DEMON' process.
+
+The CHAIN operation preserves variables, dimension specifications, and open files.
+It destroys definitions for user-defined functions, the call stack for GOSUB statements, and the internal blocks for active FOR/NEXT statements.
+(You cannot RETURN from the second program to the first program, but you can CHAIN back.)
+
 CHANGE
 ~~~~~~
 

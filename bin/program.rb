@@ -533,8 +533,9 @@ class Program
       return false
     end
 
-    load_file(filename)
+    r = load_file(filename)
     @errors = check_program
+    r
   end
 
   private

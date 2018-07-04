@@ -22,27 +22,27 @@ class Interpreter
     @ignore_rnd_arg = ignore_rnd_arg
     @quotes = ['"']
     @console_io = console_io
-    @data_store = DataStore.new
-    @file_handlers = {}
-    @return_stack = []
-    @fornexts = {}
-    @dimensions = {}
     @default_args = {}
-    @user_function_defs = {}
-    @user_function_lines = {}
-    @user_var_values = []
-    @variables = {}
-    @get_value_seen = []
     @if_false_next_line = if_false_next_line
     @fornext_one_beyond = fornext_one_beyond
     @lock_fornext = lock_fornext
-    @locked_variables = []
     @require_initialized = require_initialized
     @asc_allow_all = asc_allow_all
     @chr_allow_all = chr_allow_all
-    @null_out = NullOut.new
     @tokenbuilders = make_debug_tokenbuilders
+    @null_out = NullOut.new
     @breakpoints = {}
+    @locked_variables = []
+    @data_store = DataStore.new
+    @file_handlers = {}
+    @return_stack = []
+    @dimensions = {}
+    @variables = {}
+    @fornexts = {}
+    @user_function_defs = {}
+    @user_function_lines = {}
+    @user_var_values = []
+    @get_value_seen = []
     @function_stack = []
   end
 
@@ -119,6 +119,23 @@ class Interpreter
     @console_io.print_line(" user: #{user_time.round(2)}")
     @console_io.print_line(" system: #{sys_time.round(2)}")
     @console_io.newline
+  end
+
+  def chain(filename)
+    raise(BASICRuntimeError, "Cannot CHAIN in a user function.") unless
+      @function_stack.empty?
+
+    @fornexts = {}
+    @return_stack = []
+    @user_function_defs = {}
+    @user_function_lines = {}
+    @user_var_values = []
+
+    raise(BASICRuntimeError, "Cannot CHAIN") unless @program.load(filename)
+
+    raise(BASICRuntimeError, "Cannot CHAIN") unless @program.check
+
+    @next_line_index = find_first_statement(@program.lines)
   end
 
   private
