@@ -633,7 +633,7 @@ class IntegerConstant < AbstractValueElement
     f = text.to_i if numeric_classes.include?(text.class.to_s)
     f = text.to_f.to_i if text.class.to_s == 'IntegerConstantToken'
 
-    raise BASICError, "'#{text}' is not a number" if f.nil?
+    raise BASICSyntaxError, "'#{text}' is not a number" if f.nil?
 
     @token_chars = text.to_s
     @value = f
@@ -828,7 +828,7 @@ class TextConstant < AbstractValueElement
     @value = text.value if text.class.to_s == 'TextConstantToken'
     @value = text.value if text.class.to_s == 'TextSymbolToken'
 
-    raise(BASICError, "'#{text}' is not a text constant") if @value.nil?
+    raise(BASICSyntaxError, "'#{text}' is not a text constant") if @value.nil?
 
     @operand = true
     @precedence = 0
@@ -1062,7 +1062,7 @@ class VariableName < AbstractElement
   def initialize(token)
     super()
 
-    raise(Exception, "'#{token}' is not a variable name") unless
+    raise(BASICSyntaxError, "'#{token}' is not a variable name") unless
       token.class.to_s == 'VariableToken' ||
       token.class.to_s == 'UserFunctionToken'
 
@@ -1122,7 +1122,8 @@ class Variable < AbstractElement
   def initialize(variable_name, subscripts = [])
     super()
 
-    raise(Exception, "'#{variable_name.class}:#{variable_name}' is not a variable name") if
+    raise(BASICSyntaxError,
+          "'#{variable_name.class}:#{variable_name}' is not a variable name") if
       variable_name.class.to_s != 'VariableName' &&
       variable_name.class.to_s != 'UserFunctionToken'
 
@@ -1177,12 +1178,12 @@ class Variable < AbstractElement
   private
 
   def normalize_subscripts(subscripts)
-    raise(Exception, 'Invalid subscripts container') unless
+    raise(BASICSyntaxError, 'Invalid subscripts container') unless
       subscripts.class.to_s == 'Array'
 
     int_subscripts = []
     subscripts.each do |subscript|
-      raise(Excaption, "Invalid subscript #{subscript}") unless
+      raise(BASICExpressionError, "Invalid subscript #{subscript}") unless
         subscript.numeric_constant?
 
       int_subscripts << subscript.truncate

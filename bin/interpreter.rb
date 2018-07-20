@@ -44,6 +44,8 @@ class Interpreter
     @user_var_values = []
     @get_value_seen = []
     @function_stack = []
+    @errorgoto_stack = []
+    @resume_stack = []
   end
 
   private
@@ -188,6 +190,27 @@ class Interpreter
     end
 
     close_all_files
+  end
+
+  def seterrorgoto(line_number)
+    if line_number.zero?
+      # zero means we discard the current error handler
+      @errorgoto_stack.pop
+    else
+      # if errorgoto stack is larger than resume stack
+      # then we replace the top entry
+      # if not, we are in main or an error handler and we add the entry
+      @errorgoto_stack.pop if @errorgoto_stack.size > @resume_stack.size
+      @errorgoto_stack << LineNumberIndex.new(line_number, 0, 0)
+    end
+  end
+
+  def resume
+    raise(BASICRuntimeError, 'RESUME without ON ERROR GOTO') if
+      @resume_stack.empty?
+
+    # set next line index from @resume_stack[-1]
+    @next_line_index = @resume_stack.pop
   end
 
   def print_errors(line_number, statement)
@@ -345,7 +368,20 @@ class Interpreter
         verify_next_line_index
         @current_line_index = @next_line_index
       end
-    rescue BASICExpressionError, BASICRuntimeError => e
+    rescue BASICRuntimeError => e
+      if @errorgoto_stack.size > @resume_stack.size
+        @resume_stack << @current_line_index
+        @current_line_index = @errorgoto_stack[-1]
+      else
+        if @current_line_index.nil?
+          @console_io.print_line(e.message)
+        else
+          line_number = @current_line_index.number
+          @console_io.print_line("#{e.message} in line #{line_number}")
+        end
+        stop_running
+      end
+    rescue BASICExpressionError => e
       if @current_line_index.nil?
         @console_io.print_line(e.message)
       else
@@ -526,11 +562,11 @@ class Interpreter
   end
 
   def normalize_subscripts(subscripts)
-    raise(Exception, 'Invalid subscripts container') unless
+    raise(BASICSyntaxError, 'Invalid subscripts container') unless
       subscripts.class.to_s == 'Array'
     int_subscripts = []
     subscripts.each do |subscript|
-      raise(Exception, "Invalid subscript #{subscript}") unless
+      raise(BASICExpressionError, "Invalid subscript #{subscript}") unless
         subscript.numeric_constant?
       int_subscripts << subscript.truncate
     end
@@ -605,7 +641,8 @@ class Interpreter
       'UserFunctionToken'
     ]
 
-    raise(Exception, "#{variable.class}:#{variable} is not a variable") unless
+    raise(BASICSyntaxError,
+          "#{variable.class}:#{variable} is not a variable") unless
       legals.include?(variable.class.to_s)
 
     value = nil
@@ -654,7 +691,8 @@ class Interpreter
       'UserFunctionToken'
     ]
 
-    raise(Exception, "#{variable.class}:#{variable} is not a variable name") unless
+    raise(BASICSyntaxError,
+          "#{variable.class}:#{variable} is not a variable name") unless
       legals.include?(variable.class.to_s)
 
     raise(BASICRuntimeError, "Cannot change locked variable #{variable}") if

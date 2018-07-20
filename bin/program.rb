@@ -7,7 +7,7 @@ class LineNumber
   end
 
   def initialize(line_number)
-    raise BASICError, "Invalid line number '#{line_number}'" unless
+    raise BASICSyntaxError, "Invalid line number '#{line_number}'" unless
       line_number.class.to_s == 'NumericConstantToken'
 
     @line_number = line_number.to_i
@@ -23,6 +23,10 @@ class LineNumber
 
   def hash
     @line_number.hash
+  end
+
+  def zero?
+    @line_number.zero?
   end
 
   def succ

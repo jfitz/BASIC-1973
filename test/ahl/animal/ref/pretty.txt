@@ -3,17 +3,17 @@
     &
 500 DIM A$(200)
 525 F$ = "ANIMAL.GME" :
-    ON E R R OR GOTO 700
+    ON ERROR GOTO 700
 550 OPEN F$ FOR INPUT AS FILE 1% :
     INPUT #1%, N$ :
     INPUT #1%, A(I%) FOR I% = 1% TO N% :
     CLOSE 1% :
     A$(0%) = NUM$(N%) :
-    ON E R R OR GOTO 0 :
+    ON ERROR GOTO 0 :
     GOTO 1300
-700 ON E R R OR GOTO 1050 :
+700 ON ERROR GOTO 1050 :
     F$ = "$" + F$ :
-    RES U M E5 50
+    RESUME 550
  Syntax error
 1050 READ A$(I%) FOR I% = 0% TO 3%
 1100 DATA "4", "\QDOES IT SWIM\Y2\N3\", "\AFISH", "\ABIRD"

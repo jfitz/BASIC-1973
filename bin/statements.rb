@@ -121,6 +121,7 @@ class StatementFactory
       MatLetStatement,
       NextStatement,
       OnStatement,
+      OnErrorStatement,
       OpenStatement,
       PrintStatement,
       PrintUsingStatement,
@@ -128,6 +129,7 @@ class StatementFactory
       ReadStatement,
       RemarkStatement,
       RestoreStatement,
+      ResumeStatement,
       ReturnStatement,
       RunStatement,
       SleepStatement,
@@ -1433,7 +1435,7 @@ class GotoStatement < AbstractStatement
       expression = tokens_lists[0]
       begin
         @expression = ValueScalarExpression.new(expression)
-      rescue BASICExpressionException => e
+      rescue BASICExpressionError => e
         @errors << e.message
       end
       destinations = tokens_lists[2]
@@ -1642,7 +1644,7 @@ class IfStatement < AbstractStatement
           if dict['then'].empty?
             dict['then'] += tokens_list
           else
-            raise(BASICError, 'Syntax Error')
+            raise(BASICSyntaxError, 'THEN without matching IF')
           end
           handled = true
         end
@@ -2186,6 +2188,64 @@ class NextStatement < AbstractStatement
       # change control variable value
       fornext_control.bump_control(interpreter)
     end
+  end
+end
+
+# ON ERROR GOTO
+class OnErrorStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('ON'), KeywordToken.new('ERROR'), KeywordToken.new('GOTO')]
+    ]
+  end
+
+  def initialize(keywords, tokens_lists)
+    super
+
+    @destinations = nil
+
+    template = [[1]]
+
+    if check_template(tokens_lists, template)
+      destinations = tokens_lists[0]
+      line_nums = split_tokens(destinations, false)
+      destinations = line_nums[0]
+      destination = destinations[0]
+      if destination.numeric_constant?
+        @destination = LineNumber.new(destination)
+      else
+        @errors << "Invalid line number #{destination}"
+      end
+    else
+      @errors << 'Syntax error'
+    end
+  end
+
+  def dump
+    lines = [@destination.dump]
+  end
+
+  def program_check(program, console_io, line_number_index)
+    retval = true
+
+    unless @destinations.nil?
+      unless program.line_number?(@destination)
+        console_io.print_line(
+          "Line number #{@destination} not found in line #{line_number_index}"
+        )
+        retval = false
+      end
+    end
+
+    retval
+  end
+
+  def execute_core(interpreter)
+    interpreter.seterrorgoto(@destination)
+  end
+
+  def renumber(renumber_map)
+    @destination = renumber_map[@destination]
   end
 end
 
@@ -2745,6 +2805,34 @@ class RestoreStatement < AbstractStatement
   def execute_core(interpreter)
     ds = interpreter.get_data_store(nil)
     ds.reset
+  end
+end
+
+# RESUME
+class ResumeStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('RESUME')]
+    ]
+  end
+
+  def initialize(keywords, tokens_lists)
+    super
+
+    extract_modifiers(tokens_lists)
+
+    template = []
+
+    @errors << 'Syntax error' unless
+      check_template(tokens_lists, template)
+  end
+
+  def dump
+    ['']
+  end
+
+  def execute_core(interpreter)
+    ds = interpreter.resume
   end
 end
 

@@ -15,7 +15,7 @@ class IfModifier
     io = interpreter.trace_out
 
     values = @expression.evaluate(interpreter, false)
-    raise(BASICError, 'Expression error') unless
+    raise(BASICExpressionError, 'Too many values') unless
       values.size == 1
 
     result = values[0]
@@ -46,7 +46,7 @@ class IfModifier
     expression = nil
     begin
       expression = ValueScalarExpression.new(expression_tokens)
-    rescue BASICError => e
+    rescue BASICExpressionError => e
       @errors << e.message
     end
     expression
@@ -61,9 +61,9 @@ class ForModifier
     @errors = []
     parts = split_on_token(control_and_start_tokens, '=')
 
-    raise(BASICError, 'Incorrect initialization') if
+    raise(BASICSyntaxError, 'Incorrect initialization') if
       parts.size != 3
-    raise(BASICError, 'Incorrect initialization') if
+    raise(BASICSyntaxError, 'Missing "=" sign') if
       parts[1].to_s != '='
 
     control_tokens = parts[0]

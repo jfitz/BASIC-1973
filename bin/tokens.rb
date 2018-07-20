@@ -500,7 +500,7 @@ class VariableToken < AbstractToken
   def initialize(text)
     super
 
-    raise(Exception, 'invalid token') unless text.class.to_s == 'String'
+    raise(BASICSyntaxError, 'invalid token') unless text.class.to_s == 'String'
     @is_variable = true
     @content_type = 'numeric'
     @content_type = 'string' if text.include?('$')

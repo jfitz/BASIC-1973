@@ -1195,6 +1195,20 @@ You can GOTO out of a loop and later GOTO back into it.
 BASIC-1973 will remember the state of the loop.
 If you GOTO into a FOR/NEXT loop (without activating it by the FOR statement), the eventual NEXT statement will cause an error.
 
+ON ERROR GOTO
+~~~~~~~~~~~~~
+
+Specifies a line to transfer control in the event of an error.
+
+Syntax: ON ERROR GOTO line number
+
+Normally, when BASIC detects an error in a program, it stops the program.
+After executing ON ERROR GOTO, BASIC will transfer control to the specified line when an error occurs.
+
+Control is restored to the original statement that had the error when a RESUME statement is executed.
+
+If an error occurs in the "error handler" specified by ON ERROR GOTO, the program stops, unless another ON ERROR GOTO statement is executed as part of the error handler.
+
 ON GOTO
 ~~~~~~~
 
@@ -1440,6 +1454,43 @@ Syntax:	RES
 Examples:
 
 	210 RESTORE
+
+RESUME
+~~~~~~
+
+Returns control to the original statement after an error occurs (and is presumably handled).
+
+Syntax; RESUME
+
+Control returns to the statement which experienced the error.
+
+Example:
+
+	10 ON ERROR GOTO 4000
+	100 OPEN "FILE.TXT" FOR INPUT AS #1
+	110 READ #1, A$, B, C
+	120 CLOSE #1
+	130 PRINT A$, B, C
+	999 STOP
+	4000 REM ERROR HANDLING ROUTINE
+	4010 OPEN "FILE.TXT" FOR OUTPUT AS #3
+	4020 WRITE #3, "JOHN DOE",45,27
+	4030 CLOSE #3
+	4040 RESUME
+	9999 END
+
+In this example program, if the file exists and BASIC can open it, lines 10 through 999 are executed and lines 4000 through 4040 are not used.
+If the file does not exist, BASIC transfers control from line 100 to line 4000.
+Lines 4000 through 4030 create a file with data.
+Line 4040 returns control to line 100, which is re-executed.
+
+Note that an infinite loop can occur.
+If BASIC cannot open the file, but the error is not that the file does not exist, then execution will alternate between line 100 and lines 4000-4040.
+The error will transfer control to line 4000.
+Lines 4000-4030 will create a file.
+Line 4040 will return control to line 100.
+Line 100 will incur the same error.
+This could happen if an earlier line (not shown) opened a file on handle #1.
 
 RETURN
 ~~~~~~

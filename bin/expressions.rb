@@ -24,7 +24,7 @@ class ScalarValue < Value
     subscripts = stack.pop
 
     if subscripts.empty?
-      raise(Exception,
+      raise(BASICExpressionError,
             'Variable expects subscripts, found empty parentheses')
     end
 
