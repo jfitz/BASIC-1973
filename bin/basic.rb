@@ -21,11 +21,13 @@ require_relative 'program'
 
 # interactive shell
 class Shell
-  def initialize(console_io, interpreter, program, colon_file, quotes,
-                 min_max_op, allow_hash_constant, numeric_syms, text_syms)
+  def initialize(console_io, interpreter, program, provenence,
+                 colon_file, quotes, min_max_op, allow_hash_constant,
+                 numeric_syms, text_syms)
     @console_io = console_io
     @interpreter = interpreter
     @program = program
+    @provenence = provenence
     @tokenbuilders =
       make_command_tokenbuilders(quotes, colon_file, min_max_op,
                                  allow_hash_constant)
@@ -82,11 +84,12 @@ class Shell
       @interpreter.clear_variables
       @interpreter.clear_breakpoints
     when 'RUN'
-      @program.run(@interpreter, false, true, false) if @program.check
+      @program.run(@interpreter, false, false, true, false) if @program.check
     when 'BREAK'
       @interpreter.set_breakpoints(args)
     when 'TRACE'
-      @program.run(@interpreter, true, false, false) if @program.check
+      @program.run(@interpreter, true, @provenence, false, false) if
+        @program.check
     when 'LOAD'
       @interpreter.clear_breakpoints
       @program.load(args)
@@ -212,6 +215,7 @@ OptionParser.new do |opt|
   opt.on('--no-heading') { |o| options[:no_heading] = o }
   opt.on('--echo-input') { |o| options[:echo_input] = o }
   opt.on('--trace') { |o| options[:trace] = o }
+  opt.on('--provenence') { |o| options[:provenence] = o }
   opt.on('--no-timing') { |o| options[:no_timing] = o }
   opt.on('--tty') { |o| options[:tty] = o }
   opt.on('--tty-lf') { |o| options[:tty_lf] = o }
@@ -253,6 +257,7 @@ show_profile = options.key?(:profile)
 show_heading = !options.key?(:no_heading)
 echo_input = options.key?(:echo_input)
 trace_flag = options.key?(:trace)
+provenence = options.key?(:provenence)
 show_timing = !options.key?(:no_timing)
 output_speed = 0
 output_speed = 10 if options.key?(:tty)
@@ -330,7 +335,7 @@ if !run_filename.nil?
                       asc_allow_all, chr_allow_all)
 
     interpreter.set_default_args('RND', NumericConstant.new(1))
-    program.run(interpreter, trace_flag, show_timing, show_profile)
+    program.run(interpreter, trace_flag, provenence, show_timing, show_profile)
   end
 elsif !list_filename.nil?
   token = TextConstantToken.new('"' + list_filename + '"')
@@ -366,8 +371,9 @@ else
   interpreter.set_default_args('RND', NumericConstant.new(1))
 
   shell =
-    Shell.new(console_io, interpreter, program, colon_file, quotes,
-              min_max_op, allow_hash_constant, allow_pi, allow_ascii)
+    Shell.new(console_io, interpreter, program, provenence,
+              colon_file, quotes, min_max_op, allow_hash_constant,
+              allow_pi, allow_ascii)
 
   shell.run
 end

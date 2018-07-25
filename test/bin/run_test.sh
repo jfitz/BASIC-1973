@@ -28,13 +28,15 @@ NUM_FAIL=0
 
 if [ -e "$TESTROOT/$TESTGROUP/$TESTNAME/ref/list.txt" ]
 then
-  echo List program...
-  cd "$TESTBED/$TESTNAME"
-  ruby basic.rb --list $TESTNAME.bas --no-heading --print-width 0 >list.txt $GROUP_OPTIONS $TEST_OPTIONS
-  cd ../..
-  echo Compare list...
-  diff "$TESTBED/$TESTNAME/list.txt" "$TESTROOT/$TESTGROUP/$TESTNAME/ref/list.txt"
+    echo List program...
+    cd "$TESTBED/$TESTNAME"
+    ruby basic.rb --list $TESTNAME.bas --no-heading --print-width 0 >list.txt $GROUP_OPTIONS $TEST_OPTIONS
+    cd ../..
+
+    echo Compare list...
+    diff "$TESTBED/$TESTNAME/list.txt" "$TESTROOT/$TESTGROUP/$TESTNAME/ref/list.txt"
     ((ECODE=$?))
+
     if [ $ECODE -ne 0 ]
     then
 	((NUM_FAIL+=1))
@@ -53,9 +55,11 @@ then
     cd "$TESTBED/$TESTNAME"
     ruby basic.rb --parse $TESTNAME.bas --no-heading --print-width 0 >parse.txt $GROUP_OPTIONS $TEST_OPTIONS $PARSE_OPTIONS
     cd ../..
+
     echo Compare parse...
     diff "$TESTBED/$TESTNAME/parse.txt" "$TESTROOT/$TESTGROUP/$TESTNAME/ref/parse.txt"
     ((ECODE=$?))
+
     if [ $ECODE -ne 0 ]
     then
 	((NUM_FAIL+=1))
@@ -74,9 +78,11 @@ then
     cd "$TESTBED/$TESTNAME"
     ruby basic.rb --pretty $TESTNAME.bas --no-heading --print-width 0 >pretty.txt $GROUP_OPTIONS $TEST_OPTIONS $PRETTY_OPTIONS
     cd ../..
+
     echo Compare pretty...
     diff "$TESTBED/$TESTNAME/pretty.txt" "$TESTROOT/$TESTGROUP/$TESTNAME/ref/pretty.txt"
     ((ECODE=$?))
+
     if [ $ECODE -ne 0 ]
     then
 	((NUM_FAIL+=1))
@@ -90,6 +96,7 @@ then
     cd "$TESTBED/$TESTNAME"
     ruby basic.rb --crossref $TESTNAME.bas --no-heading --print-width 0 >crossref.txt $GROUP_OPTIONS $TEST_OPTIONS
     cd ../..
+
     echo Compare crossref...
     diff "$TESTBED/$TESTNAME/crossref.txt" "$TESTROOT/$TESTGROUP/$TESTNAME/ref/crossref.txt"
     ((ECODE=$?))
@@ -102,22 +109,34 @@ fi
 
 if [ -e "$TESTROOT/$TESTGROUP/$TESTNAME/ref/stdout.txt" ]
 then
+    if [ -e "$TESTROOT/$TESTGROUP/run_options.txt" ]
+    then
+	GROUP_RUN_OPTIONS=$(<"$TESTROOT/$TESTGROUP/run_options.txt")
+    fi
+
     if [ -e "$TESTROOT/$TESTGROUP/$TESTNAME/data/run_options.txt" ]
     then
 	RUN_OPTIONS=$(<"$TESTROOT/$TESTGROUP/$TESTNAME/data/run_options.txt")
     fi
-    cd "$TESTBED/$TESTNAME"
-    echo Run program with options $GROUP_OPTIONS $TEST_OPTIONS $RUN_OPTIONS
-    if [ -e stdin.txt ]
+
+    echo Run program with options $GROUP_OPTIONS $TEST_OPTIONS $GROUP_RUN_OPTIONS $RUN_OPTIONS
+
+    if [ -e "$TESTBED/$TESTNAME/stdin.txt" ]
     then
-	ruby basic.rb --no-timing $OPTIONS --run $TESTNAME.bas --print-width 0 --no-heading --echo-input <stdin.txt >stdout.txt $GROUP_OPTIONS $TEST_OPTIONS $RUN_OPTIONS
+	cd "$TESTBED/$TESTNAME"
+	echo ruby basic.rb --no-timing $OPTIONS --run $TESTNAME.bas --print-width 0 --no-heading --echo-input stdin.txt stdout.txt $GROUP_OPTIONS $TEST_OPTIONS $GROUP_RUN_OPTIONS $RUN_OPTIONS
+	ruby basic.rb --no-timing $OPTIONS --run $TESTNAME.bas --print-width 0 --no-heading --echo-input <stdin.txt >stdout.txt $GROUP_OPTIONS $TEST_OPTIONS $GROUP_RUN_OPTIONS $RUN_OPTIONS
+	cd ../..
     else
-	ruby basic.rb --no-timing $OPTIONS --run $TESTNAME.bas --print-width 0 --no-heading >stdout.txt $GROUP_OPTIONS $TEST_OPTIONS $RUN_OPTIONS
+	cd "$TESTBED/$TESTNAME"
+	ruby basic.rb --no-timing $OPTIONS --run $TESTNAME.bas --print-width 0 --no-heading >stdout.txt $GROUP_OPTIONS $TEST_OPTIONS $GROUP_RUN_OPTIONS $RUN_OPTIONS
+	cd ../..
     fi
-    cd ../..
+
     echo Compare stdout...
     diff "$TESTBED/$TESTNAME/stdout.txt" "$TESTROOT/$TESTGROUP/$TESTNAME/ref/stdout.txt"
     ((ECODE=$?))
+
     if [ $ECODE -ne 0 ]
     then
 	((NUM_FAIL+=1))
@@ -131,6 +150,7 @@ then
 	echo Compare $F...
 	diff "$TESTBED/$TESTNAME/$F" "$TESTROOT/$TESTGROUP/$TESTNAME/ref/$F"
 	((ECODE=$?))
+
 	if [ $ECODE -ne 0 ]
 	then
 	    ((NUM_FAIL+=1))
@@ -141,22 +161,33 @@ fi
 
 if [ -e "$TESTROOT/$TESTGROUP/$TESTNAME/ref/trace.txt" ]
 then
+    if [ -e "$TESTROOT/$TESTGROUP/run_options.txt" ]
+    then
+	GROUP_RUN_OPTIONS=$(<"$TESTROOT/$TESTGROUP/run_options.txt")
+    fi
+
     if [ -e "$TESTROOT/$TESTGROUP/$TESTNAME/data/run_options.txt" ]
     then
 	RUN_OPTIONS=$(<"$TESTROOT/$TESTGROUP/$TESTNAME/data/run_options.txt")
     fi
-    cd "$TESTBED/$TESTNAME"
+
     echo Trace program with options $GROUP_OPTIONS $TEST_OPTIONS $RUN_OPTIONS
-    if [ -e stdin.txt ]
+
+    if [ -e "$TESTBED/$TESTNAME/stdin.txt" ]
     then
-	ruby basic.rb --no-timing $OPTIONS --run $TESTNAME.bas --print-width 0 --no-heading --trace --echo-input <stdin.txt >trace.txt $GROUP_OPTIONS $TEST_OPTIONS $RUN_OPTIONS
+	cd "$TESTBED/$TESTNAME"
+	ruby basic.rb --no-timing $OPTIONS --run $TESTNAME.bas --print-width 0 --no-heading --trace --echo-input <stdin.txt >trace.txt $GROUP_OPTIONS $TEST_OPTIONS $GROUP_RUN_OPTIONS $RUN_OPTIONS
+	cd ../..
     else
-	ruby basic.rb --no-timing $OPTIONS --run $TESTNAME.bas --print-width 0 --no-heading --trace >trace.txt $GROUP_OPTIONS $TEST_OPTIONS $RUN_OPTIONS
+	cd "$TESTBED/$TESTNAME"
+	ruby basic.rb --no-timing $OPTIONS --run $TESTNAME.bas --print-width 0 --no-heading --trace >trace.txt $GROUP_OPTIONS $TEST_OPTIONS $GROUP_RUN_OPTIONS $RUN_OPTIONS
+	cd ../..
     fi
-    cd ../..
+
     echo Compare trace...
     diff "$TESTBED/$TESTNAME/trace.txt" "$TESTROOT/$TESTGROUP/$TESTNAME/ref/trace.txt"
     ((ECODE=$?))
+
     if [ $ECODE -ne 0 ]
     then
 	((NUM_FAIL+=1))

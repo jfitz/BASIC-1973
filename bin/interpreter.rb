@@ -93,10 +93,11 @@ class Interpreter
 
   public
 
-  def run(program, trace_flag, show_timing, show_profile)
+  def run(program, trace_flag, provenence, show_timing, show_profile)
     @program = program
 
     @trace_flag = trace_flag
+    @provenence = provenence
     @step_mode = false
 
     @trace_out = @trace_flag ? @console_io : @null_out
@@ -510,8 +511,14 @@ class Interpreter
   end
 
   def dump_vars
-    @variables.each do |key, value|
-      @console_io.print_line("#{key}: #{value}")
+    @variables.each do |name, dict|
+      value = dict['value']
+      if @provenence
+        line = dict['line']
+        @console_io.print_line("#{name}: (#{line}) #{value}")
+      else
+        @console_io.print_line("#{name}: #{value}")
+      end
     end
 
     @console_io.newline
@@ -652,6 +659,7 @@ class Interpreter
     if length > 0
       names_and_values = @user_var_values[-1]
       value = names_and_values[variable]
+      line = nil
     end
 
     # then look in general table
@@ -661,21 +669,34 @@ class Interpreter
       default_value = NumericConstant.new(0)
       default_value = TextConstant.new(TextConstantToken.new('""')) if
         default_type == 'string'
+
       unless @variables.key?(v)
         if @require_initialized
           raise(BASICRuntimeError, "Uninitialized variable #{v}")
         end
-        @variables[v] = default_value
+        @variables[v] =
+          {
+            'line' => @current_line_index,
+            'value' => default_value
+          }
       end
-      value = @variables[v]
+
+      dict = @variables[v]
+      value = dict['value']
+      line = dict['line']
     end
 
     seen = @get_value_seen.include?(variable)
 
     if @trace_flag && trace && !seen
+      if @provenence && !line.nil?
+        text = ' ' + variable.to_s + ': (' + line.to_s + ') ' + value.to_s
+      else
+        text = ' ' + variable.to_s + ': ' + value.to_s
+      end
+
       @trace_out.newline_when_needed
-      # TODO: value changes to dict of value and provenence
-      @trace_out.print_line(' ' + variable.to_s + ':' + value.to_s)
+      @trace_out.print_line(text)
       @get_value_seen << variable
     end
 
@@ -728,7 +749,9 @@ class Interpreter
     end
 
     var = variable.to_s
-    @variables[var] = value
+    dict = { 'line' => @current_line_index, 'value' => value }
+    @variables[var] = dict
+
     @trace_out.newline_when_needed
     @trace_out.print_line(' ' + variable.to_s + ' = ' + value.to_s)
   end
