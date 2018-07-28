@@ -22,7 +22,7 @@ require_relative 'program'
 # interactive shell
 class Shell
   def initialize(console_io, interpreter, program, action_flags,
-                 tokenbuilders, numeric_syms, text_syms)
+                 tokenbuilders)
 
     @console_io = console_io
     @interpreter = interpreter
@@ -30,8 +30,6 @@ class Shell
     @action_flags = action_flags
     @tokenbuilders = tokenbuilders
     @invalid_tokenbuilder = InvalidTokenBuilder.new
-    @numeric_symbols = numeric_syms
-    @text_symbols = text_syms
   end
 
   def run
@@ -114,7 +112,7 @@ class Shell
         @interpreter.renumber_breakpoints(renumber_map)
       end
     when 'CROSSREF'
-      @program.crossref(@numeric_symbols, @text_symbols) if @program.check
+      @program.crossref if @program.check
     when 'DIMS'
       @interpreter.dump_dims
     when 'PARSE'
@@ -136,9 +134,8 @@ class Shell
   end
 end
 
-def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads,
-                                   allow_hash_constant, min_max_op, colon_file,
-                                   allow_pi, allow_ascii)
+def make_interpreter_tokenbuilders(token_flags, quotes, statement_separators,
+                                   comment_leads)
   tokenbuilders = []
 
   tokenbuilders << CommentTokenBuilder.new(comment_leads)
@@ -151,10 +148,11 @@ def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads,
 
   statement_factory = StatementFactory.instance
   keywords = statement_factory.keywords_definitions
-
   tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
+  colon_file = token_flags['colon_file']
   un_ops = UnaryOperator.operators(colon_file)
+  min_max_op = token_flags['min_max_op']
   bi_ops = BinaryOperator.operators(min_max_op)
   operators = (un_ops + bi_ops).uniq
   tokenbuilders << ListTokenBuilder.new(operators, OperatorToken)
@@ -172,9 +170,12 @@ def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads,
     ListTokenBuilder.new(FunctionFactory.user_function_names, UserFunctionToken)
 
   tokenbuilders << TextTokenBuilder.new(quotes)
+  allow_hash_constant = token_flags['allow_hash_constant']
   tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
   tokenbuilders << IntegerTokenBuilder.new
+  allow_pi = token_flags['allow_pi']
   tokenbuilders << NumericSymbolTokenBuilder.new if allow_pi
+  allow_ascii = token_flags['allow_ascii']
   tokenbuilders << TextSymbolTokenBuilder.new if allow_ascii
   tokenbuilders << VariableTokenBuilder.new
 
@@ -184,8 +185,7 @@ def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads,
   tokenbuilders << WhitespaceTokenBuilder.new
 end
 
-def make_command_tokenbuilders(quotes, colon_file, min_max_op,
-                               allow_hash_constant)
+def make_command_tokenbuilders(token_flags, quotes)
   tokenbuilders = []
 
   keywords = %w(
@@ -194,7 +194,9 @@ def make_command_tokenbuilders(quotes, colon_file, min_max_op,
   )
   tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
+  colon_file = token_flags['colon_file']
   un_ops = UnaryOperator.operators(colon_file)
+  min_max_op = token_flags['min_max_op']
   bi_ops = BinaryOperator.operators(min_max_op)
   operators = (un_ops + bi_ops).uniq
   tokenbuilders << ListTokenBuilder.new(operators, OperatorToken)
@@ -202,6 +204,8 @@ def make_command_tokenbuilders(quotes, colon_file, min_max_op,
   tokenbuilders << ListTokenBuilder.new([',', ';'], ParamSeparatorToken)
 
   tokenbuilders << TextTokenBuilder.new(quotes)
+
+  allow_hash_constant = token_flags['allow_hash_constant']
   tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
 
   tokenbuilders << WhitespaceTokenBuilder.new
@@ -275,12 +279,6 @@ show_heading = !options.key?(:no_heading)
 action_flags = {}
 action_flags['trace'] = options.key?(:trace)
 action_flags['provenence'] = options.key?(:provenence)
-colon_separator = !options.key?(:no_colon_sep)
-colon_file = options.key?(:colon_file)
-colon_separator = false if colon_file
-backslash_separator = true
-apostrophe_comment = true
-bang_comment = options.key?(:bang_comment)
 
 output_flags = {}
 output_flags['echo'] = options.key?(:echo_input)
@@ -315,28 +313,37 @@ interpreter_flags['require_initialized'] = options.key?(:require_initialized)
 interpreter_flags['asc_allow_all'] = options.key?(:asc_allow_all)
 interpreter_flags['chr_allow_all'] = options.key?(:chr_allow_all)
 
+token_flags = {}
+token_flags['colon_separator'] = !options.key?(:no_colon_sep)
+token_flags['colon_file'] = options.key?(:colon_file)
+token_flags['colon_separator'] = false if token_flags['colon_file']
+token_flags['backslash_separator'] = true
+token_flags['apostrophe_comment'] = true
+token_flags['bang_comment'] = options.key?(:bang_comment)
+token_flags['single_quote_strings'] = options.key?(:single_quote_strings)
+token_flags['allow_hash_constant'] = options.key?(:hash_constant)
+token_flags['allow_pi'] = options.key?(:allow_pi)
+token_flags['allow_ascii'] = options.key?(:allow_ascii)
+token_flags['min_max_op'] = options.key?(:min_max_op)
+
 statement_seps = []
-statement_seps << '\\' if backslash_separator
-statement_seps << ':' if colon_separator
-single_quote_strings = options.key?(:single_quote_strings)
+statement_seps << '\\' if token_flags['backslash_separator']
+statement_seps << ':' if token_flags['colon_separator']
 quotes = []
 quotes << '"'
-quotes << "'" if single_quote_strings
+quotes << "'" if token_flags['single_quote_strings']
 comment_leads = []
-comment_leads << "'" if apostrophe_comment and !single_quote_strings
-comment_leads << '!' if bang_comment
-allow_hash_constant = options.key?(:hash_constant)
-allow_pi = options.key?(:allow_pi)
-allow_ascii = options.key?(:allow_ascii)
-min_max_op = options.key?(:min_max_op)
+comment_leads << '!' if token_flags['bang_comment']
+
+comment_leads << "'" if
+  token_flags['apostrophe_comment'] && !token_flags['single_quote_strings']
 
 console_io =
   ConsoleIo.new(output_flags)
 
 tokenbuilders =
-  make_interpreter_tokenbuilders(quotes, statement_seps, comment_leads,
-                                 allow_hash_constant, min_max_op, colon_file,
-                                 allow_pi, allow_ascii)
+  make_interpreter_tokenbuilders(token_flags, quotes, statement_seps,
+                                 comment_leads)
 
 if show_heading
   console_io.print_line('BASIC-1973 interpreter version -1')
@@ -381,19 +388,17 @@ elsif !cref_filename.nil?
   token = TextConstantToken.new('"' + cref_filename + '"')
   nametokens = [TextConstant.new(token)]
   if program.load(nametokens)
-    program.crossref(allow_pi, allow_ascii)
+    program.crossref
   end
 else
   interpreter = Interpreter.new(console_io, interpreter_flags)
   interpreter.set_default_args('RND', NumericConstant.new(1))
 
-  tokenbuilders =
-    make_command_tokenbuilders(quotes, colon_file, min_max_op,
-                               allow_hash_constant)
+  tokenbuilders = make_command_tokenbuilders(token_flags, quotes)
 
   shell =
     Shell.new(console_io, interpreter, program, action_flags,
-              tokenbuilders, allow_pi, allow_ascii)
+              tokenbuilders)
 
   shell.run
 end

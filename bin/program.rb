@@ -826,7 +826,7 @@ class Program
   public
 
   # generate cross-reference list
-  def crossref(numeric_syms, text_syms)
+  def crossref
     @console_io.print_line('Cross reference')
     @console_io.newline
 
@@ -834,9 +834,9 @@ class Program
     numerics = make_summary(nums_list)
     print_num_refs('Numeric constants', numerics)
 
-    if numeric_syms
-      num_syms_list = numeric_symbol_refs
-      num_symbols = make_summary(num_syms_list)
+    num_syms_list = numeric_symbol_refs
+    num_symbols = make_summary(num_syms_list)
+    unless num_symbols.empty?
       print_num_refs('Numeric symbol constants', num_symbols)
     end
 
@@ -844,9 +844,9 @@ class Program
     strings = make_summary(strs_list)
     print_num_refs('String constants', strings)
 
-    if text_syms
-      text_syms_list = text_symbol_refs
-      text_symbols = make_summary(text_syms_list)
+    text_syms_list = text_symbol_refs
+    text_symbols = make_summary(text_syms_list)
+    unless text_symbols.empty?
       print_num_refs('Text symbol constants', text_symbols)
     end
 
