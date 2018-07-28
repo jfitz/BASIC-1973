@@ -268,13 +268,14 @@ end.parse!
 list_filename = options[:list_name]
 list_tokens = options.key?(:tokens)
 pretty_filename = options[:pretty_name]
-pretty_multiline = options.key?(:pretty_multiline)
 parse_filename = options[:parse_name]
 run_filename = options[:run_name]
 cref_filename = options[:cref_name]
 show_profile = options.key?(:profile)
 show_timing = !options.key?(:no_timing)
 show_heading = !options.key?(:no_heading)
+
+pretty_multiline = options.key?(:pretty_multiline)
 
 action_flags = {}
 action_flags['trace'] = options.key?(:trace)
@@ -304,9 +305,7 @@ interpreter_flags['int_floor'] = options.key?(:int_floor)
 interpreter_flags['ignore_rnd_arg'] = options.key?(:ignore_rnd_arg)
 interpreter_flags['randomize'] = options.key?(:randomize)
 interpreter_flags['lock_fornext'] = options.key?(:lock_fornext)
-interpreter_flags['respect_randomize'] = true
-interpreter_flags['respect_randomize'] = !options[:ignore_randomize] if
-  options.key?(:ignore_randomize)
+interpreter_flags['respect_randomize'] = !options.key?(:ignore_randomize)
 interpreter_flags['if_false_next_line'] = options.key?(:if_false_next_line)
 interpreter_flags['fornext_one_beyond'] = options.key?(:fornext_one_beyond)
 interpreter_flags['require_initialized'] = options.key?(:require_initialized)
