@@ -22,15 +22,13 @@ require_relative 'program'
 # interactive shell
 class Shell
   def initialize(console_io, interpreter, program, action_flags,
-                 colon_file, quotes, min_max_op, allow_hash_constant,
-                 numeric_syms, text_syms)
+                 tokenbuilders, numeric_syms, text_syms)
+
     @console_io = console_io
     @interpreter = interpreter
     @program = program
     @action_flags = action_flags
-    @tokenbuilders =
-      make_command_tokenbuilders(quotes, colon_file, min_max_op,
-                                 allow_hash_constant)
+    @tokenbuilders = tokenbuilders
     @invalid_tokenbuilder = InvalidTokenBuilder.new
     @numeric_symbols = numeric_syms
     @text_symbols = text_syms
@@ -389,10 +387,13 @@ else
   interpreter = Interpreter.new(console_io, interpreter_flags)
   interpreter.set_default_args('RND', NumericConstant.new(1))
 
+  tokenbuilders =
+    make_command_tokenbuilders(quotes, colon_file, min_max_op,
+                               allow_hash_constant)
+
   shell =
     Shell.new(console_io, interpreter, program, action_flags,
-              colon_file, quotes, min_max_op, allow_hash_constant,
-              allow_pi, allow_ascii)
+              tokenbuilders, allow_pi, allow_ascii)
 
   shell.run
 end
