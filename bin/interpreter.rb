@@ -10,26 +10,25 @@ class Interpreter
   attr_reader :chr_allow_all
   attr_reader :start_time
 
-  def initialize(console_io, int_floor, ignore_rnd_arg, randomize,
-                 respect_randomize, if_false_next_line, fornext_one_beyond,
-                 lock_fornext, require_initialized, asc_allow_all,
-                 chr_allow_all)
-    @running = false
+  def initialize(console_io, interpreter_flags)
     @randomizer = Random.new(1)
-    @randomizer = Random.new if randomize && respect_randomize
-    @respect_randomize = respect_randomize
-    @int_floor = int_floor
-    @ignore_rnd_arg = ignore_rnd_arg
+    @randomizer = Random.new if
+      interpreter_flags['randomize'] && interpreter_flags['respect_randomize']
+    @respect_randomize = interpreter_flags['respect_randomize']
+    @int_floor = interpreter_flags['int_floor']
+    @ignore_rnd_arg = interpreter_flags['ignore_rnd_arg']
+    @if_false_next_line = interpreter_flags['if_false_next_line']
+    @fornext_one_beyond = interpreter_flags['fornext_one_beyond']
+    @lock_fornext = interpreter_flags['lock_fornext']
+    @require_initialized = interpreter_flags['require_initialized']
+    @asc_allow_all = interpreter_flags['asc_allow_all']
+    @chr_allow_all = interpreter_flags['chr_allow_all']
+
     @quotes = ['"']
     @console_io = console_io
-    @default_args = {}
-    @if_false_next_line = if_false_next_line
-    @fornext_one_beyond = fornext_one_beyond
-    @lock_fornext = lock_fornext
-    @require_initialized = require_initialized
-    @asc_allow_all = asc_allow_all
-    @chr_allow_all = chr_allow_all
     @tokenbuilders = make_debug_tokenbuilders
+
+    @default_args = {}
     @null_out = NullOut.new
     @breakpoints = {}
     @locked_variables = []
@@ -46,6 +45,7 @@ class Interpreter
     @function_stack = []
     @errorgoto_stack = []
     @resume_stack = []
+    @running = false
   end
 
   private

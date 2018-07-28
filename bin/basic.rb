@@ -303,16 +303,20 @@ output_flags['back_tab'] = options.key?(:back_tab)
 output_flags['input_high_bit'] = options.key?(:input_high_bit)
 output_flags['crlf_on_line_input'] = options.key?(:crlf_on_line_input)
 
-int_floor = options.key?(:int_floor)
-ignore_rnd_arg = options.key?(:ignore_rnd_arg)
-randomize = options.key?(:randomize)
-respect_randomize = true
-respect_randomize = !options[:ignore_randomize] if
+interpreter_flags = {}
+interpreter_flags['int_floor'] = options.key?(:int_floor)
+interpreter_flags['ignore_rnd_arg'] = options.key?(:ignore_rnd_arg)
+interpreter_flags['randomize'] = options.key?(:randomize)
+interpreter_flags['lock_fornext'] = options.key?(:lock_fornext)
+interpreter_flags['respect_randomize'] = true
+interpreter_flags['respect_randomize'] = !options[:ignore_randomize] if
   options.key?(:ignore_randomize)
-if_false_next_line = options.key?(:if_false_next_line)
-fornext_one_beyond = options.key?(:fornext_one_beyond)
-lock_fornext = options.key?(:lock_fornext)
-require_initialized = options.key?(:require_initialized)
+interpreter_flags['if_false_next_line'] = options.key?(:if_false_next_line)
+interpreter_flags['fornext_one_beyond'] = options.key?(:fornext_one_beyond)
+interpreter_flags['require_initialized'] = options.key?(:require_initialized)
+interpreter_flags['asc_allow_all'] = options.key?(:asc_allow_all)
+interpreter_flags['chr_allow_all'] = options.key?(:chr_allow_all)
+
 statement_seps = []
 statement_seps << '\\' if backslash_separator
 statement_seps << ':' if colon_separator
@@ -327,8 +331,6 @@ allow_hash_constant = options.key?(:hash_constant)
 allow_pi = options.key?(:allow_pi)
 allow_ascii = options.key?(:allow_ascii)
 min_max_op = options.key?(:min_max_op)
-asc_allow_all = options.key?(:asc_allow_all)
-chr_allow_all = options.key?(:chr_allow_all)
 
 console_io =
   ConsoleIo.new(output_flags)
@@ -349,16 +351,13 @@ if !run_filename.nil?
   token = TextConstantToken.new('"' + run_filename + '"')
   nametokens = [TextConstant.new(token)]
   if program.load(nametokens) && program.check
-    interpreter =
-      Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
-                      respect_randomize, if_false_next_line,
-                      fornext_one_beyond, lock_fornext, require_initialized,
-                      asc_allow_all, chr_allow_all)
-
+    interpreter = Interpreter.new(console_io, interpreter_flags)
     interpreter.set_default_args('RND', NumericConstant.new(1))
+
     timing = Benchmark.measure {
       program.run(interpreter, action_flags)
     }
+
     print_timing(timing, console_io) if show_timing
     program.profile('') if show_profile
   end
@@ -387,12 +386,7 @@ elsif !cref_filename.nil?
     program.crossref(allow_pi, allow_ascii)
   end
 else
-  interpreter =
-    Interpreter.new(console_io, int_floor, ignore_rnd_arg, randomize,
-                    respect_randomize, if_false_next_line,
-                    fornext_one_beyond, lock_fornext, require_initialized,
-                    asc_allow_all, chr_allow_all)
-
+  interpreter = Interpreter.new(console_io, interpreter_flags)
   interpreter.set_default_args('RND', NumericConstant.new(1))
 
   shell =
