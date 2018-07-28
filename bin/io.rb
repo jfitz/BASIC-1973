@@ -66,22 +66,22 @@ end
 
 # Handle tab stops and carriage control
 class ConsoleIo
-  def initialize(max_width, zone_width, back_tab, print_rate, newline_rate,
-                 implied_semicolon, default_prompt, qmark_after_prompt,
-                 echo_input, input_high_bit, crlf_on_line_input)
+  def initialize(output_flags)
+    @max_width = output_flags['print_width']
+    @zone_width = output_flags['zone_width']
+    @print_rate = output_flags['speed']
+    @newline_rate = output_flags['newline_speed']
+    @implied_semicolon = output_flags['implied_semicolon']
+    @default_prompt = output_flags['default_prompt']
+    @echo_input = output_flags['echo']
+    @qmark_after_prompt = output_flags['qmark_after_prompt']
+    @back_tab = output_flags['back_tab']
+    @input_high_bit = output_flags['input_high_bit']
+    @crlf_on_line_input = output_flags['crlf_on_line_input']
+
     @quotes = ['"']
+
     @column = 0
-    @max_width = max_width
-    @zone_width = zone_width
-    @back_tab = back_tab
-    @print_rate = print_rate
-    @newline_rate = newline_rate
-    @implied_semicolon = implied_semicolon
-    @default_prompt = default_prompt
-    @echo_input = echo_input
-    @input_high_bit = input_high_bit
-    @qmark_after_prompt = qmark_after_prompt
-    @crlf_on_line_input = crlf_on_line_input
     @last_was_numeric = false
   end
 

@@ -249,6 +249,7 @@ OptionParser.new do |opt|
 end.parse!
 
 action_flags = {}
+output_flags = {}
 list_filename = options[:list_name]
 list_tokens = options.key?(:tokens)
 pretty_filename = options[:pretty_name]
@@ -257,32 +258,38 @@ parse_filename = options[:parse_name]
 run_filename = options[:run_name]
 cref_filename = options[:cref_name]
 show_profile = options.key?(:profile)
+
 show_heading = !options.key?(:no_heading)
-echo_input = options.key?(:echo_input)
 action_flags['trace'] = options.key?(:trace)
 action_flags['provenence'] = options.key?(:provenence)
 show_timing = !options.key?(:no_timing)
-output_speed = 0
-output_speed = 10 if options.key?(:tty)
-newline_speed = 0
-newline_speed = 10 if options.key?(:tty_lf)
-input_high_bit = options.key?(:input_high_bit)
 colon_separator = !options.key?(:no_colon_sep)
 colon_file = options.key?(:colon_file)
 colon_separator = false if colon_file
 backslash_separator = true
 apostrophe_comment = true
 bang_comment = options.key?(:bang_comment)
-print_width = 72
-print_width = options[:print_width].to_i if options.key?(:print_width)
-zone_width = 16
-zone_width = options[:zone_width].to_i if options.key?(:zone_width)
-back_tab = options.key?(:back_tab)
+
+output_flags['echo'] = options.key?(:echo_input)
+output_flags['speed'] = 0
+output_flags['speed'] = 10 if options.key?(:tty)
+output_flags['newline_speed'] = 0
+output_flags['newline_speed'] = 10 if options.key?(:tty_lf)
+output_flags['print_width'] = 72
+output_flags['print_width'] = options[:print_width].to_i if
+  options.key?(:print_width)
+output_flags['zone_width'] = 16
+output_flags['zone_width'] = options[:zone_width].to_i if
+  options.key?(:zone_width)
+output_flags['implied_semicolon'] = options.key?(:implied_semicolon)
+output_flags['qmark_after_prompt'] = options.key?(:qmark_after_prompt)
+output_flags['default_prompt'] = TextConstantToken.new('"? "')
+output_flags['back_tab'] = options.key?(:back_tab)
+output_flags['input_high_bit'] = options.key?(:input_high_bit)
+output_flags['crlf_on_line_input'] = options.key?(:crlf_on_line_input)
+
 int_floor = options.key?(:int_floor)
 ignore_rnd_arg = options.key?(:ignore_rnd_arg)
-implied_semicolon = options.key?(:implied_semicolon)
-qmark_after_prompt = options.key?(:qmark_after_prompt)
-crlf_on_line_input = options.key?(:crlf_on_line_input)
 randomize = options.key?(:randomize)
 respect_randomize = true
 respect_randomize = !options[:ignore_randomize] if
@@ -308,12 +315,8 @@ min_max_op = options.key?(:min_max_op)
 asc_allow_all = options.key?(:asc_allow_all)
 chr_allow_all = options.key?(:chr_allow_all)
 
-default_prompt = TextConstantToken.new('"? "')
 console_io =
-  ConsoleIo.new(print_width, zone_width, back_tab, output_speed,
-                newline_speed, implied_semicolon, default_prompt,
-                qmark_after_prompt, echo_input, input_high_bit,
-                crlf_on_line_input)
+  ConsoleIo.new(output_flags)
 
 tokenbuilders =
   make_interpreter_tokenbuilders(quotes, statement_seps, comment_leads,
