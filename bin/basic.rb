@@ -101,7 +101,8 @@ class Shell
     when 'LIST'
       @program.list(args, false)
     when 'PRETTY'
-      @program.pretty(args)
+      pretty_multiline = @action_flags['pretty_multiline']
+      @program.pretty(args, pretty_multiline)
     when 'DELETE'
       @program.delete(args)
     when 'PROFILE'
@@ -275,11 +276,11 @@ show_profile = options.key?(:profile)
 show_timing = !options.key?(:no_timing)
 show_heading = !options.key?(:no_heading)
 
-pretty_multiline = options.key?(:pretty_multiline)
 
 action_flags = {}
 action_flags['trace'] = options.key?(:trace)
 action_flags['provenence'] = options.key?(:provenence)
+action_flags['pretty_multiline'] = options.key?(:pretty_multiline)
 
 output_flags = {}
 output_flags['echo'] = options.key?(:echo_input)
@@ -349,7 +350,7 @@ if show_heading
   console_io.newline
 end
 
-program = Program.new(console_io, tokenbuilders, pretty_multiline)
+program = Program.new(console_io, tokenbuilders)
 
 if !run_filename.nil?
   token = TextConstantToken.new('"' + run_filename + '"')
@@ -381,7 +382,8 @@ elsif !pretty_filename.nil?
   token = TextConstantToken.new('"' + pretty_filename + '"')
   nametokens = [TextConstant.new(token)]
   if program.load(nametokens)
-    program.pretty('')
+    pretty_multiline = action_flags['pretty_multiline']
+    program.pretty('', pretty_multiline)
   end
 elsif !cref_filename.nil?
   token = TextConstantToken.new('"' + cref_filename + '"')

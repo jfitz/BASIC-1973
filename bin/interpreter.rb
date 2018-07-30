@@ -511,6 +511,7 @@ class Interpreter
 
   def dump_user_functions
     @user_function_defs.each do |name, expression|
+      # TODO: if multistatement function, print 'MULTISTATEMENT'
       @console_io.print_line("#{name}: #{expression}")
     end
 

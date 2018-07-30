@@ -274,13 +274,12 @@ end
 class Program
   attr_reader :lines
 
-  def initialize(console_io, tokenbuilders, pretty_multiline)
+  def initialize(console_io, tokenbuilders)
     @console_io = console_io
     @lines = {}
     @errors = []
     @statement_factory = StatementFactory.instance
     @statement_factory.tokenbuilders = tokenbuilders
-    @pretty_multiline = pretty_multiline
   end
 
   def empty?
@@ -388,12 +387,12 @@ class Program
     end
   end
 
-  def pretty(args)
+  def pretty(args, pretty_multiline)
     line_number_range = line_list_spec(args)
 
     if !@lines.empty?
       line_numbers = line_number_range.line_numbers
-      pretty_lines_errors(line_numbers)
+      pretty_lines_errors(line_numbers, pretty_multiline)
       @errors.each { |error| @console_io.print_line(error) }
     else
       @console_io.print_line('No program loaded')
@@ -955,13 +954,13 @@ class Program
     end
   end
 
-  def pretty_lines_errors(line_numbers)
+  def pretty_lines_errors(line_numbers, pretty_multiline)
     line_numbers.each do |line_number|
       line = @lines[line_number]
 
       # print the line
       number = line_number.to_s
-      pretty_lines = line.pretty(@pretty_multiline)
+      pretty_lines = line.pretty(pretty_multiline)
       pretty_lines.each do |pretty_line|
         @console_io.print_line(number + pretty_line)
         number = ' ' * number.size
