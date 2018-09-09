@@ -193,12 +193,18 @@ class Interpreter
     end
   end
 
-  def resume
+  def resume(line_number)
     raise(BASICRuntimeError, 'RESUME without ON ERROR GOTO') if
       @resume_stack.empty?
 
-    # set next line index from @resume_stack[-1]
-    @next_line_index = @resume_stack.pop
+    if line_number.nil?
+      # set next line index from @resume_stack[-1]
+      @next_line_index = @resume_stack.pop
+    else
+      # set next line index from parameter
+      @resume_stack.pop
+      @next_line_index = LineNumberIndex.new(line_number, 0, 0)
+    end 
   end
 
   def print_errors(line_number, statement)

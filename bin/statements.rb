@@ -2821,10 +2821,26 @@ class ResumeStatement < AbstractStatement
 
     extract_modifiers(tokens_lists)
 
-    template = []
+    template_0 = []
+    template_1 = [[1, '>=']]
 
-    @errors << 'Syntax error' unless
-      check_template(tokens_lists, template)
+    target = nil
+    if check_template(tokens_lists, template_0)
+      target = nil
+    elsif check_template(tokens_lists, template_1)
+      target = tokens_lists[0][0]
+    else
+      @errors << 'Syntax error'
+    end
+
+    @target = nil
+    if !target.nil?
+      begin
+        @target = LineNumber.new(target)
+      rescue BASICSyntaxError
+        @errors << 'Invalid target'
+      end
+    end
   end
 
   def dump
@@ -2832,7 +2848,7 @@ class ResumeStatement < AbstractStatement
   end
 
   def execute_core(interpreter)
-    ds = interpreter.resume
+    ds = interpreter.resume(@target)
   end
 end
 

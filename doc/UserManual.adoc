@@ -1495,11 +1495,13 @@ Examples:
 RESUME
 ~~~~~~
 
-Returns control to the original statement after an error occurs (and is presumably handled).
+Returns control after an error occurs (and is presumably handled).
 
-Syntax; RESUME
+Syntax: RESUME
+Syntax: RESUME line number
 
-Control returns to the statement which experienced the error.
+When no line number is specified, control returns to the statement which experienced the error.
+When a line number is specified, execution resumes on that line.
 
 Example:
 
@@ -1516,7 +1518,8 @@ Example:
 	4040 RESUME
 	9999 END
 
-In this example program, if the file exists and BASIC can open it, lines 10 through 999 are executed and lines 4000 through 4040 are not used.
+
+In the this example program, if the file exists and BASIC can open it, lines 10 through 999 are executed and lines 4000 through 4040 are not used.
 If the file does not exist, BASIC transfers control from line 100 to line 4000.
 Lines 4000 through 4030 create a file with data.
 Line 4040 returns control to line 100, which is re-executed.
@@ -1528,6 +1531,24 @@ Lines 4000-4030 will create a file.
 Line 4040 will return control to line 100.
 Line 100 will incur the same error.
 This could happen if an earlier line (not shown) opened a file on handle #1.
+
+
+Example:
+
+	10 ON ERROR GOTO 100
+	20 LET B = 10 / 0
+	30 PRINT "ANSWER IS"; B
+	99 STOP
+	100 PRINT "ERROR IN CODE"
+	110 LET B = 0
+	120 RESUME 30
+	999 END
+
+In this program, the division in line 20 causes an error.
+Control is transferred to line 100.
+The error is corrected on line 110.
+The RESUME statement on line 120 restores execution on line 30, not line 20.
+
 
 RETURN
 ~~~~~~
