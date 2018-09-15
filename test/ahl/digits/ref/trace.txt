@@ -1,0 +1,4252 @@
+210: PRINT "THIS IS A GAME OF GUESSING,"
+THIS IS A GAME OF GUESSING,
+220: PRINT "FOR INSTRUCTIONS, TYPE '1', ELSE TYPE '0'";
+FOR INSTRUCTIONS, TYPE '1', ELSE TYPE '0'
+230: INPUT E
+? 1
+ E = 1
+240: IF E = 0 THEN 360
+ E: 1
+ E=0: false
+250: PRINT
+
+260: PRINT "PLEASE TAKE A PIECE OF PAPER AND WRITE DOWN"
+PLEASE TAKE A PIECE OF PAPER AND WRITE DOWN
+270: PRINT "THE DIGITS '0', '1', OR '2' THIRTY TIMES AT RANDOM,"
+THE DIGITS '0', '1', OR '2' THIRTY TIMES AT RANDOM,
+280: PRINT "ARRANGE THEM IN THREE LINES OF TEN DIGITS,"
+ARRANGE THEM IN THREE LINES OF TEN DIGITS,
+290: PRINT "I WILL ASK FOR THEM 10 AT A TIME,"
+I WILL ASK FOR THEM 10 AT A TIME,
+300: PRINT "I WILL ALWAYS GUESS FIRST, AND THEN LOOK AT YOUR"
+I WILL ALWAYS GUESS FIRST, AND THEN LOOK AT YOUR
+310: PRINT "NEXT NUMBER TO SEE IF I WAS RIGHT, BY PURE LUCK I"
+NEXT NUMBER TO SEE IF I WAS RIGHT, BY PURE LUCK I
+320: PRINT "OUGHT TO 8E RIGHT 10 TIMES, BUT I HOPE TO DO BETTER"
+OUGHT TO 8E RIGHT 10 TIMES, BUT I HOPE TO DO BETTER
+330: PRINT "THAN THAT ****"
+THAN THAT ****
+340: PRINT
+
+340.1: PRINT
+
+360: READ A, B, C
+ A = 0
+ B = 1
+ C = 3
+370: DATA 0, 1, 3
+380: DIM M(26, 2), K(2, 2), L(8, 2)
+400: MAT M = CON
+ M(1,1) = 1
+ M(1,2) = 1
+ M(2,1) = 1
+ M(2,2) = 1
+ M(3,1) = 1
+ M(3,2) = 1
+ M(4,1) = 1
+ M(4,2) = 1
+ M(5,1) = 1
+ M(5,2) = 1
+ M(6,1) = 1
+ M(6,2) = 1
+ M(7,1) = 1
+ M(7,2) = 1
+ M(8,1) = 1
+ M(8,2) = 1
+ M(9,1) = 1
+ M(9,2) = 1
+ M(10,1) = 1
+ M(10,2) = 1
+ M(11,1) = 1
+ M(11,2) = 1
+ M(12,1) = 1
+ M(12,2) = 1
+ M(13,1) = 1
+ M(13,2) = 1
+ M(14,1) = 1
+ M(14,2) = 1
+ M(15,1) = 1
+ M(15,2) = 1
+ M(16,1) = 1
+ M(16,2) = 1
+ M(17,1) = 1
+ M(17,2) = 1
+ M(18,1) = 1
+ M(18,2) = 1
+ M(19,1) = 1
+ M(19,2) = 1
+ M(20,1) = 1
+ M(20,2) = 1
+ M(21,1) = 1
+ M(21,2) = 1
+ M(22,1) = 1
+ M(22,2) = 1
+ M(23,1) = 1
+ M(23,2) = 1
+ M(24,1) = 1
+ M(24,2) = 1
+ M(25,1) = 1
+ M(25,2) = 1
+ M(26,1) = 1
+ M(26,2) = 1
+400.1: MAT K = CON
+ K(1,1) = 1
+ K(1,2) = 1
+ K(2,1) = 1
+ K(2,2) = 1
+420: MAT K = (9) * K
+ K(1,1): 1
+ K(1,2): 1
+ K(2,1): 1
+ K(2,2): 1
+ K(1,1) = 9
+ K(1,2) = 9
+ K(2,1) = 9
+ K(2,2) = 9
+420.1: MAT L = CON
+ L(1,1) = 1
+ L(1,2) = 1
+ L(2,1) = 1
+ L(2,2) = 1
+ L(3,1) = 1
+ L(3,2) = 1
+ L(4,1) = 1
+ L(4,2) = 1
+ L(5,1) = 1
+ L(5,2) = 1
+ L(6,1) = 1
+ L(6,2) = 1
+ L(7,1) = 1
+ L(7,2) = 1
+ L(8,1) = 1
+ L(8,2) = 1
+440: MAT L = (3) * L
+ L(1,1): 1
+ L(1,2): 1
+ L(2,1): 1
+ L(2,2): 1
+ L(3,1): 1
+ L(3,2): 1
+ L(4,1): 1
+ L(4,2): 1
+ L(5,1): 1
+ L(5,2): 1
+ L(6,1): 1
+ L(6,2): 1
+ L(7,1): 1
+ L(7,2): 1
+ L(8,1): 1
+ L(8,2): 1
+ L(1,1) = 3
+ L(1,2) = 3
+ L(2,1) = 3
+ L(2,2) = 3
+ L(3,1) = 3
+ L(3,2) = 3
+ L(4,1) = 3
+ L(4,2) = 3
+ L(5,1) = 3
+ L(5,2) = 3
+ L(6,1) = 3
+ L(6,2) = 3
+ L(7,1) = 3
+ L(7,2) = 3
+ L(8,1) = 3
+ L(8,2) = 3
+450: L(0, 0) = 2
+ L(0,0) = 2
+450.1: L(4, 1) = 2
+ L(4,1) = 2
+450.2: L(8, 2) = 2
+ L(8,2) = 2
+480: Z = 26
+ Z = 26
+480.1: Z1 = 8
+ Z1 = 8
+480.2: Z2 = 2
+ Z2 = 2
+510: X = 0
+ X = 0
+520: FOR T = 1 TO 3
+ T = 1
+ terminated:false
+530: PRINT
+
+540: PRINT "TEN NUMBERS PLEASE";
+TEN NUMBERS PLEASE
+550: INPUT N(1), N(2), N(3), N(4), N(5), N(6), N(7), N(8), N(9), N(10)
+? 1,2,1,2,1,2,1,2,1,2
+ N(1) = 1
+ N(2) = 2
+ N(3) = 1
+ N(4) = 2
+ N(5) = 1
+ N(6) = 2
+ N(7) = 1
+ N(8) = 2
+ N(9) = 1
+ N(10) = 2
+560: FOR I = 1 TO 10
+ I = 1
+ terminated:false
+570: W = N(I) - 1
+ I: 1
+ N(1): 1
+ W = 0
+580: IF W = SGN(W) THEN 620
+ W: 0
+ W=SGN(W): true
+620: NEXT I
+ I: 1
+ terminated:false
+ I = 2
+570: W = N(I) - 1
+ I: 2
+ N(2): 2
+ W = 1
+580: IF W = SGN(W) THEN 620
+ W: 1
+ W=SGN(W): true
+620: NEXT I
+ I: 2
+ terminated:false
+ I = 3
+570: W = N(I) - 1
+ I: 3
+ N(3): 1
+ W = 0
+580: IF W = SGN(W) THEN 620
+ W: 0
+ W=SGN(W): true
+620: NEXT I
+ I: 3
+ terminated:false
+ I = 4
+570: W = N(I) - 1
+ I: 4
+ N(4): 2
+ W = 1
+580: IF W = SGN(W) THEN 620
+ W: 1
+ W=SGN(W): true
+620: NEXT I
+ I: 4
+ terminated:false
+ I = 5
+570: W = N(I) - 1
+ I: 5
+ N(5): 1
+ W = 0
+580: IF W = SGN(W) THEN 620
+ W: 0
+ W=SGN(W): true
+620: NEXT I
+ I: 5
+ terminated:false
+ I = 6
+570: W = N(I) - 1
+ I: 6
+ N(6): 2
+ W = 1
+580: IF W = SGN(W) THEN 620
+ W: 1
+ W=SGN(W): true
+620: NEXT I
+ I: 6
+ terminated:false
+ I = 7
+570: W = N(I) - 1
+ I: 7
+ N(7): 1
+ W = 0
+580: IF W = SGN(W) THEN 620
+ W: 0
+ W=SGN(W): true
+620: NEXT I
+ I: 7
+ terminated:false
+ I = 8
+570: W = N(I) - 1
+ I: 8
+ N(8): 2
+ W = 1
+580: IF W = SGN(W) THEN 620
+ W: 1
+ W=SGN(W): true
+620: NEXT I
+ I: 8
+ terminated:false
+ I = 9
+570: W = N(I) - 1
+ I: 9
+ N(9): 1
+ W = 0
+580: IF W = SGN(W) THEN 620
+ W: 0
+ W=SGN(W): true
+620: NEXT I
+ I: 9
+ terminated:false
+ I = 10
+570: W = N(I) - 1
+ I: 10
+ N(10): 2
+ W = 1
+580: IF W = SGN(W) THEN 620
+ W: 1
+ W=SGN(W): true
+620: NEXT I
+ I: 10
+ terminated:true
+630: PRINT
+
+630.1: PRINT "MY GUESS", "YOUR NO, ", "RESULT", "NO, RIGHT"
+MY GUESS        YOUR NO,        RESULT          NO, RIGHT
+630.2: PRINT
+
+660: FOR U = 1 TO 10
+ U = 1
+ terminated:false
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 0
+ K(2,0): 0
+ B: 1
+ Z1: 8
+ L(8,0): 0
+ C: 3
+ Z: 26
+ M(26,0): 0
+ S1 = 0
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 0
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 0
+ S<S1: false
+730: IF RND < .5 THEN 760
+ RND<.5: true
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 1
+ K(2,1): 9
+ B: 1
+ Z1: 8
+ L(8,1): 3
+ C: 3
+ Z: 26
+ M(26,1): 1
+ S1 = 6
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 6
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 6
+ S<S1: true
+740: S = S1
+ S1: 6
+ S = 6
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 2
+ K(2,2): 9
+ B: 1
+ Z1: 8
+ L(8,2): 2
+ C: 3
+ Z: 26
+ M(26,2): 1
+ S1 = 5
+710: IF S > S1 THEN 760
+ S: 6
+ S1: 5
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 1
+ N(1): 1
+ 1              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 1
+ N(1): 1
+ G=N(U): true
+810: X = X + 1
+ X: 0
+ X = 1
+820: PRINT "RIGHT", X
+RIGHT           
+ X: 1
+ 1
+830: M(Z, N) = M(Z, N) + 1
+ Z: 26
+ N: 2
+ M(26,2): 1
+ M(26,2) = 2
+840: L(Z1, N) = L(Z1, N) + 1
+ Z1: 8
+ N: 2
+ L(8,2): 2
+ L(8,2) = 3
+850: K(Z2, N) = K(Z2, N) + 1
+ Z2: 2
+ N: 2
+ K(2,2): 9
+ K(2,2) = 10
+860: Z = Z - INT(Z / 9) * 9
+ Z: 26
+ Z = 8
+870: Z = 3 * Z * N(U)
+ Z: 8
+ U: 1
+ N(1): 1
+ Z = 24
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 24
+ Z1 = 6
+890: Z2 = N(U)
+ U: 1
+ N(1): 1
+ Z2 = 1
+900: NEXT U
+ U: 1
+ terminated:false
+ U = 2
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 0
+ K(1,0): 0
+ B: 1
+ Z1: 6
+ L(6,0): 0
+ C: 3
+ Z: 24
+ M(24,0): 0
+ S1 = 0
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 0
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 0
+ S<S1: false
+730: IF RND < .5 THEN 760
+ RND<.5: false
+740: S = S1
+ S1: 0
+ S = 0
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 1
+ K(1,1): 9
+ B: 1
+ Z1: 6
+ L(6,1): 3
+ C: 3
+ Z: 24
+ M(24,1): 1
+ S1 = 6
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 6
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 6
+ S<S1: true
+740: S = S1
+ S1: 6
+ S = 6
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 2
+ K(1,2): 9
+ B: 1
+ Z1: 6
+ L(6,2): 3
+ C: 3
+ Z: 24
+ M(24,2): 1
+ S1 = 6
+710: IF S > S1 THEN 760
+ S: 6
+ S1: 6
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 6
+ S1: 6
+ S<S1: false
+730: IF RND < .5 THEN 760
+ RND<.5: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 2
+ N(2): 2
+ 2              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 2
+ N(2): 2
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 1
+ 1
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 24
+ Z1 = 6
+890: Z2 = N(U)
+ U: 2
+ N(2): 2
+ Z2 = 2
+900: NEXT U
+ U: 2
+ terminated:false
+ U = 3
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 0
+ K(2,0): 0
+ B: 1
+ Z1: 6
+ L(6,0): 0
+ C: 3
+ Z: 24
+ M(24,0): 0
+ S1 = 0
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 0
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 0
+ S<S1: false
+730: IF RND < .5 THEN 760
+ RND<.5: true
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 1
+ K(2,1): 9
+ B: 1
+ Z1: 6
+ L(6,1): 3
+ C: 3
+ Z: 24
+ M(24,1): 1
+ S1 = 6
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 6
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 6
+ S<S1: true
+740: S = S1
+ S1: 6
+ S = 6
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 2
+ K(2,2): 10
+ B: 1
+ Z1: 6
+ L(6,2): 3
+ C: 3
+ Z: 24
+ M(24,2): 1
+ S1 = 6
+710: IF S > S1 THEN 760
+ S: 6
+ S1: 6
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 6
+ S1: 6
+ S<S1: false
+730: IF RND < .5 THEN 760
+ RND<.5: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 3
+ N(3): 1
+ 1              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 3
+ N(3): 1
+ G=N(U): true
+810: X = X + 1
+ X: 1
+ X = 2
+820: PRINT "RIGHT", X
+RIGHT           
+ X: 2
+ 2
+830: M(Z, N) = M(Z, N) + 1
+ Z: 24
+ N: 2
+ M(24,2): 1
+ M(24,2) = 2
+840: L(Z1, N) = L(Z1, N) + 1
+ Z1: 6
+ N: 2
+ L(6,2): 3
+ L(6,2) = 4
+850: K(Z2, N) = K(Z2, N) + 1
+ Z2: 2
+ N: 2
+ K(2,2): 10
+ K(2,2) = 11
+860: Z = Z - INT(Z / 9) * 9
+ Z: 24
+ Z = 6
+870: Z = 3 * Z * N(U)
+ Z: 6
+ U: 3
+ N(3): 1
+ Z = 18
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 18
+ Z1 = 0
+890: Z2 = N(U)
+ U: 3
+ N(3): 1
+ Z2 = 1
+900: NEXT U
+ U: 3
+ terminated:false
+ U = 4
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 0
+ K(1,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 18
+ M(18,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 1
+ K(1,1): 9
+ B: 1
+ Z1: 0
+ L(0,1): 0
+ C: 3
+ Z: 18
+ M(18,1): 1
+ S1 = 3
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 3
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 3
+ S<S1: true
+740: S = S1
+ S1: 3
+ S = 3
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 2
+ K(1,2): 9
+ B: 1
+ Z1: 0
+ L(0,2): 0
+ C: 3
+ Z: 18
+ M(18,2): 1
+ S1 = 3
+710: IF S > S1 THEN 760
+ S: 3
+ S1: 3
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 3
+ S1: 3
+ S<S1: false
+730: IF RND < .5 THEN 760
+ RND<.5: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 4
+ N(4): 2
+ 2              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 4
+ N(4): 2
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 2
+ 2
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 18
+ Z1 = 0
+890: Z2 = N(U)
+ U: 4
+ N(4): 2
+ Z2 = 2
+900: NEXT U
+ U: 4
+ terminated:false
+ U = 5
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 0
+ K(2,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 18
+ M(18,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 1
+ K(2,1): 9
+ B: 1
+ Z1: 0
+ L(0,1): 0
+ C: 3
+ Z: 18
+ M(18,1): 1
+ S1 = 3
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 3
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 3
+ S<S1: true
+740: S = S1
+ S1: 3
+ S = 3
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 2
+ K(2,2): 11
+ B: 1
+ Z1: 0
+ L(0,2): 0
+ C: 3
+ Z: 18
+ M(18,2): 1
+ S1 = 3
+710: IF S > S1 THEN 760
+ S: 3
+ S1: 3
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 3
+ S1: 3
+ S<S1: false
+730: IF RND < .5 THEN 760
+ RND<.5: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 5
+ N(5): 1
+ 1              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 5
+ N(5): 1
+ G=N(U): true
+810: X = X + 1
+ X: 2
+ X = 3
+820: PRINT "RIGHT", X
+RIGHT           
+ X: 3
+ 3
+830: M(Z, N) = M(Z, N) + 1
+ Z: 18
+ N: 2
+ M(18,2): 1
+ M(18,2) = 2
+840: L(Z1, N) = L(Z1, N) + 1
+ Z1: 0
+ N: 2
+ L(0,2): 0
+ L(0,2) = 1
+850: K(Z2, N) = K(Z2, N) + 1
+ Z2: 2
+ N: 2
+ K(2,2): 11
+ K(2,2) = 12
+860: Z = Z - INT(Z / 9) * 9
+ Z: 18
+ Z = 0
+870: Z = 3 * Z * N(U)
+ Z: 0
+ U: 5
+ N(5): 1
+ Z = 0
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 5
+ N(5): 1
+ Z2 = 1
+900: NEXT U
+ U: 5
+ terminated:false
+ U = 6
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 0
+ K(1,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 1
+ K(1,1): 9
+ B: 1
+ Z1: 0
+ L(0,1): 0
+ C: 3
+ Z: 0
+ M(0,1): 0
+ S1 = 0
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 0
+ S>S1: true
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 2
+ K(1,2): 9
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 0
+ 0              
+ U: 6
+ N(6): 2
+ 2              
+780: IF G = N(U) THEN 810
+ G: 0
+ U: 6
+ N(6): 2
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 3
+ 3
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 6
+ N(6): 2
+ Z2 = 2
+900: NEXT U
+ U: 6
+ terminated:false
+ U = 7
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 0
+ K(2,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 1
+ K(2,1): 9
+ B: 1
+ Z1: 0
+ L(0,1): 0
+ C: 3
+ Z: 0
+ M(0,1): 0
+ S1 = 0
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 0
+ S>S1: true
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 2
+ K(2,2): 12
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 0
+ 0              
+ U: 7
+ N(7): 1
+ 1              
+780: IF G = N(U) THEN 810
+ G: 0
+ U: 7
+ N(7): 1
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 3
+ 3
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 7
+ N(7): 1
+ Z2 = 1
+900: NEXT U
+ U: 7
+ terminated:false
+ U = 8
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 0
+ K(1,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 1
+ K(1,1): 9
+ B: 1
+ Z1: 0
+ L(0,1): 0
+ C: 3
+ Z: 0
+ M(0,1): 0
+ S1 = 0
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 0
+ S>S1: true
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 2
+ K(1,2): 9
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 0
+ 0              
+ U: 8
+ N(8): 2
+ 2              
+780: IF G = N(U) THEN 810
+ G: 0
+ U: 8
+ N(8): 2
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 3
+ 3
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 8
+ N(8): 2
+ Z2 = 2
+900: NEXT U
+ U: 8
+ terminated:false
+ U = 9
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 0
+ K(2,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 1
+ K(2,1): 9
+ B: 1
+ Z1: 0
+ L(0,1): 0
+ C: 3
+ Z: 0
+ M(0,1): 0
+ S1 = 0
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 0
+ S>S1: true
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 2
+ K(2,2): 12
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 0
+ 0              
+ U: 9
+ N(9): 1
+ 1              
+780: IF G = N(U) THEN 810
+ G: 0
+ U: 9
+ N(9): 1
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 3
+ 3
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 9
+ N(9): 1
+ Z2 = 1
+900: NEXT U
+ U: 9
+ terminated:false
+ U = 10
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 0
+ K(1,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 1
+ K(1,1): 9
+ B: 1
+ Z1: 0
+ L(0,1): 0
+ C: 3
+ Z: 0
+ M(0,1): 0
+ S1 = 0
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 0
+ S>S1: true
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 2
+ K(1,2): 9
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 0
+ 0              
+ U: 10
+ N(10): 2
+ 2              
+780: IF G = N(U) THEN 810
+ G: 0
+ U: 10
+ N(10): 2
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 3
+ 3
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 10
+ N(10): 2
+ Z2 = 2
+900: NEXT U
+ U: 10
+ terminated:true
+910: NEXT T
+ T: 1
+ terminated:false
+ T = 2
+530: PRINT
+
+540: PRINT "TEN NUMBERS PLEASE";
+TEN NUMBERS PLEASE
+550: INPUT N(1), N(2), N(3), N(4), N(5), N(6), N(7), N(8), N(9), N(10)
+? 0,1,0,1,0,1,0,1,0,1
+ N(1) = 0
+ N(2) = 1
+ N(3) = 0
+ N(4) = 1
+ N(5) = 0
+ N(6) = 1
+ N(7) = 0
+ N(8) = 1
+ N(9) = 0
+ N(10) = 1
+560: FOR I = 1 TO 10
+ I = 1
+ terminated:false
+570: W = N(I) - 1
+ I: 1
+ N(1): 0
+ W = -1
+580: IF W = SGN(W) THEN 620
+ W: -1
+ W=SGN(W): true
+620: NEXT I
+ I: 1
+ terminated:false
+ I = 2
+570: W = N(I) - 1
+ I: 2
+ N(2): 1
+ W = 0
+580: IF W = SGN(W) THEN 620
+ W: 0
+ W=SGN(W): true
+620: NEXT I
+ I: 2
+ terminated:false
+ I = 3
+570: W = N(I) - 1
+ I: 3
+ N(3): 0
+ W = -1
+580: IF W = SGN(W) THEN 620
+ W: -1
+ W=SGN(W): true
+620: NEXT I
+ I: 3
+ terminated:false
+ I = 4
+570: W = N(I) - 1
+ I: 4
+ N(4): 1
+ W = 0
+580: IF W = SGN(W) THEN 620
+ W: 0
+ W=SGN(W): true
+620: NEXT I
+ I: 4
+ terminated:false
+ I = 5
+570: W = N(I) - 1
+ I: 5
+ N(5): 0
+ W = -1
+580: IF W = SGN(W) THEN 620
+ W: -1
+ W=SGN(W): true
+620: NEXT I
+ I: 5
+ terminated:false
+ I = 6
+570: W = N(I) - 1
+ I: 6
+ N(6): 1
+ W = 0
+580: IF W = SGN(W) THEN 620
+ W: 0
+ W=SGN(W): true
+620: NEXT I
+ I: 6
+ terminated:false
+ I = 7
+570: W = N(I) - 1
+ I: 7
+ N(7): 0
+ W = -1
+580: IF W = SGN(W) THEN 620
+ W: -1
+ W=SGN(W): true
+620: NEXT I
+ I: 7
+ terminated:false
+ I = 8
+570: W = N(I) - 1
+ I: 8
+ N(8): 1
+ W = 0
+580: IF W = SGN(W) THEN 620
+ W: 0
+ W=SGN(W): true
+620: NEXT I
+ I: 8
+ terminated:false
+ I = 9
+570: W = N(I) - 1
+ I: 9
+ N(9): 0
+ W = -1
+580: IF W = SGN(W) THEN 620
+ W: -1
+ W=SGN(W): true
+620: NEXT I
+ I: 9
+ terminated:false
+ I = 10
+570: W = N(I) - 1
+ I: 10
+ N(10): 1
+ W = 0
+580: IF W = SGN(W) THEN 620
+ W: 0
+ W=SGN(W): true
+620: NEXT I
+ I: 10
+ terminated:true
+630: PRINT
+
+630.1: PRINT "MY GUESS", "YOUR NO, ", "RESULT", "NO, RIGHT"
+MY GUESS        YOUR NO,        RESULT          NO, RIGHT
+630.2: PRINT
+
+660: FOR U = 1 TO 10
+ U = 1
+ terminated:false
+670: N = N(I)
+ I: 10
+ N(10): 1
+ N = 1
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 0
+ K(2,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 1
+ K(2,1): 9
+ B: 1
+ Z1: 0
+ L(0,1): 0
+ C: 3
+ Z: 0
+ M(0,1): 0
+ S1 = 0
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 0
+ S>S1: true
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 2
+ K(2,2): 12
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 0
+ 0              
+ U: 1
+ N(1): 0
+ 0              
+780: IF G = N(U) THEN 810
+ G: 0
+ U: 1
+ N(1): 0
+ G=N(U): true
+810: X = X + 1
+ X: 3
+ X = 4
+820: PRINT "RIGHT", X
+RIGHT           
+ X: 4
+ 4
+830: M(Z, N) = M(Z, N) + 1
+ Z: 0
+ N: 1
+ M(0,1): 0
+ M(0,1) = 1
+840: L(Z1, N) = L(Z1, N) + 1
+ Z1: 0
+ N: 1
+ L(0,1): 0
+ L(0,1) = 1
+850: K(Z2, N) = K(Z2, N) + 1
+ Z2: 2
+ N: 1
+ K(2,1): 9
+ K(2,1) = 10
+860: Z = Z - INT(Z / 9) * 9
+ Z: 0
+ Z = 0
+870: Z = 3 * Z * N(U)
+ Z: 0
+ U: 1
+ N(1): 0
+ Z = 0
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 1
+ N(1): 0
+ Z2 = 0
+900: NEXT U
+ U: 1
+ terminated:false
+ U = 2
+670: N = N(I)
+ I: 10
+ N(10): 1
+ N = 1
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 0
+ K(0,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 1
+ K(0,1): 0
+ B: 1
+ Z1: 0
+ L(0,1): 1
+ C: 3
+ Z: 0
+ M(0,1): 1
+ S1 = 4
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 4
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 4
+ S<S1: true
+740: S = S1
+ S1: 4
+ S = 4
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 2
+ K(0,2): 0
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 4
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 2
+ N(2): 1
+ 1              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 2
+ N(2): 1
+ G=N(U): true
+810: X = X + 1
+ X: 4
+ X = 5
+820: PRINT "RIGHT", X
+RIGHT           
+ X: 5
+ 5
+830: M(Z, N) = M(Z, N) + 1
+ Z: 0
+ N: 1
+ M(0,1): 1
+ M(0,1) = 2
+840: L(Z1, N) = L(Z1, N) + 1
+ Z1: 0
+ N: 1
+ L(0,1): 1
+ L(0,1) = 2
+850: K(Z2, N) = K(Z2, N) + 1
+ Z2: 0
+ N: 1
+ K(0,1): 0
+ K(0,1) = 1
+860: Z = Z - INT(Z / 9) * 9
+ Z: 0
+ Z = 0
+870: Z = 3 * Z * N(U)
+ Z: 0
+ U: 2
+ N(2): 1
+ Z = 0
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 2
+ N(2): 1
+ Z2 = 1
+900: NEXT U
+ U: 2
+ terminated:false
+ U = 3
+670: N = N(I)
+ I: 10
+ N(10): 1
+ N = 1
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 0
+ K(1,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 1
+ K(1,1): 9
+ B: 1
+ Z1: 0
+ L(0,1): 2
+ C: 3
+ Z: 0
+ M(0,1): 2
+ S1 = 8
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 8
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 8
+ S<S1: true
+740: S = S1
+ S1: 8
+ S = 8
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 2
+ K(1,2): 9
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 8
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 3
+ N(3): 0
+ 0              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 3
+ N(3): 0
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 5
+ 5
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 3
+ N(3): 0
+ Z2 = 0
+900: NEXT U
+ U: 3
+ terminated:false
+ U = 4
+670: N = N(I)
+ I: 10
+ N(10): 1
+ N = 1
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 0
+ K(0,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 1
+ K(0,1): 1
+ B: 1
+ Z1: 0
+ L(0,1): 2
+ C: 3
+ Z: 0
+ M(0,1): 2
+ S1 = 8
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 8
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 8
+ S<S1: true
+740: S = S1
+ S1: 8
+ S = 8
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 2
+ K(0,2): 0
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 8
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 4
+ N(4): 1
+ 1              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 4
+ N(4): 1
+ G=N(U): true
+810: X = X + 1
+ X: 5
+ X = 6
+820: PRINT "RIGHT", X
+RIGHT           
+ X: 6
+ 6
+830: M(Z, N) = M(Z, N) + 1
+ Z: 0
+ N: 1
+ M(0,1): 2
+ M(0,1) = 3
+840: L(Z1, N) = L(Z1, N) + 1
+ Z1: 0
+ N: 1
+ L(0,1): 2
+ L(0,1) = 3
+850: K(Z2, N) = K(Z2, N) + 1
+ Z2: 0
+ N: 1
+ K(0,1): 1
+ K(0,1) = 2
+860: Z = Z - INT(Z / 9) * 9
+ Z: 0
+ Z = 0
+870: Z = 3 * Z * N(U)
+ Z: 0
+ U: 4
+ N(4): 1
+ Z = 0
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 4
+ N(4): 1
+ Z2 = 1
+900: NEXT U
+ U: 4
+ terminated:false
+ U = 5
+670: N = N(I)
+ I: 10
+ N(10): 1
+ N = 1
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 0
+ K(1,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 1
+ K(1,1): 9
+ B: 1
+ Z1: 0
+ L(0,1): 3
+ C: 3
+ Z: 0
+ M(0,1): 3
+ S1 = 12
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 12
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 12
+ S<S1: true
+740: S = S1
+ S1: 12
+ S = 12
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 2
+ K(1,2): 9
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 12
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 5
+ N(5): 0
+ 0              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 5
+ N(5): 0
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 6
+ 6
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 5
+ N(5): 0
+ Z2 = 0
+900: NEXT U
+ U: 5
+ terminated:false
+ U = 6
+670: N = N(I)
+ I: 10
+ N(10): 1
+ N = 1
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 0
+ K(0,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 1
+ K(0,1): 2
+ B: 1
+ Z1: 0
+ L(0,1): 3
+ C: 3
+ Z: 0
+ M(0,1): 3
+ S1 = 12
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 12
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 12
+ S<S1: true
+740: S = S1
+ S1: 12
+ S = 12
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 2
+ K(0,2): 0
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 12
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 6
+ N(6): 1
+ 1              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 6
+ N(6): 1
+ G=N(U): true
+810: X = X + 1
+ X: 6
+ X = 7
+820: PRINT "RIGHT", X
+RIGHT           
+ X: 7
+ 7
+830: M(Z, N) = M(Z, N) + 1
+ Z: 0
+ N: 1
+ M(0,1): 3
+ M(0,1) = 4
+840: L(Z1, N) = L(Z1, N) + 1
+ Z1: 0
+ N: 1
+ L(0,1): 3
+ L(0,1) = 4
+850: K(Z2, N) = K(Z2, N) + 1
+ Z2: 0
+ N: 1
+ K(0,1): 2
+ K(0,1) = 3
+860: Z = Z - INT(Z / 9) * 9
+ Z: 0
+ Z = 0
+870: Z = 3 * Z * N(U)
+ Z: 0
+ U: 6
+ N(6): 1
+ Z = 0
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 6
+ N(6): 1
+ Z2 = 1
+900: NEXT U
+ U: 6
+ terminated:false
+ U = 7
+670: N = N(I)
+ I: 10
+ N(10): 1
+ N = 1
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 0
+ K(1,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 1
+ K(1,1): 9
+ B: 1
+ Z1: 0
+ L(0,1): 4
+ C: 3
+ Z: 0
+ M(0,1): 4
+ S1 = 16
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 16
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 16
+ S<S1: true
+740: S = S1
+ S1: 16
+ S = 16
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 2
+ K(1,2): 9
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 16
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 7
+ N(7): 0
+ 0              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 7
+ N(7): 0
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 7
+ 7
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 7
+ N(7): 0
+ Z2 = 0
+900: NEXT U
+ U: 7
+ terminated:false
+ U = 8
+670: N = N(I)
+ I: 10
+ N(10): 1
+ N = 1
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 0
+ K(0,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 1
+ K(0,1): 3
+ B: 1
+ Z1: 0
+ L(0,1): 4
+ C: 3
+ Z: 0
+ M(0,1): 4
+ S1 = 16
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 16
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 16
+ S<S1: true
+740: S = S1
+ S1: 16
+ S = 16
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 2
+ K(0,2): 0
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 16
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 8
+ N(8): 1
+ 1              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 8
+ N(8): 1
+ G=N(U): true
+810: X = X + 1
+ X: 7
+ X = 8
+820: PRINT "RIGHT", X
+RIGHT           
+ X: 8
+ 8
+830: M(Z, N) = M(Z, N) + 1
+ Z: 0
+ N: 1
+ M(0,1): 4
+ M(0,1) = 5
+840: L(Z1, N) = L(Z1, N) + 1
+ Z1: 0
+ N: 1
+ L(0,1): 4
+ L(0,1) = 5
+850: K(Z2, N) = K(Z2, N) + 1
+ Z2: 0
+ N: 1
+ K(0,1): 3
+ K(0,1) = 4
+860: Z = Z - INT(Z / 9) * 9
+ Z: 0
+ Z = 0
+870: Z = 3 * Z * N(U)
+ Z: 0
+ U: 8
+ N(8): 1
+ Z = 0
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 8
+ N(8): 1
+ Z2 = 1
+900: NEXT U
+ U: 8
+ terminated:false
+ U = 9
+670: N = N(I)
+ I: 10
+ N(10): 1
+ N = 1
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 0
+ K(1,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 1
+ K(1,1): 9
+ B: 1
+ Z1: 0
+ L(0,1): 5
+ C: 3
+ Z: 0
+ M(0,1): 5
+ S1 = 20
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 20
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 20
+ S<S1: true
+740: S = S1
+ S1: 20
+ S = 20
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 2
+ K(1,2): 9
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 20
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 9
+ N(9): 0
+ 0              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 9
+ N(9): 0
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 8
+ 8
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 9
+ N(9): 0
+ Z2 = 0
+900: NEXT U
+ U: 9
+ terminated:false
+ U = 10
+670: N = N(I)
+ I: 10
+ N(10): 1
+ N = 1
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 0
+ K(0,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 1
+ K(0,1): 4
+ B: 1
+ Z1: 0
+ L(0,1): 5
+ C: 3
+ Z: 0
+ M(0,1): 5
+ S1 = 20
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 20
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 20
+ S<S1: true
+740: S = S1
+ S1: 20
+ S = 20
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 2
+ K(0,2): 0
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 20
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 10
+ N(10): 1
+ 1              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 10
+ N(10): 1
+ G=N(U): true
+810: X = X + 1
+ X: 8
+ X = 9
+820: PRINT "RIGHT", X
+RIGHT           
+ X: 9
+ 9
+830: M(Z, N) = M(Z, N) + 1
+ Z: 0
+ N: 1
+ M(0,1): 5
+ M(0,1) = 6
+840: L(Z1, N) = L(Z1, N) + 1
+ Z1: 0
+ N: 1
+ L(0,1): 5
+ L(0,1) = 6
+850: K(Z2, N) = K(Z2, N) + 1
+ Z2: 0
+ N: 1
+ K(0,1): 4
+ K(0,1) = 5
+860: Z = Z - INT(Z / 9) * 9
+ Z: 0
+ Z = 0
+870: Z = 3 * Z * N(U)
+ Z: 0
+ U: 10
+ N(10): 1
+ Z = 0
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 10
+ N(10): 1
+ Z2 = 1
+900: NEXT U
+ U: 10
+ terminated:true
+910: NEXT T
+ T: 2
+ terminated:false
+ T = 3
+530: PRINT
+
+540: PRINT "TEN NUMBERS PLEASE";
+TEN NUMBERS PLEASE
+550: INPUT N(1), N(2), N(3), N(4), N(5), N(6), N(7), N(8), N(9), N(10)
+? 0,2,0,2,0,2,0,2,0,2
+ N(1) = 0
+ N(2) = 2
+ N(3) = 0
+ N(4) = 2
+ N(5) = 0
+ N(6) = 2
+ N(7) = 0
+ N(8) = 2
+ N(9) = 0
+ N(10) = 2
+560: FOR I = 1 TO 10
+ I = 1
+ terminated:false
+570: W = N(I) - 1
+ I: 1
+ N(1): 0
+ W = -1
+580: IF W = SGN(W) THEN 620
+ W: -1
+ W=SGN(W): true
+620: NEXT I
+ I: 1
+ terminated:false
+ I = 2
+570: W = N(I) - 1
+ I: 2
+ N(2): 2
+ W = 1
+580: IF W = SGN(W) THEN 620
+ W: 1
+ W=SGN(W): true
+620: NEXT I
+ I: 2
+ terminated:false
+ I = 3
+570: W = N(I) - 1
+ I: 3
+ N(3): 0
+ W = -1
+580: IF W = SGN(W) THEN 620
+ W: -1
+ W=SGN(W): true
+620: NEXT I
+ I: 3
+ terminated:false
+ I = 4
+570: W = N(I) - 1
+ I: 4
+ N(4): 2
+ W = 1
+580: IF W = SGN(W) THEN 620
+ W: 1
+ W=SGN(W): true
+620: NEXT I
+ I: 4
+ terminated:false
+ I = 5
+570: W = N(I) - 1
+ I: 5
+ N(5): 0
+ W = -1
+580: IF W = SGN(W) THEN 620
+ W: -1
+ W=SGN(W): true
+620: NEXT I
+ I: 5
+ terminated:false
+ I = 6
+570: W = N(I) - 1
+ I: 6
+ N(6): 2
+ W = 1
+580: IF W = SGN(W) THEN 620
+ W: 1
+ W=SGN(W): true
+620: NEXT I
+ I: 6
+ terminated:false
+ I = 7
+570: W = N(I) - 1
+ I: 7
+ N(7): 0
+ W = -1
+580: IF W = SGN(W) THEN 620
+ W: -1
+ W=SGN(W): true
+620: NEXT I
+ I: 7
+ terminated:false
+ I = 8
+570: W = N(I) - 1
+ I: 8
+ N(8): 2
+ W = 1
+580: IF W = SGN(W) THEN 620
+ W: 1
+ W=SGN(W): true
+620: NEXT I
+ I: 8
+ terminated:false
+ I = 9
+570: W = N(I) - 1
+ I: 9
+ N(9): 0
+ W = -1
+580: IF W = SGN(W) THEN 620
+ W: -1
+ W=SGN(W): true
+620: NEXT I
+ I: 9
+ terminated:false
+ I = 10
+570: W = N(I) - 1
+ I: 10
+ N(10): 2
+ W = 1
+580: IF W = SGN(W) THEN 620
+ W: 1
+ W=SGN(W): true
+620: NEXT I
+ I: 10
+ terminated:true
+630: PRINT
+
+630.1: PRINT "MY GUESS", "YOUR NO, ", "RESULT", "NO, RIGHT"
+MY GUESS        YOUR NO,        RESULT          NO, RIGHT
+630.2: PRINT
+
+660: FOR U = 1 TO 10
+ U = 1
+ terminated:false
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 0
+ K(1,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 1
+ K(1,1): 9
+ B: 1
+ Z1: 0
+ L(0,1): 6
+ C: 3
+ Z: 0
+ M(0,1): 6
+ S1 = 24
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 24
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 24
+ S<S1: true
+740: S = S1
+ S1: 24
+ S = 24
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 1
+ J: 2
+ K(1,2): 9
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 24
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 1
+ N(1): 0
+ 0              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 1
+ N(1): 0
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 9
+ 9
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 1
+ N(1): 0
+ Z2 = 0
+900: NEXT U
+ U: 1
+ terminated:false
+ U = 2
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 0
+ K(0,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 1
+ K(0,1): 5
+ B: 1
+ Z1: 0
+ L(0,1): 6
+ C: 3
+ Z: 0
+ M(0,1): 6
+ S1 = 24
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 24
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 24
+ S<S1: true
+740: S = S1
+ S1: 24
+ S = 24
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 2
+ K(0,2): 0
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 24
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 2
+ N(2): 2
+ 2              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 2
+ N(2): 2
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 9
+ 9
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 2
+ N(2): 2
+ Z2 = 2
+900: NEXT U
+ U: 2
+ terminated:false
+ U = 3
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 0
+ K(2,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 1
+ K(2,1): 10
+ B: 1
+ Z1: 0
+ L(0,1): 6
+ C: 3
+ Z: 0
+ M(0,1): 6
+ S1 = 24
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 24
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 24
+ S<S1: true
+740: S = S1
+ S1: 24
+ S = 24
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 2
+ K(2,2): 12
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 24
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 3
+ N(3): 0
+ 0              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 3
+ N(3): 0
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 9
+ 9
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 3
+ N(3): 0
+ Z2 = 0
+900: NEXT U
+ U: 3
+ terminated:false
+ U = 4
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 0
+ K(0,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 1
+ K(0,1): 5
+ B: 1
+ Z1: 0
+ L(0,1): 6
+ C: 3
+ Z: 0
+ M(0,1): 6
+ S1 = 24
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 24
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 24
+ S<S1: true
+740: S = S1
+ S1: 24
+ S = 24
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 2
+ K(0,2): 0
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 24
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 4
+ N(4): 2
+ 2              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 4
+ N(4): 2
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 9
+ 9
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 4
+ N(4): 2
+ Z2 = 2
+900: NEXT U
+ U: 4
+ terminated:false
+ U = 5
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 0
+ K(2,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 1
+ K(2,1): 10
+ B: 1
+ Z1: 0
+ L(0,1): 6
+ C: 3
+ Z: 0
+ M(0,1): 6
+ S1 = 24
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 24
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 24
+ S<S1: true
+740: S = S1
+ S1: 24
+ S = 24
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 2
+ K(2,2): 12
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 24
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 5
+ N(5): 0
+ 0              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 5
+ N(5): 0
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 9
+ 9
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 5
+ N(5): 0
+ Z2 = 0
+900: NEXT U
+ U: 5
+ terminated:false
+ U = 6
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 0
+ K(0,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 1
+ K(0,1): 5
+ B: 1
+ Z1: 0
+ L(0,1): 6
+ C: 3
+ Z: 0
+ M(0,1): 6
+ S1 = 24
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 24
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 24
+ S<S1: true
+740: S = S1
+ S1: 24
+ S = 24
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 2
+ K(0,2): 0
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 24
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 6
+ N(6): 2
+ 2              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 6
+ N(6): 2
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 9
+ 9
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 6
+ N(6): 2
+ Z2 = 2
+900: NEXT U
+ U: 6
+ terminated:false
+ U = 7
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 0
+ K(2,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 1
+ K(2,1): 10
+ B: 1
+ Z1: 0
+ L(0,1): 6
+ C: 3
+ Z: 0
+ M(0,1): 6
+ S1 = 24
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 24
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 24
+ S<S1: true
+740: S = S1
+ S1: 24
+ S = 24
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 2
+ K(2,2): 12
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 24
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 7
+ N(7): 0
+ 0              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 7
+ N(7): 0
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 9
+ 9
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 7
+ N(7): 0
+ Z2 = 0
+900: NEXT U
+ U: 7
+ terminated:false
+ U = 8
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 0
+ K(0,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 1
+ K(0,1): 5
+ B: 1
+ Z1: 0
+ L(0,1): 6
+ C: 3
+ Z: 0
+ M(0,1): 6
+ S1 = 24
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 24
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 24
+ S<S1: true
+740: S = S1
+ S1: 24
+ S = 24
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 2
+ K(0,2): 0
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 24
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 8
+ N(8): 2
+ 2              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 8
+ N(8): 2
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 9
+ 9
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 8
+ N(8): 2
+ Z2 = 2
+900: NEXT U
+ U: 8
+ terminated:false
+ U = 9
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 0
+ K(2,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 1
+ K(2,1): 10
+ B: 1
+ Z1: 0
+ L(0,1): 6
+ C: 3
+ Z: 0
+ M(0,1): 6
+ S1 = 24
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 24
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 24
+ S<S1: true
+740: S = S1
+ S1: 24
+ S = 24
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 2
+ J: 2
+ K(2,2): 12
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 24
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 9
+ N(9): 0
+ 0              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 9
+ N(9): 0
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 9
+ 9
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 9
+ N(9): 0
+ Z2 = 0
+900: NEXT U
+ U: 9
+ terminated:false
+ U = 10
+670: N = N(I)
+ I: 10
+ N(10): 2
+ N = 2
+670.1: S = 0
+ S = 0
+690: FOR J = 0 TO 2
+ J = 0
+ terminated:false
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 0
+ K(0,0): 0
+ B: 1
+ Z1: 0
+ L(0,0): 2
+ C: 3
+ Z: 0
+ M(0,0): 0
+ S1 = 2
+710: IF S > S1 THEN 760
+ S: 0
+ S1: 2
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 0
+ S1: 2
+ S<S1: true
+740: S = S1
+ S1: 2
+ S = 2
+740.1: G = J
+ J: 0
+ G = 0
+760: NEXT J
+ J: 0
+ terminated:false
+ J = 1
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 1
+ K(0,1): 5
+ B: 1
+ Z1: 0
+ L(0,1): 6
+ C: 3
+ Z: 0
+ M(0,1): 6
+ S1 = 24
+710: IF S > S1 THEN 760
+ S: 2
+ S1: 24
+ S>S1: false
+720: IF S < S1 THEN 740
+ S: 2
+ S1: 24
+ S<S1: true
+740: S = S1
+ S1: 24
+ S = 24
+740.1: G = J
+ J: 1
+ G = 1
+760: NEXT J
+ J: 1
+ terminated:false
+ J = 2
+700: S1 = A * K(Z2, J) + B * L(Z1, J) + C * M(Z, J)
+ A: 0
+ Z2: 0
+ J: 2
+ K(0,2): 0
+ B: 1
+ Z1: 0
+ L(0,2): 1
+ C: 3
+ Z: 0
+ M(0,2): 0
+ S1 = 1
+710: IF S > S1 THEN 760
+ S: 24
+ S1: 1
+ S>S1: true
+760: NEXT J
+ J: 2
+ terminated:true
+770: PRINT G, N(U),
+ G: 1
+ 1              
+ U: 10
+ N(10): 2
+ 2              
+780: IF G = N(U) THEN 810
+ G: 1
+ U: 10
+ N(10): 2
+ G=N(U): false
+790: PRINT "WRONG", X
+WRONG           
+ X: 9
+ 9
+800: GOTO 880
+880: Z1 = Z - INT(Z / 9) * 9
+ Z: 0
+ Z1 = 0
+890: Z2 = N(U)
+ U: 10
+ N(10): 2
+ Z2 = 2
+900: NEXT U
+ U: 10
+ terminated:true
+910: NEXT T
+ T: 3
+ terminated:true
+920: PRINT
+
+930: IF X > 10 THEN 980
+ X: 9
+ X>10: false
+940: IF X < 10 THEN 1010
+ X: 9
+ X<10: true
+1010: PRINT "I GUESSED LESS THAN 1/3 OF YOUR NUMBERS,"
+I GUESSED LESS THAN 1/3 OF YOUR NUMBERS,
+1020: PRINT "YOU BEAT ME. CONGRATULATIONS ****"
+YOU BEAT ME. CONGRATULATIONS ****
+1030: PRINT
+
+1040: PRINT "DO YOU WANT TO TRY AGAIN (1 FOR YES, 0 FOR NO)";
+DO YOU WANT TO TRY AGAIN (1 FOR YES, 0 FOR NO)
+1060: INPUT X
+? 0
+ X = 0
+1070: IF X = 1 THEN 400
+ X: 0
+ X=1: false
+1080: PRINT
+
+1080.1: PRINT "THANKS FOR THE GAME,"
+THANKS FOR THE GAME,
+1090: END
+STOP in line 1090
