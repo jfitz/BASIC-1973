@@ -114,7 +114,7 @@ class UserFunction < AbstractScalarFunction
   end
 
   # return a single value
-  def evaluate(interpreter, stack, trace)
+  def evaluate(interpreter, stack)
     definition = interpreter.get_user_function(@name)
 
     # verify function is defined
@@ -134,11 +134,11 @@ class UserFunction < AbstractScalarFunction
 
       expression = definition.expression
       if !expression.nil?
-        results = expression.evaluate(interpreter, trace)
+        results = expression.evaluate(interpreter)
       else
         interpreter.run_user_function(@name)
 
-        results = [interpreter.get_value(@name, trace)]
+        results = [interpreter.get_value(@name)]
       end
 
       interpreter.clear_user_var_values
@@ -185,7 +185,7 @@ class FunctionAbs < AbstractScalarFunction
     @signature = [{ 'type' => 'numeric', 'shape' => 'scalar' }]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       args[0].abs
@@ -203,7 +203,7 @@ class FunctionAsc < AbstractScalarFunction
     @signature = [{ 'type' => 'text', 'shape' => 'scalar' }]
   end
 
-  def evaluate(interpreter, stack, _)
+  def evaluate(interpreter, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       text = args[0].to_v
@@ -231,7 +231,7 @@ class FunctionAtn < AbstractScalarFunction
     @signature = [{ 'type' => 'numeric', 'shape' => 'scalar' }]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       args[0].atn
@@ -249,7 +249,7 @@ class FunctionChr < AbstractScalarFunction
     @signature = [{ 'type' => 'numeric', 'shape' => 'scalar' }]
   end
 
-  def evaluate(interpreter, stack, _)
+  def evaluate(interpreter, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       value = args[0].to_i
@@ -281,7 +281,7 @@ class FunctionCon < AbstractScalarFunction
       ]
   end
 
-  def evaluate(interpreter, stack, _)
+  def evaluate(interpreter, stack)
     if previous_is_array(stack)
       args = stack.pop
 
@@ -314,7 +314,7 @@ class FunctionCos < AbstractScalarFunction
     @signature = [{ 'type' => 'numeric', 'shape' => 'scalar' }]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       args[0].cos
@@ -332,7 +332,7 @@ class FunctionDet < AbstractMatrixFunction
     @signature = [{ 'type' => 'numeric', 'shape' => 'matrix' }]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       args[0].determinant
@@ -350,7 +350,7 @@ class FunctionExp < AbstractScalarFunction
     @signature = [{ 'type' => 'numeric', 'shape' => 'scalar' }]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       args[0].exp
@@ -372,7 +372,7 @@ class FunctionExt < AbstractScalarFunction
     ]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       value = args[0].to_v
@@ -406,7 +406,7 @@ class FunctionIdn < AbstractScalarFunction
       ]
   end
 
-  def evaluate(interpreter, stack, _)
+  def evaluate(interpreter, stack)
     if previous_is_array(stack)
       args = stack.pop
 
@@ -450,7 +450,7 @@ class FunctionInstr < AbstractScalarFunction
     ]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       start = args[0].to_i
@@ -481,7 +481,7 @@ class FunctionInt < AbstractScalarFunction
   end
 
   # return a single value
-  def evaluate(interpreter, stack, _)
+  def evaluate(interpreter, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       interpreter.int_floor? ? args[0].floor : args[0].truncate
@@ -499,7 +499,7 @@ class FunctionInv < AbstractMatrixFunction
     @signature = [{ 'type' => 'numeric', 'shape' => 'matrix' }]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       dims = args[0].dimensions
@@ -522,7 +522,7 @@ class FunctionLeft < AbstractScalarFunction
     ]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       value = args[0].to_v
@@ -548,7 +548,7 @@ class FunctionLen < AbstractScalarFunction
     @signature = [{ 'type' => 'text', 'shape' => 'scalar' }]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       text = args[0].to_v
@@ -569,7 +569,7 @@ class FunctionLog < AbstractScalarFunction
     @signature = [{ 'type' => 'numeric', 'shape' => 'scalar' }]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       args[0].log
@@ -591,7 +591,7 @@ class FunctionMid < AbstractScalarFunction
     ]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       value = args[0].to_v
@@ -627,7 +627,7 @@ class FunctionStr < AbstractScalarFunction
   end
 
   # return a single value
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       text = args[0].to_s
@@ -648,7 +648,7 @@ class FunctionPack < AbstractArrayFunction
     @signature = [{ 'type' => 'numeric', 'shape' => 'array' }]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       array = args[0]
@@ -672,7 +672,7 @@ class FunctionRight < AbstractScalarFunction
     ]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       value = args[0].to_v
@@ -700,7 +700,7 @@ class FunctionRnd < AbstractScalarFunction
   end
 
   # return a single value
-  def evaluate(interpreter, stack, _)
+  def evaluate(interpreter, stack)
     if previous_is_array(stack)
       args = stack.pop
 
@@ -727,7 +727,7 @@ class FunctionSgn < AbstractScalarFunction
     @signature = [{ 'type' => 'numeric', 'shape' => 'scalar' }]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       args[0].sign
@@ -745,7 +745,7 @@ class FunctionSin < AbstractScalarFunction
     @signature = [{ 'type' => 'numeric', 'shape' => 'scalar' }]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       args[0].sin
@@ -763,7 +763,7 @@ class FunctionSqr < AbstractScalarFunction
     @signature = [{ 'type' => 'numeric', 'shape' => 'scalar' }]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       args[0].sqrt
@@ -781,7 +781,7 @@ class FunctionTab < AbstractScalarFunction
     @signature = [{ 'type' => 'numeric', 'shape' => 'scalar' }]
   end
 
-  def evaluate(interpreter, stack, _)
+  def evaluate(interpreter, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       console_io = interpreter.console_io
@@ -810,7 +810,7 @@ class FunctionTan < AbstractScalarFunction
     @signature = [{ 'type' => 'numeric', 'shape' => 'scalar' }]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       args[0].tan
@@ -828,7 +828,7 @@ class FunctionTime < AbstractMatrixFunction
     @signature = [{ 'type' => 'numeric', 'shape' => 'scalar' }]
   end
 
-  def evaluate(interpreter, stack, _)
+  def evaluate(interpreter, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       # ignore argument
@@ -850,7 +850,7 @@ class FunctionUnpack < AbstractScalarFunction
     @signature = [{ 'type' => 'text', 'shape' => 'scalar' }]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       text = args[0]
@@ -869,7 +869,7 @@ class FunctionTrn < AbstractMatrixFunction
     @signature = [{ 'type' => 'numeric', 'shape' => 'matrix' }]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       dims = args[0].dimensions
@@ -889,7 +889,7 @@ class FunctionVal < AbstractScalarFunction
     @signature = [{ 'type' => 'text', 'shape' => 'scalar' }]
   end
 
-  def evaluate(_, stack, _)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       f = args[0].to_v.to_f
@@ -915,7 +915,7 @@ class FunctionZer < AbstractScalarFunction
       ]
   end
 
-  def evaluate(interpreter, stack, _)
+  def evaluate(interpreter, stack)
     if previous_is_array(stack)
       args = stack.pop
 

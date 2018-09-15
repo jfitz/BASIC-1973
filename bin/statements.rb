@@ -664,7 +664,7 @@ module FileFunctions
   def get_file_handle(interpreter, file_tokens)
     return nil if file_tokens.nil?
 
-    file_handles = file_tokens.evaluate(interpreter, false)
+    file_handles = file_tokens.evaluate(interpreter)
     file_handles[0]
   end
 
@@ -777,7 +777,7 @@ class ChainStatement < AbstractStatement
   end
 
   def execute_core(interpreter)
-    target_values = @target.evaluate(interpreter, false)
+    target_values = @target.evaluate(interpreter)
     target_value = target_values[0]
 
     raise(BASICExpressionError, "Target must be text item.") unless
@@ -845,7 +845,7 @@ class ChangeStatement < AbstractStatement
   end
 
   def execute_core(interpreter)
-    source_values = @source.evaluate(interpreter, false)
+    source_values = @source.evaluate(interpreter)
     source_value = source_values[0]
 
     if source_value.text_constant?
@@ -867,7 +867,7 @@ class ChangeStatement < AbstractStatement
       source_variable_token = VariableToken.new(@source.to_s)
       source_variable_name = VariableName.new(source_variable_token)
 
-      target_values = @target.evaluate(interpreter, false)
+      target_values = @target.evaluate(interpreter)
       target_value = target_values[0]
 
       dims = interpreter.get_dimensions(source_variable_name)
@@ -883,7 +883,7 @@ class ChangeStatement < AbstractStatement
         column = IntegerConstant.new(col)
         variable = Value.new(source_variable_name, [column])
         coord = make_coord(col)
-        values[coord] = interpreter.get_value(variable, true)
+        values[coord] = interpreter.get_value(variable)
       end
       array = BASICArray.new(dims, values)
       text = array.pack
@@ -934,7 +934,7 @@ class CloseStatement < AbstractStatement
   end
 
   def execute_core(interpreter)
-    fns = @filenum_expression.evaluate(interpreter, true)
+    fns = @filenum_expression.evaluate(interpreter)
     fh = fns[0]
     case fh.class.to_s
     when 'Fixnum'
@@ -983,7 +983,7 @@ class DataStatement < AbstractStatement
 
   def pre_execute(interpreter)
     ds = interpreter.get_data_store(nil)
-    data_list = @expressions.evaluate(interpreter, false)
+    data_list = @expressions.evaluate(interpreter)
     ds.store(data_list)
   end
 
@@ -1076,7 +1076,7 @@ class DimStatement < AbstractStatement
 
   def execute_core(interpreter)
     @expression_list.each do |expression|
-      variables = expression.evaluate(interpreter, false)
+      variables = expression.evaluate(interpreter)
       variable = variables[0]
       subscripts = variable.subscripts
       if subscripts.empty?
@@ -1155,7 +1155,7 @@ class FilesStatement < AbstractStatement
   end
 
   def pre_execute(interpreter)
-    file_names = @expressions.evaluate(interpreter, false)
+    file_names = @expressions.evaluate(interpreter)
     interpreter.add_file_names(file_names)
   end
 
@@ -1212,7 +1212,7 @@ class ForNextControl
   end
 
   def bump_control(interpreter)
-    current_value = interpreter.get_value(@control, false)
+    current_value = interpreter.get_value(@control)
     current_value += @step_value
     interpreter.unlock_variable(@control)
     interpreter.set_value(@control, current_value)
@@ -1232,7 +1232,7 @@ class ForNextControl
 
   def terminated?(interpreter)
     zero = NumericConstant.new(0)
-    current_value = interpreter.get_value(@control, true)
+    current_value = interpreter.get_value(@control)
     if @step_value > zero
       current_value + @step_value > @end
     elsif @step_value < zero
@@ -1296,9 +1296,9 @@ class ForStatement < AbstractStatement
   end
 
   def execute_core(interpreter)
-    from = @start.evaluate(interpreter, true)[0]
-    to = @end.evaluate(interpreter, true)[0]
-    step = @step_value.evaluate(interpreter, true)[0]
+    from = @start.evaluate(interpreter)[0]
+    to = @end.evaluate(interpreter)[0]
+    step = @step_value.evaluate(interpreter)[0]
 
     fornext_control =
       ForNextControl.new(@control, interpreter, from, to, step)
@@ -1502,7 +1502,7 @@ class GotoStatement < AbstractStatement
     end
 
     unless @destinations.nil?
-      values = @expression.evaluate(interpreter, false)
+      values = @expression.evaluate(interpreter)
       raise(BASICExpressionError, 'Expecting one value') unless values.size == 1
       value = values[0]
       raise(BASICRuntimeError, 'Invalid value') unless
@@ -1734,7 +1734,7 @@ class IfStatement < AbstractStatement
   end
 
   def execute_core(interpreter)
-    values = @expression.evaluate(interpreter, true)
+    values = @expression.evaluate(interpreter)
 
     raise(BASICExpressionError, 'Too many or too few values') unless
       values.size == 1
@@ -1871,7 +1871,7 @@ class InputStatement < AbstractStatement
 
     prompt = nil
     unless @prompt.nil?
-      prompts = @prompt.evaluate(interpreter, false)
+      prompts = @prompt.evaluate(interpreter)
       prompt = prompts[0]
     end
 
@@ -1889,7 +1889,7 @@ class InputStatement < AbstractStatement
       zip(@input_items, values[0..@input_items.length])
 
     name_value_pairs.each do |hash|
-      l_values = hash['name'].evaluate(interpreter, false)
+      l_values = hash['name'].evaluate(interpreter)
       l_value = l_values[0]
       value = hash['value']
       interpreter.set_value(l_value, value)
@@ -1951,7 +1951,7 @@ class InputCharStatement < AbstractStatement
 
     prompt = nil
     unless @prompt.nil?
-      prompts = @prompt.evaluate(interpreter, false)
+      prompts = @prompt.evaluate(interpreter)
       prompt = prompts[0]
     end
 
@@ -1966,7 +1966,7 @@ class InputCharStatement < AbstractStatement
       zip(@input_items, values[0..@input_items.length])
 
     name_value_pairs.each do |hash|
-      l_values = hash['name'].evaluate(interpreter, false)
+      l_values = hash['name'].evaluate(interpreter)
       l_value = l_values[0]
       value = NumericConstant.new(hash['value'].ord)
       interpreter.set_value(l_value, value)
@@ -2098,7 +2098,7 @@ class LineInputStatement < AbstractStatement
 
     prompt = nil
     unless @prompt.nil?
-      prompts = @prompt.evaluate(interpreter, false)
+      prompts = @prompt.evaluate(interpreter)
       prompt = prompts[0]
     end
 
@@ -2113,7 +2113,7 @@ class LineInputStatement < AbstractStatement
       zip(@input_items, values[0..@input_items.length])
 
     name_value_pairs.each do |hash|
-      l_values = hash['name'].evaluate(interpreter, false)
+      l_values = hash['name'].evaluate(interpreter)
       l_value = l_values[0]
       value = hash['value']
       interpreter.set_value(l_value, value)
@@ -2324,7 +2324,7 @@ class OnStatement < AbstractStatement
   end
 
   def execute_core(interpreter)
-    values = @expression.evaluate(interpreter, true)
+    values = @expression.evaluate(interpreter)
     raise(BASICExpressionError, 'Expecting one value') unless values.size == 1
     value = values[0]
     raise(BASICExpressionError, 'Invalid value') unless value.numeric_constant?
@@ -2406,9 +2406,9 @@ class OpenStatement < AbstractStatement
   end
 
   def execute_core(interpreter)
-    filenames = @filename_expression.evaluate(interpreter, true)
+    filenames = @filename_expression.evaluate(interpreter)
     filename = filenames[0]
-    fhs = @filenum_expression.evaluate(interpreter, true)
+    fhs = @filenum_expression.evaluate(interpreter)
     fh = fhs[0]
     case fh.class.to_s
     when 'Fixnum'
@@ -2575,7 +2575,7 @@ class PrintUsingStatement < AbstractPrintStatement
         raise(BASICRuntimeError, 'Too few print items for format') if
           item.nil?
 
-        constants = item.evaluate(interpreter, false)
+        constants = item.evaluate(interpreter)
         constant = constants[0]
       end
 
@@ -2615,7 +2615,7 @@ class PrintUsingStatement < AbstractPrintStatement
 
   def first_item(print_items, interpreter)
     first_list = print_items[0]
-    values = first_list.evaluate(interpreter, false)
+    values = first_list.evaluate(interpreter)
     values[0]
   end
 
@@ -2743,7 +2743,7 @@ class ReadStatement < AbstractReadStatement
     ds = interpreter.get_data_store(fh)
 
     @read_items.each do |item|
-      targets = item.evaluate(interpreter, false)
+      targets = item.evaluate(interpreter)
       targets.each do |target|
         value = ds.read
         interpreter.set_value(target, value)
@@ -2944,7 +2944,7 @@ class SleepStatement < AbstractStatement
   end
 
   def execute_core(interpreter)
-    values = @expression.evaluate(interpreter, true)
+    values = @expression.evaluate(interpreter)
     value = values[0]
     sleep(value.to_v)
   end
@@ -3012,9 +3012,9 @@ class TraceStatement < AbstractStatement
   end
 
   def execute_core(interpreter)
-    values = @expression.evaluate(interpreter, true)
+    values = @expression.evaluate(interpreter)
     value = values[0]
-    interpreter.trace(value.to_v)
+    interpreter.set_trace(value.to_v)
   end
 
   def variables
@@ -3201,7 +3201,7 @@ class ArrReadStatement < AbstractReadStatement
     ds = interpreter.get_data_store(fh)
 
     @read_items.each do |item|
-      targets = item.evaluate(interpreter, false)
+      targets = item.evaluate(interpreter)
       targets.each do |target|
         interpreter.set_dimensions(target, target.dimensions) if
           target.dimensions?
@@ -3475,7 +3475,7 @@ class MatReadStatement < AbstractReadStatement
     ds = interpreter.get_data_store(fh)
 
     @read_items.each do |item|
-      targets = item.evaluate(interpreter, false)
+      targets = item.evaluate(interpreter)
       targets.each do |target|
         interpreter.set_dimensions(target, target.dimensions) if
           target.dimensions?

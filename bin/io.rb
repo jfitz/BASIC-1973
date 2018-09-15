@@ -49,7 +49,7 @@ module Inputter
 
     # convert from tokens to values
     expressions = ValueScalarExpression.new(tokens)
-    expressions.evaluate(interpreter, false)
+    expressions.evaluate(interpreter)
   end
 
   def line_input(interpreter)
@@ -60,7 +60,7 @@ module Inputter
     tokens = [token]
     # convert from tokens to values
     expressions = ValueScalarExpression.new(tokens)
-    expressions.evaluate(interpreter, false)
+    expressions.evaluate(interpreter)
   end
 end
 

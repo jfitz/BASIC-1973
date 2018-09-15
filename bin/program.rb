@@ -482,7 +482,7 @@ class Program
     end
 
     reset_profile_metrics
-    interpreter.run(self, action_flags)
+    interpreter.run(self, action_flags.clone)
   end
 
   def profile(args)

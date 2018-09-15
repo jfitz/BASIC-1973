@@ -14,7 +14,7 @@ class IfModifier
   def execute_pre(interpreter)
     io = interpreter.trace_out
 
-    values = @expression.evaluate(interpreter, false)
+    values = @expression.evaluate(interpreter)
     raise(BASICExpressionError, 'Too many values') unless
       values.size == 1
 
@@ -93,16 +93,16 @@ class ForModifier
   end
 
   def execute_pre(interpreter)
-    start_values = @start.evaluate(interpreter, false)
+    start_values = @start.evaluate(interpreter)
     start_value = start_values[0]
     @current_value = start_value if @current_value.nil?
     interpreter.set_value(@control, @current_value)
-    end_values = @end.evaluate(interpreter, false)
+    end_values = @end.evaluate(interpreter)
     end_value = end_values[0]
     if @step.nil?
       step_value = NumericConstant.new(1)
     else
-      step_values = @step.evaluate(interpreter, false)
+      step_values = @step.evaluate(interpreter)
       step_value = step_values[0]
     end
 
@@ -123,12 +123,12 @@ class ForModifier
   end
 
   def execute_post(interpreter)
-    end_values = @end.evaluate(interpreter, false)
+    end_values = @end.evaluate(interpreter)
     end_value = end_values[0]
     if @step.nil?
       step_value = NumericConstant.new(1)
     else
-      step_values = @step.evaluate(interpreter, false)
+      step_values = @step.evaluate(interpreter)
       step_value = step_values[0]
     end
     @current_value += step_value
