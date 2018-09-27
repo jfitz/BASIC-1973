@@ -87,6 +87,18 @@ class Shell
         @console_io.print_line("Unknown option #{kwd}")
         @console_io.newline
       end
+    elsif args.size == 2 && args[0].keyword? && args[1].boolean_constant?
+      kwd = args[0].to_s
+      kwd_d = kwd.downcase
+      if @action_flags.key?(kwd_d)
+        boolean = BooleanConstant.new(args[1])
+        @action_flags[kwd_d] = boolean.to_v
+        value = @action_flags[kwd_d].to_s.upcase
+        @console_io.print_line("#{kwd} #{value}")
+      else
+        @console_io.print_line("Unknown option #{kwd}")
+        @console_io.newline
+      end
     else
       @console_io.print_line('Syntax error')
       @console_io.newline
@@ -218,8 +230,9 @@ def make_command_tokenbuilders(token_flags, quotes)
   tokenbuilders = []
 
   keywords = %w(
-    BREAK CROSSREF DELETE DIMS EXIT HEADING LIST LOAD NEW OPTION PARSE PRETTY
-    PROFILE PROVENENCE RENUMBER RUN SAVE TIMING TOKENS TRACE UDFS VARS
+    BREAK CROSSREF DELETE DIMS EXIT HEADING LIST LOAD NEW OPTION PARSE
+    PRETTY PRETTY_MULTILINE PROFILE PROVENENCE RENUMBER RUN SAVE TIMING
+    TOKENS TRACE UDFS VARS
   )
   tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
@@ -237,6 +250,7 @@ def make_command_tokenbuilders(token_flags, quotes)
   allow_hash_constant = token_flags['allow_hash_constant']
   tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
 
+  tokenbuilders << ListTokenBuilder.new(%w(TRUE FALSE), BooleanConstantToken)
   tokenbuilders << WhitespaceTokenBuilder.new
 end
 
