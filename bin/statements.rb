@@ -134,7 +134,6 @@ class StatementFactory
       RunStatement,
       SleepStatement,
       StopStatement,
-      TraceStatement,
       WriteStatement
     ]
   end
@@ -2978,49 +2977,6 @@ class StopStatement < AbstractStatement
     io = interpreter.console_io
     io.newline_when_needed
     interpreter.stop
-  end
-end
-
-# TRACE
-class TraceStatement < AbstractStatement
-  def self.lead_keywords
-    [
-      [KeywordToken.new('TRACE')],
-      [KeywordToken.new('TRA')]
-    ]
-  end
-
-  def initialize(keywords, tokens_lists)
-    super
-
-    extract_modifiers(tokens_lists)
-
-    template = [[1, '>=']]
-
-    if check_template(tokens_lists, template)
-      @tokens_lists = split_tokens(tokens_lists[0], false)
-    else
-      @errors << 'Syntax error'
-    end
-
-    @errors << 'Too many values' if @tokens_lists.size > 1
-    @expression = ValueScalarExpression.new(tokens_lists[0])
-  end
-
-  def dump
-    @expression.dump
-  end
-
-  def execute_core(interpreter)
-    values = @expression.evaluate(interpreter)
-    value = values[0]
-    interpreter.set_trace(value.to_v)
-  end
-
-  def variables
-    vars = []
-    vars += @expression.variables unless @expression.nil?
-    vars
   end
 end
 
