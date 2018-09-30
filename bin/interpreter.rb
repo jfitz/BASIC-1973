@@ -461,9 +461,11 @@ class Interpreter
     statement.start_index unless statement.nil?
   end
 
-  def set_trace(trace)
-    @action_flags['trace'] = trace
-    @trace_out = trace ? @console_io : @null_out
+  def set_action(name, value)
+    @action_flags[name] = value
+    if name == 'trace'
+      @trace_out = value ? @console_io : @null_out
+    end
   end
 
   def clear_variables
