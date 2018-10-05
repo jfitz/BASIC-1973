@@ -4,25 +4,13 @@ class Interpreter
   attr_accessor :next_line_index
   attr_reader :console_io
   attr_reader :trace_out
-  attr_reader :if_false_next_line
-  attr_reader :fornext_one_beyond
-  attr_reader :asc_allow_all
-  attr_reader :chr_allow_all
   attr_reader :start_time
 
-  def initialize(console_io, interpreter_flags)
+  def initialize(console_io, interpreter_options)
     @randomizer = Random.new(1)
     @randomizer = Random.new if
-      interpreter_flags['randomize'] && interpreter_flags['respect_randomize']
-    @respect_randomize = interpreter_flags['respect_randomize']
-    @int_floor = interpreter_flags['int_floor']
-    @ignore_rnd_arg = interpreter_flags['ignore_rnd_arg']
-    @if_false_next_line = interpreter_flags['if_false_next_line']
-    @fornext_one_beyond = interpreter_flags['fornext_one_beyond']
-    @lock_fornext = interpreter_flags['lock_fornext']
-    @require_initialized = interpreter_flags['require_initialized']
-    @asc_allow_all = interpreter_flags['asc_allow_all']
-    @chr_allow_all = interpreter_flags['chr_allow_all']
+      interpreter_options['randomize'] && interpreter_options['respect_randomize']
+    @interpreter_options = interpreter_options
 
     @quotes = ['"']
     @console_io = console_io
@@ -93,13 +81,13 @@ class Interpreter
 
   public
 
-  def run(program, action_flags)
+  def run(program, action_options)
     @program = program
 
-    @action_flags = action_flags
+    @action_options = action_options
     @step_mode = false
 
-    trace = @action_flags['trace'].value
+    trace = @action_options['trace'].value
     @trace_out = trace ? @console_io : @null_out
     @variables = {}
     @user_function_lines = @program.assign_function_markers
@@ -254,13 +242,16 @@ class Interpreter
     case keyword.to_s
     when 'GO'
       raise(BASICCommandError, 'Too many arguments') unless args.empty?
+
       @debug_done = true
     when 'STOP'
       raise(BASICCommandError, 'Too many arguments') unless args.empty?
+
       @debug_done = true
       stop_running
     when 'STEP'
       raise(BASICCommandError, 'Too many arguments') unless args.empty?
+
       @step_mode = true
       @debug_done = true
     when 'BREAK'
@@ -308,6 +299,7 @@ class Interpreter
     @console_io.print_line(current_line_number.to_s + ': ' + line.pretty(false).join(''))
     @step_mode = false
     @debug_done = false
+
     until @debug_done
       @console_io.print_line('DEBUG')
       cmd = @console_io.read_line
@@ -341,6 +333,7 @@ class Interpreter
     line_number = @current_line_index.number
     line_statement = @current_line_index.statement
     line_index = @current_line_index.index
+
     if line_index == 0 &&
        line_statement == 0 &&
        (@step_mode || @breakpoints.key?(line_number))
@@ -418,6 +411,7 @@ class Interpreter
           condition = ''
           @breakpoints[line_number] = condition
         end
+
         if tokens_list.size == 2 &&
            tokens_list[0].text == '-' &&
            tokens_list[1].numeric_constant?
@@ -462,7 +456,8 @@ class Interpreter
   end
 
   def set_action(name, value)
-    @action_flags[name].set(value)
+    @action_options[name].set(value)
+
     if name == 'trace'
       @trace_out = value ? @console_io : @null_out
     end
@@ -483,16 +478,18 @@ class Interpreter
 
   # returns an Array of values
   def evaluate(parsed_expressions)
-    trace = @action_flags['trace'].value
+    trace = @action_options['trace'].value
 
     result_values = []
     parsed_expressions.each do |parsed_expression|
       stack = []
       exp = parsed_expression.empty? ? 0 : 1
+
       parsed_expression.each do |element|
         value = element.evaluate(self, stack)
         stack.push value
       end
+
       act = stack.length
       raise(BASICRuntimeError, 'Bad expression') if act != exp
 
@@ -545,13 +542,13 @@ class Interpreter
     upper_bound = upper_bound.to_v
     upper_bound = upper_bound.truncate
     upper_bound = 1 if upper_bound <= 0
-    upper_bound = 1 if @ignore_rnd_arg
+    upper_bound = 1 if @interpreter_options['ignore_rnd_arg']
     upper_bound = upper_bound.to_f
     NumericConstant.new(@randomizer.rand(upper_bound))
   end
 
   def new_random
-    @randomizer = Random.new if @respect_randomize
+    @randomizer = Random.new if @interpreter_options['respect_randomize']
   end
 
   def set_dimensions(variable, subscripts)
@@ -563,10 +560,12 @@ class Interpreter
   def normalize_subscripts(subscripts)
     raise(BASICSyntaxError, 'Invalid subscripts container') unless
       subscripts.class.to_s == 'Array'
+
     int_subscripts = []
     subscripts.each do |subscript|
       raise(BASICExpressionError, "Invalid subscript #{subscript}") unless
         subscript.numeric_constant?
+
       int_subscripts << subscript.truncate
     end
     int_subscripts
@@ -648,6 +647,7 @@ class Interpreter
 
     # first look in user function values stack
     length = @user_var_values.length
+
     if length > 0
       names_and_values = @user_var_values[-1]
       value = names_and_values[variable]
@@ -663,7 +663,7 @@ class Interpreter
         default_type == 'string'
 
       unless @variables.key?(v)
-        if @require_initialized
+        if @interpreter_options['require_initialized']
           raise(BASICRuntimeError, "Uninitialized variable #{v}")
         end
         @variables[v] =
@@ -680,9 +680,10 @@ class Interpreter
 
     seen = @get_value_seen.include?(variable)
 
-    trace = @action_flags['trace'].value
+    trace = @action_options['trace'].value
+
     if trace && !seen
-      provenence = @action_flags['provenence'].value
+      provenence = @action_options['provenence'].value
       if provenence && !line.nil?
         text = ' ' + variable.to_s + ': (' + line.to_s + ') ' + value.to_s
       else
@@ -711,7 +712,7 @@ class Interpreter
       legals.include?(variable.class.to_s)
 
     raise(BASICRuntimeError, "Cannot change locked variable #{variable}") if
-      @lock_fornext && @locked_variables.include?(variable)
+      @interpreter_options['lock_fornext'] && @locked_variables.include?(variable)
 
     # convert a numeric to a string when a string is expected
     if value.numeric_constant? &&
@@ -758,20 +759,24 @@ class Interpreter
   end
 
   def lock_variable(variable)
-    return unless @lock_fornext
+    return unless @interpreter_options['lock_fornext']
+
     if @locked_variables.include?(variable)
       raise(BASICRuntimeError,
             "Attempt to lock an already locked variable #{variable}")
     end
+
     @locked_variables << variable
   end
 
   def unlock_variable(variable)
-    return unless @lock_fornext
+    return unless @interpreter_options['lock_fornext']
+
     unless @locked_variables.include?(variable)
       raise(BASICRuntimeError,
             "Attempt to unlock a variable #{variable} not locked")
     end
+
     @locked_variables.delete(variable)
   end
 
@@ -781,6 +786,7 @@ class Interpreter
 
   def pop_return
     raise(BASICRuntimeError, 'RETURN without GOSUB') if @return_stack.empty?
+
     @return_stack.pop
   end
 
@@ -791,7 +797,9 @@ class Interpreter
 
   def retrieve_fornext(control_variable)
     fornext = @fornexts[control_variable]
+
     raise(BASICRuntimeError, 'NEXT without FOR') if fornext.nil?
+
     fornext
   end
 
@@ -832,6 +840,7 @@ class Interpreter
 
     raise(BASICRuntimeError, 'Unknown file handle') unless
       @file_handlers.key?(file_handle)
+
     fh = @file_handlers[file_handle]
     fh.set_mode(mode)
     fh
@@ -842,12 +851,29 @@ class Interpreter
 
     raise(BASICRuntimeError, 'Unknown file handle') unless
       @file_handlers.key?(file_handle)
+
     fh = @file_handlers[file_handle]
     fh.set_mode(:read)
     fh
   end
 
   def int_floor?
-    @int_floor
+    @interpreter_options['int_floor']
+  end
+
+  def if_false_next_line
+    @interpreter_options['if_false_next_line']
+  end
+
+  def fornext_one_beyond
+    @interpreter_options['fornext_one_beyond']
+  end
+
+  def asc_allow_all
+    @interpreter_options['asc_allow_all']
+  end
+
+  def chr_allow_all
+    @interpreter_options['chr_allow_all']
   end
 end
