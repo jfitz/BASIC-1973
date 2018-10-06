@@ -232,9 +232,9 @@ def make_interpreter_tokenbuilders(token_flags, quotes, statement_separators,
   keywords = statement_factory.keywords_definitions
   tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
-  colon_file = token_flags['colon_file']
+  colon_file = token_flags['colon_file'].value
   un_ops = UnaryOperator.operators(colon_file)
-  min_max_op = token_flags['min_max_op']
+  min_max_op = token_flags['min_max_op'].value
   bi_ops = BinaryOperator.operators(min_max_op)
   operators = (un_ops + bi_ops).uniq
   tokenbuilders << ListTokenBuilder.new(operators, OperatorToken)
@@ -252,12 +252,12 @@ def make_interpreter_tokenbuilders(token_flags, quotes, statement_separators,
     ListTokenBuilder.new(FunctionFactory.user_function_names, UserFunctionToken)
 
   tokenbuilders << TextTokenBuilder.new(quotes)
-  allow_hash_constant = token_flags['allow_hash_constant']
+  allow_hash_constant = token_flags['allow_hash_constant'].value
   tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
   tokenbuilders << IntegerTokenBuilder.new
-  allow_pi = token_flags['allow_pi']
+  allow_pi = token_flags['allow_pi'].value
   tokenbuilders << NumericSymbolTokenBuilder.new if allow_pi
-  allow_ascii = token_flags['allow_ascii']
+  allow_ascii = token_flags['allow_ascii'].value
   tokenbuilders << TextSymbolTokenBuilder.new if allow_ascii
   tokenbuilders << VariableTokenBuilder.new
 
@@ -277,9 +277,9 @@ def make_command_tokenbuilders(token_flags, quotes)
   )
   tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
-  colon_file = token_flags['colon_file']
+  colon_file = token_flags['colon_file'].value
   un_ops = UnaryOperator.operators(colon_file)
-  min_max_op = token_flags['min_max_op']
+  min_max_op = token_flags['min_max_op'].value
   bi_ops = BinaryOperator.operators(min_max_op)
   operators = (un_ops + bi_ops).uniq
   tokenbuilders << ListTokenBuilder.new(operators, OperatorToken)
@@ -288,7 +288,7 @@ def make_command_tokenbuilders(token_flags, quotes)
 
   tokenbuilders << TextTokenBuilder.new(quotes)
 
-  allow_hash_constant = token_flags['allow_hash_constant']
+  allow_hash_constant = token_flags['allow_hash_constant'].value
   tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
 
   tokenbuilders << ListTokenBuilder.new(%w(TRUE FALSE), BooleanConstantToken)
@@ -417,29 +417,37 @@ interpreter_options['respect_randomize'] =
   Option.new(:bool, !options.key?(:ignore_randomize))
 
 token_flags = {}
-token_flags['colon_separator'] = !options.key?(:no_colon_sep)
-token_flags['colon_file'] = options.key?(:colon_file)
-token_flags['colon_separator'] = false if token_flags['colon_file']
-token_flags['backslash_separator'] = true
-token_flags['apostrophe_comment'] = true
-token_flags['bang_comment'] = options.key?(:bang_comment)
-token_flags['single_quote_strings'] = options.key?(:single_quote_strings)
-token_flags['allow_hash_constant'] = options.key?(:hash_constant)
-token_flags['allow_pi'] = options.key?(:allow_pi)
-token_flags['allow_ascii'] = options.key?(:allow_ascii)
-token_flags['min_max_op'] = options.key?(:min_max_op)
+token_flags['allow_ascii'] = Option.new(:bool, options.key?(:allow_ascii))
+
+token_flags['allow_hash_constant'] =
+  Option.new(:bool, options.key?(:hash_constant))
+
+token_flags['allow_pi'] = Option.new(:bool, options.key?(:allow_pi))
+token_flags['apostrophe_comment'] = Option.new(:bool, true)
+token_flags['backslash_separator'] = Option.new(:bool, true)
+token_flags['bang_comment'] = Option.new(:bool, options.key?(:bang_comment))
+token_flags['colon_file'] = Option.new(:bool, options.key?(:colon_file))
+
+token_flags['colon_separator'] =
+  Option.new(:bool, !options.key?(:no_colon_sep) &&
+                    !options.key?(:colon_file))
+
+token_flags['min_max_op'] = Option.new(:bool, options.key?(:min_max_op))
+token_flags['single_quote_strings'] =
+  Option.new(:bool, options.key?(:single_quote_strings))
 
 statement_seps = []
-statement_seps << '\\' if token_flags['backslash_separator']
-statement_seps << ':' if token_flags['colon_separator']
+statement_seps << '\\' if token_flags['backslash_separator'].value
+statement_seps << ':' if token_flags['colon_separator'].value
 quotes = []
 quotes << '"'
-quotes << "'" if token_flags['single_quote_strings']
+quotes << "'" if token_flags['single_quote_strings'].value
 comment_leads = []
-comment_leads << '!' if token_flags['bang_comment']
+comment_leads << '!' if token_flags['bang_comment'].value
 
 comment_leads << "'" if
-  token_flags['apostrophe_comment'] && !token_flags['single_quote_strings']
+  token_flags['apostrophe_comment'].value &&
+  !token_flags['single_quote_strings'].value
 
 console_io =
   ConsoleIo.new(output_flags)
