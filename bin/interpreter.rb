@@ -8,8 +8,11 @@ class Interpreter
 
   def initialize(console_io, interpreter_options)
     @randomizer = Random.new(1)
+
     @randomizer = Random.new if
-      interpreter_options['randomize'] && interpreter_options['respect_randomize']
+      interpreter_options['randomize'].value &&
+      interpreter_options['respect_randomize'].value
+
     @interpreter_options = interpreter_options
 
     @quotes = ['"']
@@ -41,7 +44,9 @@ class Interpreter
   def make_debug_tokenbuilders
     tokenbuilders = []
 
-    keywords = %w(GO STOP STEP BREAK LIST PRETTY DELETE PROFILE DIM GOTO LET PRINT)
+    keywords =
+      %w(GO STOP STEP BREAK LIST PRETTY DELETE PROFILE DIM GOTO LET PRINT)
+
     tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
     un_ops = UnaryOperator.operators(false)
@@ -86,9 +91,9 @@ class Interpreter
 
     @action_options = action_options
     @step_mode = false
-
     trace = @action_options['trace'].value
     @trace_out = trace ? @console_io : @null_out
+
     @variables = {}
     @user_function_lines = @program.assign_function_markers
 
@@ -542,13 +547,13 @@ class Interpreter
     upper_bound = upper_bound.to_v
     upper_bound = upper_bound.truncate
     upper_bound = 1 if upper_bound <= 0
-    upper_bound = 1 if @interpreter_options['ignore_rnd_arg']
+    upper_bound = 1 if @interpreter_options['ignore_rnd_arg'].value
     upper_bound = upper_bound.to_f
     NumericConstant.new(@randomizer.rand(upper_bound))
   end
 
   def new_random
-    @randomizer = Random.new if @interpreter_options['respect_randomize']
+    @randomizer = Random.new if @interpreter_options['respect_randomize'].value
   end
 
   def set_dimensions(variable, subscripts)
@@ -663,7 +668,7 @@ class Interpreter
         default_type == 'string'
 
       unless @variables.key?(v)
-        if @interpreter_options['require_initialized']
+        if @interpreter_options['require_initialized'].value
           raise(BASICRuntimeError, "Uninitialized variable #{v}")
         end
         @variables[v] =
@@ -711,8 +716,10 @@ class Interpreter
           "#{variable.class}:#{variable} is not a variable name") unless
       legals.include?(variable.class.to_s)
 
-    raise(BASICRuntimeError, "Cannot change locked variable #{variable}") if
-      @interpreter_options['lock_fornext'] && @locked_variables.include?(variable)
+    if @interpreter_options['lock_fornext'].value &&
+       @locked_variables.include?(variable)
+      raise(BASICRuntimeError, "Cannot change locked variable #{variable}")
+    end
 
     # convert a numeric to a string when a string is expected
     if value.numeric_constant? &&
@@ -759,7 +766,7 @@ class Interpreter
   end
 
   def lock_variable(variable)
-    return unless @interpreter_options['lock_fornext']
+    return unless @interpreter_options['lock_fornext'].value
 
     if @locked_variables.include?(variable)
       raise(BASICRuntimeError,
@@ -770,7 +777,7 @@ class Interpreter
   end
 
   def unlock_variable(variable)
-    return unless @interpreter_options['lock_fornext']
+    return unless @interpreter_options['lock_fornext'].value
 
     unless @locked_variables.include?(variable)
       raise(BASICRuntimeError,
@@ -858,22 +865,22 @@ class Interpreter
   end
 
   def int_floor?
-    @interpreter_options['int_floor']
+    @interpreter_options['int_floor'].value
   end
 
   def if_false_next_line
-    @interpreter_options['if_false_next_line']
+    @interpreter_options['if_false_next_line'].value
   end
 
   def fornext_one_beyond
-    @interpreter_options['fornext_one_beyond']
+    @interpreter_options['fornext_one_beyond'].value
   end
 
   def asc_allow_all
-    @interpreter_options['asc_allow_all']
+    @interpreter_options['asc_allow_all'].value
   end
 
   def chr_allow_all
-    @interpreter_options['chr_allow_all']
+    @interpreter_options['chr_allow_all'].value
   end
 end

@@ -40,10 +40,14 @@ class Option
     case @type
     when :bool
       legals = %w(TrueClass FalseClass)
-      raise(BASICRuntimeError, 'Invalid value') unless legals.include?(value.class.to_s)
+
+      raise(BASICRuntimeError, 'Invalid value') unless
+        legals.include?(value.class.to_s)
     when :int
       legals = %w(Fixnum)
-      raise(BASICRuntimeError, 'Invalid value') unless legals.include?(value.class.to_s)
+
+      raise(BASICRuntimeError, 'Invalid value') unless
+        legals.include?(value.class.to_s)
     else
       raise(BASICRuntimeError, 'Unknown value type')
     end
@@ -52,13 +56,13 @@ end
 
 # interactive shell
 class Shell
-  def initialize(console_io, interpreter, program, action_flags,
+  def initialize(console_io, interpreter, program, action_options,
                  tokenbuilders)
 
     @console_io = console_io
     @interpreter = interpreter
     @program = program
-    @action_flags = action_flags
+    @action_options = action_options
     @tokenbuilders = tokenbuilders
     @invalid_tokenbuilder = InvalidTokenBuilder.new
   end
@@ -66,6 +70,7 @@ class Shell
   def run
     need_prompt = true
     @done = false
+
     until @done
       @console_io.print_line('READY') if need_prompt
       cmd = @console_io.read_line
@@ -103,7 +108,7 @@ class Shell
 
   def option_command(args)
     if args.empty?
-      @action_flags.each do |option|
+      @action_options.each do |option|
         name = option[0].upcase
         value = option[1].value.to_s.upcase
         @console_io.print_line(name + ' ' + value)
@@ -112,8 +117,8 @@ class Shell
       kwd = args[0].to_s
       kwd_d = kwd.downcase
 
-      if @action_flags.key?(kwd_d)
-        value = @action_flags[kwd_d].value.to_s.upcase
+      if @action_options.key?(kwd_d)
+        value = @action_options[kwd_d].value.to_s.upcase
         @console_io.print_line("#{kwd} #{value}")
       else
         @console_io.print_line("Unknown option #{kwd}")
@@ -123,18 +128,18 @@ class Shell
       kwd = args[0].to_s
       kwd_d = kwd.downcase
 
-      if @action_flags.key?(kwd_d)
+      if @action_options.key?(kwd_d)
         begin
           if args[1].boolean_constant?
             boolean = BooleanConstant.new(args[1])
-            @action_flags[kwd_d].set(boolean.to_v)
+            @action_options[kwd_d].set(boolean.to_v)
           else
             @console_io.print_line('Incorrect value type')
           end
         rescue BASICRuntimeError => e
           @console_io.print_line(e)
         end
-        value = @action_flags[kwd_d].value.to_s.upcase
+        value = @action_options[kwd_d].value.to_s.upcase
         @console_io.print_line("#{kwd} #{value}")
       else
         @console_io.print_line("Unknown option #{kwd}")
@@ -159,9 +164,9 @@ class Shell
     when 'RUN'
       if @program.check
         timing = Benchmark.measure {
-          @program.run(@interpreter, @action_flags)
+          @program.run(@interpreter, @action_options)
         }
-        print_timing(timing, @console_io) if @action_flags['timing'].value
+        print_timing(timing, @console_io) if @action_options['timing'].value
       end
     when 'BREAK'
       @interpreter.set_breakpoints(args)
@@ -173,7 +178,7 @@ class Shell
     when 'LIST'
       @program.list(args, false)
     when 'PRETTY'
-      pretty_multiline = @action_flags['pretty_multiline'].value
+      pretty_multiline = @action_options['pretty_multiline'].value
       @program.pretty(args, pretty_multiline)
     when 'DELETE'
       @program.delete(args)
@@ -352,12 +357,15 @@ run_filename = options[:run_name]
 cref_filename = options[:cref_name]
 show_profile = options.key?(:profile)
 
-action_flags = {}
-action_flags['trace'] = Option.new(:bool, options.key?(:trace))
-action_flags['provenence'] = Option.new(:bool, options.key?(:provenence))
-action_flags['pretty_multiline'] = Option.new(:bool, options.key?(:pretty_multiline))
-action_flags['timing'] = Option.new(:bool, !options.key?(:no_timing))
-action_flags['heading'] = Option.new(:bool, !options.key?(:no_heading))
+action_options = {}
+action_options['heading'] = Option.new(:bool, !options.key?(:no_heading))
+
+action_options['pretty_multiline'] =
+  Option.new(:bool, options.key?(:pretty_multiline))
+
+action_options['provenence'] = Option.new(:bool, options.key?(:provenence))
+action_options['timing'] = Option.new(:bool, !options.key?(:no_timing))
+action_options['trace'] = Option.new(:bool, options.key?(:trace))
 
 output_flags = {}
 output_flags['echo'] = options.key?(:echo_input)
@@ -378,17 +386,35 @@ output_flags['back_tab'] = options.key?(:back_tab)
 output_flags['input_high_bit'] = options.key?(:input_high_bit)
 output_flags['crlf_on_line_input'] = options.key?(:crlf_on_line_input)
 
-interpreter_flags = {}
-interpreter_flags['int_floor'] = options.key?(:int_floor)
-interpreter_flags['ignore_rnd_arg'] = options.key?(:ignore_rnd_arg)
-interpreter_flags['randomize'] = options.key?(:randomize)
-interpreter_flags['lock_fornext'] = options.key?(:lock_fornext)
-interpreter_flags['respect_randomize'] = !options.key?(:ignore_randomize)
-interpreter_flags['if_false_next_line'] = options.key?(:if_false_next_line)
-interpreter_flags['fornext_one_beyond'] = options.key?(:fornext_one_beyond)
-interpreter_flags['require_initialized'] = options.key?(:require_initialized)
-interpreter_flags['asc_allow_all'] = options.key?(:asc_allow_all)
-interpreter_flags['chr_allow_all'] = options.key?(:chr_allow_all)
+interpreter_options = {}
+
+interpreter_options['asc_allow_all'] =
+  Option.new(:bool, options.key?(:asc_allow_all))
+
+interpreter_options['chr_allow_all'] =
+  Option.new(:bool, options.key?(:chr_allow_all))
+
+interpreter_options['fornext_one_beyond'] =
+  Option.new(:bool, options.key?(:fornext_one_beyond))
+
+interpreter_options['if_false_next_line'] =
+  Option.new(:bool, options.key?(:if_false_next_line))
+
+interpreter_options['ignore_rnd_arg'] =
+  Option.new(:bool, options.key?(:ignore_rnd_arg))
+
+interpreter_options['int_floor'] = Option.new(:bool, options.key?(:int_floor))
+
+interpreter_options['lock_fornext'] =
+  Option.new(:bool, options.key?(:lock_fornext))
+
+interpreter_options['randomize'] = Option.new(:bool, options.key?(:randomize))
+
+interpreter_options['require_initialized'] =
+  Option.new(:bool, options.key?(:require_initialized))
+
+interpreter_options['respect_randomize'] =
+  Option.new(:bool, !options.key?(:ignore_randomize))
 
 token_flags = {}
 token_flags['colon_separator'] = !options.key?(:no_colon_sep)
@@ -422,7 +448,7 @@ tokenbuilders =
   make_interpreter_tokenbuilders(token_flags, quotes, statement_seps,
                                  comment_leads)
 
-if action_flags['heading'].value
+if action_options['heading'].value
   console_io.print_line('BASIC-1973 interpreter version -1')
   console_io.newline
 end
@@ -433,14 +459,14 @@ if !run_filename.nil?
   token = TextConstantToken.new('"' + run_filename + '"')
   nametokens = [TextConstant.new(token)]
   if program.load(nametokens) && program.check
-    interpreter = Interpreter.new(console_io, interpreter_flags)
+    interpreter = Interpreter.new(console_io, interpreter_options)
     interpreter.set_default_args('RND', NumericConstant.new(1))
 
     timing = Benchmark.measure {
-      program.run(interpreter, action_flags)
+      program.run(interpreter, action_options)
     }
 
-    print_timing(timing, console_io) if action_flags['timing'].value
+    print_timing(timing, console_io) if action_options['timing'].value
     program.profile('') if show_profile
   end
 elsif !list_filename.nil?
@@ -459,7 +485,7 @@ elsif !pretty_filename.nil?
   token = TextConstantToken.new('"' + pretty_filename + '"')
   nametokens = [TextConstant.new(token)]
   if program.load(nametokens)
-    pretty_multiline = action_flags['pretty_multiline'].value
+    pretty_multiline = action_options['pretty_multiline'].value
     program.pretty('', pretty_multiline)
   end
 elsif !cref_filename.nil?
@@ -469,19 +495,19 @@ elsif !cref_filename.nil?
     program.crossref
   end
 else
-  interpreter = Interpreter.new(console_io, interpreter_flags)
+  interpreter = Interpreter.new(console_io, interpreter_options)
   interpreter.set_default_args('RND', NumericConstant.new(1))
 
   tokenbuilders = make_command_tokenbuilders(token_flags, quotes)
 
   shell =
-    Shell.new(console_io, interpreter, program, action_flags,
+    Shell.new(console_io, interpreter, program, action_options,
               tokenbuilders)
 
   shell.run
 end
 
-if action_flags['heading'].value
+if action_options['heading'].value
   console_io.newline
   console_io.print_line('BASIC-1973 ended')
 end
