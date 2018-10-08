@@ -23,8 +23,8 @@ require_relative 'program'
 class Option
   attr_reader :value
 
-  def initialize(type, value)
-    @type = type
+  def initialize(defs, value)
+    @defs = defs
     check_value(value)
     @value = value
   end
@@ -37,7 +37,8 @@ class Option
   private
 
   def check_value(value)
-    case @type
+    type = @defs[:type]
+    case type
     when :bool
       legals = %w(TrueClass FalseClass)
 
@@ -48,6 +49,16 @@ class Option
 
       raise(BASICRuntimeError, 'Invalid value') unless
         legals.include?(value.class.to_s)
+
+      min = @defs[:min]
+      if !min.nil? && value < min
+        raise(BASICRuntimeError, 'Valid below minimum')
+      end
+
+      max = @defs[:max]
+      if !max.nil? && value > max
+        raise(BASICRuntimeError, 'Valid above maximum')
+      end
     else
       raise(BASICRuntimeError, 'Unknown value type')
     end
@@ -124,7 +135,7 @@ class Shell
         @console_io.print_line("Unknown option #{kwd}")
         @console_io.newline
       end
-    elsif args.size == 2 && args[0].keyword? && args[1].boolean_constant?
+    elsif args.size == 2 && args[0].keyword?
       kwd = args[0].to_s
       kwd_d = kwd.downcase
 
@@ -357,15 +368,17 @@ run_filename = options[:run_name]
 cref_filename = options[:cref_name]
 show_profile = options.key?(:profile)
 
+boolean = { :type => :bool }
+
 action_options = {}
-action_options['heading'] = Option.new(:bool, !options.key?(:no_heading))
+action_options['heading'] = Option.new(boolean, !options.key?(:no_heading))
 
 action_options['pretty_multiline'] =
-  Option.new(:bool, options.key?(:pretty_multiline))
+  Option.new(boolean, options.key?(:pretty_multiline))
 
-action_options['provenence'] = Option.new(:bool, options.key?(:provenence))
-action_options['timing'] = Option.new(:bool, !options.key?(:no_timing))
-action_options['trace'] = Option.new(:bool, options.key?(:trace))
+action_options['provenence'] = Option.new(boolean, options.key?(:provenence))
+action_options['timing'] = Option.new(boolean, !options.key?(:no_timing))
+action_options['trace'] = Option.new(boolean, options.key?(:trace))
 
 output_flags = {}
 output_flags['echo'] = options.key?(:echo_input)
@@ -389,52 +402,52 @@ output_flags['crlf_on_line_input'] = options.key?(:crlf_on_line_input)
 interpreter_options = {}
 
 interpreter_options['asc_allow_all'] =
-  Option.new(:bool, options.key?(:asc_allow_all))
+  Option.new(boolean, options.key?(:asc_allow_all))
 
 interpreter_options['chr_allow_all'] =
-  Option.new(:bool, options.key?(:chr_allow_all))
+  Option.new(boolean, options.key?(:chr_allow_all))
 
 interpreter_options['fornext_one_beyond'] =
-  Option.new(:bool, options.key?(:fornext_one_beyond))
+  Option.new(boolean, options.key?(:fornext_one_beyond))
 
 interpreter_options['if_false_next_line'] =
-  Option.new(:bool, options.key?(:if_false_next_line))
+  Option.new(boolean, options.key?(:if_false_next_line))
 
 interpreter_options['ignore_rnd_arg'] =
-  Option.new(:bool, options.key?(:ignore_rnd_arg))
+  Option.new(boolean, options.key?(:ignore_rnd_arg))
 
-interpreter_options['int_floor'] = Option.new(:bool, options.key?(:int_floor))
+interpreter_options['int_floor'] = Option.new(boolean, options.key?(:int_floor))
 
 interpreter_options['lock_fornext'] =
-  Option.new(:bool, options.key?(:lock_fornext))
+  Option.new(boolean, options.key?(:lock_fornext))
 
-interpreter_options['randomize'] = Option.new(:bool, options.key?(:randomize))
+interpreter_options['randomize'] = Option.new(boolean, options.key?(:randomize))
 
 interpreter_options['require_initialized'] =
-  Option.new(:bool, options.key?(:require_initialized))
+  Option.new(boolean, options.key?(:require_initialized))
 
 interpreter_options['respect_randomize'] =
-  Option.new(:bool, !options.key?(:ignore_randomize))
+  Option.new(boolean, !options.key?(:ignore_randomize))
 
 token_flags = {}
-token_flags['allow_ascii'] = Option.new(:bool, options.key?(:allow_ascii))
+token_flags['allow_ascii'] = Option.new(boolean, options.key?(:allow_ascii))
 
 token_flags['allow_hash_constant'] =
-  Option.new(:bool, options.key?(:hash_constant))
+  Option.new(boolean, options.key?(:hash_constant))
 
-token_flags['allow_pi'] = Option.new(:bool, options.key?(:allow_pi))
-token_flags['apostrophe_comment'] = Option.new(:bool, true)
-token_flags['backslash_separator'] = Option.new(:bool, true)
-token_flags['bang_comment'] = Option.new(:bool, options.key?(:bang_comment))
-token_flags['colon_file'] = Option.new(:bool, options.key?(:colon_file))
+token_flags['allow_pi'] = Option.new(boolean, options.key?(:allow_pi))
+token_flags['apostrophe_comment'] = Option.new(boolean, true)
+token_flags['backslash_separator'] = Option.new(boolean, true)
+token_flags['bang_comment'] = Option.new(boolean, options.key?(:bang_comment))
+token_flags['colon_file'] = Option.new(boolean, options.key?(:colon_file))
 
-token_flags['colon_separator'] =
-  Option.new(:bool, !options.key?(:no_colon_sep) &&
-                    !options.key?(:colon_file))
+colon_separator = !options.key?(:no_colon_sep) && !options.key?(:colon_file)
+token_flags['colon_separator'] = Option.new(boolean, colon_separator)
 
-token_flags['min_max_op'] = Option.new(:bool, options.key?(:min_max_op))
+token_flags['min_max_op'] = Option.new(boolean, options.key?(:min_max_op))
+
 token_flags['single_quote_strings'] =
-  Option.new(:bool, options.key?(:single_quote_strings))
+  Option.new(boolean, options.key?(:single_quote_strings))
 
 statement_seps = []
 statement_seps << '\\' if token_flags['backslash_separator'].value
