@@ -2,9 +2,11 @@
 module Reader
   def ascii_printables(text)
     ascii_text = ''
+
     text.each_char do |c|
       ascii_text += c if c >= ' ' && c <= '~'
     end
+
     ascii_text
   end
 
@@ -19,12 +21,14 @@ module Reader
 
   def verify_tokens(tokens)
     evens = tokens.values_at(* tokens.each_index.select(&:even?))
+
     evens.each do |token|
       raise(BASICRuntimeError, 'Invalid input') unless
         token.numeric_constant? || token.text_constant?
     end
 
     odds = tokens.values_at(* tokens.each_index.select(&:odd?))
+
     odds.each do |token|
       raise(BASICRuntimeError, 'Invalid input') unless token.separator?
     end
@@ -54,7 +58,7 @@ module Inputter
 
   def line_input(interpreter)
     input_text = read_line
-    input_text += "\r\n" if @crlf_on_line_input
+    input_text += "\r\n" if @output_options['crlf_on_line_input'].value
     quoted = '"' + input_text + '"'
     token = TextConstantToken.new(quoted)
     tokens = [token]
@@ -66,18 +70,8 @@ end
 
 # Handle tab stops and carriage control
 class ConsoleIo
-  def initialize(output_flags)
-    @max_width = output_flags['print_width']
-    @zone_width = output_flags['zone_width']
-    @print_rate = output_flags['speed']
-    @newline_rate = output_flags['newline_speed']
-    @implied_semicolon = output_flags['implied_semicolon']
-    @default_prompt = output_flags['default_prompt']
-    @echo_input = output_flags['echo']
-    @qmark_after_prompt = output_flags['qmark_after_prompt']
-    @back_tab = output_flags['back_tab']
-    @input_high_bit = output_flags['input_high_bit']
-    @crlf_on_line_input = output_flags['crlf_on_line_input']
+  def initialize(output_options)
+    @output_options = output_options
 
     @quotes = ['"']
 
@@ -106,7 +100,10 @@ class ConsoleIo
     raise(BASICRuntimeError, 'End of file') if ascii_text.empty?
 
     print(ascii_text)
-    ascii_text = high_bits(input_text) if @input_high_bit
+    
+    ascii_text = high_bits(input_text) if
+      @output_options['input_high_bit'].value
+
     ascii_text
   end
 
@@ -114,16 +111,18 @@ class ConsoleIo
     input_text = gets
     raise(BASICRuntimeError, 'End of file') if input_text.nil?
     ascii_text = ascii_printables(input_text)
-    puts(ascii_text) if @echo_input
+    puts(ascii_text) if @output_options['echo'].value
     ascii_text
   end
 
   def prompt(text)
     if text.nil?
-      print @default_prompt.value
+      print @output_options['default_prompt'].value
     else
       print text.value
-      print @default_prompt.value if @qmark_after_prompt
+
+      print @output_options['default_prompt'].value if
+        @output_options['qmark_after_prompt'].value
     end
   end
 
@@ -133,8 +132,10 @@ class ConsoleIo
       incr = c == "\b" ? -1 : 1
       @column += incr
       @column = 0 if @column < 0
-      newline if @max_width > 0 && @column >= @max_width
+      newline if @output_options['print_width'].value > 0 &&
+                 @column >= @output_options['print_width'].value
     end
+
     @last_was_numeric = false
   end
 
@@ -149,9 +150,12 @@ class ConsoleIo
 
   def tab
     space_after_numeric if @last_was_numeric
-    if @zone_width > 0
-      print_item(' ') while @column > 0 && @column % @zone_width != 0
+
+    if @output_options['zone_width'].value > 0
+      print_item(' ') while
+        @column > 0 && @column % @output_options['zone_width'].value != 0
     end
+
     @last_was_numeric = false
   end
 
@@ -160,16 +164,21 @@ class ConsoleIo
       space_after_numeric
       print_item(' ') while @column % 3 != 0
     end
+
     @last_was_numeric = false
   end
 
   def implied
-    semicolon if @implied_semicolon
+    semicolon if @output_options['implied_semicolon'].value
     # nothing else otherwise
   end
 
   def columns_to_advance(new_column)
-    @back_tab ? new_column - @column : [new_column - @column, 0].max
+    if @output_options['back_tab'].value
+      new_column - @column
+    else
+      [new_column - @column, 0].max
+    end
   end
 
   def trace_output(s)
@@ -182,6 +191,7 @@ class ConsoleIo
 
   def space_after_numeric
     count = 3
+
     while @column > 0 && count > 0
       print_item(' ')
       count -= 1
@@ -219,12 +229,17 @@ class ConsoleIo
   end
 
   def delay
-    sleep(1.0 / @print_rate) if @print_rate > 0
+    sleep(1.0 / @output_options['print_speed'].value) if
+      @output_options['print_speed'].value > 0
   end
 
   def newline_delay
-    sleep(1.0 / @print_rate) if @print_rate > 0 && @newline_rate.zero?
-    sleep(1.0 / @newline_rate) if @newline_rate > 0
+    sleep(1.0 / @output_options['print_speed'].value) if
+      @output_options['print_speed'].value > 0 &&
+      @output_options['newline_speed'].value.zero?
+
+    sleep(1.0 / @output_options['newline_speed'].value) if
+      @output_options['newline_speed'].value > 0
   end
 end
 
@@ -272,6 +287,7 @@ class DataStore
 
   def read
     raise BASICRuntimeError, 'Out of data' if @data_index >= @data_store.size
+
     @data_index += 1
     @data_store[@data_index - 1]
   end

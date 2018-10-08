@@ -59,6 +59,11 @@ class Option
       if !max.nil? && value > max
         raise(BASICRuntimeError, 'Valid above maximum')
       end
+    when :string
+      legals = %(String)
+
+      raise(BASICRuntimeError, 'Invalid value') unless
+        legals.include?(value.class.to_s)
     else
       raise(BASICRuntimeError, 'Unknown value type')
     end
@@ -227,7 +232,7 @@ class Shell
   end
 end
 
-def make_interpreter_tokenbuilders(token_flags, quotes, statement_separators,
+def make_interpreter_tokenbuilders(token_options, quotes, statement_separators,
                                    comment_leads)
   tokenbuilders = []
 
@@ -243,9 +248,9 @@ def make_interpreter_tokenbuilders(token_flags, quotes, statement_separators,
   keywords = statement_factory.keywords_definitions
   tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
-  colon_file = token_flags['colon_file'].value
+  colon_file = token_options['colon_file'].value
   un_ops = UnaryOperator.operators(colon_file)
-  min_max_op = token_flags['min_max_op'].value
+  min_max_op = token_options['min_max_op'].value
   bi_ops = BinaryOperator.operators(min_max_op)
   operators = (un_ops + bi_ops).uniq
   tokenbuilders << ListTokenBuilder.new(operators, OperatorToken)
@@ -263,12 +268,12 @@ def make_interpreter_tokenbuilders(token_flags, quotes, statement_separators,
     ListTokenBuilder.new(FunctionFactory.user_function_names, UserFunctionToken)
 
   tokenbuilders << TextTokenBuilder.new(quotes)
-  allow_hash_constant = token_flags['allow_hash_constant'].value
+  allow_hash_constant = token_options['allow_hash_constant'].value
   tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
   tokenbuilders << IntegerTokenBuilder.new
-  allow_pi = token_flags['allow_pi'].value
+  allow_pi = token_options['allow_pi'].value
   tokenbuilders << NumericSymbolTokenBuilder.new if allow_pi
-  allow_ascii = token_flags['allow_ascii'].value
+  allow_ascii = token_options['allow_ascii'].value
   tokenbuilders << TextSymbolTokenBuilder.new if allow_ascii
   tokenbuilders << VariableTokenBuilder.new
 
@@ -278,7 +283,7 @@ def make_interpreter_tokenbuilders(token_flags, quotes, statement_separators,
   tokenbuilders << WhitespaceTokenBuilder.new
 end
 
-def make_command_tokenbuilders(token_flags, quotes)
+def make_command_tokenbuilders(token_options, quotes)
   tokenbuilders = []
 
   keywords = %w(
@@ -288,9 +293,9 @@ def make_command_tokenbuilders(token_flags, quotes)
   )
   tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
-  colon_file = token_flags['colon_file'].value
+  colon_file = token_options['colon_file'].value
   un_ops = UnaryOperator.operators(colon_file)
-  min_max_op = token_flags['min_max_op'].value
+  min_max_op = token_options['min_max_op'].value
   bi_ops = BinaryOperator.operators(min_max_op)
   operators = (un_ops + bi_ops).uniq
   tokenbuilders << ListTokenBuilder.new(operators, OperatorToken)
@@ -299,7 +304,7 @@ def make_command_tokenbuilders(token_flags, quotes)
 
   tokenbuilders << TextTokenBuilder.new(quotes)
 
-  allow_hash_constant = token_flags['allow_hash_constant'].value
+  allow_hash_constant = token_options['allow_hash_constant'].value
   tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
 
   tokenbuilders << ListTokenBuilder.new(%w(TRUE FALSE), BooleanConstantToken)
@@ -369,6 +374,10 @@ cref_filename = options[:cref_name]
 show_profile = options.key?(:profile)
 
 boolean = { :type => :bool }
+string = { :type => :string }
+int = { :type => :int, :min => 0 }
+int_132 = { :type => :int, :max => 132, :min => 0 }
+int_40 = { :type => :int, :max => 40, :min => 0 }
 
 action_options = {}
 action_options['heading'] = Option.new(boolean, !options.key?(:no_heading))
@@ -380,24 +389,41 @@ action_options['provenence'] = Option.new(boolean, options.key?(:provenence))
 action_options['timing'] = Option.new(boolean, !options.key?(:no_timing))
 action_options['trace'] = Option.new(boolean, options.key?(:trace))
 
-output_flags = {}
-output_flags['echo'] = options.key?(:echo_input)
-output_flags['speed'] = 0
-output_flags['speed'] = 10 if options.key?(:tty)
-output_flags['newline_speed'] = 0
-output_flags['newline_speed'] = 10 if options.key?(:tty_lf)
-output_flags['print_width'] = 72
-output_flags['print_width'] = options[:print_width].to_i if
-  options.key?(:print_width)
-output_flags['zone_width'] = 16
-output_flags['zone_width'] = options[:zone_width].to_i if
-  options.key?(:zone_width)
-output_flags['implied_semicolon'] = options.key?(:implied_semicolon)
-output_flags['qmark_after_prompt'] = options.key?(:qmark_after_prompt)
-output_flags['default_prompt'] = TextConstantToken.new('"? "')
-output_flags['back_tab'] = options.key?(:back_tab)
-output_flags['input_high_bit'] = options.key?(:input_high_bit)
-output_flags['crlf_on_line_input'] = options.key?(:crlf_on_line_input)
+output_options = {}
+
+output_options['back_tab'] = Option.new(boolean, options.key?(:back_tab))
+
+output_options['crlf_on_line_input'] =
+  Option.new(boolean, options.key?(:crlf_on_line_input))
+
+output_options['default_prompt'] = Option.new(string, '? ')
+
+output_options['echo'] = Option.new(boolean, options.key?(:echo_input))
+
+output_options['implied_semicolon'] =
+  Option.new(boolean, options.key?(:implied_semicolon))
+
+output_options['input_high_bit'] =
+  Option.new(boolean, options.key?(:input_high_bit))
+
+newline_speed = 0
+newline_speed = 10 if options.key?(:tty_lf)
+output_options['newline_speed'] = Option.new(int, newline_speed)
+
+print_width = 72
+print_width = options[:print_width].to_i if options.key?(:print_width)
+output_options['print_width'] = Option.new(int_132, print_width)
+
+output_options['qmark_after_prompt'] =
+  Option.new(boolean, options.key?(:qmark_after_prompt))
+
+print_speed = 0
+print_speed = 10 if options.key?(:tty)
+output_options['print_speed'] = Option.new(int, print_speed)
+
+zone_width = 16
+zone_width = options[:zone_width].to_i if options.key?(:zone_width)
+output_options['zone_width'] = Option.new(int_40, zone_width)
 
 interpreter_options = {}
 
@@ -429,44 +455,43 @@ interpreter_options['require_initialized'] =
 interpreter_options['respect_randomize'] =
   Option.new(boolean, !options.key?(:ignore_randomize))
 
-token_flags = {}
-token_flags['allow_ascii'] = Option.new(boolean, options.key?(:allow_ascii))
+token_options = {}
+token_options['allow_ascii'] = Option.new(boolean, options.key?(:allow_ascii))
 
-token_flags['allow_hash_constant'] =
+token_options['allow_hash_constant'] =
   Option.new(boolean, options.key?(:hash_constant))
 
-token_flags['allow_pi'] = Option.new(boolean, options.key?(:allow_pi))
-token_flags['apostrophe_comment'] = Option.new(boolean, true)
-token_flags['backslash_separator'] = Option.new(boolean, true)
-token_flags['bang_comment'] = Option.new(boolean, options.key?(:bang_comment))
-token_flags['colon_file'] = Option.new(boolean, options.key?(:colon_file))
+token_options['allow_pi'] = Option.new(boolean, options.key?(:allow_pi))
+token_options['apostrophe_comment'] = Option.new(boolean, true)
+token_options['backslash_separator'] = Option.new(boolean, true)
+token_options['bang_comment'] = Option.new(boolean, options.key?(:bang_comment))
+token_options['colon_file'] = Option.new(boolean, options.key?(:colon_file))
 
 colon_separator = !options.key?(:no_colon_sep) && !options.key?(:colon_file)
-token_flags['colon_separator'] = Option.new(boolean, colon_separator)
+token_options['colon_separator'] = Option.new(boolean, colon_separator)
 
-token_flags['min_max_op'] = Option.new(boolean, options.key?(:min_max_op))
+token_options['min_max_op'] = Option.new(boolean, options.key?(:min_max_op))
 
-token_flags['single_quote_strings'] =
+token_options['single_quote_strings'] =
   Option.new(boolean, options.key?(:single_quote_strings))
 
 statement_seps = []
-statement_seps << '\\' if token_flags['backslash_separator'].value
-statement_seps << ':' if token_flags['colon_separator'].value
+statement_seps << '\\' if token_options['backslash_separator'].value
+statement_seps << ':' if token_options['colon_separator'].value
 quotes = []
 quotes << '"'
-quotes << "'" if token_flags['single_quote_strings'].value
+quotes << "'" if token_options['single_quote_strings'].value
 comment_leads = []
-comment_leads << '!' if token_flags['bang_comment'].value
+comment_leads << '!' if token_options['bang_comment'].value
 
 comment_leads << "'" if
-  token_flags['apostrophe_comment'].value &&
-  !token_flags['single_quote_strings'].value
+  token_options['apostrophe_comment'].value &&
+  !token_options['single_quote_strings'].value
 
-console_io =
-  ConsoleIo.new(output_flags)
+console_io = ConsoleIo.new(output_options)
 
 tokenbuilders =
-  make_interpreter_tokenbuilders(token_flags, quotes, statement_seps,
+  make_interpreter_tokenbuilders(token_options, quotes, statement_seps,
                                  comment_leads)
 
 if action_options['heading'].value
@@ -519,7 +544,7 @@ else
   interpreter = Interpreter.new(console_io, interpreter_options)
   interpreter.set_default_args('RND', NumericConstant.new(1))
 
-  tokenbuilders = make_command_tokenbuilders(token_flags, quotes)
+  tokenbuilders = make_command_tokenbuilders(token_options, quotes)
 
   shell =
     Shell.new(console_io, interpreter, program, action_options,
