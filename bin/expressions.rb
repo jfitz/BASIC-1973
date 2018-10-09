@@ -93,10 +93,11 @@ class BASICArray
     false
   end
 
-  def values
+  def values(interpreter)
     values = {}
 
-    (0..@dimensions[0].to_i).each do |col|
+    base = interpreter.base
+    (base..@dimensions[0].to_i).each do |col|
       value = get_value(col)
       coords = make_coord(col)
       values[coords] = value
@@ -160,7 +161,8 @@ class BASICArray
   def print_1(printer, interpreter, carriage)
     n_cols = @dimensions[0].to_i
 
-    (0..n_cols).each do |col|
+    base = interpreter.base
+    (base..n_cols).each do |col|
       value = get_value(col)
       value.print(printer)
       carriage.print(printer, interpreter)
@@ -172,7 +174,8 @@ class BASICArray
   def write_1(printer, interpreter, carriage)
     n_cols = @dimensions[0].to_i
 
-    (0..n_cols).each do |col|
+    base = interpreter.base
+    (base..n_cols).each do |col|
       value = get_value(col)
       value.write(printer)
       carriage.write(printer, interpreter)
@@ -591,7 +594,8 @@ class ArrayValue < Value
   def evaluate_1(interpreter, n_cols)
     values = {}
 
-    (0..n_cols).each do |col|
+    base = interpreter.base
+    (base..n_cols).each do |col|
       coords = make_coord(col)
       variable = Value.new(@variable_name, coords)
       values[coords] = interpreter.get_value(variable)

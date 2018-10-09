@@ -880,7 +880,7 @@ class ChangeStatement < AbstractStatement
       target_variable = Reference.new(target_variable_name)
       interpreter.set_dimensions(target_variable, dims)
 
-      values = array.values
+      values = array.values(interpreter)
       interpreter.set_values(target_variable_name, values)
 
     elsif source_value.numeric_constant?
@@ -2456,7 +2456,7 @@ class OptionStatement < AbstractStatement
   end
 
   def self.extra_keywords
-    %w(PROVENENCE TRACE)
+    %w(BASE PROVENENCE TRACE)
   end
 
   def initialize(keywords, tokens_lists)
@@ -2464,7 +2464,7 @@ class OptionStatement < AbstractStatement
 
     # omit HEADING and TIMING as they are not used in the interpreter
     # omit PRETTY_MULTILINE too
-    template = [['PROVENENCE', 'TRACE'], [1, '>=']]
+    template = [['BASE', 'PROVENENCE', 'TRACE'], [1, '>=']]
 
     if check_template(tokens_lists, template)
       @key = tokens_lists[0].to_s.downcase
@@ -3277,7 +3277,8 @@ class ArrReadStatement < AbstractReadStatement
   def read_array(name, dims, interpreter, ds)
     values = {}
 
-    (0..dims[0].to_i).each do |col|
+    base = interpreter.base
+    (base..dims[0].to_i).each do |col|
       coord = make_coord(col)
       values[coord] = ds.read
     end
@@ -3382,7 +3383,7 @@ class ArrLetStatement < AbstractStatement
   def execute_core(interpreter)
     r_value = first_value(interpreter)
     dims = r_value.dimensions
-    values = r_value.values
+    values = r_value.values(interpreter)
 
     l_values = @assignment.eval_target(interpreter)
     l_values.each do |l_value|

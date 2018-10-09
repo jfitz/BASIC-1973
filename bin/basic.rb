@@ -287,7 +287,7 @@ def make_command_tokenbuilders(token_options, quotes)
   tokenbuilders = []
 
   keywords = %w(
-    BREAK CROSSREF DELETE DIMS EXIT HEADING LIST LOAD NEW OPTION PARSE
+    BASE BREAK CROSSREF DELETE DIMS EXIT HEADING LIST LOAD NEW OPTION PARSE
     PRETTY PRETTY_MULTILINE PROFILE PROVENENCE RENUMBER RUN SAVE TIMING
     TOKENS TRACE UDFS VARS
   )
@@ -354,6 +354,7 @@ OptionParser.new do |opt|
   opt.on('--if-false-next-line') { |o| options[:if_false_next_line] = o }
   opt.on('--fornext-one-beyond') { |o| options[:fornext_one_beyond] = o }
   opt.on('--lock-fornext') { |o| options[:lock_fornext] = o }
+  opt.on('--base BASE') { |o| options[:base] = o }
   opt.on('--require-initialized') { |o| options[:require_initialized] = o }
   opt.on('--hash-constant') { |o| options[:hash_constant] = o }
   opt.on('--define-pi') { |o| options[:allow_pi] = o }
@@ -378,8 +379,14 @@ string = { :type => :string }
 int = { :type => :int, :min => 0 }
 int_132 = { :type => :int, :max => 132, :min => 0 }
 int_40 = { :type => :int, :max => 40, :min => 0 }
+int_1 = { :type => :int, :max => 1, :min => 0 }
 
 action_options = {}
+
+base = 0
+base = options[:base].to_i if options.key?(:base)
+action_options['base'] = Option.new(int_1, base)
+
 action_options['heading'] = Option.new(boolean, !options.key?(:no_heading))
 
 action_options['pretty_multiline'] =
