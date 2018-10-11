@@ -366,8 +366,8 @@ class AbstractStatement
   def print_trace_info(trace_out, current_line_index)
     trace_out.newline_when_needed
 
-    unless part_of_user_function.nil?
-      trace_out.print_out '(' + part_of_user_function.to_s + ') '
+    unless @part_of_user_function.nil?
+      trace_out.print_out '(' + @part_of_user_function.to_s + ') '
     end
 
     trace_out.print_out current_line_index.to_s + ':' + pretty
@@ -381,6 +381,10 @@ class AbstractStatement
     print_trace_info(trace_out, current_line_index)
 
     if part_of_user_function.nil? || function_running
+      if @part_of_user_function != interpreter.current_user_function
+        raise(BASICRuntimeError, 'Invalid transfer in/out of function')
+      end
+
       timing = Benchmark.measure { execute(interpreter) }
       user_time = timing.utime + timing.cutime
       sys_time = timing.stime + timing.cstime

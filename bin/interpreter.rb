@@ -216,12 +216,18 @@ class Interpreter
       self, @trace_out, @current_line_index, @function_running)
   end
 
+  def current_user_function
+    return nil if @function_stack.empty?
+
+    @function_stack[-1][0]
+  end
+
   def run_user_function(name)
     line_index = @user_function_lines[name]
 
     raise(BASICRuntimeError, "Function #{name} not defined") if line_index.nil?
 
-    @function_stack.push [@current_line_index, @next_line_index]
+    @function_stack.push [name.to_s, @current_line_index, @next_line_index]
 
     # run program at line_index
     @current_line_index = line_index
@@ -233,7 +239,7 @@ class Interpreter
       stop_running
     end
 
-    @current_line_index, @next_line_index = @function_stack.pop
+    _, @current_line_index, @next_line_index = @function_stack.pop
 
     # one user-def function may invoke a second
     @function_running = !@function_stack.empty?

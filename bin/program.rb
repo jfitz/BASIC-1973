@@ -328,7 +328,7 @@ class Program
   def check_program
     errors = []
 
-    part_of_user_function = nil?
+    part_of_user_function = nil
 
     line_numbers = lines.keys.sort
 
@@ -336,7 +336,7 @@ class Program
       line = @lines[line_number]
       statements = line.statements
       statements.each do |statement|
-        if part_of_user_function && statement.multidef?
+        if !part_of_user_function.nil? && statement.multidef?
           errors << "Missing FNEND before DEF in line #{line_number}"
         end
 
