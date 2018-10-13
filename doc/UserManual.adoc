@@ -869,12 +869,19 @@ Examples:
 
 	100 DEF FNB(Q) : R1 = RND(0)*Q : FNB = INT(R1) : FNEND
 
+A statement-based user-defined function must assign a value to the function.
+If it does not, the value returned is the value from the most recent assignment.
+If a value was never assigned, the value is zero (for numeric functions) or an empty string (for string functions).
+
 You can GOTO or GOSUB within a function.
-You cannot GOTO or GOSUB into the body of a user-defined function, or out of the body of a user-defined function, or from one user-defined function to another user-defined function.
+You cannot GOTO or GOSUB from the main program into the body of a user-defined function.
+If you do, lines in the function are ignored until after the FNEND statement.
+You cannot GOTO or GOSUC out of the body of a user-defined function to the main program or from one user-defined function to another user-defined function.
+Such a transfer will cause an error.
 
 The DEF statement is processed before the program runs, and processed only once.
 Thus, it does not have to appear before it is used in a LET statement.
-(Although tradition is that the DEF is specified before the function is used.)
+(Although it is traditional to specify the DEF before the function is used.)
 
 DIM
 ~~~

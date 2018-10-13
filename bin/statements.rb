@@ -391,6 +391,8 @@ class AbstractStatement
       time = user_time + sys_time
       @profile_time += time
       @profile_count += 1
+    else
+      trace_out.print_line(' Line ignored')
     end
   end
 
