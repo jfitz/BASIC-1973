@@ -1,3 +1,51 @@
+# Helper class for FOR/NEXT
+class ForNextControl
+  attr_reader :control
+  attr_reader :loop_start_index
+  attr_reader :end
+
+  def initialize(control, start, endv, step_value, loop_start_index)
+    @control = control
+    @start = start
+    @end = endv
+    @step_value = step_value
+    @loop_start_index = loop_start_index
+  end
+
+  def bump_control(interpreter)
+    current_value = interpreter.get_value(@control)
+    current_value += @step_value
+    interpreter.unlock_variable(@control)
+    interpreter.set_value(@control, current_value)
+    interpreter.lock_variable(@control)
+  end
+
+  def front_terminated?
+    zero = NumericConstant.new(0)
+
+    if @step_value > zero
+      @start > @end
+    elsif @step_value < zero
+      @start < @end
+    else
+      false
+    end
+  end
+
+  def terminated?(interpreter)
+    zero = NumericConstant.new(0)
+    current_value = interpreter.get_value(@control)
+
+    if @step_value > zero
+      current_value + @step_value > @end
+    elsif @step_value < zero
+      current_value + @step_value < @end
+    else
+      false
+    end
+  end
+end
+
 # the interpreter
 class Interpreter
   attr_reader :current_line_index
@@ -459,6 +507,7 @@ class Interpreter
 
   def statement_start_index(line_number, _statement_index)
     line = @program.lines[line_number]
+
     return if line.nil?
 
     statements = line.statements
@@ -492,6 +541,7 @@ class Interpreter
     trace = @action_options['trace'].value
 
     result_values = []
+
     parsed_expressions.each do |parsed_expression|
       stack = []
       exp = parsed_expression.empty? ? 0 : 1
@@ -555,6 +605,7 @@ class Interpreter
     upper_bound = 1 if upper_bound <= 0
     upper_bound = 1 if @interpreter_options['ignore_rnd_arg'].value
     upper_bound = upper_bound.to_f
+
     NumericConstant.new(@randomizer.rand(upper_bound))
   end
 
@@ -671,6 +722,7 @@ class Interpreter
       v = variable.to_s
       default_type = variable.content_type
       default_value = NumericConstant.new(0)
+
       default_value = TextConstant.new(TextConstantToken.new('""')) if
         default_type == 'string'
 
@@ -678,6 +730,7 @@ class Interpreter
         if @interpreter_options['require_initialized'].value
           raise(BASICRuntimeError, "Uninitialized variable #{v}")
         end
+
         @variables[v] =
           {
             'line' => @current_line_index,
@@ -696,6 +749,7 @@ class Interpreter
 
     if trace && !seen
       provenence = @action_options['provenence'].value
+
       if provenence && !line.nil?
         text = ' ' + variable.to_s + ': (' + line.to_s + ') ' + value.to_s
       else
@@ -804,9 +858,14 @@ class Interpreter
     @return_stack.pop
   end
 
-  def assign_fornext(fornext_control)
-    control_variable = fornext_control.control
-    @fornexts[control_variable] = fornext_control
+  def assign_fornext(control, from, to, step)
+    fornext_control =
+      ForNextControl.new(control, from, to, step, @next_line_index)
+
+    @fornexts[control] = fornext_control
+    set_value(control, from)
+
+    fornext_control
   end
 
   def retrieve_fornext(control_variable)
@@ -857,6 +916,7 @@ class Interpreter
 
     fh = @file_handlers[file_handle]
     fh.set_mode(mode)
+
     fh
   end
 
@@ -868,6 +928,7 @@ class Interpreter
 
     fh = @file_handlers[file_handle]
     fh.set_mode(:read)
+
     fh
   end
 
