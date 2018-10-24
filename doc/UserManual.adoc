@@ -141,7 +141,7 @@ When the BASIC program ends, BASIC-1973 ends.
 |--parse filename |specifies the file to load and parse.
 |--no-heading |Suppress the heading and trailing messages
 |--trace |Print each statement prior to executing it (useful for debugging). Does the same thing as the 'OPTION TRACE TRUE' command in interactive mode, but from the command line.
-|--provenence |When displaying a variable in a trace, also display the line number where it was set.
+|--provenance |When displaying a variable in a trace, also display the line number where it was set.
 |--tty |Print output slowly, emulating the speed of an ASR-33 Teletype. Provides a better experience with some programs (often games) in which slow output lets your anticipation build. The fast output of modern computers displays information quickly, and TTY mode lets you read each line as it is "printed".
 |--tty-lf |Similar to --tty but delays only the newline characters, not each individual character. Useful with --trace when debugging.
 |--input-high-bit |Changes the values returned from INPUT$ statements to set the high bit on.
@@ -400,7 +400,7 @@ The options that can be set are:
     BASE (0 or 1)
     HEADING (TRUE or FALSE)
     PRETTY_MULTILINE (TRUE or FALSE)
-    PROVENENCE (TRUE or FALSE)
+    PROVENANCE (TRUE or FALSE)
     TIMING (TRUE or FALSE)
     TRACE (TRUE or FALSE)
 
@@ -431,7 +431,7 @@ OPTION PRETTY_MULTILINE TRUE
 
 When listing programs, list each statement on a separate line.
 
-OPTION PROVENENCE TRUE
+OPTION PROVENANCE TRUE
 
 When TRACE is TRUE, expand display of a variable to include the line in which it was assigned its value.
 
@@ -1345,7 +1345,7 @@ Sets an option for the interpreter.
 
 Syntax: OPTION option expression
 
-Option is either 'BASE', 'TRACE' or 'PROVENENCE'.
+Option is either 'BASE', 'TRACE' or 'PROVENANCE'.
 The options for HEADING and TIMING are not available as a run-time option.
 
 Expression must evaluate to a boolean value.
@@ -1354,7 +1354,7 @@ It may be 'TRUE' or 'FALSE' or a more complex expression.
 Examples:
 
 	10 OPTION TRACE TRUE
-	40 OPTION PROVENENCE A > 0
+	40 OPTION PROVENANCE A > 0
 	100 OPTION BASE 1
 
 Unlike other interpreters, the OPTION statement is executed in-line.

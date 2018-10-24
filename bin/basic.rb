@@ -288,7 +288,7 @@ def make_command_tokenbuilders(token_options, quotes)
 
   keywords = %w(
     BASE BREAK CROSSREF DELETE DIMS EXIT HEADING LIST LOAD NEW OPTION PARSE
-    PRETTY PRETTY_MULTILINE PROFILE PROVENENCE RENUMBER RUN SAVE TIMING
+    PRETTY PRETTY_MULTILINE PROFILE PROVENANCE RENUMBER RUN SAVE TIMING
     TOKENS TRACE UDFS VARS
   )
   tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
@@ -334,7 +334,7 @@ OptionParser.new do |opt|
   opt.on('--no-heading') { |o| options[:no_heading] = o }
   opt.on('--echo-input') { |o| options[:echo_input] = o }
   opt.on('--trace') { |o| options[:trace] = o }
-  opt.on('--provenence') { |o| options[:provenence] = o }
+  opt.on('--provenance') { |o| options[:provenance] = o }
   opt.on('--no-timing') { |o| options[:no_timing] = o }
   opt.on('--tty') { |o| options[:tty] = o }
   opt.on('--tty-lf') { |o| options[:tty_lf] = o }
@@ -392,7 +392,7 @@ action_options['heading'] = Option.new(boolean, !options.key?(:no_heading))
 action_options['pretty_multiline'] =
   Option.new(boolean, options.key?(:pretty_multiline))
 
-action_options['provenence'] = Option.new(boolean, options.key?(:provenence))
+action_options['provenance'] = Option.new(boolean, options.key?(:provenance))
 action_options['timing'] = Option.new(boolean, !options.key?(:no_timing))
 action_options['trace'] = Option.new(boolean, options.key?(:trace))
 
