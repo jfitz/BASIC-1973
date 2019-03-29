@@ -2492,7 +2492,7 @@ class OptionStatement < AbstractStatement
   end
 
   def self.extra_keywords
-    %w(BASE PROVENENCE TRACE)
+    %w(BASE PROVENANCE TRACE)
   end
 
   def initialize(keywords, tokens_lists)
@@ -2500,7 +2500,7 @@ class OptionStatement < AbstractStatement
 
     # omit HEADING and TIMING as they are not used in the interpreter
     # omit PRETTY_MULTILINE too
-    template = [['BASE', 'PROVENENCE', 'TRACE'], [1, '>=']]
+    template = [['BASE', 'PROVENANCE', 'TRACE'], [1, '>=']]
 
     if check_template(tokens_lists, template)
       @key = tokens_lists[0].to_s.downcase
