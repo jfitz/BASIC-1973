@@ -162,6 +162,7 @@ When the BASIC program ends, BASIC-1973 ends.
 |--if-false-next-line |When an IF without an ELSE and with a statement (not a destination line number) evaluates its condition as false, change execution to the next numbered line, not the next statement in a multistatment line.
 |--fornext-one-beyond |When a FOR/NEXT loop ends, the index value is one step (usually 1) beyond the end value. (Normally index value is the end value.)
 |--lock-fornext |Lock control variables to FOR/NEXT loops. Variables can be read but not changed.
+|--match-fornext |Require exact pairing of FOR/NEXT loops. The default allows programs to jump out of an inner loop and continue the outer loop.
 |--base 0/1 |Set the minimum for subscripts to either 0 or 1. Default is 0.
 |--require-initialized |Require that variables are initialized before they are used.
 |--hash-constant |Allow numeric constants in the form '#c' where c is any single character. Disables file handle operator and the not-equals operator, which are also represented by '#'.
@@ -420,6 +421,7 @@ The options that can be set are:
     INPUT_HIGH_BIT
     INT_FLOOR
     LOCK_FORNEXT
+    MATCH_FORNEXT
     MIN_MAX_OP
     NEWLINE_SPEED
     PRETTY_MULTILINE
@@ -463,6 +465,7 @@ The OPTION command overrides the command-line setting.
 |INPUT_HIGH_BIT |TRUE or FALSE |FALSE |INPUT$ statement sets high bit of character
 |INT_FLOOR |TRUE or FALSE |FALSE |Sets truncation towards negative infinity instead of towards zero
 |LOCK_FORNEXT |TRUE or FALSE |FALSE |Do not allow changes to FOR/NEXT control variables within the loop
+|MATCH_FORNEXT |TRUE or FALSE |FALSE |Require exact pairing of FOR and NEXT statements
 |MIN_MAX_OP |TRUE or FALSE |FALSE |Allow MIN and MAX operators
 |NEWLINE_SPEED |numeric |0 |Limit printing speed only for newlines
 |PRETTY_MULTILINE |TRUE or FALSE |FALSE |When pretty-listing, print each statement on its own line
@@ -1409,6 +1412,7 @@ Possible options are a subset of the options in the shell.
     INPUT_HIGH_BIT
     INT_FLOOR
     LOCK_FORNEXT
+    MATCH_FORNEXT
     NEWLINE_SPEED
     PRINT_SPEED
     PRINT_WIDTH

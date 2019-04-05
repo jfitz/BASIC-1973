@@ -322,7 +322,7 @@ def make_command_tokenbuilders(options, quotes)
     CHR_ALLOW_ALL COLON_FILE COLON_SEPARATOR CRLF_ON_LINE_INPUT
     DEFAULT_PROMPT ECHO FORNEXT_ONE_BEYOND HEADING
     IF_FALSE_NEXT_LINE IGNORE_RND_ARG IMPLIED_SEMICOLON INPUT_HIGH_BIT
-    INT_FLOOR LOCK_FORNEXT MIN_MAX_OP NEWLINE_SPEED
+    INT_FLOOR LOCK_FORNEXT MATCH_FORNEXT MIN_MAX_OP NEWLINE_SPEED
     PRETTY_MULTILINE PRINT_SPEED PRINT_WIDTH PROVENANCE
     QMARK_AFTER_PROMPT RANDOMIZE REQUIRE_INITIALIZED RESPECT_RANDOMIZE
     SINGLE_QUOTE_STRING TIMING TRACE ZONE_WIDTH
@@ -390,6 +390,7 @@ OptionParser.new do |opt|
   opt.on('--if-false-next-line') { |o| options[:if_false_next_line] = o }
   opt.on('--fornext-one-beyond') { |o| options[:fornext_one_beyond] = o }
   opt.on('--lock-fornext') { |o| options[:lock_fornext] = o }
+  opt.on('--match-fornext') { |o| options[:match_fornext] = o }
   opt.on('--base BASE') { |o| options[:base] = o }
   opt.on('--require-initialized') { |o| options[:require_initialized] = o }
   opt.on('--hash-constant') { |o| options[:hash_constant] = o }
@@ -474,6 +475,9 @@ basic_options['int_floor'] = Option.new(boolean, options.key?(:int_floor))
 
 basic_options['lock_fornext'] =
   Option.new(boolean, options.key?(:lock_fornext))
+
+basic_options['match_fornext'] =
+  Option.new(boolean, options.key?(:match_fornext))
 
 basic_options['min_max_op'] = Option.new(boolean, options.key?(:min_max_op))
 
