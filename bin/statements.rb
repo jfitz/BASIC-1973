@@ -3425,7 +3425,8 @@ end
 class ArrLetStatement < AbstractStatement
   def self.lead_keywords
     [
-      [KeywordToken.new('ARR')]
+      [KeywordToken.new('ARR')],
+      [KeywordToken.new('ARR'), KeywordToken.new('LET')]
     ]
   end
 
@@ -3727,7 +3728,8 @@ end
 class MatLetStatement < AbstractStatement
   def self.lead_keywords
     [
-      [KeywordToken.new('MAT')]
+      [KeywordToken.new('MAT')],
+      [KeywordToken.new('MAT'), KeywordToken.new('LET')]
     ]
   end
 
