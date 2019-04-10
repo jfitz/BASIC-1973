@@ -3222,7 +3222,7 @@ class ArrPrintStatement < AbstractPrintStatement
   end
 
   def initialize(keywords, tokens_lists)
-    super(keywords, tokens_lists, CarriageControl.new(','))
+    super(keywords, tokens_lists, CarriageControl.new('NL'))
 
     extract_modifiers(tokens_lists)
 
@@ -3242,6 +3242,7 @@ class ArrPrintStatement < AbstractPrintStatement
     fhr = interpreter.get_file_handler(fh, :print)
 
     i = 0
+
     @print_items.each do |item|
       if item.printable?
         carriage = CarriageControl.new('')
@@ -3250,6 +3251,7 @@ class ArrPrintStatement < AbstractPrintStatement
           !@print_items[i + 1].printable?
         item.print(fhr, interpreter, carriage)
       end
+
       i += 1
     end
   end
@@ -3369,7 +3371,7 @@ class ArrWriteStatement < AbstractWriteStatement
   end
 
   def initialize(keywords, tokens_lists)
-    super(keywords, tokens_lists, CarriageControl.new(','))
+    super(keywords, tokens_lists, CarriageControl.new('NL'))
 
     extract_modifiers(tokens_lists)
 
@@ -3389,6 +3391,7 @@ class ArrWriteStatement < AbstractWriteStatement
     fhr = interpreter.get_file_handler(fh, :print)
 
     i = 0
+
     @print_items.each do |item|
       if item.printable?
         carriage = CarriageControl.new('')
@@ -3692,6 +3695,7 @@ class MatWriteStatement < AbstractWriteStatement
     fhr = interpreter.get_file_handler(fh, :print)
 
     i = 0
+
     @print_items.each do |item|
       if item.printable?
         carriage = CarriageControl.new('')
