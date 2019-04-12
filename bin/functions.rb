@@ -530,7 +530,12 @@ class FunctionLeft < AbstractScalarFunction
 
       raise(BASICRuntimeError, "Invalid count for #{@name}()") if count < 0
 
-      text = value[0..count].chop
+      if count > 0
+        count2 = count - 1
+        text = value[0..count2]
+      else
+        text = ''
+      end
       quoted = '"' + text + '"'
       token = TextConstantToken.new(quoted)
       TextConstant.new(token)
@@ -601,14 +606,19 @@ class FunctionMid < AbstractScalarFunction
       raise(BASICRuntimeError, "Invalid start index for #{@name}()") if
         start < 1
 
-      start_index = start - 1
-      end_index = start_index + length - 1
+      raise(BASICRuntimeError, "Invalid length for #{@name}()") if
+        length < 0
 
-      raise(BASICRuntimeError, "Invalid end index for #{@name}()") if
-        end_index < start_index
+      if length > 0
+        start_index = start - 1
+        end_index = start_index + length - 1
 
-      text = value[start_index..end_index]
-      text = '' if text.nil?
+        text = value[start_index..end_index]
+        text = '' if text.nil?
+      else
+        text = ''
+      end
+      
       quoted = '"' + text + '"'
       token = TextConstantToken.new(quoted)
       TextConstant.new(token)
@@ -699,7 +709,9 @@ class FunctionRight < AbstractScalarFunction
     if match_args_to_signature(args, @signature)
       value = args[0].to_v
       count = args[1].to_i
+
       raise(BASICRuntimeError, "Invalid count for #{@name}()") if count < 0
+
       start = value.size - count
       start = 0 if start < 0
       text = value[start..-1]
