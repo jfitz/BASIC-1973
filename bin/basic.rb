@@ -325,7 +325,7 @@ def make_command_tokenbuilders(options, quotes)
     INT_FLOOR LOCK_FORNEXT MATCH_FORNEXT MIN_MAX_OP NEWLINE_SPEED
     PRETTY_MULTILINE PRINT_SPEED PRINT_WIDTH PROVENANCE
     QMARK_AFTER_PROMPT RANDOMIZE REQUIRE_INITIALIZED RESPECT_RANDOMIZE
-    SINGLE_QUOTE_STRING TIMING TRACE ZONE_WIDTH
+    SEMICOLON_ZONE_WIDTH SINGLE_QUOTE_STRING TIMING TRACE ZONE_WIDTH
   )
   tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
@@ -395,6 +395,7 @@ OptionParser.new do |opt|
   opt.on('--qmark-after-prompt') { |o| options[:qmark_after_prompt] = o }
   opt.on('--randomize') { |o| options[:randomize] = o }
   opt.on('--require-initialized') { |o| options[:require_initialized] = o }
+  opt.on('--semicolon-zone-width WIDTH') { |o| options[:semicolon_zone_width] = o }
   opt.on('--single-quote-strings') { |o| options[:single_quote_strings] = o }
   opt.on('--trace') { |o| options[:trace] = o }
   opt.on('--no-timing') { |o| options[:no_timing] = o }
@@ -508,6 +509,13 @@ basic_options['require_initialized'] =
 
 basic_options['respect_randomize'] =
   Option.new(boolean, !options.key?(:ignore_randomize))
+
+semicolon_zone_width = 0
+if options.key?(:semicolon_zone_width)
+  semicolon_zone_width = options[:semicolon_zone_width].to_i
+end
+
+basic_options['semicolon_zone_width'] = Option.new(int, semicolon_zone_width)
 
 basic_options['single_quote_strings'] =
   Option.new(boolean, options.key?(:single_quote_strings))

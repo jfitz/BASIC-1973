@@ -141,35 +141,36 @@ When the BASIC program ends, BASIC-1973 ends.
 |--parse filename |specifies the file to load and parse.
 |--no-heading |Suppress the heading and trailing messages
 |--trace |Print each statement prior to executing it (useful for debugging). Does the same thing as the 'OPTION TRACE TRUE' command in interactive mode, but from the command line.
-|--provenance |When displaying a variable in a trace, also display the line number where it was set.
-|--tty |Print output slowly, emulating the speed of an ASR-33 Teletype. Provides a better experience with some programs (often games) in which slow output lets your anticipation build. The fast output of modern computers displays information quickly, and TTY mode lets you read each line as it is "printed".
-|--tty-lf |Similar to --tty but delays only the newline characters, not each individual character. Useful with --trace when debugging.
-|--input-high-bit |Changes the values returned from INPUT$ statements to set the high bit on.
-|--no-colon-separator |Do not allow colon separator for statements. The backslash is still allowed.
-|--colon-file |Allow ':' to mark a file number (in addition to '#'). Forces the --no-colon-separator option.
+|--asc-allow-all |The ASC() function allows any characters. The default behavior is to limit characters to printable ASCII (32d to 126d).
+|--back-tab |Allows the TAB() function to move to the left. Normally, it moves only to the right or not at all.
 |--bang-comment |Allow comments that start with an exclamation point. The apostrophe comments are still allowed.
-|--print-width width |Specifies a print width. Lines will wrap at the specified column. Default value is 72.
-|--zone-width width |Specifies a zone width. PRINT statements will position output separated by commas in zones. Default is 16.
-|--randomize |Forces new sequences of numbers from the RND() function on successive runs.
-|--ignore-randomize |Forces the interpreter to ignore the RANDMIZE and RANDOM statements. Successive runs of the interpreter will use the same sequence of numbers from the RND() function. (Useful for testing.)
+|--base 0/1 |Set the minimum for subscripts to either 0 or 1. Default is 0.
+|--chr-allow-all |The CHR$() function allows any output characters. The default behavior is to limit characters to printable ASCII (32d to 126d).
+|--colon-file |Allow ':' to mark a file number (in addition to '#'). Forces the --no-colon-separator option.
+|--no-colon-separator |Do not allow colon separator for statements. The backslash is still allowed.
+|--crlf-on-line-input |On LINE INPUT statement, include the CR/LF as part of the value stored in the variable.
 |--echo-input |Echoes console input to output. Useful in run mode when redirecting input from a text file.
-|--int-floor |The INT function truncates towards negative infinity. (Normally towards zero.)
+|--fornext-one-beyond |When a FOR/NEXT loop ends, the index value is one step (usually 1) beyond the end value. (Normally index value is the end value.)
+|--hash-constant |Allow numeric constants in the form '#c' where c is any single character. Disables file handle operator and the not-equals operator, which are also represented by '#'.
+|--if-false-next-line |When an IF without an ELSE and with a statement (not a destination line number) evaluates its condition as false, change execution to the next numbered line, not the next statement in a multistatment line.
 |--ignore-rnd-arg |The RND function ignores its argument and provides a number between zero and one. This matches the behavior of certain BASICs, including K&K.
 |--implied-semicolon |When printing items not delimited by a comma or semicolon, provide spacing as if a semicolon was provided. (Normally the items have no spaces between them.)
-|--back-tab |Allows the TAB() function to move to the left. Normally, it moves only to the right or not at all.
-|--qmark-after-prompt |On an INPUT statement, print the question mark after the prompt.
-|--crlf-on-line-input |On LINE INPUT statement, include the CR/LF as part of the value stored in the variable.
-|--if-false-next-line |When an IF without an ELSE and with a statement (not a destination line number) evaluates its condition as false, change execution to the next numbered line, not the next statement in a multistatment line.
-|--fornext-one-beyond |When a FOR/NEXT loop ends, the index value is one step (usually 1) beyond the end value. (Normally index value is the end value.)
+|--input-high-bit |Changes the values returned from INPUT$ statements to set the high bit on.
+|--int-floor |The INT function truncates towards negative infinity. (Normally towards zero.)
 |--lock-fornext |Lock control variables to FOR/NEXT loops. Variables can be read but not changed.
 |--match-fornext |Require exact pairing of FOR/NEXT loops. The default allows programs to jump out of an inner loop and continue the outer loop.
-|--base 0/1 |Set the minimum for subscripts to either 0 or 1. Default is 0.
-|--require-initialized |Require that variables are initialized before they are used.
-|--hash-constant |Allow numeric constants in the form '#c' where c is any single character. Disables file handle operator and the not-equals operator, which are also represented by '#'.
 |--min-max-op |Enable the MIN and MAX operators.
+|--print-width width |Specifies a print width. Lines will wrap at the specified column. Default value is 72.
+|--provenance |When displaying a variable in a trace, also display the line number where it was set.
+|--qmark-after-prompt |On an INPUT statement, print the question mark after the prompt.
+|--randomize |Forces new sequences of numbers from the RND() function on successive runs.
+|--ignore-randomize |Forces the interpreter to ignore the RANDMIZE and RANDOM statements. Successive runs of the interpreter will use the same sequence of numbers from the RND() function. (Useful for testing.)
+|--require-initialized |Require that variables are initialized before they are used.
++|--semicolon-zone-width |Enables print zones for semicolon carriage control.
 |--single-quote-strings |Allow text strings (in the program and in input) to be enclosed in single quotes. Disables the single-quote comments. Bang comments are still allowed.
-|--asc-allow-all |The ASC() function allows any characters. The default behavior is to limit characters to printable ASCII (32d to 126d).
-|--chr-allow-all |The CHR$() function allows any output characters. The default behavior is to limit characters to printable ASCII (32d to 126d).
+|--tty |Print output slowly, emulating the speed of an ASR-33 Teletype. Provides a better experience with some programs (often games) in which slow output lets your anticipation build. The fast output of modern computers displays information quickly, and TTY mode lets you read each line as it is "printed".
+|--tty-lf |Similar to --tty but delays only the newline characters, not each individual character. Useful with --trace when debugging.
+|--zone-width width |Specifies a zone width. PRINT statements will position output separated by commas in zones. Default is 16.
 |==========
 
 Immediate commands
@@ -432,6 +433,7 @@ The options that can be set are:
     RANDOMIZE
     REQUIRE_INITIALIZED
     RESPECT_RANDOMIZE
+    SEMICOLON_ZONE_WIDTH
     SINGLE_QUOTE_STRING
     TIMING
     TRACE
@@ -473,6 +475,7 @@ The OPTION command overrides the command-line setting.
 |PRINT_WIDTH |numeric |72 |Wrap output at the specified column; 0 disables wrapping
 |PROVENANCE |TRUE or FALSE |FALSE |Expands trace display to include the line in which a variable was assigned its value
 |QMARK_AFTER_PROMPT |TRUE or FALSE |FALSE |Display '?' after a prompt in an INPUT statement
+|SEMICOLON_ZONE_WIDTH |numeric |0 |Semicolon carriage control zone width (0 is no zone)
 |RANDOMIZE |TRUE or FALSE |FALSE |Randomize RND(); same as 'RANDOMIZE' statement 
 |REQUIRE_INITIALIZED |TRUE or FALSE |FALSE |Variables must be initialized before use
 |RESPECT_RANDOMIZE |TRUE or FALSE |TRUE |RANDOMIZE creates different values on each run
@@ -1418,6 +1421,7 @@ Possible options are a subset of the options in the shell.
     PRINT_WIDTH
     QMARK_AFTER_PROMPT
     REQUIRE_INITIALIZED
+    SEMICOLON_ZONE_WIDTH
     TRACE
     ZONE_WIDTH
 
@@ -1450,7 +1454,7 @@ Syntax:	& expression list
 
 Items in the list are separated by either commas or semicolons.
 A comma forces the next item to the next tab stop (tab stops are every 14 positions).
-A semicolon makes the next item adjacent to the previous item.
+A semicolon makes the next item adjacent to the previous item (or to the next semicolon zone, if semicolon zones are enabled).
 
 Examples:
 
@@ -1473,7 +1477,7 @@ results in the text "Processing...done" on the console.
 
 The semicolon separator will force a small space between items.
 Between strings, there is no space.
-Between two numbers or a string and a number, BASIC will print spaces to the next column that is a multiple of 3.
+If semicolon zones are enabled (width greater than zero), then BASIC will advance to the next zone.
 
 Numbers are printed with automatic formatting.
 BASIC-1973 will print a number with the necessary number of decimal places.

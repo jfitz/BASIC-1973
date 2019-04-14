@@ -151,7 +151,9 @@ class ConsoleIo
   def tab
     space_after_numeric if @last_was_numeric
 
-    if @options['zone_width'].value > 0
+    zone_width = @options['zone_width'].value
+
+    if zone_width > 0
       print_item(' ') while
         @column > 0 && @column % @options['zone_width'].value != 0
     end
@@ -160,9 +162,13 @@ class ConsoleIo
   end
 
   def semicolon
-    if @last_was_numeric
-      space_after_numeric
-      print_item(' ') while @column % 3 != 0
+    space_after_numeric if @last_was_numeric
+
+    zone_width = @options['semicolon_zone_width'].value
+
+    if zone_width > 0
+      print_item(' ') while
+        @column > 0 && @column % zone_width != 0
     end
 
     @last_was_numeric = false
@@ -190,7 +196,7 @@ class ConsoleIo
   private
 
   def space_after_numeric
-    count = 3
+    count = 1
 
     while @column > 0 && count > 0
       print_item(' ')
