@@ -229,6 +229,7 @@ class AbstractStatement
   def initialize(keywords, tokens_lists)
     @keywords = keywords
     @tokens = tokens_lists.flatten
+    @core_tokens = tokens_lists.flatten
     @errors = []
     @modifiers = []
     @profile_count = 0
@@ -248,8 +249,23 @@ class AbstractStatement
 
   def pretty
     list = [AbstractToken.pretty_tokens(@keywords, @tokens)]
-    @modifiers.each { |modifier| list << modifier.pretty }
     list.join(' ')
+  end
+
+  def pre_trace(index)
+    index = -index
+    index -= 1
+    @modifiers[index].pre_trace
+  end
+
+  def core_trace
+    list = [AbstractToken.pretty_tokens(@keywords, @core_tokens)]
+    list.join(' ')
+  end
+  
+  def post_trace(index)
+    index -= 1
+    @modifiers[index].post_trace
   end
 
   def dump
@@ -378,7 +394,10 @@ class AbstractStatement
       trace_out.print_out '(' + @part_of_user_function.to_s + ') '
     end
 
-    trace_out.print_out current_line_index.to_s + ':' + pretty
+    index = current_line_index.index
+    trace_out.print_out current_line_index.to_s + ':' + pre_trace(index) if index < 0
+    trace_out.print_out current_line_index.to_s + ':' + core_trace if index.zero?
+    trace_out.print_out current_line_index.to_s + ':' + post_trace(index) if index > 0
     trace_out.newline
   end
 
@@ -435,6 +454,7 @@ class AbstractStatement
 
       # remove the tokens used for the modifier
       tokens_lists.pop(2)
+      @core_tokens = tokens_lists.flatten
 
       return true
     end
@@ -449,10 +469,11 @@ class AbstractStatement
       control_and_start_tokens = tokens_lists[-3]
       end_tokens = tokens_lists.last
       modifier = ForModifier.new(control_and_start_tokens, end_tokens, nil)
-      @modifiers << modifier
+      @modifiers.unshift(modifier)
 
       # remove the tokens used for the modifier
       tokens_lists.pop(4)
+      @core_tokens = tokens_lists.flatten
 
       return true
     end
@@ -466,10 +487,11 @@ class AbstractStatement
       step_tokens = tokens_lists.last
       modifier =
         ForModifier.new(control_and_start_tokens, end_tokens, step_tokens)
-      @modifiers << modifier
+      @modifiers.unshift(modifier)
 
       # remove the tokens used for the modifier
       tokens_lists.pop(6)
+      @core_tokens = tokens_lists.flatten
 
       return true
     end
