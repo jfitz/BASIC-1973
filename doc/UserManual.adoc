@@ -151,6 +151,7 @@ When the BASIC program ends, BASIC-1973 ends.
 |--crlf-on-line-input |On LINE INPUT statement, include the CR/LF as part of the value stored in the variable.
 |--decimals digits |Sets the number of decimals printed. Default is 5, maximum is 15.
 |--echo-input |Echoes console input to output. Useful in run mode when redirecting input from a text file.
+|--epsilon |Sets the minimum value for numeric variables. Values below epsilon are converted to zero. Default is 1E-7.
 |--fornext-one-beyond |When a FOR/NEXT loop ends, the index value is one step (usually 1) beyond the end value. (Normally index value is the end value.)
 |--hash-constant |Allow numeric constants in the form '#c' where c is any single character. Disables file handle operator and the not-equals operator, which are also represented by '#'.
 |--if-false-next-line |When an IF without an ELSE and with a statement (not a destination line number) evaluates its condition as false, change execution to the next numbered line, not the next statement in a multistatment line.
@@ -416,6 +417,7 @@ The options that can be set are:
     DECIMALS
     DEFAULT_PROMPT
     ECHO
+    EPSILON
     FORNEXT_ONE_BEYOND
     HEADING
     IF_FALSE_NEXT_LINE
@@ -462,6 +464,7 @@ The OPTION command overrides the command-line setting.
 |DECIMALS |numeric 1 to 15 |5 |Sets the number of decimals printed
 |DEFAULT_PROMPT |String |"? " |Changes the prompt for INPUT statements
 |ECHO |TRUE or FALSE |FALSE |Echoes input (useful for testing)
+|EPSILON |numeric positive |1E-7 |Values below epsilon are converted to zero.
 |FORNEXT_ONE_BEYOND |TRUE or FALSE |FALSE |FOR/NEXT ends with index value one higher than limit
 |HEADING |TRUE or FALSE |TRUE |Displays the opening and closing lines that identify BASIC
 |IF_FALSE_NEXT_LINE |TRUE or FALSE |FALSE |IF condition false jumps to next line (default is next statement)
@@ -1412,6 +1415,7 @@ Possible options are a subset of the options in the shell.
     DECIMALS
     DEFAULT_PROMPT
     ECHO
+    EPSILON
     FORNEXT_ONE_BEYOND
     IF_FALSE_NEXT_LINE
     IGNORE_RND_ARG
