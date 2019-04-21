@@ -150,6 +150,7 @@ When the BASIC program ends, BASIC-1973 ends.
 |--no-colon-separator |Do not allow colon separator for statements. The backslash is still allowed.
 |--crlf-on-line-input |On LINE INPUT statement, include the CR/LF as part of the value stored in the variable.
 |--decimals digits |Sets the number of decimals printed. Default is 5, maximum is 15.
+|--no-detect-infinite-loop |Disables checks for infinite loops.
 |--echo-input |Echoes console input to output. Useful in run mode when redirecting input from a text file.
 |--epsilon |Sets the minimum value for numeric variables. Values below epsilon are converted to zero. Default is 1E-7.
 |--fornext-one-beyond |When a FOR/NEXT loop ends, the index value is one step (usually 1) beyond the end value. (Normally index value is the end value.)
@@ -416,6 +417,7 @@ The options that can be set are:
     CRLF_ON_LINE_INPUT
     DECIMALS
     DEFAULT_PROMPT
+    DETECT_INFINITE_LOOP
     ECHO
     EPSILON
     FORNEXT_ONE_BEYOND
@@ -463,6 +465,7 @@ The OPTION command overrides the command-line setting.
 |CRLF_ON_LINE_INPUT |TRUE or FALSE |FALSE |LINE INPUT reads CR/LF into variable
 |DECIMALS |numeric 1 to 15 |5 |Sets the number of decimals printed
 |DEFAULT_PROMPT |String |"? " |Changes the prompt for INPUT statements
+|DETECT_INFINITE_LOOP |TRUE or FALSE |TRUE |Enables the detection of infinite loops
 |ECHO |TRUE or FALSE |FALSE |Echoes input (useful for testing)
 |EPSILON |numeric positive |1E-7 |Values below epsilon are converted to zero.
 |FORNEXT_ONE_BEYOND |TRUE or FALSE |FALSE |FOR/NEXT ends with index value one higher than limit
@@ -1414,6 +1417,7 @@ Possible options are a subset of the options in the shell.
     CRLF_ON_LINE_INPUT
     DECIMALS
     DEFAULT_PROMPT
+    DETECT_INFINITE_LOOP
     ECHO
     EPSILON
     FORNEXT_ONE_BEYOND
@@ -2403,6 +2407,8 @@ The detection algorithm is:
 	keep a list of the line numbers for executed statements
 	if the statement about to be executed is in the list, report an infinite loop
 	when a variable is set to a new value (different than current value), clear the list
+	INPUT, LINE INPUT, and READ statements (console or files) will also clear the list
+	a statement which invokes the RND() function also clears the list
 
 This algorithm will detect simple infinite loops such as
 
@@ -2422,5 +2428,13 @@ and also
 
 	10 FOR I = 1 TO 10 STEP 0
 
+The detection algorithm is not perfect, and it is easy to write a program with an infinite loop that evades detection:
 
+    	10 LET A = 1
+	20 PRINT A
+	30 LET A = A + 1
+	40 GOTO 20
+	99 END
 
+The algorithm may detect false positives - infinite loops when none exist.
+The DETECT_INFINITE_LOOP option, when set to FALSE, disables checks for infinite loops.
