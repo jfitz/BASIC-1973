@@ -341,7 +341,7 @@ def make_command_tokenbuilders(options, quotes)
     ECHO EPSILON FORNEXT_ONE_BEYOND HEADING
     IF_FALSE_NEXT_LINE IGNORE_RND_ARG IMPLIED_SEMICOLON INPUT_HIGH_BIT
     INT_FLOOR LOCK_FORNEXT MATCH_FORNEXT MIN_MAX_OP NEWLINE_SPEED
-    PRETTY_MULTILINE PRINT_SPEED PRINT_WIDTH PROVENANCE
+    PRETTY_MULTILINE PRINT_SPEED PRINT_WIDTH PROMPT_COUNT PROVENANCE
     QMARK_AFTER_PROMPT RANDOMIZE REQUIRE_INITIALIZED RESPECT_RANDOMIZE
     SEMICOLON_ZONE_WIDTH SINGLE_QUOTE_STRING TIMING TRACE ZONE_WIDTH
   )
@@ -412,6 +412,7 @@ OptionParser.new do |opt|
   opt.on('--match-fornext') { |o| options[:match_fornext] = o }
   opt.on('--min-max-op') { |o| options[:min_max_op] = o }
   opt.on('--print-width WIDTH') { |o| options[:print_width] = o }
+  opt.on('--prompt-count') { |o| options[:prompt_count] = o }
   opt.on('--provenance') { |o| options[:provenance] = o }
   opt.on('--qmark-after-prompt') { |o| options[:qmark_after_prompt] = o }
   opt.on('--randomize') { |o| options[:randomize] = o }
@@ -531,6 +532,8 @@ basic_options['print_speed'] = Option.new(int, print_speed)
 print_width = 72
 print_width = options[:print_width].to_i if options.key?(:print_width)
 basic_options['print_width'] = Option.new(int_132, print_width)
+
+basic_options['prompt_count'] = Option.new(boolean, options.key?(:prompt_count))
 
 basic_options['provenance'] = Option.new(boolean, options.key?(:provenance))
 
