@@ -421,6 +421,25 @@ class FunctionExt < AbstractScalarFunction
   end
 end
 
+# function FRAC
+class FunctionFrac < AbstractScalarFunction
+  def initialize(text)
+    super
+
+    @signature = [{ 'type' => 'numeric', 'shape' => 'scalar' }]
+  end
+
+  # return a single value
+  def evaluate(interpreter, stack)
+    args = stack.pop
+
+    raise(BASICRuntimeError, 'Wrong arguments for function') unless
+      match_args_to_signature(args, @signature)
+
+    args[0] - args[0].truncate
+  end
+end
+
 # function IDN
 class FunctionIdn < AbstractScalarFunction
   def initialize(text)
@@ -1045,6 +1064,7 @@ class FunctionFactory
     'ERL' => FunctionErl,
     'EXP' => FunctionExp,
     'EXT$' => FunctionExt,
+    'FRAC' => FunctionFrac,
     'IDN' => FunctionIdn,
     'INSTR' => FunctionInstr,
     'INT' => FunctionInt,
