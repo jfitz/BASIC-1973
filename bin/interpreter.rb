@@ -625,6 +625,15 @@ class Interpreter
     @randomizer = Random.new if @options['respect_randomize'].value
   end
 
+  def error_line(item)
+    raise(BASICRuntimeError, 'ERL() invoked without error') if
+      @resume_stack.empty?
+
+    line_index = @resume_stack[-1]
+    line_number = line_index.number
+    return NumericConstant.new(line_number.to_i)
+  end
+
   def set_dimensions(variable, subscripts)
     name = variable.name
     int_subscripts = normalize_subscripts(subscripts)
