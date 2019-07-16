@@ -99,12 +99,11 @@ end
 
 # interactive shell
 class Shell
-  def initialize(console_io, interpreter, program, options, tokenbuilders)
+  def initialize(console_io, interpreter, program, tokenbuilders)
 
     @console_io = console_io
     @interpreter = interpreter
     @program = program
-    @options = options
     @tokenbuilders = tokenbuilders
     @invalid_tokenbuilder = InvalidTokenBuilder.new
   end
@@ -150,7 +149,7 @@ class Shell
 
   def option_command(args)
     if args.empty?
-      @options.each do |option|
+      $options.each do |option|
         name = option[0].upcase
         value = option[1].value.to_s.upcase
         @console_io.print_line(name + ' ' + value)
@@ -159,8 +158,8 @@ class Shell
       kwd = args[0].to_s
       kwd_d = kwd.downcase
 
-      if @options.key?(kwd_d)
-        value = @options[kwd_d].value.to_s.upcase
+      if $options.key?(kwd_d)
+        value = $options[kwd_d].value.to_s.upcase
         @console_io.print_line("#{kwd} #{value}")
       else
         @console_io.print_line("Unknown option #{kwd}")
@@ -170,24 +169,24 @@ class Shell
       kwd = args[0].to_s
       kwd_d = kwd.downcase
 
-      if @options.key?(kwd_d)
+      if $options.key?(kwd_d)
         begin
           if args[1].boolean_constant?
             boolean = BooleanConstant.new(args[1])
-            @options[kwd_d].set(boolean.to_v)
+            $options[kwd_d].set(boolean.to_v)
           elsif args[1].numeric_constant?
             numeric = NumericConstant.new(args[1])
-            @options[kwd_d].set(numeric.to_v)
+            $options[kwd_d].set(numeric.to_v)
           elsif args[1].text_constant?
             text = TextConstant.new(args[1])
-            @options[kwd_d].set(text.to_v)
+            $options[kwd_d].set(text.to_v)
           else
             @console_io.print_line('Incorrect value type')
           end
         rescue BASICRuntimeError => e
           @console_io.print_line(e.to_s)
         end
-        value = @options[kwd_d].value.to_s.upcase
+        value = $options[kwd_d].value.to_s.upcase
         @console_io.print_line("#{kwd} #{value}")
       else
         @console_io.print_line("Unknown option #{kwd}")
@@ -217,17 +216,17 @@ class Shell
       if @program.check
         # duplicate the options
         options_2 = {}
-        @options.each { |name, option| options_2[name] = duplicate(option) }
+        $options.each { |name, option| options_2[name] = duplicate(option) }
 
         timing = Benchmark.measure {
-          @program.run(@interpreter, @options)
+          @program.run(@interpreter)
         }
 
         # restore options to undo any changes during the run
-        options_2.each { |name, option| @options[name] = option }
+        options_2.each { |name, option| $options[name] = option }
 
         # print timing info
-        print_timing(timing, @console_io) if @options['timing'].value
+        print_timing(timing, @console_io) if $options['timing'].value
       end
     when 'BREAK'
       @interpreter.set_breakpoints(args)
@@ -239,7 +238,7 @@ class Shell
     when 'LIST'
       @program.list(args, false)
     when 'PRETTY'
-      pretty_multiline = @options['pretty_multiline'].value
+      pretty_multiline = $options['pretty_multiline'].value
       @program.pretty(args, pretty_multiline)
     when 'DELETE'
       @program.delete(args)
@@ -443,109 +442,109 @@ int_40 = { :type => :int, :max => 40, :min => 0 }
 int_1 = { :type => :int, :max => 1, :min => 0 }
 float = { :type => :float, :min => 0 }
 
-basic_options = {}
+$options = {}
 
-basic_options['allow_ascii'] = Option.new(boolean, options.key?(:allow_ascii))
+$options['allow_ascii'] = Option.new(boolean, options.key?(:allow_ascii))
 
-basic_options['allow_hash_constant'] =
+$options['allow_hash_constant'] =
   Option.new(boolean, options.key?(:hash_constant))
 
-basic_options['allow_pi'] = Option.new(boolean, options.key?(:allow_pi))
+$options['allow_pi'] = Option.new(boolean, options.key?(:allow_pi))
 
-basic_options['apostrophe_comment'] = Option.new(boolean, true)
+$options['apostrophe_comment'] = Option.new(boolean, true)
 
-basic_options['asc_allow_all'] =
+$options['asc_allow_all'] =
   Option.new(boolean, options.key?(:asc_allow_all))
 
-basic_options['back_tab'] = Option.new(boolean, options.key?(:back_tab))
-basic_options['backslash_separator'] = Option.new(boolean, true)
-basic_options['bang_comment'] = Option.new(boolean, options.key?(:bang_comment))
+$options['back_tab'] = Option.new(boolean, options.key?(:back_tab))
+$options['backslash_separator'] = Option.new(boolean, true)
+$options['bang_comment'] = Option.new(boolean, options.key?(:bang_comment))
 
 base = 0
 base = options[:base].to_i if options.key?(:base)
-basic_options['base'] = Option.new(int_1, base)
+$options['base'] = Option.new(int_1, base)
 
-basic_options['chr_allow_all'] =
+$options['chr_allow_all'] =
   Option.new(boolean, options.key?(:chr_allow_all))
 
-basic_options['colon_file'] = Option.new(boolean, options.key?(:colon_file))
+$options['colon_file'] = Option.new(boolean, options.key?(:colon_file))
 
 colon_separator = !options.key?(:no_colon_sep) && !options.key?(:colon_file)
-basic_options['colon_separator'] = Option.new(boolean, colon_separator)
+$options['colon_separator'] = Option.new(boolean, colon_separator)
 
-basic_options['crlf_on_line_input'] =
+$options['crlf_on_line_input'] =
   Option.new(boolean, options.key?(:crlf_on_line_input))
 
 decimals = 5
 decimals = options[:decimals] if options.key?(:decimals)
-basic_options['decimals'] = Option.new(int_1_15, decimals)
+$options['decimals'] = Option.new(int_1_15, decimals)
 
-basic_options['default_prompt'] = Option.new(string, '? ')
+$options['default_prompt'] = Option.new(string, '? ')
 
-basic_options['detect_infinite_loop'] =
+$options['detect_infinite_loop'] =
   Option.new(boolean, !options.key?(:no_detect_infinite_loop))
 
-basic_options['echo'] = Option.new(boolean, options.key?(:echo_input))
+$options['echo'] = Option.new(boolean, options.key?(:echo_input))
 
 epsilon = 1e-7
 epsilon = options[:epsilon].to_f if options.key?(:epsilon)
-basic_options['epsilon'] = Option.new(float, epsilon)
+$options['epsilon'] = Option.new(float, epsilon)
 
-basic_options['fornext_one_beyond'] =
+$options['fornext_one_beyond'] =
   Option.new(boolean, options.key?(:fornext_one_beyond))
 
-basic_options['heading'] = Option.new(boolean, !options.key?(:no_heading))
+$options['heading'] = Option.new(boolean, !options.key?(:no_heading))
 
-basic_options['if_false_next_line'] =
+$options['if_false_next_line'] =
   Option.new(boolean, options.key?(:if_false_next_line))
 
-basic_options['ignore_rnd_arg'] =
+$options['ignore_rnd_arg'] =
   Option.new(boolean, options.key?(:ignore_rnd_arg))
 
-basic_options['implied_semicolon'] =
+$options['implied_semicolon'] =
   Option.new(boolean, options.key?(:implied_semicolon))
 
-basic_options['input_high_bit'] =
+$options['input_high_bit'] =
   Option.new(boolean, options.key?(:input_high_bit))
 
-basic_options['int_floor'] = Option.new(boolean, options.key?(:int_floor))
+$options['int_floor'] = Option.new(boolean, options.key?(:int_floor))
 
-basic_options['lock_fornext'] =
+$options['lock_fornext'] =
   Option.new(boolean, options.key?(:lock_fornext))
 
-basic_options['match_fornext'] =
+$options['match_fornext'] =
   Option.new(boolean, options.key?(:match_fornext))
 
-basic_options['min_max_op'] = Option.new(boolean, options.key?(:min_max_op))
+$options['min_max_op'] = Option.new(boolean, options.key?(:min_max_op))
 
 newline_speed = 0
 newline_speed = 10 if options.key?(:tty_lf)
-basic_options['newline_speed'] = Option.new(int, newline_speed)
+$options['newline_speed'] = Option.new(int, newline_speed)
 
-basic_options['pretty_multiline'] =
+$options['pretty_multiline'] =
   Option.new(boolean, options.key?(:pretty_multiline))
 
 print_speed = 0
 print_speed = 10 if options.key?(:tty)
-basic_options['print_speed'] = Option.new(int, print_speed)
+$options['print_speed'] = Option.new(int, print_speed)
 
 print_width = 72
 print_width = options[:print_width].to_i if options.key?(:print_width)
-basic_options['print_width'] = Option.new(int_132, print_width)
+$options['print_width'] = Option.new(int_132, print_width)
 
-basic_options['prompt_count'] = Option.new(boolean, options.key?(:prompt_count))
+$options['prompt_count'] = Option.new(boolean, options.key?(:prompt_count))
 
-basic_options['provenance'] = Option.new(boolean, options.key?(:provenance))
+$options['provenance'] = Option.new(boolean, options.key?(:provenance))
 
-basic_options['qmark_after_prompt'] =
+$options['qmark_after_prompt'] =
   Option.new(boolean, options.key?(:qmark_after_prompt))
 
-basic_options['randomize'] = Option.new(boolean, options.key?(:randomize))
+$options['randomize'] = Option.new(boolean, options.key?(:randomize))
 
-basic_options['require_initialized'] =
+$options['require_initialized'] =
   Option.new(boolean, options.key?(:require_initialized))
 
-basic_options['respect_randomize'] =
+$options['respect_randomize'] =
   Option.new(boolean, !options.key?(:ignore_randomize))
 
 semicolon_zone_width = 0
@@ -553,40 +552,38 @@ if options.key?(:semicolon_zone_width)
   semicolon_zone_width = options[:semicolon_zone_width].to_i
 end
 
-basic_options['semicolon_zone_width'] = Option.new(int, semicolon_zone_width)
+$options['semicolon_zone_width'] = Option.new(int, semicolon_zone_width)
 
-basic_options['single_quote_strings'] =
+$options['single_quote_strings'] =
   Option.new(boolean, options.key?(:single_quote_strings))
 
-basic_options['timing'] = Option.new(boolean, !options.key?(:no_timing))
-basic_options['trace'] = Option.new(boolean, options.key?(:trace))
+$options['timing'] = Option.new(boolean, !options.key?(:no_timing))
+$options['trace'] = Option.new(boolean, options.key?(:trace))
 
 zone_width = 16
 zone_width = options[:zone_width].to_i if options.key?(:zone_width)
-basic_options['zone_width'] = Option.new(int_40, zone_width)
+$options['zone_width'] = Option.new(int_40, zone_width)
 
 statement_seps = []
-statement_seps << '\\' if basic_options['backslash_separator'].value
-statement_seps << ':' if basic_options['colon_separator'].value
+statement_seps << '\\' if $options['backslash_separator'].value
+statement_seps << ':' if $options['colon_separator'].value
 quotes = []
 quotes << '"'
-quotes << "'" if basic_options['single_quote_strings'].value
+quotes << "'" if $options['single_quote_strings'].value
 comment_leads = []
-comment_leads << '!' if basic_options['bang_comment'].value
+comment_leads << '!' if $options['bang_comment'].value
 
 comment_leads << "'" if
-  basic_options['apostrophe_comment'].value &&
-  !basic_options['single_quote_strings'].value
+  $options['apostrophe_comment'].value &&
+  !$options['single_quote_strings'].value
 
-NumericConstant.set_options(basic_options)
-
-console_io = ConsoleIo.new(basic_options)
+console_io = ConsoleIo.new
 
 tokenbuilders =
-  make_interpreter_tokenbuilders(basic_options, quotes, statement_seps,
+  make_interpreter_tokenbuilders($options, quotes, statement_seps,
                                  comment_leads)
 
-if basic_options['heading'].value
+if $options['heading'].value
   console_io.print_line('BASIC-1973 interpreter version -1')
   console_io.newline
 end
@@ -597,16 +594,14 @@ if !run_filename.nil?
   token = TextConstantToken.new('"' + run_filename + '"')
   nametokens = [TextConstant.new(token)]
   if program.load(nametokens) && program.check
-    randomize_option = basic_options['randomize']
-    respect_option = basic_options['respect_randomize']
-    interpreter = Interpreter.new(console_io, randomize_option, respect_option)
+    interpreter = Interpreter.new(console_io)
     interpreter.set_default_args('RND', NumericConstant.new(1))
 
     timing = Benchmark.measure {
-      program.run(interpreter, basic_options)
+      program.run(interpreter)
     }
 
-    print_timing(timing, console_io) if basic_options['timing'].value
+    print_timing(timing, console_io) if $options['timing'].value
     program.profile('') if show_profile
   end
 elsif !list_filename.nil?
@@ -625,7 +620,7 @@ elsif !pretty_filename.nil?
   token = TextConstantToken.new('"' + pretty_filename + '"')
   nametokens = [TextConstant.new(token)]
   if program.load(nametokens)
-    pretty_multiline = basic_options['pretty_multiline'].value
+    pretty_multiline = $options['pretty_multiline'].value
     program.pretty('', pretty_multiline)
   end
 elsif !cref_filename.nil?
@@ -635,21 +630,17 @@ elsif !cref_filename.nil?
     program.crossref
   end
 else
-  randomize_option = basic_options['randomize']
-  respect_option = basic_options['respect_randomize']
-  interpreter = Interpreter.new(console_io, randomize_option, respect_option)
+  interpreter = Interpreter.new(console_io)
   interpreter.set_default_args('RND', NumericConstant.new(1))
 
-  tokenbuilders = make_command_tokenbuilders(basic_options, quotes)
+  tokenbuilders = make_command_tokenbuilders($options, quotes)
 
-  shell =
-    Shell.new(console_io, interpreter, program, basic_options,
-              tokenbuilders)
+  shell = Shell.new(console_io, interpreter, program, tokenbuilders)
 
   shell.run
 end
 
-if basic_options['heading'].value
+if $options['heading'].value
   console_io.newline
   console_io.print_line('BASIC-1973 ended')
 end

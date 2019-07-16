@@ -58,7 +58,7 @@ module Inputter
 
   def line_input(interpreter)
     input_text = read_line
-    input_text += "\r\n" if @options['crlf_on_line_input'].value
+    input_text += "\r\n" if $options['crlf_on_line_input'].value
     quoted = '"' + input_text + '"'
     token = TextConstantToken.new(quoted)
     tokens = [token]
@@ -70,9 +70,7 @@ end
 
 # Handle tab stops and carriage control
 class ConsoleIo
-  def initialize(options)
-    @options = options
-
+  def initialize
     @quotes = ['"']
 
     @column = 0
@@ -102,7 +100,7 @@ class ConsoleIo
     print(ascii_text)
     
     ascii_text = high_bits(input_text) if
-      @options['input_high_bit'].value
+      $options['input_high_bit'].value
 
     ascii_text
   end
@@ -113,24 +111,24 @@ class ConsoleIo
     raise(BASICRuntimeError, 'End of file') if input_text.nil?
 
     ascii_text = ascii_printables(input_text)
-    puts(ascii_text) if @options['echo'].value
+    puts(ascii_text) if $options['echo'].value
     ascii_text
   end
 
   def prompt(text, remaining)
     if text.nil?
       print_item("(#{remaining})") if
-        @options['prompt_count'].value
+        $options['prompt_count'].value
 
-      print_item(@options['default_prompt'].value)
+      print_item($options['default_prompt'].value)
     else
       print_item(text.value)
 
       print_item("(#{remaining})") if
-        @options['prompt_count'].value
+        $options['prompt_count'].value
 
-      print_item(@options['default_prompt'].value) if
-        @options['qmark_after_prompt'].value
+      print_item($options['default_prompt'].value) if
+        $options['qmark_after_prompt'].value
     end
   end
 
@@ -141,8 +139,8 @@ class ConsoleIo
       @column += incr
       @column = 0 if @column < 0
 
-      newline if @options['print_width'].value > 0 &&
-                 @column >= @options['print_width'].value
+      newline if $options['print_width'].value > 0 &&
+                 @column >= $options['print_width'].value
     end
 
     @last_was_numeric = false
@@ -160,7 +158,7 @@ class ConsoleIo
   def tab
     space_after_numeric if @last_was_numeric
 
-    zone_width = @options['zone_width'].value
+    zone_width = $options['zone_width'].value
 
     if zone_width > 0
       print_item(' ') while
@@ -173,7 +171,7 @@ class ConsoleIo
   def semicolon
     space_after_numeric if @last_was_numeric
 
-    zone_width = @options['semicolon_zone_width'].value
+    zone_width = $options['semicolon_zone_width'].value
 
     if zone_width > 0
       print_item(' ') while
@@ -184,12 +182,12 @@ class ConsoleIo
   end
 
   def implied
-    semicolon if @options['implied_semicolon'].value
+    semicolon if $options['implied_semicolon'].value
     # nothing else otherwise
   end
 
   def columns_to_advance(new_column)
-    if @options['back_tab'].value
+    if $options['back_tab'].value
       new_column - @column
     else
       [new_column - @column, 0].max
@@ -244,17 +242,17 @@ class ConsoleIo
   end
 
   def delay
-    sleep(1.0 / @options['print_speed'].value) if
-      @options['print_speed'].value > 0
+    sleep(1.0 / $options['print_speed'].value) if
+      $options['print_speed'].value > 0
   end
 
   def newline_delay
-    sleep(1.0 / @options['print_speed'].value) if
-      @options['print_speed'].value > 0 &&
-      @options['newline_speed'].value.zero?
+    sleep(1.0 / $options['print_speed'].value) if
+      $options['print_speed'].value > 0 &&
+      $options['newline_speed'].value.zero?
 
-    sleep(1.0 / @options['newline_speed'].value) if
-      @options['newline_speed'].value > 0
+    sleep(1.0 / $options['newline_speed'].value) if
+      $options['newline_speed'].value > 0
   end
 end
 
