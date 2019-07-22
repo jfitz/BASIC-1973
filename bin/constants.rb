@@ -414,7 +414,7 @@ class NumericConstant < AbstractValueElement
 
     f = text.value if text.class.to_s == 'NumericSymbolToken'
 
-    raise BASICRuntimeError, "'#{text}' is not a number" if f.nil?
+    raise(BASICRuntimeError, "'#{text}' is not a number") if f.nil?
 
     epsilon = $options['epsilon'].value
     f = 0 if f.abs < epsilon

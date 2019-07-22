@@ -3,7 +3,6 @@
 require 'benchmark'
 require 'optparse'
 require 'singleton'
-require 'io/console'
 
 require_relative 'exceptions'
 require_relative 'tokens'
@@ -320,10 +319,7 @@ def make_interpreter_tokenbuilders(options, quotes, statement_separators,
   allow_ascii = options['allow_ascii'].value
   tokenbuilders << TextSymbolTokenBuilder.new if allow_ascii
   tokenbuilders << VariableTokenBuilder.new
-
-  tokenbuilders <<
-    ListTokenBuilder.new(%w(TRUE FALSE), BooleanConstantToken)
-
+  tokenbuilders << ListTokenBuilder.new(%w(TRUE FALSE), BooleanConstantToken)
   tokenbuilders << WhitespaceTokenBuilder.new
 end
 
@@ -334,7 +330,8 @@ def make_command_tokenbuilders(options, quotes)
     BREAK CROSSREF DELETE DIMS EXIT LIST LOAD NEW OPTION PARSE PRETTY
     PROFILE RENUMBER RUN SAVE TOKENS UDFS VARS
     ALLOW_ASCII ALLOW_HASH_CONSTANT ALLOW_PI APOSTROPHE_COMMENT ASC_ALLOW_ALL
-    BACK_TAB BACKSLASH_SEPARATOR BANG_COMMENT BASE
+    BACK_TAB BACKSLASH_SEPARATOR BANG_COMMENT
+    BASE
     CHR_ALLOW_ALL COLON_FILE COLON_SEPARATOR CRLF_ON_LINE_INPUT
     DECIMALS DEFAULT_PROMPT DETECT_INFINITE_LOOP
     ECHO EPSILON FORNEXT_ONE_BEYOND HEADING
