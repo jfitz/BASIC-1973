@@ -753,6 +753,7 @@ class Interpreter
           raise(BASICRuntimeError, "Uninitialized variable #{v}")
         end
 
+        # define a value for this variable
         @variables[v] =
           {
             'provenance' => @current_line_index,
