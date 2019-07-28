@@ -678,7 +678,9 @@ class Program
       rs = []
       statements.each do |statement|
         rs += statement.numerics
+        rs += statement.modifier_numerics
       end
+
       refs[line_number] = rs
     end
 
@@ -696,6 +698,7 @@ class Program
       statements.each do |statement|
         rs += statement.numeric_symbol_constants
       end
+
       refs[line_number] = rs
     end
 
@@ -712,7 +715,9 @@ class Program
       rs = []
       statements.each do |statement|
         rs += statement.strings
+        rs += statement.modifier_strings
       end
+
       refs[line_number] = rs
     end
 
@@ -730,6 +735,7 @@ class Program
       statements.each do |statement|
         rs += statement.text_symbol_constants
       end
+
       refs[line_number] = rs
     end
 
@@ -747,6 +753,7 @@ class Program
       statements.each do |statement|
         rs = statement.functions
       end
+
       refs[line_number] = rs
     end
 
@@ -764,6 +771,7 @@ class Program
       statements.each do |statement|
         rs += statement.userfuncs
       end
+
       refs[line_number] = rs
     end
 
@@ -779,8 +787,28 @@ class Program
 
       rs = []
       statements.each do |statement|
-        rs.concat statement.variables
+        rs += statement.variables
+        rs += statement.modifier_variables
       end
+
+      refs[line_number] = rs
+    end
+
+    refs
+  end
+
+  def linenums_refs
+    refs = {}
+
+    @lines.keys.sort.each do |line_number|
+      line = @lines[line_number]
+      statements = line.statements
+
+      rs = []
+      statements.each do |statement|
+        rs += statement.linenums
+      end
+
       refs[line_number] = rs
     end
 
@@ -864,6 +892,10 @@ class Program
     vars_list = variables_refs
     variables = make_summary(vars_list)
     print_refs('Variables', variables)
+
+    lines_list = linenums_refs
+    linenums = make_summary(lines_list)
+    print_num_refs('Line numbers', linenums)
   end
 
   private
