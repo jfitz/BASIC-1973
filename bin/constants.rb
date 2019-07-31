@@ -447,7 +447,7 @@ class NumericConstant < AbstractValueElement
   end
 
   def hash
-    @value.hash
+    @value.hash + @token_chars.hash
   end
 
   def <=>(other)
@@ -703,7 +703,7 @@ class IntegerConstant < AbstractValueElement
   end
 
   def hash
-    @value.hash
+    @value.hash + @token_chars.hash
   end
 
   def <=>(other)
