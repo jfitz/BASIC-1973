@@ -2769,11 +2769,17 @@ class OptionStatement < AbstractStatement
     # omit HEADING and TIMING as they are not used in the interpreter
     # omit PRETTY_MULTILINE too
     template = [OptionStatement.extra_keywords, [1, '>=']]
+    float = { :type => :float, :min => 0 }
 
     if check_template(tokens_lists, template)
       @key = tokens_lists[0].to_s.downcase
       expression_tokens = split_tokens(tokens_lists[1], true)
+      # OPTION statements do not respect the EPSILON value
+      # (so they can set new, smaller EPSILON values)
+      epsilon = $options['epsilon']
+      $options['epsilon'] = Option.new(float, 0.0)
       @expression = ValueScalarExpression.new(expression_tokens[0])
+      $options['epsilon'] = epsilon
     else
       @errors << 'Syntax error'
     end
