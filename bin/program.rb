@@ -880,7 +880,7 @@ class Program
     num_syms_list = numeric_symbol_refs
     num_symbols = make_summary(num_syms_list)
     unless num_symbols.empty?
-      print_numeric_refs('Numeric symbol constants', num_symbols)
+      print_object_refs('Numeric symbol constants', num_symbols)
     end
 
     strs_list = text_refs
