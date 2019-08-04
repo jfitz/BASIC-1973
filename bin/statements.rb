@@ -1336,6 +1336,7 @@ class GosubStatement < AbstractStatement
 
   def renumber(renumber_map)
     @destination = renumber_map[@destination]
+    @linenums = [@destination]
     @tokens[-1] = NumericConstantToken.new(@destination.line_number)
   end
 end
@@ -1480,6 +1481,7 @@ class GotoStatement < AbstractStatement
   def renumber(renumber_map)
     unless @destination.nil?
       @destination = renumber_map[@destination]
+      @linenums = [@destination]
       @tokens[-1] = NumericConstantToken.new(@destination.line_number)
     end
 
@@ -1488,6 +1490,22 @@ class GotoStatement < AbstractStatement
       @destinations.each do |destination|
         new_destinations << renumber_map[destination]
       end
+
+      i = 0
+      index = 0
+      @tokens.each do |token|
+        index = i if token.to_s == 'OF'
+        i += 1
+      end
+
+      new_destinations.each do |destination|
+        @tokens[index + 1] = NumericConstantToken.new(destination.line_number)
+
+        index += 2
+      end
+
+      @destinations = new_destinations
+      @linenums = @destinations
     end
   end
 end
@@ -1790,10 +1808,12 @@ class IfStatement < AbstractStatement
       @tokens[index + 1] = NumericConstantToken.new(@destination.line_number)
     end
 
-    return if @else_dest.nil?
+    unless @else_dest.nil?
+      @else_dest = renumber_map[@else_dest]
+      @tokens[-1] = NumericConstantToken.new(@else_dest.line_number)
+    end
 
-    @else_dest = renumber_map[@else_dest]
-    @tokens[-1] = NumericConstantToken.new(@else_dest.line_number)
+    @linenums = make_linenum_references
   end
 
   private
@@ -2366,6 +2386,7 @@ class OnErrorStatement < AbstractStatement
 
   def renumber(renumber_map)
     @destination = renumber_map[@destination]
+    @linenums = [@destination]
   end
 end
 
@@ -2428,8 +2449,9 @@ class OnStatement < AbstractStatement
 
   def dump
     lines = []
-    lines += @expression.dump
-    @destinations.each { |destination| lines << destination.dump }
+    lines += @expression.dump unless @expression.nil?
+    @destinations.each { |destination| lines << destination.dump } unless
+      @destinations.nil?
     lines
   end
 
@@ -2483,7 +2505,22 @@ class OnStatement < AbstractStatement
       new_destinations << renumber_map[destination]
     end
 
+    i = 0
+    index = 0
+    @tokens.each do |token|
+      index = i if token.to_s == 'THEN'
+      index = i if token.to_s == 'GOTO'
+      i += 1
+    end
+
+    new_destinations.each do |destination|
+      @tokens[index + 1] = NumericConstantToken.new(destination.line_number)
+
+      index += 2
+    end
+    
     @destinations = new_destinations
+    @linenums = @destinations
   end
 end
 
