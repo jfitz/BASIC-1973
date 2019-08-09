@@ -83,6 +83,7 @@ class Interpreter
     @errorgoto_stack = []
     @resume_stack = []
     @running = false
+    @start_time = Time.now()
   end
 
   private
@@ -143,6 +144,7 @@ class Interpreter
     @user_function_lines = @program.assign_function_markers
 
     clear_previous_lines
+    @start_time = Time.now()
     run_program
   end
 
