@@ -475,9 +475,9 @@ class UserFunctionToken < AbstractToken
     super
 
     @is_user_function = true
-    @content_type = 'numeric'
-    @content_type = 'string' if text.include?('$')
-    @content_type = 'integer' if text.include?('%')
+    @content_type = :numeric
+    @content_type = :string if text.include?('$')
+    @content_type = :integer if text.include?('%')
   end
 
   def ==(other)
@@ -502,9 +502,9 @@ class VariableToken < AbstractToken
 
     raise(BASICSyntaxError, 'invalid token') unless text.class.to_s == 'String'
     @is_variable = true
-    @content_type = 'numeric'
-    @content_type = 'string' if text.include?('$')
-    @content_type = 'integer' if text.include?('%')
+    @content_type = :numeric
+    @content_type = :string if text.include?('$')
+    @content_type = :integer if text.include?('%')
   end
 
   def ==(other)
