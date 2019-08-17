@@ -1294,8 +1294,6 @@ class Declaration < AbstractElement
     @variable_name = variable_name
     @subscripts = normalize_subscripts(subscripts)
     @variable = true
-    @operand = true
-    @precedence = 7
   end
 
   def dump
