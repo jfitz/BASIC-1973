@@ -56,33 +56,33 @@
 630
 640 LET O(0)=2                          'STANDARD MOTIF HEADER 
  NumericConstant:0
- ScalarReference:O
+ Reference:O
  NumericConstant:2
  AssignmentOperator:=
 650 LET O(1) = ASC(SOH)
  NumericConstant:1
- ScalarReference:O
+ Reference:O
  TextConstant:""
  FunctionAsc
  AssignmentOperator:=
 660 LET O(2) = ASC("N")
  NumericConstant:2
- ScalarReference:O
+ Reference:O
  TextConstant:"N"
  FunctionAsc
  AssignmentOperator:=
 670 CHANGE O TO O1$
  ScalarValue:O
- ScalarReference:O1$
+ Reference:O1$
 680 LET O(2) = ASC("Q")
  NumericConstant:2
- ScalarReference:O
+ Reference:O
  TextConstant:"Q"
  FunctionAsc
  AssignmentOperator:=
 690 CHANGE O TO O$
  ScalarValue:O
- ScalarReference:O$
+ Reference:O$
 700 PRINT O1$;O$;CHR$(13);"XX ARE YOU FAMILIAR WITH THE WAY THIS GAME WORKS'";
  ITEMS
  ScalarValue:O1$
@@ -106,7 +106,7 @@
  TextConstant:"YUP"
  TextConstant:"COMPUTERS ARE SOPHISTICATED MACHINES. USE APPROPRIATE LANGUAGE."
 730 LET K9=5                            'TWICE NUMBER OF KNOWN LANGUAGES 
- ScalarReference:K9
+ Reference:K9
  NumericConstant:5
  AssignmentOperator:=
 740 FOR X=1 TO K9-1 STEP 2
@@ -116,11 +116,11 @@
  step:    ["NumericConstant:2"]
 750      READ F$(X),F$(X+1),R$((X-1)/2+1)
  ScalarValue:X
- ScalarReference:F$
+ Reference:F$
  ScalarValue:X
  NumericConstant:1
  BinaryOperator:+
- ScalarReference:F$
+ Reference:F$
  ScalarValue:X
  NumericConstant:1
  BinaryOperator:-
@@ -128,7 +128,7 @@
  BinaryOperator:/
  NumericConstant:1
  BinaryOperator:+
- ScalarReference:R$
+ Reference:R$
 760 NEXT X
  VariableName:X
 770 REM WE HAVE JUST LEARNED FOREIGN LANGUAGES
@@ -139,7 +139,7 @@
  TextConstant:"SLOWPOKE SAM"
 790 MAT READ Q$(3)                      'NAME ARRAY
  NumericConstant:3
- MatrixReference:Q$
+ Reference:Q$
 800 DATA -2.9,-2.9,-5                   'AMT. SPEED TO BE SUBTRACTED FROM AUTO-PILOT* SPEEDS
  NumericConstant:2.9
  UnaryOperator:-
@@ -149,14 +149,14 @@
  UnaryOperator:-
 810 MAT READ Q(3)
  NumericConstant:3
- MatrixReference:Q
+ Reference:Q
 820 MAT READ M$(3)                      'READ NAMES OF TYPES OF ROADWAY
  NumericConstant:3
- MatrixReference:M$
+ Reference:M$
 830 READ X$                             'DEATH MESSAGE
- ScalarReference:X$
+ Reference:X$
 840 INPUT A$                            'RESPONSE TO DO YOU KNOW WHAT YOU'RE DOING?
- ScalarReference:A$
+ Reference:A$
 850 IF A$>"09" THEN 890                 'IF BETWEEN 01 AND 09, THEN MULTI-TERMINAL 
  ScalarValue:A$
  TextConstant:"09"
@@ -166,14 +166,14 @@
  TextConstant:"01"
  BinaryOperator:<
 870 LET O9 = VAL(A$)
- ScalarReference:O9
+ Reference:O9
  ScalarValue:A$
  FunctionVal
  AssignmentOperator:=
 880 GOTO 960
  LineNumber:960
 890 LET O$=""                           'SET THINGS UP FOR SINGLE TERMINAL
- ScalarReference:O$
+ Reference:O$
  TextConstant:""
  AssignmentOperator:=
 900 GOSUB 2190
@@ -187,10 +187,10 @@
  TextConstant:"RATE YOURSELF AS A DRIVER.  (1-BEST,3-WORST )"
  CarriageControl:;
 930 INPUT O
- ScalarReference:O
+ Reference:O
 940 LET Q(3)=Q(3)*O
  NumericConstant:3
- ScalarReference:Q
+ Reference:Q
  NumericConstant:3
  ScalarValue:Q
  ScalarValue:O
@@ -200,7 +200,7 @@
  LineNumber:1050
 960 LET O(2) = ASC(A)                   'CREATE O$ ARRAY FOR MULTI-TERMINAL
  NumericConstant:2
- ScalarReference:O
+ Reference:O
  ScalarValue:A
  FunctionAsc
  AssignmentOperator:=
@@ -210,7 +210,7 @@
  end:     ["ScalarValue:O9"]
 990      LET O(2) = ASC(C) + I
  NumericConstant:2
- ScalarReference:O
+ Reference:O
  ScalarValue:C
  FunctionAsc
  ScalarValue:I
@@ -219,7 +219,7 @@
 1000      CHANGE O TO O$(I)
  ScalarValue:O
  ScalarValue:I
- ScalarReference:O$
+ Reference:O$
 1010 NEXT I
  VariableName:I
 1020 PRINT O$(10);"YOU MAY 'DRAFT' (SLIPSTREAM) OFF-OF ANY CAR AHEAD"
@@ -260,7 +260,7 @@
  TextConstant:"NO"
  BinaryOperator:=
 1110 LET F2=INT(RND*10)+6
- ScalarReference:F2
+ Reference:F2
  FunctionRnd
  NumericConstant:10
  BinaryOperator:*
@@ -289,7 +289,7 @@
  CarriageControl:NL
 1140       LET A(R)=RND*.05+.05
  ScalarValue:R
- ScalarReference:A
+ Reference:A
  FunctionRnd
  NumericConstant:.05
  BinaryOperator:*
@@ -348,7 +348,7 @@
  ScalarValue:O$
  CarriageControl:;
 1220 LET A$=A$(NUM)
- ScalarReference:A$
+ Reference:A$
  ScalarValue:N
  ScalarValue:U
  ScalarValue:M
@@ -561,7 +561,7 @@
  TextConstant:"  \_________________________/"
  CarriageControl:NL
 1450 LET N=RND*3+1 
- ScalarReference:N
+ Reference:N
  FunctionRnd
  NumericConstant:3
  BinaryOperator:*
@@ -592,12 +592,12 @@
 1500 DATA "MAY I SHOW YOU TO A PLOT? WE HAVE A NICE CHOICE OF HEADSTONES."
  TextConstant:"MAY I SHOW YOU TO A PLOT? WE HAVE A NICE CHOICE OF HEADSTONES."
 1510 LET O=-1
- ScalarReference:O
+ Reference:O
  NumericConstant:1
  UnaryOperator:-
  AssignmentOperator:=
 1520 LET H=INT(N)
- ScalarReference:H
+ Reference:H
  ScalarValue:N
  FunctionInt
  AssignmentOperator:=
@@ -606,7 +606,7 @@
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:N"]
 1540       LET Y=FNA(M$(1),200,1,3/10,65) 'STRAIGHT R, 200 MAX., 3/10 MILE LONG 
- ScalarReference:Y
+ Reference:Y
  NumericConstant:1
  ScalarValue:M$
  NumericConstant:200
@@ -618,7 +618,7 @@
  UserFunction
  AssignmentOperator:=
 1550       LET Y=FNA(M$(3),125,1,1/10,49) 'CURVE 1, 125 MAX., 1/10 MILE LONG 
- ScalarReference:Y
+ Reference:Y
  NumericConstant:3
  ScalarValue:M$
  NumericConstant:125
@@ -630,7 +630,7 @@
  UserFunction
  AssignmentOperator:=
 1560       LET Y=FNA(M$(1),200,2,13/2Q,65) 'STRAIGHT 3, 200 MAX., 13/20 MILE LONG 
- ScalarReference:Y
+ Reference:Y
  NumericConstant:1
  ScalarValue:M$
  NumericConstant:200
@@ -643,7 +643,7 @@
  UserFunction
  AssignmentOperator:=
 1570       LET Y=FNA(M$(3),125,1,1/10,50) 'CURVE 2, 125 MAX., 1/10 NILE LONG 
- ScalarReference:Y
+ Reference:Y
  NumericConstant:3
  ScalarValue:M$
  NumericConstant:125
@@ -655,7 +655,7 @@
  UserFunction
  AssignmentOperator:=
 1580       LET Y=FNR(M$(1),200,1,1/5,67) 'STRAIGHT C, 200 MAX., 1/5 MILE LONG 
- ScalarReference:Y
+ Reference:Y
  NumericConstant:1
  ScalarValue:M$
  NumericConstant:200
@@ -667,7 +667,7 @@
  UserFunction
  AssignmentOperator:=
 1590       LET Y=FNA(M$(3),150,1,3/20,51) 'CURVE 3, 150 MAX., 3/20 MILE LONG 
- ScalarReference:Y
+ Reference:Y
  NumericConstant:3
  ScalarValue:M$
  NumericConstant:150
@@ -679,7 +679,7 @@
  UserFunction
  AssignmentOperator:=
 1600       LET Y=FNA(M$(1),200,2,3/5,68) 'STRAIGHT D, 200 MAX,, 3/5 MILE LONG 
- ScalarReference:Y
+ Reference:Y
  NumericConstant:1
  ScalarValue:M$
  NumericConstant:200
@@ -691,7 +691,7 @@
  UserFunction
  AssignmentOperator:=
 1610       LET Y=FNA(M$(3),125,1,1/10,52) 'CURVE 4, 125 MAX., 1/10 MILE LONG 
- ScalarReference:Y
+ Reference:Y
  NumericConstant:3
  ScalarValue:M$
  NumericConstant:125
@@ -703,7 +703,7 @@
  UserFunction
  AssignmentOperator:=
 1620       LET Y=FNA(M$(1),200,1,1/4,69) 'STRAIGHT E, 200 MAX., 1/4 MILE LONG 
- ScalarReference:Y
+ Reference:Y
  NumericConstant:1
  ScalarValue:M$
  NumericConstant:200
@@ -715,7 +715,7 @@
  UserFunction
  AssignmentOperator:=
 1630       LET Y=FNA(M$(2),100,.75,3/20,53) 'HAIRPIN 5, 100 MAX., 3/20 MILE LONG 
- ScalarReference:Y
+ Reference:Y
  NumericConstant:2
  ScalarValue:M$
  NumericConstant:100
@@ -727,7 +727,7 @@
  UserFunction
  AssignmentOperator:=
 1640       LET Y=FNA(M$(1),200,1.5,9/20,70) 'STRAIGHT F, 200 MAX., 9/20 MILE LONG 
- ScalarReference:Y
+ Reference:Y
  NumericConstant:1
  ScalarValue:M$
  NumericConstant:200
@@ -739,7 +739,7 @@
  UserFunction
  AssignmentOperator:=
 1650       LET Y=FNA(M$(2),100,.75,3/20,54) 'HAIRPIN 5, 100 MAX., 3/20 MILE LONG 
- ScalarReference:Y
+ Reference:Y
  NumericConstant:2
  ScalarValue:M$
  NumericConstant:100
@@ -751,7 +751,7 @@
  UserFunction
  AssignmentOperator:=
 1660       LET Y=FNA(M$(1),200,2,1,71) 'STRAIGHT G, 200 MAX., 1 MILE LONG 
- ScalarReference:Y
+ Reference:Y
  NumericConstant:1
  ScalarValue:M$
  NumericConstant:200
@@ -761,7 +761,7 @@
  UserFunction
  AssignmentOperator:=
 1670       LET Y=FNA(M$(3),125,1,1/10,55) 'CURVE 7, 125 MAX., 1/10 MILE LONG 
- ScalarReference:Y
+ Reference:Y
  NumericConstant:3
  ScalarValue:M$
  NumericConstant:125
@@ -773,7 +773,7 @@
  UserFunction
  AssignmentOperator:=
 1680       LET Y=FNA(M$(3),150,1,3/20,56) 'CURVE 8, 150 MAX., 3/20 MILE LONG 
- ScalarReference:Y
+ Reference:Y
  NumericConstant:3
  ScalarValue:M$
  NumericConstant:150
@@ -785,7 +785,7 @@
  UserFunction
  AssignmentOperator:=
 1690       LET Y=FNA(M$(1),200,2,7/10,72) 'STRAIGHT H, 20C MAX., 7/10 MILE LONG 
- ScalarReference:Y
+ Reference:Y
  NumericConstant:1
  ScalarValue:M$
  NumericConstant:200
@@ -801,7 +801,7 @@
  ScalarValue:H
  BinaryOperator:=
 1710       LET Y=FNA("START-FINISH (CURVE 9)",150,1,3/20,127)
- ScalarReference:Y
+ Reference:Y
  TextConstant:"START-FINISH (CURVE 9)"
  NumericConstant:150
  NumericConstant:1
@@ -833,7 +833,7 @@
  TextConstant:"THE RESULTS STRAIGHT FROM THE CHECKERED FLAG:"
  CarriageControl:NL
 1780 LET W=1E+37
- ScalarReference:W
+ Reference:W
  NumericConstant:1E+37
  AssignmentOperator:=
 1790 IF G9=0 THEN 1820
@@ -841,13 +841,13 @@
  NumericConstant:0
  BinaryOperator:=
 1800 LET G5=O9
- ScalarReference:G5
+ Reference:G5
  ScalarValue:O9
  AssignmentOperator:=
 1810 GOTO 1830
  LineNumber:1830
 1820 LET G5=3
- ScalarReference:G5
+ Reference:G5
  NumericConstant:3
  AssignmentOperator:=
 1830 FOR Z=G TO G5
@@ -934,12 +934,12 @@
  ScalarValue:W
  BinaryOperator:>
 1970      LET W=T(Z)                      'NEW LEADING TIME AND DRIVER
- ScalarReference:W
+ Reference:W
  ScalarValue:Z
  ScalarValue:T
  AssignmentOperator:=
 1980      LET N=F2*(Z+1)+Z 
- ScalarReference:N
+ Reference:N
  ScalarValue:F2
  ScalarValue:Z
  NumericConstant:1
@@ -1004,7 +1004,7 @@
 2050 MAT INPUT A$
  Syntax error
 2060 LET A$=A$(NUM)
- ScalarReference:A$
+ Reference:A$
  ScalarValue:N
  ScalarValue:U
  ScalarValue:M
@@ -1026,9 +1026,9 @@
  end:     ["NumericConstant:10"]
 2110      LET T(Z),D(Z)=0
  ScalarValue:Z
- ScalarReference:T
+ Reference:T
  ScalarValue:Z
- ScalarReference:D
+ Reference:D
  NumericConstant:0
  AssignmentOperator:=
 2120 NEXT Z
@@ -1052,8 +1052,8 @@
  ITEMS
  CarriageControl:NL
 2170 LET G1,F5=0                           'UNKILL EVERYBODY AND UNOIL THE TRACK 
- ScalarReference:G1
- ScalarReference:F5
+ Reference:G1
+ Reference:F5
  NumericConstant:0
  AssignmentOperator:=
 2180 GOTO 1110
@@ -1095,13 +1095,13 @@
  BinaryOperator:*
  BinaryOperator:=
 2250 LET R$="NO"
- ScalarReference:R$
+ Reference:R$
  TextConstant:"NO"
  AssignmentOperator:=
 2260 GOTO 2280
  LineNumber:2280
 2270 LET A$="YES"
- ScalarReference:A$
+ Reference:A$
  TextConstant:"YES"
  AssignmentOperator:=
 2280 RETURN
@@ -1156,14 +1156,14 @@
  ScalarValue:X$
  CarriageControl:NL
 2400      LET F5=F5+1                      'INCREMENT OIL COUNTER
- ScalarReference:F5
+ Reference:F5
  ScalarValue:F5
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 2410      LET E(F5)=D                      'AND THE 635 SAID "LET THERE BE OIL." AND THERE IT WAS.
  ScalarValue:F5
- ScalarReference:E
+ Reference:E
  ScalarValue:D
  AssignmentOperator:=
 2420      FOR Z=0 TO O9                    'AND THE TRACK ABOUNDED WITH OIL. AND THE 635 SAID "BOY, WHAT
@@ -1195,11 +1195,11 @@
  VariableName:Z
 2460      LET D(G)=1                       'OFFICIALLY PRONOUNCE DEAD. D IS FOR DEATH
  ScalarValue:G
- ScalarReference:D
+ Reference:D
  NumericConstant:1
  AssignmentOperator:=
 2470      LET Q=Q+1                        'INCREMENT DEAD COUNTER
- ScalarReference:Q
+ Reference:Q
  ScalarValue:Q
  NumericConstant:1
  BinaryOperator:+
@@ -1211,7 +1211,7 @@
 2490      GOTO 2780
  LineNumber:2780
 2500      LET Y4=T(G)                      'RATS. HE DIDN'T WIPE
- ScalarReference:Y4
+ Reference:Y4
  ScalarValue:G
  ScalarValue:T
  AssignmentOperator:=
@@ -1236,7 +1236,7 @@
  CarriageControl:;
 2530      LET T(G)=T(G)+C/(S(G)/3600)+L(G) 'UPDATE HIS TIME
  ScalarValue:G
- ScalarReference:T
+ Reference:T
  ScalarValue:G
  ScalarValue:T
  ScalarValue:C
@@ -1264,7 +1264,7 @@
  NumericConstant:1
  BinaryOperator:=
 2570           LET Z4=T(X4)-(C/(S(X4)/3600))
- ScalarReference:Z4
+ Reference:Z4
  ScalarValue:X4
  ScalarValue:T
  ScalarValue:C
@@ -1276,13 +1276,13 @@
  BinaryOperator:-
  AssignmentOperator:=
 2580           LET Z1=Y4-Z4
- ScalarReference:Z1
+ Reference:Z1
  ScalarValue:Y4
  ScalarValue:Z4
  BinaryOperator:-
  AssignmentOperator:=
 2590           LET Z2=T(G)-T(X4)
- ScalarReference:Z2
+ Reference:Z2
  ScalarValue:G
  ScalarValue:T
  ScalarValue:X4
@@ -1467,16 +1467,16 @@
  ScalarValue:O$
  CarriageControl:;
 2820 LET E = 0                                'MAKE SURE WE DON'T USE LAST SECTION'S OIL ON THIS SECTION
- ScalarReference:E
+ Reference:E
  NumericConstant:0
  AssignmentOperator:=
 2830 MAT L=ZER                                'KILL PIT STOPS FROM LAST TIME
- MatrixReference:L
+ Reference:L
  FunctionZer
  AssignmentOperator:=
 2840 LET L(0)=0
  NumericConstant:0
- ScalarReference:L
+ Reference:L
  NumericConstant:0
  AssignmentOperator:=
 2850 IF F5<2 THEN 2900                        'IF COURSE WELL GREASED, DISSOLVE GREASE
@@ -1492,11 +1492,11 @@
  TextConstant:"MOTIONLESS UNTIL DEBRIS IS CLEARED"
  CarriageControl:NL
 2880 MAT E=ZER
- MatrixReference:E
+ Reference:E
  FunctionZer
  AssignmentOperator:=
 2890 LET F5=0
- ScalarReference:F5
+ Reference:F5
  NumericConstant:0
  AssignmentOperator:=
 2900 FOR X=1 TO F5                            'SEE IF THOSE PLAYING DESERVE OIL 
@@ -1517,7 +1517,7 @@
  TextConstant:"YIKES! OIL ON THE TRACK!"
  CarriageControl:NL
 2950 LET E=.2
- ScalarReference:E
+ Reference:E
  NumericConstant:.2
  AssignmentOperator:=
 2960 GOTO 3130
@@ -1546,7 +1546,7 @@
  TextConstant:"GLORY BE, THE RAIN HAS STOPPED! BUT REMEMBER IT IS STILL WET"
  CarriageControl:NL
 3020 LET F3=1                                 'RAIN, RAIN, GO AWAY, WON'T COME BACK ANOTHER DAY 
- ScalarReference:F3
+ Reference:F3
  NumericConstant:1
  AssignmentOperator:=
 3030 FOR A=0 TO O9
@@ -1555,14 +1555,14 @@
  end:     ["ScalarValue:O9"]
 3040      LET A(A)= A(A)-.075                 'DELETE MOST OF THE EFFECTS
  ScalarValue:A
- ScalarReference:A
+ Reference:A
  ScalarValue:A
  ScalarValue:A
  NumericConstant:.075
  BinaryOperator:-
  AssignmentOperator:=
 3050      LET G8=.025                         'MAKE IT LESS LIKELY TO RAIN IN LATER RACES 
- ScalarReference:G8
+ Reference:G8
  NumericConstant:.025
  AssignmentOperator:=
 3060 NEXT A
@@ -1579,14 +1579,14 @@
  end:     ["ScalarValue:O9"]
 3100      LET A(A)=A(A)+.1
  ScalarValue:A
- ScalarReference:A
+ Reference:A
  ScalarValue:A
  ScalarValue:A
  NumericConstant:.1
  BinaryOperator:+
  AssignmentOperator:=
 3110      LET G8=.1
- ScalarReference:G8
+ Reference:G8
  NumericConstant:.1
  AssignmentOperator:=
 3120 NEXT A
@@ -1619,7 +1619,7 @@
  BinaryOperator:=
 3180 LET L(X)=RND*3+5
  ScalarValue:X
- ScalarReference:L
+ Reference:L
  FunctionRnd
  NumericConstant:3
  BinaryOperator:*
@@ -1645,7 +1645,7 @@
 3220 REM INPUT
  Remark:INPUT
 3230 MAT S=ZER                                'RESET SPEED ARRAY
- MatrixReference:S
+ Reference:S
  FunctionZer
  AssignmentOperator:=
 3240 IF O3>0 THEN 3270                        'PRINT OUT SOMETHING LIKE 'STRAIGHT A'
@@ -1681,7 +1681,7 @@
  CarriageControl:;
 3280 LET S(D)=0                               'GET EVERYBODY'S SPEEDS
  ScalarValue:D
- ScalarReference:S
+ Reference:S
  NumericConstant:0
  AssignmentOperator:=
 3290 FOR A=0 TO O9
@@ -1713,24 +1713,24 @@
  NumericConstant:1
  BinaryOperator:=
 3360 LET N=J(1)
- ScalarReference:N
+ Reference:N
  NumericConstant:1
  ScalarValue:J
  AssignmentOperator:=
 3370 LET S=J(2)
- ScalarReference:S
+ Reference:S
  NumericConstant:2
  ScalarValue:J
  AssignmentOperator:=
 3380 GOTO 3410
  LineNumber:3410
 3390 LET S=J(1)
- ScalarReference:S
+ Reference:S
  NumericConstant:1
  ScalarValue:J
  AssignmentOperator:=
 3400 LET N=0
- ScalarReference:N
+ Reference:N
  NumericConstant:0
  AssignmentOperator:=
 3410 IF D(N)=0 THEN 3450                      'IS THE GUY DEAD?
@@ -1774,7 +1774,7 @@
 3470 GOTO 3430
  LineNumber:3430
 3480 LET A=N
- ScalarReference:A
+ Reference:A
  ScalarValue:N
  AssignmentOperator:=
 3490 IF S<=200 THEN 3620                      'DID HE TRY TO EXCEED HIS MAX. SPEED? 
@@ -1790,7 +1790,7 @@
  NumericConstant:1000
  BinaryOperator:<
 3520 LET R4=(S-1000-F2)/(F2+1)                'IT'S OK. HE ONLY WANTS TO DRAFT
- ScalarReference:R4
+ Reference:R4
  ScalarValue:S
  NumericConstant:1000
  BinaryOperator:-
@@ -1881,11 +1881,11 @@
  LineNumber:3640
 3690 LET S(N)=S                               'SINCE HE MADE IT THIS FAR, ASSUME THAT IT'S LEGAL
  ScalarValue:N
- ScalarReference:S
+ Reference:S
  ScalarValue:S
  AssignmentOperator:=
 3700 LET U=U+1
- ScalarReference:U
+ Reference:U
  ScalarValue:U
  NumericConstant:1
  BinaryOperator:+
@@ -1896,11 +1896,11 @@
  BinaryOperator:=
 3720 LET H(N)=R4                              'IF HE'S DRAFTING, TELL ME TO WHOM
  ScalarValue:N
- ScalarReference:H
+ Reference:H
  ScalarValue:R4
  AssignmentOperator:=
 3730 LET R4=0
- ScalarReference:R4
+ Reference:R4
  NumericConstant:0
  AssignmentOperator:=
 3740 IF U<O9-Q THEN 3430                      'ARE WE DONE?
@@ -1910,7 +1910,7 @@
  BinaryOperator:-
  BinaryOperator:<
 3750 LET U=0                                  'YES!
- ScalarReference:U
+ Reference:U
  NumericConstant:0
  AssignmentOperator:=
 3760 IF O9>0 THEN 3890                        'SET SPEEDS FOR AUTO-PILOTS
@@ -1927,7 +1927,7 @@
  NumericConstant:1
  BinaryOperator:=
 3790      LET S=R*B/(B+.1+E+G8)+(RND*3+Q(F0))
- ScalarReference:S
+ Reference:S
  ScalarValue:R
  ScalarValue:B
  BinaryOperator:*
@@ -1963,7 +1963,7 @@
  BinaryOperator:<=
 3810      LET D(F0)=1
  ScalarValue:F0
- ScalarReference:D
+ Reference:D
  NumericConstant:1
  AssignmentOperator:=
 3820      PRINT O$(10);Q$(F3);" JUST WIPED"       'AND INFORM US IF THEY WIPE
@@ -1977,19 +1977,19 @@
  TextConstant:" JUST WIPED"
  CarriageControl:NL
 3830      LET F5=F5+1
- ScalarReference:F5
+ Reference:F5
  ScalarValue:F5
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 3840      LET E(F5)=D
  ScalarValue:F5
- ScalarReference:E
+ Reference:E
  ScalarValue:D
  AssignmentOperator:=
 3850      LET T(F0)=T(F0)+C/(S/3600)
  ScalarValue:F0
- ScalarReference:T
+ Reference:T
  ScalarValue:F0
  ScalarValue:T
  ScalarValue:C
@@ -2001,7 +2001,7 @@
  AssignmentOperator:=
 3860      LET S(F0)=S
  ScalarValue:F0
- ScalarReference:S
+ Reference:S
  ScalarValue:S
  AssignmentOperator:=
 3870 NEXT F0
@@ -2030,7 +2030,7 @@
  BinaryOperator:<>
 3930      LET H(X2)=H(H(X2)) 
  ScalarValue:X2
- ScalarReference:H
+ Reference:H
  ScalarValue:X2
  ScalarValue:H
  ScalarValue:H
@@ -2039,14 +2039,14 @@
  LineNumber:3920
 3950      LET S(X2)=S(H(X2))
  ScalarValue:X2
- ScalarReference:S
+ Reference:S
  ScalarValue:X2
  ScalarValue:H
  ScalarValue:S
  AssignmentOperator:=
 3960      LET T(X2)=(T(X2)+I(H(X2)))/2
  ScalarValue:X2
- ScalarReference:T
+ Reference:T
  ScalarValue:X2
  ScalarValue:T
  ScalarValue:X2
@@ -2072,13 +2072,13 @@
  NumericConstant:0
  BinaryOperator:=
 4020 LET G5=O9
- ScalarReference:G5
+ Reference:G5
  ScalarValue:O9
  AssignmentOperator:=
 4030 GOTO 4050
  LineNumber:4050
 4040 LET J5=3
- ScalarReference:J5
+ Reference:J5
  NumericConstant:3
  AssignmentOperator:=
 4050 FOR G=0 TO G5
@@ -2198,7 +2198,7 @@
  TextConstant:", THE LAST OF THE GREAT RACERS, JUST WIPED."
  CarriageControl:NL
 4240 LET G1=1    'ALL HUMANS ARE DEAD, SO GRIND THIS MANGLE TO A HALT, AND SET A FLAG TO THAT EFFECT 
- ScalarReference:G1
+ Reference:G1
  NumericConstant:1
  AssignmentOperator:=
 4250 FNEND 'AND RETURN FROM WHENCE WE CAME

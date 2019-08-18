@@ -22,22 +22,22 @@
  CarriageControl:NL
  ITEMS
  CarriageControl:NL
- ScalarReference:D1
+ Reference:D1
  NumericConstant:0
  AssignmentOperator:=
- ScalarReference:V
+ Reference:V
  NumericConstant:0
  AssignmentOperator:=
- ScalarReference:A
+ Reference:A
  NumericConstant:0
  AssignmentOperator:=
- ScalarReference:N
+ Reference:N
  NumericConstant:0
  AssignmentOperator:=
- ScalarReference:M
+ Reference:M
  NumericConstant:0
  AssignmentOperator:=
- ScalarReference:D2
+ Reference:D2
  NumericConstant:9001
  NumericConstant:1
  FunctionRnd
@@ -50,7 +50,7 @@
  ITEMS
  TextConstant:"SELECT YOUR OWN TERMINAL VELOCITY (YES OR NO)"
  CarriageControl:;
- ScalarReference:A1$
+ Reference:A1$
 120 IF A1$="NO" THEN 128 ELSE IF A1$="YES" THEN 123
  ScalarValue:A1$
  TextConstant:"NO"
@@ -62,22 +62,22 @@
  ITEMS
  TextConstant:"'YEE' OR 'NO' PLEASE"
  CarriageControl:;
- ScalarReference:A1$
+ Reference:A1$
  LineNumber:120
 123 PRINT "WHAT TERMINAL VELOCITY (MI/HR)";\INPUT V1
  ITEMS
  TextConstant:"WHAT TERMINAL VELOCITY (MI/HR)"
  CarriageControl:;
- ScalarReference:V1
+ Reference:V1
 125 V1=V1*(5280/3600)\V=V1+((V1*RND(0))/20)-((V1*RND(0))/20)\GOTO 135
- ScalarReference:V1
+ Reference:V1
  ScalarValue:V1
  NumericConstant:5280
  NumericConstant:3600
  BinaryOperator:/
  BinaryOperator:*
  AssignmentOperator:=
- ScalarReference:V
+ Reference:V
  ScalarValue:V1
  ScalarValue:V1
  NumericConstant:0
@@ -96,7 +96,7 @@
  AssignmentOperator:=
  LineNumber:135
 128 V1=INT(1000*RND(0))
- ScalarReference:V1
+ Reference:V1
  NumericConstant:1000
  NumericConstant:0
  FunctionRnd
@@ -112,14 +112,14 @@
  TextConstant:"MI/HR"
  CarriageControl:NL
 131 V1=V1*(5280/3600)\V=V1+((V1*RND(0))/20)-((V1*RND(0))/20)
- ScalarReference:V1
+ Reference:V1
  ScalarValue:V1
  NumericConstant:5280
  NumericConstant:3600
  BinaryOperator:/
  BinaryOperator:*
  AssignmentOperator:=
- ScalarReference:V
+ Reference:V
  ScalarValue:V1
  ScalarValue:V1
  NumericConstant:0
@@ -141,7 +141,7 @@
  TextConstant:"WANT TO SELECT ACCELERATION DUE TO GRAVITY (YES OR NO)"
  CarriageControl:;
 136 INPUT B1$
- ScalarReference:B1$
+ Reference:B1$
 140 IF B1$="NO" THEN 150 ELSE IF B1$<>YES" THEN 143
  ScalarValue:B1$
  TextConstant:"NO"
@@ -156,15 +156,15 @@
  ITEMS
  TextConstant:"'YES' OR 'NO' PLEASE"
  CarriageControl:;
- ScalarReference:B1$
+ Reference:B1$
  LineNumber:140
 143 PRINT "WHAT ACCELERATION (FT/SEC/SEC )";\INPUT A2
  ITEMS
  TextConstant:"WHAT ACCELERATION (FT/SEC/SEC )"
  CarriageControl:;
- ScalarReference:A2
+ Reference:A2
 145 A=A2+((A2*RND(0))/20)-((A2*RND(0))/20)\GOTO 205
- ScalarReference:A
+ Reference:A
  ScalarValue:A2
  ScalarValue:A2
  NumericConstant:0
@@ -251,52 +251,52 @@
  CarriageControl:NL
  LineNumber:170
 161 A2=12.2\GOTO 145
- ScalarReference:A2
+ Reference:A2
  NumericConstant:12.2
  AssignmentOperator:=
  LineNumber:145
 162 A2=28.3\GOTO 145
- ScalarReference:A2
+ Reference:A2
  NumericConstant:28.3
  AssignmentOperator:=
  LineNumber:145
 163 A2=32.16\GOTO 145
- ScalarReference:A2
+ Reference:A2
  NumericConstant:32.16
  AssignmentOperator:=
  LineNumber:145
 164 A2=5.15\GOTO 145
- ScalarReference:A2
+ Reference:A2
  NumericConstant:5.15
  AssignmentOperator:=
  LineNumber:145
 165 A2=12.5\GOTO 145
- ScalarReference:A2
+ Reference:A2
  NumericConstant:12.5
  AssignmentOperator:=
  LineNumber:145
 166 A2=85.2\GOTO 145
- ScalarReference:A2
+ Reference:A2
  NumericConstant:85.2
  AssignmentOperator:=
  LineNumber:145
 167 A2=37.6\GOTO 145
- ScalarReference:A2
+ Reference:A2
  NumericConstant:37.6
  AssignmentOperator:=
  LineNumber:145
 168 A2=33.8\GOTO 145
- ScalarReference:A2
+ Reference:A2
  NumericConstant:33.8
  AssignmentOperator:=
  LineNumber:145
 169 A2=39.6\GOTO 145
- ScalarReference:A2
+ Reference:A2
  NumericConstant:39.6
  AssignmentOperator:=
  LineNumber:145
 170 A2=896\GOTO 145
- ScalarReference:A2
+ Reference:A2
  NumericConstant:896
  AssignmentOperator:=
  LineNumber:145
@@ -335,7 +335,7 @@
  ITEMS
  TextConstant:"HOW MANY SECONDS"
  CarriageControl:;
- ScalarReference:T
+ Reference:T
 215 PRINT "HERE WE GO."
  ITEMS
  TextConstant:"HERE WE GO."
@@ -367,7 +367,7 @@
  BinaryOperator:/
  BinaryOperator:>
 320 D=D1-((A/2)+I^2)
- ScalarReference:D
+ Reference:D
  ScalarValue:D1
  ScalarValue:A
  NumericConstant:2
@@ -408,7 +408,7 @@
  end:     ["ScalarValue:T"]
  step:    ["ScalarValue:T", "NumericConstant:8", "BinaryOperator:/"]
 410 D=D1-((V^2/(2+A))+(V*(I-(V/A))))
- ScalarReference:D
+ Reference:D
  ScalarValue:D1
  ScalarValue:V
  NumericConstant:2
@@ -446,10 +446,10 @@
  TextConstant:"CHUTE OPEN"
  CarriageControl:NL
 510 K=0\K1=0
- ScalarReference:K
+ Reference:K
  NumericConstant:0
  AssignmentOperator:=
- ScalarReference:K1
+ Reference:K1
  NumericConstant:0
  AssignmentOperator:=
 530 FOR I=1 TO 4000
@@ -462,7 +462,7 @@
  NumericConstant:0
  BinaryOperator:=
 560 K=K+1
- ScalarReference:K
+ Reference:K
  ScalarValue:K
  NumericConstant:1
  BinaryOperator:+
@@ -473,7 +473,7 @@
  ScalarValue:A
  BinaryOperator:>
 580 K1=K1+1
- ScalarReference:K1
+ Reference:K1
  ScalarValue:K1
  NumericConstant:1
  BinaryOperator:+
@@ -482,11 +482,11 @@
  VariableName:I
 620 A(I)=D
  ScalarValue:I
- ScalarReference:A
+ Reference:A
  ScalarValue:D
  AssignmentOperator:=
 630 I=I-1
- ScalarReference:I
+ Reference:I
  ScalarValue:I
  NumericConstant:1
  BinaryOperator:-
@@ -763,7 +763,7 @@
  ITEMS
  TextConstant:"DO YOU WANT TO PLAY AGAIN"
  CarriageControl:;
- ScalarReference:Z$
+ Reference:Z$
 2001 IF Z$="YES" GOTO 118
  ScalarValue:Z$
  TextConstant:"YES"
@@ -781,7 +781,7 @@
  ITEMS
  TextConstant:"PLEASE"
  CarriageControl:;
- ScalarReference:Z$
+ Reference:Z$
  ScalarValue:Z$
  TextConstant:"YES"
  BinaryOperator:=

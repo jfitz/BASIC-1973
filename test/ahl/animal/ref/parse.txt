@@ -12,19 +12,19 @@
  NumericConstant:200
  Declaration:A$
 525 F$="ANIMAL.GME":ON ERROR GOTO 700
- ScalarReference:F$
+ Reference:F$
  TextConstant:"ANIMAL.GME"
  AssignmentOperator:=
  LineNumber:700
 550 OPEN F$ FOR INPUT AS FILE 1%:INPUT #1%,N$:INPUT #1%,A(I%) FOR I%=1%TO N%:CLOSE 1%:A$(0%)=NUM$(N%):ON ERROR GOTO 0:GOTO 1300
  ScalarValue:F$
  IntegerConstant:1
- ScalarReference:N$
+ Reference:N$
  ScalarValue:I%
- ScalarReference:A
+ Reference:A
  IntegerConstant:1
  IntegerConstant:0
- ScalarReference:A$
+ Reference:A$
  ScalarValue:N%
  FunctionStr
  AssignmentOperator:=
@@ -32,7 +32,7 @@
  LineNumber:1300
 700 ON ERROR GOTO 1050:F$="$"+F$:RESUME 550
  LineNumber:1050
- ScalarReference:F$
+ Reference:F$
  TextConstant:"$"
  ScalarValue:F$
  BinaryOperator:+
@@ -40,14 +40,14 @@
  
 1050 READ A$(I%) FOR I%=0% TO 3%
  ScalarValue:I%
- ScalarReference:A$
+ Reference:A$
 1100 DATA "4","\QDOES IT SWIM\Y2\N3\","\AFISH","\ABIRD"
  TextConstant:"4"
  TextConstant:"\QDOES IT SWIM\Y2\N3\"
  TextConstant:"\AFISH"
  TextConstant:"\ABIRD"
 1300 INPUT "ARE YOU THINKING OF AN ANIMAL",Z9$:GOTO 1350 IF LEFT(Z9$,1%)="Y":GOTO 1300 IF LEFT(Z9$,1%)="N"
- ScalarReference:Z9$
+ Reference:Z9$
  LineNumber:1350
  LineNumber:1300
 1310 IF Z9$="SAVE" THEN OPEN "ANIMAL.GME" FOR OUTPUT AS FILE 1%:PRINT #1%,A$(I%) FOR I%=0% TO VAL(A$(0%)):PRINT #1,CHR$(26%):CLOSE 1%:GOTO 1300
@@ -89,11 +89,11 @@
  CarriageControl:NL
  LineNumber:1300
 1350 K%=1%
- ScalarReference:K%
+ Reference:K%
  IntegerConstant:1
  AssignmentOperator:=
 1400 K%=FNA%(A$(K%)):GOTO 3000 IF LEN(A$(K%))=0%:GOTO 1400 IF LEFT(A$(K%),2%)="\Q":PRINT "IS IT A "RIGHT(A$(K%),3%);:INPUT Z7$:Z7$=LEFT(Z7$,1%)
- ScalarReference:K%
+ Reference:K%
  ScalarValue:K%
  ScalarValue:A$
  UserFunction
@@ -108,8 +108,8 @@
  IntegerConstant:3
  FunctionRight
  CarriageControl:;
- ScalarReference:Z7$
- ScalarReference:Z7$
+ Reference:Z7$
+ Reference:Z7$
  ScalarValue:Z7$
  IntegerConstant:1
  FunctionLeft
@@ -123,7 +123,7 @@
  CarriageControl:NL
  LineNumber:1300
 2000 INPUT "THE ANIMAL YOU WERE THINKING OF WAS A ";Z9$
- ScalarReference:Z9$
+ Reference:Z9$
 2050 PRINT "PLEASE TYPE IN A QUESTION THAT WOULD DISTINGUISH A " Z9$ " FROM A "RIGHT(A$(K%),3%):INPUT Z8$
  ITEMS
  TextConstant:"PLEASE TYPE IN A QUESTION THAT WOULD DISTINGUISH A "
@@ -137,7 +137,7 @@
  IntegerConstant:3
  FunctionRight
  CarriageControl:NL
- ScalarReference:Z8$
+ Reference:Z8$
 2100 PRINT "FOR A "Z9$" THE ANSWER WOULD BE";:INPUT Z7$:Z7$=LEFT(Z7$,1%):IF Z7$="Y" THEN Z6$="N" ELSE IF Z7$="N" THEN Z6$="Y" ELSE PRINT "PLEASE ANSWER 'YES' OR 'NO'":GOTO 2100
  ITEMS
  TextConstant:"FOR A "
@@ -146,8 +146,8 @@
  CarriageControl:
  TextConstant:" THE ANSWER WOULD BE"
  CarriageControl:;
- ScalarReference:Z7$
- ScalarReference:Z7$
+ Reference:Z7$
+ Reference:Z7$
  ScalarValue:Z7$
  IntegerConstant:1
  FunctionLeft
@@ -155,13 +155,13 @@
  ScalarValue:Z7$
  TextConstant:"Y"
  BinaryOperator:=
- ScalarReference:Z6$
+ Reference:Z6$
  TextConstant:"N"
  AssignmentOperator:=
  ScalarValue:Z7$
  TextConstant:"N"
  BinaryOperator:=
- ScalarReference:Z6$
+ Reference:Z6$
  TextConstant:"Y"
  AssignmentOperator:=
  ITEMS
@@ -169,33 +169,33 @@
  CarriageControl:NL
  LineNumber:2100
 2200 Z1%=VAL(A$(0%)):A$(0%)=NUM$(Z1% + 2%):A$(Z1%)=A$(K%):A$(Z1%+1%)='\A'+Z9$:A$(K%)="\Q"+Z8$+"\"+Z7$+NUM$(Z1%+1%)+"\"+Z6$+NUM$(Z1%)+"\"
- ScalarReference:Z1%
+ Reference:Z1%
  IntegerConstant:0
  ScalarValue:A$
  FunctionVal
  AssignmentOperator:=
  IntegerConstant:0
- ScalarReference:A$
+ Reference:A$
  ScalarValue:Z1%
  IntegerConstant:2
  BinaryOperator:+
  FunctionStr
  AssignmentOperator:=
  ScalarValue:Z1%
- ScalarReference:A$
+ Reference:A$
  ScalarValue:K%
  ScalarValue:A$
  AssignmentOperator:=
  ScalarValue:Z1%
  IntegerConstant:1
  BinaryOperator:+
- ScalarReference:A$
+ Reference:A$
  TextConstant:"\A"
  ScalarValue:Z9$
  BinaryOperator:+
  AssignmentOperator:=
  ScalarValue:K%
- ScalarReference:A$
+ Reference:A$
  TextConstant:"\Q"
  ScalarValue:Z8$
  BinaryOperator:+
@@ -232,16 +232,16 @@
  BinaryOperator:-
  FunctionMid
  CarriageControl:;
- ScalarReference:Z9$
- ScalarReference:Z9$
+ Reference:Z9$
+ Reference:Z9$
  ScalarValue:Z9$
  IntegerConstant:1
  FunctionLeft
  AssignmentOperator:=
- ScalarReference:Z9$
+ Reference:Z9$
  TextConstant:"N"
  AssignmentOperator:=
- ScalarReference:Z1%
+ Reference:Z1%
  IntegerConstant:3
  ScalarValue:Q$
  TextConstant:"\"
@@ -251,13 +251,13 @@
  IntegerConstant:2
  BinaryOperator:+
  AssignmentOperator:=
- ScalarReference:Z2%
+ Reference:Z2%
  ScalarValue:Z1%
  ScalarValue:Q$
  TextConstant:"\"
  FunctionInstr
  AssignmentOperator:=
- ScalarReference:FNA%
+ Reference:FNA%
  ScalarValue:Q$
  ScalarValue:Z1%
  ScalarValue:Z2%

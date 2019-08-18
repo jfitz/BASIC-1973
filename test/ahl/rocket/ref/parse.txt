@@ -47,7 +47,7 @@
  TextConstant:"GOOD LUCK!!!"
  CarriageControl:NL
 11 L=0
- ScalarReference:L
+ Reference:L
  NumericConstant:0
  AssignmentOperator:=
 13 PRINT\PRINT "SEC","MI + FT","MPH","LB FUEL", "BURN RATE"\PRINT
@@ -67,22 +67,22 @@
  ITEMS
  CarriageControl:NL
 15 A=120\V=1\M=33000\N=16500\G=1E-3\Z=1.8
- ScalarReference:A
+ Reference:A
  NumericConstant:120
  AssignmentOperator:=
- ScalarReference:V
+ Reference:V
  NumericConstant:1
  AssignmentOperator:=
- ScalarReference:M
+ Reference:M
  NumericConstant:33000
  AssignmentOperator:=
- ScalarReference:N
+ Reference:N
  NumericConstant:16500
  AssignmentOperator:=
- ScalarReference:G
+ Reference:G
  NumericConstant:1E-3
  AssignmentOperator:=
- ScalarReference:Z
+ Reference:Z
  NumericConstant:1.8
  AssignmentOperator:=
 21 PRINT L,INT(A);INT(5280*(A-INT(A))),3600*V,M-N,\INPUT K\T=10
@@ -108,8 +108,8 @@
  ScalarValue:N
  BinaryOperator:-
  CarriageControl:,
- ScalarReference:K
- ScalarReference:T
+ Reference:K
+ Reference:T
  NumericConstant:10
  AssignmentOperator:=
 31 IF M-N<.001 THEN 41\IF T<.001 THEN 21\S=T\IF M>=N+S*K THEN 35
@@ -121,7 +121,7 @@
  ScalarValue:T
  NumericConstant:.001
  BinaryOperator:<
- ScalarReference:S
+ Reference:S
  ScalarValue:T
  AssignmentOperator:=
  ScalarValue:M
@@ -132,7 +132,7 @@
  BinaryOperator:+
  BinaryOperator:>=
 32 S=(M-N)/K
- ScalarReference:S
+ Reference:S
  ScalarValue:M
  ScalarValue:N
  BinaryOperator:-
@@ -161,7 +161,7 @@
  CarriageControl:
  TextConstant:"SEC"
  CarriageControl:NL
- ScalarReference:S
+ Reference:S
  ScalarValue:V
  UnaryOperator:-
  ScalarValue:V
@@ -178,20 +178,20 @@
  ScalarValue:G
  BinaryOperator:/
  AssignmentOperator:=
- ScalarReference:V
+ Reference:V
  ScalarValue:V
  ScalarValue:G
  ScalarValue:S
  BinaryOperator:*
  BinaryOperator:+
  AssignmentOperator:=
- ScalarReference:L
+ Reference:L
  ScalarValue:L
  ScalarValue:S
  BinaryOperator:+
  AssignmentOperator:=
 51 W=3600*V\PRINT"ON MOON AT"L"SEC - IMPACT VELOCITY" W "MPH"
- ScalarReference:W
+ Reference:W
  NumericConstant:3600
  ScalarValue:V
  BinaryOperator:*
@@ -252,27 +252,27 @@
 60 GOTO 95
  LineNumber:95
 61 L=L+S\T=T-S\M=M-S*K\A=I\V=J\RETURN
- ScalarReference:L
+ Reference:L
  ScalarValue:L
  ScalarValue:S
  BinaryOperator:+
  AssignmentOperator:=
- ScalarReference:T
+ Reference:T
  ScalarValue:T
  ScalarValue:S
  BinaryOperator:-
  AssignmentOperator:=
- ScalarReference:M
+ Reference:M
  ScalarValue:M
  ScalarValue:S
  ScalarValue:K
  BinaryOperator:*
  BinaryOperator:-
  AssignmentOperator:=
- ScalarReference:A
+ Reference:A
  ScalarValue:I
  AssignmentOperator:=
- ScalarReference:V
+ Reference:V
  ScalarValue:J
  AssignmentOperator:=
  
@@ -280,7 +280,7 @@
  ScalarValue:S
  NumericConstant:5E-3
  BinaryOperator:<
- ScalarReference:D
+ Reference:D
  ScalarValue:V
  ScalarValue:V
  ScalarValue:V
@@ -300,7 +300,7 @@
  FunctionSqr
  BinaryOperator:+
  AssignmentOperator:=
- ScalarReference:S
+ Reference:S
  NumericConstant:2
  ScalarValue:A
  BinaryOperator:*
@@ -312,7 +312,7 @@
  LineNumber:61
  LineNumber:71
 81 W=(1-M*G/(Z*K))/2\S=M*V/(Z*K*(W+SQR(W*W+Y/Z)))+.05\GOSUB 91
- ScalarReference:W
+ Reference:W
  NumericConstant:1
  ScalarValue:M
  ScalarValue:G
@@ -325,7 +325,7 @@
  NumericConstant:2
  BinaryOperator:/
  AssignmentOperator:=
- ScalarReference:S
+ Reference:S
  ScalarValue:M
  ScalarValue:V
  BinaryOperator:*
@@ -361,14 +361,14 @@
  BinaryOperator:>
  LineNumber:31
 91 Q=S*K/M\J=V+G*S+Z*(-Q-Q*Q/2-Q^3/3-Q^4/4-Q^5/5)
- ScalarReference:Q
+ Reference:Q
  ScalarValue:S
  ScalarValue:K
  BinaryOperator:*
  ScalarValue:M
  BinaryOperator:/
  AssignmentOperator:=
- ScalarReference:J
+ Reference:J
  ScalarValue:V
  ScalarValue:G
  ScalarValue:S
@@ -405,7 +405,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 94 I=A-G*S*S/2-V*S+Z*S*(Q/2+Q^2/6+Q^3/12+Q^4/20+Q^5/30)\RETURN
- ScalarReference:I
+ Reference:I
  ScalarValue:A
  ScalarValue:G
  ScalarValue:S

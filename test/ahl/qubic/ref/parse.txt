@@ -5,7 +5,7 @@
  TextConstant:"DO YOU WANT INSTRUCTIONS"
  CarriageControl:;
 6 INPUT C$
- ScalarReference:C$
+ Reference:C$
 7 IF C$="NO" THEN 20
  ScalarValue:C$
  TextConstant:"NO"
@@ -52,7 +52,7 @@
  end:     ["NumericConstant:16"]
 22 READ Y(I)
  ScalarValue:I
- ScalarReference:Y
+ Reference:Y
 23 NEXT I
  VariableName:I
 24FOR I=1 TO 76
@@ -66,7 +66,7 @@
 26 READM(I,J)
  ScalarValue:I
  ScalarValue:J
- ScalarReference:M
+ Reference:M
 27 NEXT J 
  VariableName:J
 28 NEXT I
@@ -77,13 +77,13 @@
  end:     ["NumericConstant:64"]
 40 LET X (I) =0
  ScalarValue:I
- ScalarReference:X
+ Reference:X
  NumericConstant:0
  AssignmentOperator:=
 50 NEXT I
  VariableName:I
 54 LET Z=1
- ScalarReference:Z
+ Reference:Z
  NumericConstant:1
  AssignmentOperator:=
 55 PRINT "DO YOU WANT TO MOVE FIRST";
@@ -91,7 +91,7 @@
  TextConstant:"DO YOU WANT TO MOVE FIRST"
  CarriageControl:;
 60 INPUT S$
- ScalarReference:S$
+ Reference:S$
 66 IF S$="NO" THEN 110
  ScalarValue:S$
  TextConstant:"NO"
@@ -115,18 +115,18 @@
  TextConstant:"YOUR MOVE"
  CarriageControl:;
 80INPUTJ1
- ScalarReference:J1
+ Reference:J1
 85 GOSUB 1800
  LineNumber:1800
 90 LETK1=INT(J1/100)
- ScalarReference:K1
+ Reference:K1
  ScalarValue:J1
  NumericConstant:100
  BinaryOperator:/
  FunctionInt
  AssignmentOperator:=
 95 LET J2=(J1-K1*100)
- ScalarReference:J2
+ Reference:J2
  ScalarValue:J1
  ScalarValue:K1
  NumericConstant:100
@@ -134,14 +134,14 @@
  BinaryOperator:-
  AssignmentOperator:=
 96 LET K2=INT(J2/10)
- ScalarReference:K2
+ Reference:K2
  ScalarValue:J2
  NumericConstant:10
  BinaryOperator:/
  FunctionInt
  AssignmentOperator:=
 97 LET K3= J1 - K1*100 -K2*10
- ScalarReference:K3
+ Reference:K3
  ScalarValue:J1
  ScalarValue:K1
  NumericConstant:100
@@ -153,7 +153,7 @@
  BinaryOperator:-
  AssignmentOperator:=
 98 LET M=16*K1+4*K2+K3-20
- ScalarReference:M
+ Reference:M
  NumericConstant:16
  ScalarValue:K1
  BinaryOperator:*
@@ -179,7 +179,7 @@
  LineNumber:70
 109 LET X(M)=1
  ScalarValue:M
- ScalarReference:X
+ Reference:X
  NumericConstant:1
  AssignmentOperator:=
 110 GOSUB 1050
@@ -224,7 +224,7 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 213 LET M=M(I,J)
- ScalarReference:M
+ Reference:M
  ScalarValue:I
  ScalarValue:J
  ScalarValue:M
@@ -245,7 +245,7 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 222 LET M=M(I,J)
- ScalarReference:M
+ Reference:M
  ScalarValue:I
  ScalarValue:J
  ScalarValue:M
@@ -257,7 +257,7 @@
  BinaryOperator:<>
 224 LET X(M)=5
  ScalarValue:M
- ScalarReference:X
+ Reference:X
  NumericConstant:5
  AssignmentOperator:=
 225 PRINT "MACHINE MOVES TO";
@@ -277,7 +277,7 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 230 LET M=M(I,J)
- ScalarReference:M
+ Reference:M
  ScalarValue:I
  ScalarValue:J
  ScalarValue:M
@@ -302,7 +302,7 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 238 LET M=M(I,J)
- ScalarReference:M
+ Reference:M
  ScalarValue:I
  ScalarValue:J
  ScalarValue:M
@@ -314,7 +314,7 @@
  BinaryOperator:<>
 240 LET X(M)=5
  ScalarValue:M
- ScalarReference:X
+ Reference:X
  NumericConstant:5
  AssignmentOperator:=
 241 GOSUB 1000
@@ -331,7 +331,7 @@
  end:     ["NumericConstant:76"]
 251 LET L(I)=X(M(I,1))+X(M(I,2))+X(M(I,3))+X(M(I,4))
  ScalarValue:I
- ScalarReference:L
+ Reference:L
  ScalarValue:I
  NumericConstant:1
  ScalarValue:M
@@ -353,7 +353,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 252 LET L = L(I)
- ScalarReference:L
+ Reference:L
  ScalarValue:I
  ScalarValue:L
  AssignmentOperator:=
@@ -384,7 +384,7 @@
  ScalarValue:I
  ScalarValue:J
  ScalarValue:M
- ScalarReference:X
+ Reference:X
  NumericConstant:1
  NumericConstant:8
  BinaryOperator:/
@@ -420,7 +420,7 @@
 320 GOTO 1300
  LineNumber:1300
 360LET Z = 1
- ScalarReference:Z
+ Reference:Z
  NumericConstant:1
  AssignmentOperator:=
 362 IF X(Y(Z))=0 THEN 380
@@ -430,7 +430,7 @@
  NumericConstant:0
  BinaryOperator:=
 365 LET Z=Z+1
- ScalarReference:Z
+ Reference:Z
  ScalarValue:Z
  NumericConstant:1
  BinaryOperator:+
@@ -442,13 +442,13 @@
 375 GOTO 1200
  LineNumber:1200
 380 LET M=Y(Z)
- ScalarReference:M
+ Reference:M
  ScalarValue:Z
  ScalarValue:Y
  AssignmentOperator:=
 381 LET X(M)=5
  ScalarValue:M
- ScalarReference:X
+ Reference:X
  NumericConstant:5
  AssignmentOperator:=
 385 PRINT "MACHINE MOVES TO";
@@ -460,7 +460,7 @@
 390 GOTO 70
  LineNumber:70
 400 LET X=X
- ScalarReference:X
+ Reference:X
  ScalarValue:X
  AssignmentOperator:=
 410 FOR I=1 TO 76
@@ -469,7 +469,7 @@
  end:     ["NumericConstant:76"]
 412 LET L(I)=X(M(I,1))+X(M(I,2))+X(M(I,3))+X(M(I,4))
  ScalarValue:I
- ScalarReference:L
+ Reference:L
  ScalarValue:I
  NumericConstant:1
  ScalarValue:M
@@ -491,7 +491,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 415 LET L=L(I)
- ScalarReference:L
+ Reference:L
  ScalarValue:I
  ScalarValue:L
  AssignmentOperator:=
@@ -522,7 +522,7 @@
  ScalarValue:I
  ScalarValue:J
  ScalarValue:M
- ScalarReference:X
+ Reference:X
  NumericConstant:1
  NumericConstant:8
  BinaryOperator:/
@@ -566,7 +566,7 @@
  TextConstant:"DO YOU WANT TO TRY ANOTHER GAME"
  CarriageControl:;
 510 INPUT X$
- ScalarReference:X$
+ Reference:X$
 515 IF X$="YES" THEN 35
  ScalarValue:X$
  TextConstant:"YES"
@@ -584,7 +584,7 @@
 520 STOP
  
 1000 LET K1=INT((M-1)/16)+1
- ScalarReference:K1
+ Reference:K1
  ScalarValue:M
  NumericConstant:1
  BinaryOperator:-
@@ -595,7 +595,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 1010 LET J2=M-16*(K1-1)
- ScalarReference:J2
+ Reference:J2
  ScalarValue:M
  NumericConstant:16
  ScalarValue:K1
@@ -605,7 +605,7 @@
  BinaryOperator:-
  AssignmentOperator:=
 1030 LET K2=INT((J2-1)/4)+1
- ScalarReference:K2
+ Reference:K2
  ScalarValue:J2
  NumericConstant:1
  BinaryOperator:-
@@ -616,7 +616,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 1035 LET K3=M-(K1-1)*16-(K2-1)*4
- ScalarReference:K3
+ Reference:K3
  ScalarValue:M
  ScalarValue:K1
  NumericConstant:1
@@ -632,7 +632,7 @@
  BinaryOperator:-
  AssignmentOperator:=
 1040 LET M=K1*100+K2*10+K3
- ScalarReference:M
+ Reference:M
  ScalarValue:K1
  NumericConstant:100
  BinaryOperator:*
@@ -654,32 +654,32 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:76"]
 1060 LET J1 = M(S,1)
- ScalarReference:J1
+ Reference:J1
  ScalarValue:S
  NumericConstant:1
  ScalarValue:M
  AssignmentOperator:=
 1070 LET J2=M(S,2)
- ScalarReference:J2
+ Reference:J2
  ScalarValue:S
  NumericConstant:2
  ScalarValue:M
  AssignmentOperator:=
 1080 LET J3=M(S,3)
- ScalarReference:J3
+ Reference:J3
  ScalarValue:S
  NumericConstant:3
  ScalarValue:M
  AssignmentOperator:=
 1090 LET J4=M(S,4)
- ScalarReference:J4
+ Reference:J4
  ScalarValue:S
  NumericConstant:4
  ScalarValue:M
  AssignmentOperator:=
 1100 LET L(S)=X(J1)+X(J2)+X(J3)+X(J4)
  ScalarValue:S
- ScalarReference:L
+ Reference:L
  ScalarValue:J1
  ScalarValue:X
  ScalarValue:J2
@@ -707,11 +707,11 @@
  BinaryOperator:<>
 1220 LET X(I)=5
  ScalarValue:I
- ScalarReference:X
+ Reference:X
  NumericConstant:5
  AssignmentOperator:=
 1225 LET M=I
- ScalarReference:M
+ Reference:M
  ScalarValue:I
  AssignmentOperator:=
 1226 PRINT "MACHINE LIKES";
@@ -739,7 +739,7 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:18"]
 1305 LET P=0
- ScalarReference:P
+ Reference:P
  NumericConstant:0
  AssignmentOperator:=
 1310 FOR I=4*K-3 TO 4*K
@@ -751,7 +751,7 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 1320 LET P=P+X(M(I,J))
- ScalarReference:P
+ Reference:P
  ScalarValue:P
  ScalarValue:I
  ScalarValue:J
@@ -786,7 +786,7 @@
 1396 GOTO 360
  LineNumber:360
 1400 LET S=1/8
- ScalarReference:S
+ Reference:S
  NumericConstant:1
  NumericConstant:8
  BinaryOperator:/
@@ -800,7 +800,7 @@
 1415 NEXT I
  VariableName:I
 1420 LET S=0
- ScalarReference:S
+ Reference:S
  NumericConstant:0
  AssignmentOperator:=
 1425 GOTO 1405
@@ -1162,7 +1162,7 @@
  ScalarValue:I
  ScalarValue:J
  ScalarValue:M
- ScalarReference:X
+ Reference:X
  NumericConstant:5
  AssignmentOperator:=
 1615 IF L(I)<5 THEN 1625
@@ -1181,7 +1181,7 @@
  TextConstant:"YOU FOX. JUST IN THE NICK OF TIME, MACHINE MOVES TO"
  CarriageControl:;
 1626 LET M=M(I,J)
- ScalarReference:M
+ Reference:M
  ScalarValue:I
  ScalarValue:J
  ScalarValue:M
@@ -1199,7 +1199,7 @@
 1665 GOTO 500
  LineNumber:500
 1700 LET S=1/8
- ScalarReference:S
+ Reference:S
  NumericConstant:1
  NumericConstant:8
  BinaryOperator:/
@@ -1216,13 +1216,13 @@
  NumericConstant:1
  BinaryOperator:>
 1705 LET A=1
- ScalarReference:A
+ Reference:A
  NumericConstant:1
  AssignmentOperator:=
 1710 GOTO 1720
  LineNumber:1720
 1715 LET A=2
- ScalarReference:A
+ Reference:A
  NumericConstant:2
  AssignmentOperator:=
 1720 FOR J=A TO 5-A _ STEP 5-2*A
@@ -1245,11 +1245,11 @@
  ScalarValue:I
  ScalarValue:J
  ScalarValue:M
- ScalarReference:X
+ Reference:X
  NumericConstant:5
  AssignmentOperator:=
 1755 LET M=M(I,J)
- ScalarReference:M
+ Reference:M
  ScalarValue:I
  ScalarValue:J
  ScalarValue:M
@@ -1275,7 +1275,7 @@
  BinaryOperator:<>
 1815 LET X(I)=0
  ScalarValue:I
- ScalarReference:X
+ Reference:X
  NumericConstant:0
  AssignmentOperator:=
 1850 NEXT I

@@ -1251,6 +1251,10 @@ class VariableName < AbstractElement
     @name.hash
   end
 
+  def scalar?
+    true
+  end
+
   def dump
     self.class.to_s + ':' + @name.to_s
   end
@@ -1538,8 +1542,8 @@ class Value < Variable
 end
 
 class Reference < Variable
-  def initialize(name, shape, subscripts = [])
-    super(name, subscripts)
+  def initialize(variable, shape, subscripts = [])
+    super(variable.name, subscripts)
 
     @reference = true
     @shape = shape

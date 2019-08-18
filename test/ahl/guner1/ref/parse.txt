@@ -10,7 +10,7 @@
  TextConstant:"DO YOU WANT INSTRUCTIONS"
  CarriageControl:;
 140 INPUT A$
- ScalarReference:A$
+ Reference:A$
 150 PRINT
  ITEMS
  CarriageControl:NL
@@ -83,7 +83,7 @@
  TextConstant:"ENTER SPEED"
  CarriageControl:;
 340 INPUT S
- ScalarReference:S
+ Reference:S
 350 IF S<1 THEN 330
  ScalarValue:S
  NumericConstant:1
@@ -97,7 +97,7 @@
  TextConstant:"ENTER DISTANCE"
  CarriageControl:;
 380 INPUT D
- ScalarReference:D
+ Reference:D
 390 IF D<0 THEN 370
  ScalarValue:D
  NumericConstant:0
@@ -107,7 +107,7 @@
  NumericConstant:10000
  BinaryOperator:>
 410 M=100000-75000*RND(0)
- ScalarReference:M
+ Reference:M
  NumericConstant:100000
  NumericConstant:75000
  NumericConstant:0
@@ -131,14 +131,14 @@
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:M", "NumericConstant:10000", "BinaryOperator:/"]
 450 LET K1=RND(0)
- ScalarReference:K1
+ Reference:K1
  NumericConstant:0
  FunctionRnd
  AssignmentOperator:=
 460 NEXT K
  VariableName:K
 470 R=.95*M-.6*M*RND(0)
- ScalarReference:R
+ Reference:R
  NumericConstant:.95
  ScalarValue:M
  BinaryOperator:*
@@ -151,7 +151,7 @@
  BinaryOperator:-
  AssignmentOperator:=
 480 LET N=0
- ScalarReference:N
+ Reference:N
  NumericConstant:0
  AssignmentOperator:=
 490 GOTO 520
@@ -179,7 +179,7 @@
  TextConstant:"ELEVATION"
  CarriageControl:NL
 540 INPUT E
- ScalarReference:E
+ Reference:E
 550 IF E<0 THEN 840
  ScalarValue:E
  NumericConstant:0
@@ -193,13 +193,13 @@
  NumericConstant:1
  BinaryOperator:<
 580 N=N+1
- ScalarReference:N
+ Reference:N
  ScalarValue:N
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 590 K=INT(R-M*SIN(2*E/57.3))
- ScalarReference:K
+ Reference:K
  ScalarValue:R
  ScalarValue:M
  NumericConstant:2
@@ -213,12 +213,12 @@
  FunctionInt
  AssignmentOperator:=
 600 K=ABS(K)
- ScalarReference:K
+ Reference:K
  ScalarValue:K
  FunctionAbs
  AssignmentOperator:=
 610 K1=ABS(K-D)
- ScalarReference:K1
+ Reference:K1
  ScalarValue:K
  ScalarValue:D
  BinaryOperator:-
@@ -239,7 +239,7 @@
 660 GOSUB 940
  LineNumber:940
 670 D1=K
- ScalarReference:D1
+ Reference:D1
  ScalarValue:K
  AssignmentOperator:=
 680 FOR K=1 TO N+D/100
@@ -247,7 +247,7 @@
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:N", "ScalarValue:D", "NumericConstant:100", "BinaryOperator:/", "BinaryOperator:+"]
 690 K1=RND(0)
- ScalarReference:K1
+ Reference:K1
  NumericConstant:0
  FunctionRnd
  AssignmentOperator:=
@@ -274,7 +274,7 @@
  TextConstant:"YARDS"
  CarriageControl:NL
 745 LET C=INT(2*RND(0)+1)
- ScalarReference:C
+ Reference:C
  NumericConstant:2
  NumericConstant:0
  FunctionRnd
@@ -288,18 +288,18 @@
  NumericConstant:1
  BinaryOperator:=
 748 LET C=-1
- ScalarReference:C
+ Reference:C
  NumericConstant:1
  UnaryOperator:-
  AssignmentOperator:=
 749 GOTO 760
  LineNumber:760
 750 LET C=1
- ScalarReference:C
+ Reference:C
  NumericConstant:1
  AssignmentOperator:=
 760 C1=M*S/100*RND(0)
- ScalarReference:C1
+ Reference:C1
  ScalarValue:M
  ScalarValue:S
  BinaryOperator:*
@@ -310,13 +310,13 @@
  BinaryOperator:*
  AssignmentOperator:=
 770 C1=C*C1
- ScalarReference:C1
+ Reference:C1
  ScalarValue:C
  ScalarValue:C1
  BinaryOperator:*
  AssignmentOperator:=
 780 R=R+C1
- ScalarReference:R
+ Reference:R
  ScalarValue:R
  ScalarValue:C1
  BinaryOperator:+

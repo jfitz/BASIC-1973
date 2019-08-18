@@ -36,7 +36,7 @@
  TextConstant:"TIME INCREMENT (SEC)"
  CarriageControl:;
 136 INPUT S2
- ScalarReference:S2
+ Reference:S2
 140 PRINT
  ITEMS
  CarriageControl:NL
@@ -45,7 +45,7 @@
  TextConstant:"VELOCITY (FPS)"
  CarriageControl:;
 160 INPUT V
- ScalarReference:V
+ Reference:V
 165 PRINT
  ITEMS
  CarriageControl:NL
@@ -54,7 +54,7 @@
  TextConstant:"COEFFICIENT"
  CarriageControl:;
 180 INPUT C
- ScalarReference:C
+ Reference:C
 184 PRINT
  ITEMS
  CarriageControl:NL
@@ -66,7 +66,7 @@
  ITEMS
  CarriageControl:NL
 187 S1=INT(70/(V/(16*S2)))
- ScalarReference:S1
+ Reference:S1
  NumericConstant:70
  ScalarValue:V
  NumericConstant:16
@@ -82,7 +82,7 @@
  end:     ["ScalarValue:S1"]
 200 T(I)=V*C^(I-1)/16
  ScalarValue:I
- ScalarReference:T
+ Reference:T
  ScalarValue:V
  ScalarValue:C
  ScalarValue:I
@@ -110,7 +110,7 @@
  ScalarValue:H
  CarriageControl:;
 225 L=0
- ScalarReference:L
+ Reference:L
  NumericConstant:0
  AssignmentOperator:=
 230 FOR I=1 TO S1
@@ -123,7 +123,7 @@
  end:     ["ScalarValue:I", "ScalarValue:T"]
  step:    ["ScalarValue:S2"]
 245 L=L+S2
- ScalarReference:L
+ Reference:L
  ScalarValue:L
  ScalarValue:S2
  BinaryOperator:+
@@ -164,7 +164,7 @@
 270 NEXT T
  VariableName:T
 275 T=T(I+1)/2
- ScalarReference:T
+ Reference:T
  ScalarValue:I
  NumericConstant:1
  BinaryOperator:+

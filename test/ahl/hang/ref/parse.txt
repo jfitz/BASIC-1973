@@ -25,24 +25,24 @@
  NumericConstant:50
  Declaration:U
 40 C=1:RANDOMIZE:N=50
- ScalarReference:C
+ Reference:C
  NumericConstant:1
  AssignmentOperator:=
  
- ScalarReference:N
+ Reference:N
  NumericConstant:50
  AssignmentOperator:=
 50 D$(I)="-" FOR I=1 TO 20:M=0
  ScalarValue:I
- ScalarReference:D$
+ Reference:D$
  TextConstant:"-"
  AssignmentOperator:=
- ScalarReference:M
+ Reference:M
  NumericConstant:0
  AssignmentOperator:=
 60 N$(I)="" FOR I=1 TO 26
  ScalarValue:I
- ScalarReference:N$
+ Reference:N$
  TextConstant:""
  AssignmentOperator:=
 70 FOR I=1 TO 12:FOR J=1 TO 12:P$(I,J)=" ":NEXT J:NEXT I
@@ -54,7 +54,7 @@
  end:     ["NumericConstant:12"]
  ScalarValue:I
  ScalarValue:J
- ScalarReference:P$
+ Reference:P$
  TextConstant:" "
  AssignmentOperator:=
  VariableName:J
@@ -62,18 +62,18 @@
 80 P$(I,1)="X" FOR I=1 TO 12
  ScalarValue:I
  NumericConstant:1
- ScalarReference:P$
+ Reference:P$
  TextConstant:"X"
  AssignmentOperator:=
 90 P$(1,I)="X" FOR I=1 TO 7:P$(2,7)="X"
  NumericConstant:1
  ScalarValue:I
- ScalarReference:P$
+ Reference:P$
  TextConstant:"X"
  AssignmentOperator:=
  NumericConstant:2
  NumericConstant:7
- ScalarReference:P$
+ Reference:P$
  TextConstant:"X"
  AssignmentOperator:=
 95 IF C<N THEN 100 ELSE PRINT "YOU DID ALL THE WORDS!!":STOP
@@ -85,7 +85,7 @@
  CarriageControl:NL
  
 100 Q=INT(N*RND+1)
- ScalarReference:Q
+ Reference:Q
  ScalarValue:N
  FunctionRnd
  BinaryOperator:*
@@ -99,27 +99,27 @@
  NumericConstant:1
  BinaryOperator:=
  ScalarValue:Q
- ScalarReference:U
+ Reference:U
  NumericConstant:1
  AssignmentOperator:=
- ScalarReference:C
+ Reference:C
  ScalarValue:C
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
  
- ScalarReference:T1
+ Reference:T1
  NumericConstant:0
  AssignmentOperator:=
 150 READ A$ FOR I=1 TO Q
- ScalarReference:A$
+ Reference:A$
 160 L=LEN(A$):L$(I)=MID(A$,I,I) FOR I=1 TO L
- ScalarReference:L
+ Reference:L
  ScalarValue:A$
  FunctionLen
  AssignmentOperator:=
  ScalarValue:I
- ScalarReference:L$
+ Reference:L$
  ScalarValue:A$
  ScalarValue:I
  ScalarValue:I
@@ -166,8 +166,8 @@
  ITEMS
  CarriageControl:NL
 210 INPUT "WHAT IS YOUR GUESS";G$:R=0
- ScalarReference:G$
- ScalarReference:R
+ Reference:G$
+ Reference:R
  NumericConstant:0
  AssignmentOperator:=
 220 FOR I=1 TO 26:IF N$(I)="" THEN 250
@@ -194,13 +194,13 @@
  CarriageControl:NL
  
 250 T1=T1+1:N$(T1)=G$
- ScalarReference:T1
+ Reference:T1
  ScalarValue:T1
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
  ScalarValue:T1
- ScalarReference:N$
+ Reference:N$
  ScalarValue:G$
  AssignmentOperator:=
 260 FOR I=1 TO L:IF L$(I)=G$ THEN 280
@@ -219,17 +219,17 @@
  LineNumber:300
 280 D$(I)=G$:R=R+1:GOTO 270
  ScalarValue:I
- ScalarReference:D$
+ Reference:D$
  ScalarValue:G$
  AssignmentOperator:=
- ScalarReference:R
+ Reference:R
  ScalarValue:R
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
  LineNumber:270
 290 M=M+1:GOTO 400
- ScalarReference:M
+ Reference:M
  ScalarValue:M
  NumericConstant:1
  BinaryOperator:+
@@ -262,7 +262,7 @@
  ITEMS
  CarriageControl:NL
 330 INPUT "WHAT IS YOUR GUESS FOR THE WORD"; B$
- ScalarReference:B$
+ Reference:B$
 340 IF B$=A$ THEN 360
  ScalarValue:B$
  ScalarValue:A$
@@ -283,7 +283,7 @@
  TextConstant:"GUESSES!"
  CarriageControl:NL
 370 INPUT "WANT ANOTHER WORD"; W$:IF W$="YES" THEN 50
- ScalarReference:W$
+ Reference:W$
  ScalarValue:W$
  TextConstant:"YES"
  BinaryOperator:=
@@ -383,60 +383,60 @@
 480 P$(2,6)="-":P$(2,7)="-":P$(2,8)="-":P$(4,5)="(":P$(4,6)=" "
  NumericConstant:2
  NumericConstant:6
- ScalarReference:P$
+ Reference:P$
  TextConstant:"-"
  AssignmentOperator:=
  NumericConstant:2
  NumericConstant:7
- ScalarReference:P$
+ Reference:P$
  TextConstant:"-"
  AssignmentOperator:=
  NumericConstant:2
  NumericConstant:8
- ScalarReference:P$
+ Reference:P$
  TextConstant:"-"
  AssignmentOperator:=
  NumericConstant:4
  NumericConstant:5
- ScalarReference:P$
+ Reference:P$
  TextConstant:"("
  AssignmentOperator:=
  NumericConstant:4
  NumericConstant:6
- ScalarReference:P$
+ Reference:P$
  TextConstant:" "
  AssignmentOperator:=
 481 P$(4,8)=".":P$(4,9)=")":P$(5,6)="-":P$(5,7)="-":P$(5,8)="-":GOTO 580
  NumericConstant:4
  NumericConstant:8
- ScalarReference:P$
+ Reference:P$
  TextConstant:"."
  AssignmentOperator:=
  NumericConstant:4
  NumericConstant:9
- ScalarReference:P$
+ Reference:P$
  TextConstant:")"
  AssignmentOperator:=
  NumericConstant:5
  NumericConstant:6
- ScalarReference:P$
+ Reference:P$
  TextConstant:"-"
  AssignmentOperator:=
  NumericConstant:5
  NumericConstant:7
- ScalarReference:P$
+ Reference:P$
  TextConstant:"-"
  AssignmentOperator:=
  NumericConstant:5
  NumericConstant:8
- ScalarReference:P$
+ Reference:P$
  TextConstant:"-"
  AssignmentOperator:=
  LineNumber:580
 490 P$(I,7)="X" FOR I=6 TO 9:GOTO 580
  ScalarValue:I
  NumericConstant:7
- ScalarReference:P$
+ Reference:P$
  TextConstant:"X"
  AssignmentOperator:=
  LineNumber:580
@@ -445,91 +445,91 @@
  ScalarValue:I
  NumericConstant:1
  BinaryOperator:-
- ScalarReference:P$
+ Reference:P$
  TextConstant:"\"
  AssignmentOperator:=
  LineNumber:580
 510 P$(4,11)="/":P$(5,10)="/":P$(6,9)="\":P$(7,8)="/":GOTO 580
  NumericConstant:4
  NumericConstant:11
- ScalarReference:P$
+ Reference:P$
  TextConstant:"/"
  AssignmentOperator:=
  NumericConstant:5
  NumericConstant:10
- ScalarReference:P$
+ Reference:P$
  TextConstant:"/"
  AssignmentOperator:=
  NumericConstant:6
  NumericConstant:9
- ScalarReference:P$
+ Reference:P$
  TextConstant:"\"
  AssignmentOperator:=
  NumericConstant:7
  NumericConstant:8
- ScalarReference:P$
+ Reference:P$
  TextConstant:"/"
  AssignmentOperator:=
  LineNumber:580
 520 P$(10,6)="/":P$(11,5)="/":GOTO 580
  NumericConstant:10
  NumericConstant:6
- ScalarReference:P$
+ Reference:P$
  TextConstant:"/"
  AssignmentOperator:=
  NumericConstant:11
  NumericConstant:5
- ScalarReference:P$
+ Reference:P$
  TextConstant:"/"
  AssignmentOperator:=
  LineNumber:580
 530 P$(10,8)="\":P$(11,9)="\":GOTO 580
  NumericConstant:10
  NumericConstant:8
- ScalarReference:P$
+ Reference:P$
  TextConstant:"\"
  AssignmentOperator:=
  NumericConstant:11
  NumericConstant:9
- ScalarReference:P$
+ Reference:P$
  TextConstant:"\"
  AssignmentOperator:=
  LineNumber:580
 540 P$(3,11)="\":GOTO 580
  NumericConstant:3
  NumericConstant:11
- ScalarReference:P$
+ Reference:P$
  TextConstant:"\"
  AssignmentOperator:=
  LineNumber:580
 550 P$(3,3)="/":GOTO 580
  NumericConstant:3
  NumericConstant:3
- ScalarReference:P$
+ Reference:P$
  TextConstant:"/"
  AssignmentOperator:=
  LineNumber:580
 560 P$(12,10)="\":P$(12,11)="-":GOTO 580
  NumericConstant:12
  NumericConstant:10
- ScalarReference:P$
+ Reference:P$
  TextConstant:"\"
  AssignmentOperator:=
  NumericConstant:12
  NumericConstant:11
- ScalarReference:P$
+ Reference:P$
  TextConstant:"-"
  AssignmentOperator:=
  LineNumber:580
 570 P$(12,3)="-":P$(12,4)="/"
  NumericConstant:12
  NumericConstant:3
- ScalarReference:P$
+ Reference:P$
  TextConstant:"-"
  AssignmentOperator:=
  NumericConstant:12
  NumericConstant:4
- ScalarReference:P$
+ Reference:P$
  TextConstant:"/"
  AssignmentOperator:=
 580 FOR I=1 TO 12:FOR J=1 TO 12:& P$(I,J);:NEXT J

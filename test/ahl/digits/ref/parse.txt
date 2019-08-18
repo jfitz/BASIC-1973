@@ -7,7 +7,7 @@
  TextConstant:"FOR INSTRUCTIONS, TYPE '1', ELSE TYPE '0'"
  CarriageControl:;
 230 INPUT E
- ScalarReference:E
+ Reference:E
 240 IF E=0 THEN 360
  ScalarValue:E
  NumericConstant:0
@@ -53,9 +53,9 @@
  ITEMS
  CarriageControl:NL
 360 READ A,B,C
- ScalarReference:A
- ScalarReference:B
- ScalarReference:C
+ Reference:A
+ Reference:B
+ Reference:C
 370 DATA 0,1,3
  NumericConstant:0
  NumericConstant:1
@@ -71,23 +71,23 @@
  NumericConstant:2
  Declaration:L
 400 MAT M=CON\MAT K=CON
- MatrixReference:M
+ Reference:M
  FunctionCon
  AssignmentOperator:=
- MatrixReference:K
+ Reference:K
  FunctionCon
  AssignmentOperator:=
 420 MAT K=(9)*K\MAT L=CON
- MatrixReference:K
+ Reference:K
  NumericConstant:9
  MatrixValue:K
  BinaryOperator:*
  AssignmentOperator:=
- MatrixReference:L
+ Reference:L
  FunctionCon
  AssignmentOperator:=
 440 MAT L=(3)*L
- MatrixReference:L
+ Reference:L
  NumericConstant:3
  MatrixValue:L
  BinaryOperator:*
@@ -95,31 +95,31 @@
 450 L(0,0)=2\L(4,1)=2\L(8,2)=2
  NumericConstant:0
  NumericConstant:0
- ScalarReference:L
+ Reference:L
  NumericConstant:2
  AssignmentOperator:=
  NumericConstant:4
  NumericConstant:1
- ScalarReference:L
+ Reference:L
  NumericConstant:2
  AssignmentOperator:=
  NumericConstant:8
  NumericConstant:2
- ScalarReference:L
+ Reference:L
  NumericConstant:2
  AssignmentOperator:=
 480 Z=26\Z1=8\Z2=2
- ScalarReference:Z
+ Reference:Z
  NumericConstant:26
  AssignmentOperator:=
- ScalarReference:Z1
+ Reference:Z1
  NumericConstant:8
  AssignmentOperator:=
- ScalarReference:Z2
+ Reference:Z2
  NumericConstant:2
  AssignmentOperator:=
 510 X=0
- ScalarReference:X
+ Reference:X
  NumericConstant:0
  AssignmentOperator:=
 520 FOR T=1 TO 3
@@ -135,31 +135,31 @@
  CarriageControl:;
 550 INPUT N(1),N(2),N(3),N(4),N(5),N(6),N(7),N(8),N(9),N(10)
  NumericConstant:1
- ScalarReference:N
+ Reference:N
  NumericConstant:2
- ScalarReference:N
+ Reference:N
  NumericConstant:3
- ScalarReference:N
+ Reference:N
  NumericConstant:4
- ScalarReference:N
+ Reference:N
  NumericConstant:5
- ScalarReference:N
+ Reference:N
  NumericConstant:6
- ScalarReference:N
+ Reference:N
  NumericConstant:7
- ScalarReference:N
+ Reference:N
  NumericConstant:8
- ScalarReference:N
+ Reference:N
  NumericConstant:9
- ScalarReference:N
+ Reference:N
  NumericConstant:10
- ScalarReference:N
+ Reference:N
 560 FOR I=1 TO 10
  control: VariableName:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 570 W=N(I)-1
- ScalarReference:W
+ Reference:W
  ScalarValue:I
  ScalarValue:N
  NumericConstant:1
@@ -200,11 +200,11 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 670 N=N(I)\S=0
- ScalarReference:N
+ Reference:N
  ScalarValue:I
  ScalarValue:N
  AssignmentOperator:=
- ScalarReference:S
+ Reference:S
  NumericConstant:0
  AssignmentOperator:=
 690 FOR J=0 TO 2
@@ -212,7 +212,7 @@
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:2"]
 700 S1=A*K(Z2,J)+B*L(Z1,J)+C*M(Z,J)
- ScalarReference:S1
+ Reference:S1
  ScalarValue:A
  ScalarValue:Z2
  ScalarValue:J
@@ -244,10 +244,10 @@
  NumericConstant:.5
  BinaryOperator:<
 740 S=S1\G=J
- ScalarReference:S
+ Reference:S
  ScalarValue:S1
  AssignmentOperator:=
- ScalarReference:G
+ Reference:G
  ScalarValue:J
  AssignmentOperator:=
 760 NEXT J
@@ -273,7 +273,7 @@
 800 GOTO 880
  LineNumber:880
 810 X=X + 1
- ScalarReference:X
+ Reference:X
  ScalarValue:X
  NumericConstant:1
  BinaryOperator:+
@@ -287,7 +287,7 @@
 830 M(Z,N)=M(Z,N)+1
  ScalarValue:Z
  ScalarValue:N
- ScalarReference:M
+ Reference:M
  ScalarValue:Z
  ScalarValue:N
  ScalarValue:M
@@ -297,7 +297,7 @@
 840 L(Z1,N)=L(Z1,N)+1
  ScalarValue:Z1
  ScalarValue:N
- ScalarReference:L
+ Reference:L
  ScalarValue:Z1
  ScalarValue:N
  ScalarValue:L
@@ -307,7 +307,7 @@
 850 K(Z2,N)=K(Z2,N)+1
  ScalarValue:Z2
  ScalarValue:N
- ScalarReference:K
+ Reference:K
  ScalarValue:Z2
  ScalarValue:N
  ScalarValue:K
@@ -315,7 +315,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 860 Z=Z-INT(Z/9)*9
- ScalarReference:Z
+ Reference:Z
  ScalarValue:Z
  ScalarValue:Z
  NumericConstant:9
@@ -326,7 +326,7 @@
  BinaryOperator:-
  AssignmentOperator:=
 870 Z=3*Z*N(U)
- ScalarReference:Z
+ Reference:Z
  NumericConstant:3
  ScalarValue:Z
  BinaryOperator:*
@@ -335,7 +335,7 @@
  BinaryOperator:*
  AssignmentOperator:=
 880 Z1=Z-INT(Z/9)*9
- ScalarReference:Z1
+ Reference:Z1
  ScalarValue:Z
  ScalarValue:Z
  NumericConstant:9
@@ -346,7 +346,7 @@
  BinaryOperator:-
  AssignmentOperator:=
 890 Z2=N(U)
- ScalarReference:Z2
+ Reference:Z2
  ScalarValue:U
  ScalarValue:N
  AssignmentOperator:=
@@ -408,7 +408,7 @@
  TextConstant:"DO YOU WANT TO TRY AGAIN (1 FOR YES, 0 FOR NO)"
  CarriageControl:;
 1060 INPUT X
- ScalarReference:X
+ Reference:X
 1070 IF X=1 THEN 400
  ScalarValue:X
  NumericConstant:1

@@ -1,8 +1,8 @@
 100 R=1\R1=57.296\RANDOMIZE
- ScalarReference:R
+ Reference:R
  NumericConstant:1
  AssignmentOperator:=
- ScalarReference:R1
+ Reference:R1
  NumericConstant:57.296
  AssignmentOperator:=
  
@@ -52,33 +52,33 @@
  ITEMS
  CarriageControl:NL
 220 A=RND*2*PI\B=RND*2*PI\Q=INT(A*R1)\G=INT(W*R1):W=INT(B*R1)
- ScalarReference:A
+ Reference:A
  FunctionRnd
  NumericConstant:2
  BinaryOperator:*
  NumericConstant:PI
  BinaryOperator:*
  AssignmentOperator:=
- ScalarReference:B
+ Reference:B
  FunctionRnd
  NumericConstant:2
  BinaryOperator:*
  NumericConstant:PI
  BinaryOperator:*
  AssignmentOperator:=
- ScalarReference:Q
+ Reference:Q
  ScalarValue:A
  ScalarValue:R1
  BinaryOperator:*
  FunctionInt
  AssignmentOperator:=
- ScalarReference:G
+ Reference:G
  ScalarValue:W
  ScalarValue:R1
  BinaryOperator:*
  FunctionInt
  AssignmentOperator:=
- ScalarReference:W
+ Reference:W
  ScalarValue:B
  ScalarValue:R1
  BinaryOperator:*
@@ -105,14 +105,14 @@
  ScalarValue:W
  CarriageControl:NL
 280 P=100*RND+RND\X=SIN(B)*COS(A)*P\Y=SIN(B)*SIN(A)*P\Z=COS(B)*P
- ScalarReference:P
+ Reference:P
  NumericConstant:100
  FunctionRnd
  BinaryOperator:*
  FunctionRnd
  BinaryOperator:+
  AssignmentOperator:=
- ScalarReference:X
+ Reference:X
  ScalarValue:B
  FunctionSin
  ScalarValue:A
@@ -121,7 +121,7 @@
  ScalarValue:P
  BinaryOperator:*
  AssignmentOperator:=
- ScalarReference:Y
+ Reference:Y
  ScalarValue:B
  FunctionSin
  ScalarValue:A
@@ -130,7 +130,7 @@
  ScalarValue:P
  BinaryOperator:*
  AssignmentOperator:=
- ScalarReference:Z
+ Reference:Z
  ScalarValue:B
  FunctionCos
  ScalarValue:P
@@ -151,7 +151,7 @@
  ScalarValue:Z
  CarriageControl:NL
 345 R=R+1\IF R>5 THEN 390
- ScalarReference:R
+ Reference:R
  ScalarValue:R
  NumericConstant:1
  BinaryOperator:+
@@ -167,7 +167,7 @@
  LineNumber:370
  LineNumber:375
 355 P3=INT(P*.05)*20\GOTO 390
- ScalarReference:P3
+ Reference:P3
  ScalarValue:P
  NumericConstant:.05
  BinaryOperator:*
@@ -177,7 +177,7 @@
  AssignmentOperator:=
  LineNumber:390
 360 P3=INT(P*.1)*10\GOTO 390
- ScalarReference:P3
+ Reference:P3
  ScalarValue:P
  NumericConstant:.1
  BinaryOperator:*
@@ -187,7 +187,7 @@
  AssignmentOperator:=
  LineNumber:390
 365 P3=INT(P*.5)*2\GOTO 390
- ScalarReference:P3
+ Reference:P3
  ScalarValue:P
  NumericConstant:.5
  BinaryOperator:*
@@ -197,13 +197,13 @@
  AssignmentOperator:=
  LineNumber:390
 370 P3=INT(P)\GOTO 390
- ScalarReference:P3
+ Reference:P3
  ScalarValue:P
  FunctionInt
  AssignmentOperator:=
  LineNumber:390
 375 P3=P
- ScalarReference:P3
+ Reference:P3
  ScalarValue:P
  AssignmentOperator:=
 390 PRINT "   ESTIMATED DISTANCE="P3
@@ -213,9 +213,9 @@
  ScalarValue:P3
  CarriageControl:NL
 400 INPUT "INPUT ANGLE DEVIATION FROM X, DEVIATION FROM Z, DISTANCE ";A1,B1,P2
- ScalarReference:A1
- ScalarReference:B1
- ScalarReference:P2
+ Reference:A1
+ Reference:B1
+ Reference:P2
 410 PRINT\IF P2<20 THEN PRINT "YOU BLEW YOURSELF UP!!!"\GOTO 580 
  ITEMS
  CarriageControl:NL
@@ -227,12 +227,12 @@
  CarriageControl:NL
  LineNumber:580
 420 A1=A1/R1\B1=B1/R1\PRINT "RADIANS FROM X AXIS = "A1" FROM Z AXIS = "B1
- ScalarReference:A1
+ Reference:A1
  ScalarValue:A1
  ScalarValue:R1
  BinaryOperator:/
  AssignmentOperator:=
- ScalarReference:B1
+ Reference:B1
  ScalarValue:B1
  ScalarValue:R1
  BinaryOperator:/
@@ -247,7 +247,7 @@
  ScalarValue:B1
  CarriageControl:NL
 480 X1=P2*SIN(B1)*COS(A1)\Y1=P2*SIN(B1)*SIN(A1)\Z1=P2*COS(B1)
- ScalarReference:X1
+ Reference:X1
  ScalarValue:P2
  ScalarValue:B1
  FunctionSin
@@ -256,7 +256,7 @@
  FunctionCos
  BinaryOperator:*
  AssignmentOperator:=
- ScalarReference:Y1
+ Reference:Y1
  ScalarValue:P2
  ScalarValue:B1
  FunctionSin
@@ -265,14 +265,14 @@
  FunctionSin
  BinaryOperator:*
  AssignmentOperator:=
- ScalarReference:Z1
+ Reference:Z1
  ScalarValue:P2
  ScalarValue:B1
  FunctionCos
  BinaryOperator:*
  AssignmentOperator:=
 510 D= ((X1-X)^2+(Y1-Y)^2+(Z1-Z)^2)^(1/2)
- ScalarReference:D
+ Reference:D
  ScalarValue:X1
  ScalarValue:X
  BinaryOperator:-
@@ -326,7 +326,7 @@
  TextConstant:" SHOTS."
  CarriageControl:NL
 580 R=0\FOR I=1 TO 4\PRINT\NEXT I\PRINT "NEXT TARGET..."\PRINT\GOTO 220
- ScalarReference:R
+ Reference:R
  NumericConstant:0
  AssignmentOperator:=
  control: VariableName:I
@@ -342,17 +342,17 @@
  CarriageControl:NL
  LineNumber:220
 670 X2=X1-X:Y2=Y1-Y\Z2=Z1-Z\IF X2<0 THEN 730
- ScalarReference:X2
+ Reference:X2
  ScalarValue:X1
  ScalarValue:X
  BinaryOperator:-
  AssignmentOperator:=
- ScalarReference:Y2
+ Reference:Y2
  ScalarValue:Y1
  ScalarValue:Y
  BinaryOperator:-
  AssignmentOperator:=
- ScalarReference:Z2
+ Reference:Z2
  ScalarValue:Z1
  ScalarValue:Z
  BinaryOperator:-

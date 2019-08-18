@@ -15,18 +15,18 @@
  ITEMS
  TextConstant:"COST OF ITEM"
  CarriageControl:;
- ScalarReference:A
+ Reference:A
  ITEMS
  TextConstant:"AMOUNT OF PAYMENT"
  CarriageControl:;
- ScalarReference:P
+ Reference:P
 20 C=P-A\M=C\IF C<>0 THEN 90\PRINT "CORRECT AMOUNT, THANK YOU"
- ScalarReference:C
+ Reference:C
  ScalarValue:P
  ScalarValue:A
  BinaryOperator:-
  AssignmentOperator:=
- ScalarReference:M
+ Reference:M
  ScalarValue:C
  AssignmentOperator:=
  ScalarValue:C
@@ -56,7 +56,7 @@
  CarriageControl:;
  ScalarValue:C
  CarriageControl:NL
- ScalarReference:D
+ Reference:D
  ScalarValue:C
  NumericConstant:10
  BinaryOperator:/
@@ -72,14 +72,14 @@
  TextConstant:"TEN DOLLAR BILL(S)"
  CarriageControl:NL
 155 C=M-(D*10)\E=INT(C/5)\IF E=0 THEN 185
- ScalarReference:C
+ Reference:C
  ScalarValue:M
  ScalarValue:D
  NumericConstant:10
  BinaryOperator:*
  BinaryOperator:-
  AssignmentOperator:=
- ScalarReference:E
+ Reference:E
  ScalarValue:C
  NumericConstant:5
  BinaryOperator:/
@@ -95,7 +95,7 @@
  TextConstant:"FIVE DOLLAR BILL(S)"
  CarriageControl:NL
 185 C=M-(D*10+E*5)\F=INT(C)\IF F=0 THEN 215
- ScalarReference:C
+ Reference:C
  ScalarValue:M
  ScalarValue:D
  NumericConstant:10
@@ -106,7 +106,7 @@
  BinaryOperator:+
  BinaryOperator:-
  AssignmentOperator:=
- ScalarReference:F
+ Reference:F
  ScalarValue:C
  FunctionInt
  AssignmentOperator:=
@@ -120,7 +120,7 @@
  TextConstant:"ONE DOLLAR BILL(S)"
  CarriageControl:NL
 215 C=M-(D*10+E*5+F)\C=C*100\N=C\G=INT(C/50)\IF G=0 THEN 255
- ScalarReference:C
+ Reference:C
  ScalarValue:M
  ScalarValue:D
  NumericConstant:10
@@ -133,15 +133,15 @@
  BinaryOperator:+
  BinaryOperator:-
  AssignmentOperator:=
- ScalarReference:C
+ Reference:C
  ScalarValue:C
  NumericConstant:100
  BinaryOperator:*
  AssignmentOperator:=
- ScalarReference:N
+ Reference:N
  ScalarValue:C
  AssignmentOperator:=
- ScalarReference:G
+ Reference:G
  ScalarValue:C
  NumericConstant:50
  BinaryOperator:/
@@ -157,14 +157,14 @@
  TextConstant:"ONE-HALF DOLLAR(S)"
  CarriageControl:NL
 255 C=N-(G*50)\H=INT(C/25)\IF H=0 THEN 285
- ScalarReference:C
+ Reference:C
  ScalarValue:N
  ScalarValue:G
  NumericConstant:50
  BinaryOperator:*
  BinaryOperator:-
  AssignmentOperator:=
- ScalarReference:H
+ Reference:H
  ScalarValue:C
  NumericConstant:25
  BinaryOperator:/
@@ -180,7 +180,7 @@
  TextConstant:"QUARTER(S)"
  CarriageControl:NL
 285 C=N-(G*50+H*25)\I=INT(C/10)\IF I=0 THEN 315
- ScalarReference:C
+ Reference:C
  ScalarValue:N
  ScalarValue:G
  NumericConstant:50
@@ -191,7 +191,7 @@
  BinaryOperator:+
  BinaryOperator:-
  AssignmentOperator:=
- ScalarReference:I
+ Reference:I
  ScalarValue:C
  NumericConstant:10
  BinaryOperator:/
@@ -207,7 +207,7 @@
  TextConstant:"DIME(S)"
  CarriageControl:NL
 315 C=N-(G*50+H*25+I*10)\J=INT(C/5)\IF J=0 THEN 345
- ScalarReference:C
+ Reference:C
  ScalarValue:N
  ScalarValue:G
  NumericConstant:50
@@ -222,7 +222,7 @@
  BinaryOperator:+
  BinaryOperator:-
  AssignmentOperator:=
- ScalarReference:J
+ Reference:J
  ScalarValue:C
  NumericConstant:5
  BinaryOperator:/
@@ -238,7 +238,7 @@
  TextConstant:"NICKEL(S)"
  CarriageControl:NL
 345 C=N-(G*50+H*25+I*10+J*5)\K=INT(C+.5)\IF K=0 THEN 380
- ScalarReference:C
+ Reference:C
  ScalarValue:N
  ScalarValue:G
  NumericConstant:50
@@ -257,7 +257,7 @@
  BinaryOperator:+
  BinaryOperator:-
  AssignmentOperator:=
- ScalarReference:K
+ Reference:K
  ScalarValue:C
  NumericConstant:.5
  BinaryOperator:+

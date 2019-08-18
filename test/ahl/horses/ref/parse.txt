@@ -39,13 +39,13 @@
  end:     ["NumericConstant:8"]
 8 B(I)=I \ GOSUB 210
  ScalarValue:I
- ScalarReference:B
+ Reference:B
  ScalarValue:I
  AssignmentOperator:=
  LineNumber:210
 9 READ O(I) \ PRINT O(I)":1"
  ScalarValue:I
- ScalarReference:O
+ Reference:O
  ITEMS
  ScalarValue:I
  ScalarValue:O
@@ -54,7 +54,7 @@
  CarriageControl:NL
 10 M(I)=(100+50*O(I)) / (O(I)+1)
  ScalarValue:I
- ScalarReference:M
+ Reference:M
  NumericConstant:100
  NumericConstant:50
  ScalarValue:I
@@ -81,14 +81,14 @@
  TextConstant:"AND 0 FOR NO MORE BETTlNG OR 1 OR MORE BETTING."
  CarriageControl:NL
 15 LET S = 0
- ScalarReference:S
+ Reference:S
  NumericConstant:0
  AssignmentOperator:=
 16 PRINT
  ITEMS
  CarriageControl:NL
 17 LET S = S + 1
- ScalarReference:S
+ Reference:S
  ScalarValue:S
  NumericConstant:1
  BinaryOperator:+
@@ -101,15 +101,15 @@
  CarriageControl:;
 19 INPUT T(S),U(S),V(S),M
  ScalarValue:S
- ScalarReference:T
+ Reference:T
  ScalarValue:S
- ScalarReference:U
+ Reference:U
  ScalarValue:S
- ScalarReference:V
- ScalarReference:M
+ Reference:V
+ Reference:M
 20 LET T(S)=ABS(INT(T(S)))
  ScalarValue:S
- ScalarReference:T
+ Reference:T
  ScalarValue:S
  ScalarValue:T
  FunctionInt
@@ -127,7 +127,7 @@
  BinaryOperator:<
 23 LET U(S)=ABS(INT(U(S)))
  ScalarValue:S
- ScalarReference:U
+ Reference:U
  ScalarValue:S
  ScalarValue:U
  FunctionInt
@@ -164,7 +164,7 @@
  CarriageControl:;
 31 INPUT V(S) \ GO TO 28
  ScalarValue:S
- ScalarReference:V
+ Reference:V
  LineNumber:28
 33 IF M = 1 THEN 17
  ScalarValue:M
@@ -183,7 +183,7 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
  ScalarValue:I
- ScalarReference:H
+ Reference:H
  NumericConstant:0
  AssignmentOperator:=
  VariableName:I
@@ -199,7 +199,7 @@
  end:     ["NumericConstant:8"]
 46 H(J)=H(J)+RND(0)*M(J)
  ScalarValue:J
- ScalarReference:H
+ Reference:H
  ScalarValue:J
  ScalarValue:H
  NumericConstant:0
@@ -242,7 +242,7 @@
  NumericConstant:.5
  BinaryOperator:>
 60 Z=B(J-1) \ B(J-1)=B(J) \ B(J)=Z
- ScalarReference:Z
+ Reference:Z
  ScalarValue:J
  NumericConstant:1
  BinaryOperator:-
@@ -251,12 +251,12 @@
  ScalarValue:J
  NumericConstant:1
  BinaryOperator:-
- ScalarReference:B
+ Reference:B
  ScalarValue:J
  ScalarValue:B
  AssignmentOperator:=
  ScalarValue:J
- ScalarReference:B
+ Reference:B
  ScalarValue:Z
  AssignmentOperator:=
 62 NEXT J
@@ -337,7 +337,7 @@
  TextConstant:" STRAIGHT PLACE SHOW"
  CarriageControl:NL
 100 K=0
- ScalarReference:K
+ Reference:K
  NumericConstant:0
  AssignmentOperator:=
 102 FOR I=1 TO 3
@@ -351,7 +351,7 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 108 L=2*I+J-3 \ P(L)=1.5+.1*INT(.1*INT((4*O(B(I))/(J*(J+1))+RND(0))*100+5))
- ScalarReference:L
+ Reference:L
  NumericConstant:2
  ScalarValue:I
  BinaryOperator:*
@@ -361,7 +361,7 @@
  BinaryOperator:-
  AssignmentOperator:=
  ScalarValue:L
- ScalarReference:P
+ Reference:P
  NumericConstant:1.5
  NumericConstant:.1
  NumericConstant:.1
@@ -398,7 +398,7 @@
  BinaryOperator:+
  FunctionTab
  CarriageControl:;
- ScalarReference:B
+ Reference:B
  NumericConstant:16
  UnaryOperator:-
  AssignmentOperator:=
@@ -408,7 +408,7 @@
  end:     ["NumericConstant:1", "UnaryOperator:-"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
 114 P=INT(P(L)/(10^M))
- ScalarReference:P
+ Reference:P
  ScalarValue:L
  ScalarValue:P
  NumericConstant:10
@@ -418,7 +418,7 @@
  FunctionInt
  AssignmentOperator:=
 116 P=P-10*INT(P/10)
- ScalarReference:P
+ Reference:P
  ScalarValue:P
  NumericConstant:10
  ScalarValue:P
@@ -432,7 +432,7 @@
  ScalarValue:P
  NumericConstant:0
  BinaryOperator:=
- ScalarReference:B
+ Reference:B
  NumericConstant:0
  AssignmentOperator:=
 118 PRINT CHR$(48+P+B);
@@ -467,7 +467,7 @@
 150 PRINT \ Q=0
  ITEMS
  CarriageControl:NL
- ScalarReference:Q
+ Reference:Q
  NumericConstant:0
  AssignmentOperator:=
 152 FOR J=1 TO S
@@ -481,7 +481,7 @@
  ScalarValue:J
  CarriageControl:NL
 156 P=0
- ScalarReference:P
+ Reference:P
  NumericConstant:0
  AssignmentOperator:=
 158 FOR I=1 TO 6 \ H(B(I))=I \ NEXT I
@@ -490,7 +490,7 @@
  end:     ["NumericConstant:6"]
  ScalarValue:I
  ScalarValue:B
- ScalarReference:H
+ Reference:H
  ScalarValue:I
  AssignmentOperator:=
  VariableName:I
@@ -502,7 +502,7 @@
  ScalarValue:H
  BinaryOperator:<
 162 P= .01*INT((V(J)*50)*P(U(J)*H(T(J))*2-3))
- ScalarReference:P
+ Reference:P
  NumericConstant:.01
  ScalarValue:J
  ScalarValue:V
@@ -551,11 +551,11 @@
  TextConstant:" TICKET ON "
  CarriageControl:;
 172 I=0 \ B(0)=T(J) \ GOSUB 215 \ PRINT
- ScalarReference:I
+ Reference:I
  NumericConstant:0
  AssignmentOperator:=
  NumericConstant:0
- ScalarReference:B
+ Reference:B
  ScalarValue:J
  ScalarValue:T
  AssignmentOperator:=
@@ -563,7 +563,7 @@
  ITEMS
  CarriageControl:NL
 174 Q=Q+P-V(J)
- ScalarReference:Q
+ Reference:Q
  ScalarValue:Q
  ScalarValue:P
  BinaryOperator:+

@@ -48,7 +48,7 @@
  TextConstant:"ENTER PILE SIZE:"
  CarriageControl:;
 340 INPUT N
- ScalarReference:N
+ Reference:N
 350 IF N<>0 THEN 370
  ScalarValue:N
  NumericConstant:0
@@ -69,7 +69,7 @@
  TextConstant:"ENTER WIN OPTION - 1 TO TAKE LAST, 2 TO AVOID LAST:"
  CarriageControl:;
 400 INPUT M
- ScalarReference:M
+ Reference:M
 410 IF M=1 THEN 430
  ScalarValue:M
  NumericConstant:1
@@ -83,8 +83,8 @@
  TextConstant:"ENTER MIN AND MAX:"
  CarriageControl:;
 440 INPUT A, B
- ScalarReference:A
- ScalarReference:B
+ Reference:A
+ Reference:B
 450 IF A>B THEN 430
  ScalarValue:A
  ScalarValue:B
@@ -108,7 +108,7 @@
  TextConstant:"ENTER START OPTION - 1 COMPUTER FIRST, 2 YOU FIRST:"
  CarriageControl:;
 500 INPUT S
- ScalarReference:S
+ Reference:S
 510 IF S=1 THEN 530
  ScalarValue:S
  NumericConstant:1
@@ -118,7 +118,7 @@
  NumericConstant:2
  BinaryOperator:<>
 530 LET C=A+B
- ScalarReference:C
+ Reference:C
  ScalarValue:A
  ScalarValue:B
  BinaryOperator:+
@@ -142,7 +142,7 @@
 590 GO TO 550
  LineNumber:550
 600 LET Q=N
- ScalarReference:Q
+ Reference:Q
  ScalarValue:N
  AssignmentOperator:=
 610 IF M=1 THEN 630
@@ -150,7 +150,7 @@
  NumericConstant:1
  BinaryOperator:=
 620 LET Q=Q-1
- ScalarReference:Q
+ Reference:Q
  ScalarValue:Q
  NumericConstant:1
  BinaryOperator:-
@@ -164,7 +164,7 @@
  ScalarValue:A
  BinaryOperator:>
 650 LET W=1
- ScalarReference:W
+ Reference:W
  NumericConstant:1
  AssignmentOperator:=
 669 PRINT"COMPUTER TAKES"; N; "AND LOSES."
@@ -182,7 +182,7 @@
  ScalarValue:B
  BinaryOperator:>
 690 LET W=1
- ScalarReference:W
+ Reference:W
  NumericConstant:1
  AssignmentOperator:=
 700 PRINT"COMPUTER TAKES"; N; "AND WINS."
@@ -196,7 +196,7 @@
 710 RETURN 
  
 720 LET P=Q-C*INT(Q/C)
- ScalarReference:P
+ Reference:P
  ScalarValue:Q
  ScalarValue:C
  ScalarValue:Q
@@ -211,7 +211,7 @@
  ScalarValue:A
  BinaryOperator:>=
 740 LET P=A
- ScalarReference:P
+ Reference:P
  ScalarValue:A
  AssignmentOperator:=
 750 IF P<=B THEN 770
@@ -219,11 +219,11 @@
  ScalarValue:B
  BinaryOperator:<=
 760 LET P=B
- ScalarReference:P
+ Reference:P
  ScalarValue:B
  AssignmentOperator:=
 770 LET N=N-P
- ScalarReference:N
+ Reference:N
  ScalarValue:N
  ScalarValue:P
  BinaryOperator:-
@@ -239,7 +239,7 @@
  ScalarValue:N
  CarriageControl:NL
 790 LET W=0
- ScalarReference:W
+ Reference:W
  NumericConstant:0
  AssignmentOperator:=
 800 RETURN
@@ -249,7 +249,7 @@
  TextConstant:"YOUR MOVE:"
  CarriageControl:;
 820 INPUT P
- ScalarReference:P
+ Reference:P
 830 IF P<>0 THEN 870
  ScalarValue:P
  NumericConstant:0
@@ -259,7 +259,7 @@
  TextConstant:"I TOLD YOU NOT TO USE ZERO. .. COMPUTER WINS BY FORFEIT."
  CarriageControl:NL
 850 LET W=1
- ScalarReference:W
+ Reference:W
  NumericConstant:1
  AssignmentOperator:=
 860 RETURN 
@@ -290,7 +290,7 @@
 930 GO TO 820
  LineNumber:820
 940 LET N=N-P
- ScalarReference:N
+ Reference:N
  ScalarValue:N
  ScalarValue:P
  BinaryOperator:-
@@ -308,7 +308,7 @@
  TextConstant:"TOUGH LUCK, YOU LOSE."
  CarriageControl:NL
 980 LET W=1
- ScalarReference:W
+ Reference:W
  NumericConstant:1
  AssignmentOperator:=
 990 RETURN
@@ -318,7 +318,7 @@
  TextConstant:"CONGRATULATIONS, YOU WIN."
  CarriageControl:NL
 1010 LET W=1
- ScalarReference:W
+ Reference:W
  NumericConstant:1
  AssignmentOperator:=
 1020 RETURN
@@ -328,7 +328,7 @@
  NumericConstant:0
  BinaryOperator:>=
 1040 LET N=N+P
- ScalarReference:N
+ Reference:N
  ScalarValue:N
  ScalarValue:P
  BinaryOperator:+
@@ -336,7 +336,7 @@
 1050 GO TO 920
  LineNumber:920
 1060 LET W=0
- ScalarReference:W
+ Reference:W
  NumericConstant:0
  AssignmentOperator:=
 1078 RETURN

@@ -8,7 +8,7 @@
  TextConstant:"DO YOU WANT DIRECTIONS Y FOR YES N FOR NO"
  CarriageControl:;
 130INPUT$Z\PRINT
- ScalarReference:Z
+ Reference:Z
  ITEMS
  CarriageControl:NL
 140IFZ=#YTHEN160
@@ -77,7 +77,7 @@
  ITEMS
  TextConstant:"HOW PLAVERS ARE PLAYING TODAY"
  CarriageControl:;
- ScalarReference:U
+ Reference:U
  ITEMS
  CarriageControl:NL
 310IFU<=4THEN340
@@ -144,9 +144,9 @@
  end:     ["NumericConstant:18"]
 410READA(R)\READP(R)
  ScalarValue:R
- ScalarReference:A
+ Reference:A
  ScalarValue:R
- ScalarReference:P
+ Reference:P
 420NEXTR
  VariableName:R
 430DIMM(4,10)
@@ -160,7 +160,7 @@
  ITEMS
  TextConstant:"HOW MANY HOLES UP TO 18 DO VOU WANT TO PLAY?"
  CarriageControl:NL
- ScalarReference:V
+ Reference:V
 460PRINT
  ITEMS
  CarriageControl:NL
@@ -173,7 +173,7 @@
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:U"]
 490LETH=A(J)
- ScalarReference:H
+ Reference:H
  ScalarValue:J
  ScalarValue:A
  AssignmentOperator:=
@@ -193,15 +193,15 @@
  ScalarValue:P
  CarriageControl:NL
 510LETK=0
- ScalarReference:K
+ Reference:K
  NumericConstant:0
  AssignmentOperator:=
 520LETT=0
- ScalarReference:T
+ Reference:T
  NumericConstant:0
  AssignmentOperator:=
 530LET T2=0
- ScalarReference:T2
+ Reference:T2
  NumericConstant:0
  AssignmentOperator:=
 540PRINT"PLAYER NUMBER";Q;"CHOSE YOUR CLUB"
@@ -213,13 +213,13 @@
  TextConstant:"CHOSE YOUR CLUB"
  CarriageControl:NL
 550INPUT X
- ScalarReference:X
+ Reference:X
 560IFX=9THEN880
  ScalarValue:X
  NumericConstant:9
  BinaryOperator:=
 570LETK=K+1
- ScalarReference:K
+ Reference:K
  ScalarValue:K
  NumericConstant:1
  BinaryOperator:+
@@ -235,7 +235,7 @@
  NumericConstant:9
  BinaryOperator:=
 610LETD=X
- ScalarReference:D
+ Reference:D
  ScalarValue:X
  AssignmentOperator:=
 620IFH<>X(D)THEN630\IFK<>1THEN990\PRINT"HOLE IN ONE!!!"\GOTO990
@@ -260,7 +260,7 @@
  TextConstant:"YARDS"
  CarriageControl:NL
 640LETL=INT(RND(X)*100)
- ScalarReference:L
+ Reference:L
  ScalarValue:X
  FunctionRnd
  NumericConstant:100
@@ -285,7 +285,7 @@
  ITEMS
  TextConstant:"IN TRAP"
  CarriageControl:NL
- ScalarReference:C
+ Reference:C
  ScalarValue:H
  ScalarValue:D
  ScalarValue:X
@@ -294,7 +294,7 @@
  AssignmentOperator:=
  LineNumber:680
 680LETL8=INT(RND(X)*10)
- ScalarReference:L8
+ Reference:L8
  ScalarValue:X
  FunctionRnd
  NumericConstant:10
@@ -309,7 +309,7 @@
  NumericConstant:1
  BinaryOperator:=
 700LETT2=0
- ScalarReference:T2
+ Reference:T2
  NumericConstant:0
  AssignmentOperator:=
 710FORZ=1TOL8
@@ -317,7 +317,7 @@
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:L8"]
 720LETT2=T2+1
- ScalarReference:T2
+ Reference:T2
  ScalarValue:T2
  NumericConstant:1
  BinaryOperator:+
@@ -326,7 +326,7 @@
  ITEMS
  TextConstant:"CHOSE YOUR CLUB"
  CarriageControl:NL
- ScalarReference:X
+ Reference:X
 740PRINT"STILL IN TRAP"'\NEXTZ
  ITEMS
  TextConstant:"STILL IN TRAP"
@@ -348,7 +348,7 @@
  ITEMS
  TextConstant:"IN ROUGH"
  CarriageControl:NL
- ScalarReference:C
+ Reference:C
  ScalarValue:H
  ScalarValue:D
  ScalarValue:X
@@ -374,7 +374,7 @@
  ITEMS
  TextConstant:"IN WATER"
  CarriageControl:NL
- ScalarReference:T
+ Reference:T
  ScalarValue:T
  NumericConstant:1
  BinaryOperator:+
@@ -382,7 +382,7 @@
  ITEMS
  TextConstant:"YOU LOSE 1 STROKE"
  CarriageControl:NL
- ScalarReference:C
+ Reference:C
  ScalarValue:H
  ScalarValue:D
  ScalarValue:X
@@ -392,7 +392,7 @@
 820GOTO850
  LineNumber:850
 830LETC=ABS(H-X(D))
- ScalarReference:C
+ Reference:C
  ScalarValue:H
  ScalarValue:D
  ScalarValue:X
@@ -412,13 +412,13 @@
  TextConstant:"YARDS"
  CarriageControl:NL
 860LETH=C
- ScalarReference:H
+ Reference:H
  ScalarValue:C
  AssignmentOperator:=
 870GOTO540
  LineNumber:540
 880LETC=A(J)
- ScalarReference:C
+ Reference:C
  ScalarValue:J
  ScalarValue:A
  AssignmentOperator:=
@@ -443,9 +443,9 @@
  TextConstant:" IS ON THE GREEN CHOSE YOUR CLUB"
  CarriageControl:NL
 940INPUTX
- ScalarReference:X
+ Reference:X
 950LETD=X
- ScalarReference:D
+ Reference:D
  ScalarValue:X
  AssignmentOperator:=
 960GOTO590
@@ -460,7 +460,7 @@
 980LETM(Q,J)=K+X(9)+T+T2\GOTO1000
  ScalarValue:Q
  ScalarValue:J
- ScalarReference:M
+ Reference:M
  ScalarValue:K
  NumericConstant:9
  ScalarValue:X
@@ -474,7 +474,7 @@
 990LETM(Q,J)=K\PRINT"YOU SUNK THE SHOT"
  ScalarValue:Q
  ScalarValue:J
- ScalarReference:M
+ Reference:M
  ScalarValue:K
  AssignmentOperator:=
  ITEMS
@@ -508,7 +508,7 @@
  end:     ["ScalarValue:V"]
 1040LETN(1)=M(1,W)+N(1)
  NumericConstant:1
- ScalarReference:N
+ Reference:N
  NumericConstant:1
  ScalarValue:W
  ScalarValue:M
@@ -518,7 +518,7 @@
  AssignmentOperator:=
 1050LETN(2)=M(2,W)+N(2)
  NumericConstant:2
- ScalarReference:N
+ Reference:N
  NumericConstant:2
  ScalarValue:W
  ScalarValue:M
@@ -528,7 +528,7 @@
  AssignmentOperator:=
 1060LETN(3)=M(3,W)+N(3)
  NumericConstant:3
- ScalarReference:N
+ Reference:N
  NumericConstant:3
  ScalarValue:W
  ScalarValue:M
@@ -538,7 +538,7 @@
  AssignmentOperator:=
 1070LETN(4)=M(4,W)+N(4)
  NumericConstant:4
- ScalarReference:N
+ Reference:N
  NumericConstant:4
  ScalarValue:W
  ScalarValue:M
@@ -547,7 +547,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 1080LET E= P(W)+E
- ScalarReference:E
+ Reference:E
  ScalarValue:W
  ScalarValue:P
  ScalarValue:E
@@ -584,7 +584,7 @@
  LineNumber:1440
 1140LETX(2)=INT(130*RND(X)+150)
  NumericConstant:2
- ScalarReference:X
+ Reference:X
  NumericConstant:130
  ScalarValue:X
  FunctionRnd
@@ -597,7 +597,7 @@
  LineNumber:600
 1160LETX(1)=INT(90*RND(X)+180)
  NumericConstant:1
- ScalarReference:X
+ Reference:X
  NumericConstant:90
  ScalarValue:X
  FunctionRnd
@@ -610,7 +610,7 @@
  LineNumber:600
 1180LETX(3)=INT(40*RND(X)+140)
  NumericConstant:3
- ScalarReference:X
+ Reference:X
  NumericConstant:40
  ScalarValue:X
  FunctionRnd
@@ -623,7 +623,7 @@
  LineNumber:600
 1200LETX(4)=INT(60*RND(X)+120)
  NumericConstant:4
- ScalarReference:X
+ Reference:X
  NumericConstant:60
  ScalarValue:X
  FunctionRnd
@@ -636,7 +636,7 @@
  LineNumber:600
 1220LETX(5)=INT(30*RND(X)+100)
  NumericConstant:5
- ScalarReference:X
+ Reference:X
  NumericConstant:30
  ScalarValue:X
  FunctionRnd
@@ -649,7 +649,7 @@
  LineNumber:600
 1240LETX(6)=INT(30*RND(X)+70)
  NumericConstant:6
- ScalarReference:X
+ Reference:X
  NumericConstant:30
  ScalarValue:X
  FunctionRnd
@@ -662,7 +662,7 @@
  LineNumber:600
 1260LETX(7)=INT(40*RND(X)+30)
  NumericConstant:7
- ScalarReference:X
+ Reference:X
  NumericConstant:40
  ScalarValue:X
  FunctionRnd
@@ -675,7 +675,7 @@
  LineNumber:600
 1280LETX(8)=INT(30*RND(X)+1)
  NumericConstant:8
- ScalarReference:X
+ Reference:X
  NumericConstant:30
  ScalarValue:X
  FunctionRnd
@@ -693,7 +693,7 @@
  LineNumber:600
 1310LETX(9)=INT(3*RND(X)+1)
  NumericConstant:9
- ScalarReference:X
+ Reference:X
  NumericConstant:3
  ScalarValue:X
  FunctionRnd

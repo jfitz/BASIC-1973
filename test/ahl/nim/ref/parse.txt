@@ -12,7 +12,7 @@
  ITEMS
  TextConstant:"DO YOU WANT INSTRUCTIONS"
  CarriageControl:;
- ScalarReference:Q$
+ Reference:Q$
 125 IF Q$="YES" THEN 135\IF Q$="NO" THEN 190
  ScalarValue:Q$
  TextConstant:"YES"
@@ -24,7 +24,7 @@
  ITEMS
  TextConstant:"TYPE YES OR NO."
  CarriageControl:NL
- ScalarReference:Q$
+ Reference:Q$
  LineNumber:125
 135 PRINT
  ITEMS
@@ -97,7 +97,7 @@
  ITEMS
  TextConstant:"HOW MANY PILES"
  CarriageControl:;
- ScalarReference:P
+ Reference:P
  ScalarValue:P
  NumericConstant:20
  BinaryOperator:>
@@ -130,7 +130,7 @@
  ScalarValue:I
  CarriageControl:;
  ScalarValue:I
- ScalarReference:L
+ Reference:L
  ScalarValue:I
  ScalarValue:L
  NumericConstant:20
@@ -161,11 +161,11 @@
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:P"]
  ScalarValue:I
- ScalarReference:S
+ Reference:S
  ScalarValue:I
  ScalarValue:L
  AssignmentOperator:=
- ScalarReference:G
+ Reference:G
  ScalarValue:G
  ScalarValue:I
  ScalarValue:L
@@ -179,7 +179,7 @@
  TextConstant:"DO YOU WANT TO GO FIRST"
  CarriageControl:;
 255 INPUT Q$\IF Q$="YES" THEN 340\IF Q$="NO" THEN 390
- ScalarReference:Q$
+ Reference:Q$
  ScalarValue:Q$
  TextConstant:"YES"
  BinaryOperator:=
@@ -212,7 +212,7 @@
  TextConstant:"I WON. DO YOU WANT TO PLAY AGAIN"
  CarriageControl:;
 285 INPUT Q$\IF Q$="NO" THEN 290\IF Q$="YES" THEN 300\GO TO 295
- ScalarReference:Q$
+ Reference:Q$
  ScalarValue:Q$
  TextConstant:"NO"
  BinaryOperator:=
@@ -234,7 +234,7 @@
  TextConstant:"SAME ARRANGEMENT"
  CarriageControl:;
 305 INPUT Q$\IF Q$="NO" THEN 205\IF Q$="YES" THEN 345
- ScalarReference:Q$
+ Reference:Q$
  ScalarValue:Q$
  TextConstant:"NO"
  BinaryOperator:=
@@ -285,7 +285,7 @@
  ITEMS
  TextConstant:"WHICH PILE DO YOU WANT STICKS FROM"
  CarriageControl:;
- ScalarReference:N
+ Reference:N
 345 IF N>P THEN 355\IF N>INT(N) THEN 355\IF N<=0 THEN 355
  ScalarValue:N
  ScalarValue:P
@@ -316,7 +316,7 @@
  ITEMS
  TextConstant:"HOW MANY STICKS"
  CarriageControl:;
- ScalarReference:T
+ Reference:T
 365 IF T>S(N) THEN 370\IF T>INT(T) THEN 370\IF T<=0 THEN 370\GO TO 375
  ScalarValue:T
  ScalarValue:N
@@ -339,19 +339,19 @@
  LineNumber:360
 375 S(N)=S(N)-T\G=G-T
  ScalarValue:N
- ScalarReference:S
+ Reference:S
  ScalarValue:N
  ScalarValue:S
  ScalarValue:T
  BinaryOperator:-
  AssignmentOperator:=
- ScalarReference:G
+ Reference:G
  ScalarValue:G
  ScalarValue:T
  BinaryOperator:-
  AssignmentOperator:=
 380 F=1\GO TO 270
- ScalarReference:F
+ Reference:F
  NumericConstant:1
  AssignmentOperator:=
  LineNumber:270
@@ -362,7 +362,7 @@
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:4"]
  ScalarValue:I
- ScalarReference:V
+ Reference:V
  NumericConstant:0
  AssignmentOperator:=
  VariableName:I
@@ -372,7 +372,7 @@
  end:     ["ScalarValue:P"]
 400    C(I)=S(I)
  ScalarValue:I
- ScalarReference:C
+ Reference:C
  ScalarValue:I
  ScalarValue:S
  AssignmentOperator:=
@@ -389,7 +389,7 @@
  BinaryOperator:^
  BinaryOperator:<
  ScalarValue:I
- ScalarReference:S2
+ Reference:S2
  ScalarValue:I
  ScalarValue:S2
  NumericConstant:10
@@ -398,7 +398,7 @@
  BinaryOperator:+
  AssignmentOperator:=
  ScalarValue:I
- ScalarReference:S
+ Reference:S
  ScalarValue:I
  ScalarValue:S
  NumericConstant:2
@@ -416,7 +416,7 @@
 425       X(I,Y)=INT(S2(I)/10^Y)\S2(I)=S2(I)-X(I,Y)*10^Y
  ScalarValue:I
  ScalarValue:Y
- ScalarReference:X
+ Reference:X
  ScalarValue:I
  ScalarValue:S2
  NumericConstant:10
@@ -426,7 +426,7 @@
  FunctionInt
  AssignmentOperator:=
  ScalarValue:I
- ScalarReference:S2
+ Reference:S2
  ScalarValue:I
  ScalarValue:S2
  ScalarValue:I
@@ -440,7 +440,7 @@
  AssignmentOperator:=
 430       V(Y)=V(Y)+X(I,Y)
  ScalarValue:Y
- ScalarReference:V
+ Reference:V
  ScalarValue:Y
  ScalarValue:V
  ScalarValue:I
@@ -453,7 +453,7 @@
 440 NEXT I
  VariableName:I
 445 R=0
- ScalarReference:R
+ Reference:R
  NumericConstant:0
  AssignmentOperator:=
 450 FOR Y=4 TO 0 STEP -1
@@ -478,7 +478,7 @@
  ScalarValue:R
  NumericConstant:1
  BinaryOperator:=
- ScalarReference:Q
+ Reference:Q
  ScalarValue:P
  ScalarValue:X
  FunctionRnd
@@ -495,10 +495,10 @@
  BinaryOperator:<>
  ScalarValue:Q
  ScalarValue:Y
- ScalarReference:X
+ Reference:X
  NumericConstant:0
  AssignmentOperator:=
- ScalarReference:R
+ Reference:R
  NumericConstant:1
  AssignmentOperator:=
  LineNumber:480
@@ -510,14 +510,14 @@
  BinaryOperator:=
  ScalarValue:Q
  ScalarValue:Y
- ScalarReference:X
+ Reference:X
  NumericConstant:1
  AssignmentOperator:=
  LineNumber:480
 475    X(Q,Y)=0
  ScalarValue:Q
  ScalarValue:Y
- ScalarReference:X
+ Reference:X
  NumericConstant:0
  AssignmentOperator:=
 480 NEXT Y
@@ -528,7 +528,7 @@
  end:     ["ScalarValue:P"]
 490    S2(I)=0
  ScalarValue:I
- ScalarReference:S2
+ Reference:S2
  NumericConstant:0
  AssignmentOperator:=
 495    FOR Y=4 TO 0 STEP -1
@@ -538,7 +538,7 @@
  step:    ["NumericConstant:1", "UnaryOperator:-"]
 500       S3(I)=X(I,Y)*10^Y\S2(I)=S2(I)+S3(I)
  ScalarValue:I
- ScalarReference:S3
+ Reference:S3
  ScalarValue:I
  ScalarValue:Y
  ScalarValue:X
@@ -548,7 +548,7 @@
  BinaryOperator:*
  AssignmentOperator:=
  ScalarValue:I
- ScalarReference:S2
+ Reference:S2
  ScalarValue:I
  ScalarValue:S2
  ScalarValue:I
@@ -570,7 +570,7 @@
  BinaryOperator:^
  BinaryOperator:<
  ScalarValue:I
- ScalarReference:S
+ Reference:S
  ScalarValue:I
  ScalarValue:S
  NumericConstant:2
@@ -579,7 +579,7 @@
  BinaryOperator:+
  AssignmentOperator:=
  ScalarValue:I
- ScalarReference:S2
+ Reference:S2
  ScalarValue:I
  ScalarValue:S2
  NumericConstant:10
@@ -595,7 +595,7 @@
  ScalarValue:R
  NumericConstant:1
  BinaryOperator:=
- ScalarReference:Q
+ Reference:Q
  ScalarValue:P
  ScalarValue:X
  FunctionRnd
@@ -609,21 +609,21 @@
  NumericConstant:0
  BinaryOperator:=
  ScalarValue:Q
- ScalarReference:S
+ Reference:S
  ScalarValue:Q
  ScalarValue:S
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 535 D=C(Q)-S(Q)\G=G-D
- ScalarReference:D
+ Reference:D
  ScalarValue:Q
  ScalarValue:C
  ScalarValue:Q
  ScalarValue:S
  BinaryOperator:-
  AssignmentOperator:=
- ScalarReference:G
+ Reference:G
  ScalarValue:G
  ScalarValue:D
  BinaryOperator:-
@@ -658,7 +658,7 @@
  TextConstant:"."
  CarriageControl:NL
 555 F=0\GO TO 270
- ScalarReference:F
+ Reference:F
  NumericConstant:0
  AssignmentOperator:=
  LineNumber:270

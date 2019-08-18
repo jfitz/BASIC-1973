@@ -18,14 +18,14 @@
  TextConstant:"ENTER YOUR PATTERN:"
  CarriageControl:NL
 3 X1%,Y1%=1: X2%=24%: Y2%=70%
- ScalarReference:X1%
- ScalarReference:Y1%
+ Reference:X1%
+ Reference:Y1%
  NumericConstant:1
  AssignmentOperator:=
- ScalarReference:X2%
+ Reference:X2%
  IntegerConstant:24
  AssignmentOperator:=
- ScalarReference:Y2%
+ Reference:Y2%
  IntegerConstant:70
  AssignmentOperator:=
 10 DIM A%(24%,70%),B$(24%)
@@ -39,14 +39,14 @@
 30 ON ERROR GO TO 80
  LineNumber:80
 40 C%=1
- ScalarReference:C%
+ Reference:C%
  NumericConstant:1
  AssignmentOperator:=
 50 INPUT LINE #1,B$(C%):B$(C%)=LEFT(B$(C%),LEN(B$(C%))-2%)
  ScalarValue:C%
- ScalarReference:B$
+ Reference:B$
  ScalarValue:C%
- ScalarReference:B$
+ Reference:B$
  ScalarValue:C%
  ScalarValue:B$
  ScalarValue:C%
@@ -57,7 +57,7 @@
  FunctionLeft
  AssignmentOperator:=
 60 C%=C%+1
- ScalarReference:C%
+ Reference:C%
  ScalarValue:C%
  NumericConstant:1
  BinaryOperator:+
@@ -65,7 +65,7 @@
 70 GO TO 50
  LineNumber:50
 80 L%=0%
- ScalarReference:L%
+ Reference:L%
  IntegerConstant:0
  AssignmentOperator:=
 90 FOR X%=1 TO C%-1
@@ -78,7 +78,7 @@
  FunctionLen
  BinaryOperator:>
  ScalarValue:L%
- ScalarReference:L%
+ Reference:L%
  ScalarValue:X%
  ScalarValue:B$
  FunctionLen
@@ -86,7 +86,7 @@
 110 NEXT X%
  VariableName:X%
 120 X1%=11%-C%/2%
- ScalarReference:X1%
+ Reference:X1%
  IntegerConstant:11
  ScalarValue:C%
  IntegerConstant:2
@@ -94,7 +94,7 @@
  BinaryOperator:-
  AssignmentOperator:=
 130 Y1%=33%-L%/2%
- ScalarReference:Y1%
+ Reference:Y1%
  IntegerConstant:33
  ScalarValue:L%
  IntegerConstant:2
@@ -123,10 +123,10 @@
  ScalarValue:Y1%
  ScalarValue:Y%
  BinaryOperator:+
- ScalarReference:A%
+ Reference:A%
  NumericConstant:1
  AssignmentOperator:=
- ScalarReference:P%
+ Reference:P%
  ScalarValue:P%
  NumericConstant:1
  BinaryOperator:+
@@ -162,21 +162,21 @@
  TextConstant:"INVALID!"
  CarriageControl:;
 215 X3%=24%:Y3%=70%:X4%,Y4%=1:P%=0%
- ScalarReference:X3%
+ Reference:X3%
  IntegerConstant:24
  AssignmentOperator:=
- ScalarReference:Y3%
+ Reference:Y3%
  IntegerConstant:70
  AssignmentOperator:=
- ScalarReference:X4%
- ScalarReference:Y4%
+ Reference:X4%
+ Reference:Y4%
  NumericConstant:1
  AssignmentOperator:=
- ScalarReference:P%
+ Reference:P%
  IntegerConstant:0
  AssignmentOperator:=
 220 G%=G%+1%
- ScalarReference:G%
+ Reference:G%
  ScalarValue:G%
  IntegerConstant:1
  BinaryOperator:+
@@ -211,7 +211,7 @@
  BinaryOperator:=
  ScalarValue:X%
  ScalarValue:Y%
- ScalarReference:A%
+ Reference:A%
  IntegerConstant:0
  AssignmentOperator:=
  LineNumber:270
@@ -223,7 +223,7 @@
  BinaryOperator:=
  ScalarValue:X%
  ScalarValue:Y%
- ScalarReference:A%
+ Reference:A%
  IntegerConstant:1
  AssignmentOperator:=
  LineNumber:261
@@ -244,28 +244,28 @@
  ScalarValue:X%
  ScalarValue:X3%
  BinaryOperator:<
- ScalarReference:X3%
+ Reference:X3%
  ScalarValue:X%
  AssignmentOperator:=
 264 IF X%>X4% THEN X4%=X%
  ScalarValue:X%
  ScalarValue:X4%
  BinaryOperator:>
- ScalarReference:X4%
+ Reference:X4%
  ScalarValue:X%
  AssignmentOperator:=
 266 IF Y%<Y3% THEN Y3%=Y%
  ScalarValue:Y%
  ScalarValue:Y3%
  BinaryOperator:<
- ScalarReference:Y3%
+ Reference:Y3%
  ScalarValue:Y%
  AssignmentOperator:=
 268 IF Y%>Y4% THEN Y4%=Y%
  ScalarValue:Y%
  ScalarValue:Y4%
  BinaryOperator:>
- ScalarReference:Y4%
+ Reference:Y4%
  ScalarValue:Y%
  AssignmentOperator:=
 270 NEXT Y%
@@ -288,26 +288,26 @@
  FunctionChr
  CarriageControl:;
 299 X1%=X3%:X2%=X4%:Y1%=Y3%:Y2%=Y4%
- ScalarReference:X1%
+ Reference:X1%
  ScalarValue:X3%
  AssignmentOperator:=
- ScalarReference:X2%
+ Reference:X2%
  ScalarValue:X4%
  AssignmentOperator:=
- ScalarReference:Y1%
+ Reference:Y1%
  ScalarValue:Y3%
  AssignmentOperator:=
- ScalarReference:Y2%
+ Reference:Y2%
  ScalarValue:Y4%
  AssignmentOperator:=
 301 IF X1%<3% THEN X1%=3%:I9%=-1%
  ScalarValue:X1%
  IntegerConstant:3
  BinaryOperator:<
- ScalarReference:X1%
+ Reference:X1%
  IntegerConstant:3
  AssignmentOperator:=
- ScalarReference:I9%
+ Reference:I9%
  IntegerConstant:1
  UnaryOperator:-
  AssignmentOperator:=
@@ -315,10 +315,10 @@
  ScalarValue:X2%
  IntegerConstant:22
  BinaryOperator:>
- ScalarReference:X2%
+ Reference:X2%
  IntegerConstant:22
  AssignmentOperator:=
- ScalarReference:I9%
+ Reference:I9%
  IntegerConstant:1
  UnaryOperator:-
  AssignmentOperator:=
@@ -326,10 +326,10 @@
  ScalarValue:Y1%
  IntegerConstant:3
  BinaryOperator:<
- ScalarReference:Y1%
+ Reference:Y1%
  IntegerConstant:3
  AssignmentOperator:=
- ScalarReference:I9%
+ Reference:I9%
  IntegerConstant:1
  UnaryOperator:-
  AssignmentOperator:=
@@ -337,15 +337,15 @@
  ScalarValue:Y2%
  IntegerConstant:68
  BinaryOperator:>
- ScalarReference:Y2%
+ Reference:Y2%
  IntegerConstant:68
  AssignmentOperator:=
- ScalarReference:I9%
+ Reference:I9%
  IntegerConstant:1
  UnaryOperator:-
  AssignmentOperator:=
 309 P%=0%
- ScalarReference:P%
+ Reference:P%
  IntegerConstant:0
  AssignmentOperator:=
 500 FOR X%=X1%-1 TO X2%+1
@@ -357,7 +357,7 @@
  start:   ["ScalarValue:Y1%", "NumericConstant:1", "BinaryOperator:-"]
  end:     ["ScalarValue:Y2%", "NumericConstant:1", "BinaryOperator:+"]
 520 C%=0%
- ScalarReference:C%
+ Reference:C%
  IntegerConstant:0
  AssignmentOperator:=
 530 FOR I%=X%-1% TO X%+1%
@@ -380,7 +380,7 @@
  IntegerConstant:2
  BinaryOperator:=
  BinaryOperator:OR
- ScalarReference:C%
+ Reference:C%
  ScalarValue:C%
  IntegerConstant:1
  BinaryOperator:+
@@ -405,10 +405,10 @@
  BinaryOperator:OR
  ScalarValue:X%
  ScalarValue:Y%
- ScalarReference:A%
+ Reference:A%
  IntegerConstant:2
  AssignmentOperator:=
- ScalarReference:P%
+ Reference:P%
  ScalarValue:P%
  NumericConstant:1
  BinaryOperator:+
@@ -421,10 +421,10 @@
  BinaryOperator:=
  ScalarValue:X%
  ScalarValue:Y%
- ScalarReference:A%
+ Reference:A%
  IntegerConstant:3
  AssignmentOperator:=
- ScalarReference:P%
+ Reference:P%
  ScalarValue:P%
  NumericConstant:1
  BinaryOperator:+
@@ -434,22 +434,22 @@
 630 NEXT X%
  VariableName:X%
 635 X1%=X1%-1:Y1%=Y1%-1:X2%=X2%+1:Y2%=Y2%+1
- ScalarReference:X1%
+ Reference:X1%
  ScalarValue:X1%
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
- ScalarReference:Y1%
+ Reference:Y1%
  ScalarValue:Y1%
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
- ScalarReference:X2%
+ Reference:X2%
  ScalarValue:X2%
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
- ScalarReference:Y2%
+ Reference:Y2%
  ScalarValue:Y2%
  NumericConstant:1
  BinaryOperator:+
