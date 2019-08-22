@@ -31,12 +31,12 @@
  NumericConstant:1002
  NumericConstant:1012
 10 FORM=1TO18:READK1(M):NEXTM
- control: VariableName:M
+ control: Variable:M
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:18"]
  ScalarValue:M
  Reference:K1
- VariableName:M
+ Variable:M
 13 DATA-1,0,1,0,0,-1,0,1,-1,-1,1,-1,-1,1,1,1
  NumericConstant:1
  UnaryOperator:-
@@ -61,20 +61,20 @@
  NumericConstant:1
  NumericConstant:1
 14 FORO1=1TO16:READA1(O1):NEXTO1
- control: VariableName:O1
+ control: Variable:O1
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:16"]
  ScalarValue:O1
  Reference:A1
- VariableName:O1
+ Variable:O1
 20 GOTO 500
  LineNumber:500
 50 FORJ=1TO5
- control: VariableName:J
+ control: Variable:J
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 51 FORK=1TO5
- control: VariableName:K
+ control: Variable:K
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 55 IFN1(J,K)>99THENGOSUB200
@@ -85,9 +85,9 @@
  BinaryOperator:>
  LineNumber:200
 60 NEXTK
- VariableName:K
+ Variable:K
 65 NEXTJ
- VariableName:J
+ Variable:J
 90 LETK=0:LETM2=0:LETM3=0
  Reference:K
  NumericConstant:0
@@ -99,13 +99,13 @@
  NumericConstant:0
  AssignmentOperator:=
 99 FORJ=0TO6:PRINT
- control: VariableName:J
+ control: Variable:J
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:6"]
  ITEMS
  CarriageControl:NL
 100 FORK=0TO6
- control: VariableName:K
+ control: Variable:K
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:6"]
 101 IFJ<>0THENIFJ<>6THEN105
@@ -151,9 +151,9 @@
 110 GOSUB300
  LineNumber:300
 120 NEXTK
- VariableName:K
+ Variable:K
 125 NEXTJ
- VariableName:J
+ Variable:J
 126 RETURN
  
 200 LETB=1:IFN1(J,K)>999THENLETB=10
@@ -169,7 +169,7 @@
  NumericConstant:10
  AssignmentOperator:=
 220 FORO1=1TO15STEP2
- control: VariableName:O1
+ control: Variable:O1
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:15"]
  step:    ["NumericConstant:2"]
@@ -200,7 +200,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 231 NEXTO1
- VariableName:O1
+ Variable:O1
 239 RETURN
  
 300 IFN1(J,K)<3THEN399
@@ -210,7 +210,7 @@
  NumericConstant:3
  BinaryOperator:<
 305 FORO1=1TO18
- control: VariableName:O1
+ control: Variable:O1
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:18"]
 310 IFN1(J,K)=K1(O1)THEN350
@@ -221,7 +221,7 @@
  ScalarValue:K1
  BinaryOperator:=
 315 NEXTO1
- VariableName:O1
+ Variable:O1
 320 GO TO 399
  LineNumber:399
 350 IFO1>9THEN360
@@ -285,11 +285,11 @@
  NumericConstant:0
  AssignmentOperator:=
 510 FORJ=1TO5
- control: VariableName:J
+ control: Variable:J
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 511 FORK=1TO5
- control: VariableName:K
+ control: Variable:K
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 515 LETN1(J,K)=0
@@ -299,11 +299,11 @@
  NumericConstant:0
  AssignmentOperator:=
 516 NEXTK
- VariableName:K
+ Variable:K
 517 NEXTJ
- VariableName:J
+ Variable:J
 519 FORB=1TO2:LETP1=3:IFB=2THENLETP1=30
- control: VariableName:B
+ control: Variable:B
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:2"]
  Reference:P1
@@ -324,7 +324,7 @@
  TextConstant:" 3 LIVE PIECES"
  CarriageControl:NL
 535 FORK1=1TO3:GOSUB700
- control: VariableName:K1
+ control: Variable:K1
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
  LineNumber:700
@@ -336,9 +336,9 @@
  Reference:N1
  ScalarValue:P1
  AssignmentOperator:=
- VariableName:K1
+ Variable:K1
 542 NEXTB
- VariableName:B
+ Variable:B
 559 GOSUB90
  LineNumber:90
 560 PRINT:GOSUB50
@@ -389,7 +389,7 @@
  CarriageControl:NL
  
 580 FORB=1TO2:PRINT:PRINT"PLAYER";B;:GOSUB700
- control: VariableName:B
+ control: Variable:B
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:2"]
  ITEMS
@@ -405,7 +405,7 @@
  NumericConstant:99
  BinaryOperator:=
 582 NEXTB
- VariableName:B
+ Variable:B
 586 LETN1(X(1),Y(1))=100:LETN1(X(2),Y(2))=1000
  NumericConstant:1
  ScalarValue:X

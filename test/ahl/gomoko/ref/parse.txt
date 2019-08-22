@@ -63,10 +63,10 @@
  CarriageControl:NL
  LineNumber:110
 210 FOR I=1 TO N\FOR J=1 TO N\A(X,Y)=0\NEXT J\NEXT I
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:N"]
- control: VariableName:J
+ control: Variable:J
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:N"]
  ScalarValue:X
@@ -74,8 +74,8 @@
  Reference:A
  NumericConstant:0
  AssignmentOperator:=
- VariableName:J
- VariableName:I
+ Variable:J
+ Variable:I
 300 PRINT\PRINT "WE ALTERNATE MOVES. YOU GO FIRST..."\PRINT
  ITEMS
  CarriageControl:NL
@@ -131,10 +131,10 @@
 500 REM *** THE COMPUTER TRIES AN 'INTELLIGENT' MOVE ***
  Remark:*** THE COMPUTER TRIES AN 'INTELLIGENT' MOVE ***
 510 FOR E=-1 TO 1\FOR F=-1 TO 1\IF E+F-E*F=0 THEN 590
- control: VariableName:E
+ control: Variable:E
  start:   ["NumericConstant:1", "UnaryOperator:-"]
  end:     ["NumericConstant:1"]
- control: VariableName:F
+ control: Variable:F
  start:   ["NumericConstant:1", "UnaryOperator:-"]
  end:     ["NumericConstant:1"]
  ScalarValue:E
@@ -169,8 +169,8 @@
  NumericConstant:1
  BinaryOperator:=
 590 NEXT F\NEXT E
- VariableName:F
- VariableName:E
+ Variable:F
+ Variable:E
 600 REM *** COMPUTER TRIES A RANDOM MOVE ***
  Remark:*** COMPUTER TRIES A RANDOM MOVE ***
 610 LET X=INT(N*RND(0))+1\LET Y=INT(N*RND(0))+1\GOSUB 910\IF L=0 THEN 610
@@ -231,10 +231,10 @@
 800 REM *** PRINT THE BOARD ***
  Remark:*** PRINT THE BOARD ***
 810 FOR I=1 TO N\FOR J=1 TO N\PRINT A(I,J);
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:N"]
- control: VariableName:J
+ control: Variable:J
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:N"]
  ITEMS
@@ -243,10 +243,10 @@
  ScalarValue:A
  CarriageControl:;
 840 NEXT J\PRINT\NEXT I\PRINT \RETURN
- VariableName:J
+ Variable:J
  ITEMS
  CarriageControl:NL
- VariableName:I
+ Variable:I
  ITEMS
  CarriageControl:NL
  

@@ -37,7 +37,7 @@
  ScalarValue:S9
  NumericConstant:6
  BinaryOperator:=
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
  Reference:V9
@@ -45,7 +45,7 @@
  ScalarValue:V
  BinaryOperator:+
  AssignmentOperator:=
- VariableName:I
+ Variable:I
 45 IF V9<25 THEN 60\IF V9>200 THEN 55
  ScalarValue:V9
  NumericConstant:25
@@ -79,7 +79,7 @@
  LineNumber:35
 70 FOR I=1 TO 26-V9\RANDOMIZE\M=INT(10*RND(X))+1\GET 8,25,H
  'GET8,25,H' is not a valid assignment
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:26", "ScalarValue:V9", "BinaryOperator:-"]
  
@@ -99,7 +99,7 @@
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
- control: VariableName:T
+ control: Variable:T
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
  ScalarValue:H
@@ -114,14 +114,14 @@
  BinaryOperator:+
  AssignmentOperator:=
 85 NEXT T
- VariableName:T
+ Variable:T
 90 PRINT CHR$(135);
  ITEMS
  NumericConstant:135
  FunctionChr
  CarriageControl:;
 95 NEXT I
- VariableName:I
+ Variable:I
 100 PRINT\PRINT\PRINT
  ITEMS
  CarriageControl:NL
@@ -248,7 +248,7 @@
  TextConstant:"LOSSES"
  CarriageControl:NL
 230 FOR I=1 TO 10
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 235 READ H$(I)
@@ -269,7 +269,7 @@
  ScalarValue:X
  CarriageControl:NL
 250 NEXT I\RETURN
- VariableName:I
+ Variable:I
  
 255 PRINT\PRINT\PRINT "HOW MANY WISH TO BET";
  ITEMS
@@ -292,7 +292,7 @@
  CarriageControl:NL
  LineNumber:255
 270 FOR Z=1 TO Q
- control: VariableName:Z
+ control: Variable:Z
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:Q"]
 275 PRINT "BETTOR'S NAME";\INPUT N$(Z)
@@ -325,7 +325,7 @@
 295 PRINT\NEXT Z\GOTO 325
  ITEMS
  CarriageControl:NL
- VariableName:Z
+ Variable:Z
  LineNumber:325
 300 PRINT "YOU MUST BET AT LEAST $2,00, TRY AGAIN "N$(Z)
  ITEMS
@@ -354,7 +354,7 @@
 320 GOTO 305
  LineNumber:305
 325 FOR I=1 TO 10
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 330 B(11)=B(11)+P(I)
@@ -367,13 +367,13 @@
  BinaryOperator:+
  AssignmentOperator:=
 335 NEXT I
- VariableName:I
+ Variable:I
 340 FOR I=1 TO Q 'AMOUNT OF PEOPLE PLAYING
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:Q"]
 345 FOR I3=1 TO 10'DOGS
- control: VariableName:I3
+ control: Variable:I3
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 350 IF J(I)<>I3 THEN 360
@@ -391,11 +391,11 @@
  BinaryOperator:+
  AssignmentOperator:=
 360 NEXT I3
- VariableName:I3
+ Variable:I3
 365 NEXT I
- VariableName:I
+ Variable:I
 370 FOR I=1 TO 10
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 375 IF A(I)>=2 THEN 390
@@ -448,7 +448,7 @@
  NumericConstant:2
  AssignmentOperator:=
 410 NEXT I
- VariableName:I
+ Variable:I
 415 PRINT
  ITEMS
  CarriageControl:NL
@@ -461,7 +461,7 @@
  TextConstant:"ODDS"
  CarriageControl:NL
 425 FOR I=1 TO 10
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 430 PRINT H$(I),I,B(I)": 1"
@@ -477,9 +477,9 @@
  TextConstant:": 1"
  CarriageControl:NL
 435 NEXT I
- VariableName:I
+ Variable:I
 440 FOR I=1 TO 10
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 445 GET 8,25,I\GET 9,30,I\IF V+X<=0 THEN 470
@@ -530,9 +530,9 @@
  BinaryOperator:+
  AssignmentOperator:=
 475 NEXT I
- VariableName:I
+ Variable:I
 480 FOR R=1 TO 10
- control: VariableName:R
+ control: Variable:R
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 485 S(R)=0
@@ -541,7 +541,7 @@
  NumericConstant:0
  AssignmentOperator:=
 490 NEXT R
- VariableName:R
+ Variable:R
 495 PRINT
  ITEMS
  CarriageControl:NL
@@ -572,7 +572,7 @@
  FunctionChr
  CarriageControl:NL
 510 FOR R=1 TO 10
- control: VariableName:R
+ control: Variable:R
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 515 RANDOMIZE
@@ -599,7 +599,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 530 NEXT R
- VariableName:R
+ Variable:R
 535 PRINT TAB(2);"XXXXXXXXSTARTXXXXXXXX"
  ITEMS
  NumericConstant:2
@@ -608,11 +608,11 @@
  TextConstant:"XXXXXXXXSTARTXXXXXXXX"
  CarriageControl:NL
 540 FOR P=1 TO 20
- control: VariableName:P
+ control: Variable:P
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:20"]
 545 FOR R=1 TO 10
- control: VariableName:R
+ control: Variable:R
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 550 IF P=S(R) THEN 580
@@ -626,12 +626,12 @@
  NumericConstant:20
  BinaryOperator:>
 560 NEXT R
- VariableName:R
+ Variable:R
 565 PRINT
  ITEMS
  CarriageControl:NL
 570 NEXT P
- VariableName:P
+ Variable:P
 575 GOTO 625
  LineNumber:625
 580 PRINT TAB(R*2);R;CHR$(141)
@@ -692,7 +692,7 @@
 635 GOTO 510
  LineNumber:510
 640 FOR Y=2 TO 22
- control: VariableName:Y
+ control: Variable:Y
  start:   ["NumericConstant:2"]
  end:     ["NumericConstant:22"]
 645 PRINT TAB(Y);"X";TAB(Y);CHR$(135);
@@ -713,7 +713,7 @@
  NumericConstant:7
  BinaryOperator:=
 655 NEXT Y
- VariableName:Y
+ Variable:Y
 660 GOTO 680
  LineNumber:680
 665 PRINT " FINISH";
@@ -734,13 +734,13 @@
  TextConstant:"  "
  CarriageControl:;
 690 FOR I=2 TO 22\PRINT "*";\NEXT I\PRINT
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:2"]
  end:     ["NumericConstant:22"]
  ITEMS
  TextConstant:"*"
  CarriageControl:;
- VariableName:I
+ Variable:I
  ITEMS
  CarriageControl:NL
 695 IF D<=1 THEN 735
@@ -753,7 +753,7 @@
  ScalarValue:W
  AssignmentOperator:=
 705 FOR I2=1 TO D
- control: VariableName:I2
+ control: Variable:I2
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:D"]
 710 IF S(W(I2))<S(W(I2+1)) THEN 725
@@ -767,7 +767,7 @@
  ScalarValue:S
  BinaryOperator:<
 715 NEXT I2
- VariableName:I2
+ Variable:I2
 720 GOTO 735
  LineNumber:735
 725 G=W(I2+1)
@@ -801,7 +801,7 @@
 755 RESTORE
  
 760 FOR E=1 TO Q
- control: VariableName:E
+ control: Variable:E
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:Q"]
 765 IF G=J(E) THEN 790
@@ -826,7 +826,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 780 NEXT E
- VariableName:E
+ Variable:E
 785 GOTO 835
  LineNumber:835
 790 IF B(G)=2 THEN 800
@@ -905,7 +905,7 @@
  CarriageControl:,
  TextConstant:"AMOUNT "
  CarriageControl:NL
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:Q"]
 855 PRINT N$(I),M5(I)\NEXT I\PRINT "COMP",N7 
@@ -916,24 +916,24 @@
  ScalarValue:I
  ScalarValue:M5
  CarriageControl:NL
- VariableName:I
+ Variable:I
  ITEMS
  TextConstant:"COMP"
  CarriageControl:,
  ScalarValue:N7
  CarriageControl:NL
 860 FOR I=1 TO 5\PRINT\NEXT I\GOTO 1085
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
  ITEMS
  CarriageControl:NL
- VariableName:I
+ Variable:I
  LineNumber:1085
 865 GOTO 1085
  LineNumber:1085
 870 FOR K=1 TO 10
- control: VariableName:K
+ control: Variable:K
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 875 A(K)=0
@@ -972,7 +972,7 @@
  NumericConstant:0
  AssignmentOperator:=
 910 NEXT K\GOSUB 225
- VariableName:K
+ Variable:K
  LineNumber:225
 915 PRINT "ANY NEWCOMERS";\INPUT C$
  ITEMS
@@ -980,7 +980,7 @@
  CarriageControl:;
  Reference:C$
 920 FOR I=1 TO Q
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:Q"]
 925 PRINT N$(I);" YOUR DOGS NUMBER" I\INPUT J(I)
@@ -1009,7 +1009,7 @@
  ScalarValue:P
  NumericConstant:500
  BinaryOperator:>
- VariableName:I
+ Variable:I
 940 IF C$="NO" THEN 325
  ScalarValue:C$
  TextConstant:"NO"
@@ -1041,7 +1041,7 @@
 965 GOTO 930
  LineNumber:930
 970 FOR I=1 TO 10
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 975 SET 8,25,I\GET 9,30,I
@@ -1068,7 +1068,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 1000 NEXT T
- VariableName:T
+ Variable:T
 1005 GOTO 755
  LineNumber:755
 1010 DATA "FASTER ","ZELDA", "SPEEDY", "ZIFFLE", "KILLER"
@@ -1122,7 +1122,7 @@
  AssignmentOperator:=
  LineNumber:1025
 1040 FOR Z=I TO Q
- control: VariableName:Z
+ control: Variable:Z
  start:   ["ScalarValue:I"]
  end:     ["ScalarValue:Q"]
 1045 PRINT "BETTORS NAME";\INPUT N$(Z)
@@ -1155,7 +1155,7 @@
 1065 PRINT\NEXT Z\GOTO 325
  ITEMS
  CarriageControl:NL
- VariableName:Z
+ Variable:Z
  LineNumber:325
 1070 PRINT "YOU MUST BET AT LEAST $2.00"\GOTO 1055
  ITEMS

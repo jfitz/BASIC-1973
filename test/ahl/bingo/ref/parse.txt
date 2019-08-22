@@ -27,7 +27,7 @@
 235 REM THIS SEQUENCE GENERATES THE CARD NUMBERS (LINES 240-430)
  Remark:THIS SEQUENCE GENERATES THE CARD NUMBERS (LINES 240-430)
 240 FOR K1=1 TO 75
- control: VariableName:K1
+ control: Variable:K1
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:75"]
 250 LET L(K1)=0
@@ -36,7 +36,7 @@
  NumericConstant:0
  AssignmentOperator:=
 260 NEXT K1
- VariableName:K1
+ Variable:K1
 270 PRINT" "," HERE'S ";
  ITEMS
  TextConstant:" "
@@ -68,11 +68,11 @@
  BinaryOperator:+
  AssignmentOperator:=
 340 FOR Y=F TO G
- control: VariableName:Y
+ control: Variable:Y
  start:   ["ScalarValue:F"]
  end:     ["ScalarValue:G"]
 350 FOR X=F TO G
- control: VariableName:X
+ control: Variable:X
  start:   ["ScalarValue:F"]
  end:     ["ScalarValue:G"]
 360 LET R=INT(M*RND)
@@ -105,7 +105,7 @@
  NumericConstant:1
  AssignmentOperator:=
 410 NEXT X
- VariableName:X
+ Variable:X
 420 LET M=M+15
  Reference:M
  ScalarValue:M
@@ -113,7 +113,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 430 NEXT Y
- VariableName:Y
+ Variable:Y
 435 REM THIS SEQUENCE PRINTS THE CARD (LINES 440-670) 
  Remark:THIS SEQUENCE PRINTS THE CARD (LINES 440-670) 
 440 PRINT
@@ -132,7 +132,7 @@
  TextConstant:"--O--"
  CarriageControl:NL
 460 FOR X=F TO G
- control: VariableName:X
+ control: Variable:X
  start:   ["ScalarValue:F"]
  end:     ["ScalarValue:G"]
 470 PRINT
@@ -145,7 +145,7 @@
  ITEMS
  CarriageControl:NL
 500 FOR Y=F TO G
- control: VariableName:Y
+ control: Variable:Y
  start:   ["ScalarValue:F"]
  end:     ["ScalarValue:G"]
 510 IF B(X,Y)=B(F+2,F+2) THEN 540
@@ -173,9 +173,9 @@
  TextConstant:"FREE"
  CarriageControl:,
 550 NEXT Y
- VariableName:Y
+ Variable:Y
 560 NEXT X
- VariableName:X
+ Variable:X
 570 PRINT
  ITEMS
  CarriageControl:NL
@@ -194,14 +194,14 @@
  TextConstant:" [TEAR OFF AFTER MACHINE AUTOMATICALLY ADVANCES PAPER]"
  CarriageControl:NL
 620 FOR K9 = 1 TO 9
- control: VariableName:K9
+ control: Variable:K9
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:9"]
 630 PRINT
  ITEMS
  CarriageControl:NL
 640 NEXT K9
- VariableName:K9
+ Variable:K9
 650 IF F=6 THEN 680
  ScalarValue:F
  NumericConstant:6
@@ -260,7 +260,7 @@
 810 REM
  Remark:
 820 FOR K1 = 1 TO 75
- control: VariableName:K1
+ control: Variable:K1
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:75"]
 830 LET L(K1)=0
@@ -269,7 +269,7 @@
  NumericConstant:0
  AssignmentOperator:=
 840 NEXT K1
- VariableName:K1
+ Variable:K1
 850 PRINT
  ITEMS
  CarriageControl:NL
@@ -340,11 +340,11 @@
 1105 REM THIS IS THE "NUMBER ON CARD?" SEQUENCE (LINES 1110-1260)
  Remark:THIS IS THE "NUMBER ON CARD?" SEQUENCE (LINES 1110-1260)
 1110 FOR Y=1 TO 10
- control: VariableName:Y
+ control: Variable:Y
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 1120 FOR X=1 TO 10
- control: VariableName:X
+ control: Variable:X
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 1130 IF B(X,Y)=U THEN 1250
@@ -354,9 +354,9 @@
  ScalarValue:U
  BinaryOperator:=
 1140 NEXT X
- VariableName:X
+ Variable:X
 1150 NEXT Y
- VariableName:Y
+ Variable:Y
 1160 LET F=1
  Reference:F
  NumericConstant:1
@@ -405,11 +405,11 @@
  BinaryOperator:+
  AssignmentOperator:=
 1280 FOR Y=F TO G
- control: VariableName:Y
+ control: Variable:Y
  start:   ["ScalarValue:F"]
  end:     ["ScalarValue:G"]
 1290 FOR X=F TO G
- control: VariableName:X
+ control: Variable:X
  start:   ["ScalarValue:F"]
  end:     ["ScalarValue:G"]
 1300 IF B(X,Y)<>0 THEN 1430
@@ -455,9 +455,9 @@
 1410 GO TO 1450 
  LineNumber:1450
 1420 NEXT X
- VariableName:X
+ Variable:X
 1430 NEXT Y
- VariableName:Y
+ Variable:Y
 1440 REM THIS IS THE HORIZONTAL CHECK FOR BINGO*** (LINES 1450-1610)
  Remark:THIS IS THE HORIZONTAL CHECK FOR BINGO*** (LINES 1450-1610)
 1450 LET G=F+4
@@ -467,11 +467,11 @@
  BinaryOperator:+
  AssignmentOperator:=
 1460 FOR X=F TO G
- control: VariableName:X
+ control: Variable:X
  start:   ["ScalarValue:F"]
  end:     ["ScalarValue:G"]
 1470 FOR Y=F TO G
- control: VariableName:Y
+ control: Variable:Y
  start:   ["ScalarValue:F"]
  end:     ["ScalarValue:G"]
 1480 IF B(X,Y)<>0 THEN 1610 
@@ -517,9 +517,9 @@
 1590 GOTO 1620
  LineNumber:1620
 1600 NEXT Y
- VariableName:Y
+ Variable:Y
 1610 NEXT X
- VariableName:X
+ Variable:X
 1615 REM THIS IS THE SLANT CHECK (M=-1) FOR BINGO*** (LINES 1620-1770)
  Remark:THIS IS THE SLANT CHECK (M=-1) FOR BINGO*** (LINES 1620-1770)
 1620 LET X=F
@@ -682,7 +682,7 @@
  ITEMS
  CarriageControl:NL
 2060 FOR S=1 TO 6
- control: VariableName:S
+ control: Variable:S
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:6"]
 2070 PRINT"I WIN. ";
@@ -690,7 +690,7 @@
  TextConstant:"I WIN. "
  CarriageControl:;
 2080 NEXT S
- VariableName:S
+ Variable:S
 2090 PRINT
  ITEMS
  CarriageControl:NL

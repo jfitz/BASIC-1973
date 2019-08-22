@@ -120,7 +120,7 @@
 220 PRINT\FOR I=1 TO P
  ITEMS
  CarriageControl:NL
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:P"]
 225 PRINT "HOW MANY STICKS IN PILE"I;\INPUT L(I)\IF L(I)>20 THEN 235
@@ -155,9 +155,9 @@
  CarriageControl:NL
  LineNumber:225
 240 NEXT I
- VariableName:I
+ Variable:I
 245 FOR I=1 TO P\S(I)=L(I)\G=G+L(I)\NEXT I
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:P"]
  ScalarValue:I
@@ -171,7 +171,7 @@
  ScalarValue:L
  BinaryOperator:+
  AssignmentOperator:=
- VariableName:I
+ Variable:I
 250 PRINT\PRINT "DO YOU WANT TO GO FIRST";
  ITEMS
  CarriageControl:NL
@@ -262,7 +262,7 @@
  TextConstant:"STICKS LEFT"
  CarriageControl:NL
 325 FOR I=1 TO P\IF S(I)=0 THEN 330\PRINT I,S(I)
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:P"]
  ScalarValue:I
@@ -276,7 +276,7 @@
  ScalarValue:S
  CarriageControl:NL
 330 NEXT I
- VariableName:I
+ Variable:I
 335 REM -------------------PLAYER'S MOVE-------------------------
  Remark:-------------------PLAYER'S MOVE-------------------------
 340 PRINT\PRINT "WHICH PILE DO YOU WANT STICKS FROM";\INPUT N
@@ -358,16 +358,16 @@
 385 REM -------------------MACHINE'S MOVE-------------------------
  Remark:-------------------MACHINE'S MOVE-------------------------
 390 FOR I=0 TO 4\V(I)=0\NEXT I
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:4"]
  ScalarValue:I
  Reference:V
  NumericConstant:0
  AssignmentOperator:=
- VariableName:I
+ Variable:I
 395 FOR I=1 TO P
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:P"]
 400    C(I)=S(I)
@@ -377,7 +377,7 @@
  ScalarValue:S
  AssignmentOperator:=
 405    FOR E=4 TO 0 STEP -1
- control: VariableName:E
+ control: Variable:E
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
@@ -407,9 +407,9 @@
  BinaryOperator:-
  AssignmentOperator:=
 415    NEXT E
- VariableName:E
+ Variable:E
 420    FOR Y=4 TO 0 STEP -1
- control: VariableName:Y
+ control: Variable:Y
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
@@ -449,15 +449,15 @@
  BinaryOperator:+
  AssignmentOperator:=
 435    NEXT Y
- VariableName:Y
+ Variable:Y
 440 NEXT I
- VariableName:I
+ Variable:I
 445 R=0
  Reference:R
  NumericConstant:0
  AssignmentOperator:=
 450 FOR Y=4 TO 0 STEP -1
- control: VariableName:Y
+ control: Variable:Y
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
@@ -521,9 +521,9 @@
  NumericConstant:0
  AssignmentOperator:=
 480 NEXT Y
- VariableName:Y
+ Variable:Y
 485 FOR I=1 TO P
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:P"]
 490    S2(I)=0
@@ -532,7 +532,7 @@
  NumericConstant:0
  AssignmentOperator:=
 495    FOR Y=4 TO 0 STEP -1
- control: VariableName:Y
+ control: Variable:Y
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
@@ -556,9 +556,9 @@
  BinaryOperator:+
  AssignmentOperator:=
 505    NEXT Y
- VariableName:Y
+ Variable:Y
 510    FOR E=4 TO 0 STEP -1
- control: VariableName:E
+ control: Variable:E
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
@@ -588,9 +588,9 @@
  BinaryOperator:-
  AssignmentOperator:=
 520    NEXT E
- VariableName:E
+ Variable:E
 525 NEXT I 
- VariableName:I
+ Variable:I
 530 IF R=1 THEN 535\Q=INT(P*RND(X))+1\IF S(Q)=0 THEN 530\S(Q)=S(Q)-1
  ScalarValue:R
  NumericConstant:1

@@ -212,7 +212,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 310 FOR C%=1% TO Q%: C$=P$(C%): IF VAL(LEFT(C$,1%))=P% AND MID(C$,2%,9%)=P$ THEN M$=RIGHT(C$,11%) : GOTO 400
- control: VariableName:C%
+ control: Variable:C%
  start:   ["IntegerConstant:1"]
  end:     ["ScalarValue:Q%"]
  Reference:C$
@@ -239,7 +239,7 @@
  AssignmentOperator:=
  LineNumber:400
 320 NEXT C%: Q$="*": D%=1%: GOSUB 2000: C%=Q%: IF M$="" THEN PRINT "I CAN'T MOVE, YOU WIN.": GOTO 500
- VariableName:C%
+ Variable:C%
  Reference:Q$
  TextConstant:"*"
  AssignmentOperator:=
@@ -424,7 +424,7 @@
  TextConstant:""
  AssignmentOperator:=
 2010 FOR J%=1% TO 9%: IF MID(P$,J%,1%)<>Q$ THEN 2050
- control: VariableName:J%
+ control: Variable:J%
  start:   ["IntegerConstant:1"]
  end:     ["IntegerConstant:9"]
  ScalarValue:P$
@@ -577,7 +577,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 2050 NEXT J%: IF D%=1% AND M$<>"" THEN Q%=Q%+1%: P$(Q%)=FNN$(P%)+P$+M$
- VariableName:J%
+ Variable:J%
  ScalarValue:D%
  IntegerConstant:1
  BinaryOperator:=

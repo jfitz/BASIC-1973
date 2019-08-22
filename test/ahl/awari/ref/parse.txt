@@ -9,12 +9,12 @@
  Declaration:F
  Reference:N
 15 FORI=0TON-1:READF(I):NEXTI
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:0"]
  end:     ["ScalarValue:N", "NumericConstant:1", "BinaryOperator:-"]
  ScalarValue:I
  Reference:F
- VariableName:I
+ Variable:I
 20 PRINT\PRINT "GAME OF *** AWARI ***"\E=0
  ITEMS
  CarriageControl:NL
@@ -25,14 +25,14 @@
  NumericConstant:0
  AssignmentOperator:=
 25 FORI=0TO12:LETB(I)=3:NEXTI
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:12"]
  ScalarValue:I
  Reference:B
  NumericConstant:3
  AssignmentOperator:=
- VariableName:I
+ Variable:I
 30 LETC=0:LETF(N)=0:LETB(13)=0:LETB(6)=0
  Reference:C
  NumericConstant:0
@@ -209,7 +209,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 215 FORI=0TO5:IFB(I)<>0THEN230
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:5"]
  ScalarValue:I
@@ -217,11 +217,11 @@
  NumericConstant:0
  BinaryOperator:<>
 220 NEXTI
- VariableName:I
+ Variable:I
 225 RETURN
  
 230 FORI=7TO12:IFB(I)<>0THENLETB=1:RETURN
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:7"]
  end:     ["NumericConstant:12"]
  ScalarValue:I
@@ -241,13 +241,13 @@
  TextConstant:"   "
  CarriageControl:;
 505 FORI=12TO7STEP-1:GOSUB580
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:12"]
  end:     ["NumericConstant:7"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
  LineNumber:580
 510 NEXTI
- VariableName:I
+ Variable:I
 515 PRINT:LETI=13:GOSUB580
  ITEMS
  CarriageControl:NL
@@ -268,12 +268,12 @@
  TextConstant:"   "
  CarriageControl:;
 525 FORI=0TO5:GOSUB580
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:5"]
  LineNumber:580
 530 NEXTI
- VariableName:I
+ Variable:I
 535 PRINT:PRINT:RETURN
  ITEMS
  CarriageControl:NL
@@ -304,7 +304,7 @@
  NumericConstant:0
  AssignmentOperator:=
 605 FORP=PTO1STEP-1:LETM=M+1:IFM>13THENLETM=M-14
- control: VariableName:P
+ control: Variable:P
  start:   ["ScalarValue:P"]
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
@@ -329,7 +329,7 @@
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
- VariableName:P
+ Variable:P
 615 IFB(M)=1THENIFM<>6THENIFM<>13THENIFB(12-M)<>0GOTO625
  ScalarValue:M
  ScalarValue:B
@@ -382,7 +382,7 @@
  NumericConstant:13
  AssignmentOperator:=
 805 FORI=0TO13:LETG(I)=B(I):NEXTI
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:13"]
  ScalarValue:I
@@ -390,9 +390,9 @@
  ScalarValue:I
  ScalarValue:B
  AssignmentOperator:=
- VariableName:I
+ Variable:I
 810 FORJ=7TO12:IFB(J)=0THEN885
- control: VariableName:J
+ control: Variable:J
  start:   ["NumericConstant:7"]
  end:     ["NumericConstant:12"]
  ScalarValue:J
@@ -408,7 +408,7 @@
  AssignmentOperator:=
  LineNumber:600
 820 FORI=0TO5:IFB(I)=0GOTO845
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:5"]
  ScalarValue:I
@@ -465,7 +465,7 @@
  ScalarValue:R
  AssignmentOperator:=
 845 NEXTI 
- VariableName:I
+ Variable:I
 850 LETQ=B(13)-B(6)-Q:IFC>BGOTO875
  Reference:Q
  NumericConstant:13
@@ -492,7 +492,7 @@
  BinaryOperator:-
  AssignmentOperator:=
 860 FORI=0TON-1:IFF(N)*6+K=INT(F(I)/6^(7-C)+.1)THENLETQ=Q-2
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:0"]
  end:     ["ScalarValue:N", "NumericConstant:1", "BinaryOperator:-"]
  ScalarValue:N
@@ -519,9 +519,9 @@
  BinaryOperator:-
  AssignmentOperator:=
 870 NEXTI
- VariableName:I
+ Variable:I
 875 FOR I=0TO13:LETB(I)=G(I):NEXTI
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:13"]
  ScalarValue:I
@@ -529,7 +529,7 @@
  ScalarValue:I
  ScalarValue:G
  AssignmentOperator:=
- VariableName:I
+ Variable:I
 880 IFQ>=DTHENLETA=J:LETD=Q
  ScalarValue:Q
  ScalarValue:D
@@ -541,7 +541,7 @@
  ScalarValue:Q
  AssignmentOperator:=
 885 NEXTJ
- VariableName:J
+ Variable:J
 890 LETM=A:PRINTCHR$(42+M);:GOTO200
  Reference:M
  ScalarValue:A
@@ -554,13 +554,13 @@
  CarriageControl:;
  LineNumber:200
 900 FORI=0TON-1:PRINTB(I):NEXTI
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:0"]
  end:     ["ScalarValue:N", "NumericConstant:1", "BinaryOperator:-"]
  ITEMS
  ScalarValue:I
  ScalarValue:B
  CarriageControl:NL
- VariableName:I
+ Variable:I
 999 END
  

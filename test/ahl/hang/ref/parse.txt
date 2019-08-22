@@ -46,10 +46,10 @@
  TextConstant:""
  AssignmentOperator:=
 70 FOR I=1 TO 12:FOR J=1 TO 12:P$(I,J)=" ":NEXT J:NEXT I
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
- control: VariableName:J
+ control: Variable:J
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
  ScalarValue:I
@@ -57,8 +57,8 @@
  Reference:P$
  TextConstant:" "
  AssignmentOperator:=
- VariableName:J
- VariableName:I
+ Variable:J
+ Variable:I
 80 P$(I,1)="X" FOR I=1 TO 12
  ScalarValue:I
  NumericConstant:1
@@ -130,7 +130,7 @@
  TextConstant:"HERE ARE THE LETTERS YOU USED."
  CarriageControl:NL
 180 FOR I=1 TO 26:& N$(I);:IF N$(I+1)="" THEN 200
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:26"]
  ITEMS
@@ -147,20 +147,20 @@
  ITEMS
  TextConstant:", "
  CarriageControl:;
- VariableName:I
+ Variable:I
 200 &:&:FOR I=1 TO L:& D$(I);:NEXT I:&:&
  ITEMS
  CarriageControl:NL
  ITEMS
  CarriageControl:NL
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:L"]
  ITEMS
  ScalarValue:I
  ScalarValue:D$
  CarriageControl:;
- VariableName:I
+ Variable:I
  ITEMS
  CarriageControl:NL
  ITEMS
@@ -171,7 +171,7 @@
  NumericConstant:0
  AssignmentOperator:=
 220 FOR I=1 TO 26:IF N$(I)="" THEN 250
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:26"]
  ScalarValue:I
@@ -188,7 +188,7 @@
  CarriageControl:NL
  LineNumber:170
 240 NEXT I:& "PROGRAM ERROR. RUN AGAIN.":STOP
- VariableName:I
+ Variable:I
  ITEMS
  TextConstant:"PROGRAM ERROR. RUN AGAIN."
  CarriageControl:NL
@@ -204,7 +204,7 @@
  ScalarValue:G$
  AssignmentOperator:=
 260 FOR I=1 TO L:IF L$(I)=G$ THEN 280
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:L"]
  ScalarValue:I
@@ -212,7 +212,7 @@
  ScalarValue:G$
  BinaryOperator:=
 270 NEXT I:IF R=0 THEN 290 ELSE GOTO 300
- VariableName:I
+ Variable:I
  ScalarValue:R
  NumericConstant:0
  BinaryOperator:=
@@ -236,7 +236,7 @@
  AssignmentOperator:=
  LineNumber:400
 300 FOR I=1 TO L:IF D$(I)="-" THEN 320
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:L"]
  ScalarValue:I
@@ -244,19 +244,19 @@
  TextConstant:"-"
  BinaryOperator:=
 310 NEXT I:GOTO 290
- VariableName:I
+ Variable:I
  LineNumber:290
 320 &:FOR I=1 TO L:& D$(I);:NEXT I:&:&
  ITEMS
  CarriageControl:NL
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["ScalarValue:L"]
  ITEMS
  ScalarValue:I
  ScalarValue:D$
  CarriageControl:;
- VariableName:I
+ Variable:I
  ITEMS
  CarriageControl:NL
  ITEMS
@@ -533,10 +533,10 @@
  TextConstant:"/"
  AssignmentOperator:=
 580 FOR I=1 TO 12:FOR J=1 TO 12:& P$(I,J);:NEXT J
- control: VariableName:I
+ control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
- control: VariableName:J
+ control: Variable:J
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
  ITEMS
@@ -544,11 +544,11 @@
  ScalarValue:J
  ScalarValue:P$
  CarriageControl:;
- VariableName:J
+ Variable:J
 590 &:NEXT I:&:&:IF M=10 THEN 600 ELSE 170
  ITEMS
  CarriageControl:NL
- VariableName:I
+ Variable:I
  ITEMS
  CarriageControl:NL
  ITEMS
