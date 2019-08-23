@@ -50,7 +50,7 @@
  CarriageControl:NL
 43 F1 = F
  Reference:F1
- ScalarValue:F
+ Value:F
  AssignmentOperator:=
 50 PRINT "WHAT IS YOUR WAGER THIS TIME";
  ITEMS
@@ -62,11 +62,11 @@
  ITEMS
  CarriageControl:NL
 53 IF W>F GOTO 56
- ScalarValue:W
- ScalarValue:F
+ Value:W
+ Value:F
  BinaryOperator:>
 54 IF W<10 GOTO 58
- ScalarValue:W
+ Value:W
  NumericConstant:10
  BinaryOperator:<
 55 GOTO 100
@@ -87,26 +87,26 @@
  LineNumber:780
 102 P1=I
  Reference:P1
- ScalarValue:I
+ Value:I
  AssignmentOperator:=
 104 PRINT "YOUR FIRST CARD IS "CHR$(L)
  ITEMS
  TextConstant:"YOUR FIRST CARD IS "
  CarriageControl:
- ScalarValue:L
+ Value:L
  FunctionChr
  CarriageControl:NL
 106 GOSUB 780
  LineNumber:780
 110 P2=I
  Reference:P2
- ScalarValue:I
+ Value:I
  AssignmentOperator:=
 112 PRINT "YOUR SECOND CARD IS "CHR$(L)
  ITEMS
  TextConstant:"YOUR SECOND CARD IS "
  CarriageControl:
- ScalarValue:L
+ Value:L
  FunctionChr
  CarriageControl:NL
 115 GOTO 200
@@ -115,7 +115,7 @@
  ITEMS
  TextConstant:"YOU HAVE "
  CarriageControl:
- ScalarValue:P3
+ Value:P3
  CarriageControl:
  TextConstant:" SHOWING."
  CarriageControl:NL
@@ -123,19 +123,19 @@
  LineNumber:760
 120 P3=P3+I
  Reference:P3
- ScalarValue:P3
- ScalarValue:I
+ Value:P3
+ Value:I
  BinaryOperator:+
  AssignmentOperator:=
 122 PRINT "YOU GOT A "CHR$(L)
  ITEMS
  TextConstant:"YOU GOT A "
  CarriageControl:
- ScalarValue:L
+ Value:L
  FunctionChr
  CarriageControl:NL
 123 IF P3>21 GOTO 820
- ScalarValue:P3
+ Value:P3
  NumericConstant:21
  BinaryOperator:>
 124 GOTO 117
@@ -144,43 +144,43 @@
  LineNumber:780
 201 P3=P1+P2
  Reference:P3
- ScalarValue:P1
- ScalarValue:P2
+ Value:P1
+ Value:P2
  BinaryOperator:+
  AssignmentOperator:=
 202 D1=I
  Reference:D1
- ScalarValue:I
+ Value:I
  AssignmentOperator:=
 204 GOSUB 780
  LineNumber:780
 206 D2=I
  Reference:D2
- ScalarValue:I
+ Value:I
  AssignmentOperator:=
 208 PRINT "DEALER SHOWS A "CHR$(L)
  ITEMS
  TextConstant:"DEALER SHOWS A "
  CarriageControl:
- ScalarValue:L
+ Value:L
  FunctionChr
  CarriageControl:NL
 210 GOTO 117
  LineNumber:117
 212 D3=D1+D2
  Reference:D3
- ScalarValue:D1
- ScalarValue:D2
+ Value:D1
+ Value:D2
  BinaryOperator:+
  AssignmentOperator:=
 214 PRINT "DEALER HAS "D3
  ITEMS
  TextConstant:"DEALER HAS "
  CarriageControl:
- ScalarValue:D3
+ Value:D3
  CarriageControl:NL
 216 IF D3>16 GOTO 222
- ScalarValue:D3
+ Value:D3
  NumericConstant:16
  BinaryOperator:>
 217 GOSUB 780
@@ -189,19 +189,19 @@
  ITEMS
  TextConstant:"DEALER GETS A "
  CarriageControl:
- ScalarValue:L
+ Value:L
  FunctionChr
  CarriageControl:NL
 219 D3=D3+I
  Reference:D3
- ScalarValue:D3
- ScalarValue:I
+ Value:D3
+ Value:I
  BinaryOperator:+
  AssignmentOperator:=
 220 GOTO 214
  LineNumber:214
 222 IF D3<22 GOTO 800
- ScalarValue:D3
+ Value:D3
  NumericConstant:22
  BinaryOperator:<
 224 PRINT "DEALER BUSTED."
@@ -220,7 +220,7 @@
  ITEMS
  CarriageControl:NL
 766 IF K = #N GOTO 212
- ScalarValue:K
+ Value:K
  NumericConstant:#N
  BinaryOperator:=
 768 GOSUB 780
@@ -238,16 +238,16 @@
  FunctionInt
  AssignmentOperator:=
 782 F1(I)=F1(I)+1
- ScalarValue:I
+ Value:I
  Reference:F1
- ScalarValue:I
- ScalarValue:F1
+ Value:I
+ Value:F1
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 784 IF F1(I)>4 GOTO 780
- ScalarValue:I
- ScalarValue:F1
+ Value:I
+ Value:F1
  NumericConstant:4
  BinaryOperator:>
 786 GOSUB 900
@@ -255,39 +255,39 @@
 788 RETURN
  
 800 IF D3>=P3 GOTO 820
- ScalarValue:D3
- ScalarValue:P3
+ Value:D3
+ Value:P3
  BinaryOperator:>=
 802 F=F+W
  Reference:F
- ScalarValue:F
- ScalarValue:W
+ Value:F
+ Value:W
  BinaryOperator:+
  AssignmentOperator:=
 806 PRINT "YOU WIN. YOU NOW HAVE $"F
  ITEMS
  TextConstant:"YOU WIN. YOU NOW HAVE $"
  CarriageControl:
- ScalarValue:F
+ Value:F
  CarriageControl:NL
 808 GOTO 980
  LineNumber:980
 820 F = F-W
  Reference:F
- ScalarValue:F
- ScalarValue:W
+ Value:F
+ Value:W
  BinaryOperator:-
  AssignmentOperator:=
 822 PRINT "YOU LOSE. YOU NOW HAVE $"F
  ITEMS
  TextConstant:"YOU LOSE. YOU NOW HAVE $"
  CarriageControl:
- ScalarValue:F
+ Value:F
  CarriageControl:NL
 824 GOTO 980
  LineNumber:980
 900 IF I<>1 GOTO 910
- ScalarValue:I
+ Value:I
  NumericConstant:1
  BinaryOperator:<>
 904 I=11
@@ -327,7 +327,7 @@
 926 GOTO 942
  LineNumber:942
 930 IF I<>11 GOTO 937
- ScalarValue:I
+ Value:I
  NumericConstant:11
  BinaryOperator:<>
 932 I=10
@@ -341,7 +341,7 @@
 936 GOTO 942
  LineNumber:942
 937 IF I<>10 GOTO 940
- ScalarValue:I
+ Value:I
  NumericConstant:10
  BinaryOperator:<>
 938 L=#T
@@ -352,7 +352,7 @@
  LineNumber:942
 940 L=I+48
  Reference:L
- ScalarValue:I
+ Value:I
  NumericConstant:48
  BinaryOperator:+
  AssignmentOperator:=
@@ -370,7 +370,7 @@
  ITEMS
  CarriageControl:NL
 986 IF K=#Y GOTO 50
- ScalarValue:K
+ Value:K
  NumericConstant:#Y
  BinaryOperator:=
 987 PRINT\PRINT\PRINT\IF F>F1 THEN 995
@@ -380,15 +380,15 @@
  CarriageControl:NL
  ITEMS
  CarriageControl:NL
- ScalarValue:F
- ScalarValue:F1
+ Value:F
+ Value:F1
  BinaryOperator:>
 988 PRINT "TOO BAD! YOU LOST " F1-F "DOLLARS AT THE EDUSYSTEM CASINO."
  ITEMS
  TextConstant:"TOO BAD! YOU LOST "
  CarriageControl:
- ScalarValue:F1
- ScalarValue:F
+ Value:F1
+ Value:F
  BinaryOperator:-
  CarriageControl:
  TextConstant:"DOLLARS AT THE EDUSYSTEM CASINO."
@@ -399,8 +399,8 @@
  ITEMS
  TextConstant:"NOT BAD! YOU WON"
  CarriageControl:
- ScalarValue:F
- ScalarValue:F1
+ Value:F
+ Value:F1
  BinaryOperator:-
  CarriageControl:
  TextConstant:"DOLLARS AT THE EDUSYSTEM CASINO."

@@ -31,7 +31,7 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:75"]
 250 LET L(K1)=0
- ScalarValue:K1
+ Value:K1
  Reference:L
  NumericConstant:0
  AssignmentOperator:=
@@ -44,7 +44,7 @@
  TextConstant:" HERE'S "
  CarriageControl:;
 280 IF F>1 THEN 310
- ScalarValue:F
+ Value:F
  NumericConstant:1
  BinaryOperator:>
 290 PRINT"YOUR CARD"
@@ -63,44 +63,44 @@
  AssignmentOperator:=
 330 LET G=F+4
  Reference:G
- ScalarValue:F
+ Value:F
  NumericConstant:4
  BinaryOperator:+
  AssignmentOperator:=
 340 FOR Y=F TO G
  control: Variable:Y
- start:   ["ScalarValue:F"]
- end:     ["ScalarValue:G"]
+ start:   ["Value:F"]
+ end:     ["Value:G"]
 350 FOR X=F TO G
  control: Variable:X
- start:   ["ScalarValue:F"]
- end:     ["ScalarValue:G"]
+ start:   ["Value:F"]
+ end:     ["Value:G"]
 360 LET R=INT(M*RND)
  Reference:R
- ScalarValue:M
+ Value:M
  FunctionRnd
  BinaryOperator:*
  FunctionInt
  AssignmentOperator:=
 370 IF R<M-15 THEN 360
- ScalarValue:R
- ScalarValue:M
+ Value:R
+ Value:M
  NumericConstant:15
  BinaryOperator:-
  BinaryOperator:<
 380 IF L(R)<>0 THEN 360
- ScalarValue:R
- ScalarValue:L
+ Value:R
+ Value:L
  NumericConstant:0
  BinaryOperator:<>
 390 LET B(X,Y)=R
- ScalarValue:X
- ScalarValue:Y
+ Value:X
+ Value:Y
  Reference:B
- ScalarValue:R
+ Value:R
  AssignmentOperator:=
 400 LET L(R)=1
- ScalarValue:R
+ Value:R
  Reference:L
  NumericConstant:1
  AssignmentOperator:=
@@ -108,7 +108,7 @@
  Variable:X
 420 LET M=M+15
  Reference:M
- ScalarValue:M
+ Value:M
  NumericConstant:15
  BinaryOperator:+
  AssignmentOperator:=
@@ -133,8 +133,8 @@
  CarriageControl:NL
 460 FOR X=F TO G
  control: Variable:X
- start:   ["ScalarValue:F"]
- end:     ["ScalarValue:G"]
+ start:   ["Value:F"]
+ end:     ["Value:G"]
 470 PRINT
  ITEMS
  CarriageControl:NL
@@ -146,25 +146,25 @@
  CarriageControl:NL
 500 FOR Y=F TO G
  control: Variable:Y
- start:   ["ScalarValue:F"]
- end:     ["ScalarValue:G"]
+ start:   ["Value:F"]
+ end:     ["Value:G"]
 510 IF B(X,Y)=B(F+2,F+2) THEN 540
- ScalarValue:X
- ScalarValue:Y
- ScalarValue:B
- ScalarValue:F
+ Value:X
+ Value:Y
+ Value:B
+ Value:F
  NumericConstant:2
  BinaryOperator:+
- ScalarValue:F
+ Value:F
  NumericConstant:2
  BinaryOperator:+
- ScalarValue:B
+ Value:B
  BinaryOperator:=
 520 PRINT B(X,Y),
  ITEMS
- ScalarValue:X
- ScalarValue:Y
- ScalarValue:B
+ Value:X
+ Value:Y
+ Value:B
  CarriageControl:,
 530 GOTO 550
  LineNumber:550
@@ -203,7 +203,7 @@
 640 NEXT K9
  Variable:K9
 650 IF F=6 THEN 680
- ScalarValue:F
+ Value:F
  NumericConstant:6
  BinaryOperator:=
 660 LET F=6
@@ -245,7 +245,7 @@
 760 INPUT R$
  Reference:R$
 770 IF R$<>"NO" THEN 820
- ScalarValue:R$
+ Value:R$
  TextConstant:"NO"
  BinaryOperator:<>
 780 PRINT 
@@ -264,7 +264,7 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:75"]
 830 LET L(K1)=0
- ScalarValue:K1
+ Value:K1
  Reference:L
  NumericConstant:0
  AssignmentOperator:=
@@ -297,12 +297,12 @@
  BinaryOperator:+
  AssignmentOperator:=
 910 IF L(U)<>0 THEN 880
- ScalarValue:U
- ScalarValue:L
+ Value:U
+ Value:L
  NumericConstant:0
  BinaryOperator:<>
 920 LET L(U)=1
- ScalarValue:U
+ Value:U
  Reference:L
  NumericConstant:1
  AssignmentOperator:=
@@ -325,7 +325,7 @@
  CarriageControl:,
 980 PRINT A$(INT((U-1)/15)+1);U
  ITEMS
- ScalarValue:U
+ Value:U
  NumericConstant:1
  BinaryOperator:-
  NumericConstant:15
@@ -333,9 +333,9 @@
  FunctionInt
  NumericConstant:1
  BinaryOperator:+
- ScalarValue:A$
+ Value:A$
  CarriageControl:;
- ScalarValue:U
+ Value:U
  CarriageControl:NL
 1105 REM THIS IS THE "NUMBER ON CARD?" SEQUENCE (LINES 1110-1260)
  Remark:THIS IS THE "NUMBER ON CARD?" SEQUENCE (LINES 1110-1260)
@@ -348,10 +348,10 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 1130 IF B(X,Y)=U THEN 1250
- ScalarValue:X
- ScalarValue:Y
- ScalarValue:B
- ScalarValue:U
+ Value:X
+ Value:Y
+ Value:B
+ Value:U
  BinaryOperator:=
 1140 NEXT X
  Variable:X
@@ -370,24 +370,24 @@
 1190 GOSUB 1270
  LineNumber:1270
 1200 IF V=0 THEN 1230
- ScalarValue:V
+ Value:V
  NumericConstant:0
  BinaryOperator:=
 1210 IF W=1 THEN 1980
- ScalarValue:W
+ Value:W
  NumericConstant:1
  BinaryOperator:=
 1220 GOTO 2050
  LineNumber:2050
 1230 IF W=0 THEN 880 
- ScalarValue:W
+ Value:W
  NumericConstant:0
  BinaryOperator:=
 1240 GOTO 2120
  LineNumber:2120
 1250 LET B(X,Y)=0
- ScalarValue:X
- ScalarValue:Y
+ Value:X
+ Value:Y
  Reference:B
  NumericConstant:0
  AssignmentOperator:=
@@ -400,32 +400,32 @@
  Remark:THIS IS THE VERTICAL CHECK FOR BINGO*** (LINES 1270-1430)
 1270 LET G=F+4
  Reference:G
- ScalarValue:F
+ Value:F
  NumericConstant:4
  BinaryOperator:+
  AssignmentOperator:=
 1280 FOR Y=F TO G
  control: Variable:Y
- start:   ["ScalarValue:F"]
- end:     ["ScalarValue:G"]
+ start:   ["Value:F"]
+ end:     ["Value:G"]
 1290 FOR X=F TO G
  control: Variable:X
- start:   ["ScalarValue:F"]
- end:     ["ScalarValue:G"]
+ start:   ["Value:F"]
+ end:     ["Value:G"]
 1300 IF B(X,Y)<>0 THEN 1430
- ScalarValue:X
- ScalarValue:Y
- ScalarValue:B
+ Value:X
+ Value:Y
+ Value:B
  NumericConstant:0
  BinaryOperator:<>
 1310 IF X<F+4 THEN 1420
- ScalarValue:X
- ScalarValue:F
+ Value:X
+ Value:F
  NumericConstant:4
  BinaryOperator:+
  BinaryOperator:<
 1320 IF F=6 THEN 1370
- ScalarValue:F
+ Value:F
  NumericConstant:6
  BinaryOperator:=
 1330 PRINT
@@ -462,32 +462,32 @@
  Remark:THIS IS THE HORIZONTAL CHECK FOR BINGO*** (LINES 1450-1610)
 1450 LET G=F+4
  Reference:G
- ScalarValue:F
+ Value:F
  NumericConstant:4
  BinaryOperator:+
  AssignmentOperator:=
 1460 FOR X=F TO G
  control: Variable:X
- start:   ["ScalarValue:F"]
- end:     ["ScalarValue:G"]
+ start:   ["Value:F"]
+ end:     ["Value:G"]
 1470 FOR Y=F TO G
  control: Variable:Y
- start:   ["ScalarValue:F"]
- end:     ["ScalarValue:G"]
+ start:   ["Value:F"]
+ end:     ["Value:G"]
 1480 IF B(X,Y)<>0 THEN 1610 
- ScalarValue:X
- ScalarValue:Y
- ScalarValue:B
+ Value:X
+ Value:Y
+ Value:B
  NumericConstant:0
  BinaryOperator:<>
 1490 IF Y<F+4 THEN 1600
- ScalarValue:Y
- ScalarValue:F
+ Value:Y
+ Value:F
  NumericConstant:4
  BinaryOperator:+
  BinaryOperator:<
 1500 IF F=6 THEN 1550
- ScalarValue:F
+ Value:F
  NumericConstant:6
  BinaryOperator:=
 1510 PRINT
@@ -524,38 +524,38 @@
  Remark:THIS IS THE SLANT CHECK (M=-1) FOR BINGO*** (LINES 1620-1770)
 1620 LET X=F
  Reference:X
- ScalarValue:F
+ Value:F
  AssignmentOperator:=
 1630 LET Y=F
  Reference:Y
- ScalarValue:F
+ Value:F
  AssignmentOperator:=
 1640 IF B(X,Y)<>0 THEN 1770
- ScalarValue:X
- ScalarValue:Y
- ScalarValue:B
+ Value:X
+ Value:Y
+ Value:B
  NumericConstant:0
  BinaryOperator:<>
 1650 LET X=X+1
  Reference:X
- ScalarValue:X
+ Value:X
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 1660 LET Y=Y+1
  Reference:Y
- ScalarValue:Y
+ Value:Y
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 1670 IF Y<F+5 THEN 1640
- ScalarValue:Y
- ScalarValue:F
+ Value:Y
+ Value:F
  NumericConstant:5
  BinaryOperator:+
  BinaryOperator:<
 1680 IF Y=11 THEN 1740
- ScalarValue:Y
+ Value:Y
  NumericConstant:11
  BinaryOperator:=
 1690 LET W=1
@@ -585,40 +585,40 @@
  Remark:THIS IS THE SLANT CHECK (M=1) FOR BINGO*** (LINES 1780-1950)
 1780 LET X=F+4
  Reference:X
- ScalarValue:F
+ Value:F
  NumericConstant:4
  BinaryOperator:+
  AssignmentOperator:=
 1790 LET Y=X
  Reference:Y
- ScalarValue:X
+ Value:X
  AssignmentOperator:=
 1800 IF B(X,Y)<>0 THEN 1950
- ScalarValue:X
- ScalarValue:Y
- ScalarValue:B
+ Value:X
+ Value:Y
+ Value:B
  NumericConstant:0
  BinaryOperator:<>
 1810 LET X=X-1
  Reference:X
- ScalarValue:X
+ Value:X
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 1820 LET Y=Y+1
  Reference:Y
- ScalarValue:Y
+ Value:Y
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 1830 IF Y<F+5 THEN 1800
- ScalarValue:Y
- ScalarValue:F
+ Value:Y
+ Value:F
  NumericConstant:5
  BinaryOperator:+
  BinaryOperator:<
 1840 IF Y=11 THEN 1900
- ScalarValue:Y
+ Value:Y
  NumericConstant:11
  BinaryOperator:=
 1850 PRINT
@@ -671,7 +671,7 @@
  ITEMS
  CarriageControl:NL
 2030 IF E$="YES" THEN 180
- ScalarValue:E$
+ Value:E$
  TextConstant:"YES"
  BinaryOperator:=
 2040 STOP

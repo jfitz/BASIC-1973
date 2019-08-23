@@ -72,7 +72,7 @@
  FunctionAsc
  AssignmentOperator:=
 670 CHANGE O TO O1$
- ScalarValue:O
+ Value:O
  Reference:O1$
 680 LET O(2) = ASC("Q")
  NumericConstant:2
@@ -81,13 +81,13 @@
  FunctionAsc
  AssignmentOperator:=
 690 CHANGE O TO O$
- ScalarValue:O
+ Value:O
  Reference:O$
 700 PRINT O1$;O$;CHR$(13);"XX ARE YOU FAMILIAR WITH THE WAY THIS GAME WORKS'";
  ITEMS
- ScalarValue:O1$
+ Value:O1$
  CarriageControl:;
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
  NumericConstant:13
  FunctionChr
@@ -112,16 +112,16 @@
 740 FOR X=1 TO K9-1 STEP 2
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:K9", "NumericConstant:1", "BinaryOperator:-"]
+ end:     ["Value:K9", "NumericConstant:1", "BinaryOperator:-"]
  step:    ["NumericConstant:2"]
 750      READ F$(X),F$(X+1),R$((X-1)/2+1)
- ScalarValue:X
+ Value:X
  Reference:F$
- ScalarValue:X
+ Value:X
  NumericConstant:1
  BinaryOperator:+
  Reference:F$
- ScalarValue:X
+ Value:X
  NumericConstant:1
  BinaryOperator:-
  NumericConstant:2
@@ -158,16 +158,16 @@
 840 INPUT A$                            'RESPONSE TO DO YOU KNOW WHAT YOU'RE DOING?
  Reference:A$
 850 IF A$>"09" THEN 890                 'IF BETWEEN 01 AND 09, THEN MULTI-TERMINAL 
- ScalarValue:A$
+ Value:A$
  TextConstant:"09"
  BinaryOperator:>
 860 IF A$<"01" THEN 890
- ScalarValue:A$
+ Value:A$
  TextConstant:"01"
  BinaryOperator:<
 870 LET O9 = VAL(A$)
  Reference:O9
- ScalarValue:A$
+ Value:A$
  FunctionVal
  AssignmentOperator:=
 880 GOTO 960
@@ -179,7 +179,7 @@
 900 GOSUB 2190
  LineNumber:2190
 910 IF A$="NO" THEN 1070
- ScalarValue:A$
+ Value:A$
  TextConstant:"NO"
  BinaryOperator:=
 920 PRINT "RATE YOURSELF AS A DRIVER.  (1-BEST,3-WORST )";
@@ -192,8 +192,8 @@
  NumericConstant:3
  Reference:Q
  NumericConstant:3
- ScalarValue:Q
- ScalarValue:O
+ Value:Q
+ Value:O
  BinaryOperator:*
  AssignmentOperator:=
 950 GOTO 1050
@@ -201,31 +201,31 @@
 960 LET O(2) = ASC(A)                   'CREATE O$ ARRAY FOR MULTI-TERMINAL
  NumericConstant:2
  Reference:O
- ScalarValue:A
+ Value:A
  FunctionAsc
  AssignmentOperator:=
 980 FOR I = O TO O9
  control: Variable:I
- start:   ["ScalarValue:O"]
- end:     ["ScalarValue:O9"]
+ start:   ["Value:O"]
+ end:     ["Value:O9"]
 990      LET O(2) = ASC(C) + I
  NumericConstant:2
  Reference:O
- ScalarValue:C
+ Value:C
  FunctionAsc
- ScalarValue:I
+ Value:I
  BinaryOperator:+
  AssignmentOperator:=
 1000      CHANGE O TO O$(I)
- ScalarValue:O
- ScalarValue:I
+ Value:O
+ Value:I
  Reference:O$
 1010 NEXT I
  Variable:I
 1020 PRINT O$(10);"YOU MAY 'DRAFT' (SLIPSTREAM) OFF-OF ANY CAR AHEAD"
  ITEMS
  NumericConstant:10
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
  TextConstant:"YOU MAY 'DRAFT' (SLIPSTREAM) OFF-OF ANY CAR AHEAD"
  CarriageControl:NL
@@ -240,13 +240,13 @@
 1050 RANDOMIZE
  
 1060 IF A$="YES" THEN 1110
- ScalarValue:A$
+ Value:A$
  TextConstant:"YES"
  BinaryOperator:=
 1070 PRINT O$(0)
  ITEMS
  NumericConstant:0
- ScalarValue:O$
+ Value:O$
  CarriageControl:NL
 1080 PRINT "FOR INSTRUCTIONS, PLEASE TYPE LIST AFTER THE COMPUTER SAYS READY."
  ITEMS
@@ -256,7 +256,7 @@
  ITEMS
  CarriageControl:NL
 1100 IF A$="NO" THEN 2290
- ScalarValue:A$
+ Value:A$
  TextConstant:"NO"
  BinaryOperator:=
 1110 LET F2=INT(RND*10)+6
@@ -271,24 +271,24 @@
 1120 FOR A=0 TO O9 'ASSIGN NUMBERS AND ADHESION FACTORS 
  control: Variable:A
  start:   ["NumericConstant:0"]
- end:     ["ScalarValue:O9"]
+ end:     ["Value:O9"]
 1130       PRINT O$(A);"YOUR DRIVING NUM3ER IS" ;F2*(A+1)+A 'ADHESION FACTOR IS HOW WELL YOUR CAR GRIPS THE ROAD
  ITEMS
- ScalarValue:A
- ScalarValue:O$
+ Value:A
+ Value:O$
  CarriageControl:;
  TextConstant:"YOUR DRIVING NUM3ER IS"
  CarriageControl:;
- ScalarValue:F2
- ScalarValue:A
+ Value:F2
+ Value:A
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:*
- ScalarValue:A
+ Value:A
  BinaryOperator:+
  CarriageControl:NL
 1140       LET A(R)=RND*.05+.05
- ScalarValue:R
+ Value:R
  Reference:A
  FunctionRnd
  NumericConstant:.05
@@ -298,13 +298,13 @@
  AssignmentOperator:=
 1150       PRINT O$(A);"ADHESION FACTOR"; A(A)*100-5;".  (THE LOWER THE BETTER)"
  ITEMS
- ScalarValue:A
- ScalarValue:O$
+ Value:A
+ Value:O$
  CarriageControl:;
  TextConstant:"ADHESION FACTOR"
  CarriageControl:;
- ScalarValue:A
- ScalarValue:A
+ Value:A
+ Value:A
  NumericConstant:100
  BinaryOperator:*
  NumericConstant:5
@@ -317,7 +317,7 @@
 1170 PRINT O$(10);"YOUR MAX. SPEED IS 200 MPH. TO SEE STANDINGS INPUT"
  ITEMS
  NumericConstant:10
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
  TextConstant:"YOUR MAX. SPEED IS 200 MPH. TO SEE STANDINGS INPUT"
  CarriageControl:NL
@@ -328,40 +328,40 @@
 1190 PRINT O$(0);"WOULD YOU LIKE TO SEE THE COURSE";CHR$(63*SGN(O9));O$; 'PRINT ? IF ULT-TERM, OTHERWISE DON'T
  ITEMS
  NumericConstant:0
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
  TextConstant:"WOULD YOU LIKE TO SEE THE COURSE"
  CarriageControl:;
  NumericConstant:63
- ScalarValue:O9
+ Value:O9
  FunctionSgn
  BinaryOperator:*
  FunctionChr
  CarriageControl:;
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
 1200 MAT INPUT A$
  Syntax error
 1210 PRINT O$(10);
  ITEMS
  NumericConstant:10
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
 1220 LET A$=A$(NUM)
  Reference:A$
- ScalarValue:N
- ScalarValue:U
- ScalarValue:M
- ScalarValue:A$
+ Value:N
+ Value:U
+ Value:M
+ Value:A$
  AssignmentOperator:=
 1230 GOSUB 2190
  LineNumber:2190
 1240 IF A$="NO" THEN 1450
- ScalarValue:A$
+ Value:A$
  TextConstant:"NO"
  BinaryOperator:=
 1250 IF A$<>"YES" THEN 1190
- ScalarValue:A$
+ Value:A$
  TextConstant:"YES"
  BinaryOperator:<>
 1260 PRINTTAB(4);"--------------" 'PRINT COURSE
@@ -572,7 +572,7 @@
  ITEMS
  TextConstant:"NOTE: THIS IS A"
  CarriageControl:;
- ScalarValue:N
+ Value:N
  FunctionInt
  CarriageControl:;
  TextConstant:"LAP RACE."
@@ -598,17 +598,17 @@
  AssignmentOperator:=
 1520 LET H=INT(N)
  Reference:H
- ScalarValue:N
+ Value:N
  FunctionInt
  AssignmentOperator:=
 1530 FOR V=1 TO N                      'WORKING PORTION
  control: Variable:V
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:N"]
+ end:     ["Value:N"]
 1540       LET Y=FNA(M$(1),200,1,3/10,65) 'STRAIGHT R, 200 MAX., 3/10 MILE LONG 
  Reference:Y
  NumericConstant:1
- ScalarValue:M$
+ Value:M$
  NumericConstant:200
  NumericConstant:1
  NumericConstant:3
@@ -620,7 +620,7 @@
 1550       LET Y=FNA(M$(3),125,1,1/10,49) 'CURVE 1, 125 MAX., 1/10 MILE LONG 
  Reference:Y
  NumericConstant:3
- ScalarValue:M$
+ Value:M$
  NumericConstant:125
  NumericConstant:1
  NumericConstant:1
@@ -632,12 +632,12 @@
 1560       LET Y=FNA(M$(1),200,2,13/2Q,65) 'STRAIGHT 3, 200 MAX., 13/20 MILE LONG 
  Reference:Y
  NumericConstant:1
- ScalarValue:M$
+ Value:M$
  NumericConstant:200
  NumericConstant:2
  NumericConstant:13
  NumericConstant:2
- ScalarValue:Q
+ Value:Q
  BinaryOperator:/
  NumericConstant:65
  UserFunction
@@ -645,7 +645,7 @@
 1570       LET Y=FNA(M$(3),125,1,1/10,50) 'CURVE 2, 125 MAX., 1/10 NILE LONG 
  Reference:Y
  NumericConstant:3
- ScalarValue:M$
+ Value:M$
  NumericConstant:125
  NumericConstant:1
  NumericConstant:1
@@ -657,7 +657,7 @@
 1580       LET Y=FNR(M$(1),200,1,1/5,67) 'STRAIGHT C, 200 MAX., 1/5 MILE LONG 
  Reference:Y
  NumericConstant:1
- ScalarValue:M$
+ Value:M$
  NumericConstant:200
  NumericConstant:1
  NumericConstant:1
@@ -669,7 +669,7 @@
 1590       LET Y=FNA(M$(3),150,1,3/20,51) 'CURVE 3, 150 MAX., 3/20 MILE LONG 
  Reference:Y
  NumericConstant:3
- ScalarValue:M$
+ Value:M$
  NumericConstant:150
  NumericConstant:1
  NumericConstant:3
@@ -681,7 +681,7 @@
 1600       LET Y=FNA(M$(1),200,2,3/5,68) 'STRAIGHT D, 200 MAX,, 3/5 MILE LONG 
  Reference:Y
  NumericConstant:1
- ScalarValue:M$
+ Value:M$
  NumericConstant:200
  NumericConstant:2
  NumericConstant:3
@@ -693,7 +693,7 @@
 1610       LET Y=FNA(M$(3),125,1,1/10,52) 'CURVE 4, 125 MAX., 1/10 MILE LONG 
  Reference:Y
  NumericConstant:3
- ScalarValue:M$
+ Value:M$
  NumericConstant:125
  NumericConstant:1
  NumericConstant:1
@@ -705,7 +705,7 @@
 1620       LET Y=FNA(M$(1),200,1,1/4,69) 'STRAIGHT E, 200 MAX., 1/4 MILE LONG 
  Reference:Y
  NumericConstant:1
- ScalarValue:M$
+ Value:M$
  NumericConstant:200
  NumericConstant:1
  NumericConstant:1
@@ -717,7 +717,7 @@
 1630       LET Y=FNA(M$(2),100,.75,3/20,53) 'HAIRPIN 5, 100 MAX., 3/20 MILE LONG 
  Reference:Y
  NumericConstant:2
- ScalarValue:M$
+ Value:M$
  NumericConstant:100
  NumericConstant:.75
  NumericConstant:3
@@ -729,7 +729,7 @@
 1640       LET Y=FNA(M$(1),200,1.5,9/20,70) 'STRAIGHT F, 200 MAX., 9/20 MILE LONG 
  Reference:Y
  NumericConstant:1
- ScalarValue:M$
+ Value:M$
  NumericConstant:200
  NumericConstant:1.5
  NumericConstant:9
@@ -741,7 +741,7 @@
 1650       LET Y=FNA(M$(2),100,.75,3/20,54) 'HAIRPIN 5, 100 MAX., 3/20 MILE LONG 
  Reference:Y
  NumericConstant:2
- ScalarValue:M$
+ Value:M$
  NumericConstant:100
  NumericConstant:.75
  NumericConstant:3
@@ -753,7 +753,7 @@
 1660       LET Y=FNA(M$(1),200,2,1,71) 'STRAIGHT G, 200 MAX., 1 MILE LONG 
  Reference:Y
  NumericConstant:1
- ScalarValue:M$
+ Value:M$
  NumericConstant:200
  NumericConstant:2
  NumericConstant:1
@@ -763,7 +763,7 @@
 1670       LET Y=FNA(M$(3),125,1,1/10,55) 'CURVE 7, 125 MAX., 1/10 MILE LONG 
  Reference:Y
  NumericConstant:3
- ScalarValue:M$
+ Value:M$
  NumericConstant:125
  NumericConstant:1
  NumericConstant:1
@@ -775,7 +775,7 @@
 1680       LET Y=FNA(M$(3),150,1,3/20,56) 'CURVE 8, 150 MAX., 3/20 MILE LONG 
  Reference:Y
  NumericConstant:3
- ScalarValue:M$
+ Value:M$
  NumericConstant:150
  NumericConstant:1
  NumericConstant:3
@@ -787,7 +787,7 @@
 1690       LET Y=FNA(M$(1),200,2,7/10,72) 'STRAIGHT H, 20C MAX., 7/10 MILE LONG 
  Reference:Y
  NumericConstant:1
- ScalarValue:M$
+ Value:M$
  NumericConstant:200
  NumericConstant:2
  NumericConstant:7
@@ -797,8 +797,8 @@
  UserFunction
  AssignmentOperator:=
 1700       IF V = H THEN 1740
- ScalarValue:V
- ScalarValue:H
+ Value:V
+ Value:H
  BinaryOperator:=
 1710       LET Y=FNA("START-FINISH (CURVE 9)",150,1,3/20,127)
  Reference:Y
@@ -818,13 +818,13 @@
 1740 NEXT V
  Variable:V
 1750 IF G1=1 THEN 2040                  'ALL DEAD?
- ScalarValue:G1
+ Value:G1
  NumericConstant:1
  BinaryOperator:=
 1760 PRINT O$(10);"DO YOU MEAN THAT EVERYONE ISN'T DEAD? WELL, HERE ARE " 'NO, SO PRINT OUT RESULTS OF RACE
  ITEMS
  NumericConstant:10
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
  TextConstant:"DO YOU MEAN THAT EVERYONE ISN'T DEAD? WELL, HERE ARE "
  CarriageControl:NL
@@ -837,12 +837,12 @@
  NumericConstant:1E+37
  AssignmentOperator:=
 1790 IF G9=0 THEN 1820
- ScalarValue:G9
+ Value:G9
  NumericConstant:0
  BinaryOperator:=
 1800 LET G5=O9
  Reference:G5
- ScalarValue:O9
+ Value:O9
  AssignmentOperator:=
 1810 GOTO 1830
  LineNumber:1830
@@ -852,20 +852,20 @@
  AssignmentOperator:=
 1830 FOR Z=G TO G5
  control: Variable:Z
- start:   ["ScalarValue:G"]
- end:     ["ScalarValue:G5"]
+ start:   ["Value:G"]
+ end:     ["Value:G5"]
 1840      IF O9>0 THEN 1380
- ScalarValue:O9
+ Value:O9
  NumericConstant:0
  BinaryOperator:>
 1850      IF Z=0 THEN 1880
- ScalarValue:Z
+ Value:Z
  NumericConstant:0
  BinaryOperator:=
 1860      PRINT Q$(Z);
  ITEMS
- ScalarValue:Z
- ScalarValue:Q$
+ Value:Z
+ Value:Q$
  CarriageControl:;
 1870      GOTO 1890
  LineNumber:1890
@@ -873,17 +873,17 @@
  ITEMS
  TextConstant:"GUY #"
  CarriageControl:;
- ScalarValue:F2
- ScalarValue:Z
+ Value:F2
+ Value:Z
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:*
- ScalarValue:Z
+ Value:Z
  BinaryOperator:+
  CarriageControl:;
 1890      IF D(Z) = 0 THEN 1950
- ScalarValue:Z
- ScalarValue:D
+ Value:Z
+ Value:D
  NumericConstant:0
  BinaryOperator:=
 1900      PRINT" IS LOOKIN' AT THEM PEARLY GATES."
@@ -891,20 +891,20 @@
  TextConstant:" IS LOOKIN' AT THEM PEARLY GATES."
  CarriageControl:NL
 1910      IF O9=0 THEN 1990
- ScalarValue:O9
+ Value:O9
  NumericConstant:0
  BinaryOperator:=
 1920      PRINT O$(Z);"TELL ST. LUCIFER NOT TO EXPECT ME, O.K.?"
  ITEMS
- ScalarValue:Z
- ScalarValue:O$
+ Value:Z
+ Value:O$
  CarriageControl:;
  TextConstant:"TELL ST. LUCIFER NOT TO EXPECT ME, O.K.?"
  CarriageControl:NL
 1930      PRINT O$(10);
  ITEMS
  NumericConstant:10
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
 1940      GOTO 1990
  LineNumber:1990
@@ -912,112 +912,112 @@
  ITEMS
  TextConstant:" TOOK"
  CarriageControl:;
- ScalarValue:Z
- ScalarValue:T
+ Value:Z
+ Value:T
  CarriageControl:;
  TextConstant:"SECONDS. WHICH AVERAGES OUT TO "
  CarriageControl:;
  NumericConstant:3600
  NumericConstant:5.3
  BinaryOperator:*
- ScalarValue:H
+ Value:H
  BinaryOperator:*
- ScalarValue:Z
- ScalarValue:T
+ Value:Z
+ Value:T
  BinaryOperator:/
  CarriageControl:;
  TextConstant:"MPH"
  CarriageControl:NL
 1960      IF T(Z)>W THEN 1990
- ScalarValue:Z
- ScalarValue:T
- ScalarValue:W
+ Value:Z
+ Value:T
+ Value:W
  BinaryOperator:>
 1970      LET W=T(Z)                      'NEW LEADING TIME AND DRIVER
  Reference:W
- ScalarValue:Z
- ScalarValue:T
+ Value:Z
+ Value:T
  AssignmentOperator:=
 1980      LET N=F2*(Z+1)+Z 
  Reference:N
- ScalarValue:F2
- ScalarValue:Z
+ Value:F2
+ Value:Z
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:*
- ScalarValue:Z
+ Value:Z
  BinaryOperator:+
  AssignmentOperator:=
 1990 NEXT Z
  Variable:Z
 2000 IF O9>0 THEN 2020
- ScalarValue:O9
+ Value:O9
  NumericConstant:0
  BinaryOperator:>
 2010 IF N>F2 THEN 2040
- ScalarValue:N
- ScalarValue:F2
+ Value:N
+ Value:F2
  BinaryOperator:>
 2020 PRINT OS((N-F2)/(F2+1));"NICE RACE, MR";N
  ITEMS
- ScalarValue:O
+ Value:O
  CarriageControl:
- ScalarValue:N
- ScalarValue:F2
+ Value:N
+ Value:F2
  BinaryOperator:-
- ScalarValue:F2
+ Value:F2
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:/
- ScalarValue:S
+ Value:S
  CarriageControl:;
  TextConstant:"NICE RACE, MR"
  CarriageControl:;
- ScalarValue:N
+ Value:N
  CarriageControl:NL
 2030 PRINT O$(10);"AND THAT MEANS THAT GUY #";N;"WINS!!!"
  ITEMS
  NumericConstant:10
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
  TextConstant:"AND THAT MEANS THAT GUY #"
  CarriageControl:;
- ScalarValue:N
+ Value:N
  CarriageControl:;
  TextConstant:"WINS!!!"
  CarriageControl:NL
 2040 PRINT O$(0);"ANOTHER RACE";CHR$(63*SGN(O9));O$;
  ITEMS
  NumericConstant:0
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
  TextConstant:"ANOTHER RACE"
  CarriageControl:;
  NumericConstant:63
- ScalarValue:O9
+ Value:O9
  FunctionSgn
  BinaryOperator:*
  FunctionChr
  CarriageControl:;
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
 2050 MAT INPUT A$
  Syntax error
 2060 LET A$=A$(NUM)
  Reference:A$
- ScalarValue:N
- ScalarValue:U
- ScalarValue:M
- ScalarValue:A$
+ Value:N
+ Value:U
+ Value:M
+ Value:A$
  AssignmentOperator:=
 2070 GOSUB 2190
  LineNumber:2190
 2080 IF A$="NO" THEN 2290
- ScalarValue:A$
+ Value:A$
  TextConstant:"NO"
  BinaryOperator:=
 2090 IF A$<>"YES" THEN 2040
- ScalarValue:A$
+ Value:A$
  TextConstant:"YES"
  BinaryOperator:<>
 2100 FOR Z=0 TO 10                         'RESET FOR NEXT GRME 
@@ -1025,9 +1025,9 @@
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:10"]
 2110      LET T(Z),D(Z)=0
- ScalarValue:Z
+ Value:Z
  Reference:T
- ScalarValue:Z
+ Value:Z
  Reference:D
  NumericConstant:0
  AssignmentOperator:=
@@ -1036,12 +1036,12 @@
 2130 PRINT O$(10);"NEW SET-UP. NO RAIN, NO DEBRIS";
  ITEMS
  NumericConstant:10
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
  TextConstant:"NEW SET-UP. NO RAIN, NO DEBRIS"
  CarriageControl:;
 2140 IF G1=0 THEN 2160                     'IF EVERYBODY'S DEAD, BE NASTY.
- ScalarValue:G1
+ Value:G1
  NumericConstant:0
  BinaryOperator:=
 2150 PRINT ", AND (PLEASE!) BETTER DRIVERS."
@@ -1061,11 +1061,11 @@
 2190 FOR X=1 TO K5                         'FOREIGN LANGUAGE HANDLER 
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:K5"]
+ end:     ["Value:K5"]
 2200      IF R$=F$(X) THEN 2230
- ScalarValue:R$
- ScalarValue:X
- ScalarValue:F$
+ Value:R$
+ Value:X
+ Value:F$
  BinaryOperator:=
 2210 NEXT X 
  Variable:X
@@ -1074,20 +1074,20 @@
 2230 PRINT O$(0);R$((X-1)/2*1)
  ITEMS
  NumericConstant:0
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
- ScalarValue:X
+ Value:X
  NumericConstant:1
  BinaryOperator:-
  NumericConstant:2
  BinaryOperator:/
  NumericConstant:1
  BinaryOperator:*
- ScalarValue:R$
+ Value:R$
  CarriageControl:NL
 2240 IF X=INT(X/2)*2 THEN 2270
- ScalarValue:X
- ScalarValue:X
+ Value:X
+ Value:X
  NumericConstant:2
  BinaryOperator:/
  FunctionInt
@@ -1112,7 +1112,7 @@
 2310 DEF FNA(A$,R,B,C,D)                   'KIND TRACK, MAX. SPEED, ADHESION FUDGE FACTOR, LENGTH 
 2320                                       'ASC(LETTER FOLLOWING KIND OF TRACK)
 2330 IF G1<1 THEN 4250                     'ALL DEAD?
- ScalarValue:G1
+ Value:G1
  NumericConstant:1
  BinaryOperator:<
 2340 GOSUB 2800                            'GET SOME HAZARDS (IE RAIN, OIL)
@@ -1122,25 +1122,25 @@
 2360 FOR G=0 TO O9                         'CHECK FOR SAFE SPEEDS
  control: Variable:G
  start:   ["NumericConstant:0"]
- end:     ["ScalarValue:O9"]
+ end:     ["Value:O9"]
 2370      IF D(G)=1 THEN 2780
- ScalarValue:G
- ScalarValue:D
+ Value:G
+ Value:D
  NumericConstant:1
  BinaryOperator:=
 2380      IF (B+A(G)+E)*S(G)/B<=R*(1+RND*.1) THEN 2500
- ScalarValue:B
- ScalarValue:G
- ScalarValue:A
+ Value:B
+ Value:G
+ Value:A
  BinaryOperator:+
- ScalarValue:E
+ Value:E
  BinaryOperator:+
- ScalarValue:G
- ScalarValue:S
+ Value:G
+ Value:S
  BinaryOperator:*
- ScalarValue:B
+ Value:B
  BinaryOperator:/
- ScalarValue:R
+ Value:R
  NumericConstant:1
  FunctionRnd
  NumericConstant:.1
@@ -1150,43 +1150,43 @@
  BinaryOperator:<=
 2390      PRINT C$(G);X$                   'PRINT DEAD MESSAGE
  ITEMS
- ScalarValue:G
- ScalarValue:C$
+ Value:G
+ Value:C$
  CarriageControl:;
- ScalarValue:X$
+ Value:X$
  CarriageControl:NL
 2400      LET F5=F5+1                      'INCREMENT OIL COUNTER
  Reference:F5
- ScalarValue:F5
+ Value:F5
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 2410      LET E(F5)=D                      'AND THE 635 SAID "LET THERE BE OIL." AND THERE IT WAS.
- ScalarValue:F5
+ Value:F5
  Reference:E
- ScalarValue:D
+ Value:D
  AssignmentOperator:=
 2420      FOR Z=0 TO O9                    'AND THE TRACK ABOUNDED WITH OIL. AND THE 635 SAID "BOY, WHAT
  control: Variable:Z
  start:   ["NumericConstant:0"]
- end:     ["ScalarValue:O9"]
+ end:     ["Value:O9"]
 2430           IF Z=G THEN 2450            'A MAN TRAP!"
- ScalarValue:Z
- ScalarValue:G
+ Value:Z
+ Value:G
  BinaryOperator:=
 2440           PRINT O$(Z);"GUY #";F2*(G+1)+G;"JUST WIPED REAL GOOD ('N DEAD!)" 'IN THE MEANTIME, IT HAS BEEN BUSY NOTIFYING PEOPLE
  ITEMS
- ScalarValue:Z
- ScalarValue:O$
+ Value:Z
+ Value:O$
  CarriageControl:;
  TextConstant:"GUY #"
  CarriageControl:;
- ScalarValue:F2
- ScalarValue:G
+ Value:F2
+ Value:G
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:*
- ScalarValue:G
+ Value:G
  BinaryOperator:+
  CarriageControl:;
  TextConstant:"JUST WIPED REAL GOOD ('N DEAD!)"
@@ -1194,64 +1194,64 @@
 2450      NEXT Z                           'OF THEIR COMRADE'S. DEMISE.
  Variable:Z
 2460      LET D(G)=1                       'OFFICIALLY PRONOUNCE DEAD. D IS FOR DEATH
- ScalarValue:G
+ Value:G
  Reference:D
  NumericConstant:1
  AssignmentOperator:=
 2470      LET Q=Q+1                        'INCREMENT DEAD COUNTER
  Reference:Q
- ScalarValue:Q
+ Value:Q
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 2480      IF Q=O9 THEN 4230                'EVERYBODY DEAD?
- ScalarValue:Q
- ScalarValue:O9
+ Value:Q
+ Value:O9
  BinaryOperator:=
 2490      GOTO 2780
  LineNumber:2780
 2500      LET Y4=T(G)                      'RATS. HE DIDN'T WIPE
  Reference:Y4
- ScalarValue:G
- ScalarValue:T
+ Value:G
+ Value:T
  AssignmentOperator:=
 2510 IF (B+A(G)+E)*S(G)/B<= R THEN 2530
- ScalarValue:B
- ScalarValue:G
- ScalarValue:A
+ Value:B
+ Value:G
+ Value:A
  BinaryOperator:+
- ScalarValue:E
+ Value:E
  BinaryOperator:+
- ScalarValue:G
- ScalarValue:S
+ Value:G
+ Value:S
  BinaryOperator:*
- ScalarValue:B
+ Value:B
  BinaryOperator:/
- ScalarValue:R
+ Value:R
  BinaryOperator:<=
 2520 PRINT O$(G);'"NEARLY HAD TO SAY GOOD BYE." 'ALMOST WIPED
  ITEMS
- ScalarValue:G
- ScalarValue:O$
+ Value:G
+ Value:O$
  CarriageControl:;
 2530      LET T(G)=T(G)+C/(S(G)/3600)+L(G) 'UPDATE HIS TIME
- ScalarValue:G
+ Value:G
  Reference:T
- ScalarValue:G
- ScalarValue:T
- ScalarValue:C
- ScalarValue:G
- ScalarValue:S
+ Value:G
+ Value:T
+ Value:C
+ Value:G
+ Value:S
  NumericConstant:3600
  BinaryOperator:/
  BinaryOperator:/
  BinaryOperator:+
- ScalarValue:G
- ScalarValue:L
+ Value:G
+ Value:L
  BinaryOperator:+
  AssignmentOperator:=
 2540      IF O9>0 THEN 2660                'SEE IF, HEAVEN FORBID, HE PASSED SOMEBODY
- ScalarValue:O9
+ Value:O9
  NumericConstant:0
  BinaryOperator:>
 2550      FOR X4=1 TO 3
@@ -1259,17 +1259,17 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 2560           IF D(X4)=1 THEN 2650
- ScalarValue:X4
- ScalarValue:D
+ Value:X4
+ Value:D
  NumericConstant:1
  BinaryOperator:=
 2570           LET Z4=T(X4)-(C/(S(X4)/3600))
  Reference:Z4
- ScalarValue:X4
- ScalarValue:T
- ScalarValue:C
- ScalarValue:X4
- ScalarValue:S
+ Value:X4
+ Value:T
+ Value:C
+ Value:X4
+ Value:S
  NumericConstant:3600
  BinaryOperator:/
  BinaryOperator:/
@@ -1277,27 +1277,27 @@
  AssignmentOperator:=
 2580           LET Z1=Y4-Z4
  Reference:Z1
- ScalarValue:Y4
- ScalarValue:Z4
+ Value:Y4
+ Value:Z4
  BinaryOperator:-
  AssignmentOperator:=
 2590           LET Z2=T(G)-T(X4)
  Reference:Z2
- ScalarValue:G
- ScalarValue:T
- ScalarValue:X4
- ScalarValue:T
+ Value:G
+ Value:T
+ Value:X4
+ Value:T
  BinaryOperator:-
  AssignmentOperator:=
 2600           IF SGN(Z2)<>-SGN(Z1) THEN 2650
- ScalarValue:Z2
+ Value:Z2
  FunctionSgn
- ScalarValue:Z1
+ Value:Z1
  FunctionSgn
  UnaryOperator:-
  BinaryOperator:<>
 2610           IF SGN(Z2)=1 THEN 2640
- ScalarValue:Z2
+ Value:Z2
  FunctionSgn
  NumericConstant:1
  BinaryOperator:=
@@ -1305,15 +1305,15 @@
  ITEMS
  TextConstant:"YOU JUST PASSED "
  CarriageControl:;
- ScalarValue:X4
- ScalarValue:Q$
+ Value:X4
+ Value:Q$
  CarriageControl:NL
 2630           GOTO 2650
  LineNumber:2650
 2640           PRINT Q$(X4);" JUST PASSED YOU"
  ITEMS
- ScalarValue:X4
- ScalarValue:Q$
+ Value:X4
+ Value:Q$
  CarriageControl:;
  TextConstant:" JUST PASSED YOU"
  CarriageControl:NL
@@ -1321,31 +1321,31 @@
  Variable:X4
 2660      FOR X4=G+1 TO G9
  control: Variable:X4
- start:   ["ScalarValue:G", "NumericConstant:1", "BinaryOperator:+"]
- end:     ["ScalarValue:G9"]
+ start:   ["Value:G", "NumericConstant:1", "BinaryOperator:+"]
+ end:     ["Value:G9"]
 2670           IF D(X4)=1 THEN 2770
- ScalarValue:X4
- ScalarValue:D
+ Value:X4
+ Value:D
  NumericConstant:1
  BinaryOperator:=
 2680           IF S(X4)=0 THEN 2770
- ScalarValue:X4
- ScalarValue:S
+ Value:X4
+ Value:S
  NumericConstant:0
  BinaryOperator:=
 2690           IF SGN(Y4-T(X4))=SGN(I(G)-(T(X4)+C/(S(X4)/3600))) THEN 2770
- ScalarValue:Y4
- ScalarValue:X4
- ScalarValue:T
+ Value:Y4
+ Value:X4
+ Value:T
  BinaryOperator:-
  FunctionSgn
- ScalarValue:G
- ScalarValue:I
- ScalarValue:X4
- ScalarValue:T
- ScalarValue:C
- ScalarValue:X4
- ScalarValue:S
+ Value:G
+ Value:I
+ Value:X4
+ Value:T
+ Value:C
+ Value:X4
+ Value:S
  NumericConstant:3600
  BinaryOperator:/
  BinaryOperator:/
@@ -1354,13 +1354,13 @@
  FunctionSgn
  BinaryOperator:=
 2700           IF SGN(T(G)-(T(X4)+C/(S(X4)/3600)))<>-1 THEN 2740
- ScalarValue:G
- ScalarValue:T
- ScalarValue:X4
- ScalarValue:T
- ScalarValue:C
- ScalarValue:X4
- ScalarValue:S
+ Value:G
+ Value:T
+ Value:X4
+ Value:T
+ Value:C
+ Value:X4
+ Value:S
  NumericConstant:3600
  BinaryOperator:/
  BinaryOperator:/
@@ -1372,47 +1372,47 @@
  BinaryOperator:<>
 2710           PRINT O$(X4);"GUY";F2*(G+1)+G;"JUST PASSED YOU."
  ITEMS
- ScalarValue:X4
- ScalarValue:O$
+ Value:X4
+ Value:O$
  CarriageControl:;
  TextConstant:"GUY"
  CarriageControl:;
- ScalarValue:F2
- ScalarValue:G
+ Value:F2
+ Value:G
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:*
- ScalarValue:G
+ Value:G
  BinaryOperator:+
  CarriageControl:;
  TextConstant:"JUST PASSED YOU."
  CarriageControl:NL
 2720           PRINT O$(G);"YOU JUST PASSED GUY";F2*-(X4+1)+X4
  ITEMS
- ScalarValue:G
- ScalarValue:O$
+ Value:G
+ Value:O$
  CarriageControl:;
  TextConstant:"YOU JUST PASSED GUY"
  CarriageControl:;
- ScalarValue:F2
- ScalarValue:X4
+ Value:F2
+ Value:X4
  NumericConstant:1
  BinaryOperator:+
  UnaryOperator:-
  BinaryOperator:*
- ScalarValue:X4
+ Value:X4
  BinaryOperator:+
  CarriageControl:NL
 2730           GOTO 2770
  LineNumber:2770
 2740           IF SGN(T(G)-(T(X4)+C/(S(X4)/3600)))=0 THEN 2770
- ScalarValue:G
- ScalarValue:T
- ScalarValue:X4
- ScalarValue:T
- ScalarValue:C
- ScalarValue:X4
- ScalarValue:S
+ Value:G
+ Value:T
+ Value:X4
+ Value:T
+ Value:C
+ Value:X4
+ Value:S
  NumericConstant:3600
  BinaryOperator:/
  BinaryOperator:/
@@ -1423,34 +1423,34 @@
  BinaryOperator:=
 2750           PRINT O$(G);"GUY";F2*(X4+1)+X4;"JUST PASSED YOU."
  ITEMS
- ScalarValue:G
- ScalarValue:O$
+ Value:G
+ Value:O$
  CarriageControl:;
  TextConstant:"GUY"
  CarriageControl:;
- ScalarValue:F2
- ScalarValue:X4
+ Value:F2
+ Value:X4
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:*
- ScalarValue:X4
+ Value:X4
  BinaryOperator:+
  CarriageControl:;
  TextConstant:"JUST PASSED YOU."
  CarriageControl:NL
 2760           PRINT O$(X4);"Y0U JUST PASSED GUY ";F2*(G+1)+G
  ITEMS
- ScalarValue:X4
- ScalarValue:O$
+ Value:X4
+ Value:O$
  CarriageControl:;
  TextConstant:"Y0U JUST PASSED GUY "
  CarriageControl:;
- ScalarValue:F2
- ScalarValue:G
+ Value:F2
+ Value:G
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:*
- ScalarValue:G
+ Value:G
  BinaryOperator:+
  CarriageControl:NL
 2770      NEXT X4 
@@ -1464,7 +1464,7 @@
 2810 PRINT O$(10);
  ITEMS
  NumericConstant:10
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
 2820 LET E = 0                                'MAKE SURE WE DON'T USE LAST SECTION'S OIL ON THIS SECTION
  Reference:E
@@ -1480,7 +1480,7 @@
  NumericConstant:0
  AssignmentOperator:=
 2850 IF F5<2 THEN 2900                        'IF COURSE WELL GREASED, DISSOLVE GREASE
- ScalarValue:F5
+ Value:F5
  NumericConstant:2
  BinaryOperator:<
 2860 PRINT "THE RED FLAG HAS BEEN PUT OUT. CARS REMAIN" 
@@ -1502,11 +1502,11 @@
 2900 FOR X=1 TO F5                            'SEE IF THOSE PLAYING DESERVE OIL 
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:F5"]
+ end:     ["Value:F5"]
 2910      IF E(X)=D THEN 2940 
- ScalarValue:X
- ScalarValue:E
- ScalarValue:D
+ Value:X
+ Value:E
+ Value:D
  BinaryOperator:=
 2920 NEXT X
  Variable:X
@@ -1523,18 +1523,18 @@
 2960 GOTO 3130
  LineNumber:3130
 2970 IF F3=1 THEN 3130                        'HAVE WE HAD RAIN?
- ScalarValue:F3
+ Value:F3
  NumericConstant:1
  BinaryOperator:=
 2980 IF RND>.025+G8 THEN 3130                 'SEE IF IT SHOULD BE STOPPED OR STARTED 
  FunctionRnd
  NumericConstant:.025
- ScalarValue:G8
+ Value:G8
  BinaryOperator:+
  BinaryOperator:>
 2990 IF R(O)<.1 THEN 3080                     'IS IT RAINING?
- ScalarValue:O
- ScalarValue:R
+ Value:O
+ Value:R
  NumericConstant:.1
  BinaryOperator:<
 3000 IF RND>.5 THEN 3130                      'STOP IT?
@@ -1552,12 +1552,12 @@
 3030 FOR A=0 TO O9
  control: Variable:A
  start:   ["NumericConstant:0"]
- end:     ["ScalarValue:O9"]
+ end:     ["Value:O9"]
 3040      LET A(A)= A(A)-.075                 'DELETE MOST OF THE EFFECTS
- ScalarValue:A
+ Value:A
  Reference:A
- ScalarValue:A
- ScalarValue:A
+ Value:A
+ Value:A
  NumericConstant:.075
  BinaryOperator:-
  AssignmentOperator:=
@@ -1576,12 +1576,12 @@
 3090 FOR A=0 TO O9                            'MAKE TRACK SLIPPERY
  control: Variable:A
  start:   ["NumericConstant:0"]
- end:     ["ScalarValue:O9"]
+ end:     ["Value:O9"]
 3100      LET A(A)=A(A)+.1
- ScalarValue:A
+ Value:A
  Reference:A
- ScalarValue:A
- ScalarValue:A
+ Value:A
+ Value:A
  NumericConstant:.1
  BinaryOperator:+
  AssignmentOperator:=
@@ -1592,7 +1592,7 @@
 3120 NEXT A
  Variable:A
 3130 IF C<>9/20 THEN 3210                     'PIT STOPS?
- ScalarValue:C
+ Value:C
  NumericConstant:9
  NumericConstant:20
  BinaryOperator:/
@@ -1604,21 +1604,21 @@
 3150 FOR X=0 TO O9
  control: Variable:X
  start:   ["NumericConstant:0"]
- end:     ["ScalarValue:O9"]
+ end:     ["Value:O9"]
 3160 IF RND*SGN(O9)<.75 THEN 3200
  FunctionRnd
- ScalarValue:O9
+ Value:O9
  FunctionSgn
  BinaryOperator:*
  NumericConstant:.75
  BinaryOperator:<
 3170 IF D(X)=1 THEN 3200
- ScalarValue:X
- ScalarValue:D
+ Value:X
+ Value:D
  NumericConstant:1
  BinaryOperator:=
 3180 LET L(X)=RND*3+5
- ScalarValue:X
+ Value:X
  Reference:L
  FunctionRnd
  NumericConstant:3
@@ -1628,13 +1628,13 @@
  AssignmentOperator:=
 3190 PRINT O$(X);"Y0U ARE IN THE PITS FOR";L(X);"SECONDS."
  ITEMS
- ScalarValue:X
- ScalarValue:O$
+ Value:X
+ Value:O$
  CarriageControl:;
  TextConstant:"Y0U ARE IN THE PITS FOR"
  CarriageControl:;
- ScalarValue:X
- ScalarValue:L
+ Value:X
+ Value:L
  CarriageControl:;
  TextConstant:"SECONDS."
  CarriageControl:NL
@@ -1649,16 +1649,16 @@
  FunctionZer
  AssignmentOperator:=
 3240 IF O3>0 THEN 3270                        'PRINT OUT SOMETHING LIKE 'STRAIGHT A'
- ScalarValue:O3
+ Value:O3
  NumericConstant:0
  BinaryOperator:>
 3250 PRINT A$;" ";CHR$(D);
  ITEMS
- ScalarValue:A$
+ Value:A$
  CarriageControl:;
  TextConstant:" "
  CarriageControl:;
- ScalarValue:D
+ Value:D
  FunctionChr
  CarriageControl:;
 3260 GOTO 3280 
@@ -1666,107 +1666,107 @@
 3270 PRINT O$(10);A$;" ";CHR$(D);": ";O$;
  ITEMS
  NumericConstant:10
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
- ScalarValue:A$
+ Value:A$
  CarriageControl:;
  TextConstant:" "
  CarriageControl:;
- ScalarValue:D
+ Value:D
  FunctionChr
  CarriageControl:;
  TextConstant:": "
  CarriageControl:;
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
 3280 LET S(D)=0                               'GET EVERYBODY'S SPEEDS
- ScalarValue:D
+ Value:D
  Reference:S
  NumericConstant:0
  AssignmentOperator:=
 3290 FOR A=0 TO O9
  control: Variable:A
  start:   ["NumericConstant:0"]
- end:     ["ScalarValue:O9"]
+ end:     ["Value:O9"]
 3300      IF D(A)=0 THEN 3330
- ScalarValue:A
- ScalarValue:D
+ Value:A
+ Value:D
  NumericConstant:0
  BinaryOperator:=
 3310      PRINT O$(A)                         'IF HE'S DEAD, DON'T GIVE HIM A CHANCE TO INPUT 
  ITEMS
- ScalarValue:A
- ScalarValue:O$
+ Value:A
+ Value:O$
  CarriageControl:NL
 3320      PRINT O$; 
  ITEMS
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
 3330 NEXT A
  Variable:A
 3340 MAT INPUT J                              'INPUT SOMEBODY'S SPEED
  Syntax error
 3350 IF NUM=1 THEN 3390                       'SOMEBODY TYPED SOMETHING. SET UP SPEED AND TTY#
- ScalarValue:N
- ScalarValue:U
- ScalarValue:M
+ Value:N
+ Value:U
+ Value:M
  NumericConstant:1
  BinaryOperator:=
 3360 LET N=J(1)
  Reference:N
  NumericConstant:1
- ScalarValue:J
+ Value:J
  AssignmentOperator:=
 3370 LET S=J(2)
  Reference:S
  NumericConstant:2
- ScalarValue:J
+ Value:J
  AssignmentOperator:=
 3380 GOTO 3410
  LineNumber:3410
 3390 LET S=J(1)
  Reference:S
  NumericConstant:1
- ScalarValue:J
+ Value:J
  AssignmentOperator:=
 3400 LET N=0
  Reference:N
  NumericConstant:0
  AssignmentOperator:=
 3410 IF D(N)=0 THEN 3450                      'IS THE GUY DEAD?
- ScalarValue:N
- ScalarValue:D
+ Value:N
+ Value:D
  NumericConstant:0
  BinaryOperator:=
 3420 PRINT O$(N);"BUT I THOUGHT YOU WERE DEAD." 'RE-INFORM HIM THAT HE IS AN UN-PERSON
  ITEMS
- ScalarValue:N
- ScalarValue:O$
+ Value:N
+ Value:O$
  CarriageControl:;
  TextConstant:"BUT I THOUGHT YOU WERE DEAD."
  CarriageControl:NL
 3430 PRINT O$;
  ITEMS
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
 3440 GOTO 3340
  LineNumber:3340
 3450 IF S(N)=0 THEN 3480                      'HAS THIS GUY ALREADY TOLD US HIS SPEED?
- ScalarValue:N
- ScalarValue:S
+ Value:N
+ Value:S
  NumericConstant:0
  BinaryOperator:=
 3460 PRINT O$(N);"WAIT A SEC.  I STILL NEED";O9-U-Q;"MORE SPEEDS." 'TELL HIM TO BUZZ OFF
  ITEMS
- ScalarValue:N
- ScalarValue:O$
+ Value:N
+ Value:O$
  CarriageControl:;
  TextConstant:"WAIT A SEC.  I STILL NEED"
  CarriageControl:;
- ScalarValue:O9
- ScalarValue:U
+ Value:O9
+ Value:U
  BinaryOperator:-
- ScalarValue:Q
+ Value:Q
  BinaryOperator:-
  CarriageControl:;
  TextConstant:"MORE SPEEDS."
@@ -1775,60 +1775,60 @@
  LineNumber:3430
 3480 LET A=N
  Reference:A
- ScalarValue:N
+ Value:N
  AssignmentOperator:=
 3490 IF S<=200 THEN 3620                      'DID HE TRY TO EXCEED HIS MAX. SPEED? 
- ScalarValue:S
+ Value:S
  NumericConstant:200
  BinaryOperator:<=
 3500 IF O9=0 THEN 3600
- ScalarValue:O9
+ Value:O9
  NumericConstant:0
  BinaryOperator:=
 3510 IF S<1000 THEN 3600
- ScalarValue:S
+ Value:S
  NumericConstant:1000
  BinaryOperator:<
 3520 LET R4=(S-1000-F2)/(F2+1)                'IT'S OK. HE ONLY WANTS TO DRAFT
  Reference:R4
- ScalarValue:S
+ Value:S
  NumericConstant:1000
  BinaryOperator:-
- ScalarValue:F2
+ Value:F2
  BinaryOperator:-
- ScalarValue:F2
+ Value:F2
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:/
  AssignmentOperator:=
 3530 IF R4=INT(R4) THEN 3560                  'NOW SEE IF HE PICKED A LEGAL CAR
- ScalarValue:R4
- ScalarValue:R4
+ Value:R4
+ Value:R4
  FunctionInt
  BinaryOperator:=
 3540 PRINT O$(N);"ILLEGAL CAR"                'HE DIDN'T
  ITEMS
- ScalarValue:N
- ScalarValue:O$
+ Value:N
+ Value:O$
  CarriageControl:;
  TextConstant:"ILLEGAL CAR"
  CarriageControl:NL
 3550 GOTO 3640
  LineNumber:3640
 3560 IF R4>O9 THEN 3540
- ScalarValue:R4
- ScalarValue:O9
+ Value:R4
+ Value:O9
  BinaryOperator:>
 3570 IF E(R4)>0 THEN 3540
- ScalarValue:R4
- ScalarValue:E
+ Value:R4
+ Value:E
  NumericConstant:0
  BinaryOperator:>
 3580 IF ABS(T(N)-T(R4)-.5)=>.5 THEN 3540
- ScalarValue:N
- ScalarValue:T
- ScalarValue:R4
- ScalarValue:T
+ Value:N
+ Value:T
+ Value:R4
+ Value:T
  BinaryOperator:-
  NumericConstant:.5
  BinaryOperator:-
@@ -1839,15 +1839,15 @@
  LineNumber:3700
 3600 PRINT O$(N);"MAYBE A LITTLE HARD ON THE PEDDLE? BE REALISTIC." 'OPTIMIST
  ITEMS
- ScalarValue:N
- ScalarValue:O$
+ Value:N
+ Value:O$
  CarriageControl:;
  TextConstant:"MAYBE A LITTLE HARD ON THE PEDDLE? BE REALISTIC."
  CarriageControl:NL
 3610 GOTO 3640
  LineNumber:3640
 3620 IF S>0 THEN 3660
- ScalarValue:S
+ Value:S
  NumericConstant:0
  BinaryOperator:>
 3630 GOSUB 3990                               'HE WANTS TO SEE HOW HE'S DOING. POOR GUY 
@@ -1857,56 +1857,56 @@
  TextConstant:"HOW FAST"
  CarriageControl:;
  NumericConstant:63
- ScalarValue:O9
+ Value:O9
  FunctionSgn
  BinaryOperator:*
  FunctionChr
  CarriageControl:;
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
 3650 GOTO 3340
  LineNumber:3340
 3660 IF S=>20 THEN 3690 'WHERE DOES HE THINK HE IS? HE LONG ISLAND EXPRESSWAY?
- ScalarValue:S
+ Value:S
  NumericConstant:20
  BinaryOperator:=>
 3670 PRINT O$(N);"I DOUBT YOU WANT TO GO THAT SLOWLY"
  ITEMS
- ScalarValue:N
- ScalarValue:O$
+ Value:N
+ Value:O$
  CarriageControl:;
  TextConstant:"I DOUBT YOU WANT TO GO THAT SLOWLY"
  CarriageControl:NL
 3680 GOTO 3640
  LineNumber:3640
 3690 LET S(N)=S                               'SINCE HE MADE IT THIS FAR, ASSUME THAT IT'S LEGAL
- ScalarValue:N
+ Value:N
  Reference:S
- ScalarValue:S
+ Value:S
  AssignmentOperator:=
 3700 LET U=U+1
  Reference:U
- ScalarValue:U
+ Value:U
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 3710 IF R4=0 THEN 3740
- ScalarValue:R4
+ Value:R4
  NumericConstant:0
  BinaryOperator:=
 3720 LET H(N)=R4                              'IF HE'S DRAFTING, TELL ME TO WHOM
- ScalarValue:N
+ Value:N
  Reference:H
- ScalarValue:R4
+ Value:R4
  AssignmentOperator:=
 3730 LET R4=0
  Reference:R4
  NumericConstant:0
  AssignmentOperator:=
 3740 IF U<O9-Q THEN 3430                      'ARE WE DONE?
- ScalarValue:U
- ScalarValue:O9
- ScalarValue:Q
+ Value:U
+ Value:O9
+ Value:Q
  BinaryOperator:-
  BinaryOperator:<
 3750 LET U=0                                  'YES!
@@ -1914,7 +1914,7 @@
  NumericConstant:0
  AssignmentOperator:=
 3760 IF O9>0 THEN 3890                        'SET SPEEDS FOR AUTO-PILOTS
- ScalarValue:O9
+ Value:O9
  NumericConstant:0
  BinaryOperator:>
 3770 FOR F0=1 TO 3
@@ -1922,87 +1922,87 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 3780      IF D(F0)=1 THEN 3870
- ScalarValue:F0
- ScalarValue:D
+ Value:F0
+ Value:D
  NumericConstant:1
  BinaryOperator:=
 3790      LET S=R*B/(B+.1+E+G8)+(RND*3+Q(F0))
  Reference:S
- ScalarValue:R
- ScalarValue:B
+ Value:R
+ Value:B
  BinaryOperator:*
- ScalarValue:B
+ Value:B
  NumericConstant:.1
  BinaryOperator:+
- ScalarValue:E
+ Value:E
  BinaryOperator:+
- ScalarValue:G8
+ Value:G8
  BinaryOperator:+
  BinaryOperator:/
  FunctionRnd
  NumericConstant:3
  BinaryOperator:*
- ScalarValue:F0
- ScalarValue:Q
+ Value:F0
+ Value:Q
  BinaryOperator:+
  BinaryOperator:+
  AssignmentOperator:=
 3800      IF (B+.1+G8+E)*S/B<=R THEN 3850
- ScalarValue:B
+ Value:B
  NumericConstant:.1
  BinaryOperator:+
- ScalarValue:G8
+ Value:G8
  BinaryOperator:+
- ScalarValue:E
+ Value:E
  BinaryOperator:+
- ScalarValue:S
+ Value:S
  BinaryOperator:*
- ScalarValue:B
+ Value:B
  BinaryOperator:/
- ScalarValue:R
+ Value:R
  BinaryOperator:<=
 3810      LET D(F0)=1
- ScalarValue:F0
+ Value:F0
  Reference:D
  NumericConstant:1
  AssignmentOperator:=
 3820      PRINT O$(10);Q$(F3);" JUST WIPED"       'AND INFORM US IF THEY WIPE
  ITEMS
  NumericConstant:10
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
- ScalarValue:F3
- ScalarValue:Q$
+ Value:F3
+ Value:Q$
  CarriageControl:;
  TextConstant:" JUST WIPED"
  CarriageControl:NL
 3830      LET F5=F5+1
  Reference:F5
- ScalarValue:F5
+ Value:F5
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 3840      LET E(F5)=D
- ScalarValue:F5
+ Value:F5
  Reference:E
- ScalarValue:D
+ Value:D
  AssignmentOperator:=
 3850      LET T(F0)=T(F0)+C/(S/3600)
- ScalarValue:F0
+ Value:F0
  Reference:T
- ScalarValue:F0
- ScalarValue:T
- ScalarValue:C
- ScalarValue:S
+ Value:F0
+ Value:T
+ Value:C
+ Value:S
  NumericConstant:3600
  BinaryOperator:/
  BinaryOperator:/
  BinaryOperator:+
  AssignmentOperator:=
 3860      LET S(F0)=S
- ScalarValue:F0
+ Value:F0
  Reference:S
- ScalarValue:S
+ Value:S
  AssignmentOperator:=
 3870 NEXT F0
  Variable:F0
@@ -2011,47 +2011,47 @@
 3890 FOR X2=0 TO O9
  control: Variable:X2
  start:   ["NumericConstant:0"]
- end:     ["ScalarValue:O9"]
+ end:     ["Value:O9"]
 3900      IF D(X2)=1 THEN 3970
- ScalarValue:X2
- ScalarValue:D
+ Value:X2
+ Value:D
  NumericConstant:1
  BinaryOperator:=
 3910      IF S(X2)<>0 THEN 3970
- ScalarValue:X2
- ScalarValue:S
+ Value:X2
+ Value:S
  NumericConstant:0
  BinaryOperator:<>
 3920      IF S(H(X2))<>0 THEN 3950
- ScalarValue:X2
- ScalarValue:H
- ScalarValue:S
+ Value:X2
+ Value:H
+ Value:S
  NumericConstant:0
  BinaryOperator:<>
 3930      LET H(X2)=H(H(X2)) 
- ScalarValue:X2
+ Value:X2
  Reference:H
- ScalarValue:X2
- ScalarValue:H
- ScalarValue:H
+ Value:X2
+ Value:H
+ Value:H
  AssignmentOperator:=
 3940      GOTO 3920
  LineNumber:3920
 3950      LET S(X2)=S(H(X2))
- ScalarValue:X2
+ Value:X2
  Reference:S
- ScalarValue:X2
- ScalarValue:H
- ScalarValue:S
+ Value:X2
+ Value:H
+ Value:S
  AssignmentOperator:=
 3960      LET T(X2)=(T(X2)+I(H(X2)))/2
- ScalarValue:X2
+ Value:X2
  Reference:T
- ScalarValue:X2
- ScalarValue:T
- ScalarValue:X2
- ScalarValue:H
- ScalarValue:I
+ Value:X2
+ Value:T
+ Value:X2
+ Value:H
+ Value:I
  BinaryOperator:+
  NumericConstant:2
  BinaryOperator:/
@@ -2064,16 +2064,16 @@
  Remark:PLACING
 4000 PRINT O$(A)
  ITEMS
- ScalarValue:A
- ScalarValue:O$
+ Value:A
+ Value:O$
  CarriageControl:NL
 4010 IF O9=0 THEN 4040
- ScalarValue:O9
+ Value:O9
  NumericConstant:0
  BinaryOperator:=
 4020 LET G5=O9
  Reference:G5
- ScalarValue:O9
+ Value:O9
  AssignmentOperator:=
 4030 GOTO 4050
  LineNumber:4050
@@ -2084,19 +2084,19 @@
 4050 FOR G=0 TO G5
  control: Variable:G
  start:   ["NumericConstant:0"]
- end:     ["ScalarValue:G5"]
+ end:     ["Value:G5"]
 4060      IF G=A THEN 4200
- ScalarValue:G
- ScalarValue:A
+ Value:G
+ Value:A
  BinaryOperator:=
 4070      IF O9>0 THEN 4100
- ScalarValue:O9
+ Value:O9
  NumericConstant:0
  BinaryOperator:>
 4080      PRINT O$(G);" IS";
  ITEMS
- ScalarValue:G
- ScalarValue:O$
+ Value:G
+ Value:O$
  CarriageControl:;
  TextConstant:" IS"
  CarriageControl:;
@@ -2106,19 +2106,19 @@
  ITEMS
  TextConstant:"GUY#"
  CarriageControl:;
- ScalarValue:F2
- ScalarValue:G
+ Value:F2
+ Value:G
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:*
- ScalarValue:G
+ Value:G
  BinaryOperator:+
  CarriageControl:;
  TextConstant:"IS "
  CarriageControl:;
 4110      IF D(G)<>1 THEN 4140
- ScalarValue:G
- ScalarValue:D
+ Value:G
+ Value:D
  NumericConstant:1
  BinaryOperator:<>
 4120      PRINT " OUT OF THE RACE."
@@ -2128,10 +2128,10 @@
 4130      GOTO 4200
  LineNumber:4200
 4140      ON SGN(T(A)-T(G))+2 GOTO 4150,4170,4190 'BUSINESS PART 
- ScalarValue:A
- ScalarValue:T
- ScalarValue:G
- ScalarValue:T
+ Value:A
+ Value:T
+ Value:G
+ Value:T
  BinaryOperator:-
  FunctionSgn
  NumericConstant:2
@@ -2141,10 +2141,10 @@
  LineNumber:4190
 4150      PRINT T(G)-T(A);"SECONDS BEHIND YOU" 'GOOD NEWS
  ITEMS
- ScalarValue:G
- ScalarValue:T
- ScalarValue:A
- ScalarValue:T
+ Value:G
+ Value:T
+ Value:A
+ Value:T
  BinaryOperator:-
  CarriageControl:;
  TextConstant:"SECONDS BEHIND YOU"
@@ -2159,10 +2159,10 @@
  LineNumber:4200
 4190      PRINT T(A)-T(G);"SECONDS AHEAD OF YOU." 'BAD NEWS
  ITEMS
- ScalarValue:A
- ScalarValue:T
- ScalarValue:G
- ScalarValue:T
+ Value:A
+ Value:T
+ Value:G
+ Value:T
  BinaryOperator:-
  CarriageControl:;
  TextConstant:"SECONDS AHEAD OF YOU."
@@ -2173,8 +2173,8 @@
  ITEMS
  TextConstant:"YOU'VE TAKEN"
  CarriageControl:;
- ScalarValue:A
- ScalarValue:T
+ Value:A
+ Value:T
  CarriageControl:;
  TextConstant:"SECONDS."
  CarriageControl:NL
@@ -2183,16 +2183,16 @@
 4230 PRINT O$(10);"GUY#";F2*(G+1)+G;", THE LAST OF THE GREAT RACERS, JUST WIPED."
  ITEMS
  NumericConstant:10
- ScalarValue:O$
+ Value:O$
  CarriageControl:;
  TextConstant:"GUY#"
  CarriageControl:;
- ScalarValue:F2
- ScalarValue:G
+ Value:F2
+ Value:G
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:*
- ScalarValue:G
+ Value:G
  BinaryOperator:+
  CarriageControl:;
  TextConstant:", THE LAST OF THE GREAT RACERS, JUST WIPED."

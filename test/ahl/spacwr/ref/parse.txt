@@ -17,7 +17,7 @@
 200 INPUT "DO YOU WANT INSTRUCTIONS (THEY'RE LONG!)";A$
  Reference:A$
 210 IF A$<>"YES" THEN 230
- ScalarValue:A$
+ Value:A$
  TextConstant:"YES"
  BinaryOperator:<>
 220 GOTO 5820
@@ -81,16 +81,16 @@
  NumericConstant:0
  AssignmentOperator:=
 360 DEF FND(D)=SQR((K(I,1)-S1)**2+(K(I,2)-82)**2)
- ScalarValue:I
+ Value:I
  NumericConstant:1
- ScalarValue:K
- ScalarValue:S1
+ Value:K
+ Value:S1
  BinaryOperator:-
  NumericConstant:2
  BinaryOperator:**
- ScalarValue:I
+ Value:I
  NumericConstant:2
- ScalarValue:K
+ Value:K
  NumericConstant:82
  BinaryOperator:-
  NumericConstant:2
@@ -214,7 +214,7 @@
  AssignmentOperator:=
 470 D$=D$+"PHOTON TUBESDAMAGE CNTRL"
  Reference:D$
- ScalarValue:D$
+ Value:D$
  TextConstant:"PHOTON TUBESDAMAGE CNTRL"
  BinaryOperator:+
  AssignmentOperator:=
@@ -243,15 +243,15 @@
  FunctionRnd
  AssignmentOperator:=
 530 IF R1>.98 THEN 580
- ScalarValue:R1
+ Value:R1
  NumericConstant:.98
  BinaryOperator:>
 540 IF R1>.95 THEN 610
- ScalarValue:R1
+ Value:R1
  NumericConstant:.95
  BinaryOperator:>
 550 IF R1>.8 THEN 640
- ScalarValue:R1
+ Value:R1
  NumericConstant:.8
  BinaryOperator:>
 560 K3=0:GOTO 660
@@ -264,7 +264,7 @@
  NumericConstant:3
  AssignmentOperator:=
  Reference:K9
- ScalarValue:K9
+ Value:K9
  NumericConstant:3
  BinaryOperator:+
  AssignmentOperator:=
@@ -274,7 +274,7 @@
  NumericConstant:2
  AssignmentOperator:=
  Reference:K9
- ScalarValue:K9
+ Value:K9
  NumericConstant:2
  BinaryOperator:+
  AssignmentOperator:=
@@ -284,7 +284,7 @@
  NumericConstant:1
  AssignmentOperator:=
  Reference:K9
- ScalarValue:K9
+ Value:K9
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -294,7 +294,7 @@
  FunctionRnd
  AssignmentOperator:=
 670 IF R1>.96 THEN 700
- ScalarValue:R1
+ Value:R1
  NumericConstant:.96
  BinaryOperator:>
 680 B3=0:GOTO 720
@@ -307,7 +307,7 @@
  NumericConstant:1
  AssignmentOperator:=
  Reference:B9
- ScalarValue:B9
+ Value:B9
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -322,22 +322,22 @@
  FunctionInt
  AssignmentOperator:=
 730 G(I,J)=K3*100+B3*10+S3
- ScalarValue:I
- ScalarValue:J
+ Value:I
+ Value:J
  Reference:G
- ScalarValue:K3
+ Value:K3
  NumericConstant:100
  BinaryOperator:*
- ScalarValue:B3
+ Value:B3
  NumericConstant:10
  BinaryOperator:*
  BinaryOperator:+
- ScalarValue:S3
+ Value:S3
  BinaryOperator:+
  AssignmentOperator:=
 740 Z(I,J)=0
- ScalarValue:I
- ScalarValue:J
+ Value:I
+ Value:J
  Reference:Z
  NumericConstant:0
  AssignmentOperator:=
@@ -347,7 +347,7 @@
  Variable:I
 770 K7=K9
  Reference:K7
- ScalarValue:K9
+ Value:K9
  AssignmentOperator:=
 775 PRINT:PRINT
  ITEMS
@@ -358,20 +358,20 @@
  ITEMS
  TextConstant:"YOU MUST DESTROY"
  CarriageControl:
- ScalarValue:K9
+ Value:K9
  CarriageControl:
  TextConstant:" KLINGONS IN"
  CarriageControl:
- ScalarValue:T9
+ Value:T9
  CarriageControl:
  TextConstant:" STARDATES WITH "
  CarriageControl:
- ScalarValue:B9
+ Value:B9
  CarriageControl:
  TextConstant:" STARBASES"
  CarriageControl:NL
 790 IF B9>0 THEN 810
- ScalarValue:B9
+ Value:B9
  NumericConstant:0
  BinaryOperator:>
 800 G(6,3)=114
@@ -387,38 +387,38 @@
  NumericConstant:0
  AssignmentOperator:=
 820 IF Q1<1 OR Q1>8 OR Q2<1 OR Q2>8 THEN 990
- ScalarValue:Q1
+ Value:Q1
  NumericConstant:1
  BinaryOperator:<
- ScalarValue:Q1
+ Value:Q1
  NumericConstant:8
  BinaryOperator:>
  BinaryOperator:OR
- ScalarValue:Q2
+ Value:Q2
  NumericConstant:1
  BinaryOperator:<
  BinaryOperator:OR
- ScalarValue:Q2
+ Value:Q2
  NumericConstant:8
  BinaryOperator:>
  BinaryOperator:OR
 830 X=G(Q1,Q2)*.01
  Reference:X
- ScalarValue:Q1
- ScalarValue:Q2
- ScalarValue:G
+ Value:Q1
+ Value:Q2
+ Value:G
  NumericConstant:.01
  BinaryOperator:*
  AssignmentOperator:=
 840 K3=INT(X)
  Reference:K3
- ScalarValue:X
+ Value:X
  FunctionInt
  AssignmentOperator:=
 850 B3=INT((X-K3)*10)
  Reference:B3
- ScalarValue:X
- ScalarValue:K3
+ Value:X
+ Value:K3
  BinaryOperator:-
  NumericConstant:10
  BinaryOperator:*
@@ -426,12 +426,12 @@
  AssignmentOperator:=
 860 S3=G(Q1,Q2)-INT(G(Q1,Q2)*.1)+10
  Reference:S3
- ScalarValue:Q1
- ScalarValue:Q2
- ScalarValue:G
- ScalarValue:Q1
- ScalarValue:Q2
- ScalarValue:G
+ Value:Q1
+ Value:Q2
+ Value:G
+ Value:Q1
+ Value:Q2
+ Value:G
  NumericConstant:.1
  BinaryOperator:*
  FunctionInt
@@ -440,11 +440,11 @@
  BinaryOperator:+
  AssignmentOperator:=
 870 IF K3=0 THEN 910
- ScalarValue:K3
+ Value:K3
  NumericConstant:0
  BinaryOperator:=
 880 IF S>200 THEN 910
- ScalarValue:S
+ Value:S
  NumericConstant:200
  BinaryOperator:>
 890 PRINT"COMBAT AREA      CONDITION RED"
@@ -464,7 +464,7 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 930 K(I,3)=0
- ScalarValue:I
+ Value:I
  NumericConstant:3
  Reference:K
  NumericConstant:0
@@ -473,14 +473,14 @@
  Variable:I
 950 Q$=Z$:R$=Z$
  Reference:Q$
- ScalarValue:Z$
+ Value:Z$
  AssignmentOperator:=
  Reference:R$
- ScalarValue:Z$
+ Value:Z$
  AssignmentOperator:=
 970 S$=MID(Z$,1,48)
  Reference:S$
- ScalarValue:Z$
+ Value:Z$
  NumericConstant:1
  NumericConstant:48
  FunctionMid
@@ -493,18 +493,18 @@
  AssignmentOperator:=
 990 Z1=S1
  Reference:Z1
- ScalarValue:S1
+ Value:S1
  AssignmentOperator:=
 1000 Z2=S2
  Reference:Z2
- ScalarValue:S2
+ Value:S2
  AssignmentOperator:=
 1010 GOSUB 5510
  LineNumber:5510
 1020 FOR I=1TOK3
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:K3"]
+ end:     ["Value:K3"]
 1030 GOSUB 5380
  LineNumber:5380
 1031 REM *** PUT KLINGONS SOMEWHERE
@@ -515,36 +515,36 @@
  AssignmentOperator:=
 1050 Z1=R1
  Reference:Z1
- ScalarValue:R1
+ Value:R1
  AssignmentOperator:=
 1060 Z2=R2
  Reference:Z2
- ScalarValue:R2
+ Value:R2
  AssignmentOperator:=
 1070 GOSUB 5510
  LineNumber:5510
 1080 K(I,1)=R1:K(I,2)=R2:K(I,3)=S9
- ScalarValue:I
+ Value:I
  NumericConstant:1
  Reference:K
- ScalarValue:R1
+ Value:R1
  AssignmentOperator:=
- ScalarValue:I
+ Value:I
  NumericConstant:2
  Reference:K
- ScalarValue:R2
+ Value:R2
  AssignmentOperator:=
- ScalarValue:I
+ Value:I
  NumericConstant:3
  Reference:K
- ScalarValue:S9
+ Value:S9
  AssignmentOperator:=
 1110 NEXT I
  Variable:I
 1120 FOR I=1TOB3
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:B3"]
+ end:     ["Value:B3"]
 1130 GOSUB 5380
  LineNumber:5380
 1131 REM *** PUT STARBASE(S) SOMEWHERE
@@ -554,10 +554,10 @@
  TextConstant:">1<"
  AssignmentOperator:=
  Reference:Z1
- ScalarValue:R1
+ Value:R1
  AssignmentOperator:=
  Reference:Z2
- ScalarValue:R2
+ Value:R2
  AssignmentOperator:=
 1170 GOSUB 5510
  LineNumber:5510
@@ -566,7 +566,7 @@
 1190 FOR I=1TOS3
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:S3"]
+ end:     ["Value:S3"]
 1200 GOSUB 5380
  LineNumber:5380
 1201 REM *** PUT STARS SOMEWHERE
@@ -576,10 +576,10 @@
  TextConstant:" * "
  AssignmentOperator:=
  Reference:Z1
- ScalarValue:R1
+ Value:R1
  AssignmentOperator:=
  Reference:Z2
- ScalarValue:R2
+ Value:R2
  AssignmentOperator:=
 1240 GOSUB 5510
  LineNumber:5510
@@ -590,39 +590,39 @@
 1270 INPUT "COMMAND:";A
  Reference:A
 1290 IF A=0 GOTO 1410
- ScalarValue:A
+ Value:A
  NumericConstant:0
  BinaryOperator:=
 1291 IF A=1 GOTO 1260
- ScalarValue:A
+ Value:A
  NumericConstant:1
  BinaryOperator:=
 1292 IF A=2 GOTO 2330
- ScalarValue:A
+ Value:A
  NumericConstant:2
  BinaryOperator:=
 1293 IF A=3 GOTO 2530
- ScalarValue:A
+ Value:A
  NumericConstant:3
  BinaryOperator:=
 1294 IF A=4 GOTO 2800
- ScalarValue:A
+ Value:A
  NumericConstant:4
  BinaryOperator:=
 1295 IF A=5 GOTO 3460
- ScalarValue:A
+ Value:A
  NumericConstant:5
  BinaryOperator:=
 1296 IF A=6 GOTO 3560
- ScalarValue:A
+ Value:A
  NumericConstant:6
  BinaryOperator:=
 1297 IF A=7 GOTO 4630
- ScalarValue:A
+ Value:A
  NumericConstant:7
  BinaryOperator:=
 1298 IF A=8 GOTO 6510
- ScalarValue:A
+ Value:A
  NumericConstant:8
  BinaryOperator:=
 1310 PRINT:PRINT"   0 = SET COURSE"
@@ -672,33 +672,33 @@
 1410 INPUT "COURSE (1-9):";C1
  Reference:C1
 1430 IF C1=0 THEN 1270
- ScalarValue:C1
+ Value:C1
  NumericConstant:0
  BinaryOperator:=
 1440 IF C1<1 OR C1>9 THEN 1410
- ScalarValue:C1
+ Value:C1
  NumericConstant:1
  BinaryOperator:<
- ScalarValue:C1
+ Value:C1
  NumericConstant:9
  BinaryOperator:>
  BinaryOperator:OR
 1450 INPUT "WARP FACTOR (0-8):";W1
  Reference:W1
 1470 IF W1<1 OR W1>8 THEN 1410
- ScalarValue:W1
+ Value:W1
  NumericConstant:1
  BinaryOperator:<
- ScalarValue:W1
+ Value:W1
  NumericConstant:8
  BinaryOperator:>
  BinaryOperator:OR
 1480 IF D(1)>0 OR W1<=.2 THEN 1810
  NumericConstant:1
- ScalarValue:D
+ Value:D
  NumericConstant:0
  BinaryOperator:>
- ScalarValue:W1
+ Value:W1
  NumericConstant:.2
  BinaryOperator:<=
  BinaryOperator:OR
@@ -709,34 +709,34 @@
 1500 GOTO 1410
  LineNumber:1410
 1510 IF K3<=0 THEN 1560
- ScalarValue:K3
+ Value:K3
  NumericConstant:0
  BinaryOperator:<=
 1520 GOSUB 3790
  LineNumber:3790
 1530 IF K3<=0 THEN 1560
- ScalarValue:K3
+ Value:K3
  NumericConstant:0
  BinaryOperator:<=
 1540 IF S<0 THEN 4000
- ScalarValue:S
+ Value:S
  NumericConstant:0
  BinaryOperator:<
 1550 GOTO 1610
  LineNumber:1610
 1560 IF E>0 THEN 1610
- ScalarValue:E
+ Value:E
  NumericConstant:0
  BinaryOperator:>
 1570 IF S<1 THEN 3920
- ScalarValue:S
+ Value:S
  NumericConstant:1
  BinaryOperator:<
 1580 PRINT "YOU HAVE"E" UNITS OF ENERGY"
  ITEMS
  TextConstant:"YOU HAVE"
  CarriageControl:
- ScalarValue:E
+ Value:E
  CarriageControl:
  TextConstant:" UNITS OF ENERGY"
  CarriageControl:NL
@@ -744,7 +744,7 @@
  ITEMS
  TextConstant:"SUGGEST YOU GET SOME FROM YOUR SHIELDS WHICH HAVE"
  CarriageControl:
- ScalarValue:S
+ Value:S
  CarriageControl:
  TextConstant:" UNITS LEFT"
  CarriageControl:NL
@@ -754,14 +754,14 @@
  control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
- ScalarValue:I
- ScalarValue:D
+ Value:I
+ Value:D
  NumericConstant:0
  BinaryOperator:>
 1611 REM *** FIX ANY DAMAGED DEVICE
  Remark:*** FIX ANY DAMAGED DEVICE
 1630 D(I)=1
- ScalarValue:I
+ Value:I
  Reference:D
  NumericConstant:1
  AssignmentOperator:=
@@ -788,10 +788,10 @@
  NumericConstant:.5
  BinaryOperator:>=
 1680 D(B1)=D(B1)-(RND(1)*5+1)
- ScalarValue:B1
+ Value:B1
  Reference:D
- ScalarValue:B1
- ScalarValue:D
+ Value:B1
+ Value:D
  NumericConstant:1
  FunctionRnd
  NumericConstant:5
@@ -816,10 +816,10 @@
  CarriageControl:NL
  LineNumber:1810
 1750 D(B1)=D(B1)+(RND(1)*5+1)
- ScalarValue:B1
+ Value:B1
  Reference:D
- ScalarValue:B1
- ScalarValue:D
+ Value:B1
+ Value:D
  NumericConstant:1
  FunctionRnd
  NumericConstant:5
@@ -844,7 +844,7 @@
  CarriageControl:NL
 1810 N=INT(W1*8):A$="   ":Z1=S1:Z2=S2
  Reference:N
- ScalarValue:W1
+ Value:W1
  NumericConstant:8
  BinaryOperator:*
  FunctionInt
@@ -853,29 +853,29 @@
  TextConstant:"   "
  AssignmentOperator:=
  Reference:Z1
- ScalarValue:S1
+ Value:S1
  AssignmentOperator:=
  Reference:Z2
- ScalarValue:S2
+ Value:S2
  AssignmentOperator:=
 1850 GOSUB 5510
  LineNumber:5510
 1860 X1=C(C1,1)+(C(C1+1,1)-C(C1,1))*(C1-INT(C1))
  Reference:X1
- ScalarValue:C1
+ Value:C1
  NumericConstant:1
- ScalarValue:C
- ScalarValue:C1
+ Value:C
+ Value:C1
  NumericConstant:1
  BinaryOperator:+
  NumericConstant:1
- ScalarValue:C
- ScalarValue:C1
+ Value:C
+ Value:C1
  NumericConstant:1
- ScalarValue:C
+ Value:C
  BinaryOperator:-
- ScalarValue:C1
- ScalarValue:C1
+ Value:C1
+ Value:C1
  FunctionInt
  BinaryOperator:-
  BinaryOperator:*
@@ -883,27 +883,27 @@
  AssignmentOperator:=
 1870 X=S1:Y=S2
  Reference:X
- ScalarValue:S1
+ Value:S1
  AssignmentOperator:=
  Reference:Y
- ScalarValue:S2
+ Value:S2
  AssignmentOperator:=
 1890 X1=C(C1,1)+(C(C1+1,1)-C(C1,1))*(C1-INT(C1))
  Reference:X1
- ScalarValue:C1
+ Value:C1
  NumericConstant:1
- ScalarValue:C
- ScalarValue:C1
+ Value:C
+ Value:C1
  NumericConstant:1
  BinaryOperator:+
  NumericConstant:1
- ScalarValue:C
- ScalarValue:C1
+ Value:C
+ Value:C1
  NumericConstant:1
- ScalarValue:C
+ Value:C
  BinaryOperator:-
- ScalarValue:C1
- ScalarValue:C1
+ Value:C1
+ Value:C1
  FunctionInt
  BinaryOperator:-
  BinaryOperator:*
@@ -911,20 +911,20 @@
  AssignmentOperator:=
 1900 X2=C(C1,2)+(C(C1+1,2)-C(C1,2))*(C1-INT(C1))
  Reference:X2
- ScalarValue:C1
+ Value:C1
  NumericConstant:2
- ScalarValue:C
- ScalarValue:C1
+ Value:C
+ Value:C1
  NumericConstant:1
  BinaryOperator:+
  NumericConstant:2
- ScalarValue:C
- ScalarValue:C1
+ Value:C
+ Value:C1
  NumericConstant:2
- ScalarValue:C
+ Value:C
  BinaryOperator:-
- ScalarValue:C1
- ScalarValue:C1
+ Value:C1
+ Value:C1
  FunctionInt
  BinaryOperator:-
  BinaryOperator:*
@@ -933,51 +933,51 @@
 1910 FOR I=1TON:S1=S1+X1:S2=S2+X2
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:N"]
+ end:     ["Value:N"]
  Reference:S1
- ScalarValue:S1
- ScalarValue:X1
+ Value:S1
+ Value:X1
  BinaryOperator:+
  AssignmentOperator:=
  Reference:S2
- ScalarValue:S2
- ScalarValue:X2
+ Value:S2
+ Value:X2
  BinaryOperator:+
  AssignmentOperator:=
 1940 IF S1<1 OR S1>=9 OR S2<1 OR S2>=9 THEN 2170
- ScalarValue:S1
+ Value:S1
  NumericConstant:1
  BinaryOperator:<
- ScalarValue:S1
+ Value:S1
  NumericConstant:9
  BinaryOperator:>=
  BinaryOperator:OR
- ScalarValue:S2
+ Value:S2
  NumericConstant:1
  BinaryOperator:<
  BinaryOperator:OR
- ScalarValue:S2
+ Value:S2
  NumericConstant:9
  BinaryOperator:>=
  BinaryOperator:OR
 1950 S8=S1*24+S2*3-26: IF S8>72 THEN 1990
  Reference:S8
- ScalarValue:S1
+ Value:S1
  NumericConstant:24
  BinaryOperator:*
- ScalarValue:S2
+ Value:S2
  NumericConstant:3
  BinaryOperator:*
  BinaryOperator:+
  NumericConstant:26
  BinaryOperator:-
  AssignmentOperator:=
- ScalarValue:S8
+ Value:S8
  NumericConstant:72
  BinaryOperator:>
 1970 IF MID(Q$,S8,3)="   " THEN 2070
- ScalarValue:Q$
- ScalarValue:S8
+ Value:Q$
+ Value:S8
  NumericConstant:3
  FunctionMid
  TextConstant:"   "
@@ -985,12 +985,12 @@
 1980 GOTO 2030
  LineNumber:2030
 1990 IF S8>144 THEN 2020
- ScalarValue:S8
+ Value:S8
  NumericConstant:144
  BinaryOperator:>
 2000 IF MID(R$,S8-72,3)="   " THEN 2070
- ScalarValue:R$
- ScalarValue:S8
+ Value:R$
+ Value:S8
  NumericConstant:72
  BinaryOperator:-
  NumericConstant:3
@@ -1000,8 +1000,8 @@
 2010 GOTO 2030
  LineNumber:2030
 2020 IF MID(S$,S8-144,3)="   " THEN 2070
- ScalarValue:S$
- ScalarValue:S8
+ Value:S$
+ Value:S8
  NumericConstant:144
  BinaryOperator:-
  NumericConstant:3
@@ -1012,23 +1012,23 @@
  ITEMS
  TextConstant:"WARP ENGINES SHUTDOWN AT SECTOR "
  CarriageControl:
- ScalarValue:S1
+ Value:S1
  CarriageControl:
  TextConstant:"."
  CarriageControl:
- ScalarValue:S2
+ Value:S2
  CarriageControl:
  TextConstant:" DUE TO BAD NAVAGATION"
  CarriageControl:NL
 2040 S1=S1-X1:S2=S2-X2:GOTO 2080
  Reference:S1
- ScalarValue:S1
- ScalarValue:X1
+ Value:S1
+ Value:X1
  BinaryOperator:-
  AssignmentOperator:=
  Reference:S2
- ScalarValue:S2
- ScalarValue:X2
+ Value:S2
+ Value:X2
  BinaryOperator:-
  AssignmentOperator:=
  LineNumber:2080
@@ -1039,97 +1039,97 @@
  TextConstant:"<*>"
  AssignmentOperator:=
  Reference:Z1
- ScalarValue:S1
+ Value:S1
  AssignmentOperator:=
  Reference:Z2
- ScalarValue:S2
+ Value:S2
  AssignmentOperator:=
 2110 GOSUB 5510
  LineNumber:5510
 2120 E=E-N+5:IF W1<1 THEN 2150
  Reference:E
- ScalarValue:E
- ScalarValue:N
+ Value:E
+ Value:N
  BinaryOperator:-
  NumericConstant:5
  BinaryOperator:+
  AssignmentOperator:=
- ScalarValue:W1
+ Value:W1
  NumericConstant:1
  BinaryOperator:<
 2140 T=T+1
  Reference:T
- ScalarValue:T
+ Value:T
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 2150 IF T>T0+T9 THEN 3970
- ScalarValue:T
- ScalarValue:T0
- ScalarValue:T9
+ Value:T
+ Value:T0
+ Value:T9
  BinaryOperator:+
  BinaryOperator:>
 2160 GOTO 1260
  LineNumber:1260
 2170 X=Q1*8+X+X1*N:Y=Q2*8+Y+X2*N
  Reference:X
- ScalarValue:Q1
+ Value:Q1
  NumericConstant:8
  BinaryOperator:*
- ScalarValue:X
+ Value:X
  BinaryOperator:+
- ScalarValue:X1
- ScalarValue:N
+ Value:X1
+ Value:N
  BinaryOperator:*
  BinaryOperator:+
  AssignmentOperator:=
  Reference:Y
- ScalarValue:Q2
+ Value:Q2
  NumericConstant:8
  BinaryOperator:*
- ScalarValue:Y
+ Value:Y
  BinaryOperator:+
- ScalarValue:X2
- ScalarValue:N
+ Value:X2
+ Value:N
  BinaryOperator:*
  BinaryOperator:+
  AssignmentOperator:=
 2190 Q1=INT(X/8):Q2=INT(Y/8):S1=INT(X-Q1*8):S2=INT(Y-Q2*8)
  Reference:Q1
- ScalarValue:X
+ Value:X
  NumericConstant:8
  BinaryOperator:/
  FunctionInt
  AssignmentOperator:=
  Reference:Q2
- ScalarValue:Y
+ Value:Y
  NumericConstant:8
  BinaryOperator:/
  FunctionInt
  AssignmentOperator:=
  Reference:S1
- ScalarValue:X
- ScalarValue:Q1
+ Value:X
+ Value:Q1
  NumericConstant:8
  BinaryOperator:*
  BinaryOperator:-
  FunctionInt
  AssignmentOperator:=
  Reference:S2
- ScalarValue:Y
- ScalarValue:Q2
+ Value:Y
+ Value:Q2
  NumericConstant:8
  BinaryOperator:*
  BinaryOperator:-
  FunctionInt
  AssignmentOperator:=
 2230 IF S1<>0 THEN 2260
- ScalarValue:S1
+ Value:S1
  NumericConstant:0
  BinaryOperator:<>
 2240 Q1=Q1-1:S1=8
  Reference:Q1
- ScalarValue:Q1
+ Value:Q1
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
@@ -1137,12 +1137,12 @@
  NumericConstant:8
  AssignmentOperator:=
 2260 IF S2<>0 THEN 2290
- ScalarValue:S2
+ Value:S2
  NumericConstant:0
  BinaryOperator:<>
 2270 Q2=Q2-1:S2=8
  Reference:Q2
- ScalarValue:Q2
+ Value:Q2
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
@@ -1151,21 +1151,21 @@
  AssignmentOperator:=
 2290 T=T+1:F=F-N+5
  Reference:T
- ScalarValue:T
+ Value:T
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
  Reference:F
- ScalarValue:F
- ScalarValue:N
+ Value:F
+ Value:N
  BinaryOperator:-
  NumericConstant:5
  BinaryOperator:+
  AssignmentOperator:=
 2310 IF T>T0 + T9 THEN 3970
- ScalarValue:T
- ScalarValue:T0
- ScalarValue:T9
+ Value:T
+ Value:T0
+ Value:T9
  BinaryOperator:+
  BinaryOperator:>
 2320 GOTO 810
@@ -1174,7 +1174,7 @@
  Remark:*** LONG RANGE SENSOR SCAN CODE BEGINS HERE
 2330 IF D(3)>0 THEN 2370
  NumericConstant:3
- ScalarValue:D
+ Value:D
  NumericConstant:0
  BinaryOperator:>
 2340 PRINT "LONG RANGE SENSORS ARE INOPERABLE"
@@ -1187,11 +1187,11 @@
  ITEMS
  TextConstant:"LONG RANGE SENSOR SCAN FOR QUADRANT "
  CarriageControl:
- ScalarValue:Q1
+ Value:Q1
  CarriageControl:
  TextConstant:"."
  CarriageControl:
- ScalarValue:Q2
+ Value:Q2
  CarriageControl:NL
 2380 PRINT"-------------------"
  ITEMS
@@ -1199,55 +1199,55 @@
  CarriageControl:NL
 2390 FOR I=Q1-1 TO Q1+1
  control: Variable:I
- start:   ["ScalarValue:Q1", "NumericConstant:1", "BinaryOperator:-"]
- end:     ["ScalarValue:Q1", "NumericConstant:1", "BinaryOperator:+"]
+ start:   ["Value:Q1", "NumericConstant:1", "BinaryOperator:-"]
+ end:     ["Value:Q1", "NumericConstant:1", "BinaryOperator:+"]
 2400 MAT N=ZER
  Reference:N
  FunctionZer
  AssignmentOperator:=
 2410 FOR J=Q2-1 TO Q2+1
  control: Variable:J
- start:   ["ScalarValue:Q2", "NumericConstant:1", "BinaryOperator:-"]
- end:     ["ScalarValue:Q2", "NumericConstant:1", "BinaryOperator:+"]
+ start:   ["Value:Q2", "NumericConstant:1", "BinaryOperator:-"]
+ end:     ["Value:Q2", "NumericConstant:1", "BinaryOperator:+"]
 2420 IF I<1 OR I>8 OR J<1 OR J>8 THEN 2460
- ScalarValue:I
+ Value:I
  NumericConstant:1
  BinaryOperator:<
- ScalarValue:I
+ Value:I
  NumericConstant:8
  BinaryOperator:>
  BinaryOperator:OR
- ScalarValue:J
+ Value:J
  NumericConstant:1
  BinaryOperator:<
  BinaryOperator:OR
- ScalarValue:J
+ Value:J
  NumericConstant:8
  BinaryOperator:>
  BinaryOperator:OR
 2430 N(J-Q2+2)=G(I,J)
- ScalarValue:J
- ScalarValue:Q2
+ Value:J
+ Value:Q2
  BinaryOperator:-
  NumericConstant:2
  BinaryOperator:+
  Reference:N
- ScalarValue:I
- ScalarValue:J
- ScalarValue:G
+ Value:I
+ Value:J
+ Value:G
  AssignmentOperator:=
 2440 IF D(7)<0 THEN 2460
  NumericConstant:7
- ScalarValue:D
+ Value:D
  NumericConstant:0
  BinaryOperator:<
 2450 Z(I,J)=G(I,J)
- ScalarValue:I
- ScalarValue:J
+ Value:I
+ Value:J
  Reference:Z
- ScalarValue:I
- ScalarValue:J
- ScalarValue:G
+ Value:I
+ Value:J
+ Value:G
  AssignmentOperator:=
 2460 NEXT J
  Variable:J
@@ -1257,16 +1257,16 @@
  AssignmentOperator:=
 2471 PRINT USING P1$N(1),N(2),N(3)
  ITEMS
- ScalarValue:P1$
+ Value:P1$
  CarriageControl:
  NumericConstant:1
- ScalarValue:N
+ Value:N
  CarriageControl:,
  NumericConstant:2
- ScalarValue:N
+ Value:N
  CarriageControl:,
  NumericConstant:3
- ScalarValue:N
+ Value:N
  CarriageControl:NL
 2480 PRINT"------------------"
  ITEMS
@@ -1279,19 +1279,19 @@
 2501 REM *** PHASER CONTROL CODE BEGINS HERE
  Remark:*** PHASER CONTROL CODE BEGINS HERE
 2530 IF K3<=0 THEN 3670
- ScalarValue:K3
+ Value:K3
  NumericConstant:0
  BinaryOperator:<=
 2540 IF D(4)>0 THEN 2570
  NumericConstant:4
- ScalarValue:D
+ Value:D
  NumericConstant:0
  BinaryOperator:>
 2560 GOTO 1270 
  LineNumber:1270
 2570 IF D(7)>0 THEN 2590
  NumericConstant:7
- ScalarValue:D
+ Value:D
  NumericConstant:0
  BinaryOperator:>
 2580 PRINT " COMPUTER FAILURE HAMPERS ACCURACY"
@@ -1302,36 +1302,36 @@
  ITEMS
  TextConstant:"PHASERS LOCKED ON TARGET, ENERGY AVAILABLE="
  CarriageControl:
- ScalarValue:E
+ Value:E
  CarriageControl:NL
 2600 INPUT "NUMBER OF UNITS TO FIRE:";X
  Reference:X
 2620 IF X<0 1270
- ScalarValue:X
+ Value:X
  NumericConstant:01270
  BinaryOperator:<
 2630 IF E-X<0 THEN 2570
- ScalarValue:E
- ScalarValue:X
+ Value:E
+ Value:X
  BinaryOperator:-
  NumericConstant:0
  BinaryOperator:<
 2640 E=E-X
  Reference:E
- ScalarValue:E
- ScalarValue:X
+ Value:E
+ Value:X
  BinaryOperator:-
  AssignmentOperator:=
 2650 GOSUB 3790
  LineNumber:3790
 2660 IF D(7)>0 THEN 2680
  NumericConstant:7
- ScalarValue:D
+ Value:D
  NumericConstant:0
  BinaryOperator:>
 2670 X=X*RND(1)
  Reference:X
- ScalarValue:X
+ Value:X
  NumericConstant:1
  FunctionRnd
  BinaryOperator:*
@@ -1341,15 +1341,15 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 2690 IF K(I,3)<=0 THEN 2770
- ScalarValue:I
+ Value:I
  NumericConstant:3
- ScalarValue:K
+ Value:K
  NumericConstant:0
  BinaryOperator:<=
 2700 H=INT((X/K/FND(0))*(2*RND(1)))
  Reference:H
- ScalarValue:X
- ScalarValue:K
+ Value:X
+ Value:K
  BinaryOperator:/
  NumericConstant:0
  UserFunction
@@ -1362,57 +1362,57 @@
  FunctionInt
  AssignmentOperator:=
 2710 K(I,3)=K(I,3)-H
- ScalarValue:I
+ Value:I
  NumericConstant:3
  Reference:K
- ScalarValue:I
+ Value:I
  NumericConstant:3
- ScalarValue:K
- ScalarValue:H
+ Value:K
+ Value:H
  BinaryOperator:-
  AssignmentOperator:=
 2720 PRINTH" UNIT HIT ON KLINGON AT SECTOR "K(I,1)"."K(I,2);
  ITEMS
- ScalarValue:H
+ Value:H
  CarriageControl:
  TextConstant:" UNIT HIT ON KLINGON AT SECTOR "
  CarriageControl:
- ScalarValue:I
+ Value:I
  NumericConstant:1
- ScalarValue:K
+ Value:K
  CarriageControl:
  TextConstant:"."
  CarriageControl:
- ScalarValue:I
+ Value:I
  NumericConstant:2
- ScalarValue:K
+ Value:K
  CarriageControl:;
 2730 PRINT"    ("K(I,3)" LEFT)"
  ITEMS
  TextConstant:"    ("
  CarriageControl:
- ScalarValue:I
+ Value:I
  NumericConstant:3
- ScalarValue:K
+ Value:K
  CarriageControl:
  TextConstant:" LEFT)"
  CarriageControl:NL
 2740 IF K(I,3)>0 THEN 2770
- ScalarValue:I
+ Value:I
  NumericConstant:3
- ScalarValue:K
+ Value:K
  NumericConstant:0
  BinaryOperator:>
 2750 GOSUB 3690
  LineNumber:3690
 2760 IF K9<=0 THEN 4040
- ScalarValue:K9
+ Value:K9
  NumericConstant:0
  BinaryOperator:<=
 2770 NEXT I
  Variable:I
 2780 IF E<0 THEN 4000
- ScalarValue:E
+ Value:E
  NumericConstant:0
  BinaryOperator:<
 2790 GOTO 1270
@@ -1421,7 +1421,7 @@
  Remark:*** PHOTON TORPEDO CODE BEGINS HERE
 2800 IF D(5)>=0 THEN 2830 
  NumericConstant:5
- ScalarValue:D
+ Value:D
  NumericConstant:0
  BinaryOperator:>=
 2810 PRINT "PHOTON TUBES ARE NOT OPERATIONAL"
@@ -1431,7 +1431,7 @@
 2820 GOTO 1270
  LineNumber:1270
 2830 IF P>0 THEN 2860
- ScalarValue:P
+ Value:P
  NumericConstant:0
  BinaryOperator:>
 2840 PRINT "ALL PHOTON TORPEDOES EXPENDED"
@@ -1443,33 +1443,33 @@
 2860 INPUT "TORPEDO COURSE (1-9):";C1
  Reference:C1
 2880 IF C1<0 THEN 1270
- ScalarValue:C1
+ Value:C1
  NumericConstant:0
  BinaryOperator:<
 2890 IF C1<1 OR C1>9 THEN 2860
- ScalarValue:C1
+ Value:C1
  NumericConstant:1
  BinaryOperator:<
- ScalarValue:C1
+ Value:C1
  NumericConstant:9
  BinaryOperator:>
  BinaryOperator:OR
 2900 X1=C(C1,1)+(C(C1+1,1)-C(C1,1))*(C1-INT(C1))
  Reference:X1
- ScalarValue:C1
+ Value:C1
  NumericConstant:1
- ScalarValue:C
- ScalarValue:C1
+ Value:C
+ Value:C1
  NumericConstant:1
  BinaryOperator:+
  NumericConstant:1
- ScalarValue:C
- ScalarValue:C1
+ Value:C
+ Value:C1
  NumericConstant:1
- ScalarValue:C
+ Value:C
  BinaryOperator:-
- ScalarValue:C1
- ScalarValue:C1
+ Value:C1
+ Value:C1
  FunctionInt
  BinaryOperator:-
  BinaryOperator:*
@@ -1477,20 +1477,20 @@
  AssignmentOperator:=
 2910 X2=C(C1,2)+(C(C1+1,2)-C(C1,2))*(C1-INT(C1))
  Reference:X2
- ScalarValue:C1
+ Value:C1
  NumericConstant:2
- ScalarValue:C
- ScalarValue:C1
+ Value:C
+ Value:C1
  NumericConstant:1
  BinaryOperator:+
  NumericConstant:2
- ScalarValue:C
- ScalarValue:C1
+ Value:C
+ Value:C1
  NumericConstant:2
- ScalarValue:C
+ Value:C
  BinaryOperator:-
- ScalarValue:C1
- ScalarValue:C1
+ Value:C1
+ Value:C1
  FunctionInt
  BinaryOperator:-
  BinaryOperator:*
@@ -1498,13 +1498,13 @@
  AssignmentOperator:=
 2920 X=S1:Y=S2:P=P-1
  Reference:X
- ScalarValue:S1
+ Value:S1
  AssignmentOperator:=
  Reference:Y
- ScalarValue:S2
+ Value:S2
  AssignmentOperator:=
  Reference:P
- ScalarValue:P
+ Value:P
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
@@ -1514,28 +1514,28 @@
  CarriageControl:NL
 2960 X=X+X1:Y=Y+Y2
  Reference:X
- ScalarValue:X
- ScalarValue:X1
+ Value:X
+ Value:X1
  BinaryOperator:+
  AssignmentOperator:=
  Reference:Y
- ScalarValue:Y
- ScalarValue:Y2
+ Value:Y
+ Value:Y2
  BinaryOperator:+
  AssignmentOperator:=
 2980 IF X<1 OR X>=9 OR Y<1 OR Y>=9 THEN 3420
- ScalarValue:X
+ Value:X
  NumericConstant:1
  BinaryOperator:<
- ScalarValue:X
+ Value:X
  NumericConstant:9
  BinaryOperator:>=
  BinaryOperator:OR
- ScalarValue:Y
+ Value:Y
  NumericConstant:1
  BinaryOperator:<
  BinaryOperator:OR
- ScalarValue:Y
+ Value:Y
  NumericConstant:9
  BinaryOperator:>=
  BinaryOperator:OR
@@ -1543,26 +1543,26 @@
  ITEMS
  TextConstant:"               "
  CarriageControl:
- ScalarValue:X
+ Value:X
  CarriageControl:
  TextConstant:"."
  CarriageControl:
- ScalarValue:Y
+ Value:Y
  CarriageControl:NL
 3010 A$="   ":Z1=X:Z2=Y
  Reference:A$
  TextConstant:"   "
  AssignmentOperator:=
  Reference:Z1
- ScalarValue:X
+ Value:X
  AssignmentOperator:=
  Reference:Z2
- ScalarValue:Y
+ Value:Y
  AssignmentOperator:=
 3040 GOSUB 5680
  LineNumber:5680
 3050 IF Z3=0 THEN 3220
- ScalarValue:Z3
+ Value:Z3
  NumericConstant:0
  BinaryOperator:=
 3060 GOTO 2960
@@ -1572,15 +1572,15 @@
  TextConstant:"***"
  AssignmentOperator:=
  Reference:Z1
- ScalarValue:X
+ Value:X
  AssignmentOperator:=
  Reference:Z2
- ScalarValue:Y
+ Value:Y
  AssignmentOperator:=
 3100 GOSUB 5680
  LineNumber:5680
 3110 IF Z3=0 THEN 3220
- ScalarValue:Z3
+ Value:Z3
  NumericConstant:0
  BinaryOperator:=
 3120 PRINT "*** KLINGON DESTROYED ***"
@@ -1589,40 +1589,40 @@
  CarriageControl:NL
 3130 K3=K3-1:K9=K9-1
  Reference:K3
- ScalarValue:K3
+ Value:K3
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
  Reference:K9
- ScalarValue:K9
+ Value:K9
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 3150 IF K9<=8 THEN 4040
- ScalarValue:K9
+ Value:K9
  NumericConstant:8
  BinaryOperator:<=
 3160 FOR I=1TO3:IF INT(X)=K(I,1) THEN 3190
  control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
- ScalarValue:X
+ Value:X
  FunctionInt
- ScalarValue:I
+ Value:I
  NumericConstant:1
- ScalarValue:K
+ Value:K
  BinaryOperator:=
 3180 IF INT(Y)<>K(I,2) THEN 3200
- ScalarValue:Y
+ Value:Y
  FunctionInt
- ScalarValue:I
+ Value:I
  NumericConstant:2
- ScalarValue:K
+ Value:K
  BinaryOperator:<>
 3190 NEXT I
  Variable:I
 3200 K(I,3)=0:GOTO 3360
- ScalarValue:I
+ Value:I
  NumericConstant:3
  Reference:K
  NumericConstant:0
@@ -1633,15 +1633,15 @@
  TextConstant:" * "
  AssignmentOperator:=
  Reference:Z1
- ScalarValue:X
+ Value:X
  AssignmentOperator:=
  Reference:Z2
- ScalarValue:Y
+ Value:Y
  AssignmentOperator:=
 3230 GOSUB 5680
  LineNumber:5680
 3240 IF Z3=0 THEN 3290
- ScalarValue:Z3
+ Value:Z3
  NumericConstant:0
  BinaryOperator:=
 3270 PRINT "YOU CAN'T DESTROY STARS, SILLY"
@@ -1655,15 +1655,15 @@
  TextConstant:">1<"
  AssignmentOperator:=
  Reference:Z1
- ScalarValue:X
+ Value:X
  AssignmentOperator:=
  Reference:Z2
- ScalarValue:Y
+ Value:Y
  AssignmentOperator:=
 3320 GOSUB 5660
  LineNumber:5660
 3330 IF Z3=0 THEN 2690
- ScalarValue:Z3
+ Value:Z3
  NumericConstant:0
  BinaryOperator:=
 3340 PRINT "*** STAR BASE DESTROYED *** .......CONGRATULATIONS"
@@ -1672,7 +1672,7 @@
  CarriageControl:NL
 3350 B3=B3-1
  Reference:B3
- ScalarValue:B3
+ Value:B3
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
@@ -1681,25 +1681,25 @@
  TextConstant:"   "
  AssignmentOperator:=
  Reference:Z1
- ScalarValue:X
+ Value:X
  AssignmentOperator:=
  Reference:Z2
- ScalarValue:Y
+ Value:Y
  AssignmentOperator:=
 3390 GOSUB 5510
  LineNumber:5510
 3400 G(Q1,Q2)=K3*100+B3*10+S3
- ScalarValue:Q1
- ScalarValue:Q2
+ Value:Q1
+ Value:Q2
  Reference:G
- ScalarValue:K3
+ Value:K3
  NumericConstant:100
  BinaryOperator:*
- ScalarValue:B3
+ Value:B3
  NumericConstant:10
  BinaryOperator:*
  BinaryOperator:+
- ScalarValue:S3
+ Value:S3
  BinaryOperator:+
  AssignmentOperator:=
 3410 GOTO 3430
@@ -1711,7 +1711,7 @@
 3430 GOSUB 3790
  LineNumber:3790
 3440 IF E<0 THEN 4000
- ScalarValue:E
+ Value:E
  NumericConstant:0
  BinaryOperator:<
 3450 GOTO 1270
@@ -1720,7 +1720,7 @@
  Remark:*** SHIELD CONTROL CODE BEGINS HERE
 3460 IF D(7)>=0 THEN 3490
  NumericConstant:7
- ScalarValue:D
+ Value:D
  NumericConstant:0
  BinaryOperator:>=
 3470 PRINT "SHIELD CONTROL IS NON-OPERATIONAL"
@@ -1733,34 +1733,34 @@
  ITEMS
  TextConstant:"ENERGY AVAILABLE ="
  CarriageControl:
- ScalarValue:F
- ScalarValue:S
+ Value:F
+ Value:S
  BinaryOperator:*
  CarriageControl:;
 3500 INPUT "   NUMBER OF UNTTS TO SHIELDS:";X
  Reference:X
 3510 IF X<=0 THEN 1270
- ScalarValue:X
+ Value:X
  NumericConstant:0
  BinaryOperator:<=
 3520 IF E+S-X<0 THEN 3490
- ScalarValue:E
- ScalarValue:S
+ Value:E
+ Value:S
  BinaryOperator:+
- ScalarValue:X
+ Value:X
  BinaryOperator:-
  NumericConstant:0
  BinaryOperator:<
 3530 F=E+S-X:S=X
  Reference:F
- ScalarValue:E
- ScalarValue:S
+ Value:E
+ Value:S
  BinaryOperator:+
- ScalarValue:X
+ Value:X
  BinaryOperator:-
  AssignmentOperator:=
  Reference:S
- ScalarValue:X
+ Value:X
  AssignmentOperator:=
 3550 GOTO 1270
  LineNumber:1270
@@ -1768,7 +1768,7 @@
  Remark:*** DAMAGE CONTROL RFPORT CODE BEGINS HERE
 3560 IF D(6)>0 THEN 3590
  NumericConstant:6
- ScalarValue:D
+ Value:D
  NumericConstant:0
  BinaryOperator:>
 3570 PRINT "DAMAGE CONTROL REPORT IS NOT AVAILABLE"
@@ -1791,8 +1791,8 @@
  LineNumber:5610
 3630 PRINTD(R1)
  ITEMS
- ScalarValue:R1
- ScalarValue:D
+ Value:R1
+ Value:D
  CarriageControl:NL
 3640 NEXT R1:PRINT
  Variable:R1
@@ -1810,26 +1810,26 @@
  ITEMS
  TextConstant:"KLINGON AT SECTOR "
  CarriageControl:
- ScalarValue:I
+ Value:I
  NumericConstant:1
- ScalarValue:K
+ Value:K
  CarriageControl:
  TextConstant:","
  CarriageControl:
- ScalarValue:I
+ Value:I
  NumericConstant:2
- ScalarValue:K
+ Value:K
  CarriageControl:
  TextConstant:"DESTROYED ***"
  CarriageControl:NL
 3710 K3=K3-1:K9=K9-1:A$="   ":Z1=K(I,1):Z2=K(I,2)
  Reference:K3
- ScalarValue:K3
+ Value:K3
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
  Reference:K9
- ScalarValue:K9
+ Value:K9
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
@@ -1837,35 +1837,35 @@
  TextConstant:"   "
  AssignmentOperator:=
  Reference:Z1
- ScalarValue:I
+ Value:I
  NumericConstant:1
- ScalarValue:K
+ Value:K
  AssignmentOperator:=
  Reference:Z2
- ScalarValue:I
+ Value:I
  NumericConstant:2
- ScalarValue:K
+ Value:K
  AssignmentOperator:=
 3760 GOSUB 5510
  LineNumber:5510
 3770 G(Q1,Q2)=K3*100+B3*10+S3
- ScalarValue:Q1
- ScalarValue:Q2
+ Value:Q1
+ Value:Q2
  Reference:G
- ScalarValue:K3
+ Value:K3
  NumericConstant:100
  BinaryOperator:*
- ScalarValue:B3
+ Value:B3
  NumericConstant:10
  BinaryOperator:*
  BinaryOperator:+
- ScalarValue:S3
+ Value:S3
  BinaryOperator:+
  AssignmentOperator:=
 3780 RETURN
  
 3790 IF C$<>"DOCKED" THEN 3820
- ScalarValue:C$
+ Value:C$
  TextConstant:"DOCKED"
  BinaryOperator:<>
 3800 PRINT "STAR BASE SHIELDS PROTECT THE ENTERPISE"
@@ -1875,23 +1875,23 @@
 3810 RETURN
  
 3820 IF K3<=0 THEN 3910
- ScalarValue:K3
+ Value:K3
  NumericConstant:0
  BinaryOperator:<=
 3830 FOR I=1TO3:IF K(I,3)<=0 THEN 3900
  control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
- ScalarValue:I
+ Value:I
  NumericConstant:3
- ScalarValue:K
+ Value:K
  NumericConstant:0
  BinaryOperator:<=
 3850 H=INT((K(I,3)/FND(0))*(2+RND(1))):S=S-H
  Reference:H
- ScalarValue:I
+ Value:I
  NumericConstant:3
- ScalarValue:K
+ Value:K
  NumericConstant:0
  UserFunction
  BinaryOperator:/
@@ -1903,36 +1903,36 @@
  FunctionInt
  AssignmentOperator:=
  Reference:S
- ScalarValue:S
- ScalarValue:H
+ Value:S
+ Value:H
  BinaryOperator:-
  AssignmentOperator:=
 3870 PRINTH" UNIT HIT ON ENTERPRISE AT SECTOR "K(I,1)","K(I,2);
  ITEMS
- ScalarValue:H
+ Value:H
  CarriageControl:
  TextConstant:" UNIT HIT ON ENTERPRISE AT SECTOR "
  CarriageControl:
- ScalarValue:I
+ Value:I
  NumericConstant:1
- ScalarValue:K
+ Value:K
  CarriageControl:
  TextConstant:","
  CarriageControl:
- ScalarValue:I
+ Value:I
  NumericConstant:2
- ScalarValue:K
+ Value:K
  CarriageControl:;
 3871 PRINT"     ("S" LEFT)"
  ITEMS
  TextConstant:"     ("
  CarriageControl:
- ScalarValue:S
+ Value:S
  CarriageControl:
  TextConstant:" LEFT)"
  CarriageControl:NL
 3890 IF S<0 THEN 4000
- ScalarValue:S
+ Value:S
  NumericConstant:0
  BinaryOperator:<
 3900 NEXT I
@@ -1948,7 +1948,7 @@
  TextConstant:"ATTACKS YOU WILL RE DEMOTED TO THE RANK OF PRIVATE"
  CarriageControl:NL
 3940 IF K3<=0 THEN 4020
- ScalarValue:K3
+ Value:K3
  NumericConstant:0
  BinaryOperator:<=
 3950 GOSUB 3790
@@ -1961,7 +1961,7 @@
  ITEMS
  TextConstant:"IT IS STARDATE"
  CarriageControl:
- ScalarValue:T
+ Value:T
  CarriageControl:NL
 3990 GOTO 4020
  LineNumber:4020
@@ -1977,7 +1977,7 @@
  ITEMS
  TextConstant:"THERE ARE STILL "
  CarriageControl:
- ScalarValue:K9
+ Value:K9
  CarriageControl:
  TextConstant:" KLINGON BATTLE CRUISERS"
  CarriageControl:NL
@@ -2006,9 +2006,9 @@
  CarriageControl:NL
 4075 E5=((K7/(T-T0))*1000)
  Reference:E5
- ScalarValue:K7
- ScalarValue:T
- ScalarValue:T0
+ Value:K7
+ Value:T
+ Value:T0
  BinaryOperator:-
  BinaryOperator:/
  NumericConstant:1000
@@ -2018,7 +2018,7 @@
  ITEMS
  TextConstant:"YOUR EFFICIENCY RATING ="
  CarriageControl:
- ScalarValue:E5
+ Value:E5
  CarriageControl:NL
 4100 PRINT"YOUR ACTUAL TIME OF MISSION ="INT(TIME(0)-T7)/60;" MINUTES"
  ITEMS
@@ -2026,7 +2026,7 @@
  CarriageControl:
  NumericConstant:0
  FunctionTime
- ScalarValue:T7
+ Value:T7
  BinaryOperator:-
  FunctionInt
  NumericConstant:60
@@ -2044,7 +2044,7 @@
 4106 INPUT"DO YOU WANT TO TRY AGAIN";R$
  Reference:R$
 4107 IF R$ = "YES" THEN 230
- ScalarValue:R$
+ Value:R$
  TextConstant:"YES"
  BinaryOperator:=
 4110 GOTO 6510
@@ -2053,25 +2053,25 @@
  Remark:*** SHORT RANGE SENSOR SCAN AND STARTING POINT CODE
 4120 FOR I=S1-1TO S1+1
  control: Variable:I
- start:   ["ScalarValue:S1", "NumericConstant:1", "BinaryOperator:-"]
- end:     ["ScalarValue:S1", "NumericConstant:1", "BinaryOperator:+"]
+ start:   ["Value:S1", "NumericConstant:1", "BinaryOperator:-"]
+ end:     ["Value:S1", "NumericConstant:1", "BinaryOperator:+"]
 4130 FOR J=S2-1TO S2+1
  control: Variable:J
- start:   ["ScalarValue:S2", "NumericConstant:1", "BinaryOperator:-"]
- end:     ["ScalarValue:S2", "NumericConstant:1", "BinaryOperator:+"]
+ start:   ["Value:S2", "NumericConstant:1", "BinaryOperator:-"]
+ end:     ["Value:S2", "NumericConstant:1", "BinaryOperator:+"]
 4140 IF I<1 OR I>8 OR J<1 OR J>8 THEN 4200
- ScalarValue:I
+ Value:I
  NumericConstant:1
  BinaryOperator:<
- ScalarValue:I
+ Value:I
  NumericConstant:8
  BinaryOperator:>
  BinaryOperator:OR
- ScalarValue:J
+ Value:J
  NumericConstant:1
  BinaryOperator:<
  BinaryOperator:OR
- ScalarValue:J
+ Value:J
  NumericConstant:8
  BinaryOperator:>
  BinaryOperator:OR
@@ -2080,15 +2080,15 @@
  TextConstant:">1<"
  AssignmentOperator:=
  Reference:Z1
- ScalarValue:I
+ Value:I
  AssignmentOperator:=
  Reference:Z2
- ScalarValue:J
+ Value:J
  AssignmentOperator:=
 4180 GOSUB 5680
  LineNumber:5680
 4190 IF Z3=1 THEN 4240
- ScalarValue:Z3
+ Value:Z3
  NumericConstant:1
  BinaryOperator:=
 4200 NEXT J
@@ -2123,12 +2123,12 @@
  AssignmentOperator:=
  LineNumber:4380
 4310 IF K3>0 THEN 4350
- ScalarValue:K3
+ Value:K3
  NumericConstant:0
  BinaryOperator:>
 4320 IF E<E0 *.1 THEN 4370
- ScalarValue:E
- ScalarValue:E0
+ Value:E
+ Value:E0
  NumericConstant:.1
  BinaryOperator:*
  BinaryOperator:<
@@ -2149,7 +2149,7 @@
  AssignmentOperator:=
 4380 IF D(2)>=0 THEN 4430
  NumericConstant:2
- ScalarValue:D
+ Value:D
  NumericConstant:0
  BinaryOperator:>=
 4390 PRINT:PRINT"*** SHORT RANGE SENSORS ARE OUT ***":PRINT
@@ -2168,7 +2168,7 @@
  AssignmentOperator:=
 4435 PRINT O1$
  ITEMS
- ScalarValue:O1$
+ Value:O1$
  CarriageControl:NL
 4440 O2$ = " \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \"
  Reference:O2$
@@ -2176,419 +2176,419 @@
  AssignmentOperator:=
 4445 PRINT USING O2$,MID(Q$,1,3),MID(Q$,4,3),MID(Q$,7,3),MID(Q$,10,3),MID(Q$,13,3),MID(Q$,16,3),MID(Q$,19,3),MID(Q$,22,3)
  ITEMS
- ScalarValue:O2$
+ Value:O2$
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:1
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:4
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:7
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:10
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:13
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:16
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:19
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:22
  NumericConstant:3
  FunctionMid
  CarriageControl:NL
 4450 O3$=O2$+"        STARDATE        #####"
  Reference:O3$
- ScalarValue:O2$
+ Value:O2$
  TextConstant:"        STARDATE        #####"
  BinaryOperator:+
  AssignmentOperator:=
 4455 PRINT USING O3$,MID(O$,25,3),MID(Q$,28,3),MID(Q$,31,3),MID(Q$,34,3),MID(Q$,37,3),MID(Q$,40,3),MID(Q$,43,3),MID(Q$,46,3),T
  ITEMS
- ScalarValue:O3$
+ Value:O3$
  CarriageControl:,
- ScalarValue:O$
+ Value:O$
  NumericConstant:25
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:28
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:31
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:34
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:37
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:40
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:43
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:46
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:T
+ Value:T
  CarriageControl:NL
 4460 O4$=O2$+"        CONDITION      \    \"
  Reference:O4$
- ScalarValue:O2$
+ Value:O2$
  TextConstant:"        CONDITION      \    \"
  BinaryOperator:+
  AssignmentOperator:=
 4465 PRINT USING O4$,MID(Q$,49,3),MID(Q$,52,3),MID(Q$,55,3),MID(Q$,58,3),MID(Q$,61,3),MID(Q$,64,3),MID(Q$,67,3),MID(Q$,70,3),C$
  ITEMS
- ScalarValue:O4$
+ Value:O4$
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:49
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:52
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:55
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:58
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:61
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:64
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:67
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q$
+ Value:Q$
  NumericConstant:70
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:C$
+ Value:C$
  CarriageControl:NL
 4470 O5$=O2$+"        QUADRANT          # #"
  Reference:O5$
- ScalarValue:O2$
+ Value:O2$
  TextConstant:"        QUADRANT          # #"
  BinaryOperator:+
  AssignmentOperator:=
 4475 PRINT USING O5$,MID(R$,1,3),MID(R$,4,3),MID(R$,7,3),MID(R$,10,3),MID(R$,13,3),MID(R$,16,3),MID(R$,19,3),MID(R$,22,3),Q1,Q2
  ITEMS
- ScalarValue:O5$
+ Value:O5$
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:1
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:4
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:7
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:10
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:13
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:16
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:19
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:22
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:Q1
+ Value:Q1
  CarriageControl:,
- ScalarValue:Q2
+ Value:Q2
  CarriageControl:NL
 4480 O6$=O2$+"        SECTOR            # #"
  Reference:O6$
- ScalarValue:O2$
+ Value:O2$
  TextConstant:"        SECTOR            # #"
  BinaryOperator:+
  AssignmentOperator:=
 4485 PRINT USING O6$,MID(R$,25,3),MID(R$,28,3),MID(R$,31,3),MID(R$,34,3),MID(R$,37,3),MID(R$,40,3),MID(R$,43,3),MID(R$,46,3),S1,S2
  ITEMS
- ScalarValue:O6$
+ Value:O6$
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:25
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:28
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:31
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:34
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:37
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:40
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:43
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:46
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:S1
+ Value:S1
  CarriageControl:,
- ScalarValue:S2
+ Value:S2
  CarriageControl:NL
 4490 O7$=O2$+"        TOTAL ENERGY   ######"
  Reference:O7$
- ScalarValue:O2$
+ Value:O2$
  TextConstant:"        TOTAL ENERGY   ######"
  BinaryOperator:+
  AssignmentOperator:=
 4495 PRINT USING O7$,MID(R$,49,3),MID(R$,52,3),MID(R$,55,3),MID(R$,58,3),MID(R$,61,3),MID(R$,64,3),MID(R$,67,3),MID(R$,70,3),E
  ITEMS
- ScalarValue:O7$
+ Value:O7$
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:49
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:52
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:55
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:58
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:61
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:64
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:67
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:R$
+ Value:R$
  NumericConstant:70
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:E
+ Value:E
  CarriageControl:NL
 4500 O8$=O2$+"        PHOTON TORPEDOES  ###"
  Reference:O8$
- ScalarValue:O2$
+ Value:O2$
  TextConstant:"        PHOTON TORPEDOES  ###"
  BinaryOperator:+
  AssignmentOperator:=
 4505 PRINT USING O8$,MID(S$,1,3),MID(S$,4,3),MID(S$,7,3),MID(S$,10,3),MID(S$,13,3),MID(S$,16,3),MID(S$,19,3),MID(S$,22,3),P
  ITEMS
- ScalarValue:O8$
+ Value:O8$
  CarriageControl:,
- ScalarValue:S$
+ Value:S$
  NumericConstant:1
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:S$
+ Value:S$
  NumericConstant:4
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:S$
+ Value:S$
  NumericConstant:7
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:S$
+ Value:S$
  NumericConstant:10
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:S$
+ Value:S$
  NumericConstant:13
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:S$
+ Value:S$
  NumericConstant:16
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:S$
+ Value:S$
  NumericConstant:19
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:S$
+ Value:S$
  NumericConstant:22
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:P
+ Value:P
  CarriageControl:NL
 4510 O9$=O2$+"        SHIELDS        ######"
  Reference:O9$
- ScalarValue:O2$
+ Value:O2$
  TextConstant:"        SHIELDS        ######"
  BinaryOperator:+
  AssignmentOperator:=
 4515 PRINT USING O9$,MID(S$,25,3),MID(S$,28,3),MID(S$,31,3),MID(S$,34,3),MID(S$,37,3),MID(S$,40,3),MID(S$,43,3),MID(S$,46,3),S
  ITEMS
- ScalarValue:O9$
+ Value:O9$
  CarriageControl:,
- ScalarValue:S$
+ Value:S$
  NumericConstant:25
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:S$
+ Value:S$
  NumericConstant:28
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:S$
+ Value:S$
  NumericConstant:31
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:S$
+ Value:S$
  NumericConstant:34
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:S$
+ Value:S$
  NumericConstant:37
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:S$
+ Value:S$
  NumericConstant:40
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:S$
+ Value:S$
  NumericConstant:43
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:S$
+ Value:S$
  NumericConstant:46
  NumericConstant:3
  FunctionMid
  CarriageControl:,
- ScalarValue:S
+ Value:S
  CarriageControl:NL
 4520 PRINT O1$
  ITEMS
- ScalarValue:O1$
+ Value:O1$
  CarriageControl:NL
 4530 RETURN
  
@@ -2596,7 +2596,7 @@
  Remark:*** LIBRARY COMPUTER CODE BEGINS HERE"
 4630 IF D(8)>=0 THEN 4660
  NumericConstant:8
- ScalarValue:D
+ Value:D
  NumericConstant:0
  BinaryOperator:>=
 4640 PRINT "COMPUTER DISABLED":GOTO 1270
@@ -2607,15 +2607,15 @@
 4660 INPUT "CDMPUTER ACTIVE AND AWAITING COMMAND:";A
  Reference:A
 4680 IF A=0 GOTO 4740
- ScalarValue:A
+ Value:A
  NumericConstant:0
  BinaryOperator:=
 4681 IF A=1 GOTO 4830
- ScalarValue:A
+ Value:A
  NumericConstant:1
  BinaryOperator:=
 4682 IF A=2 GOTO 4880
- ScalarValue:A
+ Value:A
  NumericConstant:2
  BinaryOperator:=
 4690 PRINT "FUNCTIONS AVAILABLE FROM COMPUTER"
@@ -2642,11 +2642,11 @@
  ITEMS
  TextConstant:"COMPUTER RECORD OF GALAXY FOR QUADRANT "
  CarriageControl:
- ScalarValue:Q1
+ Value:Q1
  CarriageControl:
  TextConstant:","
  CarriageControl:
- ScalarValue:Q2
+ Value:Q2
  CarriageControl:NL
 4760 PRINT"     1     2     3     4     5     6     7     8" 
  ITEMS
@@ -2666,41 +2666,41 @@
  AssignmentOperator:=
 4795 PRINT USING N1$,I,Z(I,1),Z(I,2),Z(I,3),Z(I,4),Z(I,5),Z(I,6),Z(I,7),Z(I,8)
  ITEMS
- ScalarValue:N1$
+ Value:N1$
  CarriageControl:,
- ScalarValue:I
+ Value:I
  CarriageControl:,
- ScalarValue:I
+ Value:I
  NumericConstant:1
- ScalarValue:Z
+ Value:Z
  CarriageControl:,
- ScalarValue:I
+ Value:I
  NumericConstant:2
- ScalarValue:Z
+ Value:Z
  CarriageControl:,
- ScalarValue:I
+ Value:I
  NumericConstant:3
- ScalarValue:Z
+ Value:Z
  CarriageControl:,
- ScalarValue:I
+ Value:I
  NumericConstant:4
- ScalarValue:Z
+ Value:Z
  CarriageControl:,
- ScalarValue:I
+ Value:I
  NumericConstant:5
- ScalarValue:Z
+ Value:Z
  CarriageControl:,
- ScalarValue:I
+ Value:I
  NumericConstant:6
- ScalarValue:Z
+ Value:Z
  CarriageControl:,
- ScalarValue:I
+ Value:I
  NumericConstant:7
- ScalarValue:Z
+ Value:Z
  CarriageControl:,
- ScalarValue:I
+ Value:I
  NumericConstant:8
- ScalarValue:Z
+ Value:Z
  CarriageControl:NL
 4800 PRINT"   ----- ----- ----- ----- ----- ----- ----- -----"
  ITEMS
@@ -2720,27 +2720,27 @@
  ITEMS
  TextConstant:"NUMBER OF KLINGONS LEFT ="
  CarriageControl:
- ScalarValue:K9
+ Value:K9
  CarriageControl:NL
 4850 V5=(T0+T9)-T
  Reference:V5
- ScalarValue:T0
- ScalarValue:T9
+ Value:T0
+ Value:T9
  BinaryOperator:+
- ScalarValue:T
+ Value:T
  BinaryOperator:-
  AssignmentOperator:=
 4851 PRINT "NUMRER OF STARDATES LFFT =";V5
  ITEMS
  TextConstant:"NUMRER OF STARDATES LFFT ="
  CarriageControl:;
- ScalarValue:V5
+ Value:V5
  CarriageControl:NL
 4860 PRINT "NUMBER OF STARBASES LEFT ="B9
  ITEMS
  TextConstant:"NUMBER OF STARBASES LEFT ="
  CarriageControl:
- ScalarValue:B9
+ Value:B9
  CarriageControl:NL
 4870 GOTO 3560 
  LineNumber:3560
@@ -2757,27 +2757,27 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 4910 IF K(I,3)<=0 THEN 5260
- ScalarValue:I
+ Value:I
  NumericConstant:3
- ScalarValue:K
+ Value:K
  NumericConstant:0
  BinaryOperator:<=
 4920 C1=S1:A=S2:W1=K(I,1):X=K(I,2)
  Reference:C1
- ScalarValue:S1
+ Value:S1
  AssignmentOperator:=
  Reference:A
- ScalarValue:S2
+ Value:S2
  AssignmentOperator:=
  Reference:W1
- ScalarValue:I
+ Value:I
  NumericConstant:1
- ScalarValue:K
+ Value:K
  AssignmentOperator:=
  Reference:X
- ScalarValue:I
+ Value:I
  NumericConstant:2
- ScalarValue:K
+ Value:K
  AssignmentOperator:=
 4960 GOTO 5010
  LineNumber:5010
@@ -2785,19 +2785,19 @@
  ITEMS
  TextConstant:"YOU ARE AT QUADRANT ( "
  CarriageControl:
- ScalarValue:Q1
+ Value:Q1
  CarriageControl:
  TextConstant:","
  CarriageControl:
- ScalarValue:Q2
+ Value:Q2
  CarriageControl:
  TextConstant:" ) SECTOR ( "
  CarriageControl:
- ScalarValue:S1
+ Value:S1
  CarriageControl:
  TextConstant:","
  CarriageControl:
- ScalarValue:S2
+ Value:S2
  CarriageControl:
  TextConstant:" )"
  CarriageControl:NL
@@ -2808,29 +2808,29 @@
  Reference:X
 5010 X=X-A:A=C1-W1
  Reference:X
- ScalarValue:X
- ScalarValue:A
+ Value:X
+ Value:A
  BinaryOperator:-
  AssignmentOperator:=
  Reference:A
- ScalarValue:C1
- ScalarValue:W1
+ Value:C1
+ Value:W1
  BinaryOperator:-
  AssignmentOperator:=
 5030 IF X<0 THEN 3130
- ScalarValue:X
+ Value:X
  NumericConstant:0
  BinaryOperator:<
 5031 IF A<0 THEN 5190
- ScalarValue:A
+ Value:A
  NumericConstant:0
  BinaryOperator:<
 5050 IF X>0 THEN 5070
- ScalarValue:X
+ Value:X
  NumericConstant:0
  BinaryOperator:>
 5060 IF A=0 THEN 3150
- ScalarValue:A
+ Value:A
  NumericConstant:0
  BinaryOperator:=
 5070 C1=1
@@ -2838,23 +2838,23 @@
  NumericConstant:1
  AssignmentOperator:=
 5080 IF ABS(A) <= ABS(X) THEN 5110
- ScalarValue:A
+ Value:A
  FunctionAbs
- ScalarValue:X
+ Value:X
  FunctionAbs
  BinaryOperator:<=
 5085 V5=C1+(((ABS(A)-ABS(X))+ABS(A))/ABS(A))
  Reference:V5
- ScalarValue:C1
- ScalarValue:A
+ Value:C1
+ Value:A
  FunctionAbs
- ScalarValue:X
+ Value:X
  FunctionAbs
  BinaryOperator:-
- ScalarValue:A
+ Value:A
  FunctionAbs
  BinaryOperator:+
- ScalarValue:A
+ Value:A
  FunctionAbs
  BinaryOperator:/
  BinaryOperator:+
@@ -2863,7 +2863,7 @@
  ITEMS
  TextConstant:"DIRECTION ="
  CarriageControl:
- ScalarValue:V5
+ Value:V5
  CarriageControl:NL
 5100 GOTO 5240
  LineNumber:5240
@@ -2871,10 +2871,10 @@
  ITEMS
  TextConstant:"DIRECTION ="
  CarriageControl:
- ScalarValue:C1
- ScalarValue:A
+ Value:C1
+ Value:A
  FunctionAbs
- ScalarValue:X
+ Value:X
  FunctionAbs
  BinaryOperator:/
  BinaryOperator:+
@@ -2882,11 +2882,11 @@
 5120 GOTO 5240
  LineNumber:5240
 5130 IF A>0 THEN 5170
- ScalarValue:A
+ Value:A
  NumericConstant:0
  BinaryOperator:>
 5140 IF X=0 THEN 5190
- ScalarValue:X
+ Value:X
  NumericConstant:0
  BinaryOperator:=
 5150 C1=5:GOTO 5080
@@ -2904,25 +2904,25 @@
  NumericConstant:7
  AssignmentOperator:=
 5200 IF ABS(A)>=ABS(X) THEN 5230
- ScalarValue:A
+ Value:A
  FunctionAbs
- ScalarValue:X
+ Value:X
  FunctionAbs
  BinaryOperator:>=
 5210 PRINT "DIRECTION ="C1+(((ABS(X)-ABS(A))+ABS(X))/ABS(X))
  ITEMS
  TextConstant:"DIRECTION ="
  CarriageControl:
- ScalarValue:C1
- ScalarValue:X
+ Value:C1
+ Value:X
  FunctionAbs
- ScalarValue:A
+ Value:A
  FunctionAbs
  BinaryOperator:-
- ScalarValue:X
+ Value:X
  FunctionAbs
  BinaryOperator:+
- ScalarValue:X
+ Value:X
  FunctionAbs
  BinaryOperator:/
  BinaryOperator:+
@@ -2933,10 +2933,10 @@
  ITEMS
  TextConstant:"DIRECTION ="
  CarriageControl:
- ScalarValue:C1
- ScalarValue:X
+ Value:C1
+ Value:X
  FunctionAbs
- ScalarValue:A
+ Value:A
  FunctionAbs
  BinaryOperator:/
  BinaryOperator:+
@@ -2945,17 +2945,17 @@
  ITEMS
  TextConstant:"DISTANCE ="
  CarriageControl:
- ScalarValue:X
+ Value:X
  NumericConstant:2
  BinaryOperator:**
- ScalarValue:A
+ Value:A
  NumericConstant:2
  BinaryOperator:**
  BinaryOperator:*
  FunctionSqr
  CarriageControl:NL
 5250 IF H8=1 THEN 5320
- ScalarValue:H8
+ Value:H8
  NumericConstant:1
  BinaryOperator:=
 5260 NEXT I
@@ -2967,11 +2967,11 @@
 5280 INPUT "DO YOU WANT TO USE THE CALCULATOR";A$
  Reference:A$
 5300 IF A$="YES" THEN 4970
- ScalarValue:A$
+ Value:A$
  TextConstant:"YES"
  BinaryOperator:=
 5310 IF A$<>"NO" THEN 5280
- ScalarValue:A$
+ Value:A$
  TextConstant:"NO"
  BinaryOperator:<>
 5320 GOTO 1270
@@ -3001,15 +3001,15 @@
  TextConstant:"   "
  AssignmentOperator:=
  Reference:Z1
- ScalarValue:R1
+ Value:R1
  AssignmentOperator:=
  Reference:Z2
- ScalarValue:R2
+ Value:R2
  AssignmentOperator:=
 5430 GOSUB 5680
  LineNumber:5680
 5440 IF Z3=0 THEN 5380
- ScalarValue:Z3
+ Value:Z3
  NumericConstant:0
  BinaryOperator:=
 5450 RETURN
@@ -3018,30 +3018,30 @@
  Remark:*** INSERTION IN STRING ARRAY FOR QUADRANT ***
 5520 S8=Z1*24+Z2*3-26:IF S8>72 THEN 5560
  Reference:S8
- ScalarValue:Z1
+ Value:Z1
  NumericConstant:24
  BinaryOperator:*
- ScalarValue:Z2
+ Value:Z2
  NumericConstant:3
  BinaryOperator:*
  BinaryOperator:+
  NumericConstant:26
  BinaryOperator:-
  AssignmentOperator:=
- ScalarValue:S8
+ Value:S8
  NumericConstant:72
  BinaryOperator:>
 5540 Q$=LEFT(Q$,S8-1)+A$+RIGHT(Q$,S8+3)
  Reference:Q$
- ScalarValue:Q$
- ScalarValue:S8
+ Value:Q$
+ Value:S8
  NumericConstant:1
  BinaryOperator:-
  FunctionLeft
- ScalarValue:A$
+ Value:A$
  BinaryOperator:+
- ScalarValue:Q$
- ScalarValue:S8
+ Value:Q$
+ Value:S8
  NumericConstant:3
  BinaryOperator:+
  FunctionRight
@@ -3050,20 +3050,20 @@
 5550 GOTO 5600
  LineNumber:5600
 5560 IF S8>144 THEN 5590
- ScalarValue:S8
+ Value:S8
  NumericConstant:144
  BinaryOperator:>
 5570 R$=LEFT(R$,S8-73)+A$+RIGHT(R$,S8-69)
  Reference:R$
- ScalarValue:R$
- ScalarValue:S8
+ Value:R$
+ Value:S8
  NumericConstant:73
  BinaryOperator:-
  FunctionLeft
- ScalarValue:A$
+ Value:A$
  BinaryOperator:+
- ScalarValue:R$
- ScalarValue:S8
+ Value:R$
+ Value:S8
  NumericConstant:69
  BinaryOperator:-
  FunctionRight
@@ -3073,15 +3073,15 @@
  LineNumber:5600
 5590 S$=LEFT(S$,S8-145)+A$+RIGHT(S$,S8-141)
  Reference:S$
- ScalarValue:S$
- ScalarValue:S8
+ Value:S$
+ Value:S8
  NumericConstant:145
  BinaryOperator:-
  FunctionLeft
- ScalarValue:A$
+ Value:A$
  BinaryOperator:+
- ScalarValue:S$
- ScalarValue:S8
+ Value:S$
+ Value:S8
  NumericConstant:141
  BinaryOperator:-
  FunctionRight
@@ -3093,27 +3093,27 @@
  Remark:*** PRINTS DEVICE NAME FROM ARRAY***
 5620 S8=R1*12-11:IF S8>72 THEN 5660
  Reference:S8
- ScalarValue:R1
+ Value:R1
  NumericConstant:12
  BinaryOperator:*
  NumericConstant:11
  BinaryOperator:-
  AssignmentOperator:=
- ScalarValue:S8
+ Value:S8
  NumericConstant:72
  BinaryOperator:>
 5640 PRINT MID(D$,S8,11),:GOTO 5670
  ITEMS
- ScalarValue:D$
- ScalarValue:S8
+ Value:D$
+ Value:S8
  NumericConstant:11
  FunctionMid
  CarriageControl:,
  LineNumber:5670
 5660 PRINT MID(E$,S8-72,11),
  ITEMS
- ScalarValue:E$
- ScalarValue:S8
+ Value:E$
+ Value:S8
  NumericConstant:72
  BinaryOperator:-
  NumericConstant:11
@@ -3125,10 +3125,10 @@
  Remark:***STRING COMPARISON IN QUADRANT ARRAY*** 
 5690 S8=Z1*24+Z2*3-26:Z3=0:IF S8>72 THEN 5750
  Reference:S8
- ScalarValue:Z1
+ Value:Z1
  NumericConstant:24
  BinaryOperator:*
- ScalarValue:Z2
+ Value:Z2
  NumericConstant:3
  BinaryOperator:*
  BinaryOperator:+
@@ -3138,15 +3138,15 @@
  Reference:Z3
  NumericConstant:0
  AssignmentOperator:=
- ScalarValue:S8
+ Value:S8
  NumericConstant:72
  BinaryOperator:>
 5720 IF MID(Q$,S8,3)<>A$ THEN 5810
- ScalarValue:Q$
- ScalarValue:S8
+ Value:Q$
+ Value:S8
  NumericConstant:3
  FunctionMid
- ScalarValue:A$
+ Value:A$
  BinaryOperator:<>
 5730 Z3=1:GOTO 5810
  Reference:Z3
@@ -3154,17 +3154,17 @@
  AssignmentOperator:=
  LineNumber:5810
 5750 IF S8>144 THEN 5790
- ScalarValue:S8
+ Value:S8
  NumericConstant:144
  BinaryOperator:>
 5760 IF MID(R$,S8-72,3)<>A$ THEN 5810
- ScalarValue:R$
- ScalarValue:S8
+ Value:R$
+ Value:S8
  NumericConstant:72
  BinaryOperator:-
  NumericConstant:3
  FunctionMid
- ScalarValue:A$
+ Value:A$
  BinaryOperator:<>
 5770 Z3=1:GOTO 5810
  Reference:Z3
@@ -3172,13 +3172,13 @@
  AssignmentOperator:=
  LineNumber:5810
 5790 IF MID(S$,S8-144,3)<>A$ THEN 5810
- ScalarValue:S$
- ScalarValue:S8
+ Value:S$
+ Value:S8
  NumericConstant:144
  BinaryOperator:-
  NumericConstant:3
  FunctionMid
- ScalarValue:A$
+ Value:A$
  BinaryOperator:<>
 5800 Z3=1
  Reference:Z3

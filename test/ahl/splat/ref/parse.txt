@@ -1,7 +1,7 @@
 30 OPEN "PARACH.UTE" AS FILE 1%
  Syntax error
 40 DIM #1%,A(4000)
- Invalid statement: Value is not assignable (type UnaryOperator)
+ Invalid statement: Value is not declaration (type UnaryOperator)
  Unimplemented
 55 RANDOMIZE 
  
@@ -52,10 +52,10 @@
  CarriageControl:;
  Reference:A1$
 120 IF A1$="NO" THEN 128 ELSE IF A1$="YES" THEN 123
- ScalarValue:A1$
+ Value:A1$
  TextConstant:"NO"
  BinaryOperator:=
- ScalarValue:A1$
+ Value:A1$
  TextConstant:"YES"
  BinaryOperator:=
 121 PRINT "'YEE' OR 'NO' PLEASE";\INPUT A1$\GOTO 120
@@ -71,22 +71,22 @@
  Reference:V1
 125 V1=V1*(5280/3600)\V=V1+((V1*RND(0))/20)-((V1*RND(0))/20)\GOTO 135
  Reference:V1
- ScalarValue:V1
+ Value:V1
  NumericConstant:5280
  NumericConstant:3600
  BinaryOperator:/
  BinaryOperator:*
  AssignmentOperator:=
  Reference:V
- ScalarValue:V1
- ScalarValue:V1
+ Value:V1
+ Value:V1
  NumericConstant:0
  FunctionRnd
  BinaryOperator:*
  NumericConstant:20
  BinaryOperator:/
  BinaryOperator:+
- ScalarValue:V1
+ Value:V1
  NumericConstant:0
  FunctionRnd
  BinaryOperator:*
@@ -107,28 +107,28 @@
  ITEMS
  TextConstant:"OK, TERMINAL VELOCITY ="
  CarriageControl:
- ScalarValue:V1
+ Value:V1
  CarriageControl:
  TextConstant:"MI/HR"
  CarriageControl:NL
 131 V1=V1*(5280/3600)\V=V1+((V1*RND(0))/20)-((V1*RND(0))/20)
  Reference:V1
- ScalarValue:V1
+ Value:V1
  NumericConstant:5280
  NumericConstant:3600
  BinaryOperator:/
  BinaryOperator:*
  AssignmentOperator:=
  Reference:V
- ScalarValue:V1
- ScalarValue:V1
+ Value:V1
+ Value:V1
  NumericConstant:0
  FunctionRnd
  BinaryOperator:*
  NumericConstant:20
  BinaryOperator:/
  BinaryOperator:+
- ScalarValue:V1
+ Value:V1
  NumericConstant:0
  FunctionRnd
  BinaryOperator:*
@@ -143,14 +143,14 @@
 136 INPUT B1$
  Reference:B1$
 140 IF B1$="NO" THEN 150 ELSE IF B1$<>YES" THEN 143
- ScalarValue:B1$
+ Value:B1$
  TextConstant:"NO"
  BinaryOperator:=
- ScalarValue:B1$
- ScalarValue:Y
- ScalarValue:E
+ Value:B1$
+ Value:Y
+ Value:E
  TextConstant:" THEN 143"
- ScalarValue:S
+ Value:S
  BinaryOperator:<>
 141 PRINT "'YES' OR 'NO' PLEASE";\INPUT B1$\GOTO 140
  ITEMS
@@ -165,15 +165,15 @@
  Reference:A2
 145 A=A2+((A2*RND(0))/20)-((A2*RND(0))/20)\GOTO 205
  Reference:A
- ScalarValue:A2
- ScalarValue:A2
+ Value:A2
+ Value:A2
  NumericConstant:0
  FunctionRnd
  BinaryOperator:*
  NumericConstant:20
  BinaryOperator:/
  BinaryOperator:+
- ScalarValue:A2
+ Value:A2
  NumericConstant:0
  FunctionRnd
  BinaryOperator:*
@@ -307,7 +307,7 @@
  ITEMS
  TextConstant:"    ALTITUDE         "
  CarriageControl:
- ScalarValue:D1
+ Value:D1
  CarriageControl:
  TextConstant:"FT"
  CarriageControl:NL
@@ -315,7 +315,7 @@
  ITEMS
  TextConstant:"    TERM, VELOCITY   "
  CarriageControl:
- ScalarValue:V1
+ Value:V1
  CarriageControl:
  TextConstant:"FT/SEC +-5%"
  CarriageControl:NL
@@ -323,7 +323,7 @@
  ITEMS
  TextConstant:"    ACCELERATION     "
  CarriageControl:
- ScalarValue:A2
+ Value:A2
  CarriageControl:
  TextConstant:"FT/SEC/SEC +-5%"
  CarriageControl:NL
@@ -358,35 +358,35 @@
 300 FOR I=0 TO T STEP (T/8)
  control: Variable:I
  start:   ["NumericConstant:0"]
- end:     ["ScalarValue:T"]
- step:    ["ScalarValue:T", "NumericConstant:8", "BinaryOperator:/"]
+ end:     ["Value:T"]
+ step:    ["Value:T", "NumericConstant:8", "BinaryOperator:/"]
 310 IF I>V/A GOTO 400
- ScalarValue:I
- ScalarValue:V
- ScalarValue:A
+ Value:I
+ Value:V
+ Value:A
  BinaryOperator:/
  BinaryOperator:>
 320 D=D1-((A/2)+I^2)
  Reference:D
- ScalarValue:D1
- ScalarValue:A
+ Value:D1
+ Value:A
  NumericConstant:2
  BinaryOperator:/
- ScalarValue:I
+ Value:I
  NumericConstant:2
  BinaryOperator:^
  BinaryOperator:+
  BinaryOperator:-
  AssignmentOperator:=
 330 IF D<=0 GOTO 1000
- ScalarValue:D
+ Value:D
  NumericConstant:0
  BinaryOperator:<=
 340 PRINT I,D 
  ITEMS
- ScalarValue:I
+ Value:I
  CarriageControl:,
- ScalarValue:D
+ Value:D
  CarriageControl:NL
 350 NEXT I
  Variable:I
@@ -396,8 +396,8 @@
  ITEMS
  TextConstant:"TERMINAL VELOCITY REACHED AT T PLUS"
  CarriageControl:
- ScalarValue:V
- ScalarValue:A
+ Value:V
+ Value:A
  BinaryOperator:/
  CarriageControl:
  TextConstant:"SECONDS"
@@ -405,22 +405,22 @@
 405 FOR I=1 TO T STEP (T/8)
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:T"]
- step:    ["ScalarValue:T", "NumericConstant:8", "BinaryOperator:/"]
+ end:     ["Value:T"]
+ step:    ["Value:T", "NumericConstant:8", "BinaryOperator:/"]
 410 D=D1-((V^2/(2+A))+(V*(I-(V/A))))
  Reference:D
- ScalarValue:D1
- ScalarValue:V
+ Value:D1
+ Value:V
  NumericConstant:2
  BinaryOperator:^
  NumericConstant:2
- ScalarValue:A
+ Value:A
  BinaryOperator:+
  BinaryOperator:/
- ScalarValue:V
- ScalarValue:I
- ScalarValue:V
- ScalarValue:A
+ Value:V
+ Value:I
+ Value:V
+ Value:A
  BinaryOperator:/
  BinaryOperator:-
  BinaryOperator:*
@@ -428,14 +428,14 @@
  BinaryOperator:-
  AssignmentOperator:=
 420 IF D<=0 GOTO 1010
- ScalarValue:D
+ Value:D
  NumericConstant:0
  BinaryOperator:<=
 430 PRINT I,D
  ITEMS
- ScalarValue:I
+ Value:I
  CarriageControl:,
- ScalarValue:D
+ Value:D
  CarriageControl:NL
 440 NEXT I
  Variable:I
@@ -457,78 +457,78 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4000"]
 550 IF A(I)=0 GOTO 620
- ScalarValue:I
- ScalarValue:A
+ Value:I
+ Value:A
  NumericConstant:0
  BinaryOperator:=
 560 K=K+1
  Reference:K
- ScalarValue:K
+ Value:K
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 570 IF D>A(I) GOTO 600
- ScalarValue:D
- ScalarValue:I
- ScalarValue:A
+ Value:D
+ Value:I
+ Value:A
  BinaryOperator:>
 580 K1=K1+1
  Reference:K1
- ScalarValue:K1
+ Value:K1
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 600 NEXT I
  Variable:I
 620 A(I)=D
- ScalarValue:I
+ Value:I
  Reference:A
- ScalarValue:D
+ Value:D
  AssignmentOperator:=
 630 I=I-1
  Reference:I
- ScalarValue:I
+ Value:I
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 650 IF K-K1<=.1*K GOTO 700
- ScalarValue:K
- ScalarValue:K1
+ Value:K
+ Value:K1
  BinaryOperator:-
  NumericConstant:.1
- ScalarValue:K
+ Value:K
  BinaryOperator:*
  BinaryOperator:<=
 660 IF K-K1<=.25*K GOTO 710
- ScalarValue:K
- ScalarValue:K1
+ Value:K
+ Value:K1
  BinaryOperator:-
  NumericConstant:.25
- ScalarValue:K
+ Value:K
  BinaryOperator:*
  BinaryOperator:<=
 670 IF K-K1<=.5*K GOTO 720
- ScalarValue:K
- ScalarValue:K1
+ Value:K
+ Value:K1
  BinaryOperator:-
  NumericConstant:.5
- ScalarValue:K
+ Value:K
  BinaryOperator:*
  BinaryOperator:<=
 680 IF K-K1<=.75*K GOTO 730
- ScalarValue:K
- ScalarValue:K1
+ Value:K
+ Value:K1
  BinaryOperator:-
  NumericConstant:.75
- ScalarValue:K
+ Value:K
  BinaryOperator:*
  BinaryOperator:<=
 690 IF K-K1<=.9*K GOTO 740
- ScalarValue:K
- ScalarValue:K1
+ Value:K
+ Value:K1
  BinaryOperator:-
  NumericConstant:.9
- ScalarValue:K
+ Value:K
  BinaryOperator:*
  BinaryOperator:<=
 695 GOTO 750
@@ -537,7 +537,7 @@
  ITEMS
  TextConstant:"WOW! THAT'S SOME JUMPlNG, OF THE"
  CarriageControl:
- ScalarValue:K
+ Value:K
  CarriageControl:
  TextConstant:"SUCCESSFUL JUMPS"
  CarriageControl:NL
@@ -545,8 +545,8 @@
  ITEMS
  TextConstant:"BEFORE YOURS ONLY"
  CarriageControl:
- ScalarValue:K
- ScalarValue:K1
+ Value:K
+ Value:K1
  BinaryOperator:-
  CarriageControl:
  TextConstant:"OPENED THEIR CHUTES LOWER THAN"
@@ -561,14 +561,14 @@
  ITEMS
  TextConstant:"PRETTY GOOD!"
  CarriageControl:
- ScalarValue:K
+ Value:K
  CarriageControl:
  TextConstant:"SUCCESSFUL JUMPS PRECEDED YOURS AND ONLY"
  CarriageControl:NL
 711 PRINT K-K1" OF THEM GOT LOWER THAN YOU DID. BEFORE THEIR CHUTES"
  ITEMS
- ScalarValue:K
- ScalarValue:K1
+ Value:K
+ Value:K1
  BinaryOperator:-
  CarriageControl:
  TextConstant:" OF THEM GOT LOWER THAN YOU DID. BEFORE THEIR CHUTES"
@@ -582,7 +582,7 @@
  ITEMS
  TextConstant:"NOT BAD, THERE HAVE BEEN"
  CarriageControl:
- ScalarValue:K
+ Value:K
  CarriageControl:
  TextConstant:"SUCCESSFUL JUMPS BEFORE YOURS."
  CarriageControl:NL
@@ -590,8 +590,8 @@
  ITEMS
  TextConstant:"YOU WERE BEATEN OUT BY "
  CarriageControl:
- ScalarValue:K
- ScalarValue:K1
+ Value:K
+ Value:K1
  BinaryOperator:-
  CarriageControl:
  TextConstant:"OF THEM."
@@ -601,15 +601,15 @@
  ITEMS
  TextConstant:"CONSERVATIVE AREN'T YOU? YOU RANKED ONLY"
  CarriageControl:
- ScalarValue:K
- ScalarValue:K1
+ Value:K
+ Value:K1
  BinaryOperator:-
  CarriageControl:
  TextConstant:"IN THE"
  CarriageControl:NL
 731 PRINT K"SUCCESSFUL JUMPS BEFORE YOURS."\GOTO 2000
  ITEMS
- ScalarValue:K
+ Value:K
  CarriageControl:
  TextConstant:"SUCCESSFUL JUMPS BEFORE YOURS."
  CarriageControl:NL
@@ -620,11 +620,11 @@
  CarriageControl:NL
 741 PRINT K"SUCCESSFUL JUMPS BEFORE YOURS AND YOU CAME IN"K1" JUMPS"
  ITEMS
- ScalarValue:K
+ Value:K
  CarriageControl:
  TextConstant:"SUCCESSFUL JUMPS BEFORE YOURS AND YOU CAME IN"
  CarriageControl:
- ScalarValue:K1
+ Value:K1
  CarriageControl:
  TextConstant:" JUMPS"
  CarriageControl:NL
@@ -637,7 +637,7 @@
  ITEMS
  TextConstant:"HEY! YOU PULLED THE RIP CORD MUCH TOO SOON. "
  CarriageControl:
- ScalarValue:K
+ Value:K
  CarriageControl:
  TextConstant:"SUCCESSFUL"
  CarriageControl:NL
@@ -645,8 +645,8 @@
  ITEMS
  TextConstant:"JUMPS BEFORE YOURS AND YOU CAME IN NUMBER"
  CarriageControl:
- ScalarValue:K
- ScalarValue:K1
+ Value:K
+ Value:K1
  BinaryOperator:-
  CarriageControl:
  TextConstant:"! GET WITH IT!"
@@ -706,9 +706,9 @@
 1000 PRINT SQR(2*D1/A),"SPLAT"
  ITEMS
  NumericConstant:2
- ScalarValue:D1
+ Value:D1
  BinaryOperator:*
- ScalarValue:A
+ Value:A
  BinaryOperator:/
  FunctionSqr
  CarriageControl:,
@@ -734,19 +734,19 @@
  LineNumber:809
 1010 PRINT (V/A)+((D1-(V^2/(2*A)))/V), "SPLAT"
  ITEMS
- ScalarValue:V
- ScalarValue:A
+ Value:V
+ Value:A
  BinaryOperator:/
- ScalarValue:D1
- ScalarValue:V
+ Value:D1
+ Value:V
  NumericConstant:2
  BinaryOperator:^
  NumericConstant:2
- ScalarValue:A
+ Value:A
  BinaryOperator:*
  BinaryOperator:/
  BinaryOperator:-
- ScalarValue:V
+ Value:V
  BinaryOperator:/
  BinaryOperator:+
  CarriageControl:,
@@ -765,11 +765,11 @@
  CarriageControl:;
  Reference:Z$
 2001 IF Z$="YES" GOTO 118
- ScalarValue:Z$
+ Value:Z$
  TextConstant:"YES"
  BinaryOperator:=
 2002 IF Z$="NO" GOTO 2005
- ScalarValue:Z$
+ Value:Z$
  TextConstant:"NO"
  BinaryOperator:=
 2003 PRINT "YES OR NO"\GOTO 2000
@@ -782,7 +782,7 @@
  TextConstant:"PLEASE"
  CarriageControl:;
  Reference:Z$
- ScalarValue:Z$
+ Value:Z$
  TextConstant:"YES"
  BinaryOperator:=
 2007 PRINT "SSSSSSSSSS."\GOTO 2046

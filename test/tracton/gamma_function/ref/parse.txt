@@ -47,11 +47,11 @@
 140 INPUT A$
  Reference:A$
 150 IF A$ = "G" THEN 190
- ScalarValue:A$
+ Value:A$
  TextConstant:"G"
  BinaryOperator:=
 160 IF A$ = "F" THEN 300
- ScalarValue:A$
+ Value:A$
  TextConstant:"F"
  BinaryOperator:=
 170 PRINT "INVALID RESPONSE"
@@ -68,16 +68,16 @@
  Reference:X
 210 LET K = X
  Reference:K
- ScalarValue:X
+ Value:X
  AssignmentOperator:=
 220 LET K = K - 1
  Reference:K
- ScalarValue:K
+ Value:K
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 230 IF K > = 0 THEN 260
- ScalarValue:K
+ Value:K
  NumericConstant:0
  BinaryOperator:>=
 240 PRINT "X MUST BE EQUAL TO OR GREATER THAN 1"
@@ -89,10 +89,10 @@
 260 GOSUB 490
  LineNumber:490
 270 IF (X - 1) = INT(X - 1) THEN 410
- ScalarValue:X
+ Value:X
  NumericConstant:1
  BinaryOperator:-
- ScalarValue:X
+ Value:X
  NumericConstant:1
  BinaryOperator:-
  FunctionInt
@@ -109,10 +109,10 @@
  Reference:X
 320 LET K = X
  Reference:K
- ScalarValue:X
+ Value:X
  AssignmentOperator:=
 330 IF K > = 0 THEN 360
- ScalarValue:K
+ Value:K
  NumericConstant:0
  BinaryOperator:>=
 340 PRINT "X MUST BE GREATER THAN OR EQUAL TO 0"
@@ -124,19 +124,19 @@
 360 GOSUB 490
  LineNumber:490
 370 IF X = INT(X) THEN 390
- ScalarValue:X
- ScalarValue:X
+ Value:X
+ Value:X
  FunctionInt
  BinaryOperator:=
 380 GOSUB 570
  LineNumber:570
 390 PRINT X;"! = ";K
  ITEMS
- ScalarValue:X
+ Value:X
  CarriageControl:;
  TextConstant:"! = "
  CarriageControl:;
- ScalarValue:K
+ Value:K
  CarriageControl:NL
 400 GOTO 420
  LineNumber:420
@@ -144,11 +144,11 @@
  ITEMS
  TextConstant:"GAMMA ("
  CarriageControl:;
- ScalarValue:X
+ Value:X
  CarriageControl:;
  TextConstant:") = "
  CarriageControl:;
- ScalarValue:K
+ Value:K
  CarriageControl:NL
 420 PRINT
  ITEMS
@@ -160,7 +160,7 @@
 440 INPUT L$
  Reference:L$
 450 IF L$ = "Y" THEN 470
- ScalarValue:L$
+ Value:L$
  TextConstant:"Y"
  BinaryOperator:=
 460 STOP
@@ -176,47 +176,47 @@
  AssignmentOperator:=
 500 LET J = J*K
  Reference:J
- ScalarValue:J
- ScalarValue:K
+ Value:J
+ Value:K
  BinaryOperator:*
  AssignmentOperator:=
 510 LET K = K - 1
  Reference:K
- ScalarValue:K
+ Value:K
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 520 IF K < 1 THEN 540
- ScalarValue:K
+ Value:K
  NumericConstant:1
  BinaryOperator:<
 530 GOTO 500
  LineNumber:500
 540 LET L = K
  Reference:L
- ScalarValue:K
+ Value:K
  AssignmentOperator:=
 550 LET K = J
  Reference:K
- ScalarValue:J
+ Value:J
  AssignmentOperator:=
 560 RETURN
  
 570 LET A1 = 1 + (A*L) + (B*(L^2)) + (C*(L^3))
  Reference:A1
  NumericConstant:1
- ScalarValue:A
- ScalarValue:L
+ Value:A
+ Value:L
  BinaryOperator:*
  BinaryOperator:+
- ScalarValue:B
- ScalarValue:L
+ Value:B
+ Value:L
  NumericConstant:2
  BinaryOperator:^
  BinaryOperator:*
  BinaryOperator:+
- ScalarValue:C
- ScalarValue:L
+ Value:C
+ Value:L
  NumericConstant:3
  BinaryOperator:^
  BinaryOperator:*
@@ -224,21 +224,21 @@
  AssignmentOperator:=
 580 LET A1 = A1 + (D*(L^4)) + (E*(L^5)) + (F*(L^6))
  Reference:A1
- ScalarValue:A1
- ScalarValue:D
- ScalarValue:L
+ Value:A1
+ Value:D
+ Value:L
  NumericConstant:4
  BinaryOperator:^
  BinaryOperator:*
  BinaryOperator:+
- ScalarValue:E
- ScalarValue:L
+ Value:E
+ Value:L
  NumericConstant:5
  BinaryOperator:^
  BinaryOperator:*
  BinaryOperator:+
- ScalarValue:F
- ScalarValue:L
+ Value:F
+ Value:L
  NumericConstant:6
  BinaryOperator:^
  BinaryOperator:*
@@ -246,15 +246,15 @@
  AssignmentOperator:=
 590 LET A1 = A1 + (G*(L^7)) + (H*(L^8))
  Reference:A1
- ScalarValue:A1
- ScalarValue:G
- ScalarValue:L
+ Value:A1
+ Value:G
+ Value:L
  NumericConstant:7
  BinaryOperator:^
  BinaryOperator:*
  BinaryOperator:+
- ScalarValue:H
- ScalarValue:L
+ Value:H
+ Value:L
  NumericConstant:8
  BinaryOperator:^
  BinaryOperator:*
@@ -262,8 +262,8 @@
  AssignmentOperator:=
 600 LET K = A1*K
  Reference:K
- ScalarValue:A1
- ScalarValue:K
+ Value:A1
+ Value:K
  BinaryOperator:*
  AssignmentOperator:=
 610 RETURN

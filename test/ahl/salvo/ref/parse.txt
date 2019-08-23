@@ -37,13 +37,13 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
 1070LETE(W)=-1
- ScalarValue:W
+ Value:W
  Reference:E
  NumericConstant:1
  UnaryOperator:-
  AssignmentOperator:=
 1080LETH(W)=-1
- ScalarValue:W
+ Value:W
  Reference:H
  NumericConstant:1
  UnaryOperator:-
@@ -59,8 +59,8 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 1120LETB(X,Y)=0
- ScalarValue:X
- ScalarValue:Y
+ Value:X
+ Value:Y
  Reference:B
  NumericConstant:0
  AssignmentOperator:=
@@ -73,12 +73,12 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
 1160LETF(X)=0
- ScalarValue:X
+ Value:X
  Reference:F
  NumericConstant:0
  AssignmentOperator:=
 1170LETG(X)=0
- ScalarValue:X
+ Value:X
  Reference:G
  NumericConstant:0
  AssignmentOperator:=
@@ -93,8 +93,8 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 1210LETA(X,Y)=0
- ScalarValue:X
- ScalarValue:Y
+ Value:X
+ Value:Y
  Reference:A
  NumericConstant:0
  AssignmentOperator:=
@@ -115,18 +115,18 @@
  LineNumber:2910
 1270DEFFNA(K)=(5-K)*3-2*INT(K/4)+SGN(K-1)-1
  NumericConstant:5
- ScalarValue:K
+ Value:K
  BinaryOperator:-
  NumericConstant:3
  BinaryOperator:*
  NumericConstant:2
- ScalarValue:K
+ Value:K
  NumericConstant:4
  BinaryOperator:/
  FunctionInt
  BinaryOperator:*
  BinaryOperator:-
- ScalarValue:K
+ Value:K
  NumericConstant:1
  BinaryOperator:-
  FunctionSgn
@@ -134,58 +134,58 @@
  NumericConstant:1
  BinaryOperator:-
 1280DEFFNB(K)=K+INT(K/4)-SGN(K-1)
- ScalarValue:K
- ScalarValue:K
+ Value:K
+ Value:K
  NumericConstant:4
  BinaryOperator:/
  FunctionInt
  BinaryOperator:+
- ScalarValue:K
+ Value:K
  NumericConstant:1
  BinaryOperator:-
  FunctionSgn
  BinaryOperator:-
 1290IFV+V2+V*V2=0THEN1260
- ScalarValue:V
- ScalarValue:V2
+ Value:V
+ Value:V2
  BinaryOperator:+
- ScalarValue:V
- ScalarValue:V2
+ Value:V
+ Value:V2
  BinaryOperator:*
  BinaryOperator:+
  NumericConstant:0
  BinaryOperator:=
 1300IFY+V*FNB(K)>10THEN1260
- ScalarValue:Y
- ScalarValue:V
- ScalarValue:K
+ Value:Y
+ Value:V
+ Value:K
  UserFunction
  BinaryOperator:*
  BinaryOperator:+
  NumericConstant:10
  BinaryOperator:>
 1310IFY+V*FNB(K)<1THEN1260
- ScalarValue:Y
- ScalarValue:V
- ScalarValue:K
+ Value:Y
+ Value:V
+ Value:K
  UserFunction
  BinaryOperator:*
  BinaryOperator:+
  NumericConstant:1
  BinaryOperator:<
 1320IFX+V2*FNB(K)>10THEN1260
- ScalarValue:X
- ScalarValue:V2
- ScalarValue:K
+ Value:X
+ Value:V2
+ Value:K
  UserFunction
  BinaryOperator:*
  BinaryOperator:+
  NumericConstant:10
  BinaryOperator:>
 1330IFX+V2*FNB(K)<1THEN1260
- ScalarValue:X
- ScalarValue:V2
- ScalarValue:K
+ Value:X
+ Value:V2
+ Value:K
  UserFunction
  BinaryOperator:*
  BinaryOperator:+
@@ -193,39 +193,39 @@
  BinaryOperator:<
 1340LETU6=U6+1
  Reference:U6
- ScalarValue:U6
+ Value:U6
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 1350IFU6>25THEN1190
- ScalarValue:U6
+ Value:U6
  NumericConstant:25
  BinaryOperator:>
 1360FORZ=0TOFNB(K)
  control: Variable:Z
  start:   ["NumericConstant:0"]
- end:     ["ScalarValue:K", "UserFunction"]
+ end:     ["Value:K", "UserFunction"]
 1370LETF(Z+FNA(K))=X+V2*2
- ScalarValue:Z
- ScalarValue:K
+ Value:Z
+ Value:K
  UserFunction
  BinaryOperator:+
  Reference:F
- ScalarValue:X
- ScalarValue:V2
+ Value:X
+ Value:V2
  NumericConstant:2
  BinaryOperator:*
  BinaryOperator:+
  AssignmentOperator:=
 1380LETG(Z+FNA(K))=Y+V*Z
- ScalarValue:Z
- ScalarValue:K
+ Value:Z
+ Value:K
  UserFunction
  BinaryOperator:+
  Reference:G
- ScalarValue:Y
- ScalarValue:V
- ScalarValue:Z
+ Value:Y
+ Value:V
+ Value:Z
  BinaryOperator:*
  BinaryOperator:+
  AssignmentOperator:=
@@ -233,29 +233,29 @@
  Variable:Z
 1400LETU8=FNA(K)
  Reference:U8
- ScalarValue:K
+ Value:K
  UserFunction
  AssignmentOperator:=
 1410FORZ2=U8TOU8+FNB(K)
  control: Variable:Z2
- start:   ["ScalarValue:U8"]
- end:     ["ScalarValue:U8", "ScalarValue:K", "UserFunction", "BinaryOperator:+"]
+ start:   ["Value:U8"]
+ end:     ["Value:U8", "Value:K", "UserFunction", "BinaryOperator:+"]
 1420FORZ3=1TOU8-1
  control: Variable:Z3
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:U8", "NumericConstant:1", "BinaryOperator:-"]
+ end:     ["Value:U8", "NumericConstant:1", "BinaryOperator:-"]
 1430IFSQR((F(Z3)-F(Z2))^2+(G(Z3)-G(Z2))^2)<3.59THEN1260
- ScalarValue:Z3
- ScalarValue:F
- ScalarValue:Z2
- ScalarValue:F
+ Value:Z3
+ Value:F
+ Value:Z2
+ Value:F
  BinaryOperator:-
  NumericConstant:2
  BinaryOperator:^
- ScalarValue:Z3
- ScalarValue:G
- ScalarValue:Z2
- ScalarValue:G
+ Value:Z3
+ Value:G
+ Value:Z2
+ Value:G
  BinaryOperator:-
  NumericConstant:2
  BinaryOperator:^
@@ -270,23 +270,23 @@
 1460FORZ=0TOFNB(K)
  control: Variable:Z
  start:   ["NumericConstant:0"]
- end:     ["ScalarValue:K", "UserFunction"]
+ end:     ["Value:K", "UserFunction"]
 1470LETA(F(Z+U8),G(Z+U8))=.5+SGN(K-1)*(K-1.5)
- ScalarValue:Z
- ScalarValue:U8
+ Value:Z
+ Value:U8
  BinaryOperator:+
- ScalarValue:F
- ScalarValue:Z
- ScalarValue:U8
+ Value:F
+ Value:Z
+ Value:U8
  BinaryOperator:+
- ScalarValue:G
+ Value:G
  Reference:A
  NumericConstant:.5
- ScalarValue:K
+ Value:K
  NumericConstant:1
  BinaryOperator:-
  FunctionSgn
- ScalarValue:K
+ Value:K
  NumericConstant:1.5
  BinaryOperator:-
  BinaryOperator:*
@@ -312,8 +312,8 @@
  Reference:Y
  Reference:Z
 1540LETB(Y,Z)=3
- ScalarValue:Y
- ScalarValue:Z
+ Value:Y
+ Value:Z
  Reference:B
  NumericConstant:3
  AssignmentOperator:=
@@ -331,8 +331,8 @@
  Reference:Y
  Reference:Z
 1590LETB(Y,Z)=2
- ScalarValue:Y
- ScalarValue:Z
+ Value:Y
+ Value:Z
  Reference:B
  NumericConstant:2
  AssignmentOperator:=
@@ -350,8 +350,8 @@
  Reference:Y
  Reference:Z
 1640LETB(Y,Z)=1
- ScalarValue:Y
- ScalarValue:Z
+ Value:Y
+ Value:Z
  Reference:B
  NumericConstant:1
  AssignmentOperator:=
@@ -369,8 +369,8 @@
  Reference:Y
  Reference:Z
 1690LETB(Y,Z)=.5
- ScalarValue:Y
- ScalarValue:Z
+ Value:Y
+ Value:Z
  Reference:B
  NumericConstant:.5
  AssignmentOperator:=
@@ -383,7 +383,7 @@
 1720INPUTJ$
  Reference:J$
 1730IFJ$<>"WHERE ARE YOUR SHIPS?"THEN1890
- ScalarValue:J$
+ Value:J$
  TextConstant:"WHERE ARE YOUR SHIPS?"
  BinaryOperator:<>
 1740PRINT"BATTLESHIP"
@@ -396,11 +396,11 @@
  end:     ["NumericConstant:5"]
 1760PRINTF(Z);G(Z)
  ITEMS
- ScalarValue:Z
- ScalarValue:F
+ Value:Z
+ Value:F
  CarriageControl:;
- ScalarValue:Z
- ScalarValue:G
+ Value:Z
+ Value:G
  CarriageControl:NL
 1770NEXTZ
  Variable:Z
@@ -411,26 +411,26 @@
 1790PRINTF(6);G(6)
  ITEMS
  NumericConstant:6
- ScalarValue:F
+ Value:F
  CarriageControl:;
  NumericConstant:6
- ScalarValue:G
+ Value:G
  CarriageControl:NL
 1800PRINTF(7);G(7)
  ITEMS
  NumericConstant:7
- ScalarValue:F
+ Value:F
  CarriageControl:;
  NumericConstant:7
- ScalarValue:G
+ Value:G
  CarriageControl:NL
 1810PRINTF(8);G(8)
  ITEMS
  NumericConstant:8
- ScalarValue:F
+ Value:F
  CarriageControl:;
  NumericConstant:8
- ScalarValue:G
+ Value:G
  CarriageControl:NL
 1820PRINT"DESTROYER<A>"
  ITEMS
@@ -439,18 +439,18 @@
 1830PRINTF(9);G(9)
  ITEMS
  NumericConstant:9
- ScalarValue:F
+ Value:F
  CarriageControl:;
  NumericConstant:9
- ScalarValue:G
+ Value:G
  CarriageControl:NL
 1840PRINTF(10);G(10)
  ITEMS
  NumericConstant:10
- ScalarValue:F
+ Value:F
  CarriageControl:;
  NumericConstant:10
- ScalarValue:G
+ Value:G
  CarriageControl:NL
 1850PRINT"DESTROYER<B>"
  ITEMS
@@ -459,18 +459,18 @@
 1860PRINTF(11);G(11)
  ITEMS
  NumericConstant:11
- ScalarValue:F
+ Value:F
  CarriageControl:;
  NumericConstant:11
- ScalarValue:G
+ Value:G
  CarriageControl:NL
 1870PRINTF(12);G(12)
  ITEMS
  NumericConstant:12
- ScalarValue:F
+ Value:F
  CarriageControl:;
  NumericConstant:12
- ScalarValue:G
+ Value:G
  CarriageControl:NL
 1880GOTO1710
  LineNumber:1710
@@ -488,18 +488,18 @@
  ITEMS
  CarriageControl:NL
 1930IFJ$<>"YES"THEN2620
- ScalarValue:J$
+ Value:J$
  TextConstant:"YES"
  BinaryOperator:<>
 1940REM**************START
  Remark:**************START
 1950IFJ$<>"YES"THEN1990
- ScalarValue:J$
+ Value:J$
  TextConstant:"YES"
  BinaryOperator:<>
 1960LETC=C+1
  Reference:C
- ScalarValue:C
+ Value:C
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -510,7 +510,7 @@
  ITEMS
  TextConstant:"TURN"
  CarriageControl:
- ScalarValue:C
+ Value:C
  CarriageControl:NL
 1990LETA=0
  Reference:A
@@ -530,10 +530,10 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 2030IFB(X,Y)=WTHEN2070
- ScalarValue:X
- ScalarValue:Y
- ScalarValue:B
- ScalarValue:W
+ Value:X
+ Value:Y
+ Value:B
+ Value:W
  BinaryOperator:=
 2040NEXTY
  Variable:Y
@@ -543,8 +543,8 @@
  LineNumber:2080
 2070LETA=A+INT(W+.5)
  Reference:A
- ScalarValue:A
- ScalarValue:W
+ Value:A
+ Value:W
  NumericConstant:.5
  BinaryOperator:+
  FunctionInt
@@ -557,22 +557,22 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
 2100LETC(W)=0
- ScalarValue:W
+ Value:W
  Reference:C
  NumericConstant:0
  AssignmentOperator:=
 2110LETD(W)=0
- ScalarValue:W
+ Value:W
  Reference:D
  NumericConstant:0
  AssignmentOperator:=
 2120LETF(W)=0
- ScalarValue:W
+ Value:W
  Reference:F
  NumericConstant:0
  AssignmentOperator:=
 2130LETG(W)=0
- ScalarValue:W
+ Value:W
  Reference:G
  NumericConstant:0
  AssignmentOperator:=
@@ -591,14 +591,14 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 2180IFA(X,Y)>10THEN2200
- ScalarValue:X
- ScalarValue:Y
- ScalarValue:A
+ Value:X
+ Value:Y
+ Value:A
  NumericConstant:10
  BinaryOperator:>
 2190LETP3=P3+1
  Reference:P3
- ScalarValue:P3
+ Value:P3
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -610,13 +610,13 @@
  ITEMS
  TextConstant:"YOU HAVE"
  CarriageControl:
- ScalarValue:A
+ Value:A
  CarriageControl:
  TextConstant:"SHOTS"
  CarriageControl:NL
 2230IFP3>=ATHEN2260
- ScalarValue:P3
- ScalarValue:A
+ Value:P3
+ Value:A
  BinaryOperator:>=
 2240PRINT"THE NUMBER OF YOUR SHOTS EXCEEDS THE NUMBER OF BLANK SQUARES"
  ITEMS
@@ -625,7 +625,7 @@
 2250GOTO2890
  LineNumber:2890
 2260IFA<>0THEN2290
- ScalarValue:A
+ Value:A
  NumericConstant:0
  BinaryOperator:<>
 2270PRINT"I HAVE WON"
@@ -637,34 +637,34 @@
 2290FORW=1TOA
  control: Variable:W
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:A"]
+ end:     ["Value:A"]
 2300INPUTX,Y
  Reference:X
  Reference:Y
 2310IFX<>INT(X)THEN2370
- ScalarValue:X
- ScalarValue:X
+ Value:X
+ Value:X
  FunctionInt
  BinaryOperator:<>
 2320IFX>10THEN2370
- ScalarValue:X
+ Value:X
  NumericConstant:10
  BinaryOperator:>
 2330IFX<1THEN2370 
- ScalarValue:X
+ Value:X
  NumericConstant:1
  BinaryOperator:<
 2340IFY<>INT(Y)THEN2370 
- ScalarValue:Y
- ScalarValue:Y
+ Value:Y
+ Value:Y
  FunctionInt
  BinaryOperator:<>
 2350IFY>10THEN2370 
- ScalarValue:Y
+ Value:Y
  NumericConstant:10
  BinaryOperator:>
 2360IFY>=1THEN2390
- ScalarValue:Y
+ Value:Y
  NumericConstant:1
  BinaryOperator:>=
 2370PRINT"ILLEGAL. ENTER AGAIN"
@@ -674,20 +674,20 @@
 2380GOTO2300
  LineNumber:2300
 2390IFA(X,Y)>10THEN2440
- ScalarValue:X
- ScalarValue:Y
- ScalarValue:A
+ Value:X
+ Value:Y
+ Value:A
  NumericConstant:10
  BinaryOperator:>
 2400LETC(W)=X
- ScalarValue:W
+ Value:W
  Reference:C
- ScalarValue:X
+ Value:X
  AssignmentOperator:=
 2410LETD(W)=Y
- ScalarValue:W
+ Value:W
  Reference:D
- ScalarValue:Y
+ Value:Y
  AssignmentOperator:=
 2420NEXTW
  Variable:W
@@ -697,9 +697,9 @@
  ITEMS
  TextConstant:"YOU SHOT THERE BEFORE ON TURN"
  CarriageControl:
- ScalarValue:X
- ScalarValue:Y
- ScalarValue:A
+ Value:X
+ Value:Y
+ Value:A
  NumericConstant:10
  BinaryOperator:-
  CarriageControl:NL
@@ -708,47 +708,47 @@
 2460FORW=1TOA
  control: Variable:W
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:A"]
+ end:     ["Value:A"]
 2470IFA(C(W),D(W))=3THEN2540
- ScalarValue:W
- ScalarValue:C
- ScalarValue:W
- ScalarValue:D
- ScalarValue:A
+ Value:W
+ Value:C
+ Value:W
+ Value:D
+ Value:A
  NumericConstant:3
  BinaryOperator:=
 2480IFA(C(W),D(W))=2THEN2560
- ScalarValue:W
- ScalarValue:C
- ScalarValue:W
- ScalarValue:D
- ScalarValue:A
+ Value:W
+ Value:C
+ Value:W
+ Value:D
+ Value:A
  NumericConstant:2
  BinaryOperator:=
 2490IFA(C(W),D(W))=1THEN2580
- ScalarValue:W
- ScalarValue:C
- ScalarValue:W
- ScalarValue:D
- ScalarValue:A
+ Value:W
+ Value:C
+ Value:W
+ Value:D
+ Value:A
  NumericConstant:1
  BinaryOperator:=
 2500IFA(C(W),D(W))=.5THEN2600
- ScalarValue:W
- ScalarValue:C
- ScalarValue:W
- ScalarValue:D
- ScalarValue:A
+ Value:W
+ Value:C
+ Value:W
+ Value:D
+ Value:A
  NumericConstant:.5
  BinaryOperator:=
 2510LETA(C(W),D(W))=10+C
- ScalarValue:W
- ScalarValue:C
- ScalarValue:W
- ScalarValue:D
+ Value:W
+ Value:C
+ Value:W
+ Value:D
  Reference:A
  NumericConstant:10
- ScalarValue:C
+ Value:C
  BinaryOperator:+
  AssignmentOperator:=
 2520NEXTW
@@ -784,12 +784,12 @@
  NumericConstant:0
  AssignmentOperator:=
 2630IFJ$="YES"THEN2670
- ScalarValue:J$
+ Value:J$
  TextConstant:"YES"
  BinaryOperator:=
 2640LETC=C+1
  Reference:C
- ScalarValue:C
+ Value:C
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -800,7 +800,7 @@
  ITEMS
  TextConstant:"TURN"
  CarriageControl:
- ScalarValue:C
+ Value:C
  CarriageControl:NL
 2670LETA=0
  Reference:A
@@ -820,10 +820,10 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 2710IFA(X,Y)=WTHEN2750
- ScalarValue:X
- ScalarValue:Y
- ScalarValue:A
- ScalarValue:W
+ Value:X
+ Value:Y
+ Value:A
+ Value:W
  BinaryOperator:=
 2720NEXTY
  Variable:Y
@@ -833,8 +833,8 @@
  LineNumber:2760
 2750LETA=A+INT(W+.5)
  Reference:A
- ScalarValue:A
- ScalarValue:W
+ Value:A
+ Value:W
  NumericConstant:.5
  BinaryOperator:+
  FunctionInt
@@ -855,14 +855,14 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 2800IFB(X,Y)>10THEN2820 
- ScalarValue:X
- ScalarValue:Y
- ScalarValue:B
+ Value:X
+ Value:Y
+ Value:B
  NumericConstant:10
  BinaryOperator:>
 2810LETP3=P3+1
  Reference:P3
- ScalarValue:P3
+ Value:P3
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -874,13 +874,13 @@
  ITEMS
  TextConstant:"I HAVE"
  CarriageControl:
- ScalarValue:A
+ Value:A
  CarriageControl:
  TextConstant:"SHOTS"
  CarriageControl:NL
 2850IFP3>ATHEN2880
- ScalarValue:P3
- ScalarValue:A
+ Value:P3
+ Value:A
  BinaryOperator:>
 2860PRINT"THE NyMBER OF MY SHOTS EXCEEDS THE NUMBER QF BLANK SQUARES"
  ITEMS
@@ -889,7 +889,7 @@
 2870GOTO2270
  LineNumber:2270
 2880IFA<>0THEN2960
- ScalarValue:A
+ Value:A
  NumericConstant:0
  BinaryOperator:<>
 2890PRINT"YOU HAVE WON"
@@ -949,8 +949,8 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
 2970IFH(W)>0THEN3800
- ScalarValue:W
- ScalarValue:H
+ Value:W
+ Value:H
  NumericConstant:0
  BinaryOperator:>
 2980NEXTW
@@ -975,20 +975,20 @@
  AssignmentOperator:=
 3050LETR3=R3+1
  Reference:R3
- ScalarValue:R3
+ Value:R3
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 3060IFR3>100THEN3010
- ScalarValue:R3
+ Value:R3
  NumericConstant:100
  BinaryOperator:>
 3070IFX>10THEN3110
- ScalarValue:X
+ Value:X
  NumericConstant:10
  BinaryOperator:>
 3080IFX>0THEN3120
- ScalarValue:X
+ Value:X
  NumericConstant:0
  BinaryOperator:>
 3090LETX=1+INT(RND(-1)*2.5)
@@ -1016,11 +1016,11 @@
  BinaryOperator:-
  AssignmentOperator:=
 3120IFY>10THEN3160
- ScalarValue:Y
+ Value:Y
  NumericConstant:10
  BinaryOperator:>
 3130IFY>0THEN3270
- ScalarValue:Y
+ Value:Y
  NumericConstant:0
  BinaryOperator:>
 3140LETY=1+INT(RND(-1)*2.5)
@@ -1050,21 +1050,21 @@
 3170GOTO3270
  LineNumber:3270
 3180LETF(W)=X
- ScalarValue:W
+ Value:W
  Reference:F
- ScalarValue:X
+ Value:X
  AssignmentOperator:=
 3190LETG(W)=Y
- ScalarValue:W
+ Value:W
  Reference:G
- ScalarValue:Y
+ Value:Y
  AssignmentOperator:=
 3200IFW=ATHEN3380
- ScalarValue:W
- ScalarValue:A
+ Value:W
+ Value:A
  BinaryOperator:=
 3210IFR2=6THEN3030
- ScalarValue:R2
+ Value:R2
  NumericConstant:6
  BinaryOperator:=
 3220READX1,Y1
@@ -1072,7 +1072,7 @@
  Reference:Y1
 3230LETR2=R2+1
  Reference:R2
- ScalarValue:R2
+ Value:R2
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -1094,124 +1094,124 @@
  NumericConstant:1
 3250LETX=X+X1
  Reference:X
- ScalarValue:X
- ScalarValue:X1
+ Value:X
+ Value:X1
  BinaryOperator:+
  AssignmentOperator:=
 3260LETY=Y+Y1
  Reference:Y
- ScalarValue:Y
- ScalarValue:Y1
+ Value:Y
+ Value:Y1
  BinaryOperator:+
  AssignmentOperator:=
 3270IFX>10THEN3210
- ScalarValue:X
+ Value:X
  NumericConstant:10
  BinaryOperator:>
 3280IFX<1THEN3210
- ScalarValue:X
+ Value:X
  NumericConstant:1
  BinaryOperator:<
 3290IFY>10THEN3210
- ScalarValue:Y
+ Value:Y
  NumericConstant:10
  BinaryOperator:>
 3300IFY<1THEN3210
- ScalarValue:Y
+ Value:Y
  NumericConstant:1
  BinaryOperator:<
 3310IFB(X,Y)>10THEN3210
- ScalarValue:X
- ScalarValue:Y
- ScalarValue:B
+ Value:X
+ Value:Y
+ Value:B
  NumericConstant:10
  BinaryOperator:>
 3320FORQ9=1TOW
  control: Variable:Q9
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:W"]
+ end:     ["Value:W"]
 3330IFF(Q9)<>XTHEN3350
- ScalarValue:Q9
- ScalarValue:F
- ScalarValue:X
+ Value:Q9
+ Value:F
+ Value:X
  BinaryOperator:<>
 3340IFG(Q9)=YTHEN3210
- ScalarValue:Q9
- ScalarValue:G
- ScalarValue:Y
+ Value:Q9
+ Value:G
+ Value:Y
  BinaryOperator:=
 3350NEXTQ9
  Variable:Q9
 3360LETW=W+1
  Reference:W
- ScalarValue:W
+ Value:W
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 3370GOTO3180
  LineNumber:3180
 3380IFK$<>"YES"THEN3420
- ScalarValue:K$
+ Value:K$
  TextConstant:"YES"
  BinaryOperator:<>
 3390FORZ5=1TOA
  control: Variable:Z5
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:A"]
+ end:     ["Value:A"]
 3400PRINTF(Z5);G(Z5)
  ITEMS
- ScalarValue:Z5
- ScalarValue:F
+ Value:Z5
+ Value:F
  CarriageControl:;
- ScalarValue:Z5
- ScalarValue:G
+ Value:Z5
+ Value:G
  CarriageControl:NL
 3410NEXTZ5
  Variable:Z5
 3420FORW=1TOA
  control: Variable:W
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:A"]
+ end:     ["Value:A"]
 3430IFB(F(W),G(W))=3THEN3500
- ScalarValue:W
- ScalarValue:F
- ScalarValue:W
- ScalarValue:G
- ScalarValue:B
+ Value:W
+ Value:F
+ Value:W
+ Value:G
+ Value:B
  NumericConstant:3
  BinaryOperator:=
 3440IFB(F(W),G(W))=2THEN3520 
- ScalarValue:W
- ScalarValue:F
- ScalarValue:W
- ScalarValue:G
- ScalarValue:B
+ Value:W
+ Value:F
+ Value:W
+ Value:G
+ Value:B
  NumericConstant:2
  BinaryOperator:=
 3450IFB(F(W),G(W))=1THEN3560 
- ScalarValue:W
- ScalarValue:F
- ScalarValue:W
- ScalarValue:G
- ScalarValue:B
+ Value:W
+ Value:F
+ Value:W
+ Value:G
+ Value:B
  NumericConstant:1
  BinaryOperator:=
 3460IFB(F(W),G(W))=.5THEN3540 
- ScalarValue:W
- ScalarValue:F
- ScalarValue:W
- ScalarValue:G
- ScalarValue:B
+ Value:W
+ Value:F
+ Value:W
+ Value:G
+ Value:B
  NumericConstant:.5
  BinaryOperator:=
 3470LETB(F(W),G(W))=10+C
- ScalarValue:W
- ScalarValue:F
- ScalarValue:W
- ScalarValue:G
+ Value:W
+ Value:F
+ Value:W
+ Value:G
  Reference:B
  NumericConstant:10
- ScalarValue:C
+ Value:C
  BinaryOperator:+
  AssignmentOperator:=
 3480NEXTW
@@ -1245,26 +1245,26 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
 3580IFE(Q)<>-1THEN3730
- ScalarValue:Q
- ScalarValue:E
+ Value:Q
+ Value:E
  NumericConstant:1
  UnaryOperator:-
  BinaryOperator:<>
 3590LETE(Q)=10+C
- ScalarValue:Q
+ Value:Q
  Reference:E
  NumericConstant:10
- ScalarValue:C
+ Value:C
  BinaryOperator:+
  AssignmentOperator:=
 3600LETH(Q)=B(F(W),G(W))
- ScalarValue:Q
+ Value:Q
  Reference:H
- ScalarValue:W
- ScalarValue:F
- ScalarValue:W
- ScalarValue:G
- ScalarValue:B
+ Value:W
+ Value:F
+ Value:W
+ Value:G
+ Value:B
  AssignmentOperator:=
 3610LETM3=0
  Reference:M3
@@ -1275,30 +1275,30 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
 3630IFH(M2)<>H(Q)THEN3650 
- ScalarValue:M2
- ScalarValue:H
- ScalarValue:Q
- ScalarValue:H
+ Value:M2
+ Value:H
+ Value:Q
+ Value:H
  BinaryOperator:<>
 3640M3=M3+1
  Reference:M3
- ScalarValue:M3
+ Value:M3
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 3650NEXTM2
  Variable:M2
 3660IFM3<>INT(H(Q)+.5)+1+INT(INT(H(Q)+.5)/3)THEN3470
- ScalarValue:M3
- ScalarValue:Q
- ScalarValue:H
+ Value:M3
+ Value:Q
+ Value:H
  NumericConstant:.5
  BinaryOperator:+
  FunctionInt
  NumericConstant:1
  BinaryOperator:+
- ScalarValue:Q
- ScalarValue:H
+ Value:Q
+ Value:H
  NumericConstant:.5
  BinaryOperator:+
  FunctionInt
@@ -1312,19 +1312,19 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
 3680IFH(M2)<>H(Q)THEN3710
- ScalarValue:M2
- ScalarValue:H
- ScalarValue:Q
- ScalarValue:H
+ Value:M2
+ Value:H
+ Value:Q
+ Value:H
  BinaryOperator:<>
 3690LETE(M2)=-1
- ScalarValue:M2
+ Value:M2
  Reference:E
  NumericConstant:1
  UnaryOperator:-
  AssignmentOperator:=
 3700LETM(M2)=-1
- ScalarValue:M2
+ Value:M2
  Reference:M
  NumericConstant:1
  UnaryOperator:-
@@ -1347,23 +1347,23 @@
  ITEMS
  TextConstant:"E("
  CarriageControl:
- ScalarValue:Q
+ Value:Q
  CarriageControl:
  TextConstant:")="
  CarriageControl:
- ScalarValue:Q
- ScalarValue:E
+ Value:Q
+ Value:E
  CarriageControl:NL
 3770PRINT"H("Q")="H(Q)
  ITEMS
  TextConstant:"H("
  CarriageControl:
- ScalarValue:Q
+ Value:Q
  CarriageControl:
  TextConstant:")="
  CarriageControl:
- ScalarValue:Q
- ScalarValue:H
+ Value:Q
+ Value:H
  CarriageControl:NL
 3780NEXTQ
  Variable:Q
@@ -1380,8 +1380,8 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 3830LETK(R,S)=0
- ScalarValue:R
- ScalarValue:S
+ Value:R
+ Value:S
  Reference:K
  NumericConstant:0
  AssignmentOperator:=
@@ -1394,8 +1394,8 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
 3870IFE(U)<10THEN4020
- ScalarValue:U
- ScalarValue:E
+ Value:U
+ Value:E
  NumericConstant:10
  BinaryOperator:<
 3880FORR=1TO10
@@ -1407,14 +1407,14 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 3900IFB(R,S)<10THEN3930
- ScalarValue:R
- ScalarValue:S
- ScalarValue:B
+ Value:R
+ Value:S
+ Value:B
  NumericConstant:10
  BinaryOperator:<
 3910LETK(R,S)=-1000000
- ScalarValue:R
- ScalarValue:S
+ Value:R
+ Value:S
  Reference:K
  NumericConstant:1000000
  UnaryOperator:-
@@ -1423,46 +1423,46 @@
  LineNumber:4000
 3930FORM=SGN(1-R)TOSGN(10-R)
  control: Variable:M
- start:   ["NumericConstant:1", "ScalarValue:R", "BinaryOperator:-", "FunctionSgn"]
- end:     ["NumericConstant:10", "ScalarValue:R", "BinaryOperator:-", "FunctionSgn"]
+ start:   ["NumericConstant:1", "Value:R", "BinaryOperator:-", "FunctionSgn"]
+ end:     ["NumericConstant:10", "Value:R", "BinaryOperator:-", "FunctionSgn"]
 3940FORN=SGN(1-S)TOSGN(10-S)
  control: Variable:N
- start:   ["NumericConstant:1", "ScalarValue:S", "BinaryOperator:-", "FunctionSgn"]
- end:     ["NumericConstant:10", "ScalarValue:S", "BinaryOperator:-", "FunctionSgn"]
+ start:   ["NumericConstant:1", "Value:S", "BinaryOperator:-", "FunctionSgn"]
+ end:     ["NumericConstant:10", "Value:S", "BinaryOperator:-", "FunctionSgn"]
 3950IFN+M+N*M=0THEN3980
- ScalarValue:N
- ScalarValue:M
+ Value:N
+ Value:M
  BinaryOperator:+
- ScalarValue:N
- ScalarValue:M
+ Value:N
+ Value:M
  BinaryOperator:*
  BinaryOperator:+
  NumericConstant:0
  BinaryOperator:=
 3960IFB(R+M,S+N)<>E(U)THEN3980
- ScalarValue:R
- ScalarValue:M
+ Value:R
+ Value:M
  BinaryOperator:+
- ScalarValue:S
- ScalarValue:N
+ Value:S
+ Value:N
  BinaryOperator:+
- ScalarValue:B
- ScalarValue:U
- ScalarValue:E
+ Value:B
+ Value:U
+ Value:E
  BinaryOperator:<>
 3970LETK(R,S)=K(R,S)+E(U)-2*INT(H(U)+5)
- ScalarValue:R
- ScalarValue:S
+ Value:R
+ Value:S
  Reference:K
- ScalarValue:R
- ScalarValue:S
- ScalarValue:K
- ScalarValue:U
- ScalarValue:E
+ Value:R
+ Value:S
+ Value:K
+ Value:U
+ Value:E
  BinaryOperator:+
  NumericConstant:2
- ScalarValue:U
- ScalarValue:H
+ Value:U
+ Value:H
  NumericConstant:5
  BinaryOperator:+
  FunctionInt
@@ -1482,16 +1482,16 @@
 4030FORR=1TOA
  control: Variable:R
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:A"]
+ end:     ["Value:A"]
 4040LETF(R)=R
- ScalarValue:R
+ Value:R
  Reference:F
- ScalarValue:R
+ Value:R
  AssignmentOperator:=
 4050LETG(R)=R
- ScalarValue:R
+ Value:R
  Reference:G
- ScalarValue:R
+ Value:R
  AssignmentOperator:=
 4060NEXTR
  Variable:R
@@ -1510,68 +1510,68 @@
 4100FORM=1TOA
  control: Variable:M
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:A"]
+ end:     ["Value:A"]
 4110IFK(F(M),G(M))>K(F(Q9),G(Q9))THEN4130
- ScalarValue:M
- ScalarValue:F
- ScalarValue:M
- ScalarValue:G
- ScalarValue:K
- ScalarValue:Q9
- ScalarValue:F
- ScalarValue:Q9
- ScalarValue:G
- ScalarValue:K
+ Value:M
+ Value:F
+ Value:M
+ Value:G
+ Value:K
+ Value:Q9
+ Value:F
+ Value:Q9
+ Value:G
+ Value:K
  BinaryOperator:>
 4120LETQ9=M
  Reference:Q9
- ScalarValue:M
+ Value:M
  AssignmentOperator:=
 4130NEXTM
  Variable:M
 4131 IF R>ATHEN4140
- ScalarValue:R
- ScalarValue:A
+ Value:R
+ Value:A
  BinaryOperator:>
 4132 IF R=S THEN 4210
- ScalarValue:R
- ScalarValue:S
+ Value:R
+ Value:S
  BinaryOperator:=
 4140IFK(R,S)<K(F(Q9),G(Q9))THEN4210
- ScalarValue:R
- ScalarValue:S
- ScalarValue:K
- ScalarValue:Q9
- ScalarValue:F
- ScalarValue:Q9
- ScalarValue:G
- ScalarValue:K
+ Value:R
+ Value:S
+ Value:K
+ Value:Q9
+ Value:F
+ Value:Q9
+ Value:G
+ Value:K
  BinaryOperator:<
 4150FORM=1TOA
  control: Variable:M
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:A"]
+ end:     ["Value:A"]
 4160IFF(M)<>RTHEN4190
- ScalarValue:M
- ScalarValue:F
- ScalarValue:R
+ Value:M
+ Value:F
+ Value:R
  BinaryOperator:<>
 4170IFG(M)=STHEN4210
- ScalarValue:M
- ScalarValue:G
- ScalarValue:S
+ Value:M
+ Value:G
+ Value:S
  BinaryOperator:=
 4180NEXTM
  Variable:M
 4190LETF(Q9)=R
- ScalarValue:Q9
+ Value:Q9
  Reference:F
- ScalarValue:R
+ Value:R
  AssignmentOperator:=
 4200LETG(Q9)=S
- ScalarValue:Q9
+ Value:Q9
  Reference:G
- ScalarValue:S
+ Value:S
  AssignmentOperator:=
 4210NEXTS
  Variable:S

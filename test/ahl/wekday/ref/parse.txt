@@ -18,17 +18,17 @@
  Reference:D1
  Reference:Y1
 150 IF Y1>100 THEN 170
- ScalarValue:Y1
+ Value:Y1
  NumericConstant:100
  BinaryOperator:>
 160 LET Y1 = Y1 + 1900
  Reference:Y1
- ScalarValue:Y1
+ Value:Y1
  NumericConstant:1900
  BinaryOperator:+
  AssignmentOperator:=
 170 DEF FNA(A)=INT(A/4)
- ScalarValue:A
+ Value:A
  NumericConstant:4
  BinaryOperator:/
  FunctionInt
@@ -36,7 +36,7 @@
  NumericConstant:12
  Declaration:T
 190 DEF FNB(A)=INT(A/7)
- ScalarValue:A
+ Value:A
  NumericConstant:7
  BinaryOperator:/
  FunctionInt
@@ -45,7 +45,7 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
 220 READ T(I)
- ScalarValue:I
+ Value:I
  Reference:T
 230 NEXT I
  Variable:I
@@ -75,20 +75,20 @@
  ITEMS
  CarriageControl:NL
 270 IF Y - 75 >0 THEN 280
- ScalarValue:Y
+ Value:Y
  NumericConstant:75
  BinaryOperator:-
  NumericConstant:0
  BinaryOperator:>
 275 LET Y = Y+1900
  Reference:Y
- ScalarValue:Y
+ Value:Y
  NumericConstant:1900
  BinaryOperator:+
  AssignmentOperator:=
 280 LET I1 = INT((Y-1500)/100)
  Reference:I1
- ScalarValue:Y
+ Value:Y
  NumericConstant:1500
  BinaryOperator:-
  NumericConstant:100
@@ -96,17 +96,17 @@
  FunctionInt
  AssignmentOperator:=
 290 IF Y-1582<0 THEN 1300
- ScalarValue:Y
+ Value:Y
  NumericConstant:1582
  BinaryOperator:-
  NumericConstant:0
  BinaryOperator:<
 300 LET A = I1*5+(I1+3)/4
  Reference:A
- ScalarValue:I1
+ Value:I1
  NumericConstant:5
  BinaryOperator:*
- ScalarValue:I1
+ Value:I1
  NumericConstant:3
  BinaryOperator:+
  NumericConstant:4
@@ -115,8 +115,8 @@
  AssignmentOperator:=
 310LET I2 = INT(A-FNB(A)*7)
  Reference:I2
- ScalarValue:A
- ScalarValue:A
+ Value:A
+ Value:A
  UserFunction
  NumericConstant:7
  BinaryOperator:*
@@ -125,15 +125,15 @@
  AssignmentOperator:=
 320 LET Y2= INT(Y/100)
  Reference:Y2
- ScalarValue:Y
+ Value:Y
  NumericConstant:100
  BinaryOperator:/
  FunctionInt
  AssignmentOperator:=
 330 LET Y3 = INT(Y-Y2*100)
  Reference:Y3
- ScalarValue:Y
- ScalarValue:Y2
+ Value:Y
+ Value:Y2
  NumericConstant:100
  BinaryOperator:*
  BinaryOperator:-
@@ -141,23 +141,23 @@
  AssignmentOperator:=
 340 LET A = Y3/4*Y3+D+T(M)*I2
  Reference:A
- ScalarValue:Y3
+ Value:Y3
  NumericConstant:4
  BinaryOperator:/
- ScalarValue:Y3
+ Value:Y3
  BinaryOperator:*
- ScalarValue:D
+ Value:D
  BinaryOperator:+
- ScalarValue:M
- ScalarValue:T
- ScalarValue:I2
+ Value:M
+ Value:T
+ Value:I2
  BinaryOperator:*
  BinaryOperator:+
  AssignmentOperator:=
 350 LET B = INT(A-FNB(A)*7)+1
  Reference:B
- ScalarValue:A
- ScalarValue:A
+ Value:A
+ Value:A
  UserFunction
  NumericConstant:7
  BinaryOperator:*
@@ -167,17 +167,17 @@
  BinaryOperator:+
  AssignmentOperator:=
 360 IF M>2 THEN 470
- ScalarValue:M
+ Value:M
  NumericConstant:2
  BinaryOperator:>
 370 IF Y3= 0 THEN 440
- ScalarValue:Y3
+ Value:Y3
  NumericConstant:0
  BinaryOperator:=
 380 LET T1 = INT(Y-FNA(Y)*4)
  Reference:T1
- ScalarValue:Y
- ScalarValue:Y
+ Value:Y
+ Value:Y
  UserFunction
  NumericConstant:4
  BinaryOperator:*
@@ -185,11 +185,11 @@
  FunctionInt
  AssignmentOperator:=
 390 IF T1<>  0 THEN 470
- ScalarValue:T1
+ Value:T1
  NumericConstant:0
  BinaryOperator:<>
 400 IF B<>0 THEN 420
- ScalarValue:B
+ Value:B
  NumericConstant:0
  BinaryOperator:<>
 410 LET B = 6
@@ -198,7 +198,7 @@
  AssignmentOperator:=
 420 LET B = B-1
  Reference:B
- ScalarValue:B
+ Value:B
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
@@ -206,14 +206,14 @@
  LineNumber:470
 440 LET A = I1-1
  Reference:A
- ScalarValue:I1
+ Value:I1
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 450 LET T1 = INT(A-FNA(A)*4)
  Reference:T1
- ScalarValue:A
- ScalarValue:A
+ Value:A
+ Value:A
  UserFunction
  NumericConstant:4
  BinaryOperator:*
@@ -221,11 +221,11 @@
  FunctionInt
  AssignmentOperator:=
 460 IF T1 = 0 THEN 400
- ScalarValue:T1
+ Value:T1
  NumericConstant:0
  BinaryOperator:=
 470 IF B <> 0 THEN 490
- ScalarValue:B
+ Value:B
  NumericConstant:0
  BinaryOperator:<>
 480 LET B = 7
@@ -233,56 +233,56 @@
  NumericConstant:7
  AssignmentOperator:=
 490 IF (Y1*12+M1)*31+D1<(Y*12+M)*31+D THEN 550
- ScalarValue:Y1
+ Value:Y1
  NumericConstant:12
  BinaryOperator:*
- ScalarValue:M1
+ Value:M1
  BinaryOperator:+
  NumericConstant:31
  BinaryOperator:*
- ScalarValue:D1
+ Value:D1
  BinaryOperator:+
- ScalarValue:Y
+ Value:Y
  NumericConstant:12
  BinaryOperator:*
- ScalarValue:M
+ Value:M
  BinaryOperator:+
  NumericConstant:31
  BinaryOperator:*
- ScalarValue:D
+ Value:D
  BinaryOperator:+
  BinaryOperator:<
 500 IF (Y1*12+M1)*31+D1=(Y*12+M)*31+D THEN 530
- ScalarValue:Y1
+ Value:Y1
  NumericConstant:12
  BinaryOperator:*
- ScalarValue:M1
+ Value:M1
  BinaryOperator:+
  NumericConstant:31
  BinaryOperator:*
- ScalarValue:D1
+ Value:D1
  BinaryOperator:+
- ScalarValue:Y
+ Value:Y
  NumericConstant:12
  BinaryOperator:*
- ScalarValue:M
+ Value:M
  BinaryOperator:+
  NumericConstant:31
  BinaryOperator:*
- ScalarValue:D
+ Value:D
  BinaryOperator:+
  BinaryOperator:=
 510 PRINT M;"/";D;"/";Y;" WAS A ";
  ITEMS
- ScalarValue:M
+ Value:M
  CarriageControl:;
  TextConstant:"/"
  CarriageControl:;
- ScalarValue:D
+ Value:D
  CarriageControl:;
  TextConstant:"/"
  CarriageControl:;
- ScalarValue:Y
+ Value:Y
  CarriageControl:;
  TextConstant:" WAS A "
  CarriageControl:;
@@ -290,15 +290,15 @@
  LineNumber:570
 530 PRINT M;"/";D;"/";Y;" IS A ";
  ITEMS
- ScalarValue:M
+ Value:M
  CarriageControl:;
  TextConstant:"/"
  CarriageControl:;
- ScalarValue:D
+ Value:D
  CarriageControl:;
  TextConstant:"/"
  CarriageControl:;
- ScalarValue:Y
+ Value:Y
  CarriageControl:;
  TextConstant:" IS A "
  CarriageControl:;
@@ -306,20 +306,20 @@
  LineNumber:570
 550 PRINT M;"/";D;"/";Y;" WILL BE A ";
  ITEMS
- ScalarValue:M
+ Value:M
  CarriageControl:;
  TextConstant:"/"
  CarriageControl:;
- ScalarValue:D
+ Value:D
  CarriageControl:;
  TextConstant:"/"
  CarriageControl:;
- ScalarValue:Y
+ Value:Y
  CarriageControl:;
  TextConstant:" WILL BE A "
  CarriageControl:;
 570 IF B<>1 THEN 590
- ScalarValue:B
+ Value:B
  NumericConstant:1
  BinaryOperator:<>
 580 PRINT "SUNDAY"
@@ -327,7 +327,7 @@
  TextConstant:"SUNDAY"
  CarriageControl:NL
 590 IF B<>2 THEN 610
- ScalarValue:B
+ Value:B
  NumericConstant:2
  BinaryOperator:<>
 600 PRINT "MONDAY
@@ -335,7 +335,7 @@
  TextConstant:"MONDAY"
  CarriageControl:NL
 610 IF B<>3 THEN630
- ScalarValue:B
+ Value:B
  NumericConstant:3
  BinaryOperator:<>
 620 PRINT "TUESDAY"
@@ -343,7 +343,7 @@
  TextConstant:"TUESDAY"
  CarriageControl:NL
 630 IF B<>4 THEN 650
- ScalarValue:B
+ Value:B
  NumericConstant:4
  BinaryOperator:<>
 640 PRINT "WEDNESDAY"
@@ -351,7 +351,7 @@
  TextConstant:"WEDNESDAY"
  CarriageControl:NL
 650 IF B<>5 THEN 670
- ScalarValue:B
+ Value:B
  NumericConstant:5
  BinaryOperator:<>
 660 PRINT "THURSDAY"
@@ -359,13 +359,13 @@
  TextConstant:"THURSDAY"
  CarriageControl:NL
 670 IF B<>6 THEN 690
- ScalarValue:B
+ Value:B
  NumericConstant:6
  BinaryOperator:<>
 680 GOTO 1250
  LineNumber:1250
 690 IF B<>7 THEN 710
- ScalarValue:B
+ Value:B
  NumericConstant:7
  BinaryOperator:<>
 700 PRINT "SATURDAY"
@@ -373,29 +373,29 @@
  TextConstant:"SATURDAY"
  CarriageControl:NL
 710 IF (Y2*12+M1)*31+D1>(Y*12+M)*31*D THEN 1120
- ScalarValue:Y2
+ Value:Y2
  NumericConstant:12
  BinaryOperator:*
- ScalarValue:M1
+ Value:M1
  BinaryOperator:+
  NumericConstant:31
  BinaryOperator:*
- ScalarValue:D1
+ Value:D1
  BinaryOperator:+
- ScalarValue:Y
+ Value:Y
  NumericConstant:12
  BinaryOperator:*
- ScalarValue:M
+ Value:M
  BinaryOperator:+
  NumericConstant:31
  BinaryOperator:*
- ScalarValue:D
+ Value:D
  BinaryOperator:*
  BinaryOperator:>
 720 LET I5=Y1-Y
  Reference:I5
- ScalarValue:Y1
- ScalarValue:Y
+ Value:Y1
+ Value:Y
  BinaryOperator:-
  AssignmentOperator:=
 730 PRINT
@@ -403,58 +403,58 @@
  CarriageControl:NL
 740 LET I6=M1-M
  Reference:I6
- ScalarValue:M1
- ScalarValue:M
+ Value:M1
+ Value:M
  BinaryOperator:-
  AssignmentOperator:=
 750 LET I7=D1-D
  Reference:I7
- ScalarValue:D1
- ScalarValue:D
+ Value:D1
+ Value:D
  BinaryOperator:-
  AssignmentOperator:=
 760 IF I7>=0 THEN 790
- ScalarValue:I7
+ Value:I7
  NumericConstant:0
  BinaryOperator:>=
 770 LET I6=I6-1
  Reference:I6
- ScalarValue:I6
+ Value:I6
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 780 LET I7=I7+30
  Reference:I7
- ScalarValue:I7
+ Value:I7
  NumericConstant:30
  BinaryOperator:+
  AssignmentOperator:=
 790 IF I6>=0 THEN 820
- ScalarValue:I6
+ Value:I6
  NumericConstant:0
  BinaryOperator:>=
 800 LET I5=I5-1
  Reference:I5
- ScalarValue:I5
+ Value:I5
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 810 LET I6=I6+12
  Reference:I6
- ScalarValue:I6
+ Value:I6
  NumericConstant:12
  BinaryOperator:+
  AssignmentOperator:=
 820 IF I5<0 THEN 1310
- ScalarValue:I5
+ Value:I5
  NumericConstant:0
  BinaryOperator:<
 830 IF I7<>0 THEN 850
- ScalarValue:I7
+ Value:I7
  NumericConstant:0
  BinaryOperator:<>
 835 IF I6<>0 THEN 850
- ScalarValue:I6
+ Value:I6
  NumericConstant:0
  BinaryOperator:<>
 840 PRINT "****HAPPY BIRTHDAY*****"
@@ -477,24 +477,24 @@
  ITEMS
  TextConstant:"YOUR AGE              "
  CarriageControl:,
- ScalarValue:I5
+ Value:I5
  CarriageControl:,
- ScalarValue:I6
+ Value:I6
  CarriageControl:,
- ScalarValue:I7
+ Value:I7
  CarriageControl:NL
 870 LET A8= (I5*365)+(I6*30)+I7+INT(I6/2)
  Reference:A8
- ScalarValue:I5
+ Value:I5
  NumericConstant:365
  BinaryOperator:*
- ScalarValue:I6
+ Value:I6
  NumericConstant:30
  BinaryOperator:*
  BinaryOperator:+
- ScalarValue:I7
+ Value:I7
  BinaryOperator:+
- ScalarValue:I6
+ Value:I6
  NumericConstant:2
  BinaryOperator:/
  FunctionInt
@@ -502,19 +502,19 @@
  AssignmentOperator:=
 880 LET K5=I5
  Reference:K5
- ScalarValue:I5
+ Value:I5
  AssignmentOperator:=
 890 LET K6=I6
  Reference:K6
- ScalarValue:I6
+ Value:I6
  AssignmentOperator:=
 900 LET K7=I7
  Reference:K7
- ScalarValue:I7
+ Value:I7
  AssignmentOperator:=
 920 LET E=Y+65
  Reference:E
- ScalarValue:Y
+ Value:Y
  NumericConstant:65
  BinaryOperator:+
  AssignmentOperator:=
@@ -543,7 +543,7 @@
  NumericConstant:.23
  AssignmentOperator:=
 1010 IF K5 > 3 THEN 1040
- ScalarValue:K5
+ Value:K5
  NumericConstant:3
  BinaryOperator:>
 1020 PRINT"YOU HAVE PLAYED         ",
@@ -553,7 +553,7 @@
 1030 GOTO 1080
  LineNumber:1080
 1040 IF K6 > 9 THEN 1070
- ScalarValue:K6
+ Value:K6
  NumericConstant:9
  BinaryOperator:>
 1050 PRINT "YOU HAVE PLAYED/STUDIED",
@@ -572,11 +572,11 @@
  ITEMS
  TextConstant:"YOU HAVE RELAXED "
  CarriageControl:,
- ScalarValue:K5
+ Value:K5
  CarriageControl:,
- ScalarValue:K6
+ Value:K6
  CarriageControl:,
- ScalarValue:K7
+ Value:K7
  CarriageControl:NL
 1100 PRINT
  ITEMS
@@ -587,7 +587,7 @@
  CarriageControl:,
  TextConstant:"**YOU MAY RETIRE IN"
  CarriageControl:;
- ScalarValue:E
+ Value:E
  CarriageControl:;
  TextConstant:"**"
  CarriageControl:NL
@@ -613,7 +613,7 @@
 1240 GOTO 240
  LineNumber:240
 1250 IF D=13 THEN 1280
- ScalarValue:D
+ Value:D
  NumericConstant:13
  BinaryOperator:=
 1260 PRINT "FRIDAY"
@@ -653,110 +653,110 @@
  NumericConstant:5
 1370 LET K1= INT(F*A8)
  Reference:K1
- ScalarValue:F
- ScalarValue:A8
+ Value:F
+ Value:A8
  BinaryOperator:*
  FunctionInt
  AssignmentOperator:=
 1380 LET I5 = INT(K1/365)
  Reference:I5
- ScalarValue:K1
+ Value:K1
  NumericConstant:365
  BinaryOperator:/
  FunctionInt
  AssignmentOperator:=
 1390 LET K1 = K1-(I5*365)
  Reference:K1
- ScalarValue:K1
- ScalarValue:I5
+ Value:K1
+ Value:I5
  NumericConstant:365
  BinaryOperator:*
  BinaryOperator:-
  AssignmentOperator:=
 1400 LET I6 = INT(K1/30)
  Reference:I6
- ScalarValue:K1
+ Value:K1
  NumericConstant:30
  BinaryOperator:/
  FunctionInt
  AssignmentOperator:=
 1410 LET I7 = K1-(I6*30)
  Reference:I7
- ScalarValue:K1
- ScalarValue:I6
+ Value:K1
+ Value:I6
  NumericConstant:30
  BinaryOperator:*
  BinaryOperator:-
  AssignmentOperator:=
 1420 LET K5 = K5-I5
  Reference:K5
- ScalarValue:K5
- ScalarValue:I5
+ Value:K5
+ Value:I5
  BinaryOperator:-
  AssignmentOperator:=
 1430 LET K6 = K6-I6
  Reference:K6
- ScalarValue:K6
- ScalarValue:I6
+ Value:K6
+ Value:I6
  BinaryOperator:-
  AssignmentOperator:=
 1440 LET K7 = K7-I7
  Reference:K7
- ScalarValue:K7
- ScalarValue:I7
+ Value:K7
+ Value:I7
  BinaryOperator:-
  AssignmentOperator:=
 1450 IF K7 >= 0 THEN 1480
- ScalarValue:K7
+ Value:K7
  NumericConstant:0
  BinaryOperator:>=
 1460 LET K7 = K7+30
  Reference:K7
- ScalarValue:K7
+ Value:K7
  NumericConstant:30
  BinaryOperator:+
  AssignmentOperator:=
 1470 LET K6 = K6-1
  Reference:K6
- ScalarValue:K6
+ Value:K6
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 1480 IF K6 > 0 THEN 1510
- ScalarValue:K6
+ Value:K6
  NumericConstant:0
  BinaryOperator:>
 1490 LET K6 = K6+12
  Reference:K6
- ScalarValue:K6
+ Value:K6
  NumericConstant:12
  BinaryOperator:+
  AssignmentOperator:=
 1500 LET K5 = K5-1
  Reference:K5
- ScalarValue:K5
+ Value:K5
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 1510 PRINT I5,I6,I7
  ITEMS
- ScalarValue:I5
+ Value:I5
  CarriageControl:,
- ScalarValue:I6
+ Value:I6
  CarriageControl:,
- ScalarValue:I7
+ Value:I7
  CarriageControl:NL
 1520 RETURN
  
 1530 IF K6 = 12 THEN 1550
- ScalarValue:K6
+ Value:K6
  NumericConstant:12
  BinaryOperator:=
 1540 GOTO 1090
  LineNumber:1090
 1550 LET K5 = K5+1
  Reference:K5
- ScalarValue:K5
+ Value:K5
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=

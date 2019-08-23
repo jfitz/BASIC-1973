@@ -11,7 +11,7 @@
 6 INPUT "HOW MANY GAMES DO YOU WANT? ";Q
  Reference:Q
 8 IF Q<11 THEN 11
- ScalarValue:Q
+ Value:Q
  NumericConstant:11
  BinaryOperator:<
 9 PRINT "SORRY, BUT WE AREN'T ALLOWED TO PLAY THAT MANY."\GOTO 6
@@ -22,14 +22,14 @@
 11 FOR G=1 TO Q
  control: Variable:G
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:Q"]
+ end:     ["Value:Q"]
 15 PRINT\PRINT "GAME NUMBER"G
  ITEMS
  CarriageControl:NL
  ITEMS
  TextConstant:"GAME NUMBER"
  CarriageControl:
- ScalarValue:G
+ Value:G
  CarriageControl:NL
 20 X=INT(RND*3+1)
  Reference:X
@@ -47,14 +47,14 @@
 30 INPUT "1....2....3.... WHAT'S YOUR CHOICE ";K
  Reference:K
 32 IF (K-1)*(K-2)*(K-3)<>0 THEN PRINT "INVALID"\GOTO 25
- ScalarValue:K
+ Value:K
  NumericConstant:1
  BinaryOperator:-
- ScalarValue:K
+ Value:K
  NumericConstant:2
  BinaryOperator:-
  BinaryOperator:*
- ScalarValue:K
+ Value:K
  NumericConstant:3
  BinaryOperator:-
  BinaryOperator:*
@@ -69,7 +69,7 @@
  TextConstant:"THIS IS MY CHOICE..."
  CarriageControl:NL
 40 ON X GOTO 50,60,70
- ScalarValue:X
+ Value:X
  LineNumber:50
  LineNumber:60
  LineNumber:70
@@ -88,15 +88,15 @@
  TextConstant:"... ROCK"
  CarriageControl:NL
 80 IF X=K THEN 155
- ScalarValue:X
- ScalarValue:K
+ Value:X
+ Value:K
  BinaryOperator:=
 85 IF X>K THEN 125
- ScalarValue:X
- ScalarValue:K
+ Value:X
+ Value:K
  BinaryOperator:>
 90 IF X=1 THEN 105
- ScalarValue:X
+ Value:X
  NumericConstant:1
  BinaryOperator:=
 95 PRINT "YOU WIN!!!"\H=H+1\GOTO 160
@@ -104,13 +104,13 @@
  TextConstant:"YOU WIN!!!"
  CarriageControl:NL
  Reference:H
- ScalarValue:H
+ Value:H
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
  LineNumber:160
 105 IF K=3 THEN 115 ELSE GOTO 95
- ScalarValue:K
+ Value:K
  NumericConstant:3
  BinaryOperator:=
  LineNumber:95
@@ -119,17 +119,17 @@
  TextConstant:"WOW! I WIN!!"
  CarriageControl:NL
  Reference:C
- ScalarValue:C
+ Value:C
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
  LineNumber:160
 125 IF K<>1 THEN 115
- ScalarValue:K
+ Value:K
  NumericConstant:1
  BinaryOperator:<>
 140 IF X<>3 THEN 115 ELSE 95
- ScalarValue:X
+ Value:X
  NumericConstant:3
  BinaryOperator:<>
 155 PRINT "TIE GAME, NO WINNER."
@@ -148,7 +148,7 @@
  ITEMS
  TextConstant:"I HAVE WON "
  CarriageControl:
- ScalarValue:C
+ Value:C
  CarriageControl:
  TextConstant:" GAME(S),"
  CarriageControl:NL
@@ -156,7 +156,7 @@
  ITEMS
  TextConstant:"YOU HAVE WON "
  CarriageControl:
- ScalarValue:H
+ Value:H
  CarriageControl:
  TextConstant:" GAME(S),"
  CarriageControl:NL
@@ -164,9 +164,9 @@
  ITEMS
  TextConstant:"AND "
  CarriageControl:
- ScalarValue:G
- ScalarValue:C
- ScalarValue:H
+ Value:G
+ Value:C
+ Value:H
  BinaryOperator:+
  BinaryOperator:-
  CarriageControl:

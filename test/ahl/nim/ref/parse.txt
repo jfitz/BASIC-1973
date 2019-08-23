@@ -14,10 +14,10 @@
  CarriageControl:;
  Reference:Q$
 125 IF Q$="YES" THEN 135\IF Q$="NO" THEN 190
- ScalarValue:Q$
+ Value:Q$
  TextConstant:"YES"
  BinaryOperator:=
- ScalarValue:Q$
+ Value:Q$
  TextConstant:"NO"
  BinaryOperator:=
 130 PRINT "TYPE YES OR NO."\INPUT Q$\GOTO 125
@@ -98,15 +98,15 @@
  TextConstant:"HOW MANY PILES"
  CarriageControl:;
  Reference:P
- ScalarValue:P
+ Value:P
  NumericConstant:20
  BinaryOperator:>
 210 IF P>INT(P) THEN 215\IF P<=0 THEN 215\GO TO 220
- ScalarValue:P
- ScalarValue:P
+ Value:P
+ Value:P
  FunctionInt
  BinaryOperator:>
- ScalarValue:P
+ Value:P
  NumericConstant:0
  BinaryOperator:<=
  LineNumber:220
@@ -122,28 +122,28 @@
  CarriageControl:NL
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:P"]
+ end:     ["Value:P"]
 225 PRINT "HOW MANY STICKS IN PILE"I;\INPUT L(I)\IF L(I)>20 THEN 235
  ITEMS
  TextConstant:"HOW MANY STICKS IN PILE"
  CarriageControl:
- ScalarValue:I
+ Value:I
  CarriageControl:;
- ScalarValue:I
+ Value:I
  Reference:L
- ScalarValue:I
- ScalarValue:L
+ Value:I
+ Value:L
  NumericConstant:20
  BinaryOperator:>
 230 IF L(I)>INT(L(I)) THEN 235\IF L(I)<=0 THEN 235\GO TO 240
- ScalarValue:I
- ScalarValue:L
- ScalarValue:I
- ScalarValue:L
+ Value:I
+ Value:L
+ Value:I
+ Value:L
  FunctionInt
  BinaryOperator:>
- ScalarValue:I
- ScalarValue:L
+ Value:I
+ Value:L
  NumericConstant:0
  BinaryOperator:<=
  LineNumber:240
@@ -159,16 +159,16 @@
 245 FOR I=1 TO P\S(I)=L(I)\G=G+L(I)\NEXT I
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:P"]
- ScalarValue:I
+ end:     ["Value:P"]
+ Value:I
  Reference:S
- ScalarValue:I
- ScalarValue:L
+ Value:I
+ Value:L
  AssignmentOperator:=
  Reference:G
- ScalarValue:G
- ScalarValue:I
- ScalarValue:L
+ Value:G
+ Value:I
+ Value:L
  BinaryOperator:+
  AssignmentOperator:=
  Variable:I
@@ -180,10 +180,10 @@
  CarriageControl:;
 255 INPUT Q$\IF Q$="YES" THEN 340\IF Q$="NO" THEN 390
  Reference:Q$
- ScalarValue:Q$
+ Value:Q$
  TextConstant:"YES"
  BinaryOperator:=
- ScalarValue:Q$
+ Value:Q$
  TextConstant:"NO"
  BinaryOperator:=
 260 PRINT "TYPE YES OR NO."\GO TO 255
@@ -194,15 +194,15 @@
 265 REM  CONTROL OF GAME REPEATS AND TESTS FOR END OF GAME- 
  Remark: CONTROL OF GAME REPEATS AND TESTS FOR END OF GAME- 
 270 IF G=0 THEN 275\IF F=1 THEN 390\GO TO 320
- ScalarValue:G
+ Value:G
  NumericConstant:0
  BinaryOperator:=
- ScalarValue:F
+ Value:F
  NumericConstant:1
  BinaryOperator:=
  LineNumber:320
 275 IF F=1 THEN 315
- ScalarValue:F
+ Value:F
  NumericConstant:1
  BinaryOperator:=
 280 PRINT\PRINT "I WON. DO YOU WANT TO PLAY AGAIN";
@@ -213,10 +213,10 @@
  CarriageControl:;
 285 INPUT Q$\IF Q$="NO" THEN 290\IF Q$="YES" THEN 300\GO TO 295
  Reference:Q$
- ScalarValue:Q$
+ Value:Q$
  TextConstant:"NO"
  BinaryOperator:=
- ScalarValue:Q$
+ Value:Q$
  TextConstant:"YES"
  BinaryOperator:=
  LineNumber:295
@@ -235,10 +235,10 @@
  CarriageControl:;
 305 INPUT Q$\IF Q$="NO" THEN 205\IF Q$="YES" THEN 345
  Reference:Q$
- ScalarValue:Q$
+ Value:Q$
  TextConstant:"NO"
  BinaryOperator:=
- ScalarValue:Q$
+ Value:Q$
  TextConstant:"YES"
  BinaryOperator:=
 310 PRINT "TYPE YES OR NO."\GO TO 305
@@ -264,16 +264,16 @@
 325 FOR I=1 TO P\IF S(I)=0 THEN 330\PRINT I,S(I)
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:P"]
- ScalarValue:I
- ScalarValue:S
+ end:     ["Value:P"]
+ Value:I
+ Value:S
  NumericConstant:0
  BinaryOperator:=
  ITEMS
- ScalarValue:I
+ Value:I
  CarriageControl:,
- ScalarValue:I
- ScalarValue:S
+ Value:I
+ Value:S
  CarriageControl:NL
 330 NEXT I
  Variable:I
@@ -287,19 +287,19 @@
  CarriageControl:;
  Reference:N
 345 IF N>P THEN 355\IF N>INT(N) THEN 355\IF N<=0 THEN 355
- ScalarValue:N
- ScalarValue:P
+ Value:N
+ Value:P
  BinaryOperator:>
- ScalarValue:N
- ScalarValue:N
+ Value:N
+ Value:N
  FunctionInt
  BinaryOperator:>
- ScalarValue:N
+ Value:N
  NumericConstant:0
  BinaryOperator:<=
 350 IF S(N)=0 THEN 355\GO TO 360
- ScalarValue:N
- ScalarValue:S
+ Value:N
+ Value:S
  NumericConstant:0
  BinaryOperator:=
  LineNumber:360
@@ -318,15 +318,15 @@
  CarriageControl:;
  Reference:T
 365 IF T>S(N) THEN 370\IF T>INT(T) THEN 370\IF T<=0 THEN 370\GO TO 375
- ScalarValue:T
- ScalarValue:N
- ScalarValue:S
+ Value:T
+ Value:N
+ Value:S
  BinaryOperator:>
- ScalarValue:T
- ScalarValue:T
+ Value:T
+ Value:T
  FunctionInt
  BinaryOperator:>
- ScalarValue:T
+ Value:T
  NumericConstant:0
  BinaryOperator:<=
  LineNumber:375
@@ -338,16 +338,16 @@
  CarriageControl:NL
  LineNumber:360
 375 S(N)=S(N)-T\G=G-T
- ScalarValue:N
+ Value:N
  Reference:S
- ScalarValue:N
- ScalarValue:S
- ScalarValue:T
+ Value:N
+ Value:S
+ Value:T
  BinaryOperator:-
  AssignmentOperator:=
  Reference:G
- ScalarValue:G
- ScalarValue:T
+ Value:G
+ Value:T
  BinaryOperator:-
  AssignmentOperator:=
 380 F=1\GO TO 270
@@ -361,7 +361,7 @@
  control: Variable:I
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:4"]
- ScalarValue:I
+ Value:I
  Reference:V
  NumericConstant:0
  AssignmentOperator:=
@@ -369,12 +369,12 @@
 395 FOR I=1 TO P
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:P"]
+ end:     ["Value:P"]
 400    C(I)=S(I)
- ScalarValue:I
+ Value:I
  Reference:C
- ScalarValue:I
- ScalarValue:S
+ Value:I
+ Value:S
  AssignmentOperator:=
 405    FOR E=4 TO 0 STEP -1
  control: Variable:E
@@ -382,27 +382,27 @@
  end:     ["NumericConstant:0"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
 410       IF S(I)<2^E THEN 415\S2(I)=S2(I)+10^E\S(I)=S(I)-2^E
- ScalarValue:I
- ScalarValue:S
+ Value:I
+ Value:S
  NumericConstant:2
- ScalarValue:E
+ Value:E
  BinaryOperator:^
  BinaryOperator:<
- ScalarValue:I
+ Value:I
  Reference:S2
- ScalarValue:I
- ScalarValue:S2
+ Value:I
+ Value:S2
  NumericConstant:10
- ScalarValue:E
+ Value:E
  BinaryOperator:^
  BinaryOperator:+
  AssignmentOperator:=
- ScalarValue:I
+ Value:I
  Reference:S
- ScalarValue:I
- ScalarValue:S
+ Value:I
+ Value:S
  NumericConstant:2
- ScalarValue:E
+ Value:E
  BinaryOperator:^
  BinaryOperator:-
  AssignmentOperator:=
@@ -414,38 +414,38 @@
  end:     ["NumericConstant:0"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
 425       X(I,Y)=INT(S2(I)/10^Y)\S2(I)=S2(I)-X(I,Y)*10^Y
- ScalarValue:I
- ScalarValue:Y
+ Value:I
+ Value:Y
  Reference:X
- ScalarValue:I
- ScalarValue:S2
+ Value:I
+ Value:S2
  NumericConstant:10
- ScalarValue:Y
+ Value:Y
  BinaryOperator:^
  BinaryOperator:/
  FunctionInt
  AssignmentOperator:=
- ScalarValue:I
+ Value:I
  Reference:S2
- ScalarValue:I
- ScalarValue:S2
- ScalarValue:I
- ScalarValue:Y
- ScalarValue:X
+ Value:I
+ Value:S2
+ Value:I
+ Value:Y
+ Value:X
  NumericConstant:10
- ScalarValue:Y
+ Value:Y
  BinaryOperator:^
  BinaryOperator:*
  BinaryOperator:-
  AssignmentOperator:=
 430       V(Y)=V(Y)+X(I,Y)
- ScalarValue:Y
+ Value:Y
  Reference:V
- ScalarValue:Y
- ScalarValue:V
- ScalarValue:I
- ScalarValue:Y
- ScalarValue:X
+ Value:Y
+ Value:V
+ Value:I
+ Value:Y
+ Value:X
  BinaryOperator:+
  AssignmentOperator:=
 435    NEXT Y
@@ -462,12 +462,12 @@
  end:     ["NumericConstant:0"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
 455    IF V(Y)/2-INT(V(Y)/2)=0 THEN 480
- ScalarValue:Y
- ScalarValue:V
+ Value:Y
+ Value:V
  NumericConstant:2
  BinaryOperator:/
- ScalarValue:Y
- ScalarValue:V
+ Value:Y
+ Value:V
  NumericConstant:2
  BinaryOperator:/
  FunctionInt
@@ -475,12 +475,12 @@
  NumericConstant:0
  BinaryOperator:=
 460    IF R=1 THEN 470\Q=INT(P*RND(X))+1
- ScalarValue:R
+ Value:R
  NumericConstant:1
  BinaryOperator:=
  Reference:Q
- ScalarValue:P
- ScalarValue:X
+ Value:P
+ Value:X
  FunctionRnd
  BinaryOperator:*
  FunctionInt
@@ -488,13 +488,13 @@
  BinaryOperator:+
  AssignmentOperator:=
 465    IF X(Q,Y)<>1 THEN 460\X(Q,Y)=0\R=1\GO TO 480
- ScalarValue:Q
- ScalarValue:Y
- ScalarValue:X
+ Value:Q
+ Value:Y
+ Value:X
  NumericConstant:1
  BinaryOperator:<>
- ScalarValue:Q
- ScalarValue:Y
+ Value:Q
+ Value:Y
  Reference:X
  NumericConstant:0
  AssignmentOperator:=
@@ -503,20 +503,20 @@
  AssignmentOperator:=
  LineNumber:480
 470    IF X(Q,Y)=1 THEN 475\X(Q,Y)=1\GO TO 480
- ScalarValue:Q
- ScalarValue:Y
- ScalarValue:X
+ Value:Q
+ Value:Y
+ Value:X
  NumericConstant:1
  BinaryOperator:=
- ScalarValue:Q
- ScalarValue:Y
+ Value:Q
+ Value:Y
  Reference:X
  NumericConstant:1
  AssignmentOperator:=
  LineNumber:480
 475    X(Q,Y)=0
- ScalarValue:Q
- ScalarValue:Y
+ Value:Q
+ Value:Y
  Reference:X
  NumericConstant:0
  AssignmentOperator:=
@@ -525,9 +525,9 @@
 485 FOR I=1 TO P
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:P"]
+ end:     ["Value:P"]
 490    S2(I)=0
- ScalarValue:I
+ Value:I
  Reference:S2
  NumericConstant:0
  AssignmentOperator:=
@@ -537,22 +537,22 @@
  end:     ["NumericConstant:0"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
 500       S3(I)=X(I,Y)*10^Y\S2(I)=S2(I)+S3(I)
- ScalarValue:I
+ Value:I
  Reference:S3
- ScalarValue:I
- ScalarValue:Y
- ScalarValue:X
+ Value:I
+ Value:Y
+ Value:X
  NumericConstant:10
- ScalarValue:Y
+ Value:Y
  BinaryOperator:^
  BinaryOperator:*
  AssignmentOperator:=
- ScalarValue:I
+ Value:I
  Reference:S2
- ScalarValue:I
- ScalarValue:S2
- ScalarValue:I
- ScalarValue:S3
+ Value:I
+ Value:S2
+ Value:I
+ Value:S3
  BinaryOperator:+
  AssignmentOperator:=
 505    NEXT Y
@@ -563,27 +563,27 @@
  end:     ["NumericConstant:0"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
 515       IF S2(I)<10^E THEN 520\S(I)=S(I)+2^E\S2(I)=S2(I)-10^E
- ScalarValue:I
- ScalarValue:S2
+ Value:I
+ Value:S2
  NumericConstant:10
- ScalarValue:E
+ Value:E
  BinaryOperator:^
  BinaryOperator:<
- ScalarValue:I
+ Value:I
  Reference:S
- ScalarValue:I
- ScalarValue:S
+ Value:I
+ Value:S
  NumericConstant:2
- ScalarValue:E
+ Value:E
  BinaryOperator:^
  BinaryOperator:+
  AssignmentOperator:=
- ScalarValue:I
+ Value:I
  Reference:S2
- ScalarValue:I
- ScalarValue:S2
+ Value:I
+ Value:S2
  NumericConstant:10
- ScalarValue:E
+ Value:E
  BinaryOperator:^
  BinaryOperator:-
  AssignmentOperator:=
@@ -592,44 +592,44 @@
 525 NEXT I 
  Variable:I
 530 IF R=1 THEN 535\Q=INT(P*RND(X))+1\IF S(Q)=0 THEN 530\S(Q)=S(Q)-1
- ScalarValue:R
+ Value:R
  NumericConstant:1
  BinaryOperator:=
  Reference:Q
- ScalarValue:P
- ScalarValue:X
+ Value:P
+ Value:X
  FunctionRnd
  BinaryOperator:*
  FunctionInt
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
- ScalarValue:Q
- ScalarValue:S
+ Value:Q
+ Value:S
  NumericConstant:0
  BinaryOperator:=
- ScalarValue:Q
+ Value:Q
  Reference:S
- ScalarValue:Q
- ScalarValue:S
+ Value:Q
+ Value:S
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 535 D=C(Q)-S(Q)\G=G-D
  Reference:D
- ScalarValue:Q
- ScalarValue:C
- ScalarValue:Q
- ScalarValue:S
+ Value:Q
+ Value:C
+ Value:Q
+ Value:S
  BinaryOperator:-
  AssignmentOperator:=
  Reference:G
- ScalarValue:G
- ScalarValue:D
+ Value:G
+ Value:D
  BinaryOperator:-
  AssignmentOperator:=
 540 IF D=1 THEN 550
- ScalarValue:D
+ Value:D
  NumericConstant:1
  BinaryOperator:=
 545 PRINT\PRINT "I'LL TAKE";D;"STICKS FROM PILE";Q;"."\GO TO 555
@@ -638,11 +638,11 @@
  ITEMS
  TextConstant:"I'LL TAKE"
  CarriageControl:;
- ScalarValue:D
+ Value:D
  CarriageControl:;
  TextConstant:"STICKS FROM PILE"
  CarriageControl:;
- ScalarValue:Q
+ Value:Q
  CarriageControl:;
  TextConstant:"."
  CarriageControl:NL
@@ -653,7 +653,7 @@
  ITEMS
  TextConstant:"I'LL TAKE 1 STICK FROM PILE"
  CarriageControl:;
- ScalarValue:Q
+ Value:Q
  CarriageControl:;
  TextConstant:"."
  CarriageControl:NL

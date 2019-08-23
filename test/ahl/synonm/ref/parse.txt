@@ -73,60 +73,60 @@
 150 RESTORE:C=C+1:READ N
  
  Reference:C
- ScalarValue:C
+ Value:C
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
  Reference:N
 160 IF C>N THEN 420
- ScalarValue:C
- ScalarValue:N
+ Value:C
+ Value:N
  BinaryOperator:>
 170 N1=INT(RND*N+1)
  Reference:N1
  FunctionRnd
- ScalarValue:N
+ Value:N
  BinaryOperator:*
  NumericConstant:1
  BinaryOperator:+
  FunctionInt
  AssignmentOperator:=
 174 IF R(N1)=1 THEN 170
- ScalarValue:N1
- ScalarValue:R
+ Value:N1
+ Value:R
  NumericConstant:1
  BinaryOperator:=
 176 R(N1)=1
- ScalarValue:N1
+ Value:N1
  Reference:R
  NumericConstant:1
  AssignmentOperator:=
 180 FOR I=1 TO N1
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:N1"]
+ end:     ["Value:N1"]
 190 READ N2
  Reference:N2
 200 FOR J=1 TO N2
  control: Variable:J
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:N2"]
+ end:     ["Value:N2"]
 210 READ W$(J)
- ScalarValue:J
+ Value:J
  Reference:W$
 220 NEXT J
  Variable:J
 230 NEXT I
  Variable:I
 232 L(J)=J FOR J=1 TO N2
- ScalarValue:J
+ Value:J
  Reference:L
- ScalarValue:J
+ Value:J
  AssignmentOperator:=
 235 L(0)=N2:G=1:PRINT
  NumericConstant:0
  Reference:L
- ScalarValue:N2
+ Value:N2
  AssignmentOperator:=
  Reference:G
  NumericConstant:1
@@ -134,15 +134,15 @@
  ITEMS
  CarriageControl:NL
 237 L(G)=L(L(0)):L(0)=N2-1:PRINT
- ScalarValue:G
+ Value:G
  Reference:L
  NumericConstant:0
- ScalarValue:L
- ScalarValue:L
+ Value:L
+ Value:L
  AssignmentOperator:=
  NumericConstant:0
  Reference:L
- ScalarValue:N2
+ Value:N2
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
@@ -152,26 +152,26 @@
  ITEMS
  TextConstant:"WHAT IS A SYNONYM OF "
  CarriageControl:
- ScalarValue:G
- ScalarValue:W$
+ Value:G
+ Value:W$
  CarriageControl:;
  Reference:A$
 250 IF A$="HELP" THEN 340
- ScalarValue:A$
+ Value:A$
  TextConstant:"HELP"
  BinaryOperator:=
 260 FOR J=1 TO N2
  control: Variable:J
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:N2"]
+ end:     ["Value:N2"]
 270 IF G=J THEN 290
- ScalarValue:G
- ScalarValue:J
+ Value:G
+ Value:J
  BinaryOperator:=
 280 IF A$=W$(J) THEN 320
- ScalarValue:A$
- ScalarValue:J
- ScalarValue:W$
+ Value:A$
+ Value:J
+ Value:W$
  BinaryOperator:=
 290 NEXT J
  Variable:J
@@ -188,7 +188,7 @@
  BinaryOperator:*
  NumericConstant:1
  BinaryOperator:+
- ScalarValue:R$
+ Value:R$
  CarriageControl:NL
 330 GOTO 150
  LineNumber:150
@@ -196,7 +196,7 @@
  Reference:G1
  FunctionRnd
  NumericConstant:0
- ScalarValue:L
+ Value:L
  BinaryOperator:*
  NumericConstant:1
  BinaryOperator:+
@@ -206,14 +206,14 @@
  ITEMS
  TextConstant:"**** A SYNONYM OF "
  CarriageControl:
- ScalarValue:G
- ScalarValue:W$
+ Value:G
+ Value:W$
  CarriageControl:
  TextConstant:" IS "
  CarriageControl:
- ScalarValue:G1
- ScalarValue:L
- ScalarValue:W$
+ Value:G1
+ Value:L
+ Value:W$
  CarriageControl:
  TextConstant:"."
  CarriageControl:NL
@@ -221,16 +221,16 @@
  ITEMS
  CarriageControl:NL
 370 L(G1)=L(L(0)):L(0)=L(0)-1
- ScalarValue:G1
+ Value:G1
  Reference:L
  NumericConstant:0
- ScalarValue:L
- ScalarValue:L
+ Value:L
+ Value:L
  AssignmentOperator:=
  NumericConstant:0
  Reference:L
  NumericConstant:0
- ScalarValue:L
+ Value:L
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=

@@ -19,18 +19,18 @@
  Reference:M1
 70 LET N = M + (D/30) + (Y/100) + H + (M1/60)
  Reference:N
- ScalarValue:M
- ScalarValue:D
+ Value:M
+ Value:D
  NumericConstant:30
  BinaryOperator:/
  BinaryOperator:+
- ScalarValue:Y
+ Value:Y
  NumericConstant:100
  BinaryOperator:/
  BinaryOperator:+
- ScalarValue:H
+ Value:H
  BinaryOperator:+
- ScalarValue:M1
+ Value:M1
  NumericConstant:60
  BinaryOperator:/
  BinaryOperator:+
@@ -41,24 +41,24 @@
  end:     ["NumericConstant:6"]
 90 LET K = N*RND(0)
  Reference:K
- ScalarValue:N
+ Value:N
  NumericConstant:0
  FunctionRnd
  BinaryOperator:*
  AssignmentOperator:=
 100 LET K = K - INT(K)
  Reference:K
- ScalarValue:K
- ScalarValue:K
+ Value:K
+ Value:K
  FunctionInt
  BinaryOperator:-
  AssignmentOperator:=
 110 LET C(I) = 1 + INT(2*K)
- ScalarValue:I
+ Value:I
  Reference:C
  NumericConstant:1
  NumericConstant:2
- ScalarValue:K
+ Value:K
  BinaryOperator:*
  FunctionInt
  BinaryOperator:+
@@ -70,8 +70,8 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:6"]
 140 IF C(I) = 1 THEN 170
- ScalarValue:I
- ScalarValue:C
+ Value:I
+ Value:C
  NumericConstant:1
  BinaryOperator:=
 150 PRINT "---"
@@ -96,7 +96,7 @@
 210 INPUT L$
  Reference:L$
 220 IF L$ = "Y" THEN 250
- ScalarValue:L$
+ Value:L$
  TextConstant:"Y"
  BinaryOperator:=
 230 PRINT "THE I CHING SAYS GOOD-BYE"

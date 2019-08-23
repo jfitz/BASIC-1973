@@ -87,25 +87,25 @@
  AssignmentOperator:=
 21 PRINT L,INT(A);INT(5280*(A-INT(A))),3600*V,M-N,\INPUT K\T=10
  ITEMS
- ScalarValue:L
+ Value:L
  CarriageControl:,
- ScalarValue:A
+ Value:A
  FunctionInt
  CarriageControl:;
  NumericConstant:5280
- ScalarValue:A
- ScalarValue:A
+ Value:A
+ Value:A
  FunctionInt
  BinaryOperator:-
  BinaryOperator:*
  FunctionInt
  CarriageControl:,
  NumericConstant:3600
- ScalarValue:V
+ Value:V
  BinaryOperator:*
  CarriageControl:,
- ScalarValue:M
- ScalarValue:N
+ Value:M
+ Value:N
  BinaryOperator:-
  CarriageControl:,
  Reference:K
@@ -113,41 +113,41 @@
  NumericConstant:10
  AssignmentOperator:=
 31 IF M-N<.001 THEN 41\IF T<.001 THEN 21\S=T\IF M>=N+S*K THEN 35
- ScalarValue:M
- ScalarValue:N
+ Value:M
+ Value:N
  BinaryOperator:-
  NumericConstant:.001
  BinaryOperator:<
- ScalarValue:T
+ Value:T
  NumericConstant:.001
  BinaryOperator:<
  Reference:S
- ScalarValue:T
+ Value:T
  AssignmentOperator:=
- ScalarValue:M
- ScalarValue:N
- ScalarValue:S
- ScalarValue:K
+ Value:M
+ Value:N
+ Value:S
+ Value:K
  BinaryOperator:*
  BinaryOperator:+
  BinaryOperator:>=
 32 S=(M-N)/K
  Reference:S
- ScalarValue:M
- ScalarValue:N
+ Value:M
+ Value:N
  BinaryOperator:-
- ScalarValue:K
+ Value:K
  BinaryOperator:/
  AssignmentOperator:=
 35 GOSUB 91\IF I<=0 THEN 71\IF V<=0 THEN 38\IF J<0 THEN 81
  LineNumber:91
- ScalarValue:I
+ Value:I
  NumericConstant:0
  BinaryOperator:<=
- ScalarValue:V
+ Value:V
  NumericConstant:0
  BinaryOperator:<=
- ScalarValue:J
+ Value:J
  NumericConstant:0
  BinaryOperator:<
 38 GOSUB 61\GOTO 31
@@ -157,58 +157,58 @@
  ITEMS
  TextConstant:"FUEL OUT AT"
  CarriageControl:
- ScalarValue:L
+ Value:L
  CarriageControl:
  TextConstant:"SEC"
  CarriageControl:NL
  Reference:S
- ScalarValue:V
+ Value:V
  UnaryOperator:-
- ScalarValue:V
- ScalarValue:V
+ Value:V
+ Value:V
  BinaryOperator:*
  NumericConstant:2
- ScalarValue:A
+ Value:A
  BinaryOperator:*
- ScalarValue:G
+ Value:G
  BinaryOperator:*
  BinaryOperator:+
  FunctionSqr
  BinaryOperator:+
- ScalarValue:G
+ Value:G
  BinaryOperator:/
  AssignmentOperator:=
  Reference:V
- ScalarValue:V
- ScalarValue:G
- ScalarValue:S
+ Value:V
+ Value:G
+ Value:S
  BinaryOperator:*
  BinaryOperator:+
  AssignmentOperator:=
  Reference:L
- ScalarValue:L
- ScalarValue:S
+ Value:L
+ Value:S
  BinaryOperator:+
  AssignmentOperator:=
 51 W=3600*V\PRINT"ON MOON AT"L"SEC - IMPACT VELOCITY" W "MPH"
  Reference:W
  NumericConstant:3600
- ScalarValue:V
+ Value:V
  BinaryOperator:*
  AssignmentOperator:=
  ITEMS
  TextConstant:"ON MOON AT"
  CarriageControl:
- ScalarValue:L
+ Value:L
  CarriageControl:
  TextConstant:"SEC - IMPACT VELOCITY"
  CarriageControl:
- ScalarValue:W
+ Value:W
  CarriageControl:
  TextConstant:"MPH"
  CarriageControl:NL
 52 IF W>1.2 THEN 53\PRINT "PERFECT LANDING! (LUCKY) "\GOTO 95
- ScalarValue:W
+ Value:W
  NumericConstant:1.2
  BinaryOperator:>
  ITEMS
@@ -216,7 +216,7 @@
  CarriageControl:NL
  LineNumber:95
 53 IF W>10 THEN 56\PRINT "GOOD LANDING (COULD BE BETTER) "\GOTO 95
- ScalarValue:W
+ Value:W
  NumericConstant:10
  BinaryOperator:>
  ITEMS
@@ -224,7 +224,7 @@
  CarriageControl:NL
  LineNumber:95
 56 IF W>60 THEN 58 \PRINT "CRAFT DAMAGE YOU'RE STRANDED HERE UNTIL"
- ScalarValue:W
+ Value:W
  NumericConstant:60
  BinaryOperator:>
  ITEMS
@@ -243,7 +243,7 @@
  ITEMS
  TextConstant:"IN FACT, YOU BLASTED A NEW LUNAR CRATER "
  CarriageControl:
- ScalarValue:W
+ Value:W
  NumericConstant:.2777
  BinaryOperator:*
  CarriageControl:
@@ -253,46 +253,46 @@
  LineNumber:95
 61 L=L+S\T=T-S\M=M-S*K\A=I\V=J\RETURN
  Reference:L
- ScalarValue:L
- ScalarValue:S
+ Value:L
+ Value:S
  BinaryOperator:+
  AssignmentOperator:=
  Reference:T
- ScalarValue:T
- ScalarValue:S
+ Value:T
+ Value:S
  BinaryOperator:-
  AssignmentOperator:=
  Reference:M
- ScalarValue:M
- ScalarValue:S
- ScalarValue:K
+ Value:M
+ Value:S
+ Value:K
  BinaryOperator:*
  BinaryOperator:-
  AssignmentOperator:=
  Reference:A
- ScalarValue:I
+ Value:I
  AssignmentOperator:=
  Reference:V
- ScalarValue:J
+ Value:J
  AssignmentOperator:=
  
 71 IF S<5E-3 THEN 51\D=V+SQR(V*V+2*A*(G-Z*K/M))\S=2*A/D
- ScalarValue:S
+ Value:S
  NumericConstant:5E-3
  BinaryOperator:<
  Reference:D
- ScalarValue:V
- ScalarValue:V
- ScalarValue:V
+ Value:V
+ Value:V
+ Value:V
  BinaryOperator:*
  NumericConstant:2
- ScalarValue:A
+ Value:A
  BinaryOperator:*
- ScalarValue:G
- ScalarValue:Z
- ScalarValue:K
+ Value:G
+ Value:Z
+ Value:K
  BinaryOperator:*
- ScalarValue:M
+ Value:M
  BinaryOperator:/
  BinaryOperator:-
  BinaryOperator:*
@@ -302,9 +302,9 @@
  AssignmentOperator:=
  Reference:S
  NumericConstant:2
- ScalarValue:A
+ Value:A
  BinaryOperator:*
- ScalarValue:D
+ Value:D
  BinaryOperator:/
  AssignmentOperator:=
 73 GOSUB 91\GOSUB 61\GOTO 71
@@ -314,11 +314,11 @@
 81 W=(1-M*G/(Z*K))/2\S=M*V/(Z*K*(W+SQR(W*W+Y/Z)))+.05\GOSUB 91
  Reference:W
  NumericConstant:1
- ScalarValue:M
- ScalarValue:G
+ Value:M
+ Value:G
  BinaryOperator:*
- ScalarValue:Z
- ScalarValue:K
+ Value:Z
+ Value:K
  BinaryOperator:*
  BinaryOperator:/
  BinaryOperator:-
@@ -326,18 +326,18 @@
  BinaryOperator:/
  AssignmentOperator:=
  Reference:S
- ScalarValue:M
- ScalarValue:V
+ Value:M
+ Value:V
  BinaryOperator:*
- ScalarValue:Z
- ScalarValue:K
+ Value:Z
+ Value:K
  BinaryOperator:*
- ScalarValue:W
- ScalarValue:W
- ScalarValue:W
+ Value:W
+ Value:W
+ Value:W
  BinaryOperator:*
- ScalarValue:Y
- ScalarValue:Z
+ Value:Y
+ Value:Z
  BinaryOperator:/
  BinaryOperator:+
  FunctionSqr
@@ -349,53 +349,53 @@
  AssignmentOperator:=
  LineNumber:91
 83 IF I<=0 THEN 71\GOSUB 61\IF J>0 THEN 31\IF Y>0 THEN 81\GOTO 31
- ScalarValue:I
+ Value:I
  NumericConstant:0
  BinaryOperator:<=
  LineNumber:61
- ScalarValue:J
+ Value:J
  NumericConstant:0
  BinaryOperator:>
- ScalarValue:Y
+ Value:Y
  NumericConstant:0
  BinaryOperator:>
  LineNumber:31
 91 Q=S*K/M\J=V+G*S+Z*(-Q-Q*Q/2-Q^3/3-Q^4/4-Q^5/5)
  Reference:Q
- ScalarValue:S
- ScalarValue:K
+ Value:S
+ Value:K
  BinaryOperator:*
- ScalarValue:M
+ Value:M
  BinaryOperator:/
  AssignmentOperator:=
  Reference:J
- ScalarValue:V
- ScalarValue:G
- ScalarValue:S
+ Value:V
+ Value:G
+ Value:S
  BinaryOperator:*
  BinaryOperator:+
- ScalarValue:Z
- ScalarValue:Q
+ Value:Z
+ Value:Q
  UnaryOperator:-
- ScalarValue:Q
- ScalarValue:Q
+ Value:Q
+ Value:Q
  BinaryOperator:*
  NumericConstant:2
  BinaryOperator:/
  BinaryOperator:-
- ScalarValue:Q
+ Value:Q
  NumericConstant:3
  BinaryOperator:^
  NumericConstant:3
  BinaryOperator:/
  BinaryOperator:-
- ScalarValue:Q
+ Value:Q
  NumericConstant:4
  BinaryOperator:^
  NumericConstant:4
  BinaryOperator:/
  BinaryOperator:-
- ScalarValue:Q
+ Value:Q
  NumericConstant:5
  BinaryOperator:^
  NumericConstant:5
@@ -406,44 +406,44 @@
  AssignmentOperator:=
 94 I=A-G*S*S/2-V*S+Z*S*(Q/2+Q^2/6+Q^3/12+Q^4/20+Q^5/30)\RETURN
  Reference:I
- ScalarValue:A
- ScalarValue:G
- ScalarValue:S
+ Value:A
+ Value:G
+ Value:S
  BinaryOperator:*
- ScalarValue:S
+ Value:S
  BinaryOperator:*
  NumericConstant:2
  BinaryOperator:/
  BinaryOperator:-
- ScalarValue:V
- ScalarValue:S
+ Value:V
+ Value:S
  BinaryOperator:*
  BinaryOperator:-
- ScalarValue:Z
- ScalarValue:S
+ Value:Z
+ Value:S
  BinaryOperator:*
- ScalarValue:Q
+ Value:Q
  NumericConstant:2
  BinaryOperator:/
- ScalarValue:Q
+ Value:Q
  NumericConstant:2
  BinaryOperator:^
  NumericConstant:6
  BinaryOperator:/
  BinaryOperator:+
- ScalarValue:Q
+ Value:Q
  NumericConstant:3
  BinaryOperator:^
  NumericConstant:12
  BinaryOperator:/
  BinaryOperator:+
- ScalarValue:Q
+ Value:Q
  NumericConstant:4
  BinaryOperator:^
  NumericConstant:20
  BinaryOperator:/
  BinaryOperator:+
- ScalarValue:Q
+ Value:Q
  NumericConstant:5
  BinaryOperator:^
  NumericConstant:30

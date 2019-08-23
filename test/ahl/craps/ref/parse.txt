@@ -69,10 +69,10 @@
  CarriageControl:;
  Reference:B$
 216 IF B$="YES" THEN 220\IF B$="NO" THEN PRINT "I'LL REPEAT MYSELF THEN"
- ScalarValue:B$
+ Value:B$
  TextConstant:"YES"
  BinaryOperator:=
- ScalarValue:B$
+ Value:B$
  TextConstant:"NO"
  BinaryOperator:=
  ITEMS
@@ -84,7 +84,7 @@
  ITEMS
  TextConstant:"SPLENDID... YOU ARE GIVEN "
  CarriageControl:;
- ScalarValue:Z
+ Value:Z
  CarriageControl:;
  TextConstant:"DOLLARS TO PLAY WITH."
  CarriageControl:NL
@@ -95,9 +95,9 @@
  ITEMS
  CarriageControl:NL
 250 IF N-2*INT(N/2)=0 THEN 310
- ScalarValue:N
+ Value:N
  NumericConstant:2
- ScalarValue:N
+ Value:N
  NumericConstant:2
  BinaryOperator:/
  FunctionInt
@@ -150,8 +150,8 @@
  ITEMS
  CarriageControl:NL
 390 IF B=INT(B) THEN 430
- ScalarValue:B
- ScalarValue:B
+ Value:B
+ Value:B
  FunctionInt
  BinaryOperator:=
 400
@@ -162,12 +162,12 @@
 420 GOTO 360
  LineNumber:360
 430 IF B=0 THEN 1090
- ScalarValue:B
+ Value:B
  NumericConstant:0
  BinaryOperator:=
 440 IF B<Z+1 THEN 470
- ScalarValue:B
- ScalarValue:Z
+ Value:B
+ Value:Z
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:<
@@ -199,29 +199,29 @@
  AssignmentOperator:=
 490 LET Q=Q+1
  Reference:Q
- ScalarValue:Q
+ Value:Q
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 500 S=D1+D2
  Reference:S
- ScalarValue:D1
- ScalarValue:D2
+ Value:D1
+ Value:D2
  BinaryOperator:+
  AssignmentOperator:=
 510 IF W>0 THEN 540
- ScalarValue:W
+ Value:W
  NumericConstant:0
  BinaryOperator:>
 520 PRINT "  I ROLL  ";D1;"AND  ";D2;
  ITEMS
  TextConstant:"  I ROLL  "
  CarriageControl:;
- ScalarValue:D1
+ Value:D1
  CarriageControl:;
  TextConstant:"AND  "
  CarriageControl:;
- ScalarValue:D2
+ Value:D2
  CarriageControl:;
 530 GOTO 550
  LineNumber:550
@@ -229,49 +229,49 @@
  ITEMS
  TextConstant:"YOU ROLL  "
  CarriageControl:;
- ScalarValue:D1
+ Value:D1
  CarriageControl:;
  TextConstant:"AND  "
  CarriageControl:;
- ScalarValue:D2
+ Value:D2
  CarriageControl:;
 550 IF Q<>1 THEN 860
- ScalarValue:Q
+ Value:Q
  NumericConstant:1
  BinaryOperator:<>
 560 IF (S-2)*(S-3)*(S-12)=0 THEN 640
- ScalarValue:S
+ Value:S
  NumericConstant:2
  BinaryOperator:-
- ScalarValue:S
+ Value:S
  NumericConstant:3
  BinaryOperator:-
  BinaryOperator:*
- ScalarValue:S
+ Value:S
  NumericConstant:12
  BinaryOperator:-
  BinaryOperator:*
  NumericConstant:0
  BinaryOperator:=
 570 IF (S-7)*(S-11)=0 THEN 710
- ScalarValue:S
+ Value:S
  NumericConstant:7
  BinaryOperator:-
- ScalarValue:S
+ Value:S
  NumericConstant:11
  BinaryOperator:-
  BinaryOperator:*
  NumericConstant:0
  BinaryOperator:=
 580 IF W>0 THEN 610
- ScalarValue:W
+ Value:W
  NumericConstant:0
  BinaryOperator:>
 590 PRINT "SO MY POINT IS";S
  ITEMS
  TextConstant:"SO MY POINT IS"
  CarriageControl:;
- ScalarValue:S
+ Value:S
  CarriageControl:NL
 600 GOTO 620
  LineNumber:620
@@ -279,11 +279,11 @@
  ITEMS
  TextConstant:"SO YOUR POINT IS"
  CarriageControl:;
- ScalarValue:S
+ Value:S
  CarriageControl:NL
 620 LET P=S
  Reference:P
- ScalarValue:S
+ Value:S
  AssignmentOperator:=
 630 GOTO 470
  LineNumber:470
@@ -296,21 +296,21 @@
  NumericConstant:1
  AssignmentOperator:=
 660 IF W>0 THEN 690
- ScalarValue:W
+ Value:W
  NumericConstant:0
  BinaryOperator:>
 670 LET Z=Z+B
  Reference:Z
- ScalarValue:Z
- ScalarValue:B
+ Value:Z
+ Value:B
  BinaryOperator:+
  AssignmentOperator:=
 680 GOTO 770
  LineNumber:770
 690 LET Z=Z-B
  Reference:Z
- ScalarValue:Z
- ScalarValue:B
+ Value:Z
+ Value:B
  BinaryOperator:-
  AssignmentOperator:=
 700 GOTO 770
@@ -324,40 +324,40 @@
  NumericConstant:1
  AssignmentOperator:=
 730 IF W>0 THEN 760
- ScalarValue:W
+ Value:W
  NumericConstant:0
  BinaryOperator:>
 740 LET Z=Z-B
  Reference:Z
- ScalarValue:Z
- ScalarValue:B
+ Value:Z
+ Value:B
  BinaryOperator:-
  AssignmentOperator:=
 750 GOTO 770
  LineNumber:770
 760 LET Z=Z+B
  Reference:Z
- ScalarValue:Z
- ScalarValue:B
+ Value:Z
+ Value:B
  BinaryOperator:+
  AssignmentOperator:=
 770 PRINT
  ITEMS
  CarriageControl:NL
 780 IF Z<1 THEN 1060
- ScalarValue:Z
+ Value:Z
  NumericConstant:1
  BinaryOperator:<
 790 PRINT "YOU NOW HAVE";Z;"DOLLARS"
  ITEMS
  TextConstant:"YOU NOW HAVE"
  CarriageControl:;
- ScalarValue:Z
+ Value:Z
  CarriageControl:;
  TextConstant:"DOLLARS"
  CarriageControl:NL
 800 IF C>0 THEN 830
- ScalarValue:C
+ Value:C
  NumericConstant:0
  BinaryOperator:>
 810 PRINT "CHANGE DICE NOW..."
@@ -369,8 +369,8 @@
  CarriageControl:NL
 830 LET W=W+C
  Reference:W
- ScalarValue:W
- ScalarValue:C
+ Value:W
+ Value:C
  BinaryOperator:+
  AssignmentOperator:=
 840 LET Q=0
@@ -380,7 +380,7 @@
 850 GOTO 360
  LineNumber:360
 860 IF S<>7 THEN 940
- ScalarValue:S
+ Value:S
  NumericConstant:7
  BinaryOperator:<>
 870 PRINT "AND LOSE..."
@@ -393,28 +393,28 @@
  UnaryOperator:-
  AssignmentOperator:=
 890 IF W>0 THEN 920
- ScalarValue:W
+ Value:W
  NumericConstant:0
  BinaryOperator:>
 900 LET Z=Z+B
  Reference:Z
- ScalarValue:Z
- ScalarValue:B
+ Value:Z
+ Value:B
  BinaryOperator:+
  AssignmentOperator:=
 910 GOTO 770
  LineNumber:770
 920 LET Z=Z-B
  Reference:Z
- ScalarValue:Z
- ScalarValue:B
+ Value:Z
+ Value:B
  BinaryOperator:-
  AssignmentOperator:=
 930 GOTO 770
  LineNumber:770
 940 IF S=P THEN 970
- ScalarValue:S
- ScalarValue:P
+ Value:S
+ Value:P
  BinaryOperator:=
 950 PRINT "   ROLL AGAIN."
  ITEMS
@@ -423,7 +423,7 @@
 960 GOTO 470
  LineNumber:470
 970 IF W>0 THEN 1020
- ScalarValue:W
+ Value:W
  NumericConstant:0
  BinaryOperator:>
 980 PRINT "AND MAKE MY POINT"
@@ -436,8 +436,8 @@
  AssignmentOperator:=
 1000 LET Z=Z-B
  Reference:Z
- ScalarValue:Z
- ScalarValue:B
+ Value:Z
+ Value:B
  BinaryOperator:-
  AssignmentOperator:=
 1010 GOTO 770
@@ -452,8 +452,8 @@
  AssignmentOperator:=
 1040 LET Z=Z+B
  Reference:Z
- ScalarValue:Z
- ScalarValue:B
+ Value:Z
+ Value:B
  BinaryOperator:+
  AssignmentOperator:=
 1050 GOTO 700

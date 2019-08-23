@@ -3,7 +3,7 @@
  NumericConstant:0
  AssignmentOperator:=
  Reference:W
- ScalarValue:O
+ Value:O
  AssignmentOperator:=
  Reference:R1
  NumericConstant:0
@@ -49,7 +49,7 @@
 11 NEXT U
  Variable:U
 13 IF Z=1 THEN 100
- ScalarValue:Z
+ Value:Z
  NumericConstant:1
  BinaryOperator:=
 15 PRINT "THIS IS A CIVIL WAR SIMULATION."
@@ -148,8 +148,8 @@
 101 LET I1=10+(L-W)*2
  Reference:I1
  NumericConstant:10
- ScalarValue:L
- ScalarValue:W
+ Value:L
+ Value:W
  BinaryOperator:-
  NumericConstant:2
  BinaryOperator:*
@@ -158,8 +158,8 @@
 102 LET I2=10*(W-L)*2 
  Reference:I2
  NumericConstant:10
- ScalarValue:W
- ScalarValue:L
+ Value:W
+ Value:L
  BinaryOperator:-
  BinaryOperator:*
  NumericConstant:2
@@ -168,18 +168,18 @@
 103 LET D1=100*INT((M1*(100-I1)/2000)*(1+(R1-Q1)/(R1+1))+0.5)
  Reference:D1
  NumericConstant:100
- ScalarValue:M1
+ Value:M1
  NumericConstant:100
- ScalarValue:I1
+ Value:I1
  BinaryOperator:-
  BinaryOperator:*
  NumericConstant:2000
  BinaryOperator:/
  NumericConstant:1
- ScalarValue:R1
- ScalarValue:Q1
+ Value:R1
+ Value:Q1
  BinaryOperator:-
- ScalarValue:R1
+ Value:R1
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:/
@@ -193,9 +193,9 @@
 104 LET D2=100*INT(M2*(100-I2)/2000+0.5)
  Reference:D2
  NumericConstant:100
- ScalarValue:M2
+ Value:M2
  NumericConstant:100
- ScalarValue:I2
+ Value:I2
  BinaryOperator:-
  BinaryOperator:*
  NumericConstant:2000
@@ -208,14 +208,14 @@
 105 LET F1=5*M1/6
  Reference:F1
  NumericConstant:5
- ScalarValue:M1
+ Value:M1
  BinaryOperator:*
  NumericConstant:6
  BinaryOperator:/
  AssignmentOperator:=
 106 LET A1=Z
  Reference:A1
- ScalarValue:Z
+ Value:Z
  AssignmentOperator:=
 107 FOR U=1 TO 4
  control: Variable:U
@@ -246,12 +246,12 @@
  CarriageControl:,
  TextConstant:" "
  CarriageControl:;
- ScalarValue:M1
+ Value:M1
  NumericConstant:1
- ScalarValue:P1
- ScalarValue:T1
+ Value:P1
+ Value:T1
  BinaryOperator:-
- ScalarValue:M3
+ Value:M3
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:/
@@ -263,12 +263,12 @@
  CarriageControl:;
 131 PRINT INT(M2*(1+(P2-T2)/(M4+1)))
  ITEMS
- ScalarValue:M2
+ Value:M2
  NumericConstant:1
- ScalarValue:P2
- ScalarValue:T2
+ Value:P2
+ Value:T2
  BinaryOperator:-
- ScalarValue:M4
+ Value:M4
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:/
@@ -282,11 +282,11 @@
  CarriageControl:,
  TextConstant:"$"
  CarriageControl:;
- ScalarValue:D1
+ Value:D1
  CarriageControl:,
  TextConstant:"$"
  CarriageControl:;
- ScalarValue:D2
+ Value:D2
  CarriageControl:NL
 150 PRINT "INFLATION"," ";I1+15;"%"," "I2;"%"
  ITEMS
@@ -294,7 +294,7 @@
  CarriageControl:,
  TextConstant:" "
  CarriageControl:;
- ScalarValue:I1
+ Value:I1
  NumericConstant:15
  BinaryOperator:+
  CarriageControl:;
@@ -302,7 +302,7 @@
  CarriageControl:,
  TextConstant:" "
  CarriageControl:
- ScalarValue:I2
+ Value:I2
  CarriageControl:;
  TextConstant:"%"
  CarriageControl:NL
@@ -316,7 +316,7 @@
 180 INPUT F
  Reference:F
 185 IF F<0 THEN 750
- ScalarValue:F
+ Value:F
  NumericConstant:0
  BinaryOperator:<
 190 PRINT "HOW MUCH DO YOU WISH TO SPEND FOR SALARIES";
@@ -326,7 +326,7 @@
 200 INPUT S
  Reference:S
 205 IF S<0 THEN 750
- ScalarValue:S
+ Value:S
  NumericConstant:0
  BinaryOperator:<
 210 PRINT "HOW MUCH DO YOU WISH TO SPEND FOR AMMUNITION";
@@ -336,40 +336,40 @@
 220 INPUT B
  Reference:B
 221 IF B<0 THEN 750
- ScalarValue:B
+ Value:B
  NumericConstant:0
  BinaryOperator:<
 222 PRINT
  ITEMS
  CarriageControl:NL
 224 IF F+S+B<D1 THEN 230
- ScalarValue:F
- ScalarValue:S
+ Value:F
+ Value:S
  BinaryOperator:+
- ScalarValue:B
+ Value:B
  BinaryOperator:+
- ScalarValue:D1
+ Value:D1
  BinaryOperator:<
 226 PRINT "THINK AGAIN!  YOU HAVE ONLY $" D1
  ITEMS
  TextConstant:"THINK AGAIN!  YOU HAVE ONLY $"
  CarriageControl:
- ScalarValue:D1
+ Value:D1
  CarriageControl:NL
 228 GOTO 160
  LineNumber:160
 230 LET O=((2*F^2+S^2)/F1^2+1)
  Reference:O
  NumericConstant:2
- ScalarValue:F
+ Value:F
  NumericConstant:2
  BinaryOperator:^
  BinaryOperator:*
- ScalarValue:S
+ Value:S
  NumericConstant:2
  BinaryOperator:^
  BinaryOperator:+
- ScalarValue:F1
+ Value:F1
  NumericConstant:2
  BinaryOperator:^
  BinaryOperator:/
@@ -377,7 +377,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 235 IF O<10 THEN 260
- ScalarValue:O
+ Value:O
  NumericConstant:10
  BinaryOperator:<
 240 PRINT "MORALE IS HIGH"
@@ -401,7 +401,7 @@
  TextConstant:"MORALE IS POOR"
  CarriageControl:NL
 300 IF M<>3 THEN 330
- ScalarValue:M
+ Value:M
  NumericConstant:3
  BinaryOperator:<>
 310 PRINT "YOU ARE ON THE OFFENSIVE"
@@ -411,7 +411,7 @@
 320 GOTO 370
  LineNumber:370
 330 IF M<>1 THEN 360
- ScalarValue:M
+ Value:M
  NumericConstant:1
  BinaryOperator:<>
 340 PRINT "YOU ARE ON THE DEFENSIVE"
@@ -434,11 +434,11 @@
 390 INPUT Y
  Reference:Y
 391 IF Y=5 THEN 1487
- ScalarValue:Y
+ Value:Y
  NumericConstant:5
  BinaryOperator:=
 392 IF ABS(Y-3)<3 THEN 395
- ScalarValue:Y
+ Value:Y
  NumericConstant:3
  BinaryOperator:-
  FunctionAbs
@@ -464,7 +464,7 @@
 410 LET C5=(2*C1/5)*(1+1/(2*(ABS(INT(4*RND(1)+1)-Y)+1)))
  Reference:C5
  NumericConstant:2
- ScalarValue:C1
+ Value:C1
  BinaryOperator:*
  NumericConstant:5
  BinaryOperator:/
@@ -478,7 +478,7 @@
  NumericConstant:1
  BinaryOperator:+
  FunctionInt
- ScalarValue:Y
+ Value:Y
  BinaryOperator:-
  FunctionAbs
  NumericConstant:1
@@ -490,16 +490,16 @@
  AssignmentOperator:=
 412 LET C5=INT(C5*(1+1/O)*(1.28+F1/(B+1))+0.5)
  Reference:C5
- ScalarValue:C5
+ Value:C5
  NumericConstant:1
  NumericConstant:1
- ScalarValue:O
+ Value:O
  BinaryOperator:/
  BinaryOperator:+
  BinaryOperator:*
  NumericConstant:1.28
- ScalarValue:F1
- ScalarValue:B
+ Value:F1
+ Value:B
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:/
@@ -510,17 +510,17 @@
  FunctionInt
  AssignmentOperator:=
 414 IF C5+100/O<M1+(1+(P1-T1)/(M3+1)) THEN 424
- ScalarValue:C5
+ Value:C5
  NumericConstant:100
- ScalarValue:O
+ Value:O
  BinaryOperator:/
  BinaryOperator:+
- ScalarValue:M1
+ Value:M1
  NumericConstant:1
- ScalarValue:P1
- ScalarValue:T1
+ Value:P1
+ Value:T1
  BinaryOperator:-
- ScalarValue:M3
+ Value:M3
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:/
@@ -530,15 +530,15 @@
 416 LET C5=INT(13*M1/20*(1+(P1-T1)/(M3+1)))
  Reference:C5
  NumericConstant:13
- ScalarValue:M1
+ Value:M1
  BinaryOperator:*
  NumericConstant:20
  BinaryOperator:/
  NumericConstant:1
- ScalarValue:P1
- ScalarValue:T1
+ Value:P1
+ Value:T1
  BinaryOperator:-
- ScalarValue:M3
+ Value:M3
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:/
@@ -549,7 +549,7 @@
 418 LET E=7*C5/13
  Reference:E
  NumericConstant:7
- ScalarValue:C5
+ Value:C5
  BinaryOperator:*
  NumericConstant:13
  BinaryOperator:/
@@ -563,21 +563,21 @@
 424 LET E=100/O
  Reference:E
  NumericConstant:100
- ScalarValue:O
+ Value:O
  BinaryOperator:/
  AssignmentOperator:=
 426 PRINT "CASUALTIES", C5,INT(17*C2*C1/(C5*20)+0.5)
  ITEMS
  TextConstant:"CASUALTIES"
  CarriageControl:,
- ScalarValue:C5
+ Value:C5
  CarriageControl:,
  NumericConstant:17
- ScalarValue:C2
+ Value:C2
  BinaryOperator:*
- ScalarValue:C1
+ Value:C1
  BinaryOperator:*
- ScalarValue:C5
+ Value:C5
  NumericConstant:20
  BinaryOperator:*
  BinaryOperator:/
@@ -589,11 +589,11 @@
  ITEMS
  TextConstant:"DESERTIONS"
  CarriageControl:,
- ScalarValue:E
+ Value:E
  FunctionInt
  CarriageControl:,
  NumericConstant:5
- ScalarValue:O
+ Value:O
  BinaryOperator:*
  FunctionInt
  CarriageControl:NL
@@ -601,8 +601,8 @@
  ITEMS
  CarriageControl:NL
 433 IF C5-C1>=0 THEN 439
- ScalarValue:C5
- ScalarValue:C1
+ Value:C5
+ Value:C1
  BinaryOperator:-
  NumericConstant:0
  BinaryOperator:>=
@@ -611,11 +611,11 @@
  TextConstant:"YOUR CASUALTIES WERE"
  CarriageControl:
  NumericConstant:100
- ScalarValue:C1
- ScalarValue:C5
+ Value:C1
+ Value:C5
  BinaryOperator:-
  BinaryOperator:*
- ScalarValue:C1
+ Value:C1
  BinaryOperator:/
  NumericConstant:0.5
  BinaryOperator:+
@@ -630,11 +630,11 @@
  TextConstant:"YOUR CASUALTIES WERE"
  CarriageControl:
  NumericConstant:100
- ScalarValue:C5
- ScalarValue:C1
+ Value:C5
+ Value:C1
  BinaryOperator:-
  BinaryOperator:*
- ScalarValue:C1
+ Value:C1
  BinaryOperator:/
  NumericConstant:0.5
  BinaryOperator:+
@@ -653,24 +653,24 @@
 445 GO SUB800
  LineNumber:800
 450 IF U=1 THEN 470
- ScalarValue:U
+ Value:U
  NumericConstant:1
  BinaryOperator:=
 460 IF C5+E<17*C2*C1/(C5*20)+5*O THEN 490
- ScalarValue:C5
- ScalarValue:E
+ Value:C5
+ Value:E
  BinaryOperator:+
  NumericConstant:17
- ScalarValue:C2
+ Value:C2
  BinaryOperator:*
- ScalarValue:C1
+ Value:C1
  BinaryOperator:*
- ScalarValue:C5
+ Value:C5
  NumericConstant:20
  BinaryOperator:*
  BinaryOperator:/
  NumericConstant:5
- ScalarValue:O
+ Value:O
  BinaryOperator:*
  BinaryOperator:+
  BinaryOperator:<
@@ -680,7 +680,7 @@
  CarriageControl:;
 471 LET L=L+1
  Reference:L
- ScalarValue:L
+ Value:L
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -692,70 +692,70 @@
  CarriageControl:;
 491 LET W=W+1
  Reference:W
- ScalarValue:W
+ Value:W
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 555 GOSUB 800
  LineNumber:800
 556 IF W=8 THEN 1490
- ScalarValue:W
+ Value:W
  NumericConstant:8
  BinaryOperator:=
 580 LET T1=T1+C5+E
  Reference:T1
- ScalarValue:T1
- ScalarValue:C5
+ Value:T1
+ Value:C5
  BinaryOperator:+
- ScalarValue:E
+ Value:E
  BinaryOperator:+
  AssignmentOperator:=
 590 LET T2=T2+17*C2*C1/(C5*20)+5*O
  Reference:T2
- ScalarValue:T2
+ Value:T2
  NumericConstant:17
- ScalarValue:C2
+ Value:C2
  BinaryOperator:*
- ScalarValue:C1
+ Value:C1
  BinaryOperator:*
- ScalarValue:C5
+ Value:C5
  NumericConstant:20
  BinaryOperator:*
  BinaryOperator:/
  BinaryOperator:+
  NumericConstant:5
- ScalarValue:O
+ Value:O
  BinaryOperator:*
  BinaryOperator:+
  AssignmentOperator:=
 600 LET P1=P1+C1
  Reference:P1
- ScalarValue:P1
- ScalarValue:C1
+ Value:P1
+ Value:C1
  BinaryOperator:+
  AssignmentOperator:=
 610 LET P2=P2+C2
  Reference:P2
- ScalarValue:P2
- ScalarValue:C2
+ Value:P2
+ Value:C2
  BinaryOperator:+
  AssignmentOperator:=
 620 LET Q1=Q1+(F+S+B)
  Reference:Q1
- ScalarValue:Q1
- ScalarValue:F
- ScalarValue:S
+ Value:Q1
+ Value:F
+ Value:S
  BinaryOperator:+
- ScalarValue:B
+ Value:B
  BinaryOperator:+
  BinaryOperator:+
  AssignmentOperator:=
 630 LET R1=R1+M1*(100-I1)/20
  Reference:R1
- ScalarValue:R1
- ScalarValue:M1
+ Value:R1
+ Value:M1
  NumericConstant:100
- ScalarValue:I1
+ Value:I1
  BinaryOperator:-
  BinaryOperator:*
  NumericConstant:20
@@ -764,18 +764,18 @@
  AssignmentOperator:=
 635 LETM3=M3+M1
  Reference:M3
- ScalarValue:M3
- ScalarValue:M1
+ Value:M3
+ Value:M1
  BinaryOperator:+
  AssignmentOperator:=
 637 LET M4=M4+M2
  Reference:M4
- ScalarValue:M4
- ScalarValue:M2
+ Value:M4
+ Value:M2
  BinaryOperator:+
  AssignmentOperator:=
 650 IF A=14 THEN 1400
- ScalarValue:A
+ Value:A
  NumericConstant:14
  BinaryOperator:=
 660 GOTO 100
@@ -910,7 +910,7 @@
 758 GOTO 107 
  LineNumber:107
 800 IF A<>1 THEN 850
- ScalarValue:A
+ Value:A
  NumericConstant:1
  BinaryOperator:<>
 810 PRINT "BULL RUN"
@@ -918,7 +918,7 @@
  TextConstant:"BULL RUN"
  CarriageControl:NL
 820 IF A1=1 THEN 1480
- ScalarValue:A1
+ Value:A1
  NumericConstant:1
  BinaryOperator:=
 830PRINT"JULY 21,1861 GEN. BEAUREGARD COMMANDING THE SOUTH MET THE"
@@ -936,7 +936,7 @@
 840 GO TO 1480
  LineNumber:1480
 850 IF A<>2 THEN 900
- ScalarValue:A
+ Value:A
  NumericConstant:2
  BinaryOperator:<>
 860 PRINT "SHILOH"
@@ -944,7 +944,7 @@
  TextConstant:"SHILOH"
  CarriageControl:NL
 870 IF A1=1 THEN 1480
- ScalarValue:A1
+ Value:A1
  NumericConstant:1
  BinaryOperator:=
 880PRINT "APRIL 6-7,1862 THE CONFEDERATE SURPRISE ATTACK AT SHILOH"
@@ -958,7 +958,7 @@
 890 GO TO 1480
  LineNumber:1480
 900 IF A<>3 THEN 950
- ScalarValue:A
+ Value:A
  NumericConstant:3
  BinaryOperator:<>
 910 PRINT "SEVEN DAYS"
@@ -966,7 +966,7 @@
  TextConstant:"SEVEN DAYS"
  CarriageControl:NL
 920 IF A1=1 THEN 1480
- ScalarValue:A1
+ Value:A1
  NumericConstant:1
  BinaryOperator:=
 925PRINT"JUNE 25-JULY 1,1862 GENERAL LEE (CSA) UPHELD THE OFFENSIVE"
@@ -984,7 +984,7 @@
 940 GO TO 1480
  LineNumber:1480
 950 IF A<>4 THEN 1000
- ScalarValue:A
+ Value:A
  NumericConstant:4
  BinaryOperator:<>
 960 PRINT "THE SECOND BULL RUN"
@@ -992,7 +992,7 @@
  TextConstant:"THE SECOND BULL RUN"
  CarriageControl:NL
 970 IF A1=1 THEN 1480
- ScalarValue:A1
+ Value:A1
  NumericConstant:1
  BinaryOperator:=
 980PRINT"AUG 29-30,1862 ThE COMBINED CONFEDERATE FORCES UNDER LEE AND"
@@ -1006,7 +1006,7 @@
 990 GO TO 1480
  LineNumber:1480
 1000 IF A<>5 THEN 1050
- ScalarValue:A
+ Value:A
  NumericConstant:5
  BinaryOperator:<>
 1010 PRINT "ANTIETAM"
@@ -1014,7 +1014,7 @@
  TextConstant:"ANTIETAM"
  CarriageControl:NL
 1020 IF A1=1 THEN 1480
- ScalarValue:A1
+ Value:A1
  NumericConstant:1
  BinaryOperator:=
 1030PRINT"SEPT 17,1862 THE SOUTH FAILED TO INCORPORATE MARYLAND INTO"
@@ -1028,7 +1028,7 @@
 1040 GO TO 1480
  LineNumber:1480
 1050 IF A<>6 THEN 1100
- ScalarValue:A
+ Value:A
  NumericConstant:6
  BinaryOperator:<>
 1060 PRINT "FREDERICKSBURG"
@@ -1036,7 +1036,7 @@
  TextConstant:"FREDERICKSBURG"
  CarriageControl:NL
 1070 IF A1=1 THEN 1480
- ScalarValue:A1
+ Value:A1
  NumericConstant:1
  BinaryOperator:=
 1080PRINT"DEC 13,1862 THE CONFEDERACY UNDER LEE SUCESSFULLY REPULSED"
@@ -1050,7 +1050,7 @@
 1090 GOTO 1480
  LineNumber:1480
 1100 IF A <>7 THEN 1150
- ScalarValue:A
+ Value:A
  NumericConstant:7
  BinaryOperator:<>
 1110 PRINT "MURFREESBORO"
@@ -1058,7 +1058,7 @@
  TextConstant:"MURFREESBORO"
  CarriageControl:NL
 1120 IF A1=1 THEN 1480
- ScalarValue:A1
+ Value:A1
  NumericConstant:1
  BinaryOperator:=
 1130PRINT"DEC 31,1862 THE SOUTH UNDER GEN. BRAGG WoONA CLOSE BATTLE"
@@ -1068,7 +1068,7 @@
 1140 GOTO 1480
  LineNumber:1480
 1150 IF A<>8 THEN 1200
- ScalarValue:A
+ Value:A
  NumericConstant:8
  BinaryOperator:<>
 1160 PRINT "CHANCELLORSVILLE"
@@ -1076,7 +1076,7 @@
  TextConstant:"CHANCELLORSVILLE"
  CarriageControl:NL
 1170 IF A1=1 THEN 1480
- ScalarValue:A1
+ Value:A1
  NumericConstant:1
  BinaryOperator:=
 1180PRINT"MAY 1-6,1863 THE SOUTH HAD A COSTLY VICTORY AND LOST ONE"
@@ -1090,7 +1090,7 @@
 1190 GOTO 1480
  LineNumber:1480
 1200 IF A<>9 THEN 1250
- ScalarValue:A
+ Value:A
  NumericConstant:9
  BinaryOperator:<>
 1210 PRINT "VICKSBURG"
@@ -1098,7 +1098,7 @@
  TextConstant:"VICKSBURG"
  CarriageControl:NL
 1220 IF A1=1 THEN 1480
- ScalarValue:A1
+ Value:A1
  NumericConstant:1
  BinaryOperator:=
 1230PRINT"JULY 4,1863 VICKSBURG WAS A COSTLY DEFEAT FOR THE SOUTH"
@@ -1112,7 +1112,7 @@
 1240 GOTO 1480
  LineNumber:1480
 1250 IF A<>10 THEN 1300
- ScalarValue:A
+ Value:A
  NumericConstant:10
  BinaryOperator:<>
 1260 PRINT "GETTYSBURG"
@@ -1120,7 +1120,7 @@
  TextConstant:"GETTYSBURG"
  CarriageControl:NL
 1270 IF A1=1 THEN 1480
- ScalarValue:A1
+ Value:A1
  NumericConstant:1
  BinaryOperator:=
 1280PRINT"JUNE 30,1863 A SOUTHERN MISTAKE BY GEN, LEE AT GETTYSBURG"
@@ -1134,7 +1134,7 @@
 1290 GOTO 1480
  LineNumber:1480
 1300 IF A<>11 THEN 1350
- ScalarValue:A
+ Value:A
  NumericConstant:11
  BinaryOperator:<>
 1310 PRINT "CHICKAMAUGA"
@@ -1142,7 +1142,7 @@
  TextConstant:"CHICKAMAUGA"
  CarriageControl:NL
 1320 IF A1=1 THEN 1480
- ScalarValue:A1
+ Value:A1
  NumericConstant:1
  BinaryOperator:=
 1330PRINT"NOV 25,1863    AFTER THE SOUTH HAD SEIGED GEN. ROSENCRANS"
@@ -1156,7 +1156,7 @@
 1340 GOTO 1480
  LineNumber:1480
 1350 IF A<>12 THEN 1400
- ScalarValue:A
+ Value:A
  NumericConstant:12
  BinaryOperator:<>
 1360 PRINT "CHATTANOOGA"
@@ -1164,7 +1164,7 @@
  TextConstant:"CHATTANOOGA"
  CarriageControl:NL
 1370 IF A1=1 THEN 1480
- ScalarValue:A1
+ Value:A1
  NumericConstant:1
  BinaryOperator:=
 1380 PRINT"SEPT 15,1863    CONFUSION IN A FOREST NEAR CHICKAMUNGA LED"
@@ -1178,7 +1178,7 @@
 1390 GOTO 1480
  LineNumber:1480
 1400 IF A<>13 THEN 1450
- ScalarValue:A
+ Value:A
  NumericConstant:13
  BinaryOperator:<>
 1410 PRINT "SPOTSYLVANIA"
@@ -1186,9 +1186,9 @@
  TextConstant:"SPOTSYLVANIA"
  CarriageControl:NL
 1420 IF AIM THEN 1480
- ScalarValue:A
- ScalarValue:I
- ScalarValue:M
+ Value:A
+ Value:I
+ Value:M
 1430PRINT"MAY 5,1664 GRANT'S PLAN TO KEEP LEE ISOLATED BEGAN TO FAIL"
  ITEMS
  TextConstant:"MAY 5,1664 GRANT'S PLAN TO KEEP LEE ISOLATED BEGAN TO FAIL"
@@ -1204,7 +1204,7 @@
  TextConstant:"ATLANTA"
  CarriageControl:NL
 1460 IF A1=1 THEN 1480
- ScalarValue:A1
+ Value:A1
  NumericConstant:1
  BinaryOperator:=
 1470PRINT"AUGUST, 1864 SHERMAN AND THREE VETERAN ARMIES CONVERGED ON"
@@ -1237,21 +1237,21 @@
  ITEMS
  TextConstant:"YOU HAVE WON"
  CarriageControl:
- ScalarValue:W
+ Value:W
  CarriageControl:;
  TextConstant:"BATTLES AND LOST"
  CarriageControl:
- ScalarValue:L
+ Value:L
  CarriageControl:;
  TextConstant:"BATTLES."
  CarriageControl:NL
 1515 IF Y=5 THEN 1550
- ScalarValue:Y
+ Value:Y
  NumericConstant:5
  BinaryOperator:=
 1520 IF W<=L THEN 1550
- ScalarValue:W
- ScalarValue:L
+ Value:W
+ Value:L
  BinaryOperator:<=
 1530 PRINT "THE CONFEDERACY HAS WON THE WAR"
  ITEMS

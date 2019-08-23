@@ -52,7 +52,7 @@
 50 C=INT(RND*N+1)
  Reference:C
  FunctionRnd
- ScalarValue:N
+ Value:N
  BinaryOperator:*
  NumericConstant:1
  BinaryOperator:+
@@ -61,7 +61,7 @@
 60 FOR I=1 TO C
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["ScalarValue:C"]
+ end:     ["Value:C"]
 70 READ S$
  Reference:S$
 80 NEXT I
@@ -71,14 +71,14 @@
  NumericConstant:0
  AssignmentOperator:=
 100 CHANGE S$ TO S
- ScalarValue:S$
+ Value:S$
  Reference:S
 110 FOR I=1 TO 5
  control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 120 A(I)=45
- ScalarValue:I
+ Value:I
  Reference:A
  NumericConstant:45
  AssignmentOperator:=
@@ -89,7 +89,7 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 144 P(J)=0
- ScalarValue:J
+ Value:J
  Reference:P
  NumericConstant:0
  AssignmentOperator:=
@@ -103,25 +103,25 @@
  Reference:L$
 170 G=G+1
  Reference:G
- ScalarValue:G
+ Value:G
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 172 IF L$=S$ THEN 500
- ScalarValue:L$
- ScalarValue:S$
+ Value:L$
+ Value:S$
  BinaryOperator:=
 180 CHANGE L$ TO L
- ScalarValue:L$
+ Value:L$
  Reference:L
 190 IF L(1)=63 THEN 300
  NumericConstant:1
- ScalarValue:L
+ Value:L
  NumericConstant:63
  BinaryOperator:=
 200 IF L(0)<>5 THEN 400
  NumericConstant:0
- ScalarValue:L
+ Value:L
  NumericConstant:5
  BinaryOperator:<>
 205 M=0:Q=0
@@ -140,38 +140,38 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 230 IF S(I)<>L(J) THEN 260
- ScalarValue:I
- ScalarValue:S
- ScalarValue:J
- ScalarValue:L
+ Value:I
+ Value:S
+ Value:J
+ Value:L
  BinaryOperator:<>
 231 Q=Q+1
  Reference:Q
- ScalarValue:Q
+ Value:Q
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 232 P(Q)=L(J)
- ScalarValue:Q
+ Value:Q
  Reference:P
- ScalarValue:J
- ScalarValue:L
+ Value:J
+ Value:L
  AssignmentOperator:=
 233 IF I<>J THEN 260
- ScalarValue:I
- ScalarValue:J
+ Value:I
+ Value:J
  BinaryOperator:<>
 240 M=M+1
  Reference:M
- ScalarValue:M
+ Value:M
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 250 A(I)=L(J)
- ScalarValue:I
+ Value:I
  Reference:A
- ScalarValue:J
- ScalarValue:L
+ Value:J
+ Value:L
  AssignmentOperator:=
 260 NEXT J
  Variable:J
@@ -185,36 +185,36 @@
 272 P(0)=Q
  NumericConstant:0
  Reference:P
- ScalarValue:Q
+ Value:Q
  AssignmentOperator:=
 275 CHANGE A TO A$
- ScalarValue:A
+ Value:A
  Reference:A$
 277 CHANGE P TO P$
- ScalarValue:P
+ Value:P
  Reference:P$
 280 PRINT "THERE WERE"M"MATCHES AND THE COMMON LETTERS WERE...",P$
  ITEMS
  TextConstant:"THERE WERE"
  CarriageControl:
- ScalarValue:M
+ Value:M
  CarriageControl:
  TextConstant:"MATCHES AND THE COMMON LETTERS WERE..."
  CarriageControl:,
- ScalarValue:P$
+ Value:P$
  CarriageControl:NL
 285 PRINT "FROM THE EXACT LETTER MATCHES, YOU KNOW.............",A$
  ITEMS
  TextConstant:"FROM THE EXACT LETTER MATCHES, YOU KNOW............."
  CarriageControl:,
- ScalarValue:A$
+ Value:A$
  CarriageControl:NL
 286 IF A$=S$ THEN 500
- ScalarValue:A$
- ScalarValue:S$
+ Value:A$
+ Value:S$
  BinaryOperator:=
 287 IF M>1 THEN 289
- ScalarValue:M
+ Value:M
  NumericConstant:1
  BinaryOperator:>
 288 PRINT:PRINT "IF YOU GIVE UP, TYPE '?' FOR YOUR NEXT GUESS"
@@ -229,13 +229,13 @@
 290 GOTO 150
  LineNumber:150
 300 CHANGE S _ TO S$
- ScalarValue:S
+ Value:S
  Reference:S$
 310 PRINT "THE SECRET WORD IS "S$: PRINT
  ITEMS
  TextConstant:"THE SECRET WORD IS "
  CarriageControl:
- ScalarValue:S$
+ Value:S$
  CarriageControl:NL
  ITEMS
  CarriageControl:NL
@@ -251,7 +251,7 @@
  ITEMS
  CarriageControl:NL
  Reference:G
- ScalarValue:G
+ Value:G
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
@@ -260,7 +260,7 @@
  ITEMS
  TextConstant:"YOU HAVE GUESSED THE WORD. IT TOOK"
  CarriageControl:
- ScalarValue:G
+ Value:G
  CarriageControl:
  TextConstant:"GUESSES!"
  CarriageControl:NL
@@ -269,7 +269,7 @@
 510 INPUT "WANT TO PLAY AGAIN";G$
  Reference:G$
 520 IF G$="YES" THEN 30
- ScalarValue:G$
+ Value:G$
  TextConstant:"YES"
  BinaryOperator:=
 530 DATA 12,"DINKY","SMOKE","WATER","GRASS","TRAIN","MIGHT","FIRST"

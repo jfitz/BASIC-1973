@@ -17,15 +17,15 @@
  AssignmentOperator:=
  LineNumber:700
 550 OPEN F$ FOR INPUT AS FILE 1%:INPUT #1%,N$:INPUT #1%,A(I%) FOR I%=1%TO N%:CLOSE 1%:A$(0%)=NUM$(N%):ON ERROR GOTO 0:GOTO 1300
- ScalarValue:F$
+ Value:F$
  IntegerConstant:1
  Reference:N$
- ScalarValue:I%
+ Value:I%
  Reference:A
  IntegerConstant:1
  IntegerConstant:0
  Reference:A$
- ScalarValue:N%
+ Value:N%
  FunctionStr
  AssignmentOperator:=
  LineNumber:0
@@ -34,12 +34,12 @@
  LineNumber:1050
  Reference:F$
  TextConstant:"$"
- ScalarValue:F$
+ Value:F$
  BinaryOperator:+
  AssignmentOperator:=
  
 1050 READ A$(I%) FOR I%=0% TO 3%
- ScalarValue:I%
+ Value:I%
  Reference:A$
 1100 DATA "4","\QDOES IT SWIM\Y2\N3\","\AFISH","\ABIRD"
  TextConstant:"4"
@@ -51,7 +51,7 @@
  LineNumber:1350
  LineNumber:1300
 1310 IF Z9$="SAVE" THEN OPEN "ANIMAL.GME" FOR OUTPUT AS FILE 1%:PRINT #1%,A$(I%) FOR I%=0% TO VAL(A$(0%)):PRINT #1,CHR$(26%):CLOSE 1%:GOTO 1300
- ScalarValue:Z9$
+ Value:Z9$
  TextConstant:"SAVE"
  BinaryOperator:=
  TextConstant:"ANIMAL.GME"
@@ -60,8 +60,8 @@
  IntegerConstant:1
  UnaryOperator:#
  ITEMS
- ScalarValue:I%
- ScalarValue:A$
+ Value:I%
+ Value:A$
  CarriageControl:NL
  FILE
  NumericConstant:1
@@ -73,15 +73,15 @@
  IntegerConstant:1
  LineNumber:1300
 1320 IF Z9$="LIST" THEN PRINT "ANIMALS I ALREADY KNOW ARE:":PRINT RIGHT(A$(I%),3%), IF INSTR(1%, A$(I%), "\A") FOR I%=1% TO 200%:PRINT:GOTO 1300
- ScalarValue:Z9$
+ Value:Z9$
  TextConstant:"LIST"
  BinaryOperator:=
  ITEMS
  TextConstant:"ANIMALS I ALREADY KNOW ARE:"
  CarriageControl:NL
  ITEMS
- ScalarValue:I%
- ScalarValue:A$
+ Value:I%
+ Value:A$
  IntegerConstant:3
  FunctionRight
  CarriageControl:,
@@ -94,8 +94,8 @@
  AssignmentOperator:=
 1400 K%=FNA%(A$(K%)):GOTO 3000 IF LEN(A$(K%))=0%:GOTO 1400 IF LEFT(A$(K%),2%)="\Q":PRINT "IS IT A "RIGHT(A$(K%),3%);:INPUT Z7$:Z7$=LEFT(Z7$,1%)
  Reference:K%
- ScalarValue:K%
- ScalarValue:A$
+ Value:K%
+ Value:A$
  UserFunction
  AssignmentOperator:=
  LineNumber:3000
@@ -103,19 +103,19 @@
  ITEMS
  TextConstant:"IS IT A "
  CarriageControl:
- ScalarValue:K%
- ScalarValue:A$
+ Value:K%
+ Value:A$
  IntegerConstant:3
  FunctionRight
  CarriageControl:;
  Reference:Z7$
  Reference:Z7$
- ScalarValue:Z7$
+ Value:Z7$
  IntegerConstant:1
  FunctionLeft
  AssignmentOperator:=
 1450 IF Z7$="Y" THEN PRINT "WHY NOT TRY ANOTHER ANIMAL":GOTO 1300
- ScalarValue:Z7$
+ Value:Z7$
  TextConstant:"Y"
  BinaryOperator:=
  ITEMS
@@ -128,12 +128,12 @@
  ITEMS
  TextConstant:"PLEASE TYPE IN A QUESTION THAT WOULD DISTINGUISH A "
  CarriageControl:
- ScalarValue:Z9$
+ Value:Z9$
  CarriageControl:
  TextConstant:" FROM A "
  CarriageControl:
- ScalarValue:K%
- ScalarValue:A$
+ Value:K%
+ Value:A$
  IntegerConstant:3
  FunctionRight
  CarriageControl:NL
@@ -142,23 +142,23 @@
  ITEMS
  TextConstant:"FOR A "
  CarriageControl:
- ScalarValue:Z9$
+ Value:Z9$
  CarriageControl:
  TextConstant:" THE ANSWER WOULD BE"
  CarriageControl:;
  Reference:Z7$
  Reference:Z7$
- ScalarValue:Z7$
+ Value:Z7$
  IntegerConstant:1
  FunctionLeft
  AssignmentOperator:=
- ScalarValue:Z7$
+ Value:Z7$
  TextConstant:"Y"
  BinaryOperator:=
  Reference:Z6$
  TextConstant:"N"
  AssignmentOperator:=
- ScalarValue:Z7$
+ Value:Z7$
  TextConstant:"N"
  BinaryOperator:=
  Reference:Z6$
@@ -171,48 +171,48 @@
 2200 Z1%=VAL(A$(0%)):A$(0%)=NUM$(Z1% + 2%):A$(Z1%)=A$(K%):A$(Z1%+1%)='\A'+Z9$:A$(K%)="\Q"+Z8$+"\"+Z7$+NUM$(Z1%+1%)+"\"+Z6$+NUM$(Z1%)+"\"
  Reference:Z1%
  IntegerConstant:0
- ScalarValue:A$
+ Value:A$
  FunctionVal
  AssignmentOperator:=
  IntegerConstant:0
  Reference:A$
- ScalarValue:Z1%
+ Value:Z1%
  IntegerConstant:2
  BinaryOperator:+
  FunctionStr
  AssignmentOperator:=
- ScalarValue:Z1%
+ Value:Z1%
  Reference:A$
- ScalarValue:K%
- ScalarValue:A$
+ Value:K%
+ Value:A$
  AssignmentOperator:=
- ScalarValue:Z1%
+ Value:Z1%
  IntegerConstant:1
  BinaryOperator:+
  Reference:A$
  TextConstant:"\A"
- ScalarValue:Z9$
+ Value:Z9$
  BinaryOperator:+
  AssignmentOperator:=
- ScalarValue:K%
+ Value:K%
  Reference:A$
  TextConstant:"\Q"
- ScalarValue:Z8$
+ Value:Z8$
  BinaryOperator:+
  TextConstant:"\"
  BinaryOperator:+
- ScalarValue:Z7$
+ Value:Z7$
  BinaryOperator:+
- ScalarValue:Z1%
+ Value:Z1%
  IntegerConstant:1
  BinaryOperator:+
  FunctionStr
  BinaryOperator:+
  TextConstant:"\"
  BinaryOperator:+
- ScalarValue:Z6$
+ Value:Z6$
  BinaryOperator:+
- ScalarValue:Z1%
+ Value:Z1%
  FunctionStr
  BinaryOperator:+
  TextConstant:"\"
@@ -222,10 +222,10 @@
  LineNumber:1300
 3000 DEF FNA%(Q$):PRINT MID(Q$,3%,INSTR(3%,Q$,"\")-3%);:INPUT Z9$:Z9$=LEFT(Z9$,1%):Z9$="N" IF Z9$<>"Y":Z1%=INSTR(3%,Q$,"\"+Z9$)+2%:Z2%=INSTR(Z1%,Q$,"\"):FNA%=VAL(MID(Q$,Z1%,Z2%-Z1%)):FNEND
  ITEMS
- ScalarValue:Q$
+ Value:Q$
  IntegerConstant:3
  IntegerConstant:3
- ScalarValue:Q$
+ Value:Q$
  TextConstant:"\"
  FunctionInstr
  IntegerConstant:3
@@ -234,7 +234,7 @@
  CarriageControl:;
  Reference:Z9$
  Reference:Z9$
- ScalarValue:Z9$
+ Value:Z9$
  IntegerConstant:1
  FunctionLeft
  AssignmentOperator:=
@@ -243,25 +243,25 @@
  AssignmentOperator:=
  Reference:Z1%
  IntegerConstant:3
- ScalarValue:Q$
+ Value:Q$
  TextConstant:"\"
- ScalarValue:Z9$
+ Value:Z9$
  BinaryOperator:+
  FunctionInstr
  IntegerConstant:2
  BinaryOperator:+
  AssignmentOperator:=
  Reference:Z2%
- ScalarValue:Z1%
- ScalarValue:Q$
+ Value:Z1%
+ Value:Q$
  TextConstant:"\"
  FunctionInstr
  AssignmentOperator:=
  Reference:FNA%
- ScalarValue:Q$
- ScalarValue:Z1%
- ScalarValue:Z2%
- ScalarValue:Z1%
+ Value:Q$
+ Value:Z1%
+ Value:Z2%
+ Value:Z1%
  BinaryOperator:-
  FunctionMid
  FunctionVal
