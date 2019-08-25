@@ -807,7 +807,7 @@ class Parser
     if @shape_stack[-1] == :declaration
       variable = Declaration.new(element)
     else
-      variable = Value.new(element, @shape_stack[-1])
+      variable = Value.new(element, @shape_stack[-1], [])
     end
     @operator_stack.push(variable)
   end
