@@ -48,11 +48,11 @@
 35 RESTORE
  
 40 READ N
- Reference:N
+ Variable:N
 50 C=INT(RND*N+1)
- Reference:C
+ Variable:C
  FunctionRnd
- Value:N
+ Variable:N
  BinaryOperator:*
  NumericConstant:1
  BinaryOperator:+
@@ -61,25 +61,25 @@
 60 FOR I=1 TO C
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["Value:C"]
+ end:     ["Variable:C"]
 70 READ S$
- Reference:S$
+ Variable:S$
 80 NEXT I
  Variable:I
 90 G=0
- Reference:G
+ Variable:G
  NumericConstant:0
  AssignmentOperator:=
 100 CHANGE S$ TO S
- Value:S$
- Reference:S
+ Variable:S$
+ Variable:S
 110 FOR I=1 TO 5
  control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 120 A(I)=45
- Value:I
- Reference:A
+ Variable:I
+ Variable:A
  NumericConstant:45
  AssignmentOperator:=
 130 NEXT I
@@ -89,8 +89,8 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 144 P(J)=0
- Value:J
- Reference:P
+ Variable:J
+ Variable:P
  NumericConstant:0
  AssignmentOperator:=
 146 NEXT J
@@ -100,35 +100,35 @@
  TextConstant:"GUESS A FIVE-LETTER WORD"
  CarriageControl:;
 160 INPUT L$
- Reference:L$
+ Variable:L$
 170 G=G+1
- Reference:G
- Value:G
+ Variable:G
+ Variable:G
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 172 IF L$=S$ THEN 500
- Value:L$
- Value:S$
+ Variable:L$
+ Variable:S$
  BinaryOperator:=
 180 CHANGE L$ TO L
- Value:L$
- Reference:L
+ Variable:L$
+ Variable:L
 190 IF L(1)=63 THEN 300
  NumericConstant:1
- Value:L
+ Variable:L
  NumericConstant:63
  BinaryOperator:=
 200 IF L(0)<>5 THEN 400
  NumericConstant:0
- Value:L
+ Variable:L
  NumericConstant:5
  BinaryOperator:<>
 205 M=0:Q=0
- Reference:M
+ Variable:M
  NumericConstant:0
  AssignmentOperator:=
- Reference:Q
+ Variable:Q
  NumericConstant:0
  AssignmentOperator:=
 210 FOR I=1 TO 5
@@ -140,38 +140,38 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 230 IF S(I)<>L(J) THEN 260
- Value:I
- Value:S
- Value:J
- Value:L
+ Variable:I
+ Variable:S
+ Variable:J
+ Variable:L
  BinaryOperator:<>
 231 Q=Q+1
- Reference:Q
- Value:Q
+ Variable:Q
+ Variable:Q
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 232 P(Q)=L(J)
- Value:Q
- Reference:P
- Value:J
- Value:L
+ Variable:Q
+ Variable:P
+ Variable:J
+ Variable:L
  AssignmentOperator:=
 233 IF I<>J THEN 260
- Value:I
- Value:J
+ Variable:I
+ Variable:J
  BinaryOperator:<>
 240 M=M+1
- Reference:M
- Value:M
+ Variable:M
+ Variable:M
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 250 A(I)=L(J)
- Value:I
- Reference:A
- Value:J
- Value:L
+ Variable:I
+ Variable:A
+ Variable:J
+ Variable:L
  AssignmentOperator:=
 260 NEXT J
  Variable:J
@@ -179,42 +179,42 @@
  Variable:I
 270 A(0)=5
  NumericConstant:0
- Reference:A
+ Variable:A
  NumericConstant:5
  AssignmentOperator:=
 272 P(0)=Q
  NumericConstant:0
- Reference:P
- Value:Q
+ Variable:P
+ Variable:Q
  AssignmentOperator:=
 275 CHANGE A TO A$
- Value:A
- Reference:A$
+ Variable:A
+ Variable:A$
 277 CHANGE P TO P$
- Value:P
- Reference:P$
+ Variable:P
+ Variable:P$
 280 PRINT "THERE WERE"M"MATCHES AND THE COMMON LETTERS WERE...",P$
  ITEMS
  TextConstant:"THERE WERE"
  CarriageControl:
- Value:M
+ Variable:M
  CarriageControl:
  TextConstant:"MATCHES AND THE COMMON LETTERS WERE..."
  CarriageControl:,
- Value:P$
+ Variable:P$
  CarriageControl:NL
 285 PRINT "FROM THE EXACT LETTER MATCHES, YOU KNOW.............",A$
  ITEMS
  TextConstant:"FROM THE EXACT LETTER MATCHES, YOU KNOW............."
  CarriageControl:,
- Value:A$
+ Variable:A$
  CarriageControl:NL
 286 IF A$=S$ THEN 500
- Value:A$
- Value:S$
+ Variable:A$
+ Variable:S$
  BinaryOperator:=
 287 IF M>1 THEN 289
- Value:M
+ Variable:M
  NumericConstant:1
  BinaryOperator:>
 288 PRINT:PRINT "IF YOU GIVE UP, TYPE '?' FOR YOUR NEXT GUESS"
@@ -229,13 +229,13 @@
 290 GOTO 150
  LineNumber:150
 300 CHANGE S _ TO S$
- Value:S
- Reference:S$
+ Variable:S
+ Variable:S$
 310 PRINT "THE SECRET WORD IS "S$: PRINT
  ITEMS
  TextConstant:"THE SECRET WORD IS "
  CarriageControl:
- Value:S$
+ Variable:S$
  CarriageControl:NL
  ITEMS
  CarriageControl:NL
@@ -250,8 +250,8 @@
 410 PRINT:G=G-1: GOTO 150
  ITEMS
  CarriageControl:NL
- Reference:G
- Value:G
+ Variable:G
+ Variable:G
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
@@ -260,16 +260,16 @@
  ITEMS
  TextConstant:"YOU HAVE GUESSED THE WORD. IT TOOK"
  CarriageControl:
- Value:G
+ Variable:G
  CarriageControl:
  TextConstant:"GUESSES!"
  CarriageControl:NL
  ITEMS
  CarriageControl:NL
 510 INPUT "WANT TO PLAY AGAIN";G$
- Reference:G$
+ Variable:G$
 520 IF G$="YES" THEN 30
- Value:G$
+ Variable:G$
  TextConstant:"YES"
  BinaryOperator:=
 530 DATA 12,"DINKY","SMOKE","WATER","GRASS","TRAIN","MIGHT","FIRST"

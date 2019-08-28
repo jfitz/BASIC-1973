@@ -51,12 +51,12 @@
 240 GOSUB 1000
  LineNumber:1000
 250 T=0
- Reference:T
+ Variable:T
  NumericConstant:0
  AssignmentOperator:=
 260 T=T+1
- Reference:T
- Value:T
+ Variable:T
+ Variable:T
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -70,40 +70,40 @@
  ITEMS
  TextConstant:"TURN NO."
  CarriageControl:
- Value:T
+ Variable:T
  CarriageControl:;
  TextConstant:"WHAT IS YOUR GUESS"
  CarriageControl:;
 300 INPUT M,N
- Reference:M
- Reference:N
+ Variable:M
+ Variable:N
 310 FOR I=1 TO 4
  control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 320 IF P(I,1)=-1 THEN 400
- Value:I
+ Variable:I
  NumericConstant:1
- Value:P
+ Variable:P
  NumericConstant:1
  UnaryOperator:-
  BinaryOperator:=
 330 IF P(I,1)<>M THEN 380
- Value:I
+ Variable:I
  NumericConstant:1
- Value:P
- Value:M
+ Variable:P
+ Variable:M
  BinaryOperator:<>
 340 IF P(I,2)<>N THEN 380
- Value:I
+ Variable:I
  NumericConstant:2
- Value:P
- Value:N
+ Variable:P
+ Variable:N
  BinaryOperator:<>
 350 P(I,1)=-1
- Value:I
+ Variable:I
  NumericConstant:1
- Reference:P
+ Variable:P
  NumericConstant:1
  UnaryOperator:-
  AssignmentOperator:=
@@ -111,23 +111,23 @@
  ITEMS
  TextConstant:"YOU HAVE FOUND MUGWUMP"
  CarriageControl:;
- Value:I
+ Variable:I
  CarriageControl:NL
 370 GOTO 400
  LineNumber:400
 380 D=SQR((P(I,1)-M)^2+(P(I,2)-N)^2)
- Reference:D
- Value:I
+ Variable:D
+ Variable:I
  NumericConstant:1
- Value:P
- Value:M
+ Variable:P
+ Variable:M
  BinaryOperator:-
  NumericConstant:2
  BinaryOperator:^
- Value:I
+ Variable:I
  NumericConstant:2
- Value:P
- Value:N
+ Variable:P
+ Variable:N
  BinaryOperator:-
  NumericConstant:2
  BinaryOperator:^
@@ -138,7 +138,7 @@
  ITEMS
  TextConstant:"YOU ARE"
  CarriageControl:
- Value:D
+ Variable:D
  NumericConstant:10
  BinaryOperator:+
  FunctionInt
@@ -147,7 +147,7 @@
  CarriageControl:
  TextConstant:"UNITS FROM MUGWUMP"
  CarriageControl:
- Value:I
+ Variable:I
  CarriageControl:NL
 400 NEXT I
  Variable:I
@@ -156,9 +156,9 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 420 IF P(J,1)<>-1 THEN 470
- Value:J
+ Variable:J
  NumericConstant:1
- Value:P
+ Variable:P
  NumericConstant:1
  UnaryOperator:-
  BinaryOperator:<>
@@ -171,14 +171,14 @@
  ITEMS
  TextConstant:"YOU GOT THEM ALL IN"
  CarriageControl:;
- Value:T
+ Variable:T
  CarriageControl:;
  TextConstant:"TURNS!"
  CarriageControl:NL
 460 GOTO 540
  LineNumber:540
 470 IF T<10 THEN 260
- Value:T
+ Variable:T
  NumericConstant:10
  BinaryOperator:<
 480 PRINT
@@ -193,9 +193,9 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 550 IF P(I,1)=-1 THEN 570
- Value:I
+ Variable:I
  NumericConstant:1
- Value:P
+ Variable:P
  NumericConstant:1
  UnaryOperator:-
  BinaryOperator:=
@@ -203,19 +203,19 @@
  ITEMS
  TextConstant:"MUGWUMP"
  CarriageControl:;
- Value:I
+ Variable:I
  CarriageControl:;
  TextConstant:"IS AT ("
  CarriageControl:;
- Value:I
+ Variable:I
  NumericConstant:1
- Value:P
+ Variable:P
  CarriageControl:;
  TextConstant:","
  CarriageControl:;
- Value:I
+ Variable:I
  NumericConstant:2
- Value:P
+ Variable:P
  CarriageControl:;
  TextConstant:")"
  CarriageControl:NL
@@ -243,9 +243,9 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 1020 P(I,J)=INT(10*RND(0))
- Value:I
- Value:J
- Reference:P
+ Variable:I
+ Variable:J
+ Variable:P
  NumericConstant:10
  NumericConstant:0
  FunctionRnd

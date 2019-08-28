@@ -25,24 +25,24 @@
  NumericConstant:50
  Declaration:U
 40 C=1:RANDOMIZE:N=50
- Reference:C
+ Variable:C
  NumericConstant:1
  AssignmentOperator:=
  
- Reference:N
+ Variable:N
  NumericConstant:50
  AssignmentOperator:=
 50 D$(I)="-" FOR I=1 TO 20:M=0
- Value:I
- Reference:D$
+ Variable:I
+ Variable:D$
  TextConstant:"-"
  AssignmentOperator:=
- Reference:M
+ Variable:M
  NumericConstant:0
  AssignmentOperator:=
 60 N$(I)="" FOR I=1 TO 26
- Value:I
- Reference:N$
+ Variable:I
+ Variable:N$
  TextConstant:""
  AssignmentOperator:=
 70 FOR I=1 TO 12:FOR J=1 TO 12:P$(I,J)=" ":NEXT J:NEXT I
@@ -52,41 +52,41 @@
  control: Variable:J
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
- Value:I
- Value:J
- Reference:P$
+ Variable:I
+ Variable:J
+ Variable:P$
  TextConstant:" "
  AssignmentOperator:=
  Variable:J
  Variable:I
 80 P$(I,1)="X" FOR I=1 TO 12
- Value:I
+ Variable:I
  NumericConstant:1
- Reference:P$
+ Variable:P$
  TextConstant:"X"
  AssignmentOperator:=
 90 P$(1,I)="X" FOR I=1 TO 7:P$(2,7)="X"
  NumericConstant:1
- Value:I
- Reference:P$
+ Variable:I
+ Variable:P$
  TextConstant:"X"
  AssignmentOperator:=
  NumericConstant:2
  NumericConstant:7
- Reference:P$
+ Variable:P$
  TextConstant:"X"
  AssignmentOperator:=
 95 IF C<N THEN 100 ELSE PRINT "YOU DID ALL THE WORDS!!":STOP
- Value:C
- Value:N
+ Variable:C
+ Variable:N
  BinaryOperator:<
  ITEMS
  TextConstant:"YOU DID ALL THE WORDS!!"
  CarriageControl:NL
  
 100 Q=INT(N*RND+1)
- Reference:Q
- Value:N
+ Variable:Q
+ Variable:N
  FunctionRnd
  BinaryOperator:*
  NumericConstant:1
@@ -94,35 +94,35 @@
  FunctionInt
  AssignmentOperator:=
 110 IF U(Q)=1 THEN 100 ELSE U(Q)=1:C=C+1:RESTORE:T1=0
- Value:Q
- Value:U
+ Variable:Q
+ Variable:U
  NumericConstant:1
  BinaryOperator:=
- Value:Q
- Reference:U
+ Variable:Q
+ Variable:U
  NumericConstant:1
  AssignmentOperator:=
- Reference:C
- Value:C
+ Variable:C
+ Variable:C
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
  
- Reference:T1
+ Variable:T1
  NumericConstant:0
  AssignmentOperator:=
 150 READ A$ FOR I=1 TO Q
- Reference:A$
+ Variable:A$
 160 L=LEN(A$):L$(I)=MID(A$,I,I) FOR I=1 TO L
- Reference:L
- Value:A$
+ Variable:L
+ Variable:A$
  FunctionLen
  AssignmentOperator:=
- Value:I
- Reference:L$
- Value:A$
- Value:I
- Value:I
+ Variable:I
+ Variable:L$
+ Variable:A$
+ Variable:I
+ Variable:I
  FunctionMid
  AssignmentOperator:=
 170 &"HERE ARE THE LETTERS YOU USED."
@@ -134,13 +134,13 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:26"]
  ITEMS
- Value:I
- Value:N$
+ Variable:I
+ Variable:N$
  CarriageControl:;
- Value:I
+ Variable:I
  NumericConstant:1
  BinaryOperator:+
- Value:N$
+ Variable:N$
  TextConstant:""
  BinaryOperator:=
 190 PRINT ", ";:NEXT I
@@ -155,10 +155,10 @@
  CarriageControl:NL
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["Value:L"]
+ end:     ["Variable:L"]
  ITEMS
- Value:I
- Value:D$
+ Variable:I
+ Variable:D$
  CarriageControl:;
  Variable:I
  ITEMS
@@ -166,22 +166,22 @@
  ITEMS
  CarriageControl:NL
 210 INPUT "WHAT IS YOUR GUESS";G$:R=0
- Reference:G$
- Reference:R
+ Variable:G$
+ Variable:R
  NumericConstant:0
  AssignmentOperator:=
 220 FOR I=1 TO 26:IF N$(I)="" THEN 250
  control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:26"]
- Value:I
- Value:N$
+ Variable:I
+ Variable:N$
  TextConstant:""
  BinaryOperator:=
 230 IF G$=N$(I) THEN & "YOU GUESSED THAT LETTER BEFORE":GOTO 170
- Value:G$
- Value:I
- Value:N$
+ Variable:G$
+ Variable:I
+ Variable:N$
  BinaryOperator:=
  ITEMS
  TextConstant:"YOU GUESSED THAT LETTER BEFORE"
@@ -194,43 +194,43 @@
  CarriageControl:NL
  
 250 T1=T1+1:N$(T1)=G$
- Reference:T1
- Value:T1
+ Variable:T1
+ Variable:T1
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
- Value:T1
- Reference:N$
- Value:G$
+ Variable:T1
+ Variable:N$
+ Variable:G$
  AssignmentOperator:=
 260 FOR I=1 TO L:IF L$(I)=G$ THEN 280
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["Value:L"]
- Value:I
- Value:L$
- Value:G$
+ end:     ["Variable:L"]
+ Variable:I
+ Variable:L$
+ Variable:G$
  BinaryOperator:=
 270 NEXT I:IF R=0 THEN 290 ELSE GOTO 300
  Variable:I
- Value:R
+ Variable:R
  NumericConstant:0
  BinaryOperator:=
  LineNumber:300
 280 D$(I)=G$:R=R+1:GOTO 270
- Value:I
- Reference:D$
- Value:G$
+ Variable:I
+ Variable:D$
+ Variable:G$
  AssignmentOperator:=
- Reference:R
- Value:R
+ Variable:R
+ Variable:R
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
  LineNumber:270
 290 M=M+1:GOTO 400
- Reference:M
- Value:M
+ Variable:M
+ Variable:M
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -238,9 +238,9 @@
 300 FOR I=1 TO L:IF D$(I)="-" THEN 320
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["Value:L"]
- Value:I
- Value:D$
+ end:     ["Variable:L"]
+ Variable:I
+ Variable:D$
  TextConstant:"-"
  BinaryOperator:=
 310 NEXT I:GOTO 290
@@ -251,10 +251,10 @@
  CarriageControl:NL
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["Value:L"]
+ end:     ["Variable:L"]
  ITEMS
- Value:I
- Value:D$
+ Variable:I
+ Variable:D$
  CarriageControl:;
  Variable:I
  ITEMS
@@ -262,10 +262,10 @@
  ITEMS
  CarriageControl:NL
 330 INPUT "WHAT IS YOUR GUESS FOR THE WORD"; B$
- Reference:B$
+ Variable:B$
 340 IF B$=A$ THEN 360
- Value:B$
- Value:A$
+ Variable:B$
+ Variable:A$
  BinaryOperator:=
 350 & "WRONG. TRY ANOTHER LETTER.":&:GOTO 170
  ITEMS
@@ -278,13 +278,13 @@
  ITEMS
  TextConstant:"RIGHT!! IT TOOK YOU"
  CarriageControl:
- Value:T1
+ Variable:T1
  CarriageControl:
  TextConstant:"GUESSES!"
  CarriageControl:NL
 370 INPUT "WANT ANOTHER WORD"; W$:IF W$="YES" THEN 50
- Reference:W$
- Value:W$
+ Variable:W$
+ Variable:W$
  TextConstant:"YES"
  BinaryOperator:=
 380 &: &"IT'S BEEN FUN! BYE FOR NOW.":STOP
@@ -308,7 +308,7 @@
  TextConstant:"SORRY, THAT LETTER ISN'T IN THE WORD."
  CarriageControl:NL
 410 ON M GOTO 415, 420, 425, 430, 435, 440, 445, 450, 455, 460
- Value:M
+ Variable:M
  LineNumber:415
  LineNumber:420
  LineNumber:425
@@ -369,7 +369,7 @@
  TextConstant:"HERE'S THE OTHER FOOT  YOU'RE HUNG!!"
  CarriageControl:NL
 470 ON M GOTO 480,490,500,510,520,530,540,550,560,570
- Value:M
+ Variable:M
  LineNumber:480
  LineNumber:490
  LineNumber:500
@@ -383,153 +383,153 @@
 480 P$(2,6)="-":P$(2,7)="-":P$(2,8)="-":P$(4,5)="(":P$(4,6)=" "
  NumericConstant:2
  NumericConstant:6
- Reference:P$
+ Variable:P$
  TextConstant:"-"
  AssignmentOperator:=
  NumericConstant:2
  NumericConstant:7
- Reference:P$
+ Variable:P$
  TextConstant:"-"
  AssignmentOperator:=
  NumericConstant:2
  NumericConstant:8
- Reference:P$
+ Variable:P$
  TextConstant:"-"
  AssignmentOperator:=
  NumericConstant:4
  NumericConstant:5
- Reference:P$
+ Variable:P$
  TextConstant:"("
  AssignmentOperator:=
  NumericConstant:4
  NumericConstant:6
- Reference:P$
+ Variable:P$
  TextConstant:" "
  AssignmentOperator:=
 481 P$(4,8)=".":P$(4,9)=")":P$(5,6)="-":P$(5,7)="-":P$(5,8)="-":GOTO 580
  NumericConstant:4
  NumericConstant:8
- Reference:P$
+ Variable:P$
  TextConstant:"."
  AssignmentOperator:=
  NumericConstant:4
  NumericConstant:9
- Reference:P$
+ Variable:P$
  TextConstant:")"
  AssignmentOperator:=
  NumericConstant:5
  NumericConstant:6
- Reference:P$
+ Variable:P$
  TextConstant:"-"
  AssignmentOperator:=
  NumericConstant:5
  NumericConstant:7
- Reference:P$
+ Variable:P$
  TextConstant:"-"
  AssignmentOperator:=
  NumericConstant:5
  NumericConstant:8
- Reference:P$
+ Variable:P$
  TextConstant:"-"
  AssignmentOperator:=
  LineNumber:580
 490 P$(I,7)="X" FOR I=6 TO 9:GOTO 580
- Value:I
+ Variable:I
  NumericConstant:7
- Reference:P$
+ Variable:P$
  TextConstant:"X"
  AssignmentOperator:=
  LineNumber:580
 500 P$(I,I-1)="\" FOR I = 4 TO 7:GOTO 580
- Value:I
- Value:I
+ Variable:I
+ Variable:I
  NumericConstant:1
  BinaryOperator:-
- Reference:P$
+ Variable:P$
  TextConstant:"\"
  AssignmentOperator:=
  LineNumber:580
 510 P$(4,11)="/":P$(5,10)="/":P$(6,9)="\":P$(7,8)="/":GOTO 580
  NumericConstant:4
  NumericConstant:11
- Reference:P$
+ Variable:P$
  TextConstant:"/"
  AssignmentOperator:=
  NumericConstant:5
  NumericConstant:10
- Reference:P$
+ Variable:P$
  TextConstant:"/"
  AssignmentOperator:=
  NumericConstant:6
  NumericConstant:9
- Reference:P$
+ Variable:P$
  TextConstant:"\"
  AssignmentOperator:=
  NumericConstant:7
  NumericConstant:8
- Reference:P$
+ Variable:P$
  TextConstant:"/"
  AssignmentOperator:=
  LineNumber:580
 520 P$(10,6)="/":P$(11,5)="/":GOTO 580
  NumericConstant:10
  NumericConstant:6
- Reference:P$
+ Variable:P$
  TextConstant:"/"
  AssignmentOperator:=
  NumericConstant:11
  NumericConstant:5
- Reference:P$
+ Variable:P$
  TextConstant:"/"
  AssignmentOperator:=
  LineNumber:580
 530 P$(10,8)="\":P$(11,9)="\":GOTO 580
  NumericConstant:10
  NumericConstant:8
- Reference:P$
+ Variable:P$
  TextConstant:"\"
  AssignmentOperator:=
  NumericConstant:11
  NumericConstant:9
- Reference:P$
+ Variable:P$
  TextConstant:"\"
  AssignmentOperator:=
  LineNumber:580
 540 P$(3,11)="\":GOTO 580
  NumericConstant:3
  NumericConstant:11
- Reference:P$
+ Variable:P$
  TextConstant:"\"
  AssignmentOperator:=
  LineNumber:580
 550 P$(3,3)="/":GOTO 580
  NumericConstant:3
  NumericConstant:3
- Reference:P$
+ Variable:P$
  TextConstant:"/"
  AssignmentOperator:=
  LineNumber:580
 560 P$(12,10)="\":P$(12,11)="-":GOTO 580
  NumericConstant:12
  NumericConstant:10
- Reference:P$
+ Variable:P$
  TextConstant:"\"
  AssignmentOperator:=
  NumericConstant:12
  NumericConstant:11
- Reference:P$
+ Variable:P$
  TextConstant:"-"
  AssignmentOperator:=
  LineNumber:580
 570 P$(12,3)="-":P$(12,4)="/"
  NumericConstant:12
  NumericConstant:3
- Reference:P$
+ Variable:P$
  TextConstant:"-"
  AssignmentOperator:=
  NumericConstant:12
  NumericConstant:4
- Reference:P$
+ Variable:P$
  TextConstant:"/"
  AssignmentOperator:=
 580 FOR I=1 TO 12:FOR J=1 TO 12:& P$(I,J);:NEXT J
@@ -540,9 +540,9 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
  ITEMS
- Value:I
- Value:J
- Value:P$
+ Variable:I
+ Variable:J
+ Variable:P$
  CarriageControl:;
  Variable:J
 590 &:NEXT I:&:&:IF M=10 THEN 600 ELSE 170
@@ -553,14 +553,14 @@
  CarriageControl:NL
  ITEMS
  CarriageControl:NL
- Value:M
+ Variable:M
  NumericConstant:10
  BinaryOperator:=
 600 &"SORRY, YOU LOSE. THE WORD WAS "A$
  ITEMS
  TextConstant:"SORRY, YOU LOSE. THE WORD WAS "
  CarriageControl:
- Value:A$
+ Variable:A$
  CarriageControl:NL
 610 &"YOU MISSED THAT ONE. DO YOU":GOTO 370
  ITEMS

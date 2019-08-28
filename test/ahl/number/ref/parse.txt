@@ -33,7 +33,7 @@
 8 PRINT\P=100
  ITEMS
  CarriageControl:NL
- Reference:P
+ Variable:P
  NumericConstant:100
  AssignmentOperator:=
 11 PRINT "GUESS A NUMBER FROM 1 TO 5";
@@ -41,9 +41,9 @@
  TextConstant:"GUESS A NUMBER FROM 1 TO 5"
  CarriageControl:;
 12 INPUT G
- Reference:G
+ Variable:G
 15 LET R=INT(5*RND(0))
- Reference:R
+ Variable:R
  NumericConstant:5
  NumericConstant:0
  FunctionRnd
@@ -51,7 +51,7 @@
  FunctionInt
  AssignmentOperator:=
 16 LET S=INT(5*RND(0))
- Reference:S
+ Variable:S
  NumericConstant:5
  NumericConstant:0
  FunctionRnd
@@ -59,7 +59,7 @@
  FunctionInt
  AssignmentOperator:=
 17 LET T=INT(5*RND(0))
- Reference:T
+ Variable:T
  NumericConstant:5
  NumericConstant:0
  FunctionRnd
@@ -67,7 +67,7 @@
  FunctionInt
  AssignmentOperator:=
 18 LET U=INT(5*RND(0))
- Reference:U
+ Variable:U
  NumericConstant:5
  NumericConstant:0
  FunctionRnd
@@ -75,7 +75,7 @@
  FunctionInt
  AssignmentOperator:=
 19 LET V=INT(5*RND(0))
- Reference:V
+ Variable:V
  NumericConstant:5
  NumericConstant:0
  FunctionRnd
@@ -83,49 +83,49 @@
  FunctionInt
  AssignmentOperator:=
 20 IF G=R THEN 30
- Value:G
- Value:R
+ Variable:G
+ Variable:R
  BinaryOperator:=
 21 IF G=S THEN 40
- Value:G
- Value:S
+ Variable:G
+ Variable:S
  BinaryOperator:=
 22 IF G=T THEN 50
- Value:G
- Value:T
+ Variable:G
+ Variable:T
  BinaryOperator:=
 23 IF G=U THEN 60
- Value:G
- Value:U
+ Variable:G
+ Variable:U
  BinaryOperator:=
 24 IF G=V THEN 70
- Value:G
- Value:V
+ Variable:G
+ Variable:V
  BinaryOperator:=
 25 IF G>5 THEN 11
- Value:G
+ Variable:G
  NumericConstant:5
  BinaryOperator:>
 30 LET P=P-5
- Reference:P
- Value:P
+ Variable:P
+ Variable:P
  NumericConstant:5
  BinaryOperator:-
  AssignmentOperator:=
 35 GO TO 80
  LineNumber:80
 40 LET P=P+5
- Reference:P
- Value:P
+ Variable:P
+ Variable:P
  NumericConstant:5
  BinaryOperator:+
  AssignmentOperator:=
 45 GO TO 80
  LineNumber:80
 50 LET P=P+P
- Reference:P
- Value:P
- Value:P
+ Variable:P
+ Variable:P
+ Variable:P
  BinaryOperator:+
  AssignmentOperator:=
 53 PRINT "YOU HIT THE JACKPOT"
@@ -135,30 +135,30 @@
 55 GO TO 80
  LineNumber:80
 60 LET P=P+1
- Reference:P
- Value:P
+ Variable:P
+ Variable:P
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 65 GO TO 80
  LineNumber:80
 70 LET P=P-(P*.5)
- Reference:P
- Value:P
- Value:P
+ Variable:P
+ Variable:P
+ Variable:P
  NumericConstant:.5
  BinaryOperator:*
  BinaryOperator:-
  AssignmentOperator:=
 80 IF P>500 THEN 90
- Value:P
+ Variable:P
  NumericConstant:500
  BinaryOperator:>
 82 PRINT "YOU HAVE";P;"POINTS"
  ITEMS
  TextConstant:"YOU HAVE"
  CarriageControl:;
- Value:P
+ Variable:P
  CarriageControl:;
  TextConstant:"POINTS"
  CarriageControl:NL
@@ -168,7 +168,7 @@
  ITEMS
  TextConstant:"!!!! YOU WIN !!! WITH"
  CarriageControl:;
- Value:P
+ Variable:P
  CarriageControl:;
  TextConstant:"POINTS"
  CarriageControl:NL

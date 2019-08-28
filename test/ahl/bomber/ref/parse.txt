@@ -4,12 +4,12 @@
  TextConstant:"YOU ARE NOW A PILOT IN A WORLD WAR II BOMBER"
  CarriageControl:NL
 10 INPUT "WHAT SIDE  ITALY(1), ALLIES(2). JAPANESE(3), GERMANY(4)";A
- Reference:A
+ Variable:A
 20 IF A>0 AND A<5 THEN 25 ELSE PRINT "TRY AGAIN...."\GOTO 10
- Value:A
+ Variable:A
  NumericConstant:0
  BinaryOperator:>
- Value:A
+ Variable:A
  NumericConstant:5
  BinaryOperator:<
  BinaryOperator:AND
@@ -18,18 +18,18 @@
  CarriageControl:NL
  LineNumber:10
 25 ON A GOTO 30,110,200,220
- Value:A
+ Variable:A
  LineNumber:30
  LineNumber:110
  LineNumber:200
  LineNumber:220
 30 INPUT "WHAT IS YOUR TARGET  ALBANIA(1), GREECE(2), NORTH AFRICA(3) ";B
- Reference:B
+ Variable:B
 40 IF B>0 AND B<4 THEN 45 ELSE PRINT "TRY AGAIN...."\GOTO 30
- Value:B
+ Variable:B
  NumericConstant:0
  BinaryOperator:>
- Value:B
+ Variable:B
  NumericConstant:4
  BinaryOperator:<
  BinaryOperator:AND
@@ -40,7 +40,7 @@
 45 PRINT\ONB GOTO 50,80,90
  ITEMS
  CarriageControl:NL
- Value:B
+ Variable:B
  LineNumber:50
  LineNumber:80
  LineNumber:90
@@ -61,12 +61,12 @@
  CarriageControl:NL
  LineNumber:280
 110 INPUT "AIRCRAFT  LIBERATOR(1), B-29(2), B-17(3), LANCASTER(4)";G 
- Reference:G
+ Variable:G
 120 IF G>0 AND G<5 THEN 125 ELSE PRINT "TRY AGAIN...."\GOTO 110
- Value:G
+ Variable:G
  NumericConstant:0
  BinaryOperator:>
- Value:G
+ Variable:G
  NumericConstant:5
  BinaryOperator:<
  BinaryOperator:AND
@@ -77,7 +77,7 @@
 125 PRINT\ON G GOTO 130,150,170,190
  ITEMS
  CarriageControl:NL
- Value:G
+ Variable:G
  LineNumber:130
  LineNumber:150
  LineNumber:170
@@ -111,12 +111,12 @@
  TextConstant:"YOU'RE FLYING A KAMIKAZE (SUICIDE BOMBER) OVER THE USS LEXINGTON,"
  CarriageControl:NL
 205 INPUT "YOUR FIRST KAMIKAZE MISSION (Y OR N)";F$
- Reference:F$
+ Variable:F$
 208 IF F$="N" THEN S=0\GOTO 358
- Value:F$
+ Variable:F$
  TextConstant:"N"
  BinaryOperator:=
- Reference:S
+ Variable:S
  NumericConstant:0
  AssignmentOperator:=
  LineNumber:358
@@ -131,11 +131,11 @@
  TextConstant:"A NAZI, EH? OH WELL. ARE YOU GOING FOR RUSSIA(1), ENGLAND(2)"
  CarriageControl:NL
 230 INPUT"OR FRANCE(3)";M\IF M>0 AND M<4 THEN 235 ELSE PRINT "WHAT??"\GOTO 220
- Reference:M
- Value:M
+ Variable:M
+ Variable:M
  NumericConstant:0
  BinaryOperator:>
- Value:M
+ Variable:M
  NumericConstant:4
  BinaryOperator:<
  BinaryOperator:AND
@@ -146,7 +146,7 @@
 235 PRINT\ON M GOTO 250,260,270
  ITEMS
  CarriageControl:NL
- Value:M
+ Variable:M
  LineNumber:250
  LineNumber:260
  LineNumber:270
@@ -169,9 +169,9 @@
  ITEMS
  CarriageControl:NL
 285 INPUT "HOW MANY MISSIONS HAVE YOU FLOWN";D
- Reference:D
+ Variable:D
 290 IF D<160 THEN 300 ELSE PRINT "MISSIONS, NOT MILES...."
- Value:D
+ Variable:D
  NumericConstant:160
  BinaryOperator:<
  ITEMS
@@ -185,7 +185,7 @@
 300 PRINT\IF D<100 THEN 310 ELSE PRINT "THAT'S PUSHING THE ODDS!"\GOTO 320
  ITEMS
  CarriageControl:NL
- Value:D
+ Variable:D
  NumericConstant:100
  BinaryOperator:<
  ITEMS
@@ -193,7 +193,7 @@
  CarriageControl:NL
  LineNumber:320
 310 IF D<25 THEN PRINT "FRESH OUT OF TRAINING, EH?"
- Value:D
+ Variable:D
  NumericConstant:25
  BinaryOperator:<
  ITEMS
@@ -202,7 +202,7 @@
 320 PRINT\IF D<160*RND THEN 330
  ITEMS
  CarriageControl:NL
- Value:D
+ Variable:D
  NumericConstant:160
  FunctionRnd
  BinaryOperator:*
@@ -211,14 +211,14 @@
  ITEMS
  TextConstant:"DIRECT HIT!!!"
  CarriageControl:
- Value:T
+ Variable:T
  CarriageControl:
- Value:N
+ Variable:N
  CarriageControl:
  NumericConstant:100
  FunctionRnd
  BinaryOperator:*
- Value:T
+ Variable:T
  CarriageControl:
  TextConstant:"KILLED! MISSION SUCCESSFUL."
  CarriageControl:NL
@@ -243,12 +243,12 @@
  ITEMS
  CarriageControl:NL
 340 INPUT "DOES THE ENEMY HAVE GUNS(1), MISSILES(2), OR BOTH(3)";R
- Reference:R
+ Variable:R
 345 IF R>0 AND R<4 THEN 350 ELSE PRINT "TRY AGAIN...."\GOTO 340
- Value:R
+ Variable:R
  NumericConstant:0
  BinaryOperator:>
- Value:R
+ Variable:R
  NumericConstant:4
  BinaryOperator:<
  BinaryOperator:AND
@@ -259,13 +259,13 @@
 350 PRINT\IF R=2 THEN 360 
  ITEMS
  CarriageControl:NL
- Value:R
+ Variable:R
  NumericConstant:2
  BinaryOperator:=
 355 INPUT "WHAT IS THE PERCENT HIT RATE OF THE ENEMY GUNNERS (10 TO 50)";S
- Reference:S
+ Variable:S
 358 IF S<10 THEN PRINT "YOU LIE, BUT YOU'LL PAY...."\PRINT\GOTO 380
- Value:S
+ Variable:S
  NumericConstant:10
  BinaryOperator:<
  ITEMS
@@ -277,15 +277,15 @@
 360 PRINT\IF R>1 THEN T=35
  ITEMS
  CarriageControl:NL
- Value:R
+ Variable:R
  NumericConstant:1
  BinaryOperator:>
- Reference:T
+ Variable:T
  NumericConstant:35
  AssignmentOperator:=
 365 IF S+T>100*RND THEN 380
- Value:S
- Value:T
+ Variable:S
+ Variable:T
  BinaryOperator:+
  NumericConstant:100
  FunctionRnd
@@ -315,8 +315,8 @@
  CarriageControl:NL
  ITEMS
  CarriageControl:NL
- Reference:U$
- Value:U$
+ Variable:U$
+ Variable:U$
  TextConstant:"Y"
  BinaryOperator:=
 400 PRINT "CHICKEN!!!!"\PRINT\PRINT

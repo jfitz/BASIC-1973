@@ -14,8 +14,8 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:64"]
 12 READ S(I)
- Value:I
- Reference:S
+ Variable:I
+ Variable:S
 13 NEXT I
  Variable:I
 14 DATA  81,  71,  61,  51,  41,  31,  21,  11
@@ -91,13 +91,13 @@
  NumericConstant:98
  NumericConstant:88
 22 INPUT W$
- Reference:W$
+ Variable:W$
 23 IF W$="NO" THEN 30
- Value:W$
+ Variable:W$
  TextConstant:"NO"
  BinaryOperator:=
 24 IF W$="YES" THEN 28
- Value:W$
+ Variable:W$
  TextConstant:"YES"
  BinaryOperator:=
 25 PRINT "INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'";
@@ -119,33 +119,33 @@
  TextConstant:"WHERE WOULD YOU LIKE TO START"
  CarriageControl:;
 110 INPUT M1
- Reference:M1
+ Variable:M1
 115 IF M1=0 THEN 232
- Value:M1
+ Variable:M1
  NumericConstant:0
  BinaryOperator:=
 120 LET T1 = INT(M1/10)
- Reference:T1
- Value:M1
+ Variable:T1
+ Variable:M1
  NumericConstant:10
  BinaryOperator:/
  FunctionInt
  AssignmentOperator:=
 130 LET U1 = M1 - 10*T1
- Reference:U1
- Value:M1
+ Variable:U1
+ Variable:M1
  NumericConstant:10
- Value:T1
+ Variable:T1
  BinaryOperator:*
  BinaryOperator:-
  AssignmentOperator:=
 140 IF U1 = 1 THEN 200
- Value:U1
+ Variable:U1
  NumericConstant:1
  BinaryOperator:=
 150 IF U1 = T1 THEN 200
- Value:U1
- Value:T1
+ Variable:U1
+ Variable:T1
  BinaryOperator:=
 160 PRINT "PLEASE READ THE DIRECTIONS AGAIN."
  ITEMS
@@ -166,10 +166,10 @@
  ITEMS
  TextConstant:"MACHINE MOVES TO SQUARE"
  CarriageControl:
- Value:M
+ Variable:M
  CarriageControl:NL
 215 IF M = 158 THEN 3400
- Value:M
+ Variable:M
  NumericConstant:158
  BinaryOperator:=
 220 PRINT "WHAT IS YOUR MOVE";
@@ -177,9 +177,9 @@
  TextConstant:"WHAT IS YOUR MOVE"
  CarriageControl:;
 230 INPUT M1
- Reference:M1
+ Variable:M1
 231 IF M1 <> 0 THEN 239
- Value:M1
+ Variable:M1
  NumericConstant:0
  BinaryOperator:<>
 232 PRINT
@@ -195,60 +195,60 @@
 235 GO TO 4000
  LineNumber:4000
 239 IF M1 <= M THEN 3200
- Value:M1
- Value:M
+ Variable:M1
+ Variable:M
  BinaryOperator:<=
 240 LET T1 = INT(M1/10)
- Reference:T1
- Value:M1
+ Variable:T1
+ Variable:M1
  NumericConstant:10
  BinaryOperator:/
  FunctionInt
  AssignmentOperator:=
 250 LET U1 = M1 - 10*T1
- Reference:U1
- Value:M1
+ Variable:U1
+ Variable:M1
  NumericConstant:10
- Value:T1
+ Variable:T1
  BinaryOperator:*
  BinaryOperator:-
  AssignmentOperator:=
 260 LET P = U1 - U
- Reference:P
- Value:U1
- Value:U
+ Variable:P
+ Variable:U1
+ Variable:U
  BinaryOperator:-
  AssignmentOperator:=
 270 IF P <> 0 THEN 300
- Value:P
+ Variable:P
  NumericConstant:0
  BinaryOperator:<>
 280 LET L = T1 - T
- Reference:L
- Value:T1
- Value:T
+ Variable:L
+ Variable:T1
+ Variable:T
  BinaryOperator:-
  AssignmentOperator:=
 290 IF L <= 0 THEN 3200
- Value:L
+ Variable:L
  NumericConstant:0
  BinaryOperator:<=
 295 GO TO 200
  LineNumber:200
 300 IF T1 - T <> P THEN 320
- Value:T1
- Value:T
+ Variable:T1
+ Variable:T
  BinaryOperator:-
- Value:P
+ Variable:P
  BinaryOperator:<>
 310 GO TO 200
  LineNumber:200
 320 IF T1 - T <> 2*P THEN 3200
- Value:T1
- Value:T
+ Variable:T1
+ Variable:T
  BinaryOperator:-
  NumericConstant:2
- Value:P
+ Variable:P
  BinaryOperator:*
  BinaryOperator:<>
 330 GO TO 200
@@ -256,35 +256,35 @@
 1990 REM LOCATE MOVE FOR MACHINE
  Remark:LOCATE MOVE FOR MACHINE
 2000 IF M1 = 41 THEN 2180
- Value:M1
+ Variable:M1
  NumericConstant:41
  BinaryOperator:=
 2010 IF M1 = 44 THEN 2180
- Value:M1
+ Variable:M1
  NumericConstant:44
  BinaryOperator:=
 2020 IF M1 = 73 THEN 2180
- Value:M1
+ Variable:M1
  NumericConstant:73
  BinaryOperator:=
 2030 IF M1 = 75 THEN 2180
- Value:M1
+ Variable:M1
  NumericConstant:75
  BinaryOperator:=
 2040 IF M1 = 126 THEN 2180
- Value:M1
+ Variable:M1
  NumericConstant:126
  BinaryOperator:=
 2050 IF M1 = 127 THEN 2180
- Value:M1
+ Variable:M1
  NumericConstant:127
  BinaryOperator:=
 2060 IF M1 = 158 THEN 3300
- Value:M1
+ Variable:M1
  NumericConstant:158
  BinaryOperator:=
 2065 LET C = 0
- Reference:C
+ Variable:C
  NumericConstant:0
  AssignmentOperator:=
 2070 FOR K = 7 TO 1 STEP -1
@@ -293,43 +293,43 @@
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
 2080 LET U = U1
- Reference:U
- Value:U1
+ Variable:U
+ Variable:U1
  AssignmentOperator:=
 2090 LET T = T1 + K
- Reference:T
- Value:T1
- Value:K
+ Variable:T
+ Variable:T1
+ Variable:K
  BinaryOperator:+
  AssignmentOperator:=
 2100 GO SUB 3500
  LineNumber:3500
 2105 IF C = 1 THEN 2160
- Value:C
+ Variable:C
  NumericConstant:1
  BinaryOperator:=
 2110 LET U = U + K
- Reference:U
- Value:U
- Value:K
+ Variable:U
+ Variable:U
+ Variable:K
  BinaryOperator:+
  AssignmentOperator:=
 2120 GO SUB 3500
  LineNumber:3500
 2125 IF C = 1 THEN 2160
- Value:C
+ Variable:C
  NumericConstant:1
  BinaryOperator:=
 2130 LET T = T + K
- Reference:T
- Value:T
- Value:K
+ Variable:T
+ Variable:T
+ Variable:K
  BinaryOperator:+
  AssignmentOperator:=
 2140 GO SUB 3500
  LineNumber:3500
 2145 IF C = 1 THEN 2160
- Value:C
+ Variable:C
  NumericConstant:1
  BinaryOperator:=
 2150 NEXT K
@@ -337,7 +337,7 @@
 2155 GO TO 2180
  LineNumber:2180
 2160 LET C = 0
- Reference:C
+ Variable:C
  NumericConstant:0
  AssignmentOperator:=
 2170 RETURN
@@ -349,77 +349,77 @@
 2990 REM RANDOM MOVE.
  Remark:RANDOM MOVE.
 3000 LET Z=RND
- Reference:Z
+ Variable:Z
  FunctionRnd
  AssignmentOperator:=
 3010 IF Z > .6 THEN 3110
- Value:Z
+ Variable:Z
  NumericConstant:.6
  BinaryOperator:>
 3020 IF Z > .3 THEN 3070
- Value:Z
+ Variable:Z
  NumericConstant:.3
  BinaryOperator:>
 3030 LET U = U1
- Reference:U
- Value:U1
+ Variable:U
+ Variable:U1
  AssignmentOperator:=
 3040 LET T = T1 + 1
- Reference:T
- Value:T1
+ Variable:T
+ Variable:T1
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 3050 LET M = 10*T + U
- Reference:M
+ Variable:M
  NumericConstant:10
- Value:T
+ Variable:T
  BinaryOperator:*
- Value:U
+ Variable:U
  BinaryOperator:+
  AssignmentOperator:=
 3060 RETURN
  
 3070 LET U = U1 + 1
- Reference:U
- Value:U1
+ Variable:U
+ Variable:U1
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 3080 LET T = T1 + 2
- Reference:T
- Value:T1
+ Variable:T
+ Variable:T1
  NumericConstant:2
  BinaryOperator:+
  AssignmentOperator:=
 3090 LET M = 10*T * U
- Reference:M
+ Variable:M
  NumericConstant:10
- Value:T
+ Variable:T
  BinaryOperator:*
- Value:U
+ Variable:U
  BinaryOperator:*
  AssignmentOperator:=
 3100 RETURN
  
 3110 LET U = U1 + 1
- Reference:U
- Value:U1
+ Variable:U
+ Variable:U1
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 3120 LET T = T1 + 1
- Reference:T
- Value:T1
+ Variable:T
+ Variable:T1
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 3130 LET M = 10*T + U
- Reference:M
+ Variable:M
  NumericConstant:10
- Value:T
+ Variable:T
  BinaryOperator:*
- Value:U
+ Variable:U
  BinaryOperator:+
  AssignmentOperator:=
 3140 RETURN
@@ -485,37 +485,37 @@
 3490 REM TEST FOR MACHINE MOVE.
  Remark:TEST FOR MACHINE MOVE.
 3500 LET M = 10*T + U
- Reference:M
+ Variable:M
  NumericConstant:10
- Value:T
+ Variable:T
  BinaryOperator:*
- Value:U
+ Variable:U
  BinaryOperator:+
  AssignmentOperator:=
 3510 IF M = 158 THEN 3570
- Value:M
+ Variable:M
  NumericConstant:158
  BinaryOperator:=
 3520 IF M = 127 THEN 3570
- Value:M
+ Variable:M
  NumericConstant:127
  BinaryOperator:=
 3530 IF M = 126 THEN 3570
- Value:M
+ Variable:M
  NumericConstant:126
  BinaryOperator:=
 3540 IF M = 75 THEN 3570
- Value:M
+ Variable:M
  NumericConstant:75
  BinaryOperator:=
 3550 IF M = 73 THEN 3570
- Value:M
+ Variable:M
  NumericConstant:73
  BinaryOperator:=
 3560 RETURN
  
 3570 LET C = 1
- Reference:C
+ Variable:C
  NumericConstant:1
  AssignmentOperator:=
 3580 GO TO 3560
@@ -527,16 +527,16 @@
  TextConstant:"ANYONE ELSE CARE TO TRY"
  CarriageControl:;
 4020 INPUT Q$
- Reference:Q$
+ Variable:Q$
 4030 PRINT
  ITEMS
  CarriageControl:NL
 4040 IF Q$="YES" THEN100
- Value:Q$
+ Variable:Q$
  TextConstant:"YES"
  BinaryOperator:=
 4042 IF Q$="NO" THEN 4050
- Value:Q$
+ Variable:Q$
  TextConstant:"NO"
  BinaryOperator:=
 4045 PRINT "INCORRECT ANSWER, PLEASE TYPE 'YES' OR 'NO'";
@@ -623,17 +623,17 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
 5180 LET I = 8*A + B
- Reference:I
+ Variable:I
  NumericConstant:8
- Value:A
+ Variable:A
  BinaryOperator:*
- Value:B
+ Variable:B
  BinaryOperator:+
  AssignmentOperator:=
 5190 PRINT S(I);
  ITEMS
- Value:I
- Value:S
+ Variable:I
+ Variable:S
  CarriageControl:;
 5200 NEXT B
  Variable:B

@@ -34,8 +34,8 @@
  control: Variable:M
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:18"]
- Value:M
- Reference:K1
+ Variable:M
+ Variable:K1
  Variable:M
 13 DATA-1,0,1,0,0,-1,0,1,-1,-1,1,-1,-1,1,1,1
  NumericConstant:1
@@ -64,8 +64,8 @@
  control: Variable:O1
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:16"]
- Value:O1
- Reference:A1
+ Variable:O1
+ Variable:A1
  Variable:O1
 20 GOTO 500
  LineNumber:500
@@ -78,9 +78,9 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 55 IFN1(J,K)>99THENGOSUB200
- Value:J
- Value:K
- Value:N1
+ Variable:J
+ Variable:K
+ Variable:N1
  NumericConstant:99
  BinaryOperator:>
  LineNumber:200
@@ -89,13 +89,13 @@
 65 NEXTJ
  Variable:J
 90 LETK=0:LETM2=0:LETM3=0
- Reference:K
+ Variable:K
  NumericConstant:0
  AssignmentOperator:=
- Reference:M2
+ Variable:M2
  NumericConstant:0
  AssignmentOperator:=
- Reference:M3
+ Variable:M3
  NumericConstant:0
  AssignmentOperator:=
 99 FORJ=0TO6:PRINT
@@ -109,14 +109,14 @@
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:6"]
 101 IFJ<>0THENIFJ<>6THEN105
- Value:J
+ Variable:J
  NumericConstant:0
  BinaryOperator:<>
- Value:J
+ Variable:J
  NumericConstant:6
  BinaryOperator:<>
 102 IFK=6THENPRINT0;:GOTO 125
- Value:K
+ Variable:K
  NumericConstant:6
  BinaryOperator:=
  ITEMS
@@ -125,18 +125,18 @@
  LineNumber:125
 103 PRINTK;:GOTO120
  ITEMS
- Value:K
+ Variable:K
  CarriageControl:;
  LineNumber:120
 105 IFK<>0THENIFK<>6THEN110
- Value:K
+ Variable:K
  NumericConstant:0
  BinaryOperator:<>
- Value:K
+ Variable:K
  NumericConstant:6
  BinaryOperator:<>
 106 IFJ=6THENPRINT0;:GOTO 126
- Value:J
+ Variable:J
  NumericConstant:6
  BinaryOperator:=
  ITEMS
@@ -145,7 +145,7 @@
  LineNumber:126
 107 PRINTJ;:GOTO120
  ITEMS
- Value:J
+ Variable:J
  CarriageControl:;
  LineNumber:120
 110 GOSUB300
@@ -157,15 +157,15 @@
 126 RETURN
  
 200 LETB=1:IFN1(J,K)>999THENLETB=10
- Reference:B
+ Variable:B
  NumericConstant:1
  AssignmentOperator:=
- Value:J
- Value:K
- Value:N1
+ Variable:J
+ Variable:K
+ Variable:N1
  NumericConstant:999
  BinaryOperator:>
- Reference:B
+ Variable:B
  NumericConstant:10
  AssignmentOperator:=
 220 FORO1=1TO15STEP2
@@ -174,29 +174,29 @@
  end:     ["NumericConstant:15"]
  step:    ["NumericConstant:2"]
 230 LETN1(J+A1(O1),K+A1(O1+1))=N1(J+A1(O1),K+A1(O1+1))+B
- Value:J
- Value:O1
- Value:A1
+ Variable:J
+ Variable:O1
+ Variable:A1
  BinaryOperator:+
- Value:K
- Value:O1
+ Variable:K
+ Variable:O1
  NumericConstant:1
  BinaryOperator:+
- Value:A1
+ Variable:A1
  BinaryOperator:+
- Reference:N1
- Value:J
- Value:O1
- Value:A1
+ Variable:N1
+ Variable:J
+ Variable:O1
+ Variable:A1
  BinaryOperator:+
- Value:K
- Value:O1
+ Variable:K
+ Variable:O1
  NumericConstant:1
  BinaryOperator:+
- Value:A1
+ Variable:A1
  BinaryOperator:+
- Value:N1
- Value:B
+ Variable:N1
+ Variable:B
  BinaryOperator:+
  AssignmentOperator:=
 231 NEXTO1
@@ -204,9 +204,9 @@
 239 RETURN
  
 300 IFN1(J,K)<3THEN399
- Value:J
- Value:K
- Value:N1
+ Variable:J
+ Variable:K
+ Variable:N1
  NumericConstant:3
  BinaryOperator:<
 305 FORO1=1TO18
@@ -214,28 +214,28 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:18"]
 310 IFN1(J,K)=K1(O1)THEN350
- Value:J
- Value:K
- Value:N1
- Value:O1
- Value:K1
+ Variable:J
+ Variable:K
+ Variable:N1
+ Variable:O1
+ Variable:K1
  BinaryOperator:=
 315 NEXTO1
  Variable:O1
 320 GO TO 399
  LineNumber:399
 350 IFO1>9THEN360
- Value:O1
+ Variable:O1
  NumericConstant:9
  BinaryOperator:>
 351 LETN1(J,K)=100:LETM2=M2+1:PRINT" * ";
- Value:J
- Value:K
- Reference:N1
+ Variable:J
+ Variable:K
+ Variable:N1
  NumericConstant:100
  AssignmentOperator:=
- Reference:M2
- Value:M2
+ Variable:M2
+ Variable:M2
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -245,13 +245,13 @@
 355 RETURN
  
 360 LETN1(J,K)=1000:LETM3=M3+1:PRINT" # ";
- Value:J
- Value:K
- Reference:N1
+ Variable:J
+ Variable:K
+ Variable:N1
  NumericConstant:1000
  AssignmentOperator:=
- Reference:M3
- Value:M3
+ Variable:M3
+ Variable:M3
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -261,9 +261,9 @@
 365 RETURN
  
 399 LETN1(J,K)=0:PRINT"   ";:RETURN
- Value:J
- Value:K
- Reference:N1
+ Variable:J
+ Variable:K
+ Variable:N1
  NumericConstant:0
  AssignmentOperator:=
  ITEMS
@@ -278,10 +278,10 @@
  TextConstant:"U.B LIFE GAME"
  CarriageControl:NL
 505 LETM2=0:LETM3=0
- Reference:M2
+ Variable:M2
  NumericConstant:0
  AssignmentOperator:=
- Reference:M3
+ Variable:M3
  NumericConstant:0
  AssignmentOperator:=
 510 FORJ=1TO5
@@ -293,9 +293,9 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 515 LETN1(J,K)=0
- Value:J
- Value:K
- Reference:N1
+ Variable:J
+ Variable:K
+ Variable:N1
  NumericConstant:0
  AssignmentOperator:=
 516 NEXTK
@@ -306,20 +306,20 @@
  control: Variable:B
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:2"]
- Reference:P1
+ Variable:P1
  NumericConstant:3
  AssignmentOperator:=
- Value:B
+ Variable:B
  NumericConstant:2
  BinaryOperator:=
- Reference:P1
+ Variable:P1
  NumericConstant:30
  AssignmentOperator:=
 520 PRINT"PLAYER";B;" 3 LIVE PIECES"
  ITEMS
  TextConstant:"PLAYER"
  CarriageControl:;
- Value:B
+ Variable:B
  CarriageControl:;
  TextConstant:" 3 LIVE PIECES"
  CarriageControl:NL
@@ -329,12 +329,12 @@
  end:     ["NumericConstant:3"]
  LineNumber:700
 540 LETN1(X(B),Y(B))=P1:NEXTK1
- Value:B
- Value:X
- Value:B
- Value:Y
- Reference:N1
- Value:P1
+ Variable:B
+ Variable:X
+ Variable:B
+ Variable:Y
+ Variable:N1
+ Variable:P1
  AssignmentOperator:=
  Variable:K1
 542 NEXTB
@@ -346,25 +346,25 @@
  CarriageControl:NL
  LineNumber:50
 570 IFM2=0THENIFM3=0THEN574
- Value:M2
+ Variable:M2
  NumericConstant:0
  BinaryOperator:=
- Value:M3
+ Variable:M3
  NumericConstant:0
  BinaryOperator:=
 571 IFM3=0THENLETB=1:GOTO575
- Value:M3
+ Variable:M3
  NumericConstant:0
  BinaryOperator:=
- Reference:B
+ Variable:B
  NumericConstant:1
  AssignmentOperator:=
  LineNumber:575
 572 IFM2=0THENLETB=2:GOTO575
- Value:M2
+ Variable:M2
  NumericConstant:0
  BinaryOperator:=
- Reference:B
+ Variable:B
  NumericConstant:2
  AssignmentOperator:=
  LineNumber:575
@@ -383,7 +383,7 @@
  ITEMS
  TextConstant:"PLAYER "
  CarriageControl:;
- Value:B
+ Variable:B
  CarriageControl:;
  TextConstant:" IS THE WINNER"
  CarriageControl:NL
@@ -397,28 +397,28 @@
  ITEMS
  TextConstant:"PLAYER"
  CarriageControl:;
- Value:B
+ Variable:B
  CarriageControl:;
  LineNumber:700
 581 IFB=99THEN560
- Value:B
+ Variable:B
  NumericConstant:99
  BinaryOperator:=
 582 NEXTB
  Variable:B
 586 LETN1(X(1),Y(1))=100:LETN1(X(2),Y(2))=1000
  NumericConstant:1
- Value:X
+ Variable:X
  NumericConstant:1
- Value:Y
- Reference:N1
+ Variable:Y
+ Variable:N1
  NumericConstant:100
  AssignmentOperator:=
  NumericConstant:2
- Value:X
+ Variable:X
  NumericConstant:2
- Value:Y
- Reference:N1
+ Variable:Y
+ Variable:N1
  NumericConstant:1000
  AssignmentOperator:=
 596 GOTO 560
@@ -438,55 +438,55 @@
  NumericConstant:13
  FunctionChr
  CarriageControl:;
- Value:B
- Reference:Y
- Value:B
- Reference:X
+ Variable:B
+ Variable:Y
+ Variable:B
+ Variable:X
 705 IFX(B)<=5THENIFX(B)>0THEN708
- Value:B
- Value:X
+ Variable:B
+ Variable:X
  NumericConstant:5
  BinaryOperator:<=
- Value:B
- Value:X
+ Variable:B
+ Variable:X
  NumericConstant:0
  BinaryOperator:>
 706 GOTO750
  LineNumber:750
 708 IFY(B)<=5THENIFY(B)>0THEN715
- Value:B
- Value:Y
+ Variable:B
+ Variable:Y
  NumericConstant:5
  BinaryOperator:<=
- Value:B
- Value:Y
+ Variable:B
+ Variable:Y
  NumericConstant:0
  BinaryOperator:>
 710 GOTO750
  LineNumber:750
 715 IFN1(X(B),Y(B))<>0THEN750
- Value:B
- Value:X
- Value:B
- Value:Y
- Value:N1
+ Variable:B
+ Variable:X
+ Variable:B
+ Variable:Y
+ Variable:N1
  NumericConstant:0
  BinaryOperator:<>
 720 IFB=1 THEN RETURN
- Value:B
+ Variable:B
  NumericConstant:1
  BinaryOperator:=
  
 725 IFX(1)=X(2)THENIFY(1)=Y(2)THEN740
  NumericConstant:1
- Value:X
+ Variable:X
  NumericConstant:2
- Value:X
+ Variable:X
  BinaryOperator:=
  NumericConstant:1
- Value:Y
+ Variable:Y
  NumericConstant:2
- Value:Y
+ Variable:Y
  BinaryOperator:=
 730 RETURN
  
@@ -495,18 +495,18 @@
  TextConstant:"SAME COORD. SET TO 0"
  CarriageControl:NL
 741 LETN1(X(B)+1,Y(B)+1)=0:LETB=99:RETURN
- Value:B
- Value:X
+ Variable:B
+ Variable:X
  NumericConstant:1
  BinaryOperator:+
- Value:B
- Value:Y
+ Variable:B
+ Variable:Y
  NumericConstant:1
  BinaryOperator:+
- Reference:N1
+ Variable:N1
  NumericConstant:0
  AssignmentOperator:=
- Reference:B
+ Variable:B
  NumericConstant:99
  AssignmentOperator:=
  

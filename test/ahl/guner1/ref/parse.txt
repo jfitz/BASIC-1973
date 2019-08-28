@@ -10,12 +10,12 @@
  TextConstant:"DO YOU WANT INSTRUCTIONS"
  CarriageControl:;
 140 INPUT A$
- Reference:A$
+ Variable:A$
 150 PRINT
  ITEMS
  CarriageControl:NL
 160 IF A$="NO" THEN 330
- Value:A$
+ Variable:A$
  TextConstant:"NO"
  BinaryOperator:=
 170 PRINT "    THIS GAME TESTS YOUR ABILITY TO HIT A MOVING TARGET,"
@@ -83,13 +83,13 @@
  TextConstant:"ENTER SPEED"
  CarriageControl:;
 340 INPUT S
- Reference:S
+ Variable:S
 350 IF S<1 THEN 330
- Value:S
+ Variable:S
  NumericConstant:1
  BinaryOperator:<
 360 IF S>100 THEN 330
- Value:S
+ Variable:S
  NumericConstant:100
  BinaryOperator:>
 370 PRINT "ENTER DISTANCE";
@@ -97,17 +97,17 @@
  TextConstant:"ENTER DISTANCE"
  CarriageControl:;
 380 INPUT D
- Reference:D
+ Variable:D
 390 IF D<0 THEN 370
- Value:D
+ Variable:D
  NumericConstant:0
  BinaryOperator:<
 400 IF D>10000 THEN 370
- Value:D
+ Variable:D
  NumericConstant:10000
  BinaryOperator:>
 410 M=100000-75000*RND(0)
- Reference:M
+ Variable:M
  NumericConstant:100000
  NumericConstant:75000
  NumericConstant:0
@@ -122,28 +122,28 @@
  ITEMS
  TextConstant:"THE MAXIMUM RANGE OF YOUR GUN IS "
  CarriageControl:
- Value:M
+ Variable:M
  CarriageControl:
  TextConstant:" YARDS"
  CarriageControl:NL
 440 FOR K=1 TO M/10000
  control: Variable:K
  start:   ["NumericConstant:1"]
- end:     ["Value:M", "NumericConstant:10000", "BinaryOperator:/"]
+ end:     ["Variable:M", "NumericConstant:10000", "BinaryOperator:/"]
 450 LET K1=RND(0)
- Reference:K1
+ Variable:K1
  NumericConstant:0
  FunctionRnd
  AssignmentOperator:=
 460 NEXT K
  Variable:K
 470 R=.95*M-.6*M*RND(0)
- Reference:R
+ Variable:R
  NumericConstant:.95
- Value:M
+ Variable:M
  BinaryOperator:*
  NumericConstant:.6
- Value:M
+ Variable:M
  BinaryOperator:*
  NumericConstant:0
  FunctionRnd
@@ -151,18 +151,18 @@
  BinaryOperator:-
  AssignmentOperator:=
 480 LET N=0
- Reference:N
+ Variable:N
  NumericConstant:0
  AssignmentOperator:=
 490 GOTO 520
  LineNumber:520
 500 IF R>M THEN 840
- Value:R
- Value:M
+ Variable:R
+ Variable:M
  BinaryOperator:>
 510 IF R<(M/2.5) THEN 860
- Value:R
- Value:M
+ Variable:R
+ Variable:M
  NumericConstant:2.5
  BinaryOperator:/
  BinaryOperator:<
@@ -170,7 +170,7 @@
  ITEMS
  TextConstant:"TARGET RANGE IS"
  CarriageControl:
- Value:R
+ Variable:R
  CarriageControl:
  TextConstant:" YARDS"
  CarriageControl:NL
@@ -179,31 +179,31 @@
  TextConstant:"ELEVATION"
  CarriageControl:NL
 540 INPUT E
- Reference:E
+ Variable:E
 550 IF E<0 THEN 840
- Value:E
+ Variable:E
  NumericConstant:0
  BinaryOperator:<
 560 IF E> 89 THEN 800
- Value:E
+ Variable:E
  NumericConstant:89
  BinaryOperator:>
 570 IF E <1 THEN 820
- Value:E
+ Variable:E
  NumericConstant:1
  BinaryOperator:<
 580 N=N+1
- Reference:N
- Value:N
+ Variable:N
+ Variable:N
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 590 K=INT(R-M*SIN(2*E/57.3))
- Reference:K
- Value:R
- Value:M
+ Variable:K
+ Variable:R
+ Variable:M
  NumericConstant:2
- Value:E
+ Variable:E
  BinaryOperator:*
  NumericConstant:57.3
  BinaryOperator:/
@@ -213,24 +213,24 @@
  FunctionInt
  AssignmentOperator:=
 600 K=ABS(K)
- Reference:K
- Value:K
+ Variable:K
+ Variable:K
  FunctionAbs
  AssignmentOperator:=
 610 K1=ABS(K-D)
- Reference:K1
- Value:K
- Value:D
+ Variable:K1
+ Variable:K
+ Variable:D
  BinaryOperator:-
  FunctionAbs
  AssignmentOperator:=
 620 IF K1>D THEN 720
- Value:K1
- Value:D
+ Variable:K1
+ Variable:D
  BinaryOperator:>
 630 IF K1<D THEN 740
- Value:K1
- Value:D
+ Variable:K1
+ Variable:D
  BinaryOperator:<
 650 PRINT "*** TARGET DESTROYED ***"
  ITEMS
@@ -239,15 +239,15 @@
 660 GOSUB 940
  LineNumber:940
 670 D1=K
- Reference:D1
- Value:K
+ Variable:D1
+ Variable:K
  AssignmentOperator:=
 680 FOR K=1 TO N+D/100
  control: Variable:K
  start:   ["NumericConstant:1"]
- end:     ["Value:N", "Value:D", "NumericConstant:100", "BinaryOperator:/", "BinaryOperator:+"]
+ end:     ["Variable:N", "Variable:D", "NumericConstant:100", "BinaryOperator:/", "BinaryOperator:+"]
 690 K1=RND(0)
- Reference:K1
+ Variable:K1
  NumericConstant:0
  FunctionRnd
  AssignmentOperator:=
@@ -259,7 +259,7 @@
  ITEMS
  TextConstant:"SHORT OF TARGET BY "
  CarriageControl:
- Value:K1
+ Variable:K1
  CarriageControl:
  TextConstant:" YARDS"
  CarriageControl:NL
@@ -269,12 +269,12 @@
  ITEMS
  TextConstant:"OVER TARGET BY "
  CarriageControl:
- Value:K1
+ Variable:K1
  CarriageControl:
  TextConstant:"YARDS"
  CarriageControl:NL
 745 LET C=INT(2*RND(0)+1)
- Reference:C
+ Variable:C
  NumericConstant:2
  NumericConstant:0
  FunctionRnd
@@ -284,24 +284,24 @@
  FunctionInt
  AssignmentOperator:=
 746 IF C=1 THEN 750
- Value:C
+ Variable:C
  NumericConstant:1
  BinaryOperator:=
 748 LET C=-1
- Reference:C
+ Variable:C
  NumericConstant:1
  UnaryOperator:-
  AssignmentOperator:=
 749 GOTO 760
  LineNumber:760
 750 LET C=1
- Reference:C
+ Variable:C
  NumericConstant:1
  AssignmentOperator:=
 760 C1=M*S/100*RND(0)
- Reference:C1
- Value:M
- Value:S
+ Variable:C1
+ Variable:M
+ Variable:S
  BinaryOperator:*
  NumericConstant:100
  BinaryOperator:/
@@ -310,15 +310,15 @@
  BinaryOperator:*
  AssignmentOperator:=
 770 C1=C*C1
- Reference:C1
- Value:C
- Value:C1
+ Variable:C1
+ Variable:C
+ Variable:C1
  BinaryOperator:*
  AssignmentOperator:=
 780 R=R+C1
- Reference:R
- Value:R
- Value:C1
+ Variable:R
+ Variable:R
+ Variable:C1
  BinaryOperator:+
  AssignmentOperator:=
 790 GOTO 500
@@ -348,12 +348,12 @@
 870 GOTO 670
  LineNumber:670
 940 IF N=1 THEN 970
- Value:N
+ Variable:N
  NumericConstant:1
  BinaryOperator:=
 950 PRINT N" ROUNDS EXPENDED"
  ITEMS
- Value:N
+ Variable:N
  CarriageControl:
  TextConstant:" ROUNDS EXPENDED"
  CarriageControl:NL

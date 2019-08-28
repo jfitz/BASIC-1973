@@ -5,14 +5,14 @@
  Declaration:B
 2DEFFNA(X)=INT(10*RND(X))
  NumericConstant:10
- Value:X
+ Variable:X
  FunctionRnd
  BinaryOperator:*
  FunctionInt
 3DEFFNB(X)=X-100*INT(X/100)
- Value:X
+ Variable:X
  NumericConstant:100
- Value:X
+ Variable:X
  NumericConstant:100
  BinaryOperator:/
  FunctionInt
@@ -38,19 +38,19 @@
  ITEMS
  CarriageControl:NL
 9LETO=1
- Reference:O
+ Variable:O
  NumericConstant:1
  AssignmentOperator:=
 10LETC=200
- Reference:C
+ Variable:C
  NumericConstant:200
  AssignmentOperator:=
 11LETS=200
- Reference:S
+ Variable:S
  NumericConstant:200
  AssignmentOperator:=
 12LETP=0
- Reference:P
+ Variable:P
  NumericConstant:0
  AssignmentOperator:=
 13RANDOM
@@ -59,7 +59,7 @@
  ITEMS
  CarriageControl:NL
 15IFC<=5THEN367
- Value:C
+ Variable:C
  NumericConstant:5
  BinaryOperator:<=
 16PRINT "THE ANTE IS $5. I WILL DEAL"
@@ -70,26 +70,26 @@
  ITEMS
  CarriageControl:NL
 18IFS>5THEN20
- Value:S
+ Variable:S
  NumericConstant:5
  BinaryOperator:>
 19GOSUB383
  LineNumber:383
 20LETP=P+10
- Reference:P
- Value:P
+ Variable:P
+ Variable:P
  NumericConstant:10
  BinaryOperator:+
  AssignmentOperator:=
 21LETS=S-5
- Reference:S
- Value:S
+ Variable:S
+ Variable:S
  NumericConstant:5
  BinaryOperator:-
  AssignmentOperator:=
 22LETC=C-5
- Reference:C
- Value:C
+ Variable:C
+ Variable:C
  NumericConstant:5
  BinaryOperator:-
  AssignmentOperator:=
@@ -106,17 +106,17 @@
  TextConstant:"YOUR HAND:"
  CarriageControl:NL
 27LETN=1
- Reference:N
+ Variable:N
  NumericConstant:1
  AssignmentOperator:=
 28GOSUB185
  LineNumber:185
 29LETN=6
- Reference:N
+ Variable:N
  NumericConstant:6
  AssignmentOperator:=
 30LETI=2
- Reference:I
+ Variable:I
  NumericConstant:2
  AssignmentOperator:=
 31GOSUB217
@@ -125,7 +125,7 @@
  ITEMS
  CarriageControl:NL
 33IFI<>6THEN47
- Value:I
+ Variable:I
  NumericConstant:6
  BinaryOperator:<>
 34IFFNA(0)<=7 THEN37
@@ -134,7 +134,7 @@
  NumericConstant:7
  BinaryOperator:<=
 35LETX=11100
- Reference:X
+ Variable:X
  NumericConstant:11100
  AssignmentOperator:=
 36GOTO42
@@ -145,7 +145,7 @@
  NumericConstant:7
  BinaryOperator:<=
 38LETX=11110
- Reference:X
+ Variable:X
  NumericConstant:11110
  AssignmentOperator:=
 39GOTO42
@@ -156,27 +156,27 @@
  NumericConstant:1
  BinaryOperator:>=
 41LETX=11111
- Reference:X
+ Variable:X
  NumericConstant:11111
  AssignmentOperator:=
 42LETI=7
- Reference:I
+ Variable:I
  NumericConstant:7
  AssignmentOperator:=
 43LETZ=23
- Reference:Z
+ Variable:Z
  NumericConstant:23
  AssignmentOperator:=
 44GOTO58
  LineNumber:58
 45LETZ=1
- Reference:Z
+ Variable:Z
  NumericConstant:1
  AssignmentOperator:=
 46GOTO51 
  LineNumber:51
 47IFU>=13THEN54
- Value:U
+ Variable:U
  NumericConstant:13
  BinaryOperator:>=
 48IFFNA(0)>=2THEN50
@@ -187,11 +187,11 @@
 49GOTO42
  LineNumber:42
 50LETZ=0
- Reference:Z
+ Variable:Z
  NumericConstant:0
  AssignmentOperator:=
 51LETK=0
- Reference:K
+ Variable:K
  NumericConstant:0
  AssignmentOperator:=
 52PRINT"I CHECK"
@@ -201,11 +201,11 @@
 53GOTO62
  LineNumber:62
 54IFU<=16THEN57
- Value:U
+ Variable:U
  NumericConstant:16
  BinaryOperator:<=
 55LETZ=2
- Reference:Z
+ Variable:Z
  NumericConstant:2
  AssignmentOperator:=
 56IFFNA(0)>=1THEN58
@@ -214,12 +214,12 @@
  NumericConstant:1
  BinaryOperator:>=
 57LETZ=35
- Reference:Z
+ Variable:Z
  NumericConstant:35
  AssignmentOperator:=
 58LETV=Z+FNA(0)
- Reference:V
- Value:Z
+ Variable:V
+ Variable:Z
  NumericConstant:0
  UserFunction
  BinaryOperator:+
@@ -230,11 +230,11 @@
  ITEMS
  TextConstant:"I'LL OPEN WITH "
  CarriageControl:
- Value:V
+ Variable:V
  CarriageControl:NL
 61LETM=V
- Reference:M
- Value:V
+ Variable:M
+ Variable:V
  AssignmentOperator:=
 62GOSUB305
  LineNumber:305
@@ -243,7 +243,7 @@
 64GOTO82
  LineNumber:82
 65IFI<>3THEN76
- Value:I
+ Variable:I
  NumericConstant:3
  BinaryOperator:<>
 66PRINT
@@ -254,33 +254,33 @@
  TextConstant:"I WIN"
  CarriageControl:NL
 68LETC=C+P
- Reference:C
- Value:C
- Value:P
+ Variable:C
+ Variable:C
+ Variable:P
  BinaryOperator:+
  AssignmentOperator:=
 69PRINT "NOW I HAVE $"C" AND YOU HAVE $"S
  ITEMS
  TextConstant:"NOW I HAVE $"
  CarriageControl:
- Value:C
+ Variable:C
  CarriageControl:
  TextConstant:" AND YOU HAVE $"
  CarriageControl:
- Value:S
+ Variable:S
  CarriageControl:NL
 70PRINT"DO YOU WISH TO CONTINUE";
  ITEMS
  TextConstant:"DO YOU WISH TO CONTINUE"
  CarriageControl:;
 71INPUTH$
- Reference:H$
+ Variable:H$
 72IFH$="YES"THEN12
- Value:H$
+ Variable:H$
  TextConstant:"YES"
  BinaryOperator:=
 73IFH$="NO"THEN410
- Value:H$
+ Variable:H$
  TextConstant:"NO"
  BinaryOperator:=
 74PRINT"ANSWER YES OR NO, IDIOT"
@@ -290,7 +290,7 @@
 75GOTO70
  LineNumber:70
 76IFI<>4THEN81
- Value:I
+ Variable:I
  NumericConstant:4
  BinaryOperator:<>
 77PRINT
@@ -301,9 +301,9 @@
  TextConstant:"YOU WIN"
  CarriageControl:NL
 79LETS=S+P
- Reference:S
- Value:S
- Value:P
+ Variable:S
+ Variable:S
+ Variable:P
  BinaryOperator:+
  AssignmentOperator:=
 80GOTO69
@@ -318,17 +318,17 @@
  TextConstant:"NOW WE DRAW -- HOW MANY CARDS SO YOU WANT"
  CarriageControl:;
 84INPUTT
- Reference:T
+ Variable:T
 85IFT=0THEN98
- Value:T
+ Variable:T
  NumericConstant:0
  BinaryOperator:=
 86LETZ=10
- Reference:Z
+ Variable:Z
  NumericConstant:10
  AssignmentOperator:=
 87IFT<4THEN90
- Value:T
+ Variable:T
  NumericConstant:4
  BinaryOperator:<
 88PRINT"YOU CAN'T DRAW MORE THAN THREE CARDS"
@@ -344,9 +344,9 @@
 91FOR Q=1TOT
  control: Variable:Q
  start:   ["NumericConstant:1"]
- end:     ["Value:T"]
+ end:     ["Variable:T"]
 92INPUTU
- Reference:U
+ Variable:U
 93GOSUB173
  LineNumber:173
 94NEXTQ
@@ -356,15 +356,15 @@
  TextConstant:"YOUR NEW HAND: "
  CarriageControl:NL
 96LETN=1
- Reference:N
+ Variable:N
  NumericConstant:1
  AssignmentOperator:=
 97GOSUB185
  LineNumber:185
 98LETZ=10+T
- Reference:Z
+ Variable:Z
  NumericConstant:10
- Value:T
+ Variable:T
  BinaryOperator:+
  AssignmentOperator:=
 99FORU=6TO10
@@ -372,18 +372,18 @@
  start:   ["NumericConstant:6"]
  end:     ["NumericConstant:10"]
 100IFINT(X/10^(U-6))<>10*INT(X/10^(U-5))THEN102
- Value:X
+ Variable:X
  NumericConstant:10
- Value:U
+ Variable:U
  NumericConstant:6
  BinaryOperator:-
  BinaryOperator:^
  BinaryOperator:/
  FunctionInt
  NumericConstant:10
- Value:X
+ Variable:X
  NumericConstant:10
- Value:U
+ Variable:U
  NumericConstant:5
  BinaryOperator:-
  BinaryOperator:^
@@ -402,18 +402,18 @@
  ITEMS
  TextConstant:"I AM TAKING"
  CarriageControl:
- Value:Z
+ Variable:Z
  NumericConstant:10
  BinaryOperator:-
- Value:T
+ Variable:T
  BinaryOperator:-
  CarriageControl:
  TextConstant:"CARD"
  CarriageControl:;
 105IFZ=11*TTHEN109
- Value:Z
+ Variable:Z
  NumericConstant:11
- Value:T
+ Variable:T
  BinaryOperator:*
  BinaryOperator:=
 106PRINT"S"
@@ -429,53 +429,53 @@
  ITEMS
  CarriageControl:NL
 110LETN=6
- Reference:N
+ Variable:N
  NumericConstant:6
  AssignmentOperator:=
 111LETV=1
- Reference:V
+ Variable:V
  NumericConstant:1
  AssignmentOperator:=
 112LETI=1
- Reference:I
+ Variable:I
  NumericConstant:1
  AssignmentOperator:=
 113GOSUB217
  LineNumber:217
 114LETB=U
- Reference:B
- Value:U
+ Variable:B
+ Variable:U
  AssignmentOperator:=
 115LETM=D
- Reference:M
- Value:D
+ Variable:M
+ Variable:D
  AssignmentOperator:=
 116IFV<=7THEN119
- Value:V
+ Variable:V
  NumericConstant:7
  BinaryOperator:<=
 117LETZ=28
- Reference:Z
+ Variable:Z
  NumericConstant:28
  AssignmentOperator:=
 118GOTO133
  LineNumber:133
 119IFI<>6THEN122
- Value:I
+ Variable:I
  NumericConstant:6
  BinaryOperator:<>
 120LETZ=1
- Reference:Z
+ Variable:Z
  NumericConstant:1
  AssignmentOperator:=
 121GOTO133
  LineNumber:133
 122IFU>=13THEN127
- Value:U
+ Variable:U
  NumericConstant:13
  BinaryOperator:>=
 123LETZ=2
- Reference:Z
+ Variable:Z
  NumericConstant:2
  AssignmentOperator:=
 124IFFNA(0)<>6THEN126
@@ -484,17 +484,17 @@
  NumericConstant:6
  BinaryOperator:<>
 125LETZ=19
- Reference:Z
+ Variable:Z
  NumericConstant:19
  AssignmentOperator:=
 126GOTO133
  LineNumber:133
 127IFU>=16THEN132
- Value:U
+ Variable:U
  NumericConstant:16
  BinaryOperator:>=
 128LETZ=19
- Reference:Z
+ Variable:Z
  NumericConstant:19
  AssignmentOperator:=
 129IFFNA(0)<>8THEN131
@@ -503,31 +503,31 @@
  NumericConstant:8
  BinaryOperator:<>
 130LETZ=11
- Reference:Z
+ Variable:Z
  NumericConstant:11
  AssignmentOperator:=
 131GOTO133
  LineNumber:133
 132LETZ=2
- Reference:Z
+ Variable:Z
  NumericConstant:2
  AssignmentOperator:=
 133LETK=0
- Reference:K
+ Variable:K
  NumericConstant:0
  AssignmentOperator:=
 134GOSUB305
  LineNumber:305
 135IFT<>.5THEN145
- Value:T
+ Variable:T
  NumericConstant:.5
  BinaryOperator:<>
 136IFV=7THEN140
- Value:V
+ Variable:V
  NumericConstant:7
  BinaryOperator:=
 137IFI<>6THEN140
- Value:I
+ Variable:I
  NumericConstant:6
  BinaryOperator:<>
 138PRINT"I'LL CHECK"
@@ -537,8 +537,8 @@
 139GOTO146
  LineNumber:146
 140LETV=Z+FNA(0)
- Reference:V
- Value:Z
+ Variable:V
+ Variable:Z
  NumericConstant:0
  UserFunction
  BinaryOperator:+
@@ -549,11 +549,11 @@
  ITEMS
  TextConstant:"I'LL BET"
  CarriageControl:
- Value:V
+ Variable:V
  CarriageControl:NL
 143LETK=V
- Reference:K
- Value:V
+ Variable:K
+ Variable:V
  AssignmentOperator:=
 144GOSUB306
  LineNumber:306
@@ -567,25 +567,25 @@
  TextConstant:"NOW WE COMPARE HANDS"
  CarriageControl:NL
 148LETJ$=H$
- Reference:J$
- Value:H$
+ Variable:J$
+ Variable:H$
  AssignmentOperator:=
 149LETK$=I$
- Reference:K$
- Value:I$
+ Variable:K$
+ Variable:I$
  AssignmentOperator:=
 150PRINT"MY HAND:"
  ITEMS
  TextConstant:"MY HAND:"
  CarriageControl:NL
 151LETN=6
- Reference:N
+ Variable:N
  NumericConstant:6
  AssignmentOperator:=
 152GOSUB185
  LineNumber:185
 153LETN=1
- Reference:N
+ Variable:N
  NumericConstant:1
  AssignmentOperator:=
 154GOSUB217
@@ -598,23 +598,23 @@
  TextConstant:"Y0U HAVE "
  CarriageControl:;
 157LETK=D
- Reference:K
- Value:D
+ Variable:K
+ Variable:D
  AssignmentOperator:=
 158GOSUB369
  LineNumber:369
 159LETH$=J$
- Reference:H$
- Value:J$
+ Variable:H$
+ Variable:J$
  AssignmentOperator:=
 160LETI$=KS 
- Reference:I$
- Value:K
- Value:S
+ Variable:I$
+ Variable:K
+ Variable:S
  AssignmentOperator:=
 161LETK=M
- Reference:K
- Value:M
+ Variable:K
+ Variable:M
  AssignmentOperator:=
 162PRINT"AND I HAVE:"
  ITEMS
@@ -623,15 +623,15 @@
 163GOSUB369
  LineNumber:369
 164IFB>UTHEN67
- Value:B
- Value:U
+ Variable:B
+ Variable:U
  BinaryOperator:>
 165IFU>BTHEN78
- Value:U
- Value:B
+ Variable:U
+ Variable:B
  BinaryOperator:>
 166IFH$="A FLUS"THEN170
- Value:H$
+ Variable:H$
  TextConstant:"A FLUS"
  BinaryOperator:=
 167PRINT"THE HAND IS DRAWN"
@@ -642,35 +642,35 @@
  ITEMS
  TextConstant:"ALL $"
  CarriageControl:
- Value:P
+ Variable:P
  CarriageControl:
  TextConstant:" REMAIN IN THE POT"
  CarriageControl:NL
 169GOTO14
  LineNumber:14
 170IFFNB(M)>FNB(D)THEN67 
- Value:M
+ Variable:M
  UserFunction
- Value:D
+ Variable:D
  UserFunction
  BinaryOperator:>
 171IFFNB(D)>FNB(M)THEN78
- Value:D
+ Variable:D
  UserFunction
- Value:M
+ Variable:M
  UserFunction
  BinaryOperator:>
 172GOTO167
  LineNumber:167
 173LETZ=Z+1
- Reference:Z
- Value:Z
+ Variable:Z
+ Variable:Z
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 174LETA(Z)=INT(1000*RND(0))
- Value:Z
- Reference:A
+ Variable:Z
+ Variable:A
  NumericConstant:1000
  NumericConstant:0
  FunctionRnd
@@ -678,19 +678,19 @@
  FunctionInt
  AssignmentOperator:=
 175IFINT(A(Z)/100)>3THEN174
- Value:Z
- Value:A
+ Variable:Z
+ Variable:A
  NumericConstant:100
  BinaryOperator:/
  FunctionInt
  NumericConstant:3
  BinaryOperator:>
 176IFA(Z)-100*INT(A(Z)/100)>12THEN174
- Value:Z
- Value:A
+ Variable:Z
+ Variable:A
  NumericConstant:100
- Value:Z
- Value:A
+ Variable:Z
+ Variable:A
  NumericConstant:100
  BinaryOperator:/
  FunctionInt
@@ -701,44 +701,44 @@
 177FORK=1TOZ-1
  control: Variable:K
  start:   ["NumericConstant:1"]
- end:     ["Value:Z", "NumericConstant:1", "BinaryOperator:-"]
+ end:     ["Variable:Z", "NumericConstant:1", "BinaryOperator:-"]
 178IFA(Z)=A(K)THEN174
- Value:Z
- Value:A
- Value:K
- Value:A
+ Variable:Z
+ Variable:A
+ Variable:K
+ Variable:A
  BinaryOperator:=
 179NEXTK
  Variable:K
 180IFZ<=10THEN184
- Value:Z
+ Variable:Z
  NumericConstant:10
  BinaryOperator:<=
 181LETN=A(U)
- Reference:N
- Value:U
- Value:A
+ Variable:N
+ Variable:U
+ Variable:A
  AssignmentOperator:=
 182LETA(U)=A(Z)
- Value:U
- Reference:A
- Value:Z
- Value:A
+ Variable:U
+ Variable:A
+ Variable:Z
+ Variable:A
  AssignmentOperator:=
 183LETA(Z)=N
- Value:Z
- Reference:A
- Value:N
+ Variable:Z
+ Variable:A
+ Variable:N
  AssignmentOperator:=
 184RETURN
  
 185FORZ=NTON+4
  control: Variable:Z
- start:   ["Value:N"]
- end:     ["Value:N", "NumericConstant:4", "BinaryOperator:+"]
+ start:   ["Variable:N"]
+ end:     ["Variable:N", "NumericConstant:4", "BinaryOperator:+"]
 186PRINTZ"-  ";
  ITEMS
- Value:Z
+ Variable:Z
  CarriageControl:
  TextConstant:"-  "
  CarriageControl:;
@@ -751,10 +751,10 @@
 189GOSUB207
  LineNumber:207
 190IFZ/2<>INT(Z/2)THEN192
- Value:Z
+ Variable:Z
  NumericConstant:2
  BinaryOperator:/
- Value:Z
+ Variable:Z
  NumericConstant:2
  BinaryOperator:/
  FunctionInt
@@ -770,13 +770,13 @@
 194RETURN
  
 195LETK=FNB(A(Z))
- Reference:K
- Value:Z
- Value:A
+ Variable:K
+ Variable:Z
+ Variable:A
  UserFunction
  AssignmentOperator:=
 196IFK<>9THEN198
- Value:K
+ Variable:K
  NumericConstant:9
  BinaryOperator:<>
 197PRINT"JACK";
@@ -784,7 +784,7 @@
  TextConstant:"JACK"
  CarriageControl:;
 198IFK<>10THEN200
- Value:K
+ Variable:K
  NumericConstant:10
  BinaryOperator:<>
 199PRINT"QUEEN";
@@ -792,7 +792,7 @@
  TextConstant:"QUEEN"
  CarriageControl:;
 200IFK<>11THEN202
- Value:K
+ Variable:K
  NumericConstant:11
  BinaryOperator:<>
 201PRINT"KING";
@@ -800,7 +800,7 @@
  TextConstant:"KING"
  CarriageControl:;
 202IFK<>12THEN204
- Value:K
+ Variable:K
  NumericConstant:12
  BinaryOperator:<>
 203PRINT"ACE";
@@ -808,27 +808,27 @@
  TextConstant:"ACE"
  CarriageControl:;
 204IFK>=9THEN206
- Value:K
+ Variable:K
  NumericConstant:9
  BinaryOperator:>=
 205PRINTK+2;
  ITEMS
- Value:K
+ Variable:K
  NumericConstant:2
  BinaryOperator:+
  CarriageControl:;
 206RETURN
  
 207LETK=INT(A(Z)/100)
- Reference:K
- Value:Z
- Value:A
+ Variable:K
+ Variable:Z
+ Variable:A
  NumericConstant:100
  BinaryOperator:/
  FunctionInt
  AssignmentOperator:=
 208IFK<>0THEN210
- Value:K
+ Variable:K
  NumericConstant:0
  BinaryOperator:<>
 209PRINT " CLUBS",
@@ -836,7 +836,7 @@
  TextConstant:" CLUBS"
  CarriageControl:,
 210IFK<>1THEN212
- Value:K
+ Variable:K
  NumericConstant:1
  BinaryOperator:<>
 211PRINT" DIAMONDS",
@@ -844,7 +844,7 @@
  TextConstant:" DIAMONDS"
  CarriageControl:,
 212IFK<>2THEN214
- Value:K
+ Variable:K
  NumericConstant:2
  BinaryOperator:<>
 213PRINT" HEARTS",
@@ -852,7 +852,7 @@
  TextConstant:" HEARTS"
  CarriageControl:,
 214IFK<>3THEN216
- Value:K
+ Variable:K
  NumericConstant:3
  BinaryOperator:<>
 215PRINT" SPADES",
@@ -862,119 +862,119 @@
 216RETURN
  
 217LETU=0
- Reference:U
+ Variable:U
  NumericConstant:0
  AssignmentOperator:=
 218FORZ=NTON+4
  control: Variable:Z
- start:   ["Value:N"]
- end:     ["Value:N", "NumericConstant:4", "BinaryOperator:+"]
+ start:   ["Variable:N"]
+ end:     ["Variable:N", "NumericConstant:4", "BinaryOperator:+"]
 219LETB(Z)=FNB(A(Z))
- Value:Z
- Reference:B
- Value:Z
- Value:A
+ Variable:Z
+ Variable:B
+ Variable:Z
+ Variable:A
  UserFunction
  AssignmentOperator:=
 220IFZ=N+4THEN223
- Value:Z
- Value:N
+ Variable:Z
+ Variable:N
  NumericConstant:4
  BinaryOperator:+
  BinaryOperator:=
 221IFINT(A(Z)/100)<>INT(A(Z+1)/100)THEN223
- Value:Z
- Value:A
+ Variable:Z
+ Variable:A
  NumericConstant:100
  BinaryOperator:/
  FunctionInt
- Value:Z
+ Variable:Z
  NumericConstant:1
  BinaryOperator:+
- Value:A
+ Variable:A
  NumericConstant:100
  BinaryOperator:/
  FunctionInt
  BinaryOperator:<>
 222LETU=U+1
- Reference:U
- Value:U
+ Variable:U
+ Variable:U
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 223NEXTZ
  Variable:Z
 224IFU<>4THEN231
- Value:U
+ Variable:U
  NumericConstant:4
  BinaryOperator:<>
 225LETX=11111
- Reference:X
+ Variable:X
  NumericConstant:11111
  AssignmentOperator:=
 226LETD=A(N)
- Reference:D
- Value:N
- Value:A
+ Variable:D
+ Variable:N
+ Variable:A
  AssignmentOperator:=
 227LETH$="A FLUS"
- Reference:H$
+ Variable:H$
  TextConstant:"A FLUS"
  AssignmentOperator:=
 228LETI$="H IN"
- Reference:I$
+ Variable:I$
  TextConstant:"H IN"
  AssignmentOperator:=
 229LETU=15
- Reference:U
+ Variable:U
  NumericConstant:15
  AssignmentOperator:=
 230RETURN
  
 231FORZ=NTON+3
  control: Variable:Z
- start:   ["Value:N"]
- end:     ["Value:N", "NumericConstant:3", "BinaryOperator:+"]
+ start:   ["Variable:N"]
+ end:     ["Variable:N", "NumericConstant:3", "BinaryOperator:+"]
 232FORK=Z+1TON+4
  control: Variable:K
- start:   ["Value:Z", "NumericConstant:1", "BinaryOperator:+"]
- end:     ["Value:N", "NumericConstant:4", "BinaryOperator:+"]
+ start:   ["Variable:Z", "NumericConstant:1", "BinaryOperator:+"]
+ end:     ["Variable:N", "NumericConstant:4", "BinaryOperator:+"]
 233IFB(Z)<=B(K)THEN239
- Value:Z
- Value:B
- Value:K
- Value:B
+ Variable:Z
+ Variable:B
+ Variable:K
+ Variable:B
  BinaryOperator:<=
 234LETX=A(Z)
- Reference:X
- Value:Z
- Value:A
+ Variable:X
+ Variable:Z
+ Variable:A
  AssignmentOperator:=
 235LETA(Z)=A(K)
- Value:Z
- Reference:A
- Value:K
- Value:A
+ Variable:Z
+ Variable:A
+ Variable:K
+ Variable:A
  AssignmentOperator:=
 236LETB(Z)=B(K)
- Value:Z
- Reference:B
- Value:K
- Value:B
+ Variable:Z
+ Variable:B
+ Variable:K
+ Variable:B
  AssignmentOperator:=
 237LETA(K)=X
- Value:K
- Reference:A
- Value:X
+ Variable:K
+ Variable:A
+ Variable:X
  AssignmentOperator:=
 238LETB(K)=A(K)-100*INT(A(K)/100)
- Value:K
- Reference:B
- Value:K
- Value:A
+ Variable:K
+ Variable:B
+ Variable:K
+ Variable:A
  NumericConstant:100
- Value:K
- Value:A
+ Variable:K
+ Variable:A
  NumericConstant:100
  BinaryOperator:/
  FunctionInt
@@ -986,281 +986,281 @@
 240NEXTZ
  Variable:Z
 241LETX=0
- Reference:X
+ Variable:X
  NumericConstant:0
  AssignmentOperator:=
 242FORZ=NTON+3
  control: Variable:Z
- start:   ["Value:N"]
- end:     ["Value:N", "NumericConstant:3", "BinaryOperator:+"]
+ start:   ["Variable:N"]
+ end:     ["Variable:N", "NumericConstant:3", "BinaryOperator:+"]
 243IFB(Z)<>B(Z+1)THEN247
- Value:Z
- Value:B
- Value:Z
+ Variable:Z
+ Variable:B
+ Variable:Z
  NumericConstant:1
  BinaryOperator:+
- Value:B
+ Variable:B
  BinaryOperator:<>
 244LETX=X+11*10^(Z-N)
- Reference:X
- Value:X
+ Variable:X
+ Variable:X
  NumericConstant:11
  NumericConstant:10
- Value:Z
- Value:N
+ Variable:Z
+ Variable:N
  BinaryOperator:-
  BinaryOperator:^
  BinaryOperator:*
  BinaryOperator:+
  AssignmentOperator:=
 245LETD=A(Z)
- Reference:D
- Value:Z
- Value:A
+ Variable:D
+ Variable:Z
+ Variable:A
  AssignmentOperator:=
 246GOSUB276
  LineNumber:276
 247NEXTZ
  Variable:Z
 248IFX<>0THEN262
- Value:X
+ Variable:X
  NumericConstant:0
  BinaryOperator:<>
 249IFB(N)+3<>B(N+3)THEN252
- Value:N
- Value:B
+ Variable:N
+ Variable:B
  NumericConstant:3
  BinaryOperator:+
- Value:N
+ Variable:N
  NumericConstant:3
  BinaryOperator:+
- Value:B
+ Variable:B
  BinaryOperator:<>
 250LETX=1111
- Reference:X
+ Variable:X
  NumericConstant:1111
  AssignmentOperator:=
 251LETU=10
- Reference:U
+ Variable:U
  NumericConstant:10
  AssignmentOperator:=
 252IFB(N4+1)+3<>B(N+4)THEN262
- Value:N4
+ Variable:N4
  NumericConstant:1
  BinaryOperator:+
- Value:B
+ Variable:B
  NumericConstant:3
  BinaryOperator:+
- Value:N
+ Variable:N
  NumericConstant:4
  BinaryOperator:+
- Value:B
+ Variable:B
  BinaryOperator:<>
 253IFU<>10THEN260
- Value:U
+ Variable:U
  NumericConstant:10
  BinaryOperator:<>
 254LETU=14
- Reference:U
+ Variable:U
  NumericConstant:14
  AssignmentOperator:=
 255LETH$="8TRAIG"
- Reference:H$
+ Variable:H$
  TextConstant:"8TRAIG"
  AssignmentOperator:=
 256LETI$="HT"
- Reference:I$
+ Variable:I$
  TextConstant:"HT"
  AssignmentOperator:=
 257LETX=11111
- Reference:X
+ Variable:X
  NumericConstant:11111
  AssignmentOperator:=
 258LETD=A(N+4)
- Reference:D
- Value:N
+ Variable:D
+ Variable:N
  NumericConstant:4
  BinaryOperator:+
- Value:A
+ Variable:A
  AssignmentOperator:=
 259RETURN
  
 260LETU=10
- Reference:U
+ Variable:U
  NumericConstant:10
  AssignmentOperator:=
 261LETX=11110
- Reference:X
+ Variable:X
  NumericConstant:11110
  AssignmentOperator:=
 262IFU>=10THEN269
- Value:U
+ Variable:U
  NumericConstant:10
  BinaryOperator:>=
 263LETD=A(N+4)
- Reference:D
- Value:N
+ Variable:D
+ Variable:N
  NumericConstant:4
  BinaryOperator:+
- Value:A
+ Variable:A
  AssignmentOperator:=
 264LETH$="SCHMAL"
- Reference:H$
+ Variable:H$
  TextConstant:"SCHMAL"
  AssignmentOperator:=
 265LETI$="TZ. "
- Reference:I$
+ Variable:I$
  TextConstant:"TZ. "
  AssignmentOperator:=
 266LETU=9
- Reference:U
+ Variable:U
  NumericConstant:9
  AssignmentOperator:=
 267LETX=11000
- Reference:X
+ Variable:X
  NumericConstant:11000
  AssignmentOperator:=
 268GOTO274
  LineNumber:274
 269IFU<>10THEN272
- Value:U
+ Variable:U
  NumericConstant:10
  BinaryOperator:<>
 270IFI=1THEN274
- Value:I
+ Variable:I
  NumericConstant:1
  BinaryOperator:=
 271GOTO275
  LineNumber:275
 272IFU>12THEN275
- Value:U
+ Variable:U
  NumericConstant:12
  BinaryOperator:>
 273IFFNB(D)>6THEN275
- Value:D
+ Variable:D
  UserFunction
  NumericConstant:6
  BinaryOperator:>
 274LETI=6
- Reference:I
+ Variable:I
  NumericConstant:6
  AssignmentOperator:=
 275RETURN
  
 276IFU>=11THEN281
- Value:U
+ Variable:U
  NumericConstant:11
  BinaryOperator:>=
 277LETU=11
- Reference:U
+ Variable:U
  NumericConstant:11
  AssignmentOperator:=
 278LETH$="A PAIR"
- Reference:H$
+ Variable:H$
  TextConstant:"A PAIR"
  AssignmentOperator:=
 279LETI$=" OF "
- Reference:I$
+ Variable:I$
  TextConstant:" OF "
  AssignmentOperator:=
 280RETURN
  
 281IFU<11THEN291
- Value:U
+ Variable:U
  NumericConstant:11
  BinaryOperator:<
 282IFB(Z)<>B(Z-1)THEN287
- Value:Z
- Value:B
- Value:Z
+ Variable:Z
+ Variable:B
+ Variable:Z
  NumericConstant:1
  BinaryOperator:-
- Value:B
+ Variable:B
  BinaryOperator:<>
 283LETH$="THREE"
- Reference:H$
+ Variable:H$
  TextConstant:"THREE"
  AssignmentOperator:=
 284LETI$=" "
- Reference:I$
+ Variable:I$
  TextConstant:" "
  AssignmentOperator:=
 285LETU=13
- Reference:U
+ Variable:U
  NumericConstant:13
  AssignmentOperator:=
 286RETURN
  
 287LETH$="TWO P"
- Reference:H$
+ Variable:H$
  TextConstant:"TWO P"
  AssignmentOperator:=
 288LETI$="AIR. "
- Reference:I$
+ Variable:I$
  TextConstant:"AIR. "
  AssignmentOperator:=
 289LETU=12
- Reference:U
+ Variable:U
  NumericConstant:12
  AssignmentOperator:=
 290RETURN
  
 291IFU<>12THEN296
- Value:U
+ Variable:U
  NumericConstant:12
  BinaryOperator:<>
 292LETU=16
- Reference:U
+ Variable:U
  NumericConstant:16
  AssignmentOperator:=
 293LETH$="FULL H"
- Reference:H$
+ Variable:H$
  TextConstant:"FULL H"
  AssignmentOperator:=
 294LETI$="OUSE. "
- Reference:I$
+ Variable:I$
  TextConstant:"OUSE. "
  AssignmentOperator:=
 295RETURN
  
 296IFB(Z)<>B(Z+1)THEN301
- Value:Z
- Value:B
- Value:Z
+ Variable:Z
+ Variable:B
+ Variable:Z
  NumericConstant:1
  BinaryOperator:+
- Value:B
+ Variable:B
  BinaryOperator:<>
 297LETU=17
- Reference:U
+ Variable:U
  NumericConstant:17
  AssignmentOperator:=
 298LETH$="FOUR"
- Reference:H$
+ Variable:H$
  TextConstant:"FOUR"
  AssignmentOperator:=
 299LETI$=" "
- Reference:I$
+ Variable:I$
  TextConstant:" "
  AssignmentOperator:=
 300RETURN
  
 301LETU=6
- Reference:U
+ Variable:U
  NumericConstant:6
  AssignmentOperator:=
 302LETH$="FULL H"
- Reference:H$
+ Variable:H$
  TextConstant:"FULL H"
  AssignmentOperator:=
 303LETI$="OUSE. "
- Reference:I$
+ Variable:I$
  TextConstant:"OUSE. "
  AssignmentOperator:=
 304RETURN
  
 305LETG=0
- Reference:G
+ Variable:G
  NumericConstant:0
  AssignmentOperator:=
 306PRINT"WHAT IS YOUR BET";
@@ -1268,24 +1268,24 @@
  TextConstant:"WHAT IS YOUR BET"
  CarriageControl:;
 307INPUTT
- Reference:T
+ Variable:T
 308IFT-INT(T)=0THEN314
- Value:T
- Value:T
+ Variable:T
+ Variable:T
  FunctionInt
  BinaryOperator:-
  NumericConstant:0
  BinaryOperator:=
 309IFK<>0THEN312
- Value:K
+ Variable:K
  NumericConstant:0
  BinaryOperator:<>
 310IFG<>0THEN312
- Value:G
+ Variable:G
  NumericConstant:0
  BinaryOperator:<>
 311IFT=.5THEN341
- Value:T
+ Variable:T
  NumericConstant:.5
  BinaryOperator:=
 312PRINT"NO SMALL CHANGE, PLEASE"
@@ -1295,10 +1295,10 @@
 313GOTO306
  LineNumber:306
 314IFS-G-T>0THEN317
- Value:S
- Value:G
+ Variable:S
+ Variable:G
  BinaryOperator:-
- Value:T
+ Variable:T
  BinaryOperator:-
  NumericConstant:0
  BinaryOperator:>
@@ -1307,20 +1307,20 @@
 316GOTO306
  LineNumber:306
 317IFT<>0THEN320
- Value:T
+ Variable:T
  NumericConstant:0
  BinaryOperator:<>
 318LETI=3
- Reference:I
+ Variable:I
  NumericConstant:3
  AssignmentOperator:=
 319GOTO338
  LineNumber:338
 320IFG+T>=KTHEN323
- Value:G
- Value:T
+ Variable:G
+ Variable:T
  BinaryOperator:+
- Value:K
+ Variable:K
  BinaryOperator:>=
 321PRINT"IF YOU CAN'T SEE MY BET, THEN FOLD"
  ITEMS
@@ -1329,43 +1329,43 @@
 322GOTO306
  LineNumber:306
 323LETG=G+T
- Reference:G
- Value:G
- Value:T
+ Variable:G
+ Variable:G
+ Variable:T
  BinaryOperator:+
  AssignmentOperator:=
 324IFG=KTHEN338
- Value:G
- Value:K
+ Variable:G
+ Variable:K
  BinaryOperator:=
 325IFZ<>1THEN342
- Value:Z
+ Variable:Z
  NumericConstant:1
  BinaryOperator:<>
 326IFG>5THEN330
- Value:G
+ Variable:G
  NumericConstant:5
  BinaryOperator:>
 327IFZ>=2THEN335
- Value:Z
+ Variable:Z
  NumericConstant:2
  BinaryOperator:>=
 328LETV=5
- Reference:V
+ Variable:V
  NumericConstant:5
  AssignmentOperator:=
 329GOTO342
  LineNumber:342
 330IFZ=1THEN332
- Value:Z
+ Variable:Z
  NumericConstant:1
  BinaryOperator:=
 331IFT<=25THEN335
- Value:T
+ Variable:T
  NumericConstant:25
  BinaryOperator:<=
 332LETI=4
- Reference:I
+ Variable:I
  NumericConstant:4
  AssignmentOperator:=
 333PRINT"I FOLD"
@@ -1375,7 +1375,7 @@
 334RETURN
  
 335IFZ=2THEN343
- Value:Z
+ Variable:Z
  NumericConstant:2
  BinaryOperator:=
 336PRINT"I'LL SEE YOU"
@@ -1383,41 +1383,41 @@
  TextConstant:"I'LL SEE YOU"
  CarriageControl:NL
 337LETK=G
- Reference:K
- Value:G
+ Variable:K
+ Variable:G
  AssignmentOperator:=
 338LETS=S-G
- Reference:S
- Value:S
- Value:G
+ Variable:S
+ Variable:S
+ Variable:G
  BinaryOperator:-
  AssignmentOperator:=
 339LETC=C-K
- Reference:C
- Value:C
- Value:K
+ Variable:C
+ Variable:C
+ Variable:K
  BinaryOperator:-
  AssignmentOperator:=
 340LETP=P+G+K
- Reference:P
- Value:P
- Value:G
+ Variable:P
+ Variable:P
+ Variable:G
  BinaryOperator:+
- Value:K
+ Variable:K
  BinaryOperator:+
  AssignmentOperator:=
 341RETURN
  
 342IFG>3*ZTHEN335
- Value:G
+ Variable:G
  NumericConstant:3
- Value:Z
+ Variable:Z
  BinaryOperator:*
  BinaryOperator:>
 343LETV=G-K+FNA(0)
- Reference:V
- Value:G
- Value:K
+ Variable:V
+ Variable:G
+ Variable:K
  BinaryOperator:-
  NumericConstant:0
  UserFunction
@@ -1429,45 +1429,45 @@
  ITEMS
  TextConstant:"I'LL SEE YOU, AND RAISE Y0U"
  CarriageControl:;
- Value:V
+ Variable:V
  CarriageControl:NL
 346LETK=G+V
- Reference:K
- Value:G
- Value:V
+ Variable:K
+ Variable:G
+ Variable:V
  BinaryOperator:+
  AssignmentOperator:=
 347GOTO306
  LineNumber:306
 348IFC-G-V>0THEN366
- Value:C
- Value:G
+ Variable:C
+ Variable:G
  BinaryOperator:-
- Value:V
+ Variable:V
  BinaryOperator:-
  NumericConstant:0
  BinaryOperator:>
 349IFG<>0THEN352
- Value:G
+ Variable:G
  NumericConstant:0
  BinaryOperator:<>
 350LETV=C
- Reference:V
- Value:C
+ Variable:V
+ Variable:C
  AssignmentOperator:=
 351RETURN 
  
 352IFC-G>=0THEN336
- Value:C
- Value:G
+ Variable:C
+ Variable:G
  BinaryOperator:-
  NumericConstant:0
  BinaryOperator:>=
 353IFO/2<>INT(O/2)THEN360
- Value:O
+ Variable:O
  NumericConstant:2
  BinaryOperator:/
- Value:O
+ Variable:O
  NumericConstant:2
  BinaryOperator:/
  FunctionInt
@@ -1477,30 +1477,30 @@
  TextConstant:"WOULD YOU LIKE TO BUY BACK YOUR WATCH FOR $50"
  CarriageControl:;
 355INPUTJ$
- Reference:J$
+ Variable:J$
 356IFJ$="NO"THEN360
- Value:J$
+ Variable:J$
  TextConstant:"NO"
  BinaryOperator:=
 357LETC=C-50
- Reference:C
- Value:C
+ Variable:C
+ Variable:C
  NumericConstant:50
  BinaryOperator:-
  AssignmentOperator:=
 358LETO=O/2
- Reference:O
- Value:O
+ Variable:O
+ Variable:O
  NumericConstant:2
  BinaryOperator:/
  AssignmentOperator:=
 359RETURN
  
 360IFO/3<>INT(O/3)THEN367
- Value:O
+ Variable:O
  NumericConstant:3
  BinaryOperator:/
- Value:O
+ Variable:O
  NumericConstant:3
  BinaryOperator:/
  FunctionInt
@@ -1510,20 +1510,20 @@
  TextConstant:"WQULD YOU LIKE TO BUY BACK YOUR TIE TACK FOR $50"
  CarriageControl:;
 362INPUTJ$
- Reference:J$
+ Variable:J$
 363IFJ$="NO"THEN367
- Value:J$
+ Variable:J$
  TextConstant:"NO"
  BinaryOperator:=
 364LETC=C-50
- Reference:C
- Value:C
+ Variable:C
+ Variable:C
  NumericConstant:50
  BinaryOperator:-
  AssignmentOperator:=
 365LETO=O/3
- Reference:O
- Value:O
+ Variable:O
+ Variable:O
  NumericConstant:3
  BinaryOperator:/
  AssignmentOperator:=
@@ -1537,17 +1537,17 @@
  
 369PRINTH$;I$;
  ITEMS
- Value:H$
+ Variable:H$
  CarriageControl:;
- Value:I$
+ Variable:I$
  CarriageControl:;
 370IFH$="A FLUS"THEN375
- Value:H$
+ Variable:H$
  TextConstant:"A FLUS"
  BinaryOperator:=
 371LETK=INT(K/100)
- Reference:K
- Value:K
+ Variable:K
+ Variable:K
  NumericConstant:100
  BinaryOperator:/
  FunctionInt
@@ -1560,18 +1560,18 @@
 374RETURN
  
 375LETK=FNB(K)
- Reference:K
- Value:K
+ Variable:K
+ Variable:K
  UserFunction
  AssignmentOperator:=
 376GOSUB196
  LineNumber:196
 377IFH$="SCHMAL"THEN379
- Value:H$
+ Variable:H$
  TextConstant:"SCHMAL"
  BinaryOperator:=
 378IFH$<>"STRAIG"THEN381
- Value:H$
+ Variable:H$
  TextConstant:"STRAIG"
  BinaryOperator:<>
 379PRINT" HIGH"
@@ -1594,10 +1594,10 @@
  TextConstant:"YOU CAN'T BET WHAT YOU HAVEN'T GOT"
  CarriageControl:NL
 385IFO/2=INT(O/2)THEN397
- Value:O
+ Variable:O
  NumericConstant:2
  BinaryOperator:/
- Value:O
+ Variable:O
  NumericConstant:2
  BinaryOperator:/
  FunctionInt
@@ -1607,9 +1607,9 @@
  TextConstant:"WOULD YOU LIKE TO SELL YOUR WATCH"
  CarriageControl:;
 387INPUTJ$
- Reference:J$
+ Variable:J$
 388IFJ$="NO"THEN397
- Value:J$
+ Variable:J$
  TextConstant:"NO"
  BinaryOperator:=
 389IFFNA(01)>=7THEN393
@@ -1622,8 +1622,8 @@
  TextConstant:"I'LL GIVE YOU $75 FOR IT"
  CarriageControl:NL
 391LETS=S+75
- Reference:S
- Value:S
+ Variable:S
+ Variable:S
  NumericConstant:75
  BinaryOperator:+
  AssignmentOperator:=
@@ -1634,24 +1634,24 @@
  TextConstant:"THAT'S A PRETTY CRUMMY WATCH - I'LL GIVE YOU $25"
  CarriageControl:NL
 394LETS=S+25
- Reference:S
- Value:S
+ Variable:S
+ Variable:S
  NumericConstant:25
  BinaryOperator:+
  AssignmentOperator:=
 395LETO=O*2
- Reference:O
- Value:O
+ Variable:O
+ Variable:O
  NumericConstant:2
  BinaryOperator:*
  AssignmentOperator:=
 396RETURN
  
 397IFO/3=INT(O/3)THEN409
- Value:O
+ Variable:O
  NumericConstant:3
  BinaryOperator:/
- Value:O
+ Variable:O
  NumericConstant:3
  BinaryOperator:/
  FunctionInt
@@ -1661,9 +1661,9 @@
  TextConstant:"WILL YOU PART WITH THAT DIAMOND TIE TACK"
  CarriageControl:;
 399INPUT J$
- Reference:J$
+ Variable:J$
 400IFJ$="NO"THEN408
- Value:J$
+ Variable:J$
  TextConstant:"NO"
  BinaryOperator:=
 401IFFNA(0)>=6THEN405
@@ -1676,8 +1676,8 @@
  TextConstant:"YOU ARE NOW $100 RICHER"
  CarriageControl:NL
 403LETS=S+100
- Reference:S
- Value:S
+ Variable:S
+ Variable:S
  NumericConstant:100
  BinaryOperator:+
  AssignmentOperator:=
@@ -1688,14 +1688,14 @@
  TextConstant:"IT'S PASTE. $25"
  CarriageControl:NL
 406LETS=S+25
- Reference:S
- Value:S
+ Variable:S
+ Variable:S
  NumericConstant:25
  BinaryOperator:+
  AssignmentOperator:=
 407LETO=O*3
- Reference:O
- Value:O
+ Variable:O
+ Variable:O
  NumericConstant:3
  BinaryOperator:*
  AssignmentOperator:=

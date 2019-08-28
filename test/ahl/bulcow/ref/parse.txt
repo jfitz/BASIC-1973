@@ -19,7 +19,7 @@
  ITEMS
  CarriageControl:NL
 20 LETA=0:GOTO200
- Reference:A
+ Variable:A
  NumericConstant:0
  AssignmentOperator:=
  LineNumber:200
@@ -30,16 +30,16 @@
  CarriageControl:NL
  ITEMS
  CarriageControl:NL
- Reference:J
+ Variable:J
  NumericConstant:0
  AssignmentOperator:=
 35 PRINT"YOUR GUESS";:INPUTN:LETN=(N+.1)/100000
  ITEMS
  TextConstant:"YOUR GUESS"
  CarriageControl:;
- Reference:N
- Reference:N
- Value:N
+ Variable:N
+ Variable:N
+ Variable:N
  NumericConstant:.1
  BinaryOperator:+
  NumericConstant:100000
@@ -49,19 +49,19 @@
  control: Variable:I
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:4"]
- Value:I
- Reference:G
+ Variable:I
+ Variable:G
  NumericConstant:10
- Value:N
+ Variable:N
  BinaryOperator:*
  FunctionInt
  AssignmentOperator:=
- Reference:N
+ Variable:N
  NumericConstant:10
- Value:N
+ Variable:N
  BinaryOperator:*
  NumericConstant:10
- Value:N
+ Variable:N
  BinaryOperator:*
  FunctionInt
  BinaryOperator:-
@@ -69,38 +69,38 @@
 41 FORK=0TOI-1:IFG(I)=G(K)GOTO170
  control: Variable:K
  start:   ["NumericConstant:0"]
- end:     ["Value:I", "NumericConstant:1", "BinaryOperator:-"]
- Value:I
- Value:G
- Value:K
- Value:G
+ end:     ["Variable:I", "NumericConstant:1", "BinaryOperator:-"]
+ Variable:I
+ Variable:G
+ Variable:K
+ Variable:G
  BinaryOperator:=
 42 NEXTK
  Variable:K
 43 NEXTI
  Variable:I
 45 LETP=4:LETA=0:GOSUB300
- Reference:P
+ Variable:P
  NumericConstant:4
  AssignmentOperator:=
- Reference:A
+ Variable:A
  NumericConstant:0
  AssignmentOperator:=
  LineNumber:300
 50 PRINTV"BULL";:IFV<>1THENPRINT"S";
  ITEMS
- Value:V
+ Variable:V
  CarriageControl:
  TextConstant:"BULL"
  CarriageControl:;
- Value:V
+ Variable:V
  NumericConstant:1
  BinaryOperator:<>
  ITEMS
  TextConstant:"S"
  CarriageControl:;
 55 IFV=5THENPRINT" - YOU WIN":GOTO20
- Value:V
+ Variable:V
  NumericConstant:5
  BinaryOperator:=
  ITEMS
@@ -109,14 +109,14 @@
  LineNumber:20
 60 PRINTW-V"COW";:IFW<>V+1THENPRINT"S";
  ITEMS
- Value:W
- Value:V
+ Variable:W
+ Variable:V
  BinaryOperator:-
  CarriageControl:
  TextConstant:"COW"
  CarriageControl:;
- Value:W
- Value:V
+ Variable:W
+ Variable:V
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:<>
@@ -124,10 +124,10 @@
  TextConstant:"S"
  CarriageControl:;
 65 IFJ=0THENLETA=1:GOTO200
- Value:J
+ Variable:J
  NumericConstant:0
  BinaryOperator:=
- Reference:A
+ Variable:A
  NumericConstant:1
  AssignmentOperator:=
  LineNumber:200
@@ -142,9 +142,9 @@
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:4"]
  ITEMS
- Value:J
- Value:I
- Value:D
+ Variable:J
+ Variable:I
+ Variable:D
  NumericConstant:48
  BinaryOperator:+
  FunctionChr
@@ -154,36 +154,36 @@
  ITEMS
  TextConstant:" MY SCORE "
  CarriageControl:;
- Value:J
- Reference:B
- Value:J
- Reference:C
- Value:J
- Reference:C
- Value:J
- Value:C
- Value:J
- Value:B
+ Variable:J
+ Variable:B
+ Variable:J
+ Variable:C
+ Variable:J
+ Variable:C
+ Variable:J
+ Variable:C
+ Variable:J
+ Variable:B
  BinaryOperator:+
  AssignmentOperator:=
 81 IFB(J)>-1THENIFB(J)<6THENIFC(J)<6THENIFC(J)-B(J)>-1GOTO80
- Value:J
- Value:B
+ Variable:J
+ Variable:B
  NumericConstant:1
  UnaryOperator:-
  BinaryOperator:>
- Value:J
- Value:B
+ Variable:J
+ Variable:B
  NumericConstant:6
  BinaryOperator:<
- Value:J
- Value:C
+ Variable:J
+ Variable:C
  NumericConstant:6
  BinaryOperator:<
- Value:J
- Value:C
- Value:J
- Value:B
+ Variable:J
+ Variable:C
+ Variable:J
+ Variable:B
  BinaryOperator:-
  NumericConstant:1
  UnaryOperator:-
@@ -194,17 +194,17 @@
  CarriageControl:;
  LineNumber:70
 83 IFB(J)=4THENIFC(J)=5GOTO82
- Value:J
- Value:B
+ Variable:J
+ Variable:B
  NumericConstant:4
  BinaryOperator:=
- Value:J
- Value:C
+ Variable:J
+ Variable:C
  NumericConstant:5
  BinaryOperator:=
 85 IFB(J)=5THENPRINT" - I WIN - MY NUMBER WAS";:GOTO100
- Value:J
- Value:B
+ Variable:J
+ Variable:B
  NumericConstant:5
  BinaryOperator:=
  ITEMS
@@ -219,8 +219,8 @@
  end:     ["NumericConstant:4"]
  ITEMS
  NumericConstant:0
- Value:I
- Value:D
+ Variable:I
+ Variable:D
  NumericConstant:48
  BinaryOperator:+
  FunctionChr
@@ -245,9 +245,9 @@
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:4"]
 210 LETD(A,P)=INT(10*RND(1))
- Value:A
- Value:P
- Reference:D
+ Variable:A
+ Variable:P
+ Variable:D
  NumericConstant:10
  NumericConstant:1
  FunctionRnd
@@ -257,46 +257,46 @@
 220 FORI=0TOP-1:IFD(A,I)=D(A,P)GOTO210
  control: Variable:I
  start:   ["NumericConstant:0"]
- end:     ["Value:P", "NumericConstant:1", "BinaryOperator:-"]
- Value:A
- Value:I
- Value:D
- Value:A
- Value:P
- Value:D
+ end:     ["Variable:P", "NumericConstant:1", "BinaryOperator:-"]
+ Variable:A
+ Variable:I
+ Variable:D
+ Variable:A
+ Variable:P
+ Variable:D
  BinaryOperator:=
 230 NEXTI
  Variable:I
 240 NEXTP
  Variable:P
 250 IFA=0GOTO30
- Value:A
+ Variable:A
  NumericConstant:0
  BinaryOperator:=
 260 LETJ=1:GOTO70
- Reference:J
+ Variable:J
  NumericConstant:1
  AssignmentOperator:=
  LineNumber:70
 300 LETV=0:LETW=0
- Reference:V
+ Variable:V
  NumericConstant:0
  AssignmentOperator:=
- Reference:W
+ Variable:W
  NumericConstant:0
  AssignmentOperator:=
 310 FORI=0TOP:IFD(A,I)=G(I)THENLETV=V+1
  control: Variable:I
  start:   ["NumericConstant:0"]
- end:     ["Value:P"]
- Value:A
- Value:I
- Value:D
- Value:I
- Value:G
+ end:     ["Variable:P"]
+ Variable:A
+ Variable:I
+ Variable:D
+ Variable:I
+ Variable:G
  BinaryOperator:=
- Reference:V
- Value:V
+ Variable:V
+ Variable:V
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -304,14 +304,14 @@
  control: Variable:K
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:4"]
- Value:A
- Value:K
- Value:D
- Value:I
- Value:G
+ Variable:A
+ Variable:K
+ Variable:D
+ Variable:I
+ Variable:G
  BinaryOperator:=
- Reference:W
- Value:W
+ Variable:W
+ Variable:W
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -322,100 +322,100 @@
 350 RETURN
  
 400 LETP=0
- Reference:P
+ Variable:P
  NumericConstant:0
  AssignmentOperator:=
 405 LETG(P)=D(J,P)
- Value:P
- Reference:G
- Value:J
- Value:P
- Value:D
+ Variable:P
+ Variable:G
+ Variable:J
+ Variable:P
+ Variable:D
  AssignmentOperator:=
 410 FORI=0TOP-1:IFG(I)=G(P)GOTO430
  control: Variable:I
  start:   ["NumericConstant:0"]
- end:     ["Value:P", "NumericConstant:1", "BinaryOperator:-"]
- Value:I
- Value:G
- Value:P
- Value:G
+ end:     ["Variable:P", "NumericConstant:1", "BinaryOperator:-"]
+ Variable:I
+ Variable:G
+ Variable:P
+ Variable:G
  BinaryOperator:=
 415 NEXTI
  Variable:I
 420 FORA=1TOJ:GOSUB380
  control: Variable:A
  start:   ["NumericConstant:1"]
- end:     ["Value:J"]
+ end:     ["Variable:J"]
  LineNumber:380
 425 IFV<=B(A)THENIFW<=C(A)THENIF4-P>=C(A)-WTHENIF4-P>=B(A)-VGOTO440
- Value:V
- Value:A
- Value:B
+ Variable:V
+ Variable:A
+ Variable:B
  BinaryOperator:<=
- Value:W
- Value:A
- Value:C
+ Variable:W
+ Variable:A
+ Variable:C
  BinaryOperator:<=
  NumericConstant:4
- Value:P
+ Variable:P
  BinaryOperator:-
- Value:A
- Value:C
- Value:W
+ Variable:A
+ Variable:C
+ Variable:W
  BinaryOperator:-
  BinaryOperator:>=
  NumericConstant:4
- Value:P
+ Variable:P
  BinaryOperator:-
- Value:A
- Value:B
- Value:V
+ Variable:A
+ Variable:B
+ Variable:V
  BinaryOperator:-
  BinaryOperator:>=
 430 LETG(P)=G(P)+3:IFG(P)>9THENLETG(P)=G(P)-10
- Value:P
- Reference:G
- Value:P
- Value:G
+ Variable:P
+ Variable:G
+ Variable:P
+ Variable:G
  NumericConstant:3
  BinaryOperator:+
  AssignmentOperator:=
- Value:P
- Value:G
+ Variable:P
+ Variable:G
  NumericConstant:9
  BinaryOperator:>
- Value:P
- Reference:G
- Value:P
- Value:G
+ Variable:P
+ Variable:G
+ Variable:P
+ Variable:G
  NumericConstant:10
  BinaryOperator:-
  AssignmentOperator:=
 432 IFP=0THENIFG(P)=D(1,0)GOTO150
- Value:P
+ Variable:P
  NumericConstant:0
  BinaryOperator:=
- Value:P
- Value:G
+ Variable:P
+ Variable:G
  NumericConstant:1
  NumericConstant:0
- Value:D
+ Variable:D
  BinaryOperator:=
 435 IFG(P)<>D(J,P)GOTO410
- Value:P
- Value:G
- Value:J
- Value:P
- Value:D
+ Variable:P
+ Variable:G
+ Variable:J
+ Variable:P
+ Variable:D
  BinaryOperator:<>
 440 LETP=P-1:IFP<0THENGOTO150
- Reference:P
- Value:P
+ Variable:P
+ Variable:P
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
- Value:P
+ Variable:P
  NumericConstant:0
  BinaryOperator:<
  LineNumber:150
@@ -424,17 +424,17 @@
 448 NEXTA
  Variable:A
 450 LETP=P+1:IFP<5GOTO405
- Reference:P
- Value:P
+ Variable:P
+ Variable:P
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
- Value:P
+ Variable:P
  NumericConstant:5
  BinaryOperator:<
 455 LETJ=J+1
- Reference:J
- Value:J
+ Variable:J
+ Variable:J
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -442,11 +442,11 @@
  control: Variable:I
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:4"]
- Value:J
- Value:I
- Reference:D
- Value:I
- Value:G
+ Variable:J
+ Variable:I
+ Variable:D
+ Variable:I
+ Variable:G
  AssignmentOperator:=
  Variable:I
 465 RETURN

@@ -12,17 +12,17 @@
  TextConstant:"WHAT ARE YOUR WIDTH AND LENGTH?"
  CarriageControl:NL
 121 INPUT H, V
- Reference:H
- Reference:V
+ Variable:H
+ Variable:V
 122 PRINT
  ITEMS
  CarriageControl:NL
 130 IF H<>1 THEN 150
- Value:H
+ Variable:H
  NumericConstant:1
  BinaryOperator:<>
 131 IF V<>1 THEN 150
- Value:V
+ Variable:V
  NumericConstant:1
  BinaryOperator:<>
 132 PRINT "MEANINGLESS DIMENSIONS, TRY AGAIN"
@@ -41,18 +41,18 @@
  ITEMS
  CarriageControl:NL
 160 LET Q=0
- Reference:Q
+ Variable:Q
  NumericConstant:0
  AssignmentOperator:=
 161 LET Z=0
- Reference:Z
+ Variable:Z
  NumericConstant:0
  AssignmentOperator:=
 162 LET X=INT(RND(0)*H+1)
- Reference:X
+ Variable:X
  NumericConstant:0
  FunctionRnd
- Value:H
+ Variable:H
  BinaryOperator:*
  NumericConstant:1
  BinaryOperator:+
@@ -61,10 +61,10 @@
 163 FOR I=1 TO H
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["Value:H"]
+ end:     ["Variable:H"]
 170 IF I=X THEN 173
- Value:I
- Value:X
+ Variable:I
+ Variable:X
  BinaryOperator:=
 171 PRINT ":--";
  ITEMS
@@ -83,115 +83,115 @@
  TextConstant:":"
  CarriageControl:NL
 191 LET C=1
- Reference:C
+ Variable:C
  NumericConstant:1
  AssignmentOperator:=
 192 LET W(X, 1)=C
- Value:X
+ Variable:X
  NumericConstant:1
- Reference:W
- Value:C
+ Variable:W
+ Variable:C
  AssignmentOperator:=
 193 LET C = C + 1
- Reference:C
- Value:C
+ Variable:C
+ Variable:C
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 200 LET R=X
- Reference:R
- Value:X
+ Variable:R
+ Variable:X
  AssignmentOperator:=
 201 LET S=1
- Reference:S
+ Variable:S
  NumericConstant:1
  AssignmentOperator:=
 202 GO TO 260
  LineNumber:260
 210 IF R<>H THEN 240
- Value:R
- Value:H
+ Variable:R
+ Variable:H
  BinaryOperator:<>
 211 IF S<>V THEN 230
- Value:S
- Value:V
+ Variable:S
+ Variable:V
  BinaryOperator:<>
 220 LET R=1
- Reference:R
+ Variable:R
  NumericConstant:1
  AssignmentOperator:=
 221 LET S=1
- Reference:S
+ Variable:S
  NumericConstant:1
  AssignmentOperator:=
 222 GO TO 250
  LineNumber:250
 230 LET R=1
- Reference:R
+ Variable:R
  NumericConstant:1
  AssignmentOperator:=
 231 LET S=S+1
- Reference:S
- Value:S
+ Variable:S
+ Variable:S
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 232 GO TO 250
  LineNumber:250
 240 LET R=R+1
- Reference:R
- Value:R
+ Variable:R
+ Variable:R
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 250 IF W(R,S)=0 THEN 210
- Value:R
- Value:S
- Value:W
+ Variable:R
+ Variable:S
+ Variable:W
  NumericConstant:0
  BinaryOperator:=
 260 IF R-1=0 THEN 530
- Value:R
+ Variable:R
  NumericConstant:1
  BinaryOperator:-
  NumericConstant:0
  BinaryOperator:=
 261 IF W(R-1,S)<>0 THEN 530
- Value:R
+ Variable:R
  NumericConstant:1
  BinaryOperator:-
- Value:S
- Value:W
+ Variable:S
+ Variable:W
  NumericConstant:0
  BinaryOperator:<>
 270 IF S-1=0 THEN 390
- Value:S
+ Variable:S
  NumericConstant:1
  BinaryOperator:-
  NumericConstant:0
  BinaryOperator:=
 280 IF W(R,S-1)<>0 THEN 390
- Value:R
- Value:S
+ Variable:R
+ Variable:S
  NumericConstant:1
  BinaryOperator:-
- Value:W
+ Variable:W
  NumericConstant:0
  BinaryOperator:<>
 290 IF R=H THEN 330 
- Value:R
- Value:H
+ Variable:R
+ Variable:H
  BinaryOperator:=
 300 IF W(R+1, S)<>0 THEN 320
- Value:R
+ Variable:R
  NumericConstant:1
  BinaryOperator:+
- Value:S
- Value:W
+ Variable:S
+ Variable:W
  NumericConstant:0
  BinaryOperator:<>
 310 LET X=INT(RND(0)*3+1)
- Reference:X
+ Variable:X
  NumericConstant:0
  FunctionRnd
  NumericConstant:3
@@ -201,41 +201,41 @@
  FunctionInt
  AssignmentOperator:=
 320 IF X=1 THEN 790
- Value:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:=
 321 IF X=2 THEN 820
- Value:X
+ Variable:X
  NumericConstant:2
  BinaryOperator:=
 323 IF X=3 THEN 860
- Value:X
+ Variable:X
  NumericConstant:3
  BinaryOperator:=
 330 IF S<>V THEN 340
- Value:S
- Value:V
+ Variable:S
+ Variable:V
  BinaryOperator:<>
 331 IF Z=1 THEN 370
- Value:Z
+ Variable:Z
  NumericConstant:1
  BinaryOperator:=
 332 LET Q=1
- Reference:Q
+ Variable:Q
  NumericConstant:1
  AssignmentOperator:=
 333 GO TO 350
  LineNumber:350
 340 IF W(R, S+1)<>0 THEN 370
- Value:R
- Value:S
+ Variable:R
+ Variable:S
  NumericConstant:1
  BinaryOperator:+
- Value:W
+ Variable:W
  NumericConstant:0
  BinaryOperator:<>
 350 LET X=INT(RND(0)*3+1)
- Reference:X
+ Variable:X
  NumericConstant:0
  FunctionRnd
  NumericConstant:3
@@ -245,19 +245,19 @@
  FunctionInt
  AssignmentOperator:=
 360 IF X=1 THEN 790
- Value:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:=
 361 IF X=2 THEN 820
- Value:X
+ Variable:X
  NumericConstant:2
  BinaryOperator:=
 362 IF X=3 THEN 910
- Value:X
+ Variable:X
  NumericConstant:3
  BinaryOperator:=
 370 LET X=INT(RND(0)*2+1)
- Reference:X
+ Variable:X
  NumericConstant:0
  FunctionRnd
  NumericConstant:2
@@ -267,49 +267,49 @@
  FunctionInt
  AssignmentOperator:=
 380 IF X=1 THEN 790
- Value:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:=
 381 IF X=2 THEN 820
- Value:X
+ Variable:X
  NumericConstant:2
  BinaryOperator:=
 390 IF R=H THEN 470
- Value:R
- Value:H
+ Variable:R
+ Variable:H
  BinaryOperator:=
 400 IF W(R+1,S)<>0 THEN 470
- Value:R
+ Variable:R
  NumericConstant:1
  BinaryOperator:+
- Value:S
- Value:W
+ Variable:S
+ Variable:W
  NumericConstant:0
  BinaryOperator:<>
 401 IF S<>V THEN 420
- Value:S
- Value:V
+ Variable:S
+ Variable:V
  BinaryOperator:<>
 410 IF Z=1 THEN 450
- Value:Z
+ Variable:Z
  NumericConstant:1
  BinaryOperator:=
 411 LET Q=1
- Reference:Q
+ Variable:Q
  NumericConstant:1
  AssignmentOperator:=
 412 GO TO 430
  LineNumber:430
 420 IF W(R, S+1)<>0 THEN 450
- Value:R
- Value:S
+ Variable:R
+ Variable:S
  NumericConstant:1
  BinaryOperator:+
- Value:W
+ Variable:W
  NumericConstant:0
  BinaryOperator:<>
 430 LET X=INT(RND(0)*2+1)
- Reference:X
+ Variable:X
  NumericConstant:0
  FunctionRnd
  NumericConstant:2
@@ -319,19 +319,19 @@
  FunctionInt
  AssignmentOperator:=
 440 IF X=1 THEN 790
- Value:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:=
 441 IF X=2 THEN 860
- Value:X
+ Variable:X
  NumericConstant:2
  BinaryOperator:=
 442 IF X=3 THEN 910
- Value:X
+ Variable:X
  NumericConstant:3
  BinaryOperator:=
 450 LET X=INT(RND(0)*2+1)
- Reference:X
+ Variable:X
  NumericConstant:0
  FunctionRnd
  NumericConstant:2
@@ -341,37 +341,37 @@
  FunctionInt
  AssignmentOperator:=
 460 IF X=1 THEN 790
- Value:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:=
 461 IF X=2 THEN 860
- Value:X
+ Variable:X
  NumericConstant:2
  BinaryOperator:=
 470 IF S<>V THEN 490
- Value:S
- Value:V
+ Variable:S
+ Variable:V
  BinaryOperator:<>
 480 IF Z=1 THEN 520
- Value:Z
+ Variable:Z
  NumericConstant:1
  BinaryOperator:=
 481 LET Q=1
- Reference:Q
+ Variable:Q
  NumericConstant:1
  AssignmentOperator:=
 482 GO TO 500
  LineNumber:500
 490 IF W(R, S+1)<>0 THEN 520
- Value:R
- Value:S
+ Variable:R
+ Variable:S
  NumericConstant:1
  BinaryOperator:+
- Value:W
+ Variable:W
  NumericConstant:0
  BinaryOperator:<>
 500 LET X=INT(RND(0)*2+1)
- Reference:X
+ Variable:X
  NumericConstant:0
  FunctionRnd
  NumericConstant:2
@@ -381,65 +381,65 @@
  FunctionInt
  AssignmentOperator:=
 510 IF X=1 THEN 790
- Value:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:=
 511 IF X=2 THEN 910
- Value:X
+ Variable:X
  NumericConstant:2
  BinaryOperator:=
 520 GO TO 790
  LineNumber:790
 530 IF S-1=0 THEN 670
- Value:S
+ Variable:S
  NumericConstant:1
  BinaryOperator:-
  NumericConstant:0
  BinaryOperator:=
 540 IF W(R, S-1)<>0 THEN 670
- Value:R
- Value:S
+ Variable:R
+ Variable:S
  NumericConstant:1
  BinaryOperator:-
- Value:W
+ Variable:W
  NumericConstant:0
  BinaryOperator:<>
 541 IF R=H THEN 610
- Value:R
- Value:H
+ Variable:R
+ Variable:H
  BinaryOperator:=
 542 IF W(R+1,S)<>0 THEN 610
- Value:R
+ Variable:R
  NumericConstant:1
  BinaryOperator:+
- Value:S
- Value:W
+ Variable:S
+ Variable:W
  NumericConstant:0
  BinaryOperator:<>
 550 IF S<>V THEN 560
- Value:S
- Value:V
+ Variable:S
+ Variable:V
  BinaryOperator:<>
 551 IF Z=1 THEN 590
- Value:Z
+ Variable:Z
  NumericConstant:1
  BinaryOperator:=
 552 LET Q=1
- Reference:Q
+ Variable:Q
  NumericConstant:1
  AssignmentOperator:=
 553 GO TO 570
  LineNumber:570
 560 IF W(R, S+1)<>0 THEN 590
- Value:R
- Value:S
+ Variable:R
+ Variable:S
  NumericConstant:1
  BinaryOperator:+
- Value:W
+ Variable:W
  NumericConstant:0
  BinaryOperator:<>
 570 LET X=INT(RND(0)*3+1)
- Reference:X
+ Variable:X
  NumericConstant:0
  FunctionRnd
  NumericConstant:3
@@ -449,19 +449,19 @@
  FunctionInt
  AssignmentOperator:=
 580 IF X=1 THEN 820
- Value:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:=
 581 IF X=2 THEN 860
- Value:X
+ Variable:X
  NumericConstant:2
  BinaryOperator:=
 582 IF X=3 THEN 910
- Value:X
+ Variable:X
  NumericConstant:3
  BinaryOperator:=
 590 LET X=INT(RND(0)*2+1)
- Reference:X
+ Variable:X
  NumericConstant:0
  FunctionRnd
  NumericConstant:2
@@ -471,37 +471,37 @@
  FunctionInt
  AssignmentOperator:=
 600 IF X=1 THEN 820
- Value:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:=
 601 IF X=2 THEN 860
- Value:X
+ Variable:X
  NumericConstant:2
  BinaryOperator:=
 610 IF S<>V THEN 630
- Value:S
- Value:V
+ Variable:S
+ Variable:V
  BinaryOperator:<>
 620 IF Z=1 THEN 660
- Value:Z
+ Variable:Z
  NumericConstant:1
  BinaryOperator:=
 621 LET Q=1
- Reference:Q
+ Variable:Q
  NumericConstant:1
  AssignmentOperator:=
 622 GO TO 640
  LineNumber:640
 630 IF W(R, S+1)<>0 THEN 660
- Value:R
- Value:S
+ Variable:R
+ Variable:S
  NumericConstant:1
  BinaryOperator:+
- Value:W
+ Variable:W
  NumericConstant:0
  BinaryOperator:<>
 640 LET X=INT(RND(0)*2+1)
- Reference:X
+ Variable:X
  NumericConstant:0
  FunctionRnd
  NumericConstant:2
@@ -511,51 +511,51 @@
  FunctionInt
  AssignmentOperator:=
 650 IF X=1 THEN 820
- Value:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:=
 651 IF X=2 THEN 910
- Value:X
+ Variable:X
  NumericConstant:2
  BinaryOperator:=
 660 GO TO 820
  LineNumber:820
 670 IF R=H THEN 740
- Value:R
- Value:H
+ Variable:R
+ Variable:H
  BinaryOperator:=
 680 IF W(R+1,S)<>0 THEN 740
- Value:R
+ Variable:R
  NumericConstant:1
  BinaryOperator:+
- Value:S
- Value:W
+ Variable:S
+ Variable:W
  NumericConstant:0
  BinaryOperator:<>
 681 IF S<>V THEN 700
- Value:S
- Value:V
+ Variable:S
+ Variable:V
  BinaryOperator:<>
 690 IF Z=1 THEN 730
- Value:Z
+ Variable:Z
  NumericConstant:1
  BinaryOperator:=
 691 LET Q=1
- Reference:Q
+ Variable:Q
  NumericConstant:1
  AssignmentOperator:=
 692 GO TO 830
  LineNumber:830
 700 IF W(R,S+1)<>0 THEN 730
- Value:R
- Value:S
+ Variable:R
+ Variable:S
  NumericConstant:1
  BinaryOperator:+
- Value:W
+ Variable:W
  NumericConstant:0
  BinaryOperator:<>
 710 LET X=INT(RND(0)*2+1)
- Reference:X
+ Variable:X
  NumericConstant:0
  FunctionRnd
  NumericConstant:2
@@ -565,169 +565,169 @@
  FunctionInt
  AssignmentOperator:=
 720 IF X=1 THEN 860
- Value:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:=
 721 IF X=2 THEN 910
- Value:X
+ Variable:X
  NumericConstant:2
  BinaryOperator:=
 730 GO TO 860
  LineNumber:860
 740 IF S<>V THEN 760
- Value:S
- Value:V
+ Variable:S
+ Variable:V
  BinaryOperator:<>
 750 IF Z=1 THEN 780
- Value:Z
+ Variable:Z
  NumericConstant:1
  BinaryOperator:=
 751 LET Q=1
- Reference:Q
+ Variable:Q
  NumericConstant:1
  AssignmentOperator:=
 752 GO TO 770
  LineNumber:770
 760 IF W(R, S+1)<>O THEN 780
- Value:R
- Value:S
+ Variable:R
+ Variable:S
  NumericConstant:1
  BinaryOperator:+
- Value:W
- Value:O
+ Variable:W
+ Variable:O
  BinaryOperator:<>
 770 GO TO 910
  LineNumber:910
 780 GO TO 1000
  LineNumber:1000
 790 LET W(R-1, S)=C
- Value:R
+ Variable:R
  NumericConstant:1
  BinaryOperator:-
- Value:S
- Reference:W
- Value:C
+ Variable:S
+ Variable:W
+ Variable:C
  AssignmentOperator:=
 800 LET C=C+1
- Reference:C
- Value:C
+ Variable:C
+ Variable:C
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 801 LET V(R-1, S)=2
- Value:R
+ Variable:R
  NumericConstant:1
  BinaryOperator:-
- Value:S
- Reference:V
+ Variable:S
+ Variable:V
  NumericConstant:2
  AssignmentOperator:=
 802 LET R=R-1
- Reference:R
- Value:R
+ Variable:R
+ Variable:R
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 810 IF C=H*V+1 THEN 1010
- Value:C
- Value:H
- Value:V
+ Variable:C
+ Variable:H
+ Variable:V
  BinaryOperator:*
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:=
 811 LET Q=0
- Reference:Q
+ Variable:Q
  NumericConstant:0
  AssignmentOperator:=
 812 GO TO 260
  LineNumber:260
 820 LET W(R,S-1)=C
- Value:R
- Value:S
+ Variable:R
+ Variable:S
  NumericConstant:1
  BinaryOperator:-
- Reference:W
- Value:C
+ Variable:W
+ Variable:C
  AssignmentOperator:=
 830 LET C=C+1
- Reference:C
- Value:C
+ Variable:C
+ Variable:C
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 840 LET V(R,S-1)=1
- Value:R
- Value:S
+ Variable:R
+ Variable:S
  NumericConstant:1
  BinaryOperator:-
- Reference:V
+ Variable:V
  NumericConstant:1
  AssignmentOperator:=
 841 LET S=S-1
- Reference:S
- Value:S
+ Variable:S
+ Variable:S
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 842 IF C=H*V+1 THEN 1010
- Value:C
- Value:H
- Value:V
+ Variable:C
+ Variable:H
+ Variable:V
  BinaryOperator:*
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:=
 850 LET Q=0
- Reference:Q
+ Variable:Q
  NumericConstant:0
  AssignmentOperator:=
 851 GO TO 260
  LineNumber:260
 860 LET W(R+1,S)=C
- Value:R
+ Variable:R
  NumericConstant:1
  BinaryOperator:+
- Value:S
- Reference:W
- Value:C
+ Variable:S
+ Variable:W
+ Variable:C
  AssignmentOperator:=
 870 LET C=C+1
- Reference:C
- Value:C
+ Variable:C
+ Variable:C
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 871 IF V(R,S)=0 THEN 880
- Value:R
- Value:S
- Value:V
+ Variable:R
+ Variable:S
+ Variable:V
  NumericConstant:0
  BinaryOperator:=
 872 LET V(R,S)=3
- Value:R
- Value:S
- Reference:V
+ Variable:R
+ Variable:S
+ Variable:V
  NumericConstant:3
  AssignmentOperator:=
 873 GO TO 890
  LineNumber:890
 880 LET V(R,S)=2
- Value:R
- Value:S
- Reference:V
+ Variable:R
+ Variable:S
+ Variable:V
  NumericConstant:2
  AssignmentOperator:=
 890 LET R=R+1
- Reference:R
- Value:R
+ Variable:R
+ Variable:R
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 900 IF C=H*V+1 THEN 1010
- Value:C
- Value:H
- Value:V
+ Variable:C
+ Variable:H
+ Variable:V
  BinaryOperator:*
  NumericConstant:1
  BinaryOperator:+
@@ -735,53 +735,53 @@
 902 GO TO 530
  LineNumber:530
 910 IF Q=1 THEN 960
- Value:Q
+ Variable:Q
  NumericConstant:1
  BinaryOperator:=
 920 LET W(R,S+1)=C
- Value:R
- Value:S
+ Variable:R
+ Variable:S
  NumericConstant:1
  BinaryOperator:+
- Reference:W
- Value:C
+ Variable:W
+ Variable:C
  AssignmentOperator:=
 921 LET C=C+1
- Reference:C
- Value:C
+ Variable:C
+ Variable:C
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 922 IF V(R,S)=0 THEN 940
- Value:R
- Value:S
- Value:V
+ Variable:R
+ Variable:S
+ Variable:V
  NumericConstant:0
  BinaryOperator:=
 930 LET V(R,S)=3
- Value:R
- Value:S
- Reference:V
+ Variable:R
+ Variable:S
+ Variable:V
  NumericConstant:3
  AssignmentOperator:=
 931 GO TO 950
  LineNumber:950
 940 LET V(R,S)=1
- Value:R
- Value:S
- Reference:V
+ Variable:R
+ Variable:S
+ Variable:V
  NumericConstant:1
  AssignmentOperator:=
 950 LET S=S+1
- Reference:S
- Value:S
+ Variable:S
+ Variable:S
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 951 IF C=H*V+1 THEN 1010
- Value:C
- Value:H
- Value:V
+ Variable:C
+ Variable:H
+ Variable:V
  BinaryOperator:*
  NumericConstant:1
  BinaryOperator:+
@@ -789,43 +789,43 @@
 952 GO TO 260
  LineNumber:260
 960 LET Z=1
- Reference:Z
+ Variable:Z
  NumericConstant:1
  AssignmentOperator:=
 970 IF V(R,S)=0 THEN 980
- Value:R
- Value:S
- Value:V
+ Variable:R
+ Variable:S
+ Variable:V
  NumericConstant:0
  BinaryOperator:=
 971 LET V(R,S)=3
- Value:R
- Value:S
- Reference:V
+ Variable:R
+ Variable:S
+ Variable:V
  NumericConstant:3
  AssignmentOperator:=
 972 LET Q=0
- Reference:Q
+ Variable:Q
  NumericConstant:0
  AssignmentOperator:=
 973 GO TO 1000
  LineNumber:1000
 980 LET V(R,S)=1
- Value:R
- Value:S
- Reference:V
+ Variable:R
+ Variable:S
+ Variable:V
  NumericConstant:1
  AssignmentOperator:=
 981 LET Q=0
- Reference:Q
+ Variable:Q
  NumericConstant:0
  AssignmentOperator:=
 982 LET R=1
- Reference:R
+ Variable:R
  NumericConstant:1
  AssignmentOperator:=
 990 LET S=1
- Reference:S
+ Variable:S
  NumericConstant:1
  AssignmentOperator:=
 991 GO TO 250
@@ -835,7 +835,7 @@
 1010 FOR J=1 TO V
  control: Variable:J
  start:   ["NumericConstant:1"]
- end:     ["Value:V"]
+ end:     ["Variable:V"]
 1011  PRINT"!";
  ITEMS
  TextConstant:"!"
@@ -843,11 +843,11 @@
 1012  FOR I=1 TO H
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["Value:H"]
+ end:     ["Variable:H"]
 1013   IF V(I,J)<2 THEN 1030
- Value:I
- Value:J
- Value:V
+ Variable:I
+ Variable:J
+ Variable:V
  NumericConstant:2
  BinaryOperator:<
 1020   PRINT"   ";
@@ -868,17 +868,17 @@
 1042  FOR I=1 TO H
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["Value:H"]
+ end:     ["Variable:H"]
 1045   IF V(I,J)=0 THEN 1060
- Value:I
- Value:J
- Value:V
+ Variable:I
+ Variable:J
+ Variable:V
  NumericConstant:0
  BinaryOperator:=
 1050   IF V(I,J)=2 THEN 1060
- Value:I
- Value:J
- Value:V
+ Variable:I
+ Variable:J
+ Variable:V
  NumericConstant:2
  BinaryOperator:=
 1051   PRINT":  ";

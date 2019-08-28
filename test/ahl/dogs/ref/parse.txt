@@ -21,7 +21,7 @@
 20 DIM Y(10),B(U),M5(20)
  NumericConstant:10
  Declaration:Y
- Value:U
+ Variable:U
  Declaration:B
  NumericConstant:20
  Declaration:M5
@@ -34,23 +34,23 @@
  Syntax error
 40 IF S9=6 THEN 70\FOR I=1 TO 10\GET 8,25,I\V9=V9+V\NEXT I
  'GET8,25,I' is not a valid assignment
- Value:S9
+ Variable:S9
  NumericConstant:6
  BinaryOperator:=
  control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
- Reference:V9
- Value:V9
- Value:V
+ Variable:V9
+ Variable:V9
+ Variable:V
  BinaryOperator:+
  AssignmentOperator:=
  Variable:I
 45 IF V9<25 THEN 60\IF V9>200 THEN 55
- Value:V9
+ Variable:V9
  NumericConstant:25
  BinaryOperator:<
- Value:V9
+ Variable:V9
  NumericConstant:200
  BinaryOperator:>
 50 GOTO 100
@@ -73,7 +73,7 @@
  CarriageControl:NL
  ITEMS
  CarriageControl:NL
- Reference:S9
+ Variable:S9
  NumericConstant:6
  AssignmentOperator:=
  LineNumber:35
@@ -81,11 +81,11 @@
  'GET8,25,H' is not a valid assignment
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["NumericConstant:26", "Value:V9", "BinaryOperator:-"]
+ end:     ["NumericConstant:26", "Variable:V9", "BinaryOperator:-"]
  
- Reference:M
+ Variable:M
  NumericConstant:10
- Value:X
+ Variable:X
  FunctionRnd
  BinaryOperator:*
  FunctionInt
@@ -94,22 +94,22 @@
  AssignmentOperator:=
 75 V=V+1\PUT 8,25,H\FOR T=1 TO 10\IF H=T THEN    85
  'PUT8,25,H' is not a valid assignment
- Reference:V
- Value:V
+ Variable:V
+ Variable:V
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
  control: Variable:T
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
- Value:H
- Value:T
+ Variable:H
+ Variable:T
  BinaryOperator:=
 80 GET 9,30,T\X=X+1\PUT 9,30,T
  'GET9,30,T' is not a valid assignment
  'PUT9,30,T' is not a valid assignment
- Reference:X
- Value:X
+ Variable:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -145,7 +145,7 @@
  ITEMS
  TextConstant:"DO YOU WANT THE INSTRUCTIONS"
  CarriageControl:;
- Reference:I$
+ Variable:I$
  LineNumber:215
 120 PRINT "THIS IS A DOG RACE GAME, THERE ARE 10 DOGS"
  ITEMS
@@ -226,7 +226,7 @@
  CarriageControl:NL
  LineNumber:220
 215 IF I$="YES" THEN 120\GOTO 220
- Value:I$
+ Variable:I$
  TextConstant:"YES"
  BinaryOperator:=
  LineNumber:220
@@ -252,21 +252,21 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 235 READ H$(I)
- Value:I
- Reference:H$
+ Variable:I
+ Variable:H$
 240 GET 8,25,I\GET 9,30,I
  'GET8,25,I' is not a valid assignment
  'GET9,30,I' is not a valid assignment
 245 PRINT H$(I),T,V,X
  ITEMS
- Value:I
- Value:H$
+ Variable:I
+ Variable:H$
  CarriageControl:,
- Value:T
+ Variable:T
  CarriageControl:,
- Value:V
+ Variable:V
  CarriageControl:,
- Value:X
+ Variable:X
  CarriageControl:NL
 250 NEXT I\RETURN
  Variable:I
@@ -280,8 +280,8 @@
  TextConstant:"HOW MANY WISH TO BET"
  CarriageControl:;
 260 INPUT G\IF Q<20 THEN 270
- Reference:G
- Value:Q
+ Variable:G
+ Variable:Q
  NumericConstant:20
  BinaryOperator:<
 265 PRINT "NO MORE THAN. 19 ALLOWED"\PRINT\GOTO 255
@@ -294,32 +294,32 @@
 270 FOR Z=1 TO Q
  control: Variable:Z
  start:   ["NumericConstant:1"]
- end:     ["Value:Q"]
+ end:     ["Variable:Q"]
 275 PRINT "BETTOR'S NAME";\INPUT N$(Z)
  ITEMS
  TextConstant:"BETTOR'S NAME"
  CarriageControl:;
- Value:Z
- Reference:N$
+ Variable:Z
+ Variable:N$
 280 PRINT "DOG'S NUMBER";\INPUT J(Z)
  ITEMS
  TextConstant:"DOG'S NUMBER"
  CarriageControl:;
- Value:Z
- Reference:J
+ Variable:Z
+ Variable:J
 285 PRINT "AND YOUR BET";\INPUT P(Z)
  ITEMS
  TextConstant:"AND YOUR BET"
  CarriageControl:;
- Value:Z
- Reference:P
+ Variable:Z
+ Variable:P
 290 IF P(Z)<2 THEN 300\IF P(Z)>500 THEN 315
- Value:Z
- Value:P
+ Variable:Z
+ Variable:P
  NumericConstant:2
  BinaryOperator:<
- Value:Z
- Value:P
+ Variable:Z
+ Variable:P
  NumericConstant:500
  BinaryOperator:>
 295 PRINT\NEXT Z\GOTO 325
@@ -331,23 +331,23 @@
  ITEMS
  TextConstant:"YOU MUST BET AT LEAST $2,00, TRY AGAIN "
  CarriageControl:
- Value:Z
- Value:N$
+ Variable:Z
+ Variable:N$
  CarriageControl:NL
 305 PRINT "YOUR BET";\INPUT P(Z)
  ITEMS
  TextConstant:"YOUR BET"
  CarriageControl:;
- Value:Z
- Reference:P
+ Variable:Z
+ Variable:P
 310 GOTO 290
  LineNumber:290
 315 PRINT "YOU CAN'T BET OVER 500,00 "N$(Z)" TRY AGAIN"
  ITEMS
  TextConstant:"YOU CAN'T BET OVER 500,00 "
  CarriageControl:
- Value:Z
- Value:N$
+ Variable:Z
+ Variable:N$
  CarriageControl:
  TextConstant:" TRY AGAIN"
  CarriageControl:NL
@@ -359,11 +359,11 @@
  end:     ["NumericConstant:10"]
 330 B(11)=B(11)+P(I)
  NumericConstant:11
- Reference:B
+ Variable:B
  NumericConstant:11
- Value:B
- Value:I
- Value:P
+ Variable:B
+ Variable:I
+ Variable:P
  BinaryOperator:+
  AssignmentOperator:=
 335 NEXT I
@@ -371,23 +371,23 @@
 340 FOR I=1 TO Q 'AMOUNT OF PEOPLE PLAYING
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["Value:Q"]
+ end:     ["Variable:Q"]
 345 FOR I3=1 TO 10'DOGS
  control: Variable:I3
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 350 IF J(I)<>I3 THEN 360
- Value:I
- Value:J
- Value:I3
+ Variable:I
+ Variable:J
+ Variable:I3
  BinaryOperator:<>
 355 A(I3)=A(I3)+P(I)
- Value:I3
- Reference:A
- Value:I3
- Value:A
- Value:I
- Value:P
+ Variable:I3
+ Variable:A
+ Variable:I3
+ Variable:A
+ Variable:I
+ Variable:P
  BinaryOperator:+
  AssignmentOperator:=
 360 NEXT I3
@@ -399,16 +399,16 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 375 IF A(I)>=2 THEN 390
- Value:I
- Value:A
+ Variable:I
+ Variable:A
  NumericConstant:2
  BinaryOperator:>=
 380 B(I)=INT(B(11)*RND(X))+1
- Value:I
- Reference:B
+ Variable:I
+ Variable:B
  NumericConstant:11
- Value:B
- Value:X
+ Variable:B
+ Variable:X
  FunctionRnd
  BinaryOperator:*
  FunctionInt
@@ -418,33 +418,33 @@
 385 GOTO 395
  LineNumber:395
 390 B(I)=INT((B(11)-A(I))/(A(I)-(.17*A(I))))
- Value:I
- Reference:B
+ Variable:I
+ Variable:B
  NumericConstant:11
- Value:B
- Value:I
- Value:A
+ Variable:B
+ Variable:I
+ Variable:A
  BinaryOperator:-
- Value:I
- Value:A
+ Variable:I
+ Variable:A
  NumericConstant:.17
- Value:I
- Value:A
+ Variable:I
+ Variable:A
  BinaryOperator:*
  BinaryOperator:-
  BinaryOperator:/
  FunctionInt
  AssignmentOperator:=
 395 IF B(I)<=2 THEN 405
- Value:I
- Value:B
+ Variable:I
+ Variable:B
  NumericConstant:2
  BinaryOperator:<=
 400 GOTO 410
  LineNumber:410
 405 B(I)=2
- Value:I
- Reference:B
+ Variable:I
+ Variable:B
  NumericConstant:2
  AssignmentOperator:=
 410 NEXT I
@@ -466,13 +466,13 @@
  end:     ["NumericConstant:10"]
 430 PRINT H$(I),I,B(I)": 1"
  ITEMS
- Value:I
- Value:H$
+ Variable:I
+ Variable:H$
  CarriageControl:,
- Value:I
+ Variable:I
  CarriageControl:,
- Value:I
- Value:B
+ Variable:I
+ Variable:B
  CarriageControl:
  TextConstant:": 1"
  CarriageControl:NL
@@ -485,24 +485,24 @@
 445 GET 8,25,I\GET 9,30,I\IF V+X<=0 THEN 470
  'GET8,25,I' is not a valid assignment
  'GET9,30,I' is not a valid assignment
- Value:V
- Value:X
+ Variable:V
+ Variable:X
  BinaryOperator:+
  NumericConstant:0
  BinaryOperator:<=
 450 RANDOMIZE
  
 455 Y(I)=INT(V/ABS((V+X))+INT(V*RND(X))*1)
- Value:I
- Reference:Y
- Value:V
- Value:V
- Value:X
+ Variable:I
+ Variable:Y
+ Variable:V
+ Variable:V
+ Variable:X
  BinaryOperator:+
  FunctionAbs
  BinaryOperator:/
- Value:V
- Value:X
+ Variable:V
+ Variable:X
  FunctionRnd
  BinaryOperator:*
  FunctionInt
@@ -512,17 +512,17 @@
  FunctionInt
  AssignmentOperator:=
 460 IF Y(I)<7 THEN 470
- Value:I
- Value:Y
+ Variable:I
+ Variable:Y
  NumericConstant:7
  BinaryOperator:<
 465 GOTO 475
  LineNumber:475
 470 Y(I)=INT(7*RND(X))+1
- Value:I
- Reference:Y
+ Variable:I
+ Variable:Y
  NumericConstant:7
- Value:X
+ Variable:X
  FunctionRnd
  BinaryOperator:*
  FunctionInt
@@ -536,8 +536,8 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 485 S(R)=0
- Value:R
- Reference:S
+ Variable:R
+ Variable:S
  NumericConstant:0
  AssignmentOperator:=
 490 NEXT R
@@ -578,11 +578,11 @@
 515 RANDOMIZE
  
 520 C(R)=INT(Y(R)*RND(X))+1
- Value:R
- Reference:C
- Value:R
- Value:Y
- Value:X
+ Variable:R
+ Variable:C
+ Variable:R
+ Variable:Y
+ Variable:X
  FunctionRnd
  BinaryOperator:*
  FunctionInt
@@ -590,12 +590,12 @@
  BinaryOperator:+
  AssignmentOperator:=
 525 S(R)=S(R)+C(R)
- Value:R
- Reference:S
- Value:R
- Value:S
- Value:R
- Value:C
+ Variable:R
+ Variable:S
+ Variable:R
+ Variable:S
+ Variable:R
+ Variable:C
  BinaryOperator:+
  AssignmentOperator:=
 530 NEXT R
@@ -616,13 +616,13 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 550 IF P=S(R) THEN 580
- Value:P
- Value:R
- Value:S
+ Variable:P
+ Variable:R
+ Variable:S
  BinaryOperator:=
 555 IF S(R)>20 THEN 590
- Value:R
- Value:S
+ Variable:R
+ Variable:S
  NumericConstant:20
  BinaryOperator:>
 560 NEXT R
@@ -636,12 +636,12 @@
  LineNumber:625
 580 PRINT TAB(R*2);R;CHR$(141)
  ITEMS
- Value:R
+ Variable:R
  NumericConstant:2
  BinaryOperator:*
  FunctionTab
  CarriageControl:;
- Value:R
+ Variable:R
  CarriageControl:;
  NumericConstant:141
  FunctionChr
@@ -650,28 +650,28 @@
  LineNumber:560
 590 IF W(1)<>0 THEN 605
  NumericConstant:1
- Value:W
+ Variable:W
  NumericConstant:0
  BinaryOperator:<>
 595 W(1)=R
  NumericConstant:1
- Reference:W
- Value:R
+ Variable:W
+ Variable:R
  AssignmentOperator:=
 600 GOTO 560
  LineNumber:560
 605 D=2
- Reference:D
+ Variable:D
  NumericConstant:2
  AssignmentOperator:=
 610 W(D)=R
- Value:D
- Reference:W
- Value:R
+ Variable:D
+ Variable:W
+ Variable:R
  AssignmentOperator:=
 615 D=D+1
- Reference:D
- Value:D
+ Variable:D
+ Variable:D
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -679,7 +679,7 @@
  LineNumber:560
 625 IF W(1)<>0 THEN 640
  NumericConstant:1
- Value:W
+ Variable:W
  NumericConstant:0
  BinaryOperator:<>
 630 PRINT TAB(2);"XXXXXXXFINISHXXXXXXXX"
@@ -697,19 +697,19 @@
  end:     ["NumericConstant:22"]
 645 PRINT TAB(Y);"X";TAB(Y);CHR$(135);
  ITEMS
- Value:Y
+ Variable:Y
  FunctionTab
  CarriageControl:;
  TextConstant:"X"
  CarriageControl:;
- Value:Y
+ Variable:Y
  FunctionTab
  CarriageControl:;
  NumericConstant:135
  FunctionChr
  CarriageControl:;
 650 IF Y=7 THEN 665
- Value:Y
+ Variable:Y
  NumericConstant:7
  BinaryOperator:=
 655 NEXT Y
@@ -721,7 +721,7 @@
  TextConstant:" FINISH"
  CarriageControl:;
 670 Y=13
- Reference:Y
+ Variable:Y
  NumericConstant:13
  AssignmentOperator:=
 675 GOTO 655
@@ -744,38 +744,38 @@
  ITEMS
  CarriageControl:NL
 695 IF D<=1 THEN 735
- Value:D
+ Variable:D
  NumericConstant:1
  BinaryOperator:<=
 700 G=W(1)
- Reference:G
+ Variable:G
  NumericConstant:1
- Value:W
+ Variable:W
  AssignmentOperator:=
 705 FOR I2=1 TO D
  control: Variable:I2
  start:   ["NumericConstant:1"]
- end:     ["Value:D"]
+ end:     ["Variable:D"]
 710 IF S(W(I2))<S(W(I2+1)) THEN 725
- Value:I2
- Value:W
- Value:S
- Value:I2
+ Variable:I2
+ Variable:W
+ Variable:S
+ Variable:I2
  NumericConstant:1
  BinaryOperator:+
- Value:W
- Value:S
+ Variable:W
+ Variable:S
  BinaryOperator:<
 715 NEXT I2
  Variable:I2
 720 GOTO 735
  LineNumber:735
 725 G=W(I2+1)
- Reference:G
- Value:I2
+ Variable:G
+ Variable:I2
  NumericConstant:1
  BinaryOperator:+
- Value:W
+ Variable:W
  AssignmentOperator:=
 730 GOTO 715
  LineNumber:715
@@ -789,10 +789,10 @@
  ITEMS
  TextConstant:"AND THE WINNER IS DOG NUMBER"
  CarriageControl:;
- Value:G
+ Variable:G
  CarriageControl:,
- Value:G
- Value:H$
+ Variable:G
+ Variable:H$
  CarriageControl:NL
 750 PRINT\GOTO 970
  ITEMS
@@ -803,26 +803,26 @@
 760 FOR E=1 TO Q
  control: Variable:E
  start:   ["NumericConstant:1"]
- end:     ["Value:Q"]
+ end:     ["Variable:Q"]
 765 IF G=J(E) THEN 790
- Value:G
- Value:E
- Value:J
+ Variable:G
+ Variable:E
+ Variable:J
  BinaryOperator:=
 770 M5(E)=M5(E)-P(E)
- Value:E
- Reference:M5
- Value:E
- Value:M5
- Value:E
- Value:P
+ Variable:E
+ Variable:M5
+ Variable:E
+ Variable:M5
+ Variable:E
+ Variable:P
  BinaryOperator:-
  AssignmentOperator:=
 775 N7=N7+P(E)
- Reference:N7
- Value:N7
- Value:E
- Value:P
+ Variable:N7
+ Variable:N7
+ Variable:E
+ Variable:P
  BinaryOperator:+
  AssignmentOperator:=
 780 NEXT E
@@ -830,27 +830,27 @@
 785 GOTO 835
  LineNumber:835
 790 IF B(G)=2 THEN 800
- Value:G
- Value:B
+ Variable:G
+ Variable:B
  NumericConstant:2
  BinaryOperator:=
 795 GOTO 805
  LineNumber:805
 800 B(G)=1
- Value:G
- Reference:B
+ Variable:G
+ Variable:B
  NumericConstant:1
  AssignmentOperator:=
 805 M=INT(100*(B(G)*P(E)*P(E))/100)
- Reference:M
+ Variable:M
  NumericConstant:100
- Value:G
- Value:B
- Value:E
- Value:P
+ Variable:G
+ Variable:B
+ Variable:E
+ Variable:P
  BinaryOperator:*
- Value:E
- Value:P
+ Variable:E
+ Variable:P
  BinaryOperator:*
  BinaryOperator:*
  NumericConstant:100
@@ -861,25 +861,25 @@
  ITEMS
  TextConstant:"CONGRATULATION "
  CarriageControl:
- Value:E
- Value:N$
+ Variable:E
+ Variable:N$
  CarriageControl:
  TextConstant:" YOU HAVE WON $"
  CarriageControl:;
- Value:M
+ Variable:M
  CarriageControl:NL
 815 M5(E)=M5(E)+M
- Value:E
- Reference:M5
- Value:E
- Value:M5
- Value:M
+ Variable:E
+ Variable:M5
+ Variable:E
+ Variable:M5
+ Variable:M
  BinaryOperator:+
  AssignmentOperator:=
 820 N7=N7-M
- Reference:N7
- Value:N7
- Value:M
+ Variable:N7
+ Variable:N7
+ Variable:M
  BinaryOperator:-
  AssignmentOperator:=
 825 PRINT
@@ -892,9 +892,9 @@
  TextConstant:"WOULD YOU AVID RACE FANS LIKE TO PLAY AGAIN"
  CarriageControl:;
 840 INPUT L$
- Reference:L$
+ Variable:L$
 845 IF L$="YES" THEN 870
- Value:L$
+ Variable:L$
  TextConstant:"YES"
  BinaryOperator:=
 850 PRINT\PRINT "PERSON", "AMOUNT "\FOR I=1 TO Q
@@ -907,20 +907,20 @@
  CarriageControl:NL
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["Value:Q"]
+ end:     ["Variable:Q"]
 855 PRINT N$(I),M5(I)\NEXT I\PRINT "COMP",N7 
  ITEMS
- Value:I
- Value:N$
+ Variable:I
+ Variable:N$
  CarriageControl:,
- Value:I
- Value:M5
+ Variable:I
+ Variable:M5
  CarriageControl:NL
  Variable:I
  ITEMS
  TextConstant:"COMP"
  CarriageControl:,
- Value:N7
+ Variable:N7
  CarriageControl:NL
 860 FOR I=1 TO 5\PRINT\NEXT I\GOTO 1085
  control: Variable:I
@@ -937,38 +937,38 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 875 A(K)=0
- Value:K
- Reference:A
+ Variable:K
+ Variable:A
  NumericConstant:0
  AssignmentOperator:=
 880 S(K)=0
- Value:K
- Reference:S
+ Variable:K
+ Variable:S
  NumericConstant:0
  AssignmentOperator:=
 885 W(K)=0
- Value:K
- Reference:W
+ Variable:K
+ Variable:W
  NumericConstant:0
  AssignmentOperator:=
 890 C(K)=0
- Value:K
- Reference:C
+ Variable:K
+ Variable:C
  NumericConstant:0
  AssignmentOperator:=
 895 J(K)=0
- Value:K
- Reference:J
+ Variable:K
+ Variable:J
  NumericConstant:0
  AssignmentOperator:=
 900 B(11)=0
  NumericConstant:11
- Reference:B
+ Variable:B
  NumericConstant:0
  AssignmentOperator:=
 905 B(K)=0
- Value:K
- Reference:B
+ Variable:K
+ Variable:B
  NumericConstant:0
  AssignmentOperator:=
 910 NEXT K\GOSUB 225
@@ -978,40 +978,40 @@
  ITEMS
  TextConstant:"ANY NEWCOMERS"
  CarriageControl:;
- Reference:C$
+ Variable:C$
 920 FOR I=1 TO Q
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["Value:Q"]
+ end:     ["Variable:Q"]
 925 PRINT N$(I);" YOUR DOGS NUMBER" I\INPUT J(I)
  ITEMS
- Value:I
- Value:N$
+ Variable:I
+ Variable:N$
  CarriageControl:;
  TextConstant:" YOUR DOGS NUMBER"
  CarriageControl:
- Value:I
+ Variable:I
  CarriageControl:NL
- Value:I
- Reference:J
+ Variable:I
+ Variable:J
 930 PRINT "AND YOUR BET";\INPUT P(I)
  ITEMS
  TextConstant:"AND YOUR BET"
  CarriageControl:;
- Value:I
- Reference:P
+ Variable:I
+ Variable:P
 935 IF P(I)<2 THEN 950\IF P(I)>500 THEN 960\NEXT I
- Value:I
- Value:P
+ Variable:I
+ Variable:P
  NumericConstant:2
  BinaryOperator:<
- Value:I
- Value:P
+ Variable:I
+ Variable:P
  NumericConstant:500
  BinaryOperator:>
  Variable:I
 940 IF C$="NO" THEN 325
- Value:C$
+ Variable:C$
  TextConstant:"NO"
  BinaryOperator:=
 945 GOTO 1025
@@ -1020,21 +1020,21 @@
  ITEMS
  TextConstant:"YOU MUST BET AT LEAST $2.00 "
  CarriageControl:
- Value:I
- Value:N$
+ Variable:I
+ Variable:N$
  CarriageControl:
  TextConstant:"YOUR BET"
  CarriageControl:;
 955 INPUT P(I)\GOTO 935
- Value:I
- Reference:P
+ Variable:I
+ Variable:P
  LineNumber:935
 960 PRINT "YOU CAN'T BET OVER $500.00 "N$(I)" TRY AGAIN"
  ITEMS
  TextConstant:"YOU CAN'T BET OVER $500.00 "
  CarriageControl:
- Value:I
- Value:N$
+ Variable:I
+ Variable:N$
  CarriageControl:
  TextConstant:" TRY AGAIN"
  CarriageControl:NL
@@ -1048,13 +1048,13 @@
  'SET8,25,I' is not a valid assignment
  'GET9,30,I' is not a valid assignment
 980 IF I=G THEN 995
- Value:I
- Value:G
+ Variable:I
+ Variable:G
  BinaryOperator:=
 985 X=X+1\PUT 9,30,I
  'PUT9,30,I' is not a valid assignment
- Reference:X
- Value:X
+ Variable:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -1062,8 +1062,8 @@
  LineNumber:1000
 995 V=V+1\PUT 8,25,I
  'PUT8,25,I' is not a valid assignment
- Reference:V
- Value:V
+ Variable:V
+ Variable:V
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -1091,23 +1091,23 @@
  ITEMS
  TextConstant:"HOW MANY NEWCOMERS"
  CarriageControl:;
- Reference:Q4
+ Variable:Q4
  NumericConstant:0
  AssignmentOperator:=
- Reference:J6
- Reference:Q4
- Value:Q
- Value:J6
+ Variable:J6
+ Variable:Q4
+ Variable:Q
+ Variable:J6
  BinaryOperator:+
  AssignmentOperator:=
 1030 IF Q4>=20 THEN 1035\Q=Q4\Q4=0\GO TO 1040
- Value:Q4
+ Variable:Q4
  NumericConstant:20
  BinaryOperator:>=
- Reference:Q
- Value:Q4
+ Variable:Q
+ Variable:Q4
  AssignmentOperator:=
- Reference:Q4
+ Variable:Q4
  NumericConstant:0
  AssignmentOperator:=
  LineNumber:1040
@@ -1115,41 +1115,41 @@
  ITEMS
  TextConstant:"NO MORE THAN 19 ALLOWED, YOU NOW HAVE "
  CarriageControl:
- Value:Q
+ Variable:Q
  CarriageControl:NL
- Reference:Q4
+ Variable:Q4
  NumericConstant:0
  AssignmentOperator:=
  LineNumber:1025
 1040 FOR Z=I TO Q
  control: Variable:Z
- start:   ["Value:I"]
- end:     ["Value:Q"]
+ start:   ["Variable:I"]
+ end:     ["Variable:Q"]
 1045 PRINT "BETTORS NAME";\INPUT N$(Z)
  ITEMS
  TextConstant:"BETTORS NAME"
  CarriageControl:;
- Value:Z
- Reference:N$
+ Variable:Z
+ Variable:N$
 1050 PRINT "DOGS NUMBER";\INPUT J(Z)
  ITEMS
  TextConstant:"DOGS NUMBER"
  CarriageControl:;
- Value:Z
- Reference:J
+ Variable:Z
+ Variable:J
 1055 PRINT "AND YOUR BET";\INPUT P(Z)\IF P(Z)<2 THEN 1070
  ITEMS
  TextConstant:"AND YOUR BET"
  CarriageControl:;
- Value:Z
- Reference:P
- Value:Z
- Value:P
+ Variable:Z
+ Variable:P
+ Variable:Z
+ Variable:P
  NumericConstant:2
  BinaryOperator:<
 1060 IF P(Z)>500 THEN 1075
- Value:Z
- Value:P
+ Variable:Z
+ Variable:P
  NumericConstant:500
  BinaryOperator:>
 1065 PRINT\NEXT Z\GOTO 325

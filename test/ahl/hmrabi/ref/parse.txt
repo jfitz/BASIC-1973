@@ -14,47 +14,47 @@
  CarriageControl:NL
 90 RANDOMIZE:LET D1=0:LET P1=0
  
- Reference:D1
+ Variable:D1
  NumericConstant:0
  AssignmentOperator:=
- Reference:P1
+ Variable:P1
  NumericConstant:0
  AssignmentOperator:=
 100 LET Z=0:LET P=95:LET S=2800:LET H=3000:LET E=H-S
- Reference:Z
+ Variable:Z
  NumericConstant:0
  AssignmentOperator:=
- Reference:P
+ Variable:P
  NumericConstant:95
  AssignmentOperator:=
- Reference:S
+ Variable:S
  NumericConstant:2800
  AssignmentOperator:=
- Reference:H
+ Variable:H
  NumericConstant:3000
  AssignmentOperator:=
- Reference:E
- Value:H
- Value:S
+ Variable:E
+ Variable:H
+ Variable:S
  BinaryOperator:-
  AssignmentOperator:=
 110 LET Y=3:LET A=H/Y:LET I=5:LET Q=1
- Reference:Y
+ Variable:Y
  NumericConstant:3
  AssignmentOperator:=
- Reference:A
- Value:H
- Value:Y
+ Variable:A
+ Variable:H
+ Variable:Y
  BinaryOperator:/
  AssignmentOperator:=
- Reference:I
+ Variable:I
  NumericConstant:5
  AssignmentOperator:=
- Reference:Q
+ Variable:Q
  NumericConstant:1
  AssignmentOperator:=
 210 LET D=0
- Reference:D
+ Variable:D
  NumericConstant:0
  AssignmentOperator:=
 215 PRINT:PRINT:PRINT "HAMURABI:  I BEG TO REPORT TO YOU,":LET Z=Z+1
@@ -65,8 +65,8 @@
  ITEMS
  TextConstant:"HAMURABI:  I BEG TO REPORT TO YOU,"
  CarriageControl:NL
- Reference:Z
- Value:Z
+ Variable:Z
+ Variable:Z
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -74,31 +74,31 @@
  ITEMS
  TextConstant:"IN YEAR"
  CarriageControl:
- Value:Z
+ Variable:Z
  CarriageControl:
  TextConstant:","
  CarriageControl:
- Value:D
+ Variable:D
  CarriageControl:
  TextConstant:"PEOPLE STARVED,"
  CarriageControl:
- Value:I
+ Variable:I
  CarriageControl:
  TextConstant:"CAME TO THE CITY,"
  CarriageControl:NL
 218 LET P=P+I
- Reference:P
- Value:P
- Value:I
+ Variable:P
+ Variable:P
+ Variable:I
  BinaryOperator:+
  AssignmentOperator:=
 227 IF Q>0 THEN 230
- Value:Q
+ Variable:Q
  NumericConstant:0
  BinaryOperator:>
 228 LET P=INT(P/2)
- Reference:P
- Value:P
+ Variable:P
+ Variable:P
  NumericConstant:2
  BinaryOperator:/
  FunctionInt
@@ -111,13 +111,13 @@
  ITEMS
  TextConstant:"POPULATION IS NOW"
  CarriageControl:
- Value:P
+ Variable:P
  CarriageControl:NL
 232 PRINT "THE CITY NOW OWNS"A"ACRES."
  ITEMS
  TextConstant:"THE CITY NOW OWNS"
  CarriageControl:
- Value:A
+ Variable:A
  CarriageControl:
  TextConstant:"ACRES."
  CarriageControl:NL
@@ -125,7 +125,7 @@
  ITEMS
  TextConstant:"YOU HARVESTED"
  CarriageControl:
- Value:Y
+ Variable:Y
  CarriageControl:
  TextConstant:"BUSHELS PER ACRE."
  CarriageControl:NL
@@ -133,7 +133,7 @@
  ITEMS
  TextConstant:"RATS ATE"
  CarriageControl:
- Value:E
+ Variable:E
  CarriageControl:
  TextConstant:"BUSHELS,"
  CarriageControl:NL
@@ -141,26 +141,26 @@
  ITEMS
  TextConstant:"YOU NOW HAVE"
  CarriageControl:
- Value:S
+ Variable:S
  CarriageControl:
  TextConstant:"BUSHELS IN STORE."
  CarriageControl:NL
  ITEMS
  CarriageControl:NL
 270 IF Z=11 THEN 860
- Value:Z
+ Variable:Z
  NumericConstant:11
  BinaryOperator:=
 310 LET C=INT(10*RND(0)):LET Y=C+17
- Reference:C
+ Variable:C
  NumericConstant:10
  NumericConstant:0
  FunctionRnd
  BinaryOperator:*
  FunctionInt
  AssignmentOperator:=
- Reference:Y
- Value:C
+ Variable:Y
+ Variable:C
  NumericConstant:17
  BinaryOperator:+
  AssignmentOperator:=
@@ -168,7 +168,7 @@
  ITEMS
  TextConstant:"LAND IS TRADING AT"
  CarriageControl:
- Value:Y
+ Variable:Y
  CarriageControl:
  TextConstant:"BUSHELS PER ACRE."
  CarriageControl:NL
@@ -177,38 +177,38 @@
  TextConstant:"HOW MANY ACRES DO YOU WISH TO BUY"
  CarriageControl:;
 321 INPUT Q:IF Q<0 THEN 850
- Reference:Q
- Value:Q
+ Variable:Q
+ Variable:Q
  NumericConstant:0
  BinaryOperator:<
 322 IF Y*Q<S THEN 330
- Value:Y
- Value:Q
+ Variable:Y
+ Variable:Q
  BinaryOperator:*
- Value:S
+ Variable:S
  BinaryOperator:<
 323 GOSUB 710
  LineNumber:710
 324 GOTO 320
  LineNumber:320
 330 IF Q>0 THEN 340
- Value:Q
+ Variable:Q
  NumericConstant:0
  BinaryOperator:>
 331 LET A=A+Q:LET S=S-Y*Q:LET C=0
- Reference:A
- Value:A
- Value:Q
+ Variable:A
+ Variable:A
+ Variable:Q
  BinaryOperator:+
  AssignmentOperator:=
- Reference:S
- Value:S
- Value:Y
- Value:Q
+ Variable:S
+ Variable:S
+ Variable:Y
+ Variable:Q
  BinaryOperator:*
  BinaryOperator:-
  AssignmentOperator:=
- Reference:C
+ Variable:C
  NumericConstant:0
  AssignmentOperator:=
 334 GOTO 400
@@ -218,32 +218,32 @@
  TextConstant:"HOW MANY ACRES DO YOU WISH TO SELL"
  CarriageControl:;
 341 INPUT Q:IF Q<0 THEN 880
- Reference:Q
- Value:Q
+ Variable:Q
+ Variable:Q
  NumericConstant:0
  BinaryOperator:<
 342 IF Q<A THEN 350
- Value:Q
- Value:A
+ Variable:Q
+ Variable:A
  BinaryOperator:<
 343 GOSUB 720
  LineNumber:720
 344 GOTO 340
  LineNumber:340
 350 LET A=A-Q:LET S=S+Y*Q:LET C=0
- Reference:A
- Value:A
- Value:Q
+ Variable:A
+ Variable:A
+ Variable:Q
  BinaryOperator:-
  AssignmentOperator:=
- Reference:S
- Value:S
- Value:Y
- Value:Q
+ Variable:S
+ Variable:S
+ Variable:Y
+ Variable:Q
  BinaryOperator:*
  BinaryOperator:+
  AssignmentOperator:=
- Reference:C
+ Variable:C
  NumericConstant:0
  AssignmentOperator:=
 400 PRINT
@@ -254,28 +254,28 @@
  TextConstant:"HOW MANY BUSHELS DO YOU WISH TO FEED YOUR PEOPLE"
  CarriageControl:;
 411 INPUT Q
- Reference:Q
+ Variable:Q
 412 IF Q<0 THEN 850
- Value:Q
+ Variable:Q
  NumericConstant:0
  BinaryOperator:<
 418 REM *** TRYING TO USE MORE GRAIN THAN IN THE SILOS?
  Remark:*** TRYING TO USE MORE GRAIN THAN IN THE SILOS?
 420 IF Q<S THEN 430
- Value:Q
- Value:S
+ Variable:Q
+ Variable:S
  BinaryOperator:<
 421 GOSUB 710
  LineNumber:710
 422 GOTO 410
  LineNumber:410
 430 LET S=S-Q:LET C=1:PRINT
- Reference:S
- Value:S
- Value:Q
+ Variable:S
+ Variable:S
+ Variable:Q
  BinaryOperator:-
  AssignmentOperator:=
- Reference:C
+ Variable:C
  NumericConstant:1
  AssignmentOperator:=
  ITEMS
@@ -285,19 +285,19 @@
  TextConstant:"HOW MANY ACRES DO YOU WISH TO PLANT WITH SEED"
  CarriageControl:;
 441 INPUT D:IF D=0 THEN 511
- Reference:D
- Value:D
+ Variable:D
+ Variable:D
  NumericConstant:0
  BinaryOperator:=
 442 IF D<0 THEN 850
- Value:D
+ Variable:D
  NumericConstant:0
  BinaryOperator:<
 444 REM *** TRYING TO PLANT MORE ACRES THAN YOU OWN?
  Remark:*** TRYING TO PLANT MORE ACRES THAN YOU OWN?
 445 IF D<=A THEN 450
- Value:D
- Value:A
+ Variable:D
+ Variable:A
  BinaryOperator:<=
 446 GOSUB 720
  LineNumber:720
@@ -306,11 +306,11 @@
 449 REM *** ENOUGH GRAIN FOR SEED?
  Remark:*** ENOUGH GRAIN FOR SEED?
 450 IF INT(D/2)<S THEN 455
- Value:D
+ Variable:D
  NumericConstant:2
  BinaryOperator:/
  FunctionInt
- Value:S
+ Variable:S
  BinaryOperator:<
 452 GOSUB 710
  LineNumber:710
@@ -319,25 +319,25 @@
 454 REM *** ENOUGH PEOPLE TO TEND THE CROPS?
  Remark:*** ENOUGH PEOPLE TO TEND THE CROPS?
 455 IF D<10*P THEN 510
- Value:D
+ Variable:D
  NumericConstant:10
- Value:P
+ Variable:P
  BinaryOperator:*
  BinaryOperator:<
 460 PRINT "BUT YOU HAVE ONLY"P"PEOPLE TO TEND THE FIELDS, NOW THEN,"
  ITEMS
  TextConstant:"BUT YOU HAVE ONLY"
  CarriageControl:
- Value:P
+ Variable:P
  CarriageControl:
  TextConstant:"PEOPLE TO TEND THE FIELDS, NOW THEN,"
  CarriageControl:NL
 470 GOTO 440
  LineNumber:440
 510 LET S=S-INT(D/2)
- Reference:S
- Value:S
- Value:D
+ Variable:S
+ Variable:S
+ Variable:D
  NumericConstant:2
  BinaryOperator:/
  FunctionInt
@@ -348,43 +348,43 @@
 512 REM *** A BOUNTYFULL HARVEST!!
  Remark:*** A BOUNTYFULL HARVEST!!
 515 LET Y=C:LET H=D*Y:LET E=0
- Reference:Y
- Value:C
+ Variable:Y
+ Variable:C
  AssignmentOperator:=
- Reference:H
- Value:D
- Value:Y
+ Variable:H
+ Variable:D
+ Variable:Y
  BinaryOperator:*
  AssignmentOperator:=
- Reference:E
+ Variable:E
  NumericConstant:0
  AssignmentOperator:=
 521 GOSUB 800
  LineNumber:800
 522 IF INT(C/2)<>C/2 THEN 530
- Value:C
+ Variable:C
  NumericConstant:2
  BinaryOperator:/
  FunctionInt
- Value:C
+ Variable:C
  NumericConstant:2
  BinaryOperator:/
  BinaryOperator:<>
 523 REM *** THE RATS ARE RUNNING WILD!!
  Remark:*** THE RATS ARE RUNNING WILD!!
 525 LET E=INT(S/C)
- Reference:E
- Value:S
- Value:C
+ Variable:E
+ Variable:S
+ Variable:C
  BinaryOperator:/
  FunctionInt
  AssignmentOperator:=
 530 LET S=S-E+H
- Reference:S
- Value:S
- Value:E
+ Variable:S
+ Variable:S
+ Variable:E
  BinaryOperator:-
- Value:H
+ Variable:H
  BinaryOperator:+
  AssignmentOperator:=
 531 GOSUB 800
@@ -392,15 +392,15 @@
 532 REM *** LET'S HAVE SOME BABIES
  Remark:*** LET'S HAVE SOME BABIES
 533 LET I=INT(C*(20*A+S)/P/100+1)
- Reference:I
- Value:C
+ Variable:I
+ Variable:C
  NumericConstant:20
- Value:A
+ Variable:A
  BinaryOperator:*
- Value:S
+ Variable:S
  BinaryOperator:+
  BinaryOperator:*
- Value:P
+ Variable:P
  BinaryOperator:/
  NumericConstant:100
  BinaryOperator:/
@@ -411,8 +411,8 @@
 539 REM *** HOW MANY PEOPLE HAD FULL TUMMIES?
  Remark:*** HOW MANY PEOPLE HAD FULL TUMMIES?
 540 LET C=INT(Q/20)
- Reference:C
- Value:Q
+ Variable:C
+ Variable:Q
  NumericConstant:20
  BinaryOperator:/
  FunctionInt
@@ -420,7 +420,7 @@
 541 REM *** HORRORS, A 15% CHANCE OF PLAGUE
  Remark:*** HORRORS, A 15% CHANCE OF PLAGUE
 542 LET O=INT(10*(2*RND(0)-.3))
- Reference:O
+ Variable:O
  NumericConstant:10
  NumericConstant:2
  NumericConstant:0
@@ -432,45 +432,45 @@
  FunctionInt
  AssignmentOperator:=
 550 IF P<C THEN 210
- Value:P
- Value:C
+ Variable:P
+ Variable:C
  BinaryOperator:<
 551 REM *** STARVE ENOUGH FOR IMPEACHMENT?
  Remark:*** STARVE ENOUGH FOR IMPEACHMENT?
 552 LET D=P-C:IF D>.45*P THEN 560
- Reference:D
- Value:P
- Value:C
+ Variable:D
+ Variable:P
+ Variable:C
  BinaryOperator:-
  AssignmentOperator:=
- Value:D
+ Variable:D
  NumericConstant:.45
- Value:P
+ Variable:P
  BinaryOperator:*
  BinaryOperator:>
 553 LET P1=((Z-1)*P1+D*100/P)/Z
- Reference:P1
- Value:Z
+ Variable:P1
+ Variable:Z
  NumericConstant:1
  BinaryOperator:-
- Value:P1
+ Variable:P1
  BinaryOperator:*
- Value:D
+ Variable:D
  NumericConstant:100
  BinaryOperator:*
- Value:P
+ Variable:P
  BinaryOperator:/
  BinaryOperator:+
- Value:Z
+ Variable:Z
  BinaryOperator:/
  AssignmentOperator:=
 555 LET P=C:LET D1=D1+D:GOTO 215
- Reference:P
- Value:C
+ Variable:P
+ Variable:C
  AssignmentOperator:=
- Reference:D1
- Value:D1
- Value:D
+ Variable:D1
+ Variable:D1
+ Variable:D
  BinaryOperator:+
  AssignmentOperator:=
  LineNumber:215
@@ -480,7 +480,7 @@
  ITEMS
  TextConstant:"YOU STARVED "
  CarriageControl:
- Value:D
+ Variable:D
  CarriageControl:
  TextConstant:"PEOPLE IN ONE YEAR!!!"
  CarriageControl:NL
@@ -503,7 +503,7 @@
  CarriageControl:NL
 711 PRINT S"BUSHELS OF GRAIN NOW THEN,"
  ITEMS
- Value:S
+ Variable:S
  CarriageControl:
  TextConstant:"BUSHELS OF GRAIN NOW THEN,"
  CarriageControl:NL
@@ -513,14 +513,14 @@
  ITEMS
  TextConstant:"HAMURABI: THINK AGAIN, YOU OWN ONLY"
  CarriageControl:
- Value:A
+ Variable:A
  CarriageControl:
  TextConstant:" ACRES. NOW THEN,"
  CarriageControl:NL
 730 RETURN
  
 800 LET C=INT(RND(0)*5)+1
- Reference:C
+ Variable:C
  NumericConstant:0
  FunctionRnd
  NumericConstant:5
@@ -547,7 +547,7 @@
  ITEMS
  TextConstant:"IN YOUR 10-YEAR TERM OF OFFICE, "
  CarriageControl:
- Value:P1
+ Variable:P1
  CarriageControl:
  TextConstant:"PERCENT OF THE"
  CarriageControl:NL
@@ -557,13 +557,13 @@
  CarriageControl:NL
 865 PRINT D1"PEOPLE DIED!!":LET L=A/P
  ITEMS
- Value:D1
+ Variable:D1
  CarriageControl:
  TextConstant:"PEOPLE DIED!!"
  CarriageControl:NL
- Reference:L
- Value:A
- Value:P
+ Variable:L
+ Variable:A
+ Variable:P
  BinaryOperator:/
  AssignmentOperator:=
 870 PRINT "YOU STARTED WITH 10 ACRES PER PERSON AND ENDED WITH"
@@ -572,34 +572,34 @@
  CarriageControl:NL
 875 PRINT L"ACRES PER PERSON.":PRINT
  ITEMS
- Value:L
+ Variable:L
  CarriageControl:
  TextConstant:"ACRES PER PERSON."
  CarriageControl:NL
  ITEMS
  CarriageControl:NL
 880 IF P1>33 THEN 565
- Value:P1
+ Variable:P1
  NumericConstant:33
  BinaryOperator:>
 885 IF L<7 THEN 565
- Value:L
+ Variable:L
  NumericConstant:7
  BinaryOperator:<
 890 IF P1>10 THEN 940
- Value:P1
+ Variable:P1
  NumericConstant:10
  BinaryOperator:>
 892 IF L<9 THEN 940
- Value:L
+ Variable:L
  NumericConstant:9
  BinaryOperator:<
 895 IF P1>3 THEN 960
- Value:P1
+ Variable:P1
  NumericConstant:3
  BinaryOperator:>
 896 IF L<10 THEN 960
- Value:L
+ Variable:L
  NumericConstant:10
  BinaryOperator:<
 900 PRINT "A FANTASTIC PERFORMANCE!!! CHARLEMAGNE, DISRAELI, AND"
@@ -632,7 +632,7 @@
  ITEMS
  TextConstant:"REALLY WASN'T TOO BAD AT ALL."
  CarriageControl:
- Value:P
+ Variable:P
  NumericConstant:.8
  BinaryOperator:*
  FunctionRnd

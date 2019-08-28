@@ -12,19 +12,19 @@
  ITEMS
  TextConstant:"DO YOU WANT INSTRUCTIONS"
  CarriageControl:;
- Reference:Q$
+ Variable:Q$
 125 IF Q$="YES" THEN 135\IF Q$="NO" THEN 190
- Value:Q$
+ Variable:Q$
  TextConstant:"YES"
  BinaryOperator:=
- Value:Q$
+ Variable:Q$
  TextConstant:"NO"
  BinaryOperator:=
 130 PRINT "TYPE YES OR NO."\INPUT Q$\GOTO 125
  ITEMS
  TextConstant:"TYPE YES OR NO."
  CarriageControl:NL
- Reference:Q$
+ Variable:Q$
  LineNumber:125
 135 PRINT
  ITEMS
@@ -97,16 +97,16 @@
  ITEMS
  TextConstant:"HOW MANY PILES"
  CarriageControl:;
- Reference:P
- Value:P
+ Variable:P
+ Variable:P
  NumericConstant:20
  BinaryOperator:>
 210 IF P>INT(P) THEN 215\IF P<=0 THEN 215\GO TO 220
- Value:P
- Value:P
+ Variable:P
+ Variable:P
  FunctionInt
  BinaryOperator:>
- Value:P
+ Variable:P
  NumericConstant:0
  BinaryOperator:<=
  LineNumber:220
@@ -122,28 +122,28 @@
  CarriageControl:NL
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["Value:P"]
+ end:     ["Variable:P"]
 225 PRINT "HOW MANY STICKS IN PILE"I;\INPUT L(I)\IF L(I)>20 THEN 235
  ITEMS
  TextConstant:"HOW MANY STICKS IN PILE"
  CarriageControl:
- Value:I
+ Variable:I
  CarriageControl:;
- Value:I
- Reference:L
- Value:I
- Value:L
+ Variable:I
+ Variable:L
+ Variable:I
+ Variable:L
  NumericConstant:20
  BinaryOperator:>
 230 IF L(I)>INT(L(I)) THEN 235\IF L(I)<=0 THEN 235\GO TO 240
- Value:I
- Value:L
- Value:I
- Value:L
+ Variable:I
+ Variable:L
+ Variable:I
+ Variable:L
  FunctionInt
  BinaryOperator:>
- Value:I
- Value:L
+ Variable:I
+ Variable:L
  NumericConstant:0
  BinaryOperator:<=
  LineNumber:240
@@ -159,16 +159,16 @@
 245 FOR I=1 TO P\S(I)=L(I)\G=G+L(I)\NEXT I
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["Value:P"]
- Value:I
- Reference:S
- Value:I
- Value:L
+ end:     ["Variable:P"]
+ Variable:I
+ Variable:S
+ Variable:I
+ Variable:L
  AssignmentOperator:=
- Reference:G
- Value:G
- Value:I
- Value:L
+ Variable:G
+ Variable:G
+ Variable:I
+ Variable:L
  BinaryOperator:+
  AssignmentOperator:=
  Variable:I
@@ -179,11 +179,11 @@
  TextConstant:"DO YOU WANT TO GO FIRST"
  CarriageControl:;
 255 INPUT Q$\IF Q$="YES" THEN 340\IF Q$="NO" THEN 390
- Reference:Q$
- Value:Q$
+ Variable:Q$
+ Variable:Q$
  TextConstant:"YES"
  BinaryOperator:=
- Value:Q$
+ Variable:Q$
  TextConstant:"NO"
  BinaryOperator:=
 260 PRINT "TYPE YES OR NO."\GO TO 255
@@ -194,15 +194,15 @@
 265 REM  CONTROL OF GAME REPEATS AND TESTS FOR END OF GAME- 
  Remark: CONTROL OF GAME REPEATS AND TESTS FOR END OF GAME- 
 270 IF G=0 THEN 275\IF F=1 THEN 390\GO TO 320
- Value:G
+ Variable:G
  NumericConstant:0
  BinaryOperator:=
- Value:F
+ Variable:F
  NumericConstant:1
  BinaryOperator:=
  LineNumber:320
 275 IF F=1 THEN 315
- Value:F
+ Variable:F
  NumericConstant:1
  BinaryOperator:=
 280 PRINT\PRINT "I WON. DO YOU WANT TO PLAY AGAIN";
@@ -212,11 +212,11 @@
  TextConstant:"I WON. DO YOU WANT TO PLAY AGAIN"
  CarriageControl:;
 285 INPUT Q$\IF Q$="NO" THEN 290\IF Q$="YES" THEN 300\GO TO 295
- Reference:Q$
- Value:Q$
+ Variable:Q$
+ Variable:Q$
  TextConstant:"NO"
  BinaryOperator:=
- Value:Q$
+ Variable:Q$
  TextConstant:"YES"
  BinaryOperator:=
  LineNumber:295
@@ -234,11 +234,11 @@
  TextConstant:"SAME ARRANGEMENT"
  CarriageControl:;
 305 INPUT Q$\IF Q$="NO" THEN 205\IF Q$="YES" THEN 345
- Reference:Q$
- Value:Q$
+ Variable:Q$
+ Variable:Q$
  TextConstant:"NO"
  BinaryOperator:=
- Value:Q$
+ Variable:Q$
  TextConstant:"YES"
  BinaryOperator:=
 310 PRINT "TYPE YES OR NO."\GO TO 305
@@ -264,16 +264,16 @@
 325 FOR I=1 TO P\IF S(I)=0 THEN 330\PRINT I,S(I)
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["Value:P"]
- Value:I
- Value:S
+ end:     ["Variable:P"]
+ Variable:I
+ Variable:S
  NumericConstant:0
  BinaryOperator:=
  ITEMS
- Value:I
+ Variable:I
  CarriageControl:,
- Value:I
- Value:S
+ Variable:I
+ Variable:S
  CarriageControl:NL
 330 NEXT I
  Variable:I
@@ -285,21 +285,21 @@
  ITEMS
  TextConstant:"WHICH PILE DO YOU WANT STICKS FROM"
  CarriageControl:;
- Reference:N
+ Variable:N
 345 IF N>P THEN 355\IF N>INT(N) THEN 355\IF N<=0 THEN 355
- Value:N
- Value:P
+ Variable:N
+ Variable:P
  BinaryOperator:>
- Value:N
- Value:N
+ Variable:N
+ Variable:N
  FunctionInt
  BinaryOperator:>
- Value:N
+ Variable:N
  NumericConstant:0
  BinaryOperator:<=
 350 IF S(N)=0 THEN 355\GO TO 360
- Value:N
- Value:S
+ Variable:N
+ Variable:S
  NumericConstant:0
  BinaryOperator:=
  LineNumber:360
@@ -316,17 +316,17 @@
  ITEMS
  TextConstant:"HOW MANY STICKS"
  CarriageControl:;
- Reference:T
+ Variable:T
 365 IF T>S(N) THEN 370\IF T>INT(T) THEN 370\IF T<=0 THEN 370\GO TO 375
- Value:T
- Value:N
- Value:S
+ Variable:T
+ Variable:N
+ Variable:S
  BinaryOperator:>
- Value:T
- Value:T
+ Variable:T
+ Variable:T
  FunctionInt
  BinaryOperator:>
- Value:T
+ Variable:T
  NumericConstant:0
  BinaryOperator:<=
  LineNumber:375
@@ -338,20 +338,20 @@
  CarriageControl:NL
  LineNumber:360
 375 S(N)=S(N)-T\G=G-T
- Value:N
- Reference:S
- Value:N
- Value:S
- Value:T
+ Variable:N
+ Variable:S
+ Variable:N
+ Variable:S
+ Variable:T
  BinaryOperator:-
  AssignmentOperator:=
- Reference:G
- Value:G
- Value:T
+ Variable:G
+ Variable:G
+ Variable:T
  BinaryOperator:-
  AssignmentOperator:=
 380 F=1\GO TO 270
- Reference:F
+ Variable:F
  NumericConstant:1
  AssignmentOperator:=
  LineNumber:270
@@ -361,20 +361,20 @@
  control: Variable:I
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:4"]
- Value:I
- Reference:V
+ Variable:I
+ Variable:V
  NumericConstant:0
  AssignmentOperator:=
  Variable:I
 395 FOR I=1 TO P
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["Value:P"]
+ end:     ["Variable:P"]
 400    C(I)=S(I)
- Value:I
- Reference:C
- Value:I
- Value:S
+ Variable:I
+ Variable:C
+ Variable:I
+ Variable:S
  AssignmentOperator:=
 405    FOR E=4 TO 0 STEP -1
  control: Variable:E
@@ -382,27 +382,27 @@
  end:     ["NumericConstant:0"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
 410       IF S(I)<2^E THEN 415\S2(I)=S2(I)+10^E\S(I)=S(I)-2^E
- Value:I
- Value:S
+ Variable:I
+ Variable:S
  NumericConstant:2
- Value:E
+ Variable:E
  BinaryOperator:^
  BinaryOperator:<
- Value:I
- Reference:S2
- Value:I
- Value:S2
+ Variable:I
+ Variable:S2
+ Variable:I
+ Variable:S2
  NumericConstant:10
- Value:E
+ Variable:E
  BinaryOperator:^
  BinaryOperator:+
  AssignmentOperator:=
- Value:I
- Reference:S
- Value:I
- Value:S
+ Variable:I
+ Variable:S
+ Variable:I
+ Variable:S
  NumericConstant:2
- Value:E
+ Variable:E
  BinaryOperator:^
  BinaryOperator:-
  AssignmentOperator:=
@@ -414,38 +414,38 @@
  end:     ["NumericConstant:0"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
 425       X(I,Y)=INT(S2(I)/10^Y)\S2(I)=S2(I)-X(I,Y)*10^Y
- Value:I
- Value:Y
- Reference:X
- Value:I
- Value:S2
+ Variable:I
+ Variable:Y
+ Variable:X
+ Variable:I
+ Variable:S2
  NumericConstant:10
- Value:Y
+ Variable:Y
  BinaryOperator:^
  BinaryOperator:/
  FunctionInt
  AssignmentOperator:=
- Value:I
- Reference:S2
- Value:I
- Value:S2
- Value:I
- Value:Y
- Value:X
+ Variable:I
+ Variable:S2
+ Variable:I
+ Variable:S2
+ Variable:I
+ Variable:Y
+ Variable:X
  NumericConstant:10
- Value:Y
+ Variable:Y
  BinaryOperator:^
  BinaryOperator:*
  BinaryOperator:-
  AssignmentOperator:=
 430       V(Y)=V(Y)+X(I,Y)
- Value:Y
- Reference:V
- Value:Y
- Value:V
- Value:I
- Value:Y
- Value:X
+ Variable:Y
+ Variable:V
+ Variable:Y
+ Variable:V
+ Variable:I
+ Variable:Y
+ Variable:X
  BinaryOperator:+
  AssignmentOperator:=
 435    NEXT Y
@@ -453,7 +453,7 @@
 440 NEXT I
  Variable:I
 445 R=0
- Reference:R
+ Variable:R
  NumericConstant:0
  AssignmentOperator:=
 450 FOR Y=4 TO 0 STEP -1
@@ -462,12 +462,12 @@
  end:     ["NumericConstant:0"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
 455    IF V(Y)/2-INT(V(Y)/2)=0 THEN 480
- Value:Y
- Value:V
+ Variable:Y
+ Variable:V
  NumericConstant:2
  BinaryOperator:/
- Value:Y
- Value:V
+ Variable:Y
+ Variable:V
  NumericConstant:2
  BinaryOperator:/
  FunctionInt
@@ -475,12 +475,12 @@
  NumericConstant:0
  BinaryOperator:=
 460    IF R=1 THEN 470\Q=INT(P*RND(X))+1
- Value:R
+ Variable:R
  NumericConstant:1
  BinaryOperator:=
- Reference:Q
- Value:P
- Value:X
+ Variable:Q
+ Variable:P
+ Variable:X
  FunctionRnd
  BinaryOperator:*
  FunctionInt
@@ -488,36 +488,36 @@
  BinaryOperator:+
  AssignmentOperator:=
 465    IF X(Q,Y)<>1 THEN 460\X(Q,Y)=0\R=1\GO TO 480
- Value:Q
- Value:Y
- Value:X
+ Variable:Q
+ Variable:Y
+ Variable:X
  NumericConstant:1
  BinaryOperator:<>
- Value:Q
- Value:Y
- Reference:X
+ Variable:Q
+ Variable:Y
+ Variable:X
  NumericConstant:0
  AssignmentOperator:=
- Reference:R
+ Variable:R
  NumericConstant:1
  AssignmentOperator:=
  LineNumber:480
 470    IF X(Q,Y)=1 THEN 475\X(Q,Y)=1\GO TO 480
- Value:Q
- Value:Y
- Value:X
+ Variable:Q
+ Variable:Y
+ Variable:X
  NumericConstant:1
  BinaryOperator:=
- Value:Q
- Value:Y
- Reference:X
+ Variable:Q
+ Variable:Y
+ Variable:X
  NumericConstant:1
  AssignmentOperator:=
  LineNumber:480
 475    X(Q,Y)=0
- Value:Q
- Value:Y
- Reference:X
+ Variable:Q
+ Variable:Y
+ Variable:X
  NumericConstant:0
  AssignmentOperator:=
 480 NEXT Y
@@ -525,10 +525,10 @@
 485 FOR I=1 TO P
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["Value:P"]
+ end:     ["Variable:P"]
 490    S2(I)=0
- Value:I
- Reference:S2
+ Variable:I
+ Variable:S2
  NumericConstant:0
  AssignmentOperator:=
 495    FOR Y=4 TO 0 STEP -1
@@ -537,22 +537,22 @@
  end:     ["NumericConstant:0"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
 500       S3(I)=X(I,Y)*10^Y\S2(I)=S2(I)+S3(I)
- Value:I
- Reference:S3
- Value:I
- Value:Y
- Value:X
+ Variable:I
+ Variable:S3
+ Variable:I
+ Variable:Y
+ Variable:X
  NumericConstant:10
- Value:Y
+ Variable:Y
  BinaryOperator:^
  BinaryOperator:*
  AssignmentOperator:=
- Value:I
- Reference:S2
- Value:I
- Value:S2
- Value:I
- Value:S3
+ Variable:I
+ Variable:S2
+ Variable:I
+ Variable:S2
+ Variable:I
+ Variable:S3
  BinaryOperator:+
  AssignmentOperator:=
 505    NEXT Y
@@ -563,27 +563,27 @@
  end:     ["NumericConstant:0"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
 515       IF S2(I)<10^E THEN 520\S(I)=S(I)+2^E\S2(I)=S2(I)-10^E
- Value:I
- Value:S2
+ Variable:I
+ Variable:S2
  NumericConstant:10
- Value:E
+ Variable:E
  BinaryOperator:^
  BinaryOperator:<
- Value:I
- Reference:S
- Value:I
- Value:S
+ Variable:I
+ Variable:S
+ Variable:I
+ Variable:S
  NumericConstant:2
- Value:E
+ Variable:E
  BinaryOperator:^
  BinaryOperator:+
  AssignmentOperator:=
- Value:I
- Reference:S2
- Value:I
- Value:S2
+ Variable:I
+ Variable:S2
+ Variable:I
+ Variable:S2
  NumericConstant:10
- Value:E
+ Variable:E
  BinaryOperator:^
  BinaryOperator:-
  AssignmentOperator:=
@@ -592,44 +592,44 @@
 525 NEXT I 
  Variable:I
 530 IF R=1 THEN 535\Q=INT(P*RND(X))+1\IF S(Q)=0 THEN 530\S(Q)=S(Q)-1
- Value:R
+ Variable:R
  NumericConstant:1
  BinaryOperator:=
- Reference:Q
- Value:P
- Value:X
+ Variable:Q
+ Variable:P
+ Variable:X
  FunctionRnd
  BinaryOperator:*
  FunctionInt
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
- Value:Q
- Value:S
+ Variable:Q
+ Variable:S
  NumericConstant:0
  BinaryOperator:=
- Value:Q
- Reference:S
- Value:Q
- Value:S
+ Variable:Q
+ Variable:S
+ Variable:Q
+ Variable:S
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 535 D=C(Q)-S(Q)\G=G-D
- Reference:D
- Value:Q
- Value:C
- Value:Q
- Value:S
+ Variable:D
+ Variable:Q
+ Variable:C
+ Variable:Q
+ Variable:S
  BinaryOperator:-
  AssignmentOperator:=
- Reference:G
- Value:G
- Value:D
+ Variable:G
+ Variable:G
+ Variable:D
  BinaryOperator:-
  AssignmentOperator:=
 540 IF D=1 THEN 550
- Value:D
+ Variable:D
  NumericConstant:1
  BinaryOperator:=
 545 PRINT\PRINT "I'LL TAKE";D;"STICKS FROM PILE";Q;"."\GO TO 555
@@ -638,11 +638,11 @@
  ITEMS
  TextConstant:"I'LL TAKE"
  CarriageControl:;
- Value:D
+ Variable:D
  CarriageControl:;
  TextConstant:"STICKS FROM PILE"
  CarriageControl:;
- Value:Q
+ Variable:Q
  CarriageControl:;
  TextConstant:"."
  CarriageControl:NL
@@ -653,12 +653,12 @@
  ITEMS
  TextConstant:"I'LL TAKE 1 STICK FROM PILE"
  CarriageControl:;
- Value:Q
+ Variable:Q
  CarriageControl:;
  TextConstant:"."
  CarriageControl:NL
 555 F=0\GO TO 270
- Reference:F
+ Variable:F
  NumericConstant:0
  AssignmentOperator:=
  LineNumber:270

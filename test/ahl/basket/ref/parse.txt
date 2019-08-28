@@ -33,9 +33,9 @@
  TextConstant:"YOUR STARTING DEFENSE WILL BE"
  CarriageControl:;
 76 INPUT D
- Reference:D
+ Variable:D
 77 IF D<6 THEN 2010
- Value:D
+ Variable:D
  NumericConstant:6
  BinaryOperator:<
 79 PRINT
@@ -46,7 +46,7 @@
  TextConstant:"CHOOSE YOUR OPPONENT "
  CarriageControl:;
 82 INPUT O$
- Reference:O$
+ Variable:O$
 370 PRINT "CENTER JUMP"
  ITEMS
  TextConstant:"CENTER JUMP"
@@ -59,7 +59,7 @@
  BinaryOperator:>
 400 PRINT O$;" CONTROLS THE TAP."
  ITEMS
- Value:O$
+ Variable:O$
  CarriageControl:;
  TextConstant:" CONTROLS THE TAP."
  CarriageControl:NL
@@ -77,18 +77,18 @@
  TextConstant:"YOUR SHOT"
  CarriageControl:;
 435 LET P=0
- Reference:P
+ Variable:P
  NumericConstant:0
  AssignmentOperator:=
 440 INPUT Z
- Reference:Z
+ Variable:Z
 445 IF Z<>INT(Z) THEN 455
- Value:Z
- Value:Z
+ Variable:Z
+ Variable:Z
  FunctionInt
  BinaryOperator:<>
 446 IF ABS(Z-2)>2 THEN 455
- Value:Z
+ Variable:Z
  NumericConstant:2
  BinaryOperator:-
  FunctionAbs
@@ -109,7 +109,7 @@
  NumericConstant:.5
  BinaryOperator:<
 480 IF T<100 THEN 1000
- Value:T
+ Variable:T
  NumericConstant:100
  BinaryOperator:<
 490 PRINT
@@ -117,9 +117,9 @@
  CarriageControl:NL
 491 IF S(1)<>S(0) THEN 510
  NumericConstant:1
- Value:S
+ Variable:S
  NumericConstant:0
- Value:S
+ Variable:S
  BinaryOperator:<>
 493 PRINT " ***** END OF SECOND HALF *****"
  ITEMS
@@ -134,14 +134,14 @@
  TextConstant:" DARTMOUTH"
  CarriageControl:
  NumericConstant:1
- Value:S
+ Variable:S
  CarriageControl:;
- Value:O$
+ Variable:O$
  CarriageControl:
  TextConstant:" "
  CarriageControl:
  NumericConstant:0
- Value:S
+ Variable:S
  CarriageControl:NL
 497 PRINT 
  ITEMS
@@ -151,7 +151,7 @@
  TextConstant:"BEGIN TWO MINUTE OVERTIME PERIOD"
  CarriageControl:NL
 499 LET T=93
- Reference:T
+ Variable:T
  NumericConstant:93
  AssignmentOperator:=
 500 GO TO 370
@@ -165,14 +165,14 @@
  TextConstant:"FINAL SCORE: DARTMOUTH"
  CarriageControl:
  NumericConstant:1
- Value:S
+ Variable:S
  CarriageControl:;
- Value:O$
+ Variable:O$
  CarriageControl:
  TextConstant:" "
  CarriageControl:
  NumericConstant:0
- Value:S
+ Variable:S
  CarriageControl:NL
 520 STOP
  
@@ -189,27 +189,27 @@
 630 RETURN
  
 1000 IF Z=1 THEN 1040
- Value:Z
+ Variable:Z
  NumericConstant:1
  BinaryOperator:=
 1020 IF Z=2 THEN 1040
- Value:Z
+ Variable:Z
  NumericConstant:2
  BinaryOperator:=
 1036 GO TO 1300
  LineNumber:1300
 1040 LET T=T+1
- Reference:T
- Value:T
+ Variable:T
+ Variable:T
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 1041 IF T=50 THEN 8000
- Value:T
+ Variable:T
  NumericConstant:50
  BinaryOperator:=
 1042 IF T=92 THEN 1046
- Value:T
+ Variable:T
  NumericConstant:92
  BinaryOperator:=
 1043 GO TO 1050
@@ -223,7 +223,7 @@
 1060 IF RND >.341*D/8 THEN 1090
  FunctionRnd
  NumericConstant:.341
- Value:D
+ Variable:D
  BinaryOperator:*
  NumericConstant:8
  BinaryOperator:/
@@ -239,7 +239,7 @@
 1090 IF RND >.682*D/8 THEN 1200
  FunctionRnd
  NumericConstant:.682
- Value:D
+ Variable:D
  BinaryOperator:*
  NumericConstant:8
  BinaryOperator:/
@@ -249,7 +249,7 @@
  TextConstant:"SHOT IS OFF TARGET."
  CarriageControl:NL
 1105 IF D/6*RND>.45 THEN 1130
- Value:D
+ Variable:D
  NumericConstant:6
  BinaryOperator:/
  FunctionRnd
@@ -266,7 +266,7 @@
  ITEMS
  TextConstant:"REBOUND TO "
  CarriageControl:;
- Value:O$
+ Variable:O$
  CarriageControl:;
  TextConstant:","
  CarriageControl:NL
@@ -279,7 +279,7 @@
 1150 GO TO 1300
  LineNumber:1300
 1158 IF D=6 THEN 5100
- Value:D
+ Variable:D
  NumericConstant:6
  BinaryOperator:=
 1160 PRINT "BALL PASSED BACK TO YOU, ";
@@ -304,7 +304,7 @@
  ITEMS
  TextConstant:"BALL STOLEN, "
  CarriageControl:;
- Value:O$
+ Variable:O$
  CarriageControl:;
  TextConstant:"'S BALL."
  CarriageControl:NL
@@ -313,7 +313,7 @@
 1200 IF RND>.782*D/8 THEN 1250
  FunctionRnd
  NumericConstant:.782
- Value:D
+ Variable:D
  BinaryOperator:*
  NumericConstant:8
  BinaryOperator:/
@@ -336,7 +336,7 @@
  ITEMS
  TextConstant:" "
  CarriageControl:;
- Value:O$
+ Variable:O$
  CarriageControl:;
  TextConstant:","
  CarriageControl:NL
@@ -345,7 +345,7 @@
 1250 IF RND>.843*D/8 THEN 1270
  FunctionRnd
  NumericConstant:.843
- Value:D
+ Variable:D
  BinaryOperator:*
  NumericConstant:8
  BinaryOperator:/
@@ -365,17 +365,17 @@
 1280 GO TO 3000
  LineNumber:3000
 1300 LET T=T+1
- Reference:T
- Value:T
+ Variable:T
+ Variable:T
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 1301 IF T=50 THEN 8000
- Value:T
+ Variable:T
  NumericConstant:50
  BinaryOperator:=
 1302 IF T=92 THEN 1304
- Value:T
+ Variable:T
  NumericConstant:92
  BinaryOperator:=
 1303 GO TO 1305
@@ -383,11 +383,11 @@
 1304 GOSUB 600
  LineNumber:600
 1305 IF Z=0 THEN 2010
- Value:Z
+ Variable:Z
  NumericConstant:0
  BinaryOperator:=
 1310 IF Z>3 THEN 1700
- Value:Z
+ Variable:Z
  NumericConstant:3
  BinaryOperator:>
 1320 PRINT "LAY UP."
@@ -396,7 +396,7 @@
  CarriageControl:NL
 1330 IF 7/D*RND>.4 THEN 1360
  NumericConstant:7
- Value:D
+ Variable:D
  BinaryOperator:/
  FunctionRnd
  BinaryOperator:*
@@ -412,7 +412,7 @@
  LineNumber:3000
 1360 IF 7/D*RND>.7 THEN 1500
  NumericConstant:7
- Value:D
+ Variable:D
  BinaryOperator:/
  FunctionRnd
  BinaryOperator:*
@@ -430,7 +430,7 @@
  BinaryOperator:>
 1390 PRINT O$;" CONTROLS THE REBOUND."
  ITEMS
- Value:O$
+ Variable:O$
  CarriageControl:;
  TextConstant:" CONTROLS THE REBOUND."
  CarriageControl:NL
@@ -455,7 +455,7 @@
  LineNumber:430
 1500 IF 7/D*RND>.875 THEN 1600
  NumericConstant:7
- Value:D
+ Variable:D
  BinaryOperator:/
  FunctionRnd
  BinaryOperator:*
@@ -471,7 +471,7 @@
  LineNumber:3000
 1600 IF 7/D*RND>.925 THEN 1630
  NumericConstant:7
- Value:D
+ Variable:D
  BinaryOperator:/
  FunctionRnd
  BinaryOperator:*
@@ -481,7 +481,7 @@
  ITEMS
  TextConstant:"SHOT BLOCKED, "
  CarriageControl:
- Value:O$
+ Variable:O$
  CarriageControl:;
  TextConstant:"'S BALL."
  CarriageControl:NL
@@ -504,29 +504,29 @@
  TextConstant:"YOUR NEW DEFENSIVE ALLIGNMENT IS"
  CarriageControl:;
 2020 INPUT D
- Reference:D
+ Variable:D
 2030 IF D<6 THEN 2010
- Value:D
+ Variable:D
  NumericConstant:6
  BinaryOperator:<
 2040 GO TO 425
  LineNumber:425
 3000 LET P=1
- Reference:P
+ Variable:P
  NumericConstant:1
  AssignmentOperator:=
 3005 LET T=T+1
- Reference:T
- Value:T
+ Variable:T
+ Variable:T
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 3008 IF T=54 THEN 8000
- Value:T
+ Variable:T
  NumericConstant:54
  BinaryOperator:=
 3010 IF T=92 THEN 3015
- Value:T
+ Variable:T
  NumericConstant:92
  BinaryOperator:=
 3012 GO TO 3018
@@ -537,7 +537,7 @@
  ITEMS
  CarriageControl:NL
 3020 LET Z1=10/4*RND+1 
- Reference:Z1
+ Variable:Z1
  NumericConstant:10
  NumericConstant:4
  BinaryOperator:/
@@ -547,7 +547,7 @@
  BinaryOperator:+
  AssignmentOperator:=
 3030 IF Z>2 THEN 3500
- Value:Z
+ Variable:Z
  NumericConstant:2
  BinaryOperator:>
 3040PRINT "JUMP SHOT"
@@ -556,7 +556,7 @@
  CarriageControl:NL
 3050 IF 8/D*RND>.35 THEN 3100
  NumericConstant:8
- Value:D
+ Variable:D
  BinaryOperator:/
  FunctionRnd
  BinaryOperator:*
@@ -572,7 +572,7 @@
  LineNumber:425
 3100 IF 8/D*RND>.75 THEN 3200
  NumericConstant:8
- Value:D
+ Variable:D
  BinaryOperator:/
  FunctionRnd
  BinaryOperator:*
@@ -583,7 +583,7 @@
  TextConstant:"SHOT IS OFF THE RIM."
  CarriageControl:NL
 3110 IF D/6*RND>.5 THEN 3150
- Value:D
+ Variable:D
  NumericConstant:6
  BinaryOperator:/
  FunctionRnd
@@ -598,12 +598,12 @@
  LineNumber:425
 3150 PRINT O$;" CONTROLS THE REBOUND."
  ITEMS
- Value:O$
+ Variable:O$
  CarriageControl:;
  TextConstant:" CONTROLS THE REBOUND."
  CarriageControl:NL
 3160 IF D=6 THEN 5000
- Value:D
+ Variable:D
  NumericConstant:6
  BinaryOperator:=
 3165 IF RND>.5 THEN 3175
@@ -614,7 +614,7 @@
  ITEMS
  TextConstant:"PASS BACK TO "
  CarriageControl:
- Value:O$
+ Variable:O$
  CarriageControl:;
  TextConstant:" GUARD."
  CarriageControl:NL
@@ -624,7 +624,7 @@
  LineNumber:3500
 3200 IF 8/D*RND>.9 THEN 3310
  NumericConstant:8
- Value:D
+ Variable:D
  BinaryOperator:/
  FunctionRnd
  BinaryOperator:*
@@ -645,7 +645,7 @@
 3320 GO TO 425
  LineNumber:425
 3500 IF Z1>3 THEN 3800
- Value:Z1
+ Variable:Z1
  NumericConstant:3
  BinaryOperator:>
 3510 PRINT "LAY UP"
@@ -654,7 +654,7 @@
  CarriageControl:NL
 3520 IF 7/D*RND>.413 THEN 3600
  NumericConstant:7
- Value:D
+ Variable:D
  BinaryOperator:/
  FunctionRnd
  BinaryOperator:*
@@ -692,13 +692,13 @@
  CarriageControl:NL
 4030 LET S(1-P)=S(1-P)+2
  NumericConstant:1
- Value:P
+ Variable:P
  BinaryOperator:-
- Reference:S
+ Variable:S
  NumericConstant:1
- Value:P
+ Variable:P
  BinaryOperator:-
- Value:S
+ Variable:S
  NumericConstant:2
  BinaryOperator:+
  AssignmentOperator:=
@@ -716,13 +716,13 @@
  CarriageControl:NL
 4070 LET S(1-P)=S(1-P)+1
  NumericConstant:1
- Value:P
+ Variable:P
  BinaryOperator:-
- Reference:S
+ Variable:S
  NumericConstant:1
- Value:P
+ Variable:P
  BinaryOperator:-
- Value:S
+ Variable:S
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -758,7 +758,7 @@
  ITEMS
  TextConstant:"PASS STOLEN BY "
  CarriageControl:;
- Value:O$
+ Variable:O$
  CarriageControl:;
  TextConstant:" EASY LAY-UP."
  CarriageControl:NL
@@ -768,9 +768,9 @@
  LineNumber:425
 6000 LET S(0)=S(0)+2
  NumericConstant:0
- Reference:S
+ Variable:S
  NumericConstant:0
- Value:S
+ Variable:S
  NumericConstant:2
  BinaryOperator:+
  AssignmentOperator:=
@@ -779,20 +779,20 @@
  TextConstant:"SCORE: "
  CarriageControl:
  NumericConstant:1
- Value:S
+ Variable:S
  CarriageControl:;
  TextConstant:"TO "
  CarriageControl:
  NumericConstant:0
- Value:S
+ Variable:S
  CarriageControl:NL
 6020 RETURN
  
 7000 LET S(1)=S(1)+2
  NumericConstant:1
- Reference:S
+ Variable:S
  NumericConstant:1
- Value:S
+ Variable:S
  NumericConstant:2
  BinaryOperator:+
  AssignmentOperator:=
@@ -809,14 +809,14 @@
  TextConstant:"SCORE: DARTMOUTH"
  CarriageControl:
  NumericConstant:1
- Value:S
+ Variable:S
  CarriageControl:;
- Value:O$
+ Variable:O$
  CarriageControl:
  TextConstant:" "
  CarriageControl:
  NumericConstant:0
- Value:S
+ Variable:S
  CarriageControl:NL
 8015 PRINT
  ITEMS

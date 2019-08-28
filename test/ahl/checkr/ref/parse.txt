@@ -23,7 +23,7 @@
  TextConstant:"     WAIT FOR THE COMP. TO MOVE!!!!!"
  CarriageControl:NL
 700 LET G=-1
- Reference:G
+ Variable:G
  NumericConstant:1
  UnaryOperator:-
  AssignmentOperator:=
@@ -31,7 +31,7 @@
  NumericConstant:50
  Declaration:R
 900 LET L=-1
- Reference:L
+ Variable:L
  NumericConstant:1
  UnaryOperator:-
  AssignmentOperator:=
@@ -69,25 +69,25 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
 1400 READ J
- Reference:J
+ Variable:J
 1500 IF J=15 THEN 1800
- Value:J
+ Variable:J
  NumericConstant:15
  BinaryOperator:=
 1600 LET S(X,Y)=J
- Value:X
- Value:Y
- Reference:S
- Value:J
+ Variable:X
+ Variable:Y
+ Variable:S
+ Variable:J
  AssignmentOperator:=
 1700 GOTO 2000
  LineNumber:2000
 1800 RESTORE
  
 1900 READ S(X,Y)
- Value:X
- Value:Y
- Reference:S
+ Variable:X
+ Variable:Y
+ Variable:S
 2000 NEXT Y
  Variable:Y
 2100 NEXT X
@@ -95,10 +95,10 @@
 2200 REM
  Remark:
 2300LETL=-1*L
- Reference:L
+ Variable:L
  NumericConstant:1
  UnaryOperator:-
- Value:L
+ Variable:L
  BinaryOperator:*
  AssignmentOperator:=
 2400 FOR X=1TO8
@@ -110,53 +110,53 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
 2600 IF S(X,Y)=0 THEN 3500
- Value:X
- Value:Y
- Value:S
+ Variable:X
+ Variable:Y
+ Variable:S
  NumericConstant:0
  BinaryOperator:=
 2700 IF G>0 THEN 3000
- Value:G
+ Variable:G
  NumericConstant:0
  BinaryOperator:>
 2800 IF S(X,Y)>0 THEN 3500
- Value:X
- Value:Y
- Value:S
+ Variable:X
+ Variable:Y
+ Variable:S
  NumericConstant:0
  BinaryOperator:>
 2900 GOTO 3100
  LineNumber:3100
 3000 IF S(X,Y)<0 THEN 3500
- Value:X
- Value:Y
- Value:S
+ Variable:X
+ Variable:Y
+ Variable:S
  NumericConstant:0
  BinaryOperator:<
 3100 IF ABS(S(X,Y))<>1 THEN 3300
- Value:X
- Value:Y
- Value:S
+ Variable:X
+ Variable:Y
+ Variable:S
  FunctionAbs
  NumericConstant:1
  BinaryOperator:<>
 3200 GOSUB 4300
  LineNumber:4300
 3300 IF ABS(S(X,Y))<>2 THEN 3500
- Value:X
- Value:Y
- Value:S
+ Variable:X
+ Variable:Y
+ Variable:S
  FunctionAbs
  NumericConstant:2
  BinaryOperator:<>
 3400 GOSUB 6500
  LineNumber:6500
 3500IFX<>8 THEN 3800
- Value:X
+ Variable:X
  NumericConstant:8
  BinaryOperator:<>
 3600IFL=1 THEN 3800
- Value:L
+ Variable:L
  NumericConstant:1
  BinaryOperator:=
 3700RETURN
@@ -178,37 +178,37 @@
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:2"]
 4400 LET U=X+A
- Reference:U
- Value:X
- Value:A
+ Variable:U
+ Variable:X
+ Variable:A
  BinaryOperator:+
  AssignmentOperator:=
 4500 LET V=Y+G
- Reference:V
- Value:Y
- Value:G
+ Variable:V
+ Variable:Y
+ Variable:G
  BinaryOperator:+
  AssignmentOperator:=
 4600 IF U<1 THEN 6300
- Value:U
+ Variable:U
  NumericConstant:1
  BinaryOperator:<
 4700 IF U>8 THEN 6300
- Value:U
+ Variable:U
  NumericConstant:8
  BinaryOperator:>
 4800 IF V<1 THEN 6300
- Value:V
+ Variable:V
  NumericConstant:1
  BinaryOperator:<
 4900 IF V>8 THEN 6300
- Value:V
+ Variable:V
  NumericConstant:8
  BinaryOperator:>
 5000 IF S(U,V)<>0 THEN 5300
- Value:U
- Value:V
- Value:S
+ Variable:U
+ Variable:V
+ Variable:S
  NumericConstant:0
  BinaryOperator:<>
 5100 GOSUB 9100
@@ -216,51 +216,51 @@
 5200 GOTO 6300
  LineNumber:6300
 5300 IF S(U,V)=G THEN 6300
- Value:U
- Value:V
- Value:S
- Value:G
+ Variable:U
+ Variable:V
+ Variable:S
+ Variable:G
  BinaryOperator:=
 5400 IF S(U,V)=2*G THEN 6300
- Value:U
- Value:V
- Value:S
+ Variable:U
+ Variable:V
+ Variable:S
  NumericConstant:2
- Value:G
+ Variable:G
  BinaryOperator:*
  BinaryOperator:=
 5500 LET U=U+A
- Reference:U
- Value:U
- Value:A
+ Variable:U
+ Variable:U
+ Variable:A
  BinaryOperator:+
  AssignmentOperator:=
 5600 LET V=V+G
- Reference:V
- Value:V
- Value:G
+ Variable:V
+ Variable:V
+ Variable:G
  BinaryOperator:+
  AssignmentOperator:=
 5700 IF U<1 THEN 6300
- Value:U
+ Variable:U
  NumericConstant:1
  BinaryOperator:<
 5800 IF U>8 THEN 6300
- Value:U
+ Variable:U
  NumericConstant:8
  BinaryOperator:>
 5900 IF V<1 THEN 6300
- Value:V
+ Variable:V
  NumericConstant:1
  BinaryOperator:<
 6000 IF V>8 THEN 6300
- Value:V
+ Variable:V
  NumericConstant:8
  BinaryOperator:>
 6100 IF S(U,V)<>0 THEN 6300
- Value:U
- Value:V
- Value:S
+ Variable:U
+ Variable:V
+ Variable:S
  NumericConstant:0
  BinaryOperator:<>
 6200 GOSUB 9100
@@ -282,37 +282,37 @@
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:2"]
 6800 LET U=X+A
- Reference:U
- Value:X
- Value:A
+ Variable:U
+ Variable:X
+ Variable:A
  BinaryOperator:+
  AssignmentOperator:=
 6900 LET V=Y+B
- Reference:V
- Value:Y
- Value:B
+ Variable:V
+ Variable:Y
+ Variable:B
  BinaryOperator:+
  AssignmentOperator:=
 7000 IF U<1 THEN 8700
- Value:U
+ Variable:U
  NumericConstant:1
  BinaryOperator:<
 7100 IF U>8 THEN 8700
- Value:U
+ Variable:U
  NumericConstant:8
  BinaryOperator:>
 7200 IF V<1 THEN 8700
- Value:V
+ Variable:V
  NumericConstant:1
  BinaryOperator:<
 7300 IF V>8 THEN8700
- Value:V
+ Variable:V
  NumericConstant:8
  BinaryOperator:>
 7400 IF S(U,V)<>0 THEN 7700
- Value:U
- Value:V
- Value:S
+ Variable:U
+ Variable:V
+ Variable:S
  NumericConstant:0
  BinaryOperator:<>
 7500 GOSUB 9100
@@ -320,51 +320,51 @@
 7600 GOTO 8700
  LineNumber:8700
 7700 IF S(U,V)=G THEN 8700
- Value:U
- Value:V
- Value:S
- Value:G
+ Variable:U
+ Variable:V
+ Variable:S
+ Variable:G
  BinaryOperator:=
 7800 IF S(U,V)=2*G THEN 8700
- Value:U
- Value:V
- Value:S
+ Variable:U
+ Variable:V
+ Variable:S
  NumericConstant:2
- Value:G
+ Variable:G
  BinaryOperator:*
  BinaryOperator:=
 7900 LET U=U+A
- Reference:U
- Value:U
- Value:A
+ Variable:U
+ Variable:U
+ Variable:A
  BinaryOperator:+
  AssignmentOperator:=
 8000 LET V=V+B
- Reference:V
- Value:V
- Value:B
+ Variable:V
+ Variable:V
+ Variable:B
  BinaryOperator:+
  AssignmentOperator:=
 8100 IF U<1 THEN 8700
- Value:U
+ Variable:U
  NumericConstant:1
  BinaryOperator:<
 8200 IF U>8 THEN 8700
- Value:U
+ Variable:U
  NumericConstant:8
  BinaryOperator:>
 8300 IF V<1 THEN 8700
- Value:V
+ Variable:V
  NumericConstant:1
  BinaryOperator:<
 8400 IF V>8 THEN 8700
- Value:V
+ Variable:V
  NumericConstant:8
  BinaryOperator:>
 8500 IF S(U,V)<>0 THEN 8700
- Value:U
- Value:V
- Value:S
+ Variable:U
+ Variable:V
+ Variable:S
  NumericConstant:0
  BinaryOperator:<>
 8600 GOSUB 9100
@@ -380,62 +380,62 @@
 9100 REM
  Remark:
 9200 LET P=P+1
- Reference:P
- Value:P
+ Variable:P
+ Variable:P
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 9300 IF P=K THEN 12300
- Value:P
- Value:K
+ Variable:P
+ Variable:K
  BinaryOperator:=
 9400IF V<>(4.5+(3.5*G)) THEN 9600
- Value:V
+ Variable:V
  NumericConstant:4.5
  NumericConstant:3.5
- Value:G
+ Variable:G
  BinaryOperator:*
  BinaryOperator:+
  BinaryOperator:<>
 9500 LET Q=Q+2
- Reference:Q
- Value:Q
+ Variable:Q
+ Variable:Q
  NumericConstant:2
  BinaryOperator:+
  AssignmentOperator:=
 9600 IF X<>(4.5-(3.5*G)) THEN 9800
- Value:X
+ Variable:X
  NumericConstant:4.5
  NumericConstant:3.5
- Value:G
+ Variable:G
  BinaryOperator:*
  BinaryOperator:-
  BinaryOperator:<>
 9700LET Q=Q-2
- Reference:Q
- Value:Q
+ Variable:Q
+ Variable:Q
  NumericConstant:2
  BinaryOperator:-
  AssignmentOperator:=
 9800 REM
  Remark:
 9900 IF U<>1 THEN 10100
- Value:U
+ Variable:U
  NumericConstant:1
  BinaryOperator:<>
 10000 LET Q=Q+1
- Reference:Q
- Value:Q
+ Variable:Q
+ Variable:Q
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 10100 IF U<>8 THEN 10300
- Value:U
+ Variable:U
  NumericConstant:8
  BinaryOperator:<>
 10200 LET Q=Q+1
- Reference:Q
- Value:Q
+ Variable:Q
+ Variable:Q
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -445,34 +445,34 @@
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:2"]
 10400 IF S(U+C,V+G)<1 THEN10800
- Value:U
- Value:C
+ Variable:U
+ Variable:C
  BinaryOperator:+
- Value:V
- Value:G
+ Variable:V
+ Variable:G
  BinaryOperator:+
- Value:S
+ Variable:S
  NumericConstant:1
  BinaryOperator:<
 10500 LET Q=Q-1
- Reference:Q
- Value:Q
+ Variable:Q
+ Variable:Q
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 10600 IF S(U-C,V-G)<>0 THEN 10800
- Value:U
- Value:C
+ Variable:U
+ Variable:C
  BinaryOperator:-
- Value:V
- Value:G
+ Variable:V
+ Variable:G
  BinaryOperator:-
- Value:S
+ Variable:S
  NumericConstant:0
  BinaryOperator:<>
 10700 LET Q=Q-1
- Reference:Q
- Value:Q
+ Variable:Q
+ Variable:Q
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
@@ -483,18 +483,18 @@
 11000 NEXT C
  Variable:C
 11100 LET R(P)=Q
- Value:P
- Reference:R
- Value:Q
+ Variable:P
+ Variable:R
+ Variable:Q
  AssignmentOperator:=
 11200 LETQ=0
- Reference:Q
+ Variable:Q
  NumericConstant:0
  AssignmentOperator:=
 11300 RETURN
  
 11400 IF P=0 THEN 18800
- Value:P
+ Variable:P
  NumericConstant:0
  BinaryOperator:=
 11500 FOR J=10TO-10 STEP -1
@@ -505,20 +505,20 @@
 11600 FOR F=1TOP
  control: Variable:F
  start:   ["NumericConstant:1"]
- end:     ["Value:P"]
+ end:     ["Variable:P"]
 11700 IF R(F)=J THEN 12000
- Value:F
- Value:R
- Value:J
+ Variable:F
+ Variable:R
+ Variable:J
  BinaryOperator:=
 11800 NEXT F
  Variable:F
 11900 NEXT J
  Variable:J
 12000 LET K=F+P
- Reference:K
- Value:F
- Value:P
+ Variable:K
+ Variable:F
+ Variable:P
  BinaryOperator:+
  AssignmentOperator:=
 12100 GOSUB 2300
@@ -529,81 +529,81 @@
  ITEMS
  TextConstant:" I MOVE FROM ("
  CarriageControl:
- Value:X
+ Variable:X
  CarriageControl:;
- Value:Y
+ Variable:Y
  CarriageControl:
  TextConstant:") TO ("
  CarriageControl:
- Value:U
+ Variable:U
  CarriageControl:;
- Value:V
+ Variable:V
  CarriageControl:
  TextConstant:")"
  CarriageControl:NL
 12400 LET F=0
- Reference:F
+ Variable:F
  NumericConstant:0
  AssignmentOperator:=
 12500 LET P=0
- Reference:P
+ Variable:P
  NumericConstant:0
  AssignmentOperator:=
 12600 LET K=0
- Reference:K
+ Variable:K
  NumericConstant:0
  AssignmentOperator:=
 12700 IF V<>(4.5+(3.5*G)) THEN 13000
- Value:V
+ Variable:V
  NumericConstant:4.5
  NumericConstant:3.5
- Value:G
+ Variable:G
  BinaryOperator:*
  BinaryOperator:+
  BinaryOperator:<>
 12800 LET S(U,V)=2*G
- Value:U
- Value:V
- Reference:S
+ Variable:U
+ Variable:V
+ Variable:S
  NumericConstant:2
- Value:G
+ Variable:G
  BinaryOperator:*
  AssignmentOperator:=
 12900 GOTO 13100
  LineNumber:13100
 13000 LET S(U,V)=S(X,Y)
- Value:U
- Value:V
- Reference:S
- Value:X
- Value:Y
- Value:S
+ Variable:U
+ Variable:V
+ Variable:S
+ Variable:X
+ Variable:Y
+ Variable:S
  AssignmentOperator:=
 13100 LET S(X,Y)=0
- Value:X
- Value:Y
- Reference:S
+ Variable:X
+ Variable:Y
+ Variable:S
  NumericConstant:0
  AssignmentOperator:=
 13200 IF ABS(X-U)<>2 THEN 13400
- Value:X
- Value:U
+ Variable:X
+ Variable:U
  BinaryOperator:-
  FunctionAbs
  NumericConstant:2
  BinaryOperator:<>
 13300 LET S((X+U)/2,(Y+V)/2)=0
- Value:X
- Value:U
+ Variable:X
+ Variable:U
  BinaryOperator:+
  NumericConstant:2
  BinaryOperator:/
- Value:Y
- Value:V
+ Variable:Y
+ Variable:V
  BinaryOperator:+
  NumericConstant:2
  BinaryOperator:/
- Reference:S
+ Variable:S
  NumericConstant:0
  AssignmentOperator:=
 13400 PRINT"BOARD";
@@ -611,9 +611,9 @@
  TextConstant:"BOARD"
  CarriageControl:;
 13500 INPUT D$
- Reference:D$
+ Variable:D$
 13600 IF D$<>"YES" THEN13900
- Value:D$
+ Variable:D$
  TextConstant:"YES"
  BinaryOperator:<>
 13700 GOSUB 14100
@@ -637,84 +637,84 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
 14400 LET I=2*X
- Reference:I
+ Variable:I
  NumericConstant:2
- Value:X
+ Variable:X
  BinaryOperator:*
  AssignmentOperator:=
 14500 IF S(X,Y)<>0 THEN 14700
- Value:X
- Value:Y
- Value:S
+ Variable:X
+ Variable:Y
+ Variable:S
  NumericConstant:0
  BinaryOperator:<>
 14600 PRINT TAB(I)".";
  ITEMS
- Value:I
+ Variable:I
  FunctionTab
  CarriageControl:
  TextConstant:"."
  CarriageControl:;
 14700 IF S(X,Y)<>1 THEN 14900
- Value:X
- Value:Y
- Value:S
+ Variable:X
+ Variable:Y
+ Variable:S
  NumericConstant:1
  BinaryOperator:<>
 14800 PRINT TAB(I)"O";
  ITEMS
- Value:I
+ Variable:I
  FunctionTab
  CarriageControl:
  TextConstant:"O"
  CarriageControl:;
 14900 IF S(X,Y)<>-1 THEN 15100
- Value:X
- Value:Y
- Value:S
+ Variable:X
+ Variable:Y
+ Variable:S
  NumericConstant:1
  UnaryOperator:-
  BinaryOperator:<>
 15000 PRINT TAB(I)"X";
  ITEMS
- Value:I
+ Variable:I
  FunctionTab
  CarriageControl:
  TextConstant:"X"
  CarriageControl:;
 15100 IF S(X,Y)<>-2 THEN 15300
- Value:X
- Value:Y
- Value:S
+ Variable:X
+ Variable:Y
+ Variable:S
  NumericConstant:2
  UnaryOperator:-
  BinaryOperator:<>
 15200 PRINT TAB(I)"X";TAB(I)"*";
  ITEMS
- Value:I
+ Variable:I
  FunctionTab
  CarriageControl:
  TextConstant:"X"
  CarriageControl:;
- Value:I
+ Variable:I
  FunctionTab
  CarriageControl:
  TextConstant:"*"
  CarriageControl:;
 15300 IF S(X,Y)<>2 THEN 15500
- Value:X
- Value:Y
- Value:S
+ Variable:X
+ Variable:Y
+ Variable:S
  NumericConstant:2
  BinaryOperator:<>
 15400 PRINT TAB(I)"O";TAB(I)"*";
  ITEMS
- Value:I
+ Variable:I
  FunctionTab
  CarriageControl:
  TextConstant:"O"
  CarriageControl:;
- Value:I
+ Variable:I
  FunctionTab
  CarriageControl:
  TextConstant:"*"
@@ -734,20 +734,20 @@
  TextConstant:"FROM"
  CarriageControl:;
 16000 INPUT E,H
- Reference:E
- Reference:H
+ Variable:E
+ Variable:H
 16100 LET X=E
- Reference:X
- Value:E
+ Variable:X
+ Variable:E
  AssignmentOperator:=
 16200 LET Y=H
- Reference:Y
- Value:H
+ Variable:Y
+ Variable:H
  AssignmentOperator:=
 16300 IF S(X,Y)<>0 THEN 16700
- Value:X
- Value:Y
- Value:S
+ Variable:X
+ Variable:Y
+ Variable:S
  NumericConstant:0
  BinaryOperator:<>
 16400 PRINT "THERE IS NO ONE OCCUPING THAT SPACE"
@@ -764,20 +764,20 @@
  TextConstant:"TO"
  CarriageControl:;
 16800 INPUT A,B
- Reference:A
- Reference:B
+ Variable:A
+ Variable:B
 16900 LET X=A
- Reference:X
- Value:A
+ Variable:X
+ Variable:A
  AssignmentOperator:=
 17000 LET Y=B
- Reference:Y
- Value:B
+ Variable:Y
+ Variable:B
  AssignmentOperator:=
 17100 IF S(X,Y)=0 THEN 17500
- Value:X
- Value:Y
- Value:S
+ Variable:X
+ Variable:Y
+ Variable:S
  NumericConstant:0
  BinaryOperator:=
 17200 PRINT"THAT SPACE IS ALREADY OCCUPIED"
@@ -792,59 +792,59 @@
 17500 REM LET S(A$B)=S(E,H)
  Remark:LET S(A$B)=S(E,H)
 17600 LET S(A,B)=S(E,H)
- Value:A
- Value:B
- Reference:S
- Value:E
- Value:H
- Value:S
+ Variable:A
+ Variable:B
+ Variable:S
+ Variable:E
+ Variable:H
+ Variable:S
  AssignmentOperator:=
 17700 LET S(E,H)=0
- Value:E
- Value:H
- Reference:S
+ Variable:E
+ Variable:H
+ Variable:S
  NumericConstant:0
  AssignmentOperator:=
 17800 LET T=(4.5-(3.5*G))
- Reference:T
+ Variable:T
  NumericConstant:4.5
  NumericConstant:3.5
- Value:G
+ Variable:G
  BinaryOperator:*
  BinaryOperator:-
  AssignmentOperator:=
 17900 IF ABS(E-A)<>2 THEN 18100
- Value:E
- Value:A
+ Variable:E
+ Variable:A
  BinaryOperator:-
  FunctionAbs
  NumericConstant:2
  BinaryOperator:<>
 18000 LET S((E+A)/2,(H+B)/2)=0
- Value:E
- Value:A
+ Variable:E
+ Variable:A
  BinaryOperator:+
  NumericConstant:2
  BinaryOperator:/
- Value:H
- Value:B
+ Variable:H
+ Variable:B
  BinaryOperator:+
  NumericConstant:2
  BinaryOperator:/
- Reference:S
+ Variable:S
  NumericConstant:0
  AssignmentOperator:=
 18100 IF B<>T THEN 18300
- Value:B
- Value:T
+ Variable:B
+ Variable:T
  BinaryOperator:<>
 18200 LET S(A,B)=-2*G
- Value:A
- Value:B
- Reference:S
+ Variable:A
+ Variable:B
+ Variable:S
  NumericConstant:2
  UnaryOperator:-
- Value:G
+ Variable:G
  BinaryOperator:*
  AssignmentOperator:=
 18300 FOR X=8TO8 

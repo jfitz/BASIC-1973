@@ -11,13 +11,13 @@
  TextConstant:"TYPE EITHER YES OR NO"
  CarriageControl:NL
 50 INPUT L$
- Reference:L$
+ Variable:L$
 60 IF L$ = "YES" THEN 100
- Value:L$
+ Variable:L$
  TextConstant:"YES"
  BinaryOperator:=
 70 IF L$ = "NO" THEN 170
- Value:L$
+ Variable:L$
  TextConstant:"NO"
  BinaryOperator:=
 80 PRINT "INVALID COMMAND"
@@ -55,7 +55,7 @@
  TextConstant:"EARN $10. EACH TURN COSTS $1. GOOD-LUCK"
  CarriageControl:NL
 170 LET J = 0
- Reference:J
+ Variable:J
  NumericConstant:0
  AssignmentOperator:=
 180 PRINT
@@ -64,126 +64,126 @@
 190 GOSUB 590
  LineNumber:590
 200 LET S1 = S
- Reference:S1
- Value:S
+ Variable:S1
+ Variable:S
  AssignmentOperator:=
 210 GOSUB 590
  LineNumber:590
 220 LET S2 = S
- Reference:S2
- Value:S
+ Variable:S2
+ Variable:S
  AssignmentOperator:=
 230 GOSUB 590
  LineNumber:590
 240 LET S3 = S
- Reference:S3
- Value:S
+ Variable:S3
+ Variable:S
  AssignmentOperator:=
 250 LET S = S1
- Reference:S
- Value:S1
+ Variable:S
+ Variable:S1
  AssignmentOperator:=
 260 GOSUB 610
  LineNumber:610
 270 LET S1$ = S$
- Reference:S1$
- Value:S$
+ Variable:S1$
+ Variable:S$
  AssignmentOperator:=
 280 LET S = S2
- Reference:S
- Value:S2
+ Variable:S
+ Variable:S2
  AssignmentOperator:=
 290 GOSUB 610
  LineNumber:610
 300 LET S2$ = S$
- Reference:S2$
- Value:S$
+ Variable:S2$
+ Variable:S$
  AssignmentOperator:=
 310 LET S = S3
- Reference:S
- Value:S3
+ Variable:S
+ Variable:S3
  AssignmentOperator:=
 320 GOSUB 610
  LineNumber:610
 330 LET S3$ = S$
- Reference:S3$
- Value:S$
+ Variable:S3$
+ Variable:S$
  AssignmentOperator:=
 340 IF S1$ = "CHERRY" THEN 380
- Value:S1$
+ Variable:S1$
  TextConstant:"CHERRY"
  BinaryOperator:=
 350 IF S1$ = "APPLE" THEN 420
- Value:S1$
+ Variable:S1$
  TextConstant:"APPLE"
  BinaryOperator:=
 360 IF S1$ = S2$ THEN 440
- Value:S1$
- Value:S2$
+ Variable:S1$
+ Variable:S2$
  BinaryOperator:=
 370 GOTO 460
  LineNumber:460
 380 IF S1$ = S2$ THEN 400
- Value:S1$
- Value:S2$
+ Variable:S1$
+ Variable:S2$
  BinaryOperator:=
 390 GOTO 460
  LineNumber:460
 400 IF S2$ = S3$ THEN 480
- Value:S2$
- Value:S3$
+ Variable:S2$
+ Variable:S3$
  BinaryOperator:=
 410 GOTO 460
  LineNumber:460
 420 IF S1$ = S2$ THEN 500
- Value:S1$
- Value:S2$
+ Variable:S1$
+ Variable:S2$
  BinaryOperator:=
 430 GOTO 520
  LineNumber:520
 440 IF S2$ = S3$ THEN 540
- Value:S2$
- Value:S3$
+ Variable:S2$
+ Variable:S3$
  BinaryOperator:=
 450 IF S3$ = "CHERRY" THEN 540
- Value:S3$
+ Variable:S3$
  TextConstant:"CHERRY"
  BinaryOperator:=
 460 LET J = J - 1
- Reference:J
- Value:J
+ Variable:J
+ Variable:J
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 470 GOTO 550
  LineNumber:550
 480 LET J = J + 89
- Reference:J
- Value:J
+ Variable:J
+ Variable:J
  NumericConstant:89
  BinaryOperator:+
  AssignmentOperator:=
 490 GOTO 550
  LineNumber:550
 500 LET J = J + 2
- Reference:J
- Value:J
+ Variable:J
+ Variable:J
  NumericConstant:2
  BinaryOperator:+
  AssignmentOperator:=
 510 GOTO 550
  LineNumber:550
 520 LET J = J + 1
- Reference:J
- Value:J
+ Variable:J
+ Variable:J
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 530 GOTO 550
  LineNumber:550
 540 LET J = J + 9
- Reference:J
- Value:J
+ Variable:J
+ Variable:J
  NumericConstant:9
  BinaryOperator:+
  AssignmentOperator:=
@@ -192,26 +192,26 @@
  CarriageControl:NL
 560 PRINT S1$;" ";S2$;" ";S3$
  ITEMS
- Value:S1$
+ Variable:S1$
  CarriageControl:;
  TextConstant:" "
  CarriageControl:;
- Value:S2$
+ Variable:S2$
  CarriageControl:;
  TextConstant:" "
  CarriageControl:;
- Value:S3$
+ Variable:S3$
  CarriageControl:NL
 570 PRINT "YOUR EARNINGS ARE NOW $";J
  ITEMS
  TextConstant:"YOUR EARNINGS ARE NOW $"
  CarriageControl:;
- Value:J
+ Variable:J
  CarriageControl:NL
 580 GOTO 720
  LineNumber:720
 590 LET S = 1 + INT(5*RND)
- Reference:S
+ Variable:S
  NumericConstant:1
  NumericConstant:5
  FunctionRnd
@@ -222,38 +222,38 @@
 600 RETURN
  
 610 ON S GOTO 620, 640, 660, 680, 700
- Value:S
+ Variable:S
  LineNumber:620
  LineNumber:640
  LineNumber:660
  LineNumber:680
  LineNumber:700
 620 LET S$ = "CHERRY"
- Reference:S$
+ Variable:S$
  TextConstant:"CHERRY"
  AssignmentOperator:=
 630 GOTO 710
  LineNumber:710
 640 LET S$ = "APPLE"
- Reference:S$
+ Variable:S$
  TextConstant:"APPLE"
  AssignmentOperator:=
 650 GOTO 710
  LineNumber:710
 660 LET S$ = "LEMON"
- Reference:S$
+ Variable:S$
  TextConstant:"LEMON"
  AssignmentOperator:=
 670 GOTO 710
  LineNumber:710
 680 LET S$ = "ORANGE"
- Reference:S$
+ Variable:S$
  TextConstant:"ORANGE"
  AssignmentOperator:=
 690 GOTO 710
  LineNumber:710
 700 LET S$ = "BANANA"
- Reference:S$
+ Variable:S$
  TextConstant:"BANANA"
  AssignmentOperator:=
 710 RETURN
@@ -266,9 +266,9 @@
  TextConstant:"TO CONTINUE TYPE Y, IF NOT TYPE N"
  CarriageControl:NL
 740 INPUT Z$
- Reference:Z$
+ Variable:Z$
 750 IF Z$ = "Y" THEN 780
- Value:Z$
+ Variable:Z$
  TextConstant:"Y"
  BinaryOperator:=
 760 PRINT "ONE-ARM BANDIT SAYS GOOD-BYE"

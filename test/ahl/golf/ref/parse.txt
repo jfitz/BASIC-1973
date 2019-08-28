@@ -8,15 +8,15 @@
  TextConstant:"DO YOU WANT DIRECTIONS Y FOR YES N FOR NO"
  CarriageControl:;
 130INPUT$Z\PRINT
- Reference:Z
+ Variable:Z
  ITEMS
  CarriageControl:NL
 140IFZ=#YTHEN160
- Value:Z
+ Variable:Z
  NumericConstant:#Y
  BinaryOperator:=
 150IFZ=#NTHEN290
- Value:Z
+ Variable:Z
  NumericConstant:#N
  BinaryOperator:=
 160PRINT"DIRECTIONS FOR GOLF"
@@ -77,11 +77,11 @@
  ITEMS
  TextConstant:"HOW PLAVERS ARE PLAYING TODAY"
  CarriageControl:;
- Reference:U
+ Variable:U
  ITEMS
  CarriageControl:NL
 310IFU<=4THEN340
- Value:U
+ Variable:U
  NumericConstant:4
  BinaryOperator:<=
 320PRINT"ONLY FOUR ARE ALLOWED TO PLAY AT ONE TIME"
@@ -143,10 +143,10 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:18"]
 410READA(R)\READP(R)
- Value:R
- Reference:A
- Value:R
- Reference:P
+ Variable:R
+ Variable:A
+ Variable:R
+ Variable:P
 420NEXTR
  Variable:R
 430DIMM(4,10)
@@ -160,90 +160,90 @@
  ITEMS
  TextConstant:"HOW MANY HOLES UP TO 18 DO VOU WANT TO PLAY?"
  CarriageControl:NL
- Reference:V
+ Variable:V
 460PRINT
  ITEMS
  CarriageControl:NL
 470FORJ=1TO V
  control: Variable:J
  start:   ["NumericConstant:1"]
- end:     ["Value:V"]
+ end:     ["Variable:V"]
 480FOR Q=1TO U
  control: Variable:Q
  start:   ["NumericConstant:1"]
- end:     ["Value:U"]
+ end:     ["Variable:U"]
 490LETH=A(J)
- Reference:H
- Value:J
- Value:A
+ Variable:H
+ Variable:J
+ Variable:A
  AssignmentOperator:=
 500PRINT"HOLE NUMBER ";J;"IS";H;"YARDS PAR";P(J)
  ITEMS
  TextConstant:"HOLE NUMBER "
  CarriageControl:;
- Value:J
+ Variable:J
  CarriageControl:;
  TextConstant:"IS"
  CarriageControl:;
- Value:H
+ Variable:H
  CarriageControl:;
  TextConstant:"YARDS PAR"
  CarriageControl:;
- Value:J
- Value:P
+ Variable:J
+ Variable:P
  CarriageControl:NL
 510LETK=0
- Reference:K
+ Variable:K
  NumericConstant:0
  AssignmentOperator:=
 520LETT=0
- Reference:T
+ Variable:T
  NumericConstant:0
  AssignmentOperator:=
 530LET T2=0
- Reference:T2
+ Variable:T2
  NumericConstant:0
  AssignmentOperator:=
 540PRINT"PLAYER NUMBER";Q;"CHOSE YOUR CLUB"
  ITEMS
  TextConstant:"PLAYER NUMBER"
  CarriageControl:;
- Value:Q
+ Variable:Q
  CarriageControl:;
  TextConstant:"CHOSE YOUR CLUB"
  CarriageControl:NL
 550INPUT X
- Reference:X
+ Variable:X
 560IFX=9THEN880
- Value:X
+ Variable:X
  NumericConstant:9
  BinaryOperator:=
 570LETK=K+1
- Reference:K
- Value:K
+ Variable:K
+ Variable:K
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 580 IF X=9 THEN 930
- Value:X
+ Variable:X
  NumericConstant:9
  BinaryOperator:=
 590GOTO1340
  LineNumber:1340
 600IFX=9THEN970
- Value:X
+ Variable:X
  NumericConstant:9
  BinaryOperator:=
 610LETD=X
- Reference:D
- Value:X
+ Variable:D
+ Variable:X
  AssignmentOperator:=
 620IFH<>X(D)THEN630\IFK<>1THEN990\PRINT"HOLE IN ONE!!!"\GOTO990
- Value:H
- Value:D
- Value:X
+ Variable:H
+ Variable:D
+ Variable:X
  BinaryOperator:<>
- Value:K
+ Variable:K
  NumericConstant:1
  BinaryOperator:<>
  ITEMS
@@ -254,71 +254,71 @@
  ITEMS
  TextConstant:"DISTANCE OF SHOT IS"
  CarriageControl:;
- Value:D
- Value:X
+ Variable:D
+ Variable:X
  CarriageControl:;
  TextConstant:"YARDS"
  CarriageControl:NL
 640LETL=INT(RND(X)*100)
- Reference:L
- Value:X
+ Variable:L
+ Variable:X
  FunctionRnd
  NumericConstant:100
  BinaryOperator:*
  FunctionInt
  AssignmentOperator:=
 650IFL=99THEN670\IFL=43THEN670\IFL=88THEN670
- Value:L
+ Variable:L
  NumericConstant:99
  BinaryOperator:=
- Value:L
+ Variable:L
  NumericConstant:43
  BinaryOperator:=
- Value:L
+ Variable:L
  NumericConstant:88
  BinaryOperator:=
 660IFL<>25THEN760
- Value:L
+ Variable:L
  NumericConstant:25
  BinaryOperator:<>
 670PRINT"IN TRAP"\LETC=ABS(H-X(D))\GOTO680
  ITEMS
  TextConstant:"IN TRAP"
  CarriageControl:NL
- Reference:C
- Value:H
- Value:D
- Value:X
+ Variable:C
+ Variable:H
+ Variable:D
+ Variable:X
  BinaryOperator:-
  FunctionAbs
  AssignmentOperator:=
  LineNumber:680
 680LETL8=INT(RND(X)*10)
- Reference:L8
- Value:X
+ Variable:L8
+ Variable:X
  FunctionRnd
  NumericConstant:10
  BinaryOperator:*
  FunctionInt
  AssignmentOperator:=
 690IFL8>3THEN680\IFL8=1THEN850
- Value:L8
+ Variable:L8
  NumericConstant:3
  BinaryOperator:>
- Value:L8
+ Variable:L8
  NumericConstant:1
  BinaryOperator:=
 700LETT2=0
- Reference:T2
+ Variable:T2
  NumericConstant:0
  AssignmentOperator:=
 710FORZ=1TOL8
  control: Variable:Z
  start:   ["NumericConstant:1"]
- end:     ["Value:L8"]
+ end:     ["Variable:L8"]
 720LETT2=T2+1
- Reference:T2
- Value:T2
+ Variable:T2
+ Variable:T2
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -326,7 +326,7 @@
  ITEMS
  TextConstant:"CHOSE YOUR CLUB"
  CarriageControl:NL
- Reference:X
+ Variable:X
 740PRINT"STILL IN TRAP"'\NEXTZ
  ITEMS
  TextConstant:"STILL IN TRAP"
@@ -334,96 +334,96 @@
 750GOTO850
  LineNumber:850
 760IFL=13THEN780\IFL=88THEN780 
- Value:L
+ Variable:L
  NumericConstant:13
  BinaryOperator:=
- Value:L
+ Variable:L
  NumericConstant:88
  BinaryOperator:=
 770IFL<>25THEN800
- Value:L
+ Variable:L
  NumericConstant:25
  BinaryOperator:<>
 780PRINT"IN ROUGH"\LETC=ABS(H-X(D))\GOTO850
  ITEMS
  TextConstant:"IN ROUGH"
  CarriageControl:NL
- Reference:C
- Value:H
- Value:D
- Value:X
+ Variable:C
+ Variable:H
+ Variable:D
+ Variable:X
  BinaryOperator:-
  FunctionAbs
  AssignmentOperator:=
  LineNumber:850
 790IFL=69THEN810\IFL=73THEN810\IFL=41THEN810
- Value:L
+ Variable:L
  NumericConstant:69
  BinaryOperator:=
- Value:L
+ Variable:L
  NumericConstant:73
  BinaryOperator:=
- Value:L
+ Variable:L
  NumericConstant:41
  BinaryOperator:=
 800IFL<>75THEN 830
- Value:L
+ Variable:L
  NumericConstant:75
  BinaryOperator:<>
 810PRINT"IN WATER"\LETT=T+1\PRINT"YOU LOSE 1 STROKE"\LETC=ABS(H-X(D))
  ITEMS
  TextConstant:"IN WATER"
  CarriageControl:NL
- Reference:T
- Value:T
+ Variable:T
+ Variable:T
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
  ITEMS
  TextConstant:"YOU LOSE 1 STROKE"
  CarriageControl:NL
- Reference:C
- Value:H
- Value:D
- Value:X
+ Variable:C
+ Variable:H
+ Variable:D
+ Variable:X
  BinaryOperator:-
  FunctionAbs
  AssignmentOperator:=
 820GOTO850
  LineNumber:850
 830LETC=ABS(H-X(D))
- Reference:C
- Value:H
- Value:D
- Value:X
+ Variable:C
+ Variable:H
+ Variable:D
+ Variable:X
  BinaryOperator:-
  FunctionAbs
  AssignmentOperator:=
 840IFC<30THEN930
- Value:C
+ Variable:C
  NumericConstant:30
  BinaryOperator:<
 850PRINT"DISTANCE REMAINING TO PIN IS";C;"YARDS"
  ITEMS
  TextConstant:"DISTANCE REMAINING TO PIN IS"
  CarriageControl:;
- Value:C
+ Variable:C
  CarriageControl:;
  TextConstant:"YARDS"
  CarriageControl:NL
 860LETH=C
- Reference:H
- Value:C
+ Variable:H
+ Variable:C
  AssignmentOperator:=
 870GOTO540
  LineNumber:540
 880LETC=A(J)
- Reference:C
- Value:J
- Value:A
+ Variable:C
+ Variable:J
+ Variable:A
  AssignmentOperator:=
 890IFC>30THEN910
- Value:C
+ Variable:C
  NumericConstant:30
  BinaryOperator:>
 900GOTO970
@@ -438,61 +438,61 @@
  ITEMS
  TextConstant:"PLAYER NUMBER"
  CarriageControl:;
- Value:G
+ Variable:G
  CarriageControl:;
  TextConstant:" IS ON THE GREEN CHOSE YOUR CLUB"
  CarriageControl:NL
 940INPUTX
- Reference:X
+ Variable:X
 950LETD=X
- Reference:D
- Value:X
+ Variable:D
+ Variable:X
  AssignmentOperator:=
 960GOTO590
  LineNumber:590
 970PRINT X(D) "PUTTS"
  ITEMS
- Value:D
- Value:X
+ Variable:D
+ Variable:X
  CarriageControl:
  TextConstant:"PUTTS"
  CarriageControl:NL
 980LETM(Q,J)=K+X(9)+T+T2\GOTO1000
- Value:Q
- Value:J
- Reference:M
- Value:K
+ Variable:Q
+ Variable:J
+ Variable:M
+ Variable:K
  NumericConstant:9
- Value:X
+ Variable:X
  BinaryOperator:+
- Value:T
+ Variable:T
  BinaryOperator:+
- Value:T2
+ Variable:T2
  BinaryOperator:+
  AssignmentOperator:=
  LineNumber:1000
 990LETM(Q,J)=K\PRINT"YOU SUNK THE SHOT"
- Value:Q
- Value:J
- Reference:M
- Value:K
+ Variable:Q
+ Variable:J
+ Variable:M
+ Variable:K
  AssignmentOperator:=
  ITEMS
  TextConstant:"YOU SUNK THE SHOT"
  CarriageControl:NL
 1000PRINTM(Q,J)"STROKES FOR HOLE NUMBER";J;"FOR PLAYER";G
  ITEMS
- Value:Q
- Value:J
- Value:M
+ Variable:Q
+ Variable:J
+ Variable:M
  CarriageControl:
  TextConstant:"STROKES FOR HOLE NUMBER"
  CarriageControl:;
- Value:J
+ Variable:J
  CarriageControl:;
  TextConstant:"FOR PLAYER"
  CarriageControl:;
- Value:G
+ Variable:G
  CarriageControl:NL
 1010NEXTQ\PRINT\PRINT
  Variable:Q
@@ -505,52 +505,52 @@
 1030FORW=1TOV
  control: Variable:W
  start:   ["NumericConstant:1"]
- end:     ["Value:V"]
+ end:     ["Variable:V"]
 1040LETN(1)=M(1,W)+N(1)
  NumericConstant:1
- Reference:N
+ Variable:N
  NumericConstant:1
- Value:W
- Value:M
+ Variable:W
+ Variable:M
  NumericConstant:1
- Value:N
+ Variable:N
  BinaryOperator:+
  AssignmentOperator:=
 1050LETN(2)=M(2,W)+N(2)
  NumericConstant:2
- Reference:N
+ Variable:N
  NumericConstant:2
- Value:W
- Value:M
+ Variable:W
+ Variable:M
  NumericConstant:2
- Value:N
+ Variable:N
  BinaryOperator:+
  AssignmentOperator:=
 1060LETN(3)=M(3,W)+N(3)
  NumericConstant:3
- Reference:N
+ Variable:N
  NumericConstant:3
- Value:W
- Value:M
+ Variable:W
+ Variable:M
  NumericConstant:3
- Value:N
+ Variable:N
  BinaryOperator:+
  AssignmentOperator:=
 1070LETN(4)=M(4,W)+N(4)
  NumericConstant:4
- Reference:N
+ Variable:N
  NumericConstant:4
- Value:W
- Value:M
+ Variable:W
+ Variable:M
  NumericConstant:4
- Value:N
+ Variable:N
  BinaryOperator:+
  AssignmentOperator:=
 1080LET E= P(W)+E
- Reference:E
- Value:W
- Value:P
- Value:E
+ Variable:E
+ Variable:W
+ Variable:P
+ Variable:E
  BinaryOperator:+
  AssignmentOperator:=
 1090NEXTW
@@ -558,25 +558,25 @@
 1100FORS=1TOV
  control: Variable:S
  start:   ["NumericConstant:1"]
- end:     ["Value:V"]
+ end:     ["Variable:V"]
 1110PRINT"PLAYER NUMBER";S;"SHOT";N(S);"FOR";V;"HOLES  PAR IS";E
  ITEMS
  TextConstant:"PLAYER NUMBER"
  CarriageControl:;
- Value:S
+ Variable:S
  CarriageControl:;
  TextConstant:"SHOT"
  CarriageControl:;
- Value:S
- Value:N
+ Variable:S
+ Variable:N
  CarriageControl:;
  TextConstant:"FOR"
  CarriageControl:;
- Value:V
+ Variable:V
  CarriageControl:;
  TextConstant:"HOLES  PAR IS"
  CarriageControl:;
- Value:E
+ Variable:E
  CarriageControl:NL
 1120NEXT S
  Variable:S
@@ -584,9 +584,9 @@
  LineNumber:1440
 1140LETX(2)=INT(130*RND(X)+150)
  NumericConstant:2
- Reference:X
+ Variable:X
  NumericConstant:130
- Value:X
+ Variable:X
  FunctionRnd
  BinaryOperator:*
  NumericConstant:150
@@ -597,9 +597,9 @@
  LineNumber:600
 1160LETX(1)=INT(90*RND(X)+180)
  NumericConstant:1
- Reference:X
+ Variable:X
  NumericConstant:90
- Value:X
+ Variable:X
  FunctionRnd
  BinaryOperator:*
  NumericConstant:180
@@ -610,9 +610,9 @@
  LineNumber:600
 1180LETX(3)=INT(40*RND(X)+140)
  NumericConstant:3
- Reference:X
+ Variable:X
  NumericConstant:40
- Value:X
+ Variable:X
  FunctionRnd
  BinaryOperator:*
  NumericConstant:140
@@ -623,9 +623,9 @@
  LineNumber:600
 1200LETX(4)=INT(60*RND(X)+120)
  NumericConstant:4
- Reference:X
+ Variable:X
  NumericConstant:60
- Value:X
+ Variable:X
  FunctionRnd
  BinaryOperator:*
  NumericConstant:120
@@ -636,9 +636,9 @@
  LineNumber:600
 1220LETX(5)=INT(30*RND(X)+100)
  NumericConstant:5
- Reference:X
+ Variable:X
  NumericConstant:30
- Value:X
+ Variable:X
  FunctionRnd
  BinaryOperator:*
  NumericConstant:100
@@ -649,9 +649,9 @@
  LineNumber:600
 1240LETX(6)=INT(30*RND(X)+70)
  NumericConstant:6
- Reference:X
+ Variable:X
  NumericConstant:30
- Value:X
+ Variable:X
  FunctionRnd
  BinaryOperator:*
  NumericConstant:70
@@ -662,9 +662,9 @@
  LineNumber:600
 1260LETX(7)=INT(40*RND(X)+30)
  NumericConstant:7
- Reference:X
+ Variable:X
  NumericConstant:40
- Value:X
+ Variable:X
  FunctionRnd
  BinaryOperator:*
  NumericConstant:30
@@ -675,9 +675,9 @@
  LineNumber:600
 1280LETX(8)=INT(30*RND(X)+1)
  NumericConstant:8
- Reference:X
+ Variable:X
  NumericConstant:30
- Value:X
+ Variable:X
  FunctionRnd
  BinaryOperator:*
  NumericConstant:1
@@ -686,16 +686,16 @@
  AssignmentOperator:=
 1290IFX(8)<1THEN1280
  NumericConstant:8
- Value:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:<
 1300GOTO600
  LineNumber:600
 1310LETX(9)=INT(3*RND(X)+1)
  NumericConstant:9
- Reference:X
+ Variable:X
  NumericConstant:3
- Value:X
+ Variable:X
  FunctionRnd
  BinaryOperator:*
  NumericConstant:1
@@ -707,39 +707,39 @@
 1330STOP
  
 1340IFX=1THEN1160
- Value:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:=
 1350IFX=2THEN1140
- Value:X
+ Variable:X
  NumericConstant:2
  BinaryOperator:=
 1360IFX=3THEN1180
- Value:X
+ Variable:X
  NumericConstant:3
  BinaryOperator:=
 1370IFX=4THEN1200
- Value:X
+ Variable:X
  NumericConstant:4
  BinaryOperator:=
 1380IFX=5THEN1220
- Value:X
+ Variable:X
  NumericConstant:5
  BinaryOperator:=
 1390IFX=6THEN1240
- Value:X
+ Variable:X
  NumericConstant:6
  BinaryOperator:=
 1400IFX=7THEN1260
- Value:X
+ Variable:X
  NumericConstant:7
  BinaryOperator:=
 1410IFX=8THEN1280
- Value:X
+ Variable:X
  NumericConstant:8
  BinaryOperator:=
 1420IFX=9THEN1310
- Value:X
+ Variable:X
  NumericConstant:9
  BinaryOperator:=
 1430GOTO680

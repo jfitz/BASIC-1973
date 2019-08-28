@@ -7,9 +7,9 @@
  TextConstant:"FOR INSTRUCTIONS, TYPE '1', ELSE TYPE '0'"
  CarriageControl:;
 230 INPUT E
- Reference:E
+ Variable:E
 240 IF E=0 THEN 360
- Value:E
+ Variable:E
  NumericConstant:0
  BinaryOperator:=
 250 PRINT
@@ -53,9 +53,9 @@
  ITEMS
  CarriageControl:NL
 360 READ A,B,C
- Reference:A
- Reference:B
- Reference:C
+ Variable:A
+ Variable:B
+ Variable:C
 370 DATA 0,1,3
  NumericConstant:0
  NumericConstant:1
@@ -71,55 +71,55 @@
  NumericConstant:2
  Declaration:L
 400 MAT M=CON\MAT K=CON
- Reference:M
+ Variable:M
  FunctionCon
  AssignmentOperator:=
- Reference:K
+ Variable:K
  FunctionCon
  AssignmentOperator:=
 420 MAT K=(9)*K\MAT L=CON
- Reference:K
+ Variable:K
  NumericConstant:9
- Value:K
+ Variable:K
  BinaryOperator:*
  AssignmentOperator:=
- Reference:L
+ Variable:L
  FunctionCon
  AssignmentOperator:=
 440 MAT L=(3)*L
- Reference:L
+ Variable:L
  NumericConstant:3
- Value:L
+ Variable:L
  BinaryOperator:*
  AssignmentOperator:=
 450 L(0,0)=2\L(4,1)=2\L(8,2)=2
  NumericConstant:0
  NumericConstant:0
- Reference:L
+ Variable:L
  NumericConstant:2
  AssignmentOperator:=
  NumericConstant:4
  NumericConstant:1
- Reference:L
+ Variable:L
  NumericConstant:2
  AssignmentOperator:=
  NumericConstant:8
  NumericConstant:2
- Reference:L
+ Variable:L
  NumericConstant:2
  AssignmentOperator:=
 480 Z=26\Z1=8\Z2=2
- Reference:Z
+ Variable:Z
  NumericConstant:26
  AssignmentOperator:=
- Reference:Z1
+ Variable:Z1
  NumericConstant:8
  AssignmentOperator:=
- Reference:Z2
+ Variable:Z2
  NumericConstant:2
  AssignmentOperator:=
 510 X=0
- Reference:X
+ Variable:X
  NumericConstant:0
  AssignmentOperator:=
 520 FOR T=1 TO 3
@@ -135,39 +135,39 @@
  CarriageControl:;
 550 INPUT N(1),N(2),N(3),N(4),N(5),N(6),N(7),N(8),N(9),N(10)
  NumericConstant:1
- Reference:N
+ Variable:N
  NumericConstant:2
- Reference:N
+ Variable:N
  NumericConstant:3
- Reference:N
+ Variable:N
  NumericConstant:4
- Reference:N
+ Variable:N
  NumericConstant:5
- Reference:N
+ Variable:N
  NumericConstant:6
- Reference:N
+ Variable:N
  NumericConstant:7
- Reference:N
+ Variable:N
  NumericConstant:8
- Reference:N
+ Variable:N
  NumericConstant:9
- Reference:N
+ Variable:N
  NumericConstant:10
- Reference:N
+ Variable:N
 560 FOR I=1 TO 10
  control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 570 W=N(I)-1
- Reference:W
- Value:I
- Value:N
+ Variable:W
+ Variable:I
+ Variable:N
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 580 IF W=SGN(W) THEN 620
- Value:W
- Value:W
+ Variable:W
+ Variable:W
  FunctionSgn
  BinaryOperator:=
 590 PRINT "USE ONLY THE DIGITS '0', '1', OR '2'."
@@ -200,11 +200,11 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 670 N=N(I)\S=0
- Reference:N
- Value:I
- Value:N
+ Variable:N
+ Variable:I
+ Variable:N
  AssignmentOperator:=
- Reference:S
+ Variable:S
  NumericConstant:0
  AssignmentOperator:=
 690 FOR J=0 TO 2
@@ -212,69 +212,69 @@
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:2"]
 700 S1=A*K(Z2,J)+B*L(Z1,J)+C*M(Z,J)
- Reference:S1
- Value:A
- Value:Z2
- Value:J
- Value:K
+ Variable:S1
+ Variable:A
+ Variable:Z2
+ Variable:J
+ Variable:K
  BinaryOperator:*
- Value:B
- Value:Z1
- Value:J
- Value:L
+ Variable:B
+ Variable:Z1
+ Variable:J
+ Variable:L
  BinaryOperator:*
  BinaryOperator:+
- Value:C
- Value:Z
- Value:J
- Value:M
+ Variable:C
+ Variable:Z
+ Variable:J
+ Variable:M
  BinaryOperator:*
  BinaryOperator:+
  AssignmentOperator:=
 710 IF S>S1 THEN 760
- Value:S
- Value:S1
+ Variable:S
+ Variable:S1
  BinaryOperator:>
 720 IF S<S1 THEN 740
- Value:S
- Value:S1
+ Variable:S
+ Variable:S1
  BinaryOperator:<
 730 IF RND<.5 THEN 760
  FunctionRnd
  NumericConstant:.5
  BinaryOperator:<
 740 S=S1\G=J
- Reference:S
- Value:S1
+ Variable:S
+ Variable:S1
  AssignmentOperator:=
- Reference:G
- Value:J
+ Variable:G
+ Variable:J
  AssignmentOperator:=
 760 NEXT J
  Variable:J
 770 PRINT G,N(U),
  ITEMS
- Value:G
+ Variable:G
  CarriageControl:,
- Value:U
- Value:N
+ Variable:U
+ Variable:N
  CarriageControl:,
 780 IF G=N(U) THEN 810
- Value:G
- Value:U
- Value:N
+ Variable:G
+ Variable:U
+ Variable:N
  BinaryOperator:=
 790 PRINT "WRONG", X
  ITEMS
  TextConstant:"WRONG"
  CarriageControl:,
- Value:X
+ Variable:X
  CarriageControl:NL
 800 GOTO 880
  LineNumber:880
 810 X=X + 1
- Reference:X
- Value:X
+ Variable:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -282,42 +282,42 @@
  ITEMS
  TextConstant:"RIGHT"
  CarriageControl:,
- Value:X
+ Variable:X
  CarriageControl:NL
 830 M(Z,N)=M(Z,N)+1
- Value:Z
- Value:N
- Reference:M
- Value:Z
- Value:N
- Value:M
+ Variable:Z
+ Variable:N
+ Variable:M
+ Variable:Z
+ Variable:N
+ Variable:M
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 840 L(Z1,N)=L(Z1,N)+1
- Value:Z1
- Value:N
- Reference:L
- Value:Z1
- Value:N
- Value:L
+ Variable:Z1
+ Variable:N
+ Variable:L
+ Variable:Z1
+ Variable:N
+ Variable:L
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 850 K(Z2,N)=K(Z2,N)+1
- Value:Z2
- Value:N
- Reference:K
- Value:Z2
- Value:N
- Value:K
+ Variable:Z2
+ Variable:N
+ Variable:K
+ Variable:Z2
+ Variable:N
+ Variable:K
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 860 Z=Z-INT(Z/9)*9
- Reference:Z
- Value:Z
- Value:Z
+ Variable:Z
+ Variable:Z
+ Variable:Z
  NumericConstant:9
  BinaryOperator:/
  FunctionInt
@@ -326,18 +326,18 @@
  BinaryOperator:-
  AssignmentOperator:=
 870 Z=3*Z*N(U)
- Reference:Z
+ Variable:Z
  NumericConstant:3
- Value:Z
+ Variable:Z
  BinaryOperator:*
- Value:U
- Value:N
+ Variable:U
+ Variable:N
  BinaryOperator:*
  AssignmentOperator:=
 880 Z1=Z-INT(Z/9)*9
- Reference:Z1
- Value:Z
- Value:Z
+ Variable:Z1
+ Variable:Z
+ Variable:Z
  NumericConstant:9
  BinaryOperator:/
  FunctionInt
@@ -346,9 +346,9 @@
  BinaryOperator:-
  AssignmentOperator:=
 890 Z2=N(U)
- Reference:Z2
- Value:U
- Value:N
+ Variable:Z2
+ Variable:U
+ Variable:N
  AssignmentOperator:=
 900 NEXT U
  Variable:U
@@ -358,11 +358,11 @@
  ITEMS
  CarriageControl:NL
 930 IF X>10 THEN 980
- Value:X
+ Variable:X
  NumericConstant:10
  BinaryOperator:>
 940 IF X<10 THEN 1010
- Value:X
+ Variable:X
  NumericConstant:10
  BinaryOperator:<
 950 PRINT "I GUESSED EXACTLY 1/3 OF YOUR NUMBERS."
@@ -408,9 +408,9 @@
  TextConstant:"DO YOU WANT TO TRY AGAIN (1 FOR YES, 0 FOR NO)"
  CarriageControl:;
 1060 INPUT X
- Reference:X
+ Variable:X
 1070 IF X=1 THEN 400
- Value:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:=
 1080 PRINT\PRINT "THANKS FOR THE GAME."

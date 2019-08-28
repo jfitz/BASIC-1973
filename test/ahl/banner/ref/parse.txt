@@ -33,18 +33,18 @@ Duplicate line number 250
  ITEMS
  TextConstant:"INPUT HEIGHTH, WIDTH IN INCHES"
  CarriageControl:;
- Reference:L
- Reference:R
- Reference:S
+ Variable:L
+ Variable:R
+ Variable:S
  NumericConstant:0
  AssignmentOperator:=
- Reference:A
- Value:R
+ Variable:A
+ Variable:R
  NumericConstant:2
  BinaryOperator:*
  AssignmentOperator:=
- Reference:C
- Value:A
+ Variable:C
+ Variable:A
  AssignmentOperator:=
 210 PRINT"HOW FAR, IN INCHES FROM THE LEFT HAND SIDE, DO YOU WANT TO PLACE "
  ITEMS
@@ -54,10 +54,10 @@ Duplicate line number 250
  ITEMS
  TextConstant:"THE LETTERS"
  CarriageControl:;
- Reference:S
- Reference:S
+ Variable:S
+ Variable:S
  NumericConstant:12
- Value:S
+ Variable:S
  BinaryOperator:*
  AssignmentOperator:=
 230 PRINT"INPUT MESSAGE HERE"
@@ -65,90 +65,90 @@ Duplicate line number 250
  TextConstant:"INPUT MESSAGE HERE"
  CarriageControl:NL
 240 LINPUT B$
- Reference:B$
+ Variable:B$
 250 CHANGE B$ TO A
- Value:B$
- Reference:A
+ Variable:B$
+ Variable:A
 260 FORX=1TO6\READH$(X)\NEXTX\H$=H$(L)\GOSUB 940
  control: Variable:X
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:6"]
- Value:X
- Reference:H$
  Variable:X
- Reference:H$
- Value:L
- Value:H$
+ Variable:H$
+ Variable:X
+ Variable:H$
+ Variable:L
+ Variable:H$
  AssignmentOperator:=
  LineNumber:940
 270 F=F+1\IFF>A(0)THEN990\G(0)=L\FORX=1TO6\G(X)=A(F)\NEXTX\CHANGEGTOG$
- Reference:F
- Value:F
+ Variable:F
+ Variable:F
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
- Value:F
+ Variable:F
  NumericConstant:0
- Value:A
+ Variable:A
  BinaryOperator:>
  NumericConstant:0
- Reference:G
- Value:L
+ Variable:G
+ Variable:L
  AssignmentOperator:=
  control: Variable:X
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:6"]
- Value:X
- Reference:G
- Value:F
- Value:A
+ Variable:X
+ Variable:G
+ Variable:F
+ Variable:A
  AssignmentOperator:=
  Variable:X
- Value:G
- Reference:G$
+ Variable:G
+ Variable:G$
 280 FORX=1TO6\G(0)=X\CHANGEGTOG$(X)\NEXTX
  control: Variable:X
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:6"]
  NumericConstant:0
- Reference:G
- Value:X
+ Variable:G
+ Variable:X
  AssignmentOperator:=
- Value:G
- Value:X
- Reference:G$
+ Variable:G
+ Variable:X
+ Variable:G$
  Variable:X
 290 FORX=1TOA/2\PRINT\NEXTX
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["Value:A", "NumericConstant:2", "BinaryOperator:/"]
+ end:     ["Variable:A", "NumericConstant:2", "BinaryOperator:/"]
  ITEMS
  CarriageControl:NL
  Variable:X
 300 IFA(F)=46THEN345\IFA(F)=36THEN990\IFA(F)=32THEN630\IFA(F)<48THEN270
- Value:F
- Value:A
+ Variable:F
+ Variable:A
  NumericConstant:46
  BinaryOperator:=
- Value:F
- Value:A
+ Variable:F
+ Variable:A
  NumericConstant:36
  BinaryOperator:=
- Value:F
- Value:A
+ Variable:F
+ Variable:A
  NumericConstant:32
  BinaryOperator:=
- Value:F
- Value:A
+ Variable:F
+ Variable:A
  NumericConstant:48
  BinaryOperator:<
 309 IFA(F)>57THEN310\ONA(F)-47GOTO500,440,620,625,635,550,615,605,595,585
- Value:F
- Value:A
+ Variable:F
+ Variable:A
  NumericConstant:57
  BinaryOperator:>
- Value:F
- Value:A
+ Variable:F
+ Variable:A
  NumericConstant:47
  BinaryOperator:-
  LineNumber:500
@@ -162,17 +162,17 @@ Duplicate line number 250
  LineNumber:595
  LineNumber:585
 310 IFA(F)<65THEN270\IFA(F)>79THEN330
- Value:F
- Value:A
+ Variable:F
+ Variable:A
  NumericConstant:65
  BinaryOperator:<
- Value:F
- Value:A
+ Variable:F
+ Variable:A
  NumericConstant:79
  BinaryOperator:>
 320 ONA(F)-64GOTO350,360,370,380,390,400,410,430,440,450,460,470,480,490,500
- Value:F
- Value:A
+ Variable:F
+ Variable:A
  NumericConstant:64
  BinaryOperator:-
  LineNumber:350
@@ -191,11 +191,11 @@ Duplicate line number 250
  LineNumber:490
  LineNumber:500
 330 IFA>90THEN270\ONA(F)-79GOTO510,520,540,550,560,570,580,590,600,610,620
- Value:A
+ Variable:A
  NumericConstant:90
  BinaryOperator:>
- Value:F
- Value:A
+ Variable:F
+ Variable:A
  NumericConstant:79
  BinaryOperator:-
  LineNumber:510
@@ -214,14 +214,14 @@ Duplicate line number 250
 345 FORX=1TOA\PRINTTAB(S);G$;G$\NEXTX\GOTO270
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
  ITEMS
- Value:S
+ Variable:S
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:X
  LineNumber:270
@@ -233,14 +233,14 @@ Duplicate line number 250
 360 GOSUB640\GOSUB650\A=C*.5\GOSUB640\A=C\GOSUB610\GOTO270
  LineNumber:640
  LineNumber:650
- Reference:A
- Value:C
+ Variable:A
+ Variable:C
  NumericConstant:.5
  BinaryOperator:*
  AssignmentOperator:=
  LineNumber:640
- Reference:A
- Value:C
+ Variable:A
+ Variable:C
  AssignmentOperator:=
  LineNumber:610
  LineNumber:270
@@ -252,14 +252,14 @@ Duplicate line number 250
 380 GOSUB640\GOSUB700\A=C*.5\GOSUB640\A=C\GOSUB640\GOTO270
  LineNumber:640
  LineNumber:700
- Reference:A
- Value:C
+ Variable:A
+ Variable:C
  NumericConstant:.5
  BinaryOperator:*
  AssignmentOperator:=
  LineNumber:640
- Reference:A
- Value:C
+ Variable:A
+ Variable:C
  AssignmentOperator:=
  LineNumber:640
  LineNumber:270
@@ -275,31 +275,31 @@ Duplicate line number 250
  LineNumber:270
 410 GOSUB640\A=C*.75\GOSUB700\A=C*.25\GOSUB650\A=C\GOSUB760
  LineNumber:640
- Reference:A
- Value:C
+ Variable:A
+ Variable:C
  NumericConstant:.75
  BinaryOperator:*
  AssignmentOperator:=
  LineNumber:700
- Reference:A
- Value:C
+ Variable:A
+ Variable:C
  NumericConstant:.25
  BinaryOperator:*
  AssignmentOperator:=
  LineNumber:650
- Reference:A
- Value:C
+ Variable:A
+ Variable:C
  AssignmentOperator:=
  LineNumber:760
 420 A=C*.25\GOSUB710\A=C\GOTO270
- Reference:A
- Value:C
+ Variable:A
+ Variable:C
  NumericConstant:.25
  BinaryOperator:*
  AssignmentOperator:=
  LineNumber:710
- Reference:A
- Value:C
+ Variable:A
+ Variable:C
  AssignmentOperator:=
  LineNumber:270
 430 GOSUB640\GOSUB710\GOSUB640\GOTO270
@@ -347,45 +347,45 @@ Duplicate line number 250
  LineNumber:270
 520 GOSUB640\A=C*.75\GOSUB700\A=.25*C\GOSUB650\A=C\GOSUB640
  LineNumber:640
- Reference:A
- Value:C
+ Variable:A
+ Variable:C
  NumericConstant:.75
  BinaryOperator:*
  AssignmentOperator:=
  LineNumber:700
- Reference:A
+ Variable:A
  NumericConstant:.25
- Value:C
+ Variable:C
  BinaryOperator:*
  AssignmentOperator:=
  LineNumber:650
- Reference:A
- Value:C
+ Variable:A
+ Variable:C
  AssignmentOperator:=
  LineNumber:640
 530 A=C*.25\GOSUB710\A=C\GOTO270
- Reference:A
- Value:C
+ Variable:A
+ Variable:C
  NumericConstant:.25
  BinaryOperator:*
  AssignmentOperator:=
  LineNumber:710
- Reference:A
- Value:C
+ Variable:A
+ Variable:C
  AssignmentOperator:=
  LineNumber:270
 540 GOSUB640\GOSUB690\A=C*.5\GOSUB640\GOSUB810\A=C\GOTO270
  LineNumber:640
  LineNumber:690
- Reference:A
- Value:C
+ Variable:A
+ Variable:C
  NumericConstant:.5
  BinaryOperator:*
  AssignmentOperator:=
  LineNumber:640
  LineNumber:810
- Reference:A
- Value:C
+ Variable:A
+ Variable:C
  AssignmentOperator:=
  LineNumber:270
 550 GOSUB770\GOSUB650\GOSUB760\GOTO270
@@ -447,14 +447,14 @@ Duplicate line number 250
 625 GOSUB700\GOSUB650\A=C*.5\GOSUB640\A=C\GOSUB810\GOTO270
  LineNumber:700
  LineNumber:650
- Reference:A
- Value:C
+ Variable:A
+ Variable:C
  NumericConstant:.5
  BinaryOperator:*
  AssignmentOperator:=
  LineNumber:640
- Reference:A
- Value:C
+ Variable:A
+ Variable:C
  AssignmentOperator:=
  LineNumber:810
  LineNumber:270
@@ -469,16 +469,16 @@ Duplicate line number 250
 640 FORY=1TOA\PRINTTAB(S);\FORX=1TO10\PRINTG$;\NEXTX\PRINT\NEXTY\RETURN
  control: Variable:Y
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
  ITEMS
- Value:S
+ Variable:S
  FunctionTab
  CarriageControl:;
  control: Variable:X
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
  ITEMS
- Value:G$
+ Variable:G$
  CarriageControl:;
  Variable:X
  ITEMS
@@ -486,292 +486,292 @@ Duplicate line number 250
  Variable:Y
  
 650 IFA<1THEN660\GOTO670
- Value:A
+ Variable:A
  NumericConstant:1
  BinaryOperator:<
  LineNumber:670
 660 LETA=1
- Reference:A
+ Variable:A
  NumericConstant:1
  AssignmentOperator:=
 670 FORX=1TOA\PRINTTAB(S);G$;G$;H$;H$;G$;G$;H$;H$;G$;G$\NEXTX\RETURN
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
  ITEMS
- Value:S
+ Variable:S
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:H$
+ Variable:H$
  CarriageControl:;
- Value:H$
+ Variable:H$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:H$
+ Variable:H$
  CarriageControl:;
- Value:H$
+ Variable:H$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:X
  
 680 PRINTTAB(S);
  ITEMS
- Value:S
+ Variable:S
  FunctionTab
  CarriageControl:;
 690 FORX=1TOA\PRINTTAB(4*L+S);G$;G$;H$;H$;G$;G$\NEXTX\RETURN
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
  ITEMS
  NumericConstant:4
- Value:L
+ Variable:L
  BinaryOperator:*
- Value:S
+ Variable:S
  BinaryOperator:+
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:H$
+ Variable:H$
  CarriageControl:;
- Value:H$
+ Variable:H$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:X
  
 700 FORX=1TOA\PRINTTAB(S);G$;G$;\PRINTTAB(8*L+S);G$;G$\NEXTX\RETURN
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
  ITEMS
- Value:S
+ Variable:S
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
  ITEMS
  NumericConstant:8
- Value:L
+ Variable:L
  BinaryOperator:*
- Value:S
+ Variable:S
  BinaryOperator:+
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:X
  
 710 IFA<1THEN720\GOTO730
- Value:A
+ Variable:A
  NumericConstant:1
  BinaryOperator:<
  LineNumber:730
 720 LETA=1
- Reference:A
+ Variable:A
  NumericConstant:1
  AssignmentOperator:=
 730 FORX=1TOA\PRINTTAB(4*L+S);G$;G$\NEXTX\RETURN
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
  ITEMS
  NumericConstant:4
- Value:L
+ Variable:L
  BinaryOperator:*
- Value:S
+ Variable:S
  BinaryOperator:+
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:X
  
 740 FORX=1TOA\PRINTTAB(S);G$;G$\NEXTX\RETURN
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
  ITEMS
- Value:S
+ Variable:S
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:X
  
 750 FORX=1TOA\PRINTTAB(S);G$;G$;G$;G$\NEXTX\RETURN
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
  ITEMS
- Value:S
+ Variable:S
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:X
  
 760 FORY=1TOA\PRINTTAB(S);G$;G$;G$;G$;G$;G$;H$;H$;G$;G$\NEXTY\RETURN
  control: Variable:Y
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
  ITEMS
- Value:S
+ Variable:S
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:H$
+ Variable:H$
  CarriageControl:;
- Value:H$
+ Variable:H$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:Y
  
 770 FORX=1TOA\PRINTTAB(S);G$;G$;H$;H$;G$;G$;G$;G$;G$;G$\NEXTX\RETURN
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
  ITEMS
- Value:S
+ Variable:S
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:H$
+ Variable:H$
  CarriageControl:;
- Value:H$
+ Variable:H$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:X
  
 780 FORX=1TOA\PRINTTAB(8*L+S);G$;G$\NEXTX\RETURN
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
  ITEMS
  NumericConstant:8
- Value:L
+ Variable:L
  BinaryOperator:*
- Value:S
+ Variable:S
  BinaryOperator:+
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:X
  
 790 FORX=1TOA\PRINTTAB(4*L+S);G$;G$;G$;G$;G$;G$\NEXTX\RETURN
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
  ITEMS
  NumericConstant:4
- Value:L
+ Variable:L
  BinaryOperator:*
- Value:S
+ Variable:S
  BinaryOperator:+
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:X
  
 800 FORX=1TOA\PRINTTAB(S);G$;G$;G$;G$;G$;G$\NEXTX\RETURN
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
  ITEMS
- Value:S
+ Variable:S
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:X
  
 810 FORX=1TOC/2\PRINTTAB(S);\FORY=1TO2\FORZ=1TO(5+L)-X\PRINTG$(1);\NEXTZ
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["Value:C", "NumericConstant:2", "BinaryOperator:/"]
+ end:     ["Variable:C", "NumericConstant:2", "BinaryOperator:/"]
  ITEMS
- Value:S
+ Variable:S
  FunctionTab
  CarriageControl:;
  control: Variable:Y
@@ -779,25 +779,25 @@ Duplicate line number 250
  end:     ["NumericConstant:2"]
  control: Variable:Z
  start:   ["NumericConstant:1"]
- end:     ["NumericConstant:5", "Value:L", "BinaryOperator:+", "Value:X", "BinaryOperator:-"]
+ end:     ["NumericConstant:5", "Variable:L", "BinaryOperator:+", "Variable:X", "BinaryOperator:-"]
  ITEMS
  NumericConstant:1
- Value:G$
+ Variable:G$
  CarriageControl:;
  Variable:Z
 820 IFX>3THEN950\V=X
- Value:X
+ Variable:X
  NumericConstant:3
  BinaryOperator:>
- Reference:V
- Value:X
+ Variable:V
+ Variable:X
  AssignmentOperator:=
 830 PRINTH$(2*V);\NEXTY\PRINT\NEXTX\RETURN
  ITEMS
  NumericConstant:2
- Value:V
+ Variable:V
  BinaryOperator:*
- Value:H$
+ Variable:H$
  CarriageControl:;
  Variable:Y
  ITEMS
@@ -807,20 +807,20 @@ Duplicate line number 250
 840 FORX=1TOC/2\PRINTTAB(S);H$(X);\FORY=1TO10*L-(2+X)\PRINTG$(1);\NEXTY\PRINT
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["Value:C", "NumericConstant:2", "BinaryOperator:/"]
+ end:     ["Variable:C", "NumericConstant:2", "BinaryOperator:/"]
  ITEMS
- Value:S
+ Variable:S
  FunctionTab
  CarriageControl:;
- Value:X
- Value:H$
+ Variable:X
+ Variable:H$
  CarriageControl:;
  control: Variable:Y
  start:   ["NumericConstant:1"]
- end:     ["NumericConstant:10", "Value:L", "BinaryOperator:*", "NumericConstant:2", "Value:X", "BinaryOperator:+", "BinaryOperator:-"]
+ end:     ["NumericConstant:10", "Variable:L", "BinaryOperator:*", "NumericConstant:2", "Variable:X", "BinaryOperator:+", "BinaryOperator:-"]
  ITEMS
  NumericConstant:1
- Value:G$
+ Variable:G$
  CarriageControl:;
  Variable:Y
  ITEMS
@@ -830,161 +830,161 @@ Duplicate line number 250
  
 860 FOR X=4*LTO7*LSTEP14*L/(C*6)\PRINTTAB(X+S);G$;G$;G$;
  control: Variable:X
- start:   ["NumericConstant:4", "Value:L", "BinaryOperator:*"]
- end:     ["NumericConstant:7", "Value:L", "BinaryOperator:*"]
- step:    ["NumericConstant:14", "Value:L", "BinaryOperator:*", "Value:C", "NumericConstant:6", "BinaryOperator:*", "BinaryOperator:/"]
+ start:   ["NumericConstant:4", "Variable:L", "BinaryOperator:*"]
+ end:     ["NumericConstant:7", "Variable:L", "BinaryOperator:*"]
+ step:    ["NumericConstant:14", "Variable:L", "BinaryOperator:*", "Variable:C", "NumericConstant:6", "BinaryOperator:*", "BinaryOperator:/"]
  ITEMS
- Value:X
- Value:S
+ Variable:X
+ Variable:S
  BinaryOperator:+
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
 870 PRINTTAB(7*L-X+S);G$;G$;G$\NEXT X\RETURN
  ITEMS
  NumericConstant:7
- Value:L
+ Variable:L
  BinaryOperator:*
- Value:X
+ Variable:X
  BinaryOperator:-
- Value:S
+ Variable:S
  BinaryOperator:+
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:X
  
 880 FORX=0TO6*LSTEP6*L/C\PRINTTAB(X+S);G$;G$;G$;G$\NEXTX\RETURN
  control: Variable:X
  start:   ["NumericConstant:0"]
- end:     ["NumericConstant:6", "Value:L", "BinaryOperator:*"]
- step:    ["NumericConstant:6", "Value:L", "BinaryOperator:*", "Value:C", "BinaryOperator:/"]
+ end:     ["NumericConstant:6", "Variable:L", "BinaryOperator:*"]
+ step:    ["NumericConstant:6", "Variable:L", "BinaryOperator:*", "Variable:C", "BinaryOperator:/"]
  ITEMS
- Value:X
- Value:S
+ Variable:X
+ Variable:S
  BinaryOperator:+
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:X
  
 890 FORX=6*LTO0STEP-6*L/C\PRINTTAB(X+S);G$;G$;G$;G$\NEXTX\RETURN
  control: Variable:X
- start:   ["NumericConstant:6", "Value:L", "BinaryOperator:*"]
+ start:   ["NumericConstant:6", "Variable:L", "BinaryOperator:*"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:6", "UnaryOperator:-", "Value:L", "BinaryOperator:*", "Value:C", "BinaryOperator:/"]
+ step:    ["NumericConstant:6", "UnaryOperator:-", "Variable:L", "BinaryOperator:*", "Variable:C", "BinaryOperator:/"]
  ITEMS
- Value:X
- Value:S
+ Variable:X
+ Variable:S
  BinaryOperator:+
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:X
  
 900 FORX=0TO7*LSTEP(14*L)/(C*6)\PRINTTAB(X+S);G$;G$;G$;
  control: Variable:X
  start:   ["NumericConstant:0"]
- end:     ["NumericConstant:7", "Value:L", "BinaryOperator:*"]
- step:    ["NumericConstant:14", "Value:L", "BinaryOperator:*", "Value:C", "NumericConstant:6", "BinaryOperator:*", "BinaryOperator:/"]
+ end:     ["NumericConstant:7", "Variable:L", "BinaryOperator:*"]
+ step:    ["NumericConstant:14", "Variable:L", "BinaryOperator:*", "Variable:C", "NumericConstant:6", "BinaryOperator:*", "BinaryOperator:/"]
  ITEMS
- Value:X
- Value:S
+ Variable:X
+ Variable:S
  BinaryOperator:+
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
 910 PRINTTAB(7*L-X+S);G$;G$;G$\NEXT X\RETURN
  ITEMS
  NumericConstant:7
- Value:L
+ Variable:L
  BinaryOperator:*
- Value:X
+ Variable:X
  BinaryOperator:-
- Value:S
+ Variable:S
  BinaryOperator:+
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:X
  
 920 FORX=0TO7*LSTEP(7*L)/(C*3)\PRINTTAB(S);G$;G$;TAB(X+S);G$;G$;G$;
  control: Variable:X
  start:   ["NumericConstant:0"]
- end:     ["NumericConstant:7", "Value:L", "BinaryOperator:*"]
- step:    ["NumericConstant:7", "Value:L", "BinaryOperator:*", "Value:C", "NumericConstant:3", "BinaryOperator:*", "BinaryOperator:/"]
+ end:     ["NumericConstant:7", "Variable:L", "BinaryOperator:*"]
+ step:    ["NumericConstant:7", "Variable:L", "BinaryOperator:*", "Variable:C", "NumericConstant:3", "BinaryOperator:*", "BinaryOperator:/"]
  ITEMS
- Value:S
+ Variable:S
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:X
- Value:S
+ Variable:X
+ Variable:S
  BinaryOperator:+
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
 930 PRINTTAB(8*L+S);G$;G$\NEXTX\RETURN
  ITEMS
  NumericConstant:8
- Value:L
+ Variable:L
  BinaryOperator:*
- Value:S
+ Variable:S
  BinaryOperator:+
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:X
  
 940 FORX=1TOA*3\PRINT\NEXTX\RETURN
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["Value:A", "NumericConstant:3", "BinaryOperator:*"]
+ end:     ["Variable:A", "NumericConstant:3", "BinaryOperator:*"]
  ITEMS
  CarriageControl:NL
  Variable:X
@@ -992,50 +992,50 @@ Duplicate line number 250
 950 FORW=1TOX-3\PRINT" ";\NEXTW\V=3\GOTO830
  control: Variable:W
  start:   ["NumericConstant:1"]
- end:     ["Value:X", "NumericConstant:3", "BinaryOperator:-"]
+ end:     ["Variable:X", "NumericConstant:3", "BinaryOperator:-"]
  ITEMS
  TextConstant:" "
  CarriageControl:;
  Variable:W
- Reference:V
+ Variable:V
  NumericConstant:3
  AssignmentOperator:=
  LineNumber:830
 960 FORX=4*LTO7*LSTEPL*4/C\PRINTTAB(X+S);G$;G$;G$\NEXTX\RETURN
  control: Variable:X
- start:   ["NumericConstant:4", "Value:L", "BinaryOperator:*"]
- end:     ["NumericConstant:7", "Value:L", "BinaryOperator:*"]
- step:    ["Value:L", "NumericConstant:4", "BinaryOperator:*", "Value:C", "BinaryOperator:/"]
+ start:   ["NumericConstant:4", "Variable:L", "BinaryOperator:*"]
+ end:     ["NumericConstant:7", "Variable:L", "BinaryOperator:*"]
+ step:    ["Variable:L", "NumericConstant:4", "BinaryOperator:*", "Variable:C", "BinaryOperator:/"]
  ITEMS
- Value:X
- Value:S
+ Variable:X
+ Variable:S
  BinaryOperator:+
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:X
  
 970 FOR X=7*LTO4*LSTEP-4*L/C\PRINTTAB(X+S);G$;G$;G$\NEXTX\RETURN
  control: Variable:X
- start:   ["NumericConstant:7", "Value:L", "BinaryOperator:*"]
- end:     ["NumericConstant:4", "Value:L", "BinaryOperator:*"]
- step:    ["NumericConstant:4", "UnaryOperator:-", "Value:L", "BinaryOperator:*", "Value:C", "BinaryOperator:/"]
+ start:   ["NumericConstant:7", "Variable:L", "BinaryOperator:*"]
+ end:     ["NumericConstant:4", "Variable:L", "BinaryOperator:*"]
+ step:    ["NumericConstant:4", "UnaryOperator:-", "Variable:L", "BinaryOperator:*", "Variable:C", "BinaryOperator:/"]
  ITEMS
- Value:X
- Value:S
+ Variable:X
+ Variable:S
  BinaryOperator:+
  FunctionTab
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:;
- Value:G$
+ Variable:G$
  CarriageControl:NL
  Variable:X
  
@@ -1050,7 +1050,7 @@ Duplicate line number 250
 990 FORX=1TOC*3\PRINT\NEXTX
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["Value:C", "NumericConstant:3", "BinaryOperator:*"]
+ end:     ["Variable:C", "NumericConstant:3", "BinaryOperator:*"]
  ITEMS
  CarriageControl:NL
  Variable:X

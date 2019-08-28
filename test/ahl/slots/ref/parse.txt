@@ -27,8 +27,8 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 180 LET D(B1)=INT(RND(0)*6)+1
- Value:B1
- Reference:D
+ Variable:B1
+ Variable:D
  NumericConstant:0
  FunctionRnd
  NumericConstant:6
@@ -44,40 +44,40 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 210 IF D(G1)=1 THEN 280
- Value:G1
- Value:D
+ Variable:G1
+ Variable:D
  NumericConstant:1
  BinaryOperator:=
 220 IF D(G1)=2 THEN 300
- Value:G1
- Value:D
+ Variable:G1
+ Variable:D
  NumericConstant:2
  BinaryOperator:=
 230 IF D(G1)=3 THEN 320
- Value:G1
- Value:D
+ Variable:G1
+ Variable:D
  NumericConstant:3
  BinaryOperator:=
 240 IF D(G1)=4 THEN 340
- Value:G1
- Value:D
+ Variable:G1
+ Variable:D
  NumericConstant:4
  BinaryOperator:=
 250 IF D(G1)=5 THEN 360
- Value:G1
- Value:D
+ Variable:G1
+ Variable:D
  NumericConstant:5
  BinaryOperator:=
 260 IF D(G1)=6 THEN 380
- Value:G1
- Value:D
+ Variable:G1
+ Variable:D
  NumericConstant:6
  BinaryOperator:=
 270 GOTO 580 
  LineNumber:580
 280 PRINT TAB(G1*7);" BELL";
  ITEMS
- Value:G1
+ Variable:G1
  NumericConstant:7
  BinaryOperator:*
  FunctionTab
@@ -88,7 +88,7 @@
  LineNumber:390
 300 PRINT TAB(G1*7);" BAR";
  ITEMS
- Value:G1
+ Variable:G1
  NumericConstant:7
  BinaryOperator:*
  FunctionTab
@@ -99,7 +99,7 @@
  LineNumber:390
 320 PRINT TAB(G1*7);"CHERRY";
  ITEMS
- Value:G1
+ Variable:G1
  NumericConstant:7
  BinaryOperator:*
  FunctionTab
@@ -110,7 +110,7 @@
  LineNumber:390
 340 PRINT TAB(G1*7);"APPLE";
  ITEMS
- Value:G1
+ Variable:G1
  NumericConstant:7
  BinaryOperator:*
  FunctionTab
@@ -121,7 +121,7 @@
  LineNumber:390
 360 PRINT TAB(G1*7);"LEMON";
  ITEMS
- Value:G1
+ Variable:G1
  NumericConstant:7
  BinaryOperator:*
  FunctionTab
@@ -132,7 +132,7 @@
  LineNumber:390
 380 PRINT TAB(G1*7);" *";
  ITEMS
- Value:G1
+ Variable:G1
  NumericConstant:7
  BinaryOperator:*
  FunctionTab
@@ -148,83 +148,83 @@
  CarriageControl:;
 410 IF D(1)<>D(2) THEN 440
  NumericConstant:1
- Value:D
+ Variable:D
  NumericConstant:2
- Value:D
+ Variable:D
  BinaryOperator:<>
 420 IF D(2)=D(3) THEN 530
  NumericConstant:2
- Value:D
+ Variable:D
  NumericConstant:3
- Value:D
+ Variable:D
  BinaryOperator:=
 430 IF D(1)=D(2) THEN 460
  NumericConstant:1
- Value:D
+ Variable:D
  NumericConstant:2
- Value:D
+ Variable:D
  BinaryOperator:=
 440 IF D(1)<>D(3) THEN 490
  NumericConstant:1
- Value:D
+ Variable:D
  NumericConstant:3
- Value:D
+ Variable:D
  BinaryOperator:<>
 450 GO TO 510
  LineNumber:510
 460 IF D(1)/2=INT(D(1)/2) THEN 510
  NumericConstant:1
- Value:D
+ Variable:D
  NumericConstant:2
  BinaryOperator:/
  NumericConstant:1
- Value:D
+ Variable:D
  NumericConstant:2
  BinaryOperator:/
  FunctionInt
  BinaryOperator:=
 470 LET B=B + 5\PRINT "KENO... YOU WIN $5... TOTAL=$";B;
- Reference:B
- Value:B
+ Variable:B
+ Variable:B
  NumericConstant:5
  BinaryOperator:+
  AssignmentOperator:=
  ITEMS
  TextConstant:"KENO... YOU WIN $5... TOTAL=$"
  CarriageControl:;
- Value:B
+ Variable:B
  CarriageControl:;
 480 GO TO 550
  LineNumber:550
 490 LET B=B-1\PRINT "YOU HAVE LOST $1  TOTAL=$";B;
- Reference:B
- Value:B
+ Variable:B
+ Variable:B
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
  ITEMS
  TextConstant:"YOU HAVE LOST $1  TOTAL=$"
  CarriageControl:;
- Value:B
+ Variable:B
  CarriageControl:;
 508 GOTO 550
  LineNumber:550
 510 LET B=B+1\PRINT "YOU HAVE WON $1  TOTAL=$";B;
- Reference:B
- Value:B
+ Variable:B
+ Variable:B
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
  ITEMS
  TextConstant:"YOU HAVE WON $1  TOTAL=$"
  CarriageControl:;
- Value:B
+ Variable:B
  CarriageControl:;
 520 GOTO 550
  LineNumber:550
 530 LET B = B + 20\PRINT CHR$(7); "JACKPOT... $20... TOTAL=$";B;CHR$(7);
- Reference:B
- Value:B
+ Variable:B
+ Variable:B
  NumericConstant:20
  BinaryOperator:+
  AssignmentOperator:=
@@ -234,7 +234,7 @@
  CarriageControl:;
  TextConstant:"JACKPOT... $20... TOTAL=$"
  CarriageControl:;
- Value:B
+ Variable:B
  CarriageControl:;
  NumericConstant:7
  FunctionChr
@@ -246,13 +246,13 @@
  TextConstant:"AGAIN?"
  CarriageControl:;
 560 INPUT $A\PRINT\IF A=#Y THEN 160\IF A<>#N THEN 560
- Reference:A
+ Variable:A
  ITEMS
  CarriageControl:NL
- Value:A
+ Variable:A
  NumericConstant:#Y
  BinaryOperator:=
- Value:A
+ Variable:A
  NumericConstant:#N
  BinaryOperator:<>
 570 PRINT" IT'S BEEN NICE OPERATING FOR YOU COME BACK SOON!"

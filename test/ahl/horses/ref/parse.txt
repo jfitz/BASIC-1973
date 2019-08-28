@@ -38,31 +38,31 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
 8 B(I)=I \ GOSUB 210
- Value:I
- Reference:B
- Value:I
+ Variable:I
+ Variable:B
+ Variable:I
  AssignmentOperator:=
  LineNumber:210
 9 READ O(I) \ PRINT O(I)":1"
- Value:I
- Reference:O
+ Variable:I
+ Variable:O
  ITEMS
- Value:I
- Value:O
+ Variable:I
+ Variable:O
  CarriageControl:
  TextConstant:":1"
  CarriageControl:NL
 10 M(I)=(100+50*O(I)) / (O(I)+1)
- Value:I
- Reference:M
+ Variable:I
+ Variable:M
  NumericConstant:100
  NumericConstant:50
- Value:I
- Value:O
+ Variable:I
+ Variable:O
  BinaryOperator:*
  BinaryOperator:+
- Value:I
- Value:O
+ Variable:I
+ Variable:O
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:/
@@ -81,15 +81,15 @@
  TextConstant:"AND 0 FOR NO MORE BETTlNG OR 1 OR MORE BETTING."
  CarriageControl:NL
 15 LET S = 0
- Reference:S
+ Variable:S
  NumericConstant:0
  AssignmentOperator:=
 16 PRINT
  ITEMS
  CarriageControl:NL
 17 LET S = S + 1
- Reference:S
- Value:S
+ Variable:S
+ Variable:S
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -97,50 +97,50 @@
  ITEMS
  TextConstant:"BET NO. "
  CarriageControl:;
- Value:S
+ Variable:S
  CarriageControl:;
 19 INPUT T(S),U(S),V(S),M
- Value:S
- Reference:T
- Value:S
- Reference:U
- Value:S
- Reference:V
- Reference:M
+ Variable:S
+ Variable:T
+ Variable:S
+ Variable:U
+ Variable:S
+ Variable:V
+ Variable:M
 20 LET T(S)=ABS(INT(T(S)))
- Value:S
- Reference:T
- Value:S
- Value:T
+ Variable:S
+ Variable:T
+ Variable:S
+ Variable:T
  FunctionInt
  FunctionAbs
  AssignmentOperator:=
 21 IF T(S)>8 THEN 26
- Value:S
- Value:T
+ Variable:S
+ Variable:T
  NumericConstant:8
  BinaryOperator:>
 22 IF T(S)<1 THEN 26
- Value:S
- Value:T
+ Variable:S
+ Variable:T
  NumericConstant:1
  BinaryOperator:<
 23 LET U(S)=ABS(INT(U(S)))
- Value:S
- Reference:U
- Value:S
- Value:U
+ Variable:S
+ Variable:U
+ Variable:S
+ Variable:U
  FunctionInt
  FunctionAbs
  AssignmentOperator:=
 24 IF U(S)>3 THEN 26
- Value:S
- Value:U
+ Variable:S
+ Variable:U
  NumericConstant:3
  BinaryOperator:>
 25 IF U(S)>0 THEN 28
- Value:S
- Value:U
+ Variable:S
+ Variable:U
  NumericConstant:0
  BinaryOperator:>
 26 PRINT"HORSE NO. OR WIN-PLACE-SHOW IN ERROR" \ GO TO 18
@@ -149,13 +149,13 @@
  CarriageControl:NL
  LineNumber:18
 28 IF V(S)<2 THEN 30
- Value:S
- Value:V
+ Variable:S
+ Variable:V
  NumericConstant:2
  BinaryOperator:<
 29 IF V(S)<300 THEN 33
- Value:S
- Value:V
+ Variable:S
+ Variable:V
  NumericConstant:300
  BinaryOperator:<
 30 PRINT"BET MUST BE >$2 AND <$300. BET AGAIN";
@@ -163,11 +163,11 @@
  TextConstant:"BET MUST BE >$2 AND <$300. BET AGAIN"
  CarriageControl:;
 31 INPUT V(S) \ GO TO 28
- Value:S
- Reference:V
+ Variable:S
+ Variable:V
  LineNumber:28
 33 IF M = 1 THEN 17
- Value:M
+ Variable:M
  NumericConstant:1
  BinaryOperator:=
 35 PRINT \ PRINT" THEY'RE OFF AND RUNNING -" \ PRINT
@@ -182,8 +182,8 @@
  control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
- Value:I
- Reference:H
+ Variable:I
+ Variable:H
  NumericConstant:0
  AssignmentOperator:=
  Variable:I
@@ -198,14 +198,14 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
 46 H(J)=H(J)+RND(0)*M(J)
- Value:J
- Reference:H
- Value:J
- Value:H
+ Variable:J
+ Variable:H
+ Variable:J
+ Variable:H
  NumericConstant:0
  FunctionRnd
- Value:J
- Value:M
+ Variable:J
+ Variable:M
  BinaryOperator:*
  BinaryOperator:+
  AssignmentOperator:=
@@ -219,16 +219,16 @@
 54 FOR J=2 TO I
  control: Variable:J
  start:   ["NumericConstant:2"]
- end:     ["Value:I"]
+ end:     ["Variable:I"]
 56 ON SGN(H(B(J-1))-H(B(J)))+2 GO TO 60,58,62
- Value:J
+ Variable:J
  NumericConstant:1
  BinaryOperator:-
- Value:B
- Value:H
- Value:J
- Value:B
- Value:H
+ Variable:B
+ Variable:H
+ Variable:J
+ Variable:B
+ Variable:H
  BinaryOperator:-
  FunctionSgn
  NumericConstant:2
@@ -242,22 +242,22 @@
  NumericConstant:.5
  BinaryOperator:>
 60 Z=B(J-1) \ B(J-1)=B(J) \ B(J)=Z
- Reference:Z
- Value:J
+ Variable:Z
+ Variable:J
  NumericConstant:1
  BinaryOperator:-
- Value:B
+ Variable:B
  AssignmentOperator:=
- Value:J
+ Variable:J
  NumericConstant:1
  BinaryOperator:-
- Reference:B
- Value:J
- Value:B
+ Variable:B
+ Variable:J
+ Variable:B
  AssignmentOperator:=
- Value:J
- Reference:B
- Value:Z
+ Variable:J
+ Variable:B
+ Variable:Z
  AssignmentOperator:=
 62 NEXT J
  Variable:J
@@ -270,7 +270,7 @@
  TextConstant:"   "
  CarriageControl:;
 70 ON K GOTO 72,74,76,78,80,82,84,86
- Value:K
+ Variable:K
  LineNumber:72
  LineNumber:74
  LineNumber:76
@@ -337,7 +337,7 @@
  TextConstant:" STRAIGHT PLACE SHOW"
  CarriageControl:NL
 100 K=0
- Reference:K
+ Variable:K
  NumericConstant:0
  AssignmentOperator:=
 102 FOR I=1 TO 3
@@ -351,27 +351,27 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 108 L=2*I+J-3 \ P(L)=1.5+.1*INT(.1*INT((4*O(B(I))/(J*(J+1))+RND(0))*100+5))
- Reference:L
+ Variable:L
  NumericConstant:2
- Value:I
+ Variable:I
  BinaryOperator:*
- Value:J
+ Variable:J
  BinaryOperator:+
  NumericConstant:3
  BinaryOperator:-
  AssignmentOperator:=
- Value:L
- Reference:P
+ Variable:L
+ Variable:P
  NumericConstant:1.5
  NumericConstant:.1
  NumericConstant:.1
  NumericConstant:4
- Value:I
- Value:B
- Value:O
+ Variable:I
+ Variable:B
+ Variable:O
  BinaryOperator:*
- Value:J
- Value:J
+ Variable:J
+ Variable:J
  NumericConstant:1
  BinaryOperator:+
  BinaryOperator:*
@@ -393,12 +393,12 @@
  ITEMS
  NumericConstant:3
  NumericConstant:10
- Value:J
+ Variable:J
  BinaryOperator:*
  BinaryOperator:+
  FunctionTab
  CarriageControl:;
- Reference:B
+ Variable:B
  NumericConstant:16
  UnaryOperator:-
  AssignmentOperator:=
@@ -408,20 +408,20 @@
  end:     ["NumericConstant:1", "UnaryOperator:-"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
 114 P=INT(P(L)/(10^M))
- Reference:P
- Value:L
- Value:P
+ Variable:P
+ Variable:L
+ Variable:P
  NumericConstant:10
- Value:M
+ Variable:M
  BinaryOperator:^
  BinaryOperator:/
  FunctionInt
  AssignmentOperator:=
 116 P=P-10*INT(P/10)
- Reference:P
- Value:P
+ Variable:P
+ Variable:P
  NumericConstant:10
- Value:P
+ Variable:P
  NumericConstant:10
  BinaryOperator:/
  FunctionInt
@@ -429,23 +429,23 @@
  BinaryOperator:-
  AssignmentOperator:=
 117 IF P=0 THEN 118 \ B=0
- Value:P
+ Variable:P
  NumericConstant:0
  BinaryOperator:=
- Reference:B
+ Variable:B
  NumericConstant:0
  AssignmentOperator:=
 118 PRINT CHR$(48+P+B);
  ITEMS
  NumericConstant:48
- Value:P
+ Variable:P
  BinaryOperator:+
- Value:B
+ Variable:B
  BinaryOperator:+
  FunctionChr
  CarriageControl:;
 138 IF M<>0 THEN 139 \ PRINT ".";
- Value:M
+ Variable:M
  NumericConstant:0
  BinaryOperator:<>
  ITEMS
@@ -467,58 +467,58 @@
 150 PRINT \ Q=0
  ITEMS
  CarriageControl:NL
- Reference:Q
+ Variable:Q
  NumericConstant:0
  AssignmentOperator:=
 152 FOR J=1 TO S
  control: Variable:J
  start:   ["NumericConstant:1"]
- end:     ["Value:S"]
+ end:     ["Variable:S"]
 154 PRINT "BET NO. "; J
  ITEMS
  TextConstant:"BET NO. "
  CarriageControl:;
- Value:J
+ Variable:J
  CarriageControl:NL
 156 P=0
- Reference:P
+ Variable:P
  NumericConstant:0
  AssignmentOperator:=
 158 FOR I=1 TO 6 \ H(B(I))=I \ NEXT I
  control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:6"]
- Value:I
- Value:B
- Reference:H
- Value:I
+ Variable:I
+ Variable:B
+ Variable:H
+ Variable:I
  AssignmentOperator:=
  Variable:I
 160 IF U(J)<H(T(J)) THEN 166
- Value:J
- Value:U
- Value:J
- Value:T
- Value:H
+ Variable:J
+ Variable:U
+ Variable:J
+ Variable:T
+ Variable:H
  BinaryOperator:<
 162 P= .01*INT((V(J)*50)*P(U(J)*H(T(J))*2-3))
- Reference:P
+ Variable:P
  NumericConstant:.01
- Value:J
- Value:V
+ Variable:J
+ Variable:V
  NumericConstant:50
  BinaryOperator:*
- Value:J
- Value:U
- Value:J
- Value:T
- Value:H
+ Variable:J
+ Variable:U
+ Variable:J
+ Variable:T
+ Variable:H
  BinaryOperator:*
  NumericConstant:2
  BinaryOperator:*
  NumericConstant:3
  BinaryOperator:-
- Value:P
+ Variable:P
  BinaryOperator:*
  FunctionInt
  BinaryOperator:*
@@ -527,15 +527,15 @@
  ITEMS
  TextConstant:"YOU COLLECT"
  CarriageControl:
- Value:P
+ Variable:P
  CarriageControl:
  TextConstant:"ON "
  CarriageControl:;
  LineNumber:172
 166 IF H(T(J))>3 THEN 168 \ PRINT "NEXT TIME, BUY A SHOW"; \ GO TO 170
- Value:J
- Value:T
- Value:H
+ Variable:J
+ Variable:T
+ Variable:H
  NumericConstant:3
  BinaryOperator:>
  ITEMS
@@ -551,44 +551,44 @@
  TextConstant:" TICKET ON "
  CarriageControl:;
 172 I=0 \ B(0)=T(J) \ GOSUB 215 \ PRINT
- Reference:I
+ Variable:I
  NumericConstant:0
  AssignmentOperator:=
  NumericConstant:0
- Reference:B
- Value:J
- Value:T
+ Variable:B
+ Variable:J
+ Variable:T
  AssignmentOperator:=
  LineNumber:215
  ITEMS
  CarriageControl:NL
 174 Q=Q+P-V(J)
- Reference:Q
- Value:Q
- Value:P
+ Variable:Q
+ Variable:Q
+ Variable:P
  BinaryOperator:+
- Value:J
- Value:V
+ Variable:J
+ Variable:V
  BinaryOperator:-
  AssignmentOperator:=
 176 NEXT J
  Variable:J
 178 IF Q<0 THEN 182
- Value:Q
+ Variable:Q
  NumericConstant:0
  BinaryOperator:<
 180 PRINT "YOUR TOTAL WINNINGS AMOUNT TO $" Q \ STOP
  ITEMS
  TextConstant:"YOUR TOTAL WINNINGS AMOUNT TO $"
  CarriageControl:
- Value:Q
+ Variable:Q
  CarriageControl:NL
  
 182 PRINT "YOUR TOTAL LOSSES AMOUNT TO $" ABS(Q) \ STOP
  ITEMS
  TextConstant:"YOUR TOTAL LOSSES AMOUNT TO $"
  CarriageControl:
- Value:Q
+ Variable:Q
  FunctionAbs
  CarriageControl:NL
  
@@ -602,11 +602,11 @@
  end:     ["NumericConstant:8"]
 210 PRINT I;
  ITEMS
- Value:I
+ Variable:I
  CarriageControl:;
 215 ON B(I) GOTO 220,222,224,226,228,230,232,234
- Value:I
- Value:B
+ Variable:I
+ Variable:B
  LineNumber:220
  LineNumber:222
  LineNumber:224
@@ -655,11 +655,11 @@
  TextConstant:"COALTOWN   "
  CarriageControl:;
 240 IF K=0 THEN 260
- Value:K
+ Variable:K
  NumericConstant:0
  BinaryOperator:=
 245 IF I>1 THEN 250 \ PRINT \ GO TO 255
- Value:I
+ Variable:I
  NumericConstant:1
  BinaryOperator:>
  ITEMS
@@ -669,11 +669,11 @@
  ITEMS
  NumericConstant:.1
  NumericConstant:1
- Value:B
- Value:H
- Value:I
- Value:B
- Value:H
+ Variable:B
+ Variable:H
+ Variable:I
+ Variable:B
+ Variable:H
  BinaryOperator:-
  FunctionInt
  BinaryOperator:*

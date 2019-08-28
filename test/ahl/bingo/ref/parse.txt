@@ -5,7 +5,7 @@
  TextConstant:"Y0U ARE NOW GOING TO PLAY A COMPUTERIZED VERSION OF BINGO--"
  CarriageControl:NL
 180 LET F=1
- Reference:F
+ Variable:F
  NumericConstant:1
  AssignmentOperator:=
 190 DIM B(10,10)
@@ -17,7 +17,7 @@
  Declaration:L
 210 MAT READ A$(5)
  NumericConstant:5
- Reference:A$
+ Variable:A$
 220 DATA "B" ,"I" ,"N" ,"G" ,"O"
  TextConstant:"B"
  TextConstant:"I"
@@ -31,8 +31,8 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:75"]
 250 LET L(K1)=0
- Value:K1
- Reference:L
+ Variable:K1
+ Variable:L
  NumericConstant:0
  AssignmentOperator:=
 260 NEXT K1
@@ -44,7 +44,7 @@
  TextConstant:" HERE'S "
  CarriageControl:;
 280 IF F>1 THEN 310
- Value:F
+ Variable:F
  NumericConstant:1
  BinaryOperator:>
 290 PRINT"YOUR CARD"
@@ -58,57 +58,57 @@
  TextConstant:"MY CARD"
  CarriageControl:NL
 320 LET M=16
- Reference:M
+ Variable:M
  NumericConstant:16
  AssignmentOperator:=
 330 LET G=F+4
- Reference:G
- Value:F
+ Variable:G
+ Variable:F
  NumericConstant:4
  BinaryOperator:+
  AssignmentOperator:=
 340 FOR Y=F TO G
  control: Variable:Y
- start:   ["Value:F"]
- end:     ["Value:G"]
+ start:   ["Variable:F"]
+ end:     ["Variable:G"]
 350 FOR X=F TO G
  control: Variable:X
- start:   ["Value:F"]
- end:     ["Value:G"]
+ start:   ["Variable:F"]
+ end:     ["Variable:G"]
 360 LET R=INT(M*RND)
- Reference:R
- Value:M
+ Variable:R
+ Variable:M
  FunctionRnd
  BinaryOperator:*
  FunctionInt
  AssignmentOperator:=
 370 IF R<M-15 THEN 360
- Value:R
- Value:M
+ Variable:R
+ Variable:M
  NumericConstant:15
  BinaryOperator:-
  BinaryOperator:<
 380 IF L(R)<>0 THEN 360
- Value:R
- Value:L
+ Variable:R
+ Variable:L
  NumericConstant:0
  BinaryOperator:<>
 390 LET B(X,Y)=R
- Value:X
- Value:Y
- Reference:B
- Value:R
+ Variable:X
+ Variable:Y
+ Variable:B
+ Variable:R
  AssignmentOperator:=
 400 LET L(R)=1
- Value:R
- Reference:L
+ Variable:R
+ Variable:L
  NumericConstant:1
  AssignmentOperator:=
 410 NEXT X
  Variable:X
 420 LET M=M+15
- Reference:M
- Value:M
+ Variable:M
+ Variable:M
  NumericConstant:15
  BinaryOperator:+
  AssignmentOperator:=
@@ -133,8 +133,8 @@
  CarriageControl:NL
 460 FOR X=F TO G
  control: Variable:X
- start:   ["Value:F"]
- end:     ["Value:G"]
+ start:   ["Variable:F"]
+ end:     ["Variable:G"]
 470 PRINT
  ITEMS
  CarriageControl:NL
@@ -146,25 +146,25 @@
  CarriageControl:NL
 500 FOR Y=F TO G
  control: Variable:Y
- start:   ["Value:F"]
- end:     ["Value:G"]
+ start:   ["Variable:F"]
+ end:     ["Variable:G"]
 510 IF B(X,Y)=B(F+2,F+2) THEN 540
- Value:X
- Value:Y
- Value:B
- Value:F
+ Variable:X
+ Variable:Y
+ Variable:B
+ Variable:F
  NumericConstant:2
  BinaryOperator:+
- Value:F
+ Variable:F
  NumericConstant:2
  BinaryOperator:+
- Value:B
+ Variable:B
  BinaryOperator:=
 520 PRINT B(X,Y),
  ITEMS
- Value:X
- Value:Y
- Value:B
+ Variable:X
+ Variable:Y
+ Variable:B
  CarriageControl:,
 530 GOTO 550
  LineNumber:550
@@ -203,11 +203,11 @@
 640 NEXT K9
  Variable:K9
 650 IF F=6 THEN 680
- Value:F
+ Variable:F
  NumericConstant:6
  BinaryOperator:=
 660 LET F=6
- Reference:F
+ Variable:F
  NumericConstant:6
  AssignmentOperator:=
 670 GOTO 240
@@ -243,9 +243,9 @@
  TextConstant:"ARE YOU READY"
  CarriageControl:;
 760 INPUT R$
- Reference:R$
+ Variable:R$
 770 IF R$<>"NO" THEN 820
- Value:R$
+ Variable:R$
  TextConstant:"NO"
  BinaryOperator:<>
 780 PRINT 
@@ -264,8 +264,8 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:75"]
 830 LET L(K1)=0
- Value:K1
- Reference:L
+ Variable:K1
+ Variable:L
  NumericConstant:0
  AssignmentOperator:=
 840 NEXT K1
@@ -276,19 +276,19 @@
 860 LET B(3,3)=0
  NumericConstant:3
  NumericConstant:3
- Reference:B
+ Variable:B
  NumericConstant:0
  AssignmentOperator:=
 870 LET B(8,8)=0
  NumericConstant:8
  NumericConstant:8
- Reference:B
+ Variable:B
  NumericConstant:0
  AssignmentOperator:=
 875 REM THIS SEQUENCE GENERATES THE BINGO NUMBERS (LINES 880-1100)
  Remark:THIS SEQUENCE GENERATES THE BINGO NUMBERS (LINES 880-1100)
 880 LET U=INT(75*RND)+1
- Reference:U
+ Variable:U
  NumericConstant:75
  FunctionRnd
  BinaryOperator:*
@@ -297,13 +297,13 @@
  BinaryOperator:+
  AssignmentOperator:=
 910 IF L(U)<>0 THEN 880
- Value:U
- Value:L
+ Variable:U
+ Variable:L
  NumericConstant:0
  BinaryOperator:<>
 920 LET L(U)=1
- Value:U
- Reference:L
+ Variable:U
+ Variable:L
  NumericConstant:1
  AssignmentOperator:=
 930 PRINT
@@ -325,7 +325,7 @@
  CarriageControl:,
 980 PRINT A$(INT((U-1)/15)+1);U
  ITEMS
- Value:U
+ Variable:U
  NumericConstant:1
  BinaryOperator:-
  NumericConstant:15
@@ -333,9 +333,9 @@
  FunctionInt
  NumericConstant:1
  BinaryOperator:+
- Value:A$
+ Variable:A$
  CarriageControl:;
- Value:U
+ Variable:U
  CarriageControl:NL
 1105 REM THIS IS THE "NUMBER ON CARD?" SEQUENCE (LINES 1110-1260)
  Remark:THIS IS THE "NUMBER ON CARD?" SEQUENCE (LINES 1110-1260)
@@ -348,47 +348,47 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 1130 IF B(X,Y)=U THEN 1250
- Value:X
- Value:Y
- Value:B
- Value:U
+ Variable:X
+ Variable:Y
+ Variable:B
+ Variable:U
  BinaryOperator:=
 1140 NEXT X
  Variable:X
 1150 NEXT Y
  Variable:Y
 1160 LET F=1
- Reference:F
+ Variable:F
  NumericConstant:1
  AssignmentOperator:=
 1170 GOSUB 1270
  LineNumber:1270
 1180 LET F=6
- Reference:F
+ Variable:F
  NumericConstant:6
  AssignmentOperator:=
 1190 GOSUB 1270
  LineNumber:1270
 1200 IF V=0 THEN 1230
- Value:V
+ Variable:V
  NumericConstant:0
  BinaryOperator:=
 1210 IF W=1 THEN 1980
- Value:W
+ Variable:W
  NumericConstant:1
  BinaryOperator:=
 1220 GOTO 2050
  LineNumber:2050
 1230 IF W=0 THEN 880 
- Value:W
+ Variable:W
  NumericConstant:0
  BinaryOperator:=
 1240 GOTO 2120
  LineNumber:2120
 1250 LET B(X,Y)=0
- Value:X
- Value:Y
- Reference:B
+ Variable:X
+ Variable:Y
+ Variable:B
  NumericConstant:0
  AssignmentOperator:=
 1260 GOTO 1140
@@ -399,33 +399,33 @@
 1267 REM THIS IS THE VERTICAL CHECK FOR BINGO*** (LINES 1270-1430)
  Remark:THIS IS THE VERTICAL CHECK FOR BINGO*** (LINES 1270-1430)
 1270 LET G=F+4
- Reference:G
- Value:F
+ Variable:G
+ Variable:F
  NumericConstant:4
  BinaryOperator:+
  AssignmentOperator:=
 1280 FOR Y=F TO G
  control: Variable:Y
- start:   ["Value:F"]
- end:     ["Value:G"]
+ start:   ["Variable:F"]
+ end:     ["Variable:G"]
 1290 FOR X=F TO G
  control: Variable:X
- start:   ["Value:F"]
- end:     ["Value:G"]
+ start:   ["Variable:F"]
+ end:     ["Variable:G"]
 1300 IF B(X,Y)<>0 THEN 1430
- Value:X
- Value:Y
- Value:B
+ Variable:X
+ Variable:Y
+ Variable:B
  NumericConstant:0
  BinaryOperator:<>
 1310 IF X<F+4 THEN 1420
- Value:X
- Value:F
+ Variable:X
+ Variable:F
  NumericConstant:4
  BinaryOperator:+
  BinaryOperator:<
 1320 IF F=6 THEN 1370
- Value:F
+ Variable:F
  NumericConstant:6
  BinaryOperator:=
 1330 PRINT
@@ -436,7 +436,7 @@
  TextConstant:"YOU'VE GOT A BINGO***"
  CarriageControl:NL
 1350 LET W=1
- Reference:W
+ Variable:W
  NumericConstant:1
  AssignmentOperator:=
 1360 RETURN
@@ -449,7 +449,7 @@
  TextConstant:"I'VE GOT A BINGO*****"
  CarriageControl:NL
 1390 LET V=1
- Reference:V
+ Variable:V
  NumericConstant:1
  AssignmentOperator:=
 1410 GO TO 1450 
@@ -461,33 +461,33 @@
 1440 REM THIS IS THE HORIZONTAL CHECK FOR BINGO*** (LINES 1450-1610)
  Remark:THIS IS THE HORIZONTAL CHECK FOR BINGO*** (LINES 1450-1610)
 1450 LET G=F+4
- Reference:G
- Value:F
+ Variable:G
+ Variable:F
  NumericConstant:4
  BinaryOperator:+
  AssignmentOperator:=
 1460 FOR X=F TO G
  control: Variable:X
- start:   ["Value:F"]
- end:     ["Value:G"]
+ start:   ["Variable:F"]
+ end:     ["Variable:G"]
 1470 FOR Y=F TO G
  control: Variable:Y
- start:   ["Value:F"]
- end:     ["Value:G"]
+ start:   ["Variable:F"]
+ end:     ["Variable:G"]
 1480 IF B(X,Y)<>0 THEN 1610 
- Value:X
- Value:Y
- Value:B
+ Variable:X
+ Variable:Y
+ Variable:B
  NumericConstant:0
  BinaryOperator:<>
 1490 IF Y<F+4 THEN 1600
- Value:Y
- Value:F
+ Variable:Y
+ Variable:F
  NumericConstant:4
  BinaryOperator:+
  BinaryOperator:<
 1500 IF F=6 THEN 1550
- Value:F
+ Variable:F
  NumericConstant:6
  BinaryOperator:=
 1510 PRINT
@@ -498,7 +498,7 @@
  TextConstant:"YOU'VE GOT A BINGO***"
  CarriageControl:NL
 1530 LET W=1
- Reference:W
+ Variable:W
  NumericConstant:1
  AssignmentOperator:=
 1540 RETURN
@@ -511,7 +511,7 @@
  TextConstant:"I'VE GOT A BINGO*****"
  CarriageControl:NL
 1570 LET V=1
- Reference:V
+ Variable:V
  NumericConstant:1
  AssignmentOperator:=
 1590 GOTO 1620
@@ -523,43 +523,43 @@
 1615 REM THIS IS THE SLANT CHECK (M=-1) FOR BINGO*** (LINES 1620-1770)
  Remark:THIS IS THE SLANT CHECK (M=-1) FOR BINGO*** (LINES 1620-1770)
 1620 LET X=F
- Reference:X
- Value:F
+ Variable:X
+ Variable:F
  AssignmentOperator:=
 1630 LET Y=F
- Reference:Y
- Value:F
+ Variable:Y
+ Variable:F
  AssignmentOperator:=
 1640 IF B(X,Y)<>0 THEN 1770
- Value:X
- Value:Y
- Value:B
+ Variable:X
+ Variable:Y
+ Variable:B
  NumericConstant:0
  BinaryOperator:<>
 1650 LET X=X+1
- Reference:X
- Value:X
+ Variable:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 1660 LET Y=Y+1
- Reference:Y
- Value:Y
+ Variable:Y
+ Variable:Y
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 1670 IF Y<F+5 THEN 1640
- Value:Y
- Value:F
+ Variable:Y
+ Variable:F
  NumericConstant:5
  BinaryOperator:+
  BinaryOperator:<
 1680 IF Y=11 THEN 1740
- Value:Y
+ Variable:Y
  NumericConstant:11
  BinaryOperator:=
 1690 LET W=1
- Reference:W
+ Variable:W
  NumericConstant:1
  AssignmentOperator:=
 1700 PRINT
@@ -576,7 +576,7 @@
  TextConstant:"I'VE GOT A BINGO*****"
  CarriageControl:NL
 1750 LET V=1
- Reference:V
+ Variable:V
  NumericConstant:1
  AssignmentOperator:=
 1770 RETURN
@@ -584,41 +584,41 @@
 1775 REM THIS IS THE SLANT CHECK (M=1) FOR BINGO*** (LINES 1780-1950)
  Remark:THIS IS THE SLANT CHECK (M=1) FOR BINGO*** (LINES 1780-1950)
 1780 LET X=F+4
- Reference:X
- Value:F
+ Variable:X
+ Variable:F
  NumericConstant:4
  BinaryOperator:+
  AssignmentOperator:=
 1790 LET Y=X
- Reference:Y
- Value:X
+ Variable:Y
+ Variable:X
  AssignmentOperator:=
 1800 IF B(X,Y)<>0 THEN 1950
- Value:X
- Value:Y
- Value:B
+ Variable:X
+ Variable:Y
+ Variable:B
  NumericConstant:0
  BinaryOperator:<>
 1810 LET X=X-1
- Reference:X
- Value:X
+ Variable:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:-
  AssignmentOperator:=
 1820 LET Y=Y+1
- Reference:Y
- Value:Y
+ Variable:Y
+ Variable:Y
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 1830 IF Y<F+5 THEN 1800
- Value:Y
- Value:F
+ Variable:Y
+ Variable:F
  NumericConstant:5
  BinaryOperator:+
  BinaryOperator:<
 1840 IF Y=11 THEN 1900
- Value:Y
+ Variable:Y
  NumericConstant:11
  BinaryOperator:=
 1850 PRINT
@@ -629,7 +629,7 @@
  TextConstant:"YOU'VE GOT A BINGO***"
  CarriageControl:NL
 1870 LET W=1
- Reference:W
+ Variable:W
  NumericConstant:1
  AssignmentOperator:=
 1890 RETURN
@@ -642,7 +642,7 @@
  TextConstant:"I'VE GOT A BINGO*****"
  CarriageControl:NL
 1920 LET V=1
- Reference:V
+ Variable:V
  NumericConstant:1
  AssignmentOperator:=
 1950 RETURN
@@ -666,12 +666,12 @@
  TextConstant:"DO YOU WANT TO PLAY AGAIN"
  CarriageControl:;
 2020 INPUT E$
- Reference:E$
+ Variable:E$
 2025 PRINT
  ITEMS
  CarriageControl:NL
 2030 IF E$="YES" THEN 180
- Value:E$
+ Variable:E$
  TextConstant:"YES"
  BinaryOperator:=
 2040 STOP

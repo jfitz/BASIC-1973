@@ -1,35 +1,35 @@
 90 RANDOMIZE
  
 100 IF I<>1 THEN 101 ELSE PRINT "MIDNIGHT DREARY";
- Value:I
+ Variable:I
  NumericConstant:1
  BinaryOperator:<>
  ITEMS
  TextConstant:"MIDNIGHT DREARY"
  CarriageControl:;
 101 IF I<>2 THEN 102 ELSE PRINT "FIREY EYES";
- Value:I
+ Variable:I
  NumericConstant:2
  BinaryOperator:<>
  ITEMS
  TextConstant:"FIREY EYES"
  CarriageControl:;
 102 IF I<>3 THEN 103 ELSE PRINT "BIRD OR FIEND";
- Value:I
+ Variable:I
  NumericConstant:3
  BinaryOperator:<>
  ITEMS
  TextConstant:"BIRD OR FIEND"
  CarriageControl:;
 103 IF I<>4 THEN 104 ELSE PRINT "THING OF EVIL";
- Value:I
+ Variable:I
  NumericConstant:4
  BinaryOperator:<>
  ITEMS
  TextConstant:"THING OF EVIL"
  CarriageControl:;
 104 IF I<>5 THEN 210 ELSE PRINT "PHOPHET";
- Value:I
+ Variable:I
  NumericConstant:5
  BinaryOperator:<>
  ITEMS
@@ -38,21 +38,21 @@
 105 GOTO 210
  LineNumber:210
 110 IF I<>1 THEN 111 ELSE PRINT "BEGUILING ME";
- Value:I
+ Variable:I
  NumericConstant:1
  BinaryOperator:<>
  ITEMS
  TextConstant:"BEGUILING ME"
  CarriageControl:;
 111 IF I<>2 THEN 112 ELSE PRINT "THRILLED ME";
- Value:I
+ Variable:I
  NumericConstant:2
  BinaryOperator:<>
  ITEMS
  TextConstant:"THRILLED ME"
  CarriageControl:;
 112 IF I<>3 THEN 113 ELSE PRINT "STILL SITTING..."\GOTO 212 
- Value:I
+ Variable:I
  NumericConstant:3
  BinaryOperator:<>
  ITEMS
@@ -60,7 +60,7 @@
  CarriageControl:NL
  LineNumber:212
 113 IF I<>4 THEN 114 ELSE PRINT "BURNED. "\GOTO 212 
- Value:I
+ Variable:I
  NumericConstant:4
  BinaryOperator:<>
  ITEMS
@@ -68,7 +68,7 @@
  CarriageControl:NL
  LineNumber:212
 114 IF I<>5 THEN 210 ELSE PRINT "NEVER FLITTING";
- Value:I
+ Variable:I
  NumericConstant:5
  BinaryOperator:<>
  ITEMS
@@ -77,38 +77,38 @@
 115 GOTO 210
  LineNumber:210
 120 IF I<>1 THEN 121 ELSE IF U=0 THEN 210 ELSE PRINT "SIGN OF PARTING";
- Value:I
+ Variable:I
  NumericConstant:1
  BinaryOperator:<>
- Value:U
+ Variable:U
  NumericConstant:0
  BinaryOperator:=
  ITEMS
  TextConstant:"SIGN OF PARTING"
  CarriageControl:;
 121 IF I<>2 THEN 122 ELSE PRINT "AND MY SOUL";
- Value:I
+ Variable:I
  NumericConstant:2
  BinaryOperator:<>
  ITEMS
  TextConstant:"AND MY SOUL"
  CarriageControl:;
 122 IF I<>3 THEN 123 ELSE PRINT "DARKNESS THERE";
- Value:I
+ Variable:I
  NumericConstant:3
  BinaryOperator:<>
  ITEMS
  TextConstant:"DARKNESS THERE"
  CarriageControl:;
 123 IF I<>4 THEN 124 ELSE PRINT "SHALL BE LIFTED";
- Value:I
+ Variable:I
  NumericConstant:4
  BinaryOperator:<>
  ITEMS
  TextConstant:"SHALL BE LIFTED"
  CarriageControl:;
 124 IF I<>5 THEN 210 ELSE PRINT "QUOTH THE RAVEN";
- Value:I
+ Variable:I
  NumericConstant:5
  BinaryOperator:<>
  ITEMS
@@ -117,42 +117,42 @@
 125 GOTO 210
  LineNumber:210
 130 IF I<>1 THEN 131 ELSE PRINT "NOTHING MORE";
- Value:I
+ Variable:I
  NumericConstant:1
  BinaryOperator:<>
  ITEMS
  TextConstant:"NOTHING MORE"
  CarriageControl:;
 131 IF I<>2 THEN 132 ELSE PRINT "YET AGAIN";
- Value:I
+ Variable:I
  NumericConstant:2
  BinaryOperator:<>
  ITEMS
  TextConstant:"YET AGAIN"
  CarriageControl:;
 132 IF I<>3 THEN 133 ELSE PRINT "SLOWLY CREEPING";
- Value:I
+ Variable:I
  NumericConstant:3
  BinaryOperator:<>
  ITEMS
  TextConstant:"SLOWLY CREEPING"
  CarriageControl:;
 133 IF I<>4 THEN 134 ELSE PRINT "...NEVERMORE";
- Value:I
+ Variable:I
  NumericConstant:4
  BinaryOperator:<>
  ITEMS
  TextConstant:"...NEVERMORE"
  CarriageControl:;
 134 IF I<>5 THEN 210 ELSE PRINT "EVERMORE.";
- Value:I
+ Variable:I
  NumericConstant:5
  BinaryOperator:<>
  ITEMS
  TextConstant:"EVERMORE."
  CarriageControl:;
 210 IF U=0 THEN 212 ELSE IF RND>.19 THEN 212 ELSE PRINT ",";\U=2
- Value:U
+ Variable:U
  NumericConstant:0
  BinaryOperator:=
  FunctionRnd
@@ -161,7 +161,7 @@
  ITEMS
  TextConstant:","
  CarriageControl:;
- Reference:U
+ Variable:U
  NumericConstant:2
  AssignmentOperator:=
 212 IF RND>.65 THEN 214 ELSE PRINT " ";\U=U+1\GOTO 215
@@ -171,8 +171,8 @@
  ITEMS
  TextConstant:" "
  CarriageControl:;
- Reference:U
- Value:U
+ Variable:U
+ Variable:U
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -180,11 +180,11 @@
 214 PRINT\U=0
  ITEMS
  CarriageControl:NL
- Reference:U
+ Variable:U
  NumericConstant:0
  AssignmentOperator:=
 215 I=INT(5*RND+1)
- Reference:I
+ Variable:I
  NumericConstant:5
  FunctionRnd
  BinaryOperator:*
@@ -193,25 +193,25 @@
  FunctionInt
  AssignmentOperator:=
 220 J=J+1\K=K+1
- Reference:J
- Value:J
+ Variable:J
+ Variable:J
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
- Reference:K
- Value:K
+ Variable:K
+ Variable:K
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 230 IF U>0 THEN 240 ELSE IF INT(J/2)<>J/2 THEN 240 ELSE PRINT "     ";
- Value:U
+ Variable:U
  NumericConstant:0
  BinaryOperator:>
- Value:J
+ Variable:J
  NumericConstant:2
  BinaryOperator:/
  FunctionInt
- Value:J
+ Variable:J
  NumericConstant:2
  BinaryOperator:/
  BinaryOperator:<>
@@ -219,29 +219,29 @@
  TextConstant:"     "
  CarriageControl:;
 240 ON J GOTO 100,110,120,130,250
- Value:J
+ Variable:J
  LineNumber:100
  LineNumber:110
  LineNumber:120
  LineNumber:130
  LineNumber:250
 250 J=0\PRINT\IF K>20 THEN 270 ELSE GOTO 215
- Reference:J
+ Variable:J
  NumericConstant:0
  AssignmentOperator:=
  ITEMS
  CarriageControl:NL
- Value:K
+ Variable:K
  NumericConstant:20
  BinaryOperator:>
  LineNumber:215
 270 PRINT\U=0\K=0\GOTO 110
  ITEMS
  CarriageControl:NL
- Reference:U
+ Variable:U
  NumericConstant:0
  AssignmentOperator:=
- Reference:K
+ Variable:K
  NumericConstant:0
  AssignmentOperator:=
  LineNumber:110

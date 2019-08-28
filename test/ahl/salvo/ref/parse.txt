@@ -29,7 +29,7 @@
  NumericConstant:10
  Declaration:K
 1050LETZ8=0
- Reference:Z8
+ Variable:Z8
  NumericConstant:0
  AssignmentOperator:=
 1060FORW=1TO12
@@ -37,14 +37,14 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
 1070LETE(W)=-1
- Value:W
- Reference:E
+ Variable:W
+ Variable:E
  NumericConstant:1
  UnaryOperator:-
  AssignmentOperator:=
 1080LETH(W)=-1
- Value:W
- Reference:H
+ Variable:W
+ Variable:H
  NumericConstant:1
  UnaryOperator:-
  AssignmentOperator:=
@@ -59,9 +59,9 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 1120LETB(X,Y)=0
- Value:X
- Value:Y
- Reference:B
+ Variable:X
+ Variable:Y
+ Variable:B
  NumericConstant:0
  AssignmentOperator:=
 1130NEXTY
@@ -73,13 +73,13 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
 1160LETF(X)=0
- Value:X
- Reference:F
+ Variable:X
+ Variable:F
  NumericConstant:0
  AssignmentOperator:=
 1170LETG(X)=0
- Value:X
- Reference:G
+ Variable:X
+ Variable:G
  NumericConstant:0
  AssignmentOperator:=
 1180NEXTX
@@ -93,9 +93,9 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 1210LETA(X,Y)=0
- Value:X
- Value:Y
- Reference:A
+ Variable:X
+ Variable:Y
+ Variable:A
  NumericConstant:0
  AssignmentOperator:=
 1220NEXTY
@@ -108,25 +108,25 @@
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:1", "UnaryOperator:-"]
 1250LETU6=0
- Reference:U6
+ Variable:U6
  NumericConstant:0
  AssignmentOperator:=
 1260GOSUB2910
  LineNumber:2910
 1270DEFFNA(K)=(5-K)*3-2*INT(K/4)+SGN(K-1)-1
  NumericConstant:5
- Value:K
+ Variable:K
  BinaryOperator:-
  NumericConstant:3
  BinaryOperator:*
  NumericConstant:2
- Value:K
+ Variable:K
  NumericConstant:4
  BinaryOperator:/
  FunctionInt
  BinaryOperator:*
  BinaryOperator:-
- Value:K
+ Variable:K
  NumericConstant:1
  BinaryOperator:-
  FunctionSgn
@@ -134,128 +134,128 @@
  NumericConstant:1
  BinaryOperator:-
 1280DEFFNB(K)=K+INT(K/4)-SGN(K-1)
- Value:K
- Value:K
+ Variable:K
+ Variable:K
  NumericConstant:4
  BinaryOperator:/
  FunctionInt
  BinaryOperator:+
- Value:K
+ Variable:K
  NumericConstant:1
  BinaryOperator:-
  FunctionSgn
  BinaryOperator:-
 1290IFV+V2+V*V2=0THEN1260
- Value:V
- Value:V2
+ Variable:V
+ Variable:V2
  BinaryOperator:+
- Value:V
- Value:V2
+ Variable:V
+ Variable:V2
  BinaryOperator:*
  BinaryOperator:+
  NumericConstant:0
  BinaryOperator:=
 1300IFY+V*FNB(K)>10THEN1260
- Value:Y
- Value:V
- Value:K
+ Variable:Y
+ Variable:V
+ Variable:K
  UserFunction
  BinaryOperator:*
  BinaryOperator:+
  NumericConstant:10
  BinaryOperator:>
 1310IFY+V*FNB(K)<1THEN1260
- Value:Y
- Value:V
- Value:K
+ Variable:Y
+ Variable:V
+ Variable:K
  UserFunction
  BinaryOperator:*
  BinaryOperator:+
  NumericConstant:1
  BinaryOperator:<
 1320IFX+V2*FNB(K)>10THEN1260
- Value:X
- Value:V2
- Value:K
+ Variable:X
+ Variable:V2
+ Variable:K
  UserFunction
  BinaryOperator:*
  BinaryOperator:+
  NumericConstant:10
  BinaryOperator:>
 1330IFX+V2*FNB(K)<1THEN1260
- Value:X
- Value:V2
- Value:K
+ Variable:X
+ Variable:V2
+ Variable:K
  UserFunction
  BinaryOperator:*
  BinaryOperator:+
  NumericConstant:1
  BinaryOperator:<
 1340LETU6=U6+1
- Reference:U6
- Value:U6
+ Variable:U6
+ Variable:U6
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 1350IFU6>25THEN1190
- Value:U6
+ Variable:U6
  NumericConstant:25
  BinaryOperator:>
 1360FORZ=0TOFNB(K)
  control: Variable:Z
  start:   ["NumericConstant:0"]
- end:     ["Value:K", "UserFunction"]
+ end:     ["Variable:K", "UserFunction"]
 1370LETF(Z+FNA(K))=X+V2*2
- Value:Z
- Value:K
+ Variable:Z
+ Variable:K
  UserFunction
  BinaryOperator:+
- Reference:F
- Value:X
- Value:V2
+ Variable:F
+ Variable:X
+ Variable:V2
  NumericConstant:2
  BinaryOperator:*
  BinaryOperator:+
  AssignmentOperator:=
 1380LETG(Z+FNA(K))=Y+V*Z
- Value:Z
- Value:K
+ Variable:Z
+ Variable:K
  UserFunction
  BinaryOperator:+
- Reference:G
- Value:Y
- Value:V
- Value:Z
+ Variable:G
+ Variable:Y
+ Variable:V
+ Variable:Z
  BinaryOperator:*
  BinaryOperator:+
  AssignmentOperator:=
 1390NEXTZ
  Variable:Z
 1400LETU8=FNA(K)
- Reference:U8
- Value:K
+ Variable:U8
+ Variable:K
  UserFunction
  AssignmentOperator:=
 1410FORZ2=U8TOU8+FNB(K)
  control: Variable:Z2
- start:   ["Value:U8"]
- end:     ["Value:U8", "Value:K", "UserFunction", "BinaryOperator:+"]
+ start:   ["Variable:U8"]
+ end:     ["Variable:U8", "Variable:K", "UserFunction", "BinaryOperator:+"]
 1420FORZ3=1TOU8-1
  control: Variable:Z3
  start:   ["NumericConstant:1"]
- end:     ["Value:U8", "NumericConstant:1", "BinaryOperator:-"]
+ end:     ["Variable:U8", "NumericConstant:1", "BinaryOperator:-"]
 1430IFSQR((F(Z3)-F(Z2))^2+(G(Z3)-G(Z2))^2)<3.59THEN1260
- Value:Z3
- Value:F
- Value:Z2
- Value:F
+ Variable:Z3
+ Variable:F
+ Variable:Z2
+ Variable:F
  BinaryOperator:-
  NumericConstant:2
  BinaryOperator:^
- Value:Z3
- Value:G
- Value:Z2
- Value:G
+ Variable:Z3
+ Variable:G
+ Variable:Z2
+ Variable:G
  BinaryOperator:-
  NumericConstant:2
  BinaryOperator:^
@@ -270,23 +270,23 @@
 1460FORZ=0TOFNB(K)
  control: Variable:Z
  start:   ["NumericConstant:0"]
- end:     ["Value:K", "UserFunction"]
+ end:     ["Variable:K", "UserFunction"]
 1470LETA(F(Z+U8),G(Z+U8))=.5+SGN(K-1)*(K-1.5)
- Value:Z
- Value:U8
+ Variable:Z
+ Variable:U8
  BinaryOperator:+
- Value:F
- Value:Z
- Value:U8
+ Variable:F
+ Variable:Z
+ Variable:U8
  BinaryOperator:+
- Value:G
- Reference:A
+ Variable:G
+ Variable:A
  NumericConstant:.5
- Value:K
+ Variable:K
  NumericConstant:1
  BinaryOperator:-
  FunctionSgn
- Value:K
+ Variable:K
  NumericConstant:1.5
  BinaryOperator:-
  BinaryOperator:*
@@ -309,12 +309,12 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 1530INPUTY,Z
- Reference:Y
- Reference:Z
+ Variable:Y
+ Variable:Z
 1540LETB(Y,Z)=3
- Value:Y
- Value:Z
- Reference:B
+ Variable:Y
+ Variable:Z
+ Variable:B
  NumericConstant:3
  AssignmentOperator:=
 1550NEXTX
@@ -328,12 +328,12 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 1580INPUTY,Z
- Reference:Y
- Reference:Z
+ Variable:Y
+ Variable:Z
 1590LETB(Y,Z)=2
- Value:Y
- Value:Z
- Reference:B
+ Variable:Y
+ Variable:Z
+ Variable:B
  NumericConstant:2
  AssignmentOperator:=
 1600NEXTX
@@ -347,12 +347,12 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:2"]
 1630INPUTY,Z
- Reference:Y
- Reference:Z
+ Variable:Y
+ Variable:Z
 1640LETB(Y,Z)=1
- Value:Y
- Value:Z
- Reference:B
+ Variable:Y
+ Variable:Z
+ Variable:B
  NumericConstant:1
  AssignmentOperator:=
 1650NEXTX
@@ -366,12 +366,12 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:2"]
 1680INPUTY,Z
- Reference:Y
- Reference:Z
+ Variable:Y
+ Variable:Z
 1690LETB(Y,Z)=.5
- Value:Y
- Value:Z
- Reference:B
+ Variable:Y
+ Variable:Z
+ Variable:B
  NumericConstant:.5
  AssignmentOperator:=
 1700NEXTX
@@ -381,9 +381,9 @@
  TextConstant:"DO YOU WANT TO START"
  CarriageControl:;
 1720INPUTJ$
- Reference:J$
+ Variable:J$
 1730IFJ$<>"WHERE ARE YOUR SHIPS?"THEN1890
- Value:J$
+ Variable:J$
  TextConstant:"WHERE ARE YOUR SHIPS?"
  BinaryOperator:<>
 1740PRINT"BATTLESHIP"
@@ -396,11 +396,11 @@
  end:     ["NumericConstant:5"]
 1760PRINTF(Z);G(Z)
  ITEMS
- Value:Z
- Value:F
+ Variable:Z
+ Variable:F
  CarriageControl:;
- Value:Z
- Value:G
+ Variable:Z
+ Variable:G
  CarriageControl:NL
 1770NEXTZ
  Variable:Z
@@ -411,26 +411,26 @@
 1790PRINTF(6);G(6)
  ITEMS
  NumericConstant:6
- Value:F
+ Variable:F
  CarriageControl:;
  NumericConstant:6
- Value:G
+ Variable:G
  CarriageControl:NL
 1800PRINTF(7);G(7)
  ITEMS
  NumericConstant:7
- Value:F
+ Variable:F
  CarriageControl:;
  NumericConstant:7
- Value:G
+ Variable:G
  CarriageControl:NL
 1810PRINTF(8);G(8)
  ITEMS
  NumericConstant:8
- Value:F
+ Variable:F
  CarriageControl:;
  NumericConstant:8
- Value:G
+ Variable:G
  CarriageControl:NL
 1820PRINT"DESTROYER<A>"
  ITEMS
@@ -439,18 +439,18 @@
 1830PRINTF(9);G(9)
  ITEMS
  NumericConstant:9
- Value:F
+ Variable:F
  CarriageControl:;
  NumericConstant:9
- Value:G
+ Variable:G
  CarriageControl:NL
 1840PRINTF(10);G(10)
  ITEMS
  NumericConstant:10
- Value:F
+ Variable:F
  CarriageControl:;
  NumericConstant:10
- Value:G
+ Variable:G
  CarriageControl:NL
 1850PRINT"DESTROYER<B>"
  ITEMS
@@ -459,23 +459,23 @@
 1860PRINTF(11);G(11)
  ITEMS
  NumericConstant:11
- Value:F
+ Variable:F
  CarriageControl:;
  NumericConstant:11
- Value:G
+ Variable:G
  CarriageControl:NL
 1870PRINTF(12);G(12)
  ITEMS
  NumericConstant:12
- Value:F
+ Variable:F
  CarriageControl:;
  NumericConstant:12
- Value:G
+ Variable:G
  CarriageControl:NL
 1880GOTO1710
  LineNumber:1710
 1890LETC=0
- Reference:C
+ Variable:C
  NumericConstant:0
  AssignmentOperator:=
 1900PRINT"DO YOU WANT TQ SEE MY SHOTS";
@@ -483,23 +483,23 @@
  TextConstant:"DO YOU WANT TQ SEE MY SHOTS"
  CarriageControl:;
 1910INPUTK$
- Reference:K$
+ Variable:K$
 1920PRINT
  ITEMS
  CarriageControl:NL
 1930IFJ$<>"YES"THEN2620
- Value:J$
+ Variable:J$
  TextConstant:"YES"
  BinaryOperator:<>
 1940REM**************START
  Remark:**************START
 1950IFJ$<>"YES"THEN1990
- Value:J$
+ Variable:J$
  TextConstant:"YES"
  BinaryOperator:<>
 1960LETC=C+1
- Reference:C
- Value:C
+ Variable:C
+ Variable:C
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -510,10 +510,10 @@
  ITEMS
  TextConstant:"TURN"
  CarriageControl:
- Value:C
+ Variable:C
  CarriageControl:NL
 1990LETA=0
- Reference:A
+ Variable:A
  NumericConstant:0
  AssignmentOperator:=
 2000FORW=.5TO3STEP.5
@@ -530,10 +530,10 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 2030IFB(X,Y)=WTHEN2070
- Value:X
- Value:Y
- Value:B
- Value:W
+ Variable:X
+ Variable:Y
+ Variable:B
+ Variable:W
  BinaryOperator:=
 2040NEXTY
  Variable:Y
@@ -542,9 +542,9 @@
 2060GOTO2080
  LineNumber:2080
 2070LETA=A+INT(W+.5)
- Reference:A
- Value:A
- Value:W
+ Variable:A
+ Variable:A
+ Variable:W
  NumericConstant:.5
  BinaryOperator:+
  FunctionInt
@@ -557,29 +557,29 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
 2100LETC(W)=0
- Value:W
- Reference:C
+ Variable:W
+ Variable:C
  NumericConstant:0
  AssignmentOperator:=
 2110LETD(W)=0
- Value:W
- Reference:D
+ Variable:W
+ Variable:D
  NumericConstant:0
  AssignmentOperator:=
 2120LETF(W)=0
- Value:W
- Reference:F
+ Variable:W
+ Variable:F
  NumericConstant:0
  AssignmentOperator:=
 2130LETG(W)=0
- Value:W
- Reference:G
+ Variable:W
+ Variable:G
  NumericConstant:0
  AssignmentOperator:=
 2140NEXTW
  Variable:W
 2150LETP3=0
- Reference:P3
+ Variable:P3
  NumericConstant:0
  AssignmentOperator:=
 2160FORX=1TO10
@@ -591,14 +591,14 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 2180IFA(X,Y)>10THEN2200
- Value:X
- Value:Y
- Value:A
+ Variable:X
+ Variable:Y
+ Variable:A
  NumericConstant:10
  BinaryOperator:>
 2190LETP3=P3+1
- Reference:P3
- Value:P3
+ Variable:P3
+ Variable:P3
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -610,13 +610,13 @@
  ITEMS
  TextConstant:"YOU HAVE"
  CarriageControl:
- Value:A
+ Variable:A
  CarriageControl:
  TextConstant:"SHOTS"
  CarriageControl:NL
 2230IFP3>=ATHEN2260
- Value:P3
- Value:A
+ Variable:P3
+ Variable:A
  BinaryOperator:>=
 2240PRINT"THE NUMBER OF YOUR SHOTS EXCEEDS THE NUMBER OF BLANK SQUARES"
  ITEMS
@@ -625,7 +625,7 @@
 2250GOTO2890
  LineNumber:2890
 2260IFA<>0THEN2290
- Value:A
+ Variable:A
  NumericConstant:0
  BinaryOperator:<>
 2270PRINT"I HAVE WON"
@@ -637,34 +637,34 @@
 2290FORW=1TOA
  control: Variable:W
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
 2300INPUTX,Y
- Reference:X
- Reference:Y
+ Variable:X
+ Variable:Y
 2310IFX<>INT(X)THEN2370
- Value:X
- Value:X
+ Variable:X
+ Variable:X
  FunctionInt
  BinaryOperator:<>
 2320IFX>10THEN2370
- Value:X
+ Variable:X
  NumericConstant:10
  BinaryOperator:>
 2330IFX<1THEN2370 
- Value:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:<
 2340IFY<>INT(Y)THEN2370 
- Value:Y
- Value:Y
+ Variable:Y
+ Variable:Y
  FunctionInt
  BinaryOperator:<>
 2350IFY>10THEN2370 
- Value:Y
+ Variable:Y
  NumericConstant:10
  BinaryOperator:>
 2360IFY>=1THEN2390
- Value:Y
+ Variable:Y
  NumericConstant:1
  BinaryOperator:>=
 2370PRINT"ILLEGAL. ENTER AGAIN"
@@ -674,20 +674,20 @@
 2380GOTO2300
  LineNumber:2300
 2390IFA(X,Y)>10THEN2440
- Value:X
- Value:Y
- Value:A
+ Variable:X
+ Variable:Y
+ Variable:A
  NumericConstant:10
  BinaryOperator:>
 2400LETC(W)=X
- Value:W
- Reference:C
- Value:X
+ Variable:W
+ Variable:C
+ Variable:X
  AssignmentOperator:=
 2410LETD(W)=Y
- Value:W
- Reference:D
- Value:Y
+ Variable:W
+ Variable:D
+ Variable:Y
  AssignmentOperator:=
 2420NEXTW
  Variable:W
@@ -697,9 +697,9 @@
  ITEMS
  TextConstant:"YOU SHOT THERE BEFORE ON TURN"
  CarriageControl:
- Value:X
- Value:Y
- Value:A
+ Variable:X
+ Variable:Y
+ Variable:A
  NumericConstant:10
  BinaryOperator:-
  CarriageControl:NL
@@ -708,47 +708,47 @@
 2460FORW=1TOA
  control: Variable:W
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
 2470IFA(C(W),D(W))=3THEN2540
- Value:W
- Value:C
- Value:W
- Value:D
- Value:A
+ Variable:W
+ Variable:C
+ Variable:W
+ Variable:D
+ Variable:A
  NumericConstant:3
  BinaryOperator:=
 2480IFA(C(W),D(W))=2THEN2560
- Value:W
- Value:C
- Value:W
- Value:D
- Value:A
+ Variable:W
+ Variable:C
+ Variable:W
+ Variable:D
+ Variable:A
  NumericConstant:2
  BinaryOperator:=
 2490IFA(C(W),D(W))=1THEN2580
- Value:W
- Value:C
- Value:W
- Value:D
- Value:A
+ Variable:W
+ Variable:C
+ Variable:W
+ Variable:D
+ Variable:A
  NumericConstant:1
  BinaryOperator:=
 2500IFA(C(W),D(W))=.5THEN2600
- Value:W
- Value:C
- Value:W
- Value:D
- Value:A
+ Variable:W
+ Variable:C
+ Variable:W
+ Variable:D
+ Variable:A
  NumericConstant:.5
  BinaryOperator:=
 2510LETA(C(W),D(W))=10+C
- Value:W
- Value:C
- Value:W
- Value:D
- Reference:A
+ Variable:W
+ Variable:C
+ Variable:W
+ Variable:D
+ Variable:A
  NumericConstant:10
- Value:C
+ Variable:C
  BinaryOperator:+
  AssignmentOperator:=
 2520NEXTW
@@ -780,16 +780,16 @@
 2610GOTO2510
  LineNumber:2510
 2620LETA=0
- Reference:A
+ Variable:A
  NumericConstant:0
  AssignmentOperator:=
 2630IFJ$="YES"THEN2670
- Value:J$
+ Variable:J$
  TextConstant:"YES"
  BinaryOperator:=
 2640LETC=C+1
- Reference:C
- Value:C
+ Variable:C
+ Variable:C
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -800,10 +800,10 @@
  ITEMS
  TextConstant:"TURN"
  CarriageControl:
- Value:C
+ Variable:C
  CarriageControl:NL
 2670LETA=0
- Reference:A
+ Variable:A
  NumericConstant:0
  AssignmentOperator:=
 2680FORW=.5TO3.1STEP.5
@@ -820,10 +820,10 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 2710IFA(X,Y)=WTHEN2750
- Value:X
- Value:Y
- Value:A
- Value:W
+ Variable:X
+ Variable:Y
+ Variable:A
+ Variable:W
  BinaryOperator:=
 2720NEXTY
  Variable:Y
@@ -832,9 +832,9 @@
 2740GOTO2760
  LineNumber:2760
 2750LETA=A+INT(W+.5)
- Reference:A
- Value:A
- Value:W
+ Variable:A
+ Variable:A
+ Variable:W
  NumericConstant:.5
  BinaryOperator:+
  FunctionInt
@@ -843,7 +843,7 @@
 2760NEXTW
  Variable:W
 2770LETP3=0
- Reference:P3
+ Variable:P3
  NumericConstant:0
  AssignmentOperator:=
 2780FORX=1TO10
@@ -855,14 +855,14 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 2800IFB(X,Y)>10THEN2820 
- Value:X
- Value:Y
- Value:B
+ Variable:X
+ Variable:Y
+ Variable:B
  NumericConstant:10
  BinaryOperator:>
 2810LETP3=P3+1
- Reference:P3
- Value:P3
+ Variable:P3
+ Variable:P3
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -874,13 +874,13 @@
  ITEMS
  TextConstant:"I HAVE"
  CarriageControl:
- Value:A
+ Variable:A
  CarriageControl:
  TextConstant:"SHOTS"
  CarriageControl:NL
 2850IFP3>ATHEN2880
- Value:P3
- Value:A
+ Variable:P3
+ Variable:A
  BinaryOperator:>
 2860PRINT"THE NyMBER OF MY SHOTS EXCEEDS THE NUMBER QF BLANK SQUARES"
  ITEMS
@@ -889,7 +889,7 @@
 2870GOTO2270
  LineNumber:2270
 2880IFA<>0THEN2960
- Value:A
+ Variable:A
  NumericConstant:0
  BinaryOperator:<>
 2890PRINT"YOU HAVE WON"
@@ -899,7 +899,7 @@
 2900STOP
  
 2910LETX=INT((RND(-1)*10)+1) 
- Reference:X
+ Variable:X
  NumericConstant:1
  UnaryOperator:-
  FunctionRnd
@@ -910,7 +910,7 @@
  FunctionInt
  AssignmentOperator:=
 2920LETY=INT((RND(-1)*10)+1)
- Reference:Y
+ Variable:Y
  NumericConstant:1
  UnaryOperator:-
  FunctionRnd
@@ -921,7 +921,7 @@
  FunctionInt
  AssignmentOperator:=
 2930LETV=INT(3*RND(-1)-1)
- Reference:V
+ Variable:V
  NumericConstant:3
  NumericConstant:1
  UnaryOperator:-
@@ -932,7 +932,7 @@
  FunctionInt
  AssignmentOperator:=
 2940LETV2=INT(3*RND(-1)-1)
- Reference:V2
+ Variable:V2
  NumericConstant:3
  NumericConstant:1
  UnaryOperator:-
@@ -949,8 +949,8 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
 2970IFH(W)>0THEN3800
- Value:W
- Value:H
+ Variable:W
+ Variable:H
  NumericConstant:0
  BinaryOperator:>
 2980NEXTW
@@ -958,11 +958,11 @@
 2990REM**************RANDOM
  Remark:**************RANDOM
 3000LETW=0
- Reference:W
+ Variable:W
  NumericConstant:0
  AssignmentOperator:=
 3010LETR3=0 
- Reference:R3
+ Variable:R3
  NumericConstant:0
  AssignmentOperator:=
 3020GOSUB2910 
@@ -970,29 +970,29 @@
 3030RESTORE 
  
 3040LETR2=0
- Reference:R2
+ Variable:R2
  NumericConstant:0
  AssignmentOperator:=
 3050LETR3=R3+1
- Reference:R3
- Value:R3
+ Variable:R3
+ Variable:R3
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 3060IFR3>100THEN3010
- Value:R3
+ Variable:R3
  NumericConstant:100
  BinaryOperator:>
 3070IFX>10THEN3110
- Value:X
+ Variable:X
  NumericConstant:10
  BinaryOperator:>
 3080IFX>0THEN3120
- Value:X
+ Variable:X
  NumericConstant:0
  BinaryOperator:>
 3090LETX=1+INT(RND(-1)*2.5)
- Reference:X
+ Variable:X
  NumericConstant:1
  NumericConstant:1
  UnaryOperator:-
@@ -1005,7 +1005,7 @@
 3100GOTO3120
  LineNumber:3120
 3110LETX=10-INT(RND(-1)*2.5)
- Reference:X
+ Variable:X
  NumericConstant:10
  NumericConstant:1
  UnaryOperator:-
@@ -1016,15 +1016,15 @@
  BinaryOperator:-
  AssignmentOperator:=
 3120IFY>10THEN3160
- Value:Y
+ Variable:Y
  NumericConstant:10
  BinaryOperator:>
 3130IFY>0THEN3270
- Value:Y
+ Variable:Y
  NumericConstant:0
  BinaryOperator:>
 3140LETY=1+INT(RND(-1)*2.5)
- Reference:Y
+ Variable:Y
  NumericConstant:1
  NumericConstant:1
  UnaryOperator:-
@@ -1037,7 +1037,7 @@
 3150GOTO3270
  LineNumber:3270
 3160LETY=10-INT(RND(-1)*2.5)
- Reference:Y
+ Variable:Y
  NumericConstant:10
  NumericConstant:1
  UnaryOperator:-
@@ -1050,29 +1050,29 @@
 3170GOTO3270
  LineNumber:3270
 3180LETF(W)=X
- Value:W
- Reference:F
- Value:X
+ Variable:W
+ Variable:F
+ Variable:X
  AssignmentOperator:=
 3190LETG(W)=Y
- Value:W
- Reference:G
- Value:Y
+ Variable:W
+ Variable:G
+ Variable:Y
  AssignmentOperator:=
 3200IFW=ATHEN3380
- Value:W
- Value:A
+ Variable:W
+ Variable:A
  BinaryOperator:=
 3210IFR2=6THEN3030
- Value:R2
+ Variable:R2
  NumericConstant:6
  BinaryOperator:=
 3220READX1,Y1
- Reference:X1
- Reference:Y1
+ Variable:X1
+ Variable:Y1
 3230LETR2=R2+1
- Reference:R2
- Value:R2
+ Variable:R2
+ Variable:R2
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -1093,125 +1093,125 @@
  UnaryOperator:-
  NumericConstant:1
 3250LETX=X+X1
- Reference:X
- Value:X
- Value:X1
+ Variable:X
+ Variable:X
+ Variable:X1
  BinaryOperator:+
  AssignmentOperator:=
 3260LETY=Y+Y1
- Reference:Y
- Value:Y
- Value:Y1
+ Variable:Y
+ Variable:Y
+ Variable:Y1
  BinaryOperator:+
  AssignmentOperator:=
 3270IFX>10THEN3210
- Value:X
+ Variable:X
  NumericConstant:10
  BinaryOperator:>
 3280IFX<1THEN3210
- Value:X
+ Variable:X
  NumericConstant:1
  BinaryOperator:<
 3290IFY>10THEN3210
- Value:Y
+ Variable:Y
  NumericConstant:10
  BinaryOperator:>
 3300IFY<1THEN3210
- Value:Y
+ Variable:Y
  NumericConstant:1
  BinaryOperator:<
 3310IFB(X,Y)>10THEN3210
- Value:X
- Value:Y
- Value:B
+ Variable:X
+ Variable:Y
+ Variable:B
  NumericConstant:10
  BinaryOperator:>
 3320FORQ9=1TOW
  control: Variable:Q9
  start:   ["NumericConstant:1"]
- end:     ["Value:W"]
+ end:     ["Variable:W"]
 3330IFF(Q9)<>XTHEN3350
- Value:Q9
- Value:F
- Value:X
+ Variable:Q9
+ Variable:F
+ Variable:X
  BinaryOperator:<>
 3340IFG(Q9)=YTHEN3210
- Value:Q9
- Value:G
- Value:Y
+ Variable:Q9
+ Variable:G
+ Variable:Y
  BinaryOperator:=
 3350NEXTQ9
  Variable:Q9
 3360LETW=W+1
- Reference:W
- Value:W
+ Variable:W
+ Variable:W
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 3370GOTO3180
  LineNumber:3180
 3380IFK$<>"YES"THEN3420
- Value:K$
+ Variable:K$
  TextConstant:"YES"
  BinaryOperator:<>
 3390FORZ5=1TOA
  control: Variable:Z5
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
 3400PRINTF(Z5);G(Z5)
  ITEMS
- Value:Z5
- Value:F
+ Variable:Z5
+ Variable:F
  CarriageControl:;
- Value:Z5
- Value:G
+ Variable:Z5
+ Variable:G
  CarriageControl:NL
 3410NEXTZ5
  Variable:Z5
 3420FORW=1TOA
  control: Variable:W
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
 3430IFB(F(W),G(W))=3THEN3500
- Value:W
- Value:F
- Value:W
- Value:G
- Value:B
+ Variable:W
+ Variable:F
+ Variable:W
+ Variable:G
+ Variable:B
  NumericConstant:3
  BinaryOperator:=
 3440IFB(F(W),G(W))=2THEN3520 
- Value:W
- Value:F
- Value:W
- Value:G
- Value:B
+ Variable:W
+ Variable:F
+ Variable:W
+ Variable:G
+ Variable:B
  NumericConstant:2
  BinaryOperator:=
 3450IFB(F(W),G(W))=1THEN3560 
- Value:W
- Value:F
- Value:W
- Value:G
- Value:B
+ Variable:W
+ Variable:F
+ Variable:W
+ Variable:G
+ Variable:B
  NumericConstant:1
  BinaryOperator:=
 3460IFB(F(W),G(W))=.5THEN3540 
- Value:W
- Value:F
- Value:W
- Value:G
- Value:B
+ Variable:W
+ Variable:F
+ Variable:W
+ Variable:G
+ Variable:B
  NumericConstant:.5
  BinaryOperator:=
 3470LETB(F(W),G(W))=10+C
- Value:W
- Value:F
- Value:W
- Value:G
- Reference:B
+ Variable:W
+ Variable:F
+ Variable:W
+ Variable:G
+ Variable:B
  NumericConstant:10
- Value:C
+ Variable:C
  BinaryOperator:+
  AssignmentOperator:=
 3480NEXTW
@@ -1245,29 +1245,29 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
 3580IFE(Q)<>-1THEN3730
- Value:Q
- Value:E
+ Variable:Q
+ Variable:E
  NumericConstant:1
  UnaryOperator:-
  BinaryOperator:<>
 3590LETE(Q)=10+C
- Value:Q
- Reference:E
+ Variable:Q
+ Variable:E
  NumericConstant:10
- Value:C
+ Variable:C
  BinaryOperator:+
  AssignmentOperator:=
 3600LETH(Q)=B(F(W),G(W))
- Value:Q
- Reference:H
- Value:W
- Value:F
- Value:W
- Value:G
- Value:B
+ Variable:Q
+ Variable:H
+ Variable:W
+ Variable:F
+ Variable:W
+ Variable:G
+ Variable:B
  AssignmentOperator:=
 3610LETM3=0
- Reference:M3
+ Variable:M3
  NumericConstant:0
  AssignmentOperator:=
 3620FORM2=1TO12
@@ -1275,30 +1275,30 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
 3630IFH(M2)<>H(Q)THEN3650 
- Value:M2
- Value:H
- Value:Q
- Value:H
+ Variable:M2
+ Variable:H
+ Variable:Q
+ Variable:H
  BinaryOperator:<>
 3640M3=M3+1
- Reference:M3
- Value:M3
+ Variable:M3
+ Variable:M3
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 3650NEXTM2
  Variable:M2
 3660IFM3<>INT(H(Q)+.5)+1+INT(INT(H(Q)+.5)/3)THEN3470
- Value:M3
- Value:Q
- Value:H
+ Variable:M3
+ Variable:Q
+ Variable:H
  NumericConstant:.5
  BinaryOperator:+
  FunctionInt
  NumericConstant:1
  BinaryOperator:+
- Value:Q
- Value:H
+ Variable:Q
+ Variable:H
  NumericConstant:.5
  BinaryOperator:+
  FunctionInt
@@ -1312,20 +1312,20 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
 3680IFH(M2)<>H(Q)THEN3710
- Value:M2
- Value:H
- Value:Q
- Value:H
+ Variable:M2
+ Variable:H
+ Variable:Q
+ Variable:H
  BinaryOperator:<>
 3690LETE(M2)=-1
- Value:M2
- Reference:E
+ Variable:M2
+ Variable:E
  NumericConstant:1
  UnaryOperator:-
  AssignmentOperator:=
 3700LETM(M2)=-1
- Value:M2
- Reference:M
+ Variable:M2
+ Variable:M
  NumericConstant:1
  UnaryOperator:-
  AssignmentOperator:=
@@ -1347,23 +1347,23 @@
  ITEMS
  TextConstant:"E("
  CarriageControl:
- Value:Q
+ Variable:Q
  CarriageControl:
  TextConstant:")="
  CarriageControl:
- Value:Q
- Value:E
+ Variable:Q
+ Variable:E
  CarriageControl:NL
 3770PRINT"H("Q")="H(Q)
  ITEMS
  TextConstant:"H("
  CarriageControl:
- Value:Q
+ Variable:Q
  CarriageControl:
  TextConstant:")="
  CarriageControl:
- Value:Q
- Value:H
+ Variable:Q
+ Variable:H
  CarriageControl:NL
 3780NEXTQ
  Variable:Q
@@ -1380,9 +1380,9 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 3830LETK(R,S)=0
- Value:R
- Value:S
- Reference:K
+ Variable:R
+ Variable:S
+ Variable:K
  NumericConstant:0
  AssignmentOperator:=
 3840NEXTS
@@ -1394,8 +1394,8 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
 3870IFE(U)<10THEN4020
- Value:U
- Value:E
+ Variable:U
+ Variable:E
  NumericConstant:10
  BinaryOperator:<
 3880FORR=1TO10
@@ -1407,15 +1407,15 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 3900IFB(R,S)<10THEN3930
- Value:R
- Value:S
- Value:B
+ Variable:R
+ Variable:S
+ Variable:B
  NumericConstant:10
  BinaryOperator:<
 3910LETK(R,S)=-1000000
- Value:R
- Value:S
- Reference:K
+ Variable:R
+ Variable:S
+ Variable:K
  NumericConstant:1000000
  UnaryOperator:-
  AssignmentOperator:=
@@ -1423,46 +1423,46 @@
  LineNumber:4000
 3930FORM=SGN(1-R)TOSGN(10-R)
  control: Variable:M
- start:   ["NumericConstant:1", "Value:R", "BinaryOperator:-", "FunctionSgn"]
- end:     ["NumericConstant:10", "Value:R", "BinaryOperator:-", "FunctionSgn"]
+ start:   ["NumericConstant:1", "Variable:R", "BinaryOperator:-", "FunctionSgn"]
+ end:     ["NumericConstant:10", "Variable:R", "BinaryOperator:-", "FunctionSgn"]
 3940FORN=SGN(1-S)TOSGN(10-S)
  control: Variable:N
- start:   ["NumericConstant:1", "Value:S", "BinaryOperator:-", "FunctionSgn"]
- end:     ["NumericConstant:10", "Value:S", "BinaryOperator:-", "FunctionSgn"]
+ start:   ["NumericConstant:1", "Variable:S", "BinaryOperator:-", "FunctionSgn"]
+ end:     ["NumericConstant:10", "Variable:S", "BinaryOperator:-", "FunctionSgn"]
 3950IFN+M+N*M=0THEN3980
- Value:N
- Value:M
+ Variable:N
+ Variable:M
  BinaryOperator:+
- Value:N
- Value:M
+ Variable:N
+ Variable:M
  BinaryOperator:*
  BinaryOperator:+
  NumericConstant:0
  BinaryOperator:=
 3960IFB(R+M,S+N)<>E(U)THEN3980
- Value:R
- Value:M
+ Variable:R
+ Variable:M
  BinaryOperator:+
- Value:S
- Value:N
+ Variable:S
+ Variable:N
  BinaryOperator:+
- Value:B
- Value:U
- Value:E
+ Variable:B
+ Variable:U
+ Variable:E
  BinaryOperator:<>
 3970LETK(R,S)=K(R,S)+E(U)-2*INT(H(U)+5)
- Value:R
- Value:S
- Reference:K
- Value:R
- Value:S
- Value:K
- Value:U
- Value:E
+ Variable:R
+ Variable:S
+ Variable:K
+ Variable:R
+ Variable:S
+ Variable:K
+ Variable:U
+ Variable:E
  BinaryOperator:+
  NumericConstant:2
- Value:U
- Value:H
+ Variable:U
+ Variable:H
  NumericConstant:5
  BinaryOperator:+
  FunctionInt
@@ -1482,16 +1482,16 @@
 4030FORR=1TOA
  control: Variable:R
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
 4040LETF(R)=R
- Value:R
- Reference:F
- Value:R
+ Variable:R
+ Variable:F
+ Variable:R
  AssignmentOperator:=
 4050LETG(R)=R
- Value:R
- Reference:G
- Value:R
+ Variable:R
+ Variable:G
+ Variable:R
  AssignmentOperator:=
 4060NEXTR
  Variable:R
@@ -1504,74 +1504,74 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 4090LETW9=1
- Reference:W9
+ Variable:W9
  NumericConstant:1
  AssignmentOperator:=
 4100FORM=1TOA
  control: Variable:M
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
 4110IFK(F(M),G(M))>K(F(Q9),G(Q9))THEN4130
- Value:M
- Value:F
- Value:M
- Value:G
- Value:K
- Value:Q9
- Value:F
- Value:Q9
- Value:G
- Value:K
+ Variable:M
+ Variable:F
+ Variable:M
+ Variable:G
+ Variable:K
+ Variable:Q9
+ Variable:F
+ Variable:Q9
+ Variable:G
+ Variable:K
  BinaryOperator:>
 4120LETQ9=M
- Reference:Q9
- Value:M
+ Variable:Q9
+ Variable:M
  AssignmentOperator:=
 4130NEXTM
  Variable:M
 4131 IF R>ATHEN4140
- Value:R
- Value:A
+ Variable:R
+ Variable:A
  BinaryOperator:>
 4132 IF R=S THEN 4210
- Value:R
- Value:S
+ Variable:R
+ Variable:S
  BinaryOperator:=
 4140IFK(R,S)<K(F(Q9),G(Q9))THEN4210
- Value:R
- Value:S
- Value:K
- Value:Q9
- Value:F
- Value:Q9
- Value:G
- Value:K
+ Variable:R
+ Variable:S
+ Variable:K
+ Variable:Q9
+ Variable:F
+ Variable:Q9
+ Variable:G
+ Variable:K
  BinaryOperator:<
 4150FORM=1TOA
  control: Variable:M
  start:   ["NumericConstant:1"]
- end:     ["Value:A"]
+ end:     ["Variable:A"]
 4160IFF(M)<>RTHEN4190
- Value:M
- Value:F
- Value:R
+ Variable:M
+ Variable:F
+ Variable:R
  BinaryOperator:<>
 4170IFG(M)=STHEN4210
- Value:M
- Value:G
- Value:S
+ Variable:M
+ Variable:G
+ Variable:S
  BinaryOperator:=
 4180NEXTM
  Variable:M
 4190LETF(Q9)=R
- Value:Q9
- Reference:F
- Value:R
+ Variable:Q9
+ Variable:F
+ Variable:R
  AssignmentOperator:=
 4200LETG(Q9)=S
- Value:Q9
- Reference:G
- Value:S
+ Variable:Q9
+ Variable:G
+ Variable:S
  AssignmentOperator:=
 4210NEXTS
  Variable:S

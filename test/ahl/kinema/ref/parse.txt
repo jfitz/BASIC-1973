@@ -5,11 +5,11 @@
  ITEMS
  CarriageControl:NL
 106 Q=0
- Reference:Q
+ Variable:Q
  NumericConstant:0
  AssignmentOperator:=
 110 V = 5+INT(35*RND(0))
- Reference:V
+ Variable:V
  NumericConstant:5
  NumericConstant:35
  NumericConstant:0
@@ -22,7 +22,7 @@
  ITEMS
  TextConstant:"A BALL IS THROWN UPWARDS AT "
  CarriageControl:
- Value:V
+ Variable:V
  CarriageControl:
  TextConstant:" METERS PER SECOND"
  CarriageControl:NL
@@ -30,8 +30,8 @@
  ITEMS
  CarriageControl:NL
 115 A=V^2/19.6
- Reference:A
- Value:V
+ Variable:A
+ Variable:V
  NumericConstant:2
  BinaryOperator:^
  NumericConstant:19.6
@@ -44,8 +44,8 @@
 117 GOSUB 500
  LineNumber:500
 120 A=V/4.9
- Reference:A
- Value:V
+ Variable:A
+ Variable:V
  NumericConstant:4.9
  BinaryOperator:/
  AssignmentOperator:=
@@ -56,10 +56,10 @@
 124 GOSUB 500
  LineNumber:500
 130 T=(1+INT(2*V+RND(1)))/10
- Reference:T
+ Variable:T
  NumericConstant:1
  NumericConstant:2
- Value:V
+ Variable:V
  BinaryOperator:*
  NumericConstant:1
  FunctionRnd
@@ -70,10 +70,10 @@
  BinaryOperator:/
  AssignmentOperator:=
 132 A=V-9.8*T
- Reference:A
- Value:V
+ Variable:A
+ Variable:V
  NumericConstant:9.8
- Value:T
+ Variable:T
  BinaryOperator:*
  BinaryOperator:-
  AssignmentOperator:=
@@ -81,7 +81,7 @@
  ITEMS
  TextConstant:"WHAT WILL ITS VELOCITY BE AFTER"
  CarriageControl:
- Value:T
+ Variable:T
  CarriageControl:
  TextConstant:"SECONDS "
  CarriageControl:;
@@ -92,12 +92,12 @@
  CarriageControl:NL
 150 PRINT Q"RIGHT OUT OF 3.";
  ITEMS
- Value:Q
+ Variable:Q
  CarriageControl:
  TextConstant:"RIGHT OUT OF 3."
  CarriageControl:;
 160 IF Q<2 THEN 100
- Value:Q
+ Variable:Q
  NumericConstant:2
  BinaryOperator:<
 170 PRINT " NOT BAD. "
@@ -107,25 +107,25 @@
 180 GO TO 100
  LineNumber:100
 500 INPUT G
- Reference:G
+ Variable:G
 501 G=100*ABS(G-A)
- Reference:G
+ Variable:G
  NumericConstant:100
- Value:G
- Value:A
+ Variable:G
+ Variable:A
  BinaryOperator:-
  FunctionAbs
  BinaryOperator:*
  AssignmentOperator:=
 502 IF G<=ABS(A) THEN 507
- Value:G
- Value:A
+ Variable:G
+ Variable:A
  FunctionAbs
  BinaryOperator:<=
 503 IF G<=15+ABS(A) THEN 510
- Value:G
+ Variable:G
  NumericConstant:15
- Value:A
+ Variable:A
  FunctionAbs
  BinaryOperator:+
  BinaryOperator:<=
@@ -136,8 +136,8 @@
 506 GO TO 512
  LineNumber:512
 507 G=G+1
- Reference:G
- Value:G
+ Variable:G
+ Variable:G
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -152,8 +152,8 @@
  TextConstant:"CLOSE ENOUGH."
  CarriageControl:NL
 511 Q=Q+1
- Reference:Q
- Value:Q
+ Variable:Q
+ Variable:Q
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
@@ -161,7 +161,7 @@
  ITEMS
  TextConstant:"CORRECT ANSWER IS"
  CarriageControl:
- Value:A
+ Variable:A
  CarriageControl:NL
 520 PRINT
  ITEMS

@@ -5,13 +5,13 @@
  TextConstant:"DO YOU WANT INSTRUCTIONS"
  CarriageControl:;
 6 INPUT C$
- Reference:C$
+ Variable:C$
 7 IF C$="NO" THEN 20
- Value:C$
+ Variable:C$
  TextConstant:"NO"
  BinaryOperator:=
 8 IF C$="YES" THEN 13
- Value:C$
+ Variable:C$
  TextConstant:"YES"
  BinaryOperator:=
 9 PRINT "INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'";
@@ -51,8 +51,8 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:16"]
 22 READ Y(I)
- Value:I
- Reference:Y
+ Variable:I
+ Variable:Y
 23 NEXT I
  Variable:I
 24FOR I=1 TO 76
@@ -64,9 +64,9 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 26 READM(I,J)
- Value:I
- Value:J
- Reference:M
+ Variable:I
+ Variable:J
+ Variable:M
 27 NEXT J 
  Variable:J
 28 NEXT I
@@ -76,14 +76,14 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:64"]
 40 LET X (I) =0
- Value:I
- Reference:X
+ Variable:I
+ Variable:X
  NumericConstant:0
  AssignmentOperator:=
 50 NEXT I
  Variable:I
 54 LET Z=1
- Reference:Z
+ Variable:Z
  NumericConstant:1
  AssignmentOperator:=
 55 PRINT "DO YOU WANT TO MOVE FIRST";
@@ -91,13 +91,13 @@
  TextConstant:"DO YOU WANT TO MOVE FIRST"
  CarriageControl:;
 60 INPUT S$
- Reference:S$
+ Variable:S$
 66 IF S$="NO" THEN 110
- Value:S$
+ Variable:S$
  TextConstant:"NO"
  BinaryOperator:=
 67 IF S$="YES" THEN 70
- Value:S$
+ Variable:S$
  TextConstant:"YES"
  BinaryOperator:=
 68 PRINT "INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'";
@@ -115,60 +115,60 @@
  TextConstant:"YOUR MOVE"
  CarriageControl:;
 80INPUTJ1
- Reference:J1
+ Variable:J1
 85 GOSUB 1800
  LineNumber:1800
 90 LETK1=INT(J1/100)
- Reference:K1
- Value:J1
+ Variable:K1
+ Variable:J1
  NumericConstant:100
  BinaryOperator:/
  FunctionInt
  AssignmentOperator:=
 95 LET J2=(J1-K1*100)
- Reference:J2
- Value:J1
- Value:K1
+ Variable:J2
+ Variable:J1
+ Variable:K1
  NumericConstant:100
  BinaryOperator:*
  BinaryOperator:-
  AssignmentOperator:=
 96 LET K2=INT(J2/10)
- Reference:K2
- Value:J2
+ Variable:K2
+ Variable:J2
  NumericConstant:10
  BinaryOperator:/
  FunctionInt
  AssignmentOperator:=
 97 LET K3= J1 - K1*100 -K2*10
- Reference:K3
- Value:J1
- Value:K1
+ Variable:K3
+ Variable:J1
+ Variable:K1
  NumericConstant:100
  BinaryOperator:*
  BinaryOperator:-
- Value:K2
+ Variable:K2
  NumericConstant:10
  BinaryOperator:*
  BinaryOperator:-
  AssignmentOperator:=
 98 LET M=16*K1+4*K2+K3-20
- Reference:M
+ Variable:M
  NumericConstant:16
- Value:K1
+ Variable:K1
  BinaryOperator:*
  NumericConstant:4
- Value:K2
+ Variable:K2
  BinaryOperator:*
  BinaryOperator:+
- Value:K3
+ Variable:K3
  BinaryOperator:+
  NumericConstant:20
  BinaryOperator:-
  AssignmentOperator:=
 99 IF X(M)=0 THEN 109
- Value:M
- Value:X
+ Variable:M
+ Variable:X
  NumericConstant:0
  BinaryOperator:=
 100 PRINT "THAT SQUARE IS USED, TRY AGAIN"
@@ -178,8 +178,8 @@
 101 GOTO 70
  LineNumber:70
 109 LET X(M)=1
- Value:M
- Reference:X
+ Variable:M
+ Variable:X
  NumericConstant:1
  AssignmentOperator:=
 110 GOSUB 1050
@@ -193,15 +193,15 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:76"]
 200 IF J=1 THEN 210
- Value:J
+ Variable:J
  NumericConstant:1
  BinaryOperator:=
 201 IF J=2 THEN 220
- Value:J
+ Variable:J
  NumericConstant:2
  BinaryOperator:=
 203 IF J=3 THEN 235
- Value:J
+ Variable:J
  NumericConstant:3
  BinaryOperator:=
 205 NEXT I
@@ -211,8 +211,8 @@
 207 GOTO 400
  LineNumber:400
 210 IF L(I)<>4 THEN 205
- Value:I
- Value:L
+ Variable:I
+ Variable:L
  NumericConstant:4
  BinaryOperator:<>
 211 PRINT "YOU WIN AS FOLLOWS";
@@ -224,10 +224,10 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 213 LET M=M(I,J)
- Reference:M
- Value:I
- Value:J
- Value:M
+ Variable:M
+ Variable:I
+ Variable:J
+ Variable:M
  AssignmentOperator:=
 214 GOSUB 1000
  LineNumber:1000
@@ -236,8 +236,8 @@
 217 GOTO 500
  LineNumber:500
 220 IF L(I)<>15 THEN 205
- Value:I
- Value:L
+ Variable:I
+ Variable:L
  NumericConstant:15
  BinaryOperator:<>
 221 FOR J=1 TO 4
@@ -245,19 +245,19 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 222 LET M=M(I,J)
- Reference:M
- Value:I
- Value:J
- Value:M
+ Variable:M
+ Variable:I
+ Variable:J
+ Variable:M
  AssignmentOperator:=
 223 IF X(M)<>0 THEN 227
- Value:M
- Value:X
+ Variable:M
+ Variable:X
  NumericConstant:0
  BinaryOperator:<>
 224 LET X(M)=5
- Value:M
- Reference:X
+ Variable:M
+ Variable:X
  NumericConstant:5
  AssignmentOperator:=
 225 PRINT "MACHINE MOVES TO";
@@ -277,10 +277,10 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 230 LET M=M(I,J)
- Reference:M
- Value:I
- Value:J
- Value:M
+ Variable:M
+ Variable:I
+ Variable:J
+ Variable:M
  AssignmentOperator:=
 231 GOSUB 1000
  LineNumber:1000
@@ -289,8 +289,8 @@
 234 GOTO 500
  LineNumber:500
 235 IF L(I)<>3 THEN 205
- Value:I
- Value:L
+ Variable:I
+ Variable:L
  NumericConstant:3
  BinaryOperator:<>
 236 PRINT "NICE TRY MACHINE MOVES TO";
@@ -302,19 +302,19 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 238 LET M=M(I,J)
- Reference:M
- Value:I
- Value:J
- Value:M
+ Variable:M
+ Variable:I
+ Variable:J
+ Variable:M
  AssignmentOperator:=
 239 IF X(M)<>0 THEN 245
- Value:M
- Value:X
+ Variable:M
+ Variable:X
  NumericConstant:0
  BinaryOperator:<>
 240 LET X(M)=5
- Value:M
- Reference:X
+ Variable:M
+ Variable:X
  NumericConstant:5
  AssignmentOperator:=
 241 GOSUB 1000
@@ -330,43 +330,43 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:76"]
 251 LET L(I)=X(M(I,1))+X(M(I,2))+X(M(I,3))+X(M(I,4))
- Value:I
- Reference:L
- Value:I
+ Variable:I
+ Variable:L
+ Variable:I
  NumericConstant:1
- Value:M
- Value:X
- Value:I
+ Variable:M
+ Variable:X
+ Variable:I
  NumericConstant:2
- Value:M
- Value:X
+ Variable:M
+ Variable:X
  BinaryOperator:+
- Value:I
+ Variable:I
  NumericConstant:3
- Value:M
- Value:X
+ Variable:M
+ Variable:X
  BinaryOperator:+
- Value:I
+ Variable:I
  NumericConstant:4
- Value:M
- Value:X
+ Variable:M
+ Variable:X
  BinaryOperator:+
  AssignmentOperator:=
 252 LET L = L(I)
- Reference:L
- Value:I
- Value:L
+ Variable:L
+ Variable:I
+ Variable:L
  AssignmentOperator:=
 255 IF L <2 THEN 290
- Value:L
+ Variable:L
  NumericConstant:2
  BinaryOperator:<
 260 IF L>=3 THEN 290
- Value:L
+ Variable:L
  NumericConstant:3
  BinaryOperator:>=
 265 IF L>2 THEN 1600
- Value:L
+ Variable:L
  NumericConstant:2
  BinaryOperator:>
 270 FOR J = 1 TO 4
@@ -374,17 +374,17 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 275 IF X(M(I,J))<>0 THEN 285
- Value:I
- Value:J
- Value:M
- Value:X
+ Variable:I
+ Variable:J
+ Variable:M
+ Variable:X
  NumericConstant:0
  BinaryOperator:<>
 280 LET X(M(I,J))=1/8
- Value:I
- Value:J
- Value:M
- Reference:X
+ Variable:I
+ Variable:J
+ Variable:M
+ Variable:X
  NumericConstant:1
  NumericConstant:8
  BinaryOperator:/
@@ -400,15 +400,15 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:76"]
 305 IF L(I)=1/2 THEN 1700
- Value:I
- Value:L
+ Variable:I
+ Variable:L
  NumericConstant:1
  NumericConstant:2
  BinaryOperator:/
  BinaryOperator:=
 310 IF L(I)=1 + 3/8 THEN 1700
- Value:I
- Value:L
+ Variable:I
+ Variable:L
  NumericConstant:1
  NumericConstant:3
  NumericConstant:8
@@ -420,35 +420,35 @@
 320 GOTO 1300
  LineNumber:1300
 360LET Z = 1
- Reference:Z
+ Variable:Z
  NumericConstant:1
  AssignmentOperator:=
 362 IF X(Y(Z))=0 THEN 380
- Value:Z
- Value:Y
- Value:X
+ Variable:Z
+ Variable:Y
+ Variable:X
  NumericConstant:0
  BinaryOperator:=
 365 LET Z=Z+1
- Reference:Z
- Value:Z
+ Variable:Z
+ Variable:Z
  NumericConstant:1
  BinaryOperator:+
  AssignmentOperator:=
 368 IF Z<>17 THEN 362
- Value:Z
+ Variable:Z
  NumericConstant:17
  BinaryOperator:<>
 375 GOTO 1200
  LineNumber:1200
 380 LET M=Y(Z)
- Reference:M
- Value:Z
- Value:Y
+ Variable:M
+ Variable:Z
+ Variable:Y
  AssignmentOperator:=
 381 LET X(M)=5
- Value:M
- Reference:X
+ Variable:M
+ Variable:X
  NumericConstant:5
  AssignmentOperator:=
 385 PRINT "MACHINE MOVES TO";
@@ -460,51 +460,51 @@
 390 GOTO 70
  LineNumber:70
 400 LET X=X
- Reference:X
- Value:X
+ Variable:X
+ Variable:X
  AssignmentOperator:=
 410 FOR I=1 TO 76
  control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:76"]
 412 LET L(I)=X(M(I,1))+X(M(I,2))+X(M(I,3))+X(M(I,4))
- Value:I
- Reference:L
- Value:I
+ Variable:I
+ Variable:L
+ Variable:I
  NumericConstant:1
- Value:M
- Value:X
- Value:I
+ Variable:M
+ Variable:X
+ Variable:I
  NumericConstant:2
- Value:M
- Value:X
+ Variable:M
+ Variable:X
  BinaryOperator:+
- Value:I
+ Variable:I
  NumericConstant:3
- Value:M
- Value:X
+ Variable:M
+ Variable:X
  BinaryOperator:+
- Value:I
+ Variable:I
  NumericConstant:4
- Value:M
- Value:X
+ Variable:M
+ Variable:X
  BinaryOperator:+
  AssignmentOperator:=
 415 LET L=L(I)
- Reference:L
- Value:I
- Value:L
+ Variable:L
+ Variable:I
+ Variable:L
  AssignmentOperator:=
 420 IF L<10 THEN 455
- Value:L
+ Variable:L
  NumericConstant:10
  BinaryOperator:<
 425 IF L>=11 THEN 455
- Value:L
+ Variable:L
  NumericConstant:11
  BinaryOperator:>=
 430 IF L>10 THEN 1600
- Value:L
+ Variable:L
  NumericConstant:10
  BinaryOperator:>
 435 FOR J=1 TO 4
@@ -512,17 +512,17 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 440 IF X(M(I,J))<>0 THEN 450
- Value:I
- Value:J
- Value:M
- Value:X
+ Variable:I
+ Variable:J
+ Variable:M
+ Variable:X
  NumericConstant:0
  BinaryOperator:<>
 445 LET X(M(I,J))=1/8
- Value:I
- Value:J
- Value:M
- Reference:X
+ Variable:I
+ Variable:J
+ Variable:M
+ Variable:X
  NumericConstant:1
  NumericConstant:8
  BinaryOperator:/
@@ -538,13 +538,13 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:76"]
 480 IF L(I)=.5 THEN 1700
- Value:I
- Value:L
+ Variable:I
+ Variable:L
  NumericConstant:.5
  BinaryOperator:=
 485 IF L(I)=5+3/8 THEN 1700
- Value:I
- Value:L
+ Variable:I
+ Variable:L
  NumericConstant:5
  NumericConstant:3
  NumericConstant:8
@@ -566,13 +566,13 @@
  TextConstant:"DO YOU WANT TO TRY ANOTHER GAME"
  CarriageControl:;
 510 INPUT X$
- Reference:X$
+ Variable:X$
 515 IF X$="YES" THEN 35
- Value:X$
+ Variable:X$
  TextConstant:"YES"
  BinaryOperator:=
 516 IF X$="NO" THEN 520
- Value:X$
+ Variable:X$
  TextConstant:"NO"
  BinaryOperator:=
 517 PRINT "INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'";
@@ -584,8 +584,8 @@
 520 STOP
  
 1000 LET K1=INT((M-1)/16)+1
- Reference:K1
- Value:M
+ Variable:K1
+ Variable:M
  NumericConstant:1
  BinaryOperator:-
  NumericConstant:16
@@ -595,18 +595,18 @@
  BinaryOperator:+
  AssignmentOperator:=
 1010 LET J2=M-16*(K1-1)
- Reference:J2
- Value:M
+ Variable:J2
+ Variable:M
  NumericConstant:16
- Value:K1
+ Variable:K1
  NumericConstant:1
  BinaryOperator:-
  BinaryOperator:*
  BinaryOperator:-
  AssignmentOperator:=
 1030 LET K2=INT((J2-1)/4)+1
- Reference:K2
- Value:J2
+ Variable:K2
+ Variable:J2
  NumericConstant:1
  BinaryOperator:-
  NumericConstant:4
@@ -616,15 +616,15 @@
  BinaryOperator:+
  AssignmentOperator:=
 1035 LET K3=M-(K1-1)*16-(K2-1)*4
- Reference:K3
- Value:M
- Value:K1
+ Variable:K3
+ Variable:M
+ Variable:K1
  NumericConstant:1
  BinaryOperator:-
  NumericConstant:16
  BinaryOperator:*
  BinaryOperator:-
- Value:K2
+ Variable:K2
  NumericConstant:1
  BinaryOperator:-
  NumericConstant:4
@@ -632,20 +632,20 @@
  BinaryOperator:-
  AssignmentOperator:=
 1040 LET M=K1*100+K2*10+K3
- Reference:M
- Value:K1
+ Variable:M
+ Variable:K1
  NumericConstant:100
  BinaryOperator:*
- Value:K2
+ Variable:K2
  NumericConstant:10
  BinaryOperator:*
  BinaryOperator:+
- Value:K3
+ Variable:K3
  BinaryOperator:+
  AssignmentOperator:=
 1042 PRINT M;
  ITEMS
- Value:M
+ Variable:M
  CarriageControl:;
 1045 RETURN
  
@@ -654,42 +654,42 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:76"]
 1060 LET J1 = M(S,1)
- Reference:J1
- Value:S
+ Variable:J1
+ Variable:S
  NumericConstant:1
- Value:M
+ Variable:M
  AssignmentOperator:=
 1070 LET J2=M(S,2)
- Reference:J2
- Value:S
+ Variable:J2
+ Variable:S
  NumericConstant:2
- Value:M
+ Variable:M
  AssignmentOperator:=
 1080 LET J3=M(S,3)
- Reference:J3
- Value:S
+ Variable:J3
+ Variable:S
  NumericConstant:3
- Value:M
+ Variable:M
  AssignmentOperator:=
 1090 LET J4=M(S,4)
- Reference:J4
- Value:S
+ Variable:J4
+ Variable:S
  NumericConstant:4
- Value:M
+ Variable:M
  AssignmentOperator:=
 1100 LET L(S)=X(J1)+X(J2)+X(J3)+X(J4)
- Value:S
- Reference:L
- Value:J1
- Value:X
- Value:J2
- Value:X
+ Variable:S
+ Variable:L
+ Variable:J1
+ Variable:X
+ Variable:J2
+ Variable:X
  BinaryOperator:+
- Value:J3
- Value:X
+ Variable:J3
+ Variable:X
  BinaryOperator:+
- Value:J4
- Value:X
+ Variable:J4
+ Variable:X
  BinaryOperator:+
  AssignmentOperator:=
 1110 NEXT S
@@ -701,18 +701,18 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:64"]
 1210 IF X(I)<>0 THEN 1250
- Value:I
- Value:X
+ Variable:I
+ Variable:X
  NumericConstant:0
  BinaryOperator:<>
 1220 LET X(I)=5
- Value:I
- Reference:X
+ Variable:I
+ Variable:X
  NumericConstant:5
  AssignmentOperator:=
 1225 LET M=I
- Reference:M
- Value:I
+ Variable:M
+ Variable:I
  AssignmentOperator:=
 1226 PRINT "MACHINE LIKES";
  ITEMS
@@ -739,24 +739,24 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:18"]
 1305 LET P=0
- Reference:P
+ Variable:P
  NumericConstant:0
  AssignmentOperator:=
 1310 FOR I=4*K-3 TO 4*K
  control: Variable:I
- start:   ["NumericConstant:4", "Value:K", "BinaryOperator:*", "NumericConstant:3", "BinaryOperator:-"]
- end:     ["NumericConstant:4", "Value:K", "BinaryOperator:*"]
+ start:   ["NumericConstant:4", "Variable:K", "BinaryOperator:*", "NumericConstant:3", "BinaryOperator:-"]
+ end:     ["NumericConstant:4", "Variable:K", "BinaryOperator:*"]
 1315 FOR J=1 TO 4
  control: Variable:J
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 1320 LET P=P+X(M(I,J))
- Reference:P
- Value:P
- Value:I
- Value:J
- Value:M
- Value:X
+ Variable:P
+ Variable:P
+ Variable:I
+ Variable:J
+ Variable:M
+ Variable:X
  BinaryOperator:+
  AssignmentOperator:=
 1325 NEXT J
@@ -764,19 +764,19 @@
 1330 NEXT I
  Variable:I
 1345 IF P<4 THEN 1390
- Value:P
+ Variable:P
  NumericConstant:4
  BinaryOperator:<
 1350 IF P<5 THEN 1400
- Value:P
+ Variable:P
  NumericConstant:5
  BinaryOperator:<
 1355 IF P<9 THEN 1390
- Value:P
+ Variable:P
  NumericConstant:9
  BinaryOperator:<
 1360 IF P<10 THEN 1400
- Value:P
+ Variable:P
  NumericConstant:10
  BinaryOperator:<
 1390 NEXT K
@@ -786,21 +786,21 @@
 1396 GOTO 360
  LineNumber:360
 1400 LET S=1/8
- Reference:S
+ Variable:S
  NumericConstant:1
  NumericConstant:8
  BinaryOperator:/
  AssignmentOperator:=
 1405 FOR I=4*K-3 TO 4*K
  control: Variable:I
- start:   ["NumericConstant:4", "Value:K", "BinaryOperator:*", "NumericConstant:3", "BinaryOperator:-"]
- end:     ["NumericConstant:4", "Value:K", "BinaryOperator:*"]
+ start:   ["NumericConstant:4", "Variable:K", "BinaryOperator:*", "NumericConstant:3", "BinaryOperator:-"]
+ end:     ["NumericConstant:4", "Variable:K", "BinaryOperator:*"]
 1410 GOTO 1703
  LineNumber:1703
 1415 NEXT I
  Variable:I
 1420 LET S=0
- Reference:S
+ Variable:S
  NumericConstant:0
  AssignmentOperator:=
 1425 GOTO 1405
@@ -1150,24 +1150,24 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 1605 IF X(M(I,J))<>1/8 THEN 1650
- Value:I
- Value:J
- Value:M
- Value:X
+ Variable:I
+ Variable:J
+ Variable:M
+ Variable:X
  NumericConstant:1
  NumericConstant:8
  BinaryOperator:/
  BinaryOperator:<>
 1610 LET X(M(I,J))=5
- Value:I
- Value:J
- Value:M
- Reference:X
+ Variable:I
+ Variable:J
+ Variable:M
+ Variable:X
  NumericConstant:5
  AssignmentOperator:=
 1615 IF L(I)<5 THEN 1625
- Value:I
- Value:L
+ Variable:I
+ Variable:L
  NumericConstant:5
  BinaryOperator:<
 1620 PRINT "LET'S SEE YOU GET OUT OF THIS! MACHINE MOVES TO";
@@ -1181,10 +1181,10 @@
  TextConstant:"YOU FOX. JUST IN THE NICK OF TIME, MACHINE MOVES TO"
  CarriageControl:;
 1626 LET M=M(I,J)
- Reference:M
- Value:I
- Value:J
- Value:M
+ Variable:M
+ Variable:I
+ Variable:J
+ Variable:M
  AssignmentOperator:=
 1630 GOSUB 1000
  LineNumber:1000
@@ -1199,14 +1199,14 @@
 1665 GOTO 500
  LineNumber:500
 1700 LET S=1/8
- Reference:S
+ Variable:S
  NumericConstant:1
  NumericConstant:8
  BinaryOperator:/
  AssignmentOperator:=
 1703 IF I-INT(I/4)*4>1 THEN 1715
- Value:I
- Value:I
+ Variable:I
+ Variable:I
  NumericConstant:4
  BinaryOperator:/
  FunctionInt
@@ -1216,43 +1216,43 @@
  NumericConstant:1
  BinaryOperator:>
 1705 LET A=1
- Reference:A
+ Variable:A
  NumericConstant:1
  AssignmentOperator:=
 1710 GOTO 1720
  LineNumber:1720
 1715 LET A=2
- Reference:A
+ Variable:A
  NumericConstant:2
  AssignmentOperator:=
 1720 FOR J=A TO 5-A _ STEP 5-2*A
  control: Variable:J
- start:   ["Value:A"]
- end:     ["NumericConstant:5", "Value:A", "BinaryOperator:-"]
- step:    ["NumericConstant:5", "NumericConstant:2", "Value:A", "BinaryOperator:*", "BinaryOperator:-"]
+ start:   ["Variable:A"]
+ end:     ["NumericConstant:5", "Variable:A", "BinaryOperator:-"]
+ step:    ["NumericConstant:5", "NumericConstant:2", "Variable:A", "BinaryOperator:*", "BinaryOperator:-"]
 1725 IF X(M(I,J))=S THEN 1750
- Value:I
- Value:J
- Value:M
- Value:X
- Value:S
+ Variable:I
+ Variable:J
+ Variable:M
+ Variable:X
+ Variable:S
  BinaryOperator:=
 1730 NEXT J
  Variable:J
 1735 GOTO 1415
  LineNumber:1415
 1750 LET X(M(I,J))=5
- Value:I
- Value:J
- Value:M
- Reference:X
+ Variable:I
+ Variable:J
+ Variable:M
+ Variable:X
  NumericConstant:5
  AssignmentOperator:=
 1755 LET M=M(I,J)
- Reference:M
- Value:I
- Value:J
- Value:M
+ Variable:M
+ Variable:I
+ Variable:J
+ Variable:M
  AssignmentOperator:=
 1760 PRINT "MACHINE TAKES";
  ITEMS
@@ -1267,15 +1267,15 @@
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:64"]
 1810 IF X(I)<>1/8 THEN 1850
- Value:I
- Value:X
+ Variable:I
+ Variable:X
  NumericConstant:1
  NumericConstant:8
  BinaryOperator:/
  BinaryOperator:<>
 1815 LET X(I)=0
- Value:I
- Reference:X
+ Variable:I
+ Variable:X
  NumericConstant:0
  AssignmentOperator:=
 1850 NEXT I
