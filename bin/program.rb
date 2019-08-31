@@ -771,6 +771,7 @@ class Program
       rs = []
       statements.each do |statement|
         rs += statement.userfuncs
+        rs += statement.modifier_userfuncs
       end
 
       refs[line_number] = rs
@@ -814,18 +815,6 @@ class Program
     end
 
     refs
-  end
-
-  def print_refs(title, refs)
-    @console_io.print_line(title)
-
-    refs.keys.sort.each do |ref|
-      lines = refs[ref]
-      line = ref + ":\t" + lines.map(&:to_s).uniq.join(', ')
-      @console_io.print_line(line)
-    end
-
-    @console_io.print_line('')
   end
 
   def print_numeric_refs(title, refs)
@@ -900,7 +889,7 @@ class Program
 
     udfs_list = user_function_refs
     userfuncs = make_summary(udfs_list)
-    print_refs('User-defined functions', userfuncs)
+    print_object_refs('User-defined functions', userfuncs)
 
     vars_list = variables_refs
     variables = make_summary(vars_list)

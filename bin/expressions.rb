@@ -904,6 +904,10 @@ class AbstractExpression
     parsed_expressions_functions(@parsed_expressions)
   end
 
+  def userfuncs
+    parsed_expressions_userfuncs(@parsed_expressions)
+  end
+
   private
 
   def parsed_expressions_numerics(parsed_expressions)
@@ -992,6 +996,33 @@ class AbstractExpression
           sublist = thing.list
           vars += parsed_expressions_functions(sublist)
         elsif thing.function? && !thing.user_function?
+          n_dims = 0
+          n_dims = previous.size if !previous.nil? && previous.list?
+
+          is_ref = thing.reference?
+
+          vars << XrefEntry.new(thing.to_s, n_dims, is_ref)
+        end
+
+        previous = thing
+      end
+    end
+
+    vars
+  end
+
+  def parsed_expressions_userfuncs(parsed_expressions)
+    vars = []
+
+    parsed_expressions.each do |expression|
+      previous = nil
+
+      expression.each do |thing|
+        if thing.list?
+          # recurse into expressions in list
+          sublist = thing.list
+          vars += parsed_expressions_userfuncs(sublist)
+        elsif thing.user_function?
           n_dims = 0
           n_dims = previous.size if !previous.nil? && previous.list?
 
@@ -1243,6 +1274,7 @@ class UserFunctionDefinition
   attr_reader :strings
   attr_reader :variables
   attr_reader :functions
+  attr_reader :userfuncs
 
   def initialize(tokens)
     # parse into name '=' expression
@@ -1262,6 +1294,15 @@ class UserFunctionDefinition
       @strings = @expression.strings
       @variables = @expression.variables
       @functions = @expression.functions
+      xr = XrefEntry.new(@name.to_s, @arguments.size, true)
+      @userfuncs = [xr] + @expression.userfuncs
+    else
+      @numerics = []
+      @strings = []
+      @variables = []
+      @functions = []
+      xr = XrefEntry.new(@name.to_s, @arguments.size, true)
+      @userfuncs = [xr]
     end
   end
 
@@ -1410,6 +1451,10 @@ class AbstractAssignment
 
   def functions
     @target.functions + @expression.functions
+  end
+
+  def userfuncs
+    @target.userfuncs + @expression.userfuncs
   end
 
   def count_target
