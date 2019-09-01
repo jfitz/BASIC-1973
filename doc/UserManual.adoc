@@ -152,7 +152,6 @@ When the BASIC program ends, BASIC-1973 ends.
 |--decimals digits |Sets the number of decimals printed. Default is 5, maximum is 15.
 |--no-detect-infinite-loop |Disables checks for infinite loops.
 |--echo-input |Echoes console input to output. Useful in run mode when redirecting input from a text file.
-|--epsilon |Sets the minimum value for numeric variables. Values below epsilon are converted to zero. Default is 1E-7.
 |--fornext-one-beyond |When a FOR/NEXT loop ends, the index value is one step (usually 1) beyond the end value. (Normally index value is the end value.)
 |--hash-constant |Allow numeric constants in the form '#c' where c is any single character. Disables file handle operator and the not-equals operator, which are also represented by '#'.
 |--if-false-next-line |When an IF without an ELSE and with a statement (not a destination line number) evaluates its condition as false, change execution to the next numbered line, not the next statement in a multistatment line.
@@ -163,6 +162,7 @@ When the BASIC program ends, BASIC-1973 ends.
 |--lock-fornext |Lock control variables to FOR/NEXT loops. Variables can be read but not changed.
 |--match-fornext |Require exact pairing of FOR/NEXT loops. The default allows programs to jump out of an inner loop and continue the outer loop.
 |--min-max-op |Enable the MIN and MAX operators.
+|--precision |Sets the precision for numeric variables. Default is 6, maximum is 15.
 |--print-width width |Specifies a print width. Lines will wrap at the specified column. Default value is 72.
 |--prompt-count |INPUT statement prompts the user with the number of expected values.
 |--provenance |When displaying a variable in a trace, also display the line number where it was set.
@@ -422,7 +422,6 @@ The options that can be set are:
     DEFAULT_PROMPT
     DETECT_INFINITE_LOOP
     ECHO
-    EPSILON
     FORNEXT_ONE_BEYOND
     HEADING
     IF_FALSE_NEXT_LINE
@@ -434,6 +433,7 @@ The options that can be set are:
     MATCH_FORNEXT
     MIN_MAX_OP
     NEWLINE_SPEED
+    PRECISION
     PRETTY_MULTILINE
     PRINT_SPEED
     PRINT_WIDTH
@@ -471,7 +471,6 @@ The OPTION command overrides the command-line setting.
 |DEFAULT_PROMPT |String |"? " |Changes the prompt for INPUT statements
 |DETECT_INFINITE_LOOP |TRUE or FALSE |TRUE |Enables the detection of infinite loops
 |ECHO |TRUE or FALSE |FALSE |Echoes input (useful for testing)
-|EPSILON |numeric positive |1E-7 |Values below epsilon are converted to zero.
 |FORNEXT_ONE_BEYOND |TRUE or FALSE |FALSE |FOR/NEXT ends with index value one higher than limit
 |HEADING |TRUE or FALSE |TRUE |Displays the opening and closing lines that identify BASIC
 |IF_FALSE_NEXT_LINE |TRUE or FALSE |FALSE |IF condition false jumps to next line (default is next statement)
@@ -483,6 +482,7 @@ The OPTION command overrides the command-line setting.
 |MATCH_FORNEXT |TRUE or FALSE |FALSE |Require exact pairing of FOR and NEXT statements
 |MIN_MAX_OP |TRUE or FALSE |FALSE |Allow MIN and MAX operators
 |NEWLINE_SPEED |numeric |0 |Limit printing speed only for newlines
+|PRECISION |numeric 1 to 15 |5 |Sets the precision for numeric values
 |PRETTY_MULTILINE |TRUE or FALSE |FALSE |When pretty-listing, print each statement on its own line
 |PRINT_SPEED |numeric |0 |Limit printing speed (a value of 10 emulates an old TeleType)
 |PRINT_WIDTH |numeric |72 |Wrap output at the specified column; 0 disables wrapping
@@ -715,7 +715,7 @@ Numeric values
 Numeric values are either integers or floating point.
 Integer values may contain a trailing '%' character.
 Integers are stored internally with Ruby's Fixnum class.
-Floating point numbers are stored as Ruby's Float with full precision and printed with six significant digits.
+Floating point numbers are stored as Ruby's Float with precision specified by PRECISION option and printed with decimal places specified by DECIMALS option.
 
 Numeric constants may be integer or real, and may use E-notation with unsigned exponents.
 The 'E' must be uppercase; a lowercase 'e' will be rejected.
@@ -1424,7 +1424,6 @@ Possible options are a subset of the options in the shell.
     DEFAULT_PROMPT
     DETECT_INFINITE_LOOP
     ECHO
-    EPSILON
     FORNEXT_ONE_BEYOND
     IF_FALSE_NEXT_LINE
     IGNORE_RND_ARG
@@ -1434,6 +1433,7 @@ Possible options are a subset of the options in the shell.
     LOCK_FORNEXT
     MATCH_FORNEXT
     NEWLINE_SPEED
+    PRECISION
     PRINT_SPEED
     PRINT_WIDTH
     PROMPT_COUNT
@@ -1498,9 +1498,7 @@ The semicolon separator will force a small space between items.
 Between strings, there is no space.
 If semicolon zones are enabled (width greater than zero), then BASIC will advance to the next zone.
 
-Numbers are printed with automatic formatting.
-BASIC-1973 will print a number with the necessary number of decimal places.
-It is not possible to force a number of decimal places.
+The DECIMALS option sets the number of decimal places printed; trailing zeros are removed.
 
 Printing to files
 ^^^^^^^^^^^^^^^^^
