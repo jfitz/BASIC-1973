@@ -1,3 +1,19 @@
 INTERVAL(S) BEGIN AT:
 -2  2  3 
 STOP in line 270
+
+50.0 (1) DEF FNT(X) = 12 * X ^ 3 - 64 * X ^ 2 + 17 * X + 195
+60.0 (1) LET A = 0
+70.0 (1) FOR X = -5 TO 5
+80.0 (11) LET S1 = FNT(X)
+90.0 (11) LET S2 = FNT(X + 1)
+100.0 (11) IF S1 * S2 > 0 THEN 130
+110.0 (3) LET A = A + 1
+120.0 (3) LET S[A] = X
+130.0 (11) NEXT X
+190.0 (1) PRINT "INTERVAL(S) BEGIN AT:"
+200.0 (1) FOR I = 1 TO A
+210.0 (3) PRINT S[I];
+220.0 (3) NEXT I
+270.0 (1) END
+

@@ -12,3 +12,31 @@ THE SIDES ARE    2               2               3
 THEN ANGLES ARE  41.41           41.41           97.18
 
 STOP in line 999
+
+10.0 (1) DEF FNR(X) = INT(X * 100 + .5) / 100
+15.0 (1) PRINT "  ", " A", " B", " C"
+20.0 (5) READ A, B, C
+30.0 (5) IF A = 0 THEN 999
+40.0 (4) PRINT "THE SIDES ARE", A, B, C
+48.0 (4) REM  T IS REALLY COS(A1)
+50.0 (4) LET T = (B ^ 2 + C ^ 2 - A ^ 2) / (2 * B * C)
+58.0 (4) REM T1 IS REALL SIN(A)
+60.0 (4) LET T1 = SQR(1 - T ^ 2)
+68.0 (4) REM  A1 IS THE ANGLE INCLUDED BY SIDES B AND C
+70.0 (4) LET A1 = ATN(T1 / T)
+78.0 (4) REM    CONVERT RADIANS TO DEGREES
+80.0 (4) LET A1 = A1 * 180 / 3.14159
+88.0 (4) REM  WE NOW REPEAT THE PROCESS TO FIND ANGLE B1
+90.0 (4) LET T = (A ^ 2 + C ^ 2 - B ^ 2) / (2 * A * C)
+100.0 (4) LET T1 = SQR(1 - T ^ 2)
+110.0 (4) LET B1 = ATN(T1 / T)
+120.0 (4) LET B1 = B1 * 180 / 3.14159
+130.0 (4) PRINT "THEN ANGLES ARE", FNR(A1), FNR(B1), 180 - (FNR(A1) + FNR(B1))
+140.0 (4) PRINT
+150.0 (4) GOTO 20
+500.0 (0) DATA 3, 4, 5, 300, 400, 500
+510.0 (0) DATA 1.73205, 1, 2
+520.0 (0) DATA 2, 2, 3
+530.0 (0) DATA 0, 0, 0
+999.0 (1) END
+

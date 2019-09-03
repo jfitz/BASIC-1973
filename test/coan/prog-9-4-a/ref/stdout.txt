@@ -25,3 +25,15 @@ ANGLE           1-2COS(G)       2+SIN(2G)       1+2COS(G)-3SIN(G)^2
  345            -0.92            1.5             2.73
  360            -0.99            2               3
 STOP in line 90
+
+5.0 (1) LET K = 3.14159 / 180
+10.0 (1) PRINT "ANGLE", "1-2COS(G)", "2+SIN(2G)", "1+2COS(G)-3SIN(G)^2"
+20.0 (1) DEF FNR(X) = INT(X * 100 + .5) / 100
+30.0 (1) DEF FNA(X) = 1 - 2 * COS(K * X)
+40.0 (1) DEF FNB(X) = 2 + SIN(2 * K * X)
+50.0 (1) DEF FNC(X) = 1 + 2 * COS(K * X) - 3 * SIN(K * X) ^ 2
+60.0 (1) FOR G = 0 TO 360 STEP 15
+70.0 (25) PRINT G, FNR(FNA(G)), FNR(FNB(G)), FNR(FNC(G))
+80.0 (25) NEXT G
+90.0 (1) END
+
