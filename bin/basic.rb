@@ -338,7 +338,7 @@ def make_command_tokenbuilders(options, quotes)
     BACK_TAB BACKSLASH_SEPARATOR BANG_COMMENT
     BASE
     CHR_ALLOW_ALL COLON_FILE COLON_SEPARATOR CRLF_ON_LINE_INPUT
-    DECIMALS DEFAULT_PROMPT DETECT_INFINITE_LOOP
+    DEFAULT_PROMPT DETECT_INFINITE_LOOP
     ECHO FORNEXT_ONE_BEYOND HEADING
     IF_FALSE_NEXT_LINE IGNORE_RND_ARG IMPLIED_SEMICOLON INPUT_HIGH_BIT
     INT_FLOOR LOCK_FORNEXT MATCH_FORNEXT MIN_MAX_OP NEWLINE_SPEED
@@ -392,7 +392,6 @@ OptionParser.new do |opt|
   opt.on('--colon-file') { |o| options[:colon_file] = o }
   opt.on('--no-colon-separator') { |o| options[:no_colon_sep] = o }
   opt.on('--crlf-on-line-input') { |o| options[:crlf_on_line_input] = o }
-  opt.on('--decimals DIGITS') { |o| options[:decimals] = o }
   opt.on('--define-ascii') { |o| options[:allow_ascii] = o }
   opt.on('--define-pi') { |o| options[:allow_pi] = o }
   opt.on('--no-detect-infinite-loop') { |o| options[:no_detect_infinite_loop] = o }
@@ -475,10 +474,6 @@ $options['colon_separator'] = Option.new(boolean, colon_separator)
 
 $options['crlf_on_line_input'] =
   Option.new(boolean, options.key?(:crlf_on_line_input))
-
-decimals = 5
-decimals = options[:decimals] if options.key?(:decimals)
-$options['decimals'] = Option.new(int_1_15, decimals)
 
 $options['default_prompt'] = Option.new(string, '? ')
 
