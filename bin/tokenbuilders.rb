@@ -605,6 +605,7 @@ class NumericFormatTokenBuilder
 
     result = true if c == '#'
     result = true if c == '.' && !candidate.empty? && !candidate.include?('.')
+    result = true if c == ',' && !candidate.empty? && !candidate.include?(',')
     result = true if c == '*' && (candidate.empty? || candidate[-1] == '*')
 
     result
