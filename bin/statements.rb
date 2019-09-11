@@ -228,6 +228,7 @@ class AbstractStatement
   attr_reader :userfuncs
   attr_reader :linenums
   attr_reader :autonext
+  attr_reader :is_if_no_else
 
   def self.extra_keywords
     []
@@ -248,6 +249,7 @@ class AbstractStatement
     @userfuncs = []
     @linenums = []
     @autonext = true
+    @is_if_no_else = false
     @profile_count = 0
     @profile_time = 0
     @part_of_user_function = nil
@@ -1624,6 +1626,8 @@ class IfStatement < AbstractStatement
         @errors << 'Syntax Error: ' + e.message
       end
     end
+    
+    @is_if_no_else = @else_dest.nil? && @else_stmt.nil?
   end
 
   private
