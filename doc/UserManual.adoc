@@ -146,6 +146,7 @@ When the BASIC program ends, BASIC-1973 ends.
 |--back-tab |Allows the TAB() function to move to the left. Normally, it moves only to the right or not at all.
 |--bang-comment |Allow comments that start with an exclamation point. The apostrophe comments are still allowed.
 |--base 0/1 |Set the minimum for subscripts to either 0 or 1. Default is 0.
+|--brackets |Allow square brackets to denote subscripts for variables.
 |--chr-allow-all |The CHR$() function allows any output characters. The default behavior is to limit characters to printable ASCII (32d to 126d).
 |--colon-file |Allow ':' to mark a file number (in addition to '#'). Forces the --no-colon-separator option.
 |--no-colon-separator |Do not allow colon separator for statements. The backslash is still allowed.
@@ -423,6 +424,7 @@ The options that can be set are:
     BACKSLASH_SEPARATOR
     BANG_COMMENT
     BASE
+    BRACKETS
     CHR_ALLOW_ALL
     COLON_FILE
     COLON_SEPARATOR
@@ -471,6 +473,7 @@ The OPTION command overrides the command-line setting.
 |BACKSLASH_SEPARATOR |TRUE or FALSE |TRUE |Backslash separates statements
 |BANG_COMMENT |TRUE or FALSE |FALSE |Allow comments staring with exclamation point
 |BASE |numeric |0 |Sets the base for arrays and matrices to either 0 or 1
+|BRACKETS |TRUE or FALSE |Allow square brackets to denote subscripts
 |CHR_ALLOW_ALL |TRUE or FALSE |FALSE |The CHR() function allows all characters
 |COLON_FILE |TRUE or FALSE |FALSE |Colon indicates a file handle (:2, :4, etc.)
 |COLON_SEPARATOR| TRUE or FALSE |FALSE |Colon separates statements
@@ -588,7 +591,7 @@ Variables store numeric, integer, and text values.
 Numeric variables handle integer and floating point values automatically; integer variables are limited to integer values.
 
 Variable names consist of a single letter and an optional digit and an optional subscript.
-Subscripts are enclosed in parentheses or square brackets.
+Subscripts are enclosed in parentheses (or square brackets with the --brackets option).
 Values for subscripts are truncated to integers.
 The values 2.3 and 2.8 will both be converted to the value 2 when storing or retrieving values.
 

@@ -282,8 +282,7 @@ class Shell
   end
 end
 
-def make_interpreter_tokenbuilders(options, quotes, statement_separators,
-                                   comment_leads)
+def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads)
   tokenbuilders = []
 
   tokenbuilders << CommentTokenBuilder.new(comment_leads)
@@ -298,17 +297,23 @@ def make_interpreter_tokenbuilders(options, quotes, statement_separators,
   keywords = statement_factory.keywords_definitions
   tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
-  colon_file = options['colon_file'].value
+  colon_file = $options['colon_file'].value
   un_ops = UnaryOperator.operators(colon_file)
-  min_max_op = options['min_max_op'].value
+  min_max_op = $options['min_max_op'].value
   bi_ops = BinaryOperator.operators(min_max_op)
   operators = (un_ops + bi_ops).uniq
   tokenbuilders << ListTokenBuilder.new(operators, OperatorToken)
 
   tokenbuilders << BreakTokenBuilder.new
 
-  tokenbuilders << ListTokenBuilder.new(['(', '['], GroupStartToken)
-  tokenbuilders << ListTokenBuilder.new([')', ']'], GroupEndToken)
+  if $options['brackets'].value
+    tokenbuilders << ListTokenBuilder.new(['(', '['], GroupStartToken)
+    tokenbuilders << ListTokenBuilder.new([')', ']'], GroupEndToken)
+  else
+    tokenbuilders << ListTokenBuilder.new(['('], GroupStartToken)
+    tokenbuilders << ListTokenBuilder.new([')'], GroupEndToken)
+  end
+
   tokenbuilders << ListTokenBuilder.new([',', ';'], ParamSeparatorToken)
 
   tokenbuilders <<
@@ -318,23 +323,23 @@ def make_interpreter_tokenbuilders(options, quotes, statement_separators,
     ListTokenBuilder.new(FunctionFactory.user_function_names, UserFunctionToken)
 
   tokenbuilders << TextTokenBuilder.new(quotes)
-  allow_hash_constant = options['allow_hash_constant'].value
+  allow_hash_constant = $options['allow_hash_constant'].value
   tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
   tokenbuilders << IntegerTokenBuilder.new
-  allow_pi = options['allow_pi'].value
+  allow_pi = $options['allow_pi'].value
   tokenbuilders << NumericSymbolTokenBuilder.new if allow_pi
-  allow_ascii = options['allow_ascii'].value
+  allow_ascii = $options['allow_ascii'].value
   tokenbuilders << TextSymbolTokenBuilder.new if allow_ascii
   tokenbuilders << VariableTokenBuilder.new
   tokenbuilders << ListTokenBuilder.new(%w(TRUE FALSE), BooleanConstantToken)
   tokenbuilders << WhitespaceTokenBuilder.new
 end
 
-def make_command_tokenbuilders(options, quotes)
+def make_command_tokenbuilders(quotes)
   tokenbuilders = []
 
   keywords = %w(
-    ANALYZE BREAK CROSSREF DELETE DIMS EXIT LIST LOAD NEW OPTION PARSE
+    ANALYZE BREAK BRACKETS CROSSREF DELETE DIMS EXIT LIST LOAD NEW OPTION PARSE
     PRETTY PROFILE RENUMBER RUN SAVE TOKENS UDFS VARS
     ALLOW_ASCII ALLOW_HASH_CONSTANT ALLOW_PI APOSTROPHE_COMMENT ASC_ALLOW_ALL
     BACK_TAB BACKSLASH_SEPARATOR BANG_COMMENT
@@ -350,9 +355,9 @@ def make_command_tokenbuilders(options, quotes)
   )
   tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
-  colon_file = options['colon_file'].value
+  colon_file = $options['colon_file'].value
   un_ops = UnaryOperator.operators(colon_file)
-  min_max_op = options['min_max_op'].value
+  min_max_op = $options['min_max_op'].value
   bi_ops = BinaryOperator.operators(min_max_op)
   operators = (un_ops + bi_ops).uniq
   tokenbuilders << ListTokenBuilder.new(operators, OperatorToken)
@@ -361,7 +366,7 @@ def make_command_tokenbuilders(options, quotes)
 
   tokenbuilders << TextTokenBuilder.new(quotes)
 
-  allow_hash_constant = options['allow_hash_constant'].value
+  allow_hash_constant = $options['allow_hash_constant'].value
   tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
 
   tokenbuilders << ListTokenBuilder.new(%w(TRUE FALSE), BooleanConstantToken)
@@ -391,6 +396,7 @@ OptionParser.new do |opt|
   opt.on('--back-tab') { |o| options[:back_tab] = o }
   opt.on('--bang-comment') { |o| options[:bang_comment] = o }
   opt.on('--base BASE') { |o| options[:base] = o }
+  opt.on('--brackets') { |o| options[:brackets] = o }
   opt.on('--chr-allow-all') { |o| options[:chr_allow_all] = o }
   opt.on('--colon-file') { |o| options[:colon_file] = o }
   opt.on('--no-colon-separator') { |o| options[:no_colon_sep] = o }
@@ -467,6 +473,8 @@ $options['bang_comment'] = Option.new(boolean, options.key?(:bang_comment))
 base = 0
 base = options[:base].to_i if options.key?(:base)
 $options['base'] = Option.new(int_1, base)
+
+$options['brackets'] = Option.new(boolean, options.key?(:brackets))
 
 $options['chr_allow_all'] =
   Option.new(boolean, options.key?(:chr_allow_all))
@@ -580,8 +588,7 @@ comment_leads << "'" if
 console_io = ConsoleIo.new
 
 tokenbuilders =
-  make_interpreter_tokenbuilders($options, quotes, statement_seps,
-                                 comment_leads)
+  make_interpreter_tokenbuilders(quotes, statement_seps, comment_leads)
 
 if $options['heading'].value
   console_io.print_line('BASIC-1973 interpreter version -1')
@@ -666,7 +673,7 @@ if list_filename.nil? && parse_filename.nil? && analyze_filename.nil? &&
   interpreter = Interpreter.new(console_io)
   interpreter.set_default_args('RND', NumericConstant.new(1))
 
-  tokenbuilders = make_command_tokenbuilders($options, quotes)
+  tokenbuilders = make_command_tokenbuilders(quotes)
 
   shell = Shell.new(console_io, interpreter, program, tokenbuilders)
 
