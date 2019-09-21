@@ -12,63 +12,45 @@
  TextConstant:"Y"
  BinaryOperator:<>
 20 &: &, "THIS PROGRAM PLAYS THE GAME OF HEXAPAWN.":& "HEXAPAWN IS PLAYED WITH CHESS PAWNS ON A 3 BY 3 BOARD. THE PAWNS ARE": & "MOVED AS IN CHESS - ONE SPACE FORWARD TO AN EMPTY SPACE OR ONE SPACE"
- ITEMS
  CarriageControl:NL
- ITEMS
  CarriageControl:,
  TextConstant:"THIS PROGRAM PLAYS THE GAME OF HEXAPAWN."
  CarriageControl:NL
- ITEMS
  TextConstant:"HEXAPAWN IS PLAYED WITH CHESS PAWNS ON A 3 BY 3 BOARD. THE PAWNS ARE"
  CarriageControl:NL
- ITEMS
  TextConstant:"MOVED AS IN CHESS - ONE SPACE FORWARD TO AN EMPTY SPACE OR ONE SPACE"
  CarriageControl:NL
 30 &"FORWARD AND DIAGONALLY TO CAPTURE AN OPPOSING MAN. ":&:&CHR$(9%);"O THE BOARD. YOUR PAWNS ARE 'O', THE COMPUTER'S PAWNS ARE '*'":& "AND EMPTY SQUARES ARE '-'. TO ENTER A MOVE, TYPE THE NUMBER OF THE"
- ITEMS
  TextConstant:"FORWARD AND DIAGONALLY TO CAPTURE AN OPPOSING MAN. "
  CarriageControl:NL
- ITEMS
  CarriageControl:NL
- ITEMS
  IntegerConstant:9
  FunctionChr
  CarriageControl:;
  TextConstant:"O THE BOARD. YOUR PAWNS ARE 'O', THE COMPUTER'S PAWNS ARE '*'"
  CarriageControl:NL
- ITEMS
  TextConstant:"AND EMPTY SQUARES ARE '-'. TO ENTER A MOVE, TYPE THE NUMBER OF THE"
  CarriageControl:NL
 40 &"SQUARE YOU WILL MOVE FROM FOLLOWED BY THE NUMBER OF THE SQUARE":&"YOU WILL MOVE TO. (THE NUMBERS ARE SEPARATED BY A COMMA.)":&
- ITEMS
  TextConstant:"SQUARE YOU WILL MOVE FROM FOLLOWED BY THE NUMBER OF THE SQUARE"
  CarriageControl:NL
- ITEMS
  TextConstant:"YOU WILL MOVE TO. (THE NUMBERS ARE SEPARATED BY A COMMA.)"
  CarriageControl:NL
- ITEMS
  CarriageControl:NL
 50 &"    THE PROGRAM STARTS A SERIS OF GAMES KNOWING ONLY WHEN THE":&"GAME IS WON (A DRAW IS IMPOSSIBLE) AND HOW TO MOVE. IT HAS NO":&"STRATEGY AT FIRST AND JUST MOVES RANDOMLY. HOWEVER, IT LEARNS"
- ITEMS
  TextConstant:"    THE PROGRAM STARTS A SERIS OF GAMES KNOWING ONLY WHEN THE"
  CarriageControl:NL
- ITEMS
  TextConstant:"GAME IS WON (A DRAW IS IMPOSSIBLE) AND HOW TO MOVE. IT HAS NO"
  CarriageControl:NL
- ITEMS
  TextConstant:"STRATEGY AT FIRST AND JUST MOVES RANDOMLY. HOWEVER, IT LEARNS"
  CarriageControl:NL
 60 &"FROM EACH GAME. THUS, DEFEATING IT BECOMES MORE AND MORE":&"DIFFICULT. ALSO, TO HELP OFFSET YOUR INITIAL ADVANTAGE, YOU WILL":&"NOT BE TOLD HOW TO WIN THE GAME BUT MUST LEARN THIS BY PLAYING":&
- ITEMS
  TextConstant:"FROM EACH GAME. THUS, DEFEATING IT BECOMES MORE AND MORE"
  CarriageControl:NL
- ITEMS
  TextConstant:"DIFFICULT. ALSO, TO HELP OFFSET YOUR INITIAL ADVANTAGE, YOU WILL"
  CarriageControl:NL
- ITEMS
  TextConstant:"NOT BE TOLD HOW TO WIN THE GAME BUT MUST LEARN THIS BY PLAYING"
  CarriageControl:NL
- ITEMS
  CarriageControl:NL
 100 DEF FNC$(X$,X%,Y$)=LEFT(X$,X%,1%)+Y$+RIGHT(X$,X%+LEN(Y$))
  UserFunctionName:FNC$
@@ -111,7 +93,6 @@
  Variable:Q%
  IntegerConstant:0
  AssignmentOperator:=
- ITEMS
  TextConstant:"SINCE I'M A GOOD SPORT, YOU'LL ALWAYS GO FIRST"
  CarriageControl:NL
 120 P%=8%: P$="XXX--OOO":&:&"NUMBERING: ": &"123": &"456": &"789": &
@@ -121,21 +102,15 @@
  Variable:P$
  TextConstant:"XXX--OOO"
  AssignmentOperator:=
- ITEMS
  CarriageControl:NL
- ITEMS
  TextConstant:"NUMBERING: "
  CarriageControl:NL
- ITEMS
  TextConstant:"123"
  CarriageControl:NL
- ITEMS
  TextConstant:"456"
  CarriageControl:NL
- ITEMS
  TextConstant:"789"
  CarriageControl:NL
- ITEMS
  CarriageControl:NL
 190 D%=-1%: Q$="O": GOSUB 2000: IF M$="" THEN PRINT "YOU CAN'T MOVE. I WIN.": GOTO 510
  Variable:D%
@@ -149,33 +124,26 @@
  Variable:M$
  TextConstant:""
  BinaryOperator:=
- ITEMS
  TextConstant:"YOU CAN'T MOVE. I WIN."
  CarriageControl:NL
  LineNumber:510
 200 &: &"BOARD:": &LEFT(P$, 3%): &MID(P$,4%,3%): &RIGHT(P$,7%): &
- ITEMS
  CarriageControl:NL
- ITEMS
  TextConstant:"BOARD:"
  CarriageControl:NL
- ITEMS
  Variable:P$
  IntegerConstant:3
  FunctionLeft
  CarriageControl:NL
- ITEMS
  Variable:P$
  IntegerConstant:4
  IntegerConstant:3
  FunctionMid
  CarriageControl:NL
- ITEMS
  Variable:P$
  IntegerConstant:7
  FunctionRight
  CarriageControl:NL
- ITEMS
  CarriageControl:NL
 210 INPUT "WHAT IS YOUR MOVE"; A%,B%: IF INSTR(1%,M$,FNN$(A$)+FNN$(B$))=0% THEN PRINT "ILLEGAL MOVE.": GOTO 210
  Variable:A%
@@ -190,7 +158,6 @@
  FunctionInstr
  IntegerConstant:0
  BinaryOperator:=
- ITEMS
  TextConstant:"ILLEGAL MOVE."
  CarriageControl:NL
  LineNumber:210
@@ -205,7 +172,6 @@
  TextConstant:"O"
  UserFunction
  AssignmentOperator:=
- ITEMS
  TextConstant:"YOU WIN."
  CarriageControl:NL
  LineNumber:500
@@ -257,7 +223,6 @@
  Variable:M$
  TextConstant:""
  BinaryOperator:=
- ITEMS
  TextConstant:"I CAN'T MOVE, YOU WIN."
  CarriageControl:NL
  LineNumber:500
@@ -265,7 +230,6 @@
  Variable:M$
  TextConstant:""
  BinaryOperator:=
- ITEMS
  TextConstant:"I RESIGN."
  CarriageControl:NL
  LineNumber:500
@@ -325,12 +289,10 @@
  TextConstant:"*"
  FunctionInstr
  BinaryOperator:OR
- ITEMS
  TextConstant:"I WIN!"
  CarriageControl:NL
  LineNumber:510
 440 PRINT "I MOVE FROM" A% "TO" B%: GOTO 190
- ITEMS
  TextConstant:"I MOVE FROM"
  CarriageControl:
  Variable:A%
@@ -377,30 +339,23 @@
  BinaryOperator:+
  AssignmentOperator:=
 520 &: &"BOARD:": &LEFT(P$,3%): &MID(P$,4%,3%): &RIGHT(P$,7%): &: & "I HAVE WON" W1% "AND YOU HAVE WON" W2% "OF" W1%+W2% "GAMES"
- ITEMS
  CarriageControl:NL
- ITEMS
  TextConstant:"BOARD:"
  CarriageControl:NL
- ITEMS
  Variable:P$
  IntegerConstant:3
  FunctionLeft
  CarriageControl:NL
- ITEMS
  Variable:P$
  IntegerConstant:4
  IntegerConstant:3
  FunctionMid
  CarriageControl:NL
- ITEMS
  Variable:P$
  IntegerConstant:7
  FunctionRight
  CarriageControl:NL
- ITEMS
  CarriageControl:NL
- ITEMS
  TextConstant:"I HAVE WON"
  CarriageControl:
  Variable:W1%

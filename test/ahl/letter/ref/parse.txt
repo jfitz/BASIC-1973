@@ -1,21 +1,16 @@
 90 RANDOMIZE
  
 100 PRINT "LETTER GUESSING GAME "\PRINT
- ITEMS
  TextConstant:"LETTER GUESSING GAME "
  CarriageControl:NL
- ITEMS
  CarriageControl:NL
 210 PRINT "I'LL THINK OF A LETTER OF THE ALPHABET, A TO Z."
- ITEMS
  TextConstant:"I'LL THINK OF A LETTER OF THE ALPHABET, A TO Z."
  CarriageControl:NL
 220 PRINT "TRY TO GUESS MY LETTER AND I'LL GIVE YOU CLUES"
- ITEMS
  TextConstant:"TRY TO GUESS MY LETTER AND I'LL GIVE YOU CLUES"
  CarriageControl:NL
 230 PRINT "AS TO HOW CLOSE YOU'RE GETTING TO MY LETTER."
- ITEMS
  TextConstant:"AS TO HOW CLOSE YOU'RE GETTING TO MY LETTER."
  CarriageControl:NL
 310 L=65+INT(RND(0)*26)
@@ -33,15 +28,11 @@
  NumericConstant:0
  AssignmentOperator:=
 340 PRINT\PRINT "OK, I HAVE A LETTER. START GUESSING."
- ITEMS
  CarriageControl:NL
- ITEMS
  TextConstant:"OK, I HAVE A LETTER. START GUESSING."
  CarriageControl:NL
 410 PRINT\PRINT "WHAT IS YOUR GUESS?";
- ITEMS
  CarriageControl:NL
- ITEMS
  TextConstant:"WHAT IS YOUR GUESS?"
  CarriageControl:;
 425 G = G+1
@@ -52,7 +43,6 @@
  AssignmentOperator:=
 430 INPUT $A\PRINT
  Variable:A
- ITEMS
  CarriageControl:NL
 440 IF A=L THEN 500
  Variable:A
@@ -63,19 +53,15 @@
  Variable:L
  BinaryOperator:>
 460 PRINT "TOO LOW. TRY A HIGHER LETTER. "\GOTO 410
- ITEMS
  TextConstant:"TOO LOW. TRY A HIGHER LETTER. "
  CarriageControl:NL
  LineNumber:410
 480 PRINT "TOO HIGH. TRY A LOWER LETTER. "\GOTO 410
- ITEMS
  TextConstant:"TOO HIGH. TRY A LOWER LETTER. "
  CarriageControl:NL
  LineNumber:410
 500 PRINT\PRINT "YOU GOT IT IN"G"GUESSES!!"
- ITEMS
  CarriageControl:NL
- ITEMS
  TextConstant:"YOU GOT IT IN"
  CarriageControl:
  Variable:G
@@ -87,28 +73,23 @@
  NumericConstant:5
  BinaryOperator:<=
 506 PRINT "BUT IT SHOULDN'T TAKE MORE THAN 5 GUESSES!"\GOTO 515
- ITEMS
  TextConstant:"BUT IT SHOULDN'T TAKE MORE THAN 5 GUESSES!"
  CarriageControl:NL
  LineNumber:515
 508 PRINT "GOOD JOB!!!!"
- ITEMS
  TextConstant:"GOOD JOB!!!!"
  CarriageControl:NL
 510 FOR N = 1 TO 15\PRINT CHR$(7);\NEXT N
  control: Variable:N
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:15"]
- ITEMS
  NumericConstant:7
  FunctionChr
  CarriageControl:;
  Variable:N
 515 PRINT
- ITEMS
  CarriageControl:NL
 520 PRINT "LET'S PLAY AGAIN"
- ITEMS
  TextConstant:"LET'S PLAY AGAIN"
  CarriageControl:NL
 530 GOTO 310

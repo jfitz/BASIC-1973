@@ -1,12 +1,9 @@
 100 &"PLAY 'GUESS THE ANIMAL' WITH RSTS"
- ITEMS
  TextConstant:"PLAY 'GUESS THE ANIMAL' WITH RSTS"
  CarriageControl:NL
 150 &"THINK OF AN ANIMAL AND THE COMPUTER WILL TRY TO GUESS IT...":&
- ITEMS
  TextConstant:"THINK OF AN ANIMAL AND THE COMPUTER WILL TRY TO GUESS IT..."
  CarriageControl:NL
- ITEMS
  CarriageControl:NL
 500 DIM A$(200)
  NumericConstant:200
@@ -56,17 +53,13 @@
  BinaryOperator:=
  TextConstant:"ANIMAL.GME"
  IntegerConstant:1
- FILE
  IntegerConstant:1
  UnaryOperator:#
- ITEMS
  Variable:I%
  Variable:A$
  CarriageControl:NL
- FILE
  NumericConstant:1
  UnaryOperator:#
- ITEMS
  IntegerConstant:26
  FunctionChr
  CarriageControl:NL
@@ -76,16 +69,13 @@
  Variable:Z9$
  TextConstant:"LIST"
  BinaryOperator:=
- ITEMS
  TextConstant:"ANIMALS I ALREADY KNOW ARE:"
  CarriageControl:NL
- ITEMS
  Variable:I%
  Variable:A$
  IntegerConstant:3
  FunctionRight
  CarriageControl:,
- ITEMS
  CarriageControl:NL
  LineNumber:1300
 1350 K%=1%
@@ -100,7 +90,6 @@
  AssignmentOperator:=
  LineNumber:3000
  LineNumber:1400
- ITEMS
  TextConstant:"IS IT A "
  CarriageControl:
  Variable:K%
@@ -118,14 +107,12 @@
  Variable:Z7$
  TextConstant:"Y"
  BinaryOperator:=
- ITEMS
  TextConstant:"WHY NOT TRY ANOTHER ANIMAL"
  CarriageControl:NL
  LineNumber:1300
 2000 INPUT "THE ANIMAL YOU WERE THINKING OF WAS A ";Z9$
  Variable:Z9$
 2050 PRINT "PLEASE TYPE IN A QUESTION THAT WOULD DISTINGUISH A " Z9$ " FROM A "RIGHT(A$(K%),3%):INPUT Z8$
- ITEMS
  TextConstant:"PLEASE TYPE IN A QUESTION THAT WOULD DISTINGUISH A "
  CarriageControl:
  Variable:Z9$
@@ -139,7 +126,6 @@
  CarriageControl:NL
  Variable:Z8$
 2100 PRINT "FOR A "Z9$" THE ANSWER WOULD BE";:INPUT Z7$:Z7$=LEFT(Z7$,1%):IF Z7$="Y" THEN Z6$="N" ELSE IF Z7$="N" THEN Z6$="Y" ELSE PRINT "PLEASE ANSWER 'YES' OR 'NO'":GOTO 2100
- ITEMS
  TextConstant:"FOR A "
  CarriageControl:
  Variable:Z9$
@@ -164,7 +150,6 @@
  Variable:Z6$
  TextConstant:"Y"
  AssignmentOperator:=
- ITEMS
  TextConstant:"PLEASE ANSWER 'YES' OR 'NO'"
  CarriageControl:NL
  LineNumber:2100
@@ -221,7 +206,6 @@
 2300 GOTO 1300
  LineNumber:1300
 3000 DEF FNA%(Q$):PRINT MID(Q$,3%,INSTR(3%,Q$,"\")-3%);:INPUT Z9$:Z9$=LEFT(Z9$,1%):Z9$="N" IF Z9$<>"Y":Z1%=INSTR(3%,Q$,"\"+Z9$)+2%:Z2%=INSTR(Z1%,Q$,"\"):FNA%=VAL(MID(Q$,Z1%,Z2%-Z1%)):FNEND
- ITEMS
  Variable:Q$
  IntegerConstant:3
  IntegerConstant:3

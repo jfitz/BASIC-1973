@@ -1588,18 +1588,8 @@ class GotoStatement < AbstractStatement
   end
 end
 
-# IF/THEN
-class IfStatement < AbstractStatement
-  def self.lead_keywords
-    [
-      [KeywordToken.new('IF')]
-    ]
-  end
-
-  def self.extra_keywords
-    %w(THEN ELSE)
-  end
-
+# common functions for IF statements
+class AbstractIfStatement < AbstractStatement
   def initialize(keywords, tokens_lists)
     super
 
@@ -1861,6 +1851,28 @@ class IfStatement < AbstractStatement
     retval
   end
 
+  def renumber(renumber_map)
+    unless @destination.nil?
+      @destination = renumber_map[@destination]
+      index = 0
+      i = 0
+
+      @tokens.each do |token|
+        index = i if token.to_s == 'THEN'
+        i += 1
+      end
+
+      @tokens[index + 1] = NumericConstantToken.new(@destination.line_number)
+    end
+
+    unless @else_dest.nil?
+      @else_dest = renumber_map[@else_dest]
+      @tokens[-1] = NumericConstantToken.new(@else_dest.line_number)
+    end
+
+    @linenums = make_linenum_references
+  end
+
   def execute_core(interpreter)
     values = @expression.evaluate(interpreter)
 
@@ -1905,42 +1917,8 @@ class IfStatement < AbstractStatement
     io.trace_output(s)
   end
 
-  def renumber(renumber_map)
-    unless @destination.nil?
-      @destination = renumber_map[@destination]
-      index = 0
-      i = 0
-
-      @tokens.each do |token|
-        index = i if token.to_s == 'THEN'
-        i += 1
-      end
-
-      @tokens[index + 1] = NumericConstantToken.new(@destination.line_number)
-    end
-
-    unless @else_dest.nil?
-      @else_dest = renumber_map[@else_dest]
-      @tokens[-1] = NumericConstantToken.new(@else_dest.line_number)
-    end
-
-    @linenums = make_linenum_references
-  end
-
   private
-
-  def parse_expression(tokens)
-    expression = nil
-
-    begin
-      expression = ValueScalarExpression.new(tokens)
-    rescue BASICExpressionError => e
-      @errors << e.message
-    end
-
-    expression
-  end
-
+  
   def parse_target(tokens)
     destination = nil
     statement = nil
@@ -1956,6 +1934,37 @@ class IfStatement < AbstractStatement
     end
 
     [destination, statement]
+  end
+end
+
+# IF/THEN
+class IfStatement < AbstractIfStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('IF')]
+    ]
+  end
+
+  def self.extra_keywords
+    %w(THEN ELSE)
+  end
+
+  def initialize(_, _)
+    super
+  end
+
+  private
+
+  def parse_expression(tokens)
+    expression = nil
+
+    begin
+      expression = ValueScalarExpression.new(tokens)
+    rescue BASICExpressionError => e
+      @errors << e.message
+    end
+
+    expression
   end
 end
 
@@ -2812,11 +2821,8 @@ class AbstractPrintStatement < AbstractStatement
     lines = []
 
     unless @file_tokens.nil?
-      lines << 'FILE'
       lines += @file_tokens.dump
     end
-
-    lines << 'ITEMS'
 
     @print_items.each { |item| lines += item.dump } unless @print_items.nil?
 

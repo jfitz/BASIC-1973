@@ -5,11 +5,9 @@
 110 REM MENT OF COMPUTER CONTROL CO., INC.
  Remark:MENT OF COMPUTER CONTROL CO., INC.
 115 PRINT "THIS PROGRAM PLAYS NIM."
- ITEMS
  TextConstant:"THIS PROGRAM PLAYS NIM."
  CarriageControl:NL
 120 PRINT "DO YOU WANT INSTRUCTIONS";\INPUT Q$
- ITEMS
  TextConstant:"DO YOU WANT INSTRUCTIONS"
  CarriageControl:;
  Variable:Q$
@@ -21,52 +19,40 @@
  TextConstant:"NO"
  BinaryOperator:=
 130 PRINT "TYPE YES OR NO."\INPUT Q$\GOTO 125
- ITEMS
  TextConstant:"TYPE YES OR NO."
  CarriageControl:NL
  Variable:Q$
  LineNumber:125
 135 PRINT
- ITEMS
  CarriageControl:NL
 140 PRINT "    NIM IS PLAYED BY TWO PEOPLE PLAYING ALTERNATELY, BEFORE"
- ITEMS
  TextConstant:"    NIM IS PLAYED BY TWO PEOPLE PLAYING ALTERNATELY, BEFORE"
  CarriageControl:NL
 145 PRINT "THE PLAY STARTS, AN ARBITRARY NUMBER OF STICKS OR OBJECTS IS"
- ITEMS
  TextConstant:"THE PLAY STARTS, AN ARBITRARY NUMBER OF STICKS OR OBJECTS IS"
  CarriageControl:NL
 150 PRINT "PUT INTO AN ARBITRARY NUMBER OF PILES, IN ANY DISTRIBUTION"
- ITEMS
  TextConstant:"PUT INTO AN ARBITRARY NUMBER OF PILES, IN ANY DISTRIBUTION"
  CarriageControl:NL
 155 PRINT "WHATEVER, THEN EACH PLAYER IN HIS TURN REMOVES AS MANY"
- ITEMS
  TextConstant:"WHATEVER, THEN EACH PLAYER IN HIS TURN REMOVES AS MANY"
  CarriageControl:NL
 160 PRINT "STICKS AS HE WISHES FROM ANY PILEBUT FROM ONLY ONE PILE,"
- ITEMS
  TextConstant:"STICKS AS HE WISHES FROM ANY PILEBUT FROM ONLY ONE PILE,"
  CarriageControl:NL
 165 PRINT "AND AT LEAST ONE STICK, THE PLAYER WHO TAKES THE LAST STICK"
- ITEMS
  TextConstant:"AND AT LEAST ONE STICK, THE PLAYER WHO TAKES THE LAST STICK"
  CarriageControl:NL
 170 PRINT "IS THE WINNER."
- ITEMS
  TextConstant:"IS THE WINNER."
  CarriageControl:NL
 175 PRINT "    THIS PROGRAM ALLOWS YOU TO SET UP THE INITIAL ARRANGEMENT"
- ITEMS
  TextConstant:"    THIS PROGRAM ALLOWS YOU TO SET UP THE INITIAL ARRANGEMENT"
  CarriageControl:NL
 180 PRINT "OF PILES AND STICKS. IT WILL NOT ACCEPT MORE THAN TWENTY"
- ITEMS
  TextConstant:"OF PILES AND STICKS. IT WILL NOT ACCEPT MORE THAN TWENTY"
  CarriageControl:NL
 185 PRINT "PILES OR STICKS IN EACH PILE."
- ITEMS
  TextConstant:"PILES OR STICKS IN EACH PILE."
  CarriageControl:NL
 190 RANDOM
@@ -92,9 +78,7 @@
  NumericConstant:20
  Declaration:V
 205 PRINT\PRINT "HOW MANY PILES";\INPUT P\IF P>20 THEN 215
- ITEMS
  CarriageControl:NL
- ITEMS
  TextConstant:"HOW MANY PILES"
  CarriageControl:;
  Variable:P
@@ -111,20 +95,16 @@
  BinaryOperator:<=
  LineNumber:220
 215 PRINT "ILLEGAL PILE NUMBER. "\PRINT\GO TO 205
- ITEMS
  TextConstant:"ILLEGAL PILE NUMBER. "
  CarriageControl:NL
- ITEMS
  CarriageControl:NL
  LineNumber:205
 220 PRINT\FOR I=1 TO P
- ITEMS
  CarriageControl:NL
  control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["Variable:P"]
 225 PRINT "HOW MANY STICKS IN PILE"I;\INPUT L(I)\IF L(I)>20 THEN 235
- ITEMS
  TextConstant:"HOW MANY STICKS IN PILE"
  CarriageControl:
  Variable:I
@@ -148,10 +128,8 @@
  BinaryOperator:<=
  LineNumber:240
 235 PRINT "ILLEGAL STICK NUMBER"\PRINT\GO TO 225
- ITEMS
  TextConstant:"ILLEGAL STICK NUMBER"
  CarriageControl:NL
- ITEMS
  CarriageControl:NL
  LineNumber:225
 240 NEXT I
@@ -173,9 +151,7 @@
  AssignmentOperator:=
  Variable:I
 250 PRINT\PRINT "DO YOU WANT TO GO FIRST";
- ITEMS
  CarriageControl:NL
- ITEMS
  TextConstant:"DO YOU WANT TO GO FIRST"
  CarriageControl:;
 255 INPUT Q$\IF Q$="YES" THEN 340\IF Q$="NO" THEN 390
@@ -187,7 +163,6 @@
  TextConstant:"NO"
  BinaryOperator:=
 260 PRINT "TYPE YES OR NO."\GO TO 255
- ITEMS
  TextConstant:"TYPE YES OR NO."
  CarriageControl:NL
  LineNumber:255
@@ -206,9 +181,7 @@
  NumericConstant:1
  BinaryOperator:=
 280 PRINT\PRINT "I WON. DO YOU WANT TO PLAY AGAIN";
- ITEMS
  CarriageControl:NL
- ITEMS
  TextConstant:"I WON. DO YOU WANT TO PLAY AGAIN"
  CarriageControl:;
 285 INPUT Q$\IF Q$="NO" THEN 290\IF Q$="YES" THEN 300\GO TO 295
@@ -223,14 +196,11 @@
 290 STOP
  
 295 PRINT "TYPE YES OR NO."\GO TO 285
- ITEMS
  TextConstant:"TYPE YES OR NO."
  CarriageControl:NL
  LineNumber:285
 300 PRINT\PRINT "SAME ARRANGEMENT";
- ITEMS
  CarriageControl:NL
- ITEMS
  TextConstant:"SAME ARRANGEMENT"
  CarriageControl:;
 305 INPUT Q$\IF Q$="NO" THEN 205\IF Q$="YES" THEN 345
@@ -242,21 +212,16 @@
  TextConstant:"YES"
  BinaryOperator:=
 310 PRINT "TYPE YES OR NO."\GO TO 305
- ITEMS
  TextConstant:"TYPE YES OR NO."
  CarriageControl:NL
  LineNumber:305
 315 PRINT\PRINT "YOU WON, DO YOU WANT TO PLAY AGAIN";\GO TO 285
- ITEMS
  CarriageControl:NL
- ITEMS
  TextConstant:"YOU WON, DO YOU WANT TO PLAY AGAIN"
  CarriageControl:;
  LineNumber:285
 320 PRINT\PRINT "PlLE NUMBER","STICKS LEFT"
- ITEMS
  CarriageControl:NL
- ITEMS
  TextConstant:"PlLE NUMBER"
  CarriageControl:,
  TextConstant:"STICKS LEFT"
@@ -269,7 +234,6 @@
  Variable:S
  NumericConstant:0
  BinaryOperator:=
- ITEMS
  Variable:I
  CarriageControl:,
  Variable:I
@@ -280,9 +244,7 @@
 335 REM -------------------PLAYER'S MOVE-------------------------
  Remark:-------------------PLAYER'S MOVE-------------------------
 340 PRINT\PRINT "WHICH PILE DO YOU WANT STICKS FROM";\INPUT N
- ITEMS
  CarriageControl:NL
- ITEMS
  TextConstant:"WHICH PILE DO YOU WANT STICKS FROM"
  CarriageControl:;
  Variable:N
@@ -304,16 +266,12 @@
  BinaryOperator:=
  LineNumber:360
 355 PRINT "ILLEGAL PILE NUMBER."\PRINT\GO TO 340
- ITEMS
  TextConstant:"ILLEGAL PILE NUMBER."
  CarriageControl:NL
- ITEMS
  CarriageControl:NL
  LineNumber:340
 360 PRINT\PRINT "HOW MANY STICKS";\INPUT T
- ITEMS
  CarriageControl:NL
- ITEMS
  TextConstant:"HOW MANY STICKS"
  CarriageControl:;
  Variable:T
@@ -331,10 +289,8 @@
  BinaryOperator:<=
  LineNumber:375
 370 PRINT "ILLEGAL STICK NUMBER."\PRINT\GO TO 360
- ITEMS
  TextConstant:"ILLEGAL STICK NUMBER."
  CarriageControl:NL
- ITEMS
  CarriageControl:NL
  LineNumber:360
 375 S(N)=S(N)-T\G=G-T
@@ -633,9 +589,7 @@
  NumericConstant:1
  BinaryOperator:=
 545 PRINT\PRINT "I'LL TAKE";D;"STICKS FROM PILE";Q;"."\GO TO 555
- ITEMS
  CarriageControl:NL
- ITEMS
  TextConstant:"I'LL TAKE"
  CarriageControl:;
  Variable:D
@@ -648,9 +602,7 @@
  CarriageControl:NL
  LineNumber:555
 550 PRINT\PRINT "I'LL TAKE 1 STICK FROM PILE";Q;"."
- ITEMS
  CarriageControl:NL
- ITEMS
  TextConstant:"I'LL TAKE 1 STICK FROM PILE"
  CarriageControl:;
  Variable:Q
