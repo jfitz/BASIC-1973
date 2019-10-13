@@ -785,7 +785,7 @@ class ChainStatement < AbstractStatement
       check_template(tokens_lists, template)
 
     target_tokens = tokens_lists[0]
-    @target = ValueScalarExpression.new(target_tokens)
+    @target = ValueExpression.new(target_tokens, :scalar)
     @numerics = @target.numerics
     @strings = @target.strings
     @variables = @target.variables
@@ -841,7 +841,7 @@ class ChangeStatement < AbstractStatement
       source_tokens = tokens_lists[0]
       target_tokens = tokens_lists[2]
 
-      @source = ValueScalarExpression.new(source_tokens)
+      @source = ValueExpression.new(source_tokens, :scalar)
 
       case @source.content_type
       when :string
@@ -944,7 +944,7 @@ class CloseStatement < AbstractStatement
     @filenum_expression = []
     if check_template(tokens_lists, template) ||
        check_template(tokens_lists, template_file)
-      @filenum_expression = ValueScalarExpression.new(tokens_lists[-1])
+      @filenum_expression = ValueExpression.new(tokens_lists[-1], :scalar)
 
       @numerics = @filenum_expression.numerics
       @strings = @filenum_expression.strings
@@ -998,7 +998,7 @@ class DataStatement < AbstractStatement
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      @expressions = ValueScalarExpression.new(tokens_lists[0])
+      @expressions = ValueExpression.new(tokens_lists[0], :scalar)
       @numerics = @expressions.numerics
       @strings = @expressions.strings
       @variables = @expressions.variables
@@ -1188,7 +1188,7 @@ class FilesStatement < AbstractStatement
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      @expressions = ValueScalarExpression.new(tokens_lists[0])
+      @expressions = ValueExpression.new(tokens_lists[0], :scalar)
       @strings = @expressions.strings
       @variables = @expressions.variables
       @functions = @expressions.functions
@@ -1263,8 +1263,8 @@ class ForStatement < AbstractStatement
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
         @control = Variable.new(variable_name, :scalar, [])
-        @start = ValueScalarExpression.new(tokens2)
-        @end = ValueScalarExpression.new(tokens_lists[2])
+        @start = ValueExpression.new(tokens2, :scalar)
+        @end = ValueExpression.new(tokens_lists[2], :scalar)
         @step = nil
         @numerics = @start.numerics + @end.numerics
         @strings = @start.strings + @end.strings
@@ -1280,9 +1280,9 @@ class ForStatement < AbstractStatement
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
         @control = Variable.new(variable_name, :scalar, [])
-        @start = ValueScalarExpression.new(tokens2)
-        @end = ValueScalarExpression.new(tokens_lists[2])
-        @step = ValueScalarExpression.new(tokens_lists[4])
+        @start = ValueExpression.new(tokens2, :scalar)
+        @end = ValueExpression.new(tokens_lists[2], :scalar)
+        @step = ValueExpression.new(tokens_lists[4], :scalar)
         @numerics = @start.numerics + @end.numerics + @step.numerics
         @strings = @start.strings + @end.strings + @step.strings
         control = XrefEntry.new(@control.to_s, 0, true)
@@ -1447,7 +1447,7 @@ class GotoStatement < AbstractStatement
       expression = tokens_lists[0]
 
       begin
-        @expression = ValueScalarExpression.new(expression)
+        @expression = ValueExpression.new(expression, :scalar)
         @numerics += @expression.numerics
         @strings += @expression.strings
         @variables += @expression.variables
@@ -1959,7 +1959,7 @@ class IfStatement < AbstractIfStatement
     expression = nil
 
     begin
-      expression = ValueScalarExpression.new(tokens)
+      expression = ValueExpression.new(tokens, :scalar)
     rescue BASICExpressionError => e
       @errors << e.message
     end
@@ -2035,9 +2035,9 @@ class AbstractInputStatement < AbstractStatement
 
   def add_expression(print_items, tokens)
     if tokens[0].operator? && tokens[0].to_s == '#'
-      print_items << ValueScalarExpression.new(tokens)
+      print_items << ValueExpression.new(tokens, :scalar)
     elsif tokens[0].text_constant?
-      print_items << ValueScalarExpression.new(tokens)
+      print_items << ValueExpression.new(tokens, :scalar)
     else
       print_items << TargetExpression.new(tokens, :scalar)
     end
@@ -2244,7 +2244,7 @@ class AbstractScalarLetStatement < AbstractLetStatement
 
     if check_template(tokens_lists, template)
       begin
-        @assignment = ScalarAssignment.new(tokens_lists[0])
+        @assignment = Assignment.new(tokens_lists[0], :scalar)
 
         if @assignment.count_target.zero?
           @errors << 'Assignment must have left-hand value(s)'
@@ -2550,7 +2550,7 @@ class OnStatement < AbstractStatement
       expression = tokens_lists[0]
 
       begin
-        @expression = ValueScalarExpression.new(expression)
+        @expression = ValueExpression.new(expression, :scalar)
         @numerics = @expression.numerics
         @strings = @expression.strings
         @variables = @expression.variables
@@ -2694,8 +2694,8 @@ class OpenStatement < AbstractStatement
 
     if check_template(tokens_lists, template_input_as) ||
        check_template(tokens_lists, template_input_as_file)
-      @filename_expression = ValueScalarExpression.new(tokens_lists[0])
-      @filenum_expression = ValueScalarExpression.new(tokens_lists[-1])
+      @filename_expression = ValueExpression.new(tokens_lists[0], :scalar)
+      @filenum_expression = ValueExpression.new(tokens_lists[-1], :scalar)
       @numerics = @filename_expression.numerics + @filenum_expression.numerics
       @strings = @filename_expression.strings + @filenum_expression.strings
       @variables = @filename_expression.variables + @filenum_expression.variables
@@ -2704,8 +2704,8 @@ class OpenStatement < AbstractStatement
       @mode = :read
     elsif check_template(tokens_lists, template_output_as) ||
           check_template(tokens_lists, template_output_as_file)
-      @filename_expression = ValueScalarExpression.new(tokens_lists[0])
-      @filenum_expression = ValueScalarExpression.new(tokens_lists[-1])
+      @filename_expression = ValueExpression.new(tokens_lists[0], :scalar)
+      @filenum_expression = ValueExpression.new(tokens_lists[-1], :scalar)
       @numerics = @filename_expression.numerics + @filenum_expression.numerics
       @strings = @filename_expression.strings + @filenum_expression.strings
       @variables = @filename_expression.variables + @filenum_expression.variables
@@ -2782,7 +2782,7 @@ class OptionStatement < AbstractStatement
       @key = tokens_lists[0].to_s.downcase
       expression_tokens = split_tokens(tokens_lists[1], true)
 
-      @expression = ValueScalarExpression.new(expression_tokens[0])
+      @expression = ValueExpression.new(expression_tokens[0], :scalar)
       @numerics = @expression.numerics
       @strings = @expression.strings
       @variables = @expression.variables
@@ -2908,12 +2908,13 @@ class PrintStatement < AbstractPrintStatement
 
   def add_expression(print_items, tokens)
     if !print_items.empty? &&
-       print_items[-1].class.to_s == 'ValueScalarExpression'
+       print_items[-1].class.to_s == 'ValueExpression' &&
+       print_items[-1].scalar?
       print_items << CarriageControl.new('')
     end
 
     begin
-      print_items << ValueScalarExpression.new(tokens)
+      print_items << ValueExpression.new(tokens, :scalar)
     rescue BASICExpressionError
       line_text = tokens.map(&:to_s).join
       @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
@@ -2991,7 +2992,8 @@ class PrintUsingStatement < AbstractPrintStatement
     format = nil
 
     unless print_items.empty? ||
-           print_items[0].class.to_s != 'ValueScalarExpression'
+           print_items[0].class.to_s != 'ValueExpression' &&
+           print_items[-1].scalar?
 
       value = first_item(print_items, interpreter)
 
@@ -3046,11 +3048,12 @@ class PrintUsingStatement < AbstractPrintStatement
 
   def add_expression(print_items, tokens)
     if !print_items.empty? &&
-       print_items[-1].class.to_s == 'ValueScalarExpression'
+       print_items[-1].class.to_s == 'ValueExpression' &&
+       print_items[-1].scalar?
       print_items << CarriageControl.new('')
     end
 
-    print_items << ValueScalarExpression.new(tokens)
+    print_items << ValueExpression.new(tokens, :scalar)
 
   rescue BASICExpressionError
     line_text = tokens.map(&:to_s).join
@@ -3177,7 +3180,7 @@ class ReadStatement < AbstractReadStatement
 
   def add_expression(print_items, tokens)
     if tokens[0].operator? && tokens[0].to_s == '#'
-      print_items << ValueScalarExpression.new(tokens)
+      print_items << ValueExpression.new(tokens, :scalar)
     else
       print_items << TargetExpression.new(tokens, :scalar)
     end
@@ -3342,10 +3345,10 @@ class SleepStatement < AbstractStatement
 
     if check_template(tokens_lists, template_0)
       token_list = [NumericConstantToken.new('5')]
-      @expression = ValueScalarExpression.new(token_list)
+      @expression = ValueExpression.new(token_list, :scalar)
     elsif check_template(tokens_lists, template_1)
       token_lists = split_tokens(tokens_lists[0], false)
-      @expression = ValueScalarExpression.new(token_lists[0])
+      @expression = ValueExpression.new(token_lists[0], :scalar)
       @numerics = @expression.numerics
       @strings = @expression.strings
       @variables = @expression.variables
@@ -3490,11 +3493,12 @@ class WriteStatement < AbstractWriteStatement
 
   def add_expression(print_items, tokens)
     if !print_items.empty? &&
-       print_items[-1].class.to_s == 'ValueScalarExpression'
+       print_items[-1].class.to_s == 'ValueExpression' &&
+       print_items[-1].scalar?
       print_items << CarriageControl.new('')
     end
 
-    print_items << ValueScalarExpression.new(tokens)
+    print_items << ValueExpression.new(tokens, :scalar)
 
   rescue BASICExpressionError
     line_text = tokens.map(&:to_s).join
@@ -3539,7 +3543,7 @@ class ArrPrintStatement < AbstractPrintStatement
         carriage = @print_items[i + 1] if
           i < @print_items.size &&
           !@print_items[i + 1].printable?
-        item.print(fhr, interpreter, carriage)
+        item.compound_print(fhr, interpreter, carriage)
       end
 
       i += 1
@@ -3553,7 +3557,7 @@ class ArrPrintStatement < AbstractPrintStatement
 
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'Array'
-        print_items << ValueArrayExpression.new(tokens_list)
+        print_items << ValueExpression.new(tokens_list, :array)
       elsif tokens_list.separator?
         print_items << CarriageControl.new(tokens_list)
       end
@@ -3622,7 +3626,7 @@ class ArrReadStatement < AbstractReadStatement
 
   def add_expression(print_items, tokens)
     if tokens[0].operator? && tokens[0].to_s == '#'
-      print_items << ValueScalarExpression.new(tokens)
+      print_items << ValueExpression.new(tokens, :scalar)
     else
       print_items << TargetExpression.new(tokens, :array)
     end
@@ -3692,7 +3696,7 @@ class ArrWriteStatement < AbstractWriteStatement
         carriage = @print_items[i + 1] if
           i < @print_items.size &&
           !@print_items[i + 1].printable?
-        item.write(fhr, interpreter, carriage)
+        item.compound_write(fhr, interpreter, carriage)
       end
 
       i += 1
@@ -3706,7 +3710,7 @@ class ArrWriteStatement < AbstractWriteStatement
 
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'Array'
-        print_items << ValueArrayExpression.new(tokens_list)
+        print_items << ValueExpression.new(tokens_list, :array)
       elsif tokens_list.separator?
         print_items << CarriageControl.new(tokens_list)
       end
@@ -3736,7 +3740,7 @@ class ArrLetStatement < AbstractLetStatement
 
     if check_template(tokens_lists, template)
       begin
-        @assignment = ArrayAssignment.new(tokens_lists[0])
+        @assignment = Assignment.new(tokens_lists[0], :array)
 
         if @assignment.count_target.zero?
           @errors << 'Assignment must have left-hand value(s)'
@@ -3827,7 +3831,7 @@ class MatPrintStatement < AbstractPrintStatement
         carriage = @print_items[i + 1] if
           i < @print_items.size &&
           !@print_items[i + 1].printable?
-        item.print(fhr, interpreter, carriage)
+        item.compound_print(fhr, interpreter, carriage)
       end
 
       i += 1
@@ -3841,7 +3845,7 @@ class MatPrintStatement < AbstractPrintStatement
 
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'Array'
-        print_items << ValueMatrixExpression.new(tokens_list)
+        print_items << ValueExpression.new(tokens_list, :matrix)
       elsif tokens_list.separator?
         print_items << CarriageControl.new(tokens_list)
       end
@@ -3910,7 +3914,7 @@ class MatReadStatement < AbstractReadStatement
 
   def add_expression(print_items, tokens)
     if tokens[0].operator? && tokens[0].to_s == '#'
-      print_items << ValueScalarExpression.new(tokens)
+      print_items << ValueExpression.new(tokens, :scalar)
     else
       print_items << TargetExpression.new(tokens, :matrix)
     end
@@ -3999,7 +4003,7 @@ class MatWriteStatement < AbstractWriteStatement
         carriage = @print_items[i + 1] if
           i < @print_items.size &&
           !@print_items[i + 1].printable?
-        item.write(fhr, interpreter, carriage)
+        item.compound_write(fhr, interpreter, carriage)
       end
 
       i += 1
@@ -4013,7 +4017,7 @@ class MatWriteStatement < AbstractWriteStatement
 
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'Array'
-        print_items << ValueMatrixExpression.new(tokens_list)
+        print_items << ValueExpression.new(tokens_list, :matrix)
       elsif tokens_list.separator?
         print_items << CarriageControl.new(tokens_list)
       end
@@ -4043,7 +4047,7 @@ class MatLetStatement < AbstractLetStatement
 
     if check_template(tokens_lists, template)
       begin
-        @assignment = MatrixAssignment.new(tokens_lists[0])
+        @assignment = Assignment.new(tokens_lists[0], :matrix)
 
         if @assignment.count_target.zero?
           @errors << 'Assignment must have left-hand value(s)'
