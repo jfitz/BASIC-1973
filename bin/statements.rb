@@ -759,7 +759,15 @@ module FileFunctions
     file_handles[0]
   end
 
-  def add_implied_items(print_items, final)
+  def add_needed_carriage(print_items)
+    if !print_items.empty? &&
+       print_items[-1].class.to_s == 'ValueExpression' &&
+       print_items[-1].scalar?
+      print_items << CarriageControl.new('')
+    end
+  end
+
+  def add_final_carriage(print_items, final)
     print_items << CarriageControl.new('NL') if print_items.empty?
     print_items << final if print_items[-1].printable?
   end
@@ -2895,30 +2903,20 @@ class PrintStatement < AbstractPrintStatement
 
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'Array'
-        add_expression(print_items, tokens_list)
+        begin
+          add_needed_carriage(print_items)
+          print_items << ValueExpression.new(tokens_list, :scalar)
+        rescue BASICExpressionError
+          line_text = tokens_list.map(&:to_s).join
+          @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
+        end
       elsif tokens_list.separator?
         print_items << CarriageControl.new(tokens_list.to_s)
       end
     end
 
-    add_implied_items(print_items, @final)
-
+    add_final_carriage(print_items, @final)
     print_items
-  end
-
-  def add_expression(print_items, tokens)
-    if !print_items.empty? &&
-       print_items[-1].class.to_s == 'ValueExpression' &&
-       print_items[-1].scalar?
-      print_items << CarriageControl.new('')
-    end
-
-    begin
-      print_items << ValueExpression.new(tokens, :scalar)
-    rescue BASICExpressionError
-      line_text = tokens.map(&:to_s).join
-      @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
-    end
   end
 end
 
@@ -3035,29 +3033,20 @@ class PrintUsingStatement < AbstractPrintStatement
 
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'Array'
-        add_expression(print_items, tokens_list)
+        begin
+          add_needed_carriage(print_items)
+          print_items << ValueExpression.new(tokens_list, :scalar)
+        rescue BASICExpressionError
+          line_text = tokens_list.map(&:to_s).join
+          @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
+        end
       elsif tokens_list.separator?
         print_items << CarriageControl.new(tokens_list.to_s)
       end
     end
 
-    add_implied_items(print_items, @final)
-
+    add_final_carriage(print_items, @final)
     print_items
-  end
-
-  def add_expression(print_items, tokens)
-    if !print_items.empty? &&
-       print_items[-1].class.to_s == 'ValueExpression' &&
-       print_items[-1].scalar?
-      print_items << CarriageControl.new('')
-    end
-
-    print_items << ValueExpression.new(tokens, :scalar)
-
-  rescue BASICExpressionError
-    line_text = tokens.map(&:to_s).join
-    @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
   end
 end
 
@@ -3480,29 +3469,20 @@ class WriteStatement < AbstractWriteStatement
 
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'Array'
-        add_expression(print_items, tokens_list)
+        begin
+          add_needed_carriage(print_items)
+          print_items << ValueExpression.new(tokens_list, :scalar)
+        rescue BASICExpressionError
+          line_text = tokens_list.map(&:to_s).join
+          @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
+        end
       elsif tokens_list.separator?
         print_items << CarriageControl.new(tokens_list.to_s)
       end
     end
 
-    add_implied_items(print_items, @final)
-
+    add_final_carriage(print_items, @final)
     print_items
-  end
-
-  def add_expression(print_items, tokens)
-    if !print_items.empty? &&
-       print_items[-1].class.to_s == 'ValueExpression' &&
-       print_items[-1].scalar?
-      print_items << CarriageControl.new('')
-    end
-
-    print_items << ValueExpression.new(tokens, :scalar)
-
-  rescue BASICExpressionError
-    line_text = tokens.map(&:to_s).join
-    @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
   end
 end
 
@@ -3563,8 +3543,7 @@ class ArrPrintStatement < AbstractPrintStatement
       end
     end
 
-    add_implied_items(print_items, @final)
-
+    add_final_carriage(print_items, @final)
     print_items
   end
 end
@@ -3716,8 +3695,7 @@ class ArrWriteStatement < AbstractWriteStatement
       end
     end
 
-    add_implied_items(print_items, @final)
-
+    add_final_carriage(print_items, @final)
     print_items
   end
 end
@@ -3851,8 +3829,7 @@ class MatPrintStatement < AbstractPrintStatement
       end
     end
 
-    add_implied_items(print_items, @final)
-
+    add_final_carriage(print_items, @final)
     print_items
   end
 end
@@ -4023,8 +4000,7 @@ class MatWriteStatement < AbstractWriteStatement
       end
     end
 
-    add_implied_items(print_items, @final)
-
+    add_final_carriage(print_items, @final)
     print_items
   end
 end
