@@ -258,9 +258,13 @@ class OperatorToken < AbstractToken
   end
 
   def comparison?
-    @text == '<' || @text == '<=' ||
-      @text == '>' || @text == '>=' ||
-      @text == '=' || @text == '<>'
+    @text == '<' || @text == '<=' || @text == '=<' ||
+      @text == '>' || @text == '>=' || @text == '=>' ||
+      @text == '=' || @text == '<>' || @text == '#'
+  end
+
+  def pound?
+    @text == '#'
   end
 end
 
