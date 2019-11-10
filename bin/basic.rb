@@ -43,6 +43,8 @@ class Option
       @value.to_s
     when :string
       '"' + @value.to_s + '"'
+    when :list
+      '"' + @value.to_s + '"'
     end
   end
 
@@ -90,6 +92,16 @@ class Option
 
       raise(BASICRuntimeError, "Invalid type #{value.class} for string") unless
         legals.include?(value.class.to_s)
+    when :list
+      legal_types = %(String)
+
+      raise(BASICRuntimeError, "Invalid type #{value.class} for list") unless
+        legal_types.include?(value.class.to_s)
+
+      legal_values = @defs[:values]
+
+      raise(BASICRuntimeError, "Invalid value #{value} for list") unless
+        legal_values.include?(value.to_s)
     else
       raise(BASICRuntimeError, 'Unknown value type')
     end
@@ -346,7 +358,7 @@ def make_command_tokenbuilders(quotes)
     BASE
     CHR_ALLOW_ALL COLON_FILE COLON_SEPARATOR CRLF_ON_LINE_INPUT
     DEFAULT_PROMPT DETECT_INFINITE_LOOP
-    ECHO FORNEXT_ONE_BEYOND HEADING
+    ECHO FIELD_SEP FORNEXT_ONE_BEYOND HEADING
     IF_FALSE_NEXT_LINE IGNORE_RND_ARG IMPLIED_SEMICOLON INPUT_HIGH_BIT
     INT_FLOOR LOCK_FORNEXT MATCH_FORNEXT MIN_MAX_OP NEWLINE_SPEED
     PRECISION PRETTY_MULTILINE PRINT_SPEED PRINT_WIDTH PROMPT_COUNT PROVENANCE
@@ -405,6 +417,7 @@ OptionParser.new do |opt|
   opt.on('--define-pi') { |o| options[:allow_pi] = o }
   opt.on('--no-detect-infinite-loop') { |o| options[:no_detect_infinite_loop] = o }
   opt.on('--echo-input') { |o| options[:echo_input] = o }
+  opt.on('--field-sep-semi') { |o| options[:field_sep_semi] = o }
   opt.on('--fornext-one-beyond') { |o| options[:fornext_one_beyond] = o }
   opt.on('--hash-constant') { |o| options[:hash_constant] = o }
   opt.on('--no-heading') { |o| options[:no_heading] = o }
@@ -451,6 +464,7 @@ int_132 = { :type => :int, :max => 132, :min => 0 }
 int_40 = { :type => :int, :max => 40, :min => 0 }
 int_1 = { :type => :int, :max => 1, :min => 0 }
 float = { :type => :float, :min => 0 }
+separator = { :type => :list, :values => ['COMMA', 'SEMI', 'NL', 'NONE'] }
 
 $options = {}
 
@@ -493,6 +507,10 @@ $options['detect_infinite_loop'] =
   Option.new(boolean, !options.key?(:no_detect_infinite_loop))
 
 $options['echo'] = Option.new(boolean, options.key?(:echo_input))
+
+field_sep = Option.new(separator, 'COMMA')
+field_sep = Option.new(separator, 'SEMI') if options.key?(:field_sep_semi)
+$options['field_sep'] = field_sep
 
 $options['fornext_one_beyond'] =
   Option.new(boolean, options.key?(:fornext_one_beyond))
