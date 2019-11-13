@@ -99,7 +99,7 @@ class ConsoleIo
     raise(BASICRuntimeError, 'End of file') if ascii_text.empty?
 
     print(ascii_text)
-    
+
     ascii_text = high_bits(input_text) if
       $options['input_high_bit'].value
 
@@ -339,7 +339,8 @@ class FileHandler
       end
       @mode = mode
     else
-      raise(BASICRuntimeError, 'Inconsistent file operation') unless @mode == mode
+      raise(BASICRuntimeError, 'Inconsistent file operation') unless
+        @mode == mode
     end
   end
 

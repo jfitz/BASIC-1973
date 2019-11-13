@@ -168,7 +168,7 @@ class Matrix
     values = {}
 
     base = $options['base'].value
-    
+
     (base..@dimensions[0].to_i).each do |col|
       value = get_value_1(col)
       coords = make_coord(col)
@@ -182,7 +182,7 @@ class Matrix
     values = {}
 
     base = $options['base'].value
-    
+
     (base..@dimensions[0].to_i).each do |row|
       (base..@dimensions[1].to_i).each do |col|
         value = get_value_2(row, col)
@@ -241,7 +241,7 @@ class Matrix
     new_values = {}
 
     base = $options['base'].value
-    
+
     (base..@dimensions[0].to_i).each do |row|
       (base..@dimensions[1].to_i).each do |col|
         value = get_value_2(row, col)
@@ -312,7 +312,7 @@ class Matrix
     one = NumericConstant.new(1)
 
     base = $options['base'].value
-    
+
     (base..@dimensions[0].to_i).each do |row|
       coords = make_coords(row, row)
       new_values[coords] = one
@@ -335,7 +335,7 @@ class Matrix
     values = {}
 
     base = $options['base'].value
-    
+
     (base..dims[0].to_i).each do |col|
       coords = make_coord(col)
       values[coords] = init_value
@@ -348,7 +348,7 @@ class Matrix
     values = {}
 
     base = $options['base'].value
-    
+
     (base..dims[0].to_i).each do |row|
       (base..dims[1].to_i).each do |col|
         coords = make_coords(row, col)
@@ -364,9 +364,9 @@ class Matrix
 
     base = $options['base'].value
     fs_carriage = CarriageControl.new($options['field_sep'].value)
-    gs_carriage = CarriageControl.new('NL')
-    rs_carriage = CarriageControl.new('NL')
-    
+    # gs_carriage = CarriageControl.new('NL')
+    # rs_carriage = CarriageControl.new('NL')
+
     (base..n_cols).each do |col|
       value = get_value_1(col)
       value.print(printer)
@@ -387,7 +387,7 @@ class Matrix
     fs_carriage = CarriageControl.new($options['field_sep'].value)
     gs_carriage = CarriageControl.new('NL')
     rs_carriage = CarriageControl.new('NL')
-    
+
     (base..n_rows).each do |row|
       (base..n_cols).each do |col|
         value = get_value_2(row, col)
@@ -410,9 +410,9 @@ class Matrix
 
     base = $options['base'].value
     fs_carriage = CarriageControl.new(',')
-    gs_carriage = CarriageControl.new(';')
+    # gs_carriage = CarriageControl.new(';')
     rs_carriage = CarriageControl.new('NL')
-    
+
     (base..n_cols).each do |col|
       value = get_value_1(col)
       value.write(printer)
@@ -432,7 +432,7 @@ class Matrix
     fs_carriage = CarriageControl.new(',')
     gs_carriage = CarriageControl.new(';')
     rs_carriage = CarriageControl.new('NL')
-    
+
     (base..n_rows).each do |row|
       (base..n_cols).each do |col|
         value = get_value_2(row, col)
@@ -464,7 +464,7 @@ class Matrix
     det = NumericConstant.new(0)
 
     base = $options['base'].value
-    
+
     # for each element in first row
     (base..@dimensions[1].to_i).each do |col|
       v = get_value_2(1, col)
@@ -490,7 +490,7 @@ class Matrix
     new_row = 1
 
     base = $options['base'].value
-    
+
     (base..@dimensions[0].to_i).each do |row|
       new_col = 1
       next if row == exclude_row
@@ -526,7 +526,7 @@ class Matrix
 
   def upper_triangle(n_cols, n_rows, values, inv_values)
     base = $options['base'].value
-    
+
     (base..n_cols - 1).each do |col|
       (col + 1..n_rows).each do |row|
         # adjust values for this row
@@ -541,7 +541,7 @@ class Matrix
 
   def lower_triangle(n_cols, values, inv_values)
     base = $options['base'].value
-    
+
     n_cols.downto(base + 1) do |col|
       (col - 1).downto(base).each do |row|
         # adjust values for this row
@@ -556,7 +556,7 @@ class Matrix
 
   def unitize(n_cols, n_rows, values, inv_values)
     base = $options['base'].value
-    
+
     (base..n_rows).each do |row|
       denom_coords = make_coords(row, row)
       denominator = values[denom_coords]
@@ -575,6 +575,7 @@ class Matrix
   end
 end
 
+# Entgry for cross-reference list
 class XrefEntry
   attr_reader :variable
   attr_reader :n_dims
@@ -614,7 +615,7 @@ class XrefEntry
 
     return true if @n_dims > other.n_dims
     return false if @n_dims < other.n_dims
-    
+
     !@is_ref && other.is_ref
   end
 
@@ -624,7 +625,7 @@ class XrefEntry
 
     return true if @n_dims > other.n_dims
     return false if @n_dims < other.n_dims
-    
+
     !@is_ref && other.is_ref
   end
 
@@ -634,7 +635,7 @@ class XrefEntry
 
     return true if @n_dims < other.n_dims
     return false if @n_dims > other.n_dims
-    
+
     @is_ref && !other.is_ref
   end
 
@@ -644,14 +645,14 @@ class XrefEntry
 
     return true if @n_dims < other.n_dims
     return false if @n_dims > other.n_dims
-    
+
     @is_ref && !other.is_ref
   end
 
   def to_s
     dims = ''
-    dims = '(' + ',' * (@n_dims - 1)  + ')' if @n_dims > 0
-    
+    dims = '(' + ',' * (@n_dims - 1) + ')' if @n_dims > 0
+
     ref = ''
     ref = '=' if @is_ref
 
@@ -688,7 +689,9 @@ class Parser
   end
 
   def expressions
-    raise(BASICExpressionError, 'Too many operators') unless @operator_stack.empty?
+    raise(BASICExpressionError, 'Too many operators') unless
+      @operator_stack.empty?
+
     @parsed_expressions.concat @parens_group unless @parens_group.empty?
     @parsed_expressions << @current_expression unless @current_expression.empty?
     @parsed_expressions
@@ -902,11 +905,11 @@ class AbstractExpression
   def numerics
     parsed_expressions_numerics(@parsed_expressions)
   end
-  
+
   def strings
     parsed_expressions_strings(@parsed_expressions)
   end
-  
+
   def variables
     parsed_expressions_variables(@parsed_expressions)
   end
@@ -933,7 +936,10 @@ class AbstractExpression
           sublist = thing.list
           vars += parsed_expressions_numerics(sublist)
         elsif thing.numeric_constant?
-          if !previous.nil? && previous.operator? && previous.unary? && previous.to_s == '-'
+          if !previous.nil? &&
+             previous.operator? &&
+             previous.unary? &&
+             previous.to_s == '-'
             vars << thing.negate
           else
             vars << thing
@@ -981,7 +987,7 @@ class AbstractExpression
           n_dims = 2 if thing.matrix?
 
           n_dims = previous.size if
-            n_dims == 0 && !previous.nil? && previous.list?
+            n_dims.zero? && !previous.nil? && previous.list?
 
           is_ref = thing.reference?
 
@@ -1145,19 +1151,19 @@ class ValueExpression < AbstractExpression
   def print(printer, interpreter)
     numeric_constants = evaluate(interpreter)
 
-    if !numeric_constants.empty?
-      numeric_constant = numeric_constants[0]
-      numeric_constant.print(printer)
-    end
+    return if numeric_constants.empty?
+
+    numeric_constant = numeric_constants[0]
+    numeric_constant.print(printer)
   end
 
   def write(printer, interpreter)
     numeric_constants = evaluate(interpreter)
 
-    if !numeric_constants.empty?
-      numeric_constant = numeric_constants[0]
-      numeric_constant.write(printer)
-    end
+    return if numeric_constants.empty?
+
+    numeric_constant = numeric_constants[0]
+    numeric_constant.write(printer)
   end
 
   def compound_print(printer, interpreter)
@@ -1476,7 +1482,7 @@ class Assignment
     lines += @expression.dump
     lines << 'AssignmentOperator:='
   end
- 
+
   def to_s
     @target.to_s + ' = ' + @expression.to_s
   end

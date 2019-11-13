@@ -27,7 +27,7 @@ class AbstractFunction < AbstractElement
   def reference?
     @valref == :reference
   end
-  
+
   private
 
   def default_args(interpreter)
@@ -239,7 +239,7 @@ class UserFunction < AbstractScalarFunction
       @shape == :array || @shape == :matrix
     x
   end
-  
+
   # return a single value, a reference to this object
   def evaluate_ref_scalar(interpreter, stack)
     if previous_is_array(stack)
@@ -572,7 +572,7 @@ class FunctionFrac < AbstractScalarFunction
   end
 
   # return a single value
-  def evaluate(interpreter, stack)
+  def evaluate(_, stack)
     args = stack.pop
 
     raise(BASICRuntimeError, 'Wrong arguments for function') unless
@@ -644,7 +644,10 @@ class FunctionInstr < AbstractScalarFunction
     args = stack.pop
     if match_args_to_signature(args, @signature)
       start = args[0].to_i
-      raise(BASICRuntimeError, "Invalid start index for #{@name}()") if start < 1
+
+      raise(BASICRuntimeError, "Invalid start index for #{@name}()") if
+        start < 1
+
       start -= 1
       value = args[1].to_v
       search = args[2].to_v
@@ -808,7 +811,7 @@ class FunctionMid < AbstractScalarFunction
       else
         text = ''
       end
-      
+
       quoted = '"' + text + '"'
       token = TextConstantToken.new(quoted)
       TextConstant.new(token)
@@ -830,7 +833,7 @@ class FunctionMod < AbstractScalarFunction
   end
 
   # return a single value
-  def evaluate(interpreter, stack)
+  def evaluate(_, stack)
     args = stack.pop
 
     raise(BASICRuntimeError, 'Wrong arguments for function') unless
@@ -1004,7 +1007,7 @@ class FunctionSpc < AbstractScalarFunction
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
   end
 
-  def evaluate(interpreter, stack)
+  def evaluate(_, stack)
     args = stack.pop
     if match_args_to_signature(args, @signature)
       width = args[0].to_v
