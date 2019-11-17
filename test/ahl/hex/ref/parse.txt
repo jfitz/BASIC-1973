@@ -1,16 +1,15 @@
+Syntax error: Bad expression
+Syntax error: Bad expression
+Syntax error: Bad expression
+Syntax error: Bad expression
+Syntax error: Bad expression
+Syntax error: Bad expression
+Syntax error: Bad expression
 1 ! BY JEFF DALTON, CLASS OF '74, NORTHFIELD MOUNT HERMON SCHOOL
 2 ! THIS PROGRAM PLAYS THE GAME 'HEXAPAWN' BY A METHOD OUTLINED IN 'MATHEMATICAL GAMES' IN MARCH 1962 SCIENTIFIC AMERICAN.
 3 ! THE PROGRAM LEARNS BY ELIMINATION OF BAD MOVES. ALL POSITIONS ENCOUNTERED BY THE PROGRAM AND THE ACCEPTABLE MOVES FROM THEM ARE STORED IN PSUX) 
 4 ! WHEN THE PROGRAM ENCOUNTERS AN UNFAMILIAR POSITION, THE POSITION AND ALL LEGAL MOVES FROM IT ARE ADDED TO THE LIST.
 5 ! IF THE PROGRAM LOSES A GAME, IT ERASES THE MOVE THAT LED TO DEFEAT. IF IT HITS A POSITION FROM WHICH ALL MOVES HAVE BEEN DELETED (THEY ALL LED TO DEFEAT), IT ERASES THE MOVE THAT GOT IT HERE AND RESIGNS.
-10 INPUT "INSTRUCTIONS"; C$: IF LEFT(C$* 1%)<> "Y" THEN 110
- Variable:C$
- Variable:C$
- IntegerConstant:1
- BinaryOperator:*
- FunctionLeft
- TextConstant:"Y"
- BinaryOperator:<>
 20 &: &, "THIS PROGRAM PLAYS THE GAME OF HEXAPAWN.":& "HEXAPAWN IS PLAYED WITH CHESS PAWNS ON A 3 BY 3 BOARD. THE PAWNS ARE": & "MOVED AS IN CHESS - ONE SPACE FORWARD TO AN EMPTY SPACE OR ONE SPACE"
  CarriageControl:NL
  CarriageControl:,
@@ -181,33 +180,6 @@
  IntegerConstant:2
  BinaryOperator:+
  AssignmentOperator:=
-310 FOR C%=1% TO Q%: C$=P$(C%): IF VAL(LEFT(C$,1%))=P% AND MID(C$,2%,9%)=P$ THEN M$=RIGHT(C$,11%) : GOTO 400
- control: Variable:C%
- start:   ["IntegerConstant:1"]
- end:     ["Variable:Q%"]
- Variable:C$
- Variable:C%
- Variable:P$
- AssignmentOperator:=
- Variable:C$
- IntegerConstant:1
- FunctionLeft
- FunctionVal
- Variable:P%
- BinaryOperator:=
- Variable:C$
- IntegerConstant:2
- IntegerConstant:9
- FunctionMid
- Variable:P$
- BinaryOperator:=
- BinaryOperator:AND
- Variable:M$
- Variable:C$
- IntegerConstant:11
- FunctionRight
- AssignmentOperator:=
- LineNumber:400
 320 NEXT C%: Q$="*": D%=1%: GOSUB 2000: C%=Q%: IF M$="" THEN PRINT "I CAN'T MOVE, YOU WIN.": GOTO 500
  Variable:C%
  Variable:Q$
@@ -233,25 +205,6 @@
  TextConstant:"I RESIGN."
  CarriageControl:NL
  LineNumber:500
-410 K$=LEFT(M$,2%): M$=RIGHT(MS,3%): IF RND>.33333333 AND M$<>"" THEN 410
- Variable:K$
- Variable:M$
- IntegerConstant:2
- FunctionLeft
- AssignmentOperator:=
- Variable:M$
- Variable:M
- Variable:S
- IntegerConstant:3
- FunctionRight
- AssignmentOperator:=
- FunctionRnd
- NumericConstant:.33333333
- BinaryOperator:>
- Variable:M$
- TextConstant:""
- BinaryOperator:<>
- BinaryOperator:AND
 420 K%=C%: A%=VAL(LEFT(K$,1%)): B%=VAL(RIGHT(K$,2%)): P$=FNC$(FNC$(P$,A%,"-"),B%,"*")
  Variable:K%
  Variable:C%
@@ -407,22 +360,6 @@
  IntegerConstant:9
  BinaryOperator:>
  BinaryOperator:OR
-2020 IF MID(P$,T%,1%)="-" THEN M$=M$+FNN$(J%)+FNN$(T%)
- Variable:P$
- Variable:T%
- IntegerConstant:1
- FunctionMid
- TextConstant:"-"
- BinaryOperator:=
- Variable:M$
- Variable:M$
- Variable:J%
- UserFunction
- BinaryOperator:+
- Variable:T%
- UserFunction
- BinaryOperator:+
- AssignmentOperator:=
 2025 T%=J%+D%*2%: IF T%<1% OR T%>9% OR (D%=1% AND (J%=1% OR J%=4% OR J%=7%)) OR (D%=1% AND (J%=3% OR J%=6% OR J%-9%)) THEN 2035
  Variable:T%
  Variable:J%
@@ -470,27 +407,6 @@
  BinaryOperator:OR
  BinaryOperator:AND
  BinaryOperator:OR
-2030 IF INSTR(1%,Q$+"-",MID(P$,T%,1%))=0% THEN M$=M$+FNN$(J%)+FNN$(T%)
- IntegerConstant:1
- Variable:Q$
- TextConstant:"-"
- BinaryOperator:+
- Variable:P$
- Variable:T%
- IntegerConstant:1
- FunctionMid
- FunctionInstr
- IntegerConstant:0
- BinaryOperator:=
- Variable:M$
- Variable:M$
- Variable:J%
- UserFunction
- BinaryOperator:+
- Variable:T%
- UserFunction
- BinaryOperator:+
- AssignmentOperator:=
 2035 T%=J%+D%*4%: IF T%<1% OR T%>9% OR J%=3% OR J%=7% THEN 2050
  Variable:T%
  Variable:J%
@@ -514,50 +430,6 @@
  IntegerConstant:7
  BinaryOperator:=
  BinaryOperator:OR
-2040 IF INSTR(1%,Q$+"-",MID(P$,T%,1%))=0% THEN M$=M$+FNN$(J%)+FNN$(T%)
- IntegerConstant:1
- Variable:Q$
- TextConstant:"-"
- BinaryOperator:+
- Variable:P$
- Variable:T%
- IntegerConstant:1
- FunctionMid
- FunctionInstr
- IntegerConstant:0
- BinaryOperator:=
- Variable:M$
- Variable:M$
- Variable:J%
- UserFunction
- BinaryOperator:+
- Variable:T%
- UserFunction
- BinaryOperator:+
- AssignmentOperator:=
-2050 NEXT J%: IF D%=1% AND M$<>"" THEN Q%=Q%+1%: P$(Q%)=FNN$(P%)+P$+M$
- Variable:J%
- Variable:D%
- IntegerConstant:1
- BinaryOperator:=
- Variable:M$
- TextConstant:""
- BinaryOperator:<>
- BinaryOperator:AND
- Variable:Q%
- Variable:Q%
- IntegerConstant:1
- BinaryOperator:+
- AssignmentOperator:=
- Variable:Q%
- Variable:P$
- Variable:P%
- UserFunction
- Variable:P$
- BinaryOperator:+
- Variable:M$
- BinaryOperator:+
- AssignmentOperator:=
 2060 RETURN
  
 9999 END

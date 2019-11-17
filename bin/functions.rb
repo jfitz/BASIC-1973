@@ -1,12 +1,14 @@
 # function (provides a result)
 class AbstractFunction < AbstractElement
   attr_reader :name
+  attr_reader :content_type
 
   def initialize(text)
     super()
 
     @name = text
     @function = true
+    @content_type = :numeric
     @valref = :value
     @operand = true
     @precedence = 7
@@ -352,6 +354,7 @@ class FunctionChr < AbstractScalarFunction
   def initialize(text)
     super
 
+    @content_type = :string
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
   end
 
@@ -536,6 +539,8 @@ class FunctionExt < AbstractScalarFunction
   def initialize(text)
     super
 
+    @content_type = :string
+
     @signature = [
       { 'type' => :string, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar },
@@ -709,6 +714,8 @@ class FunctionLeft < AbstractScalarFunction
   def initialize(text)
     super
 
+    @content_type = :string
+
     @signature = [
       { 'type' => :string, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
@@ -782,6 +789,8 @@ class FunctionMid < AbstractScalarFunction
   def initialize(text)
     super
 
+    @content_type = :string
+
     @signature = [
       { 'type' => :string, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar },
@@ -848,6 +857,7 @@ class FunctionPack < AbstractArrayFunction
   def initialize(text)
     super
 
+    @content_type = :string
     @signature = [{ 'type' => :numeric, 'shape' => :array }]
   end
 
@@ -868,6 +878,8 @@ end
 class FunctionRight < AbstractScalarFunction
   def initialize(text)
     super
+
+    @content_type = :string
 
     @signature = [
       { 'type' => :string, 'shape' => :scalar },
@@ -1004,6 +1016,7 @@ class FunctionSpc < AbstractScalarFunction
   def initialize(text)
     super
 
+    @content_type = :string
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
   end
 
@@ -1051,6 +1064,7 @@ class FunctionStr < AbstractScalarFunction
   def initialize(text)
     super
 
+    @content_type = :string
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
     @signature_2 = [
       { 'type' => :numeric, 'shape' => :scalar },
@@ -1084,6 +1098,7 @@ class FunctionTab < AbstractScalarFunction
   def initialize(text)
     super
 
+    @content_type = :string
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
   end
 
