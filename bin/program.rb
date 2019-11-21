@@ -998,6 +998,25 @@ class Program
     refs
   end
 
+  def operators_refs
+    refs = {}
+
+    @lines.keys.sort.each do |line_number|
+      line = @lines[line_number]
+      statements = line.statements
+
+      rs = []
+      statements.each do |statement|
+        rs += statement.operators
+        rs += statement.modifier_operators
+      end
+
+      refs[line_number] = rs
+    end
+
+    refs
+  end
+
   def linenums_refs
     refs = {}
 
@@ -1093,6 +1112,10 @@ class Program
     vars_list = variables_refs
     variables = make_summary(vars_list)
     print_object_refs('Variables:', variables)
+
+    opers_list = operators_refs
+    operators = make_summary(opers_list)
+    print_object_refs('Operators:', operators)
 
     lines_list = linenums_refs
     linenums = make_summary(lines_list)

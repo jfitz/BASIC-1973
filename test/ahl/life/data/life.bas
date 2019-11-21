@@ -10,7 +10,7 @@
 70 GO TO 50
 80 L%=0%
 90 FOR X%=1 TO C%-1
-100 IF LEN(B$(X%))>;L% THEN L%=LEN(B$(X%))
+100 IF LEN(B$(X%))>=L% THEN L%=LEN(B$(X%))
 110 NEXT X%
 120 X1%=11%-C%/2%
 130 Y1%=33%-L%/2%

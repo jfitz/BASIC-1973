@@ -1,4 +1,3 @@
-Syntax error: Bad expression
 30 OPEN "PARACH.UTE" AS FILE 1%
  Syntax error
 40 DIM #1%,A(4000)
@@ -53,8 +52,8 @@ Syntax error: Bad expression
  Variable:A1$
  TextConstant:"YES"
  BinaryOperator:=
-121 PRINT "'YEE' OR 'NO' PLEASE";\INPUT A1$\GOTO 120
- TextConstant:"'YEE' OR 'NO' PLEASE"
+121 PRINT "'YES' OR 'NO' PLEASE";\INPUT A1$\GOTO 120
+ TextConstant:"'YES' OR 'NO' PLEASE"
  CarriageControl:;
  Variable:A1$
  LineNumber:120
@@ -133,13 +132,20 @@ Syntax error: Bad expression
  CarriageControl:;
 136 INPUT B1$
  Variable:B1$
+140 IF B1$="NO" THEN 150 ELSE IF B1$<>"YES" THEN 143
+ Variable:B1$
+ TextConstant:"NO"
+ BinaryOperator:=
+ Variable:B1$
+ TextConstant:"YES"
+ BinaryOperator:<>
 141 PRINT "'YES' OR 'NO' PLEASE";\INPUT B1$\GOTO 140
  TextConstant:"'YES' OR 'NO' PLEASE"
  CarriageControl:;
  Variable:B1$
  LineNumber:140
-143 PRINT "WHAT ACCELERATION (FT/SEC/SEC )";\INPUT A2
- TextConstant:"WHAT ACCELERATION (FT/SEC/SEC )"
+143 PRINT "WHAT ACCELERATION (FT/SEC/SEC)";\INPUT A2
+ TextConstant:"WHAT ACCELERATION (FT/SEC/SEC)"
  CarriageControl:;
  Variable:A2
 145 A=A2+((A2*RND(0))/20)-((A2*RND(0))/20)\GOTO 205
@@ -179,8 +185,8 @@ Syntax error: Bad expression
  LineNumber:158
  LineNumber:159
  LineNumber:160
-151 PRINT"FINE. YOU'RE ON MERCURY. ACCELERATION=12,2FT/SEC/SEC"\GOTO161
- TextConstant:"FINE. YOU'RE ON MERCURY. ACCELERATION=12,2FT/SEC/SEC"
+151 PRINT"FINE. YOU'RE ON MERCURY. ACCELERATION=12.2FT/SEC/SEC"\GOTO161
+ TextConstant:"FINE. YOU'RE ON MERCURY. ACCELERATION=12.2FT/SEC/SEC"
  CarriageControl:NL
  LineNumber:161
 152 PRINT"ALRIGHT. YOU'RE ON VENUS, ACCELERATION=28.3 FT/SEC/SEC"\GOTO162
@@ -488,70 +494,70 @@ Syntax error: Bad expression
  BinaryOperator:<=
 695 GOTO 750
  LineNumber:750
-700 PRINT "WOW! THAT'S SOME JUMPlNG, OF THE"K"SUCCESSFUL JUMPS"
+700 PRINT "WOW! THAT'S SOME JUMPlNG, OF THE";K;" SUCCESSFUL JUMPS"
  TextConstant:"WOW! THAT'S SOME JUMPlNG, OF THE"
- CarriageControl:
+ CarriageControl:;
  Variable:K
- CarriageControl:
- TextConstant:"SUCCESSFUL JUMPS"
+ CarriageControl:;
+ TextConstant:" SUCCESSFUL JUMPS"
  CarriageControl:NL
-701 PRINT "BEFORE YOURS ONLY"K-K1"OPENED THEIR CHUTES LOWER THAN"
- TextConstant:"BEFORE YOURS ONLY"
- CarriageControl:
+701 PRINT "BEFORE YOURS, ONLY";K-K1;" OPENED THEIR CHUTES LOWER THAN"
+ TextConstant:"BEFORE YOURS, ONLY"
+ CarriageControl:;
  Variable:K
  Variable:K1
  BinaryOperator:-
- CarriageControl:
- TextConstant:"OPENED THEIR CHUTES LOWER THAN"
+ CarriageControl:;
+ TextConstant:" OPENED THEIR CHUTES LOWER THAN"
  CarriageControl:NL
 702 PRINT "YOU DID."
  TextConstant:"YOU DID."
  CarriageControl:NL
 703 GOTO 2000
  LineNumber:2000
-710 PRINT "PRETTY GOOD!"K"SUCCESSFUL JUMPS PRECEDED YOURS AND ONLY"
+710 PRINT "PRETTY GOOD!";K;" SUCCESSFUL JUMPS PRECEDED YOURS AND ONLY"
  TextConstant:"PRETTY GOOD!"
- CarriageControl:
+ CarriageControl:;
  Variable:K
- CarriageControl:
- TextConstant:"SUCCESSFUL JUMPS PRECEDED YOURS AND ONLY"
+ CarriageControl:;
+ TextConstant:" SUCCESSFUL JUMPS PRECEDED YOURS AND ONLY"
  CarriageControl:NL
-711 PRINT K-K1" OF THEM GOT LOWER THAN YOU DID. BEFORE THEIR CHUTES"
+711 PRINT K-K1;" OF THEM GOT LOWER THAN YOU DID. BEFORE THEIR CHUTES"
  Variable:K
  Variable:K1
  BinaryOperator:-
- CarriageControl:
+ CarriageControl:;
  TextConstant:" OF THEM GOT LOWER THAN YOU DID. BEFORE THEIR CHUTES"
  CarriageControl:NL
 712 PRINT "OPENED." \GOTO 2000
  TextConstant:"OPENED."
  CarriageControl:NL
  LineNumber:2000
-720 PRINT "NOT BAD, THERE HAVE BEEN"K"SUCCESSFUL JUMPS BEFORE YOURS."
+720 PRINT "NOT BAD, THERE HAVE BEEN";K;" SUCCESSFUL JUMPS BEFORE YOURS."
  TextConstant:"NOT BAD, THERE HAVE BEEN"
- CarriageControl:
+ CarriageControl:;
  Variable:K
- CarriageControl:
- TextConstant:"SUCCESSFUL JUMPS BEFORE YOURS."
+ CarriageControl:;
+ TextConstant:" SUCCESSFUL JUMPS BEFORE YOURS."
  CarriageControl:NL
-721 PRINT"YOU WERE BEATEN OUT BY "K-K1"OF THEM."\GOTO 2000
+721 PRINT"YOU WERE BEATEN OUT BY ";K-K1;" OF THEM."\GOTO 2000
  TextConstant:"YOU WERE BEATEN OUT BY "
- CarriageControl:
+ CarriageControl:;
  Variable:K
  Variable:K1
  BinaryOperator:-
- CarriageControl:
- TextConstant:"OF THEM."
+ CarriageControl:;
+ TextConstant:" OF THEM."
  CarriageControl:NL
  LineNumber:2000
-730 PRINT "CONSERVATIVE AREN'T YOU? YOU RANKED ONLY"K-K1"IN THE"
+730 PRINT "CONSERVATIVE AREN'T YOU? YOU RANKED ONLY";K-K1;" IN THE"
  TextConstant:"CONSERVATIVE AREN'T YOU? YOU RANKED ONLY"
- CarriageControl:
+ CarriageControl:;
  Variable:K
  Variable:K1
  BinaryOperator:-
- CarriageControl:
- TextConstant:"IN THE"
+ CarriageControl:;
+ TextConstant:" IN THE"
  CarriageControl:NL
 731 PRINT K"SUCCESSFUL JUMPS BEFORE YOURS."\GOTO 2000
  Variable:K
@@ -562,33 +568,33 @@ Syntax error: Bad expression
 740 PRINT "HUMPH! DON'T YOU HAVE ANY SPORTING BLOOD? THERE WERE"
  TextConstant:"HUMPH! DON'T YOU HAVE ANY SPORTING BLOOD? THERE WERE"
  CarriageControl:NL
-741 PRINT K"SUCCESSFUL JUMPS BEFORE YOURS AND YOU CAME IN"K1" JUMPS"
+741 PRINT K"SUCCESSFUL JUMPS BEFORE YOURS AND YOU CAME IN";K1;" JUMPS"
  Variable:K
  CarriageControl:
  TextConstant:"SUCCESSFUL JUMPS BEFORE YOURS AND YOU CAME IN"
- CarriageControl:
+ CarriageControl:;
  Variable:K1
- CarriageControl:
+ CarriageControl:;
  TextConstant:" JUMPS"
  CarriageControl:NL
 742 PRINT "BETTER THAN THE WORST. SHAPE UP!!!"\GOTO 2000
  TextConstant:"BETTER THAN THE WORST. SHAPE UP!!!"
  CarriageControl:NL
  LineNumber:2000
-750 PRINT "HEY! YOU PULLED THE RIP CORD MUCH TOO SOON. "K"SUCCESSFUL"
- TextConstant:"HEY! YOU PULLED THE RIP CORD MUCH TOO SOON. "
- CarriageControl:
+750 PRINT "HEY! YOU PULLED THE RIP CORD MUCH TOO SOON.";K;" SUCCESSFUL"
+ TextConstant:"HEY! YOU PULLED THE RIP CORD MUCH TOO SOON."
+ CarriageControl:;
  Variable:K
- CarriageControl:
- TextConstant:"SUCCESSFUL"
+ CarriageControl:;
+ TextConstant:" SUCCESSFUL"
  CarriageControl:NL
-751 PRINT "JUMPS BEFORE YOURS AND YOU CAME IN NUMBER"K-K1"! GET WITH IT!"
+751 PRINT "JUMPS BEFORE YOURS AND YOU CAME IN NUMBER";K-K1;"! GET WITH IT!"
  TextConstant:"JUMPS BEFORE YOURS AND YOU CAME IN NUMBER"
- CarriageControl:
+ CarriageControl:;
  Variable:K
  Variable:K1
  BinaryOperator:-
- CarriageControl:
+ CarriageControl:;
  TextConstant:"! GET WITH IT!"
  CarriageControl:NL
 752 GOTO 2000

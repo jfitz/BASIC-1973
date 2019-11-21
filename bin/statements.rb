@@ -227,6 +227,7 @@ class AbstractStatement
   attr_reader :numerics
   attr_reader :strings
   attr_reader :variables
+  attr_reader :operators
   attr_reader :functions
   attr_reader :userfuncs
   attr_reader :linenums
@@ -250,6 +251,7 @@ class AbstractStatement
     @numerics = []
     @strings = []
     @variables = []
+    @operators = []
     @functions = []
     @userfuncs = []
     @linenums = []
@@ -323,6 +325,12 @@ class AbstractStatement
     vars = []
     @modifiers.each { |modifier| vars += modifier.variables }
     vars
+  end
+
+  def modifier_operators
+    opers = []
+    @modifiers.each { |modifier| opers += modifier.operators }
+    opers
   end
 
   def modifier_functions
@@ -811,6 +819,7 @@ class ChainStatement < AbstractStatement
     @numerics = @target.numerics
     @strings = @target.strings
     @variables = @target.variables
+    @operators = @target.operators
     @functions = @target.functions
     @userfuncs = @target.userfuncs
   end
@@ -879,6 +888,7 @@ class ChangeStatement < AbstractStatement
       @numerics = @source.numerics + @target.numerics
       @strings = @source.strings + @target.strings
       @variables = @source.variables + @target.variables
+      @operators = @source.operators + @target.operators
       @functions = @source.functions + @target.functions
       @userfuncs = @source.userfuncs + @target.userfuncs
     else
@@ -971,6 +981,7 @@ class CloseStatement < AbstractStatement
       @numerics = @filenum_expression.numerics
       @strings = @filenum_expression.strings
       @variables = @filenum_expression.variables
+      @operators = @filenum_expression.operators
       @functions = @filenum_expression.functions
       @userfuncs = @filenum_expression.userfuncs
     else
@@ -1024,6 +1035,7 @@ class DataStatement < AbstractStatement
       @numerics = @expressions.numerics
       @strings = @expressions.strings
       @variables = @expressions.variables
+      @operators = @expressions.operators
       @functions = @expressions.functions
       @userfuncs = @expressions.userfuncs
     else
@@ -1066,6 +1078,7 @@ class DefineFunctionStatement < AbstractStatement
         @numerics = @definition.numerics
         @strings = @definition.strings
         @variables = @definition.variables
+        @operators = @definition.operators
         @functions = @definition.functions
         @userfuncs = @definition.userfuncs
       rescue BASICExpressionError => e
@@ -1132,6 +1145,7 @@ class DimStatement < AbstractStatement
     @expression_list.each { |expression| @numerics += expression.numerics }
     @expression_list.each { |expression| @strings += expression.strings }
     @expression_list.each { |expression| @variables += expression.variables }
+    @expression_list.each { |expression| @operators += expression.operators }
     @expression_list.each { |expression| @functions += expression.functions }
     @expression_list.each { |expression| @userfuncs += expression.userfuncs }
   end
@@ -1213,6 +1227,7 @@ class FilesStatement < AbstractStatement
       @expressions = ValueExpression.new(tokens_lists[0], :scalar)
       @strings = @expressions.strings
       @variables = @expressions.variables
+      @operators = @expressions.operators
       @functions = @expressions.functions
       @userfuncs = @expressions.userfuncs
     else
@@ -1292,6 +1307,7 @@ class ForStatement < AbstractStatement
         @strings = @start.strings + @end.strings
         control = XrefEntry.new(@control.to_s, nil, true)
         @variables = [control] + @start.variables + @end.variables
+        @operators = @start.operators + @end.operators
         @functions = @start.functions + @end.functions
         @userfuncs = @start.userfuncs + @end.userfuncs
       rescue BASICExpressionError => e
@@ -1312,6 +1328,7 @@ class ForStatement < AbstractStatement
         @variables =
           [control] + @start.variables + @end.variables + @step.variables
 
+        @operators = @start.operators + @end.operators + @step.operators
         @functions = @start.functions + @end.functions + @step.functions
         @userfuncs = @start.userfuncs + @end.userfuncs + @step.userfuncs
       rescue BASICExpressionError => e
@@ -1476,6 +1493,7 @@ class GotoStatement < AbstractStatement
         @numerics += @expression.numerics
         @strings += @expression.strings
         @variables += @expression.variables
+        @operators += @expression.operators
         @functions += @expression.functions
         @userfuncs += @expression.userfuncs
       rescue BASICExpressionError => e
@@ -1628,6 +1646,7 @@ class AbstractIfStatement < AbstractStatement
       @numerics = make_numeric_references
       @strings = make_string_references
       @variables = make_variable_references
+      @operators = make_operator_references
       @functions = make_function_references
       @userfuncs = make_userfunc_references
       @linenums = make_linenum_references
@@ -1643,6 +1662,7 @@ class AbstractIfStatement < AbstractStatement
         @numerics = make_numeric_references
         @strings = make_string_references
         @variables = make_variable_references
+        @operators = make_operator_references
         @functions = make_function_references
         @userfuncs = make_userfunc_references
         @linenums = make_linenum_references
@@ -1803,6 +1823,14 @@ class AbstractIfStatement < AbstractStatement
     vars += @expression.variables unless @expression.nil?
     vars += @statement.variables unless @statement.nil?
     vars += @else_stmt.variables unless @else_stmt.nil?
+    vars
+  end
+
+  def make_operator_references
+    vars = []
+    vars += @expression.operators unless @expression.nil?
+    vars += @statement.operators unless @statement.nil?
+    vars += @else_stmt.operators unless @else_stmt.nil?
     vars
   end
 
@@ -2017,6 +2045,9 @@ class AbstractInputStatement < AbstractStatement
 
     @variables = @file_tokens.variables unless @file_tokens.nil?
     @input_items.each { |item| @variables += item.variables }
+
+    @operators = @file_tokens.operators unless @file_tokens.nil?
+    @input_items.each { |item| @operators += item.operators }
 
     @functions = @file_tokens.functions unless @file_tokens.nil?
     @input_items.each { |item| @functions += item.functions }
@@ -2284,6 +2315,7 @@ class AbstractScalarLetStatement < AbstractLetStatement
         @numerics = @assignment.numerics
         @strings = @assignment.strings
         @variables = @assignment.variables
+        @operators = @assignment.operators
         @functions = @assignment.functions
         @userfuncs = @assignment.userfuncs
       rescue BASICExpressionError => e
@@ -2586,6 +2618,7 @@ class OnStatement < AbstractStatement
         @numerics = @expression.numerics
         @strings = @expression.strings
         @variables = @expression.variables
+        @operators = @expression.operators
         @functions = @expression.functions
         @userfuncs = @expression.userfuncs
       rescue BASICExpressionError => e
@@ -2738,6 +2771,9 @@ class OpenStatement < AbstractStatement
       @variables =
         @filename_expression.variables + @filenum_expression.variables
 
+      @operators =
+        @filename_expression.operators + @filenum_expression.operators
+
       @functions =
         @filename_expression.functions + @filenum_expression.functions
 
@@ -2758,6 +2794,9 @@ class OpenStatement < AbstractStatement
 
       @variables =
         @filename_expression.variables + @filenum_expression.variables
+
+      @operators =
+        @filename_expression.operators + @filenum_expression.operators
 
       @functions =
         @filename_expression.functions + @filenum_expression.functions
@@ -2839,6 +2878,7 @@ class OptionStatement < AbstractStatement
       @numerics = @expression.numerics
       @strings = @expression.strings
       @variables = @expression.variables
+      @operators = @expression.operators
       @functions = @expression.functions
       @userfuncs = @expression.userfuncs
     else
@@ -2889,6 +2929,9 @@ class AbstractPrintStatement < AbstractStatement
 
     @variables = @file_tokens.variables unless @file_tokens.nil?
     @print_items.each { |item| @variables += item.variables }
+
+    @operators = @file_tokens.operators unless @file_tokens.nil?
+    @print_items.each { |item| @operators += item.operators }
 
     @functions = @file_tokens.functions unless @file_tokens.nil?
     @print_items.each { |item| @functions += item.functions }
@@ -3178,6 +3221,9 @@ class AbstractReadStatement < AbstractStatement
     @variables = @file_tokens.variables unless @file_tokens.nil?
     @read_items.each { |item| @variables += item.variables }
 
+    @operators = @file_tokens.operators unless @file_tokens.nil?
+    @read_items.each { |item| @operators += item.operators }
+
     @functions = @file_tokens.functions unless @file_tokens.nil?
     @read_items.each { |item| @functions += item.functions }
 
@@ -3417,6 +3463,7 @@ class SleepStatement < AbstractStatement
       @numerics = @expression.numerics
       @strings = @expression.strings
       @variables = @expression.variables
+      @operators = @expression.operators
       @functions = @expression.functions
       @userfuncs = @expression.userfuncs
     else
@@ -3492,6 +3539,9 @@ class AbstractWriteStatement < AbstractStatement
 
     @variables = @file_tokens.variables unless @file_tokens.nil?
     @print_items.each { |item| @variables += item.variables }
+
+    @operators = @file_tokens.operators unless @file_tokens.nil?
+    @print_items.each { |item| @operators += item.operators }
 
     @functions = @file_tokens.functions unless @file_tokens.nil?
     @print_items.each { |item| @functions += item.functions }
@@ -3826,6 +3876,7 @@ class ArrLetStatement < AbstractLetStatement
         @numerics = @assignment.numerics
         @strings = @assignment.strings
         @variables = @assignment.variables
+        @operators = @assignment.operators
         @functions = @assignment.functions
         @userfuncs = @assignment.userfuncs
       rescue BASICExpressionError => e
@@ -4135,6 +4186,7 @@ class MatLetStatement < AbstractLetStatement
         @numerics = @assignment.numerics
         @strings = @assignment.strings
         @variables = @assignment.variables
+        @operators = @assignment.operators
         @functions = @assignment.functions
         @userfuncs = @assignment.userfuncs
       rescue BASICRuntimeError => e

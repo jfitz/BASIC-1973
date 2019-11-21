@@ -1,9 +1,55 @@
-Syntax error: Bad expression
-Syntax error: Bad expression
-Syntax error: Bad expression
-Syntax error: Bad expression
-Syntax error: Bad expression
-Syntax error: Bad expression
-Syntax error: Bad expression
-Line number 2050 not found in line 2010.1
-Line number 2050 not found in line 2035.1
+Statistics:
+
+Number of lines: 43
+Number of valid statements: 110
+Number of comments: 0
+Number of executable statements: 109
+
+Complexity:
+
+Comment density: 0.000
+
+Unreachable code:
+
+200: &
+200.1: & "BOARD:"
+200.2: & LEFT(P$, 3%)
+200.3: & MID(P$, 4%, 3%)
+200.4: & RIGHT(P$, 7%)
+200.5: &
+210: INPUT "WHAT IS YOUR MOVE"; A%, B%
+210.1: IF INSTR(1%, M$, FNN$(A$) + FNN$(B$)) = 0% THEN PRINT "ILLEGAL MOVE."
+210.2: GOTO 210
+230: P$ = FNC$(FNC$(P$, A%, "-"), B%, "O")
+230.1: IF INSTR(1%, P$, "*") = 0% OR INSTR(1%, P$, "O") = 4% THEN PRINT "YOU WIN."
+230.2: GOTO 500
+300: P% = P% + 2%
+310: FOR C% = 1% TO Q%
+310.1: C$ = P$(C%)
+310.2: IF VAL(LEFT(C$, 1%)) = P% AND MID(C$, 2%, 9%) = P$ THEN M$ = RIGHT(C$, 11%)
+310.3: GOTO 400
+320: NEXT C%
+320.1: Q$ = "*"
+320.2: D% = 1%
+320.3: GOSUB 2000
+320.4: C% = Q%
+320.5: IF M$ = "" THEN PRINT "I CAN'T MOVE, YOU WIN."
+320.6: GOTO 500
+400: IF M$ = "" THEN PRINT "I RESIGN."
+400.1: GOTO 500
+410: K$ = LEFT(M$, 2%)
+410.1: M$ = RIGHT(M$, 3%)
+410.2: IF RND > .33333333 AND M$ <> "" THEN 410
+420: K% = C%
+420.1: A% = VAL(LEFT(K$, 1%))
+420.2: B% = VAL(RIGHT(K$, 2%))
+420.3: P$ = FNC$(FNC$(P$, A%, "-"), B%, "*")
+430: IF INSTR(1%, P$, "O") = 0% OR INSTR(7%, P$, "*") THEN PRINT "I WIN!"
+430.1: GOTO 510
+440: PRINT "I MOVE FROM" A% "TO" B%
+440.1: GOTO 190
+500: V2% = W2% + 1%
+500.1: I% = INSTR(11%, P$(K%), K$)
+500.2: P$(K%) = LEFT(P$(K%), I% - 1%) + RIGHT(P$(K%), I% + 2%) IF I%
+500.3: GOTO 520
+
