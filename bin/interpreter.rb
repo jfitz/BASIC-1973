@@ -724,7 +724,6 @@ class Interpreter
 
   def get_value(variable)
     legals = [
-      'VariableName',
       'Variable',
       'UserFunctionName'
     ]
@@ -740,7 +739,7 @@ class Interpreter
 
     if length > 0
       names_and_values = @user_var_values[-1]
-      value = names_and_values[variable]
+      value = names_and_values[variable.name]
     end
 
     # then look in general table
