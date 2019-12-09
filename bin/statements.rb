@@ -758,25 +758,25 @@ end
 
 # common functions for IO statements
 module FileFunctions
-  def extract_file_handle(print_items)
-    print_items = print_items.clone
+  def extract_file_handle(items)
+    items = items.clone
     file_tokens = nil
 
-    unless print_items.empty? ||
-           print_items[0].carriage_control?
+    unless items.empty? ||
+           items[0].carriage_control?
 
-      candidate_file_tokens = print_items[0]
+      candidate_file_tokens = items[0]
 
       if candidate_file_tokens.filehandle?
-        file_tokens = print_items.shift
+        file_tokens = items.shift
 
-        print_items.shift if
-          !print_items.empty? &&
-          print_items[0].carriage_control?
+        items.shift if
+          !items.empty? &&
+          items[0].carriage_control?
       end
     end
 
-    [file_tokens, print_items]
+    [file_tokens, items]
   end
 
   def get_file_handle(interpreter, file_tokens)
@@ -786,28 +786,28 @@ module FileFunctions
     file_handles[0]
   end
 
-  def add_needed_value(print_items, shape)
-    if print_items.empty? || !print_items[-1].printable?
-      print_items << ValueExpression.new([], shape)
+  def add_needed_value(items, shape)
+    if items.empty? || !items[-1].printable?
+      items << ValueExpression.new([], shape)
     end
   end
 
-  def add_needed_carriage(print_items)
-    if !print_items.empty? && print_items[-1].printable?
-      print_items << CarriageControl.new('')
+  def add_needed_carriage(items)
+    if !items.empty? && items[-1].printable?
+      items << CarriageControl.new('')
     end
   end
 
-  def add_final_carriage(print_items, final)
-    if !print_items.empty? && print_items[-1].printable?
-      print_items << final
+  def add_final_carriage(items, final)
+    if !items.empty? && items[-1].printable?
+      items << final
     end
   end
 
-  def add_default_value_carriage(print_items, shape)
-    if print_items.empty?
-      add_needed_value(print_items, shape)
-      add_final_carriage(print_items, CarriageControl.new('NL'))
+  def add_default_value_carriage(items, shape)
+    if items.empty?
+      add_needed_value(items, shape)
+      add_final_carriage(items, CarriageControl.new('NL'))
     end
   end
 end
@@ -2054,73 +2054,73 @@ class AbstractInputStatement < AbstractStatement
 
   def dump
     lines = []
-    @input_items.each { |item| lines += item.dump } unless @input_items.nil?
+    @items.each { |item| lines += item.dump } unless @items.nil?
     lines
   end
 
   def make_references
     @numerics = @file_tokens.numerics unless @file_tokens.nil?
-    @input_items.each { |item| @numerics += item.numerics }
+    @items.each { |item| @numerics += item.numerics }
 
     @strings = @prompt.strings unless @prompt.nil?
     @strings += @file_tokens.strings unless @file_tokens.nil?
-    @input_items.each { |item| @strings += item.strings }
+    @items.each { |item| @strings += item.strings }
 
     @variables = @file_tokens.variables unless @file_tokens.nil?
-    @input_items.each { |item| @variables += item.variables }
+    @items.each { |item| @variables += item.variables }
 
     @operators = @file_tokens.operators unless @file_tokens.nil?
-    @input_items.each { |item| @operators += item.operators }
+    @items.each { |item| @operators += item.operators }
 
     @functions = @file_tokens.functions unless @file_tokens.nil?
-    @input_items.each { |item| @functions += item.functions }
+    @items.each { |item| @functions += item.functions }
 
     @userfuncs = @file_tokens.userfuncs unless @file_tokens.nil?
-    @input_items.each { |item| @userfuncs += item.userfuncs }
+    @items.each { |item| @userfuncs += item.userfuncs }
   end
 
   private
 
-  def extract_prompt(print_items)
-    print_items = print_items.clone
+  def extract_prompt(items)
+    items = items.clone
     prompt = nil
 
-    unless print_items.empty? ||
-           print_items[0].carriage_control?
+    unless items.empty? ||
+           items[0].carriage_control?
 
-      candidate_prompt_tokens = print_items[0]
+      candidate_prompt_tokens = items[0]
 
       if candidate_prompt_tokens.text_constant?
-        prompt = print_items.shift
+        prompt = items.shift
 
-        print_items.shift if
-          !print_items.empty? &&
-          print_items[0].carriage_control?
+        items.shift if
+          !items.empty? &&
+          items[0].carriage_control?
       end
     end
 
-    [prompt, print_items]
+    [prompt, items]
   end
 
   def tokens_to_expressions(tokens_lists)
-    print_items = []
+    items = []
 
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'Array'
-        add_expression(print_items, tokens_list)
+        add_expression(items, tokens_list)
       end
     end
 
-    print_items
+    items
   end
 
-  def add_expression(print_items, tokens)
+  def add_expression(items, tokens)
     if tokens[0].operator? && tokens[0].pound?
-      print_items << ValueExpression.new(tokens, :scalar)
+      items << ValueExpression.new(tokens, :scalar)
     elsif tokens[0].text_constant?
-      print_items << ValueExpression.new(tokens, :scalar)
+      items << ValueExpression.new(tokens, :scalar)
     else
-      print_items << TargetExpression.new(tokens, :scalar)
+      items << TargetExpression.new(tokens, :scalar)
     end
 
   rescue BASICExpressionError
@@ -2157,18 +2157,18 @@ class InputStatement < AbstractInputStatement
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      input_items = split_tokens(tokens_lists[0], false)
-      input_items = tokens_to_expressions(input_items)
-      @file_tokens, input_items = extract_file_handle(input_items)
-      @prompt, @input_items = extract_prompt(input_items)
+      items = split_tokens(tokens_lists[0], false)
+      items = tokens_to_expressions(items)
+      @file_tokens, items = extract_file_handle(items)
+      @prompt, @items = extract_prompt(items)
 
-      if !@input_items.empty? && @input_items[0].text_constant?
-        @prompt = input_items[0]
-        @input_items = @input_items[1..-1]
+      if !@items.empty? && @items[0].text_constant?
+        @prompt = items[0]
+        @items = @items[1..-1]
       end
 
       make_references
-      @mccabe += @input_items.size
+      @mccabe += @items.size
     else
       @errors << 'Syntax error'
     end
@@ -2188,17 +2188,17 @@ class InputStatement < AbstractInputStatement
     end
 
     if fh.nil?
-      values = input_values(fhr, interpreter, prompt, @input_items.size)
+      values = input_values(fhr, interpreter, prompt, @items.size)
       fhr.implied_newline
     else
       values = fhr.input(interpreter)
     end
 
     raise(BASICRuntimeError, 'Not enough values') if
-      values.size < @input_items.size
+      values.size < @items.size
 
     name_value_pairs =
-      zip(@input_items, values[0..@input_items.length])
+      zip(@items, values[0..@items.length])
 
     name_value_pairs.each do |hash|
       variables = hash['name'].evaluate(interpreter)
@@ -2243,14 +2243,14 @@ class InputCharStatement < AbstractInputStatement
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      input_items = split_tokens(tokens_lists[0], false)
-      input_items = tokens_to_expressions(input_items)
-      @file_tokens, input_items = extract_file_handle(input_items)
-      @prompt, @input_items = extract_prompt(input_items)
+      items = split_tokens(tokens_lists[0], false)
+      items = tokens_to_expressions(items)
+      @file_tokens, items = extract_file_handle(items)
+      @prompt, @items = extract_prompt(items)
 
-      if !@input_items.empty? && @input_items[0].text_constant?
-        @prompt = input_items[0]
-        @input_items = @input_items[1..-1]
+      if !@items.empty? && @items[0].text_constant?
+        @prompt = items[0]
+        @items = @items[1..-1]
       end
 
       make_references
@@ -2274,14 +2274,14 @@ class InputCharStatement < AbstractInputStatement
     end
 
     if fh.nil?
-      values = input_values(fhr, interpreter, @input_items.size)
+      values = input_values(fhr, interpreter, @items.size)
       fhr.implied_newline
     else
       values = fhr.input(interpreter)
     end
 
     name_value_pairs =
-      zip(@input_items, values[0..@input_items.length])
+      zip(@items, values[0..@items.length])
 
     name_value_pairs.each do |hash|
       variables = hash['name'].evaluate(interpreter)
@@ -2409,18 +2409,18 @@ class LineInputStatement < AbstractInputStatement
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      input_items = split_tokens(tokens_lists[0], false)
-      input_items = tokens_to_expressions(input_items)
-      @file_tokens, input_items = extract_file_handle(input_items)
-      @prompt, @input_items = extract_prompt(input_items)
+      items = split_tokens(tokens_lists[0], false)
+      items = tokens_to_expressions(items)
+      @file_tokens, items = extract_file_handle(items)
+      @prompt, @items = extract_prompt(items)
 
-      if !@input_items.empty? && @input_items[0].text_constant?
-        @prompt = input_items[0]
-        @input_items = @input_items[1..-1]
+      if !@items.empty? && @items[0].text_constant?
+        @prompt = items[0]
+        @items = @items[1..-1]
       end
 
       make_references
-      @mccabe += @input_items.size
+      @mccabe += @items.size
     else
       @errors << 'Syntax error'
     end
@@ -2440,14 +2440,14 @@ class LineInputStatement < AbstractInputStatement
     end
 
     if fh.nil?
-      values = input_values(fhr, interpreter, prompt, @input_items.size)
+      values = input_values(fhr, interpreter, prompt, @items.size)
       fhr.implied_newline
     else
       values = fhr.line_input(interpreter)
     end
 
     name_value_pairs =
-      zip(@input_items, values[0..@input_items.length])
+      zip(@items, values[0..@items.length])
 
     name_value_pairs.each do |hash|
       variables = hash['name'].evaluate(interpreter)
@@ -2946,29 +2946,29 @@ class AbstractPrintStatement < AbstractStatement
       lines += @file_tokens.dump
     end
 
-    @print_items.each { |item| lines += item.dump } unless @print_items.nil?
+    @items.each { |item| lines += item.dump } unless @items.nil?
 
     lines
   end
 
   def make_references
     @numerics = @file_tokens.numerics unless @file_tokens.nil?
-    @print_items.each { |item| @numerics += item.numerics }
+    @items.each { |item| @numerics += item.numerics }
 
     @strings = @file_tokens.strings unless @file_tokens.nil?
-    @print_items.each { |item| @strings += item.strings }
+    @items.each { |item| @strings += item.strings }
 
     @variables = @file_tokens.variables unless @file_tokens.nil?
-    @print_items.each { |item| @variables += item.variables }
+    @items.each { |item| @variables += item.variables }
 
     @operators = @file_tokens.operators unless @file_tokens.nil?
-    @print_items.each { |item| @operators += item.operators }
+    @items.each { |item| @operators += item.operators }
 
     @functions = @file_tokens.functions unless @file_tokens.nil?
-    @print_items.each { |item| @functions += item.functions }
+    @items.each { |item| @functions += item.functions }
 
     @userfuncs = @file_tokens.userfuncs unless @file_fokens.nil?
-    @print_items.each { |item| @userfuncs += item.userfuncs }
+    @items.each { |item| @userfuncs += item.userfuncs }
   end
 
   include FileFunctions
@@ -2993,11 +2993,11 @@ class PrintStatement < AbstractPrintStatement
     template2 = [[1, '>=']]
 
     if check_template(tokens_lists, template1)
-      @print_items = tokens_to_expressions([])
+      @items = tokens_to_expressions([])
     elsif check_template(tokens_lists, template2)
       tokens_lists = split_tokens(tokens_lists[0], true)
-      print_items = tokens_to_expressions(tokens_lists)
-      @file_tokens, @print_items = extract_file_handle(print_items)
+      items = tokens_to_expressions(tokens_lists)
+      @file_tokens, @items = extract_file_handle(items)
       make_references
     else
       @errors << 'Syntax error'
@@ -3010,12 +3010,12 @@ class PrintStatement < AbstractPrintStatement
 
     i = 0
 
-    @print_items.each do |item|
+    @items.each do |item|
       if item.printable?
         carriage = CarriageControl.new('')
-        carriage = @print_items[i + 1] if
-          i < @print_items.size &&
-          !@print_items[i + 1].printable?
+        carriage = @items[i + 1] if
+          i < @items.size &&
+          !@items[i + 1].printable?
         item.print(fhr, interpreter)
         carriage.print(fhr, interpreter)
       end
@@ -3027,13 +3027,13 @@ class PrintStatement < AbstractPrintStatement
   private
 
   def tokens_to_expressions(tokens_lists)
-    print_items = []
+    items = []
 
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'Array'
         begin
-          add_needed_carriage(print_items)
-          print_items << ValueExpression.new(tokens_list, :scalar)
+          add_needed_carriage(items)
+          items << ValueExpression.new(tokens_list, :scalar)
         rescue BASICExpressionError
           line_text = tokens_list.map(&:to_s).join
 
@@ -3041,14 +3041,14 @@ class PrintStatement < AbstractPrintStatement
             'Syntax error: "' + line_text + '" is not a value or operator'
         end
       elsif tokens_list.separator?
-        add_needed_value(print_items, :scalar)
-        print_items << CarriageControl.new(tokens_list.to_s)
+        add_needed_value(items, :scalar)
+        items << CarriageControl.new(tokens_list.to_s)
       end
     end
 
-    add_final_carriage(print_items, @final)
-    add_default_value_carriage(print_items, :scalar)
-    print_items
+    add_final_carriage(items, @final)
+    add_default_value_carriage(items, :scalar)
+    items
   end
 end
 
@@ -3070,7 +3070,7 @@ class PrintUsingStatement < AbstractPrintStatement
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], true)
       @file_tokens = nil
-      @print_items = tokens_to_expressions(tokens_lists)
+      @items = tokens_to_expressions(tokens_lists)
       make_references
     else
       @errors << 'Syntax error'
@@ -3081,7 +3081,7 @@ class PrintUsingStatement < AbstractPrintStatement
     fh = get_file_handle(interpreter, @file_tokens)
     fhr = interpreter.get_file_handler(fh, :print)
 
-    format_spec, print_items = extract_format(@print_items, interpreter)
+    format_spec, items = extract_format(@items, interpreter)
 
     raise(BASICRuntimeError, 'No print format') if format_spec.nil?
 
@@ -3094,13 +3094,13 @@ class PrintUsingStatement < AbstractPrintStatement
 
       if format.wants_item
         # skip all of the separators
-        print_items.shift while
-          !print_items.empty? && print_items[0].carriage_control?
+        items.shift while
+          !items.empty? && items[0].carriage_control?
 
         raise(BASICRuntimeError, 'Too few print items for format') if
-          print_items.empty?
+          items.empty?
 
-        item = print_items.shift
+        item = items.shift
         constants = item.evaluate(interpreter)
         constant = constants[0]
       end
@@ -3109,18 +3109,18 @@ class PrintUsingStatement < AbstractPrintStatement
       text.print(fhr)
     end
 
-    if !print_items.empty? && !print_items[0].printable?
-      print_items.unshift(ValueExpression.new([], :scalar))
+    if !items.empty? && !items[0].printable?
+      items.unshift(ValueExpression.new([], :scalar))
     end
 
     i = 0
 
-    print_items.each do |item|
+    items.each do |item|
       if item.printable?
         carriage = CarriageControl.new('')
-        carriage = print_items[i + 1] if
-          i < print_items.size &&
-          !print_items[i + 1].printable?
+        carriage = items[i + 1] if
+          i < items.size &&
+          !items[i + 1].printable?
         item.print(fhr, interpreter)
         carriage.print(fhr, interpreter)
       end
@@ -3131,31 +3131,31 @@ class PrintUsingStatement < AbstractPrintStatement
 
   private
 
-  def extract_format(print_items, interpreter)
-    print_items = print_items.clone
+  def extract_format(items, interpreter)
+    items = items.clone
     format = nil
 
-    unless print_items.empty? ||
-           print_items[0].class.to_s != 'ValueExpression' &&
-           print_items[-1].scalar?
+    unless items.empty? ||
+           items[0].class.to_s != 'ValueExpression' &&
+           items[-1].scalar?
 
-      value = first_item(print_items, interpreter)
+      value = first_item(items, interpreter)
 
       if value.text_constant?
         format = value
-        print_items.shift
+        items.shift
 
-        print_items.shift if
-          !print_items.empty? &&
-          print_items[0].carriage_control?
+        items.shift if
+          !items.empty? &&
+          items[0].carriage_control?
       end
     end
 
-    [format, print_items]
+    [format, items]
   end
 
-  def first_item(print_items, interpreter)
-    first_list = print_items[0]
+  def first_item(items, interpreter)
+    first_list = items[0]
     values = first_list.evaluate(interpreter)
 
     values[0]
@@ -3175,13 +3175,13 @@ class PrintUsingStatement < AbstractPrintStatement
   end
 
   def tokens_to_expressions(tokens_lists)
-    print_items = []
+    items = []
 
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'Array'
         begin
-          add_needed_carriage(print_items)
-          print_items << ValueExpression.new(tokens_list, :scalar)
+          add_needed_carriage(items)
+          items << ValueExpression.new(tokens_list, :scalar)
         rescue BASICExpressionError
           line_text = tokens_list.map(&:to_s).join
 
@@ -3189,14 +3189,14 @@ class PrintUsingStatement < AbstractPrintStatement
             'Syntax error: "' + line_text + '" is not a value or operator'
         end
       elsif tokens_list.separator?
-        add_needed_value(print_items, :scalar)
-        print_items << CarriageControl.new(tokens_list.to_s)
+        add_needed_value(items, :scalar)
+        items << CarriageControl.new(tokens_list.to_s)
       end
     end
 
-    add_final_carriage(print_items, @final)
-    add_default_value_carriage(print_items, :scalar)
-    print_items
+    add_final_carriage(items, @final)
+    add_default_value_carriage(items, :scalar)
+    items
   end
 end
 
@@ -3238,28 +3238,28 @@ class AbstractReadStatement < AbstractStatement
 
   def dump
     lines = []
-    @read_items.each { |item| lines += item.dump } unless @read_items.nil?
+    @items.each { |item| lines += item.dump } unless @items.nil?
     lines
   end
 
   def make_references
     @numerics = @file_tokens.numerics unless @file_tokens.nil?
-    @read_items.each { |item| @numerics += item.numerics }
+    @items.each { |item| @numerics += item.numerics }
 
     @strings = @file_tokens.strings unless @file_tokens.nil?
-    @read_items.each { |item| @strings += item.strings }
+    @items.each { |item| @strings += item.strings }
 
     @variables = @file_tokens.variables unless @file_tokens.nil?
-    @read_items.each { |item| @variables += item.variables }
+    @items.each { |item| @variables += item.variables }
 
     @operators = @file_tokens.operators unless @file_tokens.nil?
-    @read_items.each { |item| @operators += item.operators }
+    @items.each { |item| @operators += item.operators }
 
     @functions = @file_tokens.functions unless @file_tokens.nil?
-    @read_items.each { |item| @functions += item.functions }
+    @items.each { |item| @functions += item.functions }
 
     @userfuncs = @file_tokens.userfuncs unless @file_tokens.nil?
-    @read_items.each { |item| @userfuncs += item.userfuncs }
+    @items.each { |item| @userfuncs += item.userfuncs }
   end
 
   include FileFunctions
@@ -3282,11 +3282,11 @@ class ReadStatement < AbstractReadStatement
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      read_items = split_tokens(tokens_lists[0], false)
-      read_items = tokens_to_expressions(read_items)
-      @file_tokens, @read_items = extract_file_handle(read_items)
+      items = split_tokens(tokens_lists[0], false)
+      items = tokens_to_expressions(items)
+      @file_tokens, @items = extract_file_handle(items)
       make_references
-      @mccabe += @read_items.size
+      @mccabe += @items.size
     else
       @errors << 'Syntax error'
     end
@@ -3296,7 +3296,7 @@ class ReadStatement < AbstractReadStatement
     fh = get_file_handle(interpreter, @file_tokens)
     ds = interpreter.get_data_store(fh)
 
-    @read_items.each do |item|
+    @items.each do |item|
       targets = item.evaluate(interpreter)
       targets.each do |target|
         value = ds.read
@@ -3310,22 +3310,22 @@ class ReadStatement < AbstractReadStatement
   private
 
   def tokens_to_expressions(tokens_lists)
-    print_items = []
+    items = []
 
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'Array'
-        add_expression(print_items, tokens_list)
+        add_expression(items, tokens_list)
       end
     end
 
-    print_items
+    items
   end
 
-  def add_expression(print_items, tokens)
+  def add_expression(items, tokens)
     if tokens[0].operator? && tokens[0].pound?
-      print_items << ValueExpression.new(tokens, :scalar)
+      items << ValueExpression.new(tokens, :scalar)
     else
-      print_items << TargetExpression.new(tokens, :scalar)
+      items << TargetExpression.new(tokens, :scalar)
     end
 
   rescue BASICExpressionError
@@ -3558,28 +3558,28 @@ class AbstractWriteStatement < AbstractStatement
 
   def dump
     lines = []
-    @print_items.each { |item| lines += item.dump } unless @print_items.nil?
+    @items.each { |item| lines += item.dump } unless @items.nil?
     lines
   end
 
   def make_references
     @numerics = @file_tokens.numerics unless @file_tokens.nil?
-    @print_items.each { |item| @numerics += item.numerics }
+    @items.each { |item| @numerics += item.numerics }
 
     @strings = @file_tokens.strings unless @file_tokens.nil?
-    @print_items.each { |item| @strings += item.strings }
+    @items.each { |item| @strings += item.strings }
 
     @variables = @file_tokens.variables unless @file_tokens.nil?
-    @print_items.each { |item| @variables += item.variables }
+    @items.each { |item| @variables += item.variables }
 
     @operators = @file_tokens.operators unless @file_tokens.nil?
-    @print_items.each { |item| @operators += item.operators }
+    @items.each { |item| @operators += item.operators }
 
     @functions = @file_tokens.functions unless @file_tokens.nil?
-    @print_items.each { |item| @functions += item.functions }
+    @items.each { |item| @functions += item.functions }
 
     @userfuncs = @file_tokens.userfuncs unless @file_tokens.nil?
-    @print_items.each { |item| @userfuncs += item.userfuncs }
+    @items.each { |item| @userfuncs += item.userfuncs }
   end
 
   include FileFunctions
@@ -3603,8 +3603,8 @@ class WriteStatement < AbstractWriteStatement
 
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], true)
-      print_items = tokens_to_expressions(tokens_lists)
-      @file_tokens, @print_items = extract_file_handle(print_items)
+      items = tokens_to_expressions(tokens_lists)
+      @file_tokens, @items = extract_file_handle(items)
       make_references
     else
       @errors << 'Syntax error'
@@ -3617,12 +3617,12 @@ class WriteStatement < AbstractWriteStatement
 
     i = 0
 
-    @print_items.each do |item|
+    @items.each do |item|
       if item.printable?
         carriage = CarriageControl.new('')
-        carriage = @print_items[i + 1] if
-          i < @print_items.size &&
-          !@print_items[i + 1].printable?
+        carriage = @items[i + 1] if
+          i < @items.size &&
+          !@items[i + 1].printable?
         item.write(fhr, interpreter)
         carriage.write(fhr, interpreter)
       end
@@ -3634,13 +3634,13 @@ class WriteStatement < AbstractWriteStatement
   private
 
   def tokens_to_expressions(tokens_lists)
-    print_items = []
+    items = []
 
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'Array'
         begin
-          add_needed_carriage(print_items)
-          print_items << ValueExpression.new(tokens_list, :scalar)
+          add_needed_carriage(items)
+          items << ValueExpression.new(tokens_list, :scalar)
         rescue BASICExpressionError
           line_text = tokens_list.map(&:to_s).join
 
@@ -3648,14 +3648,14 @@ class WriteStatement < AbstractWriteStatement
             'Syntax error: "' + line_text + '" is not a value or operator'
         end
       elsif tokens_list.separator?
-        add_needed_value(print_items, :scalar)
-        print_items << CarriageControl.new(tokens_list.to_s)
+        add_needed_value(items, :scalar)
+        items << CarriageControl.new(tokens_list.to_s)
       end
     end
 
-    add_final_carriage(print_items, @final)
-    add_default_value_carriage(print_items, :scalar)
-    print_items
+    add_final_carriage(items, @final)
+    add_default_value_carriage(items, :scalar)
+    items
   end
 end
 
@@ -3676,8 +3676,8 @@ class ArrPrintStatement < AbstractPrintStatement
 
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], true)
-      print_items = tokens_to_expressions(tokens_lists)
-      @file_tokens, @print_items = extract_file_handle(print_items)
+      items = tokens_to_expressions(tokens_lists)
+      @file_tokens, @items = extract_file_handle(items)
       make_references
     else
       @errors << 'Syntax error'
@@ -3690,12 +3690,12 @@ class ArrPrintStatement < AbstractPrintStatement
 
     i = 0
 
-    @print_items.each do |item|
+    @items.each do |item|
       if item.printable?
         carriage = CarriageControl.new('')
-        carriage = @print_items[i + 1] if
-          i < @print_items.size &&
-          !@print_items[i + 1].printable?
+        carriage = @items[i + 1] if
+          i < @items.size &&
+          !@items[i + 1].printable?
         item.compound_print(fhr, interpreter)
         carriage.print(fhr, interpreter)
       end
@@ -3707,19 +3707,19 @@ class ArrPrintStatement < AbstractPrintStatement
   private
 
   def tokens_to_expressions(tokens_lists)
-    print_items = []
+    items = []
 
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'Array'
-        print_items << ValueExpression.new(tokens_list, :array)
+        items << ValueExpression.new(tokens_list, :array)
       elsif tokens_list.separator?
-        print_items << CarriageControl.new(tokens_list)
+        items << CarriageControl.new(tokens_list)
       end
     end
 
-    add_final_carriage(print_items, @final)
-    add_default_value_carriage(print_items, :array)
-    print_items
+    add_final_carriage(items, @final)
+    add_default_value_carriage(items, :array)
+    items
   end
 end
 
@@ -3739,11 +3739,11 @@ class ArrReadStatement < AbstractReadStatement
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      read_items = split_tokens(tokens_lists[0], false)
-      read_items = tokens_to_expressions(read_items)
-      @file_tokens, @read_items = extract_file_handle(read_items)
+      items = split_tokens(tokens_lists[0], false)
+      items = tokens_to_expressions(items)
+      @file_tokens, @items = extract_file_handle(items)
       make_references
-      @mccabe += @read_items.size
+      @mccabe += @items.size
     else
       @errors << 'Syntax error'
     end
@@ -3753,7 +3753,7 @@ class ArrReadStatement < AbstractReadStatement
     fh = get_file_handle(interpreter, @file_tokens)
     ds = interpreter.get_data_store(fh)
 
-    @read_items.each do |item|
+    @items.each do |item|
       targets = item.evaluate(interpreter)
       targets.each do |target|
         interpreter.set_dimensions(target, target.dimensions) if
@@ -3768,22 +3768,22 @@ class ArrReadStatement < AbstractReadStatement
   private
 
   def tokens_to_expressions(tokens_lists)
-    print_items = []
+    items = []
 
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'Array'
-        add_expression(print_items, tokens_list)
+        add_expression(items, tokens_list)
       end
     end
 
-    print_items
+    items
   end
 
-  def add_expression(print_items, tokens)
+  def add_expression(items, tokens)
     if tokens[0].operator? && tokens[0].pound?
-      print_items << ValueExpression.new(tokens, :scalar)
+      items << ValueExpression.new(tokens, :scalar)
     else
-      print_items << TargetExpression.new(tokens, :array)
+      items << TargetExpression.new(tokens, :array)
     end
 
   rescue BASICExpressionError
@@ -3831,8 +3831,8 @@ class ArrWriteStatement < AbstractWriteStatement
 
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], true)
-      print_items = tokens_to_expressions(tokens_lists)
-      @file_tokens, @print_items = extract_file_handle(print_items)
+      items = tokens_to_expressions(tokens_lists)
+      @file_tokens, @items = extract_file_handle(items)
       make_references
     else
       @errors << 'Syntax error'
@@ -3845,12 +3845,12 @@ class ArrWriteStatement < AbstractWriteStatement
 
     i = 0
 
-    @print_items.each do |item|
+    @items.each do |item|
       if item.printable?
         carriage = CarriageControl.new('')
-        carriage = @print_items[i + 1] if
-          i < @print_items.size &&
-          !@print_items[i + 1].printable?
+        carriage = @items[i + 1] if
+          i < @items.size &&
+          !@items[i + 1].printable?
         item.compound_write(fhr, interpreter)
         carriage.write(fhr, interpreter)
       end
@@ -3862,19 +3862,19 @@ class ArrWriteStatement < AbstractWriteStatement
   private
 
   def tokens_to_expressions(tokens_lists)
-    print_items = []
+    items = []
 
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'Array'
-        print_items << ValueExpression.new(tokens_list, :array)
+        items << ValueExpression.new(tokens_list, :array)
       elsif tokens_list.separator?
-        print_items << CarriageControl.new(tokens_list)
+        items << CarriageControl.new(tokens_list)
       end
     end
 
-    add_final_carriage(print_items, @final)
-    add_default_value_carriage(print_items, :array)
-    print_items
+    add_final_carriage(items, @final)
+    add_default_value_carriage(items, :array)
+    items
   end
 end
 
@@ -3968,8 +3968,8 @@ class MatPrintStatement < AbstractPrintStatement
 
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], true)
-      print_items = tokens_to_expressions(tokens_lists)
-      @file_tokens, @print_items = extract_file_handle(print_items)
+      items = tokens_to_expressions(tokens_lists)
+      @file_tokens, @items = extract_file_handle(items)
       make_references
     else
       @errors << 'Syntax error'
@@ -3982,12 +3982,12 @@ class MatPrintStatement < AbstractPrintStatement
 
     i = 0
 
-    @print_items.each do |item|
+    @items.each do |item|
       if item.printable?
         carriage = CarriageControl.new('')
-        carriage = @print_items[i + 1] if
-          i < @print_items.size &&
-          !@print_items[i + 1].printable?
+        carriage = @items[i + 1] if
+          i < @items.size &&
+          !@items[i + 1].printable?
         item.compound_print(fhr, interpreter)
         carriage.print(fhr, interpreter)
       end
@@ -3999,19 +3999,19 @@ class MatPrintStatement < AbstractPrintStatement
   private
 
   def tokens_to_expressions(tokens_lists)
-    print_items = []
+    items = []
 
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'Array'
-        print_items << ValueExpression.new(tokens_list, :matrix)
+        items << ValueExpression.new(tokens_list, :matrix)
       elsif tokens_list.separator?
-        print_items << CarriageControl.new(tokens_list)
+        items << CarriageControl.new(tokens_list)
       end
     end
 
-    add_final_carriage(print_items, @final)
-    add_default_value_carriage(print_items, :matrix)
-    print_items
+    add_final_carriage(items, @final)
+    add_default_value_carriage(items, :matrix)
+    items
   end
 end
 
@@ -4031,11 +4031,11 @@ class MatReadStatement < AbstractReadStatement
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      read_items = split_tokens(tokens_lists[0], false)
-      read_items = tokens_to_expressions(read_items)
-      @file_tokens, @read_items = extract_file_handle(read_items)
+      items = split_tokens(tokens_lists[0], false)
+      items = tokens_to_expressions(items)
+      @file_tokens, @items = extract_file_handle(items)
       make_references
-      @mccabe += @read_items.size
+      @mccabe += @items.size
     else
       @errors << 'Syntax error'
     end
@@ -4045,7 +4045,7 @@ class MatReadStatement < AbstractReadStatement
     fh = get_file_handle(interpreter, @file_tokens)
     ds = interpreter.get_data_store(fh)
 
-    @read_items.each do |item|
+    @items.each do |item|
       targets = item.evaluate(interpreter)
       targets.each do |target|
         interpreter.set_dimensions(target, target.dimensions) if
@@ -4060,22 +4060,22 @@ class MatReadStatement < AbstractReadStatement
   private
 
   def tokens_to_expressions(tokens_lists)
-    print_items = []
+    items = []
 
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'Array'
-        add_expression(print_items, tokens_list)
+        add_expression(items, tokens_list)
       end
     end
 
-    print_items
+    items
   end
 
-  def add_expression(print_items, tokens)
+  def add_expression(items, tokens)
     if tokens[0].operator? && tokens[0].pound?
-      print_items << ValueExpression.new(tokens, :scalar)
+      items << ValueExpression.new(tokens, :scalar)
     else
-      print_items << TargetExpression.new(tokens, :matrix)
+      items << TargetExpression.new(tokens, :matrix)
     end
 
   rescue BASICExpressionError
@@ -4142,8 +4142,8 @@ class MatWriteStatement < AbstractWriteStatement
 
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], true)
-      print_items = tokens_to_expressions(tokens_lists)
-      @file_tokens, @print_items = extract_file_handle(print_items)
+      items = tokens_to_expressions(tokens_lists)
+      @file_tokens, @items = extract_file_handle(items)
       make_references
     else
       @errors << 'Syntax error'
@@ -4156,12 +4156,12 @@ class MatWriteStatement < AbstractWriteStatement
 
     i = 0
 
-    @print_items.each do |item|
+    @items.each do |item|
       if item.printable?
         carriage = CarriageControl.new('')
-        carriage = @print_items[i + 1] if
-          i < @print_items.size &&
-          !@print_items[i + 1].printable?
+        carriage = @items[i + 1] if
+          i < @items.size &&
+          !@items[i + 1].printable?
         item.compound_write(fhr, interpreter)
         carriage.write(fhr, interpreter)
       end
@@ -4173,19 +4173,19 @@ class MatWriteStatement < AbstractWriteStatement
   private
 
   def tokens_to_expressions(tokens_lists)
-    print_items = []
+    items = []
 
     tokens_lists.each do |tokens_list|
       if tokens_list.class.to_s == 'Array'
-        print_items << ValueExpression.new(tokens_list, :matrix)
+        items << ValueExpression.new(tokens_list, :matrix)
       elsif tokens_list.separator?
-        print_items << CarriageControl.new(tokens_list)
+        items << CarriageControl.new(tokens_list)
       end
     end
 
-    add_final_carriage(print_items, @final)
-    add_default_value_carriage(print_items, :matrix)
-    print_items
+    add_final_carriage(items, @final)
+    add_default_value_carriage(items, :matrix)
+    items
   end
 end
 
