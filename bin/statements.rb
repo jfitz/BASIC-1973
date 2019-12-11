@@ -22,6 +22,7 @@ class StatementFactory
       all_tokens.delete_if(&:break?)
       all_tokens.delete_if(&:whitespace?)
       comment = nil
+
       comment = all_tokens.pop if
         !all_tokens.empty? && all_tokens[-1].comment?
 
@@ -2850,10 +2851,8 @@ end
 
 # common for PRINT, ARR PRINT, MAT PRINT
 class AbstractPrintStatement < AbstractStatement
-  def initialize(keywords, tokens_lists, final_carriage)
-    super(keywords, tokens_lists)
-
-    @final = final_carriage
+  def initialize(keywords, tokens_lists)
+    super
   end
 
   include FileFunctions
@@ -2870,7 +2869,7 @@ class PrintStatement < AbstractPrintStatement
   end
 
   def initialize(keywords, tokens_lists)
-    super(keywords, tokens_lists, CarriageControl.new('NL'))
+    super
 
     extract_modifiers(tokens_lists)
 
@@ -2931,7 +2930,7 @@ class PrintStatement < AbstractPrintStatement
       end
     end
 
-    add_final_carriage(items, @final)
+    add_final_carriage(items, CarriageControl.new('NL'))
     add_default_value_carriage(items, :scalar)
     items
   end
@@ -2946,7 +2945,7 @@ class PrintUsingStatement < AbstractPrintStatement
   end
 
   def initialize(keywords, tokens_lists)
-    super(keywords, tokens_lists, CarriageControl.new('NL'))
+    super
 
     extract_modifiers(tokens_lists)
 
@@ -3079,7 +3078,7 @@ class PrintUsingStatement < AbstractPrintStatement
       end
     end
 
-    add_final_carriage(items, @final)
+    add_final_carriage(items, CarriageControl.new('NL'))
     add_default_value_carriage(items, :scalar)
     items
   end
@@ -3404,10 +3403,8 @@ end
 
 # common for WRITE, ARR WRITE, MAT WRITE
 class AbstractWriteStatement < AbstractStatement
-  def initialize(keywords, tokens_lists, final_carriage)
-    super(keywords, tokens_lists)
-
-    @final = final_carriage
+  def initialize(keywords, tokens_lists)
+    super
   end
 
   include FileFunctions
@@ -3423,7 +3420,7 @@ class WriteStatement < AbstractWriteStatement
   end
 
   def initialize(keywords, tokens_lists)
-    super(keywords, tokens_lists, CarriageControl.new('NL'))
+    super
 
     extract_modifiers(tokens_lists)
 
@@ -3481,7 +3478,7 @@ class WriteStatement < AbstractWriteStatement
       end
     end
 
-    add_final_carriage(items, @final)
+    add_final_carriage(items, CarriageControl.new('NL'))
     add_default_value_carriage(items, :scalar)
     items
   end
@@ -3496,7 +3493,7 @@ class ArrPrintStatement < AbstractPrintStatement
   end
 
   def initialize(keywords, tokens_lists)
-    super(keywords, tokens_lists, CarriageControl.new('NL'))
+    super
 
     extract_modifiers(tokens_lists)
 
@@ -3545,7 +3542,7 @@ class ArrPrintStatement < AbstractPrintStatement
       end
     end
 
-    add_final_carriage(items, @final)
+    add_final_carriage(items, CarriageControl.new('NL'))
     add_default_value_carriage(items, :array)
     items
   end
@@ -3651,7 +3648,7 @@ class ArrWriteStatement < AbstractWriteStatement
   end
 
   def initialize(keywords, tokens_lists)
-    super(keywords, tokens_lists, CarriageControl.new('NL'))
+    super
 
     extract_modifiers(tokens_lists)
 
@@ -3700,7 +3697,7 @@ class ArrWriteStatement < AbstractWriteStatement
       end
     end
 
-    add_final_carriage(items, @final)
+    add_final_carriage(items, CarriageControl.new('NL'))
     add_default_value_carriage(items, :array)
     items
   end
@@ -3783,7 +3780,7 @@ class MatPrintStatement < AbstractPrintStatement
   end
 
   def initialize(keywords, tokens_lists)
-    super(keywords, tokens_lists, CarriageControl.new('NL'))
+    super
 
     extract_modifiers(tokens_lists)
 
@@ -3807,11 +3804,8 @@ class MatPrintStatement < AbstractPrintStatement
 
     @items.each do |item|
       if item.printable?
-        carriage = CarriageControl.new('')
-        carriage = @items[i + 1] if
-          i < @items.size &&
-          !@items[i + 1].printable?
         item.compound_print(fhr, interpreter)
+        carriage = CarriageControl.new('')
         carriage.print(fhr, interpreter)
       end
 
@@ -3832,7 +3826,7 @@ class MatPrintStatement < AbstractPrintStatement
       end
     end
 
-    add_final_carriage(items, @final)
+    add_final_carriage(items, CarriageControl.new('NL'))
     add_default_value_carriage(items, :matrix)
     items
   end
@@ -3957,7 +3951,7 @@ class MatWriteStatement < AbstractWriteStatement
   end
 
   def initialize(keywords, tokens_lists)
-    super(keywords, tokens_lists, CarriageControl.new('NL'))
+    super
 
     extract_modifiers(tokens_lists)
 
@@ -4006,7 +4000,7 @@ class MatWriteStatement < AbstractWriteStatement
       end
     end
 
-    add_final_carriage(items, @final)
+    add_final_carriage(items, CarriageControl.new('NL'))
     add_default_value_carriage(items, :matrix)
     items
   end
