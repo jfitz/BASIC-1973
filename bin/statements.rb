@@ -862,6 +862,67 @@ module FileFunctions
   end
 end
 
+# common functions for INPUT statements
+module InputFunctions
+  def extract_prompt(items)
+    items = items.clone
+    prompt = nil
+
+    unless items.empty? ||
+           items[0].carriage_control?
+
+      candidate_prompt_tokens = items[0]
+
+      if candidate_prompt_tokens.text_constant?
+        prompt = items.shift
+
+        items.shift if
+          !items.empty? &&
+          items[0].carriage_control?
+      end
+    end
+
+    [prompt, items]
+  end
+
+  def tokens_to_expressions(tokens_lists)
+    items = []
+
+    tokens_lists.each do |tokens_list|
+      if tokens_list.class.to_s == 'Array'
+        add_expression(items, tokens_list)
+      end
+    end
+
+    items
+  end
+
+  def add_expression(items, tokens)
+    if tokens[0].operator? && tokens[0].pound?
+      items << ValueExpression.new(tokens, :scalar)
+    elsif tokens[0].text_constant?
+      items << ValueExpression.new(tokens, :scalar)
+    else
+      items << TargetExpression.new(tokens, :scalar)
+    end
+
+  rescue BASICExpressionError
+    line_text = tokens.map(&:to_s).join
+    @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
+  end
+
+  def zip(names, values)
+    raise(BASICRuntimeError, 'Too few items') if values.size < names.size
+
+    results = []
+    (0...names.size).each do |i|
+      results << { 'name' => names[i], 'value' => values[i] }
+    end
+
+    results
+  end
+end
+
 # CHAIN
 class ChainStatement < AbstractStatement
   def self.lead_keywords
@@ -2060,83 +2121,21 @@ class IfStatement < AbstractIfStatement
   end
 end
 
-# common functions for INPUT statements
-class AbstractInputStatement < AbstractStatement
-  def initialize(_, _)
-    super
-  end
-
-  private
-
-  include FileFunctions
-
-  def extract_prompt(items)
-    items = items.clone
-    prompt = nil
-
-    unless items.empty? ||
-           items[0].carriage_control?
-
-      candidate_prompt_tokens = items[0]
-
-      if candidate_prompt_tokens.text_constant?
-        prompt = items.shift
-
-        items.shift if
-          !items.empty? &&
-          items[0].carriage_control?
-      end
-    end
-
-    [prompt, items]
-  end
-
-  def tokens_to_expressions(tokens_lists)
-    items = []
-
-    tokens_lists.each do |tokens_list|
-      if tokens_list.class.to_s == 'Array'
-        add_expression(items, tokens_list)
-      end
-    end
-
-    items
-  end
-
-  def add_expression(items, tokens)
-    if tokens[0].operator? && tokens[0].pound?
-      items << ValueExpression.new(tokens, :scalar)
-    elsif tokens[0].text_constant?
-      items << ValueExpression.new(tokens, :scalar)
-    else
-      items << TargetExpression.new(tokens, :scalar)
-    end
-
-  rescue BASICExpressionError
-    line_text = tokens.map(&:to_s).join
-    @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
-  end
-
-  def zip(names, values)
-    raise(BASICRuntimeError, 'Too few items') if values.size < names.size
-
-    results = []
-    (0...names.size).each do |i|
-      results << { 'name' => names[i], 'value' => values[i] }
-    end
-
-    results
-  end
-end
-
 # INPUT
-class InputStatement < AbstractInputStatement
+class InputStatement < AbstractStatement
   def self.lead_keywords
     [
       [KeywordToken.new('INPUT')],
       [KeywordToken.new('INP')]
     ]
   end
+
+  private
+
+  include FileFunctions
+  include InputFunctions
+
+  public
 
   def initialize(_, tokens_lists)
     super
@@ -2209,12 +2208,19 @@ class InputStatement < AbstractInputStatement
 end
 
 # INPUT$
-class InputCharStatement < AbstractInputStatement
+class InputCharStatement < AbstractStatement
   def self.lead_keywords
     [
       [KeywordToken.new('INPUT$')]
     ]
   end
+
+  private
+
+  include FileFunctions
+  include InputFunctions
+
+  public
 
   def initialize(keywords, tokens_lists)
     super
@@ -2359,7 +2365,7 @@ class LetLessStatement < AbstractScalarLetStatement
 end
 
 # LINE INPUT
-class LineInputStatement < AbstractInputStatement
+class LineInputStatement < AbstractStatement
   def self.lead_keywords
     [
       [KeywordToken.new('LINE'), KeywordToken.new('INPUT')],
@@ -2368,6 +2374,13 @@ class LineInputStatement < AbstractInputStatement
       [KeywordToken.new('LIN')]
     ]
   end
+
+  private
+
+  include FileFunctions
+  include InputFunctions
+
+  public
 
   def initialize(keywords, tokens_lists)
     super
