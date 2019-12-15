@@ -53,12 +53,12 @@ class Option
   def check_value(value)
     case @defs[:type]
     when :bool
-      legals = %w(TrueClass FalseClass)
+      legals = %w[TrueClass FalseClass]
 
       raise(BASICRuntimeError, "Invalid type #{value.class} for boolean") unless
         legals.include?(value.class.to_s)
     when :int
-      legals = %w(Fixnum Integer)
+      legals = %w[Fixnum Integer]
 
       raise(BASICRuntimeError, "Invalid type #{value.class} for integer") unless
         legals.include?(value.class.to_s)
@@ -73,7 +73,7 @@ class Option
         raise(BASICRuntimeError, "Value #{value} above maximum #{max}")
       end
     when :float
-      legals = %w(Fixnum Integer Float Rational)
+      legals = %w[Fixnum Integer Float Rational]
 
       raise(BASICRuntimeError, "Invalid type #{value.class} for float") unless
         legals.include?(value.class.to_s)
@@ -342,14 +342,14 @@ def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads)
   allow_ascii = $options['allow_ascii'].value
   tokenbuilders << TextSymbolTokenBuilder.new if allow_ascii
   tokenbuilders << VariableTokenBuilder.new
-  tokenbuilders << ListTokenBuilder.new(%w(TRUE FALSE), BooleanConstantToken)
+  tokenbuilders << ListTokenBuilder.new(%w[TRUE FALSE], BooleanConstantToken)
   tokenbuilders << WhitespaceTokenBuilder.new
 end
 
 def make_command_tokenbuilders(quotes)
   tokenbuilders = []
 
-  keywords = %w(
+  keywords = %w[
     ANALYZE BREAK BRACKETS CROSSREF DELETE DIMS EXIT LIST LOAD NEW OPTION PARSE
     PRETTY PROFILE RENUMBER RUN SAVE TOKENS UDFS VARS
     ALLOW_ASCII ALLOW_HASH_CONSTANT ALLOW_PI APOSTROPHE_COMMENT ASC_ALLOW_ALL
@@ -363,7 +363,7 @@ def make_command_tokenbuilders(quotes)
     PRECISION PRETTY_MULTILINE PRINT_SPEED PRINT_WIDTH PROMPT_COUNT PROVENANCE
     QMARK_AFTER_PROMPT RANDOMIZE REQUIRE_INITIALIZED RESPECT_RANDOMIZE
     SEMICOLON_ZONE_WIDTH SINGLE_QUOTE_STRING TIMING TRACE ZONE_WIDTH
-  )
+  ]
   tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
   colon_file = $options['colon_file'].value
@@ -380,7 +380,7 @@ def make_command_tokenbuilders(quotes)
   allow_hash_constant = $options['allow_hash_constant'].value
   tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
 
-  tokenbuilders << ListTokenBuilder.new(%w(TRUE FALSE), BooleanConstantToken)
+  tokenbuilders << ListTokenBuilder.new(%w[TRUE FALSE], BooleanConstantToken)
   tokenbuilders << WhitespaceTokenBuilder.new
 end
 
@@ -469,7 +469,7 @@ int_1_17 = { type: :int, max: 17, min: 1 }
 int_132 = { type: :int, max: 132, min: 0 }
 int_40 = { type: :int, max: 40, min: 0 }
 int_1 = { type: :int, max: 1, min: 0 }
-separator = { type: :list, values: ['COMMA', 'SEMI', 'NL', 'NONE'] }
+separator = { type: :list, values: %w[COMMA SEMI NL NONE] }
 
 $options = {}
 

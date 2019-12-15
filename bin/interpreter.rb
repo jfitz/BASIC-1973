@@ -92,7 +92,7 @@ class Interpreter
     tokenbuilders = []
 
     keywords =
-      %w(GO STOP STEP BREAK LIST PRETTY DELETE PROFILE DIM GOTO LET PRINT)
+      %w[GO STOP STEP BREAK LIST PRETTY DELETE PROFILE DIM GOTO LET PRINT]
 
     tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
@@ -118,7 +118,7 @@ class Interpreter
     tokenbuilders << NumberTokenBuilder.new(false)
     tokenbuilders << IntegerTokenBuilder.new
     tokenbuilders << VariableTokenBuilder.new
-    tokenbuilders << ListTokenBuilder.new(%w(TRUE FALSE), BooleanConstantToken)
+    tokenbuilders << ListTokenBuilder.new(%w[TRUE FALSE], BooleanConstantToken)
 
     tokenbuilders << WhitespaceTokenBuilder.new
   end

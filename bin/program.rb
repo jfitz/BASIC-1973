@@ -544,7 +544,7 @@ class Program
     list_linenums = []
     list_separators = []
 
-    operator_keywords = %w(FOR GOTO GOSUB IF NEXT ON RETURN)
+    operator_keywords = %w[FOR GOTO GOSUB IF NEXT ON RETURN]
     
     @lines.each do |_, line|
       statements = line.statements
@@ -561,7 +561,7 @@ class Program
         keywords.each do |keyword|
           list_operators << keyword if operator_keywords.include?(keyword)
         end
-      
+
         list_constants += statement.numerics
         list_constants += statement.strings
         list_variables += statement.variables
@@ -575,13 +575,13 @@ class Program
 
     num_operators = list_operators.size
     num_distinct_operators = list_operators.uniq.size
-    
+
     num_constants = list_constants.size
     num_distinct_constants = list_constants.uniq.size
-    
+
     num_variables = list_variables.size
     num_distinct_variables = list_variables.uniq.size
-    
+
     num_functions = list_functions.size
     num_distinct_functions = list_functions.uniq.size
 
@@ -590,14 +590,14 @@ class Program
 
     num_separators = list_separators.size
     num_distinct_separators = list_separators.uniq.size
-    
+
     # Halstead definitions
     # number of operators
     n1 = num_distinct_operators + num_distinct_functions + num_distinct_separators
     n2 = num_distinct_constants + num_distinct_variables + num_distinct_linenums
     nn1 = num_operators + num_functions + num_separators
     nn2 = num_constants + num_variables + num_linenums
-    
+
     # compute length, volume, abstraction level, effort
     length = nn1 + nn2
     vocabulary = n1 + n2
@@ -607,12 +607,12 @@ class Program
     difficulty = (n1.to_f / 2) * (nn2.to_f / n2) if n2 > 0
     effort = difficulty * volume
     language_level = 0
-    language_level = volume / difficulty ** 2 if difficulty > 0
+    language_level = volume / difficulty**2 if difficulty > 0
     intelligence = 0
     intelligence = volume / difficulty if difficulty > 0
     time = effort / (60 * 18)  # 18 is the Stoud number for programming
 
-    return length, vocabulary, volume, difficulty, effort, language_level, intelligence, time    
+    [length, vocabulary, volume, difficulty, effort, language_level, intelligence, time]
   end
 
   def unreachable_code
@@ -668,7 +668,7 @@ class Program
     gotos.keys.each { |line_number_idx| reachable[line_number_idx] = false }
 
     # first line is live
-    first_line_number = @lines.keys.sort[0]
+    first_line_number = @lines.keys.min
     first_line_number_idx = LineNumberIdx.new(first_line_number, 0)
     reachable[first_line_number_idx] = true
 

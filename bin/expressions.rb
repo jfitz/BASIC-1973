@@ -107,9 +107,7 @@ class BASICArray
     (base..n_cols).each do |col|
       value = get_value(col)
       value.print(printer)
-      if col < n_cols
-        fs_carriage.print(printer, interpreter)
-      end
+      fs_carriage.print(printer, interpreter) if col < n_cols
     end
   end
 
@@ -122,9 +120,7 @@ class BASICArray
     (base..n_cols).each do |col|
       value = get_value(col)
       value.write(printer)
-      if col < n_cols
-        fs_carriage.write(printer, interpreter)
-      end
+      fs_carriage.write(printer, interpreter) if col < n_cols
     end
   end
 end
@@ -370,9 +366,7 @@ class Matrix
     (base..n_cols).each do |col|
       value = get_value_1(col)
       value.print(printer)
-      if col < n_cols
-        fs_carriage.print(printer, interpreter)
-      end
+      fs_carriage.print(printer, interpreter) if col < n_cols
     end
 
     printer.newline
@@ -392,14 +386,10 @@ class Matrix
       (base..n_cols).each do |col|
         value = get_value_2(row, col)
         value.print(printer)
-        if col < n_cols
-          fs_carriage.print(printer, interpreter)
-        end
+        fs_carriage.print(printer, interpreter) if col < n_cols
       end
 
-      if row < n_rows
-        gs_carriage.print(printer, interpreter)
-      end
+      gs_carriage.print(printer, interpreter) if row < n_rows
     end
 
     rs_carriage.print(printer, interpreter)
@@ -416,9 +406,7 @@ class Matrix
     (base..n_cols).each do |col|
       value = get_value_1(col)
       value.write(printer)
-      if col < n_cols
-        fs_carriage.write(printer, interpreter)
-      end
+      fs_carriage.write(printer, interpreter) if col < n_cols
     end
 
     rs_carriage.write(printer, interpreter)
@@ -437,14 +425,10 @@ class Matrix
       (base..n_cols).each do |col|
         value = get_value_2(row, col)
         value.write(printer)
-        if col < n_cols
-          fs_carriage.write(printer, interpreter)
-        end
+        fs_carriage.write(printer, interpreter) if col < n_cols
       end
 
-      if row < n_rows
-        gs_carriage.write(printer, interpreter)
-      end
+      gs_carriage.write(printer, interpreter) if row < n_rows
     end
 
     rs_carriage.write(printer, interpreter)
@@ -599,7 +583,7 @@ class XrefEntry
         content_type = :empty
         if arg.class.to_s == 'Array'
           # an array is a parsed expression
-          if arg.size > 0
+          unless arg.empty?
             a0 = arg[-1]
             content_type = a0.content_type
           end
@@ -629,7 +613,7 @@ class XrefEntry
     return -1 if x.nil?
     x.size
   end
-  
+
   def <=>(other)
     return -1 if self < other
     return 1 if self > other
@@ -988,7 +972,7 @@ class AbstractExpression
       end
     end
 
-    raise(BASICExpressionError, "Bad expression") if
+    raise(BASICExpressionError, 'Bad expression') if
       content_type_stack.size > 1
   end
 
@@ -1053,20 +1037,18 @@ class AbstractExpression
           arguments = nil
 
           if thing.array?
-            token = NumericConstantToken.new("0")
+            token = NumericConstantToken.new('0')
             constant = NumericConstant.new(token)
             arguments = [constant]
           end
 
           if thing.matrix?
-            token = NumericConstantToken.new("0")
+            token = NumericConstantToken.new('0')
             constant = NumericConstant.new(token)
             arguments = [constant, constant]
           end
 
-          if !previous.nil? && previous.list?
-            arguments = previous.list
-          end
+          arguments = previous.list if !previous.nil? && previous.list?
 
           is_ref = thing.reference?
 
@@ -1119,10 +1101,7 @@ class AbstractExpression
           vars += parsed_expressions_functions(sublist)
         elsif thing.function? && !thing.user_function?
           arguments = nil
-
-          if !previous.nil? && previous.list?
-            arguments = previous.list
-          end
+          arguments = previous.list if !previous.nil? && previous.list?
 
           is_ref = thing.reference?
 
@@ -1149,10 +1128,7 @@ class AbstractExpression
           vars += parsed_expressions_userfuncs(sublist)
         elsif thing.user_function?
           arguments = nil
-
-          if !previous.nil? && previous.list?
-            arguments = previous.list
-          end
+          arguments = previous.list if !previous.nil? && previous.list?
 
           is_ref = thing.reference?
 
@@ -1407,8 +1383,6 @@ class UserFunctionDefinition
       @variables = @expression.variables
       @operators = @expression.operators
       @functions = @expression.functions
-      signature = []
-      # TODO: detect type of argument
       xr = XrefEntry.new(@name.to_s, @arguments, true)
       @userfuncs = [xr] + @expression.userfuncs
     else
@@ -1417,8 +1391,6 @@ class UserFunctionDefinition
       @variables = []
       @operators = []
       @functions = []
-      signature = []
-      # TODO: detect type of argument
       xr = XrefEntry.new(@name.to_s, @arguments, true)
       @userfuncs = [xr]
     end
