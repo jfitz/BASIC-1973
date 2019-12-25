@@ -153,6 +153,7 @@ When the BASIC program ends, BASIC-1973 ends.
 |--crlf-on-line-input |On LINE INPUT statement, include the CR/LF as part of the value stored in the variable.
 |--no-detect-infinite-loop |Disables checks for infinite loops.
 |--echo-input |Echoes console input to output. Useful in run mode when redirecting input from a text file.
+|--field-sep-semi |Sets field separator for ARR PRINT and MAT PRINT statements to semicolon, which provides narrow spacing.
 |--fornext-one-beyond |When a FOR/NEXT loop ends, the index value is one step (usually 1) beyond the end value. (Normally index value is the end value.)
 |--hash-constant |Allow numeric constants in the form '#c' where c is any single character. Disables file handle operator and the not-equals operator, which are also represented by '#'.
 |--if-false-next-line |When an IF without an ELSE and with a statement (not a destination line number) evaluates its condition as false, change execution to the next numbered line, not the next statement in a multistatment line.
@@ -432,6 +433,7 @@ The options that can be set are:
     DEFAULT_PROMPT
     DETECT_INFINITE_LOOP
     ECHO
+    FIELD_SEP
     FORNEXT_ONE_BEYOND
     HEADING
     IF_FALSE_NEXT_LINE
@@ -481,6 +483,7 @@ The OPTION command overrides the command-line setting.
 |DEFAULT_PROMPT |String |"? " |Changes the prompt for INPUT statements
 |DETECT_INFINITE_LOOP |TRUE or FALSE |TRUE |Enables the detection of infinite loops
 |ECHO |TRUE or FALSE |FALSE |Echoes input (useful for testing)
+|FIELD_SEP |COMMA, SEMI, NL, or NONE |COMMA |Controls spacing of values in ARR PRINT and MAT PRINT statements
 |FORNEXT_ONE_BEYOND |TRUE or FALSE |FALSE |FOR/NEXT ends with index value one higher than limit
 |HEADING |TRUE or FALSE |TRUE |Displays the opening and closing lines that identify BASIC
 |IF_FALSE_NEXT_LINE |TRUE or FALSE |FALSE |IF condition false jumps to next line (default is next statement)
@@ -1176,6 +1179,11 @@ If A is equal to 10, control is passed to line 200 and no text is printed. If A 
 INPUT
 ~~~~~
 
+Loads variables with values from the user or from files.
+
+Inputting from the console
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Prompts the user and allows the user to enter one or more values.
 
 Syntax:	INPUT [prompt,] variable list
@@ -1194,6 +1202,21 @@ This prompt can be changed to any text value by specifying a text value as the f
 When multiple values are specified, they may be entered on one line with commas as separators.
 If an insufficient number of values is entered, BASIC will prompt for more data.
 These prompts are always the question mark, not the specified prompt.
+
+Inputting from files
+~~~~~~~~~~~~~~~~~~~~
+
+Syntax: INPUT #filenum; [prompt,] variable list
+
+Examples:
+
+	60 INPUT #1; U
+	65 INPUT #3; V1, V2, V3
+	70 INPUT #2; "Enter values: ", A, B
+
+An INPUT statement reads all values from a line of the input file.
+Extra values are discarded.
+If the line contains an insufficient number of values to fill all variables, BASIC reports an error.
 
 When parsing input data, BASIC splits the input on commas. Each item is read as either a number or a text item.
 If a value can be read as a number, it must be stored as a numeric variable.
@@ -1864,6 +1887,46 @@ ARR statements
 The ARR statements operate on one-dimensional arrays.
 Operations begin with the index specified in OPTION BASE.
 
+ARR INPUT
+~~~~~~~~~
+
+Loads array variables with values from the user or from files.
+
+Inputting from the console
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Prompts the user and allows the user to enter a value.
+
+Syntax:	ARR INPUT [prompt,] variable list
+
+Examples:
+
+	60 ARR INPUT U
+	65 ARR INPUT V1, V2, V3
+	70 ARR INPUT "Enter values: ", A, B
+
+The default prompt is a single question mark (?) character.
+This prompt can be changed to any text value by specifying a text value as the first parameter.
+(This value must be a text constant.)
+When multiple values are specified, they may be entered on one line with comma as separators.
+If an insufficient number of values is entered, BASIC will prompt for more dat.
+These prompts are always the question mark, not the specified prompt.
+
+Inputting from files
+~~~~~~~~~~~~~~~~~~~~
+
+Syntax: ARR INPUT #filenum; [prompt,] variable list
+
+Examples:
+
+	60 ARR INPUT #1; U
+	65 ARR INPUT #3; V1, V2, V3
+	70 ARR INPUT #2; "Enter values: ", A, B
+
+An INPUT statement reads all values from a line of the input file.
+Extra values are discarded.
+If the line contains an insufficient number of values to fill all variables, BASIC reports an error.
+
 ARR PRINT
 ~~~~~~~~~
 
@@ -1883,8 +1946,8 @@ Examples:
 
 The values must be defined with DIM statements prior to printing.
 Values are printed sequentially with as many values as will fit on a line.
-The carriage control character that follows a variable name will be used for each element in a printed row.
-The semicolon results in narrow columns, the comma (or no character) results in wide columns.
+The FIELD_SEP option specifies the spacing between values.
+The FIELD_SEP SEMI option results in narrow columns, the FIELD_SEP COMMA option (the default) results in wide columns.
 
 Printing to files
 ^^^^^^^^^^^^^^^^^
@@ -1900,7 +1963,6 @@ Examples:
 
 The values must be defined with DIM statements prior to printing.
 Values are printed sequentially with each set of values on one line.
-The carriage control character that follows a variable name is ignored.
 
 ARR READ
 ~~~~~~~~
@@ -2051,6 +2113,46 @@ MAT statements
 The MAT statements operate on matricies, which are either one- or two-dimensional arrays.
 Operations begin with the index specified in OPTION BASE.
 
+MAT INPUT
+~~~~~~~~~
+
+Loads matrix variables with values from the user or from files.
+
+Inputting from the console
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Prompts the user and allows the user to enter a value.
+
+Syntax:	MAT INPUT [prompt,] variable list
+
+Examples:
+
+	60 MAT INPUT U
+	65 MAT INPUT V1, V2, V3
+	70 MAT INPUT "Enter values: ", A, B
+
+The default prompt is a single question mark (?) character.
+This prompt can be changed to any text value by specifying a text value as the first parameter.
+(This value must be a text constant.)
+When multiple values are specified, they may be entered on one line with commas as separators.
+If an insufficient number of values is entered, BASIC will prompt for more data.
+These prompts are always the question mark, not the specified prompt.
+
+Inputting from files
+~~~~~~~~~~~~~~~~~~~~
+
+Syntax: MAT INPUT #filenum; [prompt,] variable list
+
+Examples:
+
+	60 MAT INPUT #1; U
+	65 MAT INPUT #3; V1, V2, V3
+	70 MAT INPUT #2; "Enter values: ", A, B
+
+An INPUT statement reads all values from a line of the input file.
+Extra values are discarded.
+If the line contains an insufficient number of values to fill all variables, BASIC reports an error.
+
 MAT PRINT
 ~~~~~~~~~
 
@@ -2074,12 +2176,6 @@ For one-dimensional arrays, the values are printed sequentially with as many val
 
 For two-dimensional matrices, values for each row in the matrix are printed on a line and a new line is used for each row.
 
-For arrays and matrixes, the zero-index items are not printed.
-An array DIM(4) will print elements 1 through 4; a matrix DIM(3,5) will print three rows of elements 1 through 5.
-
-The carriage control character that follows a variable name will be used for each element in a printed row.
-The semicolon results in narrow columns, the comma (or no character) results in wide columns.
-
 Printing to a file
 ^^^^^^^^^^^^^^^^^^
 
@@ -2097,11 +2193,8 @@ The values must be defined with DIM statements prior to printing.
 For one-dimensional arrays, the values are printed on one line.
 
 For two-dimensional matrices, values for each row in the matrix are printed on a line and a new line is used for each row.
-
-For arrays and matrixes, the zero-index items are not printed.
-An array DIM(4) will print elements 1 through 4; a matrix DIM(3,5) will print three rows of elements 1 through 5.
-
-The carriage control character that follows a variable name is ignored.
+The FIELD_SEP option specifies the spacing between values.
+The FIELD_SEP SEMI option results in narrow columns, the FIELD_SEP COMMA option (the default) results in wide columns.
 
 MAT READ
 ~~~~~~~~
