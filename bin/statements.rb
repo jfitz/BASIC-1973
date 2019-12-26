@@ -813,7 +813,6 @@ end
 # common functions for IO statements
 module FileFunctions
   def extract_file_handle(items)
-    items = items.clone
     file_tokens = nil
 
     unless items.empty? ||
@@ -830,7 +829,7 @@ module FileFunctions
       end
     end
 
-    [file_tokens, items]
+    file_tokens
   end
 
   def get_file_handle(interpreter, file_tokens)
@@ -880,7 +879,6 @@ end
 # common functions for INPUT statements
 module InputFunctions
   def extract_prompt(items)
-    items = items.clone
     prompt = nil
 
     unless items.empty? ||
@@ -897,7 +895,7 @@ module InputFunctions
       end
     end
 
-    [prompt, items]
+    prompt
   end
 
   def tokens_to_expressions(tokens_lists, shape)
@@ -2268,9 +2266,9 @@ class InputStatement < AbstractStatement
 
     if check_template(tokens_lists, template)
       items = split_tokens(tokens_lists[0], false)
-      items = tokens_to_expressions(items, :scalar)
-      @file_tokens, items = extract_file_handle(items)
-      @prompt, @items = extract_prompt(items)
+      @items = tokens_to_expressions(items, :scalar)
+      @file_tokens = extract_file_handle(@items)
+      @prompt = extract_prompt(@items)
       @elements = make_references(@items, @file_tokens, @prompt)
       @mccabe += @items.size
     else
@@ -2345,9 +2343,9 @@ class InputCharStatement < AbstractStatement
 
     if check_template(tokens_lists, template)
       items = split_tokens(tokens_lists[0], false)
-      items = tokens_to_expressions(items, :scalar)
-      @file_tokens, items = extract_file_handle(items)
-      @prompt, @items = extract_prompt(items)
+      @items = tokens_to_expressions(items, :scalar)
+      @file_tokens = extract_file_handle(@items)
+      @prompt = extract_prompt(@items)
       @elements = make_references(@items, @file_tokens, @prompt)
       @mccabe += 1
     else
@@ -2501,9 +2499,9 @@ class LineInputStatement < AbstractStatement
 
     if check_template(tokens_lists, template)
       items = split_tokens(tokens_lists[0], false)
-      items = tokens_to_expressions(items, :scalar)
-      @file_tokens, items = extract_file_handle(items)
-      @prompt, @items = extract_prompt(items)
+      @items = tokens_to_expressions(items, :scalar)
+      @file_tokens = extract_file_handle(@items)
+      @prompt = extract_prompt(@items)
       @elements = make_references(@items, @file_tokens, @prompt)
       @mccabe += @items.size
     else
@@ -2997,8 +2995,8 @@ class PrintStatement < AbstractStatement
       @items = tokens_to_expressions([], :scalar)
     elsif check_template(tokens_lists, template2)
       tokens_lists = split_tokens(tokens_lists[0], true)
-      items = tokens_to_expressions(tokens_lists, :scalar)
-      @file_tokens, @items = extract_file_handle(items)
+      @items = tokens_to_expressions(tokens_lists, :scalar)
+      @file_tokens = extract_file_handle(@items)
       @elements = make_references(@items, @file_tokens)
     else
       @errors << 'Syntax error'
@@ -3203,8 +3201,8 @@ class ReadStatement < AbstractStatement
 
     if check_template(tokens_lists, template)
       items = split_tokens(tokens_lists[0], false)
-      items = tokens_to_expressions(items, :scalar)
-      @file_tokens, @items = extract_file_handle(items)
+      @items = tokens_to_expressions(items, :scalar)
+      @file_tokens = extract_file_handle(@items)
       @elements = make_references(@items, @file_tokens)
       @mccabe += @items.size
     else
@@ -3458,8 +3456,8 @@ class WriteStatement < AbstractStatement
 
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], true)
-      items = tokens_to_expressions(tokens_lists, :scalar)
-      @file_tokens, @items = extract_file_handle(items)
+      @items = tokens_to_expressions(tokens_lists, :scalar)
+      @file_tokens = extract_file_handle(@items)
       @elements = make_references(@items, @file_tokens)
     else
       @errors << 'Syntax error'
@@ -3505,9 +3503,9 @@ class ArrInputStatement < AbstractStatement
 
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], true)
-      items = tokens_to_expressions(tokens_lists, :array)
-      @file_tokens, items = extract_file_handle(items)
-      @prompt, @items = extract_prompt(items)
+      @items = tokens_to_expressions(tokens_lists, :array)
+      @file_tokens = extract_file_handle(@items)
+      @prompt = extract_prompt(@items)
       @elements = make_references(@items, @file_tokens, @prompt)
     else
       @errors << 'Syntax error'
@@ -3598,8 +3596,8 @@ class ArrPrintStatement < AbstractStatement
 
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], true)
-      items = tokens_to_expressions(tokens_lists, :array)
-      @file_tokens, @items = extract_file_handle(items)
+      @items = tokens_to_expressions(tokens_lists, :array)
+      @file_tokens = extract_file_handle(@items)
       @elements = make_references(@items, @file_tokens)
     else
       @errors << 'Syntax error'
@@ -3651,8 +3649,8 @@ class ArrReadStatement < AbstractStatement
 
     if check_template(tokens_lists, template)
       items = split_tokens(tokens_lists[0], false)
-      items = tokens_to_expressions(items, :array)
-      @file_tokens, @items = extract_file_handle(items)
+      @items = tokens_to_expressions(items, :array)
+      @file_tokens = extract_file_handle(@items)
       @elements = make_references(@items, @file_tokens)
       @mccabe += @items.size
     else
@@ -3721,8 +3719,8 @@ class ArrWriteStatement < AbstractStatement
 
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], true)
-      items = tokens_to_expressions(tokens_lists, :array)
-      @file_tokens, @items = extract_file_handle(items)
+      @items = tokens_to_expressions(tokens_lists, :array)
+      @file_tokens = extract_file_handle(@items)
       @elements = make_references(@items, @file_tokens)
     else
       @errors << 'Syntax error'
@@ -3847,9 +3845,9 @@ class MatInputStatement < AbstractStatement
 
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], true)
-      items = tokens_to_expressions(tokens_lists, :array)
-      @file_tokens, items = extract_file_handle(items)
-      @prompt, @items = extract_prompt(items)
+      @items = tokens_to_expressions(tokens_lists, :array)
+      @file_tokens = extract_file_handle(@items)
+      @prompt = extract_prompt(@items)
       @elements = make_references(@items, @file_tokens, @prompt)
     else
       @errors << 'Syntax error'
@@ -3954,8 +3952,8 @@ class MatPrintStatement < AbstractStatement
 
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], true)
-      items = tokens_to_expressions(tokens_lists, :matrix)
-      @file_tokens, @items = extract_file_handle(items)
+      @items = tokens_to_expressions(tokens_lists, :matrix)
+      @file_tokens = extract_file_handle(@items)
       @elements = make_references(@items, @file_tokens)
     else
       @errors << 'Syntax error'
@@ -4000,8 +3998,8 @@ class MatReadStatement < AbstractStatement
 
     if check_template(tokens_lists, template)
       items = split_tokens(tokens_lists[0], false)
-      items = tokens_to_expressions(items, :matrix)
-      @file_tokens, @items = extract_file_handle(items)
+      @items = tokens_to_expressions(items, :matrix)
+      @file_tokens = extract_file_handle(@items)
       @elements = make_references(@items, @file_tokens)
       @mccabe += @items.size
     else
@@ -4089,8 +4087,8 @@ class MatWriteStatement < AbstractStatement
 
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], true)
-      items = tokens_to_expressions(tokens_lists, :matrix)
-      @file_tokens, @items = extract_file_handle(items)
+      @items = tokens_to_expressions(tokens_lists, :matrix)
+      @file_tokens = extract_file_handle(@items)
       @elements = make_references(@items, @file_tokens)
     else
       @errors << 'Syntax error'
