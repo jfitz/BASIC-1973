@@ -123,7 +123,7 @@ class UnaryOperator < AbstractElement
 
     (base..n_cols).each do |col|
       value = source.get_value(col)
-      coords = make_coord(col)
+      coords = AbstractElement.make_coord(col)
       values[coords] = posate(value)
     end
     values
@@ -136,7 +136,7 @@ class UnaryOperator < AbstractElement
 
     (base..n_cols).each do |col|
       value = source.get_value_1(col)
-      coords = make_coord(col)
+      coords = AbstractElement.make_coord(col)
       values[coords] = posate(value)
     end
     values
@@ -151,7 +151,7 @@ class UnaryOperator < AbstractElement
     (base..n_rows).each do |row|
       (base..n_cols).each do |col|
         value = source.get_value_2(row, col)
-        coords = make_coords(row, col)
+        coords = AbstractElement.make_coords(row, col)
         values[coords] = posate(value)
       end
     end
@@ -165,7 +165,7 @@ class UnaryOperator < AbstractElement
 
     (base..n_cols).each do |col|
       value = source.get_value(col)
-      coords = make_coord(col)
+      coords = AbstractElement.make_coord(col)
       values[coords] = negate(value)
     end
     values
@@ -178,7 +178,7 @@ class UnaryOperator < AbstractElement
 
     (base..n_cols).each do |col|
       value = source.get_value_1(col)
-      coords = make_coord(col)
+      coords = AbstractElement.make_coord(col)
       values[coords] = negate(value)
     end
     values
@@ -193,7 +193,7 @@ class UnaryOperator < AbstractElement
     (base..n_rows).each do |row|
       (base..n_cols).each do |col|
         value = source.get_value_2(row, col)
-        coords = make_coords(row, col)
+        coords = AbstractElement.make_coords(row, col)
         values[coords] = negate(value)
       end
     end
@@ -537,7 +537,7 @@ class BinaryOperator < AbstractElement
 
     (base..n_cols).each do |col|
       b_value = b.get_value_1(col)
-      coords = make_coord(col)
+      coords = AbstractElement.make_coord(col)
       values[coords] = a.send(op, b_value)
     end
     values
@@ -553,7 +553,7 @@ class BinaryOperator < AbstractElement
     (base..n_rows).each do |row|
       (base..n_cols).each do |col|
         b_value = b.get_value_2(row, col)
-        coords = make_coords(row, col)
+        coords = AbstractElement.make_coords(row, col)
         values[coords] = a.send(op, b_value)
       end
     end
@@ -575,7 +575,7 @@ class BinaryOperator < AbstractElement
 
     (base..n_cols).each do |col|
       a_value = a.get_value_1(col)
-      coords = make_coord(col)
+      coords = AbstractElement.make_coord(col)
       values[coords] = a_value.send(op, b)
     end
     values
@@ -591,7 +591,7 @@ class BinaryOperator < AbstractElement
     (base..n_rows).each do |row|
       (base..n_cols).each do |col|
         a_value = a.get_value_2(row, col)
-        coords = make_coords(row, col)
+        coords = AbstractElement.make_coords(row, col)
         values[coords] = a_value.send(op, b)
       end
     end
@@ -614,7 +614,7 @@ class BinaryOperator < AbstractElement
     (base..n_cols).each do |col|
       a_value = a.get_value_1(col)
       b_value = b.get_value_1(col)
-      coords = make_coord(col)
+      coords = AbstractElement.make_coord(col)
       values[coords] = a_value.send(:add, b_value)
     end
     values
@@ -631,7 +631,7 @@ class BinaryOperator < AbstractElement
       (base..n_cols).each do |col|
         a_value = a.get_value_2(row, col)
         b_value = b.get_value_2(row, col)
-        coords = make_coords(row, col)
+        coords = AbstractElement.make_coords(row, col)
         values[coords] = a_value.send(:add, b_value)
       end
     end
@@ -657,7 +657,7 @@ class BinaryOperator < AbstractElement
     (base..n_cols).each do |col|
       a_value = a.get_value_1(col)
       b_value = b.get_value_1(col)
-      coords = make_coord(col)
+      coords = AbstractElement.make_coord(col)
       values[coords] = a_value.send(:subtract, b_value)
     end
     values
@@ -674,7 +674,7 @@ class BinaryOperator < AbstractElement
       (base..n_cols).each do |col|
         a_value = a.get_value_2(row, col)
         b_value = b.get_value_2(row, col)
-        coords = make_coords(row, col)
+        coords = AbstractElement.make_coords(row, col)
         values[coords] = a_value.send(:subtract, b_value)
       end
     end
@@ -700,7 +700,7 @@ class BinaryOperator < AbstractElement
     (base..n_cols).each do |col|
       a_value = a.get_value_1(col)
       b_value = b.get_value_1(col)
-      coords = make_coord(col)
+      coords = AbstractElement.make_coord(col)
       values[coords] = a_value.send(:maximum, b_value)
     end
     values
@@ -717,7 +717,7 @@ class BinaryOperator < AbstractElement
       (base..n_cols).each do |col|
         a_value = a.get_value_2(row, col)
         b_value = b.get_value_2(row, col)
-        coords = make_coords(row, col)
+        coords = AbstractElement.make_coords(row, col)
         values[coords] = a_value.send(:maximum, b_value)
       end
     end
@@ -743,7 +743,7 @@ class BinaryOperator < AbstractElement
 
     (base..n_cols).each do |col|
       value = a.get_value_1(col)
-      coords = make_coords(base, col)
+      coords = AbstractElement.make_coords(base, col)
       new_values[coords] = value
     end
     Matrix.new(new_dims, new_values)
@@ -759,7 +759,7 @@ class BinaryOperator < AbstractElement
 
     (base..n_cols).each do |col|
       value = m.get_value_2(row, col)
-      coords = make_coord(col)
+      coords = AbstractElement.make_coord(col)
       new_values[coords] = value
     end
     Matrix.new(new_dims, new_values)
@@ -774,7 +774,7 @@ class BinaryOperator < AbstractElement
 
     (base..n_cols).each do |col|
       value = a.get_value_1(col)
-      coords = make_coords(col, base)
+      coords = AbstractElement.make_coords(col, base)
       new_values[coords] = value
     end
     Matrix.new(new_dims, new_values)
@@ -790,7 +790,7 @@ class BinaryOperator < AbstractElement
 
     (base..n_rows).each do |row|
       value = m.get_value_2(row, col)
-      coords = make_coord(row)
+      coords = AbstractElement.make_coord(row)
       new_values[coords] = value
     end
     Matrix.new(new_dims, new_values)
@@ -819,7 +819,7 @@ class BinaryOperator < AbstractElement
 
     (base..r_rows).each do |r_row|
       (base..r_cols).each do |r_col|
-        coords = make_coords(r_row, r_col)
+        coords = AbstractElement.make_coords(r_row, r_col)
         values[coords] = multiply_matrix_matrix_value(a, b, r_row, r_col)
       end
     end
@@ -892,7 +892,7 @@ class BinaryOperator < AbstractElement
     (base..n_cols).each do |col|
       a_value = a.get_value(col)
       b_value = b.get_value(col)
-      coords = make_coord(col)
+      coords = AbstractElement.make_coord(col)
       values[coords] = a_value.send(op, b_value)
     end
     BASICArray.new(dims, values)
@@ -904,7 +904,7 @@ class BinaryOperator < AbstractElement
     values = {}
     (base..n_cols).each do |col|
       b_value = b.get_value(col)
-      coords = make_coord(col)
+      coords = AbstractElement.make_coord(col)
       values[coords] = a.send(op, b_value)
     end
     BASICArray.new(dims, values)
@@ -916,7 +916,7 @@ class BinaryOperator < AbstractElement
     values = {}
     (base..n_cols).each do |col|
       a_value = a.get_value(col)
-      coords = make_coord(col)
+      coords = AbstractElement.make_coord(col)
       values[coords] = a_value.send(op, b)
     end
     BASICArray.new(dims, values)
