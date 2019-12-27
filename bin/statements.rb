@@ -248,7 +248,14 @@ class AbstractStatement
     @comment = false
     @modifiers = []
     @any_if_modifiers = false
-    @elements = {numerics: [], strings: [], variables: [], operators: [], functions: [], userfuncs: []}
+    @elements = {
+      numerics: [],
+      strings: [],
+      variables: [],
+      operators: [],
+      functions: [],
+      userfuncs: []
+    }
     @linenums = []
     @autonext = true
     @mccabe = 0
@@ -710,7 +717,14 @@ class AbstractStatement
       items.each { |item| userfuncs += item.userfuncs }
     end
 
-    {numerics: numerics, strings: strings, variables: variables, operators: operators, functions: functions, userfuncs: userfuncs}
+    {
+      numerics: numerics,
+      strings: strings,
+      variables: variables,
+      operators: operators,
+      functions: functions,
+      userfuncs: userfuncs
+    }
   end
 end
 
@@ -832,38 +846,31 @@ module FileFunctions
   end
 
   def add_needed_value(items, shape)
-    if items.empty? || !items[-1].printable?
-      items << ValueExpression.new([], shape)
-    end
+    items << ValueExpression.new([], shape) if
+      items.empty? || !items[-1].printable?
   end
 
   def add_needed_carriage(items)
-    if !items.empty? && items[-1].printable?
-      items << CarriageControl.new('')
-    end
+    items << CarriageControl.new('') if !items.empty? && items[-1].printable?
   end
 
   def add_final_carriage(items, final)
-    if !items.empty? && items[-1].printable?
-      items << final
-    end
+    items << final if !items.empty? && items[-1].printable?
   end
 
   def add_default_value_carriage(items, shape)
-    if items.empty?
-      add_needed_value(items, shape)
-      add_final_carriage(items, CarriageControl.new('NL'))
-    end
+    return unless items.empty?
+
+    add_needed_value(items, shape)
+    add_final_carriage(items, CarriageControl.new('NL'))
   end
 
   def dump
     lines = []
 
-    unless @file_tokens.nil?
-      lines += @file_tokens.dump
-    end
-
+    lines += @file_tokens.dump unless @file_tokens.nil?
     @items.each { |item| lines += item.dump } unless @items.nil?
+
     lines
   end
 end
