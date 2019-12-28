@@ -691,9 +691,9 @@ class FunctionIdn < AbstractScalarFunction
       raise(BASICRuntimeError, @name + ' requires square matrix') unless
         args.size == 2 && args[1] == args[0]
 
-        dims = args.clone
-        values = Matrix.identity_values(dims)
-        Matrix.new(dims, values)
+      dims = args.clone
+      values = Matrix.identity_values(dims)
+      Matrix.new(dims, values)
     end
   end
 end

@@ -750,9 +750,7 @@ class IntegerConstant < AbstractValueElement
 
   def self.numeric(text)
     # nnn%
-    if /\A\s*[+-]?\d+%\z/ =~ text
-      text.to_f.to_i
-    end
+    text.to_f.to_i if /\A\s*[+-]?\d+%\z/ =~ text
   end
 
   attr_reader :token_chars
@@ -902,7 +900,7 @@ class IntegerConstant < AbstractValueElement
   end
 
   def negate
-    IntegerConstant.new(-(@value))
+    IntegerConstant.new(-@value)
   end
 
   def truncate
@@ -1384,8 +1382,8 @@ class VariableName < AbstractElement
   end
 
   def compatible?(value)
-    numerics = [:numeric, :integer]
-    strings = [:string]
+    numerics = %i[numeric integer]
+    strings = %i[string]
 
     compatible = false
 
@@ -1462,8 +1460,8 @@ class UserFunctionName < AbstractElement
   end
 
   def compatible?(value)
-    numerics = [:numeric, :integer]
-    strings = [:string]
+    numerics = %i[numeric integer]
+    strings = %i[string]
 
     compatible = false
 
@@ -1596,8 +1594,8 @@ class Variable < AbstractElement
   end
 
   def compatible?(value)
-    numerics = [:numeric, :integer]
-    strings = [:string]
+    numerics = %i[numeric integer]
+    strings = %i[string]
 
     compatible = false
 

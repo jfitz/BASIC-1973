@@ -30,7 +30,7 @@ class IfModifier
   def post_trace
     ' ENDIF'
   end
-  
+
   def execute_pre(interpreter)
     io = interpreter.trace_out
 
@@ -123,10 +123,18 @@ class ForModifier
       @numerics = @start.numerics + @end.numerics + @step.numerics
       @strings = @start.strings + @end.strings + @step.strings
       control = XrefEntry.new(@control.to_s, nil, true)
-      @variables = [control] + @start.variables + @end.variables + @step.variables
-      @operators = @start.operators + @end.operators + @step.operators
-      @functions = @start.functions + @end.functions + @step.functions
-      @userfuncs = @start.userfuncs + @end.userfuncs + @step.userfuncs
+
+      @variables =
+        [control] + @start.variables + @end.variables + @step.variables
+
+      @operators =
+        @start.operators + @end.operators + @step.operators
+
+      @functions =
+        @start.functions + @end.functions + @step.functions
+
+      @userfuncs =
+        @start.userfuncs + @end.userfuncs + @step.userfuncs
     end
   end
 
@@ -149,7 +157,7 @@ class ForModifier
   def post_trace
     " NEXT #{@control}"
   end
-  
+
   def execute_pre(interpreter)
     start_values = @start.evaluate(interpreter)
     start_value = start_values[0]

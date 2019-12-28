@@ -1082,7 +1082,7 @@ class ChainStatement < AbstractStatement
     target_values = @target.evaluate(interpreter)
     target_value = target_values[0]
 
-    raise(BASICExpressionError, "Target must be text item.") unless
+    raise(BASICExpressionError, 'Target must be text item.') unless
       target_value.text_constant?
 
     text = target_value.value
@@ -1526,10 +1526,19 @@ class ForStatement < AbstractStatement
         @elements[:numerics] = @start.numerics + @end.numerics
         @elements[:strings] = @start.strings + @end.strings
         control = XrefEntry.new(@control.to_s, nil, true)
-        @elements[:variables] = [control] + @start.variables + @end.variables
-        @elements[:operators] = @start.operators + @end.operators
-        @elements[:functions] = @start.functions + @end.functions
-        @elements[:userfuncs] = @start.userfuncs + @end.userfuncs
+
+        @elements[:variables] =
+          [control] + @start.variables + @end.variables
+
+        @elements[:operators] =
+          @start.operators + @end.operators
+
+        @elements[:functions] =
+          @start.functions + @end.functions
+
+        @elements[:userfuncs] =
+          @start.userfuncs + @end.userfuncs
+
         @mccabe += 1
       rescue BASICExpressionError => e
         @errors << e.message
@@ -1542,16 +1551,27 @@ class ForStatement < AbstractStatement
         @start = ValueExpression.new(tokens2, :scalar)
         @end = ValueExpression.new(tokens_lists[2], :scalar)
         @step = ValueExpression.new(tokens_lists[4], :scalar)
-        @elements[:numerics] = @start.numerics + @end.numerics + @step.numerics
-        @elements[:strings] = @start.strings + @end.strings + @step.strings
+
+        @elements[:numerics] =
+          @start.numerics + @end.numerics + @step.numerics
+
+        @elements[:strings] =
+          @start.strings + @end.strings + @step.strings
+
         control = XrefEntry.new(@control.to_s, nil, true)
 
         @elements[:variables] =
           [control] + @start.variables + @end.variables + @step.variables
 
-        @elements[:operators] = @start.operators + @end.operators + @step.operators
-        @elements[:functions] = @start.functions + @end.functions + @step.functions
-        @elements[:userfuncs] = @start.userfuncs + @end.userfuncs + @step.userfuncs
+        @elements[:operators] =
+          @start.operators + @end.operators + @step.operators
+
+        @elements[:functions] =
+          @start.functions + @end.functions + @step.functions
+
+        @elements[:userfuncs] =
+          @start.userfuncs + @end.userfuncs + @step.userfuncs
+
         @mccabe += 1
       rescue BASICExpressionError => e
         @errors << e.message
@@ -1769,12 +1789,12 @@ class GotoStatement < AbstractStatement
 
     unless @destinations.nil?
       @destinations.each do |destination|
-        unless program.line_number?(destination)
-          console_io.print_line(
-            "Line number #{destination} not found in line #{line_number_index}"
-          )
-          retval = false
-        end
+        next if program.line_number?(destination)
+
+        console_io.print_line(
+          "Line number #{destination} not found in line #{line_number_index}"
+        )
+        retval = false
       end
     end
 
@@ -1823,28 +1843,29 @@ class GotoStatement < AbstractStatement
       @tokens[-1] = NumericConstantToken.new(@destination.line_number)
     end
 
-    unless @destinations.nil?
-      new_destinations = []
-      @destinations.each do |destination|
-        new_destinations << renumber_map[destination]
-      end
+    return if @destinations.nil?
 
-      i = 0
-      index = 0
-      @tokens.each do |token|
-        index = i if token.to_s == 'OF'
-        i += 1
-      end
-
-      new_destinations.each do |destination|
-        @tokens[index + 1] = NumericConstantToken.new(destination.line_number)
-
-        index += 2
-      end
-
-      @destinations = new_destinations
-      @linenums = @destinations
+    new_destinations = []
+    @destinations.each do |destination|
+      new_destinations << renumber_map[destination]
     end
+
+    i = 0
+    index = 0
+    @tokens.each do |token|
+      index = i if token.to_s == 'OF'
+      i += 1
+    end
+
+    new_destinations.each do |destination|
+      @tokens[index + 1] =
+        NumericConstantToken.new(destination.line_number)
+
+      index += 2
+    end
+
+    @destinations = new_destinations
+    @linenums = @destinations
   end
 end
 
@@ -2364,7 +2385,7 @@ class InputCharStatement < AbstractStatement
     end
 
     if fh.nil?
-      values = input_values(fhr, interpreter, @items.size)
+      values = input_values(fhr, interpreter, prompt, @items.size)
       fhr.implied_newline
     else
       values = fhr.input(interpreter)
@@ -2385,7 +2406,7 @@ class InputCharStatement < AbstractStatement
 
   private
 
-  def input_values(fhr, _, count)
+  def input_values(fhr, _, _, count)
     values = []
     values << fhr.read_char while values.size < count
 
@@ -2632,9 +2653,10 @@ end
 class OnErrorStatement < AbstractStatement
   def self.lead_keywords
     [
-      [KeywordToken.new('ON'),
-       KeywordToken.new('ERROR'),
-       KeywordToken.new('GOTO')
+      [
+        KeywordToken.new('ON'),
+        KeywordToken.new('ERROR'),
+        KeywordToken.new('GOTO')
       ]
     ]
   end
@@ -2853,30 +2875,44 @@ class OpenStatement < AbstractStatement
 
     extract_modifiers(tokens_lists)
 
-    template_input_as = [[1, '>='], 'FOR', 'INPUT', 'AS', [1, '>=']]
+    template_input_as =
+      [[1, '>='], 'FOR', 'INPUT', 'AS', [1, '>=']]
 
     template_input_as_file =
       [[1, '>='], 'FOR', 'INPUT', 'AS', 'FILE', [1, '>=']]
 
-    template_output_as = [[1, '>='], 'FOR', 'OUTPUT', 'AS', [1, '>=']]
+    template_output_as =
+      [[1, '>='], 'FOR', 'OUTPUT', 'AS', [1, '>=']]
 
     template_output_as_file =
       [[1, '>='], 'FOR', 'OUTPUT', 'AS', 'FILE', [1, '>=']]
 
     if check_template(tokens_lists, template_input_as) ||
        check_template(tokens_lists, template_input_as_file)
-      @filename_expression = ValueExpression.new(tokens_lists[0], :scalar)
-      @filenum_expression = ValueExpression.new(tokens_lists[-1], :scalar)
 
-      @elements = make_references(nil, @filename_expression, @filenum_expression)
+      @filename_expression =
+        ValueExpression.new(tokens_lists[0], :scalar)
+
+      @filenum_expression =
+        ValueExpression.new(tokens_lists[-1], :scalar)
+
+      @elements =
+        make_references(nil, @filename_expression,
+                        @filenum_expression)
 
       @mode = :read
     elsif check_template(tokens_lists, template_output_as) ||
           check_template(tokens_lists, template_output_as_file)
-      @filename_expression = ValueExpression.new(tokens_lists[0], :scalar)
-      @filenum_expression = ValueExpression.new(tokens_lists[-1], :scalar)
 
-      @elements = make_references(nil, @filename_expression, @filenum_expression)
+      @filename_expression =
+        ValueExpression.new(tokens_lists[0], :scalar)
+
+      @filenum_expression =
+        ValueExpression.new(tokens_lists[-1], :scalar)
+
+      @elements =
+        make_references(nil, @filename_expression,
+                        @filenum_expression)
 
       @mode = :print
     else
@@ -3282,7 +3318,7 @@ class ResumeStatement < AbstractStatement
     end
 
     @target = nil
-    if !target.nil?
+    unless target.nil?
       begin
         @target = LineNumber.new(target)
         @linenums = [@target]
@@ -3497,7 +3533,7 @@ class ArrInputStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
-    
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -3632,12 +3668,8 @@ class ArrReadStatement < AbstractStatement
     ]
   end
 
-  private
-
   include FileFunctions
   include ReadFunctions
-
-  public
 
   def initialize(keywords, tokens_lists)
     super
@@ -3789,7 +3821,7 @@ class ArrLetStatement < AbstractLetStatement
     l_values = @assignment.eval_target(interpreter)
     l_value = l_values[0]
     l_dims = interpreter.get_dimensions(l_value.name)
-    
+
     interpreter.set_default_args('CON1', l_dims)
     interpreter.set_default_args('ZER1', l_dims)
 
@@ -3839,7 +3871,7 @@ class MatInputStatement < AbstractStatement
 
   def initialize(keywords, tokens_lists)
     super
-    
+
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
@@ -3875,7 +3907,7 @@ class MatInputStatement < AbstractStatement
 
         interpreter.set_dimensions(target, target.dimensions) if
           target.dimensions?
-        
+
         # make sure dimension is one or two
         dims = interpreter.get_dimensions(name)
         raise(BASICExpressionError, 'Not an array') unless
@@ -3890,7 +3922,7 @@ class MatInputStatement < AbstractStatement
             item_names << variable
           end
         end
-        
+
         if dims.size == 2
           base = interpreter.base
           (base..dims[0].to_i).each do |row|
