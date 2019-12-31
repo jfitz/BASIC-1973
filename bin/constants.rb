@@ -224,11 +224,14 @@ public
 
 # class that holds a value
 class AbstractValueElement < AbstractElement
+  attr_reader :symbol
+
   def initialize
     super
 
     @shape = :scalar
     @value = nil
+    @symbol = false
   end
 
   def dump
@@ -434,7 +437,10 @@ class NumericConstant < AbstractValueElement
       f = t[1].ord if !t.empty? && t[0] == '#'
     end
 
-    f = text.value if text.class.to_s == 'NumericSymbolToken'
+    if text.class.to_s == 'NumericSymbolToken'
+      f = text.value
+      @symbol = true
+    end
 
     raise(BASICRuntimeError, "'#{text}:#{text.class}' is not a number") if
       f.nil?
@@ -1018,7 +1024,11 @@ class TextConstant < AbstractValueElement
 
     @value = nil
     @value = text.value if text.class.to_s == 'TextConstantToken'
-    @value = text.value if text.class.to_s == 'TextSymbolToken'
+
+    if text.class.to_s == 'TextSymbolToken'
+      @value = text.value
+      @symbol = true
+    end
 
     raise(BASICSyntaxError, "'#{text}' is not a text constant") if @value.nil?
 

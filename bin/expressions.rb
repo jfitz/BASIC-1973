@@ -1037,7 +1037,7 @@ class AbstractExpression
           # recurse into expressions in list
           sublist = thing.list
           strs += parsed_expressions_strings(sublist)
-        elsif thing.text_constant?
+        elsif thing.text_constant? && !thing.symbol
           strs << thing
         end
       end
