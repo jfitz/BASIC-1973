@@ -313,7 +313,7 @@
 1180 PRINT "0 AS YOUR SPEED"
  TextConstant:"0 AS YOUR SPEED"
  CarriageControl:NL
-1190 PRINT O$(0);"WOULD YOU LIKE TO SEE THE COURSE";CHR$(63*SGN(O9));O$; 'PRINT ? IF ULT-TERM, OTHERWISE DON'T
+1190 PRINT O$(0);"WOULD YOU LIKE TO SEE THE COURSE";CHR$(63*SGN(O9));O$; 'PRINT ? IF MULTI-TERM, OTHERWISE DON'T
  NumericConstant:0
  Variable:O$
  CarriageControl:;
@@ -782,8 +782,8 @@
  Variable:W
  NumericConstant:1E+37
  AssignmentOperator:=
-1790 IF G9=0 THEN 1820
- Variable:G9
+1790 IF O9=0 THEN 1820
+ Variable:O9
  NumericConstant:0
  BinaryOperator:=
 1800 LET G5=O9
@@ -987,10 +987,10 @@
  AssignmentOperator:=
 2180 GOTO 1110
  LineNumber:1110
-2190 FOR X=1 TO K5                         'FOREIGN LANGUAGE HANDLER 
+2190 FOR X=1 TO K9                         'FOREIGN LANGUAGE HANDLER 
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["Variable:K5"]
+ end:     ["Variable:K9"]
 2200      IF R$=F$(X) THEN 2230
  Variable:R$
  Variable:X
@@ -1076,9 +1076,9 @@
  BinaryOperator:+
  BinaryOperator:*
  BinaryOperator:<=
-2390      PRINT C$(G);X$                   'PRINT DEAD MESSAGE
+2390      PRINT O$(G);X$                   'PRINT DEAD MESSAGE
  Variable:G
- Variable:C$
+ Variable:O$
  CarriageControl:;
  Variable:X$
  CarriageControl:NL
@@ -1242,10 +1242,10 @@
  CarriageControl:NL
 2650      NEXT X4
  Variable:X4
-2660      FOR X4=G+1 TO G9
+2660      FOR X4=G+1 TO O9
  control: Variable:X4
  start:   ["Variable:G", "NumericConstant:1", "BinaryOperator:+"]
- end:     ["Variable:G9"]
+ end:     ["Variable:O9"]
 2670           IF D(X4)=1 THEN 2770
  Variable:X4
  Variable:D
@@ -1256,14 +1256,14 @@
  Variable:S
  NumericConstant:0
  BinaryOperator:=
-2690           IF SGN(Y4-T(X4))=SGN(I(G)-(T(X4)+C/(S(X4)/3600))) THEN 2770
+2690           IF SGN(Y4-T(X4))=SGN(T(G)-(T(X4)+C/(S(X4)/3600))) THEN 2770
  Variable:Y4
  Variable:X4
  Variable:T
  BinaryOperator:-
  FunctionSgn
  Variable:G
- Variable:I
+ Variable:T
  Variable:X4
  Variable:T
  Variable:C
@@ -1447,9 +1447,8 @@
  Variable:G8
  BinaryOperator:+
  BinaryOperator:>
-2990 IF R(O)<.1 THEN 3080                     'IS IT RAINING?
- Variable:O
- Variable:R
+2990 IF RND<.1 THEN 3080                      'IS IT RAINING?
+ FunctionRnd
  NumericConstant:.1
  BinaryOperator:<
 3000 IF RND>.5 THEN 3130                      'STOP IT?
@@ -1940,14 +1939,14 @@
  Variable:H
  Variable:S
  AssignmentOperator:=
-3960      LET T(X2)=(T(X2)+I(H(X2)))/2
+3960      LET T(X2)=(T(X2)+T(H(X2)))/2
  Variable:X2
  Variable:T
  Variable:X2
  Variable:T
  Variable:X2
  Variable:H
- Variable:I
+ Variable:T
  BinaryOperator:+
  NumericConstant:2
  BinaryOperator:/
@@ -1972,8 +1971,8 @@
  AssignmentOperator:=
 4030 GOTO 4050
  LineNumber:4050
-4040 LET J5=3
- Variable:J5
+4040 LET G5=3
+ Variable:G5
  NumericConstant:3
  AssignmentOperator:=
 4050 FOR G=0 TO G5

@@ -144,14 +144,14 @@
  FunctionRight
  CarriageControl:NL
  CarriageControl:NL
-210 INPUT "WHAT IS YOUR MOVE"; A%,B%: IF INSTR(1%,M$,FNN$(A$)+FNN$(B$))=0% THEN PRINT "ILLEGAL MOVE.": GOTO 210
+210 INPUT "WHAT IS YOUR MOVE"; A%,B%: IF INSTR(1%,M$,FNN$(A%)+FNN$(B%))=0% THEN PRINT "ILLEGAL MOVE.": GOTO 210
  Variable:A%
  Variable:B%
  IntegerConstant:1
  Variable:M$
- Variable:A$
+ Variable:A%
  UserFunction
- Variable:B$
+ Variable:B%
  UserFunction
  BinaryOperator:+
  FunctionInstr
@@ -312,8 +312,8 @@
  Variable:B%
  CarriageControl:NL
  LineNumber:190
-500 V2%=W2%+1%: I%=INSTR(11%,P$(K%),K$) :P$(K%)=LEFT(P$(K%),I%-1%)+RIGHT(P$(K%),I%+2%) IF I%: GOTO 520
- Variable:V2%
+500 W2%=W2%+1%: I%=INSTR(11%,P$(K%),K$) :P$(K%)=LEFT(P$(K%),I%-1%)+RIGHT(P$(K%),I%+2%) IF I%: GOTO 520
+ Variable:W2%
  Variable:W2%
  IntegerConstant:1
  BinaryOperator:+

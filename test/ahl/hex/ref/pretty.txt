@@ -52,7 +52,7 @@
     & RIGHT(P$, 7%) :
     &
 210 INPUT "WHAT IS YOUR MOVE"; A%, B% :
-    IF INSTR(1%, M$, FNN$(A$) + FNN$(B$)) = 0% THEN PRINT "ILLEGAL MOVE." :
+    IF INSTR(1%, M$, FNN$(A%) + FNN$(B%)) = 0% THEN PRINT "ILLEGAL MOVE." :
     GOTO 210
 230 P$ = FNC$(FNC$(P$, A%, "-"), B%, "O") :
     IF INSTR(1%, P$, "*") = 0% OR INSTR(1%, P$, "O") = 4% THEN PRINT "YOU WIN." :
@@ -82,7 +82,7 @@
     GOTO 510
 440 PRINT "I MOVE FROM" A% "TO" B% :
     GOTO 190
-500 V2% = W2% + 1% :
+500 W2% = W2% + 1% :
     I% = INSTR(11%, P$(K%), K$) :
     P$(K%) = LEFT(P$(K%), I% - 1%) + RIGHT(P$(K%), I% + 2%) IF I% :
     GOTO 520

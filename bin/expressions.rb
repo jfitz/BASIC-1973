@@ -696,6 +696,13 @@ class XrefEntry
 
     @variable.to_s + dims + ref
   end
+
+  def to_text
+    dims = ''
+    dims = '(' + @signature.join(',') + ')' unless @signature.nil?
+
+    @variable.to_s + dims
+  end
 end
 
 # Expression parser
@@ -1394,15 +1401,8 @@ class UserFunctionDefinition
     @arguments = user_function_prototype.arguments
     @expression = nil
     @expression = ValueExpression.new(parts[2], :scalar) if parts.size == 3
-    if !@expression.nil?
-      @numerics = @expression.numerics
-      @strings = @expression.strings
-      @variables = @expression.variables
-      @operators = @expression.operators
-      @functions = @expression.functions
-      xr = XrefEntry.new(@name.to_s, @arguments, true)
-      @userfuncs = [xr] + @expression.userfuncs
-    else
+
+    if @expression.nil?
       @numerics = []
       @strings = []
       @variables = []
@@ -1410,6 +1410,19 @@ class UserFunctionDefinition
       @functions = []
       xr = XrefEntry.new(@name.to_s, @arguments, true)
       @userfuncs = [xr]
+    else
+      @numerics = @expression.numerics
+      @strings = @expression.strings
+      @variables = @expression.variables
+      @operators = @expression.operators
+      @functions = @expression.functions
+      xr = XrefEntry.new(@name.to_s, @arguments, true)
+      @userfuncs = [xr] + @expression.userfuncs
+    end
+
+    # add parameters to function as references
+    @arguments.each do |argument|
+      @variables << XrefEntry.new(argument.to_s, nil, true)
     end
   end
 
@@ -1471,7 +1484,7 @@ class UserFunctionPrototype
   def initialize(tokens)
     check_tokens(tokens)
     @name = UserFunctionName.new(tokens[0])
-    @arguments = check_params(tokens[2..-2])
+    @arguments = variable_names(tokens[2..-2])
 
     # arguments must be unique
     names = @arguments.map(&:to_s)
@@ -1493,7 +1506,7 @@ class UserFunctionPrototype
   end
 
   # verify tokens variables and commas
-  def check_params(params)
+  def variable_names(params)
     name_tokens = params.values_at(* params.each_index.select(&:even?))
 
     variable_names = []
