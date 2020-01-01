@@ -955,8 +955,16 @@ class AbstractExpression
     parsed_expressions_numerics(@parsed_expressions)
   end
 
+  def num_symbols
+    parsed_expressions_num_symbols(@parsed_expressions)
+  end
+
   def strings
     parsed_expressions_strings(@parsed_expressions)
+  end
+
+  def text_symbols
+    parsed_expressions_text_symbols(@parsed_expressions)
   end
 
   def variables
@@ -1011,7 +1019,7 @@ class AbstractExpression
           # recurse into expressions in list
           sublist = thing.list
           vars += parsed_expressions_numerics(sublist)
-        elsif thing.numeric_constant?
+        elsif thing.numeric_constant? && !thing.symbol
           if !previous.nil? &&
              previous.operator? &&
              previous.unary? &&
@@ -1028,6 +1036,25 @@ class AbstractExpression
     vars
   end
 
+  def parsed_expressions_num_symbols(parsed_expressions)
+    vars = []
+
+    parsed_expressions.each do |expression|
+      # backwards so the unary operator (if any) is seen first
+      expression.reverse_each do |thing|
+        if thing.list?
+          # recurse into expressions in list
+          sublist = thing.list
+          vars += parsed_expressions_num_symbols(sublist)
+        elsif thing.numeric_constant? && thing.symbol
+          vars << thing
+        end
+      end
+    end
+
+    vars
+  end
+
   def parsed_expressions_strings(parsed_expressions)
     strs = []
 
@@ -1038,6 +1065,24 @@ class AbstractExpression
           sublist = thing.list
           strs += parsed_expressions_strings(sublist)
         elsif thing.text_constant? && !thing.symbol
+          strs << thing
+        end
+      end
+    end
+
+    strs
+  end
+
+  def parsed_expressions_text_symbols(parsed_expressions)
+    strs = []
+
+    parsed_expressions.each do |expression|
+      expression.each do |thing|
+        if thing.list?
+          # recurse into expressions in list
+          sublist = thing.list
+          strs += parsed_expressions_text_symbols(sublist)
+        elsif thing.text_constant? && thing.symbol
           strs << thing
         end
       end
@@ -1382,7 +1427,9 @@ class UserFunctionDefinition
   attr_reader :arguments
   attr_reader :expression
   attr_reader :numerics
+  attr_reader :num_symbols
   attr_reader :strings
+  attr_reader :text_symbols
   attr_reader :variables
   attr_reader :operators
   attr_reader :functions
@@ -1404,7 +1451,9 @@ class UserFunctionDefinition
 
     if @expression.nil?
       @numerics = []
+      @num_symbols = []
       @strings = []
+      @text_symbols = []
       @variables = []
       @operators = []
       @functions = []
@@ -1412,7 +1461,9 @@ class UserFunctionDefinition
       @userfuncs = [xr]
     else
       @numerics = @expression.numerics
+      @num_symbols = @expression.num_symbols
       @strings = @expression.strings
+      @text_symbols = @expression.text_symbols
       @variables = @expression.variables
       @operators = @expression.operators
       @functions = @expression.functions
@@ -1529,7 +1580,9 @@ end
 class Assignment
   attr_reader :target
   attr_reader :numerics
+  attr_reader :num_symbols
   attr_reader :strings
+  attr_reader :text_symbols
   attr_reader :variables
   attr_reader :operators
   attr_reader :functions
@@ -1546,7 +1599,9 @@ class Assignment
       !(@token_lists[1].operator? && @token_lists[1].equals?)
 
     @numerics = []
+    @num_symbols = []
     @strings = []
+    @text_symbols = []
     @variables = []
     @operators = []
     @functions = []
@@ -1586,7 +1641,9 @@ class Assignment
 
   def make_references
     @numerics = @target.numerics + @expression.numerics
+    @num_symbols = @target.num_symbols + @expression.num_symbols
     @strings = @target.strings + @expression.strings
+    @text_symbols = @target.text_symbols + @expression.text_symbols
     @variables = @target.variables + @expression.variables
     @operators = @target.operators + @expression.operators
     @functions = @target.functions + @expression.functions

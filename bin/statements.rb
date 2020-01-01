@@ -250,7 +250,9 @@ class AbstractStatement
     @any_if_modifiers = false
     @elements = {
       numerics: [],
+      num_symbols: [],
       strings: [],
+      text_symbols: [],
       variables: [],
       operators: [],
       functions: [],
@@ -307,6 +309,11 @@ class AbstractStatement
     nums
   end
 
+  def modifier_num_symbols
+    syms = []
+    syms
+  end
+
   def numeric_symbol_constants
     syms = @tokens.clone
     syms.keep_if(&:symbol_constant?)
@@ -319,6 +326,11 @@ class AbstractStatement
     strs
   end
 
+  def modifier_text_symbols
+    syms = []
+    syms
+  end
+
   def text_symbol_constants
     syms = @tokens.clone
     syms.keep_if(&:symbol_constant?)
@@ -329,8 +341,16 @@ class AbstractStatement
     @elements[:numerics]
   end
 
+  def num_symbols
+    @elements[:num_symbols]
+  end
+
   def strings
     @elements[:strings]
+  end
+
+  def text_symbols
+    @elements[:text_symbols]
   end
 
   def variables
@@ -684,7 +704,9 @@ class AbstractStatement
 
   def make_references(items, exp1 = nil, exp2 = nil)
     numerics = []
+    num_symbols = []
     strings = []
+    text_symbols = []
     variables = []
     operators = []
     functions = []
@@ -692,7 +714,10 @@ class AbstractStatement
 
     unless exp1.nil?
       numerics += exp1.numerics
+      x1 = exp1.num_symbols
+      num_symbols += x1
       strings += exp1.strings
+      text_symbols += exp1.text_symbols
       variables += exp1.variables
       operators += exp1.operators
       functions += exp1.functions
@@ -701,7 +726,9 @@ class AbstractStatement
 
     unless exp2.nil?
       numerics += exp2.numerics
+      num_symbols += exp2.num_symbols
       strings += exp2.strings
+      text_symbols += exp2.text_symbols
       variables += exp2.variables
       operators += exp2.operators
       functions += exp2.functions
@@ -710,7 +737,9 @@ class AbstractStatement
 
     unless items.nil?
       items.each { |item| numerics += item.numerics }
+      items.each { |item| num_symbols += item.num_symbols }
       items.each { |item| strings += item.strings }
+      items.each { |item| text_symbols += item.text_symbols }
       items.each { |item| variables += item.variables }
       items.each { |item| operators += item.operators }
       items.each { |item| functions += item.functions }
@@ -719,7 +748,9 @@ class AbstractStatement
 
     {
       numerics: numerics,
+      num_symbols: num_symbols,
       strings: strings,
+      text_symbols: text_symbols,
       variables: variables,
       operators: operators,
       functions: functions,
@@ -1526,7 +1557,10 @@ class ForStatement < AbstractStatement
         @end = ValueExpression.new(tokens_lists[2], :scalar)
         @step = nil
         @elements[:numerics] = @start.numerics + @end.numerics
+        @elements[:num_symbols] = @start.num_symbols + @end.num_symbols
         @elements[:strings] = @start.strings + @end.strings
+        @elements[:text_symbols] = @start.text_symbols + @end.text_symbols
+
         control = XrefEntry.new(@control.to_s, nil, true)
 
         @elements[:variables] =
@@ -1557,8 +1591,14 @@ class ForStatement < AbstractStatement
         @elements[:numerics] =
           @start.numerics + @end.numerics + @step.numerics
 
+        @elements[:num_symbols] =
+          @start.num_symbols + @end.num_symbols + @step.num_symbols
+
         @elements[:strings] =
           @start.strings + @end.strings + @step.strings
+
+        @elements[:text_symbols] =
+          @start.text_symbols + @end.text_symbols + @end.text_symbols
 
         control = XrefEntry.new(@control.to_s, nil, true)
 
@@ -1884,7 +1924,9 @@ class AbstractIfStatement < AbstractStatement
         tokens_lists.key?('else')
 
       @elements[:numerics] = make_numeric_references
+      @elements[:num_symbols] = make_num_symbol_references
       @elements[:strings] = make_string_references
+      @elements[:text_symbols] = make_text_symbol_references
       @elements[:variables] = make_variable_references
       @elements[:operators] = make_operator_references
       @elements[:functions] = make_function_references
@@ -1900,7 +1942,9 @@ class AbstractIfStatement < AbstractStatement
           stack.key?('else')
 
         @elements[:numerics] = make_numeric_references
+        @elements[:num_symbols] = make_num_symbol_references
         @elements[:strings] = make_string_references
+        @elements[:text_symbols] = make_text_symbol_references
         @elements[:variables] = make_variable_references
         @elements[:operators] = make_operator_references
         @elements[:functions] = make_function_references
@@ -2054,11 +2098,27 @@ class AbstractIfStatement < AbstractStatement
     nums
   end
 
+  def make_num_symbol_references
+    nums = []
+    nums += @expression.num_symbols unless @expression.nil?
+    nums += @statement.num_symbols unless @statement.nil?
+    nums += @else_stmt.num_symbols unless @else_stmt.nil?
+    nums
+  end
+
   def make_string_references
     strs = []
     strs += @expression.strings unless @expression.nil?
     strs += @statement.strings unless @statement.nil?
     strs += @else_stmt.strings unless @else_stmt.nil?
+    strs
+  end
+
+  def make_text_symbol_references
+    strs = []
+    strs += @expression.text_symbols unless @expression.nil?
+    strs += @statement.text_symbols unless @statement.nil?
+    strs += @else_stmt.text_symbols unless @else_stmt.nil?
     strs
   end
 

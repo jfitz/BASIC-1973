@@ -563,7 +563,9 @@ class Program
         end
 
         list_constants += statement.numerics
+        list_constants += statement.num_symbols
         list_constants += statement.strings
+        list_constants += statement.text_symbols
         list_variables += statement.variables
         list_functions += statement.functions
         list_functions += statement.userfuncs
@@ -666,11 +668,6 @@ class Program
         statement_index += 1
       end
     end
-
-    # gotos.keys.each do |line_number_idx|
-    #   puts("#{line_number_idx}:")
-    #   gotos[line_number_idx].each { |item| puts(" #{item}") }
-    # end
 
     # assume statements are dead until connected to a live statement
     reachable = {}
@@ -1006,7 +1003,7 @@ class Program
     refs
   end
 
-  def numeric_symbol_refs
+  def num_symbol_refs
     refs = {}
 
     @lines.keys.sort.each do |line_number|
@@ -1015,7 +1012,7 @@ class Program
 
       rs = []
       statements.each do |statement|
-        rs += statement.numeric_symbol_constants
+        rs += statement.num_symbols
       end
 
       refs[line_number] = rs
@@ -1052,7 +1049,7 @@ class Program
 
       rs = []
       statements.each do |statement|
-        rs += statement.text_symbol_constants
+        rs += statement.text_symbols
       end
 
       refs[line_number] = rs
@@ -1160,7 +1157,7 @@ class Program
 
     refs.keys.sort.each do |ref|
       lines = refs[ref]
-      line = ref.token_chars + ":\t" + lines.map(&:to_s).uniq.join(', ')
+      line = ref.symbol_text + ":\t" + lines.map(&:to_s).uniq.join(', ')
       @console_io.print_line(line)
     end
 
@@ -1173,6 +1170,18 @@ class Program
     refs.keys.sort.each do |ref|
       lines = refs[ref]
       line = ref.to_s + ":\t" + lines.map(&:to_s).uniq.join(', ')
+      @console_io.print_line(line)
+    end
+
+    @console_io.newline
+  end
+
+  def print_symbol_refs(title, refs)
+    @console_io.print_line(title)
+
+    refs.keys.sort.each do |ref|
+      lines = refs[ref]
+      line = ref.symbol_text + ":\t" + lines.map(&:to_s).uniq.join(', ')
       @console_io.print_line(line)
     end
 
@@ -1240,10 +1249,10 @@ class Program
     numerics = make_summary(nums_list)
     print_numeric_refs('Numeric constants:', numerics)
 
-    num_syms_list = numeric_symbol_refs
+    num_syms_list = num_symbol_refs
     num_symbols = make_summary(num_syms_list)
     unless num_symbols.empty?
-      print_object_refs('Numeric symbol constants:', num_symbols)
+      print_symbol_refs('Numeric symbol constants:', num_symbols)
     end
 
     strs_list = text_refs
@@ -1253,7 +1262,7 @@ class Program
     text_syms_list = text_symbol_refs
     text_symbols = make_summary(text_syms_list)
     unless text_symbols.empty?
-      print_object_refs('Text symbol constants:', text_symbols)
+      print_symbol_refs('Text symbol constants:', text_symbols)
     end
 
     funcs_list = function_refs
