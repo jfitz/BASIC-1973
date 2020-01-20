@@ -71,6 +71,8 @@ class Interpreter
     @fornext_stack = []
     @data_store = DataStore.new
     @file_handlers = {}
+    @record_read_variables = {}
+    @record_write_variables = {}
     @return_stack = []
     @dimensions = {}
     @variables = {}
@@ -175,6 +177,8 @@ class Interpreter
 
   def close_all_files
     @file_handlers.each { |_, fh| fh.close }
+    @record_read_variables = {}
+    @record_write_variables = {}
   end
 
   def find_first_statement
@@ -974,7 +978,7 @@ class Interpreter
 
     fhr = @file_handlers[fh]
     fhr.close
-    ### todo: remove file handle
+    @file_handlers.delete(fh)
   end
 
   def get_file_handler(file_handle, mode)
@@ -987,6 +991,30 @@ class Interpreter
     fh.set_mode(mode)
 
     fh
+  end
+
+  def get_record_read_variables(line_number)
+    raise(BASICRuntimeError, "Read RECORD #{line_number} not found") unless
+      @record_read_variables.key?(line_number)
+
+    @record_read_variables[line_number]
+  end
+
+  def set_record_read_variables(variables)
+    line_number = @current_line_index.number
+    @record_read_variables[line_number] = variables
+  end
+
+  def get_record_write_variables(line_number)
+    raise(BASICRuntimeError, "Write RECORD #{line_number} not found") unless
+      @record_write_variables.key?(line_number)
+
+    @record_write_variables[line_number]
+  end
+
+  def set_record_write_variables(variables)
+    line_number = @current_line_index.number
+    @record_write_variables[line_number] = variables
   end
 
   def get_data_store(file_handle)

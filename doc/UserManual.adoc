@@ -868,10 +868,19 @@ CLOSE
 
 Closes a file.
 
-Syntax: CLOSE #1
-Syntax: CLO #4
+Syntax: CLOSE file handle
+Syntax: CLO file handle
+Syntax: CLOSE integer
 
-The CLOSE command should not be used with files opened with a FILES command.
+Examples:
+
+	100 CLOSE #1
+	110 CLO #2
+	120 CLOSE 3
+
+The CLOSE statement should not be used with files opened with a FILES statement.
+
+The CLOSE statement can close a file opened with the old-style OPEN statement.
 
 DATA
 ~~~~
@@ -1072,6 +1081,28 @@ Variables may be used to indicate the loop start, end, and step values.
 The start, end, and step values are calculated at the beginning of the loop.
 They are not re-calculated during the loop execution.
 If variables are used, assignments to those variables in the loop will have no affect on the loop.
+
+GET
+~~~
+
+Reads a record from a file.
+
+Syntax: GET file, record statement number, record number
+
+Examples:
+
+        20 RECORD A,B,C
+	21 RECORD D,E
+	100 GET #2, 20, 0
+	110 GET #2, 21, X5
+
+The GET statement is an old and unusual statement.
+The file must be opened with an old-style OPEN statement ("OPEN file, name").
+It reads an entire record at once.
+The record must be defined by a RECORD statement.
+The GET statement references the line number of the RECORD statement.
+The third value for the GET statement is the record number to read.
+The GET statement can read records up to number 65535.
 
 GO TO
 ~~~~~
@@ -1431,14 +1462,17 @@ Opens a file
 
 Syntax: OPEN "FILE.TXT" FOR INPUT AS #1
 Syntax: OPE "OUTPUT.TXT" FOR OUTPUT AS #2
+Syntax: OPEN channel,name
 
 Opens the file and prepares it for access.
-When opening a file for output, it does not need to exist.
+When opening a file for output, the file does not need to exist.
 (This is different from the FILES command.)
 
 The file name may be any file name suitable for your environment.
 It may contain lower case letters.
 The file name may contain device and directory names.
+
+The third form of the statement (OPEN channel, name) is an old form, and used only with GET and PUT statements.
 
 OPTION
 ~~~~~~
@@ -1603,6 +1637,28 @@ The number of specifications must match the number of values given after the for
 Separators between values (commas and semicolons) do not have their usual effect of spacing values.
 A comma or semicolon at the end of the list of values does have its usual effect on the carriage (space to next zone or suppress carriage return).
 
+PUT
+~~~
+
+Reads a record from a file.
+
+Syntax: PUT file, record statement number, record number
+
+Examples:
+
+        20 RECORD A,B,C
+	21 RECORD D,E
+	100 PUT #2, 20, 0
+	110 PUT #2, 21, X5
+
+The PUT statement is an old and unusual statement.
+It reads an entire record at once.
+The file must be opened with an old-style OPEN statement ("OPEN file, name").
+The record must be defined by a RECORD statement.
+The PUT statement references the line number of the RECORD statement.
+The third value for the PUT statement is the record number to write.
+The GET statement can write records up to number 65535.
+
 RANDOMIZE
 ~~~~~~~~~
 
@@ -1669,6 +1725,22 @@ Values remaining on the text line are saved until the next READ statement.
 READing more values than are specified by the file, in total, will cause an error.
 
 BASIC keeps an internal pointer to the next data item.
+
+RECORD
+~~~~~~
+
+Defines variables for the GET and PUT statements.
+
+Syntax:  RECORD variable list
+
+Examples:
+
+	100 RECORD A,B,C
+	120 RECORD D(0),D(1)
+	130 RECORD A$,B,D$(1)
+
+The RECORD statement is executed in-line.
+It must occur in the program prior to the old-style OPEN and the GET and PUT statements.
 
 REM
 ~~~

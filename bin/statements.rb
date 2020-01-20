@@ -61,7 +61,7 @@ class StatementFactory
 
   def create(text, all_tokens, comment, _)
     statements = []
-    statements_tokens = split_on_separators(all_tokens)
+    statements_tokens = split_on_statement_separators(all_tokens)
 
     if statements_tokens.empty?
       statement = EmptyStatement.new
@@ -117,6 +117,7 @@ class StatementFactory
       FilesStatement,
       FnendStatement,
       ForStatement,
+      GetStatement,
       GosubStatement,
       GotoStatement,
       IfStatement,
@@ -137,8 +138,10 @@ class StatementFactory
       OptionStatement,
       PrintStatement,
       PrintUsingStatement,
+      PutStatement,
       RandomizeStatement,
       ReadStatement,
+      RecordStatement,
       RemarkStatement,
       RestoreStatement,
       ResumeStatement,
@@ -146,6 +149,7 @@ class StatementFactory
       RunStatement,
       SleepStatement,
       StopStatement,
+      UnsaveStatement,
       WriteStatement
     ]
   end
@@ -163,7 +167,7 @@ class StatementFactory
     lead_keywords
   end
 
-  def split_on_separators(tokens)
+  def split_on_statement_separators(tokens)
     tokens_lists = []
     statement_tokens = []
     tokens.each do |token|
@@ -873,7 +877,7 @@ module FileFunctions
     return nil if file_tokens.nil?
 
     file_handles = file_tokens.evaluate(interpreter)
-    file_handles[0]
+    FileHandle.new(file_handles[0])
   end
 
   def add_needed_value(items, shape)
@@ -1106,7 +1110,7 @@ class ChainStatement < AbstractStatement
   end
 
   def dump
-    ['']
+    @target.dump
   end
 
   def execute_core(interpreter)
@@ -1268,21 +1272,7 @@ class CloseStatement < AbstractStatement
 
   def execute_core(interpreter)
     fns = @filenum_expression.evaluate(interpreter)
-    fh = fns[0]
-
-    case fh.class.to_s
-    when 'Fixnum'
-      fh = FileHandle.new(fh)
-    when 'NumericConstant'
-      fh = FileHandle.new(fh.to_i)
-    when 'IntegerConstant'
-      fh = FileHandle.new(fh.to_i)
-    when 'FileHandle'
-      fh = fns[0]
-    else
-      raise(BASICRuntimeError, "Invalid file number #{fh.class}:#{fh}")
-    end
-
+    fh = FileHandle.new(fns[0])
     interpreter.close_file(fh)
   end
 end
@@ -1674,6 +1664,101 @@ class ForStatement < AbstractStatement
     io.trace_output(" #{@step} = #{step}") unless
       @step.nil? || @step.numeric_constant?
     io.trace_output(" terminated:#{terminated}")
+  end
+end
+
+# GET
+class GetStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('GET')]
+    ]
+  end
+
+  include FileFunctions
+  include InputFunctions
+  
+  def initialize(keywords, tokens_lists)
+    super
+
+    template = [[3, '==']]
+
+    if check_template(tokens_lists, template)
+      items = split_tokens(tokens_lists[0], false)
+      @items = tokens_to_expressions(items, :scalar)
+      @elements = make_references(@items)
+      @mccabe += @items.size
+    else
+      @errors << 'Syntax error'
+    end
+  end
+
+  def dump
+    lines = []
+    @items.each { |item| lines += item.dump }
+    lines
+  end
+
+  def execute_core(interpreter)
+    file_no = @items[0]
+    fh = get_file_handle(interpreter, file_no)
+    fhr = interpreter.get_file_handler(fh, :memory)
+
+    line_no = @items[1]
+    line_num = line_no.evaluate(interpreter)
+    line_number = LineNumber.new(line_num[0])
+
+    rec_no = @items[2]
+    rec_num = rec_no.evaluate(interpreter)
+    rec_number = rec_num[0].to_i
+
+    read_items = interpreter.get_record_read_variables(line_number)
+
+    item_names = []
+    read_items.each do |item|
+      targets = item.evaluate(interpreter)
+      targets.each do |target|
+        item_names << target
+      end
+    end
+
+    # always from file, never from console
+    values = fhr.read_record(interpreter, rec_number)
+
+    raise(BASICRuntimeError, 'Not enough values') if
+      values.size < item_names.size
+
+    name_value_pairs =
+      zip(item_names, values[0..item_names.length])
+
+    name_value_pairs.each do |hash|
+      variable = hash['name']
+      value = hash['value']
+      interpreter.set_value(variable, value)
+    end
+
+    interpreter.clear_previous_lines
+  end
+
+  private
+
+  def tokens_to_expressions(tokens_lists, shape)
+    items = []
+
+    tokens_lists.each do |tokens_list|
+      if tokens_list.class.to_s == 'Array'
+        add_expression(items, tokens_list, shape)
+      end
+    end
+
+    items
+  end
+
+  def add_expression(items, tokens, shape)
+    items << ValueExpression.new(tokens, shape)
+  rescue BASICExpressionError
+    line_text = tokens.map(&:to_s).join
+    @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
   end
 end
 
@@ -2949,34 +3034,40 @@ class OpenStatement < AbstractStatement
     template_output_as_file =
       [[1, '>='], 'FOR', 'OUTPUT', 'AS', 'FILE', [1, '>=']]
 
+    template_update = [[2, '>=']]
+
+    ### TODO: add template OPEN filename FOR MEMORY AS FILE #n
+
     if check_template(tokens_lists, template_input_as) ||
        check_template(tokens_lists, template_input_as_file)
 
-      @filename_expression =
-        ValueExpression.new(tokens_lists[0], :scalar)
-
-      @filenum_expression =
-        ValueExpression.new(tokens_lists[-1], :scalar)
+      @filename_expression = ValueExpression.new(tokens_lists[0], :scalar)
+      @filenum_expression = ValueExpression.new(tokens_lists[-1], :scalar)
 
       @elements =
-        make_references(nil, @filename_expression,
-                        @filenum_expression)
+        make_references(nil, @filename_expression, @filenum_expression)
 
       @mode = :read
     elsif check_template(tokens_lists, template_output_as) ||
           check_template(tokens_lists, template_output_as_file)
 
-      @filename_expression =
-        ValueExpression.new(tokens_lists[0], :scalar)
-
-      @filenum_expression =
-        ValueExpression.new(tokens_lists[-1], :scalar)
+      @filename_expression = ValueExpression.new(tokens_lists[0], :scalar)
+      @filenum_expression = ValueExpression.new(tokens_lists[-1], :scalar)
 
       @elements =
-        make_references(nil, @filename_expression,
-                        @filenum_expression)
+        make_references(nil, @filename_expression, @filenum_expression)
 
       @mode = :print
+    elsif check_template(tokens_lists, template_update)
+      split_lists = split_tokens(tokens_lists[0], false)
+
+      @filenum_expression = ValueExpression.new(split_lists[0], :scalar)
+      @filename_expression = ValueExpression.new(split_lists[1], :scalar)
+
+      @elements =
+        make_references(nil, @filename_expression, @filenum_expression)
+
+      @mode = :memory
     else
       @errors << 'Syntax error'
     end
@@ -2993,21 +3084,7 @@ class OpenStatement < AbstractStatement
     filenames = @filename_expression.evaluate(interpreter)
     filename = filenames[0]
     fhs = @filenum_expression.evaluate(interpreter)
-    fh = fhs[0]
-
-    case fh.class.to_s
-    when 'Fixnum'
-      fh = FileHandle.new(fh)
-    when 'NumericConstant'
-      fh = FileHandle.new(fh.to_i)
-    when 'IntegerConstant'
-      fh = FileHandle.new(fh.to_i)
-    when 'FileHandle'
-      fh = fhs[0]
-    else
-      raise(BASICRuntimeError, "Invalid file number #{fh.class}:#{fh}")
-    end
-
+    fh = FileHandle.new(fhs[0])
     interpreter.open_file(filename, fh, @mode)
   end
 end
@@ -3247,6 +3324,86 @@ class PrintUsingStatement < AbstractStatement
   end
 end
 
+# PUT
+class PutStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('PUT')]
+    ]
+  end
+
+  include FileFunctions
+
+  def initialize(keywords, tokens_lists)
+    super
+
+    template = [[3, '==']]
+
+    if check_template(tokens_lists, template)
+      items = split_tokens(tokens_lists[0], false)
+      @items = tokens_to_expressions(items, :scalar)
+      @elements = make_references(@items, @file_tokens)
+      @mccabe += @items.size
+    else
+      @errors << 'Syntax error'
+    end
+  end
+
+  def dump
+    lines = []
+    @items.each { |item| lines += item.dump }
+    lines
+  end
+
+  def execute_core(interpreter)
+    file_no = @items[0]
+    fh = get_file_handle(interpreter, file_no)
+    fhr = interpreter.get_file_handler(fh, :memory)
+
+    line_no = @items[1]
+    line_num = line_no.evaluate(interpreter)
+    line_number = LineNumber.new(line_num[0])
+
+    rec_no = @items[2]
+    rec_num = rec_no.evaluate(interpreter)
+    rec_number = rec_num[0].to_i
+
+    write_items = interpreter.get_record_write_variables(line_number)
+
+    # write variables from record (use ValueExpressions)
+    items = []
+    write_items.each do |item|
+      values = item.evaluate(interpreter)
+      items << values[0].to_s
+    end
+
+    # format variables to string
+    record = items.join(', ')
+    fhr.write_record(record, rec_number)
+  end
+
+  private
+
+  def tokens_to_expressions(tokens_lists, shape)
+    items = []
+
+    tokens_lists.each do |tokens_list|
+      if tokens_list.class.to_s == 'Array'
+        add_expression(items, tokens_list, shape)
+      end
+    end
+
+    items
+  end
+
+  def add_expression(items, tokens, shape)
+    items << ValueExpression.new(tokens, shape)
+  rescue BASICExpressionError
+    line_text = tokens.map(&:to_s).join
+    @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
+  end
+end
+
 # RANDOMIZE
 class RandomizeStatement < AbstractStatement
   def self.lead_keywords
@@ -3320,6 +3477,75 @@ class ReadStatement < AbstractStatement
     end
 
     interpreter.clear_previous_lines
+  end
+end
+
+# RECORD
+class RecordStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('RECORD')],
+      [KeywordToken.new('REC')]
+    ]
+  end
+
+  def initialize(keywords, tokens_lists)
+    super
+
+    template = [[1, '>=']]
+
+    if check_template(tokens_lists, template)
+      items = split_tokens(tokens_lists[0], false)
+      @read_items, @write_items = tokens_to_expressions(items, :scalar)
+      @elements = make_references(@read_items)
+      # TODO: merge these two dictionaries
+      @elements = make_references(@write_items)
+      @mccabe += @write_items.size
+    else
+      @errors << 'Syntax error'
+    end
+  end
+
+  def dump
+    lines = []
+    @read_items.each { |item| lines += item.dump }
+    @write_items.each { |item| lines += item.dump }
+    lines
+  end
+
+  def execute_core(interpreter)
+    interpreter.set_record_read_variables(@read_items)
+    interpreter.set_record_write_variables(@write_items)
+  end
+
+  private
+
+  def tokens_to_expressions(tokens_lists, shape)
+    read_items = []
+    write_items = []
+
+    tokens_lists.each do |tokens_list|
+      if tokens_list.class.to_s == 'Array'
+        add_target_expression(read_items, tokens_list, shape)
+        add_value_expression(write_items, tokens_list, shape)
+      end
+    end
+
+    [read_items, write_items]
+  end
+
+  def add_value_expression(items, tokens, shape)
+    items << ValueExpression.new(tokens, shape)
+  rescue BASICExpressionError
+    line_text = tokens.map(&:to_s).join
+    @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
+  end
+
+  def add_target_expression(items, tokens, shape)
+    items << TargetExpression.new(tokens, shape)
+  rescue BASICExpressionError
+    line_text = tokens.map(&:to_s).join
+    @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
   end
 end
 
@@ -3529,6 +3755,46 @@ class StopStatement < AbstractStatement
     io = interpreter.console_io
     io.newline_when_needed
     interpreter.stop
+  end
+end
+
+# UNSAVE
+class UnsaveStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('UNSAVE')],
+      [KeywordToken.new('UNS')]
+    ]
+  end
+
+  def initialize(keywords, tokens_lists)
+    super
+
+    extract_modifiers(tokens_lists)
+
+    template = [[1, '>=']]
+    template_file = ['FILE', [1, '>=']]
+
+    @filenum_expression = []
+    if check_template(tokens_lists, template) ||
+       check_template(tokens_lists, template_file)
+      @filenum_expression = ValueExpression.new(tokens_lists[-1], :scalar)
+
+      @elements = make_references(nil, @filenum_expression)
+    else
+      @errors << 'Syntax error'
+    end
+  end
+
+  def dump
+    @filenum_expression.dump
+  end
+
+  def execute_core(interpreter)
+    fns = @filenum_expression.evaluate(interpreter)
+    fh = FileHandle.new(fns[0])
+    # TODO: reset file to zero length
+    interpreter.close_file(fh)
   end
 end
 

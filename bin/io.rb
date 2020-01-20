@@ -317,6 +317,8 @@ end
 # reads values from file and writes values to file
 class FileHandler
   def initialize(file_name)
+    raise(BASICRuntimeError, 'No file name') if file_name.nil?
+
     @quotes = ['"']
     @file_name = file_name
     @mode = nil
@@ -334,6 +336,8 @@ class FileHandler
         @file = File.new(@file_name, 'wt')
       when :read
         @file = File.new(@file_name, 'rt')
+      when :memory
+        @data_store = read_file(@file_name)
       else
         raise(BASICRuntimeError, 'Invalid file mode')
       end
@@ -345,11 +349,55 @@ class FileHandler
   end
 
   def close
+    if @mode == :memory
+      write_file(@file_name, @data_store)
+      @data_store = []
+    end
     @file.close unless @file.nil?
   end
 
   def to_s
     @file_name
+  end
+
+  def read_record(interpreter, rec_number)
+    raise(BASICRuntimeError, 'Wrong file mode') if @mode != :memory
+
+    # error if format not specified by RECORD
+    raise(BASICRuntimeError, 'Record number negative') if rec_number < 0
+    raise(BASICRuntimeError, 'Record number too large') if rec_number > 65534
+    raise(BASICRuntimeError, 'Record number beyond end') if rec_number >= @data_store.size
+    
+    input_text = @data_store[rec_number]
+
+    tokenbuilders = make_tokenbuilders(@quotes)
+    tokenizer = Tokenizer.new(tokenbuilders, nil)
+    tokens = tokenizer.tokenize(input_text)
+
+    # drop whitespace
+    tokens.delete_if(&:whitespace?)
+
+    # verify all even-index tokens are numeric or text
+    # verify all odd-index tokens are separators
+    verify_tokens(tokens)
+
+    # convert from tokens to values
+    expressions = ValueExpression.new(tokens, :scalar)
+    expressions.evaluate(interpreter)
+  end
+
+  def write_record(record, rec_number)
+    raise(BASICRuntimeError, 'Wrong file mode') if @mode != :memory
+
+    # error if format not specified by RECORD
+    raise(BASICRuntimeError, 'Record number negative') if rec_number < 0
+    raise(BASICRuntimeError, 'Record number too large') if rec_number > 65534
+
+    # add empty lines if rec_num > size
+    @data_store << "" while @data_store.size < rec_number
+
+    # write to data store
+    @data_store[rec_number] = record
   end
 
   def read_line
@@ -367,8 +415,8 @@ class FileHandler
   end
 
   def last_was_numeric
-    # for a file, this function does nothing
     set_mode(:print)
+    # for a file, this function does nothing
   end
 
   def newline
@@ -377,8 +425,8 @@ class FileHandler
   end
 
   def implied_newline
-    # for a file, this function does nothing
     set_mode(:print)
+    # for a file, this function does nothing
   end
 
   def tab
@@ -435,5 +483,28 @@ class FileHandler
     end
 
     converted
+  end
+
+  def read_file(file_name)
+    lines = []
+    file = File.open(file_name, 'r')
+    file.each_line do |line|
+      lines << line.strip
+    end
+    file.close
+  rescue Exception => e
+    raise(BASICRuntimeError, "Cannot open file '#{@file_name}'")
+  else
+    lines
+  end
+
+  def write_file(file_name, lines)
+    file = File.open(file_name, 'w')
+    lines.each do |line|
+      file.puts(line)
+    end
+    file.close
+  rescue Exception => e
+    raise(BASICRuntimeError, "Cannot write file '#{file_name}'")
   end
 end

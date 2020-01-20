@@ -1,0 +1,37 @@
+10 REM TEST OPEN OUTPUT
+ Remark:TEST OPEN OUTPUT
+20 RECORD A,B,C
+ Variable:A
+ Variable:B
+ Variable:C
+ Variable:A
+ Variable:B
+ Variable:C
+30 OPEN #2, "data.txt"
+ TextConstant:"data.txt"
+ NumericConstant:2
+ UnaryOperator:#
+40 FOR I = 0 TO 2
+ control: Variable:I
+ start:   ["NumericConstant:0"]
+ end:     ["NumericConstant:2"]
+50 GET #2,20,I
+ NumericConstant:2
+ UnaryOperator:#
+ NumericConstant:20
+ Variable:I
+60 PRINT A,B,C
+ Variable:A
+ CarriageControl:,
+ Variable:B
+ CarriageControl:,
+ Variable:C
+ CarriageControl:NL
+70 NEXT I
+ Variable:I
+80 CLOSE #2
+ NumericConstant:2
+ UnaryOperator:#
+99 END
+ 
+

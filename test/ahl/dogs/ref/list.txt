@@ -3,28 +3,17 @@
 15 DIM N$(20),H$(10),P(20)
 20 DIM Y(10),B(11),M5(20)
 25 RECORD V
- 'RECORDV' is not a valid assignment
 30 RECORD X
- 'RECORDX' is not a valid assignment
 35 OPEN 8,"WINS"\OPEN 9, "LOSSES"
- Syntax error
- Syntax error
 40 IF S9=6 THEN 70\FOR I=1 TO 10\GET 8,25,I\V9=V9+V\NEXT I
- 'GET8,25,I' is not a valid assignment
 45 IF V9<25 THEN 60\IF V9>200 THEN 55
 50 GOTO 100
 55 UNSAVE 8\UNSAVE 9
- 'UNSAVE8' is not a valid assignment
- 'UNSAVE9' is not a valid assignment
 60 PRINT "PLEASE WAIT, DISREGARD THE 25 BELLS"
 65 PRINT\PRINT\PRINT\PRINT\PRINT\S9=6\GOTO 35
-70 FOR I=1 TO 26-V9\RANDOMIZE\M=INT(10*RND(X))+1\GET 8,25,H
- 'GET8,25,H' is not a valid assignment
+70 FOR I=1 TO 26-V9\RANDOMIZE\H=INT(10*RND(X))+1\GET 8,25,H
 75 V=V+1\PUT 8,25,H\FOR T=1 TO 10\IF H=T THEN    85
- 'PUT8,25,H' is not a valid assignment
 80 GET 9,30,T\X=X+1\PUT 9,30,T
- 'GET9,30,T' is not a valid assignment
- 'PUT9,30,T' is not a valid assignment
 85 NEXT T
 90 PRINT CHR$(135);
 95 NEXT I
@@ -56,8 +45,6 @@
 230 FOR I=1 TO 10
 235 READ H$(I)
 240 GET 8,25,I\GET 9,30,I
- 'GET8,25,I' is not a valid assignment
- 'GET9,30,I' is not a valid assignment
 245 PRINT H$(I),T,V,X
 250 NEXT I\RETURN
 255 PRINT\PRINT\PRINT "HOW MANY WISH TO BET";
@@ -99,8 +86,6 @@
 435 NEXT I
 440 FOR I=1 TO 10
 445 GET 8,25,I\GET 9,30,I\IF V+X<=0 THEN 470
- 'GET8,25,I' is not a valid assignment
- 'GET9,30,I' is not a valid assignment
 450 RANDOMIZE
 455 Y(I)=INT(V/ABS((V+X))+INT(V*RND(X))*1)
 460 IF Y(I)<7 THEN 470
@@ -206,15 +191,11 @@
 960 PRINT "YOU CAN'T BET OVER $500.00 "N$(I)" TRY AGAIN"
 965 GOTO 930
 970 FOR I=1 TO 10
-975 SET 8,25,I\GET 9,30,I
- 'SET8,25,I' is not a valid assignment
- 'GET9,30,I' is not a valid assignment
+975 GET 8,25,I\GET 9,30,I
 980 IF I=G THEN 995
 985 X=X+1\PUT 9,30,I
- 'PUT9,30,I' is not a valid assignment
 990 GO TO 1000
 995 V=V+1\PUT 8,25,I
- 'PUT8,25,I' is not a valid assignment
 1000 NEXT T
 1005 GOTO 755
 1010 DATA "FASTER ","ZELDA", "SPEEDY", "ZIFFLE", "KILLER"
