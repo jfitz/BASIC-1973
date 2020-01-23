@@ -161,7 +161,7 @@ class Shell
     if args.empty?
       $options.each do |option|
         name = option[0].upcase
-        value = option[1].value.to_s.upcase
+        value = option[1].to_s.upcase
         @console_io.print_line(name + ' ' + value)
       end
     elsif args.size == 1
@@ -541,6 +541,9 @@ $options['lock_fornext'] =
 
 $options['match_fornext'] =
   Option.new(boolean, options.key?(:match_fornext))
+
+$options['max_line_num'] = 16384
+$options['min_line_num'] = 0
 
 $options['min_max_op'] = Option.new(boolean, options.key?(:min_max_op))
 
