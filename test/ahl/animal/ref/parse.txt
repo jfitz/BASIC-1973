@@ -23,6 +23,9 @@
  UnaryOperator:#
  Variable:I%
  Variable:A$
+ control: Variable:I%
+ start:   ["IntegerConstant:1"]
+ end:     ["Variable:N%"]
  IntegerConstant:1
  IntegerConstant:0
  Variable:A$
@@ -42,6 +45,9 @@
 1050 READ A$(I%) FOR I%=0% TO 3%
  Variable:I%
  Variable:A$
+ control: Variable:I%
+ start:   ["IntegerConstant:0"]
+ end:     ["IntegerConstant:3"]
 1100 DATA "4","\QDOES IT SWIM\Y2\N3\","\AFISH","\ABIRD"
  TextConstant:"4"
  TextConstant:"\QDOES IT SWIM\Y2\N3\"
@@ -50,7 +56,17 @@
 1300 INPUT "ARE YOU THINKING OF AN ANIMAL",Z9$:GOTO 1350 IF LEFT(Z9$,1%)="Y":GOTO 1300 IF LEFT(Z9$,1%)="N"
  Variable:Z9$
  LineNumber:1350
+ Variable:Z9$
+ IntegerConstant:1
+ FunctionLeft
+ TextConstant:"Y"
+ BinaryOperator:=
  LineNumber:1300
+ Variable:Z9$
+ IntegerConstant:1
+ FunctionLeft
+ TextConstant:"N"
+ BinaryOperator:=
 1310 IF Z9$="SAVE" THEN OPEN "ANIMAL.GME" FOR OUTPUT AS FILE 1%:PRINT #1%,A$(I%) FOR I%=0% TO VAL(A$(0%)):PRINT #1,CHR$(26%):CLOSE 1%:GOTO 1300
  Variable:Z9$
  TextConstant:"SAVE"
@@ -62,6 +78,9 @@
  Variable:I%
  Variable:A$
  CarriageControl:NL
+ control: Variable:I%
+ start:   ["IntegerConstant:0"]
+ end:     ["IntegerConstant:0", "Variable:A$", "FunctionVal"]
  NumericConstant:1
  UnaryOperator:#
  IntegerConstant:26
@@ -80,6 +99,14 @@
  IntegerConstant:3
  FunctionRight
  CarriageControl:,
+ IntegerConstant:1
+ Variable:I%
+ Variable:A$
+ TextConstant:"\A"
+ FunctionInstr
+ control: Variable:I%
+ start:   ["IntegerConstant:1"]
+ end:     ["IntegerConstant:200"]
  CarriageControl:NL
  LineNumber:1300
 1350 K%=1%
@@ -93,7 +120,18 @@
  UserFunction
  AssignmentOperator:=
  LineNumber:3000
+ Variable:K%
+ Variable:A$
+ FunctionLen
+ IntegerConstant:0
+ BinaryOperator:=
  LineNumber:1400
+ Variable:K%
+ Variable:A$
+ IntegerConstant:2
+ FunctionLeft
+ TextConstant:"\Q"
+ BinaryOperator:=
  TextConstant:"IS IT A "
  CarriageControl:
  Variable:K%
@@ -229,6 +267,9 @@
  Variable:Z9$
  TextConstant:"N"
  AssignmentOperator:=
+ Variable:Z9$
+ TextConstant:"Y"
+ BinaryOperator:<>
  Variable:Z1%
  IntegerConstant:3
  Variable:Q$
