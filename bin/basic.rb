@@ -221,7 +221,7 @@ class Shell
     when 'NEW'
       @program.cmd_new
       @interpreter.clear_variables
-      @interpreter.clear_breakpoints
+      @interpreter.clear_all_breakpoints
     when 'RUN'
       if @program.check
         # duplicate the options
@@ -243,8 +243,10 @@ class Shell
       end
     when 'BREAK'
       @interpreter.set_breakpoints(args)
+    when 'NOBREAK'
+      @interpreter.clear_breakpoints(args)
     when 'LOAD'
-      @interpreter.clear_breakpoints
+      @interpreter.clear_all_breakpoints
       @program.load(args)
     when 'SAVE'
       @program.save(args)
@@ -354,8 +356,8 @@ def make_command_tokenbuilders(quotes)
   tokenbuilders = []
 
   keywords = %w[
-    ANALYZE BREAK BRACKETS CROSSREF DELETE DIMS EXIT LIST LOAD NEW OPTION PARSE
-    PRETTY PROFILE RENUMBER RUN SAVE TOKENS UDFS VARS
+    ANALYZE BREAK NOBREAK BRACKETS CROSSREF DELETE DIMS EXIT LIST LOAD NEW
+    OPTION PARSE PRETTY PROFILE RENUMBER RUN SAVE TOKENS UDFS VARS
     ALLOW_ASCII ALLOW_HASH_CONSTANT ALLOW_PI APOSTROPHE_COMMENT ASC_ALLOW_ALL
     BACK_TAB BACKSLASH_SEPARATOR BANG_COMMENT
     BASE

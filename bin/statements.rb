@@ -1116,15 +1116,13 @@ class ChainStatement < AbstractStatement
   end
 
   def dump
-<<<<<<< HEAD
-    @target.dump
-=======
     lines = ['']
+
+    lines += target.dump
 
     @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
 
     lines
->>>>>>> c5008094cd6e375cb98fef2effa82bf6816456d9
   end
 
   def execute_core(interpreter)
