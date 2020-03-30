@@ -67,6 +67,7 @@ class Interpreter
     @default_args = {}
     @null_out = NullOut.new
     @line_breakpoints = {}
+    @line_cond_breakpoints = {}
     @locked_variables = []
     @fornext_stack = []
     @data_store = DataStore.new
@@ -422,8 +423,21 @@ class Interpreter
     if line_index.zero? &&
        line_statement.zero? &&
        @line_breakpoints.key?(line_number)
-      # TODO if condition is present and condition is true
       breakpoint = true
+    end
+
+    if !breakpoint
+      if @line_cond_breakpoints.key?(line_number)
+        expressions = @line_cond_breakpoints[line_number]
+
+        expressions.each do |expression|
+          results = expression.evaluate(self)
+          result = results[0]
+          if result.value
+            breakpoint = true
+          end
+        end
+      end
     end
 
     # check step mode
@@ -501,8 +515,13 @@ class Interpreter
     if tokens.empty?
       # print breakpoints
       @line_breakpoints.keys.sort.each do |line|
-        condition = @line_breakpoints[line]
-        @console_io.print_line(line.to_s + ': ' + condition)
+        @console_io.print_line(line.to_s)
+      end
+      @line_cond_breakpoints.keys.sort.each do |line|
+        expressions = @line_cond_breakpoints[line]
+        expressions.each do |expression|
+          @console_io.print_line("#{line} IF #{expression}")
+        end
       end
     else
       # kinds of breakpoints
@@ -515,15 +534,32 @@ class Interpreter
         if tokens_list.size == 1
           begin
             line_number = LineNumber.new(tokens_list[0])
-            condition = ''
-            @line_breakpoints[line_number] = condition
+            @line_breakpoints[line_number] = ''
           rescue BASICSyntaxError => e
             tkns = tokens_list.map(&:to_s).join
             @console_io.print_line('INVALID BREAKPOINT ' + tkns)
           end
-        else
-          tkns = tokens_list.map(&:to_s).join
-          @console_io.print_line('INVALID BREAKPOINT ' + tkns)
+        else # tokens_list.size > 1
+          begin
+            line_number = LineNumber.new(tokens_list[0])
+
+            raise(BASICSyntaxError, 'Invalid expression') unless
+              tokens_list[1].keyword? && tokens_list[1].to_s == 'IF'
+
+            raise(BASICExpressionError, 'Empty expression') unless
+              tokens_list.size > 2
+            
+            expr_tokens = tokens_list[2..-1]
+            expression = ValueExpression.new(expr_tokens, :scalar)
+            if @line_cond_breakpoints.key?(line_number)
+              @line_cond_breakpoints[line_number] << expression
+            else
+              @line_cond_breakpoints[line_number] = [expression]
+            end
+          rescue BASICSyntaxError, BASICExpressionError => e
+            tkns = tokens_list.map(&:to_s).join
+            @console_io.print_line('INVALID BREAKPOINT ' + tkns)
+          end
         end
       end
     end
@@ -543,11 +579,13 @@ class Interpreter
           begin
             line_number = LineNumber.new(tokens_list[0])
             @line_breakpoints.delete(line_number)
+            @line_cond_breakpoints.delete(line_number)
           rescue BASICSyntaxError => e
             tkns = tokens_list.map(&:to_s).join
             @console_io.print_line('INVALID BREAKPOINT ' + tkns)
           end
         else
+          # TODO: remove a conditional breakpoint
           tkns = tokens_list.map(&:to_s).join
           @console_io.print_line('INVALID BREAKPOINT ' + tkns)
         end
@@ -557,6 +595,22 @@ class Interpreter
 
   def clear_all_breakpoints
     @line_breakpoints = {}
+    @line_cond_breakpoints = {}
+  end
+
+  def check_breakpoints(lines)
+    errors = []
+    @line_breakpoints.keys.each do |bp_line|
+      errors << 'Breakpoint for non-existent line ' + bp_line.to_s unless
+        lines.key?(bp_line)
+    end
+
+    @line_cond_breakpoints.keys.each do |bp_line|
+      errors << 'Breakpoint for non-existent line ' + bp_line.to_s unless
+        lines.key?(bp_line)
+    end
+
+    errors
   end
 
   def renumber_breakpoints(renumber_map)

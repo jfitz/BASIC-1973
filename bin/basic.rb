@@ -364,7 +364,7 @@ def make_command_tokenbuilders(quotes)
     CHR_ALLOW_ALL COLON_FILE COLON_SEPARATOR CRLF_ON_LINE_INPUT
     DEFAULT_PROMPT DETECT_INFINITE_LOOP
     ECHO FIELD_SEP FORNEXT_ONE_BEYOND HEADING
-    IF_FALSE_NEXT_LINE IGNORE_RND_ARG IMPLIED_SEMICOLON INPUT_HIGH_BIT
+    IF IF_FALSE_NEXT_LINE IGNORE_RND_ARG IMPLIED_SEMICOLON INPUT_HIGH_BIT
     INT_FLOOR LOCK_FORNEXT MATCH_FORNEXT MIN_MAX_OP NEWLINE_SPEED
     PRECISION PRETTY_MULTILINE PRINT_SPEED PRINT_WIDTH PROMPT_COUNT PROVENANCE
     QMARK_AFTER_PROMPT RANDOMIZE REQUIRE_INITIALIZED RESPECT_RANDOMIZE
@@ -379,13 +379,23 @@ def make_command_tokenbuilders(quotes)
   operators = (un_ops + bi_ops).uniq
   tokenbuilders << ListTokenBuilder.new(operators, OperatorToken)
 
+  tokenbuilders << BreakTokenBuilder.new
+
+  tokenbuilders << ListTokenBuilder.new(['('], GroupStartToken)
+  tokenbuilders << ListTokenBuilder.new([')'], GroupEndToken)
   tokenbuilders << ListTokenBuilder.new([',', ';'], ParamSeparatorToken)
+
+  tokenbuilders <<
+    ListTokenBuilder.new(FunctionFactory.function_names, FunctionToken)
+
+  tokenbuilders <<
+    ListTokenBuilder.new(FunctionFactory.user_function_names, UserFunctionToken)
 
   tokenbuilders << TextTokenBuilder.new(quotes)
 
   allow_hash_constant = $options['allow_hash_constant'].value
   tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
-
+  tokenbuilders << VariableTokenBuilder.new
   tokenbuilders << ListTokenBuilder.new(%w[TRUE FALSE], BooleanConstantToken)
   tokenbuilders << WhitespaceTokenBuilder.new
 end
