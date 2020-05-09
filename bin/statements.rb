@@ -1118,7 +1118,7 @@ class ChainStatement < AbstractStatement
   def dump
     lines = ['']
 
-    lines += target.dump
+    lines += @target.dump
 
     @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
 
