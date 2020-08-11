@@ -790,10 +790,6 @@ class Program
     end
 
     okay
-  rescue BASICRuntimeError => e
-    message = "#{e.message} in line #{@line_number}"
-    @console_io.print_line(message)
-    false
   end
 
   def find_closing_next(control, current_line_index)
@@ -830,7 +826,7 @@ class Program
     end
 
     # if none found, error
-    raise(BASICRuntimeError, 'FOR without NEXT')
+    raise(BASICSyntaxError, 'FOR without NEXT')
   end
 
   def run(interpreter)

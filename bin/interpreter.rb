@@ -131,12 +131,12 @@ class Interpreter
   end
 
   def verify_next_line_index
-    raise BASICRuntimeError, 'Program terminated without END' if
+    raise BASICSyntaxError, 'Program terminated without END' if
       @next_line_index.nil?
 
     return if @program.line_number?(@next_line_index.number)
 
-    raise(BASICRuntimeError, "Line number #{@next_line_index.number} not found")
+    raise(BASICSyntaxError, "Line number #{@next_line_index.number} not found")
   end
 
   public
@@ -162,7 +162,7 @@ class Interpreter
   end
 
   def chain(filename)
-    raise(BASICRuntimeError, "Cannot CHAIN in a user function.") unless
+    raise(BASICSyntaxError, "Cannot CHAIN in a user function.") unless
       @function_stack.empty?
 
     @fornexts = {}
@@ -171,9 +171,9 @@ class Interpreter
     @user_function_lines = {}
     @user_var_values = []
 
-    raise(BASICRuntimeError, "Cannot CHAIN") unless @program.load(filename)
+    raise(BASICSyntaxError, "Cannot CHAIN") unless @program.load(filename)
 
-    raise(BASICRuntimeError, "Cannot CHAIN") unless @program.check
+    raise(BASICSyntaxError, "Cannot CHAIN") unless @program.check
 
     @next_line_index = find_first_statement
   end
@@ -246,7 +246,7 @@ class Interpreter
   end
 
   def resume(line_number)
-    raise(BASICRuntimeError, 'RESUME without ON ERROR GOTO') if
+    raise(BASICSyntaxError, 'RESUME without ON ERROR GOTO') if
       @resume_stack.empty?
 
     if line_number.nil?
@@ -267,7 +267,7 @@ class Interpreter
   def execute_a_statement
     detect = $options['detect_infinite_loop'].value
 
-    raise(BASICRuntimeError, 'Infinite loop detected') if
+    raise(BASICSyntaxError, 'Infinite loop detected') if
       detect && @previous_line_indexes.include?(@current_line_index)
 
     @previous_line_indexes << @current_line_index
@@ -291,7 +291,7 @@ class Interpreter
   def run_user_function(name)
     line_index = @user_function_lines[name]
 
-    raise(BASICRuntimeError, "Function #{name} not defined") if line_index.nil?
+    raise(BASICSyntaxError, "Function #{name} not defined") if line_index.nil?
 
     @function_stack.push [name.to_s, @current_line_index, @next_line_index]
     @previous_stack.push @previous_line_indexes
@@ -465,7 +465,7 @@ class Interpreter
         verify_next_line_index
         @current_line_index = @next_line_index
       end
-    rescue BASICRuntimeError => e
+    rescue BASICTrappableError => e
       if @errorgoto_stack.size > @resume_stack.size
         @resume_stack << @current_line_index
         @current_line_index = @errorgoto_stack[-1]
@@ -476,11 +476,11 @@ class Interpreter
         else
           line_number = @current_line_index.number
           @console_io.newline_when_needed
-          @console_io.print_line("#{e.message} in line #{line_number}")
+          @console_io.print_line("Error #{e.code} #{e.message} in line #{line_number}")
         end
         stop_running
       end
-    rescue BASICExpressionError => e
+    rescue BASICSyntaxError => e
       if @current_line_index.nil?
         @console_io.newline_when_needed
         @console_io.print_line(e.message)
@@ -678,7 +678,7 @@ class Interpreter
       end
 
       act = stack.length
-      raise(BASICRuntimeError, 'Bad expression') if act != exp
+      raise(BASICExpressionError, 'Bad expression') if act != exp
 
       next if act.zero?
 
@@ -742,7 +742,7 @@ class Interpreter
   end
 
   def error_line(_)
-    raise(BASICRuntimeError, 'ERL() invoked without error') if
+    raise BASICRuntimeError.new('ERL() invoked without error', 132) if
       @resume_stack.empty?
 
     line_index = @resume_stack[-1]
@@ -810,7 +810,7 @@ class Interpreter
     int_subscripts = normalize_subscripts(subscripts)
     dimensions = make_dimensions(variable, int_subscripts.size)
 
-    raise(BASICRuntimeError, 'Incorrect number of subscripts') if
+    raise(BASICSyntaxError, 'Incorrect number of subscripts') if
       int_subscripts.size != dimensions.size
 
     # lower bound
@@ -820,13 +820,13 @@ class Interpreter
     # check subscript value against lower and upper bounds
     int_subscripts.zip(dimensions).each do |pair|
       if pair[0] < lower
-        raise(BASICRuntimeError,
-              "Subscript #{pair[0]} out of range")
+        raise BASICRuntimeError.new(
+              "Subscript #{pair[0]} out of range", 129)
       end
 
       if pair[0] > pair[1]
-        raise(BASICRuntimeError,
-              "Subscript #{pair[0]} out of range #{pair[1]}")
+        raise BASICRuntimeError.new(
+              "Subscript #{pair[0]} out of range #{pair[1]}", 129)
       end
     end
   end
@@ -862,7 +862,7 @@ class Interpreter
 
       unless @variables.key?(v)
         if $options['require_initialized'].value
-          raise(BASICRuntimeError, "Uninitialized variable #{v}")
+          raise BASICRuntimeError.new("Uninitialized variable #{v}", 118)
         end
 
         # define a value for this variable
@@ -905,17 +905,17 @@ class Interpreter
       'UserFunction'
     ]
 
-    raise(BASICRuntimeError,
+    raise(BASICSyntaxError,
           "#{variable.class}:#{variable} is not a variable name") unless
       legals.include?(variable.class.to_s)
 
-    raise(BASICRuntimeError,
+    raise(BASICSyntaxError,
           "#{variable.class}:#{variable} is not a scalar variable name") if
       variable.class.to_s == 'VariableName' && !variable.scalar?
 
     if $options['lock_fornext'].value &&
        @locked_variables.include?(variable)
-      raise(BASICRuntimeError, "Cannot change locked variable #{variable}")
+      raise BASICRuntimeError.new("Cannot change locked variable #{variable}", 119)
     end
 
     # convert a numeric to a string when a string is expected
@@ -943,7 +943,7 @@ class Interpreter
 
     # check that value type matches variable type
     unless variable.compatible?(value)
-      raise(BASICRuntimeError,
+      raise(BASICSyntaxError,
             "Type mismatch '#{value}' is not #{variable.content_type}")
     end
 
@@ -987,8 +987,8 @@ class Interpreter
     return unless $options['lock_fornext'].value
 
     if @locked_variables.include?(variable)
-      raise(BASICRuntimeError,
-            "Attempt to lock an already locked variable #{variable}")
+      raise BASICRuntimeError.new(
+            "Attempt to lock an already locked variable #{variable}", 133)
     end
 
     @locked_variables << variable
@@ -998,8 +998,8 @@ class Interpreter
     return unless $options['lock_fornext'].value
 
     unless @locked_variables.include?(variable)
-      raise(BASICRuntimeError,
-            "Attempt to unlock a variable #{variable} not locked")
+      raise BASICRuntimeError.new(
+            "Attempt to unlock a variable #{variable} not locked", 121)
     end
 
     @locked_variables.delete(variable)
@@ -1010,7 +1010,8 @@ class Interpreter
   end
 
   def pop_return
-    raise(BASICRuntimeError, 'RETURN without GOSUB') if @return_stack.empty?
+    raise BASICRuntimeError.new('RETURN without GOSUB', 122) if
+      @return_stack.empty?
 
     # remove all lines from the subroutine in the 'visited' list
     while !@previous_line_indexes.empty? &&
@@ -1034,7 +1035,7 @@ class Interpreter
   def retrieve_fornext(control)
     fornext = @fornexts[control]
 
-    raise(BASICRuntimeError, 'NEXT without FOR') if fornext.nil?
+    raise BASICRuntimeError.new('NEXT without FOR', 123) if fornext.nil?
 
     fornext
   end
@@ -1048,7 +1049,7 @@ class Interpreter
   end
 
   def top_fornext
-    raise(BASICRuntimeError, 'Implied NEXT without FOR') if
+    raise BASICRuntimeError.new('Implied NEXT without FOR', 124) if
       @fornext_stack.empty?
 
     @fornext_stack[-1]
@@ -1056,10 +1057,10 @@ class Interpreter
 
   def add_file_names(file_names)
     file_names.each do |name|
-      raise(BASICRuntimeError, 'Invalid file name') unless
+      raise BASICRuntimeError.new('Invalid file name', 125) unless
         name.content_type == :string
 
-      raise(BASICRuntimeError, "File '#{name.to_v}' not found") unless
+      raise BASICRuntimeError.new("File '#{name.to_v}' not found", 126) unless
         File.file?(name.to_v)
 
       file_handle = FileHandle.new(@file_handlers.size + 1)
@@ -1068,7 +1069,7 @@ class Interpreter
   end
 
   def open_file(filename, fh, mode)
-    raise(BASICRuntimeError, 'Invalid file name') unless
+    raise BASICRuntimeError.new('Invalid file name', 125) unless
       filename.text_constant?
 
     ### todo: check for already open handle
@@ -1078,7 +1079,7 @@ class Interpreter
   end
 
   def close_file(fh)
-    raise(BASICRuntimeError, 'Unknown file handle') unless
+    raise BASICRuntimeError.new('Unknown file handle', 127) unless
       @file_handlers.key?(fh)
 
     fhr = @file_handlers[fh]
@@ -1089,7 +1090,7 @@ class Interpreter
   def get_file_handler(file_handle, mode)
     return @console_io if file_handle.nil?
 
-    raise(BASICRuntimeError, 'Unknown file handle') unless
+    raise BASICRuntimeError.new('Unknown file handle', 127) unless
       @file_handlers.key?(file_handle)
 
     fh = @file_handlers[file_handle]
@@ -1099,7 +1100,7 @@ class Interpreter
   end
 
   def get_record_read_variables(line_number)
-    raise(BASICRuntimeError, "Read RECORD #{line_number} not found") unless
+    raise BASICRuntimeError.new("Read RECORD #{line_number} not found", 134) unless
       @record_read_variables.key?(line_number)
 
     @record_read_variables[line_number]
@@ -1111,7 +1112,7 @@ class Interpreter
   end
 
   def get_record_write_variables(line_number)
-    raise(BASICRuntimeError, "Write RECORD #{line_number} not found") unless
+    raise BASICRuntimeError.new("Write RECORD #{line_number} not found", 135) unless
       @record_write_variables.key?(line_number)
 
     @record_write_variables[line_number]
@@ -1125,7 +1126,7 @@ class Interpreter
   def get_data_store(file_handle)
     return @data_store if file_handle.nil?
 
-    raise(BASICRuntimeError, 'Unknown file handle') unless
+    raise BASICRuntimeError.new('Unknown file handle', 127) unless
       @file_handlers.key?(file_handle)
 
     fh = @file_handlers[file_handle]

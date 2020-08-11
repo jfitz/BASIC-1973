@@ -737,7 +737,7 @@ class BinaryOperator < AbstractElement
     a_dims = a.dimensions
     b_dims = b.dimensions
 
-    raise(BASICRuntimeError, 'Matrix dimensions do not match') if
+    raise BASICRuntimeError.new('Matrix dimensions do not match', 113) if
       a_dims != b_dims
 
     values = maximum_matrix_matrix_1(a, b) if a_dims.size == 1
@@ -904,7 +904,8 @@ class BinaryOperator < AbstractElement
   def op_array_array(op, a, b, base)
     dims = b.dimensions
 
-    raise(BASICRuntimeError, 'Arrays of different size') if a.dimensions != dims
+    raise BASICRuntimeError.new('Arrays of different size', 113) if
+      a.dimensions != dims
 
     n_cols = dims[0].to_i
     values = {}

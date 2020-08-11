@@ -37,7 +37,7 @@ class AbstractFunction < AbstractElement
   def default_args(interpreter)
     arg = interpreter.default_args(@name)
 
-    raise(BASICRuntimeError, "#{@name} requires arguments") if arg.nil?
+    raise(BASICSyntaxError, "#{@name} requires arguments") if arg.nil?
 
     arg
   end
@@ -136,8 +136,8 @@ class AbstractMatrixFunction < AbstractFunction
   end
 
   def check_square(dims)
-    raise(BASICRuntimeError, @name + ' requires matrix') unless dims.size == 2
-    raise(BASICRuntimeError, @name + ' requires square matrix') unless
+    raise(BASICSyntaxError, @name + ' requires matrix') unless dims.size == 2
+    raise BASICRuntimeError.new(@name + ' requires square matrix', 114) unless
       dims[1] == dims[0]
   end
 end
@@ -191,34 +191,34 @@ class UserFunction < AbstractScalarFunction
     definition = interpreter.get_user_function(@name)
 
     # verify function is defined
-    raise(BASICRuntimeError, "Function #{@name} not defined") if definition.nil?
+    raise BASICRuntimeError.new("Function #{@name} not defined", 115) if
+      definition.nil?
 
     signature = definition.signature
 
     # verify arguments
     arguments = stack.pop
 
-    if match_args_to_signature(arguments, signature)
-      # dummy variable names and their (now known) values
-      params = definition.arguments
-      param_names_values = params.zip(arguments)
-      names_and_values = Hash[param_names_values]
-      interpreter.define_user_var_values(names_and_values)
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(arguments, signature)
 
-      expression = definition.expression
-      if !expression.nil?
-        results = expression.evaluate(interpreter)
-      else
-        interpreter.run_user_function(@name)
+    # dummy variable names and their (now known) values
+    params = definition.arguments
+    param_names_values = params.zip(arguments)
+    names_and_values = Hash[param_names_values]
+    interpreter.define_user_var_values(names_and_values)
 
-        results = [interpreter.get_value(@name)]
-      end
-
-      interpreter.clear_user_var_values
-      results[0]
+    expression = definition.expression
+    if !expression.nil?
+      results = expression.evaluate(interpreter)
     else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
+      interpreter.run_user_function(@name)
+
+      results = [interpreter.get_value(@name)]
     end
+
+    interpreter.clear_user_var_values
+    results[0]
   end
 
   def evaluate_ref(interpreter, stack)
@@ -238,7 +238,7 @@ class UserFunction < AbstractScalarFunction
       num_args = @subscripts.length
 
       if num_args.zero?
-        raise(BASICRuntimeError,
+        raise(BASICSyntaxError,
               'Variable expects subscripts, found empty parentheses')
       end
 
@@ -255,7 +255,7 @@ class UserFunction < AbstractScalarFunction
       num_args = @subscripts.length
 
       if num_args.zero?
-        raise(BASICRuntimeError,
+        raise(BASICSyntaxError,
               'Variable expects subscripts, found empty parentheses')
       end
 
@@ -279,7 +279,7 @@ class FunctionAbs < AbstractScalarFunction
     if match_args_to_signature(args, @signature)
       args[0].abs
     else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
+      raise BASICRuntimeError.new('Wrong arguments for function', 116)
     end
   end
 end
@@ -297,17 +297,17 @@ class FunctionAsc < AbstractScalarFunction
     if match_args_to_signature(args, @signature)
       text = args[0].to_v
 
-      raise(BASICRuntimeError, 'Empty string in ASC()') if text.empty?
+      raise BASICRuntimeError.new('Empty string in ASC()', 128) if text.empty?
 
       value = text[0].ord
 
-      raise(BASICRuntimeError, 'Invalid value in ASC()') unless
+      raise BASICRuntimeError.new('Invalid value in ASC()', 129) unless
         value.between?(32, 126) || interpreter.asc_allow_all
 
       token = NumericConstantToken.new(value.to_s)
       NumericConstant.new(token)
     else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
+      raise BASICRuntimeError.new('Wrong arguments for function', 116)
     end
   end
 end
@@ -323,7 +323,7 @@ class FunctionArcCos < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise(BASICRuntimeError, 'Wrong arguments for function') unless
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
       match_args_to_signature(args, @signature)
 
     args[0].arccos
@@ -341,7 +341,7 @@ class FunctionArcSin < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise(BASICRuntimeError, 'Wrong arguments for function') unless
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
       match_args_to_signature(args, @signature)
 
     args[0].arcsin
@@ -368,7 +368,7 @@ class FunctionArcTan < AbstractScalarFunction
     elsif match_args_to_signature(args, @signature_2)
       args[0].atn2(args[1])
     else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
+      raise BASICRuntimeError.new('Wrong arguments for function', 116)
     end
   end
 end
@@ -387,7 +387,7 @@ class FunctionChr < AbstractScalarFunction
     if match_args_to_signature(args, @signature)
       value = args[0].to_i
 
-      raise(BASICRuntimeError, 'Invalid value for CHR$()') unless
+      raise BASICRuntimeError.new('Invalid value for CHR$()', 129) unless
         value.between?(32, 126) || interpreter.chr_allow_all
 
       text = value.chr
@@ -395,7 +395,7 @@ class FunctionChr < AbstractScalarFunction
       token = TextConstantToken.new(quoted)
       TextConstant.new(token)
     else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
+      raise BASICRuntimeError.new('Wrong arguments for function', 116)
     end
   end
 end
@@ -423,7 +423,7 @@ class FunctionCon1 < AbstractScalarFunction
         values = BASICArray.one_values(dims)
         BASICArray.new(dims, values)
       else
-        raise(BASICRuntimeError, 'Wrong arguments for function')
+        raise BASICRuntimeError.new('Wrong arguments for function', 116)
       end
     else
       args = default_args(interpreter)
@@ -466,7 +466,7 @@ class FunctionCon2 < AbstractScalarFunction
         values = Matrix.one_values(dims)
         Matrix.new(dims, values)
       else
-        raise(BASICRuntimeError, 'Wrong arguments for function')
+        raise BASICRuntimeError.new('Wrong arguments for function', 116)
       end
     else
       args = default_args(interpreter)
@@ -487,11 +487,11 @@ class FunctionCos < AbstractScalarFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      args[0].cos
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
+
+    args[0].cos
   end
 end
 
@@ -505,11 +505,11 @@ class FunctionCot < AbstractScalarFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      args[0].cot
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
+
+    args[0].cot
   end
 end
 
@@ -524,7 +524,7 @@ class FunctionCsc < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise(BASICRuntimeError, 'Wrong arguments for function') unless
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
       match_args_to_signature(args, @signature)
 
     args[0].csc
@@ -541,11 +541,11 @@ class FunctionDet < AbstractMatrixFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      args[0].determinant
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
+
+    args[0].determinant
   end
 end
 
@@ -569,7 +569,7 @@ class FunctionErl < AbstractScalarFunction
       elsif match_args_to_signature(args, @signature_1)
         interpreter.error_line(args[0])
       else
-        raise(BASICRuntimeError, 'Wrong arguments for function')
+        raise BASICRuntimeError.new('Wrong arguments for function', 116)
       end
     else
       arg = NumericConstant.new(0)
@@ -588,11 +588,11 @@ class FunctionExp < AbstractScalarFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      args[0].exp
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
+
+    args[0].exp
   end
 end
 
@@ -612,21 +612,21 @@ class FunctionExt < AbstractScalarFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      value = args[0].to_v
-      start = args[1].to_i
-      stop = args[2].to_i
 
-      raise(BASICRuntimeError, 'Invalid index for EXT$()') if
-        start < 1 || start > value.size || stop < start || stop > value.size
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
 
-      text = value[(start - 1)..(stop - 1)]
-      quoted = '"' + text + '"'
-      token = TextConstantToken.new(quoted)
-      TextConstant.new(token)
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+    value = args[0].to_v
+    start = args[1].to_i
+    stop = args[2].to_i
+
+    raise BASICRuntimeError.new('Invalid index for EXT$()', 129) if
+      start < 1 || start > value.size || stop < start || stop > value.size
+
+    text = value[(start - 1)..(stop - 1)]
+    quoted = '"' + text + '"'
+    token = TextConstantToken.new(quoted)
+    TextConstant.new(token)
   end
 end
 
@@ -642,7 +642,7 @@ class FunctionFrac < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise(BASICRuntimeError, 'Wrong arguments for function') unless
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
       match_args_to_signature(args, @signature)
 
     args[0] - args[0].truncate
@@ -677,18 +677,19 @@ class FunctionIdn < AbstractScalarFunction
         values = Matrix.identity_values(dims)
         Matrix.new(dims, values)
       elsif match_args_to_signature(args, @signature_2)
-        raise(BASICRuntimeError, @name + ' requires square matrix') unless
+        raise BASICRuntimeError.new(@name + ' requires square matrix', 114) unless
           args[1] == args[0]
 
         dims = args.clone
         values = Matrix.identity_values(dims)
         Matrix.new(dims, values)
       else
-        raise(BASICRuntimeError, 'Wrong arguments for function')
+        raise BASICRuntimeError.new('Wrong arguments for function', 116)
       end
     else
       args = default_args(interpreter)
-      raise(BASICRuntimeError, @name + ' requires square matrix') unless
+
+      raise BASICRuntimeError.new(@name + ' requires square matrix', 114) unless
         args.size == 2 && args[1] == args[0]
 
       dims = args.clone
@@ -712,26 +713,27 @@ class FunctionInstr < AbstractScalarFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      start = args[0].to_i
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
 
-      raise(BASICRuntimeError, "Invalid start index for #{@name}()") if
-        start < 1
+    start = args[0].to_i
 
-      start -= 1
-      value = args[1].to_v
-      search = args[2].to_v
-      index = value.index(search, start)
-      if index.nil?
-        index = 0
-      else
-        index += 1
-      end
-      token = IntegerConstantToken.new(index)
-      IntegerConstant.new(token)
+    raise BASICRuntimeError.new("Invalid start index for #{@name}()", 129) if
+      start < 1
+
+    start -= 1
+    value = args[1].to_v
+    search = args[2].to_v
+    index = value.index(search, start)
+
+    if index.nil?
+      index = 0
     else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
+      index += 1
     end
+
+    token = IntegerConstantToken.new(index)
+    IntegerConstant.new(token)
   end
 end
 
@@ -746,11 +748,11 @@ class FunctionInt < AbstractScalarFunction
   # return a single value
   def evaluate(interpreter, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      interpreter.int_floor? ? args[0].floor : args[0].truncate
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
+
+    interpreter.int_floor? ? args[0].floor : args[0].truncate
   end
 end
 
@@ -764,13 +766,13 @@ class FunctionInv < AbstractMatrixFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      dims = args[0].dimensions
-      check_square(dims)
-      Matrix.new(dims.clone, args[0].inverse_values)
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
+
+    dims = args[0].dimensions
+    check_square(dims)
+    Matrix.new(dims.clone, args[0].inverse_values)
   end
 end
 
@@ -789,24 +791,25 @@ class FunctionLeft < AbstractScalarFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      value = args[0].to_v
-      count = args[1].to_i
 
-      raise(BASICRuntimeError, "Invalid count for #{@name}()") if count < 0
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
 
-      if count > 0
-        count2 = count - 1
-        text = value[0..count2]
-      else
-        text = ''
-      end
-      quoted = '"' + text + '"'
-      token = TextConstantToken.new(quoted)
-      TextConstant.new(token)
+    value = args[0].to_v
+    count = args[1].to_i
+
+    raise BASICRuntimeError.new("Invalid count for #{@name}()", 130) if
+      count < 0
+
+    if count > 0
+      count2 = count - 1
+      text = value[0..count2]
     else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
+      text = ''
     end
+    quoted = '"' + text + '"'
+    token = TextConstantToken.new(quoted)
+    TextConstant.new(token)
   end
 end
 
@@ -820,14 +823,14 @@ class FunctionLen < AbstractScalarFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      text = args[0].to_v
-      length = text.size
-      token = NumericConstantToken.new(length.to_s)
-      NumericConstant.new(token)
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
+
+    text = args[0].to_v
+    length = text.size
+    token = NumericConstantToken.new(length.to_s)
+    NumericConstant.new(token)
   end
 end
 
@@ -841,11 +844,11 @@ class FunctionLog < AbstractScalarFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      args[0].log
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
+
+    args[0].log
   end
 end
 
@@ -865,33 +868,33 @@ class FunctionMid < AbstractScalarFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      value = args[0].to_v
-      start = args[1].to_i
-      length = args[2].to_i
 
-      raise(BASICRuntimeError, "Invalid start index for #{@name}()") if
-        start < 1
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
 
-      raise(BASICRuntimeError, "Invalid length for #{@name}()") if
-        length < 0
+    value = args[0].to_v
+    start = args[1].to_i
+    length = args[2].to_i
 
-      if length > 0
-        start_index = start - 1
-        end_index = start_index + length - 1
+    raise BASICRuntimeError.new("Invalid start index for #{@name}()", 129) if
+      start < 1
 
-        text = value[start_index..end_index]
-        text = '' if text.nil?
-      else
-        text = ''
-      end
+    raise BASICRuntimeError.new("Invalid length for #{@name}()", 131) if
+      length < 0
 
-      quoted = '"' + text + '"'
-      token = TextConstantToken.new(quoted)
-      TextConstant.new(token)
+    if length > 0
+      start_index = start - 1
+      end_index = start_index + length - 1
+
+      text = value[start_index..end_index]
+      text = '' if text.nil?
     else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
+      text = ''
     end
+
+    quoted = '"' + text + '"'
+    token = TextConstantToken.new(quoted)
+    TextConstant.new(token)
   end
 end
 
@@ -910,7 +913,7 @@ class FunctionMod < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise(BASICRuntimeError, 'Wrong arguments for function') unless
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
       match_args_to_signature(args, @signature)
 
     args[0].mod(args[1])
@@ -928,14 +931,15 @@ class FunctionPack < AbstractArrayFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      array = args[0]
-      dims = array.dimensions
-      raise(BASICRuntimeError, @name + ' requires array') unless dims.size == 1
-      array.pack
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
+
+    array = args[0]
+    dims = array.dimensions
+
+    raise(BASICSyntaxError, @name + ' requires array') unless dims.size == 1
+
+    array.pack
   end
 end
 
@@ -954,21 +958,22 @@ class FunctionRight < AbstractScalarFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      value = args[0].to_v
-      count = args[1].to_i
 
-      raise(BASICRuntimeError, "Invalid count for #{@name}()") if count < 0
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
 
-      start = value.size - count
-      start = 0 if start < 0
-      text = value[start..-1]
-      quoted = '"' + text + '"'
-      token = TextConstantToken.new(quoted)
-      TextConstant.new(token)
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+    value = args[0].to_v
+    count = args[1].to_i
+
+    raise BASICRuntimeError.new("Invalid count for #{@name}()", 130) if
+      count < 0
+
+    start = value.size - count
+    start = 0 if start < 0
+    text = value[start..-1]
+    quoted = '"' + text + '"'
+    token = TextConstantToken.new(quoted)
+    TextConstant.new(token)
   end
 end
 
@@ -986,7 +991,7 @@ class FunctionRound < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise(BASICRuntimeError, 'Wrong arguments for function') unless
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
       match_args_to_signature(args, @signature)
 
     args[0].round(args[1])
@@ -1013,7 +1018,7 @@ class FunctionRnd < AbstractScalarFunction
       elsif match_args_to_signature(args, @signature_1)
         interpreter.rand(args[0])
       else
-        raise(BASICRuntimeError, 'Wrong arguments for function')
+        raise BASICRuntimeError.new('Wrong arguments for function', 116)
       end
     else
       arg = default_args(interpreter)
@@ -1033,7 +1038,7 @@ class FunctionSec < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise(BASICRuntimeError, 'Wrong arguments for function') unless
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
       match_args_to_signature(args, @signature)
 
     args[0].sec
@@ -1050,11 +1055,11 @@ class FunctionSgn < AbstractScalarFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      args[0].sign
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
+
+    args[0].sign
   end
 end
 
@@ -1068,11 +1073,11 @@ class FunctionSin < AbstractScalarFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      args[0].sin
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
+
+    args[0].sin
   end
 end
 
@@ -1087,22 +1092,22 @@ class FunctionSpc < AbstractScalarFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      width = args[0].to_v
 
-      if width > 0
-        spaces = ' ' * width
-      else
-        # zero or negative value yields empty string
-        spaces = ''
-      end
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
 
-      quoted = '"' + spaces + '"'
-      v = TextConstantToken.new(quoted)
-      TextConstant.new(v)
+    width = args[0].to_v
+
+    if width > 0
+      spaces = ' ' * width
     else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
+      # zero or negative value yields empty string
+      spaces = ''
     end
+
+    quoted = '"' + spaces + '"'
+    v = TextConstantToken.new(quoted)
+    TextConstant.new(v)
   end
 end
 
@@ -1116,11 +1121,11 @@ class FunctionSqr < AbstractScalarFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      args[0].sqrt
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
+
+    args[0].sqrt
   end
 end
 
@@ -1140,6 +1145,7 @@ class FunctionStr < AbstractScalarFunction
   # return a single value
   def evaluate(_, stack)
     args = stack.pop
+
     if match_args_to_signature(args, @signature_1)
       text = args[0].to_s
       quoted = '"' + text + '"'
@@ -1153,7 +1159,7 @@ class FunctionStr < AbstractScalarFunction
       token = TextConstantToken.new(quoted)
       TextConstant.new(token)
     else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
+      raise BASICRuntimeError.new('Wrong arguments for function', 116)
     end
   end
 end
@@ -1169,22 +1175,24 @@ class FunctionTab < AbstractScalarFunction
 
   def evaluate(interpreter, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      console_io = interpreter.console_io
-      width = console_io.columns_to_advance(args[0].to_v)
-      if width > 0
-        spaces = ' ' * width
-      elsif width < 0
-        spaces = "\b" * -width
-      else
-        spaces = ''
-      end
-      quoted = '"' + spaces + '"'
-      v = TextConstantToken.new(quoted)
-      TextConstant.new(v)
+
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
+
+    console_io = interpreter.console_io
+    width = console_io.columns_to_advance(args[0].to_v)
+
+    if width > 0
+      spaces = ' ' * width
+    elsif width < 0
+      spaces = "\b" * -width
     else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
+      spaces = ''
     end
+
+    quoted = '"' + spaces + '"'
+    v = TextConstantToken.new(quoted)
+    TextConstant.new(v)
   end
 end
 
@@ -1198,11 +1206,11 @@ class FunctionTan < AbstractScalarFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      args[0].tan
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
+
+    args[0].tan
   end
 end
 
@@ -1216,15 +1224,15 @@ class FunctionTime < AbstractScalarFunction
 
   def evaluate(interpreter, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      # ignore argument
-      now = Time.now
-      start = interpreter.start_time
-      result = now - start
-      NumericConstant.new(result)
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
+
+    # ignore argument
+    now = Time.now
+    start = interpreter.start_time
+    result = now - start
+    NumericConstant.new(result)
   end
 end
 
@@ -1238,12 +1246,12 @@ class FunctionUnpack < AbstractScalarFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      text = args[0]
-      text.unpack
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
+
+    text = args[0]
+    text.unpack
   end
 end
 
@@ -1257,13 +1265,13 @@ class FunctionTrn < AbstractMatrixFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      dims = args[0].dimensions
-      new_dims = [dims[1], dims[0]]
-      Matrix.new(new_dims, args[0].transpose_values)
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
+
+    dims = args[0].dimensions
+    new_dims = [dims[1], dims[0]]
+    Matrix.new(new_dims, args[0].transpose_values)
   end
 end
 
@@ -1277,13 +1285,13 @@ class FunctionVal < AbstractScalarFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    if match_args_to_signature(args, @signature)
-      f = args[0].to_v.to_f
-      token = NumericConstantToken.new(f)
-      NumericConstant.new(token)
-    else
-      raise(BASICRuntimeError, 'Wrong arguments for function')
-    end
+
+    raise BASICRuntimeError.new('Wrong arguments for function', 116) unless
+      match_args_to_signature(args, @signature)
+
+    f = args[0].to_v.to_f
+    token = NumericConstantToken.new(f)
+    NumericConstant.new(token)
   end
 end
 
@@ -1310,7 +1318,7 @@ class FunctionZer1 < AbstractScalarFunction
         values = BASICArray.zero_values(dims)
         BASICArray.new(dims, values)
       else
-        raise(BASICRuntimeError, 'Wrong arguments for function')
+        raise BASICRuntimeError.new('Wrong arguments for function', 116)
       end
     else
       args = default_args(interpreter)
@@ -1353,7 +1361,7 @@ class FunctionZer2 < AbstractScalarFunction
         values = Matrix.zero_values(dims)
         Matrix.new(dims, values)
       else
-        raise(BASICRuntimeError, 'Wrong arguments for function')
+        raise BASICRuntimeError.new('Wrong arguments for function', 116)
       end
     else
       args = default_args(interpreter)
