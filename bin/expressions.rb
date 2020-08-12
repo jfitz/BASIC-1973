@@ -577,43 +577,45 @@ class Matrix
   end
 end
 
-# Entgry for cross-reference list
+# Entry for cross-reference list
 class XrefEntry
   attr_reader :variable
   attr_reader :signature
   attr_reader :is_ref
 
-  def initialize(variable, arguments, is_ref)
-    @variable = variable
-    @signature = nil
+  def self.make_signature(arguments)
+    return nil if arguments.nil?
 
-    unless arguments.nil?
-      sigil_chars = {
-        numeric: '_',
-        integer: '%',
-        string: '$',
-        boolean: '?'
-      }
+    sigil_chars = {
+      numeric: '_',
+      integer: '%',
+      string: '$',
+      boolean: '?'
+    }
 
-      sigils = []
+    sigils = []
 
-      arguments.each do |arg|
-        content_type = :empty
-        if arg.class.to_s == 'Array'
-          # an array is a parsed expression
-          unless arg.empty?
-            a0 = arg[-1]
-            content_type = a0.content_type
-          end
-        else
-          content_type = arg.content_type
+    arguments.each do |arg|
+      content_type = :empty
+      if arg.class.to_s == 'Array'
+        # an array is a parsed expression
+        unless arg.empty?
+          a0 = arg[-1]
+          content_type = a0.content_type
         end
-
-        sigils << sigil_chars[content_type]
+      else
+        content_type = arg.content_type
       end
-      @signature = sigils
+
+      sigils << sigil_chars[content_type]
     end
 
+    return sigils
+  end
+  
+  def initialize(variable, signature, is_ref)
+    @variable = variable
+    @signature = signature
     @is_ref = is_ref
   end
 
@@ -1122,7 +1124,8 @@ class AbstractExpression
 
           is_ref = thing.reference?
 
-          vars << XrefEntry.new(thing.to_s, arguments, is_ref)
+          signature = XrefEntry.make_signature(arguments)
+          vars << XrefEntry.new(thing.to_s, signature, is_ref)
         end
 
         previous = thing
@@ -1148,7 +1151,8 @@ class AbstractExpression
 
           is_ref = false
 
-          opers << XrefEntry.new(thing.to_s, arguments, is_ref)
+          signature = XrefEntry.make_signature(arguments)
+          opers << XrefEntry.new(thing.to_s, signature, is_ref)
         end
 
         previous = thing
@@ -1175,7 +1179,8 @@ class AbstractExpression
 
           is_ref = thing.reference?
 
-          vars << XrefEntry.new(thing.to_s, arguments, is_ref)
+          signature = XrefEntry.make_signature(arguments)
+          vars << XrefEntry.new(thing.to_s, signature, is_ref)
         end
 
         previous = thing
@@ -1202,7 +1207,8 @@ class AbstractExpression
 
           is_ref = thing.reference?
 
-          vars << XrefEntry.new(thing.to_s, arguments, is_ref)
+          signature = XrefEntry.make_signature(arguments)
+          vars << XrefEntry.new(thing.to_s, signature, is_ref)
         end
 
         previous = thing
@@ -1458,7 +1464,8 @@ class UserFunctionDefinition
       @variables = []
       @operators = []
       @functions = []
-      xr = XrefEntry.new(@name.to_s, @arguments, true)
+      signature = XrefEntry.make_signature(@arguments)
+      xr = XrefEntry.new(@name.to_s, signature, true)
       @userfuncs = [xr]
     else
       @numerics = @expression.numerics
@@ -1468,7 +1475,8 @@ class UserFunctionDefinition
       @variables = @expression.variables
       @operators = @expression.operators
       @functions = @expression.functions
-      xr = XrefEntry.new(@name.to_s, @arguments, true)
+      signature = XrefEntry.make_signature(@arguments)
+      xr = XrefEntry.new(@name.to_s, signature, true)
       @userfuncs = [xr] + @expression.userfuncs
     end
 
@@ -1488,6 +1496,13 @@ class UserFunctionDefinition
     @arguments.each { |arg| lines << arg.dump }
     lines += @expression.dump unless @expression.nil?
     lines
+  end
+
+  def to_s
+    vnames = @arguments.map(&:to_s).join(',')
+    s = @name.to_s + '(' + vnames + ')'
+    s += '=' + @expression.to_s unless @expression.nil?
+    s
   end
 
   def signature
