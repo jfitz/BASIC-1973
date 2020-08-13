@@ -1432,6 +1432,7 @@ end
 class UserFunctionDefinition
   attr_reader :name
   attr_reader :arguments
+  attr_reader :sig
   attr_reader :expression
   attr_reader :numerics
   attr_reader :num_symbols
@@ -1453,6 +1454,7 @@ class UserFunctionDefinition
     user_function_prototype = UserFunctionPrototype.new(parts[0])
     @name = user_function_prototype.name
     @arguments = user_function_prototype.arguments
+    @sig = XrefEntry.make_signature(@arguments)
     @expression = nil
     @expression = ValueExpression.new(parts[2], :scalar) if parts.size == 3
 
