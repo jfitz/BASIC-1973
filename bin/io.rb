@@ -90,8 +90,6 @@ class ConsoleIo
 
     raise BASICRuntimeError.new('End of file', 102) if input_text.nil?
 
-    raise BASICRuntimeError.new('End of file', 102) if input_text.empty?
-
     input_text.bytes.collect { |c| raise BASICRuntimeError.new('BREAK', 138) if c < 8 }
 
     ascii_text = ascii_printables(input_text)
@@ -112,7 +110,9 @@ class ConsoleIo
     raise BASICRuntimeError.new('End of file', 102) if input_text.nil?
 
     ascii_text = ascii_printables(input_text)
+
     puts(ascii_text) if $options['echo'].value
+
     ascii_text
   end
 

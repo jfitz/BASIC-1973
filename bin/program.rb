@@ -782,10 +782,15 @@ class Program
       @line_number = line_number
       statements = line.statements
       statements.each do |statement|
-        okay &=
-          statement.preexecute_a_statement(line_number,
-                                           interpreter,
-                                           @console_io)
+        begin
+          okay &=
+            statement.preexecute_a_statement(line_number,
+                                             interpreter,
+                                             @console_io)
+        rescue
+          @console_io.print_line("Error #{e.code} #{e.message}")
+          okay = false
+        end
       end
     end
 

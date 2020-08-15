@@ -558,7 +558,7 @@ $options['lock_fornext'] =
 $options['match_fornext'] =
   Option.new(boolean, options.key?(:match_fornext))
 
-$options['max_line_num'] = 16384
+$options['max_line_num'] = 32767
 $options['min_line_num'] = 0
 
 $options['min_max_op'] = Option.new(boolean, options.key?(:min_max_op))

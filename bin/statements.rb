@@ -1517,20 +1517,14 @@ class FilesStatement < AbstractStatement
   end
 
   def dump
-    lines = []
-    
     @expressions.dump unless @expressions.nil?
-
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
-
-    lines
   end
 
   def pre_execute(interpreter)
     file_names = @expressions.evaluate(interpreter)
     interpreter.add_file_names(file_names)
-  rescue BASICRuntimeError
-    false
+  rescue BASICRuntimeError => e
+    raise BASICPreexecuteError.new(e.message, e.code)
   end
 
   def execute_core(_) end
