@@ -618,6 +618,7 @@ class AbstractStatement
 
         # control array and value array implies an expression
         result &= value.size == control[0] if control.size == 1
+
         result &= value.size >= control[0] if
           control.size == 2 && control[1] == '>='
 
@@ -1729,11 +1730,28 @@ class GetStatement < AbstractStatement
   def initialize(keywords, tokens_lists)
     super
 
-    template = [[3, '==']]
+    template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
       items = split_tokens(tokens_lists[0], false)
+      if items.size == 3
+        line_no = items[1]
+        if line_no.empty?
+          @errors << 'No line number'
+        else
+          line_num = line_no[0]
+          begin
+            @line_number = LineNumber.new(line_num)
+          rescue BASICSyntaxError => e
+            @errors << e.message
+          end
+        end
+      else
+        @errors << 'Syntax error'
+      end
+
       @items = tokens_to_expressions(items, :scalar)
+
       @elements = make_references(@items)
       @mccabe += @items.size
     else
@@ -1747,20 +1765,29 @@ class GetStatement < AbstractStatement
     lines
   end
 
+  def program_check(program, console_io, line_number_index)
+    retval = true
+
+    unless program.line_number?(@line_number)
+      console_io.print_line(
+        "Line number #{@line_number} not found in line #{line_number_index}"
+      )
+      retval = false
+    end
+
+    retval
+  end
+
   def execute_core(interpreter)
     file_no = @items[0]
     fh = get_file_handle(interpreter, file_no)
     fhr = interpreter.get_file_handler(fh, :memory)
 
-    line_no = @items[1]
-    line_num = line_no.evaluate(interpreter)
-    line_number = LineNumber.new(line_num[0])
-
     rec_no = @items[2]
     rec_num = rec_no.evaluate(interpreter)
     rec_number = rec_num[0].to_i
 
-    read_items = interpreter.get_record_read_variables(line_number)
+    read_items = interpreter.get_record_read_variables(@line_number)
 
     item_names = []
     read_items.each do |item|
@@ -1786,6 +1813,21 @@ class GetStatement < AbstractStatement
     end
 
     interpreter.clear_previous_lines
+  end
+
+  def renumber(renumber_map)
+    @line_number = renumber_map[@line_number]
+    @token_index = -1
+    i = 0
+    num_commas = 1
+    @tokens.each do |token|
+      @token_index = i if token.numeric_constant? && num_commas == 1
+
+      num_commas += 1 if token.separator?
+
+      i += 1
+    end
+    @tokens[@token_index] = NumericConstantToken.new(@line_number.line_number)
   end
 
   private
@@ -3426,11 +3468,28 @@ class PutStatement < AbstractStatement
   def initialize(keywords, tokens_lists)
     super
 
-    template = [[3, '==']]
+    template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
       items = split_tokens(tokens_lists[0], false)
+      if items.size == 3
+        line_no = items[1]
+        if line_no.empty?
+          @errors << 'No line number'
+        else
+          line_num = line_no[0]
+          begin
+            @line_number = LineNumber.new(line_num)
+          rescue BASICSyntaxError => e
+            @errors << e.message
+          end
+        end
+      else
+        @errors << 'Syntax error'
+      end
+
       @items = tokens_to_expressions(items, :scalar)
+
       @elements = make_references(@items, @file_tokens)
       @mccabe += @items.size
     else
@@ -3444,20 +3503,29 @@ class PutStatement < AbstractStatement
     lines
   end
 
+  def program_check(program, console_io, line_number_index)
+    retval = true
+
+    unless program.line_number?(@line_number)
+      console_io.print_line(
+        "Line number #{@line_number} not found in line #{line_number_index}"
+      )
+      retval = false
+    end
+
+    retval
+  end
+
   def execute_core(interpreter)
     file_no = @items[0]
     fh = get_file_handle(interpreter, file_no)
     fhr = interpreter.get_file_handler(fh, :memory)
 
-    line_no = @items[1]
-    line_num = line_no.evaluate(interpreter)
-    line_number = LineNumber.new(line_num[0])
-
     rec_no = @items[2]
     rec_num = rec_no.evaluate(interpreter)
     rec_number = rec_num[0].to_i
 
-    write_items = interpreter.get_record_write_variables(line_number)
+    write_items = interpreter.get_record_write_variables(@line_number)
 
     # write variables from record (use ValueExpressions)
     items = []
@@ -3469,6 +3537,21 @@ class PutStatement < AbstractStatement
     # format variables to string
     record = items.join(', ')
     fhr.write_record(record, rec_number)
+  end
+
+  def renumber(renumber_map)
+    @line_number = renumber_map[@line_number]
+    @token_index = -1
+    i = 0
+    num_commas = 1
+    @tokens.each do |token|
+      @token_index = i if token.numeric_constant? && num_commas == 1
+
+      num_commas += 1 if token.separator?
+
+      i += 1
+    end
+    @tokens[@token_index] = NumericConstantToken.new(@line_number.line_number)
   end
 
   private

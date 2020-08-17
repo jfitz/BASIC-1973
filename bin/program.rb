@@ -3,7 +3,7 @@ class LineNumber
   attr_reader :line_number
 
   def initialize(line_number)
-    raise BASICSyntaxError, "Invalid line number object '#{line_number}:#{line_number}'" unless
+    raise BASICSyntaxError, "Invalid line number object '#{line_number.class}:#{line_number}'" unless
       %w[NumericConstantToken NumericConstant].include?(line_number.class.to_s)
 
     @line_number = line_number.to_i
