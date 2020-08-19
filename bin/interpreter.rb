@@ -233,7 +233,7 @@ class Interpreter
   end
 
   def seterrorgoto(line_number)
-    if line_number.zero?
+    if line_number.nil?
       # zero means we discard the current error handler
       @errorgoto_stack.pop
     else
