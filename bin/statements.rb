@@ -1774,6 +1774,7 @@ class GetStatement < AbstractStatement
       @items = tokens_to_expressions(items, :scalar)
 
       @elements = make_references(@items)
+      @items.each { |item| @comprehension_effort += item.comprehension_effort }
       @mccabe += @items.size
     else
       @errors << 'Syntax error'
@@ -3544,6 +3545,7 @@ class PutStatement < AbstractStatement
       @items = tokens_to_expressions(items, :scalar)
 
       @elements = make_references(@items, @file_tokens)
+      @items.each { |item| @comprehension_effort += item.comprehension_effort }
       @mccabe += @items.size
     else
       @errors << 'Syntax error'
