@@ -153,10 +153,10 @@ When the BASIC program ends, BASIC-1973 ends.
 |--crlf-on-line-input |On LINE INPUT statement, include the CR/LF as part of the value stored in the variable.
 |--no-detect-infinite-loop |Disables checks for infinite loops.
 |--echo-input |Echoes console input to output. Useful in run mode when redirecting input from a text file.
+|--extend-if |Statements following an IF statement on the same line are associated with the last clause of the IF statement.
 |--field-sep-semi |Sets field separator for ARR PRINT and MAT PRINT statements to semicolon, which provides narrow spacing.
 |--fornext-one-beyond |When a FOR/NEXT loop ends, the index value is one step (usually 1) beyond the end value. (Normally index value is the end value.)
 |--hash-constant |Allow numeric constants in the form '#c' where c is any single character. Disables file handle operator and the not-equals operator, which are also represented by '#'.
-|--if-false-next-line |When an IF without an ELSE and with a statement (not a destination line number) evaluates its condition as false, change execution to the next numbered line, not the next statement in a multistatment line.
 |--ignore-rnd-arg |The RND function ignores its argument and provides a number between zero and one. This matches the behavior of certain BASICs, including K&K.
 |--implied-semicolon |When printing items not delimited by a comma or semicolon, provide spacing as if a semicolon was provided. (Normally the items have no spaces between them.)
 |--input-high-bit |Changes the values returned from INPUT$ statements to set the high bit on.
@@ -1235,23 +1235,27 @@ in the code:
      	100 IF A = 10 THEN PRINT "A=10":PRINT "ALL DONE"
 	110 LET C = 20
 
-When A is equal to 10, the text "A=10" is printed, and then the text "ALL DONE" is printed. (And then C is set to 20.)
+When A is equal to 10, the text "A=10" is printed, and then the text "ALL DONE" is printed, and then C is set to 20.
 
 When the expression evaluates as false, the THEN clause is not executed. Whether the clause is a line number or a statement, it is skipped and the next statement is executed.
 
 In our example code, when A is not equal to 10, the text "ALL DONE" is printed and then C is set to 20.
 
-The --if-false-next-line option changes this behavior. When specified, control after a false IF with no ELSE and with a statement clause is changed to the next numbered line.
+The --extend-if option changes this behavior. When specified, the statements following the IF statement are associated with the last clause (the THEN or the ELSE) of that statement.
 
-In our example code, when A is not equal to 10 and --if-false-next-line is specified, no text is printed and C is set to 20.
+In our example code, when --extend-if is specified and A is equal to 10, "A=10" and "ALL DONE" are printed, and C is set to 20.
+When A is not equal to 10, no text is printed and C is set to 20.
 
-The --if-false-next-line option has no effect on IF statements with destination line numbers. Why? Because it makes no sense. Consider the code:
+The --extend-if option has no effect on IF statements with destination line numbers. Why? Because it makes no sense. Consider the code:
 
     	100 IF A = 10 THEN 200 : PRINT "A NOT EQUAL TO 10"
 	110 C = 20
 
-If A is equal to 10, control is passed to line 200 and no text is printed. If A is not equal to 10, then the text "A NOT EQUAL TO 10" is printed. The --if-fail-next-line option, for this line, would force control to the next line for the false condition. That would mean that the PRINT statement would never execute. It would not execute when the condition is true, and it would not execute when the condition is false. Any statement after an IF with a destination would be dead code. Thus, the option is not considered when the THEN clause holds a line number.
+If A is equal to 10, control is passed to line 200 and no text is printed. If A is not equal to 10, then the text "A NOT EQUAL TO 10" is printed. The --extend-if option, for this line, would force control to the next line for the false condition. That would mean that the PRINT statement would never execute. It would not execute when the condition is true, and it would not execute when the condition is false. Any statement after an IF with a destination would be dead code. Thus, the option is not considered when the THEN clause holds a line number.
 
+When there is no ELSE clause, the --extend-if option associates trailing statements with the THEN statement.
+When there is an ELSE line number, the --extend-if option has no effect.
+When there is an ELSE statement, the --extend-if option associates trailing statements with the ELSE statement.
 
 INPUT
 ~~~~~
