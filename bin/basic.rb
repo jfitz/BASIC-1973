@@ -51,6 +51,12 @@ class Option
   private
 
   def check_value(value)
+    check_value_and_type(value)
+  rescue BASICSyntaxError => e
+    raise e unless @defs.key?(:off) && value == @defs[:off]
+  end
+
+  def check_value_and_type(value)
     case @defs[:type]
     when :bool
       legals = %w[TrueClass FalseClass]
@@ -481,7 +487,7 @@ show_profile = options.key?(:profile)
 boolean = { type: :bool }
 string = { type: :string }
 int = { type: :int, min: 0 }
-int_1_17 = { type: :int, max: 17, min: 1 }
+int_1_17 = { type: :int, max: 17, min: 1, off: 'INFINITE' }
 int_132 = { type: :int, max: 132, min: 0 }
 int_40 = { type: :int, max: 40, min: 0 }
 int_1 = { type: :int, max: 1, min: 0 }
@@ -566,7 +572,12 @@ newline_speed = 10 if options.key?(:tty_lf)
 $options['newline_speed'] = Option.new(int, newline_speed)
 
 precision = 9
-precision = options[:precision].to_i if options.key?(:precision)
+if options.key?(:precision)
+  precision = options[:precision]
+  if precision.match(/\A\d+\z/)
+    precision = precision.to_i
+  end
+end
 $options['precision'] = Option.new(int_1_17, precision)
 
 $options['pretty_multiline'] =
