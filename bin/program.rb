@@ -318,14 +318,15 @@ class Program
 
   def initialize(console_io, tokenbuilders)
     @console_io = console_io
-    @lines = {}
-    @errors = []
     @statement_factory = StatementFactory.instance
     @statement_factory.tokenbuilders = tokenbuilders
+    @lines = {}
+    @errors = []
   end
 
   def clear
     @lines = {}
+    @errors = []
   end
 
   def empty?
@@ -536,82 +537,53 @@ class Program
 
   public
 
-  def cmd_new
-    @lines = {}
-    @errors = check_program
-    @console_io.newline
-  end
-
   def list(args, list_tokens)
-    texts = []
+    raise(BASICCommandError, 'No program loaded') if @lines.empty?
+
     line_number_range = line_list_spec(args)
-
-    if !@lines.empty?
-      line_numbers = line_number_range.line_numbers
-      texts += list_lines_errors(line_numbers, list_tokens)
-      texts += @errors
-    else
-      texts << 'No program loaded'
-    end
-
-    texts
+    line_numbers = line_number_range.line_numbers
+    list_lines_errors(line_numbers, list_tokens)
   end
 
   def parse(args)
-    texts = []
+    raise(BASICCommandError, 'No program loaded') if @lines.empty?
+
     line_number_range = line_list_spec(args)
-
-    if !@lines.empty?
-      line_numbers = line_number_range.line_numbers
-      texts += parse_lines_errors(line_numbers)
-    else
-      texts << 'No program loaded'
-    end
-
-    texts
+    line_numbers = line_number_range.line_numbers
+    parse_lines_errors(line_numbers)
   end
 
   # report statistics, complexity, and the lines which are unreachable
   def analyze
+    raise(BASICCommandError, 'No program loaded') if @lines.empty?
+
     texts = []
     
-    if !@lines.empty?
-      # report statistics
-      texts << 'Statistics:'
-      texts << ''
-      texts += code_statistics
-      texts << ''
+    # report statistics
+    texts << 'Statistics:'
+    texts << ''
+    texts += code_statistics
+    texts << ''
 
-      # report complexity
-      texts << 'Complexity:'
-      texts << ''
-      texts += code_complexity
-      texts << ''
+    # report complexity
+    texts << 'Complexity:'
+    texts << ''
+    texts += code_complexity
+    texts << ''
 
-      # report unreachable lines
-      texts << 'Unreachable code:'
-      texts << ''
-      texts += unreachable_code
-    else
-      texts << 'No program loaded'
-    end
-
-    texts
+    # report unreachable lines
+    texts << 'Unreachable code:'
+    texts << ''
+    texts += unreachable_code
   end
 
   def pretty(args, pretty_multiline)
-    texts = []
+    raise(BASICCommandError, 'No program loaded') if @lines.empty?
+
     line_number_range = line_list_spec(args)
 
-    if !@lines.empty?
-      line_numbers = line_number_range.line_numbers
-      texts += pretty_lines_errors(line_numbers, pretty_multiline)
-      texts += @errors
-    else
-      texts << 'No program loaded'
-    end
-
-    texts
+    line_numbers = line_number_range.line_numbers
+    pretty_lines_errors(line_numbers, pretty_multiline)
   end
 
   def reset_profile_metrics
@@ -963,14 +935,9 @@ class Program
   end
 
   def profile(args, show_timing)
-    texts = []
+    raise(BASICCommandError, 'No program loaded') if @lines.empty?
+
     line_number_range = line_list_spec(args)
-
-    if @lines.empty?
-      texts << 'No program loaded'
-      return
-    end
-
     line_numbers = line_number_range.line_numbers
     profile_lines_errors(line_numbers, show_timing)
   end
@@ -995,6 +962,8 @@ class Program
   public
 
   def save(tokens)
+    raise(BASICCommandError, 'No program loaded') if @lines.empty?
+
     if tokens.empty?
       @console_io.print_line('Filename not specified')
       return false
@@ -1018,18 +987,13 @@ class Program
       return false
     end
 
-    if @lines.empty?
-      @console_io.print_line('No program loaded')
-      return false
-    end
-
     save_file(filename)
   end
 
   def delete(args)
-    line_number_range = line_list_spec(args)
-
     raise(BASICCommandError, 'No program loaded') if @lines.empty?
+
+    line_number_range = line_list_spec(args)
 
     raise(BASICCommandError, 'Type NEW to delete an entire program') if
       line_number_range.range_type == :all
@@ -1054,6 +1018,8 @@ class Program
 
   # generate new line numbers
   def renumber(args)
+    raise(BASICCommandError, 'No program loaded') if @lines.empty?
+
     start, step = renumber_spec(args)
     renumber_map = {}
     new_number = start
@@ -1083,7 +1049,7 @@ class Program
   def numeric_refs
     refs = {}
 
-    @lines.keys.sort.each do |line_number|
+    @lines.keys.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
 
@@ -1102,7 +1068,7 @@ class Program
   def num_symbol_refs
     refs = {}
 
-    @lines.keys.sort.each do |line_number|
+    @lines.keys.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
 
@@ -1120,7 +1086,7 @@ class Program
   def text_refs
     refs = {}
 
-    @lines.keys.sort.each do |line_number|
+    @lines.keys.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
 
@@ -1139,7 +1105,7 @@ class Program
   def text_symbol_refs
     refs = {}
 
-    @lines.keys.sort.each do |line_number|
+    @lines.keys.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
 
@@ -1157,7 +1123,7 @@ class Program
   def function_refs
     refs = {}
 
-    @lines.keys.sort.each do |line_number|
+    @lines.keys.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
 
@@ -1176,7 +1142,7 @@ class Program
   def user_function_refs
     refs = {}
 
-    @lines.keys.sort.each do |line_number|
+    @lines.keys.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
 
@@ -1195,7 +1161,7 @@ class Program
   def variables_refs
     refs = {}
 
-    @lines.keys.sort.each do |line_number|
+    @lines.keys.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
 
@@ -1214,7 +1180,7 @@ class Program
   def operators_refs
     refs = {}
 
-    @lines.keys.sort.each do |line_number|
+    @lines.keys.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
 
@@ -1233,7 +1199,7 @@ class Program
   def linenums_refs
     refs = {}
 
-    @lines.keys.sort.each do |line_number|
+    @lines.keys.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
 
@@ -1375,6 +1341,8 @@ class Program
 
   # generate cross-reference list
   def crossref
+    raise(BASICCommandError, 'No program loaded') if @lines.empty?
+
     texts = []
     
     texts << 'Cross reference'
