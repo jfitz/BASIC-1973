@@ -973,7 +973,7 @@ module InputFunctions
   end
 
   def zip(names, values)
-    raise BASICRuntimeError.new('Too few items', :te_too_few) if
+    raise BASICRuntimeError.new(:te_too_few) if
       values.size < names.size
 
     results = []
@@ -1349,7 +1349,7 @@ class DataStatement < AbstractStatement
     data_list = @expressions.evaluate(interpreter)
     ds.store(data_list)
   rescue BASICRuntimeError => e
-    raise BASICPreexecuteError.new(e.message, e.scode)
+    raise BASICPreexecuteError.new(e.scode, e.message)
   end
 
   def execute_core(_) end
@@ -1409,7 +1409,7 @@ class DefineFunctionStatement < AbstractStatement
     signature = @definition.sig
     interpreter.set_user_function(name, signature, @definition)
   rescue BASICRuntimeError => e
-    raise BASICPreexecuteError.new(e.message, e.scode)
+    raise BASICPreexecuteError.new(e.scode, e.message)
   end
 
   def execute_core(_) end
@@ -1547,7 +1547,7 @@ class FilesStatement < AbstractStatement
     file_names = @expressions.evaluate(interpreter)
     interpreter.add_file_names(file_names)
   rescue BASICRuntimeError => e
-    raise BASICPreexecuteError.new(e.message, e.scode)
+    raise BASICPreexecuteError.new(e.scode, e.message)
   end
 
   def execute_core(_) end
@@ -1834,7 +1834,7 @@ class GetStatement < AbstractStatement
     # always from file, never from console
     values = fhr.read_record(interpreter, rec_number)
 
-    raise BASICRuntimeError.new('Not enough values', :te_too_few) if
+    raise BASICRuntimeError.new(:te_too_few) if
       values.size < item_names.size
 
     name_value_pairs =
@@ -2103,7 +2103,7 @@ class GotoStatement < AbstractStatement
       io.trace_output(' ' + @expression.to_s + ' = ' + value.to_s)
       index = value.to_i
 
-      raise BASICRuntimeError.new('Index out of range', :te_val_out) if
+      raise BASICRuntimeError.new(:te_val_out) if
         index < 1 || index > @destinations.size
 
       # get destination in list
@@ -2679,7 +2679,7 @@ class InputStatement < AbstractStatement
       values = fhr.input(interpreter)
     end
 
-    raise BASICRuntimeError.new('Not enough values', :te_too_few) if
+    raise BASICRuntimeError.new(:te_too_few) if
       values.size < item_names.size
 
     name_value_pairs =
@@ -3220,7 +3220,7 @@ class OnStatement < AbstractStatement
     io.trace_output(' ' + @expression.to_s + ' = ' + value.to_s)
     index = value.to_i
 
-    raise BASICRuntimeError.new('Index out of range', :te_val_out) if
+    raise BASICRuntimeError.new(:te_val_out) if
       index < 1 || index > @destinations.size
 
     # get destination in list
@@ -3505,7 +3505,7 @@ class PrintUsingStatement < AbstractStatement
 
     format_spec, items = extract_format(@items, interpreter)
 
-    raise BASICRuntimeError.new('No print format', :te_no_fmt) if
+    raise BASICRuntimeError.new(:te_no_fmt) if
       format_spec.nil?
 
     # split format
@@ -3520,7 +3520,7 @@ class PrintUsingStatement < AbstractStatement
         items.shift while
           !items.empty? && items[0].carriage_control?
 
-        raise BASICRuntimeError.new('Too few print items for format', :te_few_fmt) if
+        raise BASICRuntimeError.new(:te_few_fmt) if
           items.empty?
 
         item = items.shift
@@ -4278,7 +4278,7 @@ class ArrInputStatement < AbstractStatement
       values = file_values(fhr, interpreter)
     end
 
-    raise BASICRuntimeError.new('Not enough values', :te_too_few) if
+    raise BASICRuntimeError.new(:te_too_few) if
       values.size < item_names.size
 
     # use names based on variable dimensions
@@ -4635,7 +4635,7 @@ class MatInputStatement < AbstractStatement
       values = file_values(fhr, interpreter)
     end
 
-    raise BASICRuntimeError.new('Not enough values', :te_too_few) if
+    raise BASICRuntimeError.new(:te_too_few) if
       values.size < item_names.size
 
     # use names based on variable dimensions
