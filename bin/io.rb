@@ -23,14 +23,14 @@ module Reader
     evens = tokens.values_at(* tokens.each_index.select(&:even?))
 
     evens.each do |token|
-      raise BASICRuntimeError.new('Invalid input', 137) unless
+      raise BASICRuntimeError.new('Invalid input', :te_inp_no_num_text) unless
         token.numeric_constant? || token.text_constant?
     end
 
     odds = tokens.values_at(* tokens.each_index.select(&:odd?))
 
     odds.each do |token|
-      raise BASICRuntimeError.new('Invalid input', 101) unless token.separator?
+      raise BASICRuntimeError.new('Invalid input', :te_inp_inv) unless token.separator?
     end
   end
 end
@@ -88,13 +88,13 @@ class ConsoleIo
       input_text = STDIN.getc
     end
 
-    raise BASICRuntimeError.new('End of file', 102) if input_text.nil?
+    raise BASICRuntimeError.new('End of file', :te_eof) if input_text.nil?
 
-    input_text.bytes.collect { |c| raise BASICRuntimeError.new('BREAK', 138) if c < 8 }
+    input_text.bytes.collect { |c| raise BASICRuntimeError.new('BREAK', :te_break) if c < 8 }
 
     ascii_text = ascii_printables(input_text)
 
-    raise BASICRuntimeError.new('End of file', 102) if ascii_text.empty?
+    raise BASICRuntimeError.new('End of file', :te_eof) if ascii_text.empty?
 
     print(ascii_text)
 
@@ -107,7 +107,7 @@ class ConsoleIo
   def read_line
     input_text = gets
 
-    raise BASICRuntimeError.new('End of file', 102) if input_text.nil?
+    raise BASICRuntimeError.new('End of file', :te_eof) if input_text.nil?
 
     ascii_text = ascii_printables(input_text)
 
@@ -303,7 +303,7 @@ class DataStore
   end
 
   def read
-    raise BASICRuntimeError.new('Out of data', 103) if
+    raise BASICRuntimeError.new('Out of data', :te_out_of_data) if
       @data_index >= @data_store.size
 
     @data_index += 1
@@ -318,7 +318,7 @@ end
 # reads values from file and writes values to file
 class FileHandler
   def initialize(file_name)
-    raise BASICRuntimeError.new('No file name', 104) if file_name.nil?
+    raise BASICRuntimeError.new('No file name', :te_fname_no) if file_name.nil?
 
     @quotes = ['"']
     @file_name = file_name
@@ -340,11 +340,11 @@ class FileHandler
       when :memory
         @data_store = read_file(@file_name)
       else
-        raise BASICRuntimeError.new('Invalid file mode', 105)
+        raise BASICRuntimeError.new('Invalid file mode', :te_mode_inv)
       end
       @mode = mode
     else
-      raise BASICRuntimeError.new('Inconsistent file operation', 106) unless
+      raise BASICRuntimeError.new('Inconsistent file operation', :te_op_inc) unless
         @mode == mode
     end
   end
@@ -362,14 +362,15 @@ class FileHandler
   end
 
   def read_record(interpreter, rec_number)
-    raise BASICRuntimeError.new('Wrong file mode', 139) if @mode != :memory
+    raise BASICRuntimeError.new('Wrong file mode', :te_mode_inc) if
+      @mode != :memory
 
     # error if format not specified by RECORD
-    raise BASICRuntimeError.new('Record number negative', 140) if
+    raise BASICRuntimeError.new('Record number negative', :te_recno_inv) if
       rec_number < 0
-    raise BASICRuntimeError.new('Record number too large', 140) if
+    raise BASICRuntimeError.new('Record number too large', :te_recno_inv) if
       rec_number > 65534
-    raise BASICRuntimeError.new('Record number beyond end', 141) if
+    raise BASICRuntimeError.new('Record number beyond end', :te_recno_out) if
       rec_number >= @data_store.size
     
     input_text = @data_store[rec_number]
@@ -391,12 +392,13 @@ class FileHandler
   end
 
   def write_record(record, rec_number)
-    raise BASICRuntimeError.new('Wrong file mode', 139) if @mode != :memory
+    raise BASICRuntimeError.new('Wrong file mode', :te_mode_inc) if
+      @mode != :memory
 
     # error if format not specified by RECORD
-    raise BASICRuntimeError.new('Record number negative', 140) if
+    raise BASICRuntimeError.new('Record number negative', :te_recno_inv) if
       rec_number < 0
-    raise BASICRuntimeError.new('Record number too large', 140) if
+    raise BASICRuntimeError.new('Record number too large', :te_recno_inv) if
       rec_number > 65534
 
     # add empty lines if rec_num > size
@@ -409,7 +411,7 @@ class FileHandler
   def read_line
     input_text = @file.gets
 
-    raise BASICRuntimeError.new('End of file', 107) if input_text.nil?
+    raise BASICRuntimeError.new('End of file', :te_eof) if input_text.nil?
 
     input_text = input_text.chomp
     ascii_printables(input_text)
@@ -465,7 +467,7 @@ class FileHandler
     while data_store.empty?
       line = file.gets
 
-      raise BASICRuntimeError.new('End of file', 107) if line.nil?
+      raise BASICRuntimeError.new('End of file', :te_eof) if line.nil?
 
       line = line.chomp
 
@@ -499,7 +501,7 @@ class FileHandler
     end
     file.close
   rescue Exception => e
-    raise BASICRuntimeError.new("Cannot open file '#{@file_name}'", 142)
+    raise BASICRuntimeError.new("Cannot open file '#{@file_name}'", :te_file_no_read)
   else
     lines
   end
@@ -511,6 +513,6 @@ class FileHandler
     end
     file.close
   rescue Exception => e
-    raise BASICRuntimeError.new("Cannot write file '#{file_name}'", 143)
+    raise BASICRuntimeError.new("Cannot write file '#{file_name}'", :te_file_no_write)
   end
 end
