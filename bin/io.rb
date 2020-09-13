@@ -90,7 +90,7 @@ class ConsoleIo
 
     raise BASICRuntimeError.new(:te_eof) if input_text.nil?
 
-    input_text.bytes.collect { |c| raise BASICRuntimeError.new('BREAK', :te_break) if c < 8 }
+    input_text.bytes.collect { |c| raise BASICRuntimeError.new(:te_break) if c < 8 }
 
     ascii_text = ascii_printables(input_text)
 
@@ -501,7 +501,7 @@ class FileHandler
     end
     file.close
   rescue Exception => e
-    raise BASICRuntimeError.new(:te_file_no_read, "Cannot read file '#{@file_name}'")
+    raise BASICRuntimeError.new(:te_file_no_read, file_name)
   else
     lines
   end
@@ -513,6 +513,6 @@ class FileHandler
     end
     file.close
   rescue Exception => e
-    raise BASICRuntimeError.new(:te_file_no_write, "Cannot write file '#{file_name}'")
+    raise BASICRuntimeError.new(:te_file_no_write, file_name)
   end
 end

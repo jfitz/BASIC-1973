@@ -137,7 +137,7 @@ class AbstractMatrixFunction < AbstractFunction
 
   def check_square(dims)
     raise(BASICSyntaxError, @name + ' requires matrix') unless dims.size == 2
-    raise BASICRuntimeError.new(:te_mat_no_sq, @name + ' requires square matrix') unless
+    raise BASICRuntimeError.new(:te_mat_no_sq, @name) unless
       dims[1] == dims[0]
   end
 end
@@ -274,7 +274,7 @@ class FunctionAbs < AbstractScalarFunction
     if match_args_to_signature(args, @signature)
       args[0].abs
     else
-      raise BASICRuntimeError.new(:te_args_no_match)
+      raise BASICRuntimeError.new(:te_args_no_match, @name)
     end
   end
 end
@@ -292,18 +292,18 @@ class FunctionAsc < AbstractScalarFunction
     if match_args_to_signature(args, @signature)
       text = args[0].to_v
 
-      raise BASICRuntimeError.new(:te_str_empty) if
+      raise BASICRuntimeError.new(:te_str_empty, @name) if
         text.empty?
 
       value = text[0].ord
 
-      raise BASICRuntimeError.new(:te_val_out) unless
+      raise BASICRuntimeError.new(:te_val_out, @name) unless
         value.between?(32, 126) || interpreter.asc_allow_all
 
       token = NumericConstantToken.new(value.to_s)
       NumericConstant.new(token)
     else
-      raise BASICRuntimeError.new(:te_args_no_match)
+      raise BASICRuntimeError.new(:te_args_no_match, @name)
     end
   end
 end
@@ -319,7 +319,7 @@ class FunctionArcCos < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     args[0].arccos
@@ -337,7 +337,7 @@ class FunctionArcSin < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     args[0].arcsin
@@ -364,7 +364,7 @@ class FunctionArcTan < AbstractScalarFunction
     elsif match_args_to_signature(args, @signature_2)
       args[0].atn2(args[1])
     else
-      raise BASICRuntimeError.new(:te_args_no_match)
+      raise BASICRuntimeError.new(:te_args_no_match, @name)
     end
   end
 end
@@ -383,7 +383,7 @@ class FunctionChr < AbstractScalarFunction
     if match_args_to_signature(args, @signature)
       value = args[0].to_i
 
-      raise BASICRuntimeError.new(:te_val_out) unless
+      raise BASICRuntimeError.new(:te_val_out, @name) unless
         value.between?(32, 126) || interpreter.chr_allow_all
 
       text = value.chr
@@ -391,7 +391,7 @@ class FunctionChr < AbstractScalarFunction
       token = TextConstantToken.new(quoted)
       TextConstant.new(token)
     else
-      raise BASICRuntimeError.new(:te_args_no_match)
+      raise BASICRuntimeError.new(:te_args_no_match, @name)
     end
   end
 end
@@ -419,7 +419,7 @@ class FunctionCon1 < AbstractScalarFunction
         values = BASICArray.one_values(dims)
         BASICArray.new(dims, values)
       else
-        raise BASICRuntimeError.new(:te_args_no_match)
+        raise BASICRuntimeError.new(:te_args_no_match, @name)
       end
     else
       args = default_args(interpreter)
@@ -462,7 +462,7 @@ class FunctionCon2 < AbstractScalarFunction
         values = Matrix.one_values(dims)
         Matrix.new(dims, values)
       else
-        raise BASICRuntimeError.new(:te_args_no_match)
+        raise BASICRuntimeError.new(:te_args_no_match, @name)
       end
     else
       args = default_args(interpreter)
@@ -484,7 +484,7 @@ class FunctionCos < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     args[0].cos
@@ -502,7 +502,7 @@ class FunctionCot < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     args[0].cot
@@ -520,7 +520,7 @@ class FunctionCsc < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     args[0].csc
@@ -538,7 +538,7 @@ class FunctionDet < AbstractMatrixFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     args[0].determinant
@@ -565,7 +565,7 @@ class FunctionErl < AbstractScalarFunction
       elsif match_args_to_signature(args, @signature_1)
         interpreter.error_line(args[0])
       else
-        raise BASICRuntimeError.new(:te_args_no_match)
+        raise BASICRuntimeError.new(:te_args_no_match, @name)
       end
     else
       arg = NumericConstant.new(0)
@@ -585,7 +585,7 @@ class FunctionExp < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     args[0].exp
@@ -609,14 +609,14 @@ class FunctionExt < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     value = args[0].to_v
     start = args[1].to_i
     stop = args[2].to_i
 
-    raise BASICRuntimeError.new(:te_val_out) if
+    raise BASICRuntimeError.new(:te_val_out, @name) if
       start < 1 || start > value.size || stop < start || stop > value.size
 
     text = value[(start - 1)..(stop - 1)]
@@ -638,7 +638,7 @@ class FunctionFrac < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     args[0] - args[0].truncate
@@ -673,19 +673,19 @@ class FunctionIdn < AbstractScalarFunction
         values = Matrix.identity_values(dims)
         Matrix.new(dims, values)
       elsif match_args_to_signature(args, @signature_2)
-        raise BASICRuntimeError.new(:te_mat_no_sq) unless
+        raise BASICRuntimeError.new(:te_mat_no_sq, @name) unless
           args[1] == args[0]
 
         dims = args.clone
         values = Matrix.identity_values(dims)
         Matrix.new(dims, values)
       else
-        raise BASICRuntimeError.new(:te_args_no_match)
+        raise BASICRuntimeError.new(:te_args_no_match, @name)
       end
     else
       args = default_args(interpreter)
 
-      raise BASICRuntimeError.new(:te_mat_no_sq) unless
+      raise BASICRuntimeError.new(:te_mat_no_sq, @name) unless
         args.size == 2 && args[1] == args[0]
 
       dims = args.clone
@@ -709,13 +709,12 @@ class FunctionInstr < AbstractScalarFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     start = args[0].to_i
 
-    raise BASICRuntimeError.new(:te_val_out, "Invalid start index for #{@name}()") if
-      start < 1
+    raise BASICRuntimeError.new(:te_val_out, @name) if start < 1
 
     start -= 1
     value = args[1].to_v
@@ -745,7 +744,7 @@ class FunctionInt < AbstractScalarFunction
   def evaluate(interpreter, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     interpreter.int_floor? ? args[0].floor : args[0].truncate
@@ -763,7 +762,7 @@ class FunctionInv < AbstractMatrixFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     dims = args[0].dimensions
@@ -788,14 +787,13 @@ class FunctionLeft < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     value = args[0].to_v
     count = args[1].to_i
 
-    raise BASICRuntimeError.new(:te_count_inv, "Invalid count for #{@name}()") if
-      count < 0
+    raise BASICRuntimeError.new(:te_count_inv, @name) if count < 0
 
     if count > 0
       count2 = count - 1
@@ -820,7 +818,7 @@ class FunctionLen < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     text = args[0].to_v
@@ -841,7 +839,7 @@ class FunctionLog < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     args[0].log
@@ -865,18 +863,16 @@ class FunctionMid < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     value = args[0].to_v
     start = args[1].to_i
     length = args[2].to_i
 
-    raise BASICRuntimeError.new(:te_val_out, "Invalid start index for #{@name}()") if
-      start < 1
+    raise BASICRuntimeError.new(:te_val_out, @name) if start < 1
 
-    raise BASICRuntimeError.new(:te_len_inv, "Invalid length for #{@name}()") if
-      length < 0
+    raise BASICRuntimeError.new(:te_len_inv, @name) if length < 0
 
     if length > 0
       start_index = start - 1
@@ -909,7 +905,7 @@ class FunctionMod < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     args[0].mod(args[1])
@@ -927,7 +923,7 @@ class FunctionPack < AbstractArrayFunction
 
   def evaluate(_, stack)
     args = stack.pop
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     array = args[0]
@@ -955,14 +951,13 @@ class FunctionRight < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     value = args[0].to_v
     count = args[1].to_i
 
-    raise BASICRuntimeError.new(:te_count_inv, "Invalid count for #{@name}()") if
-      count < 0
+    raise BASICRuntimeError.new(:te_count_inv, @name) if count < 0
 
     start = value.size - count
     start = 0 if start < 0
@@ -987,7 +982,7 @@ class FunctionRound < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     args[0].round(args[1])
@@ -1014,7 +1009,7 @@ class FunctionRnd < AbstractScalarFunction
       elsif match_args_to_signature(args, @signature_1)
         interpreter.rand(args[0])
       else
-        raise BASICRuntimeError.new(:te_args_no_match)
+        raise BASICRuntimeError.new(:te_args_no_match, @name)
       end
     else
       arg = default_args(interpreter)
@@ -1034,7 +1029,7 @@ class FunctionSec < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     args[0].sec
@@ -1052,7 +1047,7 @@ class FunctionSgn < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     args[0].sign
@@ -1070,7 +1065,7 @@ class FunctionSin < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     args[0].sin
@@ -1089,7 +1084,7 @@ class FunctionSpc < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     width = args[0].to_v
@@ -1118,7 +1113,7 @@ class FunctionSqr < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     args[0].sqrt
@@ -1155,7 +1150,7 @@ class FunctionStr < AbstractScalarFunction
       token = TextConstantToken.new(quoted)
       TextConstant.new(token)
     else
-      raise BASICRuntimeError.new(:te_args_no_match)
+      raise BASICRuntimeError.new(:te_args_no_match, @name)
     end
   end
 end
@@ -1172,7 +1167,7 @@ class FunctionTab < AbstractScalarFunction
   def evaluate(interpreter, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     console_io = interpreter.console_io
@@ -1203,7 +1198,7 @@ class FunctionTan < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     args[0].tan
@@ -1221,7 +1216,7 @@ class FunctionTime < AbstractScalarFunction
   def evaluate(interpreter, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     # ignore argument
@@ -1243,7 +1238,7 @@ class FunctionUnpack < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     text = args[0]
@@ -1262,7 +1257,7 @@ class FunctionTrn < AbstractMatrixFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     dims = args[0].dimensions
@@ -1282,7 +1277,7 @@ class FunctionVal < AbstractScalarFunction
   def evaluate(_, stack)
     args = stack.pop
 
-    raise BASICRuntimeError.new(:te_args_no_match) unless
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
     f = args[0].to_v.to_f
@@ -1314,7 +1309,7 @@ class FunctionZer1 < AbstractScalarFunction
         values = BASICArray.zero_values(dims)
         BASICArray.new(dims, values)
       else
-        raise BASICRuntimeError.new(:te_args_no_match)
+        raise BASICRuntimeError.new(:te_args_no_match, @name)
       end
     else
       args = default_args(interpreter)
@@ -1357,7 +1352,7 @@ class FunctionZer2 < AbstractScalarFunction
         values = Matrix.zero_values(dims)
         Matrix.new(dims, values)
       else
-        raise BASICRuntimeError.new(:te_args_no_match)
+        raise BASICRuntimeError.new(:te_args_no_match, @name)
       end
     else
       args = default_args(interpreter)
