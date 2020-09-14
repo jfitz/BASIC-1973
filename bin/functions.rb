@@ -574,6 +574,30 @@ class FunctionErl < AbstractScalarFunction
   end
 end
 
+# function ERR
+class FunctionErr < AbstractScalarFunction
+  def initialize(text)
+    super
+
+    @signature = []
+  end
+
+  # return a single value
+  def evaluate(interpreter, stack)
+    if previous_is_array(stack)
+      args = stack.pop
+
+      if match_args_to_signature(args, @signature)
+        interpreter.error_code
+      else
+        raise BASICRuntimeError.new(:te_args_no_match, @name)
+      end
+    else
+      interpreter.error_code
+    end
+  end
+end
+
 # function EXP
 class FunctionExp < AbstractScalarFunction
   def initialize(text)
@@ -1381,6 +1405,7 @@ class FunctionFactory
     'CSC' => FunctionCsc,
     'DET' => FunctionDet,
     'ERL' => FunctionErl,
+    'ERR' => FunctionErr,
     'EXP' => FunctionExp,
     'EXT$' => FunctionExt,
     'FRAC' => FunctionFrac,
