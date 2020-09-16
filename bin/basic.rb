@@ -254,12 +254,13 @@ class Shell
     when 'LOAD'
       @interpreter.clear_all_breakpoints
       filename = @interpreter.parse_filename(args)
-      @interpreter.program_load(filename)
+      load_file(filename)
       @interpreter.print_program_errors
       @console_io.newline
     when 'SAVE'
       filename = @interpreter.parse_filename(args)
-      @interpreter.program_save(filename)
+      lines = @interpreter.program_save(filename)
+      save_file(filename, lines)
     when 'LIST'
       texts = @interpreter.program_list(args, false)
       texts.each { |text| @console_io.print_line(text) }
@@ -327,6 +328,29 @@ class Shell
     @console_io.print_line(e.to_s)
     @console_io.newline
     true
+  end
+
+  def load_file(filename)
+    File.open(filename, 'r') do |file|
+      @interpreter.program_clear
+      file.each_line do |line|
+        line = @console_io.ascii_printables(line)
+        @interpreter.program_store_line(line, false)
+      end
+    end
+  rescue Errno::ENOENT
+    @console_io.print_line("File '#{filename}' not found")
+  end
+    
+  def save_file(filename, lines)
+    File.open(filename, 'w') do |file|
+      lines.each do |line|
+        file.puts line
+      end
+      file.close
+    end
+  rescue Errno::ENOENT
+    @console_io.print_line("File '#{filename}' not saved")
   end
 end
 
@@ -437,6 +461,20 @@ def print_timing(timing, console_io)
   console_io.print_line('CPU time:')
   console_io.print_line(" user: #{user_time.round(2)}")
   console_io.print_line(" system: #{sys_time.round(2)}")
+end
+
+def load_file(filename, interpreter, console_io)
+  File.open(filename, 'r') do |file|
+    interpreter.program_clear
+    file.each_line do |line|
+      line = console_io.ascii_printables(line)
+      interpreter.program_store_line(line, false)
+    end
+  end
+  interpreter.program_check
+rescue Errno::ENOENT
+  console_io.print_line("File '#{filename}' not found")
+  false
 end
 
 options = {}
@@ -682,7 +720,7 @@ unless list_filename.nil?
   nametokens = [TextConstant.new(token)]
 
   filename = interpreter.parse_filename(nametokens)
-  if interpreter.program_load(filename)
+  if load_file(filename, interpreter, console_io)
     texts = interpreter.program_list('', list_tokens)
     texts.each { |text| console_io.print_line(text) }
   else
@@ -698,7 +736,7 @@ unless parse_filename.nil?
   nametokens = [TextConstant.new(token)]
 
   filename = interpreter.parse_filename(nametokens)
-  if interpreter.program_load(filename)
+  if load_file(filename, interpreter, console_io)
     texts = interpreter.program_parse('')
     texts.each { |text| console_io.print_line(text) }
   else
@@ -714,7 +752,8 @@ unless analyze_filename.nil?
   nametokens = [TextConstant.new(token)]
 
   filename = interpreter.parse_filename(nametokens)
-  if interpreter.program_load(filename) && interpreter.program_okay?
+  if load_file(filename, interpreter, console_io) &&
+     interpreter.program_okay?
     texts = interpreter.program_analyze
     texts.each { |text| console_io.print_line(text) }
   else
@@ -728,7 +767,7 @@ unless pretty_filename.nil?
   nametokens = [TextConstant.new(token)]
 
   filename = interpreter.parse_filename(nametokens)
-  if interpreter.program_load(filename)
+  if load_file(filename, interpreter, console_io)
     pretty_multiline = $options['pretty_multiline'].value
     texts = interpreter.program_pretty('', pretty_multiline)
     texts.each { |text| console_io.print_line(text) }
@@ -745,7 +784,7 @@ unless cref_filename.nil?
   nametokens = [TextConstant.new(token)]
 
   filename = interpreter.parse_filename(nametokens)
-  if interpreter.program_load(filename)
+  if load_file(filename, interpreter, console_io)
     texts = interpreter.program_crossref
     texts.each { |text| console_io.print_line(text) }
   else
@@ -759,7 +798,8 @@ unless run_filename.nil?
   nametokens = [TextConstant.new(token)]
 
   filename = interpreter.parse_filename(nametokens)
-  if interpreter.program_load(filename) && interpreter.program_okay?
+  if load_file(filename, interpreter, console_io) &&
+     interpreter.program_okay?
     begin
       timing = Benchmark.measure do
         interpreter.run
