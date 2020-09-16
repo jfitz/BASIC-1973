@@ -575,6 +575,7 @@ class Program
     texts << 'Unreachable code:'
     texts << ''
     texts += unreachable_code
+    texts << ''
   end
 
   def pretty(args, pretty_multiline)
