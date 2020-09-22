@@ -36,6 +36,10 @@ class AbstractElement
     self.class.to_s + ':' + 'Unimplemented'
   end
 
+  def keyword?
+    false
+  end
+
   def operator?
     @operator
   end
