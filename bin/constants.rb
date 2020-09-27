@@ -1162,11 +1162,14 @@ class BooleanConstant < AbstractValueElement
   end
 
   attr_reader :value
+  attr_reader :symbol_text
 
   def initialize(obj)
     super()
 
     obj_class = obj.class.to_s
+    @symbol_text = obj.to_s
+
     @value =
       (obj_class == 'BooleanConstantToken' && obj.to_s == 'TRUE') ||
       (obj_class == 'String' && obj.casecmp('TRUE').zero?) ||
@@ -1174,6 +1177,7 @@ class BooleanConstant < AbstractValueElement
       (obj_class == 'IntegerConstant' && !obj.to_i.zero?) ||
       (obj_class == 'TextConstant' && !obj.value.strip.size.zero?) ||
       obj_class == 'TrueClass'
+
     @operand = true
     @precedence = 0
     @boolean_constant = true
@@ -1221,6 +1225,10 @@ class BooleanConstant < AbstractValueElement
 
   def b_or(other)
     BooleanConstant.new(@value || other.to_v)
+  end
+
+  def to_i
+    @value ? 1 : 0
   end
 
   def to_s
@@ -1280,6 +1288,7 @@ class CarriageControl
     token = ',' if token == 'COMMA'
     token = ';' if token == 'SEMI'
     token = '' if token == 'NONE'
+
     @operator = token.to_s
     @carriage = true
     @file_handle = false
