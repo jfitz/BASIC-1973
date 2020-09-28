@@ -981,6 +981,10 @@ class AbstractExpression
     parsed_expressions_strings(@parsed_expressions)
   end
 
+  def booleans
+    parsed_expressions_booleans(@parsed_expressions)
+  end
+
   def text_symbols
     parsed_expressions_text_symbols(@parsed_expressions)
   end
@@ -1089,6 +1093,24 @@ class AbstractExpression
     end
 
     strs
+  end
+
+  def parsed_expressions_booleans(parsed_expressions)
+    bools = []
+
+    parsed_expressions.each do |expression|
+      expression.each do |thing|
+        if thing.list?
+          # recurse into expressions in list
+          sublist = thing.list
+          bools += parsed_expressions_booleans(sublist)
+        elsif thing.boolean_constant?
+          bools << thing
+        end
+      end
+    end
+
+    bools
   end
 
   def parsed_expressions_text_symbols(parsed_expressions)
@@ -1452,6 +1474,7 @@ class UserFunctionDefinition
   attr_reader :numerics
   attr_reader :num_symbols
   attr_reader :strings
+  attr_reader :booleans
   attr_reader :text_symbols
   attr_reader :variables
   attr_reader :operators
@@ -1478,6 +1501,7 @@ class UserFunctionDefinition
       @numerics = []
       @num_symbols = []
       @strings = []
+      @booleans = []
       @text_symbols = []
       @variables = []
       @operators = []
@@ -1491,6 +1515,7 @@ class UserFunctionDefinition
       @numerics = @expression.numerics
       @num_symbols = @expression.num_symbols
       @strings = @expression.strings
+      @booleans = @expression.booleans
       @text_symbols = @expression.text_symbols
       @variables = @expression.variables
       @operators = @expression.operators
@@ -1622,6 +1647,7 @@ class Assignment
   attr_reader :numerics
   attr_reader :num_symbols
   attr_reader :strings
+  attr_reader :booleans
   attr_reader :text_symbols
   attr_reader :variables
   attr_reader :operators
@@ -1642,6 +1668,7 @@ class Assignment
     @numerics = []
     @num_symbols = []
     @strings = []
+    @booleans = []
     @text_symbols = []
     @variables = []
     @operators = []
@@ -1685,6 +1712,7 @@ class Assignment
     @numerics = @target.numerics + @expression.numerics
     @num_symbols = @target.num_symbols + @expression.num_symbols
     @strings = @target.strings + @expression.strings
+    @booleans = @target.booleans + @expression.booleans
     @text_symbols = @target.text_symbols + @expression.text_symbols
     @variables = @target.variables + @expression.variables
     @operators = @target.operators + @expression.operators

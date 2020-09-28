@@ -259,6 +259,7 @@ class AbstractStatement
       numerics: [],
       num_symbols: [],
       strings: [],
+      booleans: [],
       text_symbols: [],
       variables: [],
       operators: [],
@@ -337,6 +338,12 @@ class AbstractStatement
     strs
   end
 
+  def modifier_booleans
+    bools = []
+    @modifiers.each { |modifier| bools += modifier.booleans }
+    bools
+  end
+
   def modifier_text_symbols
     syms = []
     syms
@@ -358,6 +365,10 @@ class AbstractStatement
 
   def strings
     @elements[:strings]
+  end
+
+  def booleans
+    @elements[:booleans]
   end
 
   def text_symbols
@@ -718,6 +729,7 @@ class AbstractStatement
     numerics = []
     num_symbols = []
     strings = []
+    booleans = []
     text_symbols = []
     variables = []
     operators = []
@@ -729,6 +741,7 @@ class AbstractStatement
       x1 = exp1.num_symbols
       num_symbols += x1
       strings += exp1.strings
+      booleans += exp1.booleans
       text_symbols += exp1.text_symbols
       variables += exp1.variables
       operators += exp1.operators
@@ -740,6 +753,7 @@ class AbstractStatement
       numerics += exp2.numerics
       num_symbols += exp2.num_symbols
       strings += exp2.strings
+      booleans += exp2.booleans
       text_symbols += exp2.text_symbols
       variables += exp2.variables
       operators += exp2.operators
@@ -751,6 +765,7 @@ class AbstractStatement
       items.each { |item| numerics += item.numerics }
       items.each { |item| num_symbols += item.num_symbols }
       items.each { |item| strings += item.strings }
+      items.each { |item| booleans += item.booleans }
       items.each { |item| text_symbols += item.text_symbols }
       items.each { |item| variables += item.variables }
       items.each { |item| operators += item.operators }
@@ -762,6 +777,7 @@ class AbstractStatement
       numerics: numerics,
       num_symbols: num_symbols,
       strings: strings,
+      booleans: booleans,
       text_symbols: text_symbols,
       variables: variables,
       operators: operators,
@@ -1615,6 +1631,7 @@ class ForStatement < AbstractStatement
         @elements[:numerics] = @start.numerics + @end.numerics
         @elements[:num_symbols] = @start.num_symbols + @end.num_symbols
         @elements[:strings] = @start.strings + @end.strings
+        @elements[:booleans] = @start.booleans + @end.booleans
         @elements[:text_symbols] = @start.text_symbols + @end.text_symbols
 
         control = XrefEntry.new(@control.to_s, nil, true)
@@ -1654,6 +1671,8 @@ class ForStatement < AbstractStatement
 
         @elements[:strings] =
           @start.strings + @end.strings + @step.strings
+
+        @elements[:booleans] = @start.booleans + @end.booleans + @step.booleans
 
         @elements[:text_symbols] =
           @start.text_symbols + @end.text_symbols + @end.text_symbols
@@ -2179,6 +2198,7 @@ class AbstractIfStatement < AbstractStatement
       @elements[:numerics] = make_numeric_references
       @elements[:num_symbols] = make_num_symbol_references
       @elements[:strings] = make_string_references
+      @elements[:booleans] = make_boolean_references
       @elements[:text_symbols] = make_text_symbol_references
       @elements[:variables] = make_variable_references
       @elements[:operators] = make_operator_references
@@ -2213,6 +2233,7 @@ class AbstractIfStatement < AbstractStatement
         @elements[:numerics] = make_numeric_references
         @elements[:num_symbols] = make_num_symbol_references
         @elements[:strings] = make_string_references
+        @elements[:booleans] = make_boolean_references
         @elements[:text_symbols] = make_text_symbol_references
         @elements[:variables] = make_variable_references
         @elements[:operators] = make_operator_references
@@ -2384,6 +2405,14 @@ class AbstractIfStatement < AbstractStatement
     strs += @statement.strings unless @statement.nil?
     strs += @else_stmt.strings unless @else_stmt.nil?
     strs
+  end
+
+  def make_boolean_references
+    bools = []
+    bools += @expression.booleans unless @expression.nil?
+    bools += @statement.booleans unless @statement.nil?
+    bools += @else_stmt.booleans unless @else_stmt.nil?
+    bools
   end
 
   def make_text_symbol_references
