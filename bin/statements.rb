@@ -104,6 +104,7 @@ class StatementFactory
 
   def statement_classes
     [
+      ArrForgetStatement,
       ArrInputStatement,
       ArrPrintStatement,
       ArrReadStatement,
@@ -118,6 +119,7 @@ class StatementFactory
       EndStatement,
       FilesStatement,
       FnendStatement,
+      ForgetStatement,
       ForStatement,
       GetStatement,
       GosubStatement,
@@ -128,6 +130,7 @@ class StatementFactory
       LetStatement,
       LetLessStatement,
       LineInputStatement,
+      MatForgetStatement,
       MatInputStatement,
       MatPrintStatement,
       MatReadStatement,
@@ -723,6 +726,29 @@ class AbstractStatement
     results << nonkeywords unless nonkeywords.empty?
 
     results
+  end
+
+  def split_on_group_separators(tokens)
+    tokens_lists = []
+    statement_tokens = []
+
+    # set to TRUE, so an empty list creates one empty token
+    last_was_separator = true
+
+    tokens.each do |token|
+      if token.separator?
+        tokens_lists << statement_tokens
+        statement_tokens = []
+        last_was_separator = true
+      else
+        statement_tokens << token
+        last_was_separator = false
+      end
+    end
+
+    tokens_lists << statement_tokens if
+      !statement_tokens.empty? || last_was_separator
+    tokens_lists
   end
 
   def make_references(items, exp1 = nil, exp2 = nil)
@@ -1453,15 +1479,16 @@ class DimStatement < AbstractStatement
         rescue BASICExpressionError
           @errors << 'Invalid variable ' + tokens_list.map(&:to_s).join
         end
-        @expressions.each do |expression|
-          @comprehension_effort += expression.comprehension_effort
-        end
+      end
+      
+      @elements = make_references(@expressions)
+
+      @expressions.each do |expression|
+        @comprehension_effort += expression.comprehension_effort
       end
     else
       @errors << 'Syntax error'
     end
-
-    @elements = make_references(@expressions)
   end
 
   def dump
@@ -1761,6 +1788,58 @@ class ForStatement < AbstractStatement
   end
 end
 
+# FORGET
+class ForgetStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('FORGET')]
+    ]
+  end
+
+  def initialize(_, keywords, tokens_lists)
+    super
+
+    extract_modifiers(tokens_lists)
+
+    template = [[1, '>=']]
+
+    if check_template(tokens_lists, template)
+      # parse variable(s)
+      @variables = []
+
+      tokens_list = split_on_group_separators(tokens_lists[0])
+      tokens_list.each do |tokens|
+        if tokens[0].variable?
+          variable_name = VariableName.new(tokens[0])
+          # FIX: parse subscripts
+          variable = Variable.new(variable_name, :scalar, [])
+          @variables << variable
+          variablex = XrefEntry.new(variable.to_s, nil, false)
+          @elements[:variables] += [variablex]
+        else
+          @errors << "Invalid variable #{tokens[0]}"
+        end
+      end
+    else
+      @errors << 'Syntax error'
+    end
+  end
+
+  def dump
+    lines = []
+
+    @variables.each { |variable| lines << variable.dump }
+
+    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+
+    lines
+  end
+
+  def execute(interpreter)
+    @variables.each { |variable| interpreter.forget_value(variable) }
+  end
+end
+
 # GET
 class GetStatement < AbstractStatement
   def self.lead_keywords
@@ -1797,15 +1876,15 @@ class GetStatement < AbstractStatement
             @errors << e.message
           end
         end
+
+        @items = tokens_to_expressions(items, :scalar)
+
+        @elements = make_references(@items)
+        @items.each { |item| @comprehension_effort += item.comprehension_effort }
+        @mccabe += @items.size
       else
         @errors << 'Syntax error'
       end
-
-      @items = tokens_to_expressions(items, :scalar)
-
-      @elements = make_references(@items)
-      @items.each { |item| @comprehension_effort += item.comprehension_effort }
-      @mccabe += @items.size
     else
       @errors << 'Syntax error'
     end
@@ -4237,6 +4316,57 @@ class WriteStatement < AbstractStatement
   end
 end
 
+# ARR FORGET
+class ArrForgetStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('ARR'), KeywordToken.new('FORGET')]
+    ]
+  end
+
+  def initialize(_, keywords, tokens_lists)
+    super
+
+    extract_modifiers(tokens_lists)
+
+    template = [[1, '>=']]
+
+    if check_template(tokens_lists, template)
+      # parse variable
+      @variables = []
+
+      tokens_list = split_on_group_separators(tokens_lists[0])
+      tokens_list.each do |tokens|
+        if tokens[0].variable?
+          variable_name = VariableName.new(tokens[0])
+          variable = Variable.new(variable_name, :array, [])
+          @variables << variable
+          variablex = XrefEntry.new(variable.to_s, nil, false)
+          @elements[:variables] += [variablex]
+        else
+          @errors << "Invalid variable #{tokens[0]}"
+        end
+      end
+    else
+      @errors << 'Syntax error'
+    end
+  end
+
+  def dump
+    lines = []
+
+    @variables.each { |variable| lines << variable.dump }
+
+    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+
+    lines
+  end
+
+  def execute(interpreter)
+    @variables.each { |variable| interpreter.forget_compound_values(variable) }
+  end
+end
+
 # ARR INPUT
 class ArrInputStatement < AbstractStatement
   def self.lead_keywords
@@ -4592,6 +4722,57 @@ class ArrLetStatement < AbstractLetStatement
       r_value.class.to_s != 'BASICArray'
 
     r_value
+  end
+end
+
+# MAT FORGET
+class MatForgetStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('MAT'), KeywordToken.new('FORGET')]
+    ]
+  end
+
+  def initialize(_, keywords, tokens_lists)
+    super
+
+    template = [[1, '>=']]
+
+    extract_modifiers(tokens_lists)
+
+    if check_template(tokens_lists, template)
+      # parse variable
+      @variables = []
+
+      tokens_list = split_on_group_separators(tokens_lists[0])
+      tokens_list.each do |tokens|
+        if tokens[0].variable?
+          variable_name = VariableName.new(tokens[0])
+          variable = Variable.new(variable_name, :matrix, [])
+          @variables << variable
+          variablex = XrefEntry.new(variable.to_s, nil, false)
+          @elements[:variables] += [variablex]
+        else
+          @errors << "Invalid variable #{tokens[0]}"
+        end
+      end
+    else
+      @errors << 'Syntax error'
+    end
+  end
+
+  def dump
+    lines = []
+
+    @variables.each { |variable| lines << variable.dump }
+
+    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+
+    lines
+  end
+
+  def execute(interpreter)
+    @variables.each { |variable| interpreter.forget_compound_values(variable) }
   end
 end
 
