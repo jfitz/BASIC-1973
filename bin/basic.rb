@@ -481,7 +481,7 @@ def make_command_tokenbuilders(quotes)
     BASE
     CHR_ALLOW_ALL COLON_FILE COLON_SEPARATOR CRLF_ON_LINE_INPUT
     DEFAULT_PROMPT DETECT_INFINITE_LOOP
-    ECHO FIELD_SEP FORNEXT_ONE_BEYOND HEADING
+    ECHO FIELD_SEP FORGET_FORNEXT FORNEXT_ONE_BEYOND HEADING
     IF IF_FALSE_NEXT_LINE IGNORE_RND_ARG IMPLIED_SEMICOLON INPUT_HIGH_BIT
     INT_FLOOR LOCK_FORNEXT MATCH_FORNEXT MIN_MAX_OP MAX_LINE_NUM MIN_LINE_NUM
     NEWLINE_SPEED
@@ -583,6 +583,7 @@ OptionParser.new do |opt|
   opt.on('--echo-input') { |o| options[:echo_input] = o }
   opt.on('--extend-if') { |o| options[:extend_if] = o }
   opt.on('--field-sep-semi') { |o| options[:field_sep_semi] = o }
+  opt.on('--forget-fornext') { |o| options[:forget_fornext] = o }
   opt.on('--fornext-one-beyond') { |o| options[:fornext_one_beyond] = o }
   opt.on('--hash-constant') { |o| options[:hash_constant] = o }
   opt.on('--no-heading') { |o| options[:no_heading] = o }
@@ -679,6 +680,8 @@ $options['extend_if'] = Option.new(boolean, options.key?(:extend_if))
 field_sep = Option.new(separator, 'COMMA')
 field_sep = Option.new(separator, 'SEMI') if options.key?(:field_sep_semi)
 $options['field_sep'] = field_sep
+
+$options['forget_fornext'] = Option.new(boolean, options.key?(:forget_fornext))
 
 $options['fornext_one_beyond'] =
   Option.new(boolean, options.key?(:fornext_one_beyond))

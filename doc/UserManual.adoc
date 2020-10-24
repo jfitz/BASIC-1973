@@ -155,6 +155,7 @@ When the BASIC program ends, BASIC-1973 ends.
 |--echo-input |Echoes console input to output. Useful in run mode when redirecting input from a text file.
 |--extend-if |Statements following an IF statement on the same line are associated with the last clause of the IF statement.
 |--field-sep-semi |Sets field separator for ARR PRINT and MAT PRINT statements to semicolon, which provides narrow spacing.
+|--forget-fornext |Forgets the control value when a FOR/NEXT loop terminates, if it was undefined when the loop started.
 |--fornext-one-beyond |When a FOR/NEXT loop ends, the index value is one step (usually 1) beyond the end value. (Normally index value is the end value.)
 |--hash-constant |Allow numeric constants in the form '#c' where c is any single character. Disables file handle operator and the not-equals operator, which are also represented by '#'.
 |--ignore-rnd-arg |The RND function ignores its argument and provides a number between zero and one. This matches the behavior of certain BASICs, including K&K.
@@ -474,6 +475,7 @@ The options that can be set are:
     DETECT_INFINITE_LOOP
     ECHO
     FIELD_SEP
+    FORGET_FORNEXT
     FORNEXT_ONE_BEYOND
     HEADING
     IF_FALSE_NEXT_LINE
@@ -1145,6 +1147,12 @@ The FORGET command is useful with the REQUIRE_INITIALIZED option.
 It is a way to force a variable 'out of scope' or to be forgotten.
 Forgotten variables are not initialized, and references to them will cause an error.
 
+The FORGET_FORNEXT option causes the interpreter to forget the value of the control variable when the loop terminates.
+This effectively limits the scope of the variable to the FOR/NEXT loop.
+Useful when REQUIRE_INITIALIZED is TRUE; a later reference to the control variable will be an error.
+BASIC forgets the variable only if it was not defined.
+If the variable was defined prior to the FOR, the variable is left defined but modified by the FOR/NEXT loop.
+
 GET
 ~~~
 
@@ -1558,6 +1566,7 @@ Possible options are a subset of the options in the shell.
     DEFAULT_PROMPT
     DETECT_INFINITE_LOOP
     ECHO
+    FORGET_FORNEXT
     FORNEXT_ONE_BEYOND
     IF_FALSE_NEXT_LINE
     IGNORE_RND_ARG
