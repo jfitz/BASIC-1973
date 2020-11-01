@@ -370,6 +370,10 @@ class AbstractValueElement < AbstractElement
     true
   end
 
+  def keyword?
+    false
+  end
+  
   def evaluate(_, _)
     self
   end
@@ -1299,6 +1303,10 @@ class CarriageControl
     false
   end
 
+  def keyword?
+    false
+  end
+  
   def to_s
     case @operator
     when ';'

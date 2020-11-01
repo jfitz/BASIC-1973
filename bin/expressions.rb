@@ -1326,12 +1326,12 @@ class ValueExpression < AbstractExpression
     @shape = shape
   end
 
-  def keyword?
-    false
-  end
-
   def printable?
     true
+  end
+
+  def keyword?
+    false
   end
 
   def scalar?
