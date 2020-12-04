@@ -605,11 +605,12 @@ class AbstractStatement
 
     template_for_to = ['FOR', [1, '>='], 'TO', [1, '>=']]
     template_for_to_step = ['FOR', [1, '>='], 'TO', [1, '='], 'STEP', [1, '>=']]
+    template_for_step_to = ['FOR', [1, '>='], 'STEP', [1, '>='], 'TO', [1, '=']]
 
     if tokens_lists.size > 4 &&
        check_template(tokens_lists.last(4), template_for_to)
 
-      # create the modifer
+      # create the modifier
       control_and_start_tokens = tokens_lists[-3]
       end_tokens = tokens_lists.last
       modifier = ForModifier.new(control_and_start_tokens, end_tokens, nil)
@@ -625,10 +626,28 @@ class AbstractStatement
     if tokens_lists.size > 6 &&
        check_template(tokens_lists.last(6), template_for_to_step)
 
-      # create the modifer
+      # create the modifier
       control_and_start_tokens = tokens_lists[-5]
       end_tokens = tokens_lists[-3]
       step_tokens = tokens_lists.last
+      modifier =
+        ForModifier.new(control_and_start_tokens, end_tokens, step_tokens)
+      @modifiers.unshift(modifier)
+
+      # remove the tokens used for the modifier
+      tokens_lists.pop(6)
+      @core_tokens = tokens_lists.flatten
+
+      return true
+    end
+
+    if tokens_lists.size > 6 &&
+       check_template(tokens_lists.last(6), template_for_step_to)
+
+      # create the modifier
+      control_and_start_tokens = tokens_lists[-5]
+      end_tokens = tokens_lists.last
+      step_tokens = tokens_lists[-3]
       modifier =
         ForModifier.new(control_and_start_tokens, end_tokens, step_tokens)
       @modifiers.unshift(modifier)
@@ -1742,6 +1761,7 @@ class ForStatement < AbstractStatement
 
     template1 = [[1, '>='], 'TO', [1, '>=']]
     template2 = [[1, '>='], 'TO', [1, '>='], 'STEP', [1, '>=']]
+    template3 = [[1, '>='], 'STEP', [1, '>='], 'TO', [1, '>=']]
 
     if check_template(tokens_lists, template1)
       begin
@@ -1751,29 +1771,6 @@ class ForStatement < AbstractStatement
         @start = ValueExpression.new(tokens2, :scalar)
         @end = ValueExpression.new(tokens_lists[2], :scalar)
         @step = nil
-        @elements[:numerics] = @start.numerics + @end.numerics
-        @elements[:num_symbols] = @start.num_symbols + @end.num_symbols
-        @elements[:strings] = @start.strings + @end.strings
-        @elements[:booleans] = @start.booleans + @end.booleans
-        @elements[:text_symbols] = @start.text_symbols + @end.text_symbols
-
-        control = XrefEntry.new(@control.to_s, nil, true)
-
-        @elements[:variables] =
-          [control] + @start.variables + @end.variables
-
-        @elements[:operators] =
-          @start.operators + @end.operators
-
-        @elements[:functions] =
-          @start.functions + @end.functions
-
-        @elements[:userfuncs] =
-          @start.userfuncs + @end.userfuncs
-
-        @comprehension_effort += @start.comprehension_effort
-        @comprehension_effort += @end.comprehension_effort
-        @mccabe += 1
       rescue BASICExpressionError => e
         @errors << e.message
       end
@@ -1785,7 +1782,37 @@ class ForStatement < AbstractStatement
         @start = ValueExpression.new(tokens2, :scalar)
         @end = ValueExpression.new(tokens_lists[2], :scalar)
         @step = ValueExpression.new(tokens_lists[4], :scalar)
+      rescue BASICExpressionError => e
+        @errors << e.message
+     end
+    elsif check_template(tokens_lists, template3)
+      begin
+        tokens1, tokens2 = control_and_start(tokens_lists[0])
+        variable_name = VariableName.new(tokens1[0])
+        @control = Variable.new(variable_name, :scalar, [])
+        @start = ValueExpression.new(tokens2, :scalar)
+        @end = ValueExpression.new(tokens_lists[4], :scalar)
+        @step = ValueExpression.new(tokens_lists[2], :scalar)
+      rescue BASICExpressionError => e
+        @errors << e.message
+      end
+    else
+      @errors << 'Syntax error'
+    end
 
+    @mccabe = 1
+
+    if !@start.nil? && !@end.nil?
+      if @step.nil?
+        @elements[:numerics] = @start.numerics + @end.numerics
+        @elements[:strings] = @start.strings + @end.strings
+        @elements[:booleans] = @start.booleans + @end.booleans
+        control = XrefEntry.new(@control.to_s, nil, true)
+        @elements[:variables] = [control] + @start.variables + @end.variables
+        @elements[:operators] = @start.operators + @end.operators
+        @elements[:functions] = @start.functions + @end.functions
+        @elements[:userfuncs] = @start.userfuncs + @end.userfuncs
+      else
         @elements[:numerics] =
           @start.numerics + @end.numerics + @step.numerics
 
@@ -1813,16 +1840,11 @@ class ForStatement < AbstractStatement
 
         @elements[:userfuncs] =
           @start.userfuncs + @end.userfuncs + @step.userfuncs
-
-        @comprehension_effort += @start.comprehension_effort
-        @comprehension_effort += @end.comprehension_effort
-        @comprehension_effort += @step.comprehension_effort
-        @mccabe += 1
-      rescue BASICExpressionError => e
-        @errors << e.message
       end
-    else
-      @errors << 'Syntax error'
+
+      @comprehension_effort += @start.comprehension_effort
+      @comprehension_effort += @end.comprehension_effort
+      @comprehension_effort += @step.comprehension_effort unless @step.nil?
     end
   end
 
@@ -1848,7 +1870,7 @@ class ForStatement < AbstractStatement
     fornext_control =
       interpreter.assign_fornext(@control, from, to, step)
 
-    interpreter.lock_variable(@control)
+    interpreter.lock_variable(@control) if $options['lock_fornext'].value
     interpreter.enter_fornext(@control)
     terminated = fornext_control.front_terminated?
 
@@ -3202,7 +3224,7 @@ class NextStatement < AbstractStatement
       fornext_control.bump_control(interpreter) if
         interpreter.fornext_one_beyond
 
-      interpreter.unlock_variable(@control)
+      interpreter.unlock_variable(@control) if $options['lock_fornext'].value
       interpreter.exit_fornext(fornext_control.forget, fornext_control.control)
     else
       # set next line from top item
