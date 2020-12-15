@@ -4988,7 +4988,11 @@ class ArrPrintStatement < AbstractStatement
         # split format
         formats = split_format(format_spec)
 
-        # TODO: check formats wants only one item
+        # check formats wants only one item
+        count = 0
+        formats.each { |format| count += 1 if format.wants_item }
+
+        raise(BASICSyntaxError, 'Too many fields in USING') unless count <= 1
 
         raise BASICRuntimeError.new(:te_few_fmt) if items.empty?
 
@@ -5528,7 +5532,11 @@ class MatPrintStatement < AbstractStatement
         # split format
         formats = split_format(format_spec)
 
-        # TODO: check only one format wants an item
+        # check formats wants only one item
+        count = 0
+        formats.each { |format| count += 1 if format.wants_item }
+
+        raise(BASICSyntaxError, 'Too many fields in USING') unless count <= 1
 
         raise BASICRuntimeError.new(:te_few_fmt) if items.empty?
 
