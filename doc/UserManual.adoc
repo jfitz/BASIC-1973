@@ -697,8 +697,9 @@ BASIC-1973 supports the following arithmetic operations for numeric expressions:
 
 |==========
 |Operation |Symbol |Precedence
-|Posation (unary) |+ |1
-|Negation (unary) |- |1
+|Posation |+ |1
+|Negation |- |1
+|Logical inversion |NOT |1
 |Addition |+ |4
 |Subtraction |- |4
 |Multiplication |* |3
@@ -709,18 +710,44 @@ BASIC-1973 supports the following arithmetic operations for numeric expressions:
 |Maximum |MAX |2
 |==========
 
+For logical coersion, zero is false and non-zero is true.
+For logical inversion, zero returns true and non-zero returns false.
+
+BASIC-1973 supports the following arithmetic operations for integer expressions:
+
+|==========
+|Operation |Symbol |Precedence
+|Posation |+ |1
+|Negation |- |1
+|Inversion |NOT |1
+|Addition |+ |4
+|Subtraction |- |4
+|Multiplication |* |3
+|Division |/ |3
+|Exponent |^ |1
+|Exponent |** |1
+|Minimum |MIN |2
+|Maximum |MAX |2
+|==========
+
+For inversion, the bitwise-inverted value is returned.
+
 BASIC-1973 supports the following operations for string expressions:
 
 |==========
 |Operation |Symbol |Precedence
 |Concatenation |+ |3
+|Logical inversion |NOT |1
 |==========
+
+For logical coersion, an empty string is false and a non-empty string is true.
+For logical inversion, an empty string returns true and a non-empty string returns false.
 
 BASIC-1973 supports the following operations for boolean expressions:
 
 |==========
 |Operation |Symbol |Precedence
-|Logical Inversion (unary) |NOT |1
+|Logical Inversion |NOT |1
 |Logical And |AND |2
 |Logical Or |OR |2
 |==========
