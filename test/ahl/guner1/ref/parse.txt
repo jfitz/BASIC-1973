@@ -15,7 +15,7 @@
 160 IF A$="NO" THEN 330
  Variable:A$
  TextConstant:"NO"
- BinaryOperator:=
+ BinaryOperatorEqual:=
 170 PRINT "    THIS GAME TESTS YOUR ABILITY TO HIT A MOVING TARGET,"
  TextConstant:"    THIS GAME TESTS YOUR ABILITY TO HIT A MOVING TARGET,"
  CarriageControl:NL
@@ -68,11 +68,11 @@
 350 IF S<1 THEN 330
  Variable:S
  NumericConstant:1
- BinaryOperator:<
+ BinaryOperatorLess:<
 360 IF S>100 THEN 330
  Variable:S
  NumericConstant:100
- BinaryOperator:>
+ BinaryOperatorGreater:>
 370 PRINT "ENTER DISTANCE";
  TextConstant:"ENTER DISTANCE"
  CarriageControl:;
@@ -81,19 +81,19 @@
 390 IF D<0 THEN 370
  Variable:D
  NumericConstant:0
- BinaryOperator:<
+ BinaryOperatorLess:<
 400 IF D>10000 THEN 370
  Variable:D
  NumericConstant:10000
- BinaryOperator:>
+ BinaryOperatorGreater:>
 410 M=100000-75000*RND(0)
  Variable:M
  NumericConstant:100000
  NumericConstant:75000
  NumericConstant:0
  FunctionRnd
- BinaryOperator:*
- BinaryOperator:-
+ BinaryOperatorMultiply:*
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 420 PRINT
  CarriageControl:NL
@@ -107,7 +107,7 @@
 440 FOR K=1 TO M/10000
  control: Variable:K
  start:   ["NumericConstant:1"]
- end:     ["Variable:M", "NumericConstant:10000", "BinaryOperator:/"]
+ end:     ["Variable:M", "NumericConstant:10000", "BinaryOperatorDivide:/"]
 450 LET K1=RND(0)
  Variable:K1
  NumericConstant:0
@@ -119,14 +119,14 @@
  Variable:R
  NumericConstant:.95
  Variable:M
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:.6
  Variable:M
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:0
  FunctionRnd
- BinaryOperator:*
- BinaryOperator:-
+ BinaryOperatorMultiply:*
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 480 LET N=0
  Variable:N
@@ -137,13 +137,13 @@
 500 IF R>M THEN 840
  Variable:R
  Variable:M
- BinaryOperator:>
+ BinaryOperatorGreater:>
 510 IF R<(M/2.5) THEN 860
  Variable:R
  Variable:M
  NumericConstant:2.5
- BinaryOperator:/
- BinaryOperator:<
+ BinaryOperatorDivide:/
+ BinaryOperatorLess:<
 520 PRINT "TARGET RANGE IS"R" YARDS"
  TextConstant:"TARGET RANGE IS"
  CarriageControl:
@@ -159,20 +159,20 @@
 550 IF E<0 THEN 840
  Variable:E
  NumericConstant:0
- BinaryOperator:<
+ BinaryOperatorLess:<
 560 IF E> 89 THEN 800
  Variable:E
  NumericConstant:89
- BinaryOperator:>
+ BinaryOperatorGreater:>
 570 IF E <1 THEN 820
  Variable:E
  NumericConstant:1
- BinaryOperator:<
+ BinaryOperatorLess:<
 580 N=N+1
  Variable:N
  Variable:N
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 590 K=INT(R-M*SIN(2*E/57.3))
  Variable:K
@@ -180,12 +180,12 @@
  Variable:M
  NumericConstant:2
  Variable:E
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:57.3
- BinaryOperator:/
+ BinaryOperatorDivide:/
  FunctionSin
- BinaryOperator:*
- BinaryOperator:-
+ BinaryOperatorMultiply:*
+ BinaryOperatorMinus:-
  FunctionInt
  AssignmentOperator:=
 600 K=ABS(K)
@@ -197,17 +197,17 @@
  Variable:K1
  Variable:K
  Variable:D
- BinaryOperator:-
+ BinaryOperatorMinus:-
  FunctionAbs
  AssignmentOperator:=
 620 IF K1>D THEN 720
  Variable:K1
  Variable:D
- BinaryOperator:>
+ BinaryOperatorGreater:>
 630 IF K1<D THEN 740
  Variable:K1
  Variable:D
- BinaryOperator:<
+ BinaryOperatorLess:<
 650 PRINT "*** TARGET DESTROYED ***"
  TextConstant:"*** TARGET DESTROYED ***"
  CarriageControl:NL
@@ -220,7 +220,7 @@
 680 FOR K=1 TO N+D/100
  control: Variable:K
  start:   ["NumericConstant:1"]
- end:     ["Variable:N", "Variable:D", "NumericConstant:100", "BinaryOperator:/", "BinaryOperator:+"]
+ end:     ["Variable:N", "Variable:D", "NumericConstant:100", "BinaryOperatorDivide:/", "BinaryOperatorPlus:+"]
 690 K1=RND(0)
  Variable:K1
  NumericConstant:0
@@ -251,15 +251,15 @@
  NumericConstant:2
  NumericConstant:0
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  FunctionInt
  AssignmentOperator:=
 746 IF C=1 THEN 750
  Variable:C
  NumericConstant:1
- BinaryOperator:=
+ BinaryOperatorEqual:=
 748 LET C=-1
  Variable:C
  NumericConstant:1
@@ -275,24 +275,24 @@
  Variable:C1
  Variable:M
  Variable:S
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:100
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:0
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  AssignmentOperator:=
 770 C1=C*C1
  Variable:C1
  Variable:C
  Variable:C1
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  AssignmentOperator:=
 780 R=R+C1
  Variable:R
  Variable:R
  Variable:C1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 790 GOTO 500
  LineNumber:500
@@ -319,7 +319,7 @@
 940 IF N=1 THEN 970
  Variable:N
  NumericConstant:1
- BinaryOperator:=
+ BinaryOperatorEqual:=
 950 PRINT N" ROUNDS EXPENDED"
  Variable:N
  CarriageControl:

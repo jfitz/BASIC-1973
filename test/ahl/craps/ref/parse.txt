@@ -45,10 +45,10 @@
  NumericConstant:11
  NumericConstant:0
  FunctionRnd
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  FunctionInt
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  AssignmentOperator:=
 215 PRINT"ARE YOU READY";\INPUT B$
  TextConstant:"ARE YOU READY"
@@ -57,10 +57,10 @@
 216 IF B$="YES" THEN 220\IF B$="NO" THEN PRINT "I'LL REPEAT MYSELF THEN"
  Variable:B$
  TextConstant:"YES"
- BinaryOperator:=
+ BinaryOperatorEqual:=
  Variable:B$
  TextConstant:"NO"
- BinaryOperator:=
+ BinaryOperatorEqual:=
  TextConstant:"I'LL REPEAT MYSELF THEN"
  CarriageControl:NL
 217 GOTO 90
@@ -81,12 +81,12 @@
  NumericConstant:2
  Variable:N
  NumericConstant:2
- BinaryOperator:/
+ BinaryOperatorDivide:/
  FunctionInt
- BinaryOperator:*
- BinaryOperator:-
+ BinaryOperatorMultiply:*
+ BinaryOperatorMinus:-
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 260 LET W=-1
  Variable:W
  NumericConstant:1
@@ -127,7 +127,7 @@
  Variable:B
  Variable:B
  FunctionInt
- BinaryOperator:=
+ BinaryOperatorEqual:=
 400
 410 PRINT "NO COINS PERMITTED... JUST BILLS, PLEASE."
  TextConstant:"NO COINS PERMITTED... JUST BILLS, PLEASE."
@@ -137,13 +137,13 @@
 430 IF B=0 THEN 1090
  Variable:B
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 440 IF B<Z+1 THEN 470
  Variable:B
  Variable:Z
  NumericConstant:1
- BinaryOperator:+
- BinaryOperator:<
+ BinaryOperatorPlus:+
+ BinaryOperatorLess:<
 450 PRINT "DON'T TRY MORE THAN YOU HAVE, PLEASE."
  TextConstant:"DON'T TRY MORE THAN YOU HAVE, PLEASE."
  CarriageControl:NL
@@ -154,9 +154,9 @@
  NumericConstant:6
  NumericConstant:0
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  FunctionInt
  AssignmentOperator:=
 480 LET D2=INT(6*RND(0)+1)
@@ -164,27 +164,27 @@
  NumericConstant:6
  NumericConstant:0
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  FunctionInt
  AssignmentOperator:=
 490 LET Q=Q+1
  Variable:Q
  Variable:Q
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 500 S=D1+D2
  Variable:S
  Variable:D1
  Variable:D2
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 510 IF W>0 THEN 540
  Variable:W
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
 520 PRINT "  I ROLL  ";D1;"AND  ";D2;
  TextConstant:"  I ROLL  "
  CarriageControl:;
@@ -208,35 +208,35 @@
 550 IF Q<>1 THEN 860
  Variable:Q
  NumericConstant:1
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 560 IF (S-2)*(S-3)*(S-12)=0 THEN 640
  Variable:S
  NumericConstant:2
- BinaryOperator:-
+ BinaryOperatorMinus:-
  Variable:S
  NumericConstant:3
- BinaryOperator:-
- BinaryOperator:*
+ BinaryOperatorMinus:-
+ BinaryOperatorMultiply:*
  Variable:S
  NumericConstant:12
- BinaryOperator:-
- BinaryOperator:*
+ BinaryOperatorMinus:-
+ BinaryOperatorMultiply:*
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 570 IF (S-7)*(S-11)=0 THEN 710
  Variable:S
  NumericConstant:7
- BinaryOperator:-
+ BinaryOperatorMinus:-
  Variable:S
  NumericConstant:11
- BinaryOperator:-
- BinaryOperator:*
+ BinaryOperatorMinus:-
+ BinaryOperatorMultiply:*
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 580 IF W>0 THEN 610
  Variable:W
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
 590 PRINT "SO MY POINT IS";S
  TextConstant:"SO MY POINT IS"
  CarriageControl:;
@@ -265,12 +265,12 @@
 660 IF W>0 THEN 690
  Variable:W
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
 670 LET Z=Z+B
  Variable:Z
  Variable:Z
  Variable:B
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 680 GOTO 770
  LineNumber:770
@@ -278,7 +278,7 @@
  Variable:Z
  Variable:Z
  Variable:B
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 700 GOTO 770
  LineNumber:770
@@ -292,12 +292,12 @@
 730 IF W>0 THEN 760
  Variable:W
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
 740 LET Z=Z-B
  Variable:Z
  Variable:Z
  Variable:B
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 750 GOTO 770
  LineNumber:770
@@ -305,14 +305,14 @@
  Variable:Z
  Variable:Z
  Variable:B
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 770 PRINT
  CarriageControl:NL
 780 IF Z<1 THEN 1060
  Variable:Z
  NumericConstant:1
- BinaryOperator:<
+ BinaryOperatorLess:<
 790 PRINT "YOU NOW HAVE";Z;"DOLLARS"
  TextConstant:"YOU NOW HAVE"
  CarriageControl:;
@@ -323,7 +323,7 @@
 800 IF C>0 THEN 830
  Variable:C
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
 810 PRINT "CHANGE DICE NOW..."
  TextConstant:"CHANGE DICE NOW..."
  CarriageControl:NL
@@ -333,7 +333,7 @@
  Variable:W
  Variable:W
  Variable:C
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 840 LET Q=0
  Variable:Q
@@ -344,7 +344,7 @@
 860 IF S<>7 THEN 940
  Variable:S
  NumericConstant:7
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 870 PRINT "AND LOSE..."
  TextConstant:"AND LOSE..."
  CarriageControl:NL
@@ -356,12 +356,12 @@
 890 IF W>0 THEN 920
  Variable:W
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
 900 LET Z=Z+B
  Variable:Z
  Variable:Z
  Variable:B
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 910 GOTO 770
  LineNumber:770
@@ -369,14 +369,14 @@
  Variable:Z
  Variable:Z
  Variable:B
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 930 GOTO 770
  LineNumber:770
 940 IF S=P THEN 970
  Variable:S
  Variable:P
- BinaryOperator:=
+ BinaryOperatorEqual:=
 950 PRINT "   ROLL AGAIN."
  TextConstant:"   ROLL AGAIN."
  CarriageControl:NL
@@ -385,7 +385,7 @@
 970 IF W>0 THEN 1020
  Variable:W
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
 980 PRINT "AND MAKE MY POINT"
  TextConstant:"AND MAKE MY POINT"
  CarriageControl:NL
@@ -397,7 +397,7 @@
  Variable:Z
  Variable:Z
  Variable:B
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 1010 GOTO 770
  LineNumber:770
@@ -412,7 +412,7 @@
  Variable:Z
  Variable:Z
  Variable:B
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 1050 GOTO 700
  LineNumber:700

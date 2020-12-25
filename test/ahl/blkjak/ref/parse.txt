@@ -49,11 +49,11 @@
 53 IF W>F GOTO 56
  Variable:W
  Variable:F
- BinaryOperator:>
+ BinaryOperatorGreater:>
 54 IF W<10 GOTO 58
  Variable:W
  NumericConstant:10
- BinaryOperator:<
+ BinaryOperatorLess:<
 55 GOTO 100
  LineNumber:100
 56 PRINT "YOUR BET EXCEEDS YOUR REMAINING DOLLARS. "
@@ -105,7 +105,7 @@
  Variable:P3
  Variable:P3
  Variable:I
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 122 PRINT "YOU GOT A "CHR$(L)
  TextConstant:"YOU GOT A "
@@ -116,7 +116,7 @@
 123 IF P3>21 GOTO 820
  Variable:P3
  NumericConstant:21
- BinaryOperator:>
+ BinaryOperatorGreater:>
 124 GOTO 117
  LineNumber:117
 200 GOSUB 780
@@ -125,7 +125,7 @@
  Variable:P3
  Variable:P1
  Variable:P2
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 202 D1=I
  Variable:D1
@@ -149,7 +149,7 @@
  Variable:D3
  Variable:D1
  Variable:D2
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 214 PRINT "DEALER HAS "D3
  TextConstant:"DEALER HAS "
@@ -159,7 +159,7 @@
 216 IF D3>16 GOTO 222
  Variable:D3
  NumericConstant:16
- BinaryOperator:>
+ BinaryOperatorGreater:>
 217 GOSUB 780
  LineNumber:780
 218 PRINT "DEALER GETS A "CHR$(L)
@@ -172,14 +172,14 @@
  Variable:D3
  Variable:D3
  Variable:I
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 220 GOTO 214
  LineNumber:214
 222 IF D3<22 GOTO 800
  Variable:D3
  NumericConstant:22
- BinaryOperator:<
+ BinaryOperatorLess:<
 224 PRINT "DEALER BUSTED."
  TextConstant:"DEALER BUSTED."
  CarriageControl:NL
@@ -195,7 +195,7 @@
 766 IF K = #N GOTO 212
  Variable:K
  NumericConstant:#N
- BinaryOperator:=
+ BinaryOperatorEqual:=
 768 GOSUB 780
  LineNumber:780
 770 RETURN
@@ -205,9 +205,9 @@
  NumericConstant:13
  NumericConstant:0
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  FunctionInt
  AssignmentOperator:=
 782 A(I)=A(I)+1
@@ -216,13 +216,13 @@
  Variable:I
  Variable:A
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 784 IF A(I)>4 GOTO 780
  Variable:I
  Variable:A
  NumericConstant:4
- BinaryOperator:>
+ BinaryOperatorGreater:>
 786 GOSUB 900
  LineNumber:900
 788 RETURN
@@ -230,12 +230,12 @@
 800 IF D3>=P3 GOTO 820
  Variable:D3
  Variable:P3
- BinaryOperator:>=
+ BinaryOperatorGreaterEqual:>=
 802 F=F+W
  Variable:F
  Variable:F
  Variable:W
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 806 PRINT "YOU WIN. YOU NOW HAVE $"F
  TextConstant:"YOU WIN. YOU NOW HAVE $"
@@ -248,7 +248,7 @@
  Variable:F
  Variable:F
  Variable:W
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 822 PRINT "YOU LOSE. YOU NOW HAVE $"F
  TextConstant:"YOU LOSE. YOU NOW HAVE $"
@@ -260,7 +260,7 @@
 900 IF I<>1 GOTO 910
  Variable:I
  NumericConstant:1
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 904 I=11
  Variable:I
  NumericConstant:11
@@ -274,7 +274,7 @@
 910 IF 1<>13 GOTO 920
  NumericConstant:1
  NumericConstant:13
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 912 I=16
  Variable:I
  NumericConstant:16
@@ -300,7 +300,7 @@
 930 IF I<>11 GOTO 937
  Variable:I
  NumericConstant:11
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 932 I=10
  Variable:I
  NumericConstant:10
@@ -314,7 +314,7 @@
 937 IF I<>10 GOTO 940
  Variable:I
  NumericConstant:10
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 938 L=#T
  Variable:L
  NumericConstant:#T
@@ -325,7 +325,7 @@
  Variable:L
  Variable:I
  NumericConstant:48
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 942 RETURN
  
@@ -340,20 +340,20 @@
 986 IF K=#Y GOTO 50
  Variable:K
  NumericConstant:#Y
- BinaryOperator:=
+ BinaryOperatorEqual:=
 987 PRINT\PRINT\PRINT\IF F>F1 THEN 995
  CarriageControl:NL
  CarriageControl:NL
  CarriageControl:NL
  Variable:F
  Variable:F1
- BinaryOperator:>
+ BinaryOperatorGreater:>
 988 PRINT "TOO BAD! YOU LOST " F1-F "DOLLARS AT THE EDUSYSTEM CASINO."
  TextConstant:"TOO BAD! YOU LOST "
  CarriageControl:
  Variable:F1
  Variable:F
- BinaryOperator:-
+ BinaryOperatorMinus:-
  CarriageControl:
  TextConstant:"DOLLARS AT THE EDUSYSTEM CASINO."
  CarriageControl:NL
@@ -364,7 +364,7 @@
  CarriageControl:
  Variable:F
  Variable:F1
- BinaryOperator:-
+ BinaryOperatorMinus:-
  CarriageControl:
  TextConstant:"DOLLARS AT THE EDUSYSTEM CASINO."
  CarriageControl:NL

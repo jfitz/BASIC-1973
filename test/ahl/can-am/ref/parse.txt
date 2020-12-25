@@ -111,22 +111,22 @@
 740 FOR X=1 TO K9-1 STEP 2
  control: Variable:X
  start:   ["NumericConstant:1"]
- end:     ["Variable:K9", "NumericConstant:1", "BinaryOperator:-"]
+ end:     ["Variable:K9", "NumericConstant:1", "BinaryOperatorMinus:-"]
  step:    ["NumericConstant:2"]
 750      READ F$(X),F$(X+1),R$((X-1)/2+1)
  Variable:X
  Variable:F$
  Variable:X
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:F$
  Variable:X
  NumericConstant:1
- BinaryOperator:-
+ BinaryOperatorMinus:-
  NumericConstant:2
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:R$
 760 NEXT X
  Variable:X
@@ -159,11 +159,11 @@
 850 IF A$>"09" THEN 890                 'IF BETWEEN 01 AND 09, THEN MULTI-TERMINAL 
  Variable:A$
  TextConstant:"09"
- BinaryOperator:>
+ BinaryOperatorGreater:>
 860 IF A$<"01" THEN 890
  Variable:A$
  TextConstant:"01"
- BinaryOperator:<
+ BinaryOperatorLess:<
 870 LET O9 = VAL(A$)
  Variable:O9
  Variable:A$
@@ -180,7 +180,7 @@
 910 IF A$="NO" THEN 1070
  Variable:A$
  TextConstant:"NO"
- BinaryOperator:=
+ BinaryOperatorEqual:=
 920 PRINT "RATE YOURSELF AS A DRIVER.  (1-BEST,3-WORST )";
  TextConstant:"RATE YOURSELF AS A DRIVER.  (1-BEST,3-WORST )"
  CarriageControl:;
@@ -192,7 +192,7 @@
  NumericConstant:3
  Variable:Q
  Variable:O
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  AssignmentOperator:=
 950 GOTO 1050
  LineNumber:1050
@@ -212,7 +212,7 @@
  Variable:C
  FunctionAsc
  Variable:I
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 1000      CHANGE O TO O$(I)
  Variable:O
@@ -237,7 +237,7 @@
 1060 IF A$="YES" THEN 1110
  Variable:A$
  TextConstant:"YES"
- BinaryOperator:=
+ BinaryOperatorEqual:=
 1070 PRINT O$(0)
  NumericConstant:0
  Variable:O$
@@ -250,15 +250,15 @@
 1100 IF A$="NO" THEN 2290
  Variable:A$
  TextConstant:"NO"
- BinaryOperator:=
+ BinaryOperatorEqual:=
 1110 LET F2=INT(RND*10)+6
  Variable:F2
  FunctionRnd
  NumericConstant:10
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionInt
  NumericConstant:6
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 1120 FOR A=0 TO O9 'ASSIGN NUMBERS AND ADHESION FACTORS 
  control: Variable:A
@@ -273,19 +273,19 @@
  Variable:F2
  Variable:A
  NumericConstant:1
- BinaryOperator:+
- BinaryOperator:*
+ BinaryOperatorPlus:+
+ BinaryOperatorMultiply:*
  Variable:A
- BinaryOperator:+
+ BinaryOperatorPlus:+
  CarriageControl:NL
 1140       LET A(R)=RND*.05+.05
  Variable:R
  Variable:A
  FunctionRnd
  NumericConstant:.05
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:.05
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 1150       PRINT O$(A);"ADHESION FACTOR"; A(A)*100-5;".  (THE LOWER THE BETTER)"
  Variable:A
@@ -296,9 +296,9 @@
  Variable:A
  Variable:A
  NumericConstant:100
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:5
- BinaryOperator:-
+ BinaryOperatorMinus:-
  CarriageControl:;
  TextConstant:".  (THE LOWER THE BETTER)"
  CarriageControl:NL
@@ -322,7 +322,7 @@
  NumericConstant:63
  Variable:O9
  FunctionSgn
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionChr
  CarriageControl:;
  Variable:O$
@@ -340,11 +340,11 @@
 1240 IF A$="NO" THEN 1450
  Variable:A$
  TextConstant:"NO"
- BinaryOperator:=
+ BinaryOperatorEqual:=
 1250 IF A$<>"YES" THEN 1190
  Variable:A$
  TextConstant:"YES"
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 1260 PRINTTAB(4);"--------------" 'PRINT COURSE
  NumericConstant:4
  FunctionTab
@@ -526,9 +526,9 @@
  Variable:N
  FunctionRnd
  NumericConstant:3
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 1460 PRINT"NOTE: THIS IS A";INT(N);"LAP RACE."
  TextConstant:"NOTE: THIS IS A"
@@ -572,7 +572,7 @@
  NumericConstant:1
  NumericConstant:3
  NumericConstant:10
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:65
  UserFunction
  AssignmentOperator:=
@@ -584,7 +584,7 @@
  NumericConstant:1
  NumericConstant:1
  NumericConstant:10
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:49
  UserFunction
  AssignmentOperator:=
@@ -596,7 +596,7 @@
  NumericConstant:2
  NumericConstant:13
  NumericConstant:20
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:65
  UserFunction
  AssignmentOperator:=
@@ -608,7 +608,7 @@
  NumericConstant:1
  NumericConstant:1
  NumericConstant:10
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:50
  UserFunction
  AssignmentOperator:=
@@ -620,7 +620,7 @@
  NumericConstant:1
  NumericConstant:1
  NumericConstant:5
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:67
  UserFunction
  AssignmentOperator:=
@@ -632,7 +632,7 @@
  NumericConstant:1
  NumericConstant:3
  NumericConstant:20
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:51
  UserFunction
  AssignmentOperator:=
@@ -644,7 +644,7 @@
  NumericConstant:2
  NumericConstant:3
  NumericConstant:5
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:68
  UserFunction
  AssignmentOperator:=
@@ -656,7 +656,7 @@
  NumericConstant:1
  NumericConstant:1
  NumericConstant:10
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:52
  UserFunction
  AssignmentOperator:=
@@ -668,7 +668,7 @@
  NumericConstant:1
  NumericConstant:1
  NumericConstant:4
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:69
  UserFunction
  AssignmentOperator:=
@@ -680,7 +680,7 @@
  NumericConstant:.75
  NumericConstant:3
  NumericConstant:20
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:53
  UserFunction
  AssignmentOperator:=
@@ -692,7 +692,7 @@
  NumericConstant:1.5
  NumericConstant:9
  NumericConstant:20
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:70
  UserFunction
  AssignmentOperator:=
@@ -704,7 +704,7 @@
  NumericConstant:.75
  NumericConstant:3
  NumericConstant:20
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:54
  UserFunction
  AssignmentOperator:=
@@ -726,7 +726,7 @@
  NumericConstant:1
  NumericConstant:1
  NumericConstant:10
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:55
  UserFunction
  AssignmentOperator:=
@@ -738,7 +738,7 @@
  NumericConstant:1
  NumericConstant:3
  NumericConstant:20
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:56
  UserFunction
  AssignmentOperator:=
@@ -750,14 +750,14 @@
  NumericConstant:2
  NumericConstant:7
  NumericConstant:10
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:72
  UserFunction
  AssignmentOperator:=
 1700       IF V = H THEN 1740
  Variable:V
  Variable:H
- BinaryOperator:=
+ BinaryOperatorEqual:=
 1710       LET Y=FNA("START-FINISH (CURVE 9)",150,1,3/20,127)
  Variable:Y
  TextConstant:"START-FINISH (CURVE 9)"
@@ -765,7 +765,7 @@
  NumericConstant:1
  NumericConstant:3
  NumericConstant:20
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:127
  UserFunction
  AssignmentOperator:=
@@ -778,7 +778,7 @@
 1750 IF G1=1 THEN 2040                  'ALL DEAD?
  Variable:G1
  NumericConstant:1
- BinaryOperator:=
+ BinaryOperatorEqual:=
 1760 PRINT O$(10);"DO YOU MEAN THAT EVERYONE ISN'T DEAD? WELL, HERE ARE " 'NO, SO PRINT OUT RESULTS OF RACE
  NumericConstant:10
  Variable:O$
@@ -795,7 +795,7 @@
 1790 IF O9=0 THEN 1820
  Variable:O9
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 1800 LET G5=O9
  Variable:G5
  Variable:O9
@@ -813,11 +813,11 @@
 1840      IF O9>0 THEN 1380
  Variable:O9
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
 1850      IF Z=0 THEN 1880
  Variable:Z
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 1860      PRINT Q$(Z);
  Variable:Z
  Variable:Q$
@@ -830,23 +830,23 @@
  Variable:F2
  Variable:Z
  NumericConstant:1
- BinaryOperator:+
- BinaryOperator:*
+ BinaryOperatorPlus:+
+ BinaryOperatorMultiply:*
  Variable:Z
- BinaryOperator:+
+ BinaryOperatorPlus:+
  CarriageControl:;
 1890      IF D(Z) = 0 THEN 1950
  Variable:Z
  Variable:D
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 1900      PRINT" IS LOOKIN' AT THEM PEARLY GATES."
  TextConstant:" IS LOOKIN' AT THEM PEARLY GATES."
  CarriageControl:NL
 1910      IF O9=0 THEN 1990
  Variable:O9
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 1920      PRINT O$(Z);"TELL ST. LUCIFER NOT TO EXPECT ME, O.K.?"
  Variable:Z
  Variable:O$
@@ -869,12 +869,12 @@
  CarriageControl:;
  NumericConstant:3600
  NumericConstant:5.3
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:H
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:Z
  Variable:T
- BinaryOperator:/
+ BinaryOperatorDivide:/
  CarriageControl:;
  TextConstant:"MPH"
  CarriageControl:NL
@@ -882,7 +882,7 @@
  Variable:Z
  Variable:T
  Variable:W
- BinaryOperator:>
+ BinaryOperatorGreater:>
 1970      LET W=T(Z)                      'NEW LEADING TIME AND DRIVER
  Variable:W
  Variable:Z
@@ -893,31 +893,31 @@
  Variable:F2
  Variable:Z
  NumericConstant:1
- BinaryOperator:+
- BinaryOperator:*
+ BinaryOperatorPlus:+
+ BinaryOperatorMultiply:*
  Variable:Z
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 1990 NEXT Z
  Variable:Z
 2000 IF O9>0 THEN 2020
  Variable:O9
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
 2010 IF N>F2 THEN 2040
  Variable:N
  Variable:F2
- BinaryOperator:>
+ BinaryOperatorGreater:>
 2020 PRINT OS((N-F2)/(F2+1));"NICE RACE, MR";N
  Variable:O
  CarriageControl:
  Variable:N
  Variable:F2
- BinaryOperator:-
+ BinaryOperatorMinus:-
  Variable:F2
  NumericConstant:1
- BinaryOperator:+
- BinaryOperator:/
+ BinaryOperatorPlus:+
+ BinaryOperatorDivide:/
  Variable:S
  CarriageControl:;
  TextConstant:"NICE RACE, MR"
@@ -943,7 +943,7 @@
  NumericConstant:63
  Variable:O9
  FunctionSgn
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionChr
  CarriageControl:;
  Variable:O$
@@ -957,11 +957,11 @@
 2080 IF A$="NO" THEN 2290
  Variable:A$
  TextConstant:"NO"
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2090 IF A$<>"YES" THEN 2040
  Variable:A$
  TextConstant:"YES"
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 2100 FOR Z=0 TO 10                         'RESET FOR NEXT GRME 
  control: Variable:Z
  start:   ["NumericConstant:0"]
@@ -984,7 +984,7 @@
 2140 IF G1=0 THEN 2160                     'IF EVERYBODY'S DEAD, BE NASTY.
  Variable:G1
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2150 PRINT ", AND (PLEASE!) BETTER DRIVERS."
  TextConstant:", AND (PLEASE!) BETTER DRIVERS."
  CarriageControl:NL
@@ -1005,7 +1005,7 @@
  Variable:R$
  Variable:X
  Variable:F$
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2210 NEXT X 
  Variable:X
 2220 GOTO 2280
@@ -1016,22 +1016,22 @@
  CarriageControl:;
  Variable:X
  NumericConstant:1
- BinaryOperator:-
+ BinaryOperatorMinus:-
  NumericConstant:2
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:1
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:R$
  CarriageControl:NL
 2240 IF X=INT(X/2)*2 THEN 2270
  Variable:X
  Variable:X
  NumericConstant:2
- BinaryOperator:/
+ BinaryOperatorDivide:/
  FunctionInt
  NumericConstant:2
- BinaryOperator:*
- BinaryOperator:=
+ BinaryOperatorMultiply:*
+ BinaryOperatorEqual:=
 2250 LET R$="NO"
  Variable:R$
  TextConstant:"NO"
@@ -1052,7 +1052,7 @@
 2330 IF G1<1 THEN 4250                     'ALL DEAD?
  Variable:G1
  NumericConstant:1
- BinaryOperator:<
+ BinaryOperatorLess:<
 2340 GOSUB 2800                            'GET SOME HAZARDS (IE RAIN, OIL)
  LineNumber:2800
 2350 GOSUB 3220                            'GET EVERYONE'S SPEED
@@ -1065,27 +1065,27 @@
  Variable:G
  Variable:D
  NumericConstant:1
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2380      IF (B+A(G)+E)*S(G)/B<=R*(1+RND*.1) THEN 2500
  Variable:B
  Variable:G
  Variable:A
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:E
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:G
  Variable:S
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:B
- BinaryOperator:/
+ BinaryOperatorDivide:/
  Variable:R
  NumericConstant:1
  FunctionRnd
  NumericConstant:.1
- BinaryOperator:*
- BinaryOperator:+
- BinaryOperator:*
- BinaryOperator:<=
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorLessEqual:<=
 2390      PRINT O$(G);X$                   'PRINT DEAD MESSAGE
  Variable:G
  Variable:O$
@@ -1096,7 +1096,7 @@
  Variable:F5
  Variable:F5
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 2410      LET E(F5)=D                      'AND THE 635 SAID "LET THERE BE OIL." AND THERE IT WAS.
  Variable:F5
@@ -1110,7 +1110,7 @@
 2430           IF Z=G THEN 2450            'A MAN TRAP!"
  Variable:Z
  Variable:G
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2440           PRINT O$(Z);"GUY #";F2*(G+1)+G;"JUST WIPED REAL GOOD ('N DEAD!)" 'IN THE MEANTIME, IT HAS BEEN BUSY NOTIFYING PEOPLE
  Variable:Z
  Variable:O$
@@ -1120,10 +1120,10 @@
  Variable:F2
  Variable:G
  NumericConstant:1
- BinaryOperator:+
- BinaryOperator:*
+ BinaryOperatorPlus:+
+ BinaryOperatorMultiply:*
  Variable:G
- BinaryOperator:+
+ BinaryOperatorPlus:+
  CarriageControl:;
  TextConstant:"JUST WIPED REAL GOOD ('N DEAD!)"
  CarriageControl:NL
@@ -1138,12 +1138,12 @@
  Variable:Q
  Variable:Q
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 2480      IF Q=O9 THEN 4230                'EVERYBODY DEAD?
  Variable:Q
  Variable:O9
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2490      GOTO 2780
  LineNumber:2780
 2500      LET Y4=T(G)                      'RATS. HE DIDN'T WIPE
@@ -1155,16 +1155,16 @@
  Variable:B
  Variable:G
  Variable:A
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:E
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:G
  Variable:S
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:B
- BinaryOperator:/
+ BinaryOperatorDivide:/
  Variable:R
- BinaryOperator:<=
+ BinaryOperatorLessEqual:<=
 2520 PRINT O$(G);'"NEARLY HAD TO SAY GOOD BYE." 'ALMOST WIPED
  Variable:G
  Variable:O$
@@ -1178,17 +1178,17 @@
  Variable:G
  Variable:S
  NumericConstant:3600
- BinaryOperator:/
- BinaryOperator:/
- BinaryOperator:+
+ BinaryOperatorDivide:/
+ BinaryOperatorDivide:/
+ BinaryOperatorPlus:+
  Variable:G
  Variable:L
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 2540      IF O9>0 THEN 2660                'SEE IF, HEAVEN FORBID, HE PASSED SOMEBODY
  Variable:O9
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
 2550      FOR X4=1 TO 3
  control: Variable:X4
  start:   ["NumericConstant:1"]
@@ -1197,7 +1197,7 @@
  Variable:X4
  Variable:D
  NumericConstant:1
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2570           LET Z4=T(X4)-(C/(S(X4)/3600))
  Variable:Z4
  Variable:X4
@@ -1206,15 +1206,15 @@
  Variable:X4
  Variable:S
  NumericConstant:3600
- BinaryOperator:/
- BinaryOperator:/
- BinaryOperator:-
+ BinaryOperatorDivide:/
+ BinaryOperatorDivide:/
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 2580           LET Z1=Y4-Z4
  Variable:Z1
  Variable:Y4
  Variable:Z4
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 2590           LET Z2=T(G)-T(X4)
  Variable:Z2
@@ -1222,7 +1222,7 @@
  Variable:T
  Variable:X4
  Variable:T
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 2600           IF SGN(Z2)<>-SGN(Z1) THEN 2650
  Variable:Z2
@@ -1230,12 +1230,12 @@
  Variable:Z1
  FunctionSgn
  UnaryOperatorMinus:-
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 2610           IF SGN(Z2)=1 THEN 2640
  Variable:Z2
  FunctionSgn
  NumericConstant:1
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2620           PRINT "YOU JUST PASSED ";Q$(X4)
  TextConstant:"YOU JUST PASSED "
  CarriageControl:;
@@ -1254,23 +1254,23 @@
  Variable:X4
 2660      FOR X4=G+1 TO O9
  control: Variable:X4
- start:   ["Variable:G", "NumericConstant:1", "BinaryOperator:+"]
+ start:   ["Variable:G", "NumericConstant:1", "BinaryOperatorPlus:+"]
  end:     ["Variable:O9"]
 2670           IF D(X4)=1 THEN 2770
  Variable:X4
  Variable:D
  NumericConstant:1
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2680           IF S(X4)=0 THEN 2770
  Variable:X4
  Variable:S
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2690           IF SGN(Y4-T(X4))=SGN(T(G)-(T(X4)+C/(S(X4)/3600))) THEN 2770
  Variable:Y4
  Variable:X4
  Variable:T
- BinaryOperator:-
+ BinaryOperatorMinus:-
  FunctionSgn
  Variable:G
  Variable:T
@@ -1280,12 +1280,12 @@
  Variable:X4
  Variable:S
  NumericConstant:3600
- BinaryOperator:/
- BinaryOperator:/
- BinaryOperator:+
- BinaryOperator:-
+ BinaryOperatorDivide:/
+ BinaryOperatorDivide:/
+ BinaryOperatorPlus:+
+ BinaryOperatorMinus:-
  FunctionSgn
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2700           IF SGN(T(G)-(T(X4)+C/(S(X4)/3600)))<>-1 THEN 2740
  Variable:G
  Variable:T
@@ -1295,14 +1295,14 @@
  Variable:X4
  Variable:S
  NumericConstant:3600
- BinaryOperator:/
- BinaryOperator:/
- BinaryOperator:+
- BinaryOperator:-
+ BinaryOperatorDivide:/
+ BinaryOperatorDivide:/
+ BinaryOperatorPlus:+
+ BinaryOperatorMinus:-
  FunctionSgn
  NumericConstant:1
  UnaryOperatorMinus:-
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 2710           PRINT O$(X4);"GUY";F2*(G+1)+G;"JUST PASSED YOU."
  Variable:X4
  Variable:O$
@@ -1312,10 +1312,10 @@
  Variable:F2
  Variable:G
  NumericConstant:1
- BinaryOperator:+
- BinaryOperator:*
+ BinaryOperatorPlus:+
+ BinaryOperatorMultiply:*
  Variable:G
- BinaryOperator:+
+ BinaryOperatorPlus:+
  CarriageControl:;
  TextConstant:"JUST PASSED YOU."
  CarriageControl:NL
@@ -1328,11 +1328,11 @@
  Variable:F2
  Variable:X4
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  UnaryOperatorMinus:-
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:X4
- BinaryOperator:+
+ BinaryOperatorPlus:+
  CarriageControl:NL
 2730           GOTO 2770
  LineNumber:2770
@@ -1345,13 +1345,13 @@
  Variable:X4
  Variable:S
  NumericConstant:3600
- BinaryOperator:/
- BinaryOperator:/
- BinaryOperator:+
- BinaryOperator:-
+ BinaryOperatorDivide:/
+ BinaryOperatorDivide:/
+ BinaryOperatorPlus:+
+ BinaryOperatorMinus:-
  FunctionSgn
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2750           PRINT O$(G);"GUY";F2*(X4+1)+X4;"JUST PASSED YOU."
  Variable:G
  Variable:O$
@@ -1361,10 +1361,10 @@
  Variable:F2
  Variable:X4
  NumericConstant:1
- BinaryOperator:+
- BinaryOperator:*
+ BinaryOperatorPlus:+
+ BinaryOperatorMultiply:*
  Variable:X4
- BinaryOperator:+
+ BinaryOperatorPlus:+
  CarriageControl:;
  TextConstant:"JUST PASSED YOU."
  CarriageControl:NL
@@ -1377,10 +1377,10 @@
  Variable:F2
  Variable:G
  NumericConstant:1
- BinaryOperator:+
- BinaryOperator:*
+ BinaryOperatorPlus:+
+ BinaryOperatorMultiply:*
  Variable:G
- BinaryOperator:+
+ BinaryOperatorPlus:+
  CarriageControl:NL
 2770      NEXT X4 
  Variable:X4
@@ -1410,7 +1410,7 @@
 2850 IF F5<2 THEN 2900                        'IF COURSE WELL GREASED, DISSOLVE GREASE
  Variable:F5
  NumericConstant:2
- BinaryOperator:<
+ BinaryOperatorLess:<
 2860 PRINT "THE RED FLAG HAS BEEN PUT OUT. CARS REMAIN" 
  TextConstant:"THE RED FLAG HAS BEEN PUT OUT. CARS REMAIN"
  CarriageControl:NL
@@ -1433,7 +1433,7 @@
  Variable:X
  Variable:E
  Variable:D
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2920 NEXT X
  Variable:X
 2930 GOTO 2970
@@ -1450,21 +1450,21 @@
 2970 IF F3=1 THEN 3130                        'HAVE WE HAD RAIN?
  Variable:F3
  NumericConstant:1
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2980 IF RND>.025+G8 THEN 3130                 'SEE IF IT SHOULD BE STOPPED OR STARTED 
  FunctionRnd
  NumericConstant:.025
  Variable:G8
- BinaryOperator:+
- BinaryOperator:>
+ BinaryOperatorPlus:+
+ BinaryOperatorGreater:>
 2990 IF RND<.1 THEN 3080                      'IS IT RAINING?
  FunctionRnd
  NumericConstant:.1
- BinaryOperator:<
+ BinaryOperatorLess:<
 3000 IF RND>.5 THEN 3130                      'STOP IT?
  FunctionRnd
  NumericConstant:.5
- BinaryOperator:>
+ BinaryOperatorGreater:>
 3010 PRINT "GLORY BE, THE RAIN HAS STOPPED! BUT REMEMBER IT IS STILL WET"
  TextConstant:"GLORY BE, THE RAIN HAS STOPPED! BUT REMEMBER IT IS STILL WET"
  CarriageControl:NL
@@ -1482,7 +1482,7 @@
  Variable:A
  Variable:A
  NumericConstant:.075
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 3050      LET G8=.025                         'MAKE IT LESS LIKELY TO RAIN IN LATER RACES 
  Variable:G8
@@ -1505,7 +1505,7 @@
  Variable:A
  Variable:A
  NumericConstant:.1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 3110      LET G8=.1
  Variable:G8
@@ -1517,12 +1517,12 @@
  Variable:C
  NumericConstant:9
  NumericConstant:20
- BinaryOperator:/
- BinaryOperator:<>
+ BinaryOperatorDivide:/
+ BinaryOperatorNotEqual:<>
 3140 IF RND <.125 THEN 3210
  FunctionRnd
  NumericConstant:.125
- BinaryOperator:<
+ BinaryOperatorLess:<
 3150 FOR X=0 TO O9
  control: Variable:X
  start:   ["NumericConstant:0"]
@@ -1531,22 +1531,22 @@
  FunctionRnd
  Variable:O9
  FunctionSgn
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:.75
- BinaryOperator:<
+ BinaryOperatorLess:<
 3170 IF D(X)=1 THEN 3200
  Variable:X
  Variable:D
  NumericConstant:1
- BinaryOperator:=
+ BinaryOperatorEqual:=
 3180 LET L(X)=RND*3+5
  Variable:X
  Variable:L
  FunctionRnd
  NumericConstant:3
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:5
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 3190 PRINT O$(X);"Y0U ARE IN THE PITS FOR";L(X);"SECONDS."
  Variable:X
@@ -1572,7 +1572,7 @@
 3240 IF O3>0 THEN 3270                        'PRINT OUT SOMETHING LIKE 'STRAIGHT A'
  Variable:O3
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
 3250 PRINT A$;" ";CHR$(D);
  Variable:A$
  CarriageControl:;
@@ -1611,7 +1611,7 @@
  Variable:A
  Variable:D
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 3310      PRINT O$(A)                         'IF HE'S DEAD, DON'T GIVE HIM A CHANCE TO INPUT 
  Variable:A
  Variable:O$
@@ -1650,7 +1650,7 @@
  Variable:N
  Variable:D
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 3420 PRINT O$(N);"BUT I THOUGHT YOU WERE DEAD." 'RE-INFORM HIM THAT HE IS AN UN-PERSON
  Variable:N
  Variable:O$
@@ -1666,7 +1666,7 @@
  Variable:N
  Variable:S
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 3460 PRINT O$(N);"WAIT A SEC.  I STILL NEED";O9-U-Q;"MORE SPEEDS." 'TELL HIM TO BUZZ OFF
  Variable:N
  Variable:O$
@@ -1675,9 +1675,9 @@
  CarriageControl:;
  Variable:O9
  Variable:U
- BinaryOperator:-
+ BinaryOperatorMinus:-
  Variable:Q
- BinaryOperator:-
+ BinaryOperatorMinus:-
  CarriageControl:;
  TextConstant:"MORE SPEEDS."
  CarriageControl:NL
@@ -1690,32 +1690,32 @@
 3490 IF S<=200 THEN 3620                      'DID HE TRY TO EXCEED HIS MAX. SPEED? 
  Variable:S
  NumericConstant:200
- BinaryOperator:<=
+ BinaryOperatorLessEqual:<=
 3500 IF O9=0 THEN 3600
  Variable:O9
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 3510 IF S<1000 THEN 3600
  Variable:S
  NumericConstant:1000
- BinaryOperator:<
+ BinaryOperatorLess:<
 3520 LET R4=(S-1000-F2)/(F2+1)                'IT'S OK. HE ONLY WANTS TO DRAFT
  Variable:R4
  Variable:S
  NumericConstant:1000
- BinaryOperator:-
+ BinaryOperatorMinus:-
  Variable:F2
- BinaryOperator:-
+ BinaryOperatorMinus:-
  Variable:F2
  NumericConstant:1
- BinaryOperator:+
- BinaryOperator:/
+ BinaryOperatorPlus:+
+ BinaryOperatorDivide:/
  AssignmentOperator:=
 3530 IF R4=INT(R4) THEN 3560                  'NOW SEE IF HE PICKED A LEGAL CAR
  Variable:R4
  Variable:R4
  FunctionInt
- BinaryOperator:=
+ BinaryOperatorEqual:=
 3540 PRINT O$(N);"ILLEGAL CAR"                'HE DIDN'T
  Variable:N
  Variable:O$
@@ -1727,23 +1727,23 @@
 3560 IF R4>O9 THEN 3540
  Variable:R4
  Variable:O9
- BinaryOperator:>
+ BinaryOperatorGreater:>
 3570 IF E(R4)>0 THEN 3540
  Variable:R4
  Variable:E
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
 3580 IF ABS(T(N)-T(R4)-.5)=>.5 THEN 3540
  Variable:N
  Variable:T
  Variable:R4
  Variable:T
- BinaryOperator:-
+ BinaryOperatorMinus:-
  NumericConstant:.5
- BinaryOperator:-
+ BinaryOperatorMinus:-
  FunctionAbs
  NumericConstant:.5
- BinaryOperator:=>
+ BinaryOperatorGreaterEqual:=>
 3590 GOTO 3700                                'HE DID!!!
  LineNumber:3700
 3600 PRINT O$(N);"MAYBE A LITTLE HARD ON THE PEDDLE? BE REALISTIC." 'OPTIMIST
@@ -1757,7 +1757,7 @@
 3620 IF S>0 THEN 3660
  Variable:S
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
 3630 GOSUB 3990                               'HE WANTS TO SEE HOW HE'S DOING. POOR GUY 
  LineNumber:3990
 3640 PRINT "HOW FAST";CHR$(63*SGN(O9));O$;
@@ -1766,7 +1766,7 @@
  NumericConstant:63
  Variable:O9
  FunctionSgn
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionChr
  CarriageControl:;
  Variable:O$
@@ -1776,7 +1776,7 @@
 3660 IF S=>20 THEN 3690 'WHERE DOES HE THINK HE IS? HE LONG ISLAND EXPRESSWAY?
  Variable:S
  NumericConstant:20
- BinaryOperator:=>
+ BinaryOperatorGreaterEqual:=>
 3670 PRINT O$(N);"I DOUBT YOU WANT TO GO THAT SLOWLY"
  Variable:N
  Variable:O$
@@ -1794,12 +1794,12 @@
  Variable:U
  Variable:U
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 3710 IF R4=0 THEN 3740
  Variable:R4
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 3720 LET H(N)=R4                              'IF HE'S DRAFTING, TELL ME TO WHOM
  Variable:N
  Variable:H
@@ -1813,8 +1813,8 @@
  Variable:U
  Variable:O9
  Variable:Q
- BinaryOperator:-
- BinaryOperator:<
+ BinaryOperatorMinus:-
+ BinaryOperatorLess:<
 3750 LET U=0                                  'YES!
  Variable:U
  NumericConstant:0
@@ -1822,7 +1822,7 @@
 3760 IF O9>0 THEN 3890                        'SET SPEEDS FOR AUTO-PILOTS
  Variable:O9
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
 3770 FOR F0=1 TO 3
  control: Variable:F0
  start:   ["NumericConstant:1"]
@@ -1831,42 +1831,42 @@
  Variable:F0
  Variable:D
  NumericConstant:1
- BinaryOperator:=
+ BinaryOperatorEqual:=
 3790      LET S=R*B/(B+.1+E+G8)+(RND*3+Q(F0))
  Variable:S
  Variable:R
  Variable:B
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:B
  NumericConstant:.1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:E
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:G8
- BinaryOperator:+
- BinaryOperator:/
+ BinaryOperatorPlus:+
+ BinaryOperatorDivide:/
  FunctionRnd
  NumericConstant:3
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:F0
  Variable:Q
- BinaryOperator:+
- BinaryOperator:+
+ BinaryOperatorPlus:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 3800      IF (B+.1+G8+E)*S/B<=R THEN 3850
  Variable:B
  NumericConstant:.1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:G8
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:E
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:S
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:B
- BinaryOperator:/
+ BinaryOperatorDivide:/
  Variable:R
- BinaryOperator:<=
+ BinaryOperatorLessEqual:<=
 3810      LET D(F0)=1
  Variable:F0
  Variable:D
@@ -1885,7 +1885,7 @@
  Variable:F5
  Variable:F5
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 3840      LET E(F5)=D
  Variable:F5
@@ -1900,9 +1900,9 @@
  Variable:C
  Variable:S
  NumericConstant:3600
- BinaryOperator:/
- BinaryOperator:/
- BinaryOperator:+
+ BinaryOperatorDivide:/
+ BinaryOperatorDivide:/
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 3860      LET S(F0)=S
  Variable:F0
@@ -1921,18 +1921,18 @@
  Variable:X2
  Variable:D
  NumericConstant:1
- BinaryOperator:=
+ BinaryOperatorEqual:=
 3910      IF S(X2)<>0 THEN 3970
  Variable:X2
  Variable:S
  NumericConstant:0
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 3920      IF S(H(X2))<>0 THEN 3950
  Variable:X2
  Variable:H
  Variable:S
  NumericConstant:0
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 3930      LET H(X2)=H(H(X2)) 
  Variable:X2
  Variable:H
@@ -1957,9 +1957,9 @@
  Variable:X2
  Variable:H
  Variable:T
- BinaryOperator:+
+ BinaryOperatorPlus:+
  NumericConstant:2
- BinaryOperator:/
+ BinaryOperatorDivide:/
  AssignmentOperator:=
 3970 NEXT X2
  Variable:X2
@@ -1974,7 +1974,7 @@
 4010 IF O9=0 THEN 4040
  Variable:O9
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 4020 LET G5=O9
  Variable:G5
  Variable:O9
@@ -1992,11 +1992,11 @@
 4060      IF G=A THEN 4200
  Variable:G
  Variable:A
- BinaryOperator:=
+ BinaryOperatorEqual:=
 4070      IF O9>0 THEN 4100
  Variable:O9
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
 4080      PRINT O$(G);" IS";
  Variable:G
  Variable:O$
@@ -2011,10 +2011,10 @@
  Variable:F2
  Variable:G
  NumericConstant:1
- BinaryOperator:+
- BinaryOperator:*
+ BinaryOperatorPlus:+
+ BinaryOperatorMultiply:*
  Variable:G
- BinaryOperator:+
+ BinaryOperatorPlus:+
  CarriageControl:;
  TextConstant:"IS "
  CarriageControl:;
@@ -2022,7 +2022,7 @@
  Variable:G
  Variable:D
  NumericConstant:1
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 4120      PRINT " OUT OF THE RACE."
  TextConstant:" OUT OF THE RACE."
  CarriageControl:NL
@@ -2033,10 +2033,10 @@
  Variable:T
  Variable:G
  Variable:T
- BinaryOperator:-
+ BinaryOperatorMinus:-
  FunctionSgn
  NumericConstant:2
- BinaryOperator:+
+ BinaryOperatorPlus:+
  LineNumber:4150
  LineNumber:4170
  LineNumber:4190
@@ -2045,7 +2045,7 @@
  Variable:T
  Variable:A
  Variable:T
- BinaryOperator:-
+ BinaryOperatorMinus:-
  CarriageControl:;
  TextConstant:"SECONDS BEHIND YOU"
  CarriageControl:NL
@@ -2061,7 +2061,7 @@
  Variable:T
  Variable:G
  Variable:T
- BinaryOperator:-
+ BinaryOperatorMinus:-
  CarriageControl:;
  TextConstant:"SECONDS AHEAD OF YOU."
  CarriageControl:NL
@@ -2086,10 +2086,10 @@
  Variable:F2
  Variable:G
  NumericConstant:1
- BinaryOperator:+
- BinaryOperator:*
+ BinaryOperatorPlus:+
+ BinaryOperatorMultiply:*
  Variable:G
- BinaryOperator:+
+ BinaryOperatorPlus:+
  CarriageControl:;
  TextConstant:", THE LAST OF THE GREAT RACERS, JUST WIPED."
  CarriageControl:NL

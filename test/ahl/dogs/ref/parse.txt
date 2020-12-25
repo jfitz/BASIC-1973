@@ -39,7 +39,7 @@
 40 IF S9=6 THEN 70\FOR I=1 TO 10\GET 8,25,I\V9=V9+V\NEXT I
  Variable:S9
  NumericConstant:6
- BinaryOperator:=
+ BinaryOperatorEqual:=
  control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
@@ -49,16 +49,16 @@
  Variable:V9
  Variable:V9
  Variable:V
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
  Variable:I
 45 IF V9<25 THEN 60\IF V9>200 THEN 55
  Variable:V9
  NumericConstant:25
- BinaryOperator:<
+ BinaryOperatorLess:<
  Variable:V9
  NumericConstant:200
- BinaryOperator:>
+ BinaryOperatorGreater:>
 50 GOTO 100
  LineNumber:100
 55 UNSAVE 8\UNSAVE 9
@@ -80,16 +80,16 @@
 70 FOR I=1 TO 26-V9\RANDOMIZE\H=INT(10*RND(X))+1\GET 8,25,H
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["NumericConstant:26", "Variable:V9", "BinaryOperator:-"]
+ end:     ["NumericConstant:26", "Variable:V9", "BinaryOperatorMinus:-"]
  
  Variable:H
  NumericConstant:10
  Variable:X
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionInt
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
  NumericConstant:8
  NumericConstant:25
@@ -98,7 +98,7 @@
  Variable:V
  Variable:V
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
  NumericConstant:8
  NumericConstant:25
@@ -108,7 +108,7 @@
  end:     ["NumericConstant:10"]
  Variable:H
  Variable:T
- BinaryOperator:=
+ BinaryOperatorEqual:=
 80 GET 9,30,T\X=X+1\PUT 9,30,T
  NumericConstant:9
  NumericConstant:30
@@ -116,7 +116,7 @@
  Variable:X
  Variable:X
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
  NumericConstant:9
  NumericConstant:30
@@ -209,7 +209,7 @@
 215 IF I$="YES" THEN 120\GOTO 220
  Variable:I$
  TextConstant:"YES"
- BinaryOperator:=
+ BinaryOperatorEqual:=
  LineNumber:220
 220 GOSUB 225\GOTO 255
  LineNumber:225
@@ -261,7 +261,7 @@
  Variable:G
  Variable:Q
  NumericConstant:20
- BinaryOperator:<
+ BinaryOperatorLess:<
 265 PRINT "NO MORE THAN. 19 ALLOWED"\PRINT\GOTO 255
  TextConstant:"NO MORE THAN. 19 ALLOWED"
  CarriageControl:NL
@@ -290,11 +290,11 @@
  Variable:Z
  Variable:P
  NumericConstant:2
- BinaryOperator:<
+ BinaryOperatorLess:<
  Variable:Z
  Variable:P
  NumericConstant:500
- BinaryOperator:>
+ BinaryOperatorGreater:>
 295 PRINT\NEXT Z\GOTO 325
  CarriageControl:NL
  Variable:Z
@@ -333,7 +333,7 @@
  Variable:B
  Variable:I
  Variable:P
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 335 NEXT I
  Variable:I
@@ -349,7 +349,7 @@
  Variable:I
  Variable:J
  Variable:I3
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 355 A(I3)=A(I3)+P(I)
  Variable:I3
  Variable:A
@@ -357,7 +357,7 @@
  Variable:A
  Variable:I
  Variable:P
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 360 NEXT I3
  Variable:I3
@@ -371,7 +371,7 @@
  Variable:I
  Variable:A
  NumericConstant:2
- BinaryOperator:>=
+ BinaryOperatorGreaterEqual:>=
 380 B(I)=INT(B(11)*RND(X))+1
  Variable:I
  Variable:B
@@ -379,10 +379,10 @@
  Variable:B
  Variable:X
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionInt
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 385 GOTO 395
  LineNumber:395
@@ -393,22 +393,22 @@
  Variable:B
  Variable:I
  Variable:A
- BinaryOperator:-
+ BinaryOperatorMinus:-
  Variable:I
  Variable:A
  NumericConstant:.17
  Variable:I
  Variable:A
- BinaryOperator:*
- BinaryOperator:-
- BinaryOperator:/
+ BinaryOperatorMultiply:*
+ BinaryOperatorMinus:-
+ BinaryOperatorDivide:/
  FunctionInt
  AssignmentOperator:=
 395 IF B(I)<=2 THEN 405
  Variable:I
  Variable:B
  NumericConstant:2
- BinaryOperator:<=
+ BinaryOperatorLessEqual:<=
 400 GOTO 410
  LineNumber:410
 405 B(I)=2
@@ -457,9 +457,9 @@
  Variable:I
  Variable:V
  Variable:X
- BinaryOperator:+
+ BinaryOperatorPlus:+
  NumericConstant:0
- BinaryOperator:<=
+ BinaryOperatorLessEqual:<=
 450 RANDOMIZE
  
 455 Y(I)=INT(V/ABS((V+X))+INT(V*RND(X))*1)
@@ -468,24 +468,24 @@
  Variable:V
  Variable:V
  Variable:X
- BinaryOperator:+
+ BinaryOperatorPlus:+
  FunctionAbs
- BinaryOperator:/
+ BinaryOperatorDivide:/
  Variable:V
  Variable:X
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionInt
  NumericConstant:1
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  FunctionInt
  AssignmentOperator:=
 460 IF Y(I)<7 THEN 470
  Variable:I
  Variable:Y
  NumericConstant:7
- BinaryOperator:<
+ BinaryOperatorLess:<
 465 GOTO 475
  LineNumber:475
 470 Y(I)=INT(7*RND(X))+1
@@ -494,10 +494,10 @@
  NumericConstant:7
  Variable:X
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionInt
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 475 NEXT I
  Variable:I
@@ -551,10 +551,10 @@
  Variable:Y
  Variable:X
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionInt
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 525 S(R)=S(R)+C(R)
  Variable:R
@@ -563,7 +563,7 @@
  Variable:S
  Variable:R
  Variable:C
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 530 NEXT R
  Variable:R
@@ -585,12 +585,12 @@
  Variable:P
  Variable:R
  Variable:S
- BinaryOperator:=
+ BinaryOperatorEqual:=
 555 IF S(R)>20 THEN 590
  Variable:R
  Variable:S
  NumericConstant:20
- BinaryOperator:>
+ BinaryOperatorGreater:>
 560 NEXT R
  Variable:R
 565 PRINT
@@ -602,7 +602,7 @@
 580 PRINT TAB(R*2);R;CHR$(141)
  Variable:R
  NumericConstant:2
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionTab
  CarriageControl:;
  Variable:R
@@ -616,7 +616,7 @@
  NumericConstant:1
  Variable:W
  NumericConstant:0
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 595 W(1)=R
  NumericConstant:1
  Variable:W
@@ -637,7 +637,7 @@
  Variable:D
  Variable:D
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 620 GOTO 560
  LineNumber:560
@@ -645,7 +645,7 @@
  NumericConstant:1
  Variable:W
  NumericConstant:0
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 630 PRINT TAB(2);"XXXXXXXFINISHXXXXXXXX"
  NumericConstant:2
  FunctionTab
@@ -673,7 +673,7 @@
 650 IF Y=7 THEN 665
  Variable:Y
  NumericConstant:7
- BinaryOperator:=
+ BinaryOperatorEqual:=
 655 NEXT Y
  Variable:Y
 660 GOTO 680
@@ -703,7 +703,7 @@
 695 IF D<=1 THEN 735
  Variable:D
  NumericConstant:1
- BinaryOperator:<=
+ BinaryOperatorLessEqual:<=
 700 G=W(1)
  Variable:G
  NumericConstant:1
@@ -719,10 +719,10 @@
  Variable:S
  Variable:I2
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:W
  Variable:S
- BinaryOperator:<
+ BinaryOperatorLess:<
 715 NEXT I2
  Variable:I2
 720 GOTO 735
@@ -731,7 +731,7 @@
  Variable:G
  Variable:I2
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:W
  AssignmentOperator:=
 730 GOTO 715
@@ -761,7 +761,7 @@
  Variable:G
  Variable:E
  Variable:J
- BinaryOperator:=
+ BinaryOperatorEqual:=
 770 M5(E)=M5(E)-P(E)
  Variable:E
  Variable:M5
@@ -769,14 +769,14 @@
  Variable:M5
  Variable:E
  Variable:P
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 775 N7=N7+P(E)
  Variable:N7
  Variable:N7
  Variable:E
  Variable:P
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 780 NEXT E
  Variable:E
@@ -786,7 +786,7 @@
  Variable:G
  Variable:B
  NumericConstant:2
- BinaryOperator:=
+ BinaryOperatorEqual:=
 795 GOTO 805
  LineNumber:805
 800 B(G)=1
@@ -801,13 +801,13 @@
  Variable:B
  Variable:E
  Variable:P
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:E
  Variable:P
- BinaryOperator:*
- BinaryOperator:*
+ BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:*
  NumericConstant:100
- BinaryOperator:/
+ BinaryOperatorDivide:/
  FunctionInt
  AssignmentOperator:=
 810 PRINT "CONGRATULATION "N$(E)" YOU HAVE WON $";M
@@ -826,13 +826,13 @@
  Variable:E
  Variable:M5
  Variable:M
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 820 N7=N7-M
  Variable:N7
  Variable:N7
  Variable:M
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 825 PRINT
  CarriageControl:NL
@@ -846,7 +846,7 @@
 845 IF L$="YES" THEN 870
  Variable:L$
  TextConstant:"YES"
- BinaryOperator:=
+ BinaryOperatorEqual:=
 850 PRINT\PRINT "PERSON", "AMOUNT "\FOR I=1 TO Q
  CarriageControl:NL
  TextConstant:"PERSON"
@@ -946,16 +946,16 @@
  Variable:I
  Variable:P
  NumericConstant:2
- BinaryOperator:<
+ BinaryOperatorLess:<
  Variable:I
  Variable:P
  NumericConstant:500
- BinaryOperator:>
+ BinaryOperatorGreater:>
  Variable:I
 940 IF C$="NO" THEN 325
  Variable:C$
  TextConstant:"NO"
- BinaryOperator:=
+ BinaryOperatorEqual:=
 945 GOTO 1025
  LineNumber:1025
 950 PRINT "YOU MUST BET AT LEAST $2.00 "N$(I)"YOUR BET";
@@ -994,12 +994,12 @@
 980 IF I=G THEN 995
  Variable:I
  Variable:G
- BinaryOperator:=
+ BinaryOperatorEqual:=
 985 X=X+1\PUT 9,30,I
  Variable:X
  Variable:X
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
  NumericConstant:9
  NumericConstant:30
@@ -1010,7 +1010,7 @@
  Variable:V
  Variable:V
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
  NumericConstant:8
  NumericConstant:25
@@ -1044,12 +1044,12 @@
  Variable:Q4
  Variable:Q
  Variable:J6
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 1030 IF Q4>=20 THEN 1035\Q=Q4\Q4=0\GO TO 1040
  Variable:Q4
  NumericConstant:20
- BinaryOperator:>=
+ BinaryOperatorGreaterEqual:>=
  Variable:Q
  Variable:Q4
  AssignmentOperator:=
@@ -1088,12 +1088,12 @@
  Variable:Z
  Variable:P
  NumericConstant:2
- BinaryOperator:<
+ BinaryOperatorLess:<
 1060 IF P(Z)>500 THEN 1075
  Variable:Z
  Variable:P
  NumericConstant:500
- BinaryOperator:>
+ BinaryOperatorGreater:>
 1065 PRINT\NEXT Z\GOTO 325
  CarriageControl:NL
  Variable:Z

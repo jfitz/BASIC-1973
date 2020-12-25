@@ -22,11 +22,11 @@
 140 IF B$="NO" THEN 210
  Variable:B$
  TextConstant:"NO"
- BinaryOperator:=
+ BinaryOperatorEqual:=
 150 IF B$="YES" THEN 180
  Variable:B$
  TextConstant:"YES"
- BinaryOperator:=
+ BinaryOperatorEqual:=
 160 PRINT "YES OR NO, PLEASE.";
  TextConstant:"YES OR NO, PLEASE."
  CarriageControl:;
@@ -71,26 +71,26 @@
  NumericConstant:52
  Variable:X
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  FunctionInt
  AssignmentOperator:=
 300 FOR K=1 TO J-1
  control: Variable:K
  start:   ["NumericConstant:1"]
- end:     ["Variable:J", "NumericConstant:1", "BinaryOperator:-"]
+ end:     ["Variable:J", "NumericConstant:1", "BinaryOperatorMinus:-"]
 310 IF L(K)<>L(J) THEN 340
  Variable:K
  Variable:L
  Variable:J
  Variable:L
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 320 LET J=J-1
  Variable:J
  Variable:J
  NumericConstant:1
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 330 GO TO 350
  LineNumber:350
@@ -102,7 +102,7 @@
  Variable:P
  Variable:P
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 370 LET M1=L(P)
  Variable:M1
@@ -113,7 +113,7 @@
  Variable:P
  Variable:P
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 390 LET M2=L(P)
  Variable:M2
@@ -139,29 +139,29 @@
  Variable:N1
  Variable:M1
  NumericConstant:.5
- BinaryOperator:-
+ BinaryOperatorMinus:-
  NumericConstant:4
- BinaryOperator:/
+ BinaryOperatorDivide:/
  FunctionInt
  AssignmentOperator:=
 440 LET N2=INT((M2-.5)/4)
  Variable:N2
  Variable:M2
  NumericConstant:.5
- BinaryOperator:-
+ BinaryOperatorMinus:-
  NumericConstant:4
- BinaryOperator:/
+ BinaryOperatorDivide:/
  FunctionInt
  AssignmentOperator:=
 450 IF N1>=N2 THEN 490
  Variable:N1
  Variable:N2
- BinaryOperator:>=
+ BinaryOperatorGreaterEqual:>=
 460 LET A1=A1+1
  Variable:A1
  Variable:A1
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 470 PRINT "COMPUTER WINS.^G^G^G^G^G   YOU HAVE";B1;"; COMPUTER HAS";A1
  TextConstant:"COMPUTER WINS.^G^G^G^G^G   YOU HAVE"
@@ -177,12 +177,12 @@
 490 IF N1=N2 THEN 530
  Variable:N1
  Variable:N2
- BinaryOperator:=
+ BinaryOperatorEqual:=
 500 LET B1=B1+1
  Variable:B1
  Variable:B1
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 510 PRINT "YOU WIN, YOU HAVE";B1;"; COMPUTER HAS";A1
  TextConstant:"YOU WIN, YOU HAVE"
@@ -201,10 +201,10 @@
 540 IF L(P+1)=0. THEN 610
  Variable:P
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:L
  NumericConstant:0.
- BinaryOperator:=
+ BinaryOperatorEqual:=
 550 PRINT "DO YOU WANT TO CONTINUE";
  TextConstant:"DO YOU WANT TO CONTINUE"
  CarriageControl:;
@@ -213,11 +213,11 @@
 570 IF V$="YES" THEN 360
  Variable:V$
  TextConstant:"YES"
- BinaryOperator:=
+ BinaryOperatorEqual:=
 580 IF V$="NO"THEN 650
  Variable:V$
  TextConstant:"NO"
- BinaryOperator:=
+ BinaryOperatorEqual:=
 590 PRINT "YES OR NO, PLEASE.";
  TextConstant:"YES OR NO, PLEASE."
  CarriageControl:;

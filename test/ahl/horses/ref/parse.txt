@@ -53,13 +53,13 @@
  NumericConstant:50
  Variable:I
  Variable:O
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  Variable:I
  Variable:O
  NumericConstant:1
- BinaryOperator:+
- BinaryOperator:/
+ BinaryOperatorPlus:+
+ BinaryOperatorDivide:/
  AssignmentOperator:=
 11 NEXT I
  Variable:I
@@ -81,7 +81,7 @@
  Variable:S
  Variable:S
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 18 PRINT"BET NO. ";S;
  TextConstant:"BET NO. "
@@ -108,12 +108,12 @@
  Variable:S
  Variable:T
  NumericConstant:8
- BinaryOperator:>
+ BinaryOperatorGreater:>
 22 IF T(S)<1 THEN 26
  Variable:S
  Variable:T
  NumericConstant:1
- BinaryOperator:<
+ BinaryOperatorLess:<
 23 LET U(S)=ABS(INT(U(S)))
  Variable:S
  Variable:U
@@ -126,12 +126,12 @@
  Variable:S
  Variable:U
  NumericConstant:3
- BinaryOperator:>
+ BinaryOperatorGreater:>
 25 IF U(S)>0 THEN 28
  Variable:S
  Variable:U
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
 26 PRINT"HORSE NO. OR WIN-PLACE-SHOW IN ERROR" \ GO TO 18
  TextConstant:"HORSE NO. OR WIN-PLACE-SHOW IN ERROR"
  CarriageControl:NL
@@ -140,12 +140,12 @@
  Variable:S
  Variable:V
  NumericConstant:2
- BinaryOperator:<
+ BinaryOperatorLess:<
 29 IF V(S)<300 THEN 33
  Variable:S
  Variable:V
  NumericConstant:300
- BinaryOperator:<
+ BinaryOperatorLess:<
 30 PRINT"BET MUST BE >$2 AND <$300. BET AGAIN";
  TextConstant:"BET MUST BE >$2 AND <$300. BET AGAIN"
  CarriageControl:;
@@ -156,7 +156,7 @@
 33 IF M = 1 THEN 17
  Variable:M
  NumericConstant:1
- BinaryOperator:=
+ BinaryOperatorEqual:=
 35 PRINT \ PRINT" THEY'RE OFF AND RUNNING -" \ PRINT
  CarriageControl:NL
  TextConstant:" THEY'RE OFF AND RUNNING -"
@@ -190,8 +190,8 @@
  FunctionRnd
  Variable:J
  Variable:M
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 48 NEXT J
  Variable:J
@@ -207,16 +207,16 @@
 56 ON SGN(H(B(J-1))-H(B(J)))+2 GO TO 60,58,62
  Variable:J
  NumericConstant:1
- BinaryOperator:-
+ BinaryOperatorMinus:-
  Variable:B
  Variable:H
  Variable:J
  Variable:B
  Variable:H
- BinaryOperator:-
+ BinaryOperatorMinus:-
  FunctionSgn
  NumericConstant:2
- BinaryOperator:+
+ BinaryOperatorPlus:+
  LineNumber:60
  LineNumber:58
  LineNumber:62
@@ -224,17 +224,17 @@
  NumericConstant:0
  FunctionRnd
  NumericConstant:.5
- BinaryOperator:>
+ BinaryOperatorGreater:>
 60 Z=B(J-1) \ B(J-1)=B(J) \ B(J)=Z
  Variable:Z
  Variable:J
  NumericConstant:1
- BinaryOperator:-
+ BinaryOperatorMinus:-
  Variable:B
  AssignmentOperator:=
  Variable:J
  NumericConstant:1
- BinaryOperator:-
+ BinaryOperatorMinus:-
  Variable:B
  Variable:J
  Variable:B
@@ -324,11 +324,11 @@
  Variable:L
  NumericConstant:2
  Variable:I
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:J
- BinaryOperator:+
+ BinaryOperatorPlus:+
  NumericConstant:3
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
  Variable:L
  Variable:P
@@ -339,32 +339,32 @@
  Variable:I
  Variable:B
  Variable:O
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:J
  Variable:J
  NumericConstant:1
- BinaryOperator:+
- BinaryOperator:*
- BinaryOperator:/
+ BinaryOperatorPlus:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorDivide:/
  NumericConstant:0
  FunctionRnd
- BinaryOperator:+
+ BinaryOperatorPlus:+
  NumericConstant:100
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:5
- BinaryOperator:+
+ BinaryOperatorPlus:+
  FunctionInt
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionInt
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 110 PRINT TAB(3+10*J); \ B=-16
  NumericConstant:3
  NumericConstant:10
  Variable:J
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  FunctionTab
  CarriageControl:;
  Variable:B
@@ -382,8 +382,8 @@
  Variable:P
  NumericConstant:10
  Variable:M
- BinaryOperator:^
- BinaryOperator:/
+ BinaryOperatorPower:^
+ BinaryOperatorDivide:/
  FunctionInt
  AssignmentOperator:=
 116 P=P-10*INT(P/10)
@@ -392,30 +392,30 @@
  NumericConstant:10
  Variable:P
  NumericConstant:10
- BinaryOperator:/
+ BinaryOperatorDivide:/
  FunctionInt
- BinaryOperator:*
- BinaryOperator:-
+ BinaryOperatorMultiply:*
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 117 IF P=0 THEN 118 \ B=0
  Variable:P
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
  Variable:B
  NumericConstant:0
  AssignmentOperator:=
 118 PRINT CHR$(48+P+B);
  NumericConstant:48
  Variable:P
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:B
- BinaryOperator:+
+ BinaryOperatorPlus:+
  FunctionChr
  CarriageControl:;
 138 IF M<>0 THEN 139 \ PRINT ".";
  Variable:M
  NumericConstant:0
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
  TextConstant:"."
  CarriageControl:;
 139 NEXT M
@@ -463,28 +463,28 @@
  Variable:J
  Variable:T
  Variable:H
- BinaryOperator:<
+ BinaryOperatorLess:<
 162 P= .01*INT((V(J)*50)*P(U(J)*H(T(J))*2-3))
  Variable:P
  NumericConstant:.01
  Variable:J
  Variable:V
  NumericConstant:50
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:J
  Variable:U
  Variable:J
  Variable:T
  Variable:H
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:2
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:3
- BinaryOperator:-
+ BinaryOperatorMinus:-
  Variable:P
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionInt
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  AssignmentOperator:=
 164 PRINT "YOU COLLECT" P "ON "; \ GO TO 172
  TextConstant:"YOU COLLECT"
@@ -499,7 +499,7 @@
  Variable:T
  Variable:H
  NumericConstant:3
- BinaryOperator:>
+ BinaryOperatorGreater:>
  TextConstant:"NEXT TIME, BUY A SHOW"
  CarriageControl:;
  LineNumber:170
@@ -524,17 +524,17 @@
  Variable:Q
  Variable:Q
  Variable:P
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:J
  Variable:V
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 176 NEXT J
  Variable:J
 178 IF Q<0 THEN 182
  Variable:Q
  NumericConstant:0
- BinaryOperator:<
+ BinaryOperatorLess:<
 180 PRINT "YOUR TOTAL WINNINGS AMOUNT TO $" Q \ STOP
  TextConstant:"YOUR TOTAL WINNINGS AMOUNT TO $"
  CarriageControl:
@@ -603,11 +603,11 @@
 240 IF K=0 THEN 260
  Variable:K
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 245 IF I>1 THEN 250 \ PRINT \ GO TO 255
  Variable:I
  NumericConstant:1
- BinaryOperator:>
+ BinaryOperatorGreater:>
  CarriageControl:NL
  LineNumber:255
 250 PRINT .1*INT(H(B(1))-H(B(I)))
@@ -618,9 +618,9 @@
  Variable:I
  Variable:B
  Variable:H
- BinaryOperator:-
+ BinaryOperatorMinus:-
  FunctionInt
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  CarriageControl:NL
 255 NEXT I
  Variable:I

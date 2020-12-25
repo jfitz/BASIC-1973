@@ -175,26 +175,26 @@
  Variable:A
  FunctionRnd
  NumericConstant:360
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionInt
  AssignmentOperator:=
 280 LET D=INT(RND*200) +100
  Variable:D
  FunctionRnd
  NumericConstant:200
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionInt
  NumericConstant:100
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 290 LET R=INT(RND*20) +10
  Variable:R
  FunctionRnd
  NumericConstant:20
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionInt
  NumericConstant:10
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 300 LET H=0
  Variable:H
@@ -203,12 +203,12 @@
 310 IF H=7 GOTO 490
  Variable:H
  NumericConstant:7
- BinaryOperator:=
+ BinaryOperatorEqual:=
 320 LET H=H+1
  Variable:H
  Variable:H
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 325 PRINT
  CarriageControl:NL
@@ -239,57 +239,57 @@
  Variable:A
  Variable:A
  Variable:R
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 380 IF A<360 GOTO 400
  Variable:A
  NumericConstant:360
- BinaryOperator:<
+ BinaryOperatorLess:<
 390 LET A=A-360
  Variable:A
  Variable:A
  NumericConstant:360
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 400 LET T=ABS(A-A1)
  Variable:T
  Variable:A
  Variable:A1
- BinaryOperator:-
+ BinaryOperatorMinus:-
  FunctionAbs
  AssignmentOperator:=
 410 IF T<180 GOTO 430
  Variable:T
  NumericConstant:180
- BinaryOperator:<
+ BinaryOperatorLess:<
 420 LET T=360-T
  Variable:T
  NumericConstant:360
  Variable:T
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 430 LET C=SQR(D*D+D1*D1-2*D*D1*COS(T*3.14159/180))
  Variable:C
  Variable:D
  Variable:D
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:D1
  Variable:D1
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  NumericConstant:2
  Variable:D
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:D1
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:T
  NumericConstant:3.14159
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:180
- BinaryOperator:/
+ BinaryOperatorDivide:/
  FunctionCos
- BinaryOperator:*
- BinaryOperator:-
+ BinaryOperatorMultiply:*
+ BinaryOperatorMinus:-
  FunctionSqr
  AssignmentOperator:=
 440 PRINT "YOUR PHOTON BOMB EXPLODED";C;"*10^2 MILES FROM THE"
@@ -305,7 +305,7 @@
 450 IF C<50 GOTO 470
  Variable:C
  NumericConstant:50
- BinaryOperator:<
+ BinaryOperatorLess:<
 460 GOTO 310
  LineNumber:310
 470 PRINT "YOU HAVE SUCCESSFULLY COMPLETED YOUR MISSION."
@@ -327,7 +327,7 @@
 530 IF C$="YES" GOTO 270
  Variable:C$
  TextConstant:"YES"
- BinaryOperator:=
+ BinaryOperatorEqual:=
 540 PRINT "PLEASE LOGOUT"
  TextConstant:"PLEASE LOGOUT"
  CarriageControl:NL

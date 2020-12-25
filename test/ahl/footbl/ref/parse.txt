@@ -9,7 +9,7 @@
 40 IF I<>1 THEN 340
  Variable:I
  NumericConstant:1
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 50 PRINT
  CarriageControl:NL
 60 PRINT
@@ -147,7 +147,7 @@
  FunctionSin
  Variable:X
  FunctionCos
- BinaryOperator:/
+ BinaryOperatorDivide:/
 370 DIM R(17)
  NumericConstant:17
  Declaration:R
@@ -248,9 +248,9 @@
  NumericConstant:2
  NumericConstant:13
  Variable:Q
- BinaryOperator:-
+ BinaryOperatorMinus:-
  FunctionSgn
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 580 LET K=S
  Variable:K
@@ -283,31 +283,31 @@
  Variable:F1
  Variable:O
  NumericConstant:20
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:0
  FunctionRnd
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  NumericConstant:1
  Variable:O
- BinaryOperator:-
+ BinaryOperatorMinus:-
  NumericConstant:29
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:2
  NumericConstant:0
  FunctionRnd
  NumericConstant:7
- BinaryOperator:^
- BinaryOperator:*
+ BinaryOperatorPower:^
+ BinaryOperatorMultiply:*
  NumericConstant:0
  FunctionRnd
  NumericConstant:3
  Variable:Z2
- BinaryOperator:-
- BinaryOperator:^
- BinaryOperator:-
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMinus:-
+ BinaryOperatorPower:^
+ BinaryOperatorMinus:-
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  FunctionInt
  AssignmentOperator:=
 660 LET O=0
@@ -327,7 +327,7 @@
 700 IF B<99 THEN 2340
  Variable:B
  NumericConstant:99
- BinaryOperator:<
+ BinaryOperatorLess:<
 710 PRINT "A TOUCHBACK"
  TextConstant:"A TOUCHBACK"
  CarriageControl:NL
@@ -342,7 +342,7 @@
 740 IF S=2 THEN 770
  Variable:S
  NumericConstant:2
- BinaryOperator:=
+ BinaryOperatorEqual:=
 750 PRINT "MY ";
  TextConstant:"MY "
  CarriageControl:;
@@ -370,7 +370,7 @@
 830 IF C<=0 THEN 2770
  Variable:C
  NumericConstant:0
- BinaryOperator:<=
+ BinaryOperatorLessEqual:<=
 840 GOSUB 2530
  LineNumber:2530
 850 LET Z2=1
@@ -385,23 +385,23 @@
  Variable:C
  Variable:F
  Variable:T1
- BinaryOperator:*
- BinaryOperator:<=
+ BinaryOperatorMultiply:*
+ BinaryOperatorLessEqual:<=
 880 IF C<=0 THEN 2770
  Variable:C
  NumericConstant:0
- BinaryOperator:<=
+ BinaryOperatorLessEqual:<=
 890 IF L=0 THEN 910
  Variable:L
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 900 PRINT "TIME TO GO--";
  TextConstant:"TIME TO GO--"
  CarriageControl:;
 910 PRINT INT(C/60);"MIN.";C-60*INT(C/60);" SEC.  ";
  Variable:C
  NumericConstant:60
- BinaryOperator:/
+ BinaryOperatorDivide:/
  FunctionInt
  CarriageControl:;
  TextConstant:"MIN."
@@ -410,10 +410,10 @@
  NumericConstant:60
  Variable:C
  NumericConstant:60
- BinaryOperator:/
+ BinaryOperatorDivide:/
  FunctionInt
- BinaryOperator:*
- BinaryOperator:-
+ BinaryOperatorMultiply:*
+ BinaryOperatorMinus:-
  CarriageControl:;
  TextConstant:" SEC.  "
  CarriageControl:;
@@ -425,11 +425,11 @@
 940 IF S=1 THEN 980
  Variable:S
  NumericConstant:1
- BinaryOperator:=
+ BinaryOperatorEqual:=
 950 IF Q>8 THEN 920
  Variable:Q
  NumericConstant:8
- BinaryOperator:>
+ BinaryOperatorGreater:>
 960 LET M=Q
  Variable:M
  Variable:Q
@@ -440,17 +440,17 @@
  Variable:Y
  Variable:Q
  NumericConstant:8
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 990 IF ABS(Q-10.5)^2>3 THEN 920
  Variable:Q
  NumericConstant:10.5
- BinaryOperator:-
+ BinaryOperatorMinus:-
  FunctionAbs
  NumericConstant:2
- BinaryOperator:^
+ BinaryOperatorPower:^
  NumericConstant:3
- BinaryOperator:>
+ BinaryOperatorGreater:>
 1000 LET C=INT(C-L*(5+23*RND(X)))
  Variable:C
  Variable:C
@@ -459,10 +459,10 @@
  NumericConstant:23
  Variable:X
  FunctionRnd
- BinaryOperator:*
- BinaryOperator:+
- BinaryOperator:*
- BinaryOperator:-
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorMinus:-
  FunctionInt
  AssignmentOperator:=
 1010 LET L=1
@@ -472,26 +472,26 @@
 1020 IF M=7 THEN 1760
  Variable:M
  NumericConstant:7
- BinaryOperator:=
+ BinaryOperatorEqual:=
 1030 IF M=8 THEN 1920
  Variable:M
  NumericConstant:8
- BinaryOperator:=
+ BinaryOperatorEqual:=
 1040 LET Y1=Y-1
  Variable:Y1
  Variable:Y
  NumericConstant:1
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 1050 IF RND(X)>Z(M-1,Y1) THEN 1240
  Variable:X
  FunctionRnd
  Variable:M
  NumericConstant:1
- BinaryOperator:-
+ BinaryOperatorMinus:-
  Variable:Y1
  Variable:Z
- BinaryOperator:>
+ BinaryOperatorGreater:>
 1060 LET A=2
  Variable:A
  NumericConstant:2
@@ -501,7 +501,7 @@
 1080 IF M<4 THEN 1110
  Variable:M
  NumericConstant:4
- BinaryOperator:<
+ BinaryOperatorLess:<
 1090 PRINT "PASS COMPLETE..";
  TextConstant:"PASS COMPLETE.."
  CarriageControl:;
@@ -510,7 +510,7 @@
  NumericConstant:4
  NumericConstant:0
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionInt
  FunctionSgn
  AssignmentOperator:=
@@ -518,21 +518,21 @@
  Variable:X
  FunctionRnd
  Variable:F2
- BinaryOperator:<
+ BinaryOperatorLess:<
 1120 IF G>0 THEN 1210
  Variable:G
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
 1130 IF G=0 THEN 1170
  Variable:G
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 1140 IF G+B<1 THEN 2170
  Variable:G
  Variable:B
- BinaryOperator:+
+ BinaryOperatorPlus:+
  NumericConstant:1
- BinaryOperator:<
+ BinaryOperatorLess:<
 1150 PRINT "LOSS OF";-G;
  TextConstant:"LOSS OF"
  CarriageControl:;
@@ -555,9 +555,9 @@
 1210 IF B+G>99 THEN 1650
  Variable:B
  Variable:G
- BinaryOperator:+
+ BinaryOperatorPlus:+
  NumericConstant:99
- BinaryOperator:>
+ BinaryOperatorGreater:>
 1220 PRINT "GAIN OF";G;
  TextConstant:"GAIN OF"
  CarriageControl:;
@@ -568,7 +568,7 @@
 1240 IF M>3 THEN 1280
  Variable:M
  NumericConstant:3
- BinaryOperator:>
+ BinaryOperatorGreater:>
 1250 LET A=1
  Variable:A
  NumericConstant:1
@@ -584,23 +584,23 @@
  NumericConstant:2
  Variable:Y
  NumericConstant:3
- BinaryOperator:-
+ BinaryOperatorMinus:-
  FunctionSgn
- BinaryOperator:-
- BinaryOperator:*
- BinaryOperator:<
+ BinaryOperatorMinus:-
+ BinaryOperatorMultiply:*
+ BinaryOperatorLess:<
 1290 IF RND(0)<.05*INT(Y/3.5)/5 THEN 1510
  NumericConstant:0
  FunctionRnd
  NumericConstant:.05
  Variable:Y
  NumericConstant:3.5
- BinaryOperator:/
+ BinaryOperatorDivide:/
  FunctionInt
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:5
- BinaryOperator:/
- BinaryOperator:<
+ BinaryOperatorDivide:/
+ BinaryOperatorLess:<
 1300 LET Z9=6
  Variable:Z9
  NumericConstant:6
@@ -632,29 +632,29 @@
 1390 IF B<40 THEN 1410
  Variable:B
  NumericConstant:40
- BinaryOperator:<
+ BinaryOperatorLess:<
 1400 LET G=20*(1+SGN(G))
  Variable:G
  NumericConstant:20
  NumericConstant:1
  Variable:G
  FunctionSgn
- BinaryOperator:+
- BinaryOperator:*
+ BinaryOperatorPlus:+
+ BinaryOperatorMultiply:*
  AssignmentOperator:=
 1410 LET B=100-B-G
  Variable:B
  NumericConstant:100
  Variable:B
- BinaryOperator:-
+ BinaryOperatorMinus:-
  Variable:G
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 1420 LET S=3-S
  Variable:S
  NumericConstant:3
  Variable:S
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 1430 LET Z9=9
  Variable:Z9
@@ -665,11 +665,11 @@
 1450 IF B<1 THEN 710
  Variable:B
  NumericConstant:1
- BinaryOperator:<
+ BinaryOperatorLess:<
 1460 IF B>99 THEN 1650
  Variable:B
  NumericConstant:99
- BinaryOperator:>
+ BinaryOperatorGreater:>
 1470 PRINT "AT ";
  TextConstant:"AT "
  CarriageControl:;
@@ -681,15 +681,15 @@
  NumericConstant:4
  Variable:Z9
  NumericConstant:2
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:1
  NumericConstant:0
  FunctionRnd
- BinaryOperator:+
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorPlus:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  FunctionInt
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 1500 RETURN
  
@@ -699,9 +699,9 @@
  NumericConstant:10
  Variable:X
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionInt
- BinaryOperator:+
+ BinaryOperatorPlus:+
  UnaryOperatorMinus:-
  AssignmentOperator:=
 1520 PRINT "THE QUARTERBACK "
@@ -711,7 +711,7 @@
  Variable:X
  FunctionRnd
  NumericConstant:.5
- BinaryOperator:>
+ BinaryOperatorGreater:>
 1540 PRINT "IS THROWN FOR A ";
  TextConstant:"IS THROWN FOR A "
  CarriageControl:;
@@ -721,9 +721,9 @@
  Variable:G
  NumericConstant:2
  Variable:G
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:8
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  UnaryOperatorMinus:-
  AssignmentOperator:=
 1570 LET M=B
@@ -743,7 +743,7 @@
  Variable:B
  Variable:B
  Variable:G
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 1620 PRINT "TO ";
  TextConstant:"TO "
@@ -753,7 +753,7 @@
 1640 IF B<99 THEN 1670
  Variable:B
  NumericConstant:99
- BinaryOperator:<
+ BinaryOperatorLess:<
 1650 GOSUB 1990
  LineNumber:1990
 1660 GOTO 630
@@ -761,16 +761,16 @@
 1670 IF B1>B THEN 3120
  Variable:B1
  Variable:B
- BinaryOperator:>
+ BinaryOperatorGreater:>
 1680 IF B1<B THEN 1730
  Variable:B1
  Variable:B
- BinaryOperator:<
+ BinaryOperatorLess:<
 1690 IF RND(0)>.5 THEN 1730
  NumericConstant:0
  FunctionRnd
  NumericConstant:.5
- BinaryOperator:>
+ BinaryOperatorGreater:>
 1700 PRINT "**MEASUREMENT**"
  TextConstant:"**MEASUREMENT**"
  CarriageControl:NL
@@ -780,7 +780,7 @@
  Variable:X
  FunctionRnd
  NumericConstant:.5
- BinaryOperator:<
+ BinaryOperatorLess:<
 1730 GOSUB 2980
  LineNumber:2980
 1740 LET D=0
@@ -793,7 +793,7 @@
  Variable:X
  FunctionRnd
  NumericConstant:.06
- BinaryOperator:<
+ BinaryOperatorLess:<
 1770 LET B=B+30*INT(15*(1*RND(0)^3))
  Variable:B
  Variable:B
@@ -803,12 +803,12 @@
  NumericConstant:0
  FunctionRnd
  NumericConstant:3
- BinaryOperator:^
- BinaryOperator:*
- BinaryOperator:*
+ BinaryOperatorPower:^
+ BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:*
  FunctionInt
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 1780 LET Z9=2
  Variable:Z9
@@ -819,7 +819,7 @@
 1800 IF B<=99 THEN 1550
  Variable:B
  NumericConstant:99
- BinaryOperator:<=
+ BinaryOperatorLessEqual:<=
 1810 LET P1=3
  Variable:P1
  NumericConstant:3
@@ -829,7 +829,7 @@
 1830 IF P1=0 THEN 710
  Variable:P1
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 1840 GOTO 630
  LineNumber:630
 1850 PRINT "THE KICK IS ";
@@ -843,7 +843,7 @@
  Variable:S
  NumericConstant:3
  Variable:S
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 1880 GOTO 2340
  LineNumber:2340
@@ -855,7 +855,7 @@
  NumericConstant:14
  Variable:X
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionInt
  AssignmentOperator:=
 1910 GOTO 1410
@@ -867,7 +867,7 @@
  Variable:X
  FunctionRnd
  NumericConstant:.06
- BinaryOperator:<
+ BinaryOperatorLess:<
 1940 LET F1=B
  Variable:F1
  Variable:B
@@ -880,7 +880,7 @@
  Variable:S
  NumericConstant:3
  Variable:S
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 1970 LET Z3=.65
  Variable:Z3
@@ -901,7 +901,7 @@
  Variable:S
  Variable:P
  NumericConstant:6
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 2020 LET B=130
  Variable:B
@@ -915,10 +915,10 @@
  FunctionRnd
  Variable:B
  NumericConstant:132
- BinaryOperator:/
+ BinaryOperatorDivide:/
  NumericConstant:4
- BinaryOperator:^
- BinaryOperator:<
+ BinaryOperatorPower:^
+ BinaryOperatorLess:<
 2050 LET P1=0
  Variable:P1
  NumericConstant:0
@@ -935,7 +935,7 @@
  Variable:S
  Variable:P
  Variable:P1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 2090 GOSUB 2120
  LineNumber:2120
@@ -943,7 +943,7 @@
  Variable:S
  NumericConstant:3
  Variable:S
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 2110 RETURN
  
@@ -965,13 +965,13 @@
 2140 IF X<5 THEN 2160
  Variable:X
  NumericConstant:5
- BinaryOperator:<
+ BinaryOperatorLess:<
 2150 IF P(1)<>P(2) THEN 2770
  NumericConstant:1
  Variable:P
  NumericConstant:2
  Variable:P
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 2160 RETURN
  
 2170 PRINT "**SAFETY**"
@@ -980,14 +980,14 @@
 2180 LET P(3-S)=P(3-S)+2
  NumericConstant:3
  Variable:S
- BinaryOperator:-
+ BinaryOperatorMinus:-
  Variable:P
  NumericConstant:3
  Variable:S
- BinaryOperator:-
+ BinaryOperatorMinus:-
  Variable:P
  NumericConstant:2
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 2190 LET F1=30
  Variable:F1
@@ -997,7 +997,7 @@
  Variable:S
  NumericConstant:3
  Variable:S
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 2210 GOSUB 2120
  LineNumber:2120
@@ -1013,7 +1013,7 @@
 2260 IF S=2 THEN 2330
  Variable:S
  NumericConstant:2
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2270 PRINT "ON-SIDE";
  TextConstant:"ON-SIDE"
  CarriageControl:;
@@ -1022,7 +1022,7 @@
 2290 IF Q<>13 THEN 2330
  Variable:Q
  NumericConstant:13
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 2300 LET F2=.15
  Variable:F2
  NumericConstant:.15
@@ -1041,7 +1041,7 @@
  Variable:B
  NumericConstant:100
  Variable:B
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 2350 PRINT "RECEIVED AT ";
  TextConstant:"RECEIVED AT "
@@ -1052,29 +1052,29 @@
  Variable:Z2
  Variable:X
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:Z3
- BinaryOperator:>
+ BinaryOperatorGreater:>
 2380 IF RND(X)<F2 THEN 2500
  Variable:X
  FunctionRnd
  Variable:F2
- BinaryOperator:<
+ BinaryOperatorLess:<
 2390 LET G=5*INT(100*RND(0))
  Variable:G
  NumericConstant:5
  NumericConstant:100
  NumericConstant:0
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  FunctionInt
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  AssignmentOperator:=
 2400 IF RND(0)<.15 THEN 2430
  NumericConstant:0
  FunctionRnd
  NumericConstant:.15
- BinaryOperator:<
+ BinaryOperatorLess:<
 2410 LET G=INT(24*(1-RND(X)^2))
  Variable:G
  NumericConstant:24
@@ -1082,20 +1082,20 @@
  Variable:X
  FunctionRnd
  NumericConstant:2
- BinaryOperator:^
- BinaryOperator:-
- BinaryOperator:*
+ BinaryOperatorPower:^
+ BinaryOperatorMinus:-
+ BinaryOperatorMultiply:*
  FunctionInt
  AssignmentOperator:=
 2420 IF G=0 THEN 2490
  Variable:G
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2430 LET B=B+G
  Variable:B
  Variable:B
  Variable:G
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 2440 PRINT " AND RUN BACK...";
  TextConstant:" AND RUN BACK..."
@@ -1107,7 +1107,7 @@
 2460 IF B>99 THEN 1650
  Variable:B
  NumericConstant:99
- BinaryOperator:>
+ BinaryOperatorGreater:>
 2470 PRINT " TO ";
  TextConstant:" TO "
  CarriageControl:;
@@ -1117,7 +1117,7 @@
  NumericConstant:0
  FunctionRnd
  Variable:F2
- BinaryOperator:>
+ BinaryOperatorGreater:>
 2500 LET G=0
  Variable:G
  NumericConstant:0
@@ -1130,15 +1130,15 @@
 2530 IF S=1 THEN 2560
  Variable:S
  NumericConstant:1
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2540 LET Y=INT(1+3.5*RND(0))
  Variable:Y
  NumericConstant:1
  NumericConstant:3.5
  NumericConstant:0
  FunctionRnd
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  FunctionInt
  AssignmentOperator:=
 2550 RETURN
@@ -1148,23 +1148,23 @@
  NumericConstant:55
  NumericConstant:0
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:10.5
- BinaryOperator:/
+ BinaryOperatorDivide:/
  FunctionInt
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 2570 IF (B1-B)/(5-D)<3 THEN 2590
  Variable:B1
  Variable:B
- BinaryOperator:-
+ BinaryOperatorMinus:-
  NumericConstant:5
  Variable:D
- BinaryOperator:-
- BinaryOperator:/
+ BinaryOperatorMinus:-
+ BinaryOperatorDivide:/
  NumericConstant:3
- BinaryOperator:<
+ BinaryOperatorLess:<
 2580 LET M=INT(6-4*RND(0)^2)
  Variable:M
  NumericConstant:6
@@ -1172,23 +1172,23 @@
  NumericConstant:0
  FunctionRnd
  NumericConstant:2
- BinaryOperator:^
- BinaryOperator:*
- BinaryOperator:-
+ BinaryOperatorPower:^
+ BinaryOperatorMultiply:*
+ BinaryOperatorMinus:-
  FunctionInt
  AssignmentOperator:=
 2590 IF L*F*60>=C THEN 2670
  Variable:L
  Variable:F
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:60
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:C
- BinaryOperator:>=
+ BinaryOperatorGreaterEqual:>=
 2600 IF D<4 THEN 2550
  Variable:D
  NumericConstant:4
- BinaryOperator:<
+ BinaryOperatorLess:<
 2610 PRINT "I'LL ";
  TextConstant:"I'LL "
  CarriageControl:;
@@ -1199,12 +1199,12 @@
  NumericConstant:4
  NumericConstant:0
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:B1
- BinaryOperator:-
+ BinaryOperatorMinus:-
  Variable:B
- BinaryOperator:+
- BinaryOperator:<
+ BinaryOperatorPlus:+
+ BinaryOperatorLess:<
 2640 PRINT "TRY FOR A FIELD GOAL"
  TextConstant:"TRY FOR A FIELD GOAL"
  CarriageControl:NL
@@ -1218,12 +1218,12 @@
  NumericConstant:2
  Variable:P
  Variable:U2
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:1
  Variable:P
  Variable:U2
- BinaryOperator:*
- BinaryOperator:<=
+ BinaryOperatorMultiply:*
+ BinaryOperatorLessEqual:<=
 2680 PRINT "TIME OUT"
  TextConstant:"TIME OUT"
  CarriageControl:NL
@@ -1231,7 +1231,7 @@
  Variable:U2
  Variable:U2
  NumericConstant:1
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 2700 GOSUB 3520
  LineNumber:3520
@@ -1254,13 +1254,13 @@
 2770 IF X<4 THEN 2830
  Variable:X
  NumericConstant:4
- BinaryOperator:<
+ BinaryOperatorLess:<
 2780 IF P(1)=P(2) THEN 2830
  NumericConstant:1
  Variable:P
  NumericConstant:2
  Variable:P
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2790 PRINT "THE GAME IS OVER"
  TextConstant:"THE GAME IS OVER"
  CarriageControl:NL
@@ -1282,7 +1282,7 @@
  Variable:F
  NumericConstant:1
  Variable:F
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 2860 GOSUB 3520
  LineNumber:3520
@@ -1294,24 +1294,24 @@
  Variable:X
  Variable:X
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 2890 IF F<>0 THEN 810
  Variable:F
  NumericConstant:0
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 2900 LET S=3-K
  Variable:S
  NumericConstant:3
  Variable:K
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 2910 GOTO 580
  LineNumber:580
 2920 IF T1=0 THEN 2770
  Variable:T1
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 2930 PRINT "2 MINUTE WARNING"
  TextConstant:"2 MINUTE WARNING"
  CarriageControl:NL
@@ -1331,12 +1331,12 @@
  Variable:B1
  Variable:B
  NumericConstant:10
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 2990 IF B1<=100 THEN 3010
  Variable:B1
  NumericConstant:100
- BinaryOperator:<=
+ BinaryOperatorLessEqual:<=
 3000 LET B1=100
  Variable:B1
  NumericConstant:100
@@ -1349,12 +1349,12 @@
  Variable:A
  NumericConstant:0
  FunctionRnd
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:1
- BinaryOperator:-
- BinaryOperator:*
+ BinaryOperatorMinus:-
+ BinaryOperatorMultiply:*
  NumericConstant:.06
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 3030 LET A=1
  Variable:A
@@ -1363,7 +1363,7 @@
 3040 IF Q>=0 THEN 3070
  Variable:Q
  NumericConstant:0
- BinaryOperator:>=
+ BinaryOperatorGreaterEqual:>=
 3050 LET A=0
  Variable:A
  NumericConstant:0
@@ -1377,7 +1377,7 @@
  Variable:M
  Variable:M
  NumericConstant:1
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 3080 LET G=D(A,M1)+FNT(Q)*(D(2,M)-D(A,M))/3.5
  Variable:G
@@ -1392,11 +1392,11 @@
  Variable:A
  Variable:M
  Variable:D
- BinaryOperator:-
- BinaryOperator:*
+ BinaryOperatorMinus:-
+ BinaryOperatorMultiply:*
  NumericConstant:3.5
- BinaryOperator:/
- BinaryOperator:+
+ BinaryOperatorDivide:/
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 3090 LET G=G+INT(RND(0)+.02)*A+100*RND(0)
  Variable:G
@@ -1404,16 +1404,16 @@
  NumericConstant:0
  FunctionRnd
  NumericConstant:.02
- BinaryOperator:+
+ BinaryOperatorPlus:+
  FunctionInt
  Variable:A
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  NumericConstant:100
  NumericConstant:0
  FunctionRnd
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 3100 LET G=INT(G)
  Variable:G
@@ -1426,37 +1426,37 @@
  Variable:D
  Variable:D
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 3130 IF D=5 THEN 3240
  Variable:D
  NumericConstant:5
- BinaryOperator:=
+ BinaryOperatorEqual:=
 3140 IF D<> 1 THEN 3160
  Variable:D
  NumericConstant:1
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 3150 PRINT "1ST";
  TextConstant:"1ST"
  CarriageControl:;
 3160 IF D<>2 THEN 3180
  Variable:D
  NumericConstant:2
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 3170 PRINT "2ND";
  TextConstant:"2ND"
  CarriageControl:;
 3180 IF D<>3 THEN 3200
  Variable:D
  NumericConstant:3
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
 3190 PRINT "3RD";
  TextConstant:"3RD"
  CarriageControl:;
 3200 IF D<4 THEN 3220
  Variable:D
  NumericConstant:4
- BinaryOperator:<
+ BinaryOperatorLess:<
 3210 PRINT "4TH";
  TextConstant:"4TH"
  CarriageControl:;
@@ -1465,7 +1465,7 @@
  CarriageControl:;
  Variable:B1
  Variable:B
- BinaryOperator:-
+ BinaryOperatorMinus:-
  CarriageControl:;
  TextConstant:"    "
  CarriageControl:;
@@ -1475,18 +1475,18 @@
  Variable:S
  NumericConstant:3
  Variable:S
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 3250 LET B=100-B
  Variable:B
  NumericConstant:100
  Variable:B
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 3260 IF S=2 THEN 770
  Variable:S
  NumericConstant:2
- BinaryOperator:=
+ BinaryOperatorEqual:=
 3270 PRINT "MY ";
  TextConstant:"MY "
  CarriageControl:;
@@ -1498,15 +1498,15 @@
 3300 IF B=50 THEN 3400
  Variable:B
  NumericConstant:50
- BinaryOperator:=
+ BinaryOperatorEqual:=
 3310 LET V=50-ABS(B-50)
  Variable:V
  NumericConstant:50
  Variable:B
  NumericConstant:50
- BinaryOperator:-
+ BinaryOperatorMinus:-
  FunctionAbs
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 3320 LET C=C-INT(7+3*RND(0))
  Variable:C
@@ -1515,19 +1515,19 @@
  NumericConstant:3
  NumericConstant:0
  FunctionRnd
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  FunctionInt
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 3330 IF S=1 THEN 3420
  Variable:S
  NumericConstant:1
- BinaryOperator:=
+ BinaryOperatorEqual:=
 3340 IF B<50 THEN 3370
  Variable:B
  NumericConstant:50
- BinaryOperator:<
+ BinaryOperatorLess:<
 3350 PRINT "MY ";
  TextConstant:"MY "
  CarriageControl:;
@@ -1549,13 +1549,13 @@
 3420 IF B<50 THEN 3350
  Variable:B
  NumericConstant:50
- BinaryOperator:<
+ BinaryOperatorLess:<
 3430 GOTO 3370
  LineNumber:3370
 3440 IF S=2 THEN 3470
  Variable:S
  NumericConstant:2
- BinaryOperator:=
+ BinaryOperatorEqual:=
 3450 PRINT "YOU";
  TextConstant:"YOU"
  CarriageControl:;
@@ -1591,12 +1591,12 @@
 3560 IF U=0 THEN 3600
  Variable:U
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 3570 LET U=U+1
  Variable:U
  Variable:U
  NumericConstant:1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 3580 GOSUB 3520
  LineNumber:3520
@@ -1612,7 +1612,7 @@
  FunctionInt
  FunctionAbs
  NumericConstant:17
- BinaryOperator:>
+ BinaryOperatorGreater:>
 3630 LET Q=R(INT(ABS(A)))
  Variable:Q
  Variable:A
@@ -1623,11 +1623,11 @@
 3640 IF Q=0 THEN 3600
  Variable:Q
  NumericConstant:0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 3650 IF Q=100 THEN 3600
  Variable:Q
  NumericConstant:100
- BinaryOperator:=
+ BinaryOperatorEqual:=
 3660 RETURN
  
 3670 DATA .5,-2,.25,4,.5,13,.55

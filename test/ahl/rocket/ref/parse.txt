@@ -77,17 +77,17 @@
  Variable:A
  Variable:A
  FunctionInt
- BinaryOperator:-
- BinaryOperator:*
+ BinaryOperatorMinus:-
+ BinaryOperatorMultiply:*
  FunctionInt
  CarriageControl:,
  NumericConstant:3600
  Variable:V
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  CarriageControl:,
  Variable:M
  Variable:N
- BinaryOperator:-
+ BinaryOperatorMinus:-
  CarriageControl:,
  Variable:K
  Variable:T
@@ -96,12 +96,12 @@
 31 IF M-N<.001 THEN 41\IF T<.001 THEN 21\S=T\IF M>=N+S*K THEN 35
  Variable:M
  Variable:N
- BinaryOperator:-
+ BinaryOperatorMinus:-
  NumericConstant:.001
- BinaryOperator:<
+ BinaryOperatorLess:<
  Variable:T
  NumericConstant:.001
- BinaryOperator:<
+ BinaryOperatorLess:<
  Variable:S
  Variable:T
  AssignmentOperator:=
@@ -109,28 +109,28 @@
  Variable:N
  Variable:S
  Variable:K
- BinaryOperator:*
- BinaryOperator:+
- BinaryOperator:>=
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
+ BinaryOperatorGreaterEqual:>=
 32 S=(M-N)/K
  Variable:S
  Variable:M
  Variable:N
- BinaryOperator:-
+ BinaryOperatorMinus:-
  Variable:K
- BinaryOperator:/
+ BinaryOperatorDivide:/
  AssignmentOperator:=
 35 GOSUB 91\IF I<=0 THEN 71\IF V<=0 THEN 38\IF J<0 THEN 81
  LineNumber:91
  Variable:I
  NumericConstant:0
- BinaryOperator:<=
+ BinaryOperatorLessEqual:<=
  Variable:V
  NumericConstant:0
- BinaryOperator:<=
+ BinaryOperatorLessEqual:<=
  Variable:J
  NumericConstant:0
- BinaryOperator:<
+ BinaryOperatorLess:<
 38 GOSUB 61\GOTO 31
  LineNumber:61
  LineNumber:31
@@ -146,35 +146,35 @@
  UnaryOperatorMinus:-
  Variable:V
  Variable:V
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:2
  Variable:A
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:G
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  FunctionSqr
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:G
- BinaryOperator:/
+ BinaryOperatorDivide:/
  AssignmentOperator:=
  Variable:V
  Variable:V
  Variable:G
  Variable:S
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  AssignmentOperator:=
  Variable:L
  Variable:L
  Variable:S
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 51 W=3600*V\PRINT"ON MOON AT"L"SEC - IMPACT VELOCITY" W "MPH"
  Variable:W
  NumericConstant:3600
  Variable:V
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  AssignmentOperator:=
  TextConstant:"ON MOON AT"
  CarriageControl:
@@ -189,21 +189,21 @@
 52 IF W>1.2 THEN 53\PRINT "PERFECT LANDING! (LUCKY) "\GOTO 95
  Variable:W
  NumericConstant:1.2
- BinaryOperator:>
+ BinaryOperatorGreater:>
  TextConstant:"PERFECT LANDING! (LUCKY) "
  CarriageControl:NL
  LineNumber:95
 53 IF W>10 THEN 56\PRINT "GOOD LANDING (COULD BE BETTER) "\GOTO 95
  Variable:W
  NumericConstant:10
- BinaryOperator:>
+ BinaryOperatorGreater:>
  TextConstant:"GOOD LANDING (COULD BE BETTER) "
  CarriageControl:NL
  LineNumber:95
 56 IF W>60 THEN 58 \PRINT "CRAFT DAMAGE YOU'RE STRANDED HERE UNTIL"
  Variable:W
  NumericConstant:60
- BinaryOperator:>
+ BinaryOperatorGreater:>
  TextConstant:"CRAFT DAMAGE YOU'RE STRANDED HERE UNTIL"
  CarriageControl:NL
 57 PRINT "A RESCUE PARTY ARRIVES, HOPE YOU HAVE ENOUGH OXYGEN!"\GOTO 95
@@ -218,7 +218,7 @@
  CarriageControl:
  Variable:W
  NumericConstant:.2777
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  CarriageControl:
  TextConstant:"FT DEEP"
  CarriageControl:NL
@@ -228,19 +228,19 @@
  Variable:L
  Variable:L
  Variable:S
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
  Variable:T
  Variable:T
  Variable:S
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
  Variable:M
  Variable:M
  Variable:S
  Variable:K
- BinaryOperator:*
- BinaryOperator:-
+ BinaryOperatorMultiply:*
+ BinaryOperatorMinus:-
  AssignmentOperator:=
  Variable:A
  Variable:I
@@ -252,33 +252,33 @@
 71 IF S<5E-3 THEN 51\D=V+SQR(V*V+2*A*(G-Z*K/M))\S=2*A/D
  Variable:S
  NumericConstant:5E-3
- BinaryOperator:<
+ BinaryOperatorLess:<
  Variable:D
  Variable:V
  Variable:V
  Variable:V
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:2
  Variable:A
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:G
  Variable:Z
  Variable:K
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:M
- BinaryOperator:/
- BinaryOperator:-
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorDivide:/
+ BinaryOperatorMinus:-
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  FunctionSqr
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
  Variable:S
  NumericConstant:2
  Variable:A
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:D
- BinaryOperator:/
+ BinaryOperatorDivide:/
  AssignmentOperator:=
 73 GOSUB 91\GOSUB 61\GOTO 71
  LineNumber:91
@@ -289,141 +289,141 @@
  NumericConstant:1
  Variable:M
  Variable:G
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:Z
  Variable:K
- BinaryOperator:*
- BinaryOperator:/
- BinaryOperator:-
+ BinaryOperatorMultiply:*
+ BinaryOperatorDivide:/
+ BinaryOperatorMinus:-
  NumericConstant:2
- BinaryOperator:/
+ BinaryOperatorDivide:/
  AssignmentOperator:=
  Variable:S
  Variable:M
  Variable:V
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:Z
  Variable:K
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:W
  Variable:W
  Variable:W
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:Y
  Variable:Z
- BinaryOperator:/
- BinaryOperator:+
+ BinaryOperatorDivide:/
+ BinaryOperatorPlus:+
  FunctionSqr
- BinaryOperator:+
- BinaryOperator:*
- BinaryOperator:/
+ BinaryOperatorPlus:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorDivide:/
  NumericConstant:.05
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
  LineNumber:91
 83 IF I<=0 THEN 71\GOSUB 61\IF J>0 THEN 31\IF Y>0 THEN 81\GOTO 31
  Variable:I
  NumericConstant:0
- BinaryOperator:<=
+ BinaryOperatorLessEqual:<=
  LineNumber:61
  Variable:J
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
  Variable:Y
  NumericConstant:0
- BinaryOperator:>
+ BinaryOperatorGreater:>
  LineNumber:31
 91 Q=S*K/M\J=V+G*S+Z*(-Q-Q*Q/2-Q^3/3-Q^4/4-Q^5/5)
  Variable:Q
  Variable:S
  Variable:K
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:M
- BinaryOperator:/
+ BinaryOperatorDivide:/
  AssignmentOperator:=
  Variable:J
  Variable:V
  Variable:G
  Variable:S
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  Variable:Z
  Variable:Q
  UnaryOperatorMinus:-
  Variable:Q
  Variable:Q
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:2
- BinaryOperator:/
- BinaryOperator:-
+ BinaryOperatorDivide:/
+ BinaryOperatorMinus:-
  Variable:Q
  NumericConstant:3
- BinaryOperator:^
+ BinaryOperatorPower:^
  NumericConstant:3
- BinaryOperator:/
- BinaryOperator:-
+ BinaryOperatorDivide:/
+ BinaryOperatorMinus:-
  Variable:Q
  NumericConstant:4
- BinaryOperator:^
+ BinaryOperatorPower:^
  NumericConstant:4
- BinaryOperator:/
- BinaryOperator:-
+ BinaryOperatorDivide:/
+ BinaryOperatorMinus:-
  Variable:Q
  NumericConstant:5
- BinaryOperator:^
+ BinaryOperatorPower:^
  NumericConstant:5
- BinaryOperator:/
- BinaryOperator:-
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorDivide:/
+ BinaryOperatorMinus:-
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 94 I=A-G*S*S/2-V*S+Z*S*(Q/2+Q^2/6+Q^3/12+Q^4/20+Q^5/30)\RETURN
  Variable:I
  Variable:A
  Variable:G
  Variable:S
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:S
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  NumericConstant:2
- BinaryOperator:/
- BinaryOperator:-
+ BinaryOperatorDivide:/
+ BinaryOperatorMinus:-
  Variable:V
  Variable:S
- BinaryOperator:*
- BinaryOperator:-
+ BinaryOperatorMultiply:*
+ BinaryOperatorMinus:-
  Variable:Z
  Variable:S
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:Q
  NumericConstant:2
- BinaryOperator:/
+ BinaryOperatorDivide:/
  Variable:Q
  NumericConstant:2
- BinaryOperator:^
+ BinaryOperatorPower:^
  NumericConstant:6
- BinaryOperator:/
- BinaryOperator:+
+ BinaryOperatorDivide:/
+ BinaryOperatorPlus:+
  Variable:Q
  NumericConstant:3
- BinaryOperator:^
+ BinaryOperatorPower:^
  NumericConstant:12
- BinaryOperator:/
- BinaryOperator:+
+ BinaryOperatorDivide:/
+ BinaryOperatorPlus:+
  Variable:Q
  NumericConstant:4
- BinaryOperator:^
+ BinaryOperatorPower:^
  NumericConstant:20
- BinaryOperator:/
- BinaryOperator:+
+ BinaryOperatorDivide:/
+ BinaryOperatorPlus:+
  Variable:Q
  NumericConstant:5
- BinaryOperator:^
+ BinaryOperatorPower:^
  NumericConstant:30
- BinaryOperator:/
- BinaryOperator:+
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorDivide:/
+ BinaryOperatorPlus:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  AssignmentOperator:=
  
 95 PRINT\PRINT\PRINT\PRINT "TRY AGAIN??"\GOTO 6

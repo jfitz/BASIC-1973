@@ -47,7 +47,7 @@
 113 DIM C(N1+N2)' EXPAND TO INCLUDE SLACK VARIABLES
  Variable:N1
  Variable:N2
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Declaration:C
 114 C(J) = 0 FOR J = N1 + 1 TO N1+N2
  Variable:J
@@ -55,14 +55,14 @@
  NumericConstant:0
  AssignmentOperator:=
  control: Variable:J
- start:   ["Variable:N1", "NumericConstant:1", "BinaryOperator:+"]
- end:     ["Variable:N1", "Variable:N2", "BinaryOperator:+"]
+ start:   ["Variable:N1", "NumericConstant:1", "BinaryOperatorPlus:+"]
+ end:     ["Variable:N1", "Variable:N2", "BinaryOperatorPlus:+"]
 120 REM BUILD NAMES OF DECISION VARIABLES AND SLACK VARIABLES
  Remark:BUILD NAMES OF DECISION VARIABLES AND SLACK VARIABLES
 121 DIM C$(N1+N2)
  Variable:N1
  Variable:N2
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Declaration:C$
 122 FOR I = 1 TO N1
  control: Variable:I
@@ -74,7 +74,7 @@
  TextConstant:"X"
  Variable:I
  FunctionStr
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 124 NEXT I
  Variable:I
@@ -85,12 +85,12 @@
 126   C$(I+N1) = "S" + STR$(I)
  Variable:I
  Variable:N1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:C$
  TextConstant:"S"
  Variable:I
  FunctionStr
- BinaryOperator:+
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 127 NEXT I
  Variable:I
@@ -103,7 +103,7 @@
  Variable:C1$
  Variable:I
  Variable:N1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:C$
  AssignmentOperator:=
 130 NEXT I
@@ -120,7 +120,7 @@
  Variable:N2
  Variable:N1
  Variable:N2
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Declaration:X
 144 X(I,J) = 0 FOR J = N1+1 TO N1+N2 FOR I = 1 TO N2
  Variable:I
@@ -129,8 +129,8 @@
  NumericConstant:0
  AssignmentOperator:=
  control: Variable:J
- start:   ["Variable:N1", "NumericConstant:1", "BinaryOperator:+"]
- end:     ["Variable:N1", "Variable:N2", "BinaryOperator:+"]
+ start:   ["Variable:N1", "NumericConstant:1", "BinaryOperatorPlus:+"]
+ end:     ["Variable:N1", "Variable:N2", "BinaryOperatorPlus:+"]
  control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["Variable:N2"]
@@ -138,7 +138,7 @@
  Variable:I
  Variable:I
  Variable:N1
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Variable:X
  NumericConstant:1
  AssignmentOperator:=
@@ -195,7 +195,7 @@
  CarriageControl:,
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["Variable:N1", "Variable:N2", "BinaryOperator:+"]
+ end:     ["Variable:N1", "Variable:N2", "BinaryOperatorPlus:+"]
 212 PRINT "B"
  TextConstant:"B"
  CarriageControl:NL
@@ -217,7 +217,7 @@
  CarriageControl:,
  control: Variable:J
  start:   ["NumericConstant:1"]
- end:     ["Variable:N1", "Variable:N2", "BinaryOperator:+"]
+ end:     ["Variable:N1", "Variable:N2", "BinaryOperatorPlus:+"]
 230   PRINT B(I)
  Variable:I
  Variable:B
@@ -229,7 +229,7 @@
 301 DIM Z(N1+N2)
  Variable:N1
  Variable:N2
- BinaryOperator:+
+ BinaryOperatorPlus:+
  Declaration:Z
 302 Z(J) = 0 FOR J = 1 TO N1+N2
  Variable:J
@@ -238,7 +238,7 @@
  AssignmentOperator:=
  control: Variable:J
  start:   ["NumericConstant:1"]
- end:     ["Variable:N1", "Variable:N2", "BinaryOperator:+"]
+ end:     ["Variable:N1", "Variable:N2", "BinaryOperatorPlus:+"]
 305 FOR I = 1 TO N2
  control: Variable:I
  start:   ["NumericConstant:1"]
@@ -253,12 +253,12 @@
  Variable:I
  Variable:J
  Variable:X
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  AssignmentOperator:=
  control: Variable:J
  start:   ["NumericConstant:1"]
- end:     ["Variable:N1", "Variable:N2", "BinaryOperator:+"]
+ end:     ["Variable:N1", "Variable:N2", "BinaryOperatorPlus:+"]
 307 NEXT I
  Variable:I
 310 REM COMPUTE Z - C
@@ -267,7 +267,7 @@
  Variable:Y
  Variable:Z
  Variable:C
- BinaryOperator:-
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 320 REM CHECK FOR OPTIMUM, IDENTIFY KEY COLUMN
  Remark:CHECK FOR OPTIMUM, IDENTIFY KEY COLUMN
@@ -282,12 +282,12 @@
 323 FOR J = 1 TO N1+N2
  control: Variable:J
  start:   ["NumericConstant:1"]
- end:     ["Variable:N1", "Variable:N2", "BinaryOperator:+"]
+ end:     ["Variable:N1", "Variable:N2", "BinaryOperatorPlus:+"]
 324   IF Y(J) >= M THEN 327
  Variable:J
  Variable:Y
  Variable:M
- BinaryOperator:>=
+ BinaryOperatorGreaterEqual:>=
 325   J0 = J
  Variable:J0
  Variable:J
@@ -302,7 +302,7 @@
 328 IF M >= 0 THEN 500
  Variable:M
  NumericConstant:0
- BinaryOperator:>=
+ BinaryOperatorGreaterEqual:>=
 329 PRINT "NON-OPTIMUM."
  TextConstant:"NON-OPTIMUM."
  CarriageControl:NL
@@ -327,13 +327,13 @@
  Variable:I
  Variable:J0
  Variable:X
- BinaryOperator:/
+ BinaryOperatorDivide:/
  AssignmentOperator:=
  Variable:I
  Variable:J0
  Variable:X
  NumericConstant:0
- BinaryOperator:<>
+ BinaryOperatorNotEqual:<>
  control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["Variable:N2"]
@@ -367,7 +367,7 @@
  CarriageControl:,
  control: Variable:I
  start:   ["NumericConstant:1"]
- end:     ["Variable:N1", "Variable:N2", "BinaryOperator:+"]
+ end:     ["Variable:N1", "Variable:N2", "BinaryOperatorPlus:+"]
 352 PRINT "B","B / ";C$(J0)
  TextConstant:"B"
  CarriageControl:,
@@ -394,7 +394,7 @@
  CarriageControl:,
  control: Variable:J
  start:   ["NumericConstant:1"]
- end:     ["Variable:N1", "Variable:N2", "BinaryOperator:+"]
+ end:     ["Variable:N1", "Variable:N2", "BinaryOperatorPlus:+"]
 363   PRINT B(I),W(I)
  Variable:I
  Variable:B
@@ -450,12 +450,12 @@
  Variable:I
  Variable:W
  NumericConstant:0
- BinaryOperator:<=
+ BinaryOperatorLessEqual:<=
  Variable:I
  Variable:W
  Variable:M
- BinaryOperator:>=
- BinaryOperator:OR
+ BinaryOperatorGreaterEqual:>=
+ BinaryOperatorOr:OR
 385   I0 = I
  Variable:I0
  Variable:I
@@ -510,7 +510,7 @@
 421 FOR J = 1 TO N1+N2
  control: Variable:J
  start:   ["NumericConstant:1"]
- end:     ["Variable:N1", "Variable:N2", "BinaryOperator:+"]
+ end:     ["Variable:N1", "Variable:N2", "BinaryOperatorPlus:+"]
 422   X2(I0,J) = X(I0,J) / X(I0,J0)
  Variable:I0
  Variable:J
@@ -521,7 +521,7 @@
  Variable:I0
  Variable:J0
  Variable:X
- BinaryOperator:/
+ BinaryOperatorDivide:/
  AssignmentOperator:=
 423 NEXT J
  Variable:J
@@ -534,11 +534,11 @@
 432   IF I = I0 THEN 436
  Variable:I
  Variable:I0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 433   FOR J = 1 TO N1+N2
  control: Variable:J
  start:   ["NumericConstant:1"]
- end:     ["Variable:N1", "Variable:N2", "BinaryOperator:+"]
+ end:     ["Variable:N1", "Variable:N2", "BinaryOperatorPlus:+"]
 434     X2(I,J) = X(I,J) - X(I,J0)*X(I0,J)/X(I0,J0)
  Variable:I
  Variable:J
@@ -552,12 +552,12 @@
  Variable:I0
  Variable:J
  Variable:X
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:I0
  Variable:J0
  Variable:X
- BinaryOperator:/
- BinaryOperator:-
+ BinaryOperatorDivide:/
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 435   NEXT J
  Variable:J
@@ -573,7 +573,7 @@
  Variable:I0
  Variable:J0
  Variable:X
- BinaryOperator:/
+ BinaryOperatorDivide:/
  AssignmentOperator:=
 442 FOR I = 1 TO N2
  control: Variable:I
@@ -582,7 +582,7 @@
 443   IF I = I0 THEN 445
  Variable:I
  Variable:I0
- BinaryOperator:=
+ BinaryOperatorEqual:=
 444   B2(I) = B(I) - X(I,J0)*B(I0)/X(I0,J0)
  Variable:I
  Variable:B2
@@ -593,12 +593,12 @@
  Variable:X
  Variable:I0
  Variable:B
- BinaryOperator:*
+ BinaryOperatorMultiply:*
  Variable:I0
  Variable:J0
  Variable:X
- BinaryOperator:/
- BinaryOperator:-
+ BinaryOperatorDivide:/
+ BinaryOperatorMinus:-
  AssignmentOperator:=
 445 NEXT I
  Variable:I
@@ -667,8 +667,8 @@
  Variable:B
  Variable:I
  Variable:R
- BinaryOperator:*
- BinaryOperator:+
+ BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+
  AssignmentOperator:=
 525 NEXT I
  Variable:I

@@ -382,8 +382,6 @@ class AbstractValueElement < AbstractElement
     @value
   end
 
-  private
-
   def compatible?(other)
     other.content_type == content_type
   end
@@ -752,16 +750,16 @@ class NumericConstant < AbstractValueElement
     printer.print_item s
   end
 
+  def compatible?(other)
+    other.numeric_constant?
+  end
+
   private
 
   def to_formatted_s
     lead_space = @value >= 0 ? ' ' : ''
     digits = @value.to_s
     lead_space + digits
-  end
-
-  def compatible?(other)
-    other.numeric_constant?
   end
 end
 
@@ -1023,16 +1021,16 @@ class IntegerConstant < AbstractValueElement
     printer.print_item s
   end
 
+  def compatible?(other)
+    other.numeric_constant?
+  end
+
   private
 
   def to_formatted_s
     lead_space = @value >= 0 ? ' ' : ''
     digits = @value.to_s
     lead_space + digits
-  end
-
-  def compatible?(other)
-    other.numeric_constant?
   end
 end
 
@@ -1240,11 +1238,11 @@ class BooleanConstant < AbstractValueElement
   end
 
   def b_and(other)
-    BooleanConstant.new(@value && other.to_v)
+    BooleanConstant.new(@value && other.to_b)
   end
 
   def b_or(other)
-    BooleanConstant.new(@value || other.to_v)
+    BooleanConstant.new(@value || other.to_b)
   end
 
   def to_i

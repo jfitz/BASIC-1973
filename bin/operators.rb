@@ -66,31 +66,22 @@ class BinaryOperator < AbstractElement
     classes.include?(token.class.to_s)
   end
 
-  @operators = {
-    '=' => 3, '<>' => 3, '#' => 3,
-    '>' => 3, '>=' => 3, '=>' => 3,
-    '<' => 3, '<=' => 3, '=<' => 3,
-    '+' => 4, '-' => 4, '*' => 5, '/' => 5, '^' => 6, '**' => 6,
-    'AND' => 1, 'OR' => 1,
-    'MAX' => 2, 'MIN' => 2
-  }
-
-  def self.operator?(op)
-    @operators.key?(op)
-  end
-
-  def self.precedence(op)
-    @operators[op]
-  end
+  @operators = [
+    '=', '<>', '><', '#', '>', '>=', '=>', '<', '<=', '=<',
+    '+', '-', '*', '/', '^', '**',
+    'AND', 'OR',
+    'MAX', 'MIN'
+  ]
 
   def self.operators(min_max_op)
-    op = @operators.keys
+    op = @operators
     op -= %w(MIN MAX) unless min_max_op
     op
   end
 
   attr_reader :content_type
   attr_reader :arguments
+  attr_reader :precedence
 
   def initialize(text)
     super()
@@ -104,11 +95,6 @@ class BinaryOperator < AbstractElement
     @content_type = @content_types[@op]
     @content_type = :unknown if @content_type.nil?
     @arguments = nil
-
-    raise(BASICExpressionError, "'#{text}' is not an operator") unless
-      self.class.operator?(@op)
-
-    @precedence = self.class.precedence(@op)
     @operator = true
   end
 
@@ -150,36 +136,7 @@ class BinaryOperator < AbstractElement
   end
 
   def pound?
-    @op == '#'
-  end
-  
-  def evaluate(interpreter, stack)
-    raise(BASICExpressionError, 'Not enough operands') if stack.size < 2
-
-    y = stack.pop
-    x = stack.pop
-
-    base = interpreter.base
-
-    if x.matrix? && y.matrix?
-      matrix_matrix(x, y)
-    elsif x.matrix? && y.scalar?
-      matrix_scalar(x, y)
-    elsif x.scalar? && y.matrix?
-      scalar_matrix(x, y)
-    elsif x.array? && y.array?
-      array_array(x, y, base)
-    elsif x.array? && y.scalar?
-      array_scalar(x, y, base)
-    elsif x.scalar? && y.array?
-      scalar_array(x, y, base)
-    elsif x.content_type == y.content_type
-      op_scalar_scalar(x, y)
-    else
-      message = "Type mismatch (#{x.content_type}/#{y.content_type}) in operator #{@op}"
-      
-      raise(BASICExpressionError, message)
-    end
+    false
   end
 
   def to_s
@@ -198,120 +155,6 @@ class BinaryOperator < AbstractElement
     false
   end
   
-  def matrix_matrix(x, y)
-    op_table = {
-      '+' => :add,
-      '-' => :subtract,
-      '*' => :multiply,
-      '/' => :divide,
-      '^' => :power,
-      '**' => :power,
-      'MAX' => :maximum,
-      'MIN' => :minimum
-    }
-
-    op_sym = op_table[@op]
-
-    raise BASICExpressionError, 'Invalid operation' if op_sym.nil?
-
-    op_matrix_matrix(op_sym, x, y)
-  end
-
-  def matrix_scalar(x, y)
-    op_table = {
-      '+' => :add,
-      '-' => :subtract,
-      '*' => :multiply,
-      '/' => :divide,
-      '^' => :power,
-      '**' => :power,
-      'MAX' => :maximum,
-      'MIN' => :minimum
-    }
-
-    op_sym = op_table[@op]
-
-    raise BASICExpressionError, 'Invalid operation' if op_sym.nil?
-
-    op_matrix_scalar(op_sym, x, y)
-  end
-
-  def scalar_matrix(x, y)
-    op_table = {
-      '+' => :add,
-      '-' => :subtract,
-      '*' => :multiply,
-      '/' => :divide,
-      '^' => :power,
-      '**' => :power,
-      'MAX' => :maximum,
-      'MIN' => :minimum
-    }
-
-    op_sym = op_table[@op]
-
-    raise BASICExpressionError, 'Invalid operation' if op_sym.nil?
-
-    op_scalar_matrix(op_sym, x, y)
-  end
-
-  def array_array(x, y, base)
-    op_table = {
-      '+' => :add,
-      '-' => :subtract,
-      '*' => :multiply,
-      '/' => :divide,
-      '^' => :power,
-      '**' => :power,
-      'MAX' => :maximum,
-      'MIN' => :minimum
-    }
-
-    op_sym = op_table[@op]
-
-    raise BASICExpressionError, 'Invalid operation' if op_sym.nil?
-
-    op_array_array(op_sym, x, y, base)
-  end
-
-  def array_scalar(x, y, base)
-    op_table = {
-      '+' => :add,
-      '-' => :subtract,
-      '*' => :multiply,
-      '/' => :divide,
-      '^' => :power,
-      '**' => :power,
-      'MAX' => :maximum,
-      'MIN' => :minimum
-    }
-
-    op_sym = op_table[@op]
-
-    raise BASICExpressionError, 'Invalid operation' if op_sym.nil?
-
-    op_array_scalar(op_sym, x, y, base)
-  end
-
-  def scalar_array(x, y, base)
-    op_table = {
-      '+' => :add,
-      '-' => :subtract,
-      '*' => :multiply,
-      '/' => :divide,
-      '^' => :power,
-      '**' => :power,
-      'MAX' => :maximum,
-      'MIN' => :minimum
-    }
-
-    op_sym = op_table[@op]
-
-    raise BASICExpressionError, 'Invalid operation' if op_sym.nil?
-
-    op_scalar_array(op_sym, x, y, base)
-  end
-
   def op_scalar_scalar(x, y)
     op_table = {
       '+' => :add,
@@ -1068,10 +911,6 @@ class UnaryOperatorNot < UnaryOperator
     @precedence = 1
   end
 
-  def pound?
-    true
-  end
-
   def evaluate(_, stack)
     raise(BASICExpressionError, 'Not enough operands') if stack.empty?
 
@@ -1089,5 +928,1033 @@ class UnaryOperatorNot < UnaryOperator
   def opposite(a)
     b = a.to_b
     BooleanConstant.new(!b)
+  end
+end
+
+class BinaryOperatorPlus < BinaryOperator
+  def self.accept?(token)
+    classes = %w[OperatorToken]
+    classes.include?(token.class.to_s) && token.to_s == '+'
+  end
+
+  def initialize(text)
+    super
+
+    @precedence = 3
+  end
+
+  def evaluate(interpreter, stack)
+    raise(BASICExpressionError, 'Not enough operands') if stack.size < 2
+
+    y = stack.pop
+    x = stack.pop
+
+    base = interpreter.base
+
+    if x.matrix? && y.matrix?
+      matrix_matrix(x, y)
+    elsif x.matrix? && y.scalar?
+      matrix_scalar(x, y)
+    elsif x.scalar? && y.matrix?
+      scalar_matrix(x, y)
+    elsif x.array? && y.array?
+      array_array(x, y, base)
+    elsif x.array? && y.scalar?
+      array_scalar(x, y, base)
+    elsif x.scalar? && y.array?
+      scalar_array(x, y, base)
+    elsif x.compatible?(y)
+      op_scalar_scalar(x, y)
+    else
+      raise(BASICExpressionError, 'Type mismatch')
+    end
+  end
+
+  def matrix_matrix(x, y)
+    op_matrix_matrix(:add, x, y)
+  end
+
+  def matrix_scalar(x, y)
+    op_matrix_scalar(:add, x, y)
+  end
+
+  def scalar_matrix(x, y)
+    op_scalar_matrix(:add, x, y)
+  end
+
+  def array_array(x, y, base)
+    op_array_array(:add, x, y, base)
+  end
+
+  def array_scalar(x, y, base)
+    op_array_scalar(:add, x, y, base)
+  end
+
+  def scalar_array(x, y, base)
+    op_scalar_array(:add, x, y, base)
+  end
+
+  def op_scalar_scalar(x, y)
+    x.public_send(:add, y)
+  end
+end
+
+class BinaryOperatorMinus < BinaryOperator
+  def self.accept?(token)
+    classes = %w[OperatorToken]
+    classes.include?(token.class.to_s) && token.to_s == '-'
+  end
+
+  def initialize(text)
+    super
+
+    @precedence = 3
+  end
+
+  def evaluate(interpreter, stack)
+    raise(BASICExpressionError, 'Not enough operands') if stack.size < 2
+
+    y = stack.pop
+    x = stack.pop
+
+    base = interpreter.base
+
+    if x.matrix? && y.matrix?
+      matrix_matrix(x, y)
+    elsif x.matrix? && y.scalar?
+      matrix_scalar(x, y)
+    elsif x.scalar? && y.matrix?
+      scalar_matrix(x, y)
+    elsif x.array? && y.array?
+      array_array(x, y, base)
+    elsif x.array? && y.scalar?
+      array_scalar(x, y, base)
+    elsif x.scalar? && y.array?
+      scalar_array(x, y, base)
+    elsif x.compatible?(y)
+      op_scalar_scalar(x, y)
+    else
+      raise(BASICExpressionError, 'Type mismatch')
+    end
+  end
+
+  def matrix_matrix(x, y)
+    op_matrix_matrix(:subtract, x, y)
+  end
+
+  def matrix_scalar(x, y)
+    op_matrix_scalar(:subtract, x, y)
+  end
+
+  def scalar_matrix(x, y)
+    op_scalar_matrix(:subtract, x, y)
+  end
+
+  def array_array(x, y, base)
+    op_array_array(:subtract, x, y, base)
+  end
+
+  def array_scalar(x, y, base)
+    op_array_scalar(:subtract, x, y, base)
+  end
+
+  def scalar_array(x, y, base)
+    op_scalar_array(:subtract, x, y, base)
+  end
+
+  def op_scalar_scalar(x, y)
+    x.public_send(:subtract, y)
+  end
+end
+
+class BinaryOperatorMultiply < BinaryOperator
+  def self.accept?(token)
+    classes = %w[OperatorToken]
+    classes.include?(token.class.to_s) && token.to_s == '*'
+  end
+
+  def initialize(text)
+    super
+
+    @precedence = 4
+  end
+
+  def evaluate(interpreter, stack)
+    raise(BASICExpressionError, 'Not enough operands') if stack.size < 2
+
+    y = stack.pop
+    x = stack.pop
+
+    base = interpreter.base
+
+    if x.matrix? && y.matrix?
+      matrix_matrix(x, y)
+    elsif x.matrix? && y.scalar?
+      matrix_scalar(x, y)
+    elsif x.scalar? && y.matrix?
+      scalar_matrix(x, y)
+    elsif x.array? && y.array?
+      array_array(x, y, base)
+    elsif x.array? && y.scalar?
+      array_scalar(x, y, base)
+    elsif x.scalar? && y.array?
+      scalar_array(x, y, base)
+    elsif x.compatible?(y)
+      op_scalar_scalar(x, y)
+    else
+      raise(BASICExpressionError, 'Type mismatch')
+    end
+  end
+
+  def matrix_matrix(x, y)
+    op_matrix_matrix(:multiply, x, y)
+  end
+
+  def matrix_scalar(x, y)
+    op_matrix_scalar(:multiply, x, y)
+  end
+
+  def scalar_matrix(x, y)
+    op_scalar_matrix(:multiply, x, y)
+  end
+
+  def array_array(x, y, base)
+    op_array_array(:multiply, x, y, base)
+  end
+
+  def array_scalar(x, y, base)
+    op_array_scalar(:multiply, x, y, base)
+  end
+
+  def scalar_array(x, y, base)
+    op_scalar_array(:multiply, x, y, base)
+  end
+
+  def op_scalar_scalar(x, y)
+    x.public_send(:multiply, y)
+  end
+end
+
+class BinaryOperatorDivide < BinaryOperator
+  def self.accept?(token)
+    classes = %w[OperatorToken]
+    classes.include?(token.class.to_s) && token.to_s == '/'
+  end
+
+  def initialize(text)
+    super
+
+    @precedence = 4
+  end
+
+  def evaluate(interpreter, stack)
+    raise(BASICExpressionError, 'Not enough operands') if stack.size < 2
+
+    y = stack.pop
+    x = stack.pop
+
+    base = interpreter.base
+
+    if x.matrix? && y.matrix?
+      matrix_matrix(x, y)
+    elsif x.matrix? && y.scalar?
+      matrix_scalar(x, y)
+    elsif x.scalar? && y.matrix?
+      scalar_matrix(x, y)
+    elsif x.array? && y.array?
+      array_array(x, y, base)
+    elsif x.array? && y.scalar?
+      array_scalar(x, y, base)
+    elsif x.scalar? && y.array?
+      scalar_array(x, y, base)
+    elsif x.compatible?(y)
+      op_scalar_scalar(x, y)
+    else
+      raise(BASICExpressionError, 'Type mismatch')
+    end
+  end
+
+  def matrix_matrix(x, y)
+    op_matrix_matrix(:divide, x, y)
+  end
+
+  def matrix_scalar(x, y)
+    op_matrix_scalar(:divide, x, y)
+  end
+
+  def scalar_matrix(x, y)
+    op_scalar_matrix(:divide, x, y)
+  end
+
+  def array_array(x, y, base)
+    op_array_array(:divide, x, y, base)
+  end
+
+  def array_scalar(x, y, base)
+    op_array_scalar(:divide, x, y, base)
+  end
+
+  def scalar_array(x, y, base)
+    op_scalar_array(:divide, x, y, base)
+  end
+
+  def op_scalar_scalar(x, y)
+    x.public_send(:divide, y)
+  end
+end
+
+class BinaryOperatorPower < BinaryOperator
+  def self.accept?(token)
+    classes = %w[OperatorToken]
+    classes.include?(token.class.to_s) &&
+      (token.to_s == '^' || token.to_s == '**')
+  end
+
+  def initialize(text)
+    super
+
+    @precedence = 5
+  end
+
+  def evaluate(interpreter, stack)
+    raise(BASICExpressionError, 'Not enough operands') if stack.size < 2
+
+    y = stack.pop
+    x = stack.pop
+
+    base = interpreter.base
+
+    if x.matrix? && y.matrix?
+      matrix_matrix(x, y)
+    elsif x.matrix? && y.scalar?
+      matrix_scalar(x, y)
+    elsif x.scalar? && y.matrix?
+      scalar_matrix(x, y)
+    elsif x.array? && y.array?
+      array_array(x, y, base)
+    elsif x.array? && y.scalar?
+      array_scalar(x, y, base)
+    elsif x.scalar? && y.array?
+      scalar_array(x, y, base)
+    elsif x.compatible?(y)
+      op_scalar_scalar(x, y)
+    else
+      raise(BASICExpressionError, 'Type mismatch')
+    end
+  end
+
+  def matrix_matrix(x, y)
+    op_matrix_matrix(:power, x, y)
+  end
+
+  def matrix_scalar(x, y)
+    op_matrix_scalar(:power, x, y)
+  end
+
+  def scalar_matrix(x, y)
+    op_scalar_matrix(:power, x, y)
+  end
+
+  def array_array(x, y, base)
+    op_array_array(:power, x, y, base)
+  end
+
+  def array_scalar(x, y, base)
+    op_array_scalar(:power, x, y, base)
+  end
+
+  def scalar_array(x, y, base)
+    op_scalar_array(:power, x, y, base)
+  end
+
+  def op_scalar_scalar(x, y)
+    x.public_send(:power, y)
+  end
+end
+
+class BinaryOperatorEqual < BinaryOperator
+  def self.accept?(token)
+    classes = %w[OperatorToken]
+    classes.include?(token.class.to_s) && token.to_s == '='
+  end
+
+  def initialize(text)
+    super
+
+    @precedence = 2
+  end
+
+  def evaluate(interpreter, stack)
+    raise(BASICExpressionError, 'Not enough operands') if stack.size < 2
+
+    y = stack.pop
+    x = stack.pop
+
+    base = interpreter.base
+
+    if x.matrix? && y.matrix?
+      matrix_matrix(x, y)
+    elsif x.matrix? && y.scalar?
+      matrix_scalar(x, y)
+    elsif x.scalar? && y.matrix?
+      scalar_matrix(x, y)
+    elsif x.array? && y.array?
+      array_array(x, y, base)
+    elsif x.array? && y.scalar?
+      array_scalar(x, y, base)
+    elsif x.scalar? && y.array?
+      scalar_array(x, y, base)
+    elsif x.compatible?(y)
+      op_scalar_scalar(x, y)
+    else
+      raise(BASICExpressionError, 'Type mismatch')
+    end
+  end
+
+  def matrix_matrix(x, y)
+    op_matrix_matrix(:b_eq, x, y)
+  end
+
+  def matrix_scalar(x, y)
+    op_matrix_scalar(:b_eq, x, y)
+  end
+
+  def scalar_matrix(x, y)
+    op_scalar_matrix(:b_eq, x, y)
+  end
+
+  def array_array(x, y, base)
+    op_array_array(:b_eq, x, y, base)
+  end
+
+  def array_scalar(x, y, base)
+    op_array_scalar(:b_eq, x, y, base)
+  end
+
+  def scalar_array(x, y, base)
+    op_scalar_array(:b_eq, x, y, base)
+  end
+
+  def op_scalar_scalar(x, y)
+    x.public_send(:b_eq, y)
+  end
+end
+
+class BinaryOperatorNotEqual < BinaryOperator
+  def self.accept?(token)
+    classes = %w[OperatorToken]
+    classes.include?(token.class.to_s) &&
+      (token.to_s == '<>' || token.to_s == '><' || token.to_s == '#')
+  end
+
+  def initialize(text)
+    super
+
+    @precedence = 2
+  end
+
+  def pound?
+    @op == '#'
+  end
+
+  def evaluate(interpreter, stack)
+    raise(BASICExpressionError, 'Not enough operands') if stack.size < 2
+
+    y = stack.pop
+    x = stack.pop
+
+    base = interpreter.base
+
+    if x.matrix? && y.matrix?
+      matrix_matrix(x, y)
+    elsif x.matrix? && y.scalar?
+      matrix_scalar(x, y)
+    elsif x.scalar? && y.matrix?
+      scalar_matrix(x, y)
+    elsif x.array? && y.array?
+      array_array(x, y, base)
+    elsif x.array? && y.scalar?
+      array_scalar(x, y, base)
+    elsif x.scalar? && y.array?
+      scalar_array(x, y, base)
+    elsif x.compatible?(y)
+      op_scalar_scalar(x, y)
+    else
+      raise(BASICExpressionError, 'Type mismatch')
+    end
+  end
+
+  def matrix_matrix(x, y)
+    op_matrix_matrix(:b_ne, x, y)
+  end
+
+  def matrix_scalar(x, y)
+    op_matrix_scalar(:b_ne, x, y)
+  end
+
+  def scalar_matrix(x, y)
+    op_scalar_matrix(:b_ne, x, y)
+  end
+
+  def array_array(x, y, base)
+    op_array_array(:b_ne, x, y, base)
+  end
+
+  def array_scalar(x, y, base)
+    op_array_scalar(:b_ne, x, y, base)
+  end
+
+  def scalar_array(x, y, base)
+    op_scalar_array(:b_ne, x, y, base)
+  end
+
+  def op_scalar_scalar(x, y)
+    x.public_send(:b_ne, y)
+  end
+end
+
+class BinaryOperatorLess < BinaryOperator
+  def self.accept?(token)
+    classes = %w[OperatorToken]
+    classes.include?(token.class.to_s) && token.to_s == '<'
+  end
+
+  def initialize(text)
+    super
+
+    @precedence = 2
+  end
+
+  def evaluate(interpreter, stack)
+    raise(BASICExpressionError, 'Not enough operands') if stack.size < 2
+
+    y = stack.pop
+    x = stack.pop
+
+    base = interpreter.base
+
+    if x.matrix? && y.matrix?
+      matrix_matrix(x, y)
+    elsif x.matrix? && y.scalar?
+      matrix_scalar(x, y)
+    elsif x.scalar? && y.matrix?
+      scalar_matrix(x, y)
+    elsif x.array? && y.array?
+      array_array(x, y, base)
+    elsif x.array? && y.scalar?
+      array_scalar(x, y, base)
+    elsif x.scalar? && y.array?
+      scalar_array(x, y, base)
+    elsif x.compatible?(y)
+      op_scalar_scalar(x, y)
+    else
+      raise(BASICExpressionError, 'Type mismatch')
+    end
+  end
+
+  def matrix_matrix(x, y)
+    op_matrix_matrix(:b_lt, x, y)
+  end
+
+  def matrix_scalar(x, y)
+    op_matrix_scalar(:b_lt, x, y)
+  end
+
+  def scalar_matrix(x, y)
+    op_scalar_matrix(:b_lt, x, y)
+  end
+
+  def array_array(x, y, base)
+    op_array_array(:b_lt, x, y, base)
+  end
+
+  def array_scalar(x, y, base)
+    op_array_scalar(:b_lt, x, y, base)
+  end
+
+  def scalar_array(x, y, base)
+    op_scalar_array(:b_lt, x, y, base)
+  end
+
+  def op_scalar_scalar(x, y)
+    x.public_send(:b_lt, y)
+  end
+end
+
+class BinaryOperatorLessEqual < BinaryOperator
+  def self.accept?(token)
+    classes = %w[OperatorToken]
+    classes.include?(token.class.to_s) &&
+      (token.to_s == '<=' || token.to_s == '=<')
+  end
+
+  def initialize(text)
+    super
+
+    @precedence = 2
+  end
+
+  def evaluate(interpreter, stack)
+    raise(BASICExpressionError, 'Not enough operands') if stack.size < 2
+
+    y = stack.pop
+    x = stack.pop
+
+    base = interpreter.base
+
+    if x.matrix? && y.matrix?
+      matrix_matrix(x, y)
+    elsif x.matrix? && y.scalar?
+      matrix_scalar(x, y)
+    elsif x.scalar? && y.matrix?
+      scalar_matrix(x, y)
+    elsif x.array? && y.array?
+      array_array(x, y, base)
+    elsif x.array? && y.scalar?
+      array_scalar(x, y, base)
+    elsif x.scalar? && y.array?
+      scalar_array(x, y, base)
+    elsif x.compatible?(y)
+      op_scalar_scalar(x, y)
+    else
+      raise(BASICExpressionError, 'Type mismatch')
+    end
+  end
+
+  def matrix_matrix(x, y)
+    op_matrix_matrix(:b_le, x, y)
+  end
+
+  def matrix_scalar(x, y)
+    op_matrix_scalar(:b_le, x, y)
+  end
+
+  def scalar_matrix(x, y)
+    op_scalar_matrix(:b_le, x, y)
+  end
+
+  def array_array(x, y, base)
+    op_array_array(:b_le, x, y, base)
+  end
+
+  def array_scalar(x, y, base)
+    op_array_scalar(:b_le, x, y, base)
+  end
+
+  def scalar_array(x, y, base)
+    op_scalar_array(:b_le, x, y, base)
+  end
+
+  def op_scalar_scalar(x, y)
+    x.public_send(:b_le, y)
+  end
+end
+
+class BinaryOperatorGreater < BinaryOperator
+  def self.accept?(token)
+    classes = %w[OperatorToken]
+    classes.include?(token.class.to_s) && token.to_s == '>'
+  end
+
+  def initialize(text)
+    super
+
+    @precedence = 2
+  end
+
+  def evaluate(interpreter, stack)
+    raise(BASICExpressionError, 'Not enough operands') if stack.size < 2
+
+    y = stack.pop
+    x = stack.pop
+
+    base = interpreter.base
+
+    if x.matrix? && y.matrix?
+      matrix_matrix(x, y)
+    elsif x.matrix? && y.scalar?
+      matrix_scalar(x, y)
+    elsif x.scalar? && y.matrix?
+      scalar_matrix(x, y)
+    elsif x.array? && y.array?
+      array_array(x, y, base)
+    elsif x.array? && y.scalar?
+      array_scalar(x, y, base)
+    elsif x.scalar? && y.array?
+      scalar_array(x, y, base)
+    elsif x.compatible?(y)
+      op_scalar_scalar(x, y)
+    else
+      raise(BASICExpressionError, 'Type mismatch')
+    end
+  end
+
+  def matrix_matrix(x, y)
+    op_matrix_matrix(:b_gt, x, y)
+  end
+
+  def matrix_scalar(x, y)
+    op_matrix_scalar(:b_gt, x, y)
+  end
+
+  def scalar_matrix(x, y)
+    op_scalar_matrix(:b_gt, x, y)
+  end
+
+  def array_array(x, y, base)
+    op_array_array(:b_gt, x, y, base)
+  end
+
+  def array_scalar(x, y, base)
+    op_array_scalar(:b_gt, x, y, base)
+  end
+
+  def scalar_array(x, y, base)
+    op_scalar_array(:b_gt, x, y, base)
+  end
+
+  def op_scalar_scalar(x, y)
+    x.public_send(:b_gt, y)
+  end
+end
+
+class BinaryOperatorGreaterEqual < BinaryOperator
+  def self.accept?(token)
+    classes = %w[OperatorToken]
+    classes.include?(token.class.to_s) &&
+      (token.to_s == '>=' || token.to_s == '=>')
+  end
+
+  def initialize(text)
+    super
+
+    @precedence = 2
+  end
+
+  def evaluate(interpreter, stack)
+    raise(BASICExpressionError, 'Not enough operands') if stack.size < 2
+
+    y = stack.pop
+    x = stack.pop
+
+    base = interpreter.base
+
+    if x.matrix? && y.matrix?
+      matrix_matrix(x, y)
+    elsif x.matrix? && y.scalar?
+      matrix_scalar(x, y)
+    elsif x.scalar? && y.matrix?
+      scalar_matrix(x, y)
+    elsif x.array? && y.array?
+      array_array(x, y, base)
+    elsif x.array? && y.scalar?
+      array_scalar(x, y, base)
+    elsif x.scalar? && y.array?
+      scalar_array(x, y, base)
+    elsif x.compatible?(y)
+      op_scalar_scalar(x, y)
+    else
+      raise(BASICExpressionError, 'Type mismatch')
+    end
+  end
+
+  def matrix_matrix(x, y)
+    op_matrix_matrix(:b_ge, x, y)
+  end
+
+  def matrix_scalar(x, y)
+    op_matrix_scalar(:b_ge, x, y)
+  end
+
+  def scalar_matrix(x, y)
+    op_scalar_matrix(:b_ge, x, y)
+  end
+
+  def array_array(x, y, base)
+    op_array_array(:b_ge, x, y, base)
+  end
+
+  def array_scalar(x, y, base)
+    op_array_scalar(:b_ge, x, y, base)
+  end
+
+  def scalar_array(x, y, base)
+    op_scalar_array(:b_ge, x, y, base)
+  end
+
+  def op_scalar_scalar(x, y)
+    x.public_send(:b_ge, y)
+  end
+end
+
+class BinaryOperatorAnd < BinaryOperator
+  def self.accept?(token)
+    classes = %w[OperatorToken]
+    classes.include?(token.class.to_s) && token.to_s == 'AND'
+  end
+
+  def initialize(text)
+    super
+
+    @precedence = 1
+  end
+
+  def evaluate(interpreter, stack)
+    raise(BASICExpressionError, 'Not enough operands') if stack.size < 2
+
+    y = stack.pop
+    x = stack.pop
+
+    base = interpreter.base
+
+    if x.matrix? && y.matrix?
+      matrix_matrix(x, y)
+    elsif x.matrix? && y.scalar?
+      matrix_scalar(x, y)
+    elsif x.scalar? && y.matrix?
+      scalar_matrix(x, y)
+    elsif x.array? && y.array?
+      array_array(x, y, base)
+    elsif x.array? && y.scalar?
+      array_scalar(x, y, base)
+    elsif x.scalar? && y.array?
+      scalar_array(x, y, base)
+    elsif x.compatible?(y)
+      op_scalar_scalar(x, y)
+    else
+      raise(BASICExpressionError, 'Type mismatch')
+    end
+  end
+
+  def matrix_matrix(x, y)
+    op_matrix_matrix(:b_and, x, y)
+  end
+
+  def matrix_scalar(x, y)
+    op_matrix_scalar(:b_and, x, y)
+  end
+
+  def scalar_matrix(x, y)
+    op_scalar_matrix(:b_and, x, y)
+  end
+
+  def array_array(x, y, base)
+    op_array_array(:b_and, x, y, base)
+  end
+
+  def array_scalar(x, y, base)
+    op_array_scalar(:b_and, x, y, base)
+  end
+
+  def scalar_array(x, y, base)
+    op_scalar_array(:b_and, x, y, base)
+  end
+
+  def op_scalar_scalar(x, y)
+    x.public_send(:b_and, y)
+  end
+end
+
+class BinaryOperatorOr < BinaryOperator
+  def self.accept?(token)
+    classes = %w[OperatorToken]
+    classes.include?(token.class.to_s) && token.to_s == 'OR'
+  end
+
+  def initialize(text)
+    super
+
+    @precedence = 1
+  end
+
+  def evaluate(interpreter, stack)
+    raise(BASICExpressionError, 'Not enough operands') if stack.size < 2
+
+    y = stack.pop
+    x = stack.pop
+
+    base = interpreter.base
+
+    if x.matrix? && y.matrix?
+      matrix_matrix(x, y)
+    elsif x.matrix? && y.scalar?
+      matrix_scalar(x, y)
+    elsif x.scalar? && y.matrix?
+      scalar_matrix(x, y)
+    elsif x.array? && y.array?
+      array_array(x, y, base)
+    elsif x.array? && y.scalar?
+      array_scalar(x, y, base)
+    elsif x.scalar? && y.array?
+      scalar_array(x, y, base)
+    elsif x.compatible?(y)
+      op_scalar_scalar(x, y)
+    else
+      raise(BASICExpressionError, 'Type mismatch')
+    end
+  end
+
+  def matrix_matrix(x, y)
+    op_matrix_matrix(:b_or, x, y)
+  end
+
+  def matrix_scalar(x, y)
+    op_matrix_scalar(:b_or, x, y)
+  end
+
+  def scalar_matrix(x, y)
+    op_scalar_matrix(:b_or, x, y)
+  end
+
+  def array_array(x, y, base)
+    op_array_array(:b_or, x, y, base)
+  end
+
+  def array_scalar(x, y, base)
+    op_array_scalar(:b_or, x, y, base)
+  end
+
+  def scalar_array(x, y, base)
+    op_scalar_array(:b_or, x, y, base)
+  end
+
+  def op_scalar_scalar(x, y)
+    x.public_send(:b_or, y)
+  end
+end
+
+class BinaryOperatorMax < BinaryOperator
+  def self.accept?(token)
+    classes = %w[OperatorToken]
+    classes.include?(token.class.to_s) && token.to_s == 'MAX'
+  end
+
+  def initialize(text)
+    super
+
+    @precedence = 3
+  end
+
+  def evaluate(interpreter, stack)
+    raise(BASICExpressionError, 'Not enough operands') if stack.size < 2
+
+    y = stack.pop
+    x = stack.pop
+
+    base = interpreter.base
+
+    if x.matrix? && y.matrix?
+      matrix_matrix(x, y)
+    elsif x.matrix? && y.scalar?
+      matrix_scalar(x, y)
+    elsif x.scalar? && y.matrix?
+      scalar_matrix(x, y)
+    elsif x.array? && y.array?
+      array_array(x, y, base)
+    elsif x.array? && y.scalar?
+      array_scalar(x, y, base)
+    elsif x.scalar? && y.array?
+      scalar_array(x, y, base)
+    elsif x.compatible?(y)
+      op_scalar_scalar(x, y)
+    else
+      raise(BASICExpressionError, 'Type mismatch')
+    end
+  end
+
+  def matrix_matrix(x, y)
+    op_matrix_matrix(:maximum, x, y)
+  end
+
+  def matrix_scalar(x, y)
+    op_matrix_scalar(:maximum, x, y)
+  end
+
+  def scalar_matrix(x, y)
+    op_scalar_matrix(:maximum, x, y)
+  end
+
+  def array_array(x, y, base)
+    op_array_array(:maximum, x, y, base)
+  end
+
+  def array_scalar(x, y, base)
+    op_array_scalar(:maximum, x, y, base)
+  end
+
+  def scalar_array(x, y, base)
+    op_scalar_array(:maximum, x, y, base)
+  end
+
+  def op_scalar_scalar(x, y)
+    x.public_send(:maximum, y)
+  end
+end
+
+class BinaryOperatorMin < BinaryOperator
+  def self.accept?(token)
+    classes = %w[OperatorToken]
+    classes.include?(token.class.to_s) && token.to_s == 'MIN'
+  end
+
+  def initialize(text)
+    super
+
+    @precedence = 1
+  end
+
+  def evaluate(interpreter, stack)
+    raise(BASICExpressionError, 'Not enough operands') if stack.size < 2
+
+    y = stack.pop
+    x = stack.pop
+
+    base = interpreter.base
+
+    if x.matrix? && y.matrix?
+      matrix_matrix(x, y)
+    elsif x.matrix? && y.scalar?
+      matrix_scalar(x, y)
+    elsif x.scalar? && y.matrix?
+      scalar_matrix(x, y)
+    elsif x.array? && y.array?
+      array_array(x, y, base)
+    elsif x.array? && y.scalar?
+      array_scalar(x, y, base)
+    elsif x.scalar? && y.array?
+      scalar_array(x, y, base)
+    elsif x.compatible?(y)
+      op_scalar_scalar(x, y)
+    else
+      raise(BASICExpressionError, 'Type mismatch')
+    end
+  end
+
+  def matrix_matrix(x, y)
+    op_matrix_matrix(:minimum, x, y)
+  end
+
+  def matrix_scalar(x, y)
+    op_matrix_scalar(:minimum, x, y)
+  end
+
+  def scalar_matrix(x, y)
+    op_scalar_matrix(:minimum, x, y)
+  end
+
+  def array_array(x, y, base)
+    op_array_array(:minimum, x, y, base)
+  end
+
+  def array_scalar(x, y, base)
+    op_array_scalar(:minimum, x, y, base)
+  end
+
+  def scalar_array(x, y, base)
+    op_scalar_array(:minimum, x, y, base)
+  end
+
+  def op_scalar_scalar(x, y)
+    x.public_send(:minimum, y)
   end
 end
