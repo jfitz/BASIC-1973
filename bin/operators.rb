@@ -155,36 +155,6 @@ class BinaryOperator < AbstractElement
     false
   end
   
-  def op_scalar_scalar(x, y)
-    op_table = {
-      '+' => :add,
-      '-' => :subtract,
-      '*' => :multiply,
-      '/' => :divide,
-      '^' => :power,
-      '**' => :power,
-      '=' => :b_eq,
-      '<>' => :b_ne,
-      '#' => :b_ne,
-      '<' => :b_lt,
-      '<=' => :b_le,
-      '=<' => :b_le,
-      '>' => :b_gt,
-      '>=' => :b_ge,
-      '=>' => :b_ge,
-      'AND' => :b_and,
-      'OR' => :b_or,
-      'MAX' => :maximum,
-      'MIN' => :minimum
-    }
-
-    op_sym = op_table[@op]
-
-    raise BASICExpressionError, 'Invalid operation' if op_sym.nil?
-
-    x.public_send(op_sym, y)
-  end
-
   def op_scalar_matrix_1(op, a, b)
     dims = b.dimensions
     n_cols = dims[0].to_i
@@ -196,6 +166,7 @@ class BinaryOperator < AbstractElement
       coords = AbstractElement.make_coord(col)
       values[coords] = a.send(op, b_value)
     end
+
     values
   end
 
@@ -213,6 +184,7 @@ class BinaryOperator < AbstractElement
         values[coords] = a.send(op, b_value)
       end
     end
+
     values
   end
 
@@ -220,6 +192,7 @@ class BinaryOperator < AbstractElement
     dims = b.dimensions
     values = op_scalar_matrix_1(op, a, b) if dims.size == 1
     values = op_scalar_matrix_2(op, a, b) if dims.size == 2
+
     Matrix.new(dims, values)
   end
 
@@ -963,10 +936,8 @@ class BinaryOperatorPlus < BinaryOperator
       array_scalar(x, y, base)
     elsif x.scalar? && y.array?
       scalar_array(x, y, base)
-    elsif x.compatible?(y)
-      op_scalar_scalar(x, y)
     else
-      raise(BASICExpressionError, 'Type mismatch')
+      op_scalar_scalar(x, y)
     end
   end
 
@@ -1031,10 +1002,8 @@ class BinaryOperatorMinus < BinaryOperator
       array_scalar(x, y, base)
     elsif x.scalar? && y.array?
       scalar_array(x, y, base)
-    elsif x.compatible?(y)
-      op_scalar_scalar(x, y)
     else
-      raise(BASICExpressionError, 'Type mismatch')
+      op_scalar_scalar(x, y)
     end
   end
 
@@ -1099,10 +1068,8 @@ class BinaryOperatorMultiply < BinaryOperator
       array_scalar(x, y, base)
     elsif x.scalar? && y.array?
       scalar_array(x, y, base)
-    elsif x.compatible?(y)
-      op_scalar_scalar(x, y)
     else
-      raise(BASICExpressionError, 'Type mismatch')
+      op_scalar_scalar(x, y)
     end
   end
 
@@ -1167,10 +1134,8 @@ class BinaryOperatorDivide < BinaryOperator
       array_scalar(x, y, base)
     elsif x.scalar? && y.array?
       scalar_array(x, y, base)
-    elsif x.compatible?(y)
-      op_scalar_scalar(x, y)
     else
-      raise(BASICExpressionError, 'Type mismatch')
+      op_scalar_scalar(x, y)
     end
   end
 
@@ -1236,10 +1201,8 @@ class BinaryOperatorPower < BinaryOperator
       array_scalar(x, y, base)
     elsif x.scalar? && y.array?
       scalar_array(x, y, base)
-    elsif x.compatible?(y)
-      op_scalar_scalar(x, y)
     else
-      raise(BASICExpressionError, 'Type mismatch')
+      op_scalar_scalar(x, y)
     end
   end
 
@@ -1304,10 +1267,8 @@ class BinaryOperatorEqual < BinaryOperator
       array_scalar(x, y, base)
     elsif x.scalar? && y.array?
       scalar_array(x, y, base)
-    elsif x.compatible?(y)
-      op_scalar_scalar(x, y)
     else
-      raise(BASICExpressionError, 'Type mismatch')
+      op_scalar_scalar(x, y)
     end
   end
 
@@ -1377,10 +1338,8 @@ class BinaryOperatorNotEqual < BinaryOperator
       array_scalar(x, y, base)
     elsif x.scalar? && y.array?
       scalar_array(x, y, base)
-    elsif x.compatible?(y)
-      op_scalar_scalar(x, y)
     else
-      raise(BASICExpressionError, 'Type mismatch')
+      op_scalar_scalar(x, y)
     end
   end
 
@@ -1445,10 +1404,8 @@ class BinaryOperatorLess < BinaryOperator
       array_scalar(x, y, base)
     elsif x.scalar? && y.array?
       scalar_array(x, y, base)
-    elsif x.compatible?(y)
-      op_scalar_scalar(x, y)
     else
-      raise(BASICExpressionError, 'Type mismatch')
+      op_scalar_scalar(x, y)
     end
   end
 
@@ -1514,10 +1471,8 @@ class BinaryOperatorLessEqual < BinaryOperator
       array_scalar(x, y, base)
     elsif x.scalar? && y.array?
       scalar_array(x, y, base)
-    elsif x.compatible?(y)
-      op_scalar_scalar(x, y)
     else
-      raise(BASICExpressionError, 'Type mismatch')
+      op_scalar_scalar(x, y)
     end
   end
 
@@ -1582,10 +1537,8 @@ class BinaryOperatorGreater < BinaryOperator
       array_scalar(x, y, base)
     elsif x.scalar? && y.array?
       scalar_array(x, y, base)
-    elsif x.compatible?(y)
-      op_scalar_scalar(x, y)
     else
-      raise(BASICExpressionError, 'Type mismatch')
+      op_scalar_scalar(x, y)
     end
   end
 
@@ -1651,10 +1604,8 @@ class BinaryOperatorGreaterEqual < BinaryOperator
       array_scalar(x, y, base)
     elsif x.scalar? && y.array?
       scalar_array(x, y, base)
-    elsif x.compatible?(y)
-      op_scalar_scalar(x, y)
     else
-      raise(BASICExpressionError, 'Type mismatch')
+      op_scalar_scalar(x, y)
     end
   end
 
@@ -1719,10 +1670,8 @@ class BinaryOperatorAnd < BinaryOperator
       array_scalar(x, y, base)
     elsif x.scalar? && y.array?
       scalar_array(x, y, base)
-    elsif x.compatible?(y)
-      op_scalar_scalar(x, y)
     else
-      raise(BASICExpressionError, 'Type mismatch')
+      op_scalar_scalar(x, y)
     end
   end
 
@@ -1787,10 +1736,8 @@ class BinaryOperatorOr < BinaryOperator
       array_scalar(x, y, base)
     elsif x.scalar? && y.array?
       scalar_array(x, y, base)
-    elsif x.compatible?(y)
-      op_scalar_scalar(x, y)
     else
-      raise(BASICExpressionError, 'Type mismatch')
+      op_scalar_scalar(x, y)
     end
   end
 
@@ -1855,10 +1802,8 @@ class BinaryOperatorMax < BinaryOperator
       array_scalar(x, y, base)
     elsif x.scalar? && y.array?
       scalar_array(x, y, base)
-    elsif x.compatible?(y)
-      op_scalar_scalar(x, y)
     else
-      raise(BASICExpressionError, 'Type mismatch')
+      op_scalar_scalar(x, y)
     end
   end
 
@@ -1923,10 +1868,8 @@ class BinaryOperatorMin < BinaryOperator
       array_scalar(x, y, base)
     elsif x.scalar? && y.array?
       scalar_array(x, y, base)
-    elsif x.compatible?(y)
-      op_scalar_scalar(x, y)
     else
-      raise(BASICExpressionError, 'Type mismatch')
+      op_scalar_scalar(x, y)
     end
   end
 
