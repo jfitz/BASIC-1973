@@ -483,7 +483,8 @@ def make_command_tokenbuilders(quotes)
     DEFAULT_PROMPT DETECT_INFINITE_LOOP
     ECHO FIELD_SEP FORGET_FORNEXT FORNEXT_ONE_BEYOND HEADING
     IF IF_FALSE_NEXT_LINE IGNORE_RND_ARG IMPLIED_SEMICOLON INPUT_HIGH_BIT
-    INT_FLOOR LOCK_FORNEXT MATCH_FORNEXT MIN_MAX_OP MAX_LINE_NUM MIN_LINE_NUM
+    INT_BITWISE INT_FLOOR LOCK_FORNEXT
+    MATCH_FORNEXT MIN_MAX_OP MAX_LINE_NUM MIN_LINE_NUM
     NEWLINE_SPEED
     PRECISION PRETTY_MULTILINE PRINT_SPEED PRINT_WIDTH PROMPT_COUNT PROVENANCE
     QMARK_AFTER_PROMPT RANDOMIZE REQUIRE_INITIALIZED RESPECT_RANDOMIZE
@@ -591,6 +592,7 @@ OptionParser.new do |opt|
   opt.on('--ignore-rnd-arg') { |o| options[:ignore_rnd_arg] = o }
   opt.on('--implied-semicolon') { |o| options[:implied_semicolon] = o }
   opt.on('--input-high-bit') { |o| options[:input_high_bit] = o }
+  opt.on('--int-bitwise') { |o| options[:int_bitwise] = o }
   opt.on('--int-floor') { |o| options[:int_floor] = o }
   opt.on('--lock-fornext') { |o| options[:lock_fornext] = o }
   opt.on('--match-fornext') { |o| options[:match_fornext] = o }
@@ -697,6 +699,7 @@ $options['implied_semicolon'] =
 $options['input_high_bit'] =
   Option.new(boolean, options.key?(:input_high_bit))
 
+$options['int_bitwise'] = Option.new(boolean, options.key?(:int_bitwose))
 $options['int_floor'] = Option.new(boolean, options.key?(:int_floor))
 
 $options['lock_fornext'] =

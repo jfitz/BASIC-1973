@@ -482,6 +482,7 @@ The options that can be set are:
     IGNORE_RND_ARG
     IMPLIED_SEMICOLON
     INPUT_HIGH_BIT
+    INT_BITWISE
     INT_FLOOR
     LOCK_FORNEXT
     MATCH_FORNEXT
@@ -532,6 +533,7 @@ The OPTION command overrides the command-line setting.
 |IGNORE_RND_ARG |TRUE or FALSE |FALSE |Ignores the argument to RND(), needed for some old BASIC programs
 |IMPLIED_SEMICOLON |TRUE or FALSE |FALSE |Assume that a semicolon is specified between arguments to PRINT without intervening carriage control specified
 |INPUT_HIGH_BIT |TRUE or FALSE |FALSE |INPUT$ statement sets high bit of character
+|INT_BITWISE |TRUE or FALSE |TRUE |Operators AND, OR, and NOT perform bitwise operations on integer values
 |INT_FLOOR |TRUE or FALSE |FALSE |Sets truncation towards negative infinity instead of towards zero
 |LOCK_FORNEXT |TRUE or FALSE |FALSE |Do not allow changes to FOR/NEXT control variables within the loop
 |MATCH_FORNEXT |TRUE or FALSE |FALSE |Require exact pairing of FOR and NEXT statements
@@ -699,7 +701,7 @@ BASIC-1973 supports the following arithmetic operations for numeric expressions:
 |Operation |Symbol |Precedence
 |Posation |+ |1
 |Negation |- |1
-|Logical inversion |NOT |1
+|Inversion |NOT |1
 |Addition |+ |4
 |Subtraction |- |4
 |Multiplication |* |3
@@ -730,14 +732,15 @@ BASIC-1973 supports the following arithmetic operations for integer expressions:
 |Maximum |MAX |2
 |==========
 
-For inversion, the bitwise-inverted value is returned.
+Operations on integer values are bitwise when INT_BITWISE option is TRUE (the default).
+Operations on integer values are logical when INT_BITWISE option is FALSE.
 
 BASIC-1973 supports the following operations for string expressions:
 
 |==========
 |Operation |Symbol |Precedence
 |Concatenation |+ |3
-|Logical inversion |NOT |1
+|Inversion |NOT |1
 |==========
 
 For logical coersion, an empty string is false and a non-empty string is true.
@@ -747,9 +750,9 @@ BASIC-1973 supports the following operations for boolean expressions:
 
 |==========
 |Operation |Symbol |Precedence
-|Logical Inversion |NOT |1
-|Logical And |AND |2
-|Logical Or |OR |2
+|Inversion |NOT |1
+|And |AND |2
+|Or |OR |2
 |==========
 
 Parentheses may be used to force computations is a specific order.
@@ -785,8 +788,8 @@ BASIC-1973 supports the following boolean operations
 
 |==========
 |Operation |Symbol
-|Logical 'and' |AND
-|Logical 'or' |OR
+|And |AND
+|Or |OR
 |==========
 
 Boolean comparisons and operations are sensible only within IF statements.
