@@ -3046,7 +3046,7 @@ class AbstractIfStatement < AbstractStatement
         interpreter.next_line_index = destination
       end
 
-      if !@statement.nil? && !@else_stmt.nil? && interpreter.extend_if
+      if !@statement.nil? && !@else_stmt.nil? && $options['extend_if'].value
         # go to next numbered line, not next statement
         next_line_index = interpreter.find_next_line
         interpreter.next_line_index = next_line_index
@@ -3064,7 +3064,7 @@ class AbstractIfStatement < AbstractStatement
         interpreter.next_line_index = destination
       end
 
-      if @else_dest.nil? && @else_stmt.nil? && interpreter.extend_if
+      if @else_dest.nil? && @else_stmt.nil? && $options['extend_if'].value
         # go to next numbered line, not next statement
         next_line_index = interpreter.find_next_line
         interpreter.next_line_index = next_line_index
@@ -3494,7 +3494,7 @@ class NextStatement < AbstractStatement
   def execute_core(interpreter)
     fornext_control = interpreter.retrieve_fornext(@control)
 
-    if interpreter.match_fornext?
+    if $options['match_fornext'].value
       # check control variable matches current loop
       expected = interpreter.top_fornext
       actual = fornext_control.control
@@ -3519,7 +3519,7 @@ class NextStatement < AbstractStatement
 
     if terminated
       fornext_control.bump_control(interpreter) if
-        interpreter.fornext_one_beyond
+        $options['fornext_one_beyond'].value
 
       interpreter.unlock_variable(@control) if $options['lock_fornext'].value
       interpreter.exit_fornext(fornext_control.forget, fornext_control.control)
@@ -4831,7 +4831,7 @@ class ArrInputStatement < AbstractStatement
         raise(BASICExpressionError, 'Not an array') unless dims.size == 1
 
         # build names
-        base = interpreter.base
+        base = $options['base'].value
         (base..dims[0].to_i).each do |col|
           coord = AbstractElement.make_coord(col)
           variable = Variable.new(name, :array, coord)
@@ -5102,7 +5102,7 @@ class ArrReadStatement < AbstractStatement
   def read_array(name, dims, interpreter, ds)
     values = {}
 
-    base = interpreter.base
+    base = $options['base'].value
     (base..dims[0].to_i).each do |col|
       coord = AbstractElement.make_coord(col)
       values[coord] = ds.read
@@ -5359,7 +5359,7 @@ class MatInputStatement < AbstractStatement
 
         # build names
         if dims.size == 1
-          base = interpreter.base
+          base = $options['base'].value
           (base..dims[0].to_i).each do |col|
             coord = AbstractElement.make_coord(col)
             variable = Variable.new(name, :matrix, coord)
@@ -5368,7 +5368,7 @@ class MatInputStatement < AbstractStatement
         end
 
         if dims.size == 2
-          base = interpreter.base
+          base = $options['base'].value
           (base..dims[0].to_i).each do |row|
             (base..dims[1].to_i).each do |col|
               coords = AbstractElement.make_coords(row, col)

@@ -1488,32 +1488,4 @@ class Interpreter
 
     fh
   end
-
-  def int_floor?
-    $options['int_floor'].value
-  end
-
-  def match_fornext?
-    $options['match_fornext'].value
-  end
-
-  def base
-    $options['base'].value
-  end
-
-  def extend_if
-    $options['extend_if'].value
-  end
-
-  def fornext_one_beyond
-    $options['fornext_one_beyond'].value
-  end
-
-  def asc_allow_all
-    $options['asc_allow_all'].value
-  end
-
-  def chr_allow_all
-    $options['chr_allow_all'].value
-  end
 end
