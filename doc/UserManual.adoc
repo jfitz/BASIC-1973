@@ -186,7 +186,7 @@ Immediate commands
 Immediate commands are executed on the command line.
 They are not stored as part of the program.
 They have no line number.
-They are available only in "run" mode.
+They are available only in interactive mode.
 
 LOAD
 ~~~~
@@ -2864,3 +2864,44 @@ The detection algorithm is not perfect, and it is easy to write a program with a
 
 The algorithm may detect false positives - infinite loops when none exist.
 The DETECT_INFINITE_LOOP option, when set to FALSE, disables checks for infinite loops.
+
+Commentary
+----------
+
+File format
+~~~~~~~~~~~
+
+Source files
+^^^^^^^^^^^^
+
+Source files are stored in ASCII.
+
+Source files contain three groups of line: options, source, and breakpoints.
+Option lines begin with the keyword '.OPTION'.
+Source lines begin with a line number.
+Breakpoint lines begin with the keyword '.BREAK'
+
+Other lines are considered errors.
+
+There is no continuation of lines.
+
+Data files
+^^^^^^^^^^
+
+Data files are stored in ASCII.
+
+Data files consist of lines of text, and each line of text consists of fields.
+Fields are separated by delimiters, which may be ',' or ';'.
+The WRITE statement inserts delimiters.
+The PRINT statement does not insert delimiters.
+To write a file in BASIC and then read that file in BASIC, use WRITE statements or PRINT statements with delimiters between fields.
+
+To write the file:
+
+100 WRITE #1, A, B, C
+110 PRINT #1, A; ","; B; ","; C
+
+To read the file
+
+200 READ #2, A, B, C
+210 INPUT #2, A, B, C
