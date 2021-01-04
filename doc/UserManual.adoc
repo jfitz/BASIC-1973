@@ -454,107 +454,63 @@ Syntax: OPTION option value
 The first form ('OPTION' by itself) lists the options and their current values.
 The second form lists a specific option and its current value.
 The final form sets the value for an option.
-
-The options that can be set are:
-
-    ALLOW_ASCII
-    ALLOW_HASH_CONSTANT
-    ALLOW_PI
-    APOSTROPHE_COMMENT
-    ASC_ALLOW_ALL
-    BACK_TAB
-    BACKSLASH_SEPARATOR
-    BANG_COMMENT
-    BASE
-    BRACKETS
-    CHR_ALLOW_ALL
-    COLON_FILE
-    COLON_SEPARATOR
-    CRLF_ON_LINE_INPUT
-    DEFAULT_PROMPT
-    DETECT_INFINITE_LOOP
-    ECHO
-    FIELD_SEP
-    FORGET_FORNEXT
-    FORNEXT_ONE_BEYOND
-    HEADING
-    IF_FALSE_NEXT_LINE
-    IGNORE_RND_ARG
-    IMPLIED_SEMICOLON
-    INPUT_HIGH_BIT
-    INT_BITWISE
-    INT_FLOOR
-    LOCK_FORNEXT
-    MATCH_FORNEXT
-    MIN_MAX_OP
-    NEWLINE_SPEED
-    PRECISION
-    PRETTY_MULTILINE
-    PRINT_SPEED
-    PRINT_WIDTH
-    PROMPT_COUNT
-    PROVENANCE
-    QMARK_AFTER_PROMPT
-    RANDOMIZE
-    REQUIRE_INITIALIZED
-    RESPECT_RANDOMIZE
-    SEMICOLON_ZONE_WIDTH
-    SINGLE_QUOTE_STRING
-    TIMING
-    TRACE
-    ZONE_WIDTH
+Refer to the OPTION command for options that can be set in the program.
 
 These options can be initialized on the command line.
 The OPTION command overrides the command-line setting.
 
 |==========
-|Option |Type |Default |Effect
-|ALLOW_ASCII |TRUE or FALSE |FALSE |Allow ASCII constants for control characters
-|ALLOW_HASH_CONSTANT |TRUE or FALSE |FALSE |Allow hash constant values (#K)
-|ALLOW_PI |TRUE or FALSE |FALSE |Allow PI constant
-|APOSTROPHE_COMMENT |TRUE or FALSE |Allow comments starting with single quote
-|ASC_ALLOW_ALL |TRUE or FALSE |FALSE |The ASC() function allows all characters
-|BACK_TAB |TRUE or FALSE |FALSE |The TAB() function can move the printhead to the left
-|BACKSLASH_SEPARATOR |TRUE or FALSE |TRUE |Backslash separates statements
-|BANG_COMMENT |TRUE or FALSE |FALSE |Allow comments staring with exclamation point
-|BASE |numeric |0 |Sets the base for arrays and matrices to either 0 or 1
-|BRACKETS |TRUE or FALSE |Allow square brackets to denote subscripts
-|CHR_ALLOW_ALL |TRUE or FALSE |FALSE |The CHR() function allows all characters
-|COLON_FILE |TRUE or FALSE |FALSE |Colon indicates a file handle (:2, :4, etc.)
-|COLON_SEPARATOR| TRUE or FALSE |FALSE |Colon separates statements
-|CRLF_ON_LINE_INPUT |TRUE or FALSE |FALSE |LINE INPUT reads CR/LF into variable
-|DEFAULT_PROMPT |String |"? " |Changes the prompt for INPUT statements
-|DETECT_INFINITE_LOOP |TRUE or FALSE |TRUE |Enables the detection of infinite loops
-|ECHO |TRUE or FALSE |FALSE |Echoes input (useful for testing)
-|FIELD_SEP |COMMA, SEMI, NL, or NONE |COMMA |Controls spacing of values in ARR PRINT and MAT PRINT statements
-|FORNEXT_ONE_BEYOND |TRUE or FALSE |FALSE |FOR/NEXT ends with index value one higher than limit
-|HEADING |TRUE or FALSE |TRUE |Displays the opening and closing lines that identify BASIC
-|IF_FALSE_NEXT_LINE |TRUE or FALSE |FALSE |IF condition false jumps to next line (default is next statement)
-|IGNORE_RND_ARG |TRUE or FALSE |FALSE |Ignores the argument to RND(), needed for some old BASIC programs
-|IMPLIED_SEMICOLON |TRUE or FALSE |FALSE |Assume that a semicolon is specified between arguments to PRINT without intervening carriage control specified
-|INPUT_HIGH_BIT |TRUE or FALSE |FALSE |INPUT$ statement sets high bit of character
-|INT_BITWISE |TRUE or FALSE |TRUE |Operators AND, OR, and NOT perform bitwise operations on integer values
-|INT_FLOOR |TRUE or FALSE |FALSE |Sets truncation towards negative infinity instead of towards zero
-|LOCK_FORNEXT |TRUE or FALSE |FALSE |Do not allow changes to FOR/NEXT control variables within the loop
-|MATCH_FORNEXT |TRUE or FALSE |FALSE |Require exact pairing of FOR and NEXT statements
-|MIN_MAX_OP |TRUE or FALSE |FALSE |Allow MIN and MAX operators
-|NEWLINE_SPEED |numeric |0 |Limit printing speed only for newlines
-|PRECISION |numeric 1 to 17, or "INFINITE" |9 |Sets the precision for numeric values
-|PRETTY_MULTILINE |TRUE or FALSE |FALSE |When pretty-listing, print each statement on its own line
-|PRINT_SPEED |numeric |0 |Limit printing speed (a value of 10 emulates an old TeleType)
-|PRINT_WIDTH |numeric |72 |Wrap output at the specified column; 0 disables wrapping
-|PROMPT_COUNT |TRUE or FALSE |FALSE |Displays the number of items to be input
-|PROVENANCE |TRUE or FALSE |FALSE |Expands trace display to include the line in which a variable was assigned its value
-|QMARK_AFTER_PROMPT |TRUE or FALSE |FALSE |Display '?' after a prompt in an INPUT statement
-|SEMICOLON_ZONE_WIDTH |numeric |0 |Semicolon carriage control zone width (0 is no zone)
-|RANDOMIZE |TRUE or FALSE |FALSE |Randomize RND(); same as 'RANDOMIZE' statement 
-|REQUIRE_INITIALIZED |TRUE or FALSE |FALSE |Variables must be initialized before use
-|RESPECT_RANDOMIZE |TRUE or FALSE |TRUE |RANDOMIZE creates different values on each run
-|SINGLE_QUOTE_STRING |TRUE or FALSE |FALSE |Allow strings delimited with single quotes ('STRING')
-|TIMING |TRUE or FALSE |TRUE |After running a program, display time to execute (user time and system time)
-|TRACE |TRUE or FALSE |FALSE |When running a program, display each line prior to execution
-|ZONE_WIDTH |numeric |16 |Width of print zones for comma separators
+|Option |Settable |Type |Default |Effect
+|ALLOW_ASCII |NLP |TRUE or FALSE |FALSE |Allow ASCII constants for control characters
+|ALLOW_HASH_CONSTANT |N |TRUE or FALSE |FALSE |Allow hash constant values (#K)
+|ALLOW_PI |N |TRUE or FALSE |FALSE |Allow PI constant
+|APOSTROPHE_COMMENT |N |TRUE or FALSE |Allow comments starting with single quote
+|ASC_ALLOW_ALL |NLP |TRUE or FALSE |FALSE |The ASC() function allows all characters
+|BACK_TAB |NLP |TRUE or FALSE |FALSE |The TAB() function can move the printhead to the left
+|BACKSLASH_SEPARATOR |N |TRUE or FALSE |TRUE |Backslash separates statements
+|BANG_COMMENT |N |TRUE or FALSE |FALSE |Allow comments staring with exclamation point
+|BASE |NLP |numeric |0 |Sets the base for arrays and matrices to either 0 or 1
+|BRACKETS |N |TRUE or FALSE |Allow square brackets to denote subscripts
+|CHR_ALLOW_ALL |NLP |TRUE or FALSE |FALSE |The CHR() function allows all characters
+|COLON_FILE |N |TRUE or FALSE |FALSE |Colon indicates a file handle (:2, :4, etc.)
+|COLON_SEPARATOR |N |TRUE or FALSE |FALSE |Colon separates statements
+|CRLF_ON_LINE_INPUT |NLP |TRUE or FALSE |FALSE |LINE INPUT reads CR/LF into variable
+|DEFAULT_PROMPT |NLP |String |"? " |Changes the prompt for INPUT statements
+|DETECT_INFINITE_LOOP |NLP |TRUE or FALSE |TRUE |Enables the detection of infinite loops
+|ECHO |NLP |TRUE or FALSE |FALSE |Echoes input (useful for testing)
+|FIELD_SEP |NLP |COMMA, SEMI, NL, or NONE |COMMA |Controls spacing of values in ARR PRINT and MAT PRINT statements
+|FORNEXT_ONE_BEYOND |NLP |TRUE or FALSE |FALSE |FOR/NEXT ends with index value one higher than limit
+|HEADING |NLP |TRUE or FALSE |TRUE |Displays the opening and closing lines that identify BASIC
+|IF_FALSE_NEXT_LINE |N |TRUE or FALSE |FALSE |IF condition false jumps to next line (default is next statement)
+|IGNORE_RND_ARG |NLP |TRUE or FALSE |FALSE |Ignores the argument to RND(), needed for some old BASIC programs
+|IMPLIED_SEMICOLON |NLP |TRUE or FALSE |FALSE |Assume that a semicolon is specified between arguments to PRINT without intervening carriage control specified
+|INPUT_HIGH_BIT |NLP |TRUE or FALSE |FALSE |INPUT$ statement sets high bit of character
+|INT_BITWISE |N |TRUE or FALSE |TRUE |Operators AND, OR, and NOT perform bitwise operations on integer values
+|INT_FLOOR |NLP |TRUE or FALSE |FALSE |Sets truncation towards negative infinity instead of towards zero
+|LOCK_FORNEXT |NLP |TRUE or FALSE |FALSE |Do not allow changes to FOR/NEXT control variables within the loop
+|MATCH_FORNEXT |NLP |TRUE or FALSE |FALSE |Require exact pairing of FOR and NEXT statements
+|MAX_LINE_NUM |N |numeric |9999 |Maximum line number allowed
+|MIN_LINE_NUM |N |numeric |1 |Minimum line number allowed
+|MIN_MAX_OP |N |TRUE or FALSE |FALSE |Allow MIN and MAX operators
+|NEWLINE_SPEED |NLP |numeric |0 |Limit printing speed only for newlines
+|PRECISION |NLP |numeric 1 to 17, or "INFINITE" |9 |Sets the precision for numeric values
+|PRETTY_MULTILINE |NL |TRUE or FALSE |FALSE |When pretty-listing, print each statement on its own line
+|PRINT_SPEED |NLP |numeric |0 |Limit printing speed (a value of 10 emulates an old TeleType)
+|PRINT_WIDTH |NLP |numeric |72 |Wrap output at the specified column; 0 disables wrapping
+|PROMPT_COUNT |NLP |TRUE or FALSE |FALSE |Displays the number of items to be input
+|PROVENANCE |NLP |TRUE or FALSE |FALSE |Expands trace display to include the line in which a variable was assigned its value
+|QMARK_AFTER_PROMPT |NLP |TRUE or FALSE |FALSE |Display '?' after a prompt in an INPUT statement
+|SEMICOLON_ZONE_WIDTH |NLP |numeric |0 |Semicolon carriage control zone width (0 is no zone)
+|RANDOMIZE |NLP |TRUE or FALSE |FALSE |Randomize RND(); same as 'RANDOMIZE' statement 
+|REQUIRE_INITIALIZED |NLP |TRUE or FALSE |FALSE |Variables must be initialized before use
+|RESPECT_RANDOMIZE |NLP |TRUE or FALSE |TRUE |RANDOMIZE creates different values on each run
+|SINGLE_QUOTE_STRING |N |TRUE or FALSE |FALSE |Allow strings delimited with single quotes ('STRING')
+|TIMING |NLP |TRUE or FALSE |TRUE |After running a program, display time to execute (user time and system time)
+|TRACE |NLP |TRUE or FALSE |FALSE |When running a program, display each line prior to execution
+|ZONE_WIDTH |NLP |numeric |16 |Width of print zones for comma separators
 
+Options can be changed when no program is loaded ('N'), when a program is loaded ('L'), or when a program is running ('P').
+Options that affect the parsing or analyzing of programs can be changed only when no program is loaded.
 
 Debug shell
 -----------
