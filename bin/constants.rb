@@ -479,6 +479,8 @@ class NumericConstant < AbstractValueElement
     :numeric
   end
 
+  def set_content_type(stack) ; end
+
   def eql?(other)
     @value == other.to_v
   end
@@ -620,6 +622,10 @@ class NumericConstant < AbstractValueElement
 
   def floor
     NumericConstant.new(@value.floor)
+  end
+
+  def to_int
+    IntegerConstant.new(to_i)
   end
 
   def exp
@@ -809,6 +815,8 @@ class IntegerConstant < AbstractValueElement
   def content_type
     :integer
   end
+
+  def set_content_type(stack) ; end
 
   def eql?(other)
     @value == other.to_v
@@ -1092,6 +1100,8 @@ class TextConstant < AbstractValueElement
     :string
   end
 
+  def set_content_type(stack) ; end
+
   def eql?(other)
     @value == other.to_v
   end
@@ -1236,6 +1246,8 @@ class BooleanConstant < AbstractValueElement
   def content_type
     :boolean
   end
+
+  def set_content_type(stack) ; end
 
   def eql?(other)
     @value == other.to_v
@@ -1464,6 +1476,8 @@ class VariableName < AbstractElement
     @content_type = @name.content_type
   end
 
+  def set_content_type(stack) ; end
+
   def eql?(other)
     to_s == other.to_s
   end
@@ -1537,6 +1551,8 @@ class UserFunctionName < AbstractElement
     @precedence = 7
     @content_type = @name.content_type
   end
+
+  def set_content_type(stack) ; end
 
   def eql?(other)
     to_s == other.to_s
@@ -1619,6 +1635,8 @@ class Declaration < AbstractElement
     @variable_name.content_type
   end
 
+  def set_content_type(stack) ; end
+
   def to_s
     if subscripts.empty?
       @variable_name.to_s
@@ -1662,6 +1680,14 @@ class Variable < AbstractElement
     @variable = true
     @operand = true
     @precedence = 7
+  end
+
+  def set_content_type(stack)
+    return @variable_name.content_type if stack.empty?
+
+    type = stack[-1]
+
+    stack.pop if type == :list
   end
 
   def eql?(other)
@@ -1916,6 +1942,12 @@ class List < AbstractElement
     end
     lines
   end
+
+  def content_type
+    :list
+  end
+
+  def set_content_type(_) ; end
 
   def evaluate(interpreter, _)
     interpreter.evaluate_n(@parsed_expressions)

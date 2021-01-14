@@ -741,7 +741,7 @@ $options['input_high_bit'] =
   Option.new(all_types, boolean, options.key?(:input_high_bit))
 
 $options['int_bitwise'] =
-  Option.new(only_new, boolean, options.key?(:int_bitwose))
+  Option.new(only_new, boolean, options.key?(:int_bitwise))
 
 $options['int_floor'] =
   Option.new(all_types, boolean, options.key?(:int_floor))
