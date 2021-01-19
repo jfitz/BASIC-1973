@@ -888,7 +888,9 @@ class Interpreter
   def evaluate_1(expression)
     stack = []
 
-    expression.each do |element|
+    elements = expression.elements
+
+    elements.each do |element|
       value = element.evaluate(self, stack)
       stack.push value
     end

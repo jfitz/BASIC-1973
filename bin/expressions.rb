@@ -196,18 +196,18 @@ class Matrix
   def self.zero_values(dimensions)
     case dimensions.size
     when 1
-      make_array(dimensions, NumericConstant.new(0))
+      Matrix.make_array(dimensions, NumericConstant.new(0))
     when 2
-      make_matrix(dimensions, NumericConstant.new(0))
+      Matrix.make_matrix(dimensions, NumericConstant.new(0))
     end
   end
 
   def self.one_values(dimensions)
     case dimensions.size
     when 1
-      make_array(dimensions, NumericConstant.new(1))
+      Matrix.make_array(dimensions, NumericConstant.new(1))
     when 2
-      make_matrix(dimensions, NumericConstant.new(1))
+      Matrix.make_matrix(dimensions, NumericConstant.new(1))
     end
   end
 
@@ -333,6 +333,7 @@ class Matrix
   def transpose_values
     raise(BASICExpressionError, 'TRN requires matrix') unless
       @dimensions.size == 2
+
     new_values = {}
 
     base = $options['base'].value
@@ -349,7 +350,9 @@ class Matrix
   end
 
   def determinant
-    raise(BASICSyntaxError, 'DET requires matrix') unless @dimensions.size == 2
+    raise(BASICExpressionError, 'DET requires matrix') unless
+      @dimensions.size == 2
+
     raise BASICRuntimeError.new(:te_mat_no_sq, 'DET') if
       @dimensions[1] != @dimensions[0]
 
@@ -383,13 +386,15 @@ class Matrix
     inv_values
   end
 
+  private
+
   def print_1(printer, interpreter, formats)
     n_cols = @dimensions[0].to_i
 
     base = $options['base'].value
     fs_carriage = CarriageControl.new($options['field_sep'].value)
     # gs_carriage = CarriageControl.new('NL')
-    # rs_carriage = CarriageControl.new('NL')
+    rs_carriage = CarriageControl.new('NL')
 
     (base..n_cols).each do |col|
       if formats.nil?
@@ -409,8 +414,7 @@ class Matrix
       fs_carriage.print(printer, interpreter) if col < n_cols
     end
 
-    printer.newline
-    printer.newline
+    rs_carriage.print(printer, interpreter)
   end
 
   def print_2(printer, interpreter, formats)
@@ -631,6 +635,7 @@ class XrefEntry
 
     arguments.each do |arg|
       content_type = :empty
+      # TODO: I think we can remove check for Array
       if arg.class.to_s == 'Array'
         # an array is a parsed expression
         unless arg.empty?
@@ -746,8 +751,8 @@ end
 class Parser
   def initialize(shape)
     @operator_stack = []
-    @expression_stack = []
-    @current_expression = []
+    @elements_stack = []
+    @current_elements = []
     @parens_stack = []
     @shape_stack = [shape]
     @parens_group = []
@@ -763,7 +768,7 @@ class Parser
       function_variable(element)
     else
       # the element is an operand, append it to the output list
-      @current_expression << element
+      @current_elements << element
     end
 
     @previous_element = element
@@ -774,26 +779,32 @@ class Parser
       @operator_stack.empty?
 
     expressions = []
-    @parens_group.each { |expression| expressions << expression }
-    expressions << @current_expression unless @current_expression.empty?
+
+    @parens_group.each do |expression|
+      expressions << Expression.new(expression)
+    end
+
+    expressions << Expression.new(@current_elements) unless
+      @current_elements.empty?
+
     expressions
   end
 
   private
 
-  def stack_to_expression(stack, expression)
+  def stack_to_elements(stack, elements)
     until stack.empty? || stack[-1].starter?
       op = stack.pop
-      expression << op
+      elements << op
     end
   end
 
-  def stack_to_precedence(stack, expression, element)
+  def stack_to_precedence(stack, elements, element)
     while !stack.empty? &&
           !stack[-1].starter? &&
           stack[-1].precedence >= element.precedence
       op = stack.pop
-      expression << op
+      elements << op
     end
   end
 
@@ -820,8 +831,8 @@ class Parser
   # a group associated with a function or variable
   # (arguments or subscripts)
   def start_associated_group(element, shape)
-    @expression_stack.push(@current_expression)
-    @current_expression = []
+    @elements_stack.push(@current_elements)
+    @current_elements = []
     @operator_stack.push(ParamStart.new(element))
     @parens_stack << @parens_group
     @parens_group = []
@@ -838,16 +849,16 @@ class Parser
   # pop the operator stack until the corresponding left paren is found
   # Append each operator to the end of the output list
   def pop_to_group_start
-    stack_to_expression(@operator_stack, @current_expression)
-    @parens_group << @current_expression
-    @current_expression = []
+    stack_to_elements(@operator_stack, @current_elements)
+    @parens_group << @current_elements
+    @current_elements = []
   end
 
   # pop the operator stack until the corresponding left paren is removed
   # Append each operator to the end of the output list
   def end_group(group_end_element)
-    stack_to_expression(@operator_stack, @current_expression)
-    @parens_group << @current_expression
+    stack_to_elements(@operator_stack, @current_elements)
+    @parens_group << @current_elements
 
     raise(BASICExpressionError, 'Too few operators') if @operator_stack.empty?
 
@@ -860,9 +871,11 @@ class Parser
     raise(BASICExpressionError, error) unless group_end_element.match?(start_op)
 
     if start_op.param_start?
-      list = List.new(@parens_group)
+      expressions = []
+      @parens_group.each { |group| expressions << Expression.new(group) }
+      list = List.new(expressions)
       @operator_stack.push(list)
-      @current_expression = @expression_stack.pop
+      @current_elements = @elements_stack.pop
     end
 
     @parens_group = @parens_stack.pop
@@ -873,7 +886,7 @@ class Parser
   # or equal precedence
   # append them to the output list
   def operator_higher(element)
-    stack_to_precedence(@operator_stack, @current_expression, element)
+    stack_to_precedence(@operator_stack, @current_elements, element)
     # push the operator onto the operator stack
     @operator_stack.push(element) unless element.terminal?
   end
@@ -888,12 +901,12 @@ class Parser
     end
   end
 
-
   # remove operators already on the stack that have higher
   # or equal precedence
   # append them to the output list
   def start_user_function(element)
-    stack_to_precedence(@operator_stack, @current_expression, element)
+    stack_to_precedence(@operator_stack, @current_elements, element)
+
     # push the variable onto the operator stack
     variable = UserFunction.new(element)
     @operator_stack.push(variable)
@@ -903,7 +916,7 @@ class Parser
   # or equal precedence
   # append them to the output list
   def start_function(element)
-    stack_to_precedence(@operator_stack, @current_expression, element)
+    stack_to_precedence(@operator_stack, @current_elements, element)
 
     # push the function onto the operator stack
     @operator_stack.push(element)
@@ -913,7 +926,7 @@ class Parser
   # or equal precedence
   # append them to the output list
   def start_variable(element)
-    stack_to_precedence(@operator_stack, @current_expression, element)
+    stack_to_precedence(@operator_stack, @current_elements, element)
 
     # push the variable onto the operator stack
     if @shape_stack[-1] == :declaration
@@ -923,6 +936,38 @@ class Parser
     end
 
     @operator_stack.push(variable)
+  end
+end
+
+# independent expression
+class Expression
+  attr_reader :elements
+
+  def initialize(elements)
+    @elements = elements
+  end
+
+  def empty?
+    @elements.empty?
+  end
+
+  def content_type
+    content_type = :empty
+
+    unless @elements.empty?
+      element0 = @elements[-1]
+      content_type = element0.content_type
+    end
+
+    content_type
+  end
+
+  def dump
+    lines = []
+
+    @elements.each { |element| lines << element.dump }
+
+    lines
   end
 end
 
@@ -941,16 +986,17 @@ class AbstractExpression
     elements = tokens_to_elements(tokens)
     parser = Parser.new(shape)
     elements.each { |element| parser.parse(element) }
-    parsed_tokens = parser.expressions
-    set_arguments_1(parsed_tokens)
+    expressions = parser.expressions
+    set_arguments_1(expressions)
 
     @shape = shape
 
     @comprehension_effort = 1
-    parsed_tokens.each do |element_list|
+    expressions.each do |expression|
       prev = nil
 
-      element_list.each do |element|
+      elements = expression.elements
+      elements.each do |element|
         @comprehension_effort += 1 if element.operator?
 
         @comprehension_effort += 1 if
@@ -965,7 +1011,7 @@ class AbstractExpression
       end
     end
 
-    @expressions = parsed_tokens
+    @expressions = expressions
   end
 
   def to_s
@@ -976,7 +1022,9 @@ class AbstractExpression
     lines = []
 
     @expressions.each do |expression|
-      x = expression.map(&:dump)
+      elements = expression.elements
+      x = elements.map(&:dump)
+      # TODO: remove Array check
       if x.class.to_s == 'Array'
         lines += x.flatten
       else
@@ -1051,21 +1099,25 @@ class AbstractExpression
   private
 
   def set_arguments_1(expressions)
-    expressions.each { |expression| set_arguments_2(expression) }
+    expressions.each do |expression|
+      set_arguments_2(expression)
+    end
   end
 
   def set_arguments_2(expression)
     content_type_stack = []
 
-    expression.each do |item|
-      if item.list?
-        set_arguments_1(item.list)
-      elsif item.operator?
-        item.set_arguments(content_type_stack)
-        content_type_stack.push(item)
+    elements = expression.elements
+
+    elements.each do |element|
+      if element.list?
+        set_arguments_1(element.list)
+      elsif element.operator?
+        element.set_arguments(content_type_stack)
+        content_type_stack.push(element)
       else
-        item.pop_stack(content_type_stack)
-        content_type_stack.push(item)
+        element.pop_stack(content_type_stack)
+        content_type_stack.push(element)
       end
     end
 
@@ -1078,23 +1130,26 @@ class AbstractExpression
 
     expressions.each do |expression|
       previous = nil
+
+      elements = expression.elements
+
       # backwards so the unary operator (if any) is seen first
-      expression.reverse_each do |thing|
-        if thing.list?
+      elements.reverse_each do |element|
+        if element.list?
           # recurse into expressions in list
-          sublist = thing.list
+          sublist = element.list
           vars += parsed_expressions_numerics(sublist)
-        elsif thing.numeric_constant? && !thing.symbol
+        elsif element.numeric_constant? && !element.symbol
           if !previous.nil? &&
              previous.operator? &&
              previous.unary? &&
              previous.to_s == '-'
-            vars << thing.negate
+            vars << element.negate
           else
-            vars << thing
+            vars << element
           end
         end
-        previous = thing
+        previous = element
       end
     end
 
@@ -1105,14 +1160,17 @@ class AbstractExpression
     vars = []
 
     expressions.each do |expression|
+
+      elements = expression.elements
+
       # backwards so the unary operator (if any) is seen first
-      expression.reverse_each do |thing|
-        if thing.list?
+      elements.reverse_each do |element|
+        if element.list?
           # recurse into expressions in list
-          sublist = thing.list
+          sublist = element.list
           vars += parsed_expressions_num_symbols(sublist)
-        elsif thing.numeric_constant? && thing.symbol
-          vars << thing
+        elsif element.numeric_constant? && element.symbol
+          vars << element
         end
       end
     end
@@ -1124,13 +1182,16 @@ class AbstractExpression
     strs = []
 
     expressions.each do |expression|
-      expression.each do |thing|
-        if thing.list?
+
+      elements = expression.elements
+
+      elements.each do |element|
+        if element.list?
           # recurse into expressions in list
-          sublist = thing.list
+          sublist = element.list
           strs += parsed_expressions_strings(sublist)
-        elsif thing.text_constant? && !thing.symbol
-          strs << thing
+        elsif element.text_constant? && !element.symbol
+          strs << element
         end
       end
     end
@@ -1142,13 +1203,16 @@ class AbstractExpression
     bools = []
 
     expressions.each do |expression|
-      expression.each do |thing|
-        if thing.list?
+
+      elements = expression.elements
+
+      elements.each do |element|
+        if element.list?
           # recurse into expressions in list
-          sublist = thing.list
+          sublist = element.list
           bools += parsed_expressions_booleans(sublist)
-        elsif thing.boolean_constant?
-          bools << thing
+        elsif element.boolean_constant?
+          bools << element
         end
       end
     end
@@ -1160,13 +1224,16 @@ class AbstractExpression
     strs = []
 
     expressions.each do |expression|
-      expression.each do |thing|
-        if thing.list?
+
+      elements = expression.elements
+
+      elements.each do |element|
+        if element.list?
           # recurse into expressions in list
-          sublist = thing.list
+          sublist = element.list
           strs += parsed_expressions_text_symbols(sublist)
-        elsif thing.text_constant? && thing.symbol
-          strs << thing
+        elsif element.text_constant? && element.symbol
+          strs << element
         end
       end
     end
@@ -1180,21 +1247,23 @@ class AbstractExpression
     expressions.each do |expression|
       previous = nil
 
-      expression.each do |thing|
-        if thing.list?
+      elements = expression.elements
+
+      elements.each do |element|
+        if element.list?
           # recurse into expressions in list
-          sublist = thing.list
+          sublist = element.list
           vars += parsed_expressions_variables(sublist)
-        elsif thing.variable?
+        elsif element.variable?
           arguments = nil
 
-          if thing.array?
+          if element.array?
             token = NumericConstantToken.new('0')
             constant = NumericConstant.new(token)
             arguments = [constant]
           end
 
-          if thing.matrix?
+          if element.matrix?
             token = NumericConstantToken.new('0')
             constant = NumericConstant.new(token)
             arguments = [constant, constant]
@@ -1202,13 +1271,13 @@ class AbstractExpression
 
           arguments = previous.list if !previous.nil? && previous.list?
 
-          is_ref = thing.reference?
+          is_ref = element.reference?
 
           signature = XrefEntry.make_signature(arguments)
-          vars << XrefEntry.new(thing.to_s, signature, is_ref)
+          vars << XrefEntry.new(element.to_s, signature, is_ref)
         end
 
-        previous = thing
+        previous = element
       end
     end
 
@@ -1219,23 +1288,22 @@ class AbstractExpression
     opers = []
 
     expressions.each do |expression|
-      previous = nil
 
-      expression.each do |thing|
-        if thing.list?
+      elements = expression.elements
+
+      elements.each do |element|
+        if element.list?
           # recurse into expressions in list
-          sublist = thing.list
+          sublist = element.list
           opers += parsed_expressions_operators(sublist)
-        elsif thing.operator?
-          arguments = thing.arguments
+        elsif element.operator?
+          arguments = element.arguments
 
           is_ref = false
 
           signature = XrefEntry.make_signature(arguments)
-          opers << XrefEntry.new(thing.to_s, signature, is_ref)
+          opers << XrefEntry.new(element.to_s, signature, is_ref)
         end
-
-        previous = thing
       end
     end
 
@@ -1248,22 +1316,24 @@ class AbstractExpression
     expressions.each do |expression|
       previous = nil
 
-      expression.each do |thing|
-        if thing.list?
+      elements = expression.elements
+
+      elements.each do |element|
+        if element.list?
           # recurse into expressions in list
-          sublist = thing.list
+          sublist = element.list
           vars += parsed_expressions_functions(sublist)
-        elsif thing.function? && !thing.user_function?
+        elsif element.function? && !element.user_function?
           arguments = nil
           arguments = previous.list if !previous.nil? && previous.list?
 
-          is_ref = thing.reference?
+          is_ref = element.reference?
 
           signature = XrefEntry.make_signature(arguments)
-          vars << XrefEntry.new(thing.to_s, signature, is_ref)
+          vars << XrefEntry.new(element.to_s, signature, is_ref)
         end
 
-        previous = thing
+        previous = element
       end
     end
 
@@ -1276,22 +1346,24 @@ class AbstractExpression
     expressions.each do |expression|
       previous = nil
 
-      expression.each do |thing|
-        if thing.list?
+      elements = expression.elements
+
+      elements.each do |element|
+        if element.list?
           # recurse into expressions in list
-          sublist = thing.list
+          sublist = element.list
           vars += parsed_expressions_userfuncs(sublist)
-        elsif thing.user_function?
+        elsif element.user_function?
           arguments = nil
           arguments = previous.list if !previous.nil? && previous.list?
 
-          is_ref = thing.reference?
+          is_ref = element.reference?
 
           signature = XrefEntry.make_signature(arguments)
-          vars << XrefEntry.new(thing.to_s, signature, is_ref)
+          vars << XrefEntry.new(element.to_s, signature, is_ref)
         end
 
-        previous = thing
+        previous = element
       end
     end
 
@@ -1385,7 +1457,9 @@ class ValueExpression < AbstractExpression
   def self.set_content_type(expression)
     stack = []
 
-    expression.each do |element|
+    elements = expression.elements
+
+    elements.each do |element|
       element.set_content_type(stack)
       stack.push element.content_type
     end
@@ -1397,6 +1471,7 @@ class ValueExpression < AbstractExpression
     super
 
     types = []
+
     @expressions.each do |expression|
       type = ValueExpression.set_content_type(expression)
       types << type
@@ -1416,17 +1491,20 @@ class ValueExpression < AbstractExpression
   end
 
   def content_type
-    first_expression = @expressions[0]
-    last_token = first_expression[-1]
-    last_token.content_type
+    expression = @expressions[0]
+    elements = expression.elements
+    last_element = elements[-1]
+    last_element.content_type
   end
 
   def filehandle?
     return false if @expressions.empty?
 
     expression = @expressions[0]
-    last_token = expression[-1]
-    last_token.operator? && last_token.pound?
+    elements = expression.elements
+    element = elements[0]
+    last_element = elements[-1]
+    last_element.operator? && last_element.pound?
   end
 
   def print(printer, interpreter)
@@ -1492,9 +1570,11 @@ class DeclarationExpression < AbstractExpression
 
   def check_resolve_types
     @expressions.each do |expression|
-      if expression[-1].class.to_s != 'Declaration'
+      elements = expression.elements
+      last_element = elements[-1]
+      if last_element.class.to_s != 'Declaration'
         raise(BASICSyntaxError,
-              "Value is not declaration (type #{expression[-1].class})")
+              "Value is not declaration (type #{last_element.class})")
       end
     end
   end
@@ -1512,7 +1592,9 @@ class TargetExpression < AbstractExpression
     @target = true
 
     @expressions.each do |expression|
-      expression[-1].valref = :reference
+      elements = expression.elements
+
+      elements[-1].valref = :reference
     end
   end
 
@@ -1529,15 +1611,19 @@ class TargetExpression < AbstractExpression
 
   def check_all_lengths
     @expressions.each do |expression|
+      elements = expression.elements
+
       raise(BASICSyntaxError, 'Value is not assignable (length 0)') if
-        expression.empty?
+        elements.empty?
     end
   end
 
   def check_resolve_types
     @expressions.each do |expression|
-      if expression[-1].class.to_s != 'Variable' &&
-         expression[-1].class.to_s != 'UserFunction'
+      elements = expression.elements
+
+      if elements[-1].class.to_s != 'Variable' &&
+         elements[-1].class.to_s != 'UserFunction'
         raise(BASICSyntaxError,
               "Value is not assignable (type #{expression[-1].class})")
       end
@@ -1587,8 +1673,7 @@ class UserFunctionDefinition
       @variables = []
       @operators = []
       @functions = []
-      signature = XrefEntry.make_signature(@arguments)
-      xr = XrefEntry.new(@name.to_s, signature, true)
+      xr = XrefEntry.new(@name.to_s, @sig, true)
       @userfuncs = [xr]
 
       @comprehension_effort = 0
@@ -1601,8 +1686,7 @@ class UserFunctionDefinition
       @variables = @expression.variables
       @operators = @expression.operators
       @functions = @expression.functions
-      signature = XrefEntry.make_signature(@arguments)
-      xr = XrefEntry.new(@name.to_s, signature, true)
+      xr = XrefEntry.new(@name.to_s, @sig, true)
       @userfuncs = [xr] + @expression.userfuncs
 
       @comprehension_effort = @expression.comprehension_effort
@@ -1722,7 +1806,7 @@ class UserFunctionPrototype
   end
 end
 
-# Aassignment
+# Assignment
 class Assignment
   attr_reader :target
   attr_reader :numerics
