@@ -1273,7 +1273,7 @@ class Expression
 end
 
 # base class for expressions
-class AbstractExpression
+class AbstractExpressionSet
   attr_reader :comprehension_effort
 
   def initialize(tokens, shape)
@@ -1509,7 +1509,7 @@ class AbstractExpression
 end
 
 # Value expression (an R-value)
-class ValueExpression < AbstractExpression
+class ValueExpressionSet < AbstractExpressionSet
   def self.set_content_type(expression)
     stack = []
 
@@ -1529,7 +1529,7 @@ class ValueExpression < AbstractExpression
     types = []
 
     @expressions.each do |expression|
-      type = ValueExpression.set_content_type(expression)
+      type = ValueExpressionSet.set_content_type(expression)
       types << type
     end
   end
@@ -1601,7 +1601,7 @@ class ValueExpression < AbstractExpression
 end
 
 # Declaration expression
-class DeclarationExpression < AbstractExpression
+class DeclarationExpressionSet < AbstractExpressionSet
   def initialize(tokens)
     super(tokens, :declaration)
 
@@ -1637,7 +1637,7 @@ class DeclarationExpression < AbstractExpression
 end
 
 # Target expression
-class TargetExpression < AbstractExpression
+class TargetExpressionSet < AbstractExpressionSet
   def initialize(tokens, shape)
     super
 
@@ -1718,7 +1718,7 @@ class UserFunctionDefinition
     @arguments = user_function_prototype.arguments
     @sig = XrefEntry.make_signature(@arguments)
     @expression = nil
-    @expression = ValueExpression.new(parts[2], :scalar) if parts.size == 3
+    @expression = ValueExpressionSet.new(parts[2], :scalar) if parts.size == 3
 
     if @expression.nil?
       @numerics = []
@@ -1896,8 +1896,8 @@ class Assignment
     @functions = []
     @userfuncs = []
 
-    @target = TargetExpression.new(@token_lists[0], shape)
-    @expression = ValueExpression.new(@token_lists[2], shape)
+    @target = TargetExpressionSet.new(@token_lists[0], shape)
+    @expression = ValueExpressionSet.new(@token_lists[2], shape)
     make_references
     @comprehension_effort = @target.comprehension_effort + @expression.comprehension_effort
   end

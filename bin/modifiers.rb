@@ -42,7 +42,7 @@ class IfModifier < AbstractModifier
   def initialize(expression_tokens)
     super()
 
-    @expression = ValueExpression.new(expression_tokens, :scalar)
+    @expression = ValueExpressionSet.new(expression_tokens, :scalar)
 
     @numerics = @expression.numerics
     @strings = @expression.strings
@@ -111,7 +111,7 @@ class UnlessModifier < AbstractModifier
   def initialize(expression_tokens)
     super()
     
-    @expression = ValueExpression.new(expression_tokens, :scalar)
+    @expression = ValueExpressionSet.new(expression_tokens, :scalar)
 
     @numerics = @expression.numerics
     @strings = @expression.strings
@@ -182,7 +182,7 @@ class WhileModifier < AbstractModifier
   def initialize(expression_tokens)
     super()
     
-    @expression = ValueExpression.new(expression_tokens, :scalar)
+    @expression = ValueExpressionSet.new(expression_tokens, :scalar)
 
     @numerics = @expression.numerics
     @strings = @expression.strings
@@ -270,7 +270,7 @@ class UntilModifier < AbstractModifier
   def initialize(expression_tokens)
     super()
     
-    @expression = ValueExpression.new(expression_tokens, :scalar)
+    @expression = ValueExpressionSet.new(expression_tokens, :scalar)
 
     @numerics = @expression.numerics
     @strings = @expression.strings
@@ -380,11 +380,15 @@ class ForModifier < AbstractModifier
 
     control_name = VariableName.new(control_tokens[0])
     @control = Variable.new(control_name, :scalar, [])
-    @start = ValueExpression.new(start_tokens, :scalar)
-    @step = ValueExpression.new(step_tokens, :scalar) unless step_tokens.nil?
-    @end = ValueExpression.new(end_tokens, :scalar) unless end_tokens.nil?
-    @until = ValueExpression.new(until_tokens, :scalar) unless until_tokens.nil?
-    @while = ValueExpression.new(while_tokens, :scalar) unless while_tokens.nil?
+    @start = ValueExpressionSet.new(start_tokens, :scalar)
+    @step = ValueExpressionSet.new(step_tokens, :scalar) unless
+      step_tokens.nil?
+    @end = ValueExpressionSet.new(end_tokens, :scalar) unless
+      end_tokens.nil?
+    @until = ValueExpression.new(until_tokens, :scalar) unless
+      until_tokens.nil?
+    @while = ValueExpression.new(while_tokens, :scalar) unless
+      while_tokens.nil?
 
     control = XrefEntry.new(@control.to_s, nil, true)
 

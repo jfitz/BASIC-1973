@@ -1144,7 +1144,7 @@ module FileFunctions
   end
 
   def add_needed_value(items, shape)
-    items << ValueExpression.new([], shape) if
+    items << ValueExpressionSet.new([], shape) if
       items.empty? || !items[-1].printable?
   end
 
@@ -1211,11 +1211,11 @@ module InputFunctions
 
   def add_expression(items, tokens, shape)
     if tokens[0].operator? && tokens[0].pound?
-      items << ValueExpression.new(tokens, :scalar)
+      items << ValueExpressionSet.new(tokens, :scalar)
     elsif tokens[0].text_constant?
-      items << ValueExpression.new(tokens, :scalar)
+      items << ValueExpressionSet.new(tokens, :scalar)
     else
-      items << TargetExpression.new(tokens, shape)
+      items << TargetExpressionSet.new(tokens, shape)
     end
   rescue BASICExpressionError
     line_text = tokens.map(&:to_s).join
@@ -1277,10 +1277,10 @@ module PrintFunctions
 
   def add_expression(items, tokens, shape)
     if tokens[0].operator? && tokens[0].pound?
-      items << ValueExpression.new(tokens, :scalar)
+      items << ValueExpressionSet.new(tokens, :scalar)
     else
       add_needed_carriage(items)
-      items << ValueExpression.new(tokens, shape)
+      items << ValueExpressionSet.new(tokens, shape)
     end
   rescue BASICExpressionError
     line_text = tokens.map(&:to_s).join
@@ -1294,7 +1294,7 @@ module PrintFunctions
     format = nil
 
     unless items.empty? ||
-           items[0].class.to_s != 'ValueExpression' &&
+           items[0].class.to_s != 'ValueExpressionSet' &&
            items[-1].scalar?
 
       value = first_item(items, interpreter)
@@ -1367,9 +1367,9 @@ module ReadFunctions
 
   def add_expression(items, tokens, shape)
     if tokens[0].operator? && tokens[0].pound?
-      items << ValueExpression.new(tokens, :scalar)
+      items << ValueExpressionSet.new(tokens, :scalar)
     else
-      items << TargetExpression.new(tokens, shape)
+      items << TargetExpressionSet.new(tokens, shape)
     end
   rescue BASICExpressionError
     line_text = tokens.map(&:to_s).join
@@ -1398,10 +1398,10 @@ module WriteFunctions
 
   def add_expression(items, tokens, shape)
     if tokens[0].operator? && tokens[0].pound?
-      items << ValueExpression.new(tokens, :scalar)
+      items << ValueExpressionSet.new(tokens, :scalar)
     else
       add_needed_carriage(items)
-      items << ValueExpression.new(tokens, shape)
+      items << ValueExpressionSet.new(tokens, shape)
     end
   rescue BASICExpressionError
     line_text = tokens.map(&:to_s).join
@@ -1431,7 +1431,7 @@ class ChainStatement < AbstractStatement
       check_template(tokens_lists, template)
 
     target_tokens = tokens_lists[0]
-    @target = ValueExpression.new(target_tokens, :scalar)
+    @target = ValueExpressionSet.new(target_tokens, :scalar)
     @elements = make_references(nil, @target)
     @comprehension_effort += @target.comprehension_effort
   end
@@ -1490,17 +1490,17 @@ class ChangeStatement < AbstractStatement
       source_tokens = tokens_lists[0]
       target_tokens = tokens_lists[2]
 
-      source = ValueExpression.new(source_tokens, :scalar)
+      source = ValueExpressionSet.new(source_tokens, :scalar)
 
       case source.content_type
       when :string
         # string to array
-        @source = ValueExpression.new(source_tokens, :scalar)
-        @target = TargetExpression.new(target_tokens, :array)
+        @source = ValueExpressionSet.new(source_tokens, :scalar)
+        @target = TargetExpressionSet.new(target_tokens, :array)
       when :numeric
         # array to string
-        @source = ValueExpression.new(source_tokens, :array)
-        @target = TargetExpression.new(target_tokens, :scalar)
+        @source = ValueExpressionSet.new(source_tokens, :array)
+        @target = TargetExpressionSet.new(target_tokens, :scalar)
       else
         raise BASICExpressionError, 'Type mismatch'
       end
@@ -1597,7 +1597,7 @@ class CloseStatement < AbstractStatement
     @filenum_expression = []
     if check_template(tokens_lists, template) ||
        check_template(tokens_lists, template_file)
-      @filenum_expression = ValueExpression.new(tokens_lists[-1], :scalar)
+      @filenum_expression = ValueExpressionSet.new(tokens_lists[-1], :scalar)
 
       @elements = make_references(nil, @filenum_expression)
       @comprehension_effort += @filenum_expression.comprehension_effort
@@ -1639,7 +1639,7 @@ class DataStatement < AbstractStatement
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      @expressions = ValueExpression.new(tokens_lists[0], :scalar)
+      @expressions = ValueExpressionSet.new(tokens_lists[0], :scalar)
       @elements = make_references(nil, @expressions)
       @comprehension_effort += @expressions.comprehension_effort
     else
@@ -1747,7 +1747,7 @@ class DimStatement < AbstractStatement
 
       tokens_lists.each do |tokens_list|
         begin
-          @expressions << DeclarationExpression.new(tokens_list)
+          @expressions << DeclarationExpressionSet.new(tokens_list)
         rescue BASICExpressionError
           @errors << 'Invalid variable ' + tokens_list.map(&:to_s).join
         end
@@ -1848,7 +1848,7 @@ class FilesStatement < AbstractStatement
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
-      @expressions = ValueExpression.new(tokens_lists[0], :scalar)
+      @expressions = ValueExpressionSet.new(tokens_lists[0], :scalar)
       @elements = make_references(nil, @expressions)
       @comprehension_effort += @expressions.comprehension_effort
     else
@@ -1938,8 +1938,8 @@ class ForStatement < AbstractStatement
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
         @control = Variable.new(variable_name, :scalar, [])
-        @start = ValueExpression.new(tokens2, :scalar)
-        @end = ValueExpression.new(tokens_lists[2], :scalar)
+        @start = ValueExpressionSet.new(tokens2, :scalar)
+        @end = ValueExpressionSet.new(tokens_lists[2], :scalar)
         @step = nil
       rescue BASICExpressionError => e
         @errors << e.message
@@ -1949,9 +1949,9 @@ class ForStatement < AbstractStatement
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
         @control = Variable.new(variable_name, :scalar, [])
-        @start = ValueExpression.new(tokens2, :scalar)
-        @end = ValueExpression.new(tokens_lists[2], :scalar)
-        @step = ValueExpression.new(tokens_lists[4], :scalar)
+        @start = ValueExpressionSet.new(tokens2, :scalar)
+        @end = ValueExpressionSet.new(tokens_lists[2], :scalar)
+        @step = ValueExpressionSet.new(tokens_lists[4], :scalar)
       rescue BASICExpressionError => e
         @errors << e.message
      end
@@ -1960,9 +1960,9 @@ class ForStatement < AbstractStatement
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
         @control = Variable.new(variable_name, :scalar, [])
-        @start = ValueExpression.new(tokens2, :scalar)
-        @step = ValueExpression.new(tokens_lists[2], :scalar)
-        @end = ValueExpression.new(tokens_lists[4], :scalar)
+        @start = ValueExpressionSet.new(tokens2, :scalar)
+        @step = ValueExpressionSet.new(tokens_lists[2], :scalar)
+        @end = ValueExpressionSet.new(tokens_lists[4], :scalar)
       rescue BASICExpressionError => e
         @errors << e.message
       end
@@ -1971,8 +1971,8 @@ class ForStatement < AbstractStatement
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
         @control = Variable.new(variable_name, :scalar, [])
-        @start = ValueExpression.new(tokens2, :scalar)
-        @until = ValueExpression.new(tokens_lists[2], :scalar)
+        @start = ValueExpressionSet.new(tokens2, :scalar)
+        @until = ValueExpressionSet.new(tokens_lists[2], :scalar)
       rescue BASICExpressionError => e
         @errors << e.message
       end
@@ -1981,9 +1981,9 @@ class ForStatement < AbstractStatement
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
         @control = Variable.new(variable_name, :scalar, [])
-        @start = ValueExpression.new(tokens2, :scalar)
-        @until = ValueExpression.new(tokens_lists[2], :scalar)
-        @step = ValueExpression.new(tokens_lists[4], :scalar)
+        @start = ValueExpressionSet.new(tokens2, :scalar)
+        @until = ValueExpressionSet.new(tokens_lists[2], :scalar)
+        @step = ValueExpressionSet.new(tokens_lists[4], :scalar)
       rescue BASICExpressionError => e
         @errors << e.message
       end
@@ -1992,9 +1992,9 @@ class ForStatement < AbstractStatement
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
         @control = Variable.new(variable_name, :scalar, [])
-        @start = ValueExpression.new(tokens2, :scalar)
-        @until = ValueExpression.new(tokens_lists[2], :scalar)
-        @step = ValueExpression.new(tokens_lists[4], :scalar)
+        @start = ValueExpressionSet.new(tokens2, :scalar)
+        @until = ValueExpressionSet.new(tokens_lists[2], :scalar)
+        @step = ValueExpressionSet.new(tokens_lists[4], :scalar)
       rescue BASICExpressionError => e
         @errors << e.message
       end
@@ -2488,7 +2488,7 @@ class GotoStatement < AbstractStatement
       expression = tokens_lists[0]
 
       begin
-        @expression = ValueExpression.new(expression, :scalar)
+        @expression = ValueExpressionSet.new(expression, :scalar)
         @elements = make_references(nil, @expression)
         @comprehension_effort += @expression.comprehension_effort
       rescue BASICExpressionError => e
@@ -3123,7 +3123,7 @@ class IfStatement < AbstractIfStatement
     expression = nil
 
     begin
-      expression = ValueExpression.new(tokens, :scalar)
+      expression = ValueExpressionSet.new(tokens, :scalar)
     rescue BASICExpressionError => e
       @errors << e.message
     end
@@ -3653,7 +3653,7 @@ class OnStatement < AbstractStatement
       expression = tokens_lists[0]
 
       begin
-        @expression = ValueExpression.new(expression, :scalar)
+        @expression = ValueExpressionSet.new(expression, :scalar)
         @elements = make_references(nil, @expression)
       rescue BASICExpressionError => e
         @errors << e.message
@@ -3816,8 +3816,8 @@ class OpenStatement < AbstractStatement
     if check_template(tokens_lists, template_input_as) ||
        check_template(tokens_lists, template_input_as_file)
 
-      @filename_expression = ValueExpression.new(tokens_lists[0], :scalar)
-      @filenum_expression = ValueExpression.new(tokens_lists[-1], :scalar)
+      @filename_expression = ValueExpressionSet.new(tokens_lists[0], :scalar)
+      @filenum_expression = ValueExpressionSet.new(tokens_lists[-1], :scalar)
 
       @elements =
         make_references(nil, @filename_expression, @filenum_expression)
@@ -3828,8 +3828,8 @@ class OpenStatement < AbstractStatement
     elsif check_template(tokens_lists, template_output_as) ||
           check_template(tokens_lists, template_output_as_file)
 
-      @filename_expression = ValueExpression.new(tokens_lists[0], :scalar)
-      @filenum_expression = ValueExpression.new(tokens_lists[-1], :scalar)
+      @filename_expression = ValueExpressionSet.new(tokens_lists[0], :scalar)
+      @filenum_expression = ValueExpressionSet.new(tokens_lists[-1], :scalar)
 
       @elements =
         make_references(nil, @filename_expression, @filenum_expression)
@@ -3840,8 +3840,8 @@ class OpenStatement < AbstractStatement
     elsif check_template(tokens_lists, template_update)
       split_lists = split_tokens(tokens_lists[0], false)
 
-      @filenum_expression = ValueExpression.new(split_lists[0], :scalar)
-      @filename_expression = ValueExpression.new(split_lists[1], :scalar)
+      @filenum_expression = ValueExpressionSet.new(split_lists[0], :scalar)
+      @filename_expression = ValueExpressionSet.new(split_lists[1], :scalar)
 
       @elements =
         make_references(nil, @filename_expression, @filenum_expression)
@@ -3900,7 +3900,7 @@ class OptionStatement < AbstractStatement
 
       if $options[@key].types.include?(:runtime)
         expression_tokens = split_tokens(tokens_lists[1], true)
-        @expression = ValueExpression.new(expression_tokens[0], :scalar)
+        @expression = ValueExpressionSet.new(expression_tokens[0], :scalar)
         @elements = make_references(nil, @expression)
         @comprehension_effort += @expression.comprehension_effort
       else
@@ -4227,7 +4227,7 @@ class PutStatement < AbstractStatement
   end
 
   def add_expression(items, tokens, shape)
-    items << ValueExpression.new(tokens, shape)
+    items << ValueExpressionSet.new(tokens, shape)
   rescue BASICExpressionError
     line_text = tokens.map(&:to_s).join
     @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
@@ -4372,14 +4372,14 @@ class RecordStatement < AbstractStatement
   end
 
   def add_value_expression(items, tokens, shape)
-    items << ValueExpression.new(tokens, shape)
+    items << ValueExpressionSet.new(tokens, shape)
   rescue BASICExpressionError
     line_text = tokens.map(&:to_s).join
     @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
   end
 
   def add_target_expression(items, tokens, shape)
-    items << TargetExpression.new(tokens, shape)
+    items << TargetExpressionSet.new(tokens, shape)
   rescue BASICExpressionError
     line_text = tokens.map(&:to_s).join
     @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
@@ -4556,11 +4556,11 @@ class SleepStatement < AbstractStatement
 
     if check_template(tokens_lists, template_0)
       token_list = [NumericConstantToken.new('5')]
-      @expression = ValueExpression.new(token_list, :scalar)
+      @expression = ValueExpressionSet.new(token_list, :scalar)
       @comprehension_effort += @expression.comprehension_effort
     elsif check_template(tokens_lists, template_1)
       token_lists = split_tokens(tokens_lists[0], false)
-      @expression = ValueExpression.new(token_lists[0], :scalar)
+      @expression = ValueExpressionSet.new(token_lists[0], :scalar)
       @elements = make_references(nil, @expression)
       @comprehension_effort += @expression.comprehension_effort
     else
@@ -4641,7 +4641,7 @@ class UnsaveStatement < AbstractStatement
     @filenum_expression = []
     if check_template(tokens_lists, template) ||
        check_template(tokens_lists, template_file)
-      @filenum_expression = ValueExpression.new(tokens_lists[-1], :scalar)
+      @filenum_expression = ValueExpressionSet.new(tokens_lists[-1], :scalar)
 
       @elements = make_references(nil, @filenum_expression)
       @comprehension_effort += @filenum_expression.comprehension_effort
