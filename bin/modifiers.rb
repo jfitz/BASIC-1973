@@ -385,9 +385,9 @@ class ForModifier < AbstractModifier
       step_tokens.nil?
     @end = ValueExpressionSet.new(end_tokens, :scalar) unless
       end_tokens.nil?
-    @until = ValueExpression.new(until_tokens, :scalar) unless
+    @until = ValueExpressionSet.new(until_tokens, :scalar) unless
       until_tokens.nil?
-    @while = ValueExpression.new(while_tokens, :scalar) unless
+    @while = ValueExpressionSet.new(while_tokens, :scalar) unless
       while_tokens.nil?
 
     control = XrefEntry.new(@control.to_s, nil, true)

@@ -161,6 +161,7 @@ class UserFunction < AbstractScalarFunction
 
   def initialize(text)
     super
+
     @user_function = true
     @shape = :scalar
   end

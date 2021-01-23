@@ -249,6 +249,7 @@ class AbstractStatement
   attr_reader :separators
   attr_accessor :part_of_user_function
   attr_reader :valid
+  attr_reader :pre_executable
   attr_reader :executable
   attr_reader :comment
   attr_reader :linenums
@@ -264,6 +265,7 @@ class AbstractStatement
 
   def initialize(_, keywords, tokens_lists)
     @keywords = keywords
+    @pre_executable = false
     @executable = true
     @tokens = tokens_lists.flatten
     @core_tokens = tokens_lists.flatten
@@ -1027,7 +1029,9 @@ class InvalidStatement < AbstractStatement
     super(line_number, [], all_tokens)
 
     @valid = false
+    @pre_executable = true
     @executable = false
+    @autonext = false
     @text = text
     @errors << 'Invalid statement: ' + error.message
   end
@@ -1633,6 +1637,7 @@ class DataStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @pre_executable = true
     @executable = false
     @may_be_if_sub = false
 
@@ -1677,6 +1682,7 @@ class DefineFunctionStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @pre_executable = true
     @may_be_if_sub = false
 
     template = [[1, '>=']]
@@ -1741,22 +1747,22 @@ class DimStatement < AbstractStatement
 
     template = [[1, '>=']]
 
-    @expressions = []
+    @declaration_sets = []
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], false)
 
       tokens_lists.each do |tokens_list|
         begin
-          @expressions << DeclarationExpressionSet.new(tokens_list)
+          @declaration_sets << DeclarationExpressionSet.new(tokens_list)
         rescue BASICExpressionError
           @errors << 'Invalid variable ' + tokens_list.map(&:to_s).join
         end
       end
       
-      @elements = make_references(@expressions)
+      @elements = make_references(@declaration_sets)
 
-      @expressions.each do |expression|
-        @comprehension_effort += expression.comprehension_effort
+      @declaration_sets.each do |declaration_set|
+        @comprehension_effort += declaration_set.comprehension_effort
       end
     else
       @errors << 'Syntax error'
@@ -1766,7 +1772,7 @@ class DimStatement < AbstractStatement
   def dump
     lines = []
 
-    @expressions.each { |expression| lines += expression.dump }
+    @declaration_sets.each { |declaration_set| lines += declaration_set.dump }
 
     @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
 
@@ -1774,8 +1780,8 @@ class DimStatement < AbstractStatement
   end
 
   def execute_core(interpreter)
-    @expressions.each do |expression|
-      variables = expression.evaluate(interpreter)
+    @declaration_sets.each do |declaration_set|
+      variables = declaration_set.evaluate(interpreter)
       variable = variables[0]
       subscripts = variable.subscripts
 
@@ -1843,6 +1849,7 @@ class FilesStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @pre_executable = true
     @may_be_if_sub = false
 
     template = [[1, '>=']]
@@ -2003,8 +2010,8 @@ class ForStatement < AbstractStatement
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
         @control = Variable.new(variable_name, :scalar, [])
-        @start = ValueExpression.new(tokens2, :scalar)
-        @while = ValueExpression.new(tokens_lists[2], :scalar)
+        @start = ValueExpressionSet.new(tokens2, :scalar)
+        @while = ValueExpressionSet.new(tokens_lists[2], :scalar)
       rescue BASICExpressionError => e
         @errors << e.message
       end
@@ -2013,9 +2020,9 @@ class ForStatement < AbstractStatement
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
         @control = Variable.new(variable_name, :scalar, [])
-        @start = ValueExpression.new(tokens2, :scalar)
-        @while = ValueExpression.new(tokens_lists[2], :scalar)
-        @step = ValueExpression.new(tokens_lists[4], :scalar)
+        @start = ValueExpressionSet.new(tokens2, :scalar)
+        @while = ValueExpressionSet.new(tokens_lists[2], :scalar)
+        @step = ValueExpressionSet.new(tokens_lists[4], :scalar)
       rescue BASICExpressionError => e
         @errors << e.message
       end
@@ -2024,9 +2031,9 @@ class ForStatement < AbstractStatement
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
         @control = Variable.new(variable_name, :scalar, [])
-        @start = ValueExpression.new(tokens2, :scalar)
-        @step = ValueExpression.new(tokens_lists[2], :scalar)
-        @while = ValueExpression.new(tokens_lists[4], :scalar)
+        @start = ValueExpressionSet.new(tokens2, :scalar)
+        @step = ValueExpressionSet.new(tokens_lists[2], :scalar)
+        @while = ValueExpressionSet.new(tokens_lists[4], :scalar)
       rescue BASICExpressionError => e
         @errors << e.message
       end
@@ -2369,7 +2376,7 @@ class GetStatement < AbstractStatement
   end
 
   def add_expression(items, tokens, shape)
-    items << ValueExpression.new(tokens, shape)
+    items << ValueExpressionSet.new(tokens, shape)
   rescue BASICExpressionError
     line_text = tokens.map(&:to_s).join
     @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
