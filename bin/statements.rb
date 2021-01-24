@@ -249,7 +249,6 @@ class AbstractStatement
   attr_reader :separators
   attr_accessor :part_of_user_function
   attr_reader :valid
-  attr_reader :pre_executable
   attr_reader :executable
   attr_reader :comment
   attr_reader :linenums
@@ -265,7 +264,6 @@ class AbstractStatement
 
   def initialize(_, keywords, tokens_lists)
     @keywords = keywords
-    @pre_executable = false
     @executable = true
     @tokens = tokens_lists.flatten
     @core_tokens = tokens_lists.flatten
@@ -1029,7 +1027,6 @@ class InvalidStatement < AbstractStatement
     super(line_number, [], all_tokens)
 
     @valid = false
-    @pre_executable = true
     @executable = false
     @autonext = false
     @text = text
@@ -1637,7 +1634,6 @@ class DataStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
-    @pre_executable = true
     @executable = false
     @may_be_if_sub = false
 
@@ -1682,7 +1678,6 @@ class DefineFunctionStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
-    @pre_executable = true
     @may_be_if_sub = false
 
     template = [[1, '>=']]
@@ -1849,7 +1844,6 @@ class FilesStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
-    @pre_executable = true
     @may_be_if_sub = false
 
     template = [[1, '>=']]

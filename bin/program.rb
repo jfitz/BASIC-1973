@@ -805,16 +805,17 @@ class Program
     first_line_number_idx = LineNumberIdx.new(first_line_number, 0)
     reachable[first_line_number_idx] = true
 
-    # all pre-execute lines are live
+    # first line of multiline function is live
     @lines.keys.each do |line_number|
       statements = @lines[line_number].statements
-      index = 0
+      statement_index = 0
+
       statements.each do |statement|
-        line_number_idx = LineNumberIdx.new(line_number, index)
+        line_number_idx = LineNumberIdx.new(line_number, statement_index)
 
-        reachable[line_number_idx] = true if statement.pre_executable
+        reachable[line_number_idx] = true if statement.multidef?
 
-        index += 1
+        statement_index += 1
       end
     end
     
