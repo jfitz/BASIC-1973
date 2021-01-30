@@ -1678,6 +1678,7 @@ class DefineFunctionStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @executable = false
     @may_be_if_sub = false
 
     template = [[1, '>=']]
@@ -1844,6 +1845,7 @@ class FilesStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @executable = false
     @may_be_if_sub = false
 
     template = [[1, '>=']]
@@ -2686,6 +2688,10 @@ class AbstractIfStatement < AbstractStatement
       @elements[:operators] = make_operator_references
       @elements[:functions] = make_function_references
       @elements[:userfuncs] = make_userfunc_references
+
+      @comprehension_effort += @expression.comprehension_effort unless
+        @expression.nil?
+
       @linenums = make_linenum_references
     else
       begin
@@ -2729,6 +2735,10 @@ class AbstractIfStatement < AbstractStatement
         @elements[:operators] = make_operator_references
         @elements[:functions] = make_function_references
         @elements[:userfuncs] = make_userfunc_references
+
+        @comprehension_effort += @expression.comprehension_effort unless
+          @expression.nil?
+
         @linenums = make_linenum_references
       rescue BASICExpressionError => e
         @errors << 'Syntax Error: ' + e.message
@@ -3158,8 +3168,8 @@ class InputStatement < AbstractStatement
       @file_tokens = extract_file_handle(@items)
       @prompt = extract_prompt(@items)
       @elements = make_references(@items, @file_tokens, @prompt)
-      @items.each { |item| @comprehension_effort += item.comprehension_effort }
       @mccabe += @items.size
+      @items.each { |item| @comprehension_effort += item.comprehension_effort }
     else
       @errors << 'Syntax error'
     end
@@ -3235,8 +3245,8 @@ class InputCharStatement < AbstractStatement
       @file_tokens = extract_file_handle(@items)
       @prompt = extract_prompt(@items)
       @elements = make_references(@items, @file_tokens, @prompt)
-      @items.each { |item| @comprehension_effort += item.comprehension_effort }
       @mccabe += 1
+      @items.each { |item| @comprehension_effort += item.comprehension_effort }
     else
       @errors << 'Syntax error'
     end
@@ -3397,8 +3407,8 @@ class LineInputStatement < AbstractStatement
       @file_tokens = extract_file_handle(@items)
       @prompt = extract_prompt(@items)
       @elements = make_references(@items, @file_tokens, @prompt)
-      @items.each { |item| @comprehension_effort += item.comprehension_effort }
       @mccabe += @items.size
+      @items.each { |item| @comprehension_effort += item.comprehension_effort }
     else
       @errors << 'Syntax error'
     end
@@ -3891,8 +3901,6 @@ class OptionStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
-    # omit HEADING and TIMING as they are not used in the interpreter
-    # omit PRETTY_MULTILINE too
     template = [OptionStatement.extra_keywords, [1, '>=']]
 
     if check_template(tokens_lists, template)
