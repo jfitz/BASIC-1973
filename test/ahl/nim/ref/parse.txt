@@ -14,10 +14,10 @@
 125 IF Q$="YES" THEN 135\IF Q$="NO" THEN 190
  Variable:Q$
  TextConstant:"YES"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:Q$
  TextConstant:"NO"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 130 PRINT "TYPE YES OR NO."\INPUT Q$\GOTO 125
  TextConstant:"TYPE YES OR NO."
  CarriageControl:NL
@@ -84,15 +84,15 @@
  Variable:P
  Variable:P
  NumericConstant:20
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 210 IF P>INT(P) THEN 215\IF P<=0 THEN 215\GO TO 220
  Variable:P
  Variable:P
  FunctionInt
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:P
  NumericConstant:0
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
  LineNumber:220
 215 PRINT "ILLEGAL PILE NUMBER. "\PRINT\GO TO 205
  TextConstant:"ILLEGAL PILE NUMBER. "
@@ -114,18 +114,18 @@
  Variable:I
  Variable:L
  NumericConstant:20
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 230 IF L(I)>INT(L(I)) THEN 235\IF L(I)<=0 THEN 235\GO TO 240
  Variable:I
  Variable:L
  Variable:I
  Variable:L
  FunctionInt
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:I
  Variable:L
  NumericConstant:0
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
  LineNumber:240
 235 PRINT "ILLEGAL STICK NUMBER"\PRINT\GO TO 225
  TextConstant:"ILLEGAL STICK NUMBER"
@@ -147,7 +147,7 @@
  Variable:G
  Variable:I
  Variable:L
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
  Variable:I
 250 PRINT\PRINT "DO YOU WANT TO GO FIRST";
@@ -158,10 +158,10 @@
  Variable:Q$
  Variable:Q$
  TextConstant:"YES"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:Q$
  TextConstant:"NO"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 260 PRINT "TYPE YES OR NO."\GO TO 255
  TextConstant:"TYPE YES OR NO."
  CarriageControl:NL
@@ -171,15 +171,15 @@
 270 IF G=0 THEN 275\IF F=1 THEN 390\GO TO 320
  Variable:G
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:F
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  LineNumber:320
 275 IF F=1 THEN 315
  Variable:F
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 280 PRINT\PRINT "I WON. DO YOU WANT TO PLAY AGAIN";
  CarriageControl:NL
  TextConstant:"I WON. DO YOU WANT TO PLAY AGAIN"
@@ -188,10 +188,10 @@
  Variable:Q$
  Variable:Q$
  TextConstant:"NO"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:Q$
  TextConstant:"YES"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  LineNumber:295
 290 STOP
  
@@ -207,10 +207,10 @@
  Variable:Q$
  Variable:Q$
  TextConstant:"NO"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:Q$
  TextConstant:"YES"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 310 PRINT "TYPE YES OR NO."\GO TO 305
  TextConstant:"TYPE YES OR NO."
  CarriageControl:NL
@@ -233,7 +233,7 @@
  Variable:I
  Variable:S
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:I
  CarriageControl:,
  Variable:I
@@ -251,19 +251,19 @@
 345 IF N>P THEN 355\IF N>INT(N) THEN 355\IF N<=0 THEN 355
  Variable:N
  Variable:P
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:N
  Variable:N
  FunctionInt
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:N
  NumericConstant:0
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 350 IF S(N)=0 THEN 355\GO TO 360
  Variable:N
  Variable:S
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  LineNumber:360
 355 PRINT "ILLEGAL PILE NUMBER."\PRINT\GO TO 340
  TextConstant:"ILLEGAL PILE NUMBER."
@@ -279,14 +279,14 @@
  Variable:T
  Variable:N
  Variable:S
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:T
  Variable:T
  FunctionInt
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:T
  NumericConstant:0
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
  LineNumber:375
 370 PRINT "ILLEGAL STICK NUMBER."\PRINT\GO TO 360
  TextConstant:"ILLEGAL STICK NUMBER."
@@ -299,12 +299,12 @@
  Variable:N
  Variable:S
  Variable:T
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  Variable:G
  Variable:G
  Variable:T
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 380 F=1\GO TO 270
  Variable:F
@@ -336,22 +336,22 @@
  control: Variable:E
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric"]
 410       IF S(I)<2^E THEN 415\S2(I)=S2(I)+10^E\S(I)=S(I)-2^E
  Variable:I
  Variable:S
  NumericConstant:2
  Variable:E
- BinaryOperatorPower:^
- BinaryOperatorLess:<
+ BinaryOperatorPower:^ numeric
+ BinaryOperatorLess:< boolean
  Variable:I
  Variable:S2
  Variable:I
  Variable:S2
  NumericConstant:10
  Variable:E
- BinaryOperatorPower:^
- BinaryOperatorPlus:+
+ BinaryOperatorPower:^ numeric
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
  Variable:I
  Variable:S
@@ -359,8 +359,8 @@
  Variable:S
  NumericConstant:2
  Variable:E
- BinaryOperatorPower:^
- BinaryOperatorMinus:-
+ BinaryOperatorPower:^ numeric
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 415    NEXT E
  Variable:E
@@ -368,7 +368,7 @@
  control: Variable:Y
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric"]
 425       X(I,Y)=INT(S2(I)/10^Y)\S2(I)=S2(I)-X(I,Y)*10^Y
  Variable:I
  Variable:Y
@@ -377,8 +377,8 @@
  Variable:S2
  NumericConstant:10
  Variable:Y
- BinaryOperatorPower:^
- BinaryOperatorDivide:/
+ BinaryOperatorPower:^ numeric
+ BinaryOperatorDivide:/ numeric
  FunctionInt
  AssignmentOperator:=
  Variable:I
@@ -390,9 +390,9 @@
  Variable:X
  NumericConstant:10
  Variable:Y
- BinaryOperatorPower:^
- BinaryOperatorMultiply:*
- BinaryOperatorMinus:-
+ BinaryOperatorPower:^ numeric
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 430       V(Y)=V(Y)+X(I,Y)
  Variable:Y
@@ -402,7 +402,7 @@
  Variable:I
  Variable:Y
  Variable:X
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 435    NEXT Y
  Variable:Y
@@ -416,39 +416,39 @@
  control: Variable:Y
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric"]
 455    IF V(Y)/2-INT(V(Y)/2)=0 THEN 480
  Variable:Y
  Variable:V
  NumericConstant:2
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  Variable:Y
  Variable:V
  NumericConstant:2
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  FunctionInt
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 460    IF R=1 THEN 470\Q=INT(P*RND(X))+1
  Variable:R
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:Q
  Variable:P
  Variable:X
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  FunctionInt
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 465    IF X(Q,Y)<>1 THEN 460\X(Q,Y)=0\R=1\GO TO 480
  Variable:Q
  Variable:Y
  Variable:X
  NumericConstant:1
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
  Variable:Q
  Variable:Y
  Variable:X
@@ -463,7 +463,7 @@
  Variable:Y
  Variable:X
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:Q
  Variable:Y
  Variable:X
@@ -491,7 +491,7 @@
  control: Variable:Y
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric"]
 500       S3(I)=X(I,Y)*10^Y\S2(I)=S2(I)+S3(I)
  Variable:I
  Variable:S3
@@ -500,8 +500,8 @@
  Variable:X
  NumericConstant:10
  Variable:Y
- BinaryOperatorPower:^
- BinaryOperatorMultiply:*
+ BinaryOperatorPower:^ numeric
+ BinaryOperatorMultiply:* numeric
  AssignmentOperator:=
  Variable:I
  Variable:S2
@@ -509,7 +509,7 @@
  Variable:S2
  Variable:I
  Variable:S3
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 505    NEXT Y
  Variable:Y
@@ -517,22 +517,22 @@
  control: Variable:E
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric"]
 515       IF S2(I)<10^E THEN 520\S(I)=S(I)+2^E\S2(I)=S2(I)-10^E
  Variable:I
  Variable:S2
  NumericConstant:10
  Variable:E
- BinaryOperatorPower:^
- BinaryOperatorLess:<
+ BinaryOperatorPower:^ numeric
+ BinaryOperatorLess:< boolean
  Variable:I
  Variable:S
  Variable:I
  Variable:S
  NumericConstant:2
  Variable:E
- BinaryOperatorPower:^
- BinaryOperatorPlus:+
+ BinaryOperatorPower:^ numeric
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
  Variable:I
  Variable:S2
@@ -540,8 +540,8 @@
  Variable:S2
  NumericConstant:10
  Variable:E
- BinaryOperatorPower:^
- BinaryOperatorMinus:-
+ BinaryOperatorPower:^ numeric
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 520    NEXT E
  Variable:E
@@ -550,26 +550,26 @@
 530 IF R=1 THEN 535\Q=INT(P*RND(X))+1\IF S(Q)=0 THEN 530\S(Q)=S(Q)-1
  Variable:R
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:Q
  Variable:P
  Variable:X
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  FunctionInt
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
  Variable:Q
  Variable:S
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:Q
  Variable:S
  Variable:Q
  Variable:S
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 535 D=C(Q)-S(Q)\G=G-D
  Variable:D
@@ -577,17 +577,17 @@
  Variable:C
  Variable:Q
  Variable:S
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  Variable:G
  Variable:G
  Variable:D
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 540 IF D=1 THEN 550
  Variable:D
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 545 PRINT\PRINT "I'LL TAKE";D;"STICKS FROM PILE";Q;"."\GO TO 555
  CarriageControl:NL
  TextConstant:"I'LL TAKE"

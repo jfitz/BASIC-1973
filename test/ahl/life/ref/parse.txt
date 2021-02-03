@@ -39,7 +39,7 @@
  AssignmentOperator:=
 50 INPUT LINE #1,B$(C%):B$(C%)=LEFT(B$(C%),LEN(B$(C%))-2%)
  NumericConstant:1
- UnaryOperatorHash:#
+ UnaryOperatorHash:# filehandle
  Variable:C%
  Variable:B$
  Variable:C%
@@ -50,14 +50,14 @@
  Variable:B$
  FunctionLen
  IntegerConstant:2
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  FunctionLeft
  AssignmentOperator:=
 60 C%=C%+1
  Variable:C%
  Variable:C%
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 70 GO TO 50
  LineNumber:50
@@ -68,13 +68,13 @@
 90 FOR X%=1 TO C%-1
  control: Variable:X%
  start:   ["NumericConstant:1"]
- end:     ["Variable:C%", "NumericConstant:1", "BinaryOperatorMinus:-"]
+ end:     ["Variable:C%", "NumericConstant:1", "BinaryOperatorMinus:- numeric"]
 100 IF LEN(B$(X%))>=L% THEN L%=LEN(B$(X%))
  Variable:X%
  Variable:B$
  FunctionLen
  Variable:L%
- BinaryOperatorGreaterEqual:>=
+ BinaryOperatorGreaterEqual:>= boolean
  Variable:L%
  Variable:X%
  Variable:B$
@@ -87,16 +87,16 @@
  IntegerConstant:11
  Variable:C%
  IntegerConstant:2
- BinaryOperatorDivide:/
- BinaryOperatorMinus:-
+ BinaryOperatorDivide:/ integer
+ BinaryOperatorMinus:- integer
  AssignmentOperator:=
 130 Y1%=33%-L%/2%
  Variable:Y1%
  IntegerConstant:33
  Variable:L%
  IntegerConstant:2
- BinaryOperatorDivide:/
- BinaryOperatorMinus:-
+ BinaryOperatorDivide:/ integer
+ BinaryOperatorMinus:- integer
  AssignmentOperator:=
 140 FOR X%=1 TO C%
  control: Variable:X%
@@ -113,20 +113,20 @@
  NumericConstant:1
  FunctionMid
  TextConstant:" "
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
  Variable:X1%
  Variable:X%
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ integer
  Variable:Y1%
  Variable:Y%
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ integer
  Variable:A%
  NumericConstant:1
  AssignmentOperator:=
  Variable:P%
  Variable:P%
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 170 NEXT Y%
  Variable:Y%
@@ -173,7 +173,7 @@
  Variable:G%
  Variable:G%
  IntegerConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ integer
  AssignmentOperator:=
 225 PRINT CHR$(13%);CHR$(10%);CHR$(30%); FOR X%=1 TO X1%
  IntegerConstant:13
@@ -203,7 +203,7 @@
  Variable:Y%
  Variable:A%
  IntegerConstant:2
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:X%
  Variable:Y%
  Variable:A%
@@ -215,7 +215,7 @@
  Variable:Y%
  Variable:A%
  IntegerConstant:3
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:X%
  Variable:Y%
  Variable:A%
@@ -227,7 +227,7 @@
  Variable:Y%
  Variable:A%
  NumericConstant:1
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 261 PRINT TAB(Y%);"*";
  Variable:Y%
  FunctionTab
@@ -237,28 +237,28 @@
 262 IF X%<X3% THEN X3%=X%
  Variable:X%
  Variable:X3%
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  Variable:X3%
  Variable:X%
  AssignmentOperator:=
 264 IF X%>X4% THEN X4%=X%
  Variable:X%
  Variable:X4%
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:X4%
  Variable:X%
  AssignmentOperator:=
 266 IF Y%<Y3% THEN Y3%=Y%
  Variable:Y%
  Variable:Y3%
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  Variable:Y3%
  Variable:Y%
  AssignmentOperator:=
 268 IF Y%>Y4% THEN Y4%=Y%
  Variable:Y%
  Variable:Y4%
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:Y4%
  Variable:Y%
  AssignmentOperator:=
@@ -275,7 +275,7 @@
  FunctionChr
  CarriageControl:NL
  control: Variable:X%
- start:   ["Variable:X2%", "NumericConstant:1", "BinaryOperatorPlus:+"]
+ start:   ["Variable:X2%", "NumericConstant:1", "BinaryOperatorPlus:+ numeric"]
  end:     ["IntegerConstant:24"]
 298 PRINT CHR$(29%);
  IntegerConstant:29
@@ -297,46 +297,46 @@
 301 IF X1%<3% THEN X1%=3%:I9%=-1%
  Variable:X1%
  IntegerConstant:3
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  Variable:X1%
  IntegerConstant:3
  AssignmentOperator:=
  Variable:I9%
  IntegerConstant:1
- UnaryOperatorMinus:-
+ UnaryOperatorMinus:- integer
  AssignmentOperator:=
 303 IF X2%>22% THEN X2%=22%:I9%=-1%
  Variable:X2%
  IntegerConstant:22
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:X2%
  IntegerConstant:22
  AssignmentOperator:=
  Variable:I9%
  IntegerConstant:1
- UnaryOperatorMinus:-
+ UnaryOperatorMinus:- integer
  AssignmentOperator:=
 305 IF Y1%<3% THEN Y1%=3%:I9%=-1%
  Variable:Y1%
  IntegerConstant:3
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  Variable:Y1%
  IntegerConstant:3
  AssignmentOperator:=
  Variable:I9%
  IntegerConstant:1
- UnaryOperatorMinus:-
+ UnaryOperatorMinus:- integer
  AssignmentOperator:=
 307 IF Y2%>68% THEN Y2%=68%:I9%=-1%
  Variable:Y2%
  IntegerConstant:68
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:Y2%
  IntegerConstant:68
  AssignmentOperator:=
  Variable:I9%
  IntegerConstant:1
- UnaryOperatorMinus:-
+ UnaryOperatorMinus:- integer
  AssignmentOperator:=
 309 P%=0%
  Variable:P%
@@ -344,40 +344,40 @@
  AssignmentOperator:=
 500 FOR X%=X1%-1 TO X2%+1
  control: Variable:X%
- start:   ["Variable:X1%", "NumericConstant:1", "BinaryOperatorMinus:-"]
- end:     ["Variable:X2%", "NumericConstant:1", "BinaryOperatorPlus:+"]
+ start:   ["Variable:X1%", "NumericConstant:1", "BinaryOperatorMinus:- numeric"]
+ end:     ["Variable:X2%", "NumericConstant:1", "BinaryOperatorPlus:+ numeric"]
 510 FOR Y%=Y1%-1 TO Y2%+1
  control: Variable:Y%
- start:   ["Variable:Y1%", "NumericConstant:1", "BinaryOperatorMinus:-"]
- end:     ["Variable:Y2%", "NumericConstant:1", "BinaryOperatorPlus:+"]
+ start:   ["Variable:Y1%", "NumericConstant:1", "BinaryOperatorMinus:- numeric"]
+ end:     ["Variable:Y2%", "NumericConstant:1", "BinaryOperatorPlus:+ numeric"]
 520 C%=0%
  Variable:C%
  IntegerConstant:0
  AssignmentOperator:=
 530 FOR I%=X%-1% TO X%+1%
  control: Variable:I%
- start:   ["Variable:X%", "IntegerConstant:1", "BinaryOperatorMinus:-"]
- end:     ["Variable:X%", "IntegerConstant:1", "BinaryOperatorPlus:+"]
+ start:   ["Variable:X%", "IntegerConstant:1", "BinaryOperatorMinus:- integer"]
+ end:     ["Variable:X%", "IntegerConstant:1", "BinaryOperatorPlus:+ integer"]
 540 FOR J%=Y%-1% TO Y%+1%
  control: Variable:J%
- start:   ["Variable:Y%", "IntegerConstant:1", "BinaryOperatorMinus:-"]
- end:     ["Variable:Y%", "IntegerConstant:1", "BinaryOperatorPlus:+"]
+ start:   ["Variable:Y%", "IntegerConstant:1", "BinaryOperatorMinus:- integer"]
+ end:     ["Variable:Y%", "IntegerConstant:1", "BinaryOperatorPlus:+ integer"]
 550 IF A%(I%,J%)=1% OR A%(I%,J%)=2% THEN C%=C%+1%
  Variable:I%
  Variable:J%
  Variable:A%
  IntegerConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:I%
  Variable:J%
  Variable:A%
  IntegerConstant:2
- BinaryOperatorEqual:=
- BinaryOperatorOr:OR
+ BinaryOperatorEqual:= boolean
+ BinaryOperatorOr:OR boolean
  Variable:C%
  Variable:C%
  IntegerConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ integer
  AssignmentOperator:=
 560 NEXT J%
  Variable:J%
@@ -388,15 +388,15 @@
  Variable:Y%
  Variable:A%
  IntegerConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 590 IF C%<3% OR C%>4% THEN A%(X%,Y%)=2% ELSE P%=P%+1
  Variable:C%
  IntegerConstant:3
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  Variable:C%
  IntegerConstant:4
- BinaryOperatorGreater:>
- BinaryOperatorOr:OR
+ BinaryOperatorGreater:> boolean
+ BinaryOperatorOr:OR boolean
  Variable:X%
  Variable:Y%
  Variable:A%
@@ -405,14 +405,14 @@
  Variable:P%
  Variable:P%
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 600 GO TO 620
  LineNumber:620
 610 IF C%=3% THEN A%(X%, Y%)=3%:P%=P%+1
  Variable:C%
  IntegerConstant:3
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:X%
  Variable:Y%
  Variable:A%
@@ -421,7 +421,7 @@
  Variable:P%
  Variable:P%
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 620 NEXT Y%
  Variable:Y%
@@ -431,22 +431,22 @@
  Variable:X1%
  Variable:X1%
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  Variable:Y1%
  Variable:Y1%
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  Variable:X2%
  Variable:X2%
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
  Variable:Y2%
  Variable:Y2%
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 640 GO TO 210
  LineNumber:210

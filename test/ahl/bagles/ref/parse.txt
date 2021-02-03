@@ -28,7 +28,7 @@
 90 IF A$="NO" THEN 150
  Variable:A$
  TextConstant:"NO"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 100 PRINT:PRINT "I AM THINKING OF A THREE-DIGIT NUMBER. TRY TO GUESS"
  CarriageControl:NL
  TextConstant:"I AM THINKING OF A THREE-DIGIT NUMBER. TRY TO GUESS"
@@ -54,19 +54,19 @@
  Variable:A
  NumericConstant:10
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  FunctionInt
  AssignmentOperator:=
 170 FOR J=1 TO I-1
  control: Variable:J
  start:   ["NumericConstant:1"]
- end:     ["Variable:I", "NumericConstant:1", "BinaryOperatorMinus:-"]
+ end:     ["Variable:I", "NumericConstant:1", "BinaryOperatorMinus:- numeric"]
 180 IF A(I)=A(J) THEN 160
  Variable:I
  Variable:A
  Variable:J
  Variable:A
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 190 NEXT J
  Variable:J
 200 NEXT I
@@ -93,7 +93,7 @@
  NumericConstant:0
  Variable:A1
  NumericConstant:3
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 260 FOR J=1 TO 3
  control: Variable:J
  start:   ["NumericConstant:1"]
@@ -102,19 +102,19 @@
  Variable:J
  Variable:A1
  NumericConstant:48
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 280 IF A1(J)>57 THEN 300
  Variable:J
  Variable:A1
  NumericConstant:57
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 285 B(J)=A1(J)-48
  Variable:J
  Variable:B
  Variable:J
  Variable:A1
  NumericConstant:48
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 290 NEXT J 
  Variable:J
@@ -130,19 +130,19 @@
  Variable:B
  NumericConstant:2
  Variable:B
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 330 IF B(2)=B(3) THEN 650
  NumericConstant:2
  Variable:B
  NumericConstant:3
  Variable:B
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 340 IF B(2)=B(1) THEN 650
  NumericConstant:2
  Variable:B
  NumericConstant:1
  Variable:B
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 350 C=0:D=0
  Variable:C
  NumericConstant:0
@@ -159,28 +159,28 @@
  Variable:A
  Variable:J
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:B
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 380 C=C+1
  Variable:C
  Variable:C
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 390 IF A(J+1)<>B(J) THEN 410
  Variable:J
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:A
  Variable:J
  Variable:B
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 400 C=C+1
  Variable:C
  Variable:C
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 410 NEXT J
  Variable:J
@@ -189,24 +189,24 @@
  Variable:A
  NumericConstant:3
  Variable:B
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 430 C=C+1
  Variable:C
  Variable:C
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 440 IF A(3)<>B(1) THEN 460
  NumericConstant:3
  Variable:A
  NumericConstant:1
  Variable:B
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 450 C=C+1
  Variable:C
  Variable:C
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 460 FOR J=1 TO 3
  control: Variable:J
@@ -217,19 +217,19 @@
  Variable:A
  Variable:J
  Variable:B
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 480 D=D+1
  Variable:D
  Variable:D
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 490 NEXT J
  Variable:J
 500 IF D=3 THEN 680
  Variable:D
  NumericConstant:3
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 520 FOR J=1 TO C
  control: Variable:J
  start:   ["NumericConstant:1"]
@@ -251,9 +251,9 @@
 580 IF C+D<>0 THEN 600
  Variable:C
  Variable:D
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  NumericConstant:0
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 590 PRINT "BAGLES";
  TextConstant:"BAGLES"
  CarriageControl:;
@@ -270,15 +270,15 @@
  NumericConstant:100
  NumericConstant:1
  Variable:A1
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:10
  NumericConstant:2
  Variable:A1
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  NumericConstant:3
  Variable:A1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  CarriageControl:NL
 620 GOTO 700
  LineNumber:700
@@ -301,18 +301,18 @@
  Variable:V
  Variable:V
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 700 INPUT "PLAY AGAIN (YES OR NO)",A$
  Variable:A$
 720 IF A$="YES" THEN 150
  Variable:A$
  TextConstant:"YES"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 730 IF V=0 THEN 750
  Variable:V
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 740 PRINT:PRINT "A"V"- POINT BAGLES BUFF!!"
  CarriageControl:NL
  TextConstant:"A"

@@ -31,7 +31,7 @@
  Variable:N
  NumericConstant:4
  Variable:I
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 80 FOR J=1 TO 2
  control: Variable:J
@@ -42,37 +42,37 @@
  NumericConstant:6
  NumericConstant:0
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  FunctionInt
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 100 B=INT(6*RND(0))+1
  Variable:B
  NumericConstant:6
  NumericConstant:0
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  FunctionInt
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 110 D=INT(4*RND(0))+1
  Variable:D
  NumericConstant:4
  NumericConstant:0
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  FunctionInt
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 120 IF F[A,B]>0 THEN 90
  Variable:A
  Variable:B
  Variable:F
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 130 M=0
  Variable:M
  NumericConstant:0
@@ -94,7 +94,7 @@
  NumericConstant:3
  Variable:B
  NumericConstant:7
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  AssignmentOperator:=
 170 FOR K=1 TO N
  control: Variable:K
@@ -103,30 +103,30 @@
 180 IF M>1 THEN 240
  Variable:M
  NumericConstant:1
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 190 IF B[K]=6 THEN 230
  Variable:K
  Variable:B
  NumericConstant:6
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 200 IF F[A,B[K]+1]>0 THEN 230
  Variable:A
  Variable:K
  Variable:B
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:F
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 210 B[K+1]=B[K]+1
  Variable:K
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:B
  Variable:K
  Variable:B
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 220 GOTO 280
  LineNumber:280
@@ -140,31 +140,31 @@
  Variable:B
  NumericConstant:2
  Variable:B
- BinaryOperatorMin:MIN
+ BinaryOperatorMin:MIN numeric
  NumericConstant:3
  Variable:B
- BinaryOperatorMin:MIN
+ BinaryOperatorMin:MIN numeric
  AssignmentOperator:=
 250 IF Z<1 THEN 90
  Variable:Z
  NumericConstant:1
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 260 IF F[A,Z-1]>0 THEN 90
  Variable:A
  Variable:Z
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:F
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 270 B[K+1]=Z-1
  Variable:K
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:B
  Variable:Z
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 280 NEXT K
  Variable:K
@@ -175,10 +175,10 @@
  NumericConstant:9
  NumericConstant:2
  Variable:I
- BinaryOperatorMultiply:*
- BinaryOperatorMinus:-
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorMinus:- numeric
  Variable:J
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 300 FOR K=1 TO N
  control: Variable:K
@@ -188,7 +188,7 @@
  Variable:A
  Variable:K
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:B
  Variable:F
  Variable:A
@@ -227,43 +227,43 @@
 380 IF M>1 THEN 460
  Variable:M
  NumericConstant:1
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 390 IF A[K]=1 OR B[K]=1 THEN 450
  Variable:K
  Variable:A
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:K
  Variable:B
  NumericConstant:1
- BinaryOperatorEqual:=
- BinaryOperatorOr:OR
+ BinaryOperatorEqual:= boolean
+ BinaryOperatorOr:OR boolean
 400 IF F[A[K]-1,B[K]-1]>0 THEN 450
  Variable:K
  Variable:A
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:K
  Variable:B
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:F
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 410 IF F[A[K]-1,B[K]]>0 AND F[A[K]-1,B[K]]=F[A[K],B[K]-1] THEN 450
  Variable:K
  Variable:A
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:K
  Variable:B
  Variable:F
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:K
  Variable:A
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:K
  Variable:B
  Variable:F
@@ -272,29 +272,29 @@
  Variable:K
  Variable:B
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:F
- BinaryOperatorEqual:=
- BinaryOperatorAnd:AND
+ BinaryOperatorEqual:= boolean
+ BinaryOperatorAnd:AND boolean
 420 A[K+1]=A[K]-1
  Variable:K
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:A
  Variable:K
  Variable:A
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 430 B[K+1]=B[K]-1
  Variable:K
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:B
  Variable:K
  Variable:B
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 440 GOTO 530
  LineNumber:530
@@ -308,10 +308,10 @@
  Variable:A
  NumericConstant:2
  Variable:A
- BinaryOperatorMax:MAX
+ BinaryOperatorMax:MAX numeric
  NumericConstant:3
  Variable:A
- BinaryOperatorMax:MAX
+ BinaryOperatorMax:MAX numeric
  AssignmentOperator:=
 470 Z2=((B[1] MAX B[2]) MAX B[3])
  Variable:Z2
@@ -319,66 +319,66 @@
  Variable:B
  NumericConstant:2
  Variable:B
- BinaryOperatorMax:MAX
+ BinaryOperatorMax:MAX numeric
  NumericConstant:3
  Variable:B
- BinaryOperatorMax:MAX
+ BinaryOperatorMax:MAX numeric
  AssignmentOperator:=
 480 IF Z1=6 OR Z2=6 THEN 90
  Variable:Z1
  NumericConstant:6
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:Z2
  NumericConstant:6
- BinaryOperatorEqual:=
- BinaryOperatorOr:OR
+ BinaryOperatorEqual:= boolean
+ BinaryOperatorOr:OR boolean
 490 IF F[Z1+1,Z2+1]>0 THEN 90
  Variable:Z1
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:Z2
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:F
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 500 IF F[Z1,Z2+1]>0 AND F[Z1,Z2+1]=F[Z1+1,Z2] THEN 90
  Variable:Z1
  Variable:Z2
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:F
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:Z1
  Variable:Z2
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:F
  Variable:Z1
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:Z2
  Variable:F
- BinaryOperatorEqual:=
- BinaryOperatorAnd:AND
+ BinaryOperatorEqual:= boolean
+ BinaryOperatorAnd:AND boolean
 510 A[K+1]=Z1+1
  Variable:K
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:A
  Variable:Z1
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 520 B[K+1]=Z2+1
  Variable:K
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:B
  Variable:Z2
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 530 NEXT K
  Variable:K
@@ -403,30 +403,30 @@
 580 IF M>1 THEN 640
  Variable:M
  NumericConstant:1
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 590 IF A[K]=6 THEN 630
  Variable:K
  Variable:A
  NumericConstant:6
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 600 IF F[A[K]+1,B]>0 THEN 630
  Variable:K
  Variable:A
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:B
  Variable:F
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 610 A[K+1]=A[K]+1
  Variable:K
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:A
  Variable:K
  Variable:A
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 620 GOTO 680
  LineNumber:680
@@ -440,31 +440,31 @@
  Variable:A
  NumericConstant:2
  Variable:A
- BinaryOperatorMin:MIN
+ BinaryOperatorMin:MIN numeric
  NumericConstant:3
  Variable:A
- BinaryOperatorMin:MIN
+ BinaryOperatorMin:MIN numeric
  AssignmentOperator:=
 650 IF Z=1 THEN 90
  Variable:Z
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 660 IF F[Z-1,B]>0 THEN 90
  Variable:Z
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:B
  Variable:F
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 670 A[K+1]=Z-1
  Variable:K
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:A
  Variable:Z
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 680 NEXT K
  Variable:K
@@ -475,10 +475,10 @@
  NumericConstant:9
  NumericConstant:2
  Variable:I
- BinaryOperatorMultiply:*
- BinaryOperatorMinus:-
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorMinus:- numeric
  Variable:J
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 700 FOR K=1 TO N
  control: Variable:K
@@ -487,7 +487,7 @@
 710 F[A[K+1],B]=F[A,B]
  Variable:K
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:A
  Variable:B
  Variable:F
@@ -530,43 +530,43 @@
 790 IF M>1 THEN 870
  Variable:M
  NumericConstant:1
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 800 IF A[K]=6 OR B[K]=1 THEN 860
  Variable:K
  Variable:A
  NumericConstant:6
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:K
  Variable:B
  NumericConstant:1
- BinaryOperatorEqual:=
- BinaryOperatorOr:OR
+ BinaryOperatorEqual:= boolean
+ BinaryOperatorOr:OR boolean
 810 IF F[A[K]+1,B[K]-1]>0 THEN 860
  Variable:K
  Variable:A
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:K
  Variable:B
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:F
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 820 IF F[A[K]+1,B[K]]>0 AND F[A[K]+1,B[K]]=F[A[K],B[K]-1] THEN 860
  Variable:K
  Variable:A
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:K
  Variable:B
  Variable:F
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:K
  Variable:A
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:K
  Variable:B
  Variable:F
@@ -575,29 +575,29 @@
  Variable:K
  Variable:B
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:F
- BinaryOperatorEqual:=
- BinaryOperatorAnd:AND
+ BinaryOperatorEqual:= boolean
+ BinaryOperatorAnd:AND boolean
 830 A[K+1]=A[K]+1
  Variable:K
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:A
  Variable:K
  Variable:A
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 840 B[K+1]=B[K]-1
  Variable:K
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:B
  Variable:K
  Variable:B
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 850 GOTO 940
  LineNumber:940
@@ -611,10 +611,10 @@
  Variable:A
  NumericConstant:2
  Variable:A
- BinaryOperatorMin:MIN
+ BinaryOperatorMin:MIN numeric
  NumericConstant:3
  Variable:A
- BinaryOperatorMin:MIN
+ BinaryOperatorMin:MIN numeric
  AssignmentOperator:=
 880 Z2=((B[1] MAX B[2]) MAX B[3])
  Variable:Z2
@@ -622,66 +622,66 @@
  Variable:B
  NumericConstant:2
  Variable:B
- BinaryOperatorMax:MAX
+ BinaryOperatorMax:MAX numeric
  NumericConstant:3
  Variable:B
- BinaryOperatorMax:MAX
+ BinaryOperatorMax:MAX numeric
  AssignmentOperator:=
 890 IF Z1=1 OR Z2=6 THEN 90
  Variable:Z1
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:Z2
  NumericConstant:6
- BinaryOperatorEqual:=
- BinaryOperatorOr:OR
+ BinaryOperatorEqual:= boolean
+ BinaryOperatorOr:OR boolean
 900 IF F[Z1-1,Z2+1]>0 THEN 90
  Variable:Z1
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:Z2
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:F
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 910 IF F[Z1,Z2+1]>0 AND F[Z1,Z2+1]=F[Z1-1,Z2] THEN 90
  Variable:Z1
  Variable:Z2
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:F
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:Z1
  Variable:Z2
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:F
  Variable:Z1
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:Z2
  Variable:F
- BinaryOperatorEqual:=
- BinaryOperatorAnd:AND
+ BinaryOperatorEqual:= boolean
+ BinaryOperatorAnd:AND boolean
 920 A[K+1]=Z1-1
  Variable:K
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:A
  Variable:Z1
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 930 B[K+1]=Z2+1
  Variable:K
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:B
  Variable:Z2
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 940 NEXT K
  Variable:K
@@ -692,10 +692,10 @@
  NumericConstant:9
  NumericConstant:2
  Variable:I
- BinaryOperatorMultiply:*
- BinaryOperatorMinus:-
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorMinus:- numeric
  Variable:J
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 960 FOR K=1 TO N
  control: Variable:K
@@ -704,11 +704,11 @@
 970 F[A[K+1],B[K+1]]=F[A,B]
  Variable:K
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:A
  Variable:K
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:B
  Variable:F
  Variable:A
@@ -792,31 +792,31 @@
 1190 IF X<1 OR X>6 OR INT(X)#ABS(X) THEN 1210
  Variable:X
  NumericConstant:1
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  Variable:X
  NumericConstant:6
- BinaryOperatorGreater:>
- BinaryOperatorOr:OR
+ BinaryOperatorGreater:> boolean
+ BinaryOperatorOr:OR boolean
  Variable:X
  FunctionInt
  Variable:X
  FunctionAbs
- BinaryOperatorNotEqual:#
- BinaryOperatorOr:OR
+ BinaryOperatorNotEqual:# boolean
+ BinaryOperatorOr:OR boolean
 1200 IF Y>0 AND Y<7 AND INT(Y)=ABS(Y) THEN 1230
  Variable:Y
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:Y
  NumericConstant:7
- BinaryOperatorLess:<
- BinaryOperatorAnd:AND
+ BinaryOperatorLess:< boolean
+ BinaryOperatorAnd:AND boolean
  Variable:Y
  FunctionInt
  Variable:Y
  FunctionAbs
- BinaryOperatorEqual:=
- BinaryOperatorAnd:AND
+ BinaryOperatorEqual:= boolean
+ BinaryOperatorAnd:AND boolean
 1210 PRINT "INVALID INPUT, TRY AGAIN."
  TextConstant:"INVALID INPUT, TRY AGAIN."
  CarriageControl:NL
@@ -826,7 +826,7 @@
  Variable:R
  NumericConstant:7
  Variable:Y
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 1240 C=X
  Variable:C
@@ -837,12 +837,12 @@
  Variable:C
  Variable:F
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 1260 S=S+1
  Variable:S
  Variable:S
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 1270 PRINT "SPLASH! TRY AGAIN."
  TextConstant:"SPLASH! TRY AGAIN."
@@ -855,7 +855,7 @@
  Variable:F
  Variable:C
  NumericConstant:4
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 1300 PRINT "THERE USED TO BE A SHIP AT THAT POINT, BUT YOU SUNK IT."
  TextConstant:"THERE USED TO BE A SHIP AT THAT POINT, BUT YOU SUNK IT."
  CarriageControl:NL
@@ -866,7 +866,7 @@
  Variable:S
  Variable:S
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 1330 GOTO 1180
  LineNumber:1180
@@ -875,12 +875,12 @@
  Variable:C
  Variable:H
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 1350 H=H+1
  Variable:H
  Variable:H
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 1360 H[R,C]=F[R,C]
  Variable:R
@@ -907,7 +907,7 @@
  Variable:F
  Variable:C
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 1390 IF C[F[R,C]]>=4 THEN 1470
  Variable:R
@@ -915,7 +915,7 @@
  Variable:F
  Variable:C
  NumericConstant:4
- BinaryOperatorGreaterEqual:>=
+ BinaryOperatorGreaterEqual:>= boolean
 1400 PRINT "TRY AGAIN."
  TextConstant:"TRY AGAIN."
  CarriageControl:NL
@@ -938,7 +938,7 @@
  Variable:S
  Variable:S
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 1460 GOTO 1180
  LineNumber:1180
@@ -947,26 +947,26 @@
  Variable:C
  Variable:F
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:2
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  FunctionInt
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:L
  Variable:R
  Variable:C
  Variable:F
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:2
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  FunctionInt
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:L
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 1480 PRINT "AND YOU SUNK IT, HURRAH FOR THE GOOD GUYS."
  TextConstant:"AND YOU SUNK IT, HURRAH FOR THE GOOD GUYS."
@@ -996,19 +996,19 @@
  CarriageControl:;
  Variable:S
  Variable:H
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  CarriageControl:NL
 1530 IF (L[1]+L[2]+L[3])<6 THEN 1180
  NumericConstant:1
  Variable:L
  NumericConstant:2
  Variable:L
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  NumericConstant:3
  Variable:L
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  NumericConstant:6
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 1540 PRINT
  CarriageControl:NL
 1550 PRINT "YOU HAVE TOTALLY WIPED OUT THE BAD GUYS' FLEET"
@@ -1019,14 +1019,14 @@
  CarriageControl:;
  Variable:S
  Variable:H
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  CarriageControl:NL
 1570 IF S/H>0 THEN 1590
  Variable:S
  Variable:H
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 1580 PRINT "CONGRATULATIONS  A DIRECT HIT EVERY TIME."
  TextConstant:"CONGRATULATIONS  A DIRECT HIT EVERY TIME."
  CarriageControl:NL

@@ -15,7 +15,7 @@
 207 IF Z$="NO" THEN 400
  Variable:Z$
  TextConstant:"NO"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 210 PRINT"HELLO, ALL YOU BLOODLOVERS AND AFICIONADOS"
  TextConstant:"HELLO, ALL YOU BLOODLOVERS AND AFICIONADOS"
  CarriageControl:NL
@@ -91,10 +91,10 @@
  NumericConstant:0
  FunctionRnd
  NumericConstant:5
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  FunctionInt
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 460 FOR I=1 TO 5
  control: Variable:I
@@ -122,11 +122,11 @@
 500 IF A>4 THEN 530
  Variable:A
  NumericConstant:4
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 510 IF A<2 THEN 550
  Variable:A
  NumericConstant:2
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 520 GOTO 570
  LineNumber:570
 530 PRINT"YOU'RE LUCKY"
@@ -180,14 +180,14 @@
 680 IF Z=1 THEN 1310
  Variable:Z
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 690 LET D(3)=D(3)+1
  NumericConstant:3
  Variable:D
  NumericConstant:3
  Variable:D
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 700 PRINT"PASS NUMBER "D(3)
  TextConstant:"PASS NUMBER "
@@ -199,7 +199,7 @@
  NumericConstant:3
  Variable:D
  NumericConstant:3
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 720 PRINT"HERE COMES THE BULL! TRY FOR A KILL";
  TextConstant:"HERE COMES THE BULL! TRY FOR A KILL"
  CarriageControl:;
@@ -236,11 +236,11 @@
  Variable:E
  FunctionAbs
  FunctionInt
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 820 IF E<3 THEN 850
  Variable:E
  NumericConstant:3
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 830 PRINT"DON'T PANIC, YOU IDIOT! PUT DOWN A CORRECT NUMBER"
  TextConstant:"DON'T PANIC, YOU IDIOT! PUT DOWN A CORRECT NUMBER"
  CarriageControl:NL
@@ -253,11 +253,11 @@
 860 IF E=0 THEN 920
  Variable:E
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 870 IF E=1 THEN 900
  Variable:E
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 880 LET M=0.5
  Variable:M
  NumericConstant:0.5
@@ -278,38 +278,38 @@
  Variable:L
  Variable:L
  Variable:M
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 940 LET F=(6-A+M/10)*RND(0)/((D(1)+D(2)+D(3)/10)*5)
  Variable:F
  NumericConstant:6
  Variable:A
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:M
  NumericConstant:10
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
  NumericConstant:0
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:1
  Variable:D
  NumericConstant:2
  Variable:D
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  NumericConstant:3
  Variable:D
  NumericConstant:10
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
  NumericConstant:5
- BinaryOperatorMultiply:*
- BinaryOperatorDivide:/
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorDivide:/ numeric
  AssignmentOperator:=
 950 IF F<0.51 THEN 660
  Variable:F
  NumericConstant:0.51
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 960 PRINT"THE BULL HAS GORED YOU"
  TextConstant:"THE BULL HAS GORED YOU"
  CarriageControl:NL
@@ -386,11 +386,11 @@
 1170 IF H=4 THEN 1230
  Variable:H
  NumericConstant:4
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1180 IF H=5 THEN 1230
  Variable:H
  NumericConstant:5
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1210 PRINT"YOU PANICKED. THE BULL GORED YOU."
  TextConstant:"YOU PANICKED. THE BULL GORED YOU."
  CarriageControl:NL
@@ -400,32 +400,32 @@
  Variable:K
  NumericConstant:6
  Variable:A
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:10
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:0
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:1
  Variable:D
  NumericConstant:2
  Variable:D
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  NumericConstant:5
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:3
  Variable:D
- BinaryOperatorMultiply:*
- BinaryOperatorDivide:/
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorDivide:/ numeric
  AssignmentOperator:=
 1240 IF K>0.4 THEN 1290
  Variable:K
  NumericConstant:0.4
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 1250 IF K>0.2 THEN 960
  Variable:K
  NumericConstant:0.2
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 1260 PRINT"YOU KILLED THE BULL"
  TextConstant:"YOU KILLED THE BULL"
  CarriageControl:NL
@@ -439,7 +439,7 @@
 1290 IF K>0.8 THEN 960
  Variable:K
  NumericConstant:0.8
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 1300 GOTO 1260
  LineNumber:1260
 1310 PRINT
@@ -452,7 +452,7 @@
  NumericConstant:4
  Variable:D
  NumericConstant:0
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 1350 PRINT"THE CROWD BOOS FOR TEN MINUTES. IF YOU EVER DARE TO SHOW"
  TextConstant:"THE CROWD BOOS FOR TEN MINUTES. IF YOU EVER DARE TO SHOW"
  CarriageControl:NL
@@ -470,42 +470,42 @@
  NumericConstant:4.5
  Variable:L
  NumericConstant:6
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
  NumericConstant:1
  Variable:D
  NumericConstant:2
  Variable:D
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  NumericConstant:2.5
- BinaryOperatorMultiply:*
- BinaryOperatorMinus:-
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorMinus:- numeric
  NumericConstant:4
  NumericConstant:4
  Variable:D
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  NumericConstant:2
  NumericConstant:5
  Variable:D
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  NumericConstant:3
  Variable:D
  NumericConstant:2
- BinaryOperatorPower:^
+ BinaryOperatorPower:^ numeric
  NumericConstant:120
- BinaryOperatorDivide:/
- BinaryOperatorMinus:-
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorMinus:- numeric
  Variable:A
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:0.5
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
 1400 IF D(4)<>2 THEN 1430
  NumericConstant:4
  Variable:D
  NumericConstant:2
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 1410 PRINT"THE CROW CHEERS WILDLY"
  TextConstant:"THE CROW CHEERS WILDLY"
  CarriageControl:NL
@@ -515,7 +515,7 @@
  NumericConstant:5
  Variable:D
  NumericConstant:2
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 1440 PRINT"THE CROWD CHEERS"
  TextConstant:"THE CROWD CHEERS"
  CarriageControl:NL
@@ -538,17 +538,17 @@
  Variable:Q
  UserFunction
  NumericConstant:2.4
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 1470 IF FNC(Q)<4.9 THEN 1550
  Variable:Q
  UserFunction
  NumericConstant:4.9
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 1480 IF FNC(Q)<7.4 THEN 1520
  Variable:Q
  UserFunction
  NumericConstant:7.4
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 1500 PRINT"OLE! YOU ARE 'MUY HOMBRE'! OLE! OLE!"
  TextConstant:"OLE! YOU ARE 'MUY HOMBRE'! OLE! OLE!"
  CarriageControl:NL
@@ -581,27 +581,27 @@
  Variable:B
  NumericConstant:3
  Variable:A
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  NumericConstant:0
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  AssignmentOperator:=
 1620 IF B<0.37 THEN 1740
  Variable:B
  NumericConstant:0.37
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 1630 IF B<0.5 THEN 1720
  Variable:B
  NumericConstant:0.5
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 1640 IF B<0.63 THEN 1700
  Variable:B
  NumericConstant:0.63
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 1650 IF B<0.87 THEN 1680
  Variable:B
  NumericConstant:0.87
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 1660 LET C=0.1
  Variable:C
  NumericConstant:0.1
@@ -634,9 +634,9 @@
  Variable:T
  NumericConstant:10
  Variable:C
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:0.2
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  AssignmentOperator:=
 1760 PRINT"THE "A$;B$" DID A "L$(T);" JOB"
@@ -656,11 +656,11 @@
 1770 IF 4>T THEN 1900
  NumericConstant:4
  Variable:T
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 1780 IF 5=T THEN 1870
  NumericConstant:5
  Variable:T
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1790 ON FNA(K) GOTO 1800,1900
  Variable:K
  UserFunction
@@ -669,7 +669,7 @@
 1800 IF A$="TOREAD" THEN 1820
  Variable:A$
  TextConstant:"TOREAD"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1810 PRINT"0NE OF THE HORSES OF THE "A$;B$" WAS GORED"
  TextConstant:"0NE OF THE HORSES OF THE "
  CarriageControl:
@@ -709,7 +709,7 @@
 1870 IF A$="TOREAD" THEN 1890
  Variable:A$
  TextConstant:"TOREAD"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1880 PRINT FNA(K);" OF THE HORSES OF THE "A$;B$;" GORED"
  Variable:K
  UserFunction
@@ -744,20 +744,20 @@
  NumericConstant:0
  FunctionRnd
  NumericConstant:2
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  FunctionInt
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
 1930 INPUT A$
  Variable:A$
 1950 IF A$="YES" THEN 1990
  Variable:A$
  TextConstant:"YES"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1960 IF A$="NO" THEN 2010
  Variable:A$
  TextConstant:"NO"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1970 PRINT"INCORRECT ANSWER, PLEASE PRINT 'YES' OR 'NO'";
  TextConstant:"INCORRECT ANSWER, PLEASE PRINT 'YES' OR 'NO'"
  CarriageControl:;

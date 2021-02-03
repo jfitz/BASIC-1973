@@ -8,11 +8,11 @@
 7 IF C$="NO" THEN 20
  Variable:C$
  TextConstant:"NO"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 8 IF C$="YES" THEN 13
  Variable:C$
  TextConstant:"YES"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 9 PRINT "INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'";
  TextConstant:"INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'"
  CarriageControl:;
@@ -88,11 +88,11 @@
 66 IF S$="NO" THEN 110
  Variable:S$
  TextConstant:"NO"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 67 IF S$="YES" THEN 70
  Variable:S$
  TextConstant:"YES"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 68 PRINT "INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'";
  TextConstant:"INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'"
  CarriageControl:;
@@ -112,7 +112,7 @@
  Variable:K1
  Variable:J1
  NumericConstant:100
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  FunctionInt
  AssignmentOperator:=
 95 LET J2=(J1-K1*100)
@@ -120,14 +120,14 @@
  Variable:J1
  Variable:K1
  NumericConstant:100
- BinaryOperatorMultiply:*
- BinaryOperatorMinus:-
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 96 LET K2=INT(J2/10)
  Variable:K2
  Variable:J2
  NumericConstant:10
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  FunctionInt
  AssignmentOperator:=
 97 LET K3= J1 - K1*100 -K2*10
@@ -135,32 +135,32 @@
  Variable:J1
  Variable:K1
  NumericConstant:100
- BinaryOperatorMultiply:*
- BinaryOperatorMinus:-
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorMinus:- numeric
  Variable:K2
  NumericConstant:10
- BinaryOperatorMultiply:*
- BinaryOperatorMinus:-
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 98 LET M=16*K1+4*K2+K3-20
  Variable:M
  NumericConstant:16
  Variable:K1
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:4
  Variable:K2
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  Variable:K3
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  NumericConstant:20
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 99 IF X(M)=0 THEN 109
  Variable:M
  Variable:X
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 100 PRINT "THAT SQUARE IS USED, TRY AGAIN"
  TextConstant:"THAT SQUARE IS USED, TRY AGAIN"
  CarriageControl:NL
@@ -184,15 +184,15 @@
 200 IF J=1 THEN 210
  Variable:J
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 201 IF J=2 THEN 220
  Variable:J
  NumericConstant:2
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 203 IF J=3 THEN 235
  Variable:J
  NumericConstant:3
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 205 NEXT I
  Variable:I
 206 NEXTJ
@@ -203,7 +203,7 @@
  Variable:I
  Variable:L
  NumericConstant:4
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 211 PRINT "YOU WIN AS FOLLOWS";
  TextConstant:"YOU WIN AS FOLLOWS"
  CarriageControl:;
@@ -227,7 +227,7 @@
  Variable:I
  Variable:L
  NumericConstant:15
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 221 FOR J=1 TO 4
  control: Variable:J
  start:   ["NumericConstant:1"]
@@ -242,7 +242,7 @@
  Variable:M
  Variable:X
  NumericConstant:0
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 224 LET X(M)=5
  Variable:M
  Variable:X
@@ -278,7 +278,7 @@
  Variable:I
  Variable:L
  NumericConstant:3
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 236 PRINT "NICE TRY MACHINE MOVES TO";
  TextConstant:"NICE TRY MACHINE MOVES TO"
  CarriageControl:;
@@ -296,7 +296,7 @@
  Variable:M
  Variable:X
  NumericConstant:0
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 240 LET X(M)=5
  Variable:M
  Variable:X
@@ -325,17 +325,17 @@
  NumericConstant:2
  Variable:M
  Variable:X
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:I
  NumericConstant:3
  Variable:M
  Variable:X
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:I
  NumericConstant:4
  Variable:M
  Variable:X
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 252 LET L = L(I)
  Variable:L
@@ -345,15 +345,15 @@
 255 IF L <2 THEN 290
  Variable:L
  NumericConstant:2
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 260 IF L>=3 THEN 290
  Variable:L
  NumericConstant:3
- BinaryOperatorGreaterEqual:>=
+ BinaryOperatorGreaterEqual:>= boolean
 265 IF L>2 THEN 1600
  Variable:L
  NumericConstant:2
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 270 FOR J = 1 TO 4
  control: Variable:J
  start:   ["NumericConstant:1"]
@@ -364,7 +364,7 @@
  Variable:M
  Variable:X
  NumericConstant:0
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 280 LET X(M(I,J))=1/8
  Variable:I
  Variable:J
@@ -372,7 +372,7 @@
  Variable:X
  NumericConstant:1
  NumericConstant:8
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  AssignmentOperator:=
 285 NEXT J
  Variable:J
@@ -389,17 +389,17 @@
  Variable:L
  NumericConstant:1
  NumericConstant:2
- BinaryOperatorDivide:/
- BinaryOperatorEqual:=
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorEqual:= boolean
 310 IF L(I)=1 + 3/8 THEN 1700
  Variable:I
  Variable:L
  NumericConstant:1
  NumericConstant:3
  NumericConstant:8
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
- BinaryOperatorEqual:=
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorEqual:= boolean
 315 NEXT I
  Variable:I
 320 GOTO 1300
@@ -413,17 +413,17 @@
  Variable:Y
  Variable:X
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 365 LET Z=Z+1
  Variable:Z
  Variable:Z
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 368 IF Z<>17 THEN 362
  Variable:Z
  NumericConstant:17
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 375 GOTO 1200
  LineNumber:1200
 380 LET M=Y(Z)
@@ -462,17 +462,17 @@
  NumericConstant:2
  Variable:M
  Variable:X
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:I
  NumericConstant:3
  Variable:M
  Variable:X
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:I
  NumericConstant:4
  Variable:M
  Variable:X
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 415 LET L=L(I)
  Variable:L
@@ -482,15 +482,15 @@
 420 IF L<10 THEN 455
  Variable:L
  NumericConstant:10
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 425 IF L>=11 THEN 455
  Variable:L
  NumericConstant:11
- BinaryOperatorGreaterEqual:>=
+ BinaryOperatorGreaterEqual:>= boolean
 430 IF L>10 THEN 1600
  Variable:L
  NumericConstant:10
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 435 FOR J=1 TO 4
  control: Variable:J
  start:   ["NumericConstant:1"]
@@ -501,7 +501,7 @@
  Variable:M
  Variable:X
  NumericConstant:0
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 445 LET X(M(I,J))=1/8
  Variable:I
  Variable:J
@@ -509,7 +509,7 @@
  Variable:X
  NumericConstant:1
  NumericConstant:8
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  AssignmentOperator:=
 450 NEXT J
  Variable:J
@@ -525,16 +525,16 @@
  Variable:I
  Variable:L
  NumericConstant:.5
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 485 IF L(I)=5+3/8 THEN 1700
  Variable:I
  Variable:L
  NumericConstant:5
  NumericConstant:3
  NumericConstant:8
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
- BinaryOperatorEqual:=
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorEqual:= boolean
 490 NEXT I
  Variable:I
 492 GOSUB 1800
@@ -552,11 +552,11 @@
 515 IF X$="YES" THEN 35
  Variable:X$
  TextConstant:"YES"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 516 IF X$="NO" THEN 520
  Variable:X$
  TextConstant:"NO"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 517 PRINT "INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'";
  TextConstant:"INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'"
  CarriageControl:;
@@ -568,12 +568,12 @@
  Variable:K1
  Variable:M
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:16
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  FunctionInt
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 1010 LET J2=M-16*(K1-1)
  Variable:J2
@@ -581,48 +581,48 @@
  NumericConstant:16
  Variable:K1
  NumericConstant:1
- BinaryOperatorMinus:-
- BinaryOperatorMultiply:*
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 1030 LET K2=INT((J2-1)/4)+1
  Variable:K2
  Variable:J2
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:4
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  FunctionInt
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 1035 LET K3=M-(K1-1)*16-(K2-1)*4
  Variable:K3
  Variable:M
  Variable:K1
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:16
- BinaryOperatorMultiply:*
- BinaryOperatorMinus:-
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorMinus:- numeric
  Variable:K2
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:4
- BinaryOperatorMultiply:*
- BinaryOperatorMinus:-
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 1040 LET M=K1*100+K2*10+K3
  Variable:M
  Variable:K1
  NumericConstant:100
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  Variable:K2
  NumericConstant:10
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  Variable:K3
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 1042 PRINT M;
  Variable:M
@@ -664,13 +664,13 @@
  Variable:X
  Variable:J2
  Variable:X
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:J3
  Variable:X
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:J4
  Variable:X
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 1110 NEXT S
  Variable:S
@@ -684,7 +684,7 @@
  Variable:I
  Variable:X
  NumericConstant:0
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 1220 LET X(I)=5
  Variable:I
  Variable:X
@@ -721,8 +721,8 @@
  AssignmentOperator:=
 1310 FOR I=4*K-3 TO 4*K
  control: Variable:I
- start:   ["NumericConstant:4", "Variable:K", "BinaryOperatorMultiply:*", "NumericConstant:3", "BinaryOperatorMinus:-"]
- end:     ["NumericConstant:4", "Variable:K", "BinaryOperatorMultiply:*"]
+ start:   ["NumericConstant:4", "Variable:K", "BinaryOperatorMultiply:* numeric", "NumericConstant:3", "BinaryOperatorMinus:- numeric"]
+ end:     ["NumericConstant:4", "Variable:K", "BinaryOperatorMultiply:* numeric"]
 1315 FOR J=1 TO 4
  control: Variable:J
  start:   ["NumericConstant:1"]
@@ -734,7 +734,7 @@
  Variable:J
  Variable:M
  Variable:X
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 1325 NEXT J
  Variable:J
@@ -743,19 +743,19 @@
 1345 IF P<4 THEN 1390
  Variable:P
  NumericConstant:4
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 1350 IF P<5 THEN 1400
  Variable:P
  NumericConstant:5
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 1355 IF P<9 THEN 1390
  Variable:P
  NumericConstant:9
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 1360 IF P<10 THEN 1400
  Variable:P
  NumericConstant:10
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 1390 NEXT K
  Variable:K
 1395 GOSUB 1800
@@ -766,12 +766,12 @@
  Variable:S
  NumericConstant:1
  NumericConstant:8
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  AssignmentOperator:=
 1405 FOR I=4*K-3 TO 4*K
  control: Variable:I
- start:   ["NumericConstant:4", "Variable:K", "BinaryOperatorMultiply:*", "NumericConstant:3", "BinaryOperatorMinus:-"]
- end:     ["NumericConstant:4", "Variable:K", "BinaryOperatorMultiply:*"]
+ start:   ["NumericConstant:4", "Variable:K", "BinaryOperatorMultiply:* numeric", "NumericConstant:3", "BinaryOperatorMinus:- numeric"]
+ end:     ["NumericConstant:4", "Variable:K", "BinaryOperatorMultiply:* numeric"]
 1410 GOTO 1703
  LineNumber:1703
 1415 NEXT I
@@ -1133,8 +1133,8 @@
  Variable:X
  NumericConstant:1
  NumericConstant:8
- BinaryOperatorDivide:/
- BinaryOperatorNotEqual:<>
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorNotEqual:<> boolean
 1610 LET X(M(I,J))=5
  Variable:I
  Variable:J
@@ -1146,7 +1146,7 @@
  Variable:I
  Variable:L
  NumericConstant:5
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 1620 PRINT "LET'S SEE YOU GET OUT OF THIS! MACHINE MOVES TO";
  TextConstant:"LET'S SEE YOU GET OUT OF THIS! MACHINE MOVES TO"
  CarriageControl:;
@@ -1176,19 +1176,19 @@
  Variable:S
  NumericConstant:1
  NumericConstant:8
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  AssignmentOperator:=
 1703 IF I-INT(I/4)*4>1 THEN 1715
  Variable:I
  Variable:I
  NumericConstant:4
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  FunctionInt
  NumericConstant:4
- BinaryOperatorMultiply:*
- BinaryOperatorMinus:-
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorMinus:- numeric
  NumericConstant:1
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 1705 LET A=1
  Variable:A
  NumericConstant:1
@@ -1202,15 +1202,15 @@
 1720 FOR J=A TO 5-A _ STEP 5-2*A
  control: Variable:J
  start:   ["Variable:A"]
- end:     ["NumericConstant:5", "Variable:A", "BinaryOperatorMinus:-"]
- step:    ["NumericConstant:5", "NumericConstant:2", "Variable:A", "BinaryOperatorMultiply:*", "BinaryOperatorMinus:-"]
+ end:     ["NumericConstant:5", "Variable:A", "BinaryOperatorMinus:- numeric"]
+ step:    ["NumericConstant:5", "NumericConstant:2", "Variable:A", "BinaryOperatorMultiply:* numeric", "BinaryOperatorMinus:- numeric"]
 1725 IF X(M(I,J))=S THEN 1750
  Variable:I
  Variable:J
  Variable:M
  Variable:X
  Variable:S
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1730 NEXT J
  Variable:J
 1735 GOTO 1415
@@ -1244,8 +1244,8 @@
  Variable:X
  NumericConstant:1
  NumericConstant:8
- BinaryOperatorDivide:/
- BinaryOperatorNotEqual:<>
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorNotEqual:<> boolean
 1815 LET X(I)=0
  Variable:I
  Variable:X

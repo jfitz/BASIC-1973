@@ -45,60 +45,60 @@
 240 IF H>M THEN 510
  Variable:H
  Variable:M
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 250 IF H<>INT(H) THEN 510
  Variable:H
  Variable:H
  FunctionInt
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 260 IF H<=0 THEN 510
  Variable:H
  NumericConstant:0
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 270 IF H>=4 THEN 510
  Variable:H
  NumericConstant:4
- BinaryOperatorGreaterEqual:>=
+ BinaryOperatorGreaterEqual:>= boolean
 280 LET M=M-H
  Variable:M
  Variable:M
  Variable:H
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 290 IF M=0 THEN 410
  Variable:M
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 300 REM ***THE COMPUTER MOVES
  Remark:***THE COMPUTER MOVES
 305 IF M=1 THEN 440
  Variable:M
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 310 LET R= M-4*INT(M/4)
  Variable:R
  Variable:M
  NumericConstant:4
  Variable:M
  NumericConstant:4
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  FunctionInt
- BinaryOperatorMultiply:*
- BinaryOperatorMinus:-
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 320 IF R<>1 THEN 350
  Variable:R
  NumericConstant:1
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 330 LET C=INT(3+RND(0))+1
  Variable:C
  NumericConstant:3
  NumericConstant:0
  FunctionRnd
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 340 GO TO 360
  LineNumber:360
@@ -106,27 +106,27 @@
  Variable:C
  Variable:R
  NumericConstant:3
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  NumericConstant:4
  Variable:R
  NumericConstant:3
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  NumericConstant:4
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  FunctionInt
- BinaryOperatorMultiply:*
- BinaryOperatorMinus:-
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 360 LET M=M-C
  Variable:M
  Variable:M
  Variable:C
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 370 IF M=0 THEN 440
  Variable:M
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 375 PRINT
  CarriageControl:NL
 380 PRINT "I TOOK";C;"...";

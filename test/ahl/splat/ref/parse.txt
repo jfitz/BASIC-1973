@@ -34,9 +34,9 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
  NumericConstant:9001
  NumericConstant:1
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:1000
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  AssignmentOperator:=
 119 PRINT  "SELECT YOUR OWN TERMINAL VELOCITY (YES OR NO)";\INPUT A1$
@@ -46,10 +46,10 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
 120 IF A1$="NO" THEN 128 ELSE IF A1$="YES" THEN 123
  Variable:A1$
  TextConstant:"NO"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:A1$
  TextConstant:"YES"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 121 PRINT "'YES' OR 'NO' PLEASE";\INPUT A1$\GOTO 120
  TextConstant:"'YES' OR 'NO' PLEASE"
  CarriageControl:;
@@ -64,25 +64,25 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
  Variable:V1
  NumericConstant:5280
  NumericConstant:3600
- BinaryOperatorDivide:/
- BinaryOperatorMultiply:*
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorMultiply:* numeric
  AssignmentOperator:=
  Variable:V
  Variable:V1
  Variable:V1
  NumericConstant:0
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:20
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
  Variable:V1
  NumericConstant:0
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:20
- BinaryOperatorDivide:/
- BinaryOperatorMinus:-
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  LineNumber:135
 128 V1=INT(1000*RND(0))
@@ -90,7 +90,7 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
  NumericConstant:1000
  NumericConstant:0
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  FunctionInt
  AssignmentOperator:=
 130 PRINT "OK, TERMINAL VELOCITY ="V1"MI/HR"
@@ -105,25 +105,25 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
  Variable:V1
  NumericConstant:5280
  NumericConstant:3600
- BinaryOperatorDivide:/
- BinaryOperatorMultiply:*
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorMultiply:* numeric
  AssignmentOperator:=
  Variable:V
  Variable:V1
  Variable:V1
  NumericConstant:0
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:20
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
  Variable:V1
  NumericConstant:0
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:20
- BinaryOperatorDivide:/
- BinaryOperatorMinus:-
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 135 PRINT "WANT TO SELECT ACCELERATION DUE TO GRAVITY (YES OR NO)";
  TextConstant:"WANT TO SELECT ACCELERATION DUE TO GRAVITY (YES OR NO)"
@@ -133,10 +133,10 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
 140 IF B1$="NO" THEN 150 ELSE IF B1$<>"YES" THEN 143
  Variable:B1$
  TextConstant:"NO"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:B1$
  TextConstant:"YES"
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 141 PRINT "'YES' OR 'NO' PLEASE";\INPUT B1$\GOTO 140
  TextConstant:"'YES' OR 'NO' PLEASE"
  CarriageControl:;
@@ -152,17 +152,17 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
  Variable:A2
  NumericConstant:0
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:20
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
  Variable:A2
  NumericConstant:0
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:20
- BinaryOperatorDivide:/
- BinaryOperatorMinus:-
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  LineNumber:205
 150 ON INT(1+(10*RND(0)))GOTO151,152,153,154,155,156,157,158,159,160 
@@ -170,8 +170,8 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
  NumericConstant:10
  NumericConstant:0
  FunctionRnd
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  LineNumber:151
  LineNumber:152
@@ -322,29 +322,29 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
  control: Variable:I
  start:   ["NumericConstant:0"]
  end:     ["Variable:T"]
- step:    ["Variable:T", "NumericConstant:8", "BinaryOperatorDivide:/"]
+ step:    ["Variable:T", "NumericConstant:8", "BinaryOperatorDivide:/ numeric"]
 310 IF I>V/A GOTO 400
  Variable:I
  Variable:V
  Variable:A
- BinaryOperatorDivide:/
- BinaryOperatorGreater:>
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorGreater:> boolean
 320 D=D1-((A/2)+I^2)
  Variable:D
  Variable:D1
  Variable:A
  NumericConstant:2
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  Variable:I
  NumericConstant:2
- BinaryOperatorPower:^
- BinaryOperatorPlus:+
- BinaryOperatorMinus:-
+ BinaryOperatorPower:^ numeric
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 330 IF D<=0 GOTO 1000
  Variable:D
  NumericConstant:0
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 340 PRINT I,D 
  Variable:I
  CarriageControl:,
@@ -359,7 +359,7 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
  CarriageControl:
  Variable:V
  Variable:A
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  CarriageControl:
  TextConstant:"SECONDS"
  CarriageControl:NL
@@ -367,31 +367,31 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
  control: Variable:I
  start:   ["NumericConstant:1"]
  end:     ["Variable:T"]
- step:    ["Variable:T", "NumericConstant:8", "BinaryOperatorDivide:/"]
+ step:    ["Variable:T", "NumericConstant:8", "BinaryOperatorDivide:/ numeric"]
 410 D=D1-((V^2/(2+A))+(V*(I-(V/A))))
  Variable:D
  Variable:D1
  Variable:V
  NumericConstant:2
- BinaryOperatorPower:^
+ BinaryOperatorPower:^ numeric
  NumericConstant:2
  Variable:A
- BinaryOperatorPlus:+
- BinaryOperatorDivide:/
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorDivide:/ numeric
  Variable:V
  Variable:I
  Variable:V
  Variable:A
- BinaryOperatorDivide:/
- BinaryOperatorMinus:-
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
- BinaryOperatorMinus:-
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorMinus:- numeric
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 420 IF D<=0 GOTO 1010
  Variable:D
  NumericConstant:0
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 430 PRINT I,D
  Variable:I
  CarriageControl:,
@@ -419,23 +419,23 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
  Variable:I
  Variable:A
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 560 K=K+1
  Variable:K
  Variable:K
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 570 IF D>A(I) GOTO 600
  Variable:D
  Variable:I
  Variable:A
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 580 K1=K1+1
  Variable:K1
  Variable:K1
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 600 NEXT I
  Variable:I
@@ -448,48 +448,48 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
  Variable:I
  Variable:I
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 650 IF K-K1<=.1*K GOTO 700
  Variable:K
  Variable:K1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:.1
  Variable:K
- BinaryOperatorMultiply:*
- BinaryOperatorLessEqual:<=
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorLessEqual:<= boolean
 660 IF K-K1<=.25*K GOTO 710
  Variable:K
  Variable:K1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:.25
  Variable:K
- BinaryOperatorMultiply:*
- BinaryOperatorLessEqual:<=
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorLessEqual:<= boolean
 670 IF K-K1<=.5*K GOTO 720
  Variable:K
  Variable:K1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:.5
  Variable:K
- BinaryOperatorMultiply:*
- BinaryOperatorLessEqual:<=
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorLessEqual:<= boolean
 680 IF K-K1<=.75*K GOTO 730
  Variable:K
  Variable:K1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:.75
  Variable:K
- BinaryOperatorMultiply:*
- BinaryOperatorLessEqual:<=
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorLessEqual:<= boolean
 690 IF K-K1<=.9*K GOTO 740
  Variable:K
  Variable:K1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:.9
  Variable:K
- BinaryOperatorMultiply:*
- BinaryOperatorLessEqual:<=
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorLessEqual:<= boolean
 695 GOTO 750
  LineNumber:750
 700 PRINT "WOW! THAT'S SOME JUMPlNG, OF THE";K;" SUCCESSFUL JUMPS"
@@ -504,7 +504,7 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
  CarriageControl:;
  Variable:K
  Variable:K1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  CarriageControl:;
  TextConstant:" OPENED THEIR CHUTES LOWER THAN"
  CarriageControl:NL
@@ -523,7 +523,7 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
 711 PRINT K-K1;" OF THEM GOT LOWER THAN YOU DID. BEFORE THEIR CHUTES"
  Variable:K
  Variable:K1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  CarriageControl:;
  TextConstant:" OF THEM GOT LOWER THAN YOU DID. BEFORE THEIR CHUTES"
  CarriageControl:NL
@@ -543,7 +543,7 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
  CarriageControl:;
  Variable:K
  Variable:K1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  CarriageControl:;
  TextConstant:" OF THEM."
  CarriageControl:NL
@@ -553,7 +553,7 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
  CarriageControl:;
  Variable:K
  Variable:K1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  CarriageControl:;
  TextConstant:" IN THE"
  CarriageControl:NL
@@ -591,7 +591,7 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
  CarriageControl:;
  Variable:K
  Variable:K1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  CarriageControl:;
  TextConstant:"! GET WITH IT!"
  CarriageControl:NL
@@ -640,9 +640,9 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
 1000 PRINT SQR(2*D1/A),"SPLAT"
  NumericConstant:2
  Variable:D1
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  Variable:A
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  FunctionSqr
  CarriageControl:,
  TextConstant:"SPLAT"
@@ -652,8 +652,8 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
  NumericConstant:10
  NumericConstant:0
  FunctionRnd
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  LineNumber:800
  LineNumber:801
@@ -668,19 +668,19 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
 1010 PRINT (V/A)+((D1-(V^2/(2*A)))/V), "SPLAT"
  Variable:V
  Variable:A
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  Variable:D1
  Variable:V
  NumericConstant:2
- BinaryOperatorPower:^
+ BinaryOperatorPower:^ numeric
  NumericConstant:2
  Variable:A
- BinaryOperatorMultiply:*
- BinaryOperatorDivide:/
- BinaryOperatorMinus:-
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorMinus:- numeric
  Variable:V
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
  CarriageControl:,
  TextConstant:"SPLAT"
  CarriageControl:NL
@@ -697,11 +697,11 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
 2001 IF Z$="YES" GOTO 110
  Variable:Z$
  TextConstant:"YES"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 2002 IF Z$="NO" GOTO 2005
  Variable:Z$
  TextConstant:"NO"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 2003 PRINT "YES OR NO"\GOTO 2000
  TextConstant:"YES OR NO"
  CarriageControl:NL
@@ -712,7 +712,7 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
  Variable:Z$
  Variable:Z$
  TextConstant:"YES"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 2007 PRINT "SSSSSSSSSS."\GOTO 2046
  TextConstant:"SSSSSSSSSS."
  CarriageControl:NL

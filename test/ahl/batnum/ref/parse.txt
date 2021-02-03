@@ -41,18 +41,18 @@
 350 IF N<>0 THEN 370
  Variable:N
  NumericConstant:0
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 360 GOTO 330
  LineNumber:330
 370 IF N<>INT(N) THEN 220
  Variable:N
  Variable:N
  FunctionInt
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 380 IF N<1 THEN 220
  Variable:N
  NumericConstant:1
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 390 PRINT "ENTER WIN OPTION - 1 TO TAKE LAST, 2 TO AVOID LAST:";
  TextConstant:"ENTER WIN OPTION - 1 TO TAKE LAST, 2 TO AVOID LAST:"
  CarriageControl:;
@@ -61,11 +61,11 @@
 410 IF M=1 THEN 430
  Variable:M
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 420 IF M<>2 THEN 390
  Variable:M
  NumericConstant:2
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 430 PRINT "ENTER MIN AND MAX:";
  TextConstant:"ENTER MIN AND MAX:"
  CarriageControl:;
@@ -75,21 +75,21 @@
 450 IF A>B THEN 430
  Variable:A
  Variable:B
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 460 IF A<1 THEN 430
  Variable:A
  NumericConstant:1
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 470 IF A<>INT(A) THEN 430
  Variable:A
  Variable:A
  FunctionInt
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 480 IF B<>INT(B) THEN 430
  Variable:B
  Variable:B
  FunctionInt
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 490 PRINT"ENTER START OPTION - 1 COMPUTER FIRST, 2 YOU FIRST:";
  TextConstant:"ENTER START OPTION - 1 COMPUTER FIRST, 2 YOU FIRST:"
  CarriageControl:;
@@ -98,33 +98,33 @@
 510 IF S=1 THEN 530
  Variable:S
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 520 IF S<>2 THEN 490
  Variable:S
  NumericConstant:2
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 530 LET C=A+B
  Variable:C
  Variable:A
  Variable:B
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 540 IF S=2 THEN 570
  Variable:S
  NumericConstant:2
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 550 GOSUB 600
  LineNumber:600
 560 IF W=1 THEN 220
  Variable:W
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 570 GOSUB 810
  LineNumber:810
 580 IF W=1 THEN 220
  Variable:W
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 590 GO TO 550
  LineNumber:550
 600 LET Q=N
@@ -134,21 +134,21 @@
 610 IF M=1 THEN 630
  Variable:M
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 620 LET Q=Q-1
  Variable:Q
  Variable:Q
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 630 IF M=1 THEN 680
  Variable:M
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 640 IF N>A THEN 720
  Variable:N
  Variable:A
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 650 LET W=1
  Variable:W
  NumericConstant:1
@@ -165,7 +165,7 @@
 680 IF N>B THEN 720
  Variable:N
  Variable:B
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 690 LET W=1
  Variable:W
  NumericConstant:1
@@ -185,15 +185,15 @@
  Variable:C
  Variable:Q
  Variable:C
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  FunctionInt
- BinaryOperatorMultiply:*
- BinaryOperatorMinus:-
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 730 IF P>=A THEN 750
  Variable:P
  Variable:A
- BinaryOperatorGreaterEqual:>=
+ BinaryOperatorGreaterEqual:>= boolean
 740 LET P=A
  Variable:P
  Variable:A
@@ -201,7 +201,7 @@
 750 IF P<=B THEN 770
  Variable:P
  Variable:B
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 760 LET P=B
  Variable:P
  Variable:B
@@ -210,7 +210,7 @@
  Variable:N
  Variable:N
  Variable:P
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 780 PRINT"COMPUTER TAKES"; P; "AND LEAVES"; N
  TextConstant:"COMPUTER TAKES"
@@ -235,7 +235,7 @@
 830 IF P<>0 THEN 870
  Variable:P
  NumericConstant:0
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 840 PRINT"I TOLD YOU NOT TO USE ZERO. .. COMPUTER WINS BY FORFEIT."
  TextConstant:"I TOLD YOU NOT TO USE ZERO. .. COMPUTER WINS BY FORFEIT."
  CarriageControl:NL
@@ -249,21 +249,21 @@
  Variable:P
  Variable:P
  FunctionInt
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 880 IF P>=A THEN 910
  Variable:P
  Variable:A
- BinaryOperatorGreaterEqual:>=
+ BinaryOperatorGreaterEqual:>= boolean
 890 IF P=N THEN 960
  Variable:P
  Variable:N
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 900 GO TO 920
  LineNumber:920
 910 IF P<=B THEN 940
  Variable:P
  Variable:B
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 920 PRINT "ILLEGAL MOVE, REENTER IT:";
  TextConstant:"ILLEGAL MOVE, REENTER IT:"
  CarriageControl:;
@@ -273,16 +273,16 @@
  Variable:N
  Variable:N
  Variable:P
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 950 IF N<>0 THEN 1030
  Variable:N
  NumericConstant:0
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 960 IF M=1 THEN 1060
  Variable:M
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 970 PRINT "TOUGH LUCK, YOU LOSE."
  TextConstant:"TOUGH LUCK, YOU LOSE."
  CarriageControl:NL
@@ -304,12 +304,12 @@
 1030 IF N>=0 THEN 1060
  Variable:N
  NumericConstant:0
- BinaryOperatorGreaterEqual:>=
+ BinaryOperatorGreaterEqual:>= boolean
 1040 LET N=N+P
  Variable:N
  Variable:N
  Variable:P
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 1050 GO TO 920
  LineNumber:920

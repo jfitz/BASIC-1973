@@ -9,7 +9,7 @@
  IntegerConstant:1
  FunctionLeft
  TextConstant:"Y"
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 20 &: &, "THIS PROGRAM PLAYS THE GAME OF HEXAPAWN.":& "HEXAPAWN IS PLAYED WITH CHESS PAWNS ON A 3 BY 3 BOARD. THE PAWNS ARE": & "MOVED AS IN CHESS - ONE SPACE FORWARD TO AN EMPTY SPACE OR ONE SPACE"
  CarriageControl:NL
  CarriageControl:,
@@ -61,14 +61,14 @@
  IntegerConstant:1
  FunctionLeft
  Variable:Y$
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  Variable:X$
  Variable:X%
  Variable:Y$
  FunctionLen
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionRight
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
 105 DEF FNN$(X%):X$=NUM$(X%):FNN$=MID(X$,2%*LEN(X$)-2%):FNEND
  Variable:X$
  Variable:X%
@@ -79,9 +79,9 @@
  IntegerConstant:2
  Variable:X$
  FunctionLen
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  IntegerConstant:2
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  FunctionMid
  AssignmentOperator:=
  
@@ -114,7 +114,7 @@
 190 D%=-1%: Q$="O": GOSUB 2000: IF M$="" THEN PRINT "YOU CAN'T MOVE. I WIN.": GOTO 510
  Variable:D%
  IntegerConstant:1
- UnaryOperatorMinus:-
+ UnaryOperatorMinus:- integer
  AssignmentOperator:=
  Variable:Q$
  TextConstant:"O"
@@ -122,7 +122,7 @@
  LineNumber:2000
  Variable:M$
  TextConstant:""
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  TextConstant:"YOU CAN'T MOVE. I WIN."
  CarriageControl:NL
  LineNumber:510
@@ -153,10 +153,10 @@
  UserFunction
  Variable:B%
  UserFunction
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  FunctionInstr
  IntegerConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  TextConstant:"ILLEGAL MOVE."
  CarriageControl:NL
  LineNumber:210
@@ -175,14 +175,14 @@
  TextConstant:"*"
  FunctionInstr
  IntegerConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  IntegerConstant:1
  Variable:P$
  TextConstant:"O"
  FunctionInstr
  IntegerConstant:4
- BinaryOperatorEqual:=
- BinaryOperatorOr:OR
+ BinaryOperatorEqual:= boolean
+ BinaryOperatorOr:OR boolean
  TextConstant:"YOU WIN."
  CarriageControl:NL
  LineNumber:500
@@ -190,7 +190,7 @@
  Variable:P%
  Variable:P%
  IntegerConstant:2
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ integer
  AssignmentOperator:=
 310 FOR C%=1% TO Q%: C$=P$(C%): IF VAL(LEFT(C$,1%))=P% AND MID(C$,2%,9%)=P$ THEN M$=RIGHT(C$,11%) : GOTO 400
  control: Variable:C%
@@ -205,14 +205,14 @@
  FunctionLeft
  FunctionVal
  Variable:P%
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:C$
  IntegerConstant:2
  IntegerConstant:9
  FunctionMid
  Variable:P$
- BinaryOperatorEqual:=
- BinaryOperatorAnd:AND
+ BinaryOperatorEqual:= boolean
+ BinaryOperatorAnd:AND boolean
  Variable:M$
  Variable:C$
  IntegerConstant:11
@@ -233,14 +233,14 @@
  AssignmentOperator:=
  Variable:M$
  TextConstant:""
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  TextConstant:"I CAN'T MOVE, YOU WIN."
  CarriageControl:NL
  LineNumber:500
 400 IF M$="" THEN PRINT "I RESIGN.": GOTO 500
  Variable:M$
  TextConstant:""
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  TextConstant:"I RESIGN."
  CarriageControl:NL
  LineNumber:500
@@ -257,11 +257,11 @@
  AssignmentOperator:=
  FunctionRnd
  NumericConstant:.33333333
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:M$
  TextConstant:""
- BinaryOperatorNotEqual:<>
- BinaryOperatorAnd:AND
+ BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorAnd:AND boolean
 420 K%=C%: A%=VAL(LEFT(K$,1%)): B%=VAL(RIGHT(K$,2%)): P$=FNC$(FNC$(P$,A%,"-"),B%,"*")
  Variable:K%
  Variable:C%
@@ -293,12 +293,12 @@
  TextConstant:"O"
  FunctionInstr
  IntegerConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  IntegerConstant:7
  Variable:P$
  TextConstant:"*"
  FunctionInstr
- BinaryOperatorOr:OR
+ BinaryOperatorOr:OR boolean
  TextConstant:"I WIN!"
  CarriageControl:NL
  LineNumber:510
@@ -316,7 +316,7 @@
  Variable:W2%
  Variable:W2%
  IntegerConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ integer
  AssignmentOperator:=
  Variable:I%
  IntegerConstant:11
@@ -331,15 +331,15 @@
  Variable:P$
  Variable:I%
  IntegerConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- integer
  FunctionLeft
  Variable:K%
  Variable:P$
  Variable:I%
  IntegerConstant:2
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ integer
  FunctionRight
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  AssignmentOperator:=
  Variable:I%
  LineNumber:520
@@ -347,7 +347,7 @@
  Variable:W1%
  Variable:W1%
  IntegerConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ integer
  AssignmentOperator:=
 520 &: &"BOARD:": &LEFT(P$,3%): &MID(P$,4%,3%): &RIGHT(P$,7%): &: & "I HAVE WON" W1% "AND YOU HAVE WON" W2% "OF" W1%+W2% "GAMES"
  CarriageControl:NL
@@ -379,7 +379,7 @@
  CarriageControl:
  Variable:W1%
  Variable:W2%
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ integer
  CarriageControl:
  TextConstant:"GAMES"
  CarriageControl:NL
@@ -387,7 +387,7 @@
  Variable:C$
  Variable:C$
  TextConstant:"NO"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 900 ! DATA**= <- OF MOVE IN GAME><POSITION><LIST OF MOVES> IN <POSITION>, -=BLANK *=COMPUTER'S PAWN, O=PLAYER'S PAWN <LIST OF MOVES> IS <- MOVE FROM><- MOVE TO><LIST OF MOVES>
 2000 M$=""
  Variable:M$
@@ -402,172 +402,172 @@
  IntegerConstant:1
  FunctionMid
  Variable:Q$
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 2015 T%=J%+D%*3%: IF T%<1% OR T%>9% THEN 2025
  Variable:T%
  Variable:J%
  Variable:D%
  IntegerConstant:3
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* integer
+ BinaryOperatorPlus:+ integer
  AssignmentOperator:=
  Variable:T%
  IntegerConstant:1
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  Variable:T%
  IntegerConstant:9
- BinaryOperatorGreater:>
- BinaryOperatorOr:OR
+ BinaryOperatorGreater:> boolean
+ BinaryOperatorOr:OR boolean
 2020 IF MID(P$,T%,1%)="-" THEN M$=M$+FNN$(J%)+FNN$(T%)
  Variable:P$
  Variable:T%
  IntegerConstant:1
  FunctionMid
  TextConstant:"-"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:M$
  Variable:M$
  Variable:J%
  UserFunction
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  Variable:T%
  UserFunction
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  AssignmentOperator:=
 2025 T%=J%+D%*2%: IF T%<1% OR T%>9% OR (D%=1% AND (J%=1% OR J%=4% OR J%=7%)) OR (D%=1% AND (J%=3% OR J%=6% OR J%-9%)) THEN 2035
  Variable:T%
  Variable:J%
  Variable:D%
  IntegerConstant:2
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* integer
+ BinaryOperatorPlus:+ integer
  AssignmentOperator:=
  Variable:T%
  IntegerConstant:1
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  Variable:T%
  IntegerConstant:9
- BinaryOperatorGreater:>
- BinaryOperatorOr:OR
+ BinaryOperatorGreater:> boolean
+ BinaryOperatorOr:OR boolean
  Variable:D%
  IntegerConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:J%
  IntegerConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:J%
  IntegerConstant:4
- BinaryOperatorEqual:=
- BinaryOperatorOr:OR
+ BinaryOperatorEqual:= boolean
+ BinaryOperatorOr:OR boolean
  Variable:J%
  IntegerConstant:7
- BinaryOperatorEqual:=
- BinaryOperatorOr:OR
- BinaryOperatorAnd:AND
- BinaryOperatorOr:OR
+ BinaryOperatorEqual:= boolean
+ BinaryOperatorOr:OR boolean
+ BinaryOperatorAnd:AND boolean
+ BinaryOperatorOr:OR boolean
  Variable:D%
  IntegerConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:J%
  IntegerConstant:3
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:J%
  IntegerConstant:6
- BinaryOperatorEqual:=
- BinaryOperatorOr:OR
+ BinaryOperatorEqual:= boolean
+ BinaryOperatorOr:OR boolean
  Variable:J%
  IntegerConstant:9
- BinaryOperatorMinus:-
- BinaryOperatorOr:OR
- BinaryOperatorAnd:AND
- BinaryOperatorOr:OR
+ BinaryOperatorMinus:- integer
+ BinaryOperatorOr:OR boolean
+ BinaryOperatorAnd:AND boolean
+ BinaryOperatorOr:OR boolean
 2030 IF INSTR(1%,Q$+"-",MID(P$,T%,1%))=0% THEN M$=M$+FNN$(J%)+FNN$(T%)
  IntegerConstant:1
  Variable:Q$
  TextConstant:"-"
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  Variable:P$
  Variable:T%
  IntegerConstant:1
  FunctionMid
  FunctionInstr
  IntegerConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:M$
  Variable:M$
  Variable:J%
  UserFunction
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  Variable:T%
  UserFunction
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  AssignmentOperator:=
 2035 T%=J%+D%*4%: IF T%<1% OR T%>9% OR J%=3% OR J%=7% THEN 2050
  Variable:T%
  Variable:J%
  Variable:D%
  IntegerConstant:4
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* integer
+ BinaryOperatorPlus:+ integer
  AssignmentOperator:=
  Variable:T%
  IntegerConstant:1
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  Variable:T%
  IntegerConstant:9
- BinaryOperatorGreater:>
- BinaryOperatorOr:OR
+ BinaryOperatorGreater:> boolean
+ BinaryOperatorOr:OR boolean
  Variable:J%
  IntegerConstant:3
- BinaryOperatorEqual:=
- BinaryOperatorOr:OR
+ BinaryOperatorEqual:= boolean
+ BinaryOperatorOr:OR boolean
  Variable:J%
  IntegerConstant:7
- BinaryOperatorEqual:=
- BinaryOperatorOr:OR
+ BinaryOperatorEqual:= boolean
+ BinaryOperatorOr:OR boolean
 2040 IF INSTR(1%,Q$+"-",MID(P$,T%,1%))=0% THEN M$=M$+FNN$(J%)+FNN$(T%)
  IntegerConstant:1
  Variable:Q$
  TextConstant:"-"
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  Variable:P$
  Variable:T%
  IntegerConstant:1
  FunctionMid
  FunctionInstr
  IntegerConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:M$
  Variable:M$
  Variable:J%
  UserFunction
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  Variable:T%
  UserFunction
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  AssignmentOperator:=
 2050 NEXT J%: IF D%=1% AND M$<>"" THEN Q%=Q%+1%: P$(Q%)=FNN$(P%)+P$+M$
  Variable:J%
  Variable:D%
  IntegerConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:M$
  TextConstant:""
- BinaryOperatorNotEqual:<>
- BinaryOperatorAnd:AND
+ BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorAnd:AND boolean
  Variable:Q%
  Variable:Q%
  IntegerConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ integer
  AssignmentOperator:=
  Variable:Q%
  Variable:P$
  Variable:P%
  UserFunction
  Variable:P$
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  Variable:M$
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  AssignmentOperator:=
 2060 RETURN
  

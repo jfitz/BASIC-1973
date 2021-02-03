@@ -17,7 +17,7 @@
 210 IF A$<>"YES" THEN 230
  Variable:A$
  TextConstant:"YES"
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 220 GOTO 5820
  LineNumber:5820
 230 REM *** PROGRAM BEGINS HERE
@@ -49,12 +49,12 @@
  NumericConstant:1
  FunctionRnd
  NumericConstant:20
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:20
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  NumericConstant:100
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  AssignmentOperator:=
 300 T9=30:D0=0:E0,E=3000:P0,P=10:S9=200:S,S8=0
  Variable:T9
@@ -85,26 +85,26 @@
  NumericConstant:1
  Variable:K
  Variable:S1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:2
- BinaryOperatorPower:**
+ BinaryOperatorPower:** numeric
  Variable:I
  NumericConstant:2
  Variable:K
  Variable:S2
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:2
- BinaryOperatorPower:**
- BinaryOperatorPlus:+
+ BinaryOperatorPower:** numeric
+ BinaryOperatorPlus:+ numeric
  FunctionSqr
 370 Q1=INT(RND(1)*8+1)
  Variable:Q1
  NumericConstant:1
  FunctionRnd
  NumericConstant:8
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  AssignmentOperator:=
 380 Q2=INT(RND(1)*8+1)
@@ -112,9 +112,9 @@
  NumericConstant:1
  FunctionRnd
  NumericConstant:8
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  AssignmentOperator:=
 390 S1=INT(RND(1)*8+1)
@@ -122,9 +122,9 @@
  NumericConstant:1
  FunctionRnd
  NumericConstant:8
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  AssignmentOperator:=
 400 S2=INT(RND(1)*8+1)
@@ -132,9 +132,9 @@
  NumericConstant:1
  FunctionRnd
  NumericConstant:8
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  AssignmentOperator:=
 410 T7=TIME(0)
@@ -162,7 +162,7 @@
  NumericConstant:2
  Variable:C
  NumericConstant:1
- UnaryOperatorMinus:-
+ UnaryOperatorMinus:- numeric
  AssignmentOperator:=
 430 C(1,1),C(3,2),C(5,1),C(7,2),C(9,1)=0
  NumericConstant:1
@@ -216,7 +216,7 @@
  Variable:D$
  Variable:D$
  TextConstant:"PHOTON TUBESDAMAGE CNTRL"
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  AssignmentOperator:=
 480 E$="SHIELD CNTRLCOMPUTER"
  Variable:E$
@@ -245,15 +245,15 @@
 530 IF R1>.98 THEN 580
  Variable:R1
  NumericConstant:.98
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 540 IF R1>.95 THEN 610
  Variable:R1
  NumericConstant:.95
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 550 IF R1>.8 THEN 640
  Variable:R1
  NumericConstant:.8
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 560 K3=0:GOTO 660
  Variable:K3
  NumericConstant:0
@@ -266,7 +266,7 @@
  Variable:K9
  Variable:K9
  NumericConstant:3
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
  LineNumber:660
 610 K3=2:K9=K9+2:GOTO 660
@@ -276,7 +276,7 @@
  Variable:K9
  Variable:K9
  NumericConstant:2
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
  LineNumber:660
 640 K3=1:K9=K9+1
@@ -286,7 +286,7 @@
  Variable:K9
  Variable:K9
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 660 R1=RND(1)
  Variable:R1
@@ -296,7 +296,7 @@
 670 IF R1>.96 THEN 700
  Variable:R1
  NumericConstant:.96
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 680 B3=0:GOTO 720
  Variable:B3
  NumericConstant:0
@@ -309,16 +309,16 @@
  Variable:B9
  Variable:B9
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 720 S3=INT(RND(1)*8+1)
  Variable:S3
  NumericConstant:1
  FunctionRnd
  NumericConstant:8
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  AssignmentOperator:=
 730 G(I,J)=K3*100+B3*10+S3
@@ -327,13 +327,13 @@
  Variable:G
  Variable:K3
  NumericConstant:100
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  Variable:B3
  NumericConstant:10
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  Variable:S3
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 740 Z(I,J)=0
  Variable:I
@@ -370,7 +370,7 @@
 790 IF B9>0 THEN 810
  Variable:B9
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 800 G(6,3)=114
  NumericConstant:6
  NumericConstant:3
@@ -386,26 +386,26 @@
 820 IF Q1<1 OR Q1>8 OR Q2<1 OR Q2>8 THEN 990
  Variable:Q1
  NumericConstant:1
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  Variable:Q1
  NumericConstant:8
- BinaryOperatorGreater:>
- BinaryOperatorOr:OR
+ BinaryOperatorGreater:> boolean
+ BinaryOperatorOr:OR boolean
  Variable:Q2
  NumericConstant:1
- BinaryOperatorLess:<
- BinaryOperatorOr:OR
+ BinaryOperatorLess:< boolean
+ BinaryOperatorOr:OR boolean
  Variable:Q2
  NumericConstant:8
- BinaryOperatorGreater:>
- BinaryOperatorOr:OR
+ BinaryOperatorGreater:> boolean
+ BinaryOperatorOr:OR boolean
 830 X=G(Q1,Q2)*.01
  Variable:X
  Variable:Q1
  Variable:Q2
  Variable:G
  NumericConstant:.01
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  AssignmentOperator:=
 840 K3=INT(X)
  Variable:K3
@@ -416,9 +416,9 @@
  Variable:B3
  Variable:X
  Variable:K3
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:10
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  FunctionInt
  AssignmentOperator:=
 860 S3=G(Q1,Q2)-INT(G(Q1,Q2)*.1)+10
@@ -430,20 +430,20 @@
  Variable:Q2
  Variable:G
  NumericConstant:.1
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  FunctionInt
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:10
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 870 IF K3=0 THEN 910
  Variable:K3
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 880 IF S>200 THEN 910
  Variable:S
  NumericConstant:200
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 890 PRINT"COMBAT AREA      CONDITION RED"
  TextConstant:"COMBAT AREA      CONDITION RED"
  CarriageControl:NL
@@ -587,39 +587,39 @@
 1290 IF A=0 GOTO 1410
  Variable:A
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1291 IF A=1 GOTO 1260
  Variable:A
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1292 IF A=2 GOTO 2330
  Variable:A
  NumericConstant:2
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1293 IF A=3 GOTO 2530
  Variable:A
  NumericConstant:3
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1294 IF A=4 GOTO 2800
  Variable:A
  NumericConstant:4
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1295 IF A=5 GOTO 3460
  Variable:A
  NumericConstant:5
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1296 IF A=6 GOTO 3560
  Variable:A
  NumericConstant:6
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1297 IF A=7 GOTO 4630
  Variable:A
  NumericConstant:7
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1298 IF A=8 GOTO 6510
  Variable:A
  NumericConstant:8
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1310 PRINT:PRINT"   0 = SET COURSE"
  CarriageControl:NL
  TextConstant:"   0 = SET COURSE"
@@ -658,34 +658,34 @@
 1430 IF C1=0 THEN 1270
  Variable:C1
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1440 IF C1<1 OR C1>9 THEN 1410
  Variable:C1
  NumericConstant:1
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  Variable:C1
  NumericConstant:9
- BinaryOperatorGreater:>
- BinaryOperatorOr:OR
+ BinaryOperatorGreater:> boolean
+ BinaryOperatorOr:OR boolean
 1450 INPUT "WARP FACTOR (0-8):";W1
  Variable:W1
 1470 IF W1<1 OR W1>8 THEN 1410
  Variable:W1
  NumericConstant:1
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  Variable:W1
  NumericConstant:8
- BinaryOperatorGreater:>
- BinaryOperatorOr:OR
+ BinaryOperatorGreater:> boolean
+ BinaryOperatorOr:OR boolean
 1480 IF D(1)>0 OR W1<=.2 THEN 1810
  NumericConstant:1
  Variable:D
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:W1
  NumericConstant:.2
- BinaryOperatorLessEqual:<=
- BinaryOperatorOr:OR
+ BinaryOperatorLessEqual:<= boolean
+ BinaryOperatorOr:OR boolean
 1490 PRINT "WARP ENGINES ARE DAMAGEO. MAXIMUM SPEED = WARP .2"
  TextConstant:"WARP ENGINES ARE DAMAGEO. MAXIMUM SPEED = WARP .2"
  CarriageControl:NL
@@ -694,27 +694,27 @@
 1510 IF K3<=0 THEN 1560
  Variable:K3
  NumericConstant:0
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 1520 GOSUB 3790
  LineNumber:3790
 1530 IF K3<=0 THEN 1560
  Variable:K3
  NumericConstant:0
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 1540 IF S<0 THEN 4000
  Variable:S
  NumericConstant:0
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 1550 GOTO 1610
  LineNumber:1610
 1560 IF E>0 THEN 1610
  Variable:E
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 1570 IF S<1 THEN 3920
  Variable:S
  NumericConstant:1
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 1580 PRINT "YOU HAVE"E" UNITS OF ENERGY"
  TextConstant:"YOU HAVE"
  CarriageControl:
@@ -738,7 +738,7 @@
  Variable:I
  Variable:D
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 1611 REM *** FIX ANY DAMAGED DEVICE
  Remark:*** FIX ANY DAMAGED DEVICE
 1630 D(I)=1
@@ -752,22 +752,22 @@
  NumericConstant:1
  FunctionRnd
  NumericConstant:.2
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 1660 B1=INT(RND(1)*8+1)
  Variable:B1
  NumericConstant:1
  FunctionRnd
  NumericConstant:8
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  AssignmentOperator:=
 1670 IF RND(1)>= .5 THEN 1750
  NumericConstant:1
  FunctionRnd
  NumericConstant:.5
- BinaryOperatorGreaterEqual:>=
+ BinaryOperatorGreaterEqual:>= boolean
 1680 D(B1)=D(B1)-(RND(1)*5+1)
  Variable:B1
  Variable:D
@@ -776,10 +776,10 @@
  NumericConstant:1
  FunctionRnd
  NumericConstant:5
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:1
- BinaryOperatorPlus:+
- BinaryOperatorMinus:-
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 1690 PRINT:PRINT "DAMAGE CONTROL REPORT:";
  CarriageControl:NL
@@ -800,10 +800,10 @@
  NumericConstant:1
  FunctionRnd
  NumericConstant:5
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:1
- BinaryOperatorPlus:+
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 1760 PRINT:PRINT "DAMAGE CONTROl REPORT:";
  CarriageControl:NL
@@ -819,7 +819,7 @@
  Variable:N
  Variable:W1
  NumericConstant:8
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  FunctionInt
  AssignmentOperator:=
  Variable:A$
@@ -840,19 +840,19 @@
  Variable:C
  Variable:C1
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  NumericConstant:1
  Variable:C
  Variable:C1
  NumericConstant:1
  Variable:C
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:C1
  Variable:C1
  FunctionInt
- BinaryOperatorMinus:-
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMinus:- numeric
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 1870 X=S1:Y=S2
  Variable:X
@@ -868,19 +868,19 @@
  Variable:C
  Variable:C1
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  NumericConstant:1
  Variable:C
  Variable:C1
  NumericConstant:1
  Variable:C
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:C1
  Variable:C1
  FunctionInt
- BinaryOperatorMinus:-
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMinus:- numeric
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 1900 X2=C(C1,2)+(C(C1+1,2)-C(C1,2))*(C1-INT(C1))
  Variable:X2
@@ -889,19 +889,19 @@
  Variable:C
  Variable:C1
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  NumericConstant:2
  Variable:C
  Variable:C1
  NumericConstant:2
  Variable:C
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:C1
  Variable:C1
  FunctionInt
- BinaryOperatorMinus:-
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMinus:- numeric
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 1910 FOR I=1TON:S1=S1+X1:S2=S2+X2
  control: Variable:I
@@ -910,77 +910,77 @@
  Variable:S1
  Variable:S1
  Variable:X1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
  Variable:S2
  Variable:S2
  Variable:X2
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 1940 IF S1<1 OR S1>=9 OR S2<1 OR S2>=9 THEN 2170
  Variable:S1
  NumericConstant:1
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  Variable:S1
  NumericConstant:9
- BinaryOperatorGreaterEqual:>=
- BinaryOperatorOr:OR
+ BinaryOperatorGreaterEqual:>= boolean
+ BinaryOperatorOr:OR boolean
  Variable:S2
  NumericConstant:1
- BinaryOperatorLess:<
- BinaryOperatorOr:OR
+ BinaryOperatorLess:< boolean
+ BinaryOperatorOr:OR boolean
  Variable:S2
  NumericConstant:9
- BinaryOperatorGreaterEqual:>=
- BinaryOperatorOr:OR
+ BinaryOperatorGreaterEqual:>= boolean
+ BinaryOperatorOr:OR boolean
 1950 S8=S1*24+S2*3-26: IF S8>72 THEN 1990
  Variable:S8
  Variable:S1
  NumericConstant:24
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  Variable:S2
  NumericConstant:3
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  NumericConstant:26
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  Variable:S8
  NumericConstant:72
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 1970 IF MID(Q$,S8,3)="   " THEN 2070
  Variable:Q$
  Variable:S8
  NumericConstant:3
  FunctionMid
  TextConstant:"   "
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1980 GOTO 2030
  LineNumber:2030
 1990 IF S8>144 THEN 2020
  Variable:S8
  NumericConstant:144
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 2000 IF MID(R$,S8-72,3)="   " THEN 2070
  Variable:R$
  Variable:S8
  NumericConstant:72
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:3
  FunctionMid
  TextConstant:"   "
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 2010 GOTO 2030
  LineNumber:2030
 2020 IF MID(S$,S8-144,3)="   " THEN 2070
  Variable:S$
  Variable:S8
  NumericConstant:144
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:3
  FunctionMid
  TextConstant:"   "
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 2030 PRINT"WARP ENGINES SHUTDOWN AT SECTOR "S1"."S2" DUE TO BAD NAVAGATION"
  TextConstant:"WARP ENGINES SHUTDOWN AT SECTOR "
  CarriageControl:
@@ -996,12 +996,12 @@
  Variable:S1
  Variable:S1
  Variable:X1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  Variable:S2
  Variable:S2
  Variable:X2
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  LineNumber:2080
 2070 NEXT I
@@ -1022,88 +1022,88 @@
  Variable:E
  Variable:E
  Variable:N
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:5
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
  Variable:W1
  NumericConstant:1
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 2140 T=T+1
  Variable:T
  Variable:T
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 2150 IF T>T0+T9 THEN 3970
  Variable:T
  Variable:T0
  Variable:T9
- BinaryOperatorPlus:+
- BinaryOperatorGreater:>
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorGreater:> boolean
 2160 GOTO 1260
  LineNumber:1260
 2170 X=Q1*8+X+X1*N:Y=Q2*8+Y+X2*N
  Variable:X
  Variable:Q1
  NumericConstant:8
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  Variable:X
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:X1
  Variable:N
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
  Variable:Y
  Variable:Q2
  NumericConstant:8
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  Variable:Y
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:X2
  Variable:N
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 2190 Q1=INT(X/8):Q2=INT(Y/8):S1=INT(X-Q1*8):S2=INT(Y-Q2*8)
  Variable:Q1
  Variable:X
  NumericConstant:8
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  FunctionInt
  AssignmentOperator:=
  Variable:Q2
  Variable:Y
  NumericConstant:8
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  FunctionInt
  AssignmentOperator:=
  Variable:S1
  Variable:X
  Variable:Q1
  NumericConstant:8
- BinaryOperatorMultiply:*
- BinaryOperatorMinus:-
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorMinus:- numeric
  FunctionInt
  AssignmentOperator:=
  Variable:S2
  Variable:Y
  Variable:Q2
  NumericConstant:8
- BinaryOperatorMultiply:*
- BinaryOperatorMinus:-
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorMinus:- numeric
  FunctionInt
  AssignmentOperator:=
 2230 IF S1<>0 THEN 2260
  Variable:S1
  NumericConstant:0
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 2240 Q1=Q1-1:S1=8
  Variable:Q1
  Variable:Q1
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  Variable:S1
  NumericConstant:8
@@ -1111,12 +1111,12 @@
 2260 IF S2<>0 THEN 2290
  Variable:S2
  NumericConstant:0
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 2270 Q2=Q2-1:S2=8
  Variable:Q2
  Variable:Q2
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  Variable:S2
  NumericConstant:8
@@ -1125,21 +1125,21 @@
  Variable:T
  Variable:T
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
  Variable:F
  Variable:F
  Variable:N
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:5
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 2310 IF T>T0 + T9 THEN 3970
  Variable:T
  Variable:T0
  Variable:T9
- BinaryOperatorPlus:+
- BinaryOperatorGreater:>
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorGreater:> boolean
 2320 GOTO 810
  LineNumber:810
 2321 REM *** LONG RANGE SENSOR SCAN CODE BEGINS HERE
@@ -1148,7 +1148,7 @@
  NumericConstant:3
  Variable:D
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 2340 PRINT "LONG RANGE SENSORS ARE INOPERABLE"
  TextConstant:"LONG RANGE SENSORS ARE INOPERABLE"
  CarriageControl:NL
@@ -1168,38 +1168,38 @@
  CarriageControl:NL
 2390 FOR I=Q1-1 TO Q1+1
  control: Variable:I
- start:   ["Variable:Q1", "NumericConstant:1", "BinaryOperatorMinus:-"]
- end:     ["Variable:Q1", "NumericConstant:1", "BinaryOperatorPlus:+"]
+ start:   ["Variable:Q1", "NumericConstant:1", "BinaryOperatorMinus:- numeric"]
+ end:     ["Variable:Q1", "NumericConstant:1", "BinaryOperatorPlus:+ numeric"]
 2400 MAT N=ZER
  Variable:N
  FunctionZer2
  AssignmentOperator:=
 2410 FOR J=Q2-1 TO Q2+1
  control: Variable:J
- start:   ["Variable:Q2", "NumericConstant:1", "BinaryOperatorMinus:-"]
- end:     ["Variable:Q2", "NumericConstant:1", "BinaryOperatorPlus:+"]
+ start:   ["Variable:Q2", "NumericConstant:1", "BinaryOperatorMinus:- numeric"]
+ end:     ["Variable:Q2", "NumericConstant:1", "BinaryOperatorPlus:+ numeric"]
 2420 IF I<1 OR I>8 OR J<1 OR J>8 THEN 2460
  Variable:I
  NumericConstant:1
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  Variable:I
  NumericConstant:8
- BinaryOperatorGreater:>
- BinaryOperatorOr:OR
+ BinaryOperatorGreater:> boolean
+ BinaryOperatorOr:OR boolean
  Variable:J
  NumericConstant:1
- BinaryOperatorLess:<
- BinaryOperatorOr:OR
+ BinaryOperatorLess:< boolean
+ BinaryOperatorOr:OR boolean
  Variable:J
  NumericConstant:8
- BinaryOperatorGreater:>
- BinaryOperatorOr:OR
+ BinaryOperatorGreater:> boolean
+ BinaryOperatorOr:OR boolean
 2430 N(J-Q2+2)=G(I,J)
  Variable:J
  Variable:Q2
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:2
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:N
  Variable:I
  Variable:J
@@ -1209,7 +1209,7 @@
  NumericConstant:7
  Variable:D
  NumericConstant:0
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 2450 Z(I,J)=G(I,J)
  Variable:I
  Variable:J
@@ -1249,19 +1249,19 @@
 2530 IF K3<=0 THEN 3670
  Variable:K3
  NumericConstant:0
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 2540 IF D(4)>0 THEN 2570
  NumericConstant:4
  Variable:D
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 2560 GOTO 1270 
  LineNumber:1270
 2570 IF D(7)>0 THEN 2590
  NumericConstant:7
  Variable:D
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 2580 PRINT " COMPUTER FAILURE HAMPERS ACCURACY"
  TextConstant:" COMPUTER FAILURE HAMPERS ACCURACY"
  CarriageControl:NL
@@ -1275,18 +1275,18 @@
 2620 IF X<0 1270
  Variable:X
  NumericConstant:01270
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 2630 IF E-X<0 THEN 2570
  Variable:E
  Variable:X
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:0
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 2640 E=E-X
  Variable:E
  Variable:E
  Variable:X
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 2650 GOSUB 3790
  LineNumber:3790
@@ -1294,13 +1294,13 @@
  NumericConstant:7
  Variable:D
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 2670 X=X*RND(1)
  Variable:X
  Variable:X
  NumericConstant:1
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  AssignmentOperator:=
 2680 FOR I=1TO3
  control: Variable:I
@@ -1311,20 +1311,20 @@
  NumericConstant:3
  Variable:K
  NumericConstant:0
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 2700 H=INT((X/K/FND(0))*(2*RND(1)))
  Variable:H
  Variable:X
  Variable:K
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  NumericConstant:0
  UserFunction
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  NumericConstant:2
  NumericConstant:1
  FunctionRnd
- BinaryOperatorMultiply:*
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorMultiply:* numeric
  FunctionInt
  AssignmentOperator:=
 2710 K(I,3)=K(I,3)-H
@@ -1335,7 +1335,7 @@
  NumericConstant:3
  Variable:K
  Variable:H
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 2720 PRINTH" UNIT HIT ON KLINGON AT SECTOR "K(I,1)"."K(I,2);
  Variable:H
@@ -1366,19 +1366,19 @@
  NumericConstant:3
  Variable:K
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 2750 GOSUB 3690
  LineNumber:3690
 2760 IF K9<=0 THEN 4040
  Variable:K9
  NumericConstant:0
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 2770 NEXT I
  Variable:I
 2780 IF E<0 THEN 4000
  Variable:E
  NumericConstant:0
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 2790 GOTO 1270
  LineNumber:1270
 2791 REM *** PHOTON TORPEDO CODE BEGINS HERE
@@ -1387,7 +1387,7 @@
  NumericConstant:5
  Variable:D
  NumericConstant:0
- BinaryOperatorGreaterEqual:>=
+ BinaryOperatorGreaterEqual:>= boolean
 2810 PRINT "PHOTON TUBES ARE NOT OPERATIONAL"
  TextConstant:"PHOTON TUBES ARE NOT OPERATIONAL"
  CarriageControl:NL
@@ -1396,7 +1396,7 @@
 2830 IF P>0 THEN 2860
  Variable:P
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 2840 PRINT "ALL PHOTON TORPEDOES EXPENDED"
  TextConstant:"ALL PHOTON TORPEDOES EXPENDED"
  CarriageControl:NL
@@ -1407,15 +1407,15 @@
 2880 IF C1<0 THEN 1270
  Variable:C1
  NumericConstant:0
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 2890 IF C1<1 OR C1>9 THEN 2860
  Variable:C1
  NumericConstant:1
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  Variable:C1
  NumericConstant:9
- BinaryOperatorGreater:>
- BinaryOperatorOr:OR
+ BinaryOperatorGreater:> boolean
+ BinaryOperatorOr:OR boolean
 2900 X1=C(C1,1)+(C(C1+1,1)-C(C1,1))*(C1-INT(C1))
  Variable:X1
  Variable:C1
@@ -1423,19 +1423,19 @@
  Variable:C
  Variable:C1
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  NumericConstant:1
  Variable:C
  Variable:C1
  NumericConstant:1
  Variable:C
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:C1
  Variable:C1
  FunctionInt
- BinaryOperatorMinus:-
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMinus:- numeric
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 2910 X2=C(C1,2)+(C(C1+1,2)-C(C1,2))*(C1-INT(C1))
  Variable:X2
@@ -1444,19 +1444,19 @@
  Variable:C
  Variable:C1
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  NumericConstant:2
  Variable:C
  Variable:C1
  NumericConstant:2
  Variable:C
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:C1
  Variable:C1
  FunctionInt
- BinaryOperatorMinus:-
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMinus:- numeric
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 2920 X=S1:Y=S2:P=P-1
  Variable:X
@@ -1468,7 +1468,7 @@
  Variable:P
  Variable:P
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 2950 PRINT "TORPEDO TRACK:"
  TextConstant:"TORPEDO TRACK:"
@@ -1477,29 +1477,29 @@
  Variable:X
  Variable:X
  Variable:X1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
  Variable:Y
  Variable:Y
  Variable:X2
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 2980 IF X<1 OR X>=9 OR Y<1 OR Y>=9 THEN 3420
  Variable:X
  NumericConstant:1
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  Variable:X
  NumericConstant:9
- BinaryOperatorGreaterEqual:>=
- BinaryOperatorOr:OR
+ BinaryOperatorGreaterEqual:>= boolean
+ BinaryOperatorOr:OR boolean
  Variable:Y
  NumericConstant:1
- BinaryOperatorLess:<
- BinaryOperatorOr:OR
+ BinaryOperatorLess:< boolean
+ BinaryOperatorOr:OR boolean
  Variable:Y
  NumericConstant:9
- BinaryOperatorGreaterEqual:>=
- BinaryOperatorOr:OR
+ BinaryOperatorGreaterEqual:>= boolean
+ BinaryOperatorOr:OR boolean
 2990 PRINT"               "X"."Y
  TextConstant:"               "
  CarriageControl:
@@ -1524,7 +1524,7 @@
 3050 IF Z3=0 THEN 3220
  Variable:Z3
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 3060 GOTO 2960
  LineNumber:2960
 3070 A$="***":Z1=X:Z2=Y
@@ -1542,7 +1542,7 @@
 3110 IF Z3=0 THEN 3220
  Variable:Z3
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 3120 PRINT "*** KLINGON DESTROYED ***"
  TextConstant:"*** KLINGON DESTROYED ***"
  CarriageControl:NL
@@ -1550,17 +1550,17 @@
  Variable:K3
  Variable:K3
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  Variable:K9
  Variable:K9
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 3150 IF K9<=8 THEN 4040
  Variable:K9
  NumericConstant:8
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 3160 FOR I=1TO3:IF INT(X)=K(I,1) THEN 3190
  control: Variable:I
  start:   ["NumericConstant:1"]
@@ -1570,14 +1570,14 @@
  Variable:I
  NumericConstant:1
  Variable:K
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 3180 IF INT(Y)<>K(I,2) THEN 3200
  Variable:Y
  FunctionInt
  Variable:I
  NumericConstant:2
  Variable:K
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 3190 NEXT I
  Variable:I
 3200 K(I,3)=0:GOTO 3360
@@ -1602,7 +1602,7 @@
 3240 IF Z3=0 THEN 3290
  Variable:Z3
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 3270 PRINT "YOU CAN'T DESTROY STARS, SILLY"
  TextConstant:"YOU CAN'T DESTROY STARS, SILLY"
  CarriageControl:NL
@@ -1623,7 +1623,7 @@
 3330 IF Z3=0 THEN 2690
  Variable:Z3
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 3340 PRINT "*** STAR BASE DESTROYED *** .......CONGRATULATIONS"
  TextConstant:"*** STAR BASE DESTROYED *** .......CONGRATULATIONS"
  CarriageControl:NL
@@ -1631,7 +1631,7 @@
  Variable:B3
  Variable:B3
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 3360 A$="   ":Z1=X:Z2=Y
  Variable:A$
@@ -1651,13 +1651,13 @@
  Variable:G
  Variable:K3
  NumericConstant:100
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  Variable:B3
  NumericConstant:10
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  Variable:S3
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 3410 GOTO 3430
  LineNumber:3430
@@ -1669,7 +1669,7 @@
 3440 IF E<0 THEN 4000
  Variable:E
  NumericConstant:0
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 3450 GOTO 1270
  LineNumber:1270
 3451 REM *** SHIELD CONTROL CODE BEGINS HERE
@@ -1678,7 +1678,7 @@
  NumericConstant:7
  Variable:D
  NumericConstant:0
- BinaryOperatorGreaterEqual:>=
+ BinaryOperatorGreaterEqual:>= boolean
 3470 PRINT "SHIELD CONTROL IS NON-OPERATIONAL"
  TextConstant:"SHIELD CONTROL IS NON-OPERATIONAL"
  CarriageControl:NL
@@ -1689,29 +1689,29 @@
  CarriageControl:
  Variable:F
  Variable:S
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  CarriageControl:;
 3500 INPUT "   NUMBER OF UNTTS TO SHIELDS:";X
  Variable:X
 3510 IF X<=0 THEN 1270
  Variable:X
  NumericConstant:0
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 3520 IF E+S-X<0 THEN 3490
  Variable:E
  Variable:S
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:X
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:0
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 3530 F=E+S-X:S=X
  Variable:F
  Variable:E
  Variable:S
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:X
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  Variable:S
  Variable:X
@@ -1724,7 +1724,7 @@
  NumericConstant:6
  Variable:D
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 3570 PRINT "DAMAGE CONTROL REPORT IS NOT AVAILABLE"
  TextConstant:"DAMAGE CONTROL REPORT IS NOT AVAILABLE"
  CarriageControl:NL
@@ -1773,12 +1773,12 @@
  Variable:K3
  Variable:K3
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  Variable:K9
  Variable:K9
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  Variable:A$
  TextConstant:"   "
@@ -1801,20 +1801,20 @@
  Variable:G
  Variable:K3
  NumericConstant:100
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  Variable:B3
  NumericConstant:10
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  Variable:S3
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 3780 RETURN
  
 3790 IF C$<>"DOCKED" THEN 3820
  Variable:C$
  TextConstant:"DOCKED"
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 3800 PRINT "STAR BASE SHIELDS PROTECT THE ENTERPISE"
  TextConstant:"STAR BASE SHIELDS PROTECT THE ENTERPISE"
  CarriageControl:NL
@@ -1823,7 +1823,7 @@
 3820 IF K3<=0 THEN 3910
  Variable:K3
  NumericConstant:0
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 3830 FOR I=1TO3:IF K(I,3)<=0 THEN 3900
  control: Variable:I
  start:   ["NumericConstant:1"]
@@ -1832,7 +1832,7 @@
  NumericConstant:3
  Variable:K
  NumericConstant:0
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 3850 H=INT((K(I,3)/FND(0))*(2+RND(1))):S=S-H
  Variable:H
  Variable:I
@@ -1840,18 +1840,18 @@
  Variable:K
  NumericConstant:0
  UserFunction
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  NumericConstant:2
  NumericConstant:1
  FunctionRnd
- BinaryOperatorPlus:+
- BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorMultiply:* numeric
  FunctionInt
  AssignmentOperator:=
  Variable:S
  Variable:S
  Variable:H
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 3870 PRINTH" UNIT HIT ON ENTERPRISE AT SECTOR "K(I,1)","K(I,2);
  Variable:H
@@ -1878,7 +1878,7 @@
 3890 IF S<0 THEN 4000
  Variable:S
  NumericConstant:0
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 3900 NEXT I
  Variable:I
 3910 RETURN
@@ -1892,7 +1892,7 @@
 3940 IF K3<=0 THEN 4020
  Variable:K3
  NumericConstant:0
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 3950 GOSUB 3790
  LineNumber:3790
 3960 GOTO 3940
@@ -1938,10 +1938,10 @@
  Variable:K7
  Variable:T
  Variable:T0
- BinaryOperatorMinus:-
- BinaryOperatorDivide:/
+ BinaryOperatorMinus:- numeric
+ BinaryOperatorDivide:/ numeric
  NumericConstant:1000
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  AssignmentOperator:=
 4080 PRINT "YOUR EFFICIENCY RATING ="E5
  TextConstant:"YOUR EFFICIENCY RATING ="
@@ -1954,10 +1954,10 @@
  NumericConstant:0
  FunctionTime
  Variable:T7
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  FunctionInt
  NumericConstant:60
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  CarriageControl:;
  TextConstant:" MINUTES"
  CarriageControl:NL
@@ -1970,35 +1970,35 @@
 4107 IF R$ = "YES" THEN 230
  Variable:R$
  TextConstant:"YES"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 4110 GOTO 6510
  LineNumber:6510
 4111 REM *** SHORT RANGE SENSOR SCAN AND STARTING POINT CODE
  Remark:*** SHORT RANGE SENSOR SCAN AND STARTING POINT CODE
 4120 FOR I=S1-1TO S1+1
  control: Variable:I
- start:   ["Variable:S1", "NumericConstant:1", "BinaryOperatorMinus:-"]
- end:     ["Variable:S1", "NumericConstant:1", "BinaryOperatorPlus:+"]
+ start:   ["Variable:S1", "NumericConstant:1", "BinaryOperatorMinus:- numeric"]
+ end:     ["Variable:S1", "NumericConstant:1", "BinaryOperatorPlus:+ numeric"]
 4130 FOR J=S2-1TO S2+1
  control: Variable:J
- start:   ["Variable:S2", "NumericConstant:1", "BinaryOperatorMinus:-"]
- end:     ["Variable:S2", "NumericConstant:1", "BinaryOperatorPlus:+"]
+ start:   ["Variable:S2", "NumericConstant:1", "BinaryOperatorMinus:- numeric"]
+ end:     ["Variable:S2", "NumericConstant:1", "BinaryOperatorPlus:+ numeric"]
 4140 IF I<1 OR I>8 OR J<1 OR J>8 THEN 4200
  Variable:I
  NumericConstant:1
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  Variable:I
  NumericConstant:8
- BinaryOperatorGreater:>
- BinaryOperatorOr:OR
+ BinaryOperatorGreater:> boolean
+ BinaryOperatorOr:OR boolean
  Variable:J
  NumericConstant:1
- BinaryOperatorLess:<
- BinaryOperatorOr:OR
+ BinaryOperatorLess:< boolean
+ BinaryOperatorOr:OR boolean
  Variable:J
  NumericConstant:8
- BinaryOperatorGreater:>
- BinaryOperatorOr:OR
+ BinaryOperatorGreater:> boolean
+ BinaryOperatorOr:OR boolean
 4150 A$=">1<":Z1=I:Z2=J
  Variable:A$
  TextConstant:">1<"
@@ -2014,7 +2014,7 @@
 4190 IF Z3=1 THEN 4240
  Variable:Z3
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 4200 NEXT J
  Variable:J
 4210 NEXT I
@@ -2048,13 +2048,13 @@
 4310 IF K3>0 THEN 4350
  Variable:K3
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 4320 IF E<E0 *.1 THEN 4370
  Variable:E
  Variable:E0
  NumericConstant:.1
- BinaryOperatorMultiply:*
- BinaryOperatorLess:<
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorLess:< boolean
 4330 C$="GREEN"
  Variable:C$
  TextConstant:"GREEN"
@@ -2074,7 +2074,7 @@
  NumericConstant:2
  Variable:D
  NumericConstant:0
- BinaryOperatorGreaterEqual:>=
+ BinaryOperatorGreaterEqual:>= boolean
 4390 PRINT:PRINT"*** SHORT RANGE SENSORS ARE OUT ***":PRINT
  CarriageControl:NL
  TextConstant:"*** SHORT RANGE SENSORS ARE OUT ***"
@@ -2141,7 +2141,7 @@
  Variable:O3$
  Variable:O2$
  TextConstant:"        STARDATE        #####"
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  AssignmentOperator:=
 4455 PRINT USING O3$,MID(Q$,25,3),MID(Q$,28,3),MID(Q$,31,3),MID(Q$,34,3),MID(Q$,37,3),MID(Q$,40,3),MID(Q$,43,3),MID(Q$,46,3),T
  Keyword:USING
@@ -2193,7 +2193,7 @@
  Variable:O4$
  Variable:O2$
  TextConstant:"        CONDITION      \    \"
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  AssignmentOperator:=
 4465 PRINT USING O4$,MID(Q$,49,3),MID(Q$,52,3),MID(Q$,55,3),MID(Q$,58,3),MID(Q$,61,3),MID(Q$,64,3),MID(Q$,67,3),MID(Q$,70,3),C$
  Keyword:USING
@@ -2245,7 +2245,7 @@
  Variable:O5$
  Variable:O2$
  TextConstant:"        QUADRANT          # #"
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  AssignmentOperator:=
 4475 PRINT USING O5$,MID(R$,1,3),MID(R$,4,3),MID(R$,7,3),MID(R$,10,3),MID(R$,13,3),MID(R$,16,3),MID(R$,19,3),MID(R$,22,3),Q1,Q2
  Keyword:USING
@@ -2299,7 +2299,7 @@
  Variable:O6$
  Variable:O2$
  TextConstant:"        SECTOR            # #"
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  AssignmentOperator:=
 4485 PRINT USING O6$,MID(R$,25,3),MID(R$,28,3),MID(R$,31,3),MID(R$,34,3),MID(R$,37,3),MID(R$,40,3),MID(R$,43,3),MID(R$,46,3),S1,S2
  Keyword:USING
@@ -2353,7 +2353,7 @@
  Variable:O7$
  Variable:O2$
  TextConstant:"        TOTAL ENERGY   ######"
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  AssignmentOperator:=
 4495 PRINT USING O7$,MID(R$,49,3),MID(R$,52,3),MID(R$,55,3),MID(R$,58,3),MID(R$,61,3),MID(R$,64,3),MID(R$,67,3),MID(R$,70,3),E
  Keyword:USING
@@ -2405,7 +2405,7 @@
  Variable:O8$
  Variable:O2$
  TextConstant:"        PHOTON TORPEDOES  ###"
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  AssignmentOperator:=
 4505 PRINT USING O8$,MID(S$,1,3),MID(S$,4,3),MID(S$,7,3),MID(S$,10,3),MID(S$,13,3),MID(S$,16,3),MID(S$,19,3),MID(S$,22,3),P
  Keyword:USING
@@ -2457,7 +2457,7 @@
  Variable:O9$
  Variable:O2$
  TextConstant:"        SHIELDS        ######"
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  AssignmentOperator:=
 4515 PRINT USING O9$,MID(S$,25,3),MID(S$,28,3),MID(S$,31,3),MID(S$,34,3),MID(S$,37,3),MID(S$,40,3),MID(S$,43,3),MID(S$,46,3),S
  Keyword:USING
@@ -2516,7 +2516,7 @@
  NumericConstant:8
  Variable:D
  NumericConstant:0
- BinaryOperatorGreaterEqual:>=
+ BinaryOperatorGreaterEqual:>= boolean
 4640 PRINT "COMPUTER DISABLED":GOTO 1270
  TextConstant:"COMPUTER DISABLED"
  CarriageControl:NL
@@ -2526,15 +2526,15 @@
 4680 IF A=0 GOTO 4740
  Variable:A
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 4681 IF A=1 GOTO 4830
  Variable:A
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 4682 IF A=2 GOTO 4880
  Variable:A
  NumericConstant:2
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 4690 PRINT "FUNCTIONS AVAILABLE FROM COMPUTER"
  TextConstant:"FUNCTIONS AVAILABLE FROM COMPUTER"
  CarriageControl:NL
@@ -2633,9 +2633,9 @@
  Variable:V5
  Variable:T0
  Variable:T9
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:T
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 4851 PRINT "NUMRER OF STARDATES LFFT =";V5
  TextConstant:"NUMRER OF STARDATES LFFT ="
@@ -2665,7 +2665,7 @@
  NumericConstant:3
  Variable:K
  NumericConstant:0
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 4920 C1=S1:A=S2:W1=K(I,1):X=K(I,2)
  Variable:C1
  Variable:S1
@@ -2713,29 +2713,29 @@
  Variable:X
  Variable:X
  Variable:A
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  Variable:A
  Variable:C1
  Variable:W1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
 5030 IF X<0 THEN 3130
  Variable:X
  NumericConstant:0
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 5031 IF A<0 THEN 5190
  Variable:A
  NumericConstant:0
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 5050 IF X>0 THEN 5070
  Variable:X
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 5060 IF A=0 THEN 3150
  Variable:A
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 5070 C1=1
  Variable:C1
  NumericConstant:1
@@ -2745,7 +2745,7 @@
  FunctionAbs
  Variable:X
  FunctionAbs
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 5085 V5=C1+(((ABS(A)-ABS(X))+ABS(A))/ABS(A))
  Variable:V5
  Variable:C1
@@ -2753,14 +2753,14 @@
  FunctionAbs
  Variable:X
  FunctionAbs
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:A
  FunctionAbs
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:A
  FunctionAbs
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 5090 PRINT "DIRECTION ="V5
  TextConstant:"DIRECTION ="
@@ -2777,19 +2777,19 @@
  FunctionAbs
  Variable:X
  FunctionAbs
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
  CarriageControl:NL
 5120 GOTO 5240
  LineNumber:5240
 5130 IF A>0 THEN 5170
  Variable:A
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 5140 IF X=0 THEN 5190
  Variable:X
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 5150 C1=5:GOTO 5080
  Variable:C1
  NumericConstant:5
@@ -2809,7 +2809,7 @@
  FunctionAbs
  Variable:X
  FunctionAbs
- BinaryOperatorGreaterEqual:>=
+ BinaryOperatorGreaterEqual:>= boolean
 5210 PRINT "DIRECTION ="C1+(((ABS(X)-ABS(A))+ABS(X))/ABS(X))
  TextConstant:"DIRECTION ="
  CarriageControl:
@@ -2818,14 +2818,14 @@
  FunctionAbs
  Variable:A
  FunctionAbs
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:X
  FunctionAbs
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:X
  FunctionAbs
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
  CarriageControl:NL
 5220 GOTO 5240
  LineNumber:5240
@@ -2837,25 +2837,25 @@
  FunctionAbs
  Variable:A
  FunctionAbs
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
  CarriageControl:NL
 5240 PRINT "DISTANCE ="SQR(X**2*A**2)
  TextConstant:"DISTANCE ="
  CarriageControl:
  Variable:X
  NumericConstant:2
- BinaryOperatorPower:**
+ BinaryOperatorPower:** numeric
  Variable:A
  NumericConstant:2
- BinaryOperatorPower:**
- BinaryOperatorMultiply:*
+ BinaryOperatorPower:** numeric
+ BinaryOperatorMultiply:* numeric
  FunctionSqr
  CarriageControl:NL
 5250 IF H8=1 THEN 5320
  Variable:H8
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 5260 NEXT I
  Variable:I
 5270 H8=0
@@ -2867,11 +2867,11 @@
 5300 IF A$="YES" THEN 4970
  Variable:A$
  TextConstant:"YES"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 5310 IF A$<>"NO" THEN 5280
  Variable:A$
  TextConstant:"NO"
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 5320 GOTO 1270
  LineNumber:1270
 5321 REM *** END OF. LIBRARY COMPUTER CODE
@@ -2881,18 +2881,18 @@
  NumericConstant:1
  FunctionRnd
  NumericConstant:8
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  AssignmentOperator:=
  Variable:R2
  NumericConstant:1
  FunctionRnd
  NumericConstant:8
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  AssignmentOperator:=
  Variable:A$
@@ -2909,7 +2909,7 @@
 5440 IF Z3=0 THEN 5380
  Variable:Z3
  NumericConstant:0
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 5450 RETURN
  
 5510 REM *** INSERTION IN STRING ARRAY FOR QUADRANT ***
@@ -2918,54 +2918,54 @@
  Variable:S8
  Variable:Z1
  NumericConstant:24
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  Variable:Z2
  NumericConstant:3
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  NumericConstant:26
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  Variable:S8
  NumericConstant:72
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 5540 Q$=LEFT(Q$,S8-1)+A$+RIGHT(Q$,S8+3)
  Variable:Q$
  Variable:Q$
  Variable:S8
  NumericConstant:1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  FunctionLeft
  Variable:A$
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  Variable:Q$
  Variable:S8
  NumericConstant:3
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionRight
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  AssignmentOperator:=
 5550 GOTO 5600
  LineNumber:5600
 5560 IF S8>144 THEN 5590
  Variable:S8
  NumericConstant:144
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 5570 R$=LEFT(R$,S8-73)+A$+RIGHT(R$,S8-69)
  Variable:R$
  Variable:R$
  Variable:S8
  NumericConstant:73
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  FunctionLeft
  Variable:A$
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  Variable:R$
  Variable:S8
  NumericConstant:69
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  FunctionRight
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  AssignmentOperator:=
 5580 GOTO 5600
  LineNumber:5600
@@ -2974,16 +2974,16 @@
  Variable:S$
  Variable:S8
  NumericConstant:145
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  FunctionLeft
  Variable:A$
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  Variable:S$
  Variable:S8
  NumericConstant:141
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  FunctionRight
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ string
  AssignmentOperator:=
 5600 RETURN
  
@@ -2993,13 +2993,13 @@
  Variable:S8
  Variable:R1
  NumericConstant:12
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:11
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  Variable:S8
  NumericConstant:72
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 5640 PRINT MID(D$,S8,11),:GOTO 5670
  Variable:D$
  Variable:S8
@@ -3011,7 +3011,7 @@
  Variable:E$
  Variable:S8
  NumericConstant:72
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:11
  FunctionMid
  CarriageControl:,
@@ -3023,27 +3023,27 @@
  Variable:S8
  Variable:Z1
  NumericConstant:24
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  Variable:Z2
  NumericConstant:3
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  NumericConstant:26
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  AssignmentOperator:=
  Variable:Z3
  NumericConstant:0
  AssignmentOperator:=
  Variable:S8
  NumericConstant:72
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 5720 IF MID(Q$,S8,3)<>A$ THEN 5810
  Variable:Q$
  Variable:S8
  NumericConstant:3
  FunctionMid
  Variable:A$
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 5730 Z3=1:GOTO 5810
  Variable:Z3
  NumericConstant:1
@@ -3052,16 +3052,16 @@
 5750 IF S8>144 THEN 5790
  Variable:S8
  NumericConstant:144
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 5760 IF MID(R$,S8-72,3)<>A$ THEN 5810
  Variable:R$
  Variable:S8
  NumericConstant:72
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:3
  FunctionMid
  Variable:A$
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 5770 Z3=1:GOTO 5810
  Variable:Z3
  NumericConstant:1
@@ -3071,11 +3071,11 @@
  Variable:S$
  Variable:S8
  NumericConstant:144
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:3
  FunctionMid
  Variable:A$
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 5800 Z3=1
  Variable:Z3
  NumericConstant:1

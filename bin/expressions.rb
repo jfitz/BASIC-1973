@@ -1052,6 +1052,14 @@ class Expression
     content_type
   end
 
+  def set_content_type
+    stack = []
+
+    @elements.each do |element|
+      element.set_content_type(stack)
+    end
+  end
+
   def dump
     lines = []
 
@@ -1069,6 +1077,10 @@ class Expression
     end
 
     stack
+  end
+
+  def to_s
+    '[' + @elements.map(&:to_s).join(', ') + ']'
   end
 
   def numerics
@@ -1509,26 +1521,21 @@ end
 # Value expression (an R-value)
 class ValueExpressionSet < AbstractExpressionSet
   def self.set_content_type(expression)
-    stack = []
+    type_stack = []
 
     elements = expression.elements
 
     elements.each do |element|
-      element.set_content_type(stack)
-      stack.push element.content_type
+      element.set_content_type(type_stack)
+      type_stack.push element.content_type
     end
-
-    stack[0]
   end
 
   def initialize(_, shape)
     super
 
-    types = []
-
     @expressions.each do |expression|
-      type = ValueExpressionSet.set_content_type(expression)
-      types << type
+      expression.set_content_type
     end
   end
 

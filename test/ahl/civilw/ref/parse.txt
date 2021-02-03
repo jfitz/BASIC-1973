@@ -49,7 +49,7 @@
 13 IF Z=1 THEN 100
  Variable:Z
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 15 PRINT "THIS IS A CIVIL WAR SIMULATION."
  TextConstant:"THIS IS A CIVIL WAR SIMULATION."
  CarriageControl:NL
@@ -126,20 +126,20 @@
  NumericConstant:10
  Variable:L
  Variable:W
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:2
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 102 LET I2=10*(W-L)*2 
  Variable:I2
  NumericConstant:10
  Variable:W
  Variable:L
- BinaryOperatorMinus:-
- BinaryOperatorMultiply:*
+ BinaryOperatorMinus:- numeric
+ BinaryOperatorMultiply:* numeric
  NumericConstant:2
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  AssignmentOperator:=
 103 LET D1=100*INT((M1*(100-I1)/2000)*(1+(R1-Q1)/(R1+1))+0.5)
  Variable:D1
@@ -147,24 +147,24 @@
  Variable:M1
  NumericConstant:100
  Variable:I1
- BinaryOperatorMinus:-
- BinaryOperatorMultiply:*
+ BinaryOperatorMinus:- numeric
+ BinaryOperatorMultiply:* numeric
  NumericConstant:2000
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  NumericConstant:1
  Variable:R1
  Variable:Q1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:R1
  NumericConstant:1
- BinaryOperatorPlus:+
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
- BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorMultiply:* numeric
  NumericConstant:0.5
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  AssignmentOperator:=
 104 LET D2=100*INT(M2*(100-I2)/2000+0.5)
  Variable:D2
@@ -172,22 +172,22 @@
  Variable:M2
  NumericConstant:100
  Variable:I2
- BinaryOperatorMinus:-
- BinaryOperatorMultiply:*
+ BinaryOperatorMinus:- numeric
+ BinaryOperatorMultiply:* numeric
  NumericConstant:2000
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  NumericConstant:0.5
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  AssignmentOperator:=
 105 LET F1=5*M1/6
  Variable:F1
  NumericConstant:5
  Variable:M1
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:6
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  AssignmentOperator:=
 106 LET A1=Z
  Variable:A1
@@ -222,13 +222,13 @@
  NumericConstant:1
  Variable:P1
  Variable:T1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:M3
  NumericConstant:1
- BinaryOperatorPlus:+
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
- BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorMultiply:* numeric
  FunctionInt
  CarriageControl:,
  TextConstant:" "
@@ -238,13 +238,13 @@
  NumericConstant:1
  Variable:P2
  Variable:T2
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:M4
  NumericConstant:1
- BinaryOperatorPlus:+
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
- BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorMultiply:* numeric
  FunctionInt
  CarriageControl:NL
 140 PRINT "MONEY", "$";D1,"$";D2
@@ -265,7 +265,7 @@
  CarriageControl:;
  Variable:I1
  NumericConstant:15
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  CarriageControl:;
  TextConstant:"%"
  CarriageControl:,
@@ -285,7 +285,7 @@
 185 IF F<0 THEN 750
  Variable:F
  NumericConstant:0
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 190 PRINT "HOW MUCH DO YOU WISH TO SPEND FOR SALARIES";
  TextConstant:"HOW MUCH DO YOU WISH TO SPEND FOR SALARIES"
  CarriageControl:;
@@ -294,7 +294,7 @@
 205 IF S<0 THEN 750
  Variable:S
  NumericConstant:0
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 210 PRINT "HOW MUCH DO YOU WISH TO SPEND FOR AMMUNITION";
  TextConstant:"HOW MUCH DO YOU WISH TO SPEND FOR AMMUNITION"
  CarriageControl:;
@@ -303,17 +303,17 @@
 221 IF B<0 THEN 750
  Variable:B
  NumericConstant:0
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 222 PRINT
  CarriageControl:NL
 224 IF F+S+B<D1 THEN 230
  Variable:F
  Variable:S
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:B
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:D1
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 226 PRINT "THINK AGAIN!  YOU HAVE ONLY $" D1
  TextConstant:"THINK AGAIN!  YOU HAVE ONLY $"
  CarriageControl:
@@ -326,23 +326,23 @@
  NumericConstant:2
  Variable:F
  NumericConstant:2
- BinaryOperatorPower:^
- BinaryOperatorMultiply:*
+ BinaryOperatorPower:^ numeric
+ BinaryOperatorMultiply:* numeric
  Variable:S
  NumericConstant:2
- BinaryOperatorPower:^
- BinaryOperatorPlus:+
+ BinaryOperatorPower:^ numeric
+ BinaryOperatorPlus:+ numeric
  Variable:F1
  NumericConstant:2
- BinaryOperatorPower:^
- BinaryOperatorDivide:/
+ BinaryOperatorPower:^ numeric
+ BinaryOperatorDivide:/ numeric
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 235 IF O<10 THEN 260
  Variable:O
  NumericConstant:10
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 240 PRINT "MORALE IS HIGH"
  TextConstant:"MORALE IS HIGH"
  CarriageControl:NL
@@ -351,7 +351,7 @@
 260 IF 0<5 THEN 290
  NumericConstant:0
  NumericConstant:5
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 270 PRINT "MORALE IS FAIR"
  TextConstant:"MORALE IS FAIR"
  CarriageControl:NL
@@ -363,7 +363,7 @@
 300 IF M<>3 THEN 330
  Variable:M
  NumericConstant:3
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 310 PRINT "YOU ARE ON THE OFFENSIVE"
  TextConstant:"YOU ARE ON THE OFFENSIVE"
  CarriageControl:NL
@@ -372,7 +372,7 @@
 330 IF M<>1 THEN 360
  Variable:M
  NumericConstant:1
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 340 PRINT "YOU ARE ON THE DEFENSIVE"
  TextConstant:"YOU ARE ON THE DEFENSIVE"
  CarriageControl:NL
@@ -391,14 +391,14 @@
 391 IF Y=5 THEN 1487
  Variable:Y
  NumericConstant:5
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 392 IF ABS(Y-3)<3 THEN 395
  Variable:Y
  NumericConstant:3
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  FunctionAbs
  NumericConstant:3
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
 393 PRINT "YOU JERK! USE THE OTHER SET OF STRATEGIES"
  TextConstant:"YOU JERK! USE THE OTHER SET OF STRATEGIES"
  CarriageControl:NL
@@ -417,28 +417,28 @@
  Variable:C5
  NumericConstant:2
  Variable:C1
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:5
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  NumericConstant:1
  NumericConstant:1
  NumericConstant:2
  NumericConstant:4
  NumericConstant:1
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  Variable:Y
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  FunctionAbs
  NumericConstant:1
- BinaryOperatorPlus:+
- BinaryOperatorMultiply:*
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
- BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorMultiply:* numeric
  AssignmentOperator:=
 412 LET C5=INT(C5*(1+1/O)*(1.28+F1/(B+1))+0.5)
  Variable:C5
@@ -446,65 +446,65 @@
  NumericConstant:1
  NumericConstant:1
  Variable:O
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
- BinaryOperatorMultiply:*
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorMultiply:* numeric
  NumericConstant:1.28
  Variable:F1
  Variable:B
  NumericConstant:1
- BinaryOperatorPlus:+
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
- BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorMultiply:* numeric
  NumericConstant:0.5
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  AssignmentOperator:=
 414 IF C5+100/O<M1+(1+(P1-T1)/(M3+1)) THEN 424
  Variable:C5
  NumericConstant:100
  Variable:O
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
  Variable:M1
  NumericConstant:1
  Variable:P1
  Variable:T1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:M3
  NumericConstant:1
- BinaryOperatorPlus:+
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
- BinaryOperatorPlus:+
- BinaryOperatorLess:<
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorLess:< boolean
 416 LET C5=INT(13*M1/20*(1+(P1-T1)/(M3+1)))
  Variable:C5
  NumericConstant:13
  Variable:M1
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:20
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  NumericConstant:1
  Variable:P1
  Variable:T1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  Variable:M3
  NumericConstant:1
- BinaryOperatorPlus:+
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
- BinaryOperatorMultiply:*
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorMultiply:* numeric
  FunctionInt
  AssignmentOperator:=
 418 LET E=7*C5/13
  Variable:E
  NumericConstant:7
  Variable:C5
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  NumericConstant:13
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  AssignmentOperator:=
 420 LET U=1
  Variable:U
@@ -516,7 +516,7 @@
  Variable:E
  NumericConstant:100
  Variable:O
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  AssignmentOperator:=
 426 PRINT "CASUALTIES", C5,INT(17*C2*C1/(C5*20)+0.5)
  TextConstant:"CASUALTIES"
@@ -525,15 +525,15 @@
  CarriageControl:,
  NumericConstant:17
  Variable:C2
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  Variable:C1
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  Variable:C5
  NumericConstant:20
- BinaryOperatorMultiply:*
- BinaryOperatorDivide:/
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorDivide:/ numeric
  NumericConstant:0.5
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  CarriageControl:NL
 430 PRINT "DESERTIONS",INT(E),INT(5*O)
@@ -544,7 +544,7 @@
  CarriageControl:,
  NumericConstant:5
  Variable:O
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  FunctionInt
  CarriageControl:NL
 432 PRINT
@@ -552,21 +552,21 @@
 433 IF C5-C1>=0 THEN 439
  Variable:C5
  Variable:C1
- BinaryOperatorMinus:-
+ BinaryOperatorMinus:- numeric
  NumericConstant:0
- BinaryOperatorGreaterEqual:>=
+ BinaryOperatorGreaterEqual:>= boolean
 435 PRINT "YOUR CASUALTIES WERE" INT(100*(C1-C5)/C1+0.5);"% LESS THAN"
  TextConstant:"YOUR CASUALTIES WERE"
  CarriageControl:
  NumericConstant:100
  Variable:C1
  Variable:C5
- BinaryOperatorMinus:-
- BinaryOperatorMultiply:*
+ BinaryOperatorMinus:- numeric
+ BinaryOperatorMultiply:* numeric
  Variable:C1
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  NumericConstant:0.5
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  CarriageControl:;
  TextConstant:"% LESS THAN"
@@ -579,12 +579,12 @@
  NumericConstant:100
  Variable:C5
  Variable:C1
- BinaryOperatorMinus:-
- BinaryOperatorMultiply:*
+ BinaryOperatorMinus:- numeric
+ BinaryOperatorMultiply:* numeric
  Variable:C1
- BinaryOperatorDivide:/
+ BinaryOperatorDivide:/ numeric
  NumericConstant:0.5
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  CarriageControl:;
  TextConstant:"% MORE THAN"
@@ -601,25 +601,25 @@
 450 IF U=1 THEN 470
  Variable:U
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 460 IF C5+E<17*C2*C1/(C5*20)+5*O THEN 490
  Variable:C5
  Variable:E
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  NumericConstant:17
  Variable:C2
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  Variable:C1
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  Variable:C5
  NumericConstant:20
- BinaryOperatorMultiply:*
- BinaryOperatorDivide:/
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorDivide:/ numeric
  NumericConstant:5
  Variable:O
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
- BinaryOperatorLess:<
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorLess:< boolean
 470 PRINT "YOU LOSE ";
  TextConstant:"YOU LOSE "
  CarriageControl:;
@@ -627,7 +627,7 @@
  Variable:L
  Variable:L
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 480 GOTO 555
  LineNumber:555
@@ -638,61 +638,61 @@
  Variable:W
  Variable:W
  NumericConstant:1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 555 GOSUB 800
  LineNumber:800
 556 IF W=8 THEN 1490
  Variable:W
  NumericConstant:8
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 580 LET T1=T1+C5+E
  Variable:T1
  Variable:T1
  Variable:C5
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:E
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 590 LET T2=T2+17*C2*C1/(C5*20)+5*O
  Variable:T2
  Variable:T2
  NumericConstant:17
  Variable:C2
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  Variable:C1
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  Variable:C5
  NumericConstant:20
- BinaryOperatorMultiply:*
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
  NumericConstant:5
  Variable:O
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 600 LET P1=P1+C1
  Variable:P1
  Variable:P1
  Variable:C1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 610 LET P2=P2+C2
  Variable:P2
  Variable:P2
  Variable:C2
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 620 LET Q1=Q1+(F+S+B)
  Variable:Q1
  Variable:Q1
  Variable:F
  Variable:S
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  Variable:B
- BinaryOperatorPlus:+
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 630 LET R1=R1+M1*(100-I1)/20
  Variable:R1
@@ -700,28 +700,28 @@
  Variable:M1
  NumericConstant:100
  Variable:I1
- BinaryOperatorMinus:-
- BinaryOperatorMultiply:*
+ BinaryOperatorMinus:- numeric
+ BinaryOperatorMultiply:* numeric
  NumericConstant:20
- BinaryOperatorDivide:/
- BinaryOperatorPlus:+
+ BinaryOperatorDivide:/ numeric
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 635 LETM3=M3+M1
  Variable:M3
  Variable:M3
  Variable:M1
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 637 LET M4=M4+M2
  Variable:M4
  Variable:M4
  Variable:M2
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  AssignmentOperator:=
 650 IF A=14 THEN 1400
  Variable:A
  NumericConstant:14
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 660 GOTO 100
  LineNumber:100
 670 DATA 18000,18500,1967,2708,1,1,0
@@ -852,14 +852,14 @@
 800 IF A<>1 THEN 850
  Variable:A
  NumericConstant:1
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 810 PRINT "BULL RUN"
  TextConstant:"BULL RUN"
  CarriageControl:NL
 820 IF A1=1 THEN 1480
  Variable:A1
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 830PRINT"JULY 21,1861 GEN. BEAUREGARD COMMANDING THE SOUTH MET THE"
  TextConstant:"JULY 21,1861 GEN. BEAUREGARD COMMANDING THE SOUTH MET THE"
  CarriageControl:NL
@@ -874,14 +874,14 @@
 850 IF A<>2 THEN 900
  Variable:A
  NumericConstant:2
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 860 PRINT "SHILOH"
  TextConstant:"SHILOH"
  CarriageControl:NL
 870 IF A1=1 THEN 1480
  Variable:A1
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 880PRINT "APRIL 6-7,1862 THE CONFEDERATE SURPRISE ATTACK AT SHILOH"
  TextConstant:"APRIL 6-7,1862 THE CONFEDERATE SURPRISE ATTACK AT SHILOH"
  CarriageControl:NL
@@ -893,14 +893,14 @@
 900 IF A<>3 THEN 950
  Variable:A
  NumericConstant:3
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 910 PRINT "SEVEN DAYS"
  TextConstant:"SEVEN DAYS"
  CarriageControl:NL
 920 IF A1=1 THEN 1480
  Variable:A1
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 925PRINT"JUNE 25-JULY 1,1862 GENERAL LEE (CSA) UPHELD THE OFFENSIVE"
  TextConstant:"JUNE 25-JULY 1,1862 GENERAL LEE (CSA) UPHELD THE OFFENSIVE"
  CarriageControl:NL
@@ -915,14 +915,14 @@
 950 IF A<>4 THEN 1000
  Variable:A
  NumericConstant:4
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 960 PRINT "THE SECOND BULL RUN"
  TextConstant:"THE SECOND BULL RUN"
  CarriageControl:NL
 970 IF A1=1 THEN 1480
  Variable:A1
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 980PRINT"AUG 29-30,1862 ThE COMBINED CONFEDERATE FORCES UNDER LEE AND"
  TextConstant:"AUG 29-30,1862 ThE COMBINED CONFEDERATE FORCES UNDER LEE AND"
  CarriageControl:NL
@@ -934,14 +934,14 @@
 1000 IF A<>5 THEN 1050
  Variable:A
  NumericConstant:5
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 1010 PRINT "ANTIETAM"
  TextConstant:"ANTIETAM"
  CarriageControl:NL
 1020 IF A1=1 THEN 1480
  Variable:A1
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1030PRINT"SEPT 17,1862 THE SOUTH FAILED TO INCORPORATE MARYLAND INTO"
  TextConstant:"SEPT 17,1862 THE SOUTH FAILED TO INCORPORATE MARYLAND INTO"
  CarriageControl:NL
@@ -953,14 +953,14 @@
 1050 IF A<>6 THEN 1100
  Variable:A
  NumericConstant:6
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 1060 PRINT "FREDERICKSBURG"
  TextConstant:"FREDERICKSBURG"
  CarriageControl:NL
 1070 IF A1=1 THEN 1480
  Variable:A1
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1080PRINT"DEC 13,1862 THE CONFEDERACY UNDER LEE SUCESSFULLY REPULSED"
  TextConstant:"DEC 13,1862 THE CONFEDERACY UNDER LEE SUCESSFULLY REPULSED"
  CarriageControl:NL
@@ -972,14 +972,14 @@
 1100 IF A <>7 THEN 1150
  Variable:A
  NumericConstant:7
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 1110 PRINT "MURFREESBORO"
  TextConstant:"MURFREESBORO"
  CarriageControl:NL
 1120 IF A1=1 THEN 1480
  Variable:A1
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1130PRINT"DEC 31,1862 THE SOUTH UNDER GEN. BRAGG WoONA CLOSE BATTLE"
  TextConstant:"DEC 31,1862 THE SOUTH UNDER GEN. BRAGG WoONA CLOSE BATTLE"
  CarriageControl:NL
@@ -988,14 +988,14 @@
 1150 IF A<>8 THEN 1200
  Variable:A
  NumericConstant:8
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 1160 PRINT "CHANCELLORSVILLE"
  TextConstant:"CHANCELLORSVILLE"
  CarriageControl:NL
 1170 IF A1=1 THEN 1480
  Variable:A1
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1180PRINT"MAY 1-6,1863 THE SOUTH HAD A COSTLY VICTORY AND LOST ONE"
  TextConstant:"MAY 1-6,1863 THE SOUTH HAD A COSTLY VICTORY AND LOST ONE"
  CarriageControl:NL
@@ -1007,14 +1007,14 @@
 1200 IF A<>9 THEN 1250
  Variable:A
  NumericConstant:9
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 1210 PRINT "VICKSBURG"
  TextConstant:"VICKSBURG"
  CarriageControl:NL
 1220 IF A1=1 THEN 1480
  Variable:A1
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1230PRINT"JULY 4,1863 VICKSBURG WAS A COSTLY DEFEAT FOR THE SOUTH"
  TextConstant:"JULY 4,1863 VICKSBURG WAS A COSTLY DEFEAT FOR THE SOUTH"
  CarriageControl:NL
@@ -1026,14 +1026,14 @@
 1250 IF A<>10 THEN 1300
  Variable:A
  NumericConstant:10
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 1260 PRINT "GETTYSBURG"
  TextConstant:"GETTYSBURG"
  CarriageControl:NL
 1270 IF A1=1 THEN 1480
  Variable:A1
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1280PRINT"JUNE 30,1863 A SOUTHERN MISTAKE BY GEN, LEE AT GETTYSBURG"
  TextConstant:"JUNE 30,1863 A SOUTHERN MISTAKE BY GEN, LEE AT GETTYSBURG"
  CarriageControl:NL
@@ -1045,14 +1045,14 @@
 1300 IF A<>11 THEN 1350
  Variable:A
  NumericConstant:11
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 1310 PRINT "CHICKAMAUGA"
  TextConstant:"CHICKAMAUGA"
  CarriageControl:NL
 1320 IF A1=1 THEN 1480
  Variable:A1
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1330PRINT"NOV 25,1863    AFTER THE SOUTH HAD SEIGED GEN. ROSENCRANS"
  TextConstant:"NOV 25,1863    AFTER THE SOUTH HAD SEIGED GEN. ROSENCRANS"
  CarriageControl:NL
@@ -1064,14 +1064,14 @@
 1350 IF A<>12 THEN 1400
  Variable:A
  NumericConstant:12
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 1360 PRINT "CHATTANOOGA"
  TextConstant:"CHATTANOOGA"
  CarriageControl:NL
 1370 IF A1=1 THEN 1480
  Variable:A1
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1380 PRINT"SEPT 15,1863    CONFUSION IN A FOREST NEAR CHICKAMUNGA LED"
  TextConstant:"SEPT 15,1863    CONFUSION IN A FOREST NEAR CHICKAMUNGA LED"
  CarriageControl:NL
@@ -1083,7 +1083,7 @@
 1400 IF A<>13 THEN 1450
  Variable:A
  NumericConstant:13
- BinaryOperatorNotEqual:<>
+ BinaryOperatorNotEqual:<> boolean
 1410 PRINT "SPOTSYLVANIA"
  TextConstant:"SPOTSYLVANIA"
  CarriageControl:NL
@@ -1103,7 +1103,7 @@
 1460 IF A1=1 THEN 1480
  Variable:A1
  NumericConstant:1
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1470PRINT"AUGUST, 1864 SHERMAN AND THREE VETERAN ARMIES CONVERGED ON"
  TextConstant:"AUGUST, 1864 SHERMAN AND THREE VETERAN ARMIES CONVERGED ON"
  CarriageControl:NL
@@ -1138,11 +1138,11 @@
 1515 IF Y=5 THEN 1550
  Variable:Y
  NumericConstant:5
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 1520 IF W<=L THEN 1550
  Variable:W
  Variable:L
- BinaryOperatorLessEqual:<=
+ BinaryOperatorLessEqual:<= boolean
 1530 PRINT "THE CONFEDERACY HAS WON THE WAR"
  TextConstant:"THE CONFEDERACY HAS WON THE WAR"
  CarriageControl:NL

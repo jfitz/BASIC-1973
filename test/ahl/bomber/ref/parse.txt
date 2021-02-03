@@ -7,11 +7,11 @@
 20 IF A>0 AND A<5 THEN 25 ELSE PRINT "TRY AGAIN...."\GOTO 10
  Variable:A
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:A
  NumericConstant:5
- BinaryOperatorLess:<
- BinaryOperatorAnd:AND
+ BinaryOperatorLess:< boolean
+ BinaryOperatorAnd:AND boolean
  TextConstant:"TRY AGAIN...."
  CarriageControl:NL
  LineNumber:10
@@ -26,11 +26,11 @@
 40 IF B>0 AND B<4 THEN 45 ELSE PRINT "TRY AGAIN...."\GOTO 30
  Variable:B
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:B
  NumericConstant:4
- BinaryOperatorLess:<
- BinaryOperatorAnd:AND
+ BinaryOperatorLess:< boolean
+ BinaryOperatorAnd:AND boolean
  TextConstant:"TRY AGAIN...."
  CarriageControl:NL
  LineNumber:30
@@ -58,11 +58,11 @@
 120 IF G>0 AND G<5 THEN 125 ELSE PRINT "TRY AGAIN...."\GOTO 110
  Variable:G
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:G
  NumericConstant:5
- BinaryOperatorLess:<
- BinaryOperatorAnd:AND
+ BinaryOperatorLess:< boolean
+ BinaryOperatorAnd:AND boolean
  TextConstant:"TRY AGAIN...."
  CarriageControl:NL
  LineNumber:110
@@ -101,7 +101,7 @@
 208 IF F$="N" THEN S=0\GOTO 358
  Variable:F$
  TextConstant:"N"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
  Variable:S
  NumericConstant:0
  AssignmentOperator:=
@@ -110,7 +110,7 @@
  CarriageControl:NL
  FunctionRnd
  NumericConstant:.65
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
 220 PRINT "A NAZI, EH? OH WELL. ARE YOU GOING FOR RUSSIA(1), ENGLAND(2)" 
  TextConstant:"A NAZI, EH? OH WELL. ARE YOU GOING FOR RUSSIA(1), ENGLAND(2)"
  CarriageControl:NL
@@ -118,11 +118,11 @@
  Variable:M
  Variable:M
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:M
  NumericConstant:4
- BinaryOperatorLess:<
- BinaryOperatorAnd:AND
+ BinaryOperatorLess:< boolean
+ BinaryOperatorAnd:AND boolean
  TextConstant:"WHAT??"
  CarriageControl:NL
  LineNumber:220
@@ -151,7 +151,7 @@
 290 IF D<160 THEN 300 ELSE PRINT "MISSIONS, NOT MILES...."
  Variable:D
  NumericConstant:160
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  TextConstant:"MISSIONS, NOT MILES...."
  CarriageControl:NL
 295 PRINT "150 MISSIONS IS HIGH EVEN FOR OLD-TIMERS, NOW THEN,"\GOTO 285
@@ -162,14 +162,14 @@
  CarriageControl:NL
  Variable:D
  NumericConstant:100
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  TextConstant:"THAT'S PUSHING THE ODDS!"
  CarriageControl:NL
  LineNumber:320
 310 IF D<25 THEN PRINT "FRESH OUT OF TRAINING, EH?"
  Variable:D
  NumericConstant:25
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  TextConstant:"FRESH OUT OF TRAINING, EH?"
  CarriageControl:NL
 320 PRINT\IF D<160*RND THEN 330
@@ -177,14 +177,14 @@
  Variable:D
  NumericConstant:160
  FunctionRnd
- BinaryOperatorMultiply:*
- BinaryOperatorLess:<
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorLess:< boolean
 325 PRINT "DIRECT HIT!!!"\PRINT(100*RND)"KILLED! MISSION SUCCESSFUL."\GOTO 390
  TextConstant:"DIRECT HIT!!!"
  CarriageControl:NL
  NumericConstant:100
  FunctionRnd
- BinaryOperatorMultiply:*
+ BinaryOperatorMultiply:* numeric
  CarriageControl:
  TextConstant:"KILLED! MISSION SUCCESSFUL."
  CarriageControl:NL
@@ -195,8 +195,8 @@
  NumericConstant:2
  NumericConstant:30
  FunctionRnd
- BinaryOperatorMultiply:*
- BinaryOperatorPlus:+
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorPlus:+ numeric
  FunctionInt
  CarriageControl:
  TextConstant:"MILES!!"
@@ -210,11 +210,11 @@
 345 IF R>0 AND R<4 THEN 350 ELSE PRINT "TRY AGAIN...."\GOTO 340
  Variable:R
  NumericConstant:0
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:R
  NumericConstant:4
- BinaryOperatorLess:<
- BinaryOperatorAnd:AND
+ BinaryOperatorLess:< boolean
+ BinaryOperatorAnd:AND boolean
  TextConstant:"TRY AGAIN...."
  CarriageControl:NL
  LineNumber:340
@@ -222,13 +222,13 @@
  CarriageControl:NL
  Variable:R
  NumericConstant:2
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 355 INPUT "WHAT IS THE PERCENT HIT RATE OF THE ENEMY GUNNERS (10 TO 50)";S
  Variable:S
 358 IF S<10 THEN PRINT "YOU LIE, BUT YOU'LL PAY...."\PRINT\GOTO 380
  Variable:S
  NumericConstant:10
- BinaryOperatorLess:<
+ BinaryOperatorLess:< boolean
  TextConstant:"YOU LIE, BUT YOU'LL PAY...."
  CarriageControl:NL
  CarriageControl:NL
@@ -237,18 +237,18 @@
  CarriageControl:NL
  Variable:R
  NumericConstant:1
- BinaryOperatorGreater:>
+ BinaryOperatorGreater:> boolean
  Variable:T
  NumericConstant:35
  AssignmentOperator:=
 365 IF S+T>100*RND THEN 380
  Variable:S
  Variable:T
- BinaryOperatorPlus:+
+ BinaryOperatorPlus:+ numeric
  NumericConstant:100
  FunctionRnd
- BinaryOperatorMultiply:*
- BinaryOperatorGreater:>
+ BinaryOperatorMultiply:* numeric
+ BinaryOperatorGreater:> boolean
 370 PRINT"YOU MADE IT THROUGH TREMENDOUS FLAK!!":GOTO 390
  TextConstant:"YOU MADE IT THROUGH TREMENDOUS FLAK!!"
  CarriageControl:NL
@@ -269,7 +269,7 @@
  Variable:U$
  Variable:U$
  TextConstant:"Y"
- BinaryOperatorEqual:=
+ BinaryOperatorEqual:= boolean
 400 PRINT "CHICKEN!!!!"\PRINT\PRINT
  TextConstant:"CHICKEN!!!!"
  CarriageControl:NL
