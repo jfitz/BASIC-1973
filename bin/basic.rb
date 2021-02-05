@@ -601,6 +601,7 @@ OptionParser.new do |opt|
   opt.on('-c', '--crossref SOURCE') { |o| options[:cref_name] = o }
   opt.on('--parse SOURCE') { |o| options[:parse_name] = o }
   opt.on('--analyze SOURCE') { |o| options[:analyze_name] = o }
+  opt.on('--apostrophe-comment') { |o| options[:apostrophe_comment] = o }
   opt.on('--asc-allow-all') { |o| options[:asc_allow_all] = o }
   opt.on('--back-tab') { |o| options[:back_tab] = o }
   opt.on('--bang-comment') { |o| options[:bang_comment] = o }
@@ -686,7 +687,8 @@ $options['allow_hash_constant'] =
 
 $options['allow_pi'] = Option.new(only_new, boolean, options.key?(:allow_pi))
 
-$options['apostrophe_comment'] = Option.new(only_new, boolean, true)
+$options['apostrophe_comment'] =
+  Option.new(only_new, boolean, options.key?(:apostrophe_comment))
 
 $options['asc_allow_all'] =
   Option.new(all_types, boolean, options.key?(:asc_allow_all))
