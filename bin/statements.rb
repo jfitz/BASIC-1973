@@ -311,8 +311,7 @@ class AbstractStatement
   public
 
   def pretty
-    list = [AbstractToken.pretty_tokens(@keywords, @tokens)]
-    list.join(' ')
+    AbstractToken.pretty_tokens(@keywords, @tokens)
   end
 
   def pre_trace(index)
@@ -322,8 +321,7 @@ class AbstractStatement
   end
 
   def core_trace
-    list = [AbstractToken.pretty_tokens(@keywords, @core_tokens)]
-    list.join(' ')
+    AbstractToken.pretty_tokens(@keywords, @core_tokens)
   end
 
   def post_trace(index)
@@ -483,6 +481,8 @@ class AbstractStatement
 
   def profile(show_timing)
     text = AbstractToken.pretty_tokens(@keywords, @tokens)
+    text = ' ' + text unless text.empty?
+
     if show_timing
       timing = @profile_time.round(3).to_s
       ' (' + timing + '/' + @profile_count.to_s + ')' + text
@@ -517,9 +517,21 @@ class AbstractStatement
     index = current_line_index.index
 
     text = ''
-    text = current_line_index.to_s + ':' + pre_trace(index) if index < 0
-    text = current_line_index.to_s + ':' + core_trace if index.zero?
-    text = current_line_index.to_s + ':' + post_trace(index) if index > 0
+
+    if index < 0
+      text = pre_trace(index)
+    end
+
+    if index.zero?
+      text = core_trace
+    end
+
+    if index > 0
+      text = post_trace(index)
+    end
+
+    text = ' ' + text unless text.empty?
+    text = current_line_index.to_s + ':' + text
 
     trace_out.print_out(text)
     trace_out.newline

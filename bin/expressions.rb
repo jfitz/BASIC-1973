@@ -1080,7 +1080,7 @@ class Expression
   end
 
   def to_s
-    '[' + @elements.map(&:to_s).join(', ') + ']'
+    AbstractToken.pretty_tokens([], @tokens)
   end
 
   def numerics
@@ -1326,7 +1326,7 @@ class AbstractExpressionSet
   end
 
   def to_s
-    @tokens.map(&:to_s).join
+    AbstractToken.pretty_tokens([], @tokens)
   end
 
   def dump

@@ -181,6 +181,15 @@ class Line
       pretty_lines = [AbstractToken.pretty_tokens([], @tokens)]
     end
 
+    pl2 = []
+
+    pretty_lines.each do |pretty_line|
+      pretty_line = ' ' + pretty_line unless pretty_line.empty?
+      pl2 << pretty_line
+    end
+
+    pretty_lines = pl2
+    
     unless @comment.nil?
       line_0 = pretty_lines[0]
       space = @text.size - (line_0.size + @comment.to_s.size)
@@ -209,26 +218,31 @@ class Line
   def renumber(renumber_map)
     tokens = []
     separator = StatementSeparatorToken.new('\\')
+
     @statements.each do |statement|
       statement.renumber(renumber_map)
       tokens << statement.keywords
       tokens << statement.tokens
       tokens << separator
     end
+
     tokens.pop
     text = AbstractToken.pretty_tokens([], tokens.flatten)
+    text = ' ' + text unless text.empty?
     Line.new(text, @statements, tokens.flatten, @comment)
   end
 
   def okay(program, console_io, line_number)
     retval = true
     index = 0
+
     @statements.each do |statement|
       line_number_index = LineNumberIndex.new(line_number, index, 0)
       r = statement.okay(program, console_io, line_number_index)
       retval &&= r
       index += 1
     end
+
     retval
   end
 end
@@ -855,8 +869,11 @@ class Program
       index = line_number_idx.statement
       statements = @lines[line_number].statements
       statement = statements[index]
-      lines << "#{line_number_idx}:#{statement.pretty}" if
-        statement.executable && !reachable[line_number_idx]
+
+      if statement.executable && !reachable[line_number_idx]
+        text = statement.pretty
+        lines << "#{line_number_idx}: #{text}" unless text.empty?
+      end
     end
 
     lines << 'All executable lines are reachable.' if lines.empty?
