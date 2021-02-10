@@ -90,7 +90,10 @@ class ConsoleIo
 
     raise BASICRuntimeError.new(:te_eof) if input_text.nil?
 
-    input_text.bytes.collect { |c| raise BASICRuntimeError.new(:te_break) if c < 8 }
+    raise BASICRuntimeError.new(:te_eof) if input_text.empty?
+
+    input_text.bytes.collect { |c| raise BASICRuntimeError.new(:te_break) if
+                               c < 8 }
 
     ascii_text = ascii_printables(input_text)
 
@@ -98,8 +101,7 @@ class ConsoleIo
 
     print(ascii_text)
 
-    ascii_text = high_bits(input_text) if
-      $options['input_high_bit'].value
+    ascii_text = high_bits(input_text) if $options['input_high_bit'].value
 
     ascii_text
   end
@@ -118,15 +120,13 @@ class ConsoleIo
 
   def prompt(text, remaining)
     if text.nil?
-      print_item("(#{remaining})") if
-        $options['prompt_count'].value
+      print_item("(#{remaining})") if $options['prompt_count'].value
 
       print_item($options['default_prompt'].value)
     else
       print_item(text.value)
 
-      print_item("(#{remaining})") if
-        $options['prompt_count'].value
+      print_item("(#{remaining})") if $options['prompt_count'].value
 
       print_item($options['default_prompt'].value) if
         $options['qmark_after_prompt'].value
@@ -325,6 +325,9 @@ class FileHandler
     @mode = nil
     @file = nil
     @data_store = []
+    @record = ''
+    @records = []
+    @rec_number = -1
   end
 
   include Reader
@@ -334,26 +337,40 @@ class FileHandler
     if @mode.nil?
       case mode
       when :print
-        @file = File.new(@file_name, 'wt')
+        @record = ''
+        @records = []
+        @rec_number = 0
       when :read
-        @file = File.new(@file_name, 'rt')
+        @record = ''
+        @records = read_file(@file_name)
+        @rec_number = 0
       when :memory
-        @data_store = read_file(@file_name)
+        @record = ''
+        @records = read_file(@file_name)
+        @rec_number = 0
       else
         raise BASICRuntimeError.new(:te_mode_inv)
       end
+
       @mode = mode
     else
-      raise BASICRuntimeError.new(:te_op_inc) unless
-        @mode == mode
+      raise BASICRuntimeError.new(:te_op_inc) unless @mode == mode
     end
   end
 
   def close
-    if @mode == :memory
-      write_file(@file_name, @data_store)
-      @data_store = []
+    if @mode == :memory || @mode == :print
+      unless @record.empty?
+        @records << '' while @records.size <= @rec_number
+        @records[@rec_number] = @record
+        @record = ''
+      end
+      
+      write_file(@file_name, @records)
+      @records = []
+      @rec_number = -1
     end
+
     @file.close unless @file.nil?
   end
 
@@ -362,18 +379,17 @@ class FileHandler
   end
 
   def read_record(interpreter, rec_number)
-    raise BASICRuntimeError.new(:te_mode_inc) if
-      @mode != :memory
+    raise BASICRuntimeError.new(:te_mode_inc) if @mode != :memory
 
     # error if format not specified by RECORD
-    raise BASICRuntimeError.new(:te_recno_inv) if
-      rec_number < 0
-    raise BASICRuntimeError.new(:te_recno_inv) if
-      rec_number > 65534
+    raise BASICRuntimeError.new(:te_recno_inv) if rec_number < 0
+
+    raise BASICRuntimeError.new(:te_recno_inv) if rec_number > 65534
+
     raise BASICRuntimeError.new(:te_recno_out) if
-      rec_number >= @data_store.size
+      rec_number >= @records.size
     
-    input_text = @data_store[rec_number]
+    input_text = @records[rec_number]
 
     tokenbuilders = make_tokenbuilders(@quotes)
     tokenizer = Tokenizer.new(tokenbuilders, nil)
@@ -392,64 +408,71 @@ class FileHandler
   end
 
   def write_record(record, rec_number)
-    raise BASICRuntimeError.new(:te_mode_inc) if
-      @mode != :memory
+    raise BASICRuntimeError.new(:te_mode_inc) if @mode != :memory
 
     # error if format not specified by RECORD
-    raise BASICRuntimeError.new(:te_recno_inv) if
-      rec_number < 0
-    raise BASICRuntimeError.new(:te_recno_inv) if
-      rec_number > 65534
+    raise BASICRuntimeError.new(:te_recno_inv) if rec_number < 0
+
+    raise BASICRuntimeError.new(:te_recno_inv) if rec_number > 65534
 
     # add empty lines if rec_num > size
-    @data_store << "" while @data_store.size < rec_number
+    @records << "" while @records.size < rec_number
 
     # write to data store
-    @data_store[rec_number] = record
+    @records[rec_number] = record
   end
 
   def read_line
-    input_text = @file.gets
+    raise BASICRuntimeError.new(:te_eof) if @rec_number >= @records.size
 
-    raise BASICRuntimeError.new(:te_eof) if input_text.nil?
-
-    input_text = input_text.chomp
+    input_text = @records[@rec_number]
+    @rec_number += 1
     ascii_printables(input_text)
   end
 
   def print_item(text)
     set_mode(:print)
-    @file.print text
+
+    @record += text
   end
 
   def last_was_numeric
     set_mode(:print)
+
     # for a file, this function does nothing
   end
 
   def newline
     set_mode(:print)
-    @file.puts
+
+    @records << '' while @records.size <= @rec_number
+    @records[@rec_number] = @record
+    @record = ''
+    @rec_number += 1
   end
 
   def implied_newline
     set_mode(:print)
+
     # for a file, this function does nothing
   end
 
   def tab
     set_mode(:print)
-    @file.putc ' '
+
+    @record += ' '
   end
 
   def semicolon
     set_mode(:print)
-    @file.putc ' '
+
+    @record += ' '
   end
 
   def implied
     set_mode(:print)
-    @file.putc ' '
+
+    @record += ' '
   end
 
   def read
@@ -457,19 +480,20 @@ class FileHandler
 
     tokenbuilders = make_tokenbuilders(@quotes)
     tokenizer = Tokenizer.new(tokenbuilders, InvalidTokenBuilder.new)
-    @data_store = refill(@data_store, @file, tokenizer)
+    @data_store = refill(@data_store, tokenizer)
     @data_store.shift
   end
 
   private
 
-  def refill(data_store, file, tokenizer)
+  def refill(data_store, tokenizer)
     while data_store.empty?
-      line = file.gets
+      raise BASICRuntimeError.new(:te_eof) if @rec_number >= @records.size
 
-      raise BASICRuntimeError.new(:te_eof) if line.nil?
+      line = @records[@rec_number]
+      @rec_number += 1
 
-      line = line.chomp
+      line = line.strip
 
       tokens = tokenizer.tokenize(line)
       tokens.delete_if { |token| token.separator? || token.whitespace? }
@@ -495,10 +519,8 @@ class FileHandler
 
   def read_file(file_name)
     lines = []
-    file = File.open(file_name, 'r')
-    file.each_line do |line|
-      lines << line.strip
-    end
+    file = File.open(file_name, 'rt')
+    file.each_line { |line| lines << line.strip }
     file.close
   rescue Exception => e
     raise BASICRuntimeError.new(:te_file_no_read, file_name)
@@ -507,10 +529,8 @@ class FileHandler
   end
 
   def write_file(file_name, lines)
-    file = File.open(file_name, 'w')
-    lines.each do |line|
-      file.puts(line)
-    end
+    file = File.open(file_name, 'wt')
+    lines.each { |line| file.puts(line) }
     file.close
   rescue Exception => e
     raise BASICRuntimeError.new(:te_file_no_write, file_name)
