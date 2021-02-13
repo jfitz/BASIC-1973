@@ -9,6 +9,7 @@ class UnaryOperator < AbstractElement
   end
 
   attr_reader :content_type
+  attr_reader :shape
   attr_reader :arguments
   attr_reader :precedence
 
@@ -17,6 +18,7 @@ class UnaryOperator < AbstractElement
 
     @op = text.to_s
     @content_type = :unknown
+    @shape = :unknown
     @precedence = 9
     @arguments = nil
     @operator = true
@@ -45,8 +47,16 @@ class UnaryOperator < AbstractElement
     type_stack.push(@content_type)
   end
 
+  def set_shape(shape_stack)
+    raise(BASICExpressionError, 'Not enough operands') if shape_stack.empty?
+
+    @shape = shape_stack.pop
+
+    shape_stack.push(@shape)
+  end
+
   def dump
-    self.class.to_s + ':' + @op + ' ' + @content_type.to_s
+    "#{self.class}:#{@op} #{@content_type} #{@shape}"
   end
 
   def unary?
@@ -87,6 +97,7 @@ class BinaryOperator < AbstractElement
   end
 
   attr_reader :content_type
+  attr_reader :shape
   attr_reader :arguments
   attr_reader :precedence
 
@@ -95,6 +106,7 @@ class BinaryOperator < AbstractElement
 
     @op = text.to_s
     @content_type = :unknown
+    @shape = :unknown
     @arguments = nil
     @precedence = 9
     @operator = true
@@ -117,13 +129,40 @@ class BinaryOperator < AbstractElement
     @content_type = @arguments[0].content_type if @content_type == :unknown
   end
 
+  def set_shape(shape_stack)
+    raise(BASICExpressionError, 'Not enough operands +') if shape_stack.size < 2
+
+    b_shape = shape_stack.pop
+    a_shape = shape_stack.pop
+
+    table =
+    {
+      [:scalar, :scalar] => :scalar,
+      [:scalar, :array]  => :array,
+      [:scalar, :matrix] => :matrix,
+      [:array,  :scalar] => :array,
+      [:array,  :array]  => :array,
+      [:array,  :matrix] => nil,
+      [:matrix, :scalar] => :matrix,
+      [:matrix, :array]  => nil,
+      [:matrix, :matrix] => :matrix
+    }
+
+    @shape = table[[a_shape, b_shape]]
+
+    raise(BASICExpressionError, "Bad expression #{a_shape} #{@op} #{b_shape}") if
+      @shape.nil?
+
+    shape_stack.push(@shape)
+  end
+
   def pop_stack(stack)
     stack.pop
     stack.pop
   end
 
   def dump
-    self.class.to_s + ':' + @op + ' ' + @content_type.to_s
+    "#{self.class}:#{@op} #{@content_type} #{@shape}"
   end
 
   def unary?
@@ -651,7 +690,7 @@ class UnaryOperatorPlus < UnaryOperator
     
     raise(BASICExpressionError, "Type mismatch #{@op} #{type}") if
       !arg_types.include?(type)
-    
+
     @content_type = type
     type_stack.push(@content_type)
   end

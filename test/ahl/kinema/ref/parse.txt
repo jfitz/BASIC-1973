@@ -3,35 +3,35 @@
 105 PRINT
  CarriageControl:NL
 106 Q=0
- Variable:Q
+ Variable:Q scalar
  NumericConstant:0
  AssignmentOperator:=
 110 V = 5+INT(35*RND(0))
- Variable:V
+ Variable:V scalar
  NumericConstant:5
  NumericConstant:35
  NumericConstant:0
- FunctionRnd
- BinaryOperatorMultiply:* numeric
- FunctionInt
- BinaryOperatorPlus:+ numeric
+ FunctionRnd scalar
+ BinaryOperatorMultiply:* numeric scalar
+ FunctionInt scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 111 PRINT "A BALL IS THROWN UPWARDS AT "V" METERS PER SECOND"
  TextConstant:"A BALL IS THROWN UPWARDS AT "
  CarriageControl:
- Variable:V
+ Variable:V scalar
  CarriageControl:
  TextConstant:" METERS PER SECOND"
  CarriageControl:NL
 112 PRINT
  CarriageControl:NL
 115 A=V^2/19.6
- Variable:A
- Variable:V
+ Variable:A scalar
+ Variable:V scalar
  NumericConstant:2
- BinaryOperatorPower:^ numeric
+ BinaryOperatorPower:^ numeric scalar
  NumericConstant:19.6
- BinaryOperatorDivide:/ numeric
+ BinaryOperatorDivide:/ numeric scalar
  AssignmentOperator:=
 116 PRINT "HOW HIGH WILL IT GO (IN METERS)";
  TextConstant:"HOW HIGH WILL IT GO (IN METERS)"
@@ -39,10 +39,10 @@
 117 GOSUB 500
  LineNumber:500
 120 A=V/4.9
- Variable:A
- Variable:V
+ Variable:A scalar
+ Variable:V scalar
  NumericConstant:4.9
- BinaryOperatorDivide:/ numeric
+ BinaryOperatorDivide:/ numeric scalar
  AssignmentOperator:=
 122 PRINT "HOW LONG UNTIL IT RETURNS (IN SECONDS)";
  TextConstant:"HOW LONG UNTIL IT RETURNS (IN SECONDS)"
@@ -50,31 +50,31 @@
 124 GOSUB 500
  LineNumber:500
 130 T=(1+INT(2*V+RND(1)))/10
- Variable:T
+ Variable:T scalar
  NumericConstant:1
  NumericConstant:2
- Variable:V
- BinaryOperatorMultiply:* numeric
+ Variable:V scalar
+ BinaryOperatorMultiply:* numeric scalar
  NumericConstant:1
- FunctionRnd
- BinaryOperatorPlus:+ numeric
- FunctionInt
- BinaryOperatorPlus:+ numeric
+ FunctionRnd scalar
+ BinaryOperatorPlus:+ numeric scalar
+ FunctionInt scalar
+ BinaryOperatorPlus:+ numeric scalar
  NumericConstant:10
- BinaryOperatorDivide:/ numeric
+ BinaryOperatorDivide:/ numeric scalar
  AssignmentOperator:=
 132 A=V-9.8*T
- Variable:A
- Variable:V
+ Variable:A scalar
+ Variable:V scalar
  NumericConstant:9.8
- Variable:T
- BinaryOperatorMultiply:* numeric
- BinaryOperatorMinus:- numeric
+ Variable:T scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 134 PRINT "WHAT WILL ITS VELOCITY BE AFTER"T"SECONDS ";
  TextConstant:"WHAT WILL ITS VELOCITY BE AFTER"
  CarriageControl:
- Variable:T
+ Variable:T scalar
  CarriageControl:
  TextConstant:"SECONDS "
  CarriageControl:;
@@ -83,52 +83,52 @@
 140 PRINT
  CarriageControl:NL
 150 PRINT Q"RIGHT OUT OF 3.";
- Variable:Q
+ Variable:Q scalar
  CarriageControl:
  TextConstant:"RIGHT OUT OF 3."
  CarriageControl:;
 160 IF Q<2 THEN 100
- Variable:Q
+ Variable:Q scalar
  NumericConstant:2
- BinaryOperatorLess:< boolean
+ BinaryOperatorLess:< boolean scalar
 170 PRINT " NOT BAD. "
  TextConstant:" NOT BAD. "
  CarriageControl:NL
 180 GO TO 100
  LineNumber:100
 500 INPUT G
- Variable:G
+ Variable:G scalar
 501 G=100*ABS(G-A)
- Variable:G
+ Variable:G scalar
  NumericConstant:100
- Variable:G
- Variable:A
- BinaryOperatorMinus:- numeric
- FunctionAbs
- BinaryOperatorMultiply:* numeric
+ Variable:G scalar
+ Variable:A scalar
+ BinaryOperatorMinus:- numeric scalar
+ FunctionAbs scalar
+ BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
 502 IF G<=ABS(A) THEN 507
- Variable:G
- Variable:A
- FunctionAbs
- BinaryOperatorLessEqual:<= boolean
+ Variable:G scalar
+ Variable:A scalar
+ FunctionAbs scalar
+ BinaryOperatorLessEqual:<= boolean scalar
 503 IF G<=15+ABS(A) THEN 510
- Variable:G
+ Variable:G scalar
  NumericConstant:15
- Variable:A
- FunctionAbs
- BinaryOperatorPlus:+ numeric
- BinaryOperatorLessEqual:<= boolean
+ Variable:A scalar
+ FunctionAbs scalar
+ BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorLessEqual:<= boolean scalar
 504 PRINT "NOT EVEN CLOSE."
  TextConstant:"NOT EVEN CLOSE."
  CarriageControl:NL
 506 GO TO 512
  LineNumber:512
 507 G=G+1
- Variable:G
- Variable:G
+ Variable:G scalar
+ Variable:G scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 508 PRI"CORRECT! VERY GOOD!"
  TextConstant:"CORRECT! VERY GOOD!"
@@ -139,15 +139,15 @@
  TextConstant:"CLOSE ENOUGH."
  CarriageControl:NL
 511 Q=Q+1
- Variable:Q
- Variable:Q
+ Variable:Q scalar
+ Variable:Q scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 512 PRINT "CORRECT ANSWER IS"A
  TextConstant:"CORRECT ANSWER IS"
  CarriageControl:
- Variable:A
+ Variable:A scalar
  CarriageControl:NL
 520 PRINT
  CarriageControl:NL

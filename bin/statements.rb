@@ -1230,9 +1230,9 @@ module InputFunctions
     else
       items << TargetExpressionSet.new(tokens, shape)
     end
-  rescue BASICExpressionError
+  rescue BASICExpressionError => e
     line_text = tokens.map(&:to_s).join
-    @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
+    @errors << 'Syntax error: "' + line_text + '" ' + e.to_s
   end
 
   def zip(names, values)
@@ -1295,11 +1295,9 @@ module PrintFunctions
       add_needed_carriage(items)
       items << ValueExpressionSet.new(tokens, shape)
     end
-  rescue BASICExpressionError
+  rescue BASICExpressionError => e
     line_text = tokens.map(&:to_s).join
-
-    @errors <<
-      'Syntax error: "' + line_text + '" is not a value or operator'
+    @errors << 'Syntax error: "' + line_text + '" ' + e.to_s
   end
   
   def extract_format(items, interpreter)
@@ -1384,9 +1382,9 @@ module ReadFunctions
     else
       items << TargetExpressionSet.new(tokens, shape)
     end
-  rescue BASICExpressionError
+  rescue BASICExpressionError => e
     line_text = tokens.map(&:to_s).join
-    @errors << 'Syntax error: "' + line_text + '" is not a value or operator'
+    @errors << 'Syntax error: "' + line_text + '" ' + e.to_s
   end
 end
 
@@ -1416,11 +1414,9 @@ module WriteFunctions
       add_needed_carriage(items)
       items << ValueExpressionSet.new(tokens, shape)
     end
-  rescue BASICExpressionError
+  rescue BASICExpressionError => e
     line_text = tokens.map(&:to_s).join
-
-    @errors <<
-      'Syntax error: "' + line_text + '" is not a value or operator'
+    @errors << 'Syntax error: "' + line_text + '" ' + e.to_s
   end
 end
 
@@ -1762,8 +1758,8 @@ class DimStatement < AbstractStatement
       tokens_lists.each do |tokens_list|
         begin
           @declaration_sets << DeclarationExpressionSet.new(tokens_list)
-        rescue BASICExpressionError
-          @errors << 'Invalid variable ' + tokens_list.map(&:to_s).join
+        rescue BASICExpressionError => e
+          @errors << 'Invalid ' + tokens_list.map(&:to_s).join + ' ' + e.to_s
         end
       end
       

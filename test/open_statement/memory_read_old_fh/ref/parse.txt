@@ -1,37 +1,37 @@
 10 REM TEST OPEN OUTPUT
  Remark:TEST OPEN OUTPUT
 20 RECORD A,B,C
- Variable:A
- Variable:B
- Variable:C
- Variable:A
- Variable:B
- Variable:C
+ Variable:A scalar
+ Variable:B scalar
+ Variable:C scalar
+ Variable:A scalar
+ Variable:B scalar
+ Variable:C scalar
 30 OPEN #2, "data.txt"
  TextConstant:"data.txt"
  NumericConstant:2
- UnaryOperatorHash:# filehandle
+ UnaryOperatorHash:# filehandle scalar
 40 FOR I = 0 TO 2
- control: Variable:I
+ control: Variable:I scalar
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:2"]
 50 GET #2,20,I
  NumericConstant:2
- UnaryOperatorHash:# filehandle
+ UnaryOperatorHash:# filehandle scalar
  NumericConstant:20
- Variable:I
+ Variable:I scalar
 60 PRINT A,B,C
- Variable:A
+ Variable:A scalar
  CarriageControl:,
- Variable:B
+ Variable:B scalar
  CarriageControl:,
- Variable:C
+ Variable:C scalar
  CarriageControl:NL
 70 NEXT I
- Variable:I
+ Variable:I scalar
 80 CLOSE #2
  NumericConstant:2
- UnaryOperatorHash:# filehandle
+ UnaryOperatorHash:# filehandle scalar
 99 END
  
 

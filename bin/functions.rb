@@ -1,16 +1,20 @@
 # function (provides a result)
 class AbstractFunction < AbstractElement
   attr_reader :name
+  attr_reader :default_shape
   attr_reader :content_type
+  attr_reader :shape
 
   def initialize(text)
     super()
 
     @name = text
     @function = true
+    @default_shape = :unknown
     @content_type = :numeric
     @content_type = :string if @name.to_s[-1] == '$'
     @content_type = :integer if @name.to_s[-1] == '%'
+    @shape = nil
     @valref = :value
     @operand = true
     @precedence = 7
@@ -20,14 +24,25 @@ class AbstractFunction < AbstractElement
     unless type_stack.empty?
       type = type_stack.pop
 
-      raise(BASICExpressionError, "Bad expression a + #{type}") if type != :list
+      raise(BASICExpressionError, "Bad expression #{type}") if type != :list
     end
 
     type_stack.push(content_type)
   end
 
+  def set_shape(shape_stack)
+    unless shape_stack.empty?
+      my_shape = shape_stack.pop
+
+      raise(BASICExpressionError, "Bad expression #{@name} #{shape}") if
+        my_shape != :list
+    end
+
+    shape_stack.push(shape)
+  end
+  
   def dump
-    self.class.to_s
+    "#{self.class} #{@shape}"
   end
 
   def to_s
@@ -90,8 +105,8 @@ class AbstractFunction < AbstractElement
     type = spec['type']
     type_compatible = match_arg_type(value, type)
 
-    shape = spec['shape']
-    shape_compatible = match_arg_shape(value, shape)
+    my_shape = spec['shape']
+    shape_compatible = match_arg_shape(value, my_shape)
 
     type_compatible && shape_compatible
   end
@@ -117,10 +132,8 @@ end
 class AbstractScalarFunction < AbstractFunction
   def initialize(text)
     super
-  end
 
-  def default_shape
-    :scalar
+    @default_shape = :scalar
   end
 end
 
@@ -128,10 +141,8 @@ end
 class AbstractArrayFunction < AbstractFunction
   def initialize(text)
     super
-  end
 
-  def default_shape
-    :array
+    @default_shape = :array
   end
 end
 
@@ -139,14 +150,13 @@ end
 class AbstractMatrixFunction < AbstractFunction
   def initialize(text)
     super
-  end
 
-  def default_shape
-    :matrix
+    @default_shape = :matrix
   end
 
   def check_square(dims)
     raise(BASICSyntaxError, @name + ' requires matrix') unless dims.size == 2
+
     raise BASICRuntimeError.new(:te_mat_no_sq, @name) unless
       dims[1] == dims[0]
   end
@@ -196,6 +206,14 @@ class UserFunction < AbstractScalarFunction
     type_stack.push(content_type)
   end
 
+  def set_shape(shape_stack)
+    unless shape_stack.empty?
+      shape_stack.pop if shape_stack[-1] == :list
+    end
+
+    shape_stack.push(shape)
+  end
+  
   def evaluate(interpreter, arg_stack)
     x = false
     x = evaluate_value(interpreter, arg_stack) if @valref == :value
@@ -237,10 +255,10 @@ class UserFunction < AbstractScalarFunction
 
   def evaluate_ref(interpreter, arg_stack)
     x = nil
-    x = evaluate_ref_scalar(interpreter, arg_stack) if @shape == :scalar
+    x = evaluate_ref_scalar(interpreter, arg_stack) if @default_shape == :scalar
 
     x = evaluate_ref_compound(interpreter, arg_stack) if
-      @shape == :array || @shape == :matrix
+      @default_shape == :array || @default_shape == :matrix
     x
   end
 
@@ -286,10 +304,12 @@ class FunctionAbs < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
     args = arg_stack.pop
+
     if match_args_to_signature(args, @signature)
       args[0].abs
     else
@@ -304,15 +324,16 @@ class FunctionAsc < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :string, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(interpreter, arg_stack)
     args = arg_stack.pop
+
     if match_args_to_signature(args, @signature)
       text = args[0].to_v
 
-      raise BASICRuntimeError.new(:te_str_empty, @name) if
-        text.empty?
+      raise BASICRuntimeError.new(:te_str_empty, @name) if text.empty?
 
       value = text[0].ord
 
@@ -333,6 +354,7 @@ class FunctionArcCos < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -351,6 +373,7 @@ class FunctionArcSin < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -373,6 +396,7 @@ class FunctionArcTan < AbstractScalarFunction
       { 'type' => :numeric, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
     ]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -395,10 +419,12 @@ class FunctionChr < AbstractScalarFunction
 
     @content_type = :string
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(interpreter, arg_stack)
     args = arg_stack.pop
+
     if match_args_to_signature(args, @signature)
       value = args[0].to_i
 
@@ -422,6 +448,7 @@ class FunctionCon1 < AbstractScalarFunction
 
     @signature_0 = []
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :array
   end
 
   def set_content_type(type_stack)
@@ -432,6 +459,14 @@ class FunctionCon1 < AbstractScalarFunction
     type_stack.push(content_type)
   end
 
+  def set_shape(shape_stack)
+    unless shape_stack.empty?
+      shape_stack.pop if shape_stack[-1] == :list
+    end
+
+    shape_stack.push(shape)
+  end
+  
   def evaluate(interpreter, arg_stack)
     if previous_is_array(arg_stack)
       args = arg_stack.pop
@@ -469,6 +504,7 @@ class FunctionCon2 < AbstractScalarFunction
         { 'type' => :numeric, 'shape' => :scalar },
         { 'type' => :numeric, 'shape' => :scalar }
       ]
+    @shape = :matrix
   end
 
   def set_content_type(type_stack)
@@ -479,6 +515,14 @@ class FunctionCon2 < AbstractScalarFunction
     type_stack.push(content_type)
   end
 
+  def set_shape(shape_stack)
+    unless shape_stack.empty?
+      shape_stack.pop if shape_stack[-1] == :list
+    end
+
+    shape_stack.push(shape)
+  end
+  
   def evaluate(interpreter, arg_stack)
     if previous_is_array(arg_stack)
       args = arg_stack.pop
@@ -514,6 +558,7 @@ class FunctionCos < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -532,6 +577,7 @@ class FunctionCot < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -550,6 +596,7 @@ class FunctionCsc < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -568,6 +615,7 @@ class FunctionDet < AbstractMatrixFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :matrix }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -587,6 +635,7 @@ class FunctionErl < AbstractScalarFunction
 
     @signature_0 = []
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def set_content_type(type_stack)
@@ -597,6 +646,14 @@ class FunctionErl < AbstractScalarFunction
     type_stack.push(content_type)
   end
 
+  def set_shape(shape_stack)
+    unless shape_stack.empty?
+      shape_stack.pop if shape_stack[-1] == :list
+    end
+
+    shape_stack.push(shape)
+  end
+  
   # return a single value
   def evaluate(interpreter, arg_stack)
     if previous_is_array(arg_stack)
@@ -623,6 +680,7 @@ class FunctionErr < AbstractScalarFunction
     super
 
     @signature = []
+    @shape = :scalar
   end
 
   def set_content_type(type_stack)
@@ -633,6 +691,14 @@ class FunctionErr < AbstractScalarFunction
     type_stack.push(content_type)
   end
 
+  def set_shape(shape_stack)
+    unless shape_stack.empty?
+      shape_stack.pop if shape_stack[-1] == :list
+    end
+
+    shape_stack.push(shape)
+  end
+  
   # return a single value
   def evaluate(interpreter, arg_stack)
     if previous_is_array(arg_stack)
@@ -655,6 +721,7 @@ class FunctionExp < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -679,6 +746,7 @@ class FunctionExt < AbstractScalarFunction
       { 'type' => :numeric, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
     ]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -707,6 +775,7 @@ class FunctionFrac < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   # return a single value
@@ -732,6 +801,7 @@ class FunctionIdn < AbstractScalarFunction
         { 'type' => :numeric, 'shape' => :scalar },
         { 'type' => :numeric, 'shape' => :scalar }
       ]
+    @shape = :matrix
   end
 
   def set_content_type(type_stack)
@@ -742,6 +812,14 @@ class FunctionIdn < AbstractScalarFunction
     type_stack.push(content_type)
   end
 
+  def set_shape(shape_stack)
+    unless shape_stack.empty?
+      shape_stack.pop if shape_stack[-1] == :list
+    end
+
+    shape_stack.push(shape)
+  end
+  
   def evaluate(interpreter, arg_stack)
     if previous_is_array(arg_stack)
       args = arg_stack.pop
@@ -788,10 +866,12 @@ class FunctionInstr < AbstractScalarFunction
       { 'type' => :string, 'shape' => :scalar },
       { 'type' => :string, 'shape' => :scalar }
     ]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
     args = arg_stack.pop
+
     raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
@@ -821,6 +901,7 @@ class FunctionInt < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   # return a single value
@@ -840,6 +921,7 @@ class FunctionInv < AbstractMatrixFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :matrix }]
+    @shape = :matrix
   end
 
   def evaluate(_, arg_stack)
@@ -865,6 +947,7 @@ class FunctionLeft < AbstractScalarFunction
       { 'type' => :string, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
     ]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -884,6 +967,7 @@ class FunctionLeft < AbstractScalarFunction
     else
       text = ''
     end
+
     quoted = '"' + text + '"'
     token = TextConstantToken.new(quoted)
     TextConstant.new(token)
@@ -896,6 +980,7 @@ class FunctionLen < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :string, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -917,6 +1002,7 @@ class FunctionLog < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -935,6 +1021,7 @@ class FunctionLog10 < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -953,6 +1040,7 @@ class FunctionLog2 < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -977,6 +1065,7 @@ class FunctionMid < AbstractScalarFunction
       { 'type' => :numeric, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
     ]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -1018,6 +1107,7 @@ class FunctionMod < AbstractScalarFunction
       { 'type' => :numeric, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
     ]
+    @shape = :scalar
   end
 
   # return a single value
@@ -1038,10 +1128,12 @@ class FunctionPack < AbstractArrayFunction
 
     @content_type = :string
     @signature = [{ 'type' => :numeric, 'shape' => :array }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
     args = arg_stack.pop
+
     raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature)
 
@@ -1065,6 +1157,7 @@ class FunctionRight < AbstractScalarFunction
       { 'type' => :string, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
     ]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -1096,6 +1189,7 @@ class FunctionRound < AbstractScalarFunction
       { 'type' => :numeric, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
     ]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -1115,6 +1209,7 @@ class FunctionRnd < AbstractScalarFunction
 
     @signature_0 = []
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def set_content_type(type_stack)
@@ -1125,6 +1220,14 @@ class FunctionRnd < AbstractScalarFunction
     type_stack.push(content_type)
   end
 
+  def set_shape(shape_stack)
+    unless shape_stack.empty?
+      shape_stack.pop if shape_stack[-1] == :list
+    end
+
+    shape_stack.push(shape)
+  end
+  
   # return a single value
   def evaluate(interpreter, arg_stack)
     if previous_is_array(arg_stack)
@@ -1151,6 +1254,7 @@ class FunctionSec < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -1169,6 +1273,7 @@ class FunctionSgn < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -1187,6 +1292,7 @@ class FunctionSin < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -1206,6 +1312,7 @@ class FunctionSpc < AbstractScalarFunction
 
     @content_type = :string
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -1235,6 +1342,7 @@ class FunctionSqr < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -1258,6 +1366,7 @@ class FunctionStr < AbstractScalarFunction
       { 'type' => :numeric, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
     ]
+    @shape = :scalar
   end
 
   # return a single value
@@ -1289,6 +1398,7 @@ class FunctionTab < AbstractScalarFunction
 
     @content_type = :string
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(interpreter, arg_stack)
@@ -1320,6 +1430,7 @@ class FunctionTan < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -1338,6 +1449,7 @@ class FunctionTime < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(interpreter, arg_stack)
@@ -1360,6 +1472,7 @@ class FunctionUnpack < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :string, 'shape' => :scalar }]
+    @shape = :array
   end
 
   def evaluate(_, arg_stack)
@@ -1379,6 +1492,7 @@ class FunctionTrn < AbstractMatrixFunction
     super
 
     @signature = [{ 'type' => :numeric, 'shape' => :matrix }]
+    @shape = :matrix
   end
 
   def evaluate(_, arg_stack)
@@ -1399,6 +1513,7 @@ class FunctionVal < AbstractScalarFunction
     super
 
     @signature = [{ 'type' => :string, 'shape' => :scalar }]
+    @shape = :scalar
   end
 
   def evaluate(_, arg_stack)
@@ -1420,6 +1535,7 @@ class FunctionZer1 < AbstractScalarFunction
 
     @signature_0 = []
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+    @shape = :array
   end
 
   def set_content_type(type_stack)
@@ -1430,6 +1546,14 @@ class FunctionZer1 < AbstractScalarFunction
     type_stack.push(content_type)
   end
 
+  def set_shape(shape_stack)
+    unless shape_stack.empty?
+      shape_stack.pop if shape_stack[-1] == :list
+    end
+
+    shape_stack.push(shape)
+  end
+  
   def evaluate(interpreter, arg_stack)
     if previous_is_array(arg_stack)
       args = arg_stack.pop
@@ -1467,6 +1591,7 @@ class FunctionZer2 < AbstractScalarFunction
         { 'type' => :numeric, 'shape' => :scalar },
         { 'type' => :numeric, 'shape' => :scalar }
       ]
+    @shape = :matrix
   end
 
   def set_content_type(type_stack)
@@ -1477,6 +1602,14 @@ class FunctionZer2 < AbstractScalarFunction
     type_stack.push(content_type)
   end
 
+  def set_shape(shape_stack)
+    unless shape_stack.empty?
+      shape_stack.pop if shape_stack[-1] == :list
+    end
+
+    shape_stack.push(shape)
+  end
+  
   def evaluate(interpreter, arg_stack)
     if previous_is_array(arg_stack)
       args = arg_stack.pop

@@ -17,22 +17,22 @@
  TextConstant:"     WAIT FOR THE COMP. TO MOVE!!!!!"
  CarriageControl:NL
 700 LET G=-1
- Variable:G
+ Variable:G scalar
  NumericConstant:1
- UnaryOperatorMinus:- numeric
+ UnaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 800 DIM R(50) 
  NumericConstant:50
- Declaration:R
+ Declaration:R unknown
 900 LET L=-1
- Variable:L
+ Variable:L scalar
  NumericConstant:1
- UnaryOperatorMinus:- numeric
+ UnaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 1000 DIM S(10,10)
  NumericConstant:10
  NumericConstant:10
- Declaration:S
+ Declaration:S unknown
 1100 DATA 1,0,1,0,0,0,-1,0,0,1,0,0,0,-1,0,-1,15
  NumericConstant:1
  NumericConstant:0
@@ -41,7 +41,7 @@
  NumericConstant:0
  NumericConstant:0
  NumericConstant:1
- UnaryOperatorMinus:- numeric
+ UnaryOperatorMinus:- numeric scalar
  NumericConstant:0
  NumericConstant:0
  NumericConstant:1
@@ -49,116 +49,116 @@
  NumericConstant:0
  NumericConstant:0
  NumericConstant:1
- UnaryOperatorMinus:- numeric
+ UnaryOperatorMinus:- numeric scalar
  NumericConstant:0
  NumericConstant:1
- UnaryOperatorMinus:- numeric
+ UnaryOperatorMinus:- numeric scalar
  NumericConstant:15
 1200 FOR X=1TO8
- control: Variable:X
+ control: Variable:X scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
 1300 FOR Y=1TO8
- control: Variable:Y
+ control: Variable:Y scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
 1400 READ J
- Variable:J
+ Variable:J scalar
 1500 IF J=15 THEN 1800
- Variable:J
+ Variable:J scalar
  NumericConstant:15
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 1600 LET S(X,Y)=J
- Variable:X
- Variable:Y
- Variable:S
- Variable:J
+ Variable:X scalar
+ Variable:Y scalar
+ Variable:S scalar
+ Variable:J scalar
  AssignmentOperator:=
 1700 GOTO 2000
  LineNumber:2000
 1800 RESTORE
  
 1900 READ S(X,Y)
- Variable:X
- Variable:Y
- Variable:S
+ Variable:X scalar
+ Variable:Y scalar
+ Variable:S scalar
 2000 NEXT Y
- Variable:Y
+ Variable:Y scalar
 2100 NEXT X
- Variable:X
+ Variable:X scalar
 2200 REM
  Remark:
 2300LETL=-1*L
- Variable:L
+ Variable:L scalar
  NumericConstant:1
- UnaryOperatorMinus:- numeric
- Variable:L
- BinaryOperatorMultiply:* numeric
+ UnaryOperatorMinus:- numeric scalar
+ Variable:L scalar
+ BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
 2400 FOR X=1TO8
- control: Variable:X
+ control: Variable:X scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
 2500 FOR Y=1TO8
- control: Variable:Y
+ control: Variable:Y scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
 2600 IF S(X,Y)=0 THEN 3500
- Variable:X
- Variable:Y
- Variable:S
+ Variable:X scalar
+ Variable:Y scalar
+ Variable:S scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 2700 IF G>0 THEN 3000
- Variable:G
+ Variable:G scalar
  NumericConstant:0
- BinaryOperatorGreater:> boolean
+ BinaryOperatorGreater:> boolean scalar
 2800 IF S(X,Y)>0 THEN 3500
- Variable:X
- Variable:Y
- Variable:S
+ Variable:X scalar
+ Variable:Y scalar
+ Variable:S scalar
  NumericConstant:0
- BinaryOperatorGreater:> boolean
+ BinaryOperatorGreater:> boolean scalar
 2900 GOTO 3100
  LineNumber:3100
 3000 IF S(X,Y)<0 THEN 3500
- Variable:X
- Variable:Y
- Variable:S
+ Variable:X scalar
+ Variable:Y scalar
+ Variable:S scalar
  NumericConstant:0
- BinaryOperatorLess:< boolean
+ BinaryOperatorLess:< boolean scalar
 3100 IF ABS(S(X,Y))<>1 THEN 3300
- Variable:X
- Variable:Y
- Variable:S
- FunctionAbs
+ Variable:X scalar
+ Variable:Y scalar
+ Variable:S scalar
+ FunctionAbs scalar
  NumericConstant:1
- BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorNotEqual:<> boolean scalar
 3200 GOSUB 4300
  LineNumber:4300
 3300 IF ABS(S(X,Y))<>2 THEN 3500
- Variable:X
- Variable:Y
- Variable:S
- FunctionAbs
+ Variable:X scalar
+ Variable:Y scalar
+ Variable:S scalar
+ FunctionAbs scalar
  NumericConstant:2
- BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorNotEqual:<> boolean scalar
 3400 GOSUB 6500
  LineNumber:6500
 3500IFX<>8 THEN 3800
- Variable:X
+ Variable:X scalar
  NumericConstant:8
- BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorNotEqual:<> boolean scalar
 3600IFL=1 THEN 3800
- Variable:L
+ Variable:L scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 3700RETURN
  
 3800NEXT Y
- Variable:Y
+ Variable:Y scalar
 3900NEXT X
- Variable:X
+ Variable:X scalar
 4000PRINT
  CarriageControl:NL
 4100GOSUB11400
@@ -166,206 +166,206 @@
 4200 GOTO 2300
  LineNumber:2300
 4300 FOR A=-1TO1 STEP 2
- control: Variable:A
- start:   ["NumericConstant:1", "UnaryOperatorMinus:- numeric"]
+ control: Variable:A scalar
+ start:   ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:2"]
 4400 LET U=X+A
- Variable:U
- Variable:X
- Variable:A
- BinaryOperatorPlus:+ numeric
+ Variable:U scalar
+ Variable:X scalar
+ Variable:A scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 4500 LET V=Y+G
- Variable:V
- Variable:Y
- Variable:G
- BinaryOperatorPlus:+ numeric
+ Variable:V scalar
+ Variable:Y scalar
+ Variable:G scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 4600 IF U<1 THEN 6300
- Variable:U
+ Variable:U scalar
  NumericConstant:1
- BinaryOperatorLess:< boolean
+ BinaryOperatorLess:< boolean scalar
 4700 IF U>8 THEN 6300
- Variable:U
+ Variable:U scalar
  NumericConstant:8
- BinaryOperatorGreater:> boolean
+ BinaryOperatorGreater:> boolean scalar
 4800 IF V<1 THEN 6300
- Variable:V
+ Variable:V scalar
  NumericConstant:1
- BinaryOperatorLess:< boolean
+ BinaryOperatorLess:< boolean scalar
 4900 IF V>8 THEN 6300
- Variable:V
+ Variable:V scalar
  NumericConstant:8
- BinaryOperatorGreater:> boolean
+ BinaryOperatorGreater:> boolean scalar
 5000 IF S(U,V)<>0 THEN 5300
- Variable:U
- Variable:V
- Variable:S
+ Variable:U scalar
+ Variable:V scalar
+ Variable:S scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorNotEqual:<> boolean scalar
 5100 GOSUB 9100
  LineNumber:9100
 5200 GOTO 6300
  LineNumber:6300
 5300 IF S(U,V)=G THEN 6300
- Variable:U
- Variable:V
- Variable:S
- Variable:G
- BinaryOperatorEqual:= boolean
+ Variable:U scalar
+ Variable:V scalar
+ Variable:S scalar
+ Variable:G scalar
+ BinaryOperatorEqual:= boolean scalar
 5400 IF S(U,V)=2*G THEN 6300
- Variable:U
- Variable:V
- Variable:S
+ Variable:U scalar
+ Variable:V scalar
+ Variable:S scalar
  NumericConstant:2
- Variable:G
- BinaryOperatorMultiply:* numeric
- BinaryOperatorEqual:= boolean
+ Variable:G scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorEqual:= boolean scalar
 5500 LET U=U+A
- Variable:U
- Variable:U
- Variable:A
- BinaryOperatorPlus:+ numeric
+ Variable:U scalar
+ Variable:U scalar
+ Variable:A scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 5600 LET V=V+G
- Variable:V
- Variable:V
- Variable:G
- BinaryOperatorPlus:+ numeric
+ Variable:V scalar
+ Variable:V scalar
+ Variable:G scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 5700 IF U<1 THEN 6300
- Variable:U
+ Variable:U scalar
  NumericConstant:1
- BinaryOperatorLess:< boolean
+ BinaryOperatorLess:< boolean scalar
 5800 IF U>8 THEN 6300
- Variable:U
+ Variable:U scalar
  NumericConstant:8
- BinaryOperatorGreater:> boolean
+ BinaryOperatorGreater:> boolean scalar
 5900 IF V<1 THEN 6300
- Variable:V
+ Variable:V scalar
  NumericConstant:1
- BinaryOperatorLess:< boolean
+ BinaryOperatorLess:< boolean scalar
 6000 IF V>8 THEN 6300
- Variable:V
+ Variable:V scalar
  NumericConstant:8
- BinaryOperatorGreater:> boolean
+ BinaryOperatorGreater:> boolean scalar
 6100 IF S(U,V)<>0 THEN 6300
- Variable:U
- Variable:V
- Variable:S
+ Variable:U scalar
+ Variable:V scalar
+ Variable:S scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorNotEqual:<> boolean scalar
 6200 GOSUB 9100
  LineNumber:9100
 6300 NEXT A
- Variable:A
+ Variable:A scalar
 6400 RETURN
  
 6500 REM KING MOVES
  Remark:KING MOVES
 6600 FOR A=-1TO1 STEP 2
- control: Variable:A
- start:   ["NumericConstant:1", "UnaryOperatorMinus:- numeric"]
+ control: Variable:A scalar
+ start:   ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:2"]
 6700 FOR B=-1TO1 STEP 2
- control: Variable:B
- start:   ["NumericConstant:1", "UnaryOperatorMinus:- numeric"]
+ control: Variable:B scalar
+ start:   ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:2"]
 6800 LET U=X+A
- Variable:U
- Variable:X
- Variable:A
- BinaryOperatorPlus:+ numeric
+ Variable:U scalar
+ Variable:X scalar
+ Variable:A scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 6900 LET V=Y+B
- Variable:V
- Variable:Y
- Variable:B
- BinaryOperatorPlus:+ numeric
+ Variable:V scalar
+ Variable:Y scalar
+ Variable:B scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 7000 IF U<1 THEN 8700
- Variable:U
+ Variable:U scalar
  NumericConstant:1
- BinaryOperatorLess:< boolean
+ BinaryOperatorLess:< boolean scalar
 7100 IF U>8 THEN 8700
- Variable:U
+ Variable:U scalar
  NumericConstant:8
- BinaryOperatorGreater:> boolean
+ BinaryOperatorGreater:> boolean scalar
 7200 IF V<1 THEN 8700
- Variable:V
+ Variable:V scalar
  NumericConstant:1
- BinaryOperatorLess:< boolean
+ BinaryOperatorLess:< boolean scalar
 7300 IF V>8 THEN8700
- Variable:V
+ Variable:V scalar
  NumericConstant:8
- BinaryOperatorGreater:> boolean
+ BinaryOperatorGreater:> boolean scalar
 7400 IF S(U,V)<>0 THEN 7700
- Variable:U
- Variable:V
- Variable:S
+ Variable:U scalar
+ Variable:V scalar
+ Variable:S scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorNotEqual:<> boolean scalar
 7500 GOSUB 9100
  LineNumber:9100
 7600 GOTO 8700
  LineNumber:8700
 7700 IF S(U,V)=G THEN 8700
- Variable:U
- Variable:V
- Variable:S
- Variable:G
- BinaryOperatorEqual:= boolean
+ Variable:U scalar
+ Variable:V scalar
+ Variable:S scalar
+ Variable:G scalar
+ BinaryOperatorEqual:= boolean scalar
 7800 IF S(U,V)=2*G THEN 8700
- Variable:U
- Variable:V
- Variable:S
+ Variable:U scalar
+ Variable:V scalar
+ Variable:S scalar
  NumericConstant:2
- Variable:G
- BinaryOperatorMultiply:* numeric
- BinaryOperatorEqual:= boolean
+ Variable:G scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorEqual:= boolean scalar
 7900 LET U=U+A
- Variable:U
- Variable:U
- Variable:A
- BinaryOperatorPlus:+ numeric
+ Variable:U scalar
+ Variable:U scalar
+ Variable:A scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 8000 LET V=V+B
- Variable:V
- Variable:V
- Variable:B
- BinaryOperatorPlus:+ numeric
+ Variable:V scalar
+ Variable:V scalar
+ Variable:B scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 8100 IF U<1 THEN 8700
- Variable:U
+ Variable:U scalar
  NumericConstant:1
- BinaryOperatorLess:< boolean
+ BinaryOperatorLess:< boolean scalar
 8200 IF U>8 THEN 8700
- Variable:U
+ Variable:U scalar
  NumericConstant:8
- BinaryOperatorGreater:> boolean
+ BinaryOperatorGreater:> boolean scalar
 8300 IF V<1 THEN 8700
- Variable:V
+ Variable:V scalar
  NumericConstant:1
- BinaryOperatorLess:< boolean
+ BinaryOperatorLess:< boolean scalar
 8400 IF V>8 THEN 8700
- Variable:V
+ Variable:V scalar
  NumericConstant:8
- BinaryOperatorGreater:> boolean
+ BinaryOperatorGreater:> boolean scalar
 8500 IF S(U,V)<>0 THEN 8700
- Variable:U
- Variable:V
- Variable:S
+ Variable:U scalar
+ Variable:V scalar
+ Variable:S scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorNotEqual:<> boolean scalar
 8600 GOSUB 9100
  LineNumber:9100
 8700 NEXT B
- Variable:B
+ Variable:B scalar
 8800 NEXT A
- Variable:A
+ Variable:A scalar
 8900 RETURN
  
 9000 GOTO 14200
@@ -373,146 +373,146 @@
 9100 REM
  Remark:
 9200 LET P=P+1
- Variable:P
- Variable:P
+ Variable:P scalar
+ Variable:P scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 9300 IF P=K THEN 12300
- Variable:P
- Variable:K
- BinaryOperatorEqual:= boolean
+ Variable:P scalar
+ Variable:K scalar
+ BinaryOperatorEqual:= boolean scalar
 9400IF V<>(4.5+(3.5*G)) THEN 9600
- Variable:V
+ Variable:V scalar
  NumericConstant:4.5
  NumericConstant:3.5
- Variable:G
- BinaryOperatorMultiply:* numeric
- BinaryOperatorPlus:+ numeric
- BinaryOperatorNotEqual:<> boolean
+ Variable:G scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorNotEqual:<> boolean scalar
 9500 LET Q=Q+2
- Variable:Q
- Variable:Q
+ Variable:Q scalar
+ Variable:Q scalar
  NumericConstant:2
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 9600 IF X<>(4.5-(3.5*G)) THEN 9800
- Variable:X
+ Variable:X scalar
  NumericConstant:4.5
  NumericConstant:3.5
- Variable:G
- BinaryOperatorMultiply:* numeric
- BinaryOperatorMinus:- numeric
- BinaryOperatorNotEqual:<> boolean
+ Variable:G scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorNotEqual:<> boolean scalar
 9700LET Q=Q-2
- Variable:Q
- Variable:Q
+ Variable:Q scalar
+ Variable:Q scalar
  NumericConstant:2
- BinaryOperatorMinus:- numeric
+ BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 9800 REM
  Remark:
 9900 IF U<>1 THEN 10100
- Variable:U
+ Variable:U scalar
  NumericConstant:1
- BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorNotEqual:<> boolean scalar
 10000 LET Q=Q+1
- Variable:Q
- Variable:Q
+ Variable:Q scalar
+ Variable:Q scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 10100 IF U<>8 THEN 10300
- Variable:U
+ Variable:U scalar
  NumericConstant:8
- BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorNotEqual:<> boolean scalar
 10200 LET Q=Q+1
- Variable:Q
- Variable:Q
+ Variable:Q scalar
+ Variable:Q scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 10300 FOR C=-1TO1 STEP 2
- control: Variable:C
- start:   ["NumericConstant:1", "UnaryOperatorMinus:- numeric"]
+ control: Variable:C scalar
+ start:   ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:2"]
 10400 IF S(U+C,V+G)<1 THEN10800
- Variable:U
- Variable:C
- BinaryOperatorPlus:+ numeric
- Variable:V
- Variable:G
- BinaryOperatorPlus:+ numeric
- Variable:S
+ Variable:U scalar
+ Variable:C scalar
+ BinaryOperatorPlus:+ numeric scalar
+ Variable:V scalar
+ Variable:G scalar
+ BinaryOperatorPlus:+ numeric scalar
+ Variable:S scalar
  NumericConstant:1
- BinaryOperatorLess:< boolean
+ BinaryOperatorLess:< boolean scalar
 10500 LET Q=Q-1
- Variable:Q
- Variable:Q
+ Variable:Q scalar
+ Variable:Q scalar
  NumericConstant:1
- BinaryOperatorMinus:- numeric
+ BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 10600 IF S(U-C,V-G)<>0 THEN 10800
- Variable:U
- Variable:C
- BinaryOperatorMinus:- numeric
- Variable:V
- Variable:G
- BinaryOperatorMinus:- numeric
- Variable:S
+ Variable:U scalar
+ Variable:C scalar
+ BinaryOperatorMinus:- numeric scalar
+ Variable:V scalar
+ Variable:G scalar
+ BinaryOperatorMinus:- numeric scalar
+ Variable:S scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorNotEqual:<> boolean scalar
 10700 LET Q=Q-1
- Variable:Q
- Variable:Q
+ Variable:Q scalar
+ Variable:Q scalar
  NumericConstant:1
- BinaryOperatorMinus:- numeric
+ BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 10800 REM THIS WAS THE EVALUATION SECTION
  Remark:THIS WAS THE EVALUATION SECTION
 10900 REM
  Remark:
 11000 NEXT C
- Variable:C
+ Variable:C scalar
 11100 LET R(P)=Q
- Variable:P
- Variable:R
- Variable:Q
+ Variable:P scalar
+ Variable:R scalar
+ Variable:Q scalar
  AssignmentOperator:=
 11200 LETQ=0
- Variable:Q
+ Variable:Q scalar
  NumericConstant:0
  AssignmentOperator:=
 11300 RETURN
  
 11400 IF P=0 THEN 18800
- Variable:P
+ Variable:P scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 11500 FOR J=10TO-10 STEP -1
- control: Variable:J
+ control: Variable:J scalar
  start:   ["NumericConstant:10"]
- end:     ["NumericConstant:10", "UnaryOperatorMinus:- numeric"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric"]
+ end:     ["NumericConstant:10", "UnaryOperatorMinus:- numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
 11600 FOR F=1TOP
- control: Variable:F
+ control: Variable:F scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:P"]
+ end:     ["Variable:P scalar"]
 11700 IF R(F)=J THEN 12000
- Variable:F
- Variable:R
- Variable:J
- BinaryOperatorEqual:= boolean
+ Variable:F scalar
+ Variable:R scalar
+ Variable:J scalar
+ BinaryOperatorEqual:= boolean scalar
 11800 NEXT F
- Variable:F
+ Variable:F scalar
 11900 NEXT J
- Variable:J
+ Variable:J scalar
 12000 LET K=F+P
- Variable:K
- Variable:F
- Variable:P
- BinaryOperatorPlus:+ numeric
+ Variable:K scalar
+ Variable:F scalar
+ Variable:P scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 12100 GOSUB 2300
  LineNumber:2300
@@ -521,92 +521,92 @@
 12300 PRINT" I MOVE FROM ("X;Y") TO ("U;V")"
  TextConstant:" I MOVE FROM ("
  CarriageControl:
- Variable:X
+ Variable:X scalar
  CarriageControl:;
- Variable:Y
+ Variable:Y scalar
  CarriageControl:
  TextConstant:") TO ("
  CarriageControl:
- Variable:U
+ Variable:U scalar
  CarriageControl:;
- Variable:V
+ Variable:V scalar
  CarriageControl:
  TextConstant:")"
  CarriageControl:NL
 12400 LET F=0
- Variable:F
+ Variable:F scalar
  NumericConstant:0
  AssignmentOperator:=
 12500 LET P=0
- Variable:P
+ Variable:P scalar
  NumericConstant:0
  AssignmentOperator:=
 12600 LET K=0
- Variable:K
+ Variable:K scalar
  NumericConstant:0
  AssignmentOperator:=
 12700 IF V<>(4.5+(3.5*G)) THEN 13000
- Variable:V
+ Variable:V scalar
  NumericConstant:4.5
  NumericConstant:3.5
- Variable:G
- BinaryOperatorMultiply:* numeric
- BinaryOperatorPlus:+ numeric
- BinaryOperatorNotEqual:<> boolean
+ Variable:G scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorNotEqual:<> boolean scalar
 12800 LET S(U,V)=2*G
- Variable:U
- Variable:V
- Variable:S
+ Variable:U scalar
+ Variable:V scalar
+ Variable:S scalar
  NumericConstant:2
- Variable:G
- BinaryOperatorMultiply:* numeric
+ Variable:G scalar
+ BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
 12900 GOTO 13100
  LineNumber:13100
 13000 LET S(U,V)=S(X,Y)
- Variable:U
- Variable:V
- Variable:S
- Variable:X
- Variable:Y
- Variable:S
+ Variable:U scalar
+ Variable:V scalar
+ Variable:S scalar
+ Variable:X scalar
+ Variable:Y scalar
+ Variable:S scalar
  AssignmentOperator:=
 13100 LET S(X,Y)=0
- Variable:X
- Variable:Y
- Variable:S
+ Variable:X scalar
+ Variable:Y scalar
+ Variable:S scalar
  NumericConstant:0
  AssignmentOperator:=
 13200 IF ABS(X-U)<>2 THEN 13400
- Variable:X
- Variable:U
- BinaryOperatorMinus:- numeric
- FunctionAbs
+ Variable:X scalar
+ Variable:U scalar
+ BinaryOperatorMinus:- numeric scalar
+ FunctionAbs scalar
  NumericConstant:2
- BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorNotEqual:<> boolean scalar
 13300 LET S((X+U)/2,(Y+V)/2)=0
- Variable:X
- Variable:U
- BinaryOperatorPlus:+ numeric
+ Variable:X scalar
+ Variable:U scalar
+ BinaryOperatorPlus:+ numeric scalar
  NumericConstant:2
- BinaryOperatorDivide:/ numeric
- Variable:Y
- Variable:V
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorDivide:/ numeric scalar
+ Variable:Y scalar
+ Variable:V scalar
+ BinaryOperatorPlus:+ numeric scalar
  NumericConstant:2
- BinaryOperatorDivide:/ numeric
- Variable:S
+ BinaryOperatorDivide:/ numeric scalar
+ Variable:S scalar
  NumericConstant:0
  AssignmentOperator:=
 13400 PRINT"BOARD";
  TextConstant:"BOARD"
  CarriageControl:;
 13500 INPUT D$
- Variable:D$
+ Variable:D$ scalar
 13600 IF D$<>"YES" THEN13900
- Variable:D$
+ Variable:D$ scalar
  TextConstant:"YES"
- BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorNotEqual:<> boolean scalar
 13700 GOSUB 14100
  LineNumber:14100
 13800 RETURN
@@ -618,120 +618,120 @@
 14100 PRINT
  CarriageControl:NL
 14200 FOR Y=8TO1 STEP -1
- control: Variable:Y
+ control: Variable:Y scalar
  start:   ["NumericConstant:8"]
  end:     ["NumericConstant:1"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
 14300 FOR X=1TO8
- control: Variable:X
+ control: Variable:X scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
 14400 LET I=2*X
- Variable:I
+ Variable:I scalar
  NumericConstant:2
- Variable:X
- BinaryOperatorMultiply:* numeric
+ Variable:X scalar
+ BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
 14500 IF S(X,Y)<>0 THEN 14700
- Variable:X
- Variable:Y
- Variable:S
+ Variable:X scalar
+ Variable:Y scalar
+ Variable:S scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorNotEqual:<> boolean scalar
 14600 PRINT TAB(I)".";
- Variable:I
- FunctionTab
+ Variable:I scalar
+ FunctionTab scalar
  CarriageControl:
  TextConstant:"."
  CarriageControl:;
 14700 IF S(X,Y)<>1 THEN 14900
- Variable:X
- Variable:Y
- Variable:S
+ Variable:X scalar
+ Variable:Y scalar
+ Variable:S scalar
  NumericConstant:1
- BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorNotEqual:<> boolean scalar
 14800 PRINT TAB(I)"O";
- Variable:I
- FunctionTab
+ Variable:I scalar
+ FunctionTab scalar
  CarriageControl:
  TextConstant:"O"
  CarriageControl:;
 14900 IF S(X,Y)<>-1 THEN 15100
- Variable:X
- Variable:Y
- Variable:S
+ Variable:X scalar
+ Variable:Y scalar
+ Variable:S scalar
  NumericConstant:1
- UnaryOperatorMinus:- numeric
- BinaryOperatorNotEqual:<> boolean
+ UnaryOperatorMinus:- numeric scalar
+ BinaryOperatorNotEqual:<> boolean scalar
 15000 PRINT TAB(I)"X";
- Variable:I
- FunctionTab
+ Variable:I scalar
+ FunctionTab scalar
  CarriageControl:
  TextConstant:"X"
  CarriageControl:;
 15100 IF S(X,Y)<>-2 THEN 15300
- Variable:X
- Variable:Y
- Variable:S
+ Variable:X scalar
+ Variable:Y scalar
+ Variable:S scalar
  NumericConstant:2
- UnaryOperatorMinus:- numeric
- BinaryOperatorNotEqual:<> boolean
+ UnaryOperatorMinus:- numeric scalar
+ BinaryOperatorNotEqual:<> boolean scalar
 15200 PRINT TAB(I)"X";TAB(I)"*";
- Variable:I
- FunctionTab
+ Variable:I scalar
+ FunctionTab scalar
  CarriageControl:
  TextConstant:"X"
  CarriageControl:;
- Variable:I
- FunctionTab
+ Variable:I scalar
+ FunctionTab scalar
  CarriageControl:
  TextConstant:"*"
  CarriageControl:;
 15300 IF S(X,Y)<>2 THEN 15500
- Variable:X
- Variable:Y
- Variable:S
+ Variable:X scalar
+ Variable:Y scalar
+ Variable:S scalar
  NumericConstant:2
- BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorNotEqual:<> boolean scalar
 15400 PRINT TAB(I)"O";TAB(I)"*";
- Variable:I
- FunctionTab
+ Variable:I scalar
+ FunctionTab scalar
  CarriageControl:
  TextConstant:"O"
  CarriageControl:;
- Variable:I
- FunctionTab
+ Variable:I scalar
+ FunctionTab scalar
  CarriageControl:
  TextConstant:"*"
  CarriageControl:;
 15500 NEXT X
- Variable:X
+ Variable:X scalar
 15600 PRINT
  CarriageControl:NL
 15700 NEXT Y
- Variable:Y
+ Variable:Y scalar
 15800 PRINT
  CarriageControl:NL
 15900 PRINT"FROM";
  TextConstant:"FROM"
  CarriageControl:;
 16000 INPUT E,H
- Variable:E
- Variable:H
+ Variable:E scalar
+ Variable:H scalar
 16100 LET X=E
- Variable:X
- Variable:E
+ Variable:X scalar
+ Variable:E scalar
  AssignmentOperator:=
 16200 LET Y=H
- Variable:Y
- Variable:H
+ Variable:Y scalar
+ Variable:H scalar
  AssignmentOperator:=
 16300 IF S(X,Y)<>0 THEN 16700
- Variable:X
- Variable:Y
- Variable:S
+ Variable:X scalar
+ Variable:Y scalar
+ Variable:S scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorNotEqual:<> boolean scalar
 16400 PRINT "THERE IS NO ONE OCCUPING THAT SPACE"
  TextConstant:"THERE IS NO ONE OCCUPING THAT SPACE"
  CarriageControl:NL
@@ -743,22 +743,22 @@
  TextConstant:"TO"
  CarriageControl:;
 16800 INPUT A,B
- Variable:A
- Variable:B
+ Variable:A scalar
+ Variable:B scalar
 16900 LET X=A
- Variable:X
- Variable:A
+ Variable:X scalar
+ Variable:A scalar
  AssignmentOperator:=
 17000 LET Y=B
- Variable:Y
- Variable:B
+ Variable:Y scalar
+ Variable:B scalar
  AssignmentOperator:=
 17100 IF S(X,Y)=0 THEN 17500
- Variable:X
- Variable:Y
- Variable:S
+ Variable:X scalar
+ Variable:Y scalar
+ Variable:S scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 17200 PRINT"THAT SPACE IS ALREADY OCCUPIED"
  TextConstant:"THAT SPACE IS ALREADY OCCUPIED"
  CarriageControl:NL
@@ -769,75 +769,75 @@
 17500 REM LET S(A$B)=S(E,H)
  Remark:LET S(A$B)=S(E,H)
 17600 LET S(A,B)=S(E,H)
- Variable:A
- Variable:B
- Variable:S
- Variable:E
- Variable:H
- Variable:S
+ Variable:A scalar
+ Variable:B scalar
+ Variable:S scalar
+ Variable:E scalar
+ Variable:H scalar
+ Variable:S scalar
  AssignmentOperator:=
 17700 LET S(E,H)=0
- Variable:E
- Variable:H
- Variable:S
+ Variable:E scalar
+ Variable:H scalar
+ Variable:S scalar
  NumericConstant:0
  AssignmentOperator:=
 17800 LET T=(4.5-(3.5*G))
- Variable:T
+ Variable:T scalar
  NumericConstant:4.5
  NumericConstant:3.5
- Variable:G
- BinaryOperatorMultiply:* numeric
- BinaryOperatorMinus:- numeric
+ Variable:G scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 17900 IF ABS(E-A)<>2 THEN 18100
- Variable:E
- Variable:A
- BinaryOperatorMinus:- numeric
- FunctionAbs
+ Variable:E scalar
+ Variable:A scalar
+ BinaryOperatorMinus:- numeric scalar
+ FunctionAbs scalar
  NumericConstant:2
- BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorNotEqual:<> boolean scalar
 18000 LET S((E+A)/2,(H+B)/2)=0
- Variable:E
- Variable:A
- BinaryOperatorPlus:+ numeric
+ Variable:E scalar
+ Variable:A scalar
+ BinaryOperatorPlus:+ numeric scalar
  NumericConstant:2
- BinaryOperatorDivide:/ numeric
- Variable:H
- Variable:B
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorDivide:/ numeric scalar
+ Variable:H scalar
+ Variable:B scalar
+ BinaryOperatorPlus:+ numeric scalar
  NumericConstant:2
- BinaryOperatorDivide:/ numeric
- Variable:S
+ BinaryOperatorDivide:/ numeric scalar
+ Variable:S scalar
  NumericConstant:0
  AssignmentOperator:=
 18100 IF B<>T THEN 18300
- Variable:B
- Variable:T
- BinaryOperatorNotEqual:<> boolean
+ Variable:B scalar
+ Variable:T scalar
+ BinaryOperatorNotEqual:<> boolean scalar
 18200 LET S(A,B)=-2*G
- Variable:A
- Variable:B
- Variable:S
+ Variable:A scalar
+ Variable:B scalar
+ Variable:S scalar
  NumericConstant:2
- UnaryOperatorMinus:- numeric
- Variable:G
- BinaryOperatorMultiply:* numeric
+ UnaryOperatorMinus:- numeric scalar
+ Variable:G scalar
+ BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
 18300 FOR X=8TO8 
- control: Variable:X
+ control: Variable:X scalar
  start:   ["NumericConstant:8"]
  end:     ["NumericConstant:8"]
 18400 FOR Y=8TO8
- control: Variable:Y
+ control: Variable:Y scalar
  start:   ["NumericConstant:8"]
  end:     ["NumericConstant:8"]
 18500 RETURN
  
 18600 NEXT Y
- Variable:Y
+ Variable:Y scalar
 18700 NEXT X
- Variable:X
+ Variable:X scalar
 18800 PRINT"    VERY GOOD, YOU WIN!"
  TextConstant:"    VERY GOOD, YOU WIN!"
  CarriageControl:NL

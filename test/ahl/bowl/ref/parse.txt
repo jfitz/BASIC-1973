@@ -4,10 +4,10 @@
  Remark:FROM WOODROW WILSON HIGH SCHOOL
 270 DIM C(15),A(100,6)
  NumericConstant:15
- Declaration:C
+ Declaration:C unknown
  NumericConstant:100
  NumericConstant:6
- Declaration:A
+ Declaration:A unknown
 360 PRINT "WELCOME TO THE ALLEY"
  TextConstant:"WELCOME TO THE ALLEY"
  CarriageControl:NL
@@ -25,15 +25,15 @@
  TextConstant:"WANT INSTRUCTIONS (Y OR N)"
  CarriageControl:;
 810 INPUT Z$
- Variable:Z$
+ Variable:Z$ scalar
 900 IF Z$="Y" THEN 990
- Variable:Z$
+ Variable:Z$ scalar
  TextConstant:"Y"
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 960 IF Z$="N" THEN 1530
- Variable:Z$
+ Variable:Z$ scalar
  TextConstant:"N"
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 990 PRINT "THE GAME OF BOWLING TAKES MIND AND SKILL. DURING THE GAME"
  TextConstant:"THE GAME OF BOWLING TAKES MIND AND SKILL. DURING THE GAME"
  CarriageControl:NL
@@ -56,150 +56,150 @@
  TextConstant:"FIRST OF ALL... HOW MANY ARE PLAYING"
  CarriageControl:;
 1620 INPUT R
- Variable:R
+ Variable:R scalar
 1710 PRINT
  CarriageControl:NL
 1800 PRINT "VERY GOOD..."
  TextConstant:"VERY GOOD..."
  CarriageControl:NL
 1890 MAT A=ZER
- Variable:A
- FunctionZer2
+ Variable:A matrix
+ FunctionZer2 matrix
  AssignmentOperator:=
 1980 F=1
- Variable:F
+ Variable:F scalar
  NumericConstant:1
  AssignmentOperator:=
 2070 FOR P=1 TO R
- control: Variable:P
+ control: Variable:P scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:R"]
+ end:     ["Variable:R scalar"]
 2160 M=0
- Variable:M
+ Variable:M scalar
  NumericConstant:0
  AssignmentOperator:=
 2250 B=1
- Variable:B
+ Variable:B scalar
  NumericConstant:1
  AssignmentOperator:=
 2342 M=0\Q=0
- Variable:M
+ Variable:M scalar
  NumericConstant:0
  AssignmentOperator:=
- Variable:Q
+ Variable:Q scalar
  NumericConstant:0
  AssignmentOperator:=
 2430 MAT C=ZER
- Variable:C
- FunctionZer2
+ Variable:C matrix
+ FunctionZer2 matrix
  AssignmentOperator:=
 2520 REMARK BALL GENERATOR USING MOD '15' SYSTEM 
  Remark:BALL GENERATOR USING MOD '15' SYSTEM 
 2610 PRINT "PLAYER"P" -- TYPE ROLL"
  TextConstant:"PLAYER"
  CarriageControl:
- Variable:P
+ Variable:P scalar
  CarriageControl:
  TextConstant:" -- TYPE ROLL"
  CarriageControl:NL
 2700 INPUT N$
- Variable:N$
+ Variable:N$ scalar
 2790 K=0\D=0
- Variable:K
+ Variable:K scalar
  NumericConstant:0
  AssignmentOperator:=
- Variable:D
+ Variable:D scalar
  NumericConstant:0
  AssignmentOperator:=
 2880 FOR I=1 TO 20
- control: Variable:I
+ control: Variable:I scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:20"]
 2970 X=INT(RND(I)*100)
- Variable:X
- Variable:I
- FunctionRnd
+ Variable:X scalar
+ Variable:I scalar
+ FunctionRnd scalar
  NumericConstant:100
- BinaryOperatorMultiply:* numeric
- FunctionInt
+ BinaryOperatorMultiply:* numeric scalar
+ FunctionInt scalar
  AssignmentOperator:=
 3060 FOR J=1 TO 10
- control: Variable:J
+ control: Variable:J scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 3150 IF X<15*J THEN 3330
- Variable:X
+ Variable:X scalar
  NumericConstant:15
- Variable:J
- BinaryOperatorMultiply:* numeric
- BinaryOperatorLess:< boolean
+ Variable:J scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorLess:< boolean scalar
 3240 NEXT J
- Variable:J
+ Variable:J scalar
 3330 C(15*J-X)=1
  NumericConstant:15
- Variable:J
- BinaryOperatorMultiply:* numeric
- Variable:X
- BinaryOperatorMinus:- numeric
- Variable:C
+ Variable:J scalar
+ BinaryOperatorMultiply:* numeric scalar
+ Variable:X scalar
+ BinaryOperatorMinus:- numeric scalar
+ Variable:C scalar
  NumericConstant:1
  AssignmentOperator:=
 3420 NEXT I
- Variable:I
+ Variable:I scalar
 3510 REMARK PIN DIAGRAM
  Remark:PIN DIAGRAM
 3600 PRINT "PLAYER:"P" FRAME:"F"   BALL:"B
  TextConstant:"PLAYER:"
  CarriageControl:
- Variable:P
+ Variable:P scalar
  CarriageControl:
  TextConstant:" FRAME:"
  CarriageControl:
- Variable:F
+ Variable:F scalar
  CarriageControl:
  TextConstant:"   BALL:"
  CarriageControl:
- Variable:B
+ Variable:B scalar
  CarriageControl:NL
 3690 FOR I=0 TO 3
- control: Variable:I
+ control: Variable:I scalar
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:3"]
 3780 PRINT
  CarriageControl:NL
 3870 FOR J=1 TO 4-I
- control: Variable:J
+ control: Variable:J scalar
  start:   ["NumericConstant:1"]
- end:     ["NumericConstant:4", "Variable:I", "BinaryOperatorMinus:- numeric"]
+ end:     ["NumericConstant:4", "Variable:I scalar", "BinaryOperatorMinus:- numeric scalar"]
 3960 K=K+1
- Variable:K
- Variable:K
+ Variable:K scalar
+ Variable:K scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 4050 IF C(K)<1 THEN 4320
- Variable:K
- Variable:C
+ Variable:K scalar
+ Variable:C scalar
  NumericConstant:1
- BinaryOperatorLess:< boolean
+ BinaryOperatorLess:< boolean scalar
 4140 PRINT TAB(I);"* ";
- Variable:I
- FunctionTab
+ Variable:I scalar
+ FunctionTab scalar
  CarriageControl:;
  TextConstant:"* "
  CarriageControl:;
 4230 GOTO 4410
  LineNumber:4410
 4320 PRINT TAB(I);"0 ";
- Variable:I
- FunctionTab
+ Variable:I scalar
+ FunctionTab scalar
  CarriageControl:;
  TextConstant:"0 "
  CarriageControl:;
 4410 NEXT J
- Variable:J
+ Variable:J scalar
 4500 NEXT I
- Variable:I
+ Variable:I scalar
 4590 PRINT\PRINT\PRINT
  CarriageControl:NL
  CarriageControl:NL
@@ -207,84 +207,84 @@
 4680 REMARK ROLL ANALYSIS
  Remark:ROLL ANALYSIS
 4770 FOR I=1 TO 10
- control: Variable:I
+ control: Variable:I scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 4860 D=D+C(I)
- Variable:D
- Variable:D
- Variable:I
- Variable:C
- BinaryOperatorPlus:+ numeric
+ Variable:D scalar
+ Variable:D scalar
+ Variable:I scalar
+ Variable:C scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 4950 NEXT I
- Variable:I
+ Variable:I scalar
 5040 IF D-M <> 0 THEN 5220
- Variable:D
- Variable:M
- BinaryOperatorMinus:- numeric
+ Variable:D scalar
+ Variable:M scalar
+ BinaryOperatorMinus:- numeric scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean
+ BinaryOperatorNotEqual:<> boolean scalar
 5130 PRINT "GUTTER!!"
  TextConstant:"GUTTER!!"
  CarriageControl:NL
 5220 IF NOT(B=1 AND P=10) THEN 5490
- Variable:B
+ Variable:B scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean
- Variable:P
+ BinaryOperatorEqual:= boolean scalar
+ Variable:P scalar
  NumericConstant:10
- BinaryOperatorEqual:= boolean
- BinaryOperatorAnd:AND boolean
- UnaryOperatorNot:NOT boolean
+ BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorAnd:AND boolean scalar
+ UnaryOperatorNot:NOT boolean scalar
 5310 PRINT "STRIKE!!!"
  TextConstant:"STRIKE!!!"
  CarriageControl:NL
 5400 Q=3
- Variable:Q
+ Variable:Q scalar
  NumericConstant:3
  AssignmentOperator:=
 5490 IF NOT(B=2 AND P=10) THEN 5760
- Variable:B
+ Variable:B scalar
  NumericConstant:2
- BinaryOperatorEqual:= boolean
- Variable:P
+ BinaryOperatorEqual:= boolean scalar
+ Variable:P scalar
  NumericConstant:10
- BinaryOperatorEqual:= boolean
- BinaryOperatorAnd:AND boolean
- UnaryOperatorNot:NOT boolean
+ BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorAnd:AND boolean scalar
+ UnaryOperatorNot:NOT boolean scalar
 5580 PRINT "SPARE!!!!"
  TextConstant:"SPARE!!!!"
  CarriageControl:NL
 5670 Q=2
- Variable:Q
+ Variable:Q scalar
  NumericConstant:2
  AssignmentOperator:=
 5760 IF NOT(B=2 AND D<10) THEN 6030
- Variable:B
+ Variable:B scalar
  NumericConstant:2
- BinaryOperatorEqual:= boolean
- Variable:D
+ BinaryOperatorEqual:= boolean scalar
+ Variable:D scalar
  NumericConstant:10
- BinaryOperatorLess:< boolean
- BinaryOperatorAnd:AND boolean
- UnaryOperatorNot:NOT boolean
+ BinaryOperatorLess:< boolean scalar
+ BinaryOperatorAnd:AND boolean scalar
+ UnaryOperatorNot:NOT boolean scalar
 5850 PRINT "ERROR!!"
  TextConstant:"ERROR!!"
  CarriageControl:NL
 5940 Q=1
- Variable:Q
+ Variable:Q scalar
  NumericConstant:1
  AssignmentOperator:=
 6030 IF NOT(B=1 AND D<10) THEN 6210
- Variable:B
+ Variable:B scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean
- Variable:D
+ BinaryOperatorEqual:= boolean scalar
+ Variable:D scalar
  NumericConstant:10
- BinaryOperatorLess:< boolean
- BinaryOperatorAnd:AND boolean
- UnaryOperatorNot:NOT boolean
+ BinaryOperatorLess:< boolean scalar
+ BinaryOperatorAnd:AND boolean scalar
+ UnaryOperatorNot:NOT boolean scalar
 6120 PRINT "ROLL YOUR 2ND BALL"
  TextConstant:"ROLL YOUR 2ND BALL"
  CarriageControl:NL
@@ -293,113 +293,113 @@
 6300 PRINT
  CarriageControl:NL
 6390 A(F*P,B)=D
- Variable:F
- Variable:P
- BinaryOperatorMultiply:* numeric
- Variable:B
- Variable:A
- Variable:D
+ Variable:F scalar
+ Variable:P scalar
+ BinaryOperatorMultiply:* numeric scalar
+ Variable:B scalar
+ Variable:A scalar
+ Variable:D scalar
  AssignmentOperator:=
 6480 IF B=2 THEN 7020
- Variable:B
+ Variable:B scalar
  NumericConstant:2
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 6570 B=2
- Variable:B
+ Variable:B scalar
  NumericConstant:2
  AssignmentOperator:=
 6660 M=D
- Variable:M
- Variable:D
+ Variable:M scalar
+ Variable:D scalar
  AssignmentOperator:=
 6750 IF Q=3 THEN 6210
- Variable:Q
+ Variable:Q scalar
  NumericConstant:3
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 6840 A(F*P,3)=D-M
- Variable:F
- Variable:P
- BinaryOperatorMultiply:* numeric
+ Variable:F scalar
+ Variable:P scalar
+ BinaryOperatorMultiply:* numeric scalar
  NumericConstant:3
- Variable:A
- Variable:D
- Variable:M
- BinaryOperatorMinus:- numeric
+ Variable:A scalar
+ Variable:D scalar
+ Variable:M scalar
+ BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 6930 IF Q=0 THEN 2520
- Variable:Q
+ Variable:Q scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 7020 A(F*P,3)=Q
- Variable:F
- Variable:P
- BinaryOperatorMultiply:* numeric
+ Variable:F scalar
+ Variable:P scalar
+ BinaryOperatorMultiply:* numeric scalar
  NumericConstant:3
- Variable:A
- Variable:Q
+ Variable:A scalar
+ Variable:Q scalar
  AssignmentOperator:=
 7110 NEXT P
- Variable:P
+ Variable:P scalar
 7200 F=F+1
- Variable:F
- Variable:F
+ Variable:F scalar
+ Variable:F scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 7290 IF F<11 THEN 2070
- Variable:F
+ Variable:F scalar
  NumericConstant:11
- BinaryOperatorLess:< boolean
+ BinaryOperatorLess:< boolean scalar
 7295 PRINT "FRAMES"
  TextConstant:"FRAMES"
  CarriageControl:NL
 7380 FOR I=1 TO 10
- control: Variable:I
+ control: Variable:I scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 7470 PRINT I;
- Variable:I
+ Variable:I scalar
  CarriageControl:;
 7560 NEXT I
- Variable:I
+ Variable:I scalar
 7650 PRINT
  CarriageControl:NL
 7740 FOR P=1 TO R
- control: Variable:P
+ control: Variable:P scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:R"]
+ end:     ["Variable:R scalar"]
 7830 FOR I=1 TO 3
- control: Variable:I
+ control: Variable:I scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 7920 FOR J=1 TO 10
- control: Variable:J
+ control: Variable:J scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 8010 PRINT A(J,I);
- Variable:J
- Variable:I
- Variable:A
+ Variable:J scalar
+ Variable:I scalar
+ Variable:A scalar
  CarriageControl:;
 8100 NEXT J
- Variable:J
+ Variable:J scalar
 8105 PRINT
  CarriageControl:NL
 8190 NEXT I
- Variable:I
+ Variable:I scalar
 8280 PRINT
  CarriageControl:NL
 8370 NEXT P
- Variable:P
+ Variable:P scalar
 8460 PRINT "DO YOU WANT ANOTHER GAME"
  TextConstant:"DO YOU WANT ANOTHER GAME"
  CarriageControl:NL
 8550 INPUT A$
- Variable:A$
+ Variable:A$ scalar
 8640 IF A$="Y" THEN 2610
- Variable:A$
+ Variable:A$ scalar
  TextConstant:"Y"
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 8730 END 
  
 

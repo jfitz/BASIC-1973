@@ -5,11 +5,11 @@
  TextConstant:"FOR INSTRUCTIONS, TYPE '1', ELSE TYPE '0'"
  CarriageControl:;
 230 INPUT E
- Variable:E
+ Variable:E scalar
 240 IF E=0 THEN 360
- Variable:E
+ Variable:E scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 250 PRINT
  CarriageControl:NL
 260 PRINT "PLEASE TAKE A PIECE OF PAPER AND WRITE DOWN"
@@ -40,9 +40,9 @@
  CarriageControl:NL
  CarriageControl:NL
 360 READ A,B,C
- Variable:A
- Variable:B
- Variable:C
+ Variable:A scalar
+ Variable:B scalar
+ Variable:C scalar
 370 DATA 0,1,3
  NumericConstant:0
  NumericConstant:1
@@ -50,67 +50,67 @@
 380 DIM M(26,2), K(2,2), L(8,2)
  NumericConstant:26
  NumericConstant:2
- Declaration:M
+ Declaration:M unknown
  NumericConstant:2
  NumericConstant:2
- Declaration:K
+ Declaration:K unknown
  NumericConstant:8
  NumericConstant:2
- Declaration:L
+ Declaration:L unknown
 400 MAT M=CON\MAT K=CON
- Variable:M
- FunctionCon2
+ Variable:M matrix
+ FunctionCon2 matrix
  AssignmentOperator:=
- Variable:K
- FunctionCon2
+ Variable:K matrix
+ FunctionCon2 matrix
  AssignmentOperator:=
 420 MAT K=(9)*K\MAT L=CON
- Variable:K
+ Variable:K matrix
  NumericConstant:9
- Variable:K
- BinaryOperatorMultiply:* numeric
+ Variable:K matrix
+ BinaryOperatorMultiply:* numeric matrix
  AssignmentOperator:=
- Variable:L
- FunctionCon2
+ Variable:L matrix
+ FunctionCon2 matrix
  AssignmentOperator:=
 440 MAT L=(3)*L
- Variable:L
+ Variable:L matrix
  NumericConstant:3
- Variable:L
- BinaryOperatorMultiply:* numeric
+ Variable:L matrix
+ BinaryOperatorMultiply:* numeric matrix
  AssignmentOperator:=
 450 L(0,0)=2\L(4,1)=2\L(8,2)=2
  NumericConstant:0
  NumericConstant:0
- Variable:L
+ Variable:L scalar
  NumericConstant:2
  AssignmentOperator:=
  NumericConstant:4
  NumericConstant:1
- Variable:L
+ Variable:L scalar
  NumericConstant:2
  AssignmentOperator:=
  NumericConstant:8
  NumericConstant:2
- Variable:L
+ Variable:L scalar
  NumericConstant:2
  AssignmentOperator:=
 480 Z=26\Z1=8\Z2=2
- Variable:Z
+ Variable:Z scalar
  NumericConstant:26
  AssignmentOperator:=
- Variable:Z1
+ Variable:Z1 scalar
  NumericConstant:8
  AssignmentOperator:=
- Variable:Z2
+ Variable:Z2 scalar
  NumericConstant:2
  AssignmentOperator:=
 510 X=0
- Variable:X
+ Variable:X scalar
  NumericConstant:0
  AssignmentOperator:=
 520 FOR T=1 TO 3
- control: Variable:T
+ control: Variable:T scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 530 PRINT
@@ -120,41 +120,41 @@
  CarriageControl:;
 550 INPUT N(1),N(2),N(3),N(4),N(5),N(6),N(7),N(8),N(9),N(10)
  NumericConstant:1
- Variable:N
+ Variable:N scalar
  NumericConstant:2
- Variable:N
+ Variable:N scalar
  NumericConstant:3
- Variable:N
+ Variable:N scalar
  NumericConstant:4
- Variable:N
+ Variable:N scalar
  NumericConstant:5
- Variable:N
+ Variable:N scalar
  NumericConstant:6
- Variable:N
+ Variable:N scalar
  NumericConstant:7
- Variable:N
+ Variable:N scalar
  NumericConstant:8
- Variable:N
+ Variable:N scalar
  NumericConstant:9
- Variable:N
+ Variable:N scalar
  NumericConstant:10
- Variable:N
+ Variable:N scalar
 560 FOR I=1 TO 10
- control: Variable:I
+ control: Variable:I scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 570 W=N(I)-1
- Variable:W
- Variable:I
- Variable:N
+ Variable:W scalar
+ Variable:I scalar
+ Variable:N scalar
  NumericConstant:1
- BinaryOperatorMinus:- numeric
+ BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 580 IF W=SGN(W) THEN 620
- Variable:W
- Variable:W
- FunctionSgn
- BinaryOperatorEqual:= boolean
+ Variable:W scalar
+ Variable:W scalar
+ FunctionSgn scalar
+ BinaryOperatorEqual:= boolean scalar
 590 PRINT "USE ONLY THE DIGITS '0', '1', OR '2'."
  TextConstant:"USE ONLY THE DIGITS '0', '1', OR '2'."
  CarriageControl:NL
@@ -163,7 +163,7 @@
  CarriageControl:NL
  LineNumber:530
 620 NEXT I
- Variable:I
+ Variable:I scalar
 630 PRINT\PRINT "MY GUESS" , "YOUR NO. ", "RESULT" , "NO. RIGHT"\PRINT
  CarriageControl:NL
  TextConstant:"MY GUESS"
@@ -176,171 +176,171 @@
  CarriageControl:NL
  CarriageControl:NL
 660 FOR U = 1 TO 10
- control: Variable:U
+ control: Variable:U scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 670 N=N(I)\S=0
- Variable:N
- Variable:I
- Variable:N
+ Variable:N scalar
+ Variable:I scalar
+ Variable:N scalar
  AssignmentOperator:=
- Variable:S
+ Variable:S scalar
  NumericConstant:0
  AssignmentOperator:=
 690 FOR J=0 TO 2
- control: Variable:J
+ control: Variable:J scalar
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:2"]
 700 S1=A*K(Z2,J)+B*L(Z1,J)+C*M(Z,J)
- Variable:S1
- Variable:A
- Variable:Z2
- Variable:J
- Variable:K
- BinaryOperatorMultiply:* numeric
- Variable:B
- Variable:Z1
- Variable:J
- Variable:L
- BinaryOperatorMultiply:* numeric
- BinaryOperatorPlus:+ numeric
- Variable:C
- Variable:Z
- Variable:J
- Variable:M
- BinaryOperatorMultiply:* numeric
- BinaryOperatorPlus:+ numeric
+ Variable:S1 scalar
+ Variable:A scalar
+ Variable:Z2 scalar
+ Variable:J scalar
+ Variable:K scalar
+ BinaryOperatorMultiply:* numeric scalar
+ Variable:B scalar
+ Variable:Z1 scalar
+ Variable:J scalar
+ Variable:L scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ Variable:C scalar
+ Variable:Z scalar
+ Variable:J scalar
+ Variable:M scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 710 IF S>S1 THEN 760
- Variable:S
- Variable:S1
- BinaryOperatorGreater:> boolean
+ Variable:S scalar
+ Variable:S1 scalar
+ BinaryOperatorGreater:> boolean scalar
 720 IF S<S1 THEN 740
- Variable:S
- Variable:S1
- BinaryOperatorLess:< boolean
+ Variable:S scalar
+ Variable:S1 scalar
+ BinaryOperatorLess:< boolean scalar
 730 IF RND<.5 THEN 760
- FunctionRnd
+ FunctionRnd scalar
  NumericConstant:.5
- BinaryOperatorLess:< boolean
+ BinaryOperatorLess:< boolean scalar
 740 S=S1\G=J
- Variable:S
- Variable:S1
+ Variable:S scalar
+ Variable:S1 scalar
  AssignmentOperator:=
- Variable:G
- Variable:J
+ Variable:G scalar
+ Variable:J scalar
  AssignmentOperator:=
 760 NEXT J
- Variable:J
+ Variable:J scalar
 770 PRINT G,N(U),
- Variable:G
+ Variable:G scalar
  CarriageControl:,
- Variable:U
- Variable:N
+ Variable:U scalar
+ Variable:N scalar
  CarriageControl:,
 780 IF G=N(U) THEN 810
- Variable:G
- Variable:U
- Variable:N
- BinaryOperatorEqual:= boolean
+ Variable:G scalar
+ Variable:U scalar
+ Variable:N scalar
+ BinaryOperatorEqual:= boolean scalar
 790 PRINT "WRONG", X
  TextConstant:"WRONG"
  CarriageControl:,
- Variable:X
+ Variable:X scalar
  CarriageControl:NL
 800 GOTO 880
  LineNumber:880
 810 X=X + 1
- Variable:X
- Variable:X
+ Variable:X scalar
+ Variable:X scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 820 PRINT "RIGHT", X
  TextConstant:"RIGHT"
  CarriageControl:,
- Variable:X
+ Variable:X scalar
  CarriageControl:NL
 830 M(Z,N)=M(Z,N)+1
- Variable:Z
- Variable:N
- Variable:M
- Variable:Z
- Variable:N
- Variable:M
+ Variable:Z scalar
+ Variable:N scalar
+ Variable:M scalar
+ Variable:Z scalar
+ Variable:N scalar
+ Variable:M scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 840 L(Z1,N)=L(Z1,N)+1
- Variable:Z1
- Variable:N
- Variable:L
- Variable:Z1
- Variable:N
- Variable:L
+ Variable:Z1 scalar
+ Variable:N scalar
+ Variable:L scalar
+ Variable:Z1 scalar
+ Variable:N scalar
+ Variable:L scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 850 K(Z2,N)=K(Z2,N)+1
- Variable:Z2
- Variable:N
- Variable:K
- Variable:Z2
- Variable:N
- Variable:K
+ Variable:Z2 scalar
+ Variable:N scalar
+ Variable:K scalar
+ Variable:Z2 scalar
+ Variable:N scalar
+ Variable:K scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 860 Z=Z-INT(Z/9)*9
- Variable:Z
- Variable:Z
- Variable:Z
+ Variable:Z scalar
+ Variable:Z scalar
+ Variable:Z scalar
  NumericConstant:9
- BinaryOperatorDivide:/ numeric
- FunctionInt
+ BinaryOperatorDivide:/ numeric scalar
+ FunctionInt scalar
  NumericConstant:9
- BinaryOperatorMultiply:* numeric
- BinaryOperatorMinus:- numeric
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 870 Z=3*Z*N(U)
- Variable:Z
+ Variable:Z scalar
  NumericConstant:3
- Variable:Z
- BinaryOperatorMultiply:* numeric
- Variable:U
- Variable:N
- BinaryOperatorMultiply:* numeric
+ Variable:Z scalar
+ BinaryOperatorMultiply:* numeric scalar
+ Variable:U scalar
+ Variable:N scalar
+ BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
 880 Z1=Z-INT(Z/9)*9
- Variable:Z1
- Variable:Z
- Variable:Z
+ Variable:Z1 scalar
+ Variable:Z scalar
+ Variable:Z scalar
  NumericConstant:9
- BinaryOperatorDivide:/ numeric
- FunctionInt
+ BinaryOperatorDivide:/ numeric scalar
+ FunctionInt scalar
  NumericConstant:9
- BinaryOperatorMultiply:* numeric
- BinaryOperatorMinus:- numeric
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 890 Z2=N(U)
- Variable:Z2
- Variable:U
- Variable:N
+ Variable:Z2 scalar
+ Variable:U scalar
+ Variable:N scalar
  AssignmentOperator:=
 900 NEXT U
- Variable:U
+ Variable:U scalar
 910 NEXT T
- Variable:T
+ Variable:T scalar
 920 PRINT
  CarriageControl:NL
 930 IF X>10 THEN 980
- Variable:X
+ Variable:X scalar
  NumericConstant:10
- BinaryOperatorGreater:> boolean
+ BinaryOperatorGreater:> boolean scalar
 940 IF X<10 THEN 1010
- Variable:X
+ Variable:X scalar
  NumericConstant:10
- BinaryOperatorLess:< boolean
+ BinaryOperatorLess:< boolean scalar
 950 PRINT "I GUESSED EXACTLY 1/3 OF YOUR NUMBERS."
  TextConstant:"I GUESSED EXACTLY 1/3 OF YOUR NUMBERS."
  CarriageControl:NL
@@ -355,12 +355,12 @@
 990 PRINT "I WIN."\FOR Q=1 TO 10\PRINT "!";\NEXT Q
  TextConstant:"I WIN."
  CarriageControl:NL
- control: Variable:Q
+ control: Variable:Q scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
  TextConstant:"!"
  CarriageControl:;
- Variable:Q
+ Variable:Q scalar
 1000 GOTO 1030
  LineNumber:1030
 1010 PRINT "I GUESSED LESS THAN 1/3 OF YOUR NUMBERS."
@@ -375,11 +375,11 @@
  TextConstant:"DO YOU WANT TO TRY AGAIN (1 FOR YES, 0 FOR NO)"
  CarriageControl:;
 1060 INPUT X
- Variable:X
+ Variable:X scalar
 1070 IF X=1 THEN 400
- Variable:X
+ Variable:X scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 1080 PRINT\PRINT "THANKS FOR THE GAME."
  CarriageControl:NL
  TextConstant:"THANKS FOR THE GAME."

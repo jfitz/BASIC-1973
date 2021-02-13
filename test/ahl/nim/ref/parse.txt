@@ -10,18 +10,18 @@
 120 PRINT "DO YOU WANT INSTRUCTIONS";\INPUT Q$
  TextConstant:"DO YOU WANT INSTRUCTIONS"
  CarriageControl:;
- Variable:Q$
+ Variable:Q$ scalar
 125 IF Q$="YES" THEN 135\IF Q$="NO" THEN 190
- Variable:Q$
+ Variable:Q$ scalar
  TextConstant:"YES"
- BinaryOperatorEqual:= boolean
- Variable:Q$
+ BinaryOperatorEqual:= boolean scalar
+ Variable:Q$ scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 130 PRINT "TYPE YES OR NO."\INPUT Q$\GOTO 125
  TextConstant:"TYPE YES OR NO."
  CarriageControl:NL
- Variable:Q$
+ Variable:Q$ scalar
  LineNumber:125
 135 PRINT
  CarriageControl:NL
@@ -62,37 +62,37 @@
 200 DIM X(20,4),S(20),L(20),S2(20),N2(4),C(20),S3(20),V(20)
  NumericConstant:20
  NumericConstant:4
- Declaration:X
+ Declaration:X unknown
  NumericConstant:20
- Declaration:S
+ Declaration:S unknown
  NumericConstant:20
- Declaration:L
+ Declaration:L unknown
  NumericConstant:20
- Declaration:S2
+ Declaration:S2 unknown
  NumericConstant:4
- Declaration:N2
+ Declaration:N2 unknown
  NumericConstant:20
- Declaration:C
+ Declaration:C unknown
  NumericConstant:20
- Declaration:S3
+ Declaration:S3 unknown
  NumericConstant:20
- Declaration:V
+ Declaration:V unknown
 205 PRINT\PRINT "HOW MANY PILES";\INPUT P\IF P>20 THEN 215
  CarriageControl:NL
  TextConstant:"HOW MANY PILES"
  CarriageControl:;
- Variable:P
- Variable:P
+ Variable:P scalar
+ Variable:P scalar
  NumericConstant:20
- BinaryOperatorGreater:> boolean
+ BinaryOperatorGreater:> boolean scalar
 210 IF P>INT(P) THEN 215\IF P<=0 THEN 215\GO TO 220
- Variable:P
- Variable:P
- FunctionInt
- BinaryOperatorGreater:> boolean
- Variable:P
+ Variable:P scalar
+ Variable:P scalar
+ FunctionInt scalar
+ BinaryOperatorGreater:> boolean scalar
+ Variable:P scalar
  NumericConstant:0
- BinaryOperatorLessEqual:<= boolean
+ BinaryOperatorLessEqual:<= boolean scalar
  LineNumber:220
 215 PRINT "ILLEGAL PILE NUMBER. "\PRINT\GO TO 205
  TextConstant:"ILLEGAL PILE NUMBER. "
@@ -101,31 +101,31 @@
  LineNumber:205
 220 PRINT\FOR I=1 TO P
  CarriageControl:NL
- control: Variable:I
+ control: Variable:I scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:P"]
+ end:     ["Variable:P scalar"]
 225 PRINT "HOW MANY STICKS IN PILE"I;\INPUT L(I)\IF L(I)>20 THEN 235
  TextConstant:"HOW MANY STICKS IN PILE"
  CarriageControl:
- Variable:I
+ Variable:I scalar
  CarriageControl:;
- Variable:I
- Variable:L
- Variable:I
- Variable:L
+ Variable:I scalar
+ Variable:L scalar
+ Variable:I scalar
+ Variable:L scalar
  NumericConstant:20
- BinaryOperatorGreater:> boolean
+ BinaryOperatorGreater:> boolean scalar
 230 IF L(I)>INT(L(I)) THEN 235\IF L(I)<=0 THEN 235\GO TO 240
- Variable:I
- Variable:L
- Variable:I
- Variable:L
- FunctionInt
- BinaryOperatorGreater:> boolean
- Variable:I
- Variable:L
+ Variable:I scalar
+ Variable:L scalar
+ Variable:I scalar
+ Variable:L scalar
+ FunctionInt scalar
+ BinaryOperatorGreater:> boolean scalar
+ Variable:I scalar
+ Variable:L scalar
  NumericConstant:0
- BinaryOperatorLessEqual:<= boolean
+ BinaryOperatorLessEqual:<= boolean scalar
  LineNumber:240
 235 PRINT "ILLEGAL STICK NUMBER"\PRINT\GO TO 225
  TextConstant:"ILLEGAL STICK NUMBER"
@@ -133,35 +133,35 @@
  CarriageControl:NL
  LineNumber:225
 240 NEXT I
- Variable:I
+ Variable:I scalar
 245 FOR I=1 TO P\S(I)=L(I)\G=G+L(I)\NEXT I
- control: Variable:I
+ control: Variable:I scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:P"]
- Variable:I
- Variable:S
- Variable:I
- Variable:L
+ end:     ["Variable:P scalar"]
+ Variable:I scalar
+ Variable:S scalar
+ Variable:I scalar
+ Variable:L scalar
  AssignmentOperator:=
- Variable:G
- Variable:G
- Variable:I
- Variable:L
- BinaryOperatorPlus:+ numeric
+ Variable:G scalar
+ Variable:G scalar
+ Variable:I scalar
+ Variable:L scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
- Variable:I
+ Variable:I scalar
 250 PRINT\PRINT "DO YOU WANT TO GO FIRST";
  CarriageControl:NL
  TextConstant:"DO YOU WANT TO GO FIRST"
  CarriageControl:;
 255 INPUT Q$\IF Q$="YES" THEN 340\IF Q$="NO" THEN 390
- Variable:Q$
- Variable:Q$
+ Variable:Q$ scalar
+ Variable:Q$ scalar
  TextConstant:"YES"
- BinaryOperatorEqual:= boolean
- Variable:Q$
+ BinaryOperatorEqual:= boolean scalar
+ Variable:Q$ scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 260 PRINT "TYPE YES OR NO."\GO TO 255
  TextConstant:"TYPE YES OR NO."
  CarriageControl:NL
@@ -169,29 +169,29 @@
 265 REM  CONTROL OF GAME REPEATS AND TESTS FOR END OF GAME- 
  Remark: CONTROL OF GAME REPEATS AND TESTS FOR END OF GAME- 
 270 IF G=0 THEN 275\IF F=1 THEN 390\GO TO 320
- Variable:G
+ Variable:G scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean
- Variable:F
+ BinaryOperatorEqual:= boolean scalar
+ Variable:F scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
  LineNumber:320
 275 IF F=1 THEN 315
- Variable:F
+ Variable:F scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 280 PRINT\PRINT "I WON. DO YOU WANT TO PLAY AGAIN";
  CarriageControl:NL
  TextConstant:"I WON. DO YOU WANT TO PLAY AGAIN"
  CarriageControl:;
 285 INPUT Q$\IF Q$="NO" THEN 290\IF Q$="YES" THEN 300\GO TO 295
- Variable:Q$
- Variable:Q$
+ Variable:Q$ scalar
+ Variable:Q$ scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean
- Variable:Q$
+ BinaryOperatorEqual:= boolean scalar
+ Variable:Q$ scalar
  TextConstant:"YES"
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
  LineNumber:295
 290 STOP
  
@@ -204,13 +204,13 @@
  TextConstant:"SAME ARRANGEMENT"
  CarriageControl:;
 305 INPUT Q$\IF Q$="NO" THEN 205\IF Q$="YES" THEN 345
- Variable:Q$
- Variable:Q$
+ Variable:Q$ scalar
+ Variable:Q$ scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean
- Variable:Q$
+ BinaryOperatorEqual:= boolean scalar
+ Variable:Q$ scalar
  TextConstant:"YES"
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 310 PRINT "TYPE YES OR NO."\GO TO 305
  TextConstant:"TYPE YES OR NO."
  CarriageControl:NL
@@ -227,43 +227,43 @@
  TextConstant:"STICKS LEFT"
  CarriageControl:NL
 325 FOR I=1 TO P\IF S(I)=0 THEN 330\PRINT I,S(I)
- control: Variable:I
+ control: Variable:I scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:P"]
- Variable:I
- Variable:S
+ end:     ["Variable:P scalar"]
+ Variable:I scalar
+ Variable:S scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean
- Variable:I
+ BinaryOperatorEqual:= boolean scalar
+ Variable:I scalar
  CarriageControl:,
- Variable:I
- Variable:S
+ Variable:I scalar
+ Variable:S scalar
  CarriageControl:NL
 330 NEXT I
- Variable:I
+ Variable:I scalar
 335 REM -------------------PLAYER'S MOVE-------------------------
  Remark:-------------------PLAYER'S MOVE-------------------------
 340 PRINT\PRINT "WHICH PILE DO YOU WANT STICKS FROM";\INPUT N
  CarriageControl:NL
  TextConstant:"WHICH PILE DO YOU WANT STICKS FROM"
  CarriageControl:;
- Variable:N
+ Variable:N scalar
 345 IF N>P THEN 355\IF N>INT(N) THEN 355\IF N<=0 THEN 355
- Variable:N
- Variable:P
- BinaryOperatorGreater:> boolean
- Variable:N
- Variable:N
- FunctionInt
- BinaryOperatorGreater:> boolean
- Variable:N
+ Variable:N scalar
+ Variable:P scalar
+ BinaryOperatorGreater:> boolean scalar
+ Variable:N scalar
+ Variable:N scalar
+ FunctionInt scalar
+ BinaryOperatorGreater:> boolean scalar
+ Variable:N scalar
  NumericConstant:0
- BinaryOperatorLessEqual:<= boolean
+ BinaryOperatorLessEqual:<= boolean scalar
 350 IF S(N)=0 THEN 355\GO TO 360
- Variable:N
- Variable:S
+ Variable:N scalar
+ Variable:S scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
  LineNumber:360
 355 PRINT "ILLEGAL PILE NUMBER."\PRINT\GO TO 340
  TextConstant:"ILLEGAL PILE NUMBER."
@@ -274,19 +274,19 @@
  CarriageControl:NL
  TextConstant:"HOW MANY STICKS"
  CarriageControl:;
- Variable:T
+ Variable:T scalar
 365 IF T>S(N) THEN 370\IF T>INT(T) THEN 370\IF T<=0 THEN 370\GO TO 375
- Variable:T
- Variable:N
- Variable:S
- BinaryOperatorGreater:> boolean
- Variable:T
- Variable:T
- FunctionInt
- BinaryOperatorGreater:> boolean
- Variable:T
+ Variable:T scalar
+ Variable:N scalar
+ Variable:S scalar
+ BinaryOperatorGreater:> boolean scalar
+ Variable:T scalar
+ Variable:T scalar
+ FunctionInt scalar
+ BinaryOperatorGreater:> boolean scalar
+ Variable:T scalar
  NumericConstant:0
- BinaryOperatorLessEqual:<= boolean
+ BinaryOperatorLessEqual:<= boolean scalar
  LineNumber:375
 370 PRINT "ILLEGAL STICK NUMBER."\PRINT\GO TO 360
  TextConstant:"ILLEGAL STICK NUMBER."
@@ -294,309 +294,309 @@
  CarriageControl:NL
  LineNumber:360
 375 S(N)=S(N)-T\G=G-T
- Variable:N
- Variable:S
- Variable:N
- Variable:S
- Variable:T
- BinaryOperatorMinus:- numeric
+ Variable:N scalar
+ Variable:S scalar
+ Variable:N scalar
+ Variable:S scalar
+ Variable:T scalar
+ BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
- Variable:G
- Variable:G
- Variable:T
- BinaryOperatorMinus:- numeric
+ Variable:G scalar
+ Variable:G scalar
+ Variable:T scalar
+ BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 380 F=1\GO TO 270
- Variable:F
+ Variable:F scalar
  NumericConstant:1
  AssignmentOperator:=
  LineNumber:270
 385 REM -------------------MACHINE'S MOVE-------------------------
  Remark:-------------------MACHINE'S MOVE-------------------------
 390 FOR I=0 TO 4\V(I)=0\NEXT I
- control: Variable:I
+ control: Variable:I scalar
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:4"]
- Variable:I
- Variable:V
+ Variable:I scalar
+ Variable:V scalar
  NumericConstant:0
  AssignmentOperator:=
- Variable:I
+ Variable:I scalar
 395 FOR I=1 TO P
- control: Variable:I
+ control: Variable:I scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:P"]
+ end:     ["Variable:P scalar"]
 400    C(I)=S(I)
- Variable:I
- Variable:C
- Variable:I
- Variable:S
+ Variable:I scalar
+ Variable:C scalar
+ Variable:I scalar
+ Variable:S scalar
  AssignmentOperator:=
 405    FOR E=4 TO 0 STEP -1
- control: Variable:E
+ control: Variable:E scalar
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
 410       IF S(I)<2^E THEN 415\S2(I)=S2(I)+10^E\S(I)=S(I)-2^E
- Variable:I
- Variable:S
+ Variable:I scalar
+ Variable:S scalar
  NumericConstant:2
- Variable:E
- BinaryOperatorPower:^ numeric
- BinaryOperatorLess:< boolean
- Variable:I
- Variable:S2
- Variable:I
- Variable:S2
+ Variable:E scalar
+ BinaryOperatorPower:^ numeric scalar
+ BinaryOperatorLess:< boolean scalar
+ Variable:I scalar
+ Variable:S2 scalar
+ Variable:I scalar
+ Variable:S2 scalar
  NumericConstant:10
- Variable:E
- BinaryOperatorPower:^ numeric
- BinaryOperatorPlus:+ numeric
+ Variable:E scalar
+ BinaryOperatorPower:^ numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
- Variable:I
- Variable:S
- Variable:I
- Variable:S
+ Variable:I scalar
+ Variable:S scalar
+ Variable:I scalar
+ Variable:S scalar
  NumericConstant:2
- Variable:E
- BinaryOperatorPower:^ numeric
- BinaryOperatorMinus:- numeric
+ Variable:E scalar
+ BinaryOperatorPower:^ numeric scalar
+ BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 415    NEXT E
- Variable:E
+ Variable:E scalar
 420    FOR Y=4 TO 0 STEP -1
- control: Variable:Y
+ control: Variable:Y scalar
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
 425       X(I,Y)=INT(S2(I)/10^Y)\S2(I)=S2(I)-X(I,Y)*10^Y
- Variable:I
- Variable:Y
- Variable:X
- Variable:I
- Variable:S2
+ Variable:I scalar
+ Variable:Y scalar
+ Variable:X scalar
+ Variable:I scalar
+ Variable:S2 scalar
  NumericConstant:10
- Variable:Y
- BinaryOperatorPower:^ numeric
- BinaryOperatorDivide:/ numeric
- FunctionInt
+ Variable:Y scalar
+ BinaryOperatorPower:^ numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ FunctionInt scalar
  AssignmentOperator:=
- Variable:I
- Variable:S2
- Variable:I
- Variable:S2
- Variable:I
- Variable:Y
- Variable:X
+ Variable:I scalar
+ Variable:S2 scalar
+ Variable:I scalar
+ Variable:S2 scalar
+ Variable:I scalar
+ Variable:Y scalar
+ Variable:X scalar
  NumericConstant:10
- Variable:Y
- BinaryOperatorPower:^ numeric
- BinaryOperatorMultiply:* numeric
- BinaryOperatorMinus:- numeric
+ Variable:Y scalar
+ BinaryOperatorPower:^ numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 430       V(Y)=V(Y)+X(I,Y)
- Variable:Y
- Variable:V
- Variable:Y
- Variable:V
- Variable:I
- Variable:Y
- Variable:X
- BinaryOperatorPlus:+ numeric
+ Variable:Y scalar
+ Variable:V scalar
+ Variable:Y scalar
+ Variable:V scalar
+ Variable:I scalar
+ Variable:Y scalar
+ Variable:X scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 435    NEXT Y
- Variable:Y
+ Variable:Y scalar
 440 NEXT I
- Variable:I
+ Variable:I scalar
 445 R=0
- Variable:R
+ Variable:R scalar
  NumericConstant:0
  AssignmentOperator:=
 450 FOR Y=4 TO 0 STEP -1
- control: Variable:Y
+ control: Variable:Y scalar
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
 455    IF V(Y)/2-INT(V(Y)/2)=0 THEN 480
- Variable:Y
- Variable:V
+ Variable:Y scalar
+ Variable:V scalar
  NumericConstant:2
- BinaryOperatorDivide:/ numeric
- Variable:Y
- Variable:V
+ BinaryOperatorDivide:/ numeric scalar
+ Variable:Y scalar
+ Variable:V scalar
  NumericConstant:2
- BinaryOperatorDivide:/ numeric
- FunctionInt
- BinaryOperatorMinus:- numeric
+ BinaryOperatorDivide:/ numeric scalar
+ FunctionInt scalar
+ BinaryOperatorMinus:- numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 460    IF R=1 THEN 470\Q=INT(P*RND(X))+1
- Variable:R
+ Variable:R scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean
- Variable:Q
- Variable:P
- Variable:X
- FunctionRnd
- BinaryOperatorMultiply:* numeric
- FunctionInt
+ BinaryOperatorEqual:= boolean scalar
+ Variable:Q scalar
+ Variable:P scalar
+ Variable:X scalar
+ FunctionRnd scalar
+ BinaryOperatorMultiply:* numeric scalar
+ FunctionInt scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 465    IF X(Q,Y)<>1 THEN 460\X(Q,Y)=0\R=1\GO TO 480
- Variable:Q
- Variable:Y
- Variable:X
+ Variable:Q scalar
+ Variable:Y scalar
+ Variable:X scalar
  NumericConstant:1
- BinaryOperatorNotEqual:<> boolean
- Variable:Q
- Variable:Y
- Variable:X
+ BinaryOperatorNotEqual:<> boolean scalar
+ Variable:Q scalar
+ Variable:Y scalar
+ Variable:X scalar
  NumericConstant:0
  AssignmentOperator:=
- Variable:R
+ Variable:R scalar
  NumericConstant:1
  AssignmentOperator:=
  LineNumber:480
 470    IF X(Q,Y)=1 THEN 475\X(Q,Y)=1\GO TO 480
- Variable:Q
- Variable:Y
- Variable:X
+ Variable:Q scalar
+ Variable:Y scalar
+ Variable:X scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean
- Variable:Q
- Variable:Y
- Variable:X
+ BinaryOperatorEqual:= boolean scalar
+ Variable:Q scalar
+ Variable:Y scalar
+ Variable:X scalar
  NumericConstant:1
  AssignmentOperator:=
  LineNumber:480
 475    X(Q,Y)=0
- Variable:Q
- Variable:Y
- Variable:X
+ Variable:Q scalar
+ Variable:Y scalar
+ Variable:X scalar
  NumericConstant:0
  AssignmentOperator:=
 480 NEXT Y
- Variable:Y
+ Variable:Y scalar
 485 FOR I=1 TO P
- control: Variable:I
+ control: Variable:I scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:P"]
+ end:     ["Variable:P scalar"]
 490    S2(I)=0
- Variable:I
- Variable:S2
+ Variable:I scalar
+ Variable:S2 scalar
  NumericConstant:0
  AssignmentOperator:=
 495    FOR Y=4 TO 0 STEP -1
- control: Variable:Y
+ control: Variable:Y scalar
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
 500       S3(I)=X(I,Y)*10^Y\S2(I)=S2(I)+S3(I)
- Variable:I
- Variable:S3
- Variable:I
- Variable:Y
- Variable:X
+ Variable:I scalar
+ Variable:S3 scalar
+ Variable:I scalar
+ Variable:Y scalar
+ Variable:X scalar
  NumericConstant:10
- Variable:Y
- BinaryOperatorPower:^ numeric
- BinaryOperatorMultiply:* numeric
+ Variable:Y scalar
+ BinaryOperatorPower:^ numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
- Variable:I
- Variable:S2
- Variable:I
- Variable:S2
- Variable:I
- Variable:S3
- BinaryOperatorPlus:+ numeric
+ Variable:I scalar
+ Variable:S2 scalar
+ Variable:I scalar
+ Variable:S2 scalar
+ Variable:I scalar
+ Variable:S3 scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 505    NEXT Y
- Variable:Y
+ Variable:Y scalar
 510    FOR E=4 TO 0 STEP -1
- control: Variable:E
+ control: Variable:E scalar
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
 515       IF S2(I)<10^E THEN 520\S(I)=S(I)+2^E\S2(I)=S2(I)-10^E
- Variable:I
- Variable:S2
+ Variable:I scalar
+ Variable:S2 scalar
  NumericConstant:10
- Variable:E
- BinaryOperatorPower:^ numeric
- BinaryOperatorLess:< boolean
- Variable:I
- Variable:S
- Variable:I
- Variable:S
+ Variable:E scalar
+ BinaryOperatorPower:^ numeric scalar
+ BinaryOperatorLess:< boolean scalar
+ Variable:I scalar
+ Variable:S scalar
+ Variable:I scalar
+ Variable:S scalar
  NumericConstant:2
- Variable:E
- BinaryOperatorPower:^ numeric
- BinaryOperatorPlus:+ numeric
+ Variable:E scalar
+ BinaryOperatorPower:^ numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
- Variable:I
- Variable:S2
- Variable:I
- Variable:S2
+ Variable:I scalar
+ Variable:S2 scalar
+ Variable:I scalar
+ Variable:S2 scalar
  NumericConstant:10
- Variable:E
- BinaryOperatorPower:^ numeric
- BinaryOperatorMinus:- numeric
+ Variable:E scalar
+ BinaryOperatorPower:^ numeric scalar
+ BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 520    NEXT E
- Variable:E
+ Variable:E scalar
 525 NEXT I 
- Variable:I
+ Variable:I scalar
 530 IF R=1 THEN 535\Q=INT(P*RND(X))+1\IF S(Q)=0 THEN 530\S(Q)=S(Q)-1
- Variable:R
+ Variable:R scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean
- Variable:Q
- Variable:P
- Variable:X
- FunctionRnd
- BinaryOperatorMultiply:* numeric
- FunctionInt
+ BinaryOperatorEqual:= boolean scalar
+ Variable:Q scalar
+ Variable:P scalar
+ Variable:X scalar
+ FunctionRnd scalar
+ BinaryOperatorMultiply:* numeric scalar
+ FunctionInt scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
- Variable:Q
- Variable:S
+ Variable:Q scalar
+ Variable:S scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean
- Variable:Q
- Variable:S
- Variable:Q
- Variable:S
+ BinaryOperatorEqual:= boolean scalar
+ Variable:Q scalar
+ Variable:S scalar
+ Variable:Q scalar
+ Variable:S scalar
  NumericConstant:1
- BinaryOperatorMinus:- numeric
+ BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 535 D=C(Q)-S(Q)\G=G-D
- Variable:D
- Variable:Q
- Variable:C
- Variable:Q
- Variable:S
- BinaryOperatorMinus:- numeric
+ Variable:D scalar
+ Variable:Q scalar
+ Variable:C scalar
+ Variable:Q scalar
+ Variable:S scalar
+ BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
- Variable:G
- Variable:G
- Variable:D
- BinaryOperatorMinus:- numeric
+ Variable:G scalar
+ Variable:G scalar
+ Variable:D scalar
+ BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 540 IF D=1 THEN 550
- Variable:D
+ Variable:D scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 545 PRINT\PRINT "I'LL TAKE";D;"STICKS FROM PILE";Q;"."\GO TO 555
  CarriageControl:NL
  TextConstant:"I'LL TAKE"
  CarriageControl:;
- Variable:D
+ Variable:D scalar
  CarriageControl:;
  TextConstant:"STICKS FROM PILE"
  CarriageControl:;
- Variable:Q
+ Variable:Q scalar
  CarriageControl:;
  TextConstant:"."
  CarriageControl:NL
@@ -605,12 +605,12 @@
  CarriageControl:NL
  TextConstant:"I'LL TAKE 1 STICK FROM PILE"
  CarriageControl:;
- Variable:Q
+ Variable:Q scalar
  CarriageControl:;
  TextConstant:"."
  CarriageControl:NL
 555 F=0\GO TO 270
- Variable:F
+ Variable:F scalar
  NumericConstant:0
  AssignmentOperator:=
  LineNumber:270

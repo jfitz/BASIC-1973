@@ -34,7 +34,7 @@ class AbstractElement
   end
 
   def dump
-    self.class.to_s + ':' + 'Unimplemented'
+    "#{self.class}:Unimplemented"
   end
 
   def empty?
@@ -254,7 +254,7 @@ class AbstractValueElement < AbstractElement
   end
 
   def dump
-    self.class.to_s + ':' + to_s
+    "#{self.class}:#{to_s}"
   end
 
   def eql?(other)
@@ -497,8 +497,16 @@ class NumericConstant < AbstractValueElement
     :numeric
   end
 
-  def set_content_type(stack)
-    stack.push(content_type)
+  def set_content_type(type_stack)
+    type_stack.push(content_type)
+  end
+
+  def shape
+    :scalar
+  end
+
+  def set_shape(shape_stack)
+    shape_stack.push(:scalar)
   end
 
   def eql?(other)
@@ -861,8 +869,16 @@ class IntegerConstant < AbstractValueElement
     :integer
   end
 
-  def set_content_type(stack)
-    stack.push(content_type)
+  def set_content_type(type_stack)
+    type_stack.push(content_type)
+  end
+
+  def shape
+    :scalar
+  end
+
+  def set_shape(shape_stack)
+    shape_stack.push(:scalar)
   end
 
   def eql?(other)
@@ -1173,8 +1189,16 @@ class TextConstant < AbstractValueElement
     :string
   end
 
-  def set_content_type(stack)
-    stack.push(content_type)
+  def set_content_type(type_stack)
+    type_stack.push(content_type)
+  end
+
+  def shape
+    :scalar
+  end
+
+  def set_shape(shape_stack)
+    shape_stack.push(:scalar)
   end
 
   def eql?(other)
@@ -1324,6 +1348,14 @@ class BooleanConstant < AbstractValueElement
 
   def set_content_type(stack)
     stack.push(content_type)
+  end
+
+  def shape
+    :scalar
+  end
+
+  def set_shape(shape_stack)
+    shape_stack.push(:scalar)
   end
 
   def eql?(other)
@@ -1487,7 +1519,7 @@ class CarriageControl
   end
 
   def dump
-    [self.class.to_s + ':' + @operator]
+    ["#{self.class}:#{@operator}"]
   end
 
   def carriage_control?
@@ -1608,7 +1640,7 @@ class VariableName < AbstractElement
   end
 
   def dump
-    self.class.to_s + ':' + @name.to_s
+    "#{self.class}:#{@name}"
   end
 
   def compatible?(value)
@@ -1645,6 +1677,7 @@ class UserFunctionName < AbstractElement
 
   attr_reader :name
   attr_reader :content_type
+  attr_reader :shape
 
   def initialize(token)
     super()
@@ -1658,10 +1691,15 @@ class UserFunctionName < AbstractElement
     @operand = true
     @precedence = 7
     @content_type = @name.content_type
+    @shape = :scalar
   end
 
-  def set_content_type(stack)
-    stack.push(content_type)
+  def set_content_type(type_stack)
+    type_stack.push(content_type)
+  end
+
+  def set_shape(shape_stack)
+    shape_stack.push(:scalar)
   end
 
   def eql?(other)
@@ -1685,7 +1723,7 @@ class UserFunctionName < AbstractElement
   end
 
   def dump
-    self.class.to_s + ':' + @name.to_s
+    "#{self.class}:#{@name}"
   end
 
   def compatible?(value)
@@ -1723,7 +1761,7 @@ class Variable < AbstractElement
   attr_writer :valref
   attr_reader :subscripts
 
-  def initialize(variable_name, shape, subscripts)
+  def initialize(variable_name, my_shape, subscripts)
     super()
 
     raise(BASICExpressionError,
@@ -1732,7 +1770,7 @@ class Variable < AbstractElement
 
     @variable_name = variable_name
     @valref = :value
-    @shape = shape
+    @shape = my_shape
     @subscripts = normalize_subscripts(subscripts)
     @variable = true
     @operand = true
@@ -1744,6 +1782,13 @@ class Variable < AbstractElement
     type_stack.pop if type == :list
 
     type_stack.push(@variable_name.content_type)
+  end
+
+  def set_shape(shape_stack)
+    my_shape = shape_stack[-1]
+    shape_stack.pop if my_shape == :list
+
+    shape_stack.push(@shape)
   end
 
   def eql?(other)
@@ -1759,7 +1804,7 @@ class Variable < AbstractElement
   end
 
   def dump
-    self.class.to_s + ':' + @variable_name.to_s
+    "#{self.class}:#{@variable_name} #{@shape}"
   end
 
   def name
@@ -1978,6 +2023,7 @@ end
 
 class Declaration < AbstractElement
   attr_reader :subscripts
+  attr_reader :shape
 
   def initialize(variable_name)
     super()
@@ -1989,10 +2035,11 @@ class Declaration < AbstractElement
     @variable_name = variable_name
     @subscripts = []
     @variable = true
+    @shape = :unknown
   end
 
   def dump
-    self.class.to_s + ':' + @variable_name.to_s
+    "#{self.class}:#{@variable_name} #{@shape}"
   end
 
   def name
@@ -2003,8 +2050,16 @@ class Declaration < AbstractElement
     @variable_name.content_type
   end
 
-  def set_content_type(stack)
-    stack.push(content_type)
+  def set_content_type(type_stack)
+    type_stack.push(content_type)
+  end
+
+  def set_shape(shape_stack)
+    @shape = :scalar
+    @shape = :array if @subscripts.size == 1
+    @shape = :matrix if @subscripts.size == 2
+
+    shape_stack.push(@shape)
   end
 
   def to_s
@@ -2047,9 +2102,7 @@ class ExpressionList < AbstractElement
   def dump
     lines = []
 
-    @expressions.each do |expression|
-      lines.concat expression.dump
-    end
+    @expressions.each { |expression| lines.concat expression.dump }
 
     lines
   end
@@ -2058,10 +2111,20 @@ class ExpressionList < AbstractElement
     :list
   end
 
-  def set_content_type(stack)
+  def set_content_type(type_stack)
     @expressions.each { |expression| expression.set_content_type }
     
-    stack.push(content_type)
+    type_stack.push(content_type)
+  end
+
+  def shape
+    :list
+  end
+
+  def set_shape(shape_stack)
+    @expressions.each { |expression| expression.set_shape }
+
+    shape_stack.push(shape)
   end
 
   def evaluate(interpreter, _)
@@ -2091,6 +2154,6 @@ class Remark < AbstractElement
   end
 
   def dump
-    self.class.to_s + ':' + @texts.join
+    "#{self.class}:#{@texts.join}"
   end
 end

@@ -7,62 +7,62 @@
  
 130 DIM A(20)
  NumericConstant:20
- Declaration:A
+ Declaration:A unknown
 140 REM *** N=NUMBER OF NUMBERS
  Remark:*** N=NUMBER OF NUMBERS
 150 N = 9
- Variable:N
+ Variable:N scalar
  NumericConstant:9
  AssignmentOperator:=
 160 INPUT "DO YOU WANT THE RULES (YES OR NO)";A$
- Variable:A$
+ Variable:A$ scalar
 180 IF A$="NO" THEN 210
- Variable:A$
+ Variable:A$ scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 190 GOSUB 710
  LineNumber:710
 200 REM *** MAKE A RANDOM LIST A(1) TO A(N)
  Remark:*** MAKE A RANDOM LIST A(1) TO A(N)
 210 A(1) = INT((N-1)*RND)+2
  NumericConstant:1
- Variable:A
- Variable:N
+ Variable:A scalar
+ Variable:N scalar
  NumericConstant:1
- BinaryOperatorMinus:- numeric
- FunctionRnd
- BinaryOperatorMultiply:* numeric
- FunctionInt
+ BinaryOperatorMinus:- numeric scalar
+ FunctionRnd scalar
+ BinaryOperatorMultiply:* numeric scalar
+ FunctionInt scalar
  NumericConstant:2
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 220 FOR K=2 TO N
- control: Variable:K
+ control: Variable:K scalar
  start:   ["NumericConstant:2"]
- end:     ["Variable:N"]
+ end:     ["Variable:N scalar"]
 230 A(K)=INT(N*RND)+1
- Variable:K
- Variable:A
- Variable:N
- FunctionRnd
- BinaryOperatorMultiply:* numeric
- FunctionInt
+ Variable:K scalar
+ Variable:A scalar
+ Variable:N scalar
+ FunctionRnd scalar
+ BinaryOperatorMultiply:* numeric scalar
+ FunctionInt scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 240 FOR J=1 TO K-1
- control: Variable:J
+ control: Variable:J scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:K", "NumericConstant:1", "BinaryOperatorMinus:- numeric"]
+ end:     ["Variable:K scalar", "NumericConstant:1", "BinaryOperatorMinus:- numeric scalar"]
 250 IF A(K)=A(J) THEN 230
- Variable:K
- Variable:A
- Variable:J
- Variable:A
- BinaryOperatorEqual:= boolean
+ Variable:K scalar
+ Variable:A scalar
+ Variable:J scalar
+ Variable:A scalar
+ BinaryOperatorEqual:= boolean scalar
 260 NEXT J\NEXT K
- Variable:J
- Variable:K
+ Variable:J scalar
+ Variable:K scalar
 280 REM *** PRINT ORIGNIAL LIST AND START GAME
  Remark:*** PRINT ORIGNIAL LIST AND START GAME
 290 PRINT\PRINT "HERE WE GO ... THE LIST IS:"
@@ -70,94 +70,94 @@
  TextConstant:"HERE WE GO ... THE LIST IS:"
  CarriageControl:NL
 310 T=0
- Variable:T
+ Variable:T scalar
  NumericConstant:0
  AssignmentOperator:=
 320 GOSUB 610
  LineNumber:610
 330 INPUT "HOW MANY SHALL I REVERSE";R
- Variable:R
+ Variable:R scalar
 350 IF R=0 THEN 530
- Variable:R
+ Variable:R scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 360 IF R<=N THEN 390
- Variable:R
- Variable:N
- BinaryOperatorLessEqual:<= boolean
+ Variable:R scalar
+ Variable:N scalar
+ BinaryOperatorLessEqual:<= boolean scalar
 370 PRINT "OOPS! TOO MANY - I CAN REVERSE AT MOST"N\GOTO 330
  TextConstant:"OOPS! TOO MANY - I CAN REVERSE AT MOST"
  CarriageControl:
- Variable:N
+ Variable:N scalar
  CarriageControl:NL
  LineNumber:330
 390 T=T+1
- Variable:T
- Variable:T
+ Variable:T scalar
+ Variable:T scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 400 REM *** REVERSE R NUMBERS AND PRINT NEW LIST
  Remark:*** REVERSE R NUMBERS AND PRINT NEW LIST
 410 FOR K = 1 TO INT(R/2)
- control: Variable:K
+ control: Variable:K scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:R", "NumericConstant:2", "BinaryOperatorDivide:/ numeric", "FunctionInt"]
+ end:     ["Variable:R scalar", "NumericConstant:2", "BinaryOperatorDivide:/ numeric scalar", "FunctionInt scalar"]
 420 Z=A(K)
- Variable:Z
- Variable:K
- Variable:A
+ Variable:Z scalar
+ Variable:K scalar
+ Variable:A scalar
  AssignmentOperator:=
 430 A(K)=A(R-K+1)
- Variable:K
- Variable:A
- Variable:R
- Variable:K
- BinaryOperatorMinus:- numeric
+ Variable:K scalar
+ Variable:A scalar
+ Variable:R scalar
+ Variable:K scalar
+ BinaryOperatorMinus:- numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
- Variable:A
+ BinaryOperatorPlus:+ numeric scalar
+ Variable:A scalar
  AssignmentOperator:=
 440 A(R-K+1)=Z
- Variable:R
- Variable:K
- BinaryOperatorMinus:- numeric
+ Variable:R scalar
+ Variable:K scalar
+ BinaryOperatorMinus:- numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
- Variable:A
- Variable:Z
+ BinaryOperatorPlus:+ numeric scalar
+ Variable:A scalar
+ Variable:Z scalar
  AssignmentOperator:=
 450 NEXT K
- Variable:K
+ Variable:K scalar
 460 GOSUB 610
  LineNumber:610
 470 REM *** CHECK FOR A WIN
  Remark:*** CHECK FOR A WIN
 480 FOR K = 1 TO N
- control: Variable:K
+ control: Variable:K scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:N"]
+ end:     ["Variable:N scalar"]
 490 IF A(K)<>K THEN 330
- Variable:K
- Variable:A
- Variable:K
- BinaryOperatorNotEqual:<> boolean
+ Variable:K scalar
+ Variable:A scalar
+ Variable:K scalar
+ BinaryOperatorNotEqual:<> boolean scalar
 500 NEXT K
- Variable:K
+ Variable:K scalar
 510 PRINT "YOU WON IT IN"T"MOVES !!!"\PRINT
  TextConstant:"YOU WON IT IN"
  CarriageControl:
- Variable:T
+ Variable:T scalar
  CarriageControl:
  TextConstant:"MOVES !!!"
  CarriageControl:NL
  CarriageControl:NL
 530 INPUT "TRY AGAIN (YES OR NO)";A$
- Variable:A$
+ Variable:A$ scalar
 550 IF A$="YES" THEN 210
- Variable:A$
+ Variable:A$ scalar
  TextConstant:"YES"
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 560 PRINT\PRINT "O.K. HOPE YOU HAD FUN!! "\GOTO 999
  CarriageControl:NL
  TextConstant:"O.K. HOPE YOU HAD FUN!! "
@@ -167,13 +167,13 @@
  Remark:*** SUBROUTINE TO PRINT LIST
 610 PRINT\FOR K=1 TO N\PRINT A(K);\NEXT K
  CarriageControl:NL
- control: Variable:K
+ control: Variable:K scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:N"]
- Variable:K
- Variable:A
+ end:     ["Variable:N scalar"]
+ Variable:K scalar
+ Variable:A scalar
  CarriageControl:;
- Variable:K
+ Variable:K scalar
 650 PRINT\PRINT\RETURN
  CarriageControl:NL
  CarriageControl:NL
@@ -187,7 +187,7 @@
 720 PRINT "TO DO IS ARRANGE A LIST OF NUMBERS (1 THROUGH " N")"
  TextConstant:"TO DO IS ARRANGE A LIST OF NUMBERS (1 THROUGH "
  CarriageControl:
- Variable:N
+ Variable:N scalar
  CarriageControl:
  TextConstant:")"
  CarriageControl:NL

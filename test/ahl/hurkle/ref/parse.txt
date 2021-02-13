@@ -5,11 +5,11 @@
 105 RANDOM
  
 110 N=5
- Variable:N
+ Variable:N scalar
  NumericConstant:5
  AssignmentOperator:=
 120 G=10
- Variable:G
+ Variable:G scalar
  NumericConstant:10
  AssignmentOperator:=
 210 PRINT
@@ -17,11 +17,11 @@
 220 PRINT "A HURKLE IS HIDING ON A"; G; "BY"; G; "GRID. HOMEBASE"
  TextConstant:"A HURKLE IS HIDING ON A"
  CarriageControl:;
- Variable:G
+ Variable:G scalar
  CarriageControl:;
  TextConstant:"BY"
  CarriageControl:;
- Variable:G
+ Variable:G scalar
  CarriageControl:;
  TextConstant:"GRID. HOMEBASE"
  CarriageControl:NL
@@ -34,7 +34,7 @@
 250 PRINT "GUESS THE HURKLE'S GRIDPOINT. YOU GET"; N; "TRIES."
  TextConstant:"GUESS THE HURKLE'S GRIDPOINT. YOU GET"
  CarriageControl:;
- Variable:N
+ Variable:N scalar
  CarriageControl:;
  TextConstant:"TRIES."
  CarriageControl:NL
@@ -47,45 +47,45 @@
 280 PRINT
  CarriageControl:NL
 285 A=INT(G*RND(0))
- Variable:A
- Variable:G
+ Variable:A scalar
+ Variable:G scalar
  NumericConstant:0
- FunctionRnd
- BinaryOperatorMultiply:* numeric
- FunctionInt
+ FunctionRnd scalar
+ BinaryOperatorMultiply:* numeric scalar
+ FunctionInt scalar
  AssignmentOperator:=
 286 B=INT(G*RND(0))
- Variable:B
- Variable:G
+ Variable:B scalar
+ Variable:G scalar
  NumericConstant:0
- FunctionRnd
- BinaryOperatorMultiply:* numeric
- FunctionInt
+ FunctionRnd scalar
+ BinaryOperatorMultiply:* numeric scalar
+ FunctionInt scalar
  AssignmentOperator:=
 310 FOR K=1 TO N
- control: Variable:K
+ control: Variable:K scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:N"]
+ end:     ["Variable:N scalar"]
 320 PRINT "GUESS #"; K;
  TextConstant:"GUESS #"
  CarriageControl:;
- Variable:K
+ Variable:K scalar
  CarriageControl:;
 330 INPUT X, Y
- Variable:X
- Variable:Y
+ Variable:X scalar
+ Variable:Y scalar
 340 IF ABS(X-A)+ABS(Y-B)=0 THEN 500
- Variable:X
- Variable:A
- BinaryOperatorMinus:- numeric
- FunctionAbs
- Variable:Y
- Variable:B
- BinaryOperatorMinus:- numeric
- FunctionAbs
- BinaryOperatorPlus:+ numeric
+ Variable:X scalar
+ Variable:A scalar
+ BinaryOperatorMinus:- numeric scalar
+ FunctionAbs scalar
+ Variable:Y scalar
+ Variable:B scalar
+ BinaryOperatorMinus:- numeric scalar
+ FunctionAbs scalar
+ BinaryOperatorPlus:+ numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 350 REM PRINT INFO
  Remark:PRINT INFO
 360 GOSUB 610
@@ -93,24 +93,24 @@
 370 PRINT
  CarriageControl:NL
 380 NEXT K
- Variable:K
+ Variable:K scalar
 410 PRINT
  CarriageControl:NL
 420 PRINT "SORRY, THAT'S"; N; "GUESSES."
  TextConstant:"SORRY, THAT'S"
  CarriageControl:;
- Variable:N
+ Variable:N scalar
  CarriageControl:;
  TextConstant:"GUESSES."
  CarriageControl:NL
 430 PRINT "THE HURKLE IS AT "; A; ", "; B
  TextConstant:"THE HURKLE IS AT "
  CarriageControl:;
- Variable:A
+ Variable:A scalar
  CarriageControl:;
  TextConstant:", "
  CarriageControl:;
- Variable:B
+ Variable:B scalar
  CarriageControl:NL
 440 PRINT
  CarriageControl:NL
@@ -128,18 +128,18 @@
 520 PRINT "YOU FOUND HIM IN"; K; "GUESSES!"
  TextConstant:"YOU FOUND HIM IN"
  CarriageControl:;
- Variable:K
+ Variable:K scalar
  CarriageControl:;
  TextConstant:"GUESSES!"
  CarriageControl:NL
 530 FOR I=1 TO 10\PRINT CHR$(7);\NEXT I\PRINT
- control: Variable:I
+ control: Variable:I scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
  NumericConstant:7
- FunctionChr
+ FunctionChr scalar
  CarriageControl:;
- Variable:I
+ Variable:I scalar
  CarriageControl:NL
 540 GO TO 440
  LineNumber:440
@@ -147,13 +147,13 @@
  TextConstant:"GO "
  CarriageControl:;
 620 IF Y=B THEN 670
- Variable:Y
- Variable:B
- BinaryOperatorEqual:= boolean
+ Variable:Y scalar
+ Variable:B scalar
+ BinaryOperatorEqual:= boolean scalar
 630 IF Y<B THEN 660
- Variable:Y
- Variable:B
- BinaryOperatorLess:< boolean
+ Variable:Y scalar
+ Variable:B scalar
+ BinaryOperatorLess:< boolean scalar
 640 PRINT "SOUTH";
  TextConstant:"SOUTH"
  CarriageControl:;
@@ -163,13 +163,13 @@
  TextConstant:"NORTH"
  CarriageControl:;
 670 IF X=A THEN 720
- Variable:X
- Variable:A
- BinaryOperatorEqual:= boolean
+ Variable:X scalar
+ Variable:A scalar
+ BinaryOperatorEqual:= boolean scalar
 680 IF X<A THEN 710
- Variable:X
- Variable:A
- BinaryOperatorLess:< boolean
+ Variable:X scalar
+ Variable:A scalar
+ BinaryOperatorLess:< boolean scalar
 690 PRINT "WEST";
  TextConstant:"WEST"
  CarriageControl:;

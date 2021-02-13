@@ -14,17 +14,17 @@
  TextConstant:"AS TO HOW CLOSE YOU'RE GETTING TO MY LETTER."
  CarriageControl:NL
 310 L=65+INT(RND(0)*26)
- Variable:L
+ Variable:L scalar
  NumericConstant:65
  NumericConstant:0
- FunctionRnd
+ FunctionRnd scalar
  NumericConstant:26
- BinaryOperatorMultiply:* numeric
- FunctionInt
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorMultiply:* numeric scalar
+ FunctionInt scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 320 G=0
- Variable:G
+ Variable:G scalar
  NumericConstant:0
  AssignmentOperator:=
 340 PRINT\PRINT "OK, I HAVE A LETTER. START GUESSING."
@@ -36,22 +36,22 @@
  TextConstant:"WHAT IS YOUR GUESS?"
  CarriageControl:;
 425 G = G+1
- Variable:G
- Variable:G
+ Variable:G scalar
+ Variable:G scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 430 INPUT $A\PRINT
- Variable:A
+ Variable:A scalar
  CarriageControl:NL
 440 IF A=L THEN 500
- Variable:A
- Variable:L
- BinaryOperatorEqual:= boolean
+ Variable:A scalar
+ Variable:L scalar
+ BinaryOperatorEqual:= boolean scalar
 450 IF A>L THEN 480
- Variable:A
- Variable:L
- BinaryOperatorGreater:> boolean
+ Variable:A scalar
+ Variable:L scalar
+ BinaryOperatorGreater:> boolean scalar
 460 PRINT "TOO LOW. TRY A HIGHER LETTER. "\GOTO 410
  TextConstant:"TOO LOW. TRY A HIGHER LETTER. "
  CarriageControl:NL
@@ -64,14 +64,14 @@
  CarriageControl:NL
  TextConstant:"YOU GOT IT IN"
  CarriageControl:
- Variable:G
+ Variable:G scalar
  CarriageControl:
  TextConstant:"GUESSES!!"
  CarriageControl:NL
 504 IF G<=5 THEN 508
- Variable:G
+ Variable:G scalar
  NumericConstant:5
- BinaryOperatorLessEqual:<= boolean
+ BinaryOperatorLessEqual:<= boolean scalar
 506 PRINT "BUT IT SHOULDN'T TAKE MORE THAN 5 GUESSES!"\GOTO 515
  TextConstant:"BUT IT SHOULDN'T TAKE MORE THAN 5 GUESSES!"
  CarriageControl:NL
@@ -80,13 +80,13 @@
  TextConstant:"GOOD JOB!!!!"
  CarriageControl:NL
 510 FOR N = 1 TO 15\PRINT CHR$(7);\NEXT N
- control: Variable:N
+ control: Variable:N scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:15"]
  NumericConstant:7
- FunctionChr
+ FunctionChr scalar
  CarriageControl:;
- Variable:N
+ Variable:N scalar
 515 PRINT
  CarriageControl:NL
 520 PRINT "LET'S PLAY AGAIN"

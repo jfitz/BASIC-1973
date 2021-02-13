@@ -9,15 +9,15 @@
  TextConstant:"TYPE EITHER YES OR NO"
  CarriageControl:NL
 50 INPUT L$
- Variable:L$
+ Variable:L$ scalar
 60 IF L$ = "YES" THEN 100
- Variable:L$
+ Variable:L$ scalar
  TextConstant:"YES"
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 70 IF L$ = "NO" THEN 170
- Variable:L$
+ Variable:L$ scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 80 PRINT "INVALID COMMAND"
  TextConstant:"INVALID COMMAND"
  CarriageControl:NL
@@ -45,7 +45,7 @@
  TextConstant:"EARN $10. EACH TURN COSTS $1. GOOD-LUCK"
  CarriageControl:NL
 170 LET J = 0
- Variable:J
+ Variable:J scalar
  NumericConstant:0
  AssignmentOperator:=
 180 PRINT
@@ -53,193 +53,193 @@
 190 GOSUB 590
  LineNumber:590
 200 LET S1 = S
- Variable:S1
- Variable:S
+ Variable:S1 scalar
+ Variable:S scalar
  AssignmentOperator:=
 210 GOSUB 590
  LineNumber:590
 220 LET S2 = S
- Variable:S2
- Variable:S
+ Variable:S2 scalar
+ Variable:S scalar
  AssignmentOperator:=
 230 GOSUB 590
  LineNumber:590
 240 LET S3 = S
- Variable:S3
- Variable:S
+ Variable:S3 scalar
+ Variable:S scalar
  AssignmentOperator:=
 250 LET S = S1
- Variable:S
- Variable:S1
+ Variable:S scalar
+ Variable:S1 scalar
  AssignmentOperator:=
 260 GOSUB 610
  LineNumber:610
 270 LET S1$ = S$
- Variable:S1$
- Variable:S$
+ Variable:S1$ scalar
+ Variable:S$ scalar
  AssignmentOperator:=
 280 LET S = S2
- Variable:S
- Variable:S2
+ Variable:S scalar
+ Variable:S2 scalar
  AssignmentOperator:=
 290 GOSUB 610
  LineNumber:610
 300 LET S2$ = S$
- Variable:S2$
- Variable:S$
+ Variable:S2$ scalar
+ Variable:S$ scalar
  AssignmentOperator:=
 310 LET S = S3
- Variable:S
- Variable:S3
+ Variable:S scalar
+ Variable:S3 scalar
  AssignmentOperator:=
 320 GOSUB 610
  LineNumber:610
 330 LET S3$ = S$
- Variable:S3$
- Variable:S$
+ Variable:S3$ scalar
+ Variable:S$ scalar
  AssignmentOperator:=
 340 IF S1$ = "CHERRY" THEN 380
- Variable:S1$
+ Variable:S1$ scalar
  TextConstant:"CHERRY"
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 350 IF S1$ = "APPLE" THEN 420
- Variable:S1$
+ Variable:S1$ scalar
  TextConstant:"APPLE"
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 360 IF S1$ = S2$ THEN 440
- Variable:S1$
- Variable:S2$
- BinaryOperatorEqual:= boolean
+ Variable:S1$ scalar
+ Variable:S2$ scalar
+ BinaryOperatorEqual:= boolean scalar
 370 GOTO 460
  LineNumber:460
 380 IF S1$ = S2$ THEN 400
- Variable:S1$
- Variable:S2$
- BinaryOperatorEqual:= boolean
+ Variable:S1$ scalar
+ Variable:S2$ scalar
+ BinaryOperatorEqual:= boolean scalar
 390 GOTO 460
  LineNumber:460
 400 IF S2$ = S3$ THEN 480
- Variable:S2$
- Variable:S3$
- BinaryOperatorEqual:= boolean
+ Variable:S2$ scalar
+ Variable:S3$ scalar
+ BinaryOperatorEqual:= boolean scalar
 410 GOTO 460
  LineNumber:460
 420 IF S1$ = S2$ THEN 500
- Variable:S1$
- Variable:S2$
- BinaryOperatorEqual:= boolean
+ Variable:S1$ scalar
+ Variable:S2$ scalar
+ BinaryOperatorEqual:= boolean scalar
 430 GOTO 520
  LineNumber:520
 440 IF S2$ = S3$ THEN 540
- Variable:S2$
- Variable:S3$
- BinaryOperatorEqual:= boolean
+ Variable:S2$ scalar
+ Variable:S3$ scalar
+ BinaryOperatorEqual:= boolean scalar
 450 IF S3$ = "CHERRY" THEN 540
- Variable:S3$
+ Variable:S3$ scalar
  TextConstant:"CHERRY"
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 460 LET J = J - 1
- Variable:J
- Variable:J
+ Variable:J scalar
+ Variable:J scalar
  NumericConstant:1
- BinaryOperatorMinus:- numeric
+ BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 470 GOTO 550
  LineNumber:550
 480 LET J = J + 89
- Variable:J
- Variable:J
+ Variable:J scalar
+ Variable:J scalar
  NumericConstant:89
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 490 GOTO 550
  LineNumber:550
 500 LET J = J + 2
- Variable:J
- Variable:J
+ Variable:J scalar
+ Variable:J scalar
  NumericConstant:2
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 510 GOTO 550
  LineNumber:550
 520 LET J = J + 1
- Variable:J
- Variable:J
+ Variable:J scalar
+ Variable:J scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 530 GOTO 550
  LineNumber:550
 540 LET J = J + 9
- Variable:J
- Variable:J
+ Variable:J scalar
+ Variable:J scalar
  NumericConstant:9
- BinaryOperatorPlus:+ numeric
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 550 PRINT
  CarriageControl:NL
 560 PRINT S1$;" ";S2$;" ";S3$
- Variable:S1$
+ Variable:S1$ scalar
  CarriageControl:;
  TextConstant:" "
  CarriageControl:;
- Variable:S2$
+ Variable:S2$ scalar
  CarriageControl:;
  TextConstant:" "
  CarriageControl:;
- Variable:S3$
+ Variable:S3$ scalar
  CarriageControl:NL
 570 PRINT "YOUR EARNINGS ARE NOW $";J
  TextConstant:"YOUR EARNINGS ARE NOW $"
  CarriageControl:;
- Variable:J
+ Variable:J scalar
  CarriageControl:NL
 580 GOTO 720
  LineNumber:720
 590 LET S = 1 + INT(5*RND)
- Variable:S
+ Variable:S scalar
  NumericConstant:1
  NumericConstant:5
- FunctionRnd
- BinaryOperatorMultiply:* numeric
- FunctionInt
- BinaryOperatorPlus:+ numeric
+ FunctionRnd scalar
+ BinaryOperatorMultiply:* numeric scalar
+ FunctionInt scalar
+ BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 600 RETURN
  
 610 ON S GOTO 620, 640, 660, 680, 700
- Variable:S
+ Variable:S scalar
  LineNumber:620
  LineNumber:640
  LineNumber:660
  LineNumber:680
  LineNumber:700
 620 LET S$ = "CHERRY"
- Variable:S$
+ Variable:S$ scalar
  TextConstant:"CHERRY"
  AssignmentOperator:=
 630 GOTO 710
  LineNumber:710
 640 LET S$ = "APPLE"
- Variable:S$
+ Variable:S$ scalar
  TextConstant:"APPLE"
  AssignmentOperator:=
 650 GOTO 710
  LineNumber:710
 660 LET S$ = "LEMON"
- Variable:S$
+ Variable:S$ scalar
  TextConstant:"LEMON"
  AssignmentOperator:=
 670 GOTO 710
  LineNumber:710
 680 LET S$ = "ORANGE"
- Variable:S$
+ Variable:S$ scalar
  TextConstant:"ORANGE"
  AssignmentOperator:=
 690 GOTO 710
  LineNumber:710
 700 LET S$ = "BANANA"
- Variable:S$
+ Variable:S$ scalar
  TextConstant:"BANANA"
  AssignmentOperator:=
 710 RETURN
@@ -250,11 +250,11 @@
  TextConstant:"TO CONTINUE TYPE Y, IF NOT TYPE N"
  CarriageControl:NL
 740 INPUT Z$
- Variable:Z$
+ Variable:Z$ scalar
 750 IF Z$ = "Y" THEN 780
- Variable:Z$
+ Variable:Z$ scalar
  TextConstant:"Y"
- BinaryOperatorEqual:= boolean
+ BinaryOperatorEqual:= boolean scalar
 760 PRINT "ONE-ARM BANDIT SAYS GOOD-BYE"
  TextConstant:"ONE-ARM BANDIT SAYS GOOD-BYE"
  CarriageControl:NL
