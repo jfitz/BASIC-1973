@@ -1,0 +1,74 @@
+90 REM * ALPHABETIZE NAMES IN A FILE
+ Remark:* ALPHABETIZE NAMES IN A FILE
+100 DIM A$[72],B$[72]
+ NumericConstant:72
+ Declaration:A$ scalar
+ NumericConstant:72
+ Declaration:B$ scalar
+110 FILES "text.txt"
+ TextConstant:"text.txt"
+120 FOR I=1 TO 6
+ control: Variable:I numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:6"]
+130 READ #1,I;A$,A,A1
+ NumericConstant:1
+ UnaryOperatorHash:# filehandle scalar
+ Variable:I numeric scalar
+ Variable:A$ string scalar
+ Variable:A numeric scalar
+ Variable:A1 numeric scalar
+140 FOR J=I+1 TO 7
+ control: Variable:J numeric scalar
+ start:   ["Variable:I numeric scalar", "NumericConstant:1", "BinaryOperatorPlus:+ numeric scalar"]
+ end:     ["NumericConstant:7"]
+150 READ #1,J;B$,B,B1
+ NumericConstant:1
+ UnaryOperatorHash:# filehandle scalar
+ Variable:J numeric scalar
+ Variable:B$ string scalar
+ Variable:B numeric scalar
+ Variable:B1 numeric scalar
+160 IF A$ <= B$ THEN 200
+ Variable:A$ string scalar
+ Variable:B$ string scalar
+ BinaryOperatorLessEqual:<= boolean scalar
+170 PRINT #1,I;B$,B,B1
+ NumericConstant:1
+ UnaryOperatorHash:# filehandle scalar
+ Variable:I numeric scalar
+ CarriageControl:;
+ Variable:B$ string scalar
+ CarriageControl:,
+ Variable:B numeric scalar
+ CarriageControl:,
+ Variable:B1 numeric scalar
+ CarriageControl:NL
+180 PRINT #1,J;A$,A,A1
+ NumericConstant:1
+ UnaryOperatorHash:# filehandle scalar
+ Variable:J numeric scalar
+ CarriageControl:;
+ Variable:A$ string scalar
+ CarriageControl:,
+ Variable:A numeric scalar
+ CarriageControl:,
+ Variable:A1 numeric scalar
+ CarriageControl:NL
+190 READ #1,I;A$,A,A1
+ NumericConstant:1
+ UnaryOperatorHash:# filehandle scalar
+ Variable:I numeric scalar
+ Variable:A$ string scalar
+ Variable:A numeric scalar
+ Variable:A1 numeric scalar
+200 NEXT J
+ Variable:J numeric scalar
+210 NEXT I
+ Variable:I numeric scalar
+220 PRINT "FILE ALPHABETIZED"
+ TextConstant:"FILE ALPHABETIZED"
+ CarriageControl:NL
+230 END
+ 
+

@@ -1777,11 +1777,15 @@ class Variable < AbstractElement
     @precedence = 7
   end
 
+  def content_type
+    @variable_name.content_type
+  end
+
   def set_content_type(type_stack)
     type = type_stack[-1]
     type_stack.pop if type == :list
 
-    type_stack.push(@variable_name.content_type)
+    type_stack.push(content_type)
   end
 
   def set_shape(shape_stack)
@@ -1804,7 +1808,7 @@ class Variable < AbstractElement
   end
 
   def dump
-    "#{self.class}:#{@variable_name} #{@shape}"
+    "#{self.class}:#{@variable_name} #{content_type} #{@shape}"
   end
 
   def name
@@ -2029,7 +2033,7 @@ class Declaration < AbstractElement
     super()
 
     raise(BASICSyntaxError,
-          "'#{variable_name.class}:#{variable_name}' is not a variable name") if
+          "'#{variable_name}' is not a variable name") if
       variable_name.class.to_s != 'VariableName'
 
     @variable_name = variable_name

@@ -1,0 +1,47 @@
+10 READ N
+ Variable:N numeric scalar
+20 FOR D=2 TO SQR(N)
+ control: Variable:D numeric scalar
+ start:   ["NumericConstant:2"]
+ end:     ["Variable:N numeric scalar", "FunctionSqr:SQR numeric scalar"]
+30 IF N/D=INT(N/D) THEN 70
+ Variable:N numeric scalar
+ Variable:D numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ Variable:N numeric scalar
+ Variable:D numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ FunctionInt:INT numeric scalar
+ BinaryOperatorEqual:= boolean scalar
+40 NEXT D
+ Variable:D numeric scalar
+50 PRINT N;"IS PRIME"
+ Variable:N numeric scalar
+ CarriageControl:;
+ TextConstant:"IS PRIME"
+ CarriageControl:NL
+60 GOTO 10
+ LineNumber:10
+70 PRINT N/D;"IS THE GREATEST FACTOR OF";N
+ Variable:N numeric scalar
+ Variable:D numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ CarriageControl:;
+ TextConstant:"IS THE GREATEST FACTOR OF"
+ CarriageControl:;
+ Variable:N numeric scalar
+ CarriageControl:NL
+80 GOTO 10
+ LineNumber:10
+90 DATA 1946,1949,1009,1003
+ NumericConstant:1946
+ NumericConstant:1949
+ NumericConstant:1009
+ NumericConstant:1003
+100 DATA 11001,240,11
+ NumericConstant:11001
+ NumericConstant:240
+ NumericConstant:11
+110 END
+ 
+

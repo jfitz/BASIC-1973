@@ -1,0 +1,30 @@
+90 REM * PRINT TO RECORD R IN FILE
+ Remark:* PRINT TO RECORD R IN FILE
+100 FILES "test.txt"
+ TextConstant:"test.txt"
+110 FOR R=1 TO 4
+ control: Variable:R numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:4"]
+120 READ X
+ Variable:X numeric scalar
+130 PRINT #1,R;X
+ NumericConstant:1
+ UnaryOperatorHash:# filehandle scalar
+ Variable:R numeric scalar
+ CarriageControl:;
+ Variable:X numeric scalar
+ CarriageControl:NL
+140 PRINT X;
+ Variable:X numeric scalar
+ CarriageControl:;
+150 NEXT R
+ Variable:R numeric scalar
+160 DATA 3,17,11,31
+ NumericConstant:3
+ NumericConstant:17
+ NumericConstant:11
+ NumericConstant:31
+170 END
+ 
+

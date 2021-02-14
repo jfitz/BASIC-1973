@@ -1,0 +1,43 @@
+10 FOR N=0 TO 11
+ control: Variable:N numeric scalar
+ start:   ["NumericConstant:0"]
+ end:     ["NumericConstant:11"]
+20 FOR R=0 TO N
+ control: Variable:R numeric scalar
+ start:   ["NumericConstant:0"]
+ end:     ["Variable:N numeric scalar"]
+30 LET C=1
+ Variable:C numeric scalar
+ NumericConstant:1
+ AssignmentOperator:=
+40 FOR X=N TO N-R+1 STEP -1
+ control: Variable:X numeric scalar
+ start:   ["Variable:N numeric scalar"]
+ end:     ["Variable:N numeric scalar", "Variable:R numeric scalar", "BinaryOperatorMinus:- numeric scalar", "NumericConstant:1", "BinaryOperatorPlus:+ numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+50 LET C=C*X/(N-X+1)
+ Variable:C numeric scalar
+ Variable:C numeric scalar
+ Variable:X numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ Variable:N numeric scalar
+ Variable:X numeric scalar
+ BinaryOperatorMinus:- numeric scalar
+ NumericConstant:1
+ BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ AssignmentOperator:=
+60 NEXT X
+ Variable:X numeric scalar
+70 PRINT C;
+ Variable:C numeric scalar
+ CarriageControl:;
+80 NEXT R
+ Variable:R numeric scalar
+90 PRINT
+ CarriageControl:NL
+100 NEXT N
+ Variable:N numeric scalar
+110 END
+ 
+

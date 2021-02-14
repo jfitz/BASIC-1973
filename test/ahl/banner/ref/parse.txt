@@ -18,30 +18,30 @@
  Remark:
 190 DIMG$(6),H$(6),B$(9),G(6),A(54)
  NumericConstant:6
- Declaration:G$ unknown
+ Declaration:G$ scalar
  NumericConstant:6
- Declaration:H$ unknown
+ Declaration:H$ scalar
  NumericConstant:9
- Declaration:B$ unknown
+ Declaration:B$ scalar
  NumericConstant:6
- Declaration:G unknown
+ Declaration:G scalar
  NumericConstant:54
- Declaration:A unknown
+ Declaration:A scalar
 200 PRINT"INPUT HEIGHTH, WIDTH IN INCHES";\INPUTL,R\S=0\A=R*2\C=A
  TextConstant:"INPUT HEIGHTH, WIDTH IN INCHES"
  CarriageControl:;
- Variable:L scalar
- Variable:R scalar
- Variable:S scalar
+ Variable:L numeric scalar
+ Variable:R numeric scalar
+ Variable:S numeric scalar
  NumericConstant:0
  AssignmentOperator:=
- Variable:A scalar
- Variable:R scalar
+ Variable:A numeric scalar
+ Variable:R numeric scalar
  NumericConstant:2
  BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
- Variable:C scalar
- Variable:A scalar
+ Variable:C numeric scalar
+ Variable:A numeric scalar
  AssignmentOperator:=
 210 PRINT"HOW FAR, IN INCHES FROM THE LEFT HAND SIDE, DO YOU WANT TO PLACE "
  TextConstant:"HOW FAR, IN INCHES FROM THE LEFT HAND SIDE, DO YOU WANT TO PLACE "
@@ -49,99 +49,99 @@
 220 PRINT"THE LETTERS";\INPUTS\S=12*S
  TextConstant:"THE LETTERS"
  CarriageControl:;
- Variable:S scalar
- Variable:S scalar
+ Variable:S numeric scalar
+ Variable:S numeric scalar
  NumericConstant:12
- Variable:S scalar
+ Variable:S numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
 230 PRINT"INPUT MESSAGE HERE"
  TextConstant:"INPUT MESSAGE HERE"
  CarriageControl:NL
 240 LINPUT B$
- Variable:B$ scalar
+ Variable:B$ string scalar
 250 CHANGE B$ TO A
- Variable:B$ scalar
- Variable:A array
+ Variable:B$ string scalar
+ Variable:A numeric array
 260 FORX=1TO6\READH$(X)\NEXTX\H$=H$(L)\GOSUB 940
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:6"]
- Variable:X scalar
- Variable:H$ scalar
- Variable:X scalar
- Variable:H$ scalar
- Variable:L scalar
- Variable:H$ scalar
+ Variable:X numeric scalar
+ Variable:H$ string scalar
+ Variable:X numeric scalar
+ Variable:H$ string scalar
+ Variable:L numeric scalar
+ Variable:H$ string scalar
  AssignmentOperator:=
  LineNumber:940
 270 F=F+1\IFF>A(0)THEN990\G(0)=L\FORX=1TO6\G(X)=A(F)\NEXTX\CHANGEGTOG$
- Variable:F scalar
- Variable:F scalar
+ Variable:F numeric scalar
+ Variable:F numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
- Variable:F scalar
+ Variable:F numeric scalar
  NumericConstant:0
- Variable:A scalar
+ Variable:A numeric scalar
  BinaryOperatorGreater:> boolean scalar
  NumericConstant:0
- Variable:G scalar
- Variable:L scalar
+ Variable:G numeric scalar
+ Variable:L numeric scalar
  AssignmentOperator:=
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:6"]
- Variable:X scalar
- Variable:G scalar
- Variable:F scalar
- Variable:A scalar
+ Variable:X numeric scalar
+ Variable:G numeric scalar
+ Variable:F numeric scalar
+ Variable:A numeric scalar
  AssignmentOperator:=
- Variable:X scalar
- Variable:G array
- Variable:G$ scalar
+ Variable:X numeric scalar
+ Variable:G numeric array
+ Variable:G$ string scalar
 280 FORX=1TO6\G(0)=X\CHANGEGTOG$(X)\NEXTX
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:6"]
  NumericConstant:0
- Variable:G scalar
- Variable:X scalar
+ Variable:G numeric scalar
+ Variable:X numeric scalar
  AssignmentOperator:=
- Variable:G array
- Variable:X scalar
- Variable:G$ scalar
- Variable:X scalar
+ Variable:G numeric array
+ Variable:X numeric scalar
+ Variable:G$ string scalar
+ Variable:X numeric scalar
 290 FORX=1TOA/2\PRINT\NEXTX
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:A scalar", "NumericConstant:2", "BinaryOperatorDivide:/ numeric scalar"]
+ end:     ["Variable:A numeric scalar", "NumericConstant:2", "BinaryOperatorDivide:/ numeric scalar"]
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
 300 IFA(F)=46THEN345\IFA(F)=36THEN990\IFA(F)=32THEN630\IFA(F)<48THEN270
- Variable:F scalar
- Variable:A scalar
+ Variable:F numeric scalar
+ Variable:A numeric scalar
  NumericConstant:46
  BinaryOperatorEqual:= boolean scalar
- Variable:F scalar
- Variable:A scalar
+ Variable:F numeric scalar
+ Variable:A numeric scalar
  NumericConstant:36
  BinaryOperatorEqual:= boolean scalar
- Variable:F scalar
- Variable:A scalar
+ Variable:F numeric scalar
+ Variable:A numeric scalar
  NumericConstant:32
  BinaryOperatorEqual:= boolean scalar
- Variable:F scalar
- Variable:A scalar
+ Variable:F numeric scalar
+ Variable:A numeric scalar
  NumericConstant:48
  BinaryOperatorLess:< boolean scalar
 309 IFA(F)>57THEN310\ONA(F)-47GOTO500,440,620,625,635,550,615,605,595,585
- Variable:F scalar
- Variable:A scalar
+ Variable:F numeric scalar
+ Variable:A numeric scalar
  NumericConstant:57
  BinaryOperatorGreater:> boolean scalar
- Variable:F scalar
- Variable:A scalar
+ Variable:F numeric scalar
+ Variable:A numeric scalar
  NumericConstant:47
  BinaryOperatorMinus:- numeric scalar
  LineNumber:500
@@ -155,17 +155,17 @@
  LineNumber:595
  LineNumber:585
 310 IFA(F)<65THEN270\IFA(F)>79THEN330
- Variable:F scalar
- Variable:A scalar
+ Variable:F numeric scalar
+ Variable:A numeric scalar
  NumericConstant:65
  BinaryOperatorLess:< boolean scalar
- Variable:F scalar
- Variable:A scalar
+ Variable:F numeric scalar
+ Variable:A numeric scalar
  NumericConstant:79
  BinaryOperatorGreater:> boolean scalar
 320 ONA(F)-64GOTO350,360,370,380,390,400,410,430,440,450,460,470,480,490,500
- Variable:F scalar
- Variable:A scalar
+ Variable:F numeric scalar
+ Variable:A numeric scalar
  NumericConstant:64
  BinaryOperatorMinus:- numeric scalar
  LineNumber:350
@@ -184,11 +184,11 @@
  LineNumber:490
  LineNumber:500
 330 IFA>90THEN270\ONA(F)-79GOTO510,520,540,550,560,570,580,590,600,610,620
- Variable:A scalar
+ Variable:A numeric scalar
  NumericConstant:90
  BinaryOperatorGreater:> boolean scalar
- Variable:F scalar
- Variable:A scalar
+ Variable:F numeric scalar
+ Variable:A numeric scalar
  NumericConstant:79
  BinaryOperatorMinus:- numeric scalar
  LineNumber:510
@@ -205,17 +205,17 @@
 340 GOTO270
  LineNumber:270
 345 FORX=1TOA\PRINTTAB(S);G$;G$\NEXTX\GOTO270
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:A scalar"]
- Variable:S scalar
- FunctionTab scalar
+ end:     ["Variable:A numeric scalar"]
+ Variable:S numeric scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  LineNumber:270
 350 GOSUB640\GOSUB690\GOSUB640\GOTO270
  LineNumber:640
@@ -225,14 +225,14 @@
 360 GOSUB640\GOSUB650\A=C*.5\GOSUB640\A=C\GOSUB610\GOTO270
  LineNumber:640
  LineNumber:650
- Variable:A scalar
- Variable:C scalar
+ Variable:A numeric scalar
+ Variable:C numeric scalar
  NumericConstant:.5
  BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
  LineNumber:640
- Variable:A scalar
- Variable:C scalar
+ Variable:A numeric scalar
+ Variable:C numeric scalar
  AssignmentOperator:=
  LineNumber:610
  LineNumber:270
@@ -244,14 +244,14 @@
 380 GOSUB640\GOSUB700\A=C*.5\GOSUB640\A=C\GOSUB640\GOTO270
  LineNumber:640
  LineNumber:700
- Variable:A scalar
- Variable:C scalar
+ Variable:A numeric scalar
+ Variable:C numeric scalar
  NumericConstant:.5
  BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
  LineNumber:640
- Variable:A scalar
- Variable:C scalar
+ Variable:A numeric scalar
+ Variable:C numeric scalar
  AssignmentOperator:=
  LineNumber:640
  LineNumber:270
@@ -267,31 +267,31 @@
  LineNumber:270
 410 GOSUB640\A=C*.75\GOSUB700\A=C*.25\GOSUB650\A=C\GOSUB760
  LineNumber:640
- Variable:A scalar
- Variable:C scalar
+ Variable:A numeric scalar
+ Variable:C numeric scalar
  NumericConstant:.75
  BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
  LineNumber:700
- Variable:A scalar
- Variable:C scalar
+ Variable:A numeric scalar
+ Variable:C numeric scalar
  NumericConstant:.25
  BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
  LineNumber:650
- Variable:A scalar
- Variable:C scalar
+ Variable:A numeric scalar
+ Variable:C numeric scalar
  AssignmentOperator:=
  LineNumber:760
 420 A=C*.25\GOSUB710\A=C\GOTO270
- Variable:A scalar
- Variable:C scalar
+ Variable:A numeric scalar
+ Variable:C numeric scalar
  NumericConstant:.25
  BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
  LineNumber:710
- Variable:A scalar
- Variable:C scalar
+ Variable:A numeric scalar
+ Variable:C numeric scalar
  AssignmentOperator:=
  LineNumber:270
 430 GOSUB640\GOSUB710\GOSUB640\GOTO270
@@ -339,45 +339,45 @@
  LineNumber:270
 520 GOSUB640\A=C*.75\GOSUB700\A=.25*C\GOSUB650\A=C\GOSUB640
  LineNumber:640
- Variable:A scalar
- Variable:C scalar
+ Variable:A numeric scalar
+ Variable:C numeric scalar
  NumericConstant:.75
  BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
  LineNumber:700
- Variable:A scalar
+ Variable:A numeric scalar
  NumericConstant:.25
- Variable:C scalar
+ Variable:C numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
  LineNumber:650
- Variable:A scalar
- Variable:C scalar
+ Variable:A numeric scalar
+ Variable:C numeric scalar
  AssignmentOperator:=
  LineNumber:640
 530 A=C*.25\GOSUB710\A=C\GOTO270
- Variable:A scalar
- Variable:C scalar
+ Variable:A numeric scalar
+ Variable:C numeric scalar
  NumericConstant:.25
  BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
  LineNumber:710
- Variable:A scalar
- Variable:C scalar
+ Variable:A numeric scalar
+ Variable:C numeric scalar
  AssignmentOperator:=
  LineNumber:270
 540 GOSUB640\GOSUB690\A=C*.5\GOSUB640\GOSUB810\A=C\GOTO270
  LineNumber:640
  LineNumber:690
- Variable:A scalar
- Variable:C scalar
+ Variable:A numeric scalar
+ Variable:C numeric scalar
  NumericConstant:.5
  BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
  LineNumber:640
  LineNumber:810
- Variable:A scalar
- Variable:C scalar
+ Variable:A numeric scalar
+ Variable:C numeric scalar
  AssignmentOperator:=
  LineNumber:270
 550 GOSUB770\GOSUB650\GOSUB760\GOTO270
@@ -439,14 +439,14 @@
 625 GOSUB700\GOSUB650\A=C*.5\GOSUB640\A=C\GOSUB810\GOTO270
  LineNumber:700
  LineNumber:650
- Variable:A scalar
- Variable:C scalar
+ Variable:A numeric scalar
+ Variable:C numeric scalar
  NumericConstant:.5
  BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
  LineNumber:640
- Variable:A scalar
- Variable:C scalar
+ Variable:A numeric scalar
+ Variable:C numeric scalar
  AssignmentOperator:=
  LineNumber:810
  LineNumber:270
@@ -459,542 +459,542 @@
  LineNumber:640
  LineNumber:270
 640 FORY=1TOA\PRINTTAB(S);\FORX=1TO10\PRINTG$;\NEXTX\PRINT\NEXTY\RETURN
- control: Variable:Y scalar
+ control: Variable:Y numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:A scalar"]
- Variable:S scalar
- FunctionTab scalar
+ end:     ["Variable:A numeric scalar"]
+ Variable:S numeric scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:X scalar
+ Variable:X numeric scalar
  CarriageControl:NL
- Variable:Y scalar
+ Variable:Y numeric scalar
  
 650 IFA<1THEN660\GOTO670
- Variable:A scalar
+ Variable:A numeric scalar
  NumericConstant:1
  BinaryOperatorLess:< boolean scalar
  LineNumber:670
 660 LETA=1
- Variable:A scalar
+ Variable:A numeric scalar
  NumericConstant:1
  AssignmentOperator:=
 670 FORX=1TOA\PRINTTAB(S);G$;G$;H$;H$;G$;G$;H$;H$;G$;G$\NEXTX\RETURN
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:A scalar"]
- Variable:S scalar
- FunctionTab scalar
+ end:     ["Variable:A numeric scalar"]
+ Variable:S numeric scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:H$ scalar
+ Variable:H$ string scalar
  CarriageControl:;
- Variable:H$ scalar
+ Variable:H$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:H$ scalar
+ Variable:H$ string scalar
  CarriageControl:;
- Variable:H$ scalar
+ Variable:H$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 680 PRINTTAB(S);
- Variable:S scalar
- FunctionTab scalar
+ Variable:S numeric scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
 690 FORX=1TOA\PRINTTAB(4*L+S);G$;G$;H$;H$;G$;G$\NEXTX\RETURN
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:A scalar"]
+ end:     ["Variable:A numeric scalar"]
  NumericConstant:4
- Variable:L scalar
+ Variable:L numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:S scalar
+ Variable:S numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:H$ scalar
+ Variable:H$ string scalar
  CarriageControl:;
- Variable:H$ scalar
+ Variable:H$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 700 FORX=1TOA\PRINTTAB(S);G$;G$;\PRINTTAB(8*L+S);G$;G$\NEXTX\RETURN
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:A scalar"]
- Variable:S scalar
- FunctionTab scalar
+ end:     ["Variable:A numeric scalar"]
+ Variable:S numeric scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
  NumericConstant:8
- Variable:L scalar
+ Variable:L numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:S scalar
+ Variable:S numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 710 IFA<1THEN720\GOTO730
- Variable:A scalar
+ Variable:A numeric scalar
  NumericConstant:1
  BinaryOperatorLess:< boolean scalar
  LineNumber:730
 720 LETA=1
- Variable:A scalar
+ Variable:A numeric scalar
  NumericConstant:1
  AssignmentOperator:=
 730 FORX=1TOA\PRINTTAB(4*L+S);G$;G$\NEXTX\RETURN
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:A scalar"]
+ end:     ["Variable:A numeric scalar"]
  NumericConstant:4
- Variable:L scalar
+ Variable:L numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:S scalar
+ Variable:S numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 740 FORX=1TOA\PRINTTAB(S);G$;G$\NEXTX\RETURN
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:A scalar"]
- Variable:S scalar
- FunctionTab scalar
+ end:     ["Variable:A numeric scalar"]
+ Variable:S numeric scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 750 FORX=1TOA\PRINTTAB(S);G$;G$;G$;G$\NEXTX\RETURN
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:A scalar"]
- Variable:S scalar
- FunctionTab scalar
+ end:     ["Variable:A numeric scalar"]
+ Variable:S numeric scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 760 FORY=1TOA\PRINTTAB(S);G$;G$;G$;G$;G$;G$;H$;H$;G$;G$\NEXTY\RETURN
- control: Variable:Y scalar
+ control: Variable:Y numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:A scalar"]
- Variable:S scalar
- FunctionTab scalar
+ end:     ["Variable:A numeric scalar"]
+ Variable:S numeric scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:H$ scalar
+ Variable:H$ string scalar
  CarriageControl:;
- Variable:H$ scalar
+ Variable:H$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:Y scalar
+ Variable:Y numeric scalar
  
 770 FORX=1TOA\PRINTTAB(S);G$;G$;H$;H$;G$;G$;G$;G$;G$;G$\NEXTX\RETURN
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:A scalar"]
- Variable:S scalar
- FunctionTab scalar
+ end:     ["Variable:A numeric scalar"]
+ Variable:S numeric scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:H$ scalar
+ Variable:H$ string scalar
  CarriageControl:;
- Variable:H$ scalar
+ Variable:H$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 780 FORX=1TOA\PRINTTAB(8*L+S);G$;G$\NEXTX\RETURN
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:A scalar"]
+ end:     ["Variable:A numeric scalar"]
  NumericConstant:8
- Variable:L scalar
+ Variable:L numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:S scalar
+ Variable:S numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 790 FORX=1TOA\PRINTTAB(4*L+S);G$;G$;G$;G$;G$;G$\NEXTX\RETURN
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:A scalar"]
+ end:     ["Variable:A numeric scalar"]
  NumericConstant:4
- Variable:L scalar
+ Variable:L numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:S scalar
+ Variable:S numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 800 FORX=1TOA\PRINTTAB(S);G$;G$;G$;G$;G$;G$\NEXTX\RETURN
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:A scalar"]
- Variable:S scalar
- FunctionTab scalar
+ end:     ["Variable:A numeric scalar"]
+ Variable:S numeric scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 810 FORX=1TOC/2\PRINTTAB(S);\FORY=1TO2\FORZ=1TO(5+L)-X\PRINTG$(1);\NEXTZ
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:C scalar", "NumericConstant:2", "BinaryOperatorDivide:/ numeric scalar"]
- Variable:S scalar
- FunctionTab scalar
+ end:     ["Variable:C numeric scalar", "NumericConstant:2", "BinaryOperatorDivide:/ numeric scalar"]
+ Variable:S numeric scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- control: Variable:Y scalar
+ control: Variable:Y numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:2"]
- control: Variable:Z scalar
+ control: Variable:Z numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["NumericConstant:5", "Variable:L scalar", "BinaryOperatorPlus:+ numeric scalar", "Variable:X scalar", "BinaryOperatorMinus:- numeric scalar"]
+ end:     ["NumericConstant:5", "Variable:L numeric scalar", "BinaryOperatorPlus:+ numeric scalar", "Variable:X numeric scalar", "BinaryOperatorMinus:- numeric scalar"]
  NumericConstant:1
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:Z scalar
+ Variable:Z numeric scalar
 820 IFX>3THEN950\V=X
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:3
  BinaryOperatorGreater:> boolean scalar
- Variable:V scalar
- Variable:X scalar
+ Variable:V numeric scalar
+ Variable:X numeric scalar
  AssignmentOperator:=
 830 PRINTH$(2*V);\NEXTY\PRINT\NEXTX\RETURN
  NumericConstant:2
- Variable:V scalar
+ Variable:V numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:H$ scalar
+ Variable:H$ string scalar
  CarriageControl:;
- Variable:Y scalar
+ Variable:Y numeric scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 840 FORX=1TOC/2\PRINTTAB(S);H$(X);\FORY=1TO10*L-(2+X)\PRINTG$(1);\NEXTY\PRINT
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:C scalar", "NumericConstant:2", "BinaryOperatorDivide:/ numeric scalar"]
- Variable:S scalar
- FunctionTab scalar
+ end:     ["Variable:C numeric scalar", "NumericConstant:2", "BinaryOperatorDivide:/ numeric scalar"]
+ Variable:S numeric scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:X scalar
- Variable:H$ scalar
+ Variable:X numeric scalar
+ Variable:H$ string scalar
  CarriageControl:;
- control: Variable:Y scalar
+ control: Variable:Y numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["NumericConstant:10", "Variable:L scalar", "BinaryOperatorMultiply:* numeric scalar", "NumericConstant:2", "Variable:X scalar", "BinaryOperatorPlus:+ numeric scalar", "BinaryOperatorMinus:- numeric scalar"]
+ end:     ["NumericConstant:10", "Variable:L numeric scalar", "BinaryOperatorMultiply:* numeric scalar", "NumericConstant:2", "Variable:X numeric scalar", "BinaryOperatorPlus:+ numeric scalar", "BinaryOperatorMinus:- numeric scalar"]
  NumericConstant:1
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:Y scalar
+ Variable:Y numeric scalar
  CarriageControl:NL
 850 NEXTX\RETURN
- Variable:X scalar
+ Variable:X numeric scalar
  
 860 FOR X=4*LTO7*LSTEP14*L/(C*6)\PRINTTAB(X+S);G$;G$;G$;
- control: Variable:X scalar
- start:   ["NumericConstant:4", "Variable:L scalar", "BinaryOperatorMultiply:* numeric scalar"]
- end:     ["NumericConstant:7", "Variable:L scalar", "BinaryOperatorMultiply:* numeric scalar"]
- step:    ["NumericConstant:14", "Variable:L scalar", "BinaryOperatorMultiply:* numeric scalar", "Variable:C scalar", "NumericConstant:6", "BinaryOperatorMultiply:* numeric scalar", "BinaryOperatorDivide:/ numeric scalar"]
- Variable:X scalar
- Variable:S scalar
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:4", "Variable:L numeric scalar", "BinaryOperatorMultiply:* numeric scalar"]
+ end:     ["NumericConstant:7", "Variable:L numeric scalar", "BinaryOperatorMultiply:* numeric scalar"]
+ step:    ["NumericConstant:14", "Variable:L numeric scalar", "BinaryOperatorMultiply:* numeric scalar", "Variable:C numeric scalar", "NumericConstant:6", "BinaryOperatorMultiply:* numeric scalar", "BinaryOperatorDivide:/ numeric scalar"]
+ Variable:X numeric scalar
+ Variable:S numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
 870 PRINTTAB(7*L-X+S);G$;G$;G$\NEXT X\RETURN
  NumericConstant:7
- Variable:L scalar
+ Variable:L numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:X scalar
+ Variable:X numeric scalar
  BinaryOperatorMinus:- numeric scalar
- Variable:S scalar
+ Variable:S numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 880 FORX=0TO6*LSTEP6*L/C\PRINTTAB(X+S);G$;G$;G$;G$\NEXTX\RETURN
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:0"]
- end:     ["NumericConstant:6", "Variable:L scalar", "BinaryOperatorMultiply:* numeric scalar"]
- step:    ["NumericConstant:6", "Variable:L scalar", "BinaryOperatorMultiply:* numeric scalar", "Variable:C scalar", "BinaryOperatorDivide:/ numeric scalar"]
- Variable:X scalar
- Variable:S scalar
+ end:     ["NumericConstant:6", "Variable:L numeric scalar", "BinaryOperatorMultiply:* numeric scalar"]
+ step:    ["NumericConstant:6", "Variable:L numeric scalar", "BinaryOperatorMultiply:* numeric scalar", "Variable:C numeric scalar", "BinaryOperatorDivide:/ numeric scalar"]
+ Variable:X numeric scalar
+ Variable:S numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 890 FORX=6*LTO0STEP-6*L/C\PRINTTAB(X+S);G$;G$;G$;G$\NEXTX\RETURN
- control: Variable:X scalar
- start:   ["NumericConstant:6", "Variable:L scalar", "BinaryOperatorMultiply:* numeric scalar"]
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:6", "Variable:L numeric scalar", "BinaryOperatorMultiply:* numeric scalar"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:6", "UnaryOperatorMinus:- numeric scalar", "Variable:L scalar", "BinaryOperatorMultiply:* numeric scalar", "Variable:C scalar", "BinaryOperatorDivide:/ numeric scalar"]
- Variable:X scalar
- Variable:S scalar
+ step:    ["NumericConstant:6", "UnaryOperatorMinus:- numeric scalar", "Variable:L numeric scalar", "BinaryOperatorMultiply:* numeric scalar", "Variable:C numeric scalar", "BinaryOperatorDivide:/ numeric scalar"]
+ Variable:X numeric scalar
+ Variable:S numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 900 FORX=0TO7*LSTEP(14*L)/(C*6)\PRINTTAB(X+S);G$;G$;G$;
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:0"]
- end:     ["NumericConstant:7", "Variable:L scalar", "BinaryOperatorMultiply:* numeric scalar"]
- step:    ["NumericConstant:14", "Variable:L scalar", "BinaryOperatorMultiply:* numeric scalar", "Variable:C scalar", "NumericConstant:6", "BinaryOperatorMultiply:* numeric scalar", "BinaryOperatorDivide:/ numeric scalar"]
- Variable:X scalar
- Variable:S scalar
+ end:     ["NumericConstant:7", "Variable:L numeric scalar", "BinaryOperatorMultiply:* numeric scalar"]
+ step:    ["NumericConstant:14", "Variable:L numeric scalar", "BinaryOperatorMultiply:* numeric scalar", "Variable:C numeric scalar", "NumericConstant:6", "BinaryOperatorMultiply:* numeric scalar", "BinaryOperatorDivide:/ numeric scalar"]
+ Variable:X numeric scalar
+ Variable:S numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
 910 PRINTTAB(7*L-X+S);G$;G$;G$\NEXT X\RETURN
  NumericConstant:7
- Variable:L scalar
+ Variable:L numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:X scalar
+ Variable:X numeric scalar
  BinaryOperatorMinus:- numeric scalar
- Variable:S scalar
+ Variable:S numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 920 FORX=0TO7*LSTEP(7*L)/(C*3)\PRINTTAB(S);G$;G$;TAB(X+S);G$;G$;G$;
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:0"]
- end:     ["NumericConstant:7", "Variable:L scalar", "BinaryOperatorMultiply:* numeric scalar"]
- step:    ["NumericConstant:7", "Variable:L scalar", "BinaryOperatorMultiply:* numeric scalar", "Variable:C scalar", "NumericConstant:3", "BinaryOperatorMultiply:* numeric scalar", "BinaryOperatorDivide:/ numeric scalar"]
- Variable:S scalar
- FunctionTab scalar
+ end:     ["NumericConstant:7", "Variable:L numeric scalar", "BinaryOperatorMultiply:* numeric scalar"]
+ step:    ["NumericConstant:7", "Variable:L numeric scalar", "BinaryOperatorMultiply:* numeric scalar", "Variable:C numeric scalar", "NumericConstant:3", "BinaryOperatorMultiply:* numeric scalar", "BinaryOperatorDivide:/ numeric scalar"]
+ Variable:S numeric scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:X scalar
- Variable:S scalar
+ Variable:X numeric scalar
+ Variable:S numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
 930 PRINTTAB(8*L+S);G$;G$\NEXTX\RETURN
  NumericConstant:8
- Variable:L scalar
+ Variable:L numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:S scalar
+ Variable:S numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 940 FORX=1TOA*3\PRINT\NEXTX\RETURN
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:A scalar", "NumericConstant:3", "BinaryOperatorMultiply:* numeric scalar"]
+ end:     ["Variable:A numeric scalar", "NumericConstant:3", "BinaryOperatorMultiply:* numeric scalar"]
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 950 FORW=1TOX-3\PRINT" ";\NEXTW\V=3\GOTO830
- control: Variable:W scalar
+ control: Variable:W numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:X scalar", "NumericConstant:3", "BinaryOperatorMinus:- numeric scalar"]
+ end:     ["Variable:X numeric scalar", "NumericConstant:3", "BinaryOperatorMinus:- numeric scalar"]
  TextConstant:" "
  CarriageControl:;
- Variable:W scalar
- Variable:V scalar
+ Variable:W numeric scalar
+ Variable:V numeric scalar
  NumericConstant:3
  AssignmentOperator:=
  LineNumber:830
 960 FORX=4*LTO7*LSTEPL*4/C\PRINTTAB(X+S);G$;G$;G$\NEXTX\RETURN
- control: Variable:X scalar
- start:   ["NumericConstant:4", "Variable:L scalar", "BinaryOperatorMultiply:* numeric scalar"]
- end:     ["NumericConstant:7", "Variable:L scalar", "BinaryOperatorMultiply:* numeric scalar"]
- step:    ["Variable:L scalar", "NumericConstant:4", "BinaryOperatorMultiply:* numeric scalar", "Variable:C scalar", "BinaryOperatorDivide:/ numeric scalar"]
- Variable:X scalar
- Variable:S scalar
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:4", "Variable:L numeric scalar", "BinaryOperatorMultiply:* numeric scalar"]
+ end:     ["NumericConstant:7", "Variable:L numeric scalar", "BinaryOperatorMultiply:* numeric scalar"]
+ step:    ["Variable:L numeric scalar", "NumericConstant:4", "BinaryOperatorMultiply:* numeric scalar", "Variable:C numeric scalar", "BinaryOperatorDivide:/ numeric scalar"]
+ Variable:X numeric scalar
+ Variable:S numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 970 FOR X=7*LTO4*LSTEP-4*L/C\PRINTTAB(X+S);G$;G$;G$\NEXTX\RETURN
- control: Variable:X scalar
- start:   ["NumericConstant:7", "Variable:L scalar", "BinaryOperatorMultiply:* numeric scalar"]
- end:     ["NumericConstant:4", "Variable:L scalar", "BinaryOperatorMultiply:* numeric scalar"]
- step:    ["NumericConstant:4", "UnaryOperatorMinus:- numeric scalar", "Variable:L scalar", "BinaryOperatorMultiply:* numeric scalar", "Variable:C scalar", "BinaryOperatorDivide:/ numeric scalar"]
- Variable:X scalar
- Variable:S scalar
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:7", "Variable:L numeric scalar", "BinaryOperatorMultiply:* numeric scalar"]
+ end:     ["NumericConstant:4", "Variable:L numeric scalar", "BinaryOperatorMultiply:* numeric scalar"]
+ step:    ["NumericConstant:4", "UnaryOperatorMinus:- numeric scalar", "Variable:L numeric scalar", "BinaryOperatorMultiply:* numeric scalar", "Variable:C numeric scalar", "BinaryOperatorDivide:/ numeric scalar"]
+ Variable:X numeric scalar
+ Variable:S numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:;
- Variable:G$ scalar
+ Variable:G$ string scalar
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
  
 980 DATA" ","  ","   ","    ","     ","      ",""
  TextConstant:" "
@@ -1005,11 +1005,11 @@
  TextConstant:"      "
  TextConstant:""
 990 FORX=1TOC*3\PRINT\NEXTX
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:C scalar", "NumericConstant:3", "BinaryOperatorMultiply:* numeric scalar"]
+ end:     ["Variable:C numeric scalar", "NumericConstant:3", "BinaryOperatorMultiply:* numeric scalar"]
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
 1000 END 
  
 

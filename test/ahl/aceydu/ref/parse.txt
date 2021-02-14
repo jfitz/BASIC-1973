@@ -27,16 +27,16 @@
 110 PRINT
  CarriageControl:NL
 160 N=100:Q=100
- Variable:N scalar
+ Variable:N numeric scalar
  NumericConstant:100
  AssignmentOperator:=
- Variable:Q scalar
+ Variable:Q numeric scalar
  NumericConstant:100
  AssignmentOperator:=
 190 PRINT "YOU NOW HAVE "Q"DOLLARS."
  TextConstant:"YOU NOW HAVE "
  CarriageControl:
- Variable:Q scalar
+ Variable:Q numeric scalar
  CarriageControl:
  TextConstant:"DOLLARS."
  CarriageControl:NL
@@ -45,17 +45,17 @@
 200 GOTO 260
  LineNumber:260
 210 Q=Q+M
- Variable:Q scalar
- Variable:Q scalar
- Variable:M scalar
+ Variable:Q numeric scalar
+ Variable:Q numeric scalar
+ Variable:M numeric scalar
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 220 GOTO 190
  LineNumber:190
 240 Q=Q-M
- Variable:Q scalar
- Variable:Q scalar
- Variable:M scalar
+ Variable:Q numeric scalar
+ Variable:Q numeric scalar
+ Variable:M numeric scalar
  BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 250 GOTO 190
@@ -64,65 +64,65 @@
  TextConstant:"HERE ARE YOUR NEXT TWO CARDS..."
  CarriageControl:NL
 270 A=INT(14*RND)+2
- Variable:A scalar
+ Variable:A numeric scalar
  NumericConstant:14
- FunctionRnd scalar
+ FunctionRnd:RND numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  NumericConstant:2
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 280 IF A<2 THEN 270 
- Variable:A scalar
+ Variable:A numeric scalar
  NumericConstant:2
  BinaryOperatorLess:< boolean scalar
 290 IF A>14 THEN 270
- Variable:A scalar
+ Variable:A numeric scalar
  NumericConstant:14
  BinaryOperatorGreater:> boolean scalar
 300 B=INT(14*RND)+2
- Variable:B scalar
+ Variable:B numeric scalar
  NumericConstant:14
- FunctionRnd scalar
+ FunctionRnd:RND numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  NumericConstant:2
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 310 IF B<2 THEN 200
- Variable:B scalar
+ Variable:B numeric scalar
  NumericConstant:2
  BinaryOperatorLess:< boolean scalar
 320 IF B>14 THEN 300
- Variable:B scalar
+ Variable:B numeric scalar
  NumericConstant:14
  BinaryOperatorGreater:> boolean scalar
 330 IF A>=B THEN 270
- Variable:A scalar
- Variable:B scalar
+ Variable:A numeric scalar
+ Variable:B numeric scalar
  BinaryOperatorGreaterEqual:>= boolean scalar
 350 IF A<11 THEN 400
- Variable:A scalar
+ Variable:A numeric scalar
  NumericConstant:11
  BinaryOperatorLess:< boolean scalar
 360 IF A=11 THEN 420
- Variable:A scalar
+ Variable:A numeric scalar
  NumericConstant:11
  BinaryOperatorEqual:= boolean scalar
 370 IF A=12 THEN 440
- Variable:A scalar
+ Variable:A numeric scalar
  NumericConstant:12
  BinaryOperatorEqual:= boolean scalar
 380 IF A=13 THEN 460
- Variable:A scalar
+ Variable:A numeric scalar
  NumericConstant:13
  BinaryOperatorEqual:= boolean scalar
 390 IF A=14 THEN 480
- Variable:A scalar
+ Variable:A numeric scalar
  NumericConstant:14
  BinaryOperatorEqual:= boolean scalar
 400 PRINT A
- Variable:A scalar
+ Variable:A numeric scalar
  CarriageControl:NL
 410 GOTO 500
  LineNumber:500
@@ -145,27 +145,27 @@
  TextConstant:"ACE"
  CarriageControl:NL
 500 IF B<11 THEN 550
- Variable:B scalar
+ Variable:B numeric scalar
  NumericConstant:11
  BinaryOperatorLess:< boolean scalar
 510 IF B=11 THEN 570
- Variable:B scalar
+ Variable:B numeric scalar
  NumericConstant:11
  BinaryOperatorEqual:= boolean scalar
 520 IF B=12 THEN 590 
- Variable:B scalar
+ Variable:B numeric scalar
  NumericConstant:12
  BinaryOperatorEqual:= boolean scalar
 530 IF B=13 THEN 610
- Variable:B scalar
+ Variable:B numeric scalar
  NumericConstant:13
  BinaryOperatorEqual:= boolean scalar
 540 IF B=14 THEN 630
- Variable:B scalar
+ Variable:B numeric scalar
  NumericConstant:14
  BinaryOperatorEqual:= boolean scalar
 550 PRINT B 
- Variable:B scalar
+ Variable:B numeric scalar
  CarriageControl:NL
 560 GOTO 650
  LineNumber:650
@@ -190,9 +190,9 @@
 650 PRINT
  CarriageControl:NL
 660 INPUT "WHAT IS YOUR BET",M
- Variable:M scalar
+ Variable:M numeric scalar
 670 IF M<>0 THEN 680
- Variable:M scalar
+ Variable:M numeric scalar
  NumericConstant:0
  BinaryOperatorNotEqual:<> boolean scalar
 675 PRINT "CHICKEN!!":PRINT
@@ -202,8 +202,8 @@
 677 GOTO 260
  LineNumber:260
 680 IF M<=Q THEN 730
- Variable:M scalar
- Variable:Q scalar
+ Variable:M numeric scalar
+ Variable:Q numeric scalar
  BinaryOperatorLessEqual:<= boolean scalar
 690 PRINT "SORRY, MY FRIEND, BUT YOU BET TOO MUCH"
  TextConstant:"SORRY, MY FRIEND, BUT YOU BET TOO MUCH"
@@ -211,51 +211,51 @@
 700 PRINT "YOU HAVE ONLY" Q "DOLLARS TO BET."
  TextConstant:"YOU HAVE ONLY"
  CarriageControl:
- Variable:Q scalar
+ Variable:Q numeric scalar
  CarriageControl:
  TextConstant:"DOLLARS TO BET."
  CarriageControl:NL
 710 GOTO 650
  LineNumber:650
 730 C=INT(14*RND) + 2
- Variable:C scalar
+ Variable:C numeric scalar
  NumericConstant:14
- FunctionRnd scalar
+ FunctionRnd:RND numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  NumericConstant:2
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 740 IF C<2 THEN 730
- Variable:C scalar
+ Variable:C numeric scalar
  NumericConstant:2
  BinaryOperatorLess:< boolean scalar
 750 IF C>14 THEN 730
- Variable:C scalar
+ Variable:C numeric scalar
  NumericConstant:14
  BinaryOperatorGreater:> boolean scalar
 760 IF C<11 THEN 810
- Variable:C scalar
+ Variable:C numeric scalar
  NumericConstant:11
  BinaryOperatorLess:< boolean scalar
 770 IF C=11 THEN 830
- Variable:C scalar
+ Variable:C numeric scalar
  NumericConstant:11
  BinaryOperatorEqual:= boolean scalar
 780 IF C=12 THEN 850
- Variable:C scalar
+ Variable:C numeric scalar
  NumericConstant:12
  BinaryOperatorEqual:= boolean scalar
 790 IF C=13 THEN 870
- Variable:C scalar
+ Variable:C numeric scalar
  NumericConstant:13
  BinaryOperatorEqual:= boolean scalar
 800 IF C=14 THEN 890
- Variable:C scalar
+ Variable:C numeric scalar
  NumericConstant:14
  BinaryOperatorEqual:= boolean scalar
 810 PRINT C
- Variable:C scalar
+ Variable:C numeric scalar
  CarriageControl:NL
 820 GOTO 910
  LineNumber:910
@@ -278,14 +278,14 @@
  TextConstant:"ACE"
  CarriageControl:NL
 910 IF C>A THEN 930
- Variable:C scalar
- Variable:A scalar
+ Variable:C numeric scalar
+ Variable:A numeric scalar
  BinaryOperatorGreater:> boolean scalar
 920 GOTO 970
  LineNumber:970
 930 IF C>=B THEN 970
- Variable:C scalar
- Variable:B scalar
+ Variable:C numeric scalar
+ Variable:B numeric scalar
  BinaryOperatorGreaterEqual:>= boolean scalar
 950 PRINT "YOU WIN!!!"
  TextConstant:"YOU WIN!!!"
@@ -296,8 +296,8 @@
  TextConstant:"SORRY, YOU LOSE."
  CarriageControl:NL
 980 IF M<Q THEN 240
- Variable:M scalar
- Variable:Q scalar
+ Variable:M numeric scalar
+ Variable:Q numeric scalar
  BinaryOperatorLess:< boolean scalar
 1000 PRINT
  CarriageControl:NL
@@ -305,9 +305,9 @@
  TextConstant:"SORRY, FRIEND, BUT YOU BLEW YOUR WAD."
  CarriageControl:NL
 1020 INPUT "TRY AGAIN (YES OR NO) ",A$
- Variable:A$ scalar
+ Variable:A$ string scalar
 1030 IF A$="YES" THEN 110
- Variable:A$ scalar
+ Variable:A$ string scalar
  TextConstant:"YES"
  BinaryOperatorEqual:= boolean scalar
 1040 PRINT:PRINT "O.K. HOPE YOU HAD FUN!!"

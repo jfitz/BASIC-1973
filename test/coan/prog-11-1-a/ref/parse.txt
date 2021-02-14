@@ -1,0 +1,110 @@
+8 REM LINES 0 THROUGH 40 READ AND PRINT THE FIRST POLYNOMIAL
+ Remark:LINES 0 THROUGH 40 READ AND PRINT THE FIRST POLYNOMIAL
+10 FOR X=3 TO 1 STEP -1
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:3"]
+ end:     ["NumericConstant:1"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+20 READ F[X]
+ Variable:X numeric scalar
+ Variable:F numeric scalar
+30 PRINT F[X];
+ Variable:X numeric scalar
+ Variable:F numeric scalar
+ CarriageControl:;
+40 NEXT X
+ Variable:X numeric scalar
+50 PRINT "TIMES  ";
+ TextConstant:"TIMES  "
+ CarriageControl:;
+58 REM LINES 60 THROUGH 90 READ AND PRINT THE SECOND POLYNOMIAL
+ Remark:LINES 60 THROUGH 90 READ AND PRINT THE SECOND POLYNOMIAL
+60 FOR Y=2 TO 1 STEP -1
+ control: Variable:Y numeric scalar
+ start:   ["NumericConstant:2"]
+ end:     ["NumericConstant:1"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+70 READ S[Y]
+ Variable:Y numeric scalar
+ Variable:S numeric scalar
+80 PRINT S[Y];
+ Variable:Y numeric scalar
+ Variable:S numeric scalar
+ CarriageControl:;
+90 NEXT Y
+ Variable:Y numeric scalar
+98 REM 100 THROUGH 120 SET THE RESULT LIST AT ALL ZEROS
+ Remark:100 THROUGH 120 SET THE RESULT LIST AT ALL ZEROS
+100 FOR W=1 TO 4
+ control: Variable:W numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:4"]
+110 LET P[W]=0
+ Variable:W numeric scalar
+ Variable:P numeric scalar
+ NumericConstant:0
+ AssignmentOperator:=
+120 NEXT W
+ Variable:W numeric scalar
+128 REM LINES 130 THROUGH 170 DO THE ACTUAL MULTIPLYING
+ Remark:LINES 130 THROUGH 170 DO THE ACTUAL MULTIPLYING
+130 FOR I=1 TO 3
+ control: Variable:I numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+140 FOR J=1 TO 2
+ control: Variable:J numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:2"]
+150 LET P[I+J-1]=P[I+J-1]+F[I]*S[J]
+ Variable:I numeric scalar
+ Variable:J numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ NumericConstant:1
+ BinaryOperatorMinus:- numeric scalar
+ Variable:P numeric scalar
+ Variable:I numeric scalar
+ Variable:J numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ NumericConstant:1
+ BinaryOperatorMinus:- numeric scalar
+ Variable:P numeric scalar
+ Variable:I numeric scalar
+ Variable:F numeric scalar
+ Variable:J numeric scalar
+ Variable:S numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ AssignmentOperator:=
+160 NEXT J
+ Variable:J numeric scalar
+170 NEXT I
+ Variable:I numeric scalar
+180 PRINT "YIELDS  ";
+ TextConstant:"YIELDS  "
+ CarriageControl:;
+190 FOR Z=4 TO 1 STEP -1
+ control: Variable:Z numeric scalar
+ start:   ["NumericConstant:4"]
+ end:     ["NumericConstant:1"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+200 PRINT P[Z];
+ Variable:Z numeric scalar
+ Variable:P numeric scalar
+ CarriageControl:;
+210 NEXT Z
+ Variable:Z numeric scalar
+218 REM THE FIRST THREE NUMBERS REPRESENT 3X^2+11X-5
+ Remark:THE FIRST THREE NUMBERS REPRESENT 3X^2+11X-5
+219 REM THE NEXT TWO NUMBERS REPRESENT 2X+7
+ Remark:THE NEXT TWO NUMBERS REPRESENT 2X+7
+220 DATA 3,11,-5,2,7
+ NumericConstant:3
+ NumericConstant:11
+ NumericConstant:5
+ UnaryOperatorMinus:- numeric scalar
+ NumericConstant:2
+ NumericConstant:7
+230 END
+ 
+

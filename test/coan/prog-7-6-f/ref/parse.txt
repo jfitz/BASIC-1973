@@ -1,0 +1,96 @@
+Syntax error: Value is not assignable (type UnaryOperatorColon)
+Syntax error: Value is not assignable (type UnaryOperatorColon)
+Syntax error: Value is not assignable (type UnaryOperatorColon)
+100 FILES "score1.txt"; "score2.txt"
+ TextConstant:"score1.txt"
+ TextConstant:"score2.txt"
+104 REM * WRITE DATA INTO BINARY FILE
+ Remark:* WRITE DATA INTO BINARY FILE
+110 FOR I = 1 TO 5
+ control: Variable:I numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:5"]
+120    READ #1, N$,A1
+ NumericConstant:1
+ UnaryOperatorHash:# filehandle scalar
+ Variable:N$ string scalar
+ Variable:A1 numeric scalar
+130    SETW 2 TO 6*(I-1)+1
+ Syntax error
+140    WRITE :2, N$,A1
+ NumericConstant:2
+ UnaryOperatorColon:: filehandle scalar
+ CarriageControl:,
+ Variable:N$ string scalar
+ CarriageControl:,
+ Variable:A1 numeric scalar
+ CarriageControl:NL
+150 NEXT I
+ Variable:I numeric scalar
+154 REM * NOW ARRANGE THE DATA ACCORDING TO AVERAGES
+ Remark:* NOW ARRANGE THE DATA ACCORDING TO AVERAGES
+160 FOR I = 1 TO 4
+ control: Variable:I numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:4"]
+170    FOR J = I + 1 TO 5
+ control: Variable:J numeric scalar
+ start:   ["Variable:I numeric scalar", "NumericConstant:1", "BinaryOperatorPlus:+ numeric scalar"]
+ end:     ["NumericConstant:5"]
+180       SETW 2 TO 6*(I-1) + 1
+ Syntax error
+200       SETW 2 TO 6*(J-1) + 1
+ Syntax error
+220          IF A1 <= B1 THEN 270
+ Variable:A1 numeric scalar
+ Variable:B1 numeric scalar
+ BinaryOperatorLessEqual:<= boolean scalar
+230       SETW 2 TO 6*(I-1) + 1
+ Syntax error
+240       WRITE :2, M$,B1
+ NumericConstant:2
+ UnaryOperatorColon:: filehandle scalar
+ CarriageControl:,
+ Variable:M$ string scalar
+ CarriageControl:,
+ Variable:B1 numeric scalar
+ CarriageControl:NL
+250       SETW 2 TO 6*(J-1) + 1
+ Syntax error
+260       WRITE :2, N$,A1
+ NumericConstant:2
+ UnaryOperatorColon:: filehandle scalar
+ CarriageControl:,
+ Variable:N$ string scalar
+ CarriageControl:,
+ Variable:A1 numeric scalar
+ CarriageControl:NL
+270    NEXT J
+ Variable:J numeric scalar
+280 NEXT I
+ Variable:I numeric scalar
+284 REM * AND NOW PRINT THE RESULTS
+ Remark:* AND NOW PRINT THE RESULTS
+290 PRINT "  NAME","AVERAGE"
+ TextConstant:"  NAME"
+ CarriageControl:,
+ TextConstant:"AVERAGE"
+ CarriageControl:NL
+300 PRINT
+ CarriageControl:NL
+310 FOR I = 1 TO 5
+ control: Variable:I numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:5"]
+320    SETW :2 TO 6*(I-1) + 1
+ Syntax error
+340    PRINT N$,A1
+ Variable:N$ string scalar
+ CarriageControl:,
+ Variable:A1 numeric scalar
+ CarriageControl:NL
+350 NEXT I
+ Variable:I numeric scalar
+360 END
+ 
+

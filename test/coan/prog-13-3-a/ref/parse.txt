@@ -1,0 +1,77 @@
+10 READ N,R
+ Variable:N numeric scalar
+ Variable:R numeric scalar
+20 GOSUB 500
+ LineNumber:500
+30 LET C1=C
+ Variable:C1 numeric scalar
+ Variable:C numeric scalar
+ AssignmentOperator:=
+32 REM  C1 STORES THE NUMBER OF COMMITTEES IN WHICH
+ Remark: C1 STORES THE NUMBER OF COMMITTEES IN WHICH
+33 REM  YOU ARE A MEMBER
+ Remark: YOU ARE A MEMBER
+40 READ N,R
+ Variable:N numeric scalar
+ Variable:R numeric scalar
+50 GOSUB 500
+ LineNumber:500
+60 LET P=C1/C
+ Variable:P numeric scalar
+ Variable:C1 numeric scalar
+ Variable:C numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ AssignmentOperator:=
+70 PRINT "THE PROBABILITY THAT YOU GET ON A 4 MEMBER"
+ TextConstant:"THE PROBABILITY THAT YOU GET ON A 4 MEMBER"
+ CarriageControl:NL
+75 PRINT "COMITTEE FROM A CLASS OF 29 IS";P
+ TextConstant:"COMITTEE FROM A CLASS OF 29 IS"
+ CarriageControl:;
+ Variable:P numeric scalar
+ CarriageControl:NL
+80 STOP
+ 
+490 REM  FIND COMBINATIONS OF N THINGS TAKEN M AT A TIME
+ Remark: FIND COMBINATIONS OF N THINGS TAKEN M AT A TIME
+500 LET C=1
+ Variable:C numeric scalar
+ NumericConstant:1
+ AssignmentOperator:=
+510 FOR X=N TO N-R+1 STEP -1
+ control: Variable:X numeric scalar
+ start:   ["Variable:N numeric scalar"]
+ end:     ["Variable:N numeric scalar", "Variable:R numeric scalar", "BinaryOperatorMinus:- numeric scalar", "NumericConstant:1", "BinaryOperatorPlus:+ numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+520 LET C=C*X
+ Variable:C numeric scalar
+ Variable:C numeric scalar
+ Variable:X numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ AssignmentOperator:=
+530 NEXT X
+ Variable:X numeric scalar
+540 FOR Y=R TO 1 STEP -1
+ control: Variable:Y numeric scalar
+ start:   ["Variable:R numeric scalar"]
+ end:     ["NumericConstant:1"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+550 LET C=C/Y
+ Variable:C numeric scalar
+ Variable:C numeric scalar
+ Variable:Y numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ AssignmentOperator:=
+560 NEXT Y
+ Variable:Y numeric scalar
+570 RETURN
+ 
+600 DATA 28,3
+ NumericConstant:28
+ NumericConstant:3
+610 DATA 29,4
+ NumericConstant:29
+ NumericConstant:4
+999 END
+ 
+

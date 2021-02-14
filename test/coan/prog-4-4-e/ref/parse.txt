@@ -1,0 +1,89 @@
+10 FOR X=1 TO 10
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:10"]
+20 LET L[X]=INT(250*RND(1)+1)
+ Variable:X numeric scalar
+ Variable:L numeric scalar
+ NumericConstant:250
+ NumericConstant:1
+ FunctionRnd:RND numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ NumericConstant:1
+ BinaryOperatorPlus:+ numeric scalar
+ FunctionInt:INT numeric scalar
+ AssignmentOperator:=
+40 NEXT X
+ Variable:X numeric scalar
+58 REM  TURN THE SWITCH OFF!!!
+ Remark: TURN THE SWITCH OFF!!!
+60 LET S=0
+ Variable:S numeric scalar
+ NumericConstant:0
+ AssignmentOperator:=
+70 FOR I=1 TO 9
+ control: Variable:I numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:9"]
+80 IF L[I] <= L[I+1] THEN 130
+ Variable:I numeric scalar
+ Variable:L numeric scalar
+ Variable:I numeric scalar
+ NumericConstant:1
+ BinaryOperatorPlus:+ numeric scalar
+ Variable:L numeric scalar
+ BinaryOperatorLessEqual:<= boolean scalar
+90 LET K=L[I]
+ Variable:K numeric scalar
+ Variable:I numeric scalar
+ Variable:L numeric scalar
+ AssignmentOperator:=
+100 LET L[I]=L[I+1]
+ Variable:I numeric scalar
+ Variable:L numeric scalar
+ Variable:I numeric scalar
+ NumericConstant:1
+ BinaryOperatorPlus:+ numeric scalar
+ Variable:L numeric scalar
+ AssignmentOperator:=
+110 LET L[I+1]=K
+ Variable:I numeric scalar
+ NumericConstant:1
+ BinaryOperatorPlus:+ numeric scalar
+ Variable:L numeric scalar
+ Variable:K numeric scalar
+ AssignmentOperator:=
+120 LET S=1
+ Variable:S numeric scalar
+ NumericConstant:1
+ AssignmentOperator:=
+121 REM *** TURN THE SWITCH ON ***
+ Remark:*** TURN THE SWITCH ON ***
+130 NEXT I
+ Variable:I numeric scalar
+138 REM  IS THE SWITCH ON??
+ Remark: IS THE SWITCH ON??
+140 IF S=1 THEN 60
+ Variable:S numeric scalar
+ NumericConstant:1
+ BinaryOperatorEqual:= boolean scalar
+142 REM   IF THE SWITCH IS OFF THERE WERE NO EXCHANGES AND
+ Remark:  IF THE SWITCH IS OFF THERE WERE NO EXCHANGES AND
+143 REM THE LIST IS IN ORDER
+ Remark:THE LIST IS IN ORDER
+145 PRINT "THE NUMBERS IN ORDER"
+ TextConstant:"THE NUMBERS IN ORDER"
+ CarriageControl:NL
+150 FOR X=1 TO 10
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:10"]
+160 PRINT L[X];
+ Variable:X numeric scalar
+ Variable:L numeric scalar
+ CarriageControl:;
+170 NEXT X
+ Variable:X numeric scalar
+180 END
+ 
+

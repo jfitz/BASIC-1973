@@ -1,0 +1,110 @@
+10 LET A=1
+ Variable:A numeric scalar
+ NumericConstant:1
+ AssignmentOperator:=
+20 FOR R=1 TO 3
+ control: Variable:R numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+30 FOR C=1 TO 5
+ control: Variable:C numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:5"]
+40 LET A[R,C]=A
+ Variable:R numeric scalar
+ Variable:C numeric scalar
+ Variable:A numeric scalar
+ Variable:A numeric scalar
+ AssignmentOperator:=
+50 LET A=A+1
+ Variable:A numeric scalar
+ Variable:A numeric scalar
+ NumericConstant:1
+ BinaryOperatorPlus:+ numeric scalar
+ AssignmentOperator:=
+60 NEXT C
+ Variable:C numeric scalar
+70 NEXT R
+ Variable:R numeric scalar
+90 PRINT "WE PRINT THE ORIGINAL ARRAY"
+ TextConstant:"WE PRINT THE ORIGINAL ARRAY"
+ CarriageControl:NL
+100 GOSUB 900
+ LineNumber:900
+110 PRINT "WE CAN MULTIPLY EVERY ELEMENT IN THE 4TH COLUMN BY 6"
+ TextConstant:"WE CAN MULTIPLY EVERY ELEMENT IN THE 4TH COLUMN BY 6"
+ CarriageControl:NL
+120 FOR R=1 TO 3
+ control: Variable:R numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+130 LET A[R,4]=A[R,4]*6
+ Variable:R numeric scalar
+ NumericConstant:4
+ Variable:A numeric scalar
+ Variable:R numeric scalar
+ NumericConstant:4
+ Variable:A numeric scalar
+ NumericConstant:6
+ BinaryOperatorMultiply:* numeric scalar
+ AssignmentOperator:=
+140 NEXT R
+ Variable:R numeric scalar
+150 GOSUB 900
+ LineNumber:900
+160 PRINT "WE CAN SUBTRACT THE 3RD ROW FROM THE 2ND ROW"
+ TextConstant:"WE CAN SUBTRACT THE 3RD ROW FROM THE 2ND ROW"
+ CarriageControl:NL
+170 PRINT "AND PUT THE RESULT IN THE 3RD ROW"
+ TextConstant:"AND PUT THE RESULT IN THE 3RD ROW"
+ CarriageControl:NL
+180 FOR C=1 TO 5
+ control: Variable:C numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:5"]
+190 LET A[3,C]=A[2,C]-A[3,C]
+ NumericConstant:3
+ Variable:C numeric scalar
+ Variable:A numeric scalar
+ NumericConstant:2
+ Variable:C numeric scalar
+ Variable:A numeric scalar
+ NumericConstant:3
+ Variable:C numeric scalar
+ Variable:A numeric scalar
+ BinaryOperatorMinus:- numeric scalar
+ AssignmentOperator:=
+200 NEXT C
+ Variable:C numeric scalar
+210 GOSUB 900
+ LineNumber:900
+880 STOP
+ 
+890 REM ****PRINTING SUBROUTINE IS HERE****
+ Remark:****PRINTING SUBROUTINE IS HERE****
+900 FOR R=1 TO 3
+ control: Variable:R numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+910 FOR C=1 TO 5
+ control: Variable:C numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:5"]
+920 PRINT A[R,C];
+ Variable:R numeric scalar
+ Variable:C numeric scalar
+ Variable:A numeric scalar
+ CarriageControl:;
+930 NEXT C
+ Variable:C numeric scalar
+940 PRINT
+ CarriageControl:NL
+950 PRINT
+ CarriageControl:NL
+960 NEXT R
+ Variable:R numeric scalar
+970 RETURN
+ 
+999 END
+ 
+

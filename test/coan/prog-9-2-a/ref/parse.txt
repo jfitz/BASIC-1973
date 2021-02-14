@@ -1,0 +1,51 @@
+5 PRINT "SINE","COSINE","TANGENT","RADIANS","DEGREES"
+ TextConstant:"SINE"
+ CarriageControl:,
+ TextConstant:"COSINE"
+ CarriageControl:,
+ TextConstant:"TANGENT"
+ CarriageControl:,
+ TextConstant:"RADIANS"
+ CarriageControl:,
+ TextConstant:"DEGREES"
+ CarriageControl:NL
+6 REM   WE COMPUTE A CONVERSION CONSTANT
+ Remark:  WE COMPUTE A CONVERSION CONSTANT
+10 LET C=3.14159/180
+ Variable:C numeric scalar
+ NumericConstant:3.14159
+ NumericConstant:180
+ BinaryOperatorDivide:/ numeric scalar
+ AssignmentOperator:=
+20 FOR G=0 TO 80 STEP 10
+ control: Variable:G numeric scalar
+ start:   ["NumericConstant:0"]
+ end:     ["NumericConstant:80"]
+ step:    ["NumericConstant:10"]
+30 PRINT SIN(G*C),COS(G*C),TAN(G*C),G*C,G
+ Variable:G numeric scalar
+ Variable:C numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ FunctionSin:SIN numeric scalar
+ CarriageControl:,
+ Variable:G numeric scalar
+ Variable:C numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ FunctionCos:COS numeric scalar
+ CarriageControl:,
+ Variable:G numeric scalar
+ Variable:C numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ FunctionTan:TAN numeric scalar
+ CarriageControl:,
+ Variable:G numeric scalar
+ Variable:C numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ CarriageControl:,
+ Variable:G numeric scalar
+ CarriageControl:NL
+40 NEXT G
+ Variable:G numeric scalar
+50 END
+ 
+

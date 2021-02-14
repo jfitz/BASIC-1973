@@ -1,0 +1,102 @@
+2 DEF FNH(X)=INT(X*100+.5)/100
+ UserFunctionName:FNH
+ VariableName:X
+ Variable:X numeric scalar
+ NumericConstant:100
+ BinaryOperatorMultiply:* numeric scalar
+ NumericConstant:.5
+ BinaryOperatorPlus:+ numeric scalar
+ FunctionInt:INT numeric scalar
+ NumericConstant:100
+ BinaryOperatorDivide:/ numeric scalar
+10 LET P,P1=56.31
+ Variable:P numeric scalar
+ Variable:P1 numeric scalar
+ NumericConstant:56.31
+ AssignmentOperator:=
+20 FOR Y=1 TO 10
+ control: Variable:Y numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:10"]
+22 REM  FOR TEN YEARS
+ Remark: FOR TEN YEARS
+30 FOR M=1 TO 12
+ control: Variable:M numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:12"]
+32 REM  COMPOUNDED MONTHLY AND COMPUTE INTEREST
+ Remark: COMPOUNDED MONTHLY AND COMPUTE INTEREST
+40 LET I=P*4.5/100/12
+ Variable:I numeric scalar
+ Variable:P numeric scalar
+ NumericConstant:4.5
+ BinaryOperatorMultiply:* numeric scalar
+ NumericConstant:100
+ BinaryOperatorDivide:/ numeric scalar
+ NumericConstant:12
+ BinaryOperatorDivide:/ numeric scalar
+ AssignmentOperator:=
+50 LET P=P+I
+ Variable:P numeric scalar
+ Variable:P numeric scalar
+ Variable:I numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ AssignmentOperator:=
+60 NEXT M
+ Variable:M numeric scalar
+62 REM THAT FIGURES THE INTEREST FOR THIS YEAR COMPOUNDED MONTHLY
+ Remark:THAT FIGURES THE INTEREST FOR THIS YEAR COMPOUNDED MONTHLY
+70 FOR Q=1 TO 4
+ control: Variable:Q numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:4"]
+72 REM  COMPOUNDED QUARTERLY
+ Remark: COMPOUNDED QUARTERLY
+80 LET I1=P1*4.75/100/4
+ Variable:I1 numeric scalar
+ Variable:P1 numeric scalar
+ NumericConstant:4.75
+ BinaryOperatorMultiply:* numeric scalar
+ NumericConstant:100
+ BinaryOperatorDivide:/ numeric scalar
+ NumericConstant:4
+ BinaryOperatorDivide:/ numeric scalar
+ AssignmentOperator:=
+90 LET P1=P1+I1
+ Variable:P1 numeric scalar
+ Variable:P1 numeric scalar
+ Variable:I1 numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ AssignmentOperator:=
+100 NEXT Q
+ Variable:Q numeric scalar
+102 REM  THAT TAKES CARE OF THE QUARTERLY INVESTMENT FOR THIS YEAR
+ Remark: THAT TAKES CARE OF THE QUARTERLY INVESTMENT FOR THIS YEAR
+108 REM  NOW COMPUTE THE NEXT YEAR
+ Remark: NOW COMPUTE THE NEXT YEAR
+110 NEXT Y
+ Variable:Y numeric scalar
+120 PRINT "FOR TEN YEARS"
+ TextConstant:"FOR TEN YEARS"
+ CarriageControl:NL
+130 PRINT "@4.5% COMPOUNDED MONTHLY...";
+ TextConstant:"@4.5% COMPOUNDED MONTHLY..."
+ CarriageControl:;
+140 PRINT "$"FNH(P)
+ TextConstant:"$"
+ CarriageControl:
+ Variable:P numeric scalar
+ UserFunction:FNH numeric scalar
+ CarriageControl:NL
+150 PRINT "@4.75% COMPOUNDED QUARTERLY...";
+ TextConstant:"@4.75% COMPOUNDED QUARTERLY..."
+ CarriageControl:;
+160 PRINT "$"FNH(P1)
+ TextConstant:"$"
+ CarriageControl:
+ Variable:P1 numeric scalar
+ UserFunction:FNH numeric scalar
+ CarriageControl:NL
+9999 END
+ 
+

@@ -1,0 +1,71 @@
+20 DEF FNH(H)=INT(H*100+.5)/100
+ UserFunctionName:FNH
+ VariableName:H
+ Variable:H numeric scalar
+ NumericConstant:100
+ BinaryOperatorMultiply:* numeric scalar
+ NumericConstant:.5
+ BinaryOperatorPlus:+ numeric scalar
+ FunctionInt:INT numeric scalar
+ NumericConstant:100
+ BinaryOperatorDivide:/ numeric scalar
+30 DEF FNT(T)=INT(T*10+.5)/10
+ UserFunctionName:FNT
+ VariableName:T
+ Variable:T numeric scalar
+ NumericConstant:10
+ BinaryOperatorMultiply:* numeric scalar
+ NumericConstant:.5
+ BinaryOperatorPlus:+ numeric scalar
+ FunctionInt:INT numeric scalar
+ NumericConstant:10
+ BinaryOperatorDivide:/ numeric scalar
+40 PRINT "X","Y","X/Y","FNH(X/Y)","FNT(X/Y)"
+ TextConstant:"X"
+ CarriageControl:,
+ TextConstant:"Y"
+ CarriageControl:,
+ TextConstant:"X/Y"
+ CarriageControl:,
+ TextConstant:"FNH(X/Y)"
+ CarriageControl:,
+ TextConstant:"FNT(X/Y)"
+ CarriageControl:NL
+45 READ X,Y
+ Variable:X numeric scalar
+ Variable:Y numeric scalar
+50 PRINT X,Y,X/Y,FNH(X/Y),FNT(X/Y)
+ Variable:X numeric scalar
+ CarriageControl:,
+ Variable:Y numeric scalar
+ CarriageControl:,
+ Variable:X numeric scalar
+ Variable:Y numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ CarriageControl:,
+ Variable:X numeric scalar
+ Variable:Y numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ UserFunction:FNH numeric scalar
+ CarriageControl:,
+ Variable:X numeric scalar
+ Variable:Y numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ UserFunction:FNT numeric scalar
+ CarriageControl:NL
+60 DATA 1,11,10,3,3,4,6,11.2,3.125,8.6324
+ NumericConstant:1
+ NumericConstant:11
+ NumericConstant:10
+ NumericConstant:3
+ NumericConstant:3
+ NumericConstant:4
+ NumericConstant:6
+ NumericConstant:11.2
+ NumericConstant:3.125
+ NumericConstant:8.6324
+70 GOTO 45
+ LineNumber:45
+80 END
+ 
+

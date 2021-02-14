@@ -1,0 +1,283 @@
+8 REM  INTZER BEGINS HERE  (WE HAVE REMOVED THE REM STATEMENTS)
+ Remark: INTZER BEGINS HERE  (WE HAVE REMOVED THE REM STATEMENTS)
+9 REM  SEE THE PROGRAM FOR REM STATEMENTS
+ Remark: SEE THE PROGRAM FOR REM STATEMENTS
+10 DEF FNP(X)=P[4]*X^3+P[3]*X^2+P[2]*X+P[1]
+ UserFunctionName:FNP
+ VariableName:X
+ NumericConstant:4
+ Variable:P numeric scalar
+ Variable:X numeric scalar
+ NumericConstant:3
+ BinaryOperatorPower:^ numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ NumericConstant:3
+ Variable:P numeric scalar
+ Variable:X numeric scalar
+ NumericConstant:2
+ BinaryOperatorPower:^ numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ NumericConstant:2
+ Variable:P numeric scalar
+ Variable:X numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ NumericConstant:1
+ Variable:P numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+20 PRINT
+ CarriageControl:NL
+30 PRINT
+ CarriageControl:NL
+40 FOR S=4 TO 1 STEP -1
+ control: Variable:S numeric scalar
+ start:   ["NumericConstant:4"]
+ end:     ["NumericConstant:1"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+50 READ P[S]
+ Variable:S numeric scalar
+ Variable:P numeric scalar
+60 IF P[S]=.0101 THEN 430
+ Variable:S numeric scalar
+ Variable:P numeric scalar
+ NumericConstant:.0101
+ BinaryOperatorEqual:= boolean scalar
+70 PRINT P[S];
+ Variable:S numeric scalar
+ Variable:P numeric scalar
+ CarriageControl:;
+80 NEXT S
+ Variable:S numeric scalar
+90 PRINT "INTEGRAL ZERO:"
+ TextConstant:"INTEGRAL ZERO:"
+ CarriageControl:NL
+100 FOR X=-P[1] TO P[1] STEP SGN(P[1])
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:1", "Variable:P numeric scalar", "UnaryOperatorMinus:- numeric scalar"]
+ end:     ["NumericConstant:1", "Variable:P numeric scalar"]
+ step:    ["NumericConstant:1", "Variable:P numeric scalar", "FunctionSgn:SGN numeric scalar"]
+110 IF X=0 THEN 160
+ Variable:X numeric scalar
+ NumericConstant:0
+ BinaryOperatorEqual:= boolean scalar
+120 IF P[1]/X <> INT(P[1]/X) THEN 160
+ NumericConstant:1
+ Variable:P numeric scalar
+ Variable:X numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ NumericConstant:1
+ Variable:P numeric scalar
+ Variable:X numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ FunctionInt:INT numeric scalar
+ BinaryOperatorNotEqual:<> boolean scalar
+130 IF FNP(X) <> 0 THEN 160
+ Variable:X numeric scalar
+ UserFunction:FNP numeric scalar
+ NumericConstant:0
+ BinaryOperatorNotEqual:<> boolean scalar
+140 PRINT X
+ Variable:X numeric scalar
+ CarriageControl:NL
+150 GOTO 170
+ LineNumber:170
+160 NEXT X
+ Variable:X numeric scalar
+164 REM  INTZER ENDS HERE ***  SYNDIV BEGINS HERE
+ Remark: INTZER ENDS HERE ***  SYNDIV BEGINS HERE
+170 LET R=X
+ Variable:R numeric scalar
+ Variable:X numeric scalar
+ AssignmentOperator:=
+180 PRINT "SYNTHETIC DIVISION BY   X -";R;"YIELDS:"
+ TextConstant:"SYNTHETIC DIVISION BY   X -"
+ CarriageControl:;
+ Variable:R numeric scalar
+ CarriageControl:;
+ TextConstant:"YIELDS:"
+ CarriageControl:NL
+190 PRINT P[4];
+ NumericConstant:4
+ Variable:P numeric scalar
+ CarriageControl:;
+200 FOR X=3 TO 1 STEP -1
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:3"]
+ end:     ["NumericConstant:1"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+210 LET P[X]=P[X]+P[X+1]*R
+ Variable:X numeric scalar
+ Variable:P numeric scalar
+ Variable:X numeric scalar
+ Variable:P numeric scalar
+ Variable:X numeric scalar
+ NumericConstant:1
+ BinaryOperatorPlus:+ numeric scalar
+ Variable:P numeric scalar
+ Variable:R numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ AssignmentOperator:=
+220 IF X > 1 THEN 240
+ Variable:X numeric scalar
+ NumericConstant:1
+ BinaryOperatorGreater:> boolean scalar
+230 PRINT "REMAINDER =";
+ TextConstant:"REMAINDER ="
+ CarriageControl:;
+240 PRINT P[X];
+ Variable:X numeric scalar
+ Variable:P numeric scalar
+ CarriageControl:;
+250 NEXT X
+ Variable:X numeric scalar
+252 REM SYNDIV ENDS HERE
+ Remark:SYNDIV ENDS HERE
+258 REM  HERE WE MOVE EACH ENTRY IN THE P LIST
+ Remark: HERE WE MOVE EACH ENTRY IN THE P LIST
+259 REM   TO THE LOCATION ONE SUBSCRIPT LOWER
+ Remark:  TO THE LOCATION ONE SUBSCRIPT LOWER
+260 FOR X=1 TO 3
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+270 LET P[X]=P[X+1]
+ Variable:X numeric scalar
+ Variable:P numeric scalar
+ Variable:X numeric scalar
+ NumericConstant:1
+ BinaryOperatorPlus:+ numeric scalar
+ Variable:P numeric scalar
+ AssignmentOperator:=
+280 NEXT X
+ Variable:X numeric scalar
+290 PRINT
+ CarriageControl:NL
+298 REM COMP-1 BEGINS HERE
+ Remark:COMP-1 BEGINS HERE
+300 LET D=P[2]^2-4*P[3]*P[1]
+ Variable:D numeric scalar
+ NumericConstant:2
+ Variable:P numeric scalar
+ NumericConstant:2
+ BinaryOperatorPower:^ numeric scalar
+ NumericConstant:4
+ NumericConstant:3
+ Variable:P numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ NumericConstant:1
+ Variable:P numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMinus:- numeric scalar
+ AssignmentOperator:=
+310 LET F=2*P[3]
+ Variable:F numeric scalar
+ NumericConstant:2
+ NumericConstant:3
+ Variable:P numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ AssignmentOperator:=
+320 LET A=-P[2]/F
+ Variable:A numeric scalar
+ NumericConstant:2
+ Variable:P numeric scalar
+ UnaryOperatorMinus:- numeric scalar
+ Variable:F numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ AssignmentOperator:=
+330 LET B=SQR(ABS(D))/F
+ Variable:B numeric scalar
+ Variable:D numeric scalar
+ FunctionAbs:ABS numeric scalar
+ FunctionSqr:SQR numeric scalar
+ Variable:F numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ AssignmentOperator:=
+340 IF D<0 THEN 380
+ Variable:D numeric scalar
+ NumericConstant:0
+ BinaryOperatorLess:< boolean scalar
+350 PRINT "REAL ZEROS:"
+ TextConstant:"REAL ZEROS:"
+ CarriageControl:NL
+360 PRINT A+B;"AND   ";A-B
+ Variable:A numeric scalar
+ Variable:B numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ CarriageControl:;
+ TextConstant:"AND   "
+ CarriageControl:;
+ Variable:A numeric scalar
+ Variable:B numeric scalar
+ BinaryOperatorMinus:- numeric scalar
+ CarriageControl:NL
+370 GOTO 20
+ LineNumber:20
+380 PRINT "NON-REAL ZEROS:"
+ TextConstant:"NON-REAL ZEROS:"
+ CarriageControl:NL
+390 PRINT "(";A;",";B;") AND (";A;",";-B;")"
+ TextConstant:"("
+ CarriageControl:;
+ Variable:A numeric scalar
+ CarriageControl:;
+ TextConstant:","
+ CarriageControl:;
+ Variable:B numeric scalar
+ CarriageControl:;
+ TextConstant:") AND ("
+ CarriageControl:;
+ Variable:A numeric scalar
+ CarriageControl:;
+ TextConstant:","
+ CarriageControl:;
+ Variable:B numeric scalar
+ UnaryOperatorMinus:- numeric scalar
+ CarriageControl:;
+ TextConstant:")"
+ CarriageControl:NL
+400 GOTO 20
+ LineNumber:20
+405 DATA 1,2,-1,-2
+ NumericConstant:1
+ NumericConstant:2
+ NumericConstant:1
+ UnaryOperatorMinus:- numeric scalar
+ NumericConstant:2
+ UnaryOperatorMinus:- numeric scalar
+410 DATA 1,-1,0,-48,1,0,0,-1,1,0,0,1,1,-1,1,-1
+ NumericConstant:1
+ NumericConstant:1
+ UnaryOperatorMinus:- numeric scalar
+ NumericConstant:0
+ NumericConstant:48
+ UnaryOperatorMinus:- numeric scalar
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ UnaryOperatorMinus:- numeric scalar
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ UnaryOperatorMinus:- numeric scalar
+ NumericConstant:1
+ NumericConstant:1
+ UnaryOperatorMinus:- numeric scalar
+415 DATA 6,-77,-189,-90
+ NumericConstant:6
+ NumericConstant:77
+ UnaryOperatorMinus:- numeric scalar
+ NumericConstant:189
+ UnaryOperatorMinus:- numeric scalar
+ NumericConstant:90
+ UnaryOperatorMinus:- numeric scalar
+420 DATA .0101
+ NumericConstant:.0101
+430 END
+ 
+

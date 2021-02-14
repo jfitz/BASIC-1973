@@ -1,0 +1,72 @@
+4 PRINT "INPUT THE NUMBER OF SPACES DESIRED TO THE LEFT OF ZERO";
+ TextConstant:"INPUT THE NUMBER OF SPACES DESIRED TO THE LEFT OF ZERO"
+ CarriageControl:;
+5 INPUT M
+ Variable:M numeric scalar
+6 PRINT
+ CarriageControl:NL
+30 DEF FNQ(X)=X^2
+ UserFunctionName:FNQ
+ VariableName:X
+ Variable:X numeric scalar
+ NumericConstant:2
+ BinaryOperatorPower:^ numeric scalar
+60 FOR X=-7 TO 7
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:7", "UnaryOperatorMinus:- numeric scalar"]
+ end:     ["NumericConstant:7"]
+62 PRINT
+ CarriageControl:NL
+90 FOR Y = -M TO 70-M
+ control: Variable:Y numeric scalar
+ start:   ["Variable:M numeric scalar", "UnaryOperatorMinus:- numeric scalar"]
+ end:     ["NumericConstant:70", "Variable:M numeric scalar", "BinaryOperatorMinus:- numeric scalar"]
+92 IF Y <> 0 THEN 120
+ Variable:Y numeric scalar
+ NumericConstant:0
+ BinaryOperatorNotEqual:<> boolean scalar
+94 IF X=0 THEN 98
+ Variable:X numeric scalar
+ NumericConstant:0
+ BinaryOperatorEqual:= boolean scalar
+95 PRINT "'";
+ TextConstant:"'"
+ CarriageControl:;
+96 GOTO 100
+ LineNumber:100
+98 PRINT "0";
+ TextConstant:"0"
+ CarriageControl:;
+100 IF FNQ(X)>0 THEN 180
+ Variable:X numeric scalar
+ UserFunction:FNQ numeric scalar
+ NumericConstant:0
+ BinaryOperatorGreater:> boolean scalar
+102 REM IF  FNQ(X) > 0 GO FIND WHERE IT IS
+ Remark:IF  FNQ(X) > 0 GO FIND WHERE IT IS
+103 REM OTHERWISE GET THE NEXT VALUE OF X
+ Remark:OTHERWISE GET THE NEXT VALUE OF X
+106 GOTO 240
+ LineNumber:240
+120 IF Y=FNQ(X) THEN 210
+ Variable:Y numeric scalar
+ Variable:X numeric scalar
+ UserFunction:FNQ numeric scalar
+ BinaryOperatorEqual:= boolean scalar
+148 REM   IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
+ Remark:  IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
+150 PRINT " ";
+ TextConstant:" "
+ CarriageControl:;
+180 NEXT Y
+ Variable:Y numeric scalar
+210 PRINT "*";
+ TextConstant:"*"
+ CarriageControl:;
+212 REM   PLOT THE POINT AND GO TO NEXT X
+ Remark:  PLOT THE POINT AND GO TO NEXT X
+240 NEXT X
+ Variable:X numeric scalar
+270 END
+ 
+

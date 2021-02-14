@@ -7,44 +7,44 @@
  CarriageControl:NL
 500 DIM A$(200%)
  IntegerConstant:200
- Declaration:A$ unknown
+ Declaration:A$ scalar
 525 F$="ANIMAL.GME":ON ERROR GOTO 700
- Variable:F$ scalar
+ Variable:F$ string scalar
  TextConstant:"ANIMAL.GME"
  AssignmentOperator:=
  LineNumber:700
 550 OPEN F$ FOR INPUT AS FILE 1%:INPUT #1%,N%:INPUT #1%,A$(I%) FOR I%=1%TO N%:CLOSE 1%:A$(0%)=NUM$(N%):ON ERROR GOTO 0:GOTO 1300
- Variable:F$ scalar
+ Variable:F$ string scalar
  IntegerConstant:1
  IntegerConstant:1
  UnaryOperatorHash:# filehandle scalar
- Variable:N% scalar
+ Variable:N% integer scalar
  IntegerConstant:1
  UnaryOperatorHash:# filehandle scalar
- Variable:I% scalar
- Variable:A$ scalar
- control: Variable:I% scalar
+ Variable:I% integer scalar
+ Variable:A$ string scalar
+ control: Variable:I% integer scalar
  start:   ["IntegerConstant:1"]
- end:     ["Variable:N% scalar"]
+ end:     ["Variable:N% integer scalar"]
  IntegerConstant:1
  IntegerConstant:0
- Variable:A$ scalar
- Variable:N% scalar
- FunctionStr scalar
+ Variable:A$ string scalar
+ Variable:N% integer scalar
+ FunctionStr:NUM$ string scalar
  AssignmentOperator:=
  LineNumber:1300
 700 ON ERROR GOTO 1050:F$="$"+F$:RESUME 550
  LineNumber:1050
- Variable:F$ scalar
+ Variable:F$ string scalar
  TextConstant:"$"
- Variable:F$ scalar
+ Variable:F$ string scalar
  BinaryOperatorPlus:+ string scalar
  AssignmentOperator:=
  
 1050 READ A$(I%) FOR I%=0% TO 3%
- Variable:I% scalar
- Variable:A$ scalar
- control: Variable:I% scalar
+ Variable:I% integer scalar
+ Variable:A$ string scalar
+ control: Variable:I% integer scalar
  start:   ["IntegerConstant:0"]
  end:     ["IntegerConstant:3"]
 1100 DATA "4","\QDOES IT SWIM\Y2\N3\","\AFISH","\ABIRD"
@@ -53,193 +53,193 @@
  TextConstant:"\AFISH"
  TextConstant:"\ABIRD"
 1300 INPUT "ARE YOU THINKING OF AN ANIMAL",Z9$:GOTO 1350 IF LEFT(Z9$,1%)="Y":GOTO 1300 IF LEFT(Z9$,1%)="N"
- Variable:Z9$ scalar
+ Variable:Z9$ string scalar
  LineNumber:1350
- Variable:Z9$ scalar
+ Variable:Z9$ string scalar
  IntegerConstant:1
- FunctionLeft scalar
+ FunctionLeft:LEFT string scalar
  TextConstant:"Y"
  BinaryOperatorEqual:= boolean scalar
  LineNumber:1300
- Variable:Z9$ scalar
+ Variable:Z9$ string scalar
  IntegerConstant:1
- FunctionLeft scalar
+ FunctionLeft:LEFT string scalar
  TextConstant:"N"
  BinaryOperatorEqual:= boolean scalar
 1310 IF Z9$="SAVE" THEN OPEN "ANIMAL.GME" FOR OUTPUT AS FILE 1%:PRINT #1%,A$(I%) FOR I%=0% TO VAL(A$(0%)):PRINT #1,CHR$(26%):CLOSE 1%:GOTO 1300
- Variable:Z9$ scalar
+ Variable:Z9$ string scalar
  TextConstant:"SAVE"
  BinaryOperatorEqual:= boolean scalar
  TextConstant:"ANIMAL.GME"
  IntegerConstant:1
  IntegerConstant:1
  UnaryOperatorHash:# filehandle scalar
- Variable:I% scalar
- Variable:A$ scalar
+ Variable:I% integer scalar
+ Variable:A$ string scalar
  CarriageControl:NL
- control: Variable:I% scalar
+ control: Variable:I% integer scalar
  start:   ["IntegerConstant:0"]
- end:     ["IntegerConstant:0", "Variable:A$ scalar", "FunctionVal scalar"]
+ end:     ["IntegerConstant:0", "Variable:A$ string scalar", "FunctionVal:VAL numeric scalar"]
  NumericConstant:1
  UnaryOperatorHash:# filehandle scalar
  IntegerConstant:26
- FunctionChr scalar
+ FunctionChr:CHR$ string scalar
  CarriageControl:NL
  IntegerConstant:1
  LineNumber:1300
 1320 IF Z9$="LIST" THEN PRINT "ANIMALS I ALREADY KNOW ARE:":PRINT RIGHT(A$(I%),3%), IF INSTR(1%, A$(I%), "\A") FOR I%=1% TO 200%:PRINT:GOTO 1300
- Variable:Z9$ scalar
+ Variable:Z9$ string scalar
  TextConstant:"LIST"
  BinaryOperatorEqual:= boolean scalar
  TextConstant:"ANIMALS I ALREADY KNOW ARE:"
  CarriageControl:NL
- Variable:I% scalar
- Variable:A$ scalar
+ Variable:I% integer scalar
+ Variable:A$ string scalar
  IntegerConstant:3
- FunctionRight scalar
+ FunctionRight:RIGHT string scalar
  CarriageControl:,
  IntegerConstant:1
- Variable:I% scalar
- Variable:A$ scalar
+ Variable:I% integer scalar
+ Variable:A$ string scalar
  TextConstant:"\A"
- FunctionInstr scalar
- control: Variable:I% scalar
+ FunctionInstr:INSTR numeric scalar
+ control: Variable:I% integer scalar
  start:   ["IntegerConstant:1"]
  end:     ["IntegerConstant:200"]
  CarriageControl:NL
  LineNumber:1300
 1350 K%=1%
- Variable:K% scalar
+ Variable:K% integer scalar
  IntegerConstant:1
  AssignmentOperator:=
 1400 K%=FNA%(A$(K%)):GOTO 3000 IF LEN(A$(K%))=0%:GOTO 1400 IF LEFT(A$(K%),2%)="\Q":PRINT "IS IT A "RIGHT(A$(K%),3%);:INPUT Z7$:Z7$=LEFT(Z7$,1%)
- Variable:K% scalar
- Variable:K% scalar
- Variable:A$ scalar
- UserFunction scalar
+ Variable:K% integer scalar
+ Variable:K% integer scalar
+ Variable:A$ string scalar
+ UserFunction:FNA% integer scalar
  AssignmentOperator:=
  LineNumber:3000
- Variable:K% scalar
- Variable:A$ scalar
- FunctionLen scalar
+ Variable:K% integer scalar
+ Variable:A$ string scalar
+ FunctionLen:LEN numeric scalar
  IntegerConstant:0
  BinaryOperatorEqual:= boolean scalar
  LineNumber:1400
- Variable:K% scalar
- Variable:A$ scalar
+ Variable:K% integer scalar
+ Variable:A$ string scalar
  IntegerConstant:2
- FunctionLeft scalar
+ FunctionLeft:LEFT string scalar
  TextConstant:"\Q"
  BinaryOperatorEqual:= boolean scalar
  TextConstant:"IS IT A "
  CarriageControl:
- Variable:K% scalar
- Variable:A$ scalar
+ Variable:K% integer scalar
+ Variable:A$ string scalar
  IntegerConstant:3
- FunctionRight scalar
+ FunctionRight:RIGHT string scalar
  CarriageControl:;
- Variable:Z7$ scalar
- Variable:Z7$ scalar
- Variable:Z7$ scalar
+ Variable:Z7$ string scalar
+ Variable:Z7$ string scalar
+ Variable:Z7$ string scalar
  IntegerConstant:1
- FunctionLeft scalar
+ FunctionLeft:LEFT string scalar
  AssignmentOperator:=
 1450 IF Z7$="Y" THEN PRINT "WHY NOT TRY ANOTHER ANIMAL":GOTO 1300
- Variable:Z7$ scalar
+ Variable:Z7$ string scalar
  TextConstant:"Y"
  BinaryOperatorEqual:= boolean scalar
  TextConstant:"WHY NOT TRY ANOTHER ANIMAL"
  CarriageControl:NL
  LineNumber:1300
 2000 INPUT "THE ANIMAL YOU WERE THINKING OF WAS A ";Z9$
- Variable:Z9$ scalar
+ Variable:Z9$ string scalar
 2050 PRINT "PLEASE TYPE IN A QUESTION THAT WOULD DISTINGUISH A " Z9$ " FROM A "RIGHT(A$(K%),3%):INPUT Z8$
  TextConstant:"PLEASE TYPE IN A QUESTION THAT WOULD DISTINGUISH A "
  CarriageControl:
- Variable:Z9$ scalar
+ Variable:Z9$ string scalar
  CarriageControl:
  TextConstant:" FROM A "
  CarriageControl:
- Variable:K% scalar
- Variable:A$ scalar
+ Variable:K% integer scalar
+ Variable:A$ string scalar
  IntegerConstant:3
- FunctionRight scalar
+ FunctionRight:RIGHT string scalar
  CarriageControl:NL
- Variable:Z8$ scalar
+ Variable:Z8$ string scalar
 2100 PRINT "FOR A "Z9$" THE ANSWER WOULD BE";:INPUT Z7$:Z7$=LEFT(Z7$,1%):IF Z7$="Y" THEN Z6$="N" ELSE IF Z7$="N" THEN Z6$="Y" ELSE PRINT "PLEASE ANSWER 'YES' OR 'NO'":GOTO 2100
  TextConstant:"FOR A "
  CarriageControl:
- Variable:Z9$ scalar
+ Variable:Z9$ string scalar
  CarriageControl:
  TextConstant:" THE ANSWER WOULD BE"
  CarriageControl:;
- Variable:Z7$ scalar
- Variable:Z7$ scalar
- Variable:Z7$ scalar
+ Variable:Z7$ string scalar
+ Variable:Z7$ string scalar
+ Variable:Z7$ string scalar
  IntegerConstant:1
- FunctionLeft scalar
+ FunctionLeft:LEFT string scalar
  AssignmentOperator:=
- Variable:Z7$ scalar
+ Variable:Z7$ string scalar
  TextConstant:"Y"
  BinaryOperatorEqual:= boolean scalar
- Variable:Z6$ scalar
+ Variable:Z6$ string scalar
  TextConstant:"N"
  AssignmentOperator:=
- Variable:Z7$ scalar
+ Variable:Z7$ string scalar
  TextConstant:"N"
  BinaryOperatorEqual:= boolean scalar
- Variable:Z6$ scalar
+ Variable:Z6$ string scalar
  TextConstant:"Y"
  AssignmentOperator:=
  TextConstant:"PLEASE ANSWER 'YES' OR 'NO'"
  CarriageControl:NL
  LineNumber:2100
 2200 Z1%=VAL(A$(0%)):A$(0%)=NUM$(Z1% + 2%):A$(Z1%)=A$(K%):A$(Z1%+1%)='\A'+Z9$:A$(K%)="\Q"+Z8$+"\"+Z7$+NUM$(Z1%+1%)+"\"+Z6$+NUM$(Z1%)+"\"
- Variable:Z1% scalar
+ Variable:Z1% integer scalar
  IntegerConstant:0
- Variable:A$ scalar
- FunctionVal scalar
+ Variable:A$ string scalar
+ FunctionVal:VAL numeric scalar
  AssignmentOperator:=
  IntegerConstant:0
- Variable:A$ scalar
- Variable:Z1% scalar
+ Variable:A$ string scalar
+ Variable:Z1% integer scalar
  IntegerConstant:2
  BinaryOperatorPlus:+ integer scalar
- FunctionStr scalar
+ FunctionStr:NUM$ string scalar
  AssignmentOperator:=
- Variable:Z1% scalar
- Variable:A$ scalar
- Variable:K% scalar
- Variable:A$ scalar
+ Variable:Z1% integer scalar
+ Variable:A$ string scalar
+ Variable:K% integer scalar
+ Variable:A$ string scalar
  AssignmentOperator:=
- Variable:Z1% scalar
+ Variable:Z1% integer scalar
  IntegerConstant:1
  BinaryOperatorPlus:+ integer scalar
- Variable:A$ scalar
+ Variable:A$ string scalar
  TextConstant:"\A"
- Variable:Z9$ scalar
+ Variable:Z9$ string scalar
  BinaryOperatorPlus:+ string scalar
  AssignmentOperator:=
- Variable:K% scalar
- Variable:A$ scalar
+ Variable:K% integer scalar
+ Variable:A$ string scalar
  TextConstant:"\Q"
- Variable:Z8$ scalar
+ Variable:Z8$ string scalar
  BinaryOperatorPlus:+ string scalar
  TextConstant:"\"
  BinaryOperatorPlus:+ string scalar
- Variable:Z7$ scalar
+ Variable:Z7$ string scalar
  BinaryOperatorPlus:+ string scalar
- Variable:Z1% scalar
+ Variable:Z1% integer scalar
  IntegerConstant:1
  BinaryOperatorPlus:+ integer scalar
- FunctionStr scalar
+ FunctionStr:NUM$ string scalar
  BinaryOperatorPlus:+ string scalar
  TextConstant:"\"
  BinaryOperatorPlus:+ string scalar
- Variable:Z6$ scalar
+ Variable:Z6$ string scalar
  BinaryOperatorPlus:+ string scalar
- Variable:Z1% scalar
- FunctionStr scalar
+ Variable:Z1% integer scalar
+ FunctionStr:NUM$ string scalar
  BinaryOperatorPlus:+ string scalar
  TextConstant:"\"
  BinaryOperatorPlus:+ string scalar
@@ -247,52 +247,52 @@
 2300 GOTO 1300
  LineNumber:1300
 3000 DEF FNA%(Q$):PRINT MID(Q$,3%,INSTR(3%,Q$,"\")-3%);:INPUT Z9$:Z9$=LEFT(Z9$,1%):Z9$="N" IF Z9$<>"Y":Z1%=INSTR(3%,Q$,"\"+Z9$)+2%:Z2%=INSTR(Z1%,Q$,"\"):FNA%=VAL(MID(Q$,Z1%,Z2%-Z1%)):FNEND
- Variable:Q$ scalar
+ Variable:Q$ string scalar
  IntegerConstant:3
  IntegerConstant:3
- Variable:Q$ scalar
+ Variable:Q$ string scalar
  TextConstant:"\"
- FunctionInstr scalar
+ FunctionInstr:INSTR numeric scalar
  IntegerConstant:3
  BinaryOperatorMinus:- numeric scalar
- FunctionMid scalar
+ FunctionMid:MID string scalar
  CarriageControl:;
- Variable:Z9$ scalar
- Variable:Z9$ scalar
- Variable:Z9$ scalar
+ Variable:Z9$ string scalar
+ Variable:Z9$ string scalar
+ Variable:Z9$ string scalar
  IntegerConstant:1
- FunctionLeft scalar
+ FunctionLeft:LEFT string scalar
  AssignmentOperator:=
- Variable:Z9$ scalar
+ Variable:Z9$ string scalar
  TextConstant:"N"
  AssignmentOperator:=
- Variable:Z9$ scalar
+ Variable:Z9$ string scalar
  TextConstant:"Y"
  BinaryOperatorNotEqual:<> boolean scalar
- Variable:Z1% scalar
+ Variable:Z1% integer scalar
  IntegerConstant:3
- Variable:Q$ scalar
+ Variable:Q$ string scalar
  TextConstant:"\"
- Variable:Z9$ scalar
+ Variable:Z9$ string scalar
  BinaryOperatorPlus:+ string scalar
- FunctionInstr scalar
+ FunctionInstr:INSTR numeric scalar
  IntegerConstant:2
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
- Variable:Z2% scalar
- Variable:Z1% scalar
- Variable:Q$ scalar
+ Variable:Z2% integer scalar
+ Variable:Z1% integer scalar
+ Variable:Q$ string scalar
  TextConstant:"\"
- FunctionInstr scalar
+ FunctionInstr:INSTR numeric scalar
  AssignmentOperator:=
- UserFunction scalar
- Variable:Q$ scalar
- Variable:Z1% scalar
- Variable:Z2% scalar
- Variable:Z1% scalar
+ UserFunction:FNA% integer scalar
+ Variable:Q$ string scalar
+ Variable:Z1% integer scalar
+ Variable:Z2% integer scalar
+ Variable:Z1% integer scalar
  BinaryOperatorMinus:- integer scalar
- FunctionMid scalar
- FunctionVal scalar
+ FunctionMid:MID string scalar
+ FunctionVal:VAL numeric scalar
  AssignmentOperator:=
  
 9999 END 

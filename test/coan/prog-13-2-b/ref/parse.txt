@@ -1,0 +1,49 @@
+10 READ N,R
+ Variable:N numeric scalar
+ Variable:R numeric scalar
+20 IF N=0 THEN 100
+ Variable:N numeric scalar
+ NumericConstant:0
+ BinaryOperatorEqual:= boolean scalar
+30 LET P=1
+ Variable:P numeric scalar
+ NumericConstant:1
+ AssignmentOperator:=
+40 FOR X=N TO N-R+1 STEP -1
+ control: Variable:X numeric scalar
+ start:   ["Variable:N numeric scalar"]
+ end:     ["Variable:N numeric scalar", "Variable:R numeric scalar", "BinaryOperatorMinus:- numeric scalar", "NumericConstant:1", "BinaryOperatorPlus:+ numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+50 LET P=P*X
+ Variable:P numeric scalar
+ Variable:P numeric scalar
+ Variable:X numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ AssignmentOperator:=
+60 NEXT X
+ Variable:X numeric scalar
+70 PRINT N;"THINGS";R;"AT A TIME HAVE";P;"PERMUTATIONS"
+ Variable:N numeric scalar
+ CarriageControl:;
+ TextConstant:"THINGS"
+ CarriageControl:;
+ Variable:R numeric scalar
+ CarriageControl:;
+ TextConstant:"AT A TIME HAVE"
+ CarriageControl:;
+ Variable:P numeric scalar
+ CarriageControl:;
+ TextConstant:"PERMUTATIONS"
+ CarriageControl:NL
+80 GOTO 10
+ LineNumber:10
+90 DATA 8,3,4,4,0,0
+ NumericConstant:8
+ NumericConstant:3
+ NumericConstant:4
+ NumericConstant:4
+ NumericConstant:0
+ NumericConstant:0
+100 END
+ 
+

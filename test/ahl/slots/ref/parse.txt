@@ -2,7 +2,7 @@
  
 110 DIM D(3)
  NumericConstant:3
- Declaration:D unknown
+ Declaration:D scalar
 120 PRINT "THIS IS A SIMULATION OF A SLOT MACHINE USING A COMPUTER."
  TextConstant:"THIS IS A SIMULATION OF A SLOT MACHINE USING A COMPUTER."
  CarriageControl:NL
@@ -18,210 +18,210 @@
 160 PRINT
  CarriageControl:NL
 170 FOR B1=1 TO 3
- control: Variable:B1 scalar
+ control: Variable:B1 numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 180 LET D(B1)=INT(RND(0)*6)+1
- Variable:B1 scalar
- Variable:D scalar
+ Variable:B1 numeric scalar
+ Variable:D numeric scalar
  NumericConstant:0
- FunctionRnd scalar
+ FunctionRnd:RND numeric scalar
  NumericConstant:6
  BinaryOperatorMultiply:* numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 190 NEXT B1
- Variable:B1 scalar
+ Variable:B1 numeric scalar
 200 FOR G1 = 1 TO 3
- control: Variable:G1 scalar
+ control: Variable:G1 numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 210 IF D(G1)=1 THEN 280
- Variable:G1 scalar
- Variable:D scalar
+ Variable:G1 numeric scalar
+ Variable:D numeric scalar
  NumericConstant:1
  BinaryOperatorEqual:= boolean scalar
 220 IF D(G1)=2 THEN 300
- Variable:G1 scalar
- Variable:D scalar
+ Variable:G1 numeric scalar
+ Variable:D numeric scalar
  NumericConstant:2
  BinaryOperatorEqual:= boolean scalar
 230 IF D(G1)=3 THEN 320
- Variable:G1 scalar
- Variable:D scalar
+ Variable:G1 numeric scalar
+ Variable:D numeric scalar
  NumericConstant:3
  BinaryOperatorEqual:= boolean scalar
 240 IF D(G1)=4 THEN 340
- Variable:G1 scalar
- Variable:D scalar
+ Variable:G1 numeric scalar
+ Variable:D numeric scalar
  NumericConstant:4
  BinaryOperatorEqual:= boolean scalar
 250 IF D(G1)=5 THEN 360
- Variable:G1 scalar
- Variable:D scalar
+ Variable:G1 numeric scalar
+ Variable:D numeric scalar
  NumericConstant:5
  BinaryOperatorEqual:= boolean scalar
 260 IF D(G1)=6 THEN 380
- Variable:G1 scalar
- Variable:D scalar
+ Variable:G1 numeric scalar
+ Variable:D numeric scalar
  NumericConstant:6
  BinaryOperatorEqual:= boolean scalar
 270 GOTO 580 
  LineNumber:580
 280 PRINT TAB(G1*7);" BELL";
- Variable:G1 scalar
+ Variable:G1 numeric scalar
  NumericConstant:7
  BinaryOperatorMultiply:* numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
  TextConstant:" BELL"
  CarriageControl:;
 290 GOTO 390
  LineNumber:390
 300 PRINT TAB(G1*7);" BAR";
- Variable:G1 scalar
+ Variable:G1 numeric scalar
  NumericConstant:7
  BinaryOperatorMultiply:* numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
  TextConstant:" BAR"
  CarriageControl:;
 310 GOTO 390
  LineNumber:390
 320 PRINT TAB(G1*7);"CHERRY";
- Variable:G1 scalar
+ Variable:G1 numeric scalar
  NumericConstant:7
  BinaryOperatorMultiply:* numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
  TextConstant:"CHERRY"
  CarriageControl:;
 330 GOTO 390
  LineNumber:390
 340 PRINT TAB(G1*7);"APPLE";
- Variable:G1 scalar
+ Variable:G1 numeric scalar
  NumericConstant:7
  BinaryOperatorMultiply:* numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
  TextConstant:"APPLE"
  CarriageControl:;
 350 GOTO 390
  LineNumber:390
 360 PRINT TAB(G1*7);"LEMON";
- Variable:G1 scalar
+ Variable:G1 numeric scalar
  NumericConstant:7
  BinaryOperatorMultiply:* numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
  TextConstant:"LEMON"
  CarriageControl:;
 370 GOTO 390
  LineNumber:390
 380 PRINT TAB(G1*7);" *";
- Variable:G1 scalar
+ Variable:G1 numeric scalar
  NumericConstant:7
  BinaryOperatorMultiply:* numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
  TextConstant:" *"
  CarriageControl:;
 390 NEXT G1
- Variable:G1 scalar
+ Variable:G1 numeric scalar
 400 PRINT TAB(28);
  NumericConstant:28
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
 410 IF D(1)<>D(2) THEN 440
  NumericConstant:1
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:2
- Variable:D scalar
+ Variable:D numeric scalar
  BinaryOperatorNotEqual:<> boolean scalar
 420 IF D(2)=D(3) THEN 530
  NumericConstant:2
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:3
- Variable:D scalar
+ Variable:D numeric scalar
  BinaryOperatorEqual:= boolean scalar
 430 IF D(1)=D(2) THEN 460
  NumericConstant:1
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:2
- Variable:D scalar
+ Variable:D numeric scalar
  BinaryOperatorEqual:= boolean scalar
 440 IF D(1)<>D(3) THEN 490
  NumericConstant:1
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:3
- Variable:D scalar
+ Variable:D numeric scalar
  BinaryOperatorNotEqual:<> boolean scalar
 450 GO TO 510
  LineNumber:510
 460 IF D(1)/2=INT(D(1)/2) THEN 510
  NumericConstant:1
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:2
  BinaryOperatorDivide:/ numeric scalar
  NumericConstant:1
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:2
  BinaryOperatorDivide:/ numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  BinaryOperatorEqual:= boolean scalar
 470 LET B=B + 5\PRINT "KENO... YOU WIN $5... TOTAL=$";B;
- Variable:B scalar
- Variable:B scalar
+ Variable:B numeric scalar
+ Variable:B numeric scalar
  NumericConstant:5
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
  TextConstant:"KENO... YOU WIN $5... TOTAL=$"
  CarriageControl:;
- Variable:B scalar
+ Variable:B numeric scalar
  CarriageControl:;
 480 GO TO 550
  LineNumber:550
 490 LET B=B-1\PRINT "YOU HAVE LOST $1  TOTAL=$";B;
- Variable:B scalar
- Variable:B scalar
+ Variable:B numeric scalar
+ Variable:B numeric scalar
  NumericConstant:1
  BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
  TextConstant:"YOU HAVE LOST $1  TOTAL=$"
  CarriageControl:;
- Variable:B scalar
+ Variable:B numeric scalar
  CarriageControl:;
 508 GOTO 550
  LineNumber:550
 510 LET B=B+1\PRINT "YOU HAVE WON $1  TOTAL=$";B;
- Variable:B scalar
- Variable:B scalar
+ Variable:B numeric scalar
+ Variable:B numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
  TextConstant:"YOU HAVE WON $1  TOTAL=$"
  CarriageControl:;
- Variable:B scalar
+ Variable:B numeric scalar
  CarriageControl:;
 520 GOTO 550
  LineNumber:550
 530 LET B = B + 20\PRINT CHR$(7); "JACKPOT... $20... TOTAL=$";B;CHR$(7);
- Variable:B scalar
- Variable:B scalar
+ Variable:B numeric scalar
+ Variable:B numeric scalar
  NumericConstant:20
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
  NumericConstant:7
- FunctionChr scalar
+ FunctionChr:CHR$ string scalar
  CarriageControl:;
  TextConstant:"JACKPOT... $20... TOTAL=$"
  CarriageControl:;
- Variable:B scalar
+ Variable:B numeric scalar
  CarriageControl:;
  NumericConstant:7
- FunctionChr scalar
+ FunctionChr:CHR$ string scalar
  CarriageControl:;
 540 GOTO 550
  LineNumber:550
@@ -229,12 +229,12 @@
  TextConstant:"AGAIN?"
  CarriageControl:;
 560 INPUT $A\PRINT\IF A=#Y THEN 160\IF A<>#N THEN 560
- Variable:A scalar
+ Variable:A numeric scalar
  CarriageControl:NL
- Variable:A scalar
+ Variable:A numeric scalar
  NumericConstant:#Y
  BinaryOperatorEqual:= boolean scalar
- Variable:A scalar
+ Variable:A numeric scalar
  NumericConstant:#N
  BinaryOperatorNotEqual:<> boolean scalar
 570 PRINT" IT'S BEEN NICE OPERATING FOR YOU COME BACK SOON!"

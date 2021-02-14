@@ -1,0 +1,111 @@
+10 PRINT "SEARCH FOR REAL ZEROS OF A POLYNOMIAL"
+ TextConstant:"SEARCH FOR REAL ZEROS OF A POLYNOMIAL"
+ CarriageControl:NL
+20 PRINT "START, END, INCREMENT";
+ TextConstant:"START, END, INCREMENT"
+ CarriageControl:;
+30 INPUT F,L,S
+ Variable:F numeric scalar
+ Variable:L numeric scalar
+ Variable:S numeric scalar
+40 IF S=0 THEN 270
+ Variable:S numeric scalar
+ NumericConstant:0
+ BinaryOperatorEqual:= boolean scalar
+50 DEF FNT(X)=X^3+49.1809*X^2+2.67761*X-15223.8
+ UserFunctionName:FNT
+ VariableName:X
+ Variable:X numeric scalar
+ NumericConstant:3
+ BinaryOperatorPower:^ numeric scalar
+ NumericConstant:49.1809
+ Variable:X numeric scalar
+ NumericConstant:2
+ BinaryOperatorPower:^ numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ NumericConstant:2.67761
+ Variable:X numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ NumericConstant:15223.8
+ BinaryOperatorMinus:- numeric scalar
+60 LET A=0
+ Variable:A numeric scalar
+ NumericConstant:0
+ AssignmentOperator:=
+70 FOR X=F TO L STEP S
+ control: Variable:X numeric scalar
+ start:   ["Variable:F numeric scalar"]
+ end:     ["Variable:L numeric scalar"]
+ step:    ["Variable:S numeric scalar"]
+80 LET S1=FNT(X)
+ Variable:S1 numeric scalar
+ Variable:X numeric scalar
+ UserFunction:FNT numeric scalar
+ AssignmentOperator:=
+90 LET S2=FNT(X+S)
+ Variable:S2 numeric scalar
+ Variable:X numeric scalar
+ Variable:S numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ UserFunction:FNT numeric scalar
+ AssignmentOperator:=
+100 IF S1*S2>0 THEN 130
+ Variable:S1 numeric scalar
+ Variable:S2 numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ NumericConstant:0
+ BinaryOperatorGreater:> boolean scalar
+110 LET A=A+1
+ Variable:A numeric scalar
+ Variable:A numeric scalar
+ NumericConstant:1
+ BinaryOperatorPlus:+ numeric scalar
+ AssignmentOperator:=
+120 LET S[A]=X
+ Variable:A numeric scalar
+ Variable:S numeric scalar
+ Variable:X numeric scalar
+ AssignmentOperator:=
+130 NEXT X
+ Variable:X numeric scalar
+140 IF A>0 THEN 190
+ Variable:A numeric scalar
+ NumericConstant:0
+ BinaryOperatorGreater:> boolean scalar
+150 PRINT "NO INTERVALS FOUND **** TRY AGAIN "
+ TextConstant:"NO INTERVALS FOUND **** TRY AGAIN "
+ CarriageControl:NL
+160 PRINT "WITH EITHER GREATER LIMITS OR SMALLER INCREMENT"
+ TextConstant:"WITH EITHER GREATER LIMITS OR SMALLER INCREMENT"
+ CarriageControl:NL
+170 PRINT
+ CarriageControl:NL
+180 GOTO 20
+ LineNumber:20
+190 PRINT "INTERVAL(S) BEGIN AT:"
+ TextConstant:"INTERVAL(S) BEGIN AT:"
+ CarriageControl:NL
+200 FOR I=1 TO A
+ control: Variable:I numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["Variable:A numeric scalar"]
+210 PRINT S[I];
+ Variable:I numeric scalar
+ Variable:S numeric scalar
+ CarriageControl:;
+220 NEXT I
+ Variable:I numeric scalar
+230 PRINT
+ CarriageControl:NL
+240 PRINT
+ CarriageControl:NL
+250 PRINT "NOW ";
+ TextConstant:"NOW "
+ CarriageControl:;
+260 GOTO 20
+ LineNumber:20
+270 END
+ 
+

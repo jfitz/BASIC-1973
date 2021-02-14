@@ -5,29 +5,29 @@
 110 DIM T(7,3)
  NumericConstant:7
  NumericConstant:3
- Declaration:T unknown
+ Declaration:T scalar
 120 E=0
- Variable:E scalar
+ Variable:E numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 130 FOR D=1 TO 7
- control: Variable:D scalar
+ control: Variable:D numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
 140 FOR N=1 TO 3
- control: Variable:N scalar
+ control: Variable:N numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 150 T(D,N)=0
- Variable:D scalar
- Variable:N scalar
- Variable:T scalar
+ Variable:D numeric scalar
+ Variable:N numeric scalar
+ Variable:T numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 160 NEXT N
- Variable:N scalar
+ Variable:N numeric scalar
 170 NEXT D
- Variable:D scalar
+ Variable:D numeric scalar
 180 PRINT "TOWERS OF HANOI PUZZLE"\PRINT
  TextConstant:"TOWERS OF HANOI PUZZLE"
  CarriageControl:NL
@@ -46,30 +46,30 @@
  TextConstant:"HOW MANY DISKS DO YOU WANT TO MOVE (7 IS MAX)"
  CarriageControl:;
 220 INPUT S\PRINT
- Variable:S scalar
+ Variable:S numeric scalar
  CarriageControl:NL
 230 M=0
- Variable:M scalar
+ Variable:M numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 240 FOR Q=1 TO 7
- control: Variable:Q scalar
+ control: Variable:Q numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
 250 IF Q=S THEN 350
- Variable:Q scalar
- Variable:S scalar
+ Variable:Q numeric scalar
+ Variable:S numeric scalar
  BinaryOperatorEqual:= boolean scalar
 260 NEXT Q
- Variable:Q scalar
+ Variable:Q numeric scalar
 270 E=E+1
- Variable:E scalar
- Variable:E scalar
+ Variable:E numeric scalar
+ Variable:E numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 280 IF E>2 THEN 310
- Variable:E scalar
+ Variable:E numeric scalar
  NumericConstant:2
  BinaryOperatorGreater:> boolean scalar
 290 PRINT "SORRY, BUT I CAN'T DO THAT JOB FOR YOU. "\GOTO 215
@@ -112,70 +112,70 @@
  CarriageControl:NL
  CarriageControl:NL
 400 Y=7\D=15
- Variable:Y scalar
+ Variable:Y numeric scalar
  NumericConstant:7
  AssignmentOperator:=
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:15
  AssignmentOperator:=
 420 FOR X=S _ TO 1 STEP -1
- control: Variable:X scalar
- start:   ["Variable:S scalar"]
+ control: Variable:X numeric scalar
+ start:   ["Variable:S numeric scalar"]
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
 430 T(Y,1)=D\D=D-2\Y=Y-1
- Variable:Y scalar
+ Variable:Y numeric scalar
  NumericConstant:1
- Variable:T scalar
- Variable:D scalar
+ Variable:T numeric scalar
+ Variable:D numeric scalar
  AssignmentOperator:=
- Variable:D scalar
- Variable:D scalar
+ Variable:D numeric scalar
+ Variable:D numeric scalar
  NumericConstant:2
  BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
- Variable:Y scalar
- Variable:Y scalar
+ Variable:Y numeric scalar
+ Variable:Y numeric scalar
  NumericConstant:1
  BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 460 NEXT X
- Variable:X scalar
+ Variable:X numeric scalar
 470 GOSUB 1230
  LineNumber:1230
 480 PRINT "WHICH DISK WOULD YOU LIKE TO MOVE";\E=0
  TextConstant:"WHICH DISK WOULD YOU LIKE TO MOVE"
  CarriageControl:;
- Variable:E scalar
+ Variable:E numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 500 INPUT D
- Variable:D scalar
+ Variable:D numeric scalar
 510 IF (D-3)*(D-5)*(D-7)*(D-9)*(D-11)*(D-13)*(D-15)=0 THEN 580
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:3
  BinaryOperatorMinus:- numeric scalar
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:5
  BinaryOperatorMinus:- numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:7
  BinaryOperatorMinus:- numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:9
  BinaryOperatorMinus:- numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:11
  BinaryOperatorMinus:- numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:13
  BinaryOperatorMinus:- numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:15
  BinaryOperatorMinus:- numeric scalar
  BinaryOperatorMultiply:* numeric scalar
@@ -185,12 +185,12 @@
  TextConstant:"ILLEGAL ENTRY... YOU MAY ONLY TYPE 3,5,7,9,11,13,OR 15."
  CarriageControl:NL
 530 E=E+1\IF E>1 THEN 560
- Variable:E scalar
- Variable:E scalar
+ Variable:E numeric scalar
+ Variable:E numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
- Variable:E scalar
+ Variable:E numeric scalar
  NumericConstant:1
  BinaryOperatorGreater:> boolean scalar
 550 GOTO 580
@@ -203,41 +203,41 @@
 580 REM *** CHECK IF REQUESTED DISK IS BELOW ANOTHER
  Remark:*** CHECK IF REQUESTED DISK IS BELOW ANOTHER
 590 FOR R=1 TO 7
- control: Variable:R scalar
+ control: Variable:R numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
 600 FOR C=1 TO 3
- control: Variable:C scalar
+ control: Variable:C numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 610 IF T(R,C)=D THEN 640
- Variable:R scalar
- Variable:C scalar
- Variable:T scalar
- Variable:D scalar
+ Variable:R numeric scalar
+ Variable:C numeric scalar
+ Variable:T numeric scalar
+ Variable:D numeric scalar
  BinaryOperatorEqual:= boolean scalar
 620 NEXT C\NEXT R
- Variable:C scalar
- Variable:R scalar
+ Variable:C numeric scalar
+ Variable:R numeric scalar
 640 FOR Q=R TO 1 STEP -1
- control: Variable:Q scalar
- start:   ["Variable:R scalar"]
+ control: Variable:Q numeric scalar
+ start:   ["Variable:R numeric scalar"]
  end:     ["NumericConstant:1"]
  step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
 645 IF T(Q,C)=0 THEN 660
- Variable:Q scalar
- Variable:C scalar
- Variable:T scalar
+ Variable:Q numeric scalar
+ Variable:C numeric scalar
+ Variable:T numeric scalar
  NumericConstant:0
  BinaryOperatorEqual:= boolean scalar
 650 IF T(Q,C)<D THEN 680
- Variable:Q scalar
- Variable:C scalar
- Variable:T scalar
- Variable:D scalar
+ Variable:Q numeric scalar
+ Variable:C numeric scalar
+ Variable:T numeric scalar
+ Variable:D numeric scalar
  BinaryOperatorLess:< boolean scalar
 660 NEXT Q
- Variable:Q scalar
+ Variable:Q numeric scalar
 670 GOTO 700
  LineNumber:700
 680 PRINT "THAT DISK IS BELOW ANOTHER ONE. MAKE ANOTHER CHOICE. "\GOTO 480
@@ -245,35 +245,35 @@
  CarriageControl:NL
  LineNumber:480
 700 E=0
- Variable:E scalar
+ Variable:E numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 705 PRINT "PLACE DISK ON WHICH NEEDLE";\INPUT N
  TextConstant:"PLACE DISK ON WHICH NEEDLE"
  CarriageControl:;
- Variable:N scalar
+ Variable:N numeric scalar
 730 IF (N-1)*(N-2)*(N-3)=0 THEN 880
- Variable:N scalar
+ Variable:N numeric scalar
  NumericConstant:1
  BinaryOperatorMinus:- numeric scalar
- Variable:N scalar
+ Variable:N numeric scalar
  NumericConstant:2
  BinaryOperatorMinus:- numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:N scalar
+ Variable:N numeric scalar
  NumericConstant:3
  BinaryOperatorMinus:- numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  NumericConstant:0
  BinaryOperatorEqual:= boolean scalar
 735 E=E+1
- Variable:E scalar
- Variable:E scalar
+ Variable:E numeric scalar
+ Variable:E numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 740 IF E>1 THEN 780
- Variable:E scalar
+ Variable:E numeric scalar
  NumericConstant:1
  BinaryOperatorGreater:> boolean scalar
 750 PRINT "I'LL ASSUME YOU HIT THE WRONG KEY THIS TIME. BUT WATCH IT,"
@@ -293,26 +293,26 @@
 795 REM *** LOCATE DISK TO BE MOVED
  Remark:*** LOCATE DISK TO BE MOVED
 800 FOR R=1 TO 7
- control: Variable:R scalar
+ control: Variable:R numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
 810 IF T(R,N)<>0 THEN 840
- Variable:R scalar
- Variable:N scalar
- Variable:T scalar
+ Variable:R numeric scalar
+ Variable:N numeric scalar
+ Variable:T numeric scalar
  NumericConstant:0
  BinaryOperatorNotEqual:<> boolean scalar
 820 NEXT R
- Variable:R scalar
+ Variable:R numeric scalar
 830 GOTO 880
  LineNumber:880
 835 REM *** CHECK IF DISK TO BE PLACED ON A LARGER ONE
  Remark:*** CHECK IF DISK TO BE PLACED ON A LARGER ONE
 840 IF D,T(R,N) THEN 880
- Variable:D scalar
- Variable:R scalar
- Variable:N scalar
- Variable:T scalar
+ Variable:D numeric scalar
+ Variable:R numeric scalar
+ Variable:N numeric scalar
+ Variable:T numeric scalar
 850 PRINT "YOU CAN'T PLACE A LARGER DISK ON TOP OF A SMALLER ONE."
  TextConstant:"YOU CAN'T PLACE A LARGER DISK ON TOP OF A SMALLER ONE."
  CarriageControl:NL
@@ -325,56 +325,56 @@
 875 REM *** RELOCATE MOVED DISK
  Remark:*** RELOCATE MOVED DISK
 880 FOR V=1 TO 7\FOR W=1 TO 3
- control: Variable:V scalar
+ control: Variable:V numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
- control: Variable:W scalar
+ control: Variable:W numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 900 IF T(V,W)=D THEN 930
- Variable:V scalar
- Variable:W scalar
- Variable:T scalar
- Variable:D scalar
+ Variable:V numeric scalar
+ Variable:W numeric scalar
+ Variable:T numeric scalar
+ Variable:D numeric scalar
  BinaryOperatorEqual:= boolean scalar
 910 NEXT W\NEXT V
- Variable:W scalar
- Variable:V scalar
+ Variable:W numeric scalar
+ Variable:V numeric scalar
 925 REM *** LOCATE FIRST EMPTY SPACE ON NEEDLE N
  Remark:*** LOCATE FIRST EMPTY SPACE ON NEEDLE N
 930 FOR U=1 TO 7
- control: Variable:U scalar
+ control: Variable:U numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
 940 IF T(U,N)<>0 THEN 970
- Variable:U scalar
- Variable:N scalar
- Variable:T scalar
+ Variable:U numeric scalar
+ Variable:N numeric scalar
+ Variable:T numeric scalar
  NumericConstant:0
  BinaryOperatorNotEqual:<> boolean scalar
 950 NEXT U
- Variable:U scalar
+ Variable:U numeric scalar
 960 GOTO 980
  LineNumber:980
 965 REM *** MOVE DISK AND SET OLD LOCATION TO 0
  Remark:*** MOVE DISK AND SET OLD LOCATION TO 0
 970 U=U-1
- Variable:U scalar
- Variable:U scalar
+ Variable:U numeric scalar
+ Variable:U numeric scalar
  NumericConstant:1
  BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 980 T(U,N)=T(V,W)\T(V,W)=0
- Variable:U scalar
- Variable:N scalar
- Variable:T scalar
- Variable:V scalar
- Variable:W scalar
- Variable:T scalar
+ Variable:U numeric scalar
+ Variable:N numeric scalar
+ Variable:T numeric scalar
+ Variable:V numeric scalar
+ Variable:W numeric scalar
+ Variable:T numeric scalar
  AssignmentOperator:=
- Variable:V scalar
- Variable:W scalar
- Variable:T scalar
+ Variable:V numeric scalar
+ Variable:W numeric scalar
+ Variable:T numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 995 REM +** PRINT OUT CURRENT STATUS
@@ -384,31 +384,31 @@
 1010 REM *** CHECK IF DONE
  Remark:*** CHECK IF DONE
 1020 M=M+1
- Variable:M scalar
- Variable:M scalar
+ Variable:M numeric scalar
+ Variable:M numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 1030 FOR R=1 TO 7\FOR C=1 TO 2
- control: Variable:R scalar
+ control: Variable:R numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
- control: Variable:C scalar
+ control: Variable:C numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:2"]
 1050 IF T(R,C)<>0 THEN 1090
- Variable:R scalar
- Variable:C scalar
- Variable:T scalar
+ Variable:R numeric scalar
+ Variable:C numeric scalar
+ Variable:T numeric scalar
  NumericConstant:0
  BinaryOperatorNotEqual:<> boolean scalar
 1060 NEXT C\NEXT R
- Variable:C scalar
- Variable:R scalar
+ Variable:C numeric scalar
+ Variable:R numeric scalar
 1080 GOTO 1120
  LineNumber:1120
 1090 IF M<=128 THEN 480
- Variable:M scalar
+ Variable:M numeric scalar
  NumericConstant:128
  BinaryOperatorLessEqual:<= boolean scalar
 1100 PRINT "SORRY, BUT I HAVE ORDERS TO STOP IF YOU MAKE MORE THAN"
@@ -419,9 +419,9 @@
  CarriageControl:NL
  
 1120 IF M<>2^S-1 THEN 1140
- Variable:M scalar
+ Variable:M numeric scalar
  NumericConstant:2
- Variable:S scalar
+ Variable:S numeric scalar
  BinaryOperatorPower:^ numeric scalar
  NumericConstant:1
  BinaryOperatorMinus:- numeric scalar
@@ -432,7 +432,7 @@
 1140 PRINT "YOU HAVE PERFORMED THE TASK IN"M"MOVES."
  TextConstant:"YOU HAVE PERFORMED THE TASK IN"
  CarriageControl:
- Variable:M scalar
+ Variable:M numeric scalar
  CarriageControl:
  TextConstant:"MOVES."
  CarriageControl:NL
@@ -440,81 +440,81 @@
  CarriageControl:NL
  TextConstant:"TRY ANOTHER ONE (YES OR NO)"
  CarriageControl:;
- Variable:A$ scalar
+ Variable:A$ string scalar
 1160 IF A$="NO" THEN 1390
- Variable:A$ scalar
+ Variable:A$ string scalar
  TextConstant:"NO"
  BinaryOperatorEqual:= boolean scalar
 1170 IF A$="YES" THEN 90
- Variable:A$ scalar
+ Variable:A$ string scalar
  TextConstant:"YES"
  BinaryOperatorEqual:= boolean scalar
 1180 PRINT\PRINT "'YES' OR 'NO' PLEASE";\INPUT A$\GOTO 1160
  CarriageControl:NL
  TextConstant:"'YES' OR 'NO' PLEASE"
  CarriageControl:;
- Variable:A$ scalar
+ Variable:A$ string scalar
  LineNumber:1160
 1230 REM *** PRINT SUBROUTINE
  Remark:*** PRINT SUBROUTINE
 1240 FOR K=1 TO 7
- control: Variable:K scalar
+ control: Variable:K numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
 1250 Z=10
- Variable:Z scalar
+ Variable:Z numeric scalar
  NumericConstant:10
  AssignmentOperator:=
 1260 FOR J=1 TO 3
- control: Variable:J scalar
+ control: Variable:J numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 1270 IF T(K,J)=0 THEN 1330
- Variable:K scalar
- Variable:J scalar
- Variable:T scalar
+ Variable:K numeric scalar
+ Variable:J numeric scalar
+ Variable:T numeric scalar
  NumericConstant:0
  BinaryOperatorEqual:= boolean scalar
 1280 PRINT TAB(Z-INT(T(K,J)/2));
- Variable:Z scalar
- Variable:K scalar
- Variable:J scalar
- Variable:T scalar
+ Variable:Z numeric scalar
+ Variable:K numeric scalar
+ Variable:J numeric scalar
+ Variable:T numeric scalar
  NumericConstant:2
  BinaryOperatorDivide:/ numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  BinaryOperatorMinus:- numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
 1290 FOR V=1 TO T(K,J)
- control: Variable:V scalar
+ control: Variable:V numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:K scalar", "Variable:J scalar", "Variable:T scalar"]
+ end:     ["Variable:K numeric scalar", "Variable:J numeric scalar", "Variable:T numeric scalar"]
 1300 PRINT "*";
  TextConstant:"*"
  CarriageControl:;
 1310 NEXT V
- Variable:V scalar
+ Variable:V numeric scalar
 1320 GOTO 1340
  LineNumber:1340
 1330 PRINT TAB(Z);"*";
- Variable:Z scalar
- FunctionTab scalar
+ Variable:Z numeric scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
  TextConstant:"*"
  CarriageControl:;
 1340 Z=Z+21
- Variable:Z scalar
- Variable:Z scalar
+ Variable:Z numeric scalar
+ Variable:Z numeric scalar
  NumericConstant:21
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 1350 NEXT J
- Variable:J scalar
+ Variable:J numeric scalar
 1360 PRINT
  CarriageControl:NL
 1370 NEXT K
- Variable:K scalar
+ Variable:K numeric scalar
 1380 RETURN
  
 1390 PRINT\PRINT "THANKS FOR THE GAME!"\PRINT\END

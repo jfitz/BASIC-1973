@@ -2,19 +2,19 @@
  
 110DIMX(20)
  NumericConstant:20
- Declaration:X unknown
+ Declaration:X scalar
 120PRINT"DO YOU WANT DIRECTIONS Y FOR YES N FOR NO";
  TextConstant:"DO YOU WANT DIRECTIONS Y FOR YES N FOR NO"
  CarriageControl:;
 130INPUT$Z\PRINT
- Variable:Z scalar
+ Variable:Z numeric scalar
  CarriageControl:NL
 140IFZ=#YTHEN160
- Variable:Z scalar
+ Variable:Z numeric scalar
  NumericConstant:#Y
  BinaryOperatorEqual:= boolean scalar
 150IFZ=#NTHEN290
- Variable:Z scalar
+ Variable:Z numeric scalar
  NumericConstant:#N
  BinaryOperatorEqual:= boolean scalar
 160PRINT"DIRECTIONS FOR GOLF"
@@ -60,10 +60,10 @@
 300 PRINT"HOW PLAVERS ARE PLAYING TODAY";\INPUTU\PRINT
  TextConstant:"HOW PLAVERS ARE PLAYING TODAY"
  CarriageControl:;
- Variable:U scalar
+ Variable:U numeric scalar
  CarriageControl:NL
 310IFU<=4THEN340
- Variable:U scalar
+ Variable:U numeric scalar
  NumericConstant:4
  BinaryOperatorLessEqual:<= boolean scalar
 320PRINT"ONLY FOUR ARE ALLOWED TO PLAY AT ONE TIME"
@@ -114,112 +114,112 @@
  NumericConstant:4
 380DIMA(18)
  NumericConstant:18
- Declaration:A unknown
+ Declaration:A scalar
 390DIMP(18)
  NumericConstant:18
- Declaration:P unknown
+ Declaration:P scalar
 400FORR=1TO18
- control: Variable:R scalar
+ control: Variable:R numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:18"]
 410READA(R)\READP(R)
- Variable:R scalar
- Variable:A scalar
- Variable:R scalar
- Variable:P scalar
+ Variable:R numeric scalar
+ Variable:A numeric scalar
+ Variable:R numeric scalar
+ Variable:P numeric scalar
 420NEXTR
- Variable:R scalar
+ Variable:R numeric scalar
 430DIMM(4,10)
  NumericConstant:4
  NumericConstant:10
- Declaration:M unknown
+ Declaration:M scalar
 440DIMN(10)
  NumericConstant:10
- Declaration:N unknown
+ Declaration:N scalar
 450PRINT"HOW MANY HOLES UP TO 18 DO VOU WANT TO PLAY?"\INPUTV
  TextConstant:"HOW MANY HOLES UP TO 18 DO VOU WANT TO PLAY?"
  CarriageControl:NL
- Variable:V scalar
+ Variable:V numeric scalar
 460PRINT
  CarriageControl:NL
 470FORJ=1TO V
- control: Variable:J scalar
+ control: Variable:J numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:V scalar"]
+ end:     ["Variable:V numeric scalar"]
 480FOR Q=1TO U
- control: Variable:Q scalar
+ control: Variable:Q numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:U scalar"]
+ end:     ["Variable:U numeric scalar"]
 490LETH=A(J)
- Variable:H scalar
- Variable:J scalar
- Variable:A scalar
+ Variable:H numeric scalar
+ Variable:J numeric scalar
+ Variable:A numeric scalar
  AssignmentOperator:=
 500PRINT"HOLE NUMBER ";J;"IS";H;"YARDS PAR";P(J)
  TextConstant:"HOLE NUMBER "
  CarriageControl:;
- Variable:J scalar
+ Variable:J numeric scalar
  CarriageControl:;
  TextConstant:"IS"
  CarriageControl:;
- Variable:H scalar
+ Variable:H numeric scalar
  CarriageControl:;
  TextConstant:"YARDS PAR"
  CarriageControl:;
- Variable:J scalar
- Variable:P scalar
+ Variable:J numeric scalar
+ Variable:P numeric scalar
  CarriageControl:NL
 510LETK=0
- Variable:K scalar
+ Variable:K numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 520LETT=0
- Variable:T scalar
+ Variable:T numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 530LET T2=0
- Variable:T2 scalar
+ Variable:T2 numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 540PRINT"PLAYER NUMBER";Q;"CHOSE YOUR CLUB"
  TextConstant:"PLAYER NUMBER"
  CarriageControl:;
- Variable:Q scalar
+ Variable:Q numeric scalar
  CarriageControl:;
  TextConstant:"CHOSE YOUR CLUB"
  CarriageControl:NL
 550INPUT X
- Variable:X scalar
+ Variable:X numeric scalar
 560IFX=9THEN880
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:9
  BinaryOperatorEqual:= boolean scalar
 570LETK=K+1
- Variable:K scalar
- Variable:K scalar
+ Variable:K numeric scalar
+ Variable:K numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 580 IF X=9 THEN 930
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:9
  BinaryOperatorEqual:= boolean scalar
 590GOTO1340
  LineNumber:1340
 600IFX=9THEN970
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:9
  BinaryOperatorEqual:= boolean scalar
 610LETD=X
- Variable:D scalar
- Variable:X scalar
+ Variable:D numeric scalar
+ Variable:X numeric scalar
  AssignmentOperator:=
 620IFH<>X(D)THEN630\IFK<>1THEN990\PRINT"HOLE IN ONE!!!"\GOTO990
- Variable:H scalar
- Variable:D scalar
- Variable:X scalar
+ Variable:H numeric scalar
+ Variable:D numeric scalar
+ Variable:X numeric scalar
  BinaryOperatorNotEqual:<> boolean scalar
- Variable:K scalar
+ Variable:K numeric scalar
  NumericConstant:1
  BinaryOperatorNotEqual:<> boolean scalar
  TextConstant:"HOLE IN ONE!!!"
@@ -228,170 +228,170 @@
 630PRINT"DISTANCE OF SHOT IS";X(D);"YARDS"
  TextConstant:"DISTANCE OF SHOT IS"
  CarriageControl:;
- Variable:D scalar
- Variable:X scalar
+ Variable:D numeric scalar
+ Variable:X numeric scalar
  CarriageControl:;
  TextConstant:"YARDS"
  CarriageControl:NL
 640LETL=INT(RND(X)*100)
- Variable:L scalar
- Variable:X scalar
- FunctionRnd scalar
+ Variable:L numeric scalar
+ Variable:X numeric scalar
+ FunctionRnd:RND numeric scalar
  NumericConstant:100
  BinaryOperatorMultiply:* numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  AssignmentOperator:=
 650IFL=99THEN670\IFL=43THEN670\IFL=88THEN670
- Variable:L scalar
+ Variable:L numeric scalar
  NumericConstant:99
  BinaryOperatorEqual:= boolean scalar
- Variable:L scalar
+ Variable:L numeric scalar
  NumericConstant:43
  BinaryOperatorEqual:= boolean scalar
- Variable:L scalar
+ Variable:L numeric scalar
  NumericConstant:88
  BinaryOperatorEqual:= boolean scalar
 660IFL<>25THEN760
- Variable:L scalar
+ Variable:L numeric scalar
  NumericConstant:25
  BinaryOperatorNotEqual:<> boolean scalar
 670PRINT"IN TRAP"\LETC=ABS(H-X(D))\GOTO680
  TextConstant:"IN TRAP"
  CarriageControl:NL
- Variable:C scalar
- Variable:H scalar
- Variable:D scalar
- Variable:X scalar
+ Variable:C numeric scalar
+ Variable:H numeric scalar
+ Variable:D numeric scalar
+ Variable:X numeric scalar
  BinaryOperatorMinus:- numeric scalar
- FunctionAbs scalar
+ FunctionAbs:ABS numeric scalar
  AssignmentOperator:=
  LineNumber:680
 680LETL8=INT(RND(X)*10)
- Variable:L8 scalar
- Variable:X scalar
- FunctionRnd scalar
+ Variable:L8 numeric scalar
+ Variable:X numeric scalar
+ FunctionRnd:RND numeric scalar
  NumericConstant:10
  BinaryOperatorMultiply:* numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  AssignmentOperator:=
 690IFL8>3THEN680\IFL8=1THEN850
- Variable:L8 scalar
+ Variable:L8 numeric scalar
  NumericConstant:3
  BinaryOperatorGreater:> boolean scalar
- Variable:L8 scalar
+ Variable:L8 numeric scalar
  NumericConstant:1
  BinaryOperatorEqual:= boolean scalar
 700LETT2=0
- Variable:T2 scalar
+ Variable:T2 numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 710FORZ=1TOL8
- control: Variable:Z scalar
+ control: Variable:Z numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:L8 scalar"]
+ end:     ["Variable:L8 numeric scalar"]
 720LETT2=T2+1
- Variable:T2 scalar
- Variable:T2 scalar
+ Variable:T2 numeric scalar
+ Variable:T2 numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 730PRINT"CHOSE YOUR CLUB"\INPUTX
  TextConstant:"CHOSE YOUR CLUB"
  CarriageControl:NL
- Variable:X scalar
+ Variable:X numeric scalar
 740PRINT"STILL IN TRAP"\NEXTZ
  TextConstant:"STILL IN TRAP"
  CarriageControl:NL
- Variable:Z scalar
+ Variable:Z numeric scalar
 750GOTO850
  LineNumber:850
 760IFL=13THEN780\IFL=88THEN780 
- Variable:L scalar
+ Variable:L numeric scalar
  NumericConstant:13
  BinaryOperatorEqual:= boolean scalar
- Variable:L scalar
+ Variable:L numeric scalar
  NumericConstant:88
  BinaryOperatorEqual:= boolean scalar
 770IFL<>25THEN800
- Variable:L scalar
+ Variable:L numeric scalar
  NumericConstant:25
  BinaryOperatorNotEqual:<> boolean scalar
 780PRINT"IN ROUGH"\LETC=ABS(H-X(D))\GOTO850
  TextConstant:"IN ROUGH"
  CarriageControl:NL
- Variable:C scalar
- Variable:H scalar
- Variable:D scalar
- Variable:X scalar
+ Variable:C numeric scalar
+ Variable:H numeric scalar
+ Variable:D numeric scalar
+ Variable:X numeric scalar
  BinaryOperatorMinus:- numeric scalar
- FunctionAbs scalar
+ FunctionAbs:ABS numeric scalar
  AssignmentOperator:=
  LineNumber:850
 790IFL=69THEN810\IFL=73THEN810\IFL=41THEN810
- Variable:L scalar
+ Variable:L numeric scalar
  NumericConstant:69
  BinaryOperatorEqual:= boolean scalar
- Variable:L scalar
+ Variable:L numeric scalar
  NumericConstant:73
  BinaryOperatorEqual:= boolean scalar
- Variable:L scalar
+ Variable:L numeric scalar
  NumericConstant:41
  BinaryOperatorEqual:= boolean scalar
 800IFL<>75THEN 830
- Variable:L scalar
+ Variable:L numeric scalar
  NumericConstant:75
  BinaryOperatorNotEqual:<> boolean scalar
 810PRINT"IN WATER"\LETT=T+1\PRINT"YOU LOSE 1 STROKE"\LETC=ABS(H-X(D))
  TextConstant:"IN WATER"
  CarriageControl:NL
- Variable:T scalar
- Variable:T scalar
+ Variable:T numeric scalar
+ Variable:T numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
  TextConstant:"YOU LOSE 1 STROKE"
  CarriageControl:NL
- Variable:C scalar
- Variable:H scalar
- Variable:D scalar
- Variable:X scalar
+ Variable:C numeric scalar
+ Variable:H numeric scalar
+ Variable:D numeric scalar
+ Variable:X numeric scalar
  BinaryOperatorMinus:- numeric scalar
- FunctionAbs scalar
+ FunctionAbs:ABS numeric scalar
  AssignmentOperator:=
 820GOTO850
  LineNumber:850
 830LETC=ABS(H-X(D))
- Variable:C scalar
- Variable:H scalar
- Variable:D scalar
- Variable:X scalar
+ Variable:C numeric scalar
+ Variable:H numeric scalar
+ Variable:D numeric scalar
+ Variable:X numeric scalar
  BinaryOperatorMinus:- numeric scalar
- FunctionAbs scalar
+ FunctionAbs:ABS numeric scalar
  AssignmentOperator:=
 840IFC<30THEN930
- Variable:C scalar
+ Variable:C numeric scalar
  NumericConstant:30
  BinaryOperatorLess:< boolean scalar
 850PRINT"DISTANCE REMAINING TO PIN IS";C;"YARDS"
  TextConstant:"DISTANCE REMAINING TO PIN IS"
  CarriageControl:;
- Variable:C scalar
+ Variable:C numeric scalar
  CarriageControl:;
  TextConstant:"YARDS"
  CarriageControl:NL
 860LETH=C
- Variable:H scalar
- Variable:C scalar
+ Variable:H numeric scalar
+ Variable:C numeric scalar
  AssignmentOperator:=
 870GOTO540
  LineNumber:540
 880LETC=A(J)
- Variable:C scalar
- Variable:J scalar
- Variable:A scalar
+ Variable:C numeric scalar
+ Variable:J numeric scalar
+ Variable:A numeric scalar
  AssignmentOperator:=
 890IFC>30THEN910
- Variable:C scalar
+ Variable:C numeric scalar
  NumericConstant:30
  BinaryOperatorGreater:> boolean scalar
 900GOTO970
@@ -404,302 +404,302 @@
 930PRINT"PLAYER NUMBER";Q;" IS ON THE GREEN CHOSE YOUR CLUB"
  TextConstant:"PLAYER NUMBER"
  CarriageControl:;
- Variable:Q scalar
+ Variable:Q numeric scalar
  CarriageControl:;
  TextConstant:" IS ON THE GREEN CHOSE YOUR CLUB"
  CarriageControl:NL
 940INPUTX
- Variable:X scalar
+ Variable:X numeric scalar
 950LETD=X
- Variable:D scalar
- Variable:X scalar
+ Variable:D numeric scalar
+ Variable:X numeric scalar
  AssignmentOperator:=
 960GOTO590
  LineNumber:590
 970PRINT X(D) "PUTTS"
- Variable:D scalar
- Variable:X scalar
+ Variable:D numeric scalar
+ Variable:X numeric scalar
  CarriageControl:
  TextConstant:"PUTTS"
  CarriageControl:NL
 980LETM(Q,J)=K+X(9)+T+T2\GOTO1000
- Variable:Q scalar
- Variable:J scalar
- Variable:M scalar
- Variable:K scalar
+ Variable:Q numeric scalar
+ Variable:J numeric scalar
+ Variable:M numeric scalar
+ Variable:K numeric scalar
  NumericConstant:9
- Variable:X scalar
+ Variable:X numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- Variable:T scalar
+ Variable:T numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- Variable:T2 scalar
+ Variable:T2 numeric scalar
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
  LineNumber:1000
 990LETM(Q,J)=K\PRINT"YOU SUNK THE SHOT"
- Variable:Q scalar
- Variable:J scalar
- Variable:M scalar
- Variable:K scalar
+ Variable:Q numeric scalar
+ Variable:J numeric scalar
+ Variable:M numeric scalar
+ Variable:K numeric scalar
  AssignmentOperator:=
  TextConstant:"YOU SUNK THE SHOT"
  CarriageControl:NL
 1000PRINTM(Q,J)"STROKES FOR HOLE NUMBER";J;"FOR PLAYER";Q
- Variable:Q scalar
- Variable:J scalar
- Variable:M scalar
+ Variable:Q numeric scalar
+ Variable:J numeric scalar
+ Variable:M numeric scalar
  CarriageControl:
  TextConstant:"STROKES FOR HOLE NUMBER"
  CarriageControl:;
- Variable:J scalar
+ Variable:J numeric scalar
  CarriageControl:;
  TextConstant:"FOR PLAYER"
  CarriageControl:;
- Variable:Q scalar
+ Variable:Q numeric scalar
  CarriageControl:NL
 1010NEXTQ\PRINT\PRINT
- Variable:Q scalar
+ Variable:Q numeric scalar
  CarriageControl:NL
  CarriageControl:NL
 1020NEXT J
- Variable:J scalar
+ Variable:J numeric scalar
 1030FORW=1TOV
- control: Variable:W scalar
+ control: Variable:W numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:V scalar"]
+ end:     ["Variable:V numeric scalar"]
 1040LETN(1)=M(1,W)+N(1)
  NumericConstant:1
- Variable:N scalar
+ Variable:N numeric scalar
  NumericConstant:1
- Variable:W scalar
- Variable:M scalar
+ Variable:W numeric scalar
+ Variable:M numeric scalar
  NumericConstant:1
- Variable:N scalar
+ Variable:N numeric scalar
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 1050LETN(2)=M(2,W)+N(2)
  NumericConstant:2
- Variable:N scalar
+ Variable:N numeric scalar
  NumericConstant:2
- Variable:W scalar
- Variable:M scalar
+ Variable:W numeric scalar
+ Variable:M numeric scalar
  NumericConstant:2
- Variable:N scalar
+ Variable:N numeric scalar
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 1060LETN(3)=M(3,W)+N(3)
  NumericConstant:3
- Variable:N scalar
+ Variable:N numeric scalar
  NumericConstant:3
- Variable:W scalar
- Variable:M scalar
+ Variable:W numeric scalar
+ Variable:M numeric scalar
  NumericConstant:3
- Variable:N scalar
+ Variable:N numeric scalar
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 1070LETN(4)=M(4,W)+N(4)
  NumericConstant:4
- Variable:N scalar
+ Variable:N numeric scalar
  NumericConstant:4
- Variable:W scalar
- Variable:M scalar
+ Variable:W numeric scalar
+ Variable:M numeric scalar
  NumericConstant:4
- Variable:N scalar
+ Variable:N numeric scalar
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 1080LET E= P(W)+E
- Variable:E scalar
- Variable:W scalar
- Variable:P scalar
- Variable:E scalar
+ Variable:E numeric scalar
+ Variable:W numeric scalar
+ Variable:P numeric scalar
+ Variable:E numeric scalar
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 1090NEXTW
- Variable:W scalar
+ Variable:W numeric scalar
 1100FORS=1TOV
- control: Variable:S scalar
+ control: Variable:S numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:V scalar"]
+ end:     ["Variable:V numeric scalar"]
 1110PRINT"PLAYER NUMBER";S;"SHOT";N(S);"FOR";V;"HOLES  PAR IS";E
  TextConstant:"PLAYER NUMBER"
  CarriageControl:;
- Variable:S scalar
+ Variable:S numeric scalar
  CarriageControl:;
  TextConstant:"SHOT"
  CarriageControl:;
- Variable:S scalar
- Variable:N scalar
+ Variable:S numeric scalar
+ Variable:N numeric scalar
  CarriageControl:;
  TextConstant:"FOR"
  CarriageControl:;
- Variable:V scalar
+ Variable:V numeric scalar
  CarriageControl:;
  TextConstant:"HOLES  PAR IS"
  CarriageControl:;
- Variable:E scalar
+ Variable:E numeric scalar
  CarriageControl:NL
 1120NEXT S
- Variable:S scalar
+ Variable:S numeric scalar
 1130GOTO1440
  LineNumber:1440
 1140LETX(2)=INT(130*RND(X)+150)
  NumericConstant:2
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:130
- Variable:X scalar
- FunctionRnd scalar
+ Variable:X numeric scalar
+ FunctionRnd:RND numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  NumericConstant:150
  BinaryOperatorPlus:+ numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  AssignmentOperator:=
 1150GOTO600
  LineNumber:600
 1160LETX(1)=INT(90*RND(X)+180)
  NumericConstant:1
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:90
- Variable:X scalar
- FunctionRnd scalar
+ Variable:X numeric scalar
+ FunctionRnd:RND numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  NumericConstant:180
  BinaryOperatorPlus:+ numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  AssignmentOperator:=
 1170GOTO600 
  LineNumber:600
 1180LETX(3)=INT(40*RND(X)+140)
  NumericConstant:3
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:40
- Variable:X scalar
- FunctionRnd scalar
+ Variable:X numeric scalar
+ FunctionRnd:RND numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  NumericConstant:140
  BinaryOperatorPlus:+ numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  AssignmentOperator:=
 1190GOTO600
  LineNumber:600
 1200LETX(4)=INT(60*RND(X)+120)
  NumericConstant:4
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:60
- Variable:X scalar
- FunctionRnd scalar
+ Variable:X numeric scalar
+ FunctionRnd:RND numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  NumericConstant:120
  BinaryOperatorPlus:+ numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  AssignmentOperator:=
 1210GOTO600
  LineNumber:600
 1220LETX(5)=INT(30*RND(X)+100)
  NumericConstant:5
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:30
- Variable:X scalar
- FunctionRnd scalar
+ Variable:X numeric scalar
+ FunctionRnd:RND numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  NumericConstant:100
  BinaryOperatorPlus:+ numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  AssignmentOperator:=
 1230GOTO600
  LineNumber:600
 1240LETX(6)=INT(30*RND(X)+70)
  NumericConstant:6
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:30
- Variable:X scalar
- FunctionRnd scalar
+ Variable:X numeric scalar
+ FunctionRnd:RND numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  NumericConstant:70
  BinaryOperatorPlus:+ numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  AssignmentOperator:=
 1250GOTO600
  LineNumber:600
 1260LETX(7)=INT(40*RND(X)+30)
  NumericConstant:7
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:40
- Variable:X scalar
- FunctionRnd scalar
+ Variable:X numeric scalar
+ FunctionRnd:RND numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  NumericConstant:30
  BinaryOperatorPlus:+ numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  AssignmentOperator:=
 1270GOTO600
  LineNumber:600
 1280LETX(8)=INT(30*RND(X)+1)
  NumericConstant:8
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:30
- Variable:X scalar
- FunctionRnd scalar
+ Variable:X numeric scalar
+ FunctionRnd:RND numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+ numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  AssignmentOperator:=
 1290IFX(8)<1THEN1280
  NumericConstant:8
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:1
  BinaryOperatorLess:< boolean scalar
 1300GOTO600
  LineNumber:600
 1310LETX(9)=INT(3*RND(X)+1)
  NumericConstant:9
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:3
- Variable:X scalar
- FunctionRnd scalar
+ Variable:X numeric scalar
+ FunctionRnd:RND numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+ numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  AssignmentOperator:=
 1320GOTO600
  LineNumber:600
 1330STOP
  
 1340IFX=1THEN1160
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:1
  BinaryOperatorEqual:= boolean scalar
 1350IFX=2THEN1140
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:2
  BinaryOperatorEqual:= boolean scalar
 1360IFX=3THEN1180
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:3
  BinaryOperatorEqual:= boolean scalar
 1370IFX=4THEN1200
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:4
  BinaryOperatorEqual:= boolean scalar
 1380IFX=5THEN1220
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:5
  BinaryOperatorEqual:= boolean scalar
 1390IFX=6THEN1240
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:6
  BinaryOperatorEqual:= boolean scalar
 1400IFX=7THEN1260
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:7
  BinaryOperatorEqual:= boolean scalar
 1410IFX=8THEN1280
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:8
  BinaryOperatorEqual:= boolean scalar
 1420IFX=9THEN1310
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:9
  BinaryOperatorEqual:= boolean scalar
 1430GOTO680

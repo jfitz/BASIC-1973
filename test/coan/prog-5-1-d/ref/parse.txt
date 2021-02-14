@@ -1,0 +1,78 @@
+10 FOR I=1 TO 5
+ control: Variable:I numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:5"]
+20 LET C[I]=0
+ Variable:I numeric scalar
+ Variable:C numeric scalar
+ NumericConstant:0
+ AssignmentOperator:=
+30 NEXT I
+ Variable:I numeric scalar
+33 REM THIS LOOP SIMULATES 500 PEOPLE
+ Remark:THIS LOOP SIMULATES 500 PEOPLE
+35 FOR X=1 TO 500
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:500"]
+40 FOR R=1 TO 5
+ control: Variable:R numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:5"]
+42 REM  THIS LOOP LOOKS AT FIVE COURSES FOR EACH PERSON
+ Remark: THIS LOOP LOOKS AT FIVE COURSES FOR EACH PERSON
+48 REM   PICK A RANDOM NUMBER ZERO OR ONE
+ Remark:  PICK A RANDOM NUMBER ZERO OR ONE
+50 LET K=INT(2*RND(1))
+ Variable:K numeric scalar
+ NumericConstant:2
+ NumericConstant:1
+ FunctionRnd:RND numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ FunctionInt:INT numeric scalar
+ AssignmentOperator:=
+60 IF K=-1 THEN 100
+ Variable:K numeric scalar
+ NumericConstant:1
+ UnaryOperatorMinus:- numeric scalar
+ BinaryOperatorEqual:= boolean scalar
+70 LET C[R]=C[R]+K
+ Variable:R numeric scalar
+ Variable:C numeric scalar
+ Variable:R numeric scalar
+ Variable:C numeric scalar
+ Variable:K numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ AssignmentOperator:=
+78 REM  NEXT COURSE
+ Remark: NEXT COURSE
+80 NEXT R
+ Variable:R numeric scalar
+88 REM   NEXT PERSON
+ Remark:  NEXT PERSON
+90 NEXT X
+ Variable:X numeric scalar
+100 PRINT "CHEMISTRY","PHYSICS","FRENCH","SPANISH","CALCULUS"
+ TextConstant:"CHEMISTRY"
+ CarriageControl:,
+ TextConstant:"PHYSICS"
+ CarriageControl:,
+ TextConstant:"FRENCH"
+ CarriageControl:,
+ TextConstant:"SPANISH"
+ CarriageControl:,
+ TextConstant:"CALCULUS"
+ CarriageControl:NL
+110 FOR I=1 TO 5
+ control: Variable:I numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:5"]
+120 PRINT C[I],
+ Variable:I numeric scalar
+ Variable:C numeric scalar
+ CarriageControl:,
+130 NEXT I
+ Variable:I numeric scalar
+9999 END
+ 
+

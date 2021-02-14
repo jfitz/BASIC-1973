@@ -1,0 +1,59 @@
+90 REM * FILE PRINT ONE TO A RECORD
+ Remark:* FILE PRINT ONE TO A RECORD
+100 DIM N$[72]
+ NumericConstant:72
+ Declaration:N$ scalar
+110 FILES "test.txt"
+ TextConstant:"test.txt"
+120 FOR I=1 TO 7
+ control: Variable:I numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:7"]
+130 READ N$,A,B
+ Variable:N$ string scalar
+ Variable:A numeric scalar
+ Variable:B numeric scalar
+140 PRINT #1,I;N$,A,B
+ NumericConstant:1
+ UnaryOperatorHash:# filehandle scalar
+ Variable:I numeric scalar
+ CarriageControl:;
+ Variable:N$ string scalar
+ CarriageControl:,
+ Variable:A numeric scalar
+ CarriageControl:,
+ Variable:B numeric scalar
+ CarriageControl:NL
+150 NEXT I
+ Variable:I numeric scalar
+160 DATA "JONES, JOHN PAUL",1747,1792
+ TextConstant:"JONES, JOHN PAUL"
+ NumericConstant:1747
+ NumericConstant:1792
+170 DATA "ANTHONY, SUSAN B.",1820,1906
+ TextConstant:"ANTHONY, SUSAN B."
+ NumericConstant:1820
+ NumericConstant:1906
+180 DATA "WASHINGTON, BOOKER T.",1859,1915
+ TextConstant:"WASHINGTON, BOOKER T."
+ NumericConstant:1859
+ NumericConstant:1915
+190 DATA "BELL, ALEXANDER GRAHAM",1847,1922
+ TextConstant:"BELL, ALEXANDER GRAHAM"
+ NumericConstant:1847
+ NumericConstant:1922
+200 DATA "EDISON, THOMAS ALVA",1847,1931
+ TextConstant:"EDISON, THOMAS ALVA"
+ NumericConstant:1847
+ NumericConstant:1931
+210 DATA "FORD, HENRY",1863,1947
+ TextConstant:"FORD, HENRY"
+ NumericConstant:1863
+ NumericConstant:1947
+220 DATA "BLOOMER, AMELIA JENKS",1818,1894
+ TextConstant:"BLOOMER, AMELIA JENKS"
+ NumericConstant:1818
+ NumericConstant:1894
+230 END
+ 
+

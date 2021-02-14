@@ -1,0 +1,58 @@
+10 LET C=3.14159/180
+ Variable:C numeric scalar
+ NumericConstant:3.14159
+ NumericConstant:180
+ BinaryOperatorDivide:/ numeric scalar
+ AssignmentOperator:=
+30 PRINT "LADDER BASE MUST BE OUT FROM THE HOUSE IN FEET"
+ TextConstant:"LADDER BASE MUST BE OUT FROM THE HOUSE IN FEET"
+ CarriageControl:NL
+40 PRINT "NOT LESS THAN","NOT MORE THAN","LADDER LENGTH"
+ TextConstant:"NOT LESS THAN"
+ CarriageControl:,
+ TextConstant:"NOT MORE THAN"
+ CarriageControl:,
+ TextConstant:"LADDER LENGTH"
+ CarriageControl:NL
+45 FOR L=36 TO 20 STEP -2
+ control: Variable:L numeric scalar
+ start:   ["NumericConstant:36"]
+ end:     ["NumericConstant:20"]
+ step:    ["NumericConstant:2", "UnaryOperatorMinus:- numeric scalar"]
+50 PRINT INT(L*SIN(C*14)*100+.5)/100,INT(L*SIN(C*15)*100+.5)/100,
+ Variable:L numeric scalar
+ Variable:C numeric scalar
+ NumericConstant:14
+ BinaryOperatorMultiply:* numeric scalar
+ FunctionSin:SIN numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ NumericConstant:100
+ BinaryOperatorMultiply:* numeric scalar
+ NumericConstant:.5
+ BinaryOperatorPlus:+ numeric scalar
+ FunctionInt:INT numeric scalar
+ NumericConstant:100
+ BinaryOperatorDivide:/ numeric scalar
+ CarriageControl:,
+ Variable:L numeric scalar
+ Variable:C numeric scalar
+ NumericConstant:15
+ BinaryOperatorMultiply:* numeric scalar
+ FunctionSin:SIN numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ NumericConstant:100
+ BinaryOperatorMultiply:* numeric scalar
+ NumericConstant:.5
+ BinaryOperatorPlus:+ numeric scalar
+ FunctionInt:INT numeric scalar
+ NumericConstant:100
+ BinaryOperatorDivide:/ numeric scalar
+ CarriageControl:,
+51 PRINT L
+ Variable:L numeric scalar
+ CarriageControl:NL
+55 NEXT L
+ Variable:L numeric scalar
+60 END
+ 
+

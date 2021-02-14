@@ -1,0 +1,35 @@
+94 REM * LOAD RANDOM NUMBERS INTO A BINARY FILE
+ Remark:* LOAD RANDOM NUMBERS INTO A BINARY FILE
+100 FILES "numb.txt"
+ TextConstant:"numb.txt"
+110 FOR I = 1 TO 3
+ control: Variable:I numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+120    FOR J = 1 TO 6
+ control: Variable:J numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:6"]
+130       LET X = RND(X)
+ Variable:X numeric scalar
+ Variable:X numeric scalar
+ FunctionRnd:RND numeric scalar
+ AssignmentOperator:=
+140       WRITE :1, X
+ NumericConstant:1
+ UnaryOperatorColon:: filehandle scalar
+ CarriageControl:,
+ Variable:X numeric scalar
+ CarriageControl:NL
+150       PRINT X;
+ Variable:X numeric scalar
+ CarriageControl:;
+160    NEXT J
+ Variable:J numeric scalar
+170    PRINT
+ CarriageControl:NL
+180 NEXT I
+ Variable:I numeric scalar
+190 END
+ 
+

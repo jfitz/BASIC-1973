@@ -1,0 +1,42 @@
+30 DEF FNQ(X)=X^2
+ UserFunctionName:FNQ
+ VariableName:X
+ Variable:X numeric scalar
+ NumericConstant:2
+ BinaryOperatorPower:^ numeric scalar
+60 FOR X=-7 TO 7
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:7", "UnaryOperatorMinus:- numeric scalar"]
+ end:     ["NumericConstant:7"]
+62 PRINT
+ CarriageControl:NL
+88 REM   LINE 90 HAS THE EFFECT OF NUMBERING THE SPACES
+ Remark:  LINE 90 HAS THE EFFECT OF NUMBERING THE SPACES
+89 REM ACROSS THE PAGE 0 TO 70
+ Remark:ACROSS THE PAGE 0 TO 70
+90 FOR Y =0 TO 70
+ control: Variable:Y numeric scalar
+ start:   ["NumericConstant:0"]
+ end:     ["NumericConstant:70"]
+120 IF Y=FNQ(X) THEN 210
+ Variable:Y numeric scalar
+ Variable:X numeric scalar
+ UserFunction:FNQ numeric scalar
+ BinaryOperatorEqual:= boolean scalar
+148 REM   IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
+ Remark:  IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
+150 PRINT " ";
+ TextConstant:" "
+ CarriageControl:;
+180 NEXT Y
+ Variable:Y numeric scalar
+210 PRINT "*";
+ TextConstant:"*"
+ CarriageControl:;
+212 REM   PLOT THE POINT AND GO TO NEXT X
+ Remark:  PLOT THE POINT AND GO TO NEXT X
+240 NEXT X
+ Variable:X numeric scalar
+270 END
+ 
+

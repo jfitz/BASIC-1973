@@ -1,0 +1,116 @@
+10 PRINT "INPUT THE NUMBER OF SPACES DESIRED TO THE LEFT OF ZERO";
+ TextConstant:"INPUT THE NUMBER OF SPACES DESIRED TO THE LEFT OF ZERO"
+ CarriageControl:;
+20 INPUT M
+ Variable:M numeric scalar
+30 PRINT
+ CarriageControl:NL
+40 PRINT "    ";
+ TextConstant:"    "
+ CarriageControl:;
+50 FOR X=0 TO 50 STEP 10
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:0"]
+ end:     ["NumericConstant:50"]
+ step:    ["NumericConstant:10"]
+60 PRINT "    ";X;
+ TextConstant:"    "
+ CarriageControl:;
+ Variable:X numeric scalar
+ CarriageControl:;
+70 NEXT X
+ Variable:X numeric scalar
+80 PRINT
+ CarriageControl:NL
+90 FOR X=1 TO 70
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:70"]
+100 IF X/10=INT(X/10) THEN 130
+ Variable:X numeric scalar
+ NumericConstant:10
+ BinaryOperatorDivide:/ numeric scalar
+ Variable:X numeric scalar
+ NumericConstant:10
+ BinaryOperatorDivide:/ numeric scalar
+ FunctionInt:INT numeric scalar
+ BinaryOperatorEqual:= boolean scalar
+110 PRINT "-";
+ TextConstant:"-"
+ CarriageControl:;
+120 GOTO 140
+ LineNumber:140
+130 PRINT "^";
+ TextConstant:"^"
+ CarriageControl:;
+140 NEXT X
+ Variable:X numeric scalar
+150 DEF FNQ(X)=(X-2)^2+3
+ UserFunctionName:FNQ
+ VariableName:X
+ Variable:X numeric scalar
+ NumericConstant:2
+ BinaryOperatorMinus:- numeric scalar
+ NumericConstant:2
+ BinaryOperatorPower:^ numeric scalar
+ NumericConstant:3
+ BinaryOperatorPlus:+ numeric scalar
+160 FOR X=-5 TO 8
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:5", "UnaryOperatorMinus:- numeric scalar"]
+ end:     ["NumericConstant:8"]
+170 PRINT
+ CarriageControl:NL
+180 FOR Y = -M TO 70-M
+ control: Variable:Y numeric scalar
+ start:   ["Variable:M numeric scalar", "UnaryOperatorMinus:- numeric scalar"]
+ end:     ["NumericConstant:70", "Variable:M numeric scalar", "BinaryOperatorMinus:- numeric scalar"]
+190 IF Y <> 0 THEN 280
+ Variable:Y numeric scalar
+ NumericConstant:0
+ BinaryOperatorNotEqual:<> boolean scalar
+200 IF X=0 THEN 230
+ Variable:X numeric scalar
+ NumericConstant:0
+ BinaryOperatorEqual:= boolean scalar
+210 PRINT "'";
+ TextConstant:"'"
+ CarriageControl:;
+220 GOTO 240
+ LineNumber:240
+230 PRINT "0";
+ TextConstant:"0"
+ CarriageControl:;
+240 IF FNQ(X)>0 THEN 310
+ Variable:X numeric scalar
+ UserFunction:FNQ numeric scalar
+ NumericConstant:0
+ BinaryOperatorGreater:> boolean scalar
+250 REM IF  FNQ(X) > 0 GO FIND WHERE IT IS
+ Remark:IF  FNQ(X) > 0 GO FIND WHERE IT IS
+260 REM OTHERWISE GET THE NEXT VALUE OF X
+ Remark:OTHERWISE GET THE NEXT VALUE OF X
+270 GOTO 340
+ LineNumber:340
+280 IF Y=FNQ(X) THEN 320
+ Variable:Y numeric scalar
+ Variable:X numeric scalar
+ UserFunction:FNQ numeric scalar
+ BinaryOperatorEqual:= boolean scalar
+290 REM   IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
+ Remark:  IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
+300 PRINT " ";
+ TextConstant:" "
+ CarriageControl:;
+310 NEXT Y
+ Variable:Y numeric scalar
+320 PRINT "*";
+ TextConstant:"*"
+ CarriageControl:;
+330 REM   PLOT THE POINT AND GO TO NEXT X
+ Remark:  PLOT THE POINT AND GO TO NEXT X
+340 NEXT X
+ Variable:X numeric scalar
+350 END
+ 
+

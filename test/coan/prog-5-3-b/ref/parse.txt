@@ -1,0 +1,358 @@
+10 DIM S[15,10]
+ NumericConstant:15
+ NumericConstant:10
+ Declaration:S scalar
+20 FOR R=1 TO 15
+ control: Variable:R numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:15"]
+28 REM LINE 30 ENTERS THE ROW NUMBER IN THE FIRST COLUMN
+ Remark:LINE 30 ENTERS THE ROW NUMBER IN THE FIRST COLUMN
+30 LET S[R,1]=R
+ Variable:R numeric scalar
+ NumericConstant:1
+ Variable:S numeric scalar
+ Variable:R numeric scalar
+ AssignmentOperator:=
+40 FOR C=2 TO 5
+ control: Variable:C numeric scalar
+ start:   ["NumericConstant:2"]
+ end:     ["NumericConstant:5"]
+48 REM LINE 50 SETS THE LAST 4 COLUMNS AT ZERO
+ Remark:LINE 50 SETS THE LAST 4 COLUMNS AT ZERO
+50 LET S[R,C]=0
+ Variable:R numeric scalar
+ Variable:C numeric scalar
+ Variable:S numeric scalar
+ NumericConstant:0
+ AssignmentOperator:=
+60 NEXT C
+ Variable:C numeric scalar
+70 NEXT R
+ Variable:R numeric scalar
+78 REM 80 READS THE CATEGORY FOR THE NEXT PERSON IN THE SURVEY
+ Remark:80 READS THE CATEGORY FOR THE NEXT PERSON IN THE SURVEY
+80 READ P
+ Variable:P numeric scalar
+90 IF P=-1 THEN 145
+ Variable:P numeric scalar
+ NumericConstant:1
+ UnaryOperatorMinus:- numeric scalar
+ BinaryOperatorEqual:= boolean scalar
+98 REM Q GOES THROUGH THE 15 QUESTIONS
+ Remark:Q GOES THROUGH THE 15 QUESTIONS
+100 FOR Q=1 TO 15
+ control: Variable:Q numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:15"]
+110 READ A
+ Variable:A numeric scalar
+120 LET S[Q,P]=S[Q,P]+A
+ Variable:Q numeric scalar
+ Variable:P numeric scalar
+ Variable:S numeric scalar
+ Variable:Q numeric scalar
+ Variable:P numeric scalar
+ Variable:S numeric scalar
+ Variable:A numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ AssignmentOperator:=
+130 NEXT Q
+ Variable:Q numeric scalar
+138 REM LINE 140 SENSE THE COMPUTER BACK TO READ ANOTHER LINE OF DATA
+ Remark:LINE 140 SENSE THE COMPUTER BACK TO READ ANOTHER LINE OF DATA
+140 GOTO 80
+ LineNumber:80
+145 FOR R=1 TO 15
+ control: Variable:R numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:15"]
+150 LET S[R,6]=S[R,2]+S[R,3]
+ Variable:R numeric scalar
+ NumericConstant:6
+ Variable:S numeric scalar
+ Variable:R numeric scalar
+ NumericConstant:2
+ Variable:S numeric scalar
+ Variable:R numeric scalar
+ NumericConstant:3
+ Variable:S numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ AssignmentOperator:=
+160 LET S[R,7]=S[R,4]+S[R,5]
+ Variable:R numeric scalar
+ NumericConstant:7
+ Variable:S numeric scalar
+ Variable:R numeric scalar
+ NumericConstant:4
+ Variable:S numeric scalar
+ Variable:R numeric scalar
+ NumericConstant:5
+ Variable:S numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ AssignmentOperator:=
+170 LET S[R,8]=S[R,3]+S[R,5]
+ Variable:R numeric scalar
+ NumericConstant:8
+ Variable:S numeric scalar
+ Variable:R numeric scalar
+ NumericConstant:3
+ Variable:S numeric scalar
+ Variable:R numeric scalar
+ NumericConstant:5
+ Variable:S numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ AssignmentOperator:=
+180 LET S[R,9]=S[R,2]+S[R,4]
+ Variable:R numeric scalar
+ NumericConstant:9
+ Variable:S numeric scalar
+ Variable:R numeric scalar
+ NumericConstant:2
+ Variable:S numeric scalar
+ Variable:R numeric scalar
+ NumericConstant:4
+ Variable:S numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ AssignmentOperator:=
+185 LET S[R,10]=S[R,6]+S[R,7]
+ Variable:R numeric scalar
+ NumericConstant:10
+ Variable:S numeric scalar
+ Variable:R numeric scalar
+ NumericConstant:6
+ Variable:S numeric scalar
+ Variable:R numeric scalar
+ NumericConstant:7
+ Variable:S numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ AssignmentOperator:=
+190 NEXT R
+ Variable:R numeric scalar
+198 REM THE PRINTING BEGINS HERE
+ Remark:THE PRINTING BEGINS HERE
+200 PRINT "QUEST MALE  MALE FEMALEFEMALE"
+ TextConstant:"QUEST MALE  MALE FEMALEFEMALE"
+ CarriageControl:NL
+210 PRINT "NUMBER 21+  UNDER 21+  UNDER MALE  FEMALE UNDER  21+";
+ TextConstant:"NUMBER 21+  UNDER 21+  UNDER MALE  FEMALE UNDER  21+"
+ CarriageControl:;
+211 PRINT "  TOTAL"
+ TextConstant:"  TOTAL"
+ CarriageControl:NL
+220 FOR R=1 TO 15
+ control: Variable:R numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:15"]
+230 FOR C=1 TO 10
+ control: Variable:C numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:10"]
+250 PRINT S[R,C];
+ Variable:R numeric scalar
+ Variable:C numeric scalar
+ Variable:S numeric scalar
+ CarriageControl:;
+260 NEXT C
+ Variable:C numeric scalar
+270 PRINT
+ CarriageControl:NL
+280 NEXT R
+ Variable:R numeric scalar
+498 REM  ***A LINE LIKE 500 MAY HELP TO LINEUP THE DATA LINES
+ Remark: ***A LINE LIKE 500 MAY HELP TO LINEUP THE DATA LINES
+499 REM  IN TYPING***
+ Remark: IN TYPING***
+500 DATA 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+501 DATA 4,1,0,1,1,1,0,0,1,1,0,1,0,1,0,1
+ NumericConstant:4
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:1
+502 DATA 4,1,0,0,0,0,1,1,0,1,1,0,0,0,1,1
+ NumericConstant:4
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:1
+503 DATA 3,1,1,1,1,0,0,1,0,1,0,0,1,1,0,0
+ NumericConstant:3
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+504 DATA 5,1,1,1,0,0,0,1,0,0,0,1,1,1,1,0
+ NumericConstant:5
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:0
+505 DATA 2,1,1,1,0,0,1,0,1,0,0,1,1,1,1,0
+ NumericConstant:2
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:0
+506 DATA 5,0,0,1,0,1,0,0,0,1,1,1,0,0,1,1
+ NumericConstant:5
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:1
+507 DATA 5,0,0,0,1,1,1,0,1,0,1,0,1,0,0,1
+ NumericConstant:5
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+508 DATA 2,0,0,1,1,0,0,1,1,0,1,0,1,0,0,1
+ NumericConstant:2
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+509 DATA 4,1,1,1,1,1,1,1,0,0,0,1,0,1,0,0
+ NumericConstant:4
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+510 DATA 2,1,1,0,0,1,0,1,0,0,0,0,1,1,1,1
+ NumericConstant:2
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:0
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+ NumericConstant:1
+900 DATA -1
+ NumericConstant:1
+ UnaryOperatorMinus:- numeric scalar
+999 END
+ 
+

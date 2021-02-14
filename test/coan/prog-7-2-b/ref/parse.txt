@@ -1,0 +1,69 @@
+95 REM * PRINTING A SINGLE DIGIT NUMERIC
+ Remark:* PRINTING A SINGLE DIGIT NUMERIC
+96 REM  USING STRING OUTPUT
+ Remark: USING STRING OUTPUT
+100 DIM A$[8],D$[9]
+ NumericConstant:8
+ Declaration:A$ scalar
+ NumericConstant:9
+ Declaration:D$ scalar
+110 LET D$="123456789"
+ Variable:D$ string scalar
+ TextConstant:"123456789"
+ AssignmentOperator:=
+120 READ A$
+ Variable:A$ string scalar
+130 IF A$="STOP" THEN 210
+ Variable:A$ string scalar
+ TextConstant:"STOP"
+ BinaryOperatorEqual:= boolean scalar
+140 PRINT "A$=";A$
+ TextConstant:"A$="
+ CarriageControl:;
+ Variable:A$ string scalar
+ CarriageControl:NL
+150 FOR I=1 TO LEN(A$) STEP 2
+ control: Variable:I numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["Variable:A$ string scalar", "FunctionLen:LEN numeric scalar"]
+ step:    ["NumericConstant:2"]
+160 PRINT "A$(";D$[I,I];",";D$[I+1,I+1];")=";A$[I,I+1]
+ TextConstant:"A$("
+ CarriageControl:;
+ Variable:I numeric scalar
+ Variable:I numeric scalar
+ Variable:D$ string scalar
+ CarriageControl:;
+ TextConstant:","
+ CarriageControl:;
+ Variable:I numeric scalar
+ NumericConstant:1
+ BinaryOperatorPlus:+ numeric scalar
+ Variable:I numeric scalar
+ NumericConstant:1
+ BinaryOperatorPlus:+ numeric scalar
+ Variable:D$ string scalar
+ CarriageControl:;
+ TextConstant:")="
+ CarriageControl:;
+ Variable:I numeric scalar
+ Variable:I numeric scalar
+ NumericConstant:1
+ BinaryOperatorPlus:+ numeric scalar
+ Variable:A$ string scalar
+ CarriageControl:NL
+170 NEXT I
+ Variable:I numeric scalar
+180 PRINT
+ CarriageControl:NL
+190 GOTO 110
+ LineNumber:110
+195 REM
+ Remark:
+200 DATA "ABCDEF","BASIC","STOP"
+ TextConstant:"ABCDEF"
+ TextConstant:"BASIC"
+ TextConstant:"STOP"
+210 END
+ 
+

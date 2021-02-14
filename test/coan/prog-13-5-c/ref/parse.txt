@@ -1,0 +1,41 @@
+10 LET C=1
+ Variable:C numeric scalar
+ NumericConstant:1
+ AssignmentOperator:=
+20 FOR X=100 TO 100-10+1 STEP -1
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:100"]
+ end:     ["NumericConstant:100", "NumericConstant:10", "BinaryOperatorMinus:- numeric scalar", "NumericConstant:1", "BinaryOperatorPlus:+ numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+30 LET C=C*X/(100-X+1)
+ Variable:C numeric scalar
+ Variable:C numeric scalar
+ Variable:X numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ NumericConstant:100
+ Variable:X numeric scalar
+ BinaryOperatorMinus:- numeric scalar
+ NumericConstant:1
+ BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ AssignmentOperator:=
+40 NEXT X
+ Variable:X numeric scalar
+50 LET P=C*(.1)^10*(.9)^90
+ Variable:P numeric scalar
+ Variable:C numeric scalar
+ NumericConstant:.1
+ NumericConstant:10
+ BinaryOperatorPower:^ numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ NumericConstant:.9
+ NumericConstant:90
+ BinaryOperatorPower:^ numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ AssignmentOperator:=
+60 PRINT P
+ Variable:P numeric scalar
+ CarriageControl:NL
+70 END
+ 
+

@@ -32,7 +32,7 @@
  TextConstant:"GOOD LUCK!!!"
  CarriageControl:NL
 11 L=0
- Variable:L scalar
+ Variable:L numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 13 PRINT\PRINT "SEC","MI + FT","MPH","LB FUEL", "BURN RATE"\PRINT
@@ -49,86 +49,86 @@
  CarriageControl:NL
  CarriageControl:NL
 15 A=120\V=1\M=33000\N=16500\G=1E-3\Z=1.8
- Variable:A scalar
+ Variable:A numeric scalar
  NumericConstant:120
  AssignmentOperator:=
- Variable:V scalar
+ Variable:V numeric scalar
  NumericConstant:1
  AssignmentOperator:=
- Variable:M scalar
+ Variable:M numeric scalar
  NumericConstant:33000
  AssignmentOperator:=
- Variable:N scalar
+ Variable:N numeric scalar
  NumericConstant:16500
  AssignmentOperator:=
- Variable:G scalar
+ Variable:G numeric scalar
  NumericConstant:1E-3
  AssignmentOperator:=
- Variable:Z scalar
+ Variable:Z numeric scalar
  NumericConstant:1.8
  AssignmentOperator:=
 21 PRINT L,INT(A);INT(5280*(A-INT(A))),3600*V,M-N,\INPUT K\T=10
- Variable:L scalar
+ Variable:L numeric scalar
  CarriageControl:,
- Variable:A scalar
- FunctionInt scalar
+ Variable:A numeric scalar
+ FunctionInt:INT numeric scalar
  CarriageControl:;
  NumericConstant:5280
- Variable:A scalar
- Variable:A scalar
- FunctionInt scalar
+ Variable:A numeric scalar
+ Variable:A numeric scalar
+ FunctionInt:INT numeric scalar
  BinaryOperatorMinus:- numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  CarriageControl:,
  NumericConstant:3600
- Variable:V scalar
+ Variable:V numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  CarriageControl:,
- Variable:M scalar
- Variable:N scalar
+ Variable:M numeric scalar
+ Variable:N numeric scalar
  BinaryOperatorMinus:- numeric scalar
  CarriageControl:,
- Variable:K scalar
- Variable:T scalar
+ Variable:K numeric scalar
+ Variable:T numeric scalar
  NumericConstant:10
  AssignmentOperator:=
 31 IF M-N<.001 THEN 41\IF T<.001 THEN 21\S=T\IF M>=N+S*K THEN 35
- Variable:M scalar
- Variable:N scalar
+ Variable:M numeric scalar
+ Variable:N numeric scalar
  BinaryOperatorMinus:- numeric scalar
  NumericConstant:.001
  BinaryOperatorLess:< boolean scalar
- Variable:T scalar
+ Variable:T numeric scalar
  NumericConstant:.001
  BinaryOperatorLess:< boolean scalar
- Variable:S scalar
- Variable:T scalar
+ Variable:S numeric scalar
+ Variable:T numeric scalar
  AssignmentOperator:=
- Variable:M scalar
- Variable:N scalar
- Variable:S scalar
- Variable:K scalar
+ Variable:M numeric scalar
+ Variable:N numeric scalar
+ Variable:S numeric scalar
+ Variable:K numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  BinaryOperatorPlus:+ numeric scalar
  BinaryOperatorGreaterEqual:>= boolean scalar
 32 S=(M-N)/K
- Variable:S scalar
- Variable:M scalar
- Variable:N scalar
+ Variable:S numeric scalar
+ Variable:M numeric scalar
+ Variable:N numeric scalar
  BinaryOperatorMinus:- numeric scalar
- Variable:K scalar
+ Variable:K numeric scalar
  BinaryOperatorDivide:/ numeric scalar
  AssignmentOperator:=
 35 GOSUB 91\IF I<=0 THEN 71\IF V<=0 THEN 38\IF J<0 THEN 81
  LineNumber:91
- Variable:I scalar
+ Variable:I numeric scalar
  NumericConstant:0
  BinaryOperatorLessEqual:<= boolean scalar
- Variable:V scalar
+ Variable:V numeric scalar
  NumericConstant:0
  BinaryOperatorLessEqual:<= boolean scalar
- Variable:J scalar
+ Variable:J numeric scalar
  NumericConstant:0
  BinaryOperatorLess:< boolean scalar
 38 GOSUB 61\GOTO 31
@@ -137,71 +137,71 @@
 41 PRINT "FUEL OUT AT"L"SEC"\S=(-V+SQR(V*V+2*A*G))/G\V=V+G*S\L=L+S
  TextConstant:"FUEL OUT AT"
  CarriageControl:
- Variable:L scalar
+ Variable:L numeric scalar
  CarriageControl:
  TextConstant:"SEC"
  CarriageControl:NL
- Variable:S scalar
- Variable:V scalar
+ Variable:S numeric scalar
+ Variable:V numeric scalar
  UnaryOperatorMinus:- numeric scalar
- Variable:V scalar
- Variable:V scalar
+ Variable:V numeric scalar
+ Variable:V numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  NumericConstant:2
- Variable:A scalar
+ Variable:A numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:G scalar
+ Variable:G numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionSqr scalar
+ FunctionSqr:SQR numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- Variable:G scalar
+ Variable:G numeric scalar
  BinaryOperatorDivide:/ numeric scalar
  AssignmentOperator:=
- Variable:V scalar
- Variable:V scalar
- Variable:G scalar
- Variable:S scalar
+ Variable:V numeric scalar
+ Variable:V numeric scalar
+ Variable:G numeric scalar
+ Variable:S numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
- Variable:L scalar
- Variable:L scalar
- Variable:S scalar
+ Variable:L numeric scalar
+ Variable:L numeric scalar
+ Variable:S numeric scalar
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 51 W=3600*V\PRINT"ON MOON AT"L"SEC - IMPACT VELOCITY" W "MPH"
- Variable:W scalar
+ Variable:W numeric scalar
  NumericConstant:3600
- Variable:V scalar
+ Variable:V numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
  TextConstant:"ON MOON AT"
  CarriageControl:
- Variable:L scalar
+ Variable:L numeric scalar
  CarriageControl:
  TextConstant:"SEC - IMPACT VELOCITY"
  CarriageControl:
- Variable:W scalar
+ Variable:W numeric scalar
  CarriageControl:
  TextConstant:"MPH"
  CarriageControl:NL
 52 IF W>1.2 THEN 53\PRINT "PERFECT LANDING! (LUCKY) "\GOTO 95
- Variable:W scalar
+ Variable:W numeric scalar
  NumericConstant:1.2
  BinaryOperatorGreater:> boolean scalar
  TextConstant:"PERFECT LANDING! (LUCKY) "
  CarriageControl:NL
  LineNumber:95
 53 IF W>10 THEN 56\PRINT "GOOD LANDING (COULD BE BETTER) "\GOTO 95
- Variable:W scalar
+ Variable:W numeric scalar
  NumericConstant:10
  BinaryOperatorGreater:> boolean scalar
  TextConstant:"GOOD LANDING (COULD BE BETTER) "
  CarriageControl:NL
  LineNumber:95
 56 IF W>60 THEN 58 \PRINT "CRAFT DAMAGE YOU'RE STRANDED HERE UNTIL"
- Variable:W scalar
+ Variable:W numeric scalar
  NumericConstant:60
  BinaryOperatorGreater:> boolean scalar
  TextConstant:"CRAFT DAMAGE YOU'RE STRANDED HERE UNTIL"
@@ -216,7 +216,7 @@
 59 PRINT "IN FACT, YOU BLASTED A NEW LUNAR CRATER "W*.2777"FT DEEP"
  TextConstant:"IN FACT, YOU BLASTED A NEW LUNAR CRATER "
  CarriageControl:
- Variable:W scalar
+ Variable:W numeric scalar
  NumericConstant:.2777
  BinaryOperatorMultiply:* numeric scalar
  CarriageControl:
@@ -225,59 +225,59 @@
 60 GOTO 95
  LineNumber:95
 61 L=L+S\T=T-S\M=M-S*K\A=I\V=J\RETURN
- Variable:L scalar
- Variable:L scalar
- Variable:S scalar
+ Variable:L numeric scalar
+ Variable:L numeric scalar
+ Variable:S numeric scalar
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
- Variable:T scalar
- Variable:T scalar
- Variable:S scalar
+ Variable:T numeric scalar
+ Variable:T numeric scalar
+ Variable:S numeric scalar
  BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
- Variable:M scalar
- Variable:M scalar
- Variable:S scalar
- Variable:K scalar
+ Variable:M numeric scalar
+ Variable:M numeric scalar
+ Variable:S numeric scalar
+ Variable:K numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
- Variable:A scalar
- Variable:I scalar
+ Variable:A numeric scalar
+ Variable:I numeric scalar
  AssignmentOperator:=
- Variable:V scalar
- Variable:J scalar
+ Variable:V numeric scalar
+ Variable:J numeric scalar
  AssignmentOperator:=
  
 71 IF S<5E-3 THEN 51\D=V+SQR(V*V+2*A*(G-Z*K/M))\S=2*A/D
- Variable:S scalar
+ Variable:S numeric scalar
  NumericConstant:5E-3
  BinaryOperatorLess:< boolean scalar
- Variable:D scalar
- Variable:V scalar
- Variable:V scalar
- Variable:V scalar
+ Variable:D numeric scalar
+ Variable:V numeric scalar
+ Variable:V numeric scalar
+ Variable:V numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  NumericConstant:2
- Variable:A scalar
+ Variable:A numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:G scalar
- Variable:Z scalar
- Variable:K scalar
+ Variable:G numeric scalar
+ Variable:Z numeric scalar
+ Variable:K numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:M scalar
+ Variable:M numeric scalar
  BinaryOperatorDivide:/ numeric scalar
  BinaryOperatorMinus:- numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionSqr scalar
+ FunctionSqr:SQR numeric scalar
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
- Variable:S scalar
+ Variable:S numeric scalar
  NumericConstant:2
- Variable:A scalar
+ Variable:A numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:D scalar
+ Variable:D numeric scalar
  BinaryOperatorDivide:/ numeric scalar
  AssignmentOperator:=
 73 GOSUB 91\GOSUB 61\GOTO 71
@@ -285,35 +285,35 @@
  LineNumber:61
  LineNumber:71
 81 W=(1-M*G/(Z*K))/2\S=M*V/(Z*K*(W+SQR(W*W+Y/Z)))+.05\GOSUB 91
- Variable:W scalar
+ Variable:W numeric scalar
  NumericConstant:1
- Variable:M scalar
- Variable:G scalar
+ Variable:M numeric scalar
+ Variable:G numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:Z scalar
- Variable:K scalar
+ Variable:Z numeric scalar
+ Variable:K numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  BinaryOperatorDivide:/ numeric scalar
  BinaryOperatorMinus:- numeric scalar
  NumericConstant:2
  BinaryOperatorDivide:/ numeric scalar
  AssignmentOperator:=
- Variable:S scalar
- Variable:M scalar
- Variable:V scalar
+ Variable:S numeric scalar
+ Variable:M numeric scalar
+ Variable:V numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:Z scalar
- Variable:K scalar
+ Variable:Z numeric scalar
+ Variable:K numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:W scalar
- Variable:W scalar
- Variable:W scalar
+ Variable:W numeric scalar
+ Variable:W numeric scalar
+ Variable:W numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:Y scalar
- Variable:Z scalar
+ Variable:Y numeric scalar
+ Variable:Z numeric scalar
  BinaryOperatorDivide:/ numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionSqr scalar
+ FunctionSqr:SQR numeric scalar
  BinaryOperatorPlus:+ numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  BinaryOperatorDivide:/ numeric scalar
@@ -322,53 +322,53 @@
  AssignmentOperator:=
  LineNumber:91
 83 IF I<=0 THEN 71\GOSUB 61\IF J>0 THEN 31\IF Y>0 THEN 81\GOTO 31
- Variable:I scalar
+ Variable:I numeric scalar
  NumericConstant:0
  BinaryOperatorLessEqual:<= boolean scalar
  LineNumber:61
- Variable:J scalar
+ Variable:J numeric scalar
  NumericConstant:0
  BinaryOperatorGreater:> boolean scalar
- Variable:Y scalar
+ Variable:Y numeric scalar
  NumericConstant:0
  BinaryOperatorGreater:> boolean scalar
  LineNumber:31
 91 Q=S*K/M\J=V+G*S+Z*(-Q-Q*Q/2-Q^3/3-Q^4/4-Q^5/5)
- Variable:Q scalar
- Variable:S scalar
- Variable:K scalar
+ Variable:Q numeric scalar
+ Variable:S numeric scalar
+ Variable:K numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:M scalar
+ Variable:M numeric scalar
  BinaryOperatorDivide:/ numeric scalar
  AssignmentOperator:=
- Variable:J scalar
- Variable:V scalar
- Variable:G scalar
- Variable:S scalar
+ Variable:J numeric scalar
+ Variable:V numeric scalar
+ Variable:G numeric scalar
+ Variable:S numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- Variable:Z scalar
- Variable:Q scalar
+ Variable:Z numeric scalar
+ Variable:Q numeric scalar
  UnaryOperatorMinus:- numeric scalar
- Variable:Q scalar
- Variable:Q scalar
+ Variable:Q numeric scalar
+ Variable:Q numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  NumericConstant:2
  BinaryOperatorDivide:/ numeric scalar
  BinaryOperatorMinus:- numeric scalar
- Variable:Q scalar
+ Variable:Q numeric scalar
  NumericConstant:3
  BinaryOperatorPower:^ numeric scalar
  NumericConstant:3
  BinaryOperatorDivide:/ numeric scalar
  BinaryOperatorMinus:- numeric scalar
- Variable:Q scalar
+ Variable:Q numeric scalar
  NumericConstant:4
  BinaryOperatorPower:^ numeric scalar
  NumericConstant:4
  BinaryOperatorDivide:/ numeric scalar
  BinaryOperatorMinus:- numeric scalar
- Variable:Q scalar
+ Variable:Q numeric scalar
  NumericConstant:5
  BinaryOperatorPower:^ numeric scalar
  NumericConstant:5
@@ -378,45 +378,45 @@
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 94 I=A-G*S*S/2-V*S+Z*S*(Q/2+Q^2/6+Q^3/12+Q^4/20+Q^5/30)\RETURN
- Variable:I scalar
- Variable:A scalar
- Variable:G scalar
- Variable:S scalar
+ Variable:I numeric scalar
+ Variable:A numeric scalar
+ Variable:G numeric scalar
+ Variable:S numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:S scalar
+ Variable:S numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  NumericConstant:2
  BinaryOperatorDivide:/ numeric scalar
  BinaryOperatorMinus:- numeric scalar
- Variable:V scalar
- Variable:S scalar
+ Variable:V numeric scalar
+ Variable:S numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  BinaryOperatorMinus:- numeric scalar
- Variable:Z scalar
- Variable:S scalar
+ Variable:Z numeric scalar
+ Variable:S numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:Q scalar
+ Variable:Q numeric scalar
  NumericConstant:2
  BinaryOperatorDivide:/ numeric scalar
- Variable:Q scalar
+ Variable:Q numeric scalar
  NumericConstant:2
  BinaryOperatorPower:^ numeric scalar
  NumericConstant:6
  BinaryOperatorDivide:/ numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- Variable:Q scalar
+ Variable:Q numeric scalar
  NumericConstant:3
  BinaryOperatorPower:^ numeric scalar
  NumericConstant:12
  BinaryOperatorDivide:/ numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- Variable:Q scalar
+ Variable:Q numeric scalar
  NumericConstant:4
  BinaryOperatorPower:^ numeric scalar
  NumericConstant:20
  BinaryOperatorDivide:/ numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- Variable:Q scalar
+ Variable:Q numeric scalar
  NumericConstant:5
  BinaryOperatorPower:^ numeric scalar
  NumericConstant:30

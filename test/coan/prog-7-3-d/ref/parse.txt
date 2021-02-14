@@ -1,0 +1,58 @@
+100 DIM A(100)
+ NumericConstant:100
+ Declaration:A scalar
+110 PRINT "A$";
+ TextConstant:"A$"
+ CarriageControl:;
+120 INPUT A$
+ Variable:A$ string scalar
+130 PRINT
+ CarriageControl:NL
+140 CHANGE A$ TO A
+ Variable:A$ string scalar
+ Variable:A numeric array
+150 FOR I = 1 TO A(0) - 1
+ control: Variable:I numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:0", "Variable:A numeric scalar", "NumericConstant:1", "BinaryOperatorMinus:- numeric scalar"]
+160    FOR J = I + 1 TO A(0)
+ control: Variable:J numeric scalar
+ start:   ["Variable:I numeric scalar", "NumericConstant:1", "BinaryOperatorPlus:+ numeric scalar"]
+ end:     ["NumericConstant:0", "Variable:A numeric scalar"]
+170       IF A(I) <= A(J) THEN 210
+ Variable:I numeric scalar
+ Variable:A numeric scalar
+ Variable:J numeric scalar
+ Variable:A numeric scalar
+ BinaryOperatorLessEqual:<= boolean scalar
+175 REM * EXCHANGE OUT OF ORDER CODES
+ Remark:* EXCHANGE OUT OF ORDER CODES
+180       LET S = A(I)
+ Variable:S numeric scalar
+ Variable:I numeric scalar
+ Variable:A numeric scalar
+ AssignmentOperator:=
+190       LET A(I) = A(J)
+ Variable:I numeric scalar
+ Variable:A numeric scalar
+ Variable:J numeric scalar
+ Variable:A numeric scalar
+ AssignmentOperator:=
+200       LET A(J) = S
+ Variable:J numeric scalar
+ Variable:A numeric scalar
+ Variable:S numeric scalar
+ AssignmentOperator:=
+210    NEXT J
+ Variable:J numeric scalar
+220 NEXT I
+ Variable:I numeric scalar
+230 CHANGE A TO A$
+ Variable:A numeric array
+ Variable:A$ string scalar
+240 PRINT A$
+ Variable:A$ string scalar
+ CarriageControl:NL
+250 END
+ 
+

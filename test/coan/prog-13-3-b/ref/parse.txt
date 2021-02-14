@@ -1,0 +1,36 @@
+10 LET P=1
+ Variable:P numeric scalar
+ NumericConstant:1
+ AssignmentOperator:=
+20 FOR D=365 TO 336 STEP -1
+ control: Variable:D numeric scalar
+ start:   ["NumericConstant:365"]
+ end:     ["NumericConstant:336"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+30 LET P=P*D/365
+ Variable:P numeric scalar
+ Variable:P numeric scalar
+ Variable:D numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ NumericConstant:365
+ BinaryOperatorDivide:/ numeric scalar
+ AssignmentOperator:=
+40 NEXT D
+ Variable:D numeric scalar
+50 LET Q=1-P
+ Variable:Q numeric scalar
+ NumericConstant:1
+ Variable:P numeric scalar
+ BinaryOperatorMinus:- numeric scalar
+ AssignmentOperator:=
+60 PRINT "THE PROBABILITY OF TWO OR MORE"
+ TextConstant:"THE PROBABILITY OF TWO OR MORE"
+ CarriageControl:NL
+70 PRINT "IDENTICAL BIRTHDATES AMONG 30 PEOPLE IS";Q
+ TextConstant:"IDENTICAL BIRTHDATES AMONG 30 PEOPLE IS"
+ CarriageControl:;
+ Variable:Q numeric scalar
+ CarriageControl:NL
+80 END
+ 
+

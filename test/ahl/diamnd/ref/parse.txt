@@ -5,64 +5,64 @@
  TextConstant:"TYPE IN AN ODD NUMBER BETWEEN 5 AND 31."
  CarriageControl:NL
 5 INPUT R\PRINT
- Variable:R scalar
+ Variable:R numeric scalar
  CarriageControl:NL
 6 Q=INT(60/R)
- Variable:Q scalar
+ Variable:Q numeric scalar
  NumericConstant:60
- Variable:R scalar
+ Variable:R numeric scalar
  BinaryOperatorDivide:/ numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  AssignmentOperator:=
 8 FOR L=1 TO Q
- control: Variable:L scalar
+ control: Variable:L numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:Q scalar"]
+ end:     ["Variable:Q numeric scalar"]
 10 X=1\Y=R\Z=2
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:1
  AssignmentOperator:=
- Variable:Y scalar
- Variable:R scalar
+ Variable:Y numeric scalar
+ Variable:R numeric scalar
  AssignmentOperator:=
- Variable:Z scalar
+ Variable:Z numeric scalar
  NumericConstant:2
  AssignmentOperator:=
 20 FOR N = X TO Y STEP Z
- control: Variable:N scalar
- start:   ["Variable:X scalar"]
- end:     ["Variable:Y scalar"]
- step:    ["Variable:Z scalar"]
+ control: Variable:N numeric scalar
+ start:   ["Variable:X numeric scalar"]
+ end:     ["Variable:Y numeric scalar"]
+ step:    ["Variable:Z numeric scalar"]
 25 PRINT TAB((R-N)/2);
- Variable:R scalar
- Variable:N scalar
+ Variable:R numeric scalar
+ Variable:N numeric scalar
  BinaryOperatorMinus:- numeric scalar
  NumericConstant:2
  BinaryOperatorDivide:/ numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
 28 FOR M = 1 TO Q
- control: Variable:M scalar
+ control: Variable:M numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:Q scalar"]
+ end:     ["Variable:Q numeric scalar"]
 29 C = 1
- Variable:C scalar
+ Variable:C numeric scalar
  NumericConstant:1
  AssignmentOperator:=
 30 FOR A = 1 TO N
- control: Variable:A scalar
+ control: Variable:A numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:N scalar"]
+ end:     ["Variable:N numeric scalar"]
 31 IF C=1 THEN 40
- Variable:C scalar
+ Variable:C numeric scalar
  NumericConstant:1
  BinaryOperatorEqual:= boolean scalar
 32 IF C=2 THEN 42
- Variable:C scalar
+ Variable:C numeric scalar
  NumericConstant:2
  BinaryOperatorEqual:= boolean scalar
 33 IF C=3 THEN 44
- Variable:C scalar
+ Variable:C numeric scalar
  NumericConstant:3
  BinaryOperatorEqual:= boolean scalar
 35 PRINT "!";\GOTO 50
@@ -81,56 +81,56 @@
  TextConstant:"C"
  CarriageControl:;
 47 C=C+1
- Variable:C scalar
- Variable:C scalar
+ Variable:C numeric scalar
+ Variable:C numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 50 NEXT A
- Variable:A scalar
+ Variable:A numeric scalar
 53 IF M=Q THEN 60
- Variable:M scalar
- Variable:Q scalar
+ Variable:M numeric scalar
+ Variable:Q numeric scalar
  BinaryOperatorEqual:= boolean scalar
 55 PRINT TAB(R*M+(R-N)/2);
- Variable:R scalar
- Variable:M scalar
+ Variable:R numeric scalar
+ Variable:M numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:R scalar
- Variable:N scalar
+ Variable:R numeric scalar
+ Variable:N numeric scalar
  BinaryOperatorMinus:- numeric scalar
  NumericConstant:2
  BinaryOperatorDivide:/ numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionTab scalar
+ FunctionTab:TAB string scalar
  CarriageControl:;
 56 NEXT M
- Variable:M scalar
+ Variable:M numeric scalar
 60 PRINT
  CarriageControl:NL
 70 NEXT N
- Variable:N scalar
+ Variable:N numeric scalar
 83 IF X<>1 THEN 95
- Variable:X scalar
+ Variable:X numeric scalar
  NumericConstant:1
  BinaryOperatorNotEqual:<> boolean scalar
 85 X=R-2\Y=1\Z=-2
- Variable:X scalar
- Variable:R scalar
+ Variable:X numeric scalar
+ Variable:R numeric scalar
  NumericConstant:2
  BinaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
- Variable:Y scalar
+ Variable:Y numeric scalar
  NumericConstant:1
  AssignmentOperator:=
- Variable:Z scalar
+ Variable:Z numeric scalar
  NumericConstant:2
  UnaryOperatorMinus:- numeric scalar
  AssignmentOperator:=
 90 GOTO 20
  LineNumber:20
 95 NEXT L
- Variable:L scalar
+ Variable:L numeric scalar
 99 END
  
 

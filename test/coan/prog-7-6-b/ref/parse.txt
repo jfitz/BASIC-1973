@@ -1,0 +1,77 @@
+94 REM * CALCULATE AVERAGES FROM A FILE
+ Remark:* CALCULATE AVERAGES FROM A FILE
+100 FILES "score.txt"
+ TextConstant:"score.txt"
+110 PRINT "NAME","TEST1 TEST2 TEST3 TEST4 TEST5 TEST6 AVERAGE"
+ TextConstant:"NAME"
+ CarriageControl:,
+ TextConstant:"TEST1 TEST2 TEST3 TEST4 TEST5 TEST6 AVERAGE"
+ CarriageControl:NL
+120 LET T1=0
+ Variable:T1 numeric scalar
+ NumericConstant:0
+ AssignmentOperator:=
+130 READ #1, N$
+ NumericConstant:1
+ UnaryOperatorHash:# filehandle scalar
+ Variable:N$ string scalar
+140 LET T2 = 0
+ Variable:T2 numeric scalar
+ NumericConstant:0
+ AssignmentOperator:=
+150 PRINT N$; TAB(15);
+ Variable:N$ string scalar
+ CarriageControl:;
+ NumericConstant:15
+ FunctionTab:TAB string scalar
+ CarriageControl:;
+160 FOR I = 1 TO 6
+ control: Variable:I numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:6"]
+170    READ #1, X
+ NumericConstant:1
+ UnaryOperatorHash:# filehandle scalar
+ Variable:X numeric scalar
+180    LET T2 = T2 + X
+ Variable:T2 numeric scalar
+ Variable:T2 numeric scalar
+ Variable:X numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ AssignmentOperator:=
+190    PRINT X; " ";
+ Variable:X numeric scalar
+ CarriageControl:;
+ TextConstant:" "
+ CarriageControl:;
+200 NEXT I
+ Variable:I numeric scalar
+210 PRINT T2/6
+ Variable:T2 numeric scalar
+ NumericConstant:6
+ BinaryOperatorDivide:/ numeric scalar
+ CarriageControl:NL
+220 LET T1 = T1 + T2
+ Variable:T1 numeric scalar
+ Variable:T1 numeric scalar
+ Variable:T2 numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ AssignmentOperator:=
+230    IF MORE(#1) THEN 130
+ Variable:M numeric scalar
+ NumericConstant:1
+ UnaryOperatorHash:# filehandle scalar
+ Variable:E numeric scalar
+ BinaryOperatorOr:OR boolean scalar
+240 PRINT
+ CarriageControl:NL
+250 PRINT "CLASS AVERAGE = ";T1/30
+ TextConstant:"CLASS AVERAGE = "
+ CarriageControl:;
+ Variable:T1 numeric scalar
+ NumericConstant:30
+ BinaryOperatorDivide:/ numeric scalar
+ CarriageControl:NL
+260 END
+ 
+

@@ -2,83 +2,83 @@
  UserFunctionName:FNA
  VariableName:Z
  NumericConstant:30
- Variable:Z scalar
+ Variable:Z numeric scalar
  UnaryOperatorMinus:- numeric scalar
- Variable:Z scalar
+ Variable:Z numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  NumericConstant:100
  BinaryOperatorDivide:/ numeric scalar
- FunctionExp scalar
+ FunctionExp:EXP numeric scalar
  BinaryOperatorMultiply:* numeric scalar
 100 PRINT
  CarriageControl:NL
 110 FOR X=-30 TO 30 STEP 1.5
- control: Variable:X scalar
+ control: Variable:X numeric scalar
  start:   ["NumericConstant:30", "UnaryOperatorMinus:- numeric scalar"]
  end:     ["NumericConstant:30"]
  step:    ["NumericConstant:1.5"]
 120 L=0
- Variable:L scalar
+ Variable:L numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 130 Y1=5*INT(SQR(900-X*X)/5)
- Variable:Y1 scalar
+ Variable:Y1 numeric scalar
  NumericConstant:5
  NumericConstant:900
- Variable:X scalar
- Variable:X scalar
+ Variable:X numeric scalar
+ Variable:X numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  BinaryOperatorMinus:- numeric scalar
- FunctionSqr scalar
+ FunctionSqr:SQR numeric scalar
  NumericConstant:5
  BinaryOperatorDivide:/ numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  AssignmentOperator:=
 140 FOR Y=Y1 TO -Y1 STEP -5
- control: Variable:Y scalar
- start:   ["Variable:Y1 scalar"]
- end:     ["Variable:Y1 scalar", "UnaryOperatorMinus:- numeric scalar"]
+ control: Variable:Y numeric scalar
+ start:   ["Variable:Y1 numeric scalar"]
+ end:     ["Variable:Y1 numeric scalar", "UnaryOperatorMinus:- numeric scalar"]
  step:    ["NumericConstant:5", "UnaryOperatorMinus:- numeric scalar"]
 150 Z=INT(25+FNA(SQR(X*X+Y*Y))-.7*Y)
- Variable:Z scalar
+ Variable:Z numeric scalar
  NumericConstant:25
- Variable:X scalar
- Variable:X scalar
+ Variable:X numeric scalar
+ Variable:X numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- Variable:Y scalar
- Variable:Y scalar
+ Variable:Y numeric scalar
+ Variable:Y numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionSqr scalar
- UserFunction scalar
+ FunctionSqr:SQR numeric scalar
+ UserFunction:FNA numeric scalar
  BinaryOperatorPlus:+ numeric scalar
  NumericConstant:.7
- Variable:Y scalar
+ Variable:Y numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  BinaryOperatorMinus:- numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  AssignmentOperator:=
 160 IF Z<=L THEN 190
- Variable:Z scalar
- Variable:L scalar
+ Variable:Z numeric scalar
+ Variable:L numeric scalar
  BinaryOperatorLessEqual:<= boolean scalar
 170 L=Z
- Variable:L scalar
- Variable:Z scalar
+ Variable:L numeric scalar
+ Variable:Z numeric scalar
  AssignmentOperator:=
 180 PRINT TAB(Z)"*";
- Variable:Z scalar
- FunctionTab scalar
+ Variable:Z numeric scalar
+ FunctionTab:TAB string scalar
  CarriageControl:
  TextConstant:"*"
  CarriageControl:;
 190 NEXT Y
- Variable:Y scalar
+ Variable:Y numeric scalar
 200 PRINT
  CarriageControl:NL
 210 NEXT X
- Variable:X scalar
+ Variable:X numeric scalar
 300 END
  
 

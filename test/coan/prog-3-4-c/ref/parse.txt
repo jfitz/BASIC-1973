@@ -1,0 +1,81 @@
+10 PRINT "THIS PROGRAM IS INTENDED TO DEMONSTRATE GOSUB'S BEHAVIOUR"
+ TextConstant:"THIS PROGRAM IS INTENDED TO DEMONSTRATE GOSUB'S BEHAVIOUR"
+ CarriageControl:NL
+20 GOSUB 700
+ LineNumber:700
+30 FOR X=1 TO 3
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["NumericConstant:3"]
+40 GOSUB 500
+ LineNumber:500
+45 GOSUB 700
+ LineNumber:700
+50 NEXT X
+ Variable:X numeric scalar
+60 GOSUB 400
+ LineNumber:400
+70 PRINT 70
+ NumericConstant:70
+ CarriageControl:NL
+75 GOSUB 700
+ LineNumber:700
+80 GOSUB 400
+ LineNumber:400
+90 PRINT 90
+ NumericConstant:90
+ CarriageControl:NL
+95 GOSUB 700
+ LineNumber:700
+100 LET X=4
+ Variable:X numeric scalar
+ NumericConstant:4
+ AssignmentOperator:=
+110 GOSUB 500
+ LineNumber:500
+115 GOSUB 700
+ LineNumber:700
+120 GOSUB 400
+ LineNumber:400
+130 PRINT 130
+ NumericConstant:130
+ CarriageControl:NL
+135 GOSUB 700
+ LineNumber:700
+140 GOSUB 600
+ LineNumber:600
+150 PRINT 150
+ NumericConstant:150
+ CarriageControl:NL
+155 GOSUB 700
+ LineNumber:700
+399 GOTO 999
+ LineNumber:999
+400 PRINT "HERE WE ARE AT LINE";
+ TextConstant:"HERE WE ARE AT LINE"
+ CarriageControl:;
+410 RETURN
+ 
+500 PRINT "THIS IS GOSUB 500";X;"TIMES"
+ TextConstant:"THIS IS GOSUB 500"
+ CarriageControl:;
+ Variable:X numeric scalar
+ CarriageControl:;
+ TextConstant:"TIMES"
+ CarriageControl:NL
+510 RETURN
+ 
+600 PRINT "CALL GOSUB 400 FROM GOSUB 600"
+ TextConstant:"CALL GOSUB 400 FROM GOSUB 600"
+ CarriageControl:NL
+610 GOSUB 400
+ LineNumber:400
+620 RETURN
+ 
+700 PRINT
+ CarriageControl:NL
+710 RETURN
+ 
+999 END
+ 
+

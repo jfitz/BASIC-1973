@@ -1,0 +1,78 @@
+10 PRINT "TAKE ROOTS OF COMPLEX NUMBERS IN POLAR FORM"
+ TextConstant:"TAKE ROOTS OF COMPLEX NUMBERS IN POLAR FORM"
+ CarriageControl:NL
+20 READ R,G,N
+ Variable:R numeric scalar
+ Variable:G numeric scalar
+ Variable:N numeric scalar
+30 PRINT "THE";N;",";N;"TH ROOTS OF (";R;",";G;") ARE:"
+ TextConstant:"THE"
+ CarriageControl:;
+ Variable:N numeric scalar
+ CarriageControl:;
+ TextConstant:","
+ CarriageControl:;
+ Variable:N numeric scalar
+ CarriageControl:;
+ TextConstant:"TH ROOTS OF ("
+ CarriageControl:;
+ Variable:R numeric scalar
+ CarriageControl:;
+ TextConstant:","
+ CarriageControl:;
+ Variable:G numeric scalar
+ CarriageControl:;
+ TextConstant:") ARE:"
+ CarriageControl:NL
+40 FOR X=1 TO N
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:1"]
+ end:     ["Variable:N numeric scalar"]
+50 PRINT "(";R^(1/N);",";G/N;")"
+ TextConstant:"("
+ CarriageControl:;
+ Variable:R numeric scalar
+ NumericConstant:1
+ Variable:N numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorPower:^ numeric scalar
+ CarriageControl:;
+ TextConstant:","
+ CarriageControl:;
+ Variable:G numeric scalar
+ Variable:N numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ CarriageControl:;
+ TextConstant:")"
+ CarriageControl:NL
+60 LET G=G+360
+ Variable:G numeric scalar
+ Variable:G numeric scalar
+ NumericConstant:360
+ BinaryOperatorPlus:+ numeric scalar
+ AssignmentOperator:=
+70 NEXT X
+ Variable:X numeric scalar
+80 PRINT
+ CarriageControl:NL
+90 GOTO 20
+ LineNumber:20
+100 DATA 1,0,4
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:4
+110 DATA 1,0,3
+ NumericConstant:1
+ NumericConstant:0
+ NumericConstant:3
+120 DATA 1,45,2
+ NumericConstant:1
+ NumericConstant:45
+ NumericConstant:2
+130 DATA 3,90,3
+ NumericConstant:3
+ NumericConstant:90
+ NumericConstant:3
+140 END
+ 
+

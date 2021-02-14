@@ -10,20 +10,20 @@
 140 REM *** A IS LIMIT ON NUMBER, M IS NUMBER OF GUESSES
  Remark:*** A IS LIMIT ON NUMBER, M IS NUMBER OF GUESSES
 150 LET A=100
- Variable:A scalar
+ Variable:A numeric scalar
  NumericConstant:100
  AssignmentOperator:=
 160 LET M=7
- Variable:M scalar
+ Variable:M numeric scalar
  NumericConstant:7
  AssignmentOperator:=
 170 PRINT "DO YOU WANT INSTRUCTIONS (1=YES 0=NO)";
  TextConstant:"DO YOU WANT INSTRUCTIONS (1=YES 0=NO)"
  CarriageControl:;
 180 INPUT Z
- Variable:Z scalar
+ Variable:Z numeric scalar
 190 IF Z=0 THEN 280
- Variable:Z scalar
+ Variable:Z numeric scalar
  NumericConstant:0
  BinaryOperatorEqual:= boolean scalar
 200 REM **** INSTRUCTIONS ON HOW TO PLAY
@@ -31,7 +31,7 @@
 210 PRINT "I AM THINKING OF A WHOLE NUMBER FROM 1 TO";A
  TextConstant:"I AM THINKING OF A WHOLE NUMBER FROM 1 TO"
  CarriageControl:;
- Variable:A scalar
+ Variable:A numeric scalar
  CarriageControl:NL
 220 PRINT "TRY TO GUESS MY NUMBER. AFTER YOU GUESS, I"
  TextConstant:"TRY TO GUESS MY NUMBER. AFTER YOU GUESS, I"
@@ -48,7 +48,7 @@
 260 PRINT "MEANS REALLY CLOSE! YOU GET";M;"GUESSES."
  TextConstant:"MEANS REALLY CLOSE! YOU GET"
  CarriageControl:;
- Variable:M scalar
+ Variable:M numeric scalar
  CarriageControl:;
  TextConstant:"GUESSES."
  CarriageControl:NL
@@ -59,12 +59,12 @@
 290 PRINT
  CarriageControl:NL
 300 LET X=INT(A*RND(0))+1
- Variable:X scalar
- Variable:A scalar
+ Variable:X numeric scalar
+ Variable:A numeric scalar
  NumericConstant:0
- FunctionRnd scalar
+ FunctionRnd:RND numeric scalar
  BinaryOperatorMultiply:* numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
@@ -74,49 +74,49 @@
 320 REM *** GUESSING BEGINS, HUMAN GETS M GUESSES
  Remark:*** GUESSING BEGINS, HUMAN GETS M GUESSES
 330 FOR K=1 TO M
- control: Variable:K scalar
+ control: Variable:K numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:M scalar"]
+ end:     ["Variable:M numeric scalar"]
 340 PRINT
  CarriageControl:NL
 350 PRINT "YOUR GUESS";
  TextConstant:"YOUR GUESS"
  CarriageControl:;
 360 INPUT G
- Variable:G scalar
+ Variable:G numeric scalar
 370 IF G=X THEN 600
- Variable:G scalar
- Variable:X scalar
+ Variable:G numeric scalar
+ Variable:X numeric scalar
  BinaryOperatorEqual:= boolean scalar
 380 LET D=ABS(X-G)
- Variable:D scalar
- Variable:X scalar
- Variable:G scalar
+ Variable:D numeric scalar
+ Variable:X numeric scalar
+ Variable:G numeric scalar
  BinaryOperatorMinus:- numeric scalar
- FunctionAbs scalar
+ FunctionAbs:ABS numeric scalar
  AssignmentOperator:=
 390 IF D >= 64 THEN 510
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:64
  BinaryOperatorGreaterEqual:>= boolean scalar
 400 IF D >= 32 THEN 500
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:32
  BinaryOperatorGreaterEqual:>= boolean scalar
 410 IF D >= 16 THEN 490
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:16
  BinaryOperatorGreaterEqual:>= boolean scalar
 420 IF D >= 8 THEN 480
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:8
  BinaryOperatorGreaterEqual:>= boolean scalar
 430 IF D >= 4 THEN 470
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:4
  BinaryOperatorGreaterEqual:>= boolean scalar
 440 IF D >= 2 THEN 460
- Variable:D scalar
+ Variable:D numeric scalar
  NumericConstant:2
  BinaryOperatorGreaterEqual:>= boolean scalar
 450 PRINT "*";
@@ -143,7 +143,7 @@
 520 PRINT
  CarriageControl:NL
 530 NEXT K
- Variable:K scalar
+ Variable:K numeric scalar
 540 REM *** DID NOT GUESS NUMBER IN M GUESSES
  Remark:*** DID NOT GUESS NUMBER IN M GUESSES
 550 PRINT
@@ -151,32 +151,32 @@
 560 PRINT "SORRY, THAT'S";M;"GUESSES, NUMBER WAS";X
  TextConstant:"SORRY, THAT'S"
  CarriageControl:;
- Variable:M scalar
+ Variable:M numeric scalar
  CarriageControl:;
  TextConstant:"GUESSES, NUMBER WAS"
  CarriageControl:;
- Variable:X scalar
+ Variable:X numeric scalar
  CarriageControl:NL
 580 GOTO 280
  LineNumber:280
 590 REM *** WE HAVE A WINNER
  Remark:*** WE HAVE A WINNER
 600 FOR N=1 TO 50
- control: Variable:N scalar
+ control: Variable:N numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:50"]
 610 PRINT "*";
  TextConstant:"*"
  CarriageControl:;
 620 NEXT N
- Variable:N scalar
+ Variable:N numeric scalar
 630 PRINT "!!!"
  TextConstant:"!!!"
  CarriageControl:NL
 640 PRINT "YOU GOT IT IN ";K;"GUESSES!! LET'S PLAY AGAIN..."
  TextConstant:"YOU GOT IT IN "
  CarriageControl:;
- Variable:K scalar
+ Variable:K numeric scalar
  CarriageControl:;
  TextConstant:"GUESSES!! LET'S PLAY AGAIN..."
  CarriageControl:NL

@@ -1,0 +1,81 @@
+5 PRINT "SYNTHETIC DIVISION:"
+ TextConstant:"SYNTHETIC DIVISION:"
+ CarriageControl:NL
+8 REM  READ THE DIVISOR
+ Remark: READ THE DIVISOR
+10 READ R
+ Variable:R numeric scalar
+18 REM  READ PRINT PRINT ORIGINAL POLYNOMIAL IN LINES 20 THRU 50
+ Remark: READ PRINT PRINT ORIGINAL POLYNOMIAL IN LINES 20 THRU 50
+20 FOR N=4 TO 1 STEP -1
+ control: Variable:N numeric scalar
+ start:   ["NumericConstant:4"]
+ end:     ["NumericConstant:1"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+30 READ P[N]
+ Variable:N numeric scalar
+ Variable:P numeric scalar
+40 PRINT P[N];
+ Variable:N numeric scalar
+ Variable:P numeric scalar
+ CarriageControl:;
+50 NEXT N
+ Variable:N numeric scalar
+60 PRINT "DIVIDED BY X - ";R;"YIELDS"
+ TextConstant:"DIVIDED BY X - "
+ CarriageControl:;
+ Variable:R numeric scalar
+ CarriageControl:;
+ TextConstant:"YIELDS"
+ CarriageControl:NL
+68 REM FIRST QUOTIENT COEFFICIENT EQUALS FIRST
+ Remark:FIRST QUOTIENT COEFFICIENT EQUALS FIRST
+69 REM COEFFICIENT OF ORIGINAL POLYNOMIAL
+ Remark:COEFFICIENT OF ORIGINAL POLYNOMIAL
+70 LET Q[4]=P[4]
+ NumericConstant:4
+ Variable:Q numeric scalar
+ NumericConstant:4
+ Variable:P numeric scalar
+ AssignmentOperator:=
+80 PRINT Q[4];
+ NumericConstant:4
+ Variable:Q numeric scalar
+ CarriageControl:;
+90 FOR X=3 TO 1 STEP -1
+ control: Variable:X numeric scalar
+ start:   ["NumericConstant:3"]
+ end:     ["NumericConstant:1"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+98 REM  "MULTIPLY AND ADD"
+ Remark: "MULTIPLY AND ADD"
+100 LET Q[X]=P[X]+Q[X+1]*R
+ Variable:X numeric scalar
+ Variable:Q numeric scalar
+ Variable:X numeric scalar
+ Variable:P numeric scalar
+ Variable:X numeric scalar
+ NumericConstant:1
+ BinaryOperatorPlus:+ numeric scalar
+ Variable:Q numeric scalar
+ Variable:R numeric scalar
+ BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorPlus:+ numeric scalar
+ AssignmentOperator:=
+110 PRINT Q[X];
+ Variable:X numeric scalar
+ Variable:Q numeric scalar
+ CarriageControl:;
+120 NEXT X
+ Variable:X numeric scalar
+130 DATA 3,2,-3,-10,3
+ NumericConstant:3
+ NumericConstant:2
+ NumericConstant:3
+ UnaryOperatorMinus:- numeric scalar
+ NumericConstant:10
+ UnaryOperatorMinus:- numeric scalar
+ NumericConstant:3
+140 END
+ 
+

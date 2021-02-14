@@ -14,17 +14,17 @@
  TextConstant:"AS TO HOW CLOSE YOU'RE GETTING TO MY LETTER."
  CarriageControl:NL
 310 L=65+INT(RND(0)*26)
- Variable:L scalar
+ Variable:L numeric scalar
  NumericConstant:65
  NumericConstant:0
- FunctionRnd scalar
+ FunctionRnd:RND numeric scalar
  NumericConstant:26
  BinaryOperatorMultiply:* numeric scalar
- FunctionInt scalar
+ FunctionInt:INT numeric scalar
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 320 G=0
- Variable:G scalar
+ Variable:G numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 340 PRINT\PRINT "OK, I HAVE A LETTER. START GUESSING."
@@ -36,21 +36,21 @@
  TextConstant:"WHAT IS YOUR GUESS?"
  CarriageControl:;
 425 G = G+1
- Variable:G scalar
- Variable:G scalar
+ Variable:G numeric scalar
+ Variable:G numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
 430 INPUT $A\PRINT
- Variable:A scalar
+ Variable:A numeric scalar
  CarriageControl:NL
 440 IF A=L THEN 500
- Variable:A scalar
- Variable:L scalar
+ Variable:A numeric scalar
+ Variable:L numeric scalar
  BinaryOperatorEqual:= boolean scalar
 450 IF A>L THEN 480
- Variable:A scalar
- Variable:L scalar
+ Variable:A numeric scalar
+ Variable:L numeric scalar
  BinaryOperatorGreater:> boolean scalar
 460 PRINT "TOO LOW. TRY A HIGHER LETTER. "\GOTO 410
  TextConstant:"TOO LOW. TRY A HIGHER LETTER. "
@@ -64,12 +64,12 @@
  CarriageControl:NL
  TextConstant:"YOU GOT IT IN"
  CarriageControl:
- Variable:G scalar
+ Variable:G numeric scalar
  CarriageControl:
  TextConstant:"GUESSES!!"
  CarriageControl:NL
 504 IF G<=5 THEN 508
- Variable:G scalar
+ Variable:G numeric scalar
  NumericConstant:5
  BinaryOperatorLessEqual:<= boolean scalar
 506 PRINT "BUT IT SHOULDN'T TAKE MORE THAN 5 GUESSES!"\GOTO 515
@@ -80,13 +80,13 @@
  TextConstant:"GOOD JOB!!!!"
  CarriageControl:NL
 510 FOR N = 1 TO 15\PRINT CHR$(7);\NEXT N
- control: Variable:N scalar
+ control: Variable:N numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:15"]
  NumericConstant:7
- FunctionChr scalar
+ FunctionChr:CHR$ string scalar
  CarriageControl:;
- Variable:N scalar
+ Variable:N numeric scalar
 515 PRINT
  CarriageControl:NL
 520 PRINT "LET'S PLAY AGAIN"

@@ -1,0 +1,75 @@
+10 READ N,D
+ Variable:N numeric scalar
+ Variable:D numeric scalar
+20 FOR P=N TO 2 STEP -1
+ control: Variable:P numeric scalar
+ start:   ["Variable:N numeric scalar"]
+ end:     ["NumericConstant:2"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+30 IF N/P=INT(N/P) THEN 70
+ Variable:N numeric scalar
+ Variable:P numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ Variable:N numeric scalar
+ Variable:P numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ FunctionInt:INT numeric scalar
+ BinaryOperatorEqual:= boolean scalar
+40 NEXT P
+ Variable:P numeric scalar
+50 PRINT N"/"D
+ Variable:N numeric scalar
+ CarriageControl:
+ TextConstant:"/"
+ CarriageControl:
+ Variable:D numeric scalar
+ CarriageControl:NL
+60 GOTO 10
+ LineNumber:10
+70 IF D/P=INT(D/P) THEN 90
+ Variable:D numeric scalar
+ Variable:P numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ Variable:D numeric scalar
+ Variable:P numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ FunctionInt:INT numeric scalar
+ BinaryOperatorEqual:= boolean scalar
+80 GOTO 40
+ LineNumber:40
+90 PRINT N"/"D"="N/P"/"D/P
+ Variable:N numeric scalar
+ CarriageControl:
+ TextConstant:"/"
+ CarriageControl:
+ Variable:D numeric scalar
+ CarriageControl:
+ TextConstant:"="
+ CarriageControl:
+ Variable:N numeric scalar
+ Variable:P numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ CarriageControl:
+ TextConstant:"/"
+ CarriageControl:
+ Variable:D numeric scalar
+ Variable:P numeric scalar
+ BinaryOperatorDivide:/ numeric scalar
+ CarriageControl:NL
+100 GOTO 10
+ LineNumber:10
+110 DATA 5,6
+ NumericConstant:5
+ NumericConstant:6
+120 DATA 82,48
+ NumericConstant:82
+ NumericConstant:48
+130 DATA 3,4
+ NumericConstant:3
+ NumericConstant:4
+140 DATA 36,48
+ NumericConstant:36
+ NumericConstant:48
+150 END
+ 
+
