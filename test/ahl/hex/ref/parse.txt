@@ -7,7 +7,7 @@
  Variable:C$ string scalar
  Variable:C$ string scalar
  IntegerConstant:1
- FunctionLeft:LEFT string scalar
+ FunctionLeft:LEFT($,%) string scalar
  TextConstant:"Y"
  BinaryOperatorNotEqual:<> boolean scalar
 20 &: &, "THIS PROGRAM PLAYS THE GAME OF HEXAPAWN.":& "HEXAPAWN IS PLAYED WITH CHESS PAWNS ON A 3 BY 3 BOARD. THE PAWNS ARE": & "MOVED AS IN CHESS - ONE SPACE FORWARD TO AN EMPTY SPACE OR ONE SPACE"
@@ -24,7 +24,7 @@
  CarriageControl:NL
  CarriageControl:NL
  IntegerConstant:9
- FunctionChr:CHR$ string scalar
+ FunctionChr:CHR$(%) string scalar
  CarriageControl:;
  TextConstant:"O THE BOARD. YOUR PAWNS ARE 'O', THE COMPUTER'S PAWNS ARE '*'"
  CarriageControl:NL
@@ -59,30 +59,30 @@
  Variable:X$ string scalar
  Variable:X% integer scalar
  IntegerConstant:1
- FunctionLeft:LEFT string scalar
+ FunctionLeft:LEFT($,%,%) string scalar
  Variable:Y$ string scalar
  BinaryOperatorPlus:+ string scalar
  Variable:X$ string scalar
  Variable:X% integer scalar
  Variable:Y$ string scalar
- FunctionLen:LEN numeric scalar
+ FunctionLen:LEN($) numeric scalar
  BinaryOperatorPlus:+ numeric scalar
- FunctionRight:RIGHT string scalar
+ FunctionRight:RIGHT($,_) string scalar
  BinaryOperatorPlus:+ string scalar
 105 DEF FNN$(X%):X$=NUM$(X%):FNN$=MID(X$,2%*LEN(X$)-2%):FNEND
  Variable:X$ string scalar
  Variable:X% integer scalar
- FunctionStr:NUM$ string scalar
+ FunctionStr:NUM$(%) string scalar
  AssignmentOperator:=
  UserFunction:FNN$ string scalar
  Variable:X$ string scalar
  IntegerConstant:2
  Variable:X$ string scalar
- FunctionLen:LEN numeric scalar
+ FunctionLen:LEN($) numeric scalar
  BinaryOperatorMultiply:* numeric scalar
  IntegerConstant:2
  BinaryOperatorMinus:- numeric scalar
- FunctionMid:MID string scalar
+ FunctionMid:MID($,_) string scalar
  AssignmentOperator:=
  
 110 DIM P$(50%):RANDOMIZE:Q%=0%:PRINT "SINCE I'M A GOOD SPORT, YOU'LL ALWAYS GO FIRST"
@@ -132,16 +132,16 @@
  CarriageControl:NL
  Variable:P$ string scalar
  IntegerConstant:3
- FunctionLeft:LEFT string scalar
+ FunctionLeft:LEFT($,%) string scalar
  CarriageControl:NL
  Variable:P$ string scalar
  IntegerConstant:4
  IntegerConstant:3
- FunctionMid:MID string scalar
+ FunctionMid:MID($,%,%) string scalar
  CarriageControl:NL
  Variable:P$ string scalar
  IntegerConstant:7
- FunctionRight:RIGHT string scalar
+ FunctionRight:RIGHT($,%) string scalar
  CarriageControl:NL
  CarriageControl:NL
 210 INPUT "WHAT IS YOUR MOVE"; A%,B%: IF INSTR(1%,M$,FNN$(A%)+FNN$(B%))=0% THEN PRINT "ILLEGAL MOVE.": GOTO 210
@@ -150,11 +150,11 @@
  IntegerConstant:1
  Variable:M$ string scalar
  Variable:A% integer scalar
- UserFunction:FNN$ string scalar
+ UserFunction:FNN$(%) string scalar
  Variable:B% integer scalar
- UserFunction:FNN$ string scalar
+ UserFunction:FNN$(%) string scalar
  BinaryOperatorPlus:+ string scalar
- FunctionInstr:INSTR numeric scalar
+ FunctionInstr:INSTR(%,$,$) numeric scalar
  IntegerConstant:0
  BinaryOperatorEqual:= boolean scalar
  TextConstant:"ILLEGAL MOVE."
@@ -165,21 +165,21 @@
  Variable:P$ string scalar
  Variable:A% integer scalar
  TextConstant:"-"
- UserFunction:FNC$ string scalar
+ UserFunction:FNC$($,%,$) string scalar
  Variable:B% integer scalar
  TextConstant:"O"
- UserFunction:FNC$ string scalar
+ UserFunction:FNC$($,%,$) string scalar
  AssignmentOperator:=
  IntegerConstant:1
  Variable:P$ string scalar
  TextConstant:"*"
- FunctionInstr:INSTR numeric scalar
+ FunctionInstr:INSTR(%,$,$) numeric scalar
  IntegerConstant:0
  BinaryOperatorEqual:= boolean scalar
  IntegerConstant:1
  Variable:P$ string scalar
  TextConstant:"O"
- FunctionInstr:INSTR numeric scalar
+ FunctionInstr:INSTR(%,$,$) numeric scalar
  IntegerConstant:4
  BinaryOperatorEqual:= boolean scalar
  BinaryOperatorOr:OR boolean scalar
@@ -202,21 +202,21 @@
  AssignmentOperator:=
  Variable:C$ string scalar
  IntegerConstant:1
- FunctionLeft:LEFT string scalar
- FunctionVal:VAL numeric scalar
+ FunctionLeft:LEFT($,%) string scalar
+ FunctionVal:VAL($) numeric scalar
  Variable:P% integer scalar
  BinaryOperatorEqual:= boolean scalar
  Variable:C$ string scalar
  IntegerConstant:2
  IntegerConstant:9
- FunctionMid:MID string scalar
+ FunctionMid:MID($,%,%) string scalar
  Variable:P$ string scalar
  BinaryOperatorEqual:= boolean scalar
  BinaryOperatorAnd:AND boolean scalar
  Variable:M$ string scalar
  Variable:C$ string scalar
  IntegerConstant:11
- FunctionRight:RIGHT string scalar
+ FunctionRight:RIGHT($,%) string scalar
  AssignmentOperator:=
  LineNumber:400
 320 NEXT C%: Q$="*": D%=1%: GOSUB 2000: C%=Q%: IF M$="" THEN PRINT "I CAN'T MOVE, YOU WIN.": GOTO 500
@@ -248,12 +248,12 @@
  Variable:K$ string scalar
  Variable:M$ string scalar
  IntegerConstant:2
- FunctionLeft:LEFT string scalar
+ FunctionLeft:LEFT($,%) string scalar
  AssignmentOperator:=
  Variable:M$ string scalar
  Variable:M$ string scalar
  IntegerConstant:3
- FunctionRight:RIGHT string scalar
+ FunctionRight:RIGHT($,%) string scalar
  AssignmentOperator:=
  FunctionRnd:RND numeric scalar
  NumericConstant:.33333333
@@ -269,35 +269,35 @@
  Variable:A% integer scalar
  Variable:K$ string scalar
  IntegerConstant:1
- FunctionLeft:LEFT string scalar
- FunctionVal:VAL numeric scalar
+ FunctionLeft:LEFT($,%) string scalar
+ FunctionVal:VAL($) numeric scalar
  AssignmentOperator:=
  Variable:B% integer scalar
  Variable:K$ string scalar
  IntegerConstant:2
- FunctionRight:RIGHT string scalar
- FunctionVal:VAL numeric scalar
+ FunctionRight:RIGHT($,%) string scalar
+ FunctionVal:VAL($) numeric scalar
  AssignmentOperator:=
  Variable:P$ string scalar
  Variable:P$ string scalar
  Variable:A% integer scalar
  TextConstant:"-"
- UserFunction:FNC$ string scalar
+ UserFunction:FNC$($,%,$) string scalar
  Variable:B% integer scalar
  TextConstant:"*"
- UserFunction:FNC$ string scalar
+ UserFunction:FNC$($,%,$) string scalar
  AssignmentOperator:=
 430 IF INSTR(1%,P$,"O")=0% OR INSTR(7%,P$,"*") THEN PRINT "I WIN!": GOTO 510
  IntegerConstant:1
  Variable:P$ string scalar
  TextConstant:"O"
- FunctionInstr:INSTR numeric scalar
+ FunctionInstr:INSTR(%,$,$) numeric scalar
  IntegerConstant:0
  BinaryOperatorEqual:= boolean scalar
  IntegerConstant:7
  Variable:P$ string scalar
  TextConstant:"*"
- FunctionInstr:INSTR numeric scalar
+ FunctionInstr:INSTR(%,$,$) numeric scalar
  BinaryOperatorOr:OR boolean scalar
  TextConstant:"I WIN!"
  CarriageControl:NL
@@ -323,7 +323,7 @@
  Variable:K% integer scalar
  Variable:P$ string scalar
  Variable:K$ string scalar
- FunctionInstr:INSTR numeric scalar
+ FunctionInstr:INSTR(%,$,$) numeric scalar
  AssignmentOperator:=
  Variable:K% integer scalar
  Variable:P$ string scalar
@@ -332,13 +332,13 @@
  Variable:I% integer scalar
  IntegerConstant:1
  BinaryOperatorMinus:- integer scalar
- FunctionLeft:LEFT string scalar
+ FunctionLeft:LEFT($,%) string scalar
  Variable:K% integer scalar
  Variable:P$ string scalar
  Variable:I% integer scalar
  IntegerConstant:2
  BinaryOperatorPlus:+ integer scalar
- FunctionRight:RIGHT string scalar
+ FunctionRight:RIGHT($,%) string scalar
  BinaryOperatorPlus:+ string scalar
  AssignmentOperator:=
  Variable:I% integer scalar
@@ -355,16 +355,16 @@
  CarriageControl:NL
  Variable:P$ string scalar
  IntegerConstant:3
- FunctionLeft:LEFT string scalar
+ FunctionLeft:LEFT($,%) string scalar
  CarriageControl:NL
  Variable:P$ string scalar
  IntegerConstant:4
  IntegerConstant:3
- FunctionMid:MID string scalar
+ FunctionMid:MID($,%,%) string scalar
  CarriageControl:NL
  Variable:P$ string scalar
  IntegerConstant:7
- FunctionRight:RIGHT string scalar
+ FunctionRight:RIGHT($,%) string scalar
  CarriageControl:NL
  CarriageControl:NL
  TextConstant:"I HAVE WON"
@@ -400,7 +400,7 @@
  Variable:P$ string scalar
  Variable:J% integer scalar
  IntegerConstant:1
- FunctionMid:MID string scalar
+ FunctionMid:MID($,%,%) string scalar
  Variable:Q$ string scalar
  BinaryOperatorNotEqual:<> boolean scalar
 2015 T%=J%+D%*3%: IF T%<1% OR T%>9% THEN 2025
@@ -422,16 +422,16 @@
  Variable:P$ string scalar
  Variable:T% integer scalar
  IntegerConstant:1
- FunctionMid:MID string scalar
+ FunctionMid:MID($,%,%) string scalar
  TextConstant:"-"
  BinaryOperatorEqual:= boolean scalar
  Variable:M$ string scalar
  Variable:M$ string scalar
  Variable:J% integer scalar
- UserFunction:FNN$ string scalar
+ UserFunction:FNN$(%) string scalar
  BinaryOperatorPlus:+ string scalar
  Variable:T% integer scalar
- UserFunction:FNN$ string scalar
+ UserFunction:FNN$(%) string scalar
  BinaryOperatorPlus:+ string scalar
  AssignmentOperator:=
 2025 T%=J%+D%*2%: IF T%<1% OR T%>9% OR (D%=1% AND (J%=1% OR J%=4% OR J%=7%)) OR (D%=1% AND (J%=3% OR J%=6% OR J%-9%)) THEN 2035
@@ -489,17 +489,17 @@
  Variable:P$ string scalar
  Variable:T% integer scalar
  IntegerConstant:1
- FunctionMid:MID string scalar
- FunctionInstr:INSTR numeric scalar
+ FunctionMid:MID($,%,%) string scalar
+ FunctionInstr:INSTR(%,$,$) numeric scalar
  IntegerConstant:0
  BinaryOperatorEqual:= boolean scalar
  Variable:M$ string scalar
  Variable:M$ string scalar
  Variable:J% integer scalar
- UserFunction:FNN$ string scalar
+ UserFunction:FNN$(%) string scalar
  BinaryOperatorPlus:+ string scalar
  Variable:T% integer scalar
- UserFunction:FNN$ string scalar
+ UserFunction:FNN$(%) string scalar
  BinaryOperatorPlus:+ string scalar
  AssignmentOperator:=
 2035 T%=J%+D%*4%: IF T%<1% OR T%>9% OR J%=3% OR J%=7% THEN 2050
@@ -533,17 +533,17 @@
  Variable:P$ string scalar
  Variable:T% integer scalar
  IntegerConstant:1
- FunctionMid:MID string scalar
- FunctionInstr:INSTR numeric scalar
+ FunctionMid:MID($,%,%) string scalar
+ FunctionInstr:INSTR(%,$,$) numeric scalar
  IntegerConstant:0
  BinaryOperatorEqual:= boolean scalar
  Variable:M$ string scalar
  Variable:M$ string scalar
  Variable:J% integer scalar
- UserFunction:FNN$ string scalar
+ UserFunction:FNN$(%) string scalar
  BinaryOperatorPlus:+ string scalar
  Variable:T% integer scalar
- UserFunction:FNN$ string scalar
+ UserFunction:FNN$(%) string scalar
  BinaryOperatorPlus:+ string scalar
  AssignmentOperator:=
 2050 NEXT J%: IF D%=1% AND M$<>"" THEN Q%=Q%+1%: P$(Q%)=FNN$(P%)+P$+M$
@@ -563,7 +563,7 @@
  Variable:Q% integer scalar
  Variable:P$ string scalar
  Variable:P% integer scalar
- UserFunction:FNN$ string scalar
+ UserFunction:FNN$(%) string scalar
  Variable:P$ string scalar
  BinaryOperatorPlus:+ string scalar
  Variable:M$ string scalar

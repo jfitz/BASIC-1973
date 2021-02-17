@@ -2,13 +2,13 @@
  Remark:LIFE CLARK BAKER 3/72 C.O.G.
 2 PRINT CHR$(31%);CHR$(29%);CHR$(31%);"ENTER YOUR PATTERN:"
  IntegerConstant:31
- FunctionChr:CHR$ string scalar
+ FunctionChr:CHR$(%) string scalar
  CarriageControl:;
  IntegerConstant:29
- FunctionChr:CHR$ string scalar
+ FunctionChr:CHR$(%) string scalar
  CarriageControl:;
  IntegerConstant:31
- FunctionChr:CHR$ string scalar
+ FunctionChr:CHR$(%) string scalar
  CarriageControl:;
  TextConstant:"ENTER YOUR PATTERN:"
  CarriageControl:NL
@@ -48,10 +48,10 @@
  Variable:B$ string scalar
  Variable:C% integer scalar
  Variable:B$ string scalar
- FunctionLen:LEN numeric scalar
+ FunctionLen:LEN($) numeric scalar
  IntegerConstant:2
  BinaryOperatorMinus:- numeric scalar
- FunctionLeft:LEFT string scalar
+ FunctionLeft:LEFT($,_) string scalar
  AssignmentOperator:=
 60 C%=C%+1
  Variable:C% integer scalar
@@ -72,13 +72,13 @@
 100 IF LEN(B$(X%))>=L% THEN L%=LEN(B$(X%))
  Variable:X% integer scalar
  Variable:B$ string scalar
- FunctionLen:LEN numeric scalar
+ FunctionLen:LEN($) numeric scalar
  Variable:L% integer scalar
  BinaryOperatorGreaterEqual:>= boolean scalar
  Variable:L% integer scalar
  Variable:X% integer scalar
  Variable:B$ string scalar
- FunctionLen:LEN numeric scalar
+ FunctionLen:LEN($) numeric scalar
  AssignmentOperator:=
 110 NEXT X%
  Variable:X% integer scalar
@@ -105,13 +105,13 @@
 150 FOR Y%=1 TO LEN(B$(X%))
  control: Variable:Y% integer scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:X% integer scalar", "Variable:B$ string scalar", "FunctionLen:LEN numeric scalar"]
+ end:     ["Variable:X% integer scalar", "Variable:B$ string scalar", "FunctionLen:LEN($) numeric scalar"]
 160 IF MID(B$(X%),Y%,1)<>" " THEN A%(X1%+X%, Y1%+Y%)=1:P%=P%+1
  Variable:X% integer scalar
  Variable:B$ string scalar
  Variable:Y% integer scalar
  NumericConstant:1
- FunctionMid:MID string scalar
+ FunctionMid:MID($,%,_) string scalar
  TextConstant:" "
  BinaryOperatorNotEqual:<> boolean scalar
  Variable:X1% integer scalar
@@ -134,10 +134,10 @@
  Variable:X% integer scalar
 200 PRINT CHR$(29%);CHR$(30%);
  IntegerConstant:29
- FunctionChr:CHR$ string scalar
+ FunctionChr:CHR$(%) string scalar
  CarriageControl:;
  IntegerConstant:30
- FunctionChr:CHR$ string scalar
+ FunctionChr:CHR$(%) string scalar
  CarriageControl:;
 210 PRINT "GENERATION:";G%,"POPULATION:";P%;CHR$(30%);:IF I9% THEN PRINT ,"INVALID!";
  TextConstant:"GENERATION:"
@@ -149,7 +149,7 @@
  Variable:P% integer scalar
  CarriageControl:;
  IntegerConstant:30
- FunctionChr:CHR$ string scalar
+ FunctionChr:CHR$(%) string scalar
  CarriageControl:;
  Variable:I9% integer scalar
  CarriageControl:,
@@ -177,13 +177,13 @@
  AssignmentOperator:=
 225 PRINT CHR$(13%);CHR$(10%);CHR$(30%); FOR X%=1 TO X1%
  IntegerConstant:13
- FunctionChr:CHR$ string scalar
+ FunctionChr:CHR$(%) string scalar
  CarriageControl:;
  IntegerConstant:10
- FunctionChr:CHR$ string scalar
+ FunctionChr:CHR$(%) string scalar
  CarriageControl:;
  IntegerConstant:30
- FunctionChr:CHR$ string scalar
+ FunctionChr:CHR$(%) string scalar
  CarriageControl:;
  control: Variable:X% integer scalar
  start:   ["NumericConstant:1"]
@@ -230,7 +230,7 @@
  BinaryOperatorNotEqual:<> boolean scalar
 261 PRINT TAB(Y%);"*";
  Variable:Y% integer scalar
- FunctionTab:TAB string scalar
+ FunctionTab:TAB(%) string scalar
  CarriageControl:;
  TextConstant:"*"
  CarriageControl:;
@@ -266,20 +266,20 @@
  Variable:Y% integer scalar
 280 PRINT CHR$(30%);
  IntegerConstant:30
- FunctionChr:CHR$ string scalar
+ FunctionChr:CHR$(%) string scalar
  CarriageControl:;
 290 NEXT X%
  Variable:X% integer scalar
 295 PRINT CHR$(30%) FOR X%=X2%+1 TO 24%
  IntegerConstant:30
- FunctionChr:CHR$ string scalar
+ FunctionChr:CHR$(%) string scalar
  CarriageControl:NL
  control: Variable:X% integer scalar
  start:   ["Variable:X2% integer scalar", "NumericConstant:1", "BinaryOperatorPlus:+ numeric scalar"]
  end:     ["IntegerConstant:24"]
 298 PRINT CHR$(29%);
  IntegerConstant:29
- FunctionChr:CHR$ string scalar
+ FunctionChr:CHR$(%) string scalar
  CarriageControl:;
 299 X1%=X3%:X2%=X4%:Y1%=Y3%:Y2%=Y4%
  Variable:X1% integer scalar

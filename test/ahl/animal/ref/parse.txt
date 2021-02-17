@@ -30,7 +30,7 @@
  IntegerConstant:0
  Variable:A$ string scalar
  Variable:N% integer scalar
- FunctionStr:NUM$ string scalar
+ FunctionStr:NUM$(%) string scalar
  AssignmentOperator:=
  LineNumber:1300
 700 ON ERROR GOTO 1050:F$="$"+F$:RESUME 550
@@ -57,13 +57,13 @@
  LineNumber:1350
  Variable:Z9$ string scalar
  IntegerConstant:1
- FunctionLeft:LEFT string scalar
+ FunctionLeft:LEFT($,%) string scalar
  TextConstant:"Y"
  BinaryOperatorEqual:= boolean scalar
  LineNumber:1300
  Variable:Z9$ string scalar
  IntegerConstant:1
- FunctionLeft:LEFT string scalar
+ FunctionLeft:LEFT($,%) string scalar
  TextConstant:"N"
  BinaryOperatorEqual:= boolean scalar
 1310 IF Z9$="SAVE" THEN OPEN "ANIMAL.GME" FOR OUTPUT AS FILE 1%:PRINT #1%,A$(I%) FOR I%=0% TO VAL(A$(0%)):PRINT #1,CHR$(26%):CLOSE 1%:GOTO 1300
@@ -79,11 +79,11 @@
  CarriageControl:NL
  control: Variable:I% integer scalar
  start:   ["IntegerConstant:0"]
- end:     ["IntegerConstant:0", "Variable:A$ string scalar", "FunctionVal:VAL numeric scalar"]
+ end:     ["IntegerConstant:0", "Variable:A$ string scalar", "FunctionVal:VAL($) numeric scalar"]
  NumericConstant:1
  UnaryOperatorHash:# filehandle scalar
  IntegerConstant:26
- FunctionChr:CHR$ string scalar
+ FunctionChr:CHR$(%) string scalar
  CarriageControl:NL
  IntegerConstant:1
  LineNumber:1300
@@ -96,13 +96,13 @@
  Variable:I% integer scalar
  Variable:A$ string scalar
  IntegerConstant:3
- FunctionRight:RIGHT string scalar
+ FunctionRight:RIGHT($,%) string scalar
  CarriageControl:,
  IntegerConstant:1
  Variable:I% integer scalar
  Variable:A$ string scalar
  TextConstant:"\A"
- FunctionInstr:INSTR numeric scalar
+ FunctionInstr:INSTR(%,$,$) numeric scalar
  control: Variable:I% integer scalar
  start:   ["IntegerConstant:1"]
  end:     ["IntegerConstant:200"]
@@ -116,19 +116,19 @@
  Variable:K% integer scalar
  Variable:K% integer scalar
  Variable:A$ string scalar
- UserFunction:FNA% integer scalar
+ UserFunction:FNA%($) integer scalar
  AssignmentOperator:=
  LineNumber:3000
  Variable:K% integer scalar
  Variable:A$ string scalar
- FunctionLen:LEN numeric scalar
+ FunctionLen:LEN($) numeric scalar
  IntegerConstant:0
  BinaryOperatorEqual:= boolean scalar
  LineNumber:1400
  Variable:K% integer scalar
  Variable:A$ string scalar
  IntegerConstant:2
- FunctionLeft:LEFT string scalar
+ FunctionLeft:LEFT($,%) string scalar
  TextConstant:"\Q"
  BinaryOperatorEqual:= boolean scalar
  TextConstant:"IS IT A "
@@ -136,13 +136,13 @@
  Variable:K% integer scalar
  Variable:A$ string scalar
  IntegerConstant:3
- FunctionRight:RIGHT string scalar
+ FunctionRight:RIGHT($,%) string scalar
  CarriageControl:;
  Variable:Z7$ string scalar
  Variable:Z7$ string scalar
  Variable:Z7$ string scalar
  IntegerConstant:1
- FunctionLeft:LEFT string scalar
+ FunctionLeft:LEFT($,%) string scalar
  AssignmentOperator:=
 1450 IF Z7$="Y" THEN PRINT "WHY NOT TRY ANOTHER ANIMAL":GOTO 1300
  Variable:Z7$ string scalar
@@ -163,7 +163,7 @@
  Variable:K% integer scalar
  Variable:A$ string scalar
  IntegerConstant:3
- FunctionRight:RIGHT string scalar
+ FunctionRight:RIGHT($,%) string scalar
  CarriageControl:NL
  Variable:Z8$ string scalar
 2100 PRINT "FOR A "Z9$" THE ANSWER WOULD BE";:INPUT Z7$:Z7$=LEFT(Z7$,1%):IF Z7$="Y" THEN Z6$="N" ELSE IF Z7$="N" THEN Z6$="Y" ELSE PRINT "PLEASE ANSWER 'YES' OR 'NO'":GOTO 2100
@@ -177,7 +177,7 @@
  Variable:Z7$ string scalar
  Variable:Z7$ string scalar
  IntegerConstant:1
- FunctionLeft:LEFT string scalar
+ FunctionLeft:LEFT($,%) string scalar
  AssignmentOperator:=
  Variable:Z7$ string scalar
  TextConstant:"Y"
@@ -198,14 +198,14 @@
  Variable:Z1% integer scalar
  IntegerConstant:0
  Variable:A$ string scalar
- FunctionVal:VAL numeric scalar
+ FunctionVal:VAL($) numeric scalar
  AssignmentOperator:=
  IntegerConstant:0
  Variable:A$ string scalar
  Variable:Z1% integer scalar
  IntegerConstant:2
  BinaryOperatorPlus:+ integer scalar
- FunctionStr:NUM$ string scalar
+ FunctionStr:NUM$(%) string scalar
  AssignmentOperator:=
  Variable:Z1% integer scalar
  Variable:A$ string scalar
@@ -232,14 +232,14 @@
  Variable:Z1% integer scalar
  IntegerConstant:1
  BinaryOperatorPlus:+ integer scalar
- FunctionStr:NUM$ string scalar
+ FunctionStr:NUM$(%) string scalar
  BinaryOperatorPlus:+ string scalar
  TextConstant:"\"
  BinaryOperatorPlus:+ string scalar
  Variable:Z6$ string scalar
  BinaryOperatorPlus:+ string scalar
  Variable:Z1% integer scalar
- FunctionStr:NUM$ string scalar
+ FunctionStr:NUM$(%) string scalar
  BinaryOperatorPlus:+ string scalar
  TextConstant:"\"
  BinaryOperatorPlus:+ string scalar
@@ -252,16 +252,16 @@
  IntegerConstant:3
  Variable:Q$ string scalar
  TextConstant:"\"
- FunctionInstr:INSTR numeric scalar
+ FunctionInstr:INSTR(%,$,$) numeric scalar
  IntegerConstant:3
  BinaryOperatorMinus:- numeric scalar
- FunctionMid:MID string scalar
+ FunctionMid:MID($,%,_) string scalar
  CarriageControl:;
  Variable:Z9$ string scalar
  Variable:Z9$ string scalar
  Variable:Z9$ string scalar
  IntegerConstant:1
- FunctionLeft:LEFT string scalar
+ FunctionLeft:LEFT($,%) string scalar
  AssignmentOperator:=
  Variable:Z9$ string scalar
  TextConstant:"N"
@@ -275,7 +275,7 @@
  TextConstant:"\"
  Variable:Z9$ string scalar
  BinaryOperatorPlus:+ string scalar
- FunctionInstr:INSTR numeric scalar
+ FunctionInstr:INSTR(%,$,$) numeric scalar
  IntegerConstant:2
  BinaryOperatorPlus:+ numeric scalar
  AssignmentOperator:=
@@ -283,7 +283,7 @@
  Variable:Z1% integer scalar
  Variable:Q$ string scalar
  TextConstant:"\"
- FunctionInstr:INSTR numeric scalar
+ FunctionInstr:INSTR(%,$,$) numeric scalar
  AssignmentOperator:=
  UserFunction:FNA% integer scalar
  Variable:Q$ string scalar
@@ -291,8 +291,8 @@
  Variable:Z2% integer scalar
  Variable:Z1% integer scalar
  BinaryOperatorMinus:- integer scalar
- FunctionMid:MID string scalar
- FunctionVal:VAL numeric scalar
+ FunctionMid:MID($,%,%) string scalar
+ FunctionVal:VAL($) numeric scalar
  AssignmentOperator:=
  
 9999 END 
