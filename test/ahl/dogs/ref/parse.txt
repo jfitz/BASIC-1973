@@ -39,7 +39,7 @@
 40 IF S9=6 THEN 70\FOR I=1 TO 10\GET 8,25,I\V9=V9+V\NEXT I
  Variable:S9 numeric scalar
  NumericConstant:6
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
  control: Variable:I numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
@@ -49,16 +49,16 @@
  Variable:V9 numeric scalar
  Variable:V9 numeric scalar
  Variable:V numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
  Variable:I numeric scalar
 45 IF V9<25 THEN 60\IF V9>200 THEN 55
  Variable:V9 numeric scalar
  NumericConstant:25
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
  Variable:V9 numeric scalar
  NumericConstant:200
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 50 GOTO 100
  LineNumber:100
 55 UNSAVE 8\UNSAVE 9
@@ -80,16 +80,16 @@
 70 FOR I=1 TO 26-V9\RANDOMIZE\H=INT(10*RND(X))+1\GET 8,25,H
  control: Variable:I numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["NumericConstant:26", "Variable:V9 numeric scalar", "BinaryOperatorMinus:- numeric scalar"]
+ end:     ["NumericConstant:26", "Variable:V9 numeric scalar", "BinaryOperatorMinus:-(_,_) numeric scalar"]
  
  Variable:H numeric scalar
  NumericConstant:10
  Variable:X numeric scalar
  FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
  NumericConstant:8
  NumericConstant:25
@@ -98,7 +98,7 @@
  Variable:V numeric scalar
  Variable:V numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
  NumericConstant:8
  NumericConstant:25
@@ -108,7 +108,7 @@
  end:     ["NumericConstant:10"]
  Variable:H numeric scalar
  Variable:T numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 80 GET 9,30,T\X=X+1\PUT 9,30,T
  NumericConstant:9
  NumericConstant:30
@@ -116,7 +116,7 @@
  Variable:X numeric scalar
  Variable:X numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
  NumericConstant:9
  NumericConstant:30
@@ -209,7 +209,7 @@
 215 IF I$="YES" THEN 120\GOTO 220
  Variable:I$ string scalar
  TextConstant:"YES"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
  LineNumber:220
 220 GOSUB 225\GOTO 255
  LineNumber:225
@@ -261,7 +261,7 @@
  Variable:G numeric scalar
  Variable:Q numeric scalar
  NumericConstant:20
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 265 PRINT "NO MORE THAN. 19 ALLOWED"\PRINT\GOTO 255
  TextConstant:"NO MORE THAN. 19 ALLOWED"
  CarriageControl:NL
@@ -290,11 +290,11 @@
  Variable:Z numeric scalar
  Variable:P numeric scalar
  NumericConstant:2
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
  Variable:Z numeric scalar
  Variable:P numeric scalar
  NumericConstant:500
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 295 PRINT\NEXT Z\GOTO 325
  CarriageControl:NL
  Variable:Z numeric scalar
@@ -333,7 +333,7 @@
  Variable:B numeric scalar
  Variable:I numeric scalar
  Variable:P numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 335 NEXT I
  Variable:I numeric scalar
@@ -349,7 +349,7 @@
  Variable:I numeric scalar
  Variable:J numeric scalar
  Variable:I3 numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 355 A(I3)=A(I3)+P(I)
  Variable:I3 numeric scalar
  Variable:A numeric scalar
@@ -357,7 +357,7 @@
  Variable:A numeric scalar
  Variable:I numeric scalar
  Variable:P numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 360 NEXT I3
  Variable:I3 numeric scalar
@@ -371,7 +371,7 @@
  Variable:I numeric scalar
  Variable:A numeric scalar
  NumericConstant:2
- BinaryOperatorGreaterEqual:>= boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
 380 B(I)=INT(B(11)*RND(X))+1
  Variable:I numeric scalar
  Variable:B numeric scalar
@@ -379,10 +379,10 @@
  Variable:B numeric scalar
  Variable:X numeric scalar
  FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 385 GOTO 395
  LineNumber:395
@@ -393,22 +393,22 @@
  Variable:B numeric scalar
  Variable:I numeric scalar
  Variable:A numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  Variable:I numeric scalar
  Variable:A numeric scalar
  NumericConstant:.17
  Variable:I numeric scalar
  Variable:A numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorMinus:- numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 395 IF B(I)<=2 THEN 405
  Variable:I numeric scalar
  Variable:B numeric scalar
  NumericConstant:2
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 400 GOTO 410
  LineNumber:410
 405 B(I)=2
@@ -457,9 +457,9 @@
  Variable:I numeric scalar
  Variable:V numeric scalar
  Variable:X numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:0
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 450 RANDOMIZE
  
 455 Y(I)=INT(V/ABS((V+X))+INT(V*RND(X))*1)
@@ -468,24 +468,24 @@
  Variable:V numeric scalar
  Variable:V numeric scalar
  Variable:X numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  FunctionAbs:ABS(_) numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  Variable:V numeric scalar
  Variable:X numeric scalar
  FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  NumericConstant:1
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 460 IF Y(I)<7 THEN 470
  Variable:I numeric scalar
  Variable:Y numeric scalar
  NumericConstant:7
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 465 GOTO 475
  LineNumber:475
 470 Y(I)=INT(7*RND(X))+1
@@ -494,10 +494,10 @@
  NumericConstant:7
  Variable:X numeric scalar
  FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 475 NEXT I
  Variable:I numeric scalar
@@ -551,10 +551,10 @@
  Variable:Y numeric scalar
  Variable:X numeric scalar
  FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 525 S(R)=S(R)+C(R)
  Variable:R numeric scalar
@@ -563,7 +563,7 @@
  Variable:S numeric scalar
  Variable:R numeric scalar
  Variable:C numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 530 NEXT R
  Variable:R numeric scalar
@@ -585,12 +585,12 @@
  Variable:P numeric scalar
  Variable:R numeric scalar
  Variable:S numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 555 IF S(R)>20 THEN 590
  Variable:R numeric scalar
  Variable:S numeric scalar
  NumericConstant:20
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 560 NEXT R
  Variable:R numeric scalar
 565 PRINT
@@ -602,7 +602,7 @@
 580 PRINT TAB(R*2);R;CHR$(141)
  Variable:R numeric scalar
  NumericConstant:2
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionTab:TAB(_) string scalar
  CarriageControl:;
  Variable:R numeric scalar
@@ -616,7 +616,7 @@
  NumericConstant:1
  Variable:W numeric scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 595 W(1)=R
  NumericConstant:1
  Variable:W numeric scalar
@@ -637,7 +637,7 @@
  Variable:D numeric scalar
  Variable:D numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 620 GOTO 560
  LineNumber:560
@@ -645,7 +645,7 @@
  NumericConstant:1
  Variable:W numeric scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 630 PRINT TAB(2);"XXXXXXXFINISHXXXXXXXX"
  NumericConstant:2
  FunctionTab:TAB(_) string scalar
@@ -673,7 +673,7 @@
 650 IF Y=7 THEN 665
  Variable:Y numeric scalar
  NumericConstant:7
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 655 NEXT Y
  Variable:Y numeric scalar
 660 GOTO 680
@@ -703,7 +703,7 @@
 695 IF D<=1 THEN 735
  Variable:D numeric scalar
  NumericConstant:1
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 700 G=W(1)
  Variable:G numeric scalar
  NumericConstant:1
@@ -719,10 +719,10 @@
  Variable:S numeric scalar
  Variable:I2 numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:W numeric scalar
  Variable:S numeric scalar
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 715 NEXT I2
  Variable:I2 numeric scalar
 720 GOTO 735
@@ -731,7 +731,7 @@
  Variable:G numeric scalar
  Variable:I2 numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:W numeric scalar
  AssignmentOperator:=
 730 GOTO 715
@@ -761,7 +761,7 @@
  Variable:G numeric scalar
  Variable:E numeric scalar
  Variable:J numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 770 M5(E)=M5(E)-P(E)
  Variable:E numeric scalar
  Variable:M5 numeric scalar
@@ -769,14 +769,14 @@
  Variable:M5 numeric scalar
  Variable:E numeric scalar
  Variable:P numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 775 N7=N7+P(E)
  Variable:N7 numeric scalar
  Variable:N7 numeric scalar
  Variable:E numeric scalar
  Variable:P numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 780 NEXT E
  Variable:E numeric scalar
@@ -786,7 +786,7 @@
  Variable:G numeric scalar
  Variable:B numeric scalar
  NumericConstant:2
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 795 GOTO 805
  LineNumber:805
 800 B(G)=1
@@ -801,13 +801,13 @@
  Variable:B numeric scalar
  Variable:E numeric scalar
  Variable:P numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  Variable:E numeric scalar
  Variable:P numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:100
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 810 PRINT "CONGRATULATION "N$(E)" YOU HAVE WON $";M
@@ -826,13 +826,13 @@
  Variable:E numeric scalar
  Variable:M5 numeric scalar
  Variable:M numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 820 N7=N7-M
  Variable:N7 numeric scalar
  Variable:N7 numeric scalar
  Variable:M numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 825 PRINT
  CarriageControl:NL
@@ -846,7 +846,7 @@
 845 IF L$="YES" THEN 870
  Variable:L$ string scalar
  TextConstant:"YES"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 850 PRINT\PRINT "PERSON", "AMOUNT "\FOR I=1 TO Q
  CarriageControl:NL
  TextConstant:"PERSON"
@@ -946,16 +946,16 @@
  Variable:I numeric scalar
  Variable:P numeric scalar
  NumericConstant:2
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
  Variable:I numeric scalar
  Variable:P numeric scalar
  NumericConstant:500
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
  Variable:I numeric scalar
 940 IF C$="NO" THEN 325
  Variable:C$ string scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 945 GOTO 1025
  LineNumber:1025
 950 PRINT "YOU MUST BET AT LEAST $2.00 "N$(I)"YOUR BET";
@@ -994,12 +994,12 @@
 980 IF I=G THEN 995
  Variable:I numeric scalar
  Variable:G numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 985 X=X+1\PUT 9,30,I
  Variable:X numeric scalar
  Variable:X numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
  NumericConstant:9
  NumericConstant:30
@@ -1010,7 +1010,7 @@
  Variable:V numeric scalar
  Variable:V numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
  NumericConstant:8
  NumericConstant:25
@@ -1044,12 +1044,12 @@
  Variable:Q4 numeric scalar
  Variable:Q numeric scalar
  Variable:J6 numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 1030 IF Q4>=20 THEN 1035\Q=Q4\Q4=0\GO TO 1040
  Variable:Q4 numeric scalar
  NumericConstant:20
- BinaryOperatorGreaterEqual:>= boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
  Variable:Q numeric scalar
  Variable:Q4 numeric scalar
  AssignmentOperator:=
@@ -1088,12 +1088,12 @@
  Variable:Z numeric scalar
  Variable:P numeric scalar
  NumericConstant:2
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 1060 IF P(Z)>500 THEN 1075
  Variable:Z numeric scalar
  Variable:P numeric scalar
  NumericConstant:500
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 1065 PRINT\NEXT Z\GOTO 325
  CarriageControl:NL
  Variable:Z numeric scalar

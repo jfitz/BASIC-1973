@@ -94,11 +94,11 @@
 23 IF W$="NO" THEN 30
  Variable:W$ string scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 24 IF W$="YES" THEN 28
  Variable:W$ string scalar
  TextConstant:"YES"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 25 PRINT "INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'";
  TextConstant:"INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'"
  CarriageControl:;
@@ -120,12 +120,12 @@
 115 IF M1=0 THEN 232
  Variable:M1 numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 120 LET T1 = INT(M1/10)
  Variable:T1 numeric scalar
  Variable:M1 numeric scalar
  NumericConstant:10
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 130 LET U1 = M1 - 10*T1
@@ -133,17 +133,17 @@
  Variable:M1 numeric scalar
  NumericConstant:10
  Variable:T1 numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 140 IF U1 = 1 THEN 200
  Variable:U1 numeric scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 150 IF U1 = T1 THEN 200
  Variable:U1 numeric scalar
  Variable:T1 numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 160 PRINT "PLEASE READ THE DIRECTIONS AGAIN."
  TextConstant:"PLEASE READ THE DIRECTIONS AGAIN."
  CarriageControl:NL
@@ -164,7 +164,7 @@
 215 IF M = 158 THEN 3400
  Variable:M numeric scalar
  NumericConstant:158
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 220 PRINT "WHAT IS YOUR MOVE";
  TextConstant:"WHAT IS YOUR MOVE"
  CarriageControl:;
@@ -173,7 +173,7 @@
 231 IF M1 <> 0 THEN 239
  Variable:M1 numeric scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 232 PRINT
  CarriageControl:NL
 233 PRINT "IT LOOKS LIKE I HAVE WON BY FORFEIT."
@@ -186,12 +186,12 @@
 239 IF M1 <= M THEN 3200
  Variable:M1 numeric scalar
  Variable:M numeric scalar
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 240 LET T1 = INT(M1/10)
  Variable:T1 numeric scalar
  Variable:M1 numeric scalar
  NumericConstant:10
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 250 LET U1 = M1 - 10*T1
@@ -199,47 +199,47 @@
  Variable:M1 numeric scalar
  NumericConstant:10
  Variable:T1 numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 260 LET P = U1 - U
  Variable:P numeric scalar
  Variable:U1 numeric scalar
  Variable:U numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 270 IF P <> 0 THEN 300
  Variable:P numeric scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 280 LET L = T1 - T
  Variable:L numeric scalar
  Variable:T1 numeric scalar
  Variable:T numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 290 IF L <= 0 THEN 3200
  Variable:L numeric scalar
  NumericConstant:0
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 295 GO TO 200
  LineNumber:200
 300 IF T1 - T <> P THEN 320
  Variable:T1 numeric scalar
  Variable:T numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  Variable:P numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 310 GO TO 200
  LineNumber:200
 320 IF T1 - T <> 2*P THEN 3200
  Variable:T1 numeric scalar
  Variable:T numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  NumericConstant:2
  Variable:P numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 330 GO TO 200
  LineNumber:200
 1990 REM LOCATE MOVE FOR MACHINE
@@ -247,31 +247,31 @@
 2000 IF M1 = 41 THEN 2180
  Variable:M1 numeric scalar
  NumericConstant:41
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 2010 IF M1 = 44 THEN 2180
  Variable:M1 numeric scalar
  NumericConstant:44
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 2020 IF M1 = 73 THEN 2180
  Variable:M1 numeric scalar
  NumericConstant:73
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 2030 IF M1 = 75 THEN 2180
  Variable:M1 numeric scalar
  NumericConstant:75
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 2040 IF M1 = 126 THEN 2180
  Variable:M1 numeric scalar
  NumericConstant:126
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 2050 IF M1 = 127 THEN 2180
  Variable:M1 numeric scalar
  NumericConstant:127
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 2060 IF M1 = 158 THEN 3300
  Variable:M1 numeric scalar
  NumericConstant:158
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 2065 LET C = 0
  Variable:C numeric scalar
  NumericConstant:0
@@ -280,7 +280,7 @@
  control: Variable:K numeric scalar
  start:   ["NumericConstant:7"]
  end:     ["NumericConstant:1"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) numeric scalar"]
 2080 LET U = U1
  Variable:U numeric scalar
  Variable:U1 numeric scalar
@@ -289,38 +289,38 @@
  Variable:T numeric scalar
  Variable:T1 numeric scalar
  Variable:K numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 2100 GO SUB 3500
  LineNumber:3500
 2105 IF C = 1 THEN 2160
  Variable:C numeric scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 2110 LET U = U + K
  Variable:U numeric scalar
  Variable:U numeric scalar
  Variable:K numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 2120 GO SUB 3500
  LineNumber:3500
 2125 IF C = 1 THEN 2160
  Variable:C numeric scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 2130 LET T = T + K
  Variable:T numeric scalar
  Variable:T numeric scalar
  Variable:K numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 2140 GO SUB 3500
  LineNumber:3500
 2145 IF C = 1 THEN 2160
  Variable:C numeric scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 2150 NEXT K
  Variable:K numeric scalar
 2155 GO TO 2180
@@ -344,11 +344,11 @@
 3010 IF Z > .6 THEN 3110
  Variable:Z numeric scalar
  NumericConstant:.6
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 3020 IF Z > .3 THEN 3070
  Variable:Z numeric scalar
  NumericConstant:.3
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 3030 LET U = U1
  Variable:U numeric scalar
  Variable:U1 numeric scalar
@@ -357,15 +357,15 @@
  Variable:T numeric scalar
  Variable:T1 numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 3050 LET M = 10*T + U
  Variable:M numeric scalar
  NumericConstant:10
  Variable:T numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  Variable:U numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 3060 RETURN
  
@@ -373,21 +373,21 @@
  Variable:U numeric scalar
  Variable:U1 numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 3080 LET T = T1 + 2
  Variable:T numeric scalar
  Variable:T1 numeric scalar
  NumericConstant:2
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 3090 LET M = 10*T * U
  Variable:M numeric scalar
  NumericConstant:10
  Variable:T numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  Variable:U numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  AssignmentOperator:=
 3100 RETURN
  
@@ -395,21 +395,21 @@
  Variable:U numeric scalar
  Variable:U1 numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 3120 LET T = T1 + 1
  Variable:T numeric scalar
  Variable:T1 numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 3130 LET M = 10*T + U
  Variable:M numeric scalar
  NumericConstant:10
  Variable:T numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  Variable:U numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 3140 RETURN
  
@@ -464,30 +464,30 @@
  Variable:M numeric scalar
  NumericConstant:10
  Variable:T numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  Variable:U numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 3510 IF M = 158 THEN 3570
  Variable:M numeric scalar
  NumericConstant:158
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 3520 IF M = 127 THEN 3570
  Variable:M numeric scalar
  NumericConstant:127
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 3530 IF M = 126 THEN 3570
  Variable:M numeric scalar
  NumericConstant:126
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 3540 IF M = 75 THEN 3570
  Variable:M numeric scalar
  NumericConstant:75
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 3550 IF M = 73 THEN 3570
  Variable:M numeric scalar
  NumericConstant:73
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 3560 RETURN
  
 3570 LET C = 1
@@ -508,11 +508,11 @@
 4040 IF Q$="YES" THEN100
  Variable:Q$ string scalar
  TextConstant:"YES"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 4042 IF Q$="NO" THEN 4050
  Variable:Q$ string scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 4045 PRINT "INCORRECT ANSWER, PLEASE TYPE 'YES' OR 'NO'";
  TextConstant:"INCORRECT ANSWER, PLEASE TYPE 'YES' OR 'NO'"
  CarriageControl:;
@@ -582,9 +582,9 @@
  Variable:I numeric scalar
  NumericConstant:8
  Variable:A numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  Variable:B numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 5190 PRINT S(I);
  Variable:I numeric scalar

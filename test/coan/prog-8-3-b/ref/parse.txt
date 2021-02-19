@@ -10,22 +10,22 @@
  VariableName:X
  Variable:X numeric scalar
  NumericConstant:2
- BinaryOperatorPower:^ numeric scalar
+ BinaryOperatorPower:^(_,_) numeric scalar
 60 FOR X=-7 TO 7
  control: Variable:X numeric scalar
- start:   ["NumericConstant:7", "UnaryOperatorMinus:- numeric scalar"]
+ start:   ["NumericConstant:7", "UnaryOperatorMinus:-(_) numeric scalar"]
  end:     ["NumericConstant:7"]
 62 PRINT
  CarriageControl:NL
 90 FOR Y = -M TO 70-M
  control: Variable:Y numeric scalar
- start:   ["Variable:M numeric scalar", "UnaryOperatorMinus:- numeric scalar"]
- end:     ["NumericConstant:70", "Variable:M numeric scalar", "BinaryOperatorMinus:- numeric scalar"]
+ start:   ["Variable:M numeric scalar", "UnaryOperatorMinus:-(_) numeric scalar"]
+ end:     ["NumericConstant:70", "Variable:M numeric scalar", "BinaryOperatorMinus:-(_,_) numeric scalar"]
 120 IF Y=FNQ(X) THEN 210
  Variable:Y numeric scalar
  Variable:X numeric scalar
  UserFunction:FNQ(_) numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 148 REM   IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
  Remark:  IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
 150 PRINT " ";

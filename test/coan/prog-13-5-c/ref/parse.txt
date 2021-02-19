@@ -5,19 +5,19 @@
 20 FOR X=100 TO 100-10+1 STEP -1
  control: Variable:X numeric scalar
  start:   ["NumericConstant:100"]
- end:     ["NumericConstant:100", "NumericConstant:10", "BinaryOperatorMinus:- numeric scalar", "NumericConstant:1", "BinaryOperatorPlus:+ numeric scalar"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+ end:     ["NumericConstant:100", "NumericConstant:10", "BinaryOperatorMinus:-(_,_) numeric scalar", "NumericConstant:1", "BinaryOperatorPlus:+(_,_) numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) numeric scalar"]
 30 LET C=C*X/(100-X+1)
  Variable:C numeric scalar
  Variable:C numeric scalar
  Variable:X numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:100
  Variable:X numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  AssignmentOperator:=
 40 NEXT X
  Variable:X numeric scalar
@@ -26,12 +26,12 @@
  Variable:C numeric scalar
  NumericConstant:.1
  NumericConstant:10
- BinaryOperatorPower:^ numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorPower:^(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:.9
  NumericConstant:90
- BinaryOperatorPower:^ numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorPower:^(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  AssignmentOperator:=
 60 PRINT P
  Variable:P numeric scalar

@@ -15,7 +15,7 @@
 207 IF Z$="NO" THEN 400
  Variable:Z$ string scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 210 PRINT"HELLO, ALL YOU BLOODLOVERS AND AFICIONADOS"
  TextConstant:"HELLO, ALL YOU BLOODLOVERS AND AFICIONADOS"
  CarriageControl:NL
@@ -91,10 +91,10 @@
  NumericConstant:0
  FunctionRnd:RND(_) numeric scalar
  NumericConstant:5
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 460 FOR I=1 TO 5
  control: Variable:I numeric scalar
@@ -122,11 +122,11 @@
 500 IF A>4 THEN 530
  Variable:A numeric scalar
  NumericConstant:4
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 510 IF A<2 THEN 550
  Variable:A numeric scalar
  NumericConstant:2
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 520 GOTO 570
  LineNumber:570
 530 PRINT"YOU'RE LUCKY"
@@ -180,14 +180,14 @@
 680 IF Z=1 THEN 1310
  Variable:Z numeric scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 690 LET D(3)=D(3)+1
  NumericConstant:3
  Variable:D numeric scalar
  NumericConstant:3
  Variable:D numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 700 PRINT"PASS NUMBER "D(3)
  TextConstant:"PASS NUMBER "
@@ -199,7 +199,7 @@
  NumericConstant:3
  Variable:D numeric scalar
  NumericConstant:3
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 720 PRINT"HERE COMES THE BULL! TRY FOR A KILL";
  TextConstant:"HERE COMES THE BULL! TRY FOR A KILL"
  CarriageControl:;
@@ -236,11 +236,11 @@
  Variable:E numeric scalar
  FunctionAbs:ABS(_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 820 IF E<3 THEN 850
  Variable:E numeric scalar
  NumericConstant:3
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 830 PRINT"DON'T PANIC, YOU IDIOT! PUT DOWN A CORRECT NUMBER"
  TextConstant:"DON'T PANIC, YOU IDIOT! PUT DOWN A CORRECT NUMBER"
  CarriageControl:NL
@@ -253,11 +253,11 @@
 860 IF E=0 THEN 920
  Variable:E numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 870 IF E=1 THEN 900
  Variable:E numeric scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 880 LET M=0.5
  Variable:M numeric scalar
  NumericConstant:0.5
@@ -278,38 +278,38 @@
  Variable:L numeric scalar
  Variable:L numeric scalar
  Variable:M numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 940 LET F=(6-A+M/10)*RND(0)/((D(1)+D(2)+D(3)/10)*5)
  Variable:F numeric scalar
  NumericConstant:6
  Variable:A numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  Variable:M numeric scalar
  NumericConstant:10
- BinaryOperatorDivide:/ numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:0
  FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:1
  Variable:D numeric scalar
  NumericConstant:2
  Variable:D numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:3
  Variable:D numeric scalar
  NumericConstant:10
- BinaryOperatorDivide:/ numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:5
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  AssignmentOperator:=
 950 IF F<0.51 THEN 660
  Variable:F numeric scalar
  NumericConstant:0.51
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 960 PRINT"THE BULL HAS GORED YOU"
  TextConstant:"THE BULL HAS GORED YOU"
  CarriageControl:NL
@@ -386,11 +386,11 @@
 1170 IF H=4 THEN 1230
  Variable:H numeric scalar
  NumericConstant:4
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 1180 IF H=5 THEN 1230
  Variable:H numeric scalar
  NumericConstant:5
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 1210 PRINT"YOU PANICKED. THE BULL GORED YOU."
  TextConstant:"YOU PANICKED. THE BULL GORED YOU."
  CarriageControl:NL
@@ -400,32 +400,32 @@
  Variable:K numeric scalar
  NumericConstant:6
  Variable:A numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  NumericConstant:10
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:0
  FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:1
  Variable:D numeric scalar
  NumericConstant:2
  Variable:D numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:5
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:3
  Variable:D numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  AssignmentOperator:=
 1240 IF K>0.4 THEN 1290
  Variable:K numeric scalar
  NumericConstant:0.4
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 1250 IF K>0.2 THEN 960
  Variable:K numeric scalar
  NumericConstant:0.2
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 1260 PRINT"YOU KILLED THE BULL"
  TextConstant:"YOU KILLED THE BULL"
  CarriageControl:NL
@@ -439,7 +439,7 @@
 1290 IF K>0.8 THEN 960
  Variable:K numeric scalar
  NumericConstant:0.8
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 1300 GOTO 1260
  LineNumber:1260
 1310 PRINT
@@ -452,7 +452,7 @@
  NumericConstant:4
  Variable:D numeric scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 1350 PRINT"THE CROWD BOOS FOR TEN MINUTES. IF YOU EVER DARE TO SHOW"
  TextConstant:"THE CROWD BOOS FOR TEN MINUTES. IF YOU EVER DARE TO SHOW"
  CarriageControl:NL
@@ -470,42 +470,42 @@
  NumericConstant:4.5
  Variable:L numeric scalar
  NumericConstant:6
- BinaryOperatorDivide:/ numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:1
  Variable:D numeric scalar
  NumericConstant:2
  Variable:D numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:2.5
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  NumericConstant:4
  NumericConstant:4
  Variable:D numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:2
  NumericConstant:5
  Variable:D numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:3
  Variable:D numeric scalar
  NumericConstant:2
- BinaryOperatorPower:^ numeric scalar
+ BinaryOperatorPower:^(_,_) numeric scalar
  NumericConstant:120
- BinaryOperatorDivide:/ numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  Variable:A numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  NumericConstant:0.5
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
 1400 IF D(4)<>2 THEN 1430
  NumericConstant:4
  Variable:D numeric scalar
  NumericConstant:2
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 1410 PRINT"THE CROW CHEERS WILDLY"
  TextConstant:"THE CROW CHEERS WILDLY"
  CarriageControl:NL
@@ -515,7 +515,7 @@
  NumericConstant:5
  Variable:D numeric scalar
  NumericConstant:2
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 1440 PRINT"THE CROWD CHEERS"
  TextConstant:"THE CROWD CHEERS"
  CarriageControl:NL
@@ -538,17 +538,17 @@
  Variable:Q numeric scalar
  UserFunction:FNC(_) numeric scalar
  NumericConstant:2.4
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 1470 IF FNC(Q)<4.9 THEN 1550
  Variable:Q numeric scalar
  UserFunction:FNC(_) numeric scalar
  NumericConstant:4.9
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 1480 IF FNC(Q)<7.4 THEN 1520
  Variable:Q numeric scalar
  UserFunction:FNC(_) numeric scalar
  NumericConstant:7.4
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 1500 PRINT"OLE! YOU ARE 'MUY HOMBRE'! OLE! OLE!"
  TextConstant:"OLE! YOU ARE 'MUY HOMBRE'! OLE! OLE!"
  CarriageControl:NL
@@ -581,27 +581,27 @@
  Variable:B numeric scalar
  NumericConstant:3
  Variable:A numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  NumericConstant:0
  FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  AssignmentOperator:=
 1620 IF B<0.37 THEN 1740
  Variable:B numeric scalar
  NumericConstant:0.37
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 1630 IF B<0.5 THEN 1720
  Variable:B numeric scalar
  NumericConstant:0.5
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 1640 IF B<0.63 THEN 1700
  Variable:B numeric scalar
  NumericConstant:0.63
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 1650 IF B<0.87 THEN 1680
  Variable:B numeric scalar
  NumericConstant:0.87
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 1660 LET C=0.1
  Variable:C numeric scalar
  NumericConstant:0.1
@@ -634,9 +634,9 @@
  Variable:T numeric scalar
  NumericConstant:10
  Variable:C numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:0.2
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 1760 PRINT"THE "A$;B$" DID A "L$(T);" JOB"
@@ -656,11 +656,11 @@
 1770 IF 4>T THEN 1900
  NumericConstant:4
  Variable:T numeric scalar
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 1780 IF 5=T THEN 1870
  NumericConstant:5
  Variable:T numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 1790 ON FNA(K) GOTO 1800,1900
  Variable:K numeric scalar
  UserFunction:FNA(_) numeric scalar
@@ -669,7 +669,7 @@
 1800 IF A$="TOREAD" THEN 1820
  Variable:A$ string scalar
  TextConstant:"TOREAD"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 1810 PRINT"0NE OF THE HORSES OF THE "A$;B$" WAS GORED"
  TextConstant:"0NE OF THE HORSES OF THE "
  CarriageControl:
@@ -709,7 +709,7 @@
 1870 IF A$="TOREAD" THEN 1890
  Variable:A$ string scalar
  TextConstant:"TOREAD"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 1880 PRINT FNA(K);" OF THE HORSES OF THE "A$;B$;" GORED"
  Variable:K numeric scalar
  UserFunction:FNA(_) numeric scalar
@@ -744,20 +744,20 @@
  NumericConstant:0
  FunctionRnd:RND(_) numeric scalar
  NumericConstant:2
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
 1930 INPUT A$
  Variable:A$ string scalar
 1950 IF A$="YES" THEN 1990
  Variable:A$ string scalar
  TextConstant:"YES"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 1960 IF A$="NO" THEN 2010
  Variable:A$ string scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 1970 PRINT"INCORRECT ANSWER, PLEASE PRINT 'YES' OR 'NO'";
  TextConstant:"INCORRECT ANSWER, PLEASE PRINT 'YES' OR 'NO'"
  CarriageControl:;

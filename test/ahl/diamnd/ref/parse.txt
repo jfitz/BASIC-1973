@@ -11,7 +11,7 @@
  Variable:Q numeric scalar
  NumericConstant:60
  Variable:R numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 8 FOR L=1 TO Q
@@ -36,9 +36,9 @@
 25 PRINT TAB((R-N)/2);
  Variable:R numeric scalar
  Variable:N numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  NumericConstant:2
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionTab:TAB(_) string scalar
  CarriageControl:;
 28 FOR M = 1 TO Q
@@ -56,15 +56,15 @@
 31 IF C=1 THEN 40
  Variable:C numeric scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 32 IF C=2 THEN 42
  Variable:C numeric scalar
  NumericConstant:2
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 33 IF C=3 THEN 44
  Variable:C numeric scalar
  NumericConstant:3
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 35 PRINT "!";\GOTO 50
  TextConstant:"!"
  CarriageControl:;
@@ -84,24 +84,24 @@
  Variable:C numeric scalar
  Variable:C numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 50 NEXT A
  Variable:A numeric scalar
 53 IF M=Q THEN 60
  Variable:M numeric scalar
  Variable:Q numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 55 PRINT TAB(R*M+(R-N)/2);
  Variable:R numeric scalar
  Variable:M numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  Variable:R numeric scalar
  Variable:N numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  NumericConstant:2
- BinaryOperatorDivide:/ numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  FunctionTab:TAB(_) string scalar
  CarriageControl:;
 56 NEXT M
@@ -113,19 +113,19 @@
 83 IF X<>1 THEN 95
  Variable:X numeric scalar
  NumericConstant:1
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 85 X=R-2\Y=1\Z=-2
  Variable:X numeric scalar
  Variable:R numeric scalar
  NumericConstant:2
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
  Variable:Y numeric scalar
  NumericConstant:1
  AssignmentOperator:=
  Variable:Z numeric scalar
  NumericConstant:2
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  AssignmentOperator:=
 90 GOTO 20
  LineNumber:20

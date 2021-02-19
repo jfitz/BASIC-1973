@@ -3,18 +3,18 @@
  VariableName:Z
  NumericConstant:30
  Variable:Z numeric scalar
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  Variable:Z numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:100
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionExp:EXP(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
 100 PRINT
  CarriageControl:NL
 110 FOR X=-30 TO 30 STEP 1.5
  control: Variable:X numeric scalar
- start:   ["NumericConstant:30", "UnaryOperatorMinus:- numeric scalar"]
+ start:   ["NumericConstant:30", "UnaryOperatorMinus:-(_) numeric scalar"]
  end:     ["NumericConstant:30"]
  step:    ["NumericConstant:1.5"]
 120 L=0
@@ -27,42 +27,42 @@
  NumericConstant:900
  Variable:X numeric scalar
  Variable:X numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  FunctionSqr:SQR(_) numeric scalar
  NumericConstant:5
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  AssignmentOperator:=
 140 FOR Y=Y1 TO -Y1 STEP -5
  control: Variable:Y numeric scalar
  start:   ["Variable:Y1 numeric scalar"]
- end:     ["Variable:Y1 numeric scalar", "UnaryOperatorMinus:- numeric scalar"]
- step:    ["NumericConstant:5", "UnaryOperatorMinus:- numeric scalar"]
+ end:     ["Variable:Y1 numeric scalar", "UnaryOperatorMinus:-(_) numeric scalar"]
+ step:    ["NumericConstant:5", "UnaryOperatorMinus:-(_) numeric scalar"]
 150 Z=INT(25+FNA(SQR(X*X+Y*Y))-.7*Y)
  Variable:Z numeric scalar
  NumericConstant:25
  Variable:X numeric scalar
  Variable:X numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  Variable:Y numeric scalar
  Variable:Y numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  FunctionSqr:SQR(_) numeric scalar
  UserFunction:FNA(_) numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:.7
  Variable:Y numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 160 IF Z<=L THEN 190
  Variable:Z numeric scalar
  Variable:L numeric scalar
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 170 L=Z
  Variable:L numeric scalar
  Variable:Z numeric scalar

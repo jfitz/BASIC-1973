@@ -51,7 +51,7 @@
  Variable:G numeric scalar
  NumericConstant:0
  FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 286 B=INT(G*RND(0))
@@ -59,7 +59,7 @@
  Variable:G numeric scalar
  NumericConstant:0
  FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 310 FOR K=1 TO N
@@ -77,15 +77,15 @@
 340 IF ABS(X-A)+ABS(Y-B)=0 THEN 500
  Variable:X numeric scalar
  Variable:A numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  FunctionAbs:ABS(_) numeric scalar
  Variable:Y numeric scalar
  Variable:B numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  FunctionAbs:ABS(_) numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 350 REM PRINT INFO
  Remark:PRINT INFO
 360 GOSUB 610
@@ -149,11 +149,11 @@
 620 IF Y=B THEN 670
  Variable:Y numeric scalar
  Variable:B numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 630 IF Y<B THEN 660
  Variable:Y numeric scalar
  Variable:B numeric scalar
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 640 PRINT "SOUTH";
  TextConstant:"SOUTH"
  CarriageControl:;
@@ -165,11 +165,11 @@
 670 IF X=A THEN 720
  Variable:X numeric scalar
  Variable:A numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 680 IF X<A THEN 710
  Variable:X numeric scalar
  Variable:A numeric scalar
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 690 PRINT "WEST";
  TextConstant:"WEST"
  CarriageControl:;

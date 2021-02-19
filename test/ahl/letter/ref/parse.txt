@@ -19,9 +19,9 @@
  NumericConstant:0
  FunctionRnd:RND(_) numeric scalar
  NumericConstant:26
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 320 G=0
  Variable:G numeric scalar
@@ -39,7 +39,7 @@
  Variable:G numeric scalar
  Variable:G numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 430 INPUT $A\PRINT
  Variable:A numeric scalar
@@ -47,11 +47,11 @@
 440 IF A=L THEN 500
  Variable:A numeric scalar
  Variable:L numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 450 IF A>L THEN 480
  Variable:A numeric scalar
  Variable:L numeric scalar
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 460 PRINT "TOO LOW. TRY A HIGHER LETTER. "\GOTO 410
  TextConstant:"TOO LOW. TRY A HIGHER LETTER. "
  CarriageControl:NL
@@ -71,7 +71,7 @@
 504 IF G<=5 THEN 508
  Variable:G numeric scalar
  NumericConstant:5
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 506 PRINT "BUT IT SHOULDN'T TAKE MORE THAN 5 GUESSES!"\GOTO 515
  TextConstant:"BUT IT SHOULDN'T TAKE MORE THAN 5 GUESSES!"
  CarriageControl:NL

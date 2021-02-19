@@ -2,18 +2,18 @@
  Variable:N numeric scalar
 20 FOR D=N-1 TO 2 STEP -1
  control: Variable:D numeric scalar
- start:   ["Variable:N numeric scalar", "NumericConstant:1", "BinaryOperatorMinus:- numeric scalar"]
+ start:   ["Variable:N numeric scalar", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) numeric scalar"]
  end:     ["NumericConstant:2"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) numeric scalar"]
 30 IF N/D=INT(N/D) THEN 70
  Variable:N numeric scalar
  Variable:D numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  Variable:N numeric scalar
  Variable:D numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 40 NEXT D
  Variable:D numeric scalar
 50 PRINT N;"IS PRIME"

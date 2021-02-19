@@ -9,7 +9,7 @@
  NumericConstant:10
  Variable:X numeric scalar
  FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
 3DEFFNB(X)=X-100*INT(X/100)
  UserFunctionName:FNB
@@ -18,10 +18,10 @@
  NumericConstant:100
  Variable:X numeric scalar
  NumericConstant:100
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
 4PRINT"WELCOME TO THE HALLDEN CASINO. WE EACH HAVE $200"
  TextConstant:"WELCOME TO THE HALLDEN CASINO. WE EACH HAVE $200"
  CarriageControl:NL
@@ -59,7 +59,7 @@
 15IFC<=5THEN367
  Variable:C numeric scalar
  NumericConstant:5
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 16PRINT "THE ANTE IS $5. I WILL DEAL"
  TextConstant:"THE ANTE IS $5. I WILL DEAL"
  CarriageControl:NL
@@ -68,26 +68,26 @@
 18IFS>5THEN20
  Variable:S numeric scalar
  NumericConstant:5
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 19GOSUB383
  LineNumber:383
 20LETP=P+10
  Variable:P numeric scalar
  Variable:P numeric scalar
  NumericConstant:10
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 21LETS=S-5
  Variable:S numeric scalar
  Variable:S numeric scalar
  NumericConstant:5
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 22LETC=C-5
  Variable:C numeric scalar
  Variable:C numeric scalar
  NumericConstant:5
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 23FORZ=1TO10
  control: Variable:Z numeric scalar
@@ -121,12 +121,12 @@
 33IFI<>6THEN47
  Variable:I numeric scalar
  NumericConstant:6
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 34IFFNA(0)<=7 THEN37
  NumericConstant:0
  UserFunction:FNA(_) numeric scalar
  NumericConstant:7
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 35LETX=11100
  Variable:X numeric scalar
  NumericConstant:11100
@@ -137,7 +137,7 @@
  NumericConstant:0
  UserFunction:FNA(_) numeric scalar
  NumericConstant:7
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 38LETX=11110
  Variable:X numeric scalar
  NumericConstant:11110
@@ -148,7 +148,7 @@
  NumericConstant:0
  UserFunction:FNA(_) numeric scalar
  NumericConstant:1
- BinaryOperatorGreaterEqual:>= boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
 41LETX=11111
  Variable:X numeric scalar
  NumericConstant:11111
@@ -172,12 +172,12 @@
 47IFU>=13THEN54
  Variable:U numeric scalar
  NumericConstant:13
- BinaryOperatorGreaterEqual:>= boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
 48IFFNA(0)>=2THEN50
  NumericConstant:0
  UserFunction:FNA(_) numeric scalar
  NumericConstant:2
- BinaryOperatorGreaterEqual:>= boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
 49GOTO42
  LineNumber:42
 50LETZ=0
@@ -196,7 +196,7 @@
 54IFU<=16THEN57
  Variable:U numeric scalar
  NumericConstant:16
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 55LETZ=2
  Variable:Z numeric scalar
  NumericConstant:2
@@ -205,7 +205,7 @@
  NumericConstant:0
  UserFunction:FNA(_) numeric scalar
  NumericConstant:1
- BinaryOperatorGreaterEqual:>= boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
 57LETZ=35
  Variable:Z numeric scalar
  NumericConstant:35
@@ -215,7 +215,7 @@
  Variable:Z numeric scalar
  NumericConstant:0
  UserFunction:FNA(_) numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 59GOSUB348
  LineNumber:348
@@ -237,7 +237,7 @@
 65IFI<>3THEN76
  Variable:I numeric scalar
  NumericConstant:3
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 66PRINT
  CarriageControl:NL
 67PRINT"I WIN"
@@ -247,7 +247,7 @@
  Variable:C numeric scalar
  Variable:C numeric scalar
  Variable:P numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 69PRINT "NOW I HAVE $"C" AND YOU HAVE $"S
  TextConstant:"NOW I HAVE $"
@@ -266,11 +266,11 @@
 72IFH$="YES"THEN12
  Variable:H$ string scalar
  TextConstant:"YES"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 73IFH$="NO"THEN410
  Variable:H$ string scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 74PRINT"ANSWER YES OR NO, IDIOT"
  TextConstant:"ANSWER YES OR NO, IDIOT"
  CarriageControl:NL
@@ -279,7 +279,7 @@
 76IFI<>4THEN81
  Variable:I numeric scalar
  NumericConstant:4
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 77PRINT
  CarriageControl:NL
 78PRINT"YOU WIN"
@@ -289,7 +289,7 @@
  Variable:S numeric scalar
  Variable:S numeric scalar
  Variable:P numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 80GOTO69
  LineNumber:69
@@ -305,7 +305,7 @@
 85IFT=0THEN98
  Variable:T numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 86LETZ=10
  Variable:Z numeric scalar
  NumericConstant:10
@@ -313,7 +313,7 @@
 87IFT<4THEN90
  Variable:T numeric scalar
  NumericConstant:4
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 88PRINT"YOU CAN'T DRAW MORE THAN THREE CARDS"
  TextConstant:"YOU CAN'T DRAW MORE THAN THREE CARDS"
  CarriageControl:NL
@@ -345,7 +345,7 @@
  Variable:Z numeric scalar
  NumericConstant:10
  Variable:T numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 99FORU=6TO10
  control: Variable:U numeric scalar
@@ -356,21 +356,21 @@
  NumericConstant:10
  Variable:U numeric scalar
  NumericConstant:6
- BinaryOperatorMinus:- numeric scalar
- BinaryOperatorPower:^ numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorPower:^(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  NumericConstant:10
  Variable:X numeric scalar
  NumericConstant:10
  Variable:U numeric scalar
  NumericConstant:5
- BinaryOperatorMinus:- numeric scalar
- BinaryOperatorPower:^ numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorPower:^(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 101GOSUB173
  LineNumber:173
 102NEXTU
@@ -382,9 +382,9 @@
  CarriageControl:
  Variable:Z numeric scalar
  NumericConstant:10
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  Variable:T numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  CarriageControl:
  TextConstant:"CARD"
  CarriageControl:;
@@ -392,8 +392,8 @@
  Variable:Z numeric scalar
  NumericConstant:11
  Variable:T numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 106PRINT"S"
  TextConstant:"S"
  CarriageControl:NL
@@ -428,7 +428,7 @@
 116IFV<=7THEN119
  Variable:V numeric scalar
  NumericConstant:7
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 117LETZ=28
  Variable:Z numeric scalar
  NumericConstant:28
@@ -438,7 +438,7 @@
 119IFI<>6THEN122
  Variable:I numeric scalar
  NumericConstant:6
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 120LETZ=1
  Variable:Z numeric scalar
  NumericConstant:1
@@ -448,7 +448,7 @@
 122IFU>=13THEN127
  Variable:U numeric scalar
  NumericConstant:13
- BinaryOperatorGreaterEqual:>= boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
 123LETZ=2
  Variable:Z numeric scalar
  NumericConstant:2
@@ -457,7 +457,7 @@
  NumericConstant:0
  UserFunction:FNA(_) numeric scalar
  NumericConstant:6
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 125LETZ=19
  Variable:Z numeric scalar
  NumericConstant:19
@@ -467,7 +467,7 @@
 127IFU>=16THEN132
  Variable:U numeric scalar
  NumericConstant:16
- BinaryOperatorGreaterEqual:>= boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
 128LETZ=19
  Variable:Z numeric scalar
  NumericConstant:19
@@ -476,7 +476,7 @@
  NumericConstant:0
  UserFunction:FNA(_) numeric scalar
  NumericConstant:8
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 130LETZ=11
  Variable:Z numeric scalar
  NumericConstant:11
@@ -496,15 +496,15 @@
 135IFT<>.5THEN145
  Variable:T numeric scalar
  NumericConstant:.5
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 136IFV=7THEN140
  Variable:V numeric scalar
  NumericConstant:7
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 137IFI<>6THEN140
  Variable:I numeric scalar
  NumericConstant:6
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 138PRINT"I'LL CHECK"
  TextConstant:"I'LL CHECK"
  CarriageControl:NL
@@ -515,7 +515,7 @@
  Variable:Z numeric scalar
  NumericConstant:0
  UserFunction:FNA(_) numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 141GOSUB348
  LineNumber:348
@@ -591,15 +591,15 @@
 164IFB>UTHEN67
  Variable:B numeric scalar
  Variable:U numeric scalar
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 165IFU>BTHEN78
  Variable:U numeric scalar
  Variable:B numeric scalar
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 166IFH$="A FLUS"THEN170
  Variable:H$ string scalar
  TextConstant:"A FLUS"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 167PRINT"THE HAND IS DRAWN"
  TextConstant:"THE HAND IS DRAWN"
  CarriageControl:NL
@@ -617,20 +617,20 @@
  UserFunction:FNB(_) numeric scalar
  Variable:D numeric scalar
  UserFunction:FNB(_) numeric scalar
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 171IFFNB(D)>FNB(M)THEN78
  Variable:D numeric scalar
  UserFunction:FNB(_) numeric scalar
  Variable:M numeric scalar
  UserFunction:FNB(_) numeric scalar
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 172GOTO167
  LineNumber:167
 173LETZ=Z+1
  Variable:Z numeric scalar
  Variable:Z numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 174LETA(Z)=INT(1000*RND(0))
  Variable:Z numeric scalar
@@ -638,17 +638,17 @@
  NumericConstant:1000
  NumericConstant:0
  FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 175IFINT(A(Z)/100)>3THEN174
  Variable:Z numeric scalar
  Variable:A numeric scalar
  NumericConstant:100
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  NumericConstant:3
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 176IFA(Z)-100*INT(A(Z)/100)>12THEN174
  Variable:Z numeric scalar
  Variable:A numeric scalar
@@ -656,28 +656,28 @@
  Variable:Z numeric scalar
  Variable:A numeric scalar
  NumericConstant:100
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  NumericConstant:12
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 177FORK=1TOZ-1
  control: Variable:K numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:Z numeric scalar", "NumericConstant:1", "BinaryOperatorMinus:- numeric scalar"]
+ end:     ["Variable:Z numeric scalar", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) numeric scalar"]
 178IFA(Z)=A(K)THEN174
  Variable:Z numeric scalar
  Variable:A numeric scalar
  Variable:K numeric scalar
  Variable:A numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 179NEXTK
  Variable:K numeric scalar
 180IFZ<=10THEN184
  Variable:Z numeric scalar
  NumericConstant:10
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 181LETN=A(U)
  Variable:N numeric scalar
  Variable:U numeric scalar
@@ -699,7 +699,7 @@
 185FORZ=NTON+4
  control: Variable:Z numeric scalar
  start:   ["Variable:N numeric scalar"]
- end:     ["Variable:N numeric scalar", "NumericConstant:4", "BinaryOperatorPlus:+ numeric scalar"]
+ end:     ["Variable:N numeric scalar", "NumericConstant:4", "BinaryOperatorPlus:+(_,_) numeric scalar"]
 186PRINTZ"-  ";
  Variable:Z numeric scalar
  CarriageControl:
@@ -715,12 +715,12 @@
 190IFZ/2<>INT(Z/2)THEN192
  Variable:Z numeric scalar
  NumericConstant:2
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  Variable:Z numeric scalar
  NumericConstant:2
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 191PRINT
  CarriageControl:NL
 192NEXTZ
@@ -738,39 +738,39 @@
 196IFK<>9THEN198
  Variable:K numeric scalar
  NumericConstant:9
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 197PRINT"JACK";
  TextConstant:"JACK"
  CarriageControl:;
 198IFK<>10THEN200
  Variable:K numeric scalar
  NumericConstant:10
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 199PRINT"QUEEN";
  TextConstant:"QUEEN"
  CarriageControl:;
 200IFK<>11THEN202
  Variable:K numeric scalar
  NumericConstant:11
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 201PRINT"KING";
  TextConstant:"KING"
  CarriageControl:;
 202IFK<>12THEN204
  Variable:K numeric scalar
  NumericConstant:12
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 203PRINT"ACE";
  TextConstant:"ACE"
  CarriageControl:;
 204IFK>=9THEN206
  Variable:K numeric scalar
  NumericConstant:9
- BinaryOperatorGreaterEqual:>= boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
 205PRINTK+2;
  Variable:K numeric scalar
  NumericConstant:2
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  CarriageControl:;
 206RETURN
  
@@ -779,34 +779,34 @@
  Variable:Z numeric scalar
  Variable:A numeric scalar
  NumericConstant:100
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 208IFK<>0THEN210
  Variable:K numeric scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 209PRINT " CLUBS",
  TextConstant:" CLUBS"
  CarriageControl:,
 210IFK<>1THEN212
  Variable:K numeric scalar
  NumericConstant:1
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 211PRINT" DIAMONDS",
  TextConstant:" DIAMONDS"
  CarriageControl:,
 212IFK<>2THEN214
  Variable:K numeric scalar
  NumericConstant:2
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 213PRINT" HEARTS",
  TextConstant:" HEARTS"
  CarriageControl:,
 214IFK<>3THEN216
  Variable:K numeric scalar
  NumericConstant:3
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 215PRINT" SPADES",
  TextConstant:" SPADES"
  CarriageControl:,
@@ -819,7 +819,7 @@
 218FORZ=NTON+4
  control: Variable:Z numeric scalar
  start:   ["Variable:N numeric scalar"]
- end:     ["Variable:N numeric scalar", "NumericConstant:4", "BinaryOperatorPlus:+ numeric scalar"]
+ end:     ["Variable:N numeric scalar", "NumericConstant:4", "BinaryOperatorPlus:+(_,_) numeric scalar"]
 219LETB(Z)=FNB(A(Z))
  Variable:Z numeric scalar
  Variable:B numeric scalar
@@ -831,34 +831,34 @@
  Variable:Z numeric scalar
  Variable:N numeric scalar
  NumericConstant:4
- BinaryOperatorPlus:+ numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 221IFINT(A(Z)/100)<>INT(A(Z+1)/100)THEN223
  Variable:Z numeric scalar
  Variable:A numeric scalar
  NumericConstant:100
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  Variable:Z numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:A numeric scalar
  NumericConstant:100
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 222LETU=U+1
  Variable:U numeric scalar
  Variable:U numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 223NEXTZ
  Variable:Z numeric scalar
 224IFU<>4THEN231
  Variable:U numeric scalar
  NumericConstant:4
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 225LETX=11111
  Variable:X numeric scalar
  NumericConstant:11111
@@ -885,17 +885,17 @@
 231FORZ=NTON+3
  control: Variable:Z numeric scalar
  start:   ["Variable:N numeric scalar"]
- end:     ["Variable:N numeric scalar", "NumericConstant:3", "BinaryOperatorPlus:+ numeric scalar"]
+ end:     ["Variable:N numeric scalar", "NumericConstant:3", "BinaryOperatorPlus:+(_,_) numeric scalar"]
 232FORK=Z+1TON+4
  control: Variable:K numeric scalar
- start:   ["Variable:Z numeric scalar", "NumericConstant:1", "BinaryOperatorPlus:+ numeric scalar"]
- end:     ["Variable:N numeric scalar", "NumericConstant:4", "BinaryOperatorPlus:+ numeric scalar"]
+ start:   ["Variable:Z numeric scalar", "NumericConstant:1", "BinaryOperatorPlus:+(_,_) numeric scalar"]
+ end:     ["Variable:N numeric scalar", "NumericConstant:4", "BinaryOperatorPlus:+(_,_) numeric scalar"]
 233IFB(Z)<=B(K)THEN239
  Variable:Z numeric scalar
  Variable:B numeric scalar
  Variable:K numeric scalar
  Variable:B numeric scalar
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 234LETX=A(Z)
  Variable:X numeric scalar
  Variable:Z numeric scalar
@@ -927,10 +927,10 @@
  Variable:K numeric scalar
  Variable:A numeric scalar
  NumericConstant:100
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 239NEXTK
  Variable:K numeric scalar
@@ -943,15 +943,15 @@
 242FORZ=NTON+3
  control: Variable:Z numeric scalar
  start:   ["Variable:N numeric scalar"]
- end:     ["Variable:N numeric scalar", "NumericConstant:3", "BinaryOperatorPlus:+ numeric scalar"]
+ end:     ["Variable:N numeric scalar", "NumericConstant:3", "BinaryOperatorPlus:+(_,_) numeric scalar"]
 243IFB(Z)<>B(Z+1)THEN247
  Variable:Z numeric scalar
  Variable:B numeric scalar
  Variable:Z numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:B numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 244LETX=X+11*10^(Z-N)
  Variable:X numeric scalar
  Variable:X numeric scalar
@@ -959,10 +959,10 @@
  NumericConstant:10
  Variable:Z numeric scalar
  Variable:N numeric scalar
- BinaryOperatorMinus:- numeric scalar
- BinaryOperatorPower:^ numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorPower:^(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 245LETD=A(Z)
  Variable:D numeric scalar
@@ -976,17 +976,17 @@
 248IFX<>0THEN262
  Variable:X numeric scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 249IFB(N)+3<>B(N+3)THEN252
  Variable:N numeric scalar
  Variable:B numeric scalar
  NumericConstant:3
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:N numeric scalar
  NumericConstant:3
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:B numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 250LETX=1111
  Variable:X numeric scalar
  NumericConstant:1111
@@ -998,19 +998,19 @@
 252IFB(N+1)+3<>B(N+4)THEN262
  Variable:N numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:B numeric scalar
  NumericConstant:3
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:N numeric scalar
  NumericConstant:4
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:B numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 253IFU<>10THEN260
  Variable:U numeric scalar
  NumericConstant:10
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 254LETU=14
  Variable:U numeric scalar
  NumericConstant:14
@@ -1031,7 +1031,7 @@
  Variable:D numeric scalar
  Variable:N numeric scalar
  NumericConstant:4
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:A numeric scalar
  AssignmentOperator:=
 259RETURN
@@ -1047,12 +1047,12 @@
 262IFU>=10THEN269
  Variable:U numeric scalar
  NumericConstant:10
- BinaryOperatorGreaterEqual:>= boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
 263LETD=A(N+4)
  Variable:D numeric scalar
  Variable:N numeric scalar
  NumericConstant:4
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:A numeric scalar
  AssignmentOperator:=
 264LETH$="SCHMAL"
@@ -1076,22 +1076,22 @@
 269IFU<>10THEN272
  Variable:U numeric scalar
  NumericConstant:10
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 270IFI=1THEN274
  Variable:I numeric scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 271GOTO275
  LineNumber:275
 272IFU>12THEN275
  Variable:U numeric scalar
  NumericConstant:12
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 273IFFNB(D)>6THEN275
  Variable:D numeric scalar
  UserFunction:FNB(_) numeric scalar
  NumericConstant:6
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 274LETI=6
  Variable:I numeric scalar
  NumericConstant:6
@@ -1101,7 +1101,7 @@
 276IFU>=11THEN281
  Variable:U numeric scalar
  NumericConstant:11
- BinaryOperatorGreaterEqual:>= boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
 277LETU=11
  Variable:U numeric scalar
  NumericConstant:11
@@ -1119,15 +1119,15 @@
 281IFU<11THEN291
  Variable:U numeric scalar
  NumericConstant:11
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 282IFB(Z)<>B(Z-1)THEN287
  Variable:Z numeric scalar
  Variable:B numeric scalar
  Variable:Z numeric scalar
  NumericConstant:1
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  Variable:B numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 283LETH$="THREE"
  Variable:H$ string scalar
  TextConstant:"THREE"
@@ -1159,7 +1159,7 @@
 291IFU<>12THEN296
  Variable:U numeric scalar
  NumericConstant:12
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 292LETU=16
  Variable:U numeric scalar
  NumericConstant:16
@@ -1179,9 +1179,9 @@
  Variable:B numeric scalar
  Variable:Z numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:B numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 297LETU=17
  Variable:U numeric scalar
  NumericConstant:17
@@ -1223,21 +1223,21 @@
  Variable:T numeric scalar
  Variable:T numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 309IFK<>0THEN312
  Variable:K numeric scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 310IFG<>0THEN312
  Variable:G numeric scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 311IFT=.5THEN341
  Variable:T numeric scalar
  NumericConstant:.5
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 312PRINT"NO SMALL CHANGE, PLEASE"
  TextConstant:"NO SMALL CHANGE, PLEASE"
  CarriageControl:NL
@@ -1246,11 +1246,11 @@
 314IFS-G-T>0THEN317
  Variable:S numeric scalar
  Variable:G numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  Variable:T numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  NumericConstant:0
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 315GOSUB383
  LineNumber:383
 316GOTO306
@@ -1258,7 +1258,7 @@
 317IFT<>0THEN320
  Variable:T numeric scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 318LETI=3
  Variable:I numeric scalar
  NumericConstant:3
@@ -1268,9 +1268,9 @@
 320IFG+T>=KTHEN323
  Variable:G numeric scalar
  Variable:T numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:K numeric scalar
- BinaryOperatorGreaterEqual:>= boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
 321PRINT"IF YOU CAN'T SEE MY BET, THEN FOLD"
  TextConstant:"IF YOU CAN'T SEE MY BET, THEN FOLD"
  CarriageControl:NL
@@ -1280,24 +1280,24 @@
  Variable:G numeric scalar
  Variable:G numeric scalar
  Variable:T numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 324IFG=KTHEN338
  Variable:G numeric scalar
  Variable:K numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 325IFZ<>1THEN342
  Variable:Z numeric scalar
  NumericConstant:1
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 326IFG>5THEN330
  Variable:G numeric scalar
  NumericConstant:5
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 327IFZ>=2THEN335
  Variable:Z numeric scalar
  NumericConstant:2
- BinaryOperatorGreaterEqual:>= boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
 328LETV=5
  Variable:V numeric scalar
  NumericConstant:5
@@ -1307,11 +1307,11 @@
 330IFZ=1THEN332
  Variable:Z numeric scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 331IFT<=25THEN335
  Variable:T numeric scalar
  NumericConstant:25
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 332LETI=4
  Variable:I numeric scalar
  NumericConstant:4
@@ -1324,7 +1324,7 @@
 335IFZ=2THEN343
  Variable:Z numeric scalar
  NumericConstant:2
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 336PRINT"I'LL SEE YOU"
  TextConstant:"I'LL SEE YOU"
  CarriageControl:NL
@@ -1336,21 +1336,21 @@
  Variable:S numeric scalar
  Variable:S numeric scalar
  Variable:G numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 339LETC=C-K
  Variable:C numeric scalar
  Variable:C numeric scalar
  Variable:K numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 340LETP=P+G+K
  Variable:P numeric scalar
  Variable:P numeric scalar
  Variable:G numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:K numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 341RETURN
  
@@ -1358,16 +1358,16 @@
  Variable:G numeric scalar
  NumericConstant:3
  Variable:Z numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 343LETV=G-K+FNA(0)
  Variable:V numeric scalar
  Variable:G numeric scalar
  Variable:K numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  NumericConstant:0
  UserFunction:FNA(_) numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 344GOSUB348
  LineNumber:348
@@ -1380,22 +1380,22 @@
  Variable:K numeric scalar
  Variable:G numeric scalar
  Variable:V numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 347GOTO306
  LineNumber:306
 348IFC-G-V>0THEN366
  Variable:C numeric scalar
  Variable:G numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  Variable:V numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  NumericConstant:0
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 349IFG<>0THEN352
  Variable:G numeric scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 350LETV=C
  Variable:V numeric scalar
  Variable:C numeric scalar
@@ -1405,18 +1405,18 @@
 352IFC-G>=0THEN336
  Variable:C numeric scalar
  Variable:G numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  NumericConstant:0
- BinaryOperatorGreaterEqual:>= boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
 353IFO/2<>INT(O/2)THEN360
  Variable:O numeric scalar
  NumericConstant:2
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  Variable:O numeric scalar
  NumericConstant:2
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 354PRINT"WOULD YOU LIKE TO BUY BACK YOUR WATCH FOR $50";
  TextConstant:"WOULD YOU LIKE TO BUY BACK YOUR WATCH FOR $50"
  CarriageControl:;
@@ -1425,30 +1425,30 @@
 356IFJ$="NO"THEN360
  Variable:J$ string scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 357LETC=C-50
  Variable:C numeric scalar
  Variable:C numeric scalar
  NumericConstant:50
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 358LETO=O/2
  Variable:O numeric scalar
  Variable:O numeric scalar
  NumericConstant:2
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  AssignmentOperator:=
 359RETURN
  
 360IFO/3<>INT(O/3)THEN367
  Variable:O numeric scalar
  NumericConstant:3
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  Variable:O numeric scalar
  NumericConstant:3
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 361PRINT"WQULD YOU LIKE TO BUY BACK YOUR TIE TACK FOR $50";
  TextConstant:"WQULD YOU LIKE TO BUY BACK YOUR TIE TACK FOR $50"
  CarriageControl:;
@@ -1457,18 +1457,18 @@
 363IFJ$="NO"THEN367
  Variable:J$ string scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 364LETC=C-50
  Variable:C numeric scalar
  Variable:C numeric scalar
  NumericConstant:50
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 365LETO=O/3
  Variable:O numeric scalar
  Variable:O numeric scalar
  NumericConstant:3
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  AssignmentOperator:=
 366RETURN
  
@@ -1485,12 +1485,12 @@
 370IFH$="A FLUS"THEN375
  Variable:H$ string scalar
  TextConstant:"A FLUS"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 371LETK=INT(K/100)
  Variable:K numeric scalar
  Variable:K numeric scalar
  NumericConstant:100
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 372GOSUB208
@@ -1509,11 +1509,11 @@
 377IFH$="SCHMAL"THEN379
  Variable:H$ string scalar
  TextConstant:"SCHMAL"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 378IFH$<>"STRAIG"THEN381
  Variable:H$ string scalar
  TextConstant:"STRAIG"
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>($,$) boolean scalar
 379PRINT" HIGH"
  TextConstant:" HIGH"
  CarriageControl:NL
@@ -1532,12 +1532,12 @@
 385IFO/2=INT(O/2)THEN397
  Variable:O numeric scalar
  NumericConstant:2
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  Variable:O numeric scalar
  NumericConstant:2
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 386PRINT"WOULD YOU LIKE TO SELL YOUR WATCH";
  TextConstant:"WOULD YOU LIKE TO SELL YOUR WATCH"
  CarriageControl:;
@@ -1546,12 +1546,12 @@
 388IFJ$="NO"THEN397
  Variable:J$ string scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 389IFFNA(01)>=7THEN393
  NumericConstant:01
  UserFunction:FNA(_) numeric scalar
  NumericConstant:7
- BinaryOperatorGreaterEqual:>= boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
 390PRINT"I'LL GIVE YOU $75 FOR IT"
  TextConstant:"I'LL GIVE YOU $75 FOR IT"
  CarriageControl:NL
@@ -1559,7 +1559,7 @@
  Variable:S numeric scalar
  Variable:S numeric scalar
  NumericConstant:75
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 392GOTO395
  LineNumber:395
@@ -1570,25 +1570,25 @@
  Variable:S numeric scalar
  Variable:S numeric scalar
  NumericConstant:25
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 395LETO=O*2
  Variable:O numeric scalar
  Variable:O numeric scalar
  NumericConstant:2
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  AssignmentOperator:=
 396RETURN
  
 397IFO/3=INT(O/3)THEN409
  Variable:O numeric scalar
  NumericConstant:3
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  Variable:O numeric scalar
  NumericConstant:3
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 398PRINT"WILL YOU PART WITH THAT DIAMOND TIE TACK";
  TextConstant:"WILL YOU PART WITH THAT DIAMOND TIE TACK"
  CarriageControl:;
@@ -1597,12 +1597,12 @@
 400IFJ$="NO"THEN408
  Variable:J$ string scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 401IFFNA(0)>=6THEN405
  NumericConstant:0
  UserFunction:FNA(_) numeric scalar
  NumericConstant:6
- BinaryOperatorGreaterEqual:>= boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
 402PRINT"YOU ARE NOW $100 RICHER"
  TextConstant:"YOU ARE NOW $100 RICHER"
  CarriageControl:NL
@@ -1610,7 +1610,7 @@
  Variable:S numeric scalar
  Variable:S numeric scalar
  NumericConstant:100
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 404GOTO407
  LineNumber:407
@@ -1621,13 +1621,13 @@
  Variable:S numeric scalar
  Variable:S numeric scalar
  NumericConstant:25
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 407LETO=O*3
  Variable:O numeric scalar
  Variable:O numeric scalar
  NumericConstant:3
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  AssignmentOperator:=
 408RETURN
  

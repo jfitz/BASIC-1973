@@ -4,7 +4,7 @@
 20 IF N=0 THEN 150
  Variable:N numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 30 LET C=1
  Variable:C numeric scalar
  NumericConstant:1
@@ -14,13 +14,13 @@
 50 FOR X=N TO N-R+1 STEP -1
  control: Variable:X numeric scalar
  start:   ["Variable:N numeric scalar"]
- end:     ["Variable:N numeric scalar", "Variable:R numeric scalar", "BinaryOperatorMinus:- numeric scalar", "NumericConstant:1", "BinaryOperatorPlus:+ numeric scalar"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+ end:     ["Variable:N numeric scalar", "Variable:R numeric scalar", "BinaryOperatorMinus:-(_,_) numeric scalar", "NumericConstant:1", "BinaryOperatorPlus:+(_,_) numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) numeric scalar"]
 60 LET C=C*X
  Variable:C numeric scalar
  Variable:C numeric scalar
  Variable:X numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  AssignmentOperator:=
 70 NEXT X
  Variable:X numeric scalar
@@ -30,12 +30,12 @@
  control: Variable:X numeric scalar
  start:   ["Variable:R numeric scalar"]
  end:     ["NumericConstant:1"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) numeric scalar"]
 100 LET C=C/X
  Variable:C numeric scalar
  Variable:C numeric scalar
  Variable:X numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  AssignmentOperator:=
 110 NEXT X
  Variable:X numeric scalar

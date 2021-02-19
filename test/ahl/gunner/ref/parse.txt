@@ -45,8 +45,8 @@
  NumericConstant:30000
  Variable:X numeric scalar
  FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 210 LET S=0
  Variable:S numeric scalar
@@ -99,17 +99,17 @@
  Variable:S1 numeric scalar
  Variable:S1 numeric scalar
  Variable:S numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 330 IF Z=4 THEN 490
  Variable:Z numeric scalar
  NumericConstant:4
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 340 Z=Z+1
  Variable:Z numeric scalar
  Variable:Z numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 345 PRINT
  CarriageControl:NL
@@ -138,21 +138,21 @@
 420 IF B>89 THEN 250
  Variable:B numeric scalar
  NumericConstant:89
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 430 IF B<1 THEN 230
  Variable:B numeric scalar
  NumericConstant:1
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 440 LET S=S+1
  Variable:S numeric scalar
  Variable:S numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 442 IF S<6 THEN 450
  Variable:S numeric scalar
  NumericConstant:6
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 444 PRINT\PRINT "BOOM!!! YOU HAVE JUST BEEN DESTROYED ";
  CarriageControl:NL
  TextConstant:"BOOM!!! YOU HAVE JUST BEEN DESTROYED "
@@ -169,20 +169,20 @@
  Variable:B2 numeric scalar
  NumericConstant:2
  Variable:B numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:57.3
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  AssignmentOperator:=
  Variable:I numeric scalar
  NumericConstant:46500
  Variable:B2 numeric scalar
  FunctionSin:SIN(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  AssignmentOperator:=
  Variable:X numeric scalar
  Variable:T numeric scalar
  Variable:I numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
  Variable:E numeric scalar
  Variable:X numeric scalar
@@ -192,16 +192,16 @@
  Variable:E numeric scalar
  FunctionAbs:ABS(_) numeric scalar
  NumericConstant:100
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 470 IF E>100 THEN 290
  Variable:E numeric scalar
  NumericConstant:100
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 480 IF E<-100 THEN 270
  Variable:E numeric scalar
  NumericConstant:100
- UnaryOperatorMinus:- numeric scalar
- BinaryOperatorLess:< boolean scalar
+ UnaryOperatorMinus:-(_) numeric scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 490 PRINT\PRINT\PRINT "TOTAL ROUNDS EXPENDED WERE";S1
  CarriageControl:NL
  CarriageControl:NL
@@ -212,7 +212,7 @@
 491 IF S1<15 THEN 495\PRINT "NICE SHOOTING!! "\GOSUB 600\GOTO 500
  Variable:S1 numeric scalar
  NumericConstant:15
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
  TextConstant:"NICE SHOOTING!! "
  CarriageControl:NL
  LineNumber:600

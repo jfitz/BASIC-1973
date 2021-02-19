@@ -29,11 +29,11 @@
 900 IF Z$="Y" THEN 990
  Variable:Z$ string scalar
  TextConstant:"Y"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 960 IF Z$="N" THEN 1530
  Variable:Z$ string scalar
  TextConstant:"N"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 990 PRINT "THE GAME OF BOWLING TAKES MIND AND SKILL. DURING THE GAME"
  TextConstant:"THE GAME OF BOWLING TAKES MIND AND SKILL. DURING THE GAME"
  CarriageControl:NL
@@ -120,7 +120,7 @@
  Variable:I numeric scalar
  FunctionRnd:RND(_) numeric scalar
  NumericConstant:100
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 3060 FOR J=1 TO 10
@@ -131,16 +131,16 @@
  Variable:X numeric scalar
  NumericConstant:15
  Variable:J numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 3240 NEXT J
  Variable:J numeric scalar
 3330 C(15*J-X)=1
  NumericConstant:15
  Variable:J numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  Variable:X numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  Variable:C numeric scalar
  NumericConstant:1
  AssignmentOperator:=
@@ -170,18 +170,18 @@
 3870 FOR J=1 TO 4-I
  control: Variable:J numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["NumericConstant:4", "Variable:I numeric scalar", "BinaryOperatorMinus:- numeric scalar"]
+ end:     ["NumericConstant:4", "Variable:I numeric scalar", "BinaryOperatorMinus:-(_,_) numeric scalar"]
 3960 K=K+1
  Variable:K numeric scalar
  Variable:K numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 4050 IF C(K)<1 THEN 4320
  Variable:K numeric scalar
  Variable:C numeric scalar
  NumericConstant:1
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 4140 PRINT TAB(I);"* ";
  Variable:I numeric scalar
  FunctionTab:TAB(_) string scalar
@@ -215,28 +215,28 @@
  Variable:D numeric scalar
  Variable:I numeric scalar
  Variable:C numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 4950 NEXT I
  Variable:I numeric scalar
 5040 IF D-M <> 0 THEN 5220
  Variable:D numeric scalar
  Variable:M numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 5130 PRINT "GUTTER!!"
  TextConstant:"GUTTER!!"
  CarriageControl:NL
 5220 IF NOT(B=1 AND P=10) THEN 5490
  Variable:B numeric scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
  Variable:P numeric scalar
  NumericConstant:10
- BinaryOperatorEqual:= boolean scalar
- BinaryOperatorAnd:AND boolean scalar
- UnaryOperatorNot:NOT boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorAnd:AND(?,?) boolean scalar
+ UnaryOperatorNot:NOT(?) boolean scalar
 5310 PRINT "STRIKE!!!"
  TextConstant:"STRIKE!!!"
  CarriageControl:NL
@@ -247,12 +247,12 @@
 5490 IF NOT(B=2 AND P=10) THEN 5760
  Variable:B numeric scalar
  NumericConstant:2
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
  Variable:P numeric scalar
  NumericConstant:10
- BinaryOperatorEqual:= boolean scalar
- BinaryOperatorAnd:AND boolean scalar
- UnaryOperatorNot:NOT boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorAnd:AND(?,?) boolean scalar
+ UnaryOperatorNot:NOT(?) boolean scalar
 5580 PRINT "SPARE!!!!"
  TextConstant:"SPARE!!!!"
  CarriageControl:NL
@@ -263,12 +263,12 @@
 5760 IF NOT(B=2 AND D<10) THEN 6030
  Variable:B numeric scalar
  NumericConstant:2
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
  Variable:D numeric scalar
  NumericConstant:10
- BinaryOperatorLess:< boolean scalar
- BinaryOperatorAnd:AND boolean scalar
- UnaryOperatorNot:NOT boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorAnd:AND(?,?) boolean scalar
+ UnaryOperatorNot:NOT(?) boolean scalar
 5850 PRINT "ERROR!!"
  TextConstant:"ERROR!!"
  CarriageControl:NL
@@ -279,12 +279,12 @@
 6030 IF NOT(B=1 AND D<10) THEN 6210
  Variable:B numeric scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
  Variable:D numeric scalar
  NumericConstant:10
- BinaryOperatorLess:< boolean scalar
- BinaryOperatorAnd:AND boolean scalar
- UnaryOperatorNot:NOT boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorAnd:AND(?,?) boolean scalar
+ UnaryOperatorNot:NOT(?) boolean scalar
 6120 PRINT "ROLL YOUR 2ND BALL"
  TextConstant:"ROLL YOUR 2ND BALL"
  CarriageControl:NL
@@ -295,7 +295,7 @@
 6390 A(F*P,B)=D
  Variable:F numeric scalar
  Variable:P numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  Variable:B numeric scalar
  Variable:A numeric scalar
  Variable:D numeric scalar
@@ -303,7 +303,7 @@
 6480 IF B=2 THEN 7020
  Variable:B numeric scalar
  NumericConstant:2
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 6570 B=2
  Variable:B numeric scalar
  NumericConstant:2
@@ -315,25 +315,25 @@
 6750 IF Q=3 THEN 6210
  Variable:Q numeric scalar
  NumericConstant:3
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 6840 A(F*P,3)=D-M
  Variable:F numeric scalar
  Variable:P numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:3
  Variable:A numeric scalar
  Variable:D numeric scalar
  Variable:M numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 6930 IF Q=0 THEN 2520
  Variable:Q numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 7020 A(F*P,3)=Q
  Variable:F numeric scalar
  Variable:P numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:3
  Variable:A numeric scalar
  Variable:Q numeric scalar
@@ -344,12 +344,12 @@
  Variable:F numeric scalar
  Variable:F numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 7290 IF F<11 THEN 2070
  Variable:F numeric scalar
  NumericConstant:11
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 7295 PRINT "FRAMES"
  TextConstant:"FRAMES"
  CarriageControl:NL
@@ -399,7 +399,7 @@
 8640 IF A$="Y" THEN 2610
  Variable:A$ string scalar
  TextConstant:"Y"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 8730 END 
  
 

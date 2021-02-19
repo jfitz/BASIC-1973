@@ -19,11 +19,11 @@
 90 IF A$ = "YES" THEN 130
  Variable:A$ string scalar
  TextConstant:"YES"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 100 IF A$ = "NO" THEN 540
  Variable:A$ string scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 110 PRINT "YOU HAVE ISSUED AN INVALID RESPONSE"
  TextConstant:"YOU HAVE ISSUED AN INVALID RESPONSE"
  CarriageControl:NL
@@ -190,7 +190,7 @@
 630 IF D > 1E04 THEN 660
  Variable:D numeric scalar
  NumericConstant:1E04
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 640 LET L = 1
  Variable:L numeric scalar
  NumericConstant:1
@@ -206,17 +206,17 @@
  NumericConstant:1
  NumericConstant:100
  FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  NumericConstant:100
- BinaryOperatorDivide:/ numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 680 LET E1 = 5000*H
  Variable:E1 numeric scalar
  NumericConstant:5000
  Variable:H numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  AssignmentOperator:=
 690 GOTO 720
  LineNumber:720
@@ -225,24 +225,24 @@
  NumericConstant:1
  NumericConstant:100
  FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  NumericConstant:100
- BinaryOperatorDivide:/ numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 710 LET E1 = 1000*H
  Variable:E1 numeric scalar
  NumericConstant:1000
  Variable:H numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  AssignmentOperator:=
 720 RETURN
  
 730 IF D > 5E03 THEN 760
  Variable:D numeric scalar
  NumericConstant:5E03
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 740 LET K = 1
  Variable:K numeric scalar
  NumericConstant:1
@@ -258,17 +258,17 @@
  NumericConstant:1
  NumericConstant:100
  FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  NumericConstant:100
- BinaryOperatorDivide:/ numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 780 LET E2 = 8000*H
  Variable:E2 numeric scalar
  NumericConstant:8000
  Variable:H numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  AssignmentOperator:=
 790 GOTO 820
  LineNumber:820
@@ -277,24 +277,24 @@
  NumericConstant:1
  NumericConstant:100
  FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  NumericConstant:100
- BinaryOperatorDivide:/ numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 810 LET E2 = 3000*H
  Variable:E2 numeric scalar
  NumericConstant:3000
  Variable:H numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  AssignmentOperator:=
 820 RETURN
  
 840 IF D < 3E03 THEN 860
  Variable:D numeric scalar
  NumericConstant:3E03
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 850 LET E3 = 0
  Variable:E3 numeric scalar
  NumericConstant:0
@@ -304,34 +304,34 @@
  NumericConstant:1
  NumericConstant:100
  FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  NumericConstant:100
- BinaryOperatorDivide:/ numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 870 LET E3 = 2E04*H
  Variable:E3 numeric scalar
  NumericConstant:2E04
  Variable:H numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  AssignmentOperator:=
 880 LET T1 = T1 - E1
  Variable:T1 numeric scalar
  Variable:T1 numeric scalar
  Variable:E1 numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 890 LET T2 = T2 - E2
  Variable:T2 numeric scalar
  Variable:T2 numeric scalar
  Variable:E2 numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 900 IF T1 <= 0 THEN 920
  Variable:T1 numeric scalar
  NumericConstant:0
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 910 GOTO 950
  LineNumber:950
 920 LET E1 = 0
@@ -351,7 +351,7 @@
 960 IF T2 <= 0 THEN 980
  Variable:T2 numeric scalar
  NumericConstant:0
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 970 GOTO 1010
  LineNumber:1010
 980 LET E2 = 0
@@ -372,11 +372,11 @@
  Variable:X1 numeric scalar
  Variable:X1 numeric scalar
  Variable:E1 numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  Variable:E2 numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  Variable:E3 numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 1030 RETURN
  
@@ -390,11 +390,11 @@
 1045 IF Y = 1 THEN 1100
  Variable:Y numeric scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 1050 IF L = 0 THEN 1080
  Variable:L numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 1060 PRINT "THE SKY FIGHTER HAS FIRED HIS LASER"
  TextConstant:"THE SKY FIGHTER HAS FIRED HIS LASER"
  CarriageControl:NL
@@ -411,13 +411,13 @@
 1110 IF Z = 1 THEN 1180
  Variable:Z numeric scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 1120 GOTO 1220
  LineNumber:1220
 1130 IF K = 0 THEN 1160
  Variable:K numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 1140 PRINT "THE DARK LORD HAS FIRED HIS HIGH ENERGY LASER"
  TextConstant:"THE DARK LORD HAS FIRED HIS HIGH ENERGY LASER"
  CarriageControl:NL
@@ -444,8 +444,8 @@
  NumericConstant:1
  NumericConstant:5
  FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 1230 ON C GOTO 1240, 1270, 1290, 1330
  Variable:C numeric scalar
@@ -487,7 +487,7 @@
 1360 IF D <= 3E03 THEN 1380
  Variable:D numeric scalar
  NumericConstant:3E03
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 1370 GOTO 1410
  LineNumber:1410
 1380 PRINT "YOU ARE CLOSER THAN 3000KM TO THE SPACE STATION"
@@ -511,7 +511,7 @@
 1420 IF X1 < 2E04 THEN 1440
  Variable:X1 numeric scalar
  NumericConstant:2E04
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 1430 GOTO 1490
  LineNumber:1490
 1440 PRINT "YOU HAVE DEPLETED YOUR ENERGY SUPPLY, THE DEATH"
@@ -546,7 +546,7 @@
 1540 IF D <= 1000 THEN 1590
  Variable:D numeric scalar
  NumericConstant:1000
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 1550 PRINT "YOU HAVE WASTED A TORPEDO, YOU ARE FARTHER"
  TextConstant:"YOU HAVE WASTED A TORPEDO, YOU ARE FARTHER"
  CarriageControl:NL
@@ -557,7 +557,7 @@
  Variable:X1 numeric scalar
  Variable:X1 numeric scalar
  NumericConstant:2E04
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 1580 GOTO 2680
  LineNumber:2680
@@ -566,14 +566,14 @@
  NumericConstant:1
  NumericConstant:100
  FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 1600 IF H > 50 THEN 1640
  Variable:H numeric scalar
  NumericConstant:50
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 1610 PRINT "YOU SHOULD HAVE USED THE FORCE, YOU HAVE MISSED"
  TextConstant:"YOU SHOULD HAVE USED THE FORCE, YOU HAVE MISSED"
  CarriageControl:NL
@@ -581,7 +581,7 @@
  Variable:X1 numeric scalar
  Variable:X1 numeric scalar
  NumericConstant:2E04
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 1630 GOTO 2680
  LineNumber:2680
@@ -610,11 +610,11 @@
 1720 IF C$ = "YES" THEN 1820
  Variable:C$ string scalar
  TextConstant:"YES"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 1730 IF C$ = "NO" THEN 1880
  Variable:C$ string scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 1740 PRINT "INVALID RESPONSE"
  TextConstant:"INVALID RESPONSE"
  CarriageControl:NL
@@ -628,11 +628,11 @@
 1780 IF C$ = "S" THEN 1840
  Variable:C$ string scalar
  TextConstant:"S"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 1790 IF C$ = "R" THEN 1860
  Variable:C$ string scalar
  TextConstant:"R"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 1800 PRINT "WHICH???"
  TextConstant:"WHICH???"
  CarriageControl:NL
@@ -648,7 +648,7 @@
  Variable:T1 numeric scalar
  Variable:T1 numeric scalar
  Variable:Q numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 1850 GOTO 1960
  LineNumber:1960
@@ -656,7 +656,7 @@
  Variable:T2 numeric scalar
  Variable:T2 numeric scalar
  Variable:Q numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 1870 GOTO 1960
  LineNumber:1960
@@ -674,21 +674,21 @@
  NumericConstant:1
  NumericConstant:100
  FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  NumericConstant:100
- BinaryOperatorDivide:/ numeric scalar
- BinaryOperatorPlus:+ numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  AssignmentOperator:=
 1920 IF C$ = "S" THEN 1980
  Variable:C$ string scalar
  TextConstant:"S"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 1930 IF C$ = "R" THEN 2000
  Variable:C$ string scalar
  TextConstant:"R"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 1940 PRINT "WHICH ENEMY???"
  TextConstant:"WHICH ENEMY???"
  CarriageControl:NL
@@ -698,7 +698,7 @@
  Variable:X1 numeric scalar
  Variable:X1 numeric scalar
  NumericConstant:5000
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 1970 GOTO 2660
  LineNumber:2660
@@ -706,13 +706,13 @@
  Variable:T1 numeric scalar
  Variable:T1 numeric scalar
  Variable:Q numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 1982 LET X1 = X1 - 5000
  Variable:X1 numeric scalar
  Variable:X1 numeric scalar
  NumericConstant:5000
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 1990 GOTO 2010
  LineNumber:2010
@@ -720,13 +720,13 @@
  Variable:T2 numeric scalar
  Variable:T2 numeric scalar
  Variable:Q numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 2010 LET X1 = X1 - 5000
  Variable:X1 numeric scalar
  Variable:X1 numeric scalar
  NumericConstant:5000
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 2020 GOTO 2660
  LineNumber:2660
@@ -741,11 +741,11 @@
 2060 IF C$ = "YES" THEN 2100
  Variable:C$ string scalar
  TextConstant:"YES"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 2070 IF C$ = "NO" THEN 2120
  Variable:C$ string scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 2080 PRINT "THE COMPUTER RESPONDS ONLY TO A YES OR NO"
  TextConstant:"THE COMPUTER RESPONDS ONLY TO A YES OR NO"
  CarriageControl:NL
@@ -772,7 +772,7 @@
 2160 IF J = 1 THEN 2190
  Variable:J numeric scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 2170 LET Q = 1000*(1 + INT(RND)/100)
  Variable:Q numeric scalar
  NumericConstant:1000
@@ -780,9 +780,9 @@
  FunctionRnd:RND numeric scalar
  FunctionInt:INT(_) numeric scalar
  NumericConstant:100
- BinaryOperatorDivide:/ numeric scalar
- BinaryOperatorPlus:+ numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  AssignmentOperator:=
 2180 GOTO 2200
  LineNumber:2200
@@ -793,11 +793,11 @@
 2200 IF C$ = "S" THEN 2240
  Variable:C$ string scalar
  TextConstant:"S"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 2210 IF C$ = "R" THEN 2260
  Variable:C$ string scalar
  TextConstant:"R"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 2220 PRINT "WHICH TARGET?????"
  TextConstant:"WHICH TARGET?????"
  CarriageControl:NL
@@ -807,7 +807,7 @@
  Variable:T1 numeric scalar
  Variable:T1 numeric scalar
  Variable:Q numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 2250 GOTO 2270
  LineNumber:2270
@@ -815,17 +815,17 @@
  Variable:T2 numeric scalar
  Variable:T2 numeric scalar
  Variable:Q numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 2270 IF J = 1 THEN 2300
  Variable:J numeric scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 2280 LET X1 = X1 - 1000
  Variable:X1 numeric scalar
  Variable:X1 numeric scalar
  NumericConstant:1000
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 2290 GOTO 2660
  LineNumber:2660
@@ -833,7 +833,7 @@
  Variable:X1 numeric scalar
  Variable:X1 numeric scalar
  NumericConstant:1500
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 2310 GOTO 2660
  LineNumber:2660
@@ -865,15 +865,15 @@
 2410 IF F > 2.25E04 THEN 2470
  Variable:F numeric scalar
  NumericConstant:2.25E04
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 2420 IF C$ = "A" THEN 2500
  Variable:C$ string scalar
  TextConstant:"A"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 2430 IF C$ = "T" THEN 2620
  Variable:C$ string scalar
  TextConstant:"T"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 2440 PRINT "DON'T YOU KNOW WHICH DIRECTION YOU WANT TO GO TO"
  TextConstant:"DON'T YOU KNOW WHICH DIRECTION YOU WANT TO GO TO"
  CarriageControl:NL
@@ -897,12 +897,12 @@
  Variable:D numeric scalar
  Variable:D numeric scalar
  Variable:F numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 2510 IF D > 1.5E05 THEN 2540
  Variable:D numeric scalar
  NumericConstant:1.5E05
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 2520 GOTO 2640
  LineNumber:2640
 2530 REM WENT TOO FAR
@@ -933,17 +933,17 @@
  Variable:D numeric scalar
  Variable:D numeric scalar
  Variable:F numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 2630 IF D <= 0 THEN 2570
  Variable:D numeric scalar
  NumericConstant:0
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 2640 LET X1 = X1 - F
  Variable:X1 numeric scalar
  Variable:X1 numeric scalar
  Variable:F numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 2650 GOTO 2680
  LineNumber:2680
@@ -996,11 +996,11 @@
 2810 IF L$ = "GO" THEN 2840
  Variable:L$ string scalar
  TextConstant:"GO"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 2820 IF L$ = "NO" THEN 2860
  Variable:L$ string scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 2830 PRINT "DO YOU WANT TO STOP OR PLAY AGAIN?????"
  TextConstant:"DO YOU WANT TO STOP OR PLAY AGAIN?????"
  CarriageControl:NL

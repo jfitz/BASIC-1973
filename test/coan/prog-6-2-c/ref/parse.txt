@@ -9,20 +9,20 @@
  control: Variable:E numeric scalar
  start:   ["NumericConstant:20"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) numeric scalar"]
 40 LET I=INT(N/2^E)
  Variable:I numeric scalar
  Variable:N numeric scalar
  NumericConstant:2
  Variable:E numeric scalar
- BinaryOperatorPower:^ numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorPower:^(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 45 IF I=1 THEN 55
  Variable:I numeric scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 50 PRINT "0";
  TextConstant:"0"
  CarriageControl:;
@@ -37,9 +37,9 @@
  Variable:I numeric scalar
  NumericConstant:2
  Variable:E numeric scalar
- BinaryOperatorPower:^ numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorPower:^(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 70 LET N=R
  Variable:N numeric scalar

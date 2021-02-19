@@ -43,6 +43,9 @@ class UnaryOperator < AbstractElement
   def set_content_type(type_stack)
     raise(BASICExpressionError, 'Not enough operands') if type_stack.empty?
 
+    @sigils = make_sigils([type])
+    @signature = make_signature([type])
+
     @content_type = type_stack.pop
     type_stack.push(@content_type)
   end
@@ -56,7 +59,7 @@ class UnaryOperator < AbstractElement
   end
 
   def dump
-    "#{self.class}:#{@op} #{@content_type} #{@shape}"
+    "#{self.class}:#{@op}#{@signature} #{@content_type} #{@shape}"
   end
 
   def unary?
@@ -162,7 +165,7 @@ class BinaryOperator < AbstractElement
   end
 
   def dump
-    "#{self.class}:#{@op} #{@content_type} #{@shape}"
+    "#{self.class}:#{@op}#{@signature} #{@content_type} #{@shape}"
   end
 
   def unary?
@@ -691,6 +694,9 @@ class UnaryOperatorPlus < UnaryOperator
     raise(BASICExpressionError, "Type mismatch #{@op} #{type}") if
       !arg_types.include?(type)
 
+    @sigils = make_sigils([type])
+    @signature = make_signature([type])
+
     @content_type = type
     type_stack.push(@content_type)
   end
@@ -798,6 +804,9 @@ class UnaryOperatorMinus < UnaryOperator
     raise(BASICExpressionError, "Type mismatch #{@op} #{type}") if
       !arg_types.include?(type)
     
+    @sigils = make_sigils([type])
+    @signature = make_signature([type])
+
     @content_type = type
     type_stack.push(@content_type)
   end
@@ -910,6 +919,9 @@ class UnaryOperatorHash < UnaryOperator
     raise(BASICExpressionError, "Type mismatch #{@op} #{type}") if
       !arg_types.include?(type)
     
+    @sigils = make_sigils([type])
+    @signature = make_signature([type])
+
     @content_type = :filehandle
     type_stack.push(@content_type)
   end
@@ -956,6 +968,9 @@ class UnaryOperatorColon < UnaryOperator
     raise(BASICExpressionError, "Type mismatch #{@op} #{type}") if
       !arg_types.include?(type)
     
+    @sigils = make_sigils([type])
+    @signature = make_signature([type])
+
     @content_type = :filehandle
     type_stack.push(@content_type)
   end
@@ -1002,6 +1017,9 @@ class UnaryOperatorNot < UnaryOperator
     raise(BASICExpressionError, "Type mismatch #{@op} #{type}") if
       !arg_types.include?(type)
     
+    @sigils = make_sigils([type])
+    @signature = make_signature([type])
+
     @content_type = :boolean
     @content_type = :integer if
       type == :integer && $options['int_bitwise'].value
@@ -1061,6 +1079,9 @@ class BinaryOperatorPlus < BinaryOperator
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
+    @sigils = make_sigils([a_type, b_type])
+    @signature = make_signature([a_type, b_type])
+    
     @content_type = result_type(a_type, b_type)
     type_stack.push(@content_type)
   end
@@ -1143,6 +1164,9 @@ class BinaryOperatorMinus < BinaryOperator
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
+    @sigils = make_sigils([a_type, b_type])
+    @signature = make_signature([a_type, b_type])
+    
     @content_type = result_type(a_type, b_type)
     type_stack.push(@content_type)
   end
@@ -1225,6 +1249,9 @@ class BinaryOperatorMultiply < BinaryOperator
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
+    @sigils = make_sigils([a_type, b_type])
+    @signature = make_signature([a_type, b_type])
+    
     @content_type = result_type(a_type, b_type)
     type_stack.push(@content_type)
   end
@@ -1307,6 +1334,9 @@ class BinaryOperatorDivide < BinaryOperator
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
+    @sigils = make_sigils([a_type, b_type])
+    @signature = make_signature([a_type, b_type])
+    
     @content_type = result_type(a_type, b_type)
     type_stack.push(@content_type)
   end
@@ -1390,6 +1420,9 @@ class BinaryOperatorPower < BinaryOperator
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
+    @sigils = make_sigils([a_type, b_type])
+    @signature = make_signature([a_type, b_type])
+    
     @content_type = result_type(a_type, b_type)
     type_stack.push(@content_type)
   end
@@ -1472,6 +1505,9 @@ class BinaryOperatorEqual < BinaryOperator
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
+    @sigils = make_sigils([a_type, b_type])
+    @signature = make_signature([a_type, b_type])
+    
     @content_type = :boolean
     type_stack.push(@content_type)
   end
@@ -1559,6 +1595,9 @@ class BinaryOperatorNotEqual < BinaryOperator
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
+    @sigils = make_sigils([a_type, b_type])
+    @signature = make_signature([a_type, b_type])
+    
     @content_type = :boolean
     type_stack.push(@content_type)
   end
@@ -1641,6 +1680,9 @@ class BinaryOperatorLess < BinaryOperator
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
+    @sigils = make_sigils([a_type, b_type])
+    @signature = make_signature([a_type, b_type])
+    
     @content_type = :boolean
     type_stack.push(@content_type)
   end
@@ -1724,6 +1766,9 @@ class BinaryOperatorLessEqual < BinaryOperator
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
+    @sigils = make_sigils([a_type, b_type])
+    @signature = make_signature([a_type, b_type])
+    
     @content_type = :boolean
     type_stack.push(@content_type)
   end
@@ -1806,6 +1851,9 @@ class BinaryOperatorGreater < BinaryOperator
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
+    @sigils = make_sigils([a_type, b_type])
+    @signature = make_signature([a_type, b_type])
+    
     @content_type = :boolean
     type_stack.push(@content_type)
   end
@@ -1889,6 +1937,9 @@ class BinaryOperatorGreaterEqual < BinaryOperator
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
+    @sigils = make_sigils([a_type, b_type])
+    @signature = make_signature([a_type, b_type])
+    
     @content_type = :boolean
     type_stack.push(@content_type)
   end
@@ -1970,6 +2021,9 @@ class BinaryOperatorAnd < BinaryOperator
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type)
 
+    @sigils = make_sigils([a_type, b_type])
+    @signature = make_signature([a_type, b_type])
+    
     @content_type = :boolean
     @content_type = :integer if
       a_type == :integer && b_type == :integer && $options['int_bitwise'].value
@@ -2053,6 +2107,9 @@ class BinaryOperatorOr < BinaryOperator
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type)
 
+    @sigils = make_sigils([a_type, b_type])
+    @signature = make_signature([a_type, b_type])
+    
     @content_type = :boolean
     @content_type = :integer if
       a_type == :integer && b_type == :integer && $options['int_bitwise'].value
@@ -2134,8 +2191,12 @@ class BinaryOperatorMax < BinaryOperator
     arg_types = [:numeric, :integer, :string]
     
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
-      !arg_types.include?(a_type) || !arg_types.include?(b_type) || b_type != a_type
+      !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
+      b_type != a_type
 
+    @sigils = make_sigils([a_type, b_type])
+    @signature = make_signature([a_type, b_type])
+    
     @content_type = a_type
     type_stack.push(@content_type)
   end
@@ -2215,8 +2276,12 @@ class BinaryOperatorMin < BinaryOperator
     arg_types = [:numeric, :integer, :string]
     
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
-      !arg_types.include?(a_type) || !arg_types.include?(b_type) || b_type != a_type
+      !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
+      b_type != a_type
 
+    @sigils = make_sigils([a_type, b_type])
+    @signature = make_signature([a_type, b_type])
+    
     @content_type = a_type
     type_stack.push(@content_type)
   end

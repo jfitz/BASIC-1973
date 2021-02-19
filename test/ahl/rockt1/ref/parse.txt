@@ -10,7 +10,7 @@
 120 IF A$="NO" THEN 390
  Variable:A$ string scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 160 PRINT
  CarriageControl:NL
 200 PRINT "YOU ARE LANDING ON THE MOON AND HAVE TAKEN OVER MANUAL"
@@ -123,9 +123,9 @@
  CarriageControl:;
  Variable:H numeric scalar
  NumericConstant:12
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  NumericConstant:29
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  FunctionTab:TAB(_) string scalar
  CarriageControl:;
  TextConstant:"*"
@@ -135,18 +135,18 @@
 510 IF B<0 THEN 650
  Variable:B numeric scalar
  NumericConstant:0
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 520 IF B>30 THEN B=30
  Variable:B numeric scalar
  NumericConstant:30
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
  Variable:B numeric scalar
  NumericConstant:30
  AssignmentOperator:=
 530 IF B>F THEN B=F
  Variable:B numeric scalar
  Variable:F numeric scalar
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
  Variable:B numeric scalar
  Variable:F numeric scalar
  AssignmentOperator:=
@@ -154,15 +154,15 @@
  Variable:V1 numeric scalar
  Variable:V numeric scalar
  Variable:B numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  NumericConstant:5
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 560 F=F-B
  Variable:F numeric scalar
  Variable:F numeric scalar
  Variable:B numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 570 H=H-.5*(V+V1)
  Variable:H numeric scalar
@@ -170,19 +170,19 @@
  NumericConstant:.5
  Variable:V numeric scalar
  Variable:V1 numeric scalar
- BinaryOperatorPlus:+ numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 580 IF H<=0 THEN 670
  Variable:H numeric scalar
  NumericConstant:0
- BinaryOperatorLessEqual:<= boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) boolean scalar
 598 T=T+1
  Variable:T numeric scalar
  Variable:T numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 600 V=V1
  Variable:V numeric scalar
@@ -191,11 +191,11 @@
 610 IF F>0 THEN 490
  Variable:F numeric scalar
  NumericConstant:0
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 615 IF B=0 THEN 640
  Variable:B numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 620 PRINT "*** OUT OF FUEL ***"
  TextConstant:"*** OUT OF FUEL ***"
  CarriageControl:NL
@@ -224,9 +224,9 @@
  CarriageControl:;
  Variable:H numeric scalar
  NumericConstant:12
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  NumericConstant:29
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  FunctionTab:TAB(_) string scalar
  CarriageControl:;
  TextConstant:"*"
@@ -246,35 +246,35 @@
  NumericConstant:.5
  Variable:V numeric scalar
  Variable:V1 numeric scalar
- BinaryOperatorPlus:+ numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 690 IF B=5 THEN 720
  Variable:B numeric scalar
  NumericConstant:5
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 700 D=(-V*SQR(V*V+H*(10-2*B)))/(5-B)
  Variable:D numeric scalar
  Variable:V numeric scalar
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  Variable:V numeric scalar
  Variable:V numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  Variable:H numeric scalar
  NumericConstant:10
  NumericConstant:2
  Variable:B numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorMinus:- numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  FunctionSqr:SQR(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:5
  Variable:B numeric scalar
- BinaryOperatorMinus:- numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  AssignmentOperator:=
 710 GOTO 730
  LineNumber:730
@@ -282,24 +282,24 @@
  Variable:D numeric scalar
  Variable:H numeric scalar
  Variable:V numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  AssignmentOperator:=
 730 V1=V+(5-B)*D
  Variable:V1 numeric scalar
  Variable:V numeric scalar
  NumericConstant:5
  Variable:B numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  Variable:D numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 760 PRINT "TOUCHDOWN AT ";T+D;"SECONDS."
  TextConstant:"TOUCHDOWN AT "
  CarriageControl:;
  Variable:T numeric scalar
  Variable:D numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  CarriageControl:;
  TextConstant:"SECONDS."
  CarriageControl:NL
@@ -318,7 +318,7 @@
 798 IF V1<>0 THEN 810
  Variable:V1 numeric scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 800 PRINT "CONGRATULATIONS!! A PERFECT LANDING!"
  TextConstant:"CONGRATULATIONS!! A PERFECT LANDING!"
  CarriageControl:NL
@@ -329,7 +329,7 @@
  Variable:V1 numeric scalar
  FunctionAbs:ABS(_) numeric scalar
  NumericConstant:2
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 820 PRINT "***** SORRY, BUT YOU BLEW IT!!!!"
  TextConstant:"***** SORRY, BUT YOU BLEW IT!!!!"
  CarriageControl:NL
@@ -345,7 +345,7 @@
 870 IF A$="YES" THEN 390
  Variable:A$ string scalar
  TextConstant:"YES"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 880 PRINT\PRINT "CONTROL OUT. "\PRINT
  CarriageControl:NL
  TextConstant:"CONTROL OUT. "

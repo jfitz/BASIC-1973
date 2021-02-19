@@ -5,23 +5,23 @@
  Variable:P numeric scalar
  Variable:X numeric scalar
  NumericConstant:3
- BinaryOperatorPower:^ numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorPower:^(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:3
  Variable:P numeric scalar
  Variable:X numeric scalar
  NumericConstant:2
- BinaryOperatorPower:^ numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPower:^(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:2
  Variable:P numeric scalar
  Variable:X numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:1
  Variable:P numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
 20 PRINT
  CarriageControl:NL
 22 PRINT
@@ -30,7 +30,7 @@
  control: Variable:S numeric scalar
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:1"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) numeric scalar"]
 30 READ P[S]
  Variable:S numeric scalar
  Variable:P numeric scalar
@@ -53,7 +53,7 @@
  Remark: STUDY LINE 80 CAREFULLY!
 80 FOR X=-P[1] TO P[1] STEP SGN(P[1])
  control: Variable:X numeric scalar
- start:   ["NumericConstant:1", "Variable:P numeric scalar", "UnaryOperatorMinus:- numeric scalar"]
+ start:   ["NumericConstant:1", "Variable:P numeric scalar", "UnaryOperatorMinus:-(_) numeric scalar"]
  end:     ["NumericConstant:1", "Variable:P numeric scalar"]
  step:    ["NumericConstant:1", "Variable:P numeric scalar", "FunctionSgn:SGN(_) numeric scalar"]
 88 REM LINE 90 PREVENTS AN ERROR MESSAGE CAUSED BY
@@ -63,25 +63,25 @@
 90 IF X=0 THEN 140
  Variable:X numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 100 IF P[1]/X <> INT(P[1]/X) THEN 140
  NumericConstant:1
  Variable:P numeric scalar
  Variable:X numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  NumericConstant:1
  Variable:P numeric scalar
  Variable:X numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 108 REM IS THE REMAINDER ZERO?
  Remark:IS THE REMAINDER ZERO?
 110 IF FNP(X) <> 0 THEN 140
  Variable:X numeric scalar
  UserFunction:FNP(_) numeric scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 118 REM IF THE COMPUTER GETS THROUGH HERE, THE
  Remark:IF THE COMPUTER GETS THROUGH HERE, THE
 119 REM VALUE OF X IS A ZERO OF THE FUNCTION
@@ -100,7 +100,7 @@
 150 IF K=1 THEN 20
  Variable:K numeric scalar
  NumericConstant:1
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 160 PRINT "NONE FOUND";
  TextConstant:"NONE FOUND"
  CarriageControl:;
@@ -109,30 +109,30 @@
 170 DATA 1,-2,-11,12
  NumericConstant:1
  NumericConstant:2
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  NumericConstant:11
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  NumericConstant:12
 180 DATA 1,1,-5,-2
  NumericConstant:1
  NumericConstant:1
  NumericConstant:5
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  NumericConstant:2
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
 190 DATA 1,-2,3,-4
  NumericConstant:1
  NumericConstant:2
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  NumericConstant:3
  NumericConstant:4
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
 200 DATA 2,-3,-10,3
  NumericConstant:2
  NumericConstant:3
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  NumericConstant:10
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  NumericConstant:3
 210 END
  

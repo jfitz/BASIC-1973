@@ -6,19 +6,19 @@
 30 IF N=0 THEN 999
  Variable:N numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 40 FOR E=5 TO 0 STEP -1
  control: Variable:E numeric scalar
  start:   ["NumericConstant:5"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) numeric scalar"]
 50 LET I=INT(N/10^E)
  Variable:I numeric scalar
  Variable:N numeric scalar
  NumericConstant:10
  Variable:E numeric scalar
- BinaryOperatorPower:^ numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorPower:^(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 60 PRINT I;
@@ -30,9 +30,9 @@
  Variable:I numeric scalar
  NumericConstant:10
  Variable:E numeric scalar
- BinaryOperatorPower:^ numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorPower:^(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 80 LET N=R
  Variable:N numeric scalar

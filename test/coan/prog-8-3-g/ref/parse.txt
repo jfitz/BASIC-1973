@@ -29,12 +29,12 @@
 100 IF X/10=INT(X/10) THEN 130
  Variable:X numeric scalar
  NumericConstant:10
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  Variable:X numeric scalar
  NumericConstant:10
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 110 PRINT "-";
  TextConstant:"-"
  CarriageControl:;
@@ -50,29 +50,29 @@
  VariableName:X
  Variable:X numeric scalar
  NumericConstant:2
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  NumericConstant:2
- BinaryOperatorPower:^ numeric scalar
+ BinaryOperatorPower:^(_,_) numeric scalar
  NumericConstant:3
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
 160 FOR X=-5 TO 8
  control: Variable:X numeric scalar
- start:   ["NumericConstant:5", "UnaryOperatorMinus:- numeric scalar"]
+ start:   ["NumericConstant:5", "UnaryOperatorMinus:-(_) numeric scalar"]
  end:     ["NumericConstant:8"]
 170 PRINT
  CarriageControl:NL
 180 FOR Y = -M TO 70-M
  control: Variable:Y numeric scalar
- start:   ["Variable:M numeric scalar", "UnaryOperatorMinus:- numeric scalar"]
- end:     ["NumericConstant:70", "Variable:M numeric scalar", "BinaryOperatorMinus:- numeric scalar"]
+ start:   ["Variable:M numeric scalar", "UnaryOperatorMinus:-(_) numeric scalar"]
+ end:     ["NumericConstant:70", "Variable:M numeric scalar", "BinaryOperatorMinus:-(_,_) numeric scalar"]
 190 IF Y <> 0 THEN 280
  Variable:Y numeric scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 200 IF X=0 THEN 230
  Variable:X numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 210 PRINT "'";
  TextConstant:"'"
  CarriageControl:;
@@ -85,7 +85,7 @@
  Variable:X numeric scalar
  UserFunction:FNQ(_) numeric scalar
  NumericConstant:0
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 250 REM IF  FNQ(X) > 0 GO FIND WHERE IT IS
  Remark:IF  FNQ(X) > 0 GO FIND WHERE IT IS
 260 REM OTHERWISE GET THE NEXT VALUE OF X
@@ -96,7 +96,7 @@
  Variable:Y numeric scalar
  Variable:X numeric scalar
  UserFunction:FNQ(_) numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 290 REM   IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
  Remark:  IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
 300 PRINT " ";

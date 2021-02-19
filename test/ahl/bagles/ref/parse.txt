@@ -28,7 +28,7 @@
 90 IF A$="NO" THEN 150
  Variable:A$ string scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 100 PRINT:PRINT "I AM THINKING OF A THREE-DIGIT NUMBER. TRY TO GUESS"
  CarriageControl:NL
  TextConstant:"I AM THINKING OF A THREE-DIGIT NUMBER. TRY TO GUESS"
@@ -54,19 +54,19 @@
  Variable:A numeric scalar
  NumericConstant:10
  FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 170 FOR J=1 TO I-1
  control: Variable:J numeric scalar
  start:   ["NumericConstant:1"]
- end:     ["Variable:I numeric scalar", "NumericConstant:1", "BinaryOperatorMinus:- numeric scalar"]
+ end:     ["Variable:I numeric scalar", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) numeric scalar"]
 180 IF A(I)=A(J) THEN 160
  Variable:I numeric scalar
  Variable:A numeric scalar
  Variable:J numeric scalar
  Variable:A numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 190 NEXT J
  Variable:J numeric scalar
 200 NEXT I
@@ -93,7 +93,7 @@
  NumericConstant:0
  Variable:A1 numeric scalar
  NumericConstant:3
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 260 FOR J=1 TO 3
  control: Variable:J numeric scalar
  start:   ["NumericConstant:1"]
@@ -102,19 +102,19 @@
  Variable:J numeric scalar
  Variable:A1 numeric scalar
  NumericConstant:48
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 280 IF A1(J)>57 THEN 300
  Variable:J numeric scalar
  Variable:A1 numeric scalar
  NumericConstant:57
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 285 B(J)=A1(J)-48
  Variable:J numeric scalar
  Variable:B numeric scalar
  Variable:J numeric scalar
  Variable:A1 numeric scalar
  NumericConstant:48
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 290 NEXT J 
  Variable:J numeric scalar
@@ -130,19 +130,19 @@
  Variable:B numeric scalar
  NumericConstant:2
  Variable:B numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 330 IF B(2)=B(3) THEN 650
  NumericConstant:2
  Variable:B numeric scalar
  NumericConstant:3
  Variable:B numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 340 IF B(2)=B(1) THEN 650
  NumericConstant:2
  Variable:B numeric scalar
  NumericConstant:1
  Variable:B numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 350 C=0:D=0
  Variable:C numeric scalar
  NumericConstant:0
@@ -159,28 +159,28 @@
  Variable:A numeric scalar
  Variable:J numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:B numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 380 C=C+1
  Variable:C numeric scalar
  Variable:C numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 390 IF A(J+1)<>B(J) THEN 410
  Variable:J numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:A numeric scalar
  Variable:J numeric scalar
  Variable:B numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 400 C=C+1
  Variable:C numeric scalar
  Variable:C numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 410 NEXT J
  Variable:J numeric scalar
@@ -189,24 +189,24 @@
  Variable:A numeric scalar
  NumericConstant:3
  Variable:B numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 430 C=C+1
  Variable:C numeric scalar
  Variable:C numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 440 IF A(3)<>B(1) THEN 460
  NumericConstant:3
  Variable:A numeric scalar
  NumericConstant:1
  Variable:B numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 450 C=C+1
  Variable:C numeric scalar
  Variable:C numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 460 FOR J=1 TO 3
  control: Variable:J numeric scalar
@@ -217,19 +217,19 @@
  Variable:A numeric scalar
  Variable:J numeric scalar
  Variable:B numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 480 D=D+1
  Variable:D numeric scalar
  Variable:D numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 490 NEXT J
  Variable:J numeric scalar
 500 IF D=3 THEN 680
  Variable:D numeric scalar
  NumericConstant:3
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 520 FOR J=1 TO C
  control: Variable:J numeric scalar
  start:   ["NumericConstant:1"]
@@ -251,9 +251,9 @@
 580 IF C+D<>0 THEN 600
  Variable:C numeric scalar
  Variable:D numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 590 PRINT "BAGLES";
  TextConstant:"BAGLES"
  CarriageControl:;
@@ -270,15 +270,15 @@
  NumericConstant:100
  NumericConstant:1
  Variable:A1 numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:10
  NumericConstant:2
  Variable:A1 numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:3
  Variable:A1 numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  CarriageControl:NL
 620 GOTO 700
  LineNumber:700
@@ -301,18 +301,18 @@
  Variable:V numeric scalar
  Variable:V numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 700 INPUT "PLAY AGAIN (YES OR NO)",A$
  Variable:A$ string scalar
 720 IF A$="YES" THEN 150
  Variable:A$ string scalar
  TextConstant:"YES"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
 730 IF V=0 THEN 750
  Variable:V numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 740 PRINT:PRINT "A"V"- POINT BAGLES BUFF!!"
  CarriageControl:NL
  TextConstant:"A"

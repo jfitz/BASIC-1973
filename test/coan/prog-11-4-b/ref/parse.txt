@@ -9,23 +9,23 @@
  Variable:P numeric scalar
  Variable:X numeric scalar
  NumericConstant:3
- BinaryOperatorPower:^ numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorPower:^(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:3
  Variable:P numeric scalar
  Variable:X numeric scalar
  NumericConstant:2
- BinaryOperatorPower:^ numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPower:^(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:2
  Variable:P numeric scalar
  Variable:X numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:1
  Variable:P numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
 20 PRINT
  CarriageControl:NL
 30 PRINT
@@ -34,7 +34,7 @@
  control: Variable:S numeric scalar
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:1"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) numeric scalar"]
 50 READ P[S]
  Variable:S numeric scalar
  Variable:P numeric scalar
@@ -42,7 +42,7 @@
  Variable:S numeric scalar
  Variable:P numeric scalar
  NumericConstant:.0101
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 70 PRINT P[S];
  Variable:S numeric scalar
  Variable:P numeric scalar
@@ -54,29 +54,29 @@
  CarriageControl:NL
 100 FOR X=-P[1] TO P[1] STEP SGN(P[1])
  control: Variable:X numeric scalar
- start:   ["NumericConstant:1", "Variable:P numeric scalar", "UnaryOperatorMinus:- numeric scalar"]
+ start:   ["NumericConstant:1", "Variable:P numeric scalar", "UnaryOperatorMinus:-(_) numeric scalar"]
  end:     ["NumericConstant:1", "Variable:P numeric scalar"]
  step:    ["NumericConstant:1", "Variable:P numeric scalar", "FunctionSgn:SGN(_) numeric scalar"]
 110 IF X=0 THEN 160
  Variable:X numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 120 IF P[1]/X <> INT(P[1]/X) THEN 160
  NumericConstant:1
  Variable:P numeric scalar
  Variable:X numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  NumericConstant:1
  Variable:P numeric scalar
  Variable:X numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 130 IF FNP(X) <> 0 THEN 160
  Variable:X numeric scalar
  UserFunction:FNP(_) numeric scalar
  NumericConstant:0
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 140 PRINT X
  Variable:X numeric scalar
  CarriageControl:NL
@@ -105,7 +105,7 @@
  control: Variable:X numeric scalar
  start:   ["NumericConstant:3"]
  end:     ["NumericConstant:1"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:- numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) numeric scalar"]
 210 LET P[X]=P[X]+P[X+1]*R
  Variable:X numeric scalar
  Variable:P numeric scalar
@@ -113,16 +113,16 @@
  Variable:P numeric scalar
  Variable:X numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:P numeric scalar
  Variable:R numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 220 IF X > 1 THEN 240
  Variable:X numeric scalar
  NumericConstant:1
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 230 PRINT "REMAINDER =";
  TextConstant:"REMAINDER ="
  CarriageControl:;
@@ -147,7 +147,7 @@
  Variable:P numeric scalar
  Variable:X numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:P numeric scalar
  AssignmentOperator:=
 280 NEXT X
@@ -161,30 +161,30 @@
  NumericConstant:2
  Variable:P numeric scalar
  NumericConstant:2
- BinaryOperatorPower:^ numeric scalar
+ BinaryOperatorPower:^(_,_) numeric scalar
  NumericConstant:4
  NumericConstant:3
  Variable:P numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:1
  Variable:P numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 310 LET F=2*P[3]
  Variable:F numeric scalar
  NumericConstant:2
  NumericConstant:3
  Variable:P numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  AssignmentOperator:=
 320 LET A=-P[2]/F
  Variable:A numeric scalar
  NumericConstant:2
  Variable:P numeric scalar
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  Variable:F numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  AssignmentOperator:=
 330 LET B=SQR(ABS(D))/F
  Variable:B numeric scalar
@@ -192,25 +192,25 @@
  FunctionAbs:ABS(_) numeric scalar
  FunctionSqr:SQR(_) numeric scalar
  Variable:F numeric scalar
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  AssignmentOperator:=
 340 IF D<0 THEN 380
  Variable:D numeric scalar
  NumericConstant:0
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 350 PRINT "REAL ZEROS:"
  TextConstant:"REAL ZEROS:"
  CarriageControl:NL
 360 PRINT A+B;"AND   ";A-B
  Variable:A numeric scalar
  Variable:B numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  CarriageControl:;
  TextConstant:"AND   "
  CarriageControl:;
  Variable:A numeric scalar
  Variable:B numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  CarriageControl:NL
 370 GOTO 20
  LineNumber:20
@@ -233,7 +233,7 @@
  TextConstant:","
  CarriageControl:;
  Variable:B numeric scalar
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  CarriageControl:;
  TextConstant:")"
  CarriageControl:NL
@@ -243,39 +243,39 @@
  NumericConstant:1
  NumericConstant:2
  NumericConstant:1
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  NumericConstant:2
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
 410 DATA 1,-1,0,-48,1,0,0,-1,1,0,0,1,1,-1,1,-1
  NumericConstant:1
  NumericConstant:1
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  NumericConstant:0
  NumericConstant:48
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  NumericConstant:1
  NumericConstant:0
  NumericConstant:0
  NumericConstant:1
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  NumericConstant:1
  NumericConstant:0
  NumericConstant:0
  NumericConstant:1
  NumericConstant:1
  NumericConstant:1
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  NumericConstant:1
  NumericConstant:1
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
 415 DATA 6,-77,-189,-90
  NumericConstant:6
  NumericConstant:77
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  NumericConstant:189
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  NumericConstant:90
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
 420 DATA .0101
  NumericConstant:.0101
 430 END

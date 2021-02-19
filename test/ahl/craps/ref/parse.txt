@@ -45,10 +45,10 @@
  NumericConstant:11
  NumericConstant:0
  FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  AssignmentOperator:=
 215 PRINT"ARE YOU READY";\INPUT B$
  TextConstant:"ARE YOU READY"
@@ -57,10 +57,10 @@
 216 IF B$="YES" THEN 220\IF B$="NO" THEN PRINT "I'LL REPEAT MYSELF THEN"
  Variable:B$ string scalar
  TextConstant:"YES"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
  Variable:B$ string scalar
  TextConstant:"NO"
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=($,$) boolean scalar
  TextConstant:"I'LL REPEAT MYSELF THEN"
  CarriageControl:NL
 217 GOTO 90
@@ -81,16 +81,16 @@
  NumericConstant:2
  Variable:N numeric scalar
  NumericConstant:2
- BinaryOperatorDivide:/ numeric scalar
+ BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 260 LET W=-1
  Variable:W numeric scalar
  NumericConstant:1
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  AssignmentOperator:=
 270 PRINT "I'LL ROLL FIRST..."
  TextConstant:"I'LL ROLL FIRST..."
@@ -127,7 +127,7 @@
  Variable:B numeric scalar
  Variable:B numeric scalar
  FunctionInt:INT(_) numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 400
 410 PRINT "NO COINS PERMITTED... JUST BILLS, PLEASE."
  TextConstant:"NO COINS PERMITTED... JUST BILLS, PLEASE."
@@ -137,13 +137,13 @@
 430 IF B=0 THEN 1090
  Variable:B numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 440 IF B<Z+1 THEN 470
  Variable:B numeric scalar
  Variable:Z numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 450 PRINT "DON'T TRY MORE THAN YOU HAVE, PLEASE."
  TextConstant:"DON'T TRY MORE THAN YOU HAVE, PLEASE."
  CarriageControl:NL
@@ -154,9 +154,9 @@
  NumericConstant:6
  NumericConstant:0
  FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 480 LET D2=INT(6*RND(0)+1)
@@ -164,27 +164,27 @@
  NumericConstant:6
  NumericConstant:0
  FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
  AssignmentOperator:=
 490 LET Q=Q+1
  Variable:Q numeric scalar
  Variable:Q numeric scalar
  NumericConstant:1
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 500 S=D1+D2
  Variable:S numeric scalar
  Variable:D1 numeric scalar
  Variable:D2 numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 510 IF W>0 THEN 540
  Variable:W numeric scalar
  NumericConstant:0
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 520 PRINT "  I ROLL  ";D1;"AND  ";D2;
  TextConstant:"  I ROLL  "
  CarriageControl:;
@@ -208,35 +208,35 @@
 550 IF Q<>1 THEN 860
  Variable:Q numeric scalar
  NumericConstant:1
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 560 IF (S-2)*(S-3)*(S-12)=0 THEN 640
  Variable:S numeric scalar
  NumericConstant:2
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  Variable:S numeric scalar
  NumericConstant:3
- BinaryOperatorMinus:- numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  Variable:S numeric scalar
  NumericConstant:12
- BinaryOperatorMinus:- numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 570 IF (S-7)*(S-11)=0 THEN 710
  Variable:S numeric scalar
  NumericConstant:7
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  Variable:S numeric scalar
  NumericConstant:11
- BinaryOperatorMinus:- numeric scalar
- BinaryOperatorMultiply:* numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:0
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 580 IF W>0 THEN 610
  Variable:W numeric scalar
  NumericConstant:0
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 590 PRINT "SO MY POINT IS";S
  TextConstant:"SO MY POINT IS"
  CarriageControl:;
@@ -265,12 +265,12 @@
 660 IF W>0 THEN 690
  Variable:W numeric scalar
  NumericConstant:0
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 670 LET Z=Z+B
  Variable:Z numeric scalar
  Variable:Z numeric scalar
  Variable:B numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 680 GOTO 770
  LineNumber:770
@@ -278,7 +278,7 @@
  Variable:Z numeric scalar
  Variable:Z numeric scalar
  Variable:B numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 700 GOTO 770
  LineNumber:770
@@ -292,12 +292,12 @@
 730 IF W>0 THEN 760
  Variable:W numeric scalar
  NumericConstant:0
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 740 LET Z=Z-B
  Variable:Z numeric scalar
  Variable:Z numeric scalar
  Variable:B numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 750 GOTO 770
  LineNumber:770
@@ -305,14 +305,14 @@
  Variable:Z numeric scalar
  Variable:Z numeric scalar
  Variable:B numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 770 PRINT
  CarriageControl:NL
 780 IF Z<1 THEN 1060
  Variable:Z numeric scalar
  NumericConstant:1
- BinaryOperatorLess:< boolean scalar
+ BinaryOperatorLess:<(_,_) boolean scalar
 790 PRINT "YOU NOW HAVE";Z;"DOLLARS"
  TextConstant:"YOU NOW HAVE"
  CarriageControl:;
@@ -323,7 +323,7 @@
 800 IF C>0 THEN 830
  Variable:C numeric scalar
  NumericConstant:0
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 810 PRINT "CHANGE DICE NOW..."
  TextConstant:"CHANGE DICE NOW..."
  CarriageControl:NL
@@ -333,7 +333,7 @@
  Variable:W numeric scalar
  Variable:W numeric scalar
  Variable:C numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 840 LET Q=0
  Variable:Q numeric scalar
@@ -344,24 +344,24 @@
 860 IF S<>7 THEN 940
  Variable:S numeric scalar
  NumericConstant:7
- BinaryOperatorNotEqual:<> boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) boolean scalar
 870 PRINT "AND LOSE..."
  TextConstant:"AND LOSE..."
  CarriageControl:NL
 880 LET C=-1
  Variable:C numeric scalar
  NumericConstant:1
- UnaryOperatorMinus:- numeric scalar
+ UnaryOperatorMinus:-(_) numeric scalar
  AssignmentOperator:=
 890 IF W>0 THEN 920
  Variable:W numeric scalar
  NumericConstant:0
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 900 LET Z=Z+B
  Variable:Z numeric scalar
  Variable:Z numeric scalar
  Variable:B numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 910 GOTO 770
  LineNumber:770
@@ -369,14 +369,14 @@
  Variable:Z numeric scalar
  Variable:Z numeric scalar
  Variable:B numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 930 GOTO 770
  LineNumber:770
 940 IF S=P THEN 970
  Variable:S numeric scalar
  Variable:P numeric scalar
- BinaryOperatorEqual:= boolean scalar
+ BinaryOperatorEqual:=(_,_) boolean scalar
 950 PRINT "   ROLL AGAIN."
  TextConstant:"   ROLL AGAIN."
  CarriageControl:NL
@@ -385,7 +385,7 @@
 970 IF W>0 THEN 1020
  Variable:W numeric scalar
  NumericConstant:0
- BinaryOperatorGreater:> boolean scalar
+ BinaryOperatorGreater:>(_,_) boolean scalar
 980 PRINT "AND MAKE MY POINT"
  TextConstant:"AND MAKE MY POINT"
  CarriageControl:NL
@@ -397,7 +397,7 @@
  Variable:Z numeric scalar
  Variable:Z numeric scalar
  Variable:B numeric scalar
- BinaryOperatorMinus:- numeric scalar
+ BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 1010 GOTO 770
  LineNumber:770
@@ -412,7 +412,7 @@
  Variable:Z numeric scalar
  Variable:Z numeric scalar
  Variable:B numeric scalar
- BinaryOperatorPlus:+ numeric scalar
+ BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 1050 GOTO 700
  LineNumber:700
