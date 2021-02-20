@@ -56,32 +56,32 @@
 630
 640 LET O(0)=2                          'STANDARD MOTIF HEADER 
  NumericConstant:0
- Variable:O numeric scalar
+ Variable:O(_) numeric scalar
  NumericConstant:2
  AssignmentOperator:=
 650 LET O(1) = ASC(SOH)
  NumericConstant:1
- Variable:O numeric scalar
+ Variable:O(_) numeric scalar
  TextConstant:""
  FunctionAsc:ASC($) numeric scalar
  AssignmentOperator:=
 660 LET O(2) = ASC("N")
  NumericConstant:2
- Variable:O numeric scalar
+ Variable:O(_) numeric scalar
  TextConstant:"N"
  FunctionAsc:ASC($) numeric scalar
  AssignmentOperator:=
 670 CHANGE O TO O1$
- Variable:O numeric array
+ Variable:O() numeric array
  Variable:O1$ string scalar
 680 LET O(2) = ASC("Q")
  NumericConstant:2
- Variable:O numeric scalar
+ Variable:O(_) numeric scalar
  TextConstant:"Q"
  FunctionAsc:ASC($) numeric scalar
  AssignmentOperator:=
 690 CHANGE O TO O$
- Variable:O numeric array
+ Variable:O() numeric array
  Variable:O$ string scalar
 700 PRINT O1$;O$;CHR$(13);"XX ARE YOU FAMILIAR WITH THE WAY THIS GAME WORKS'";
  Variable:O1$ string scalar
@@ -115,11 +115,11 @@
  step:    ["NumericConstant:2"]
 750      READ F$(X),F$(X+1),R$((X-1)/2+1)
  Variable:X numeric scalar
- Variable:F$ string scalar
+ Variable:F$(_) string scalar
  Variable:X numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:F$ string scalar
+ Variable:F$(_) string scalar
  Variable:X numeric scalar
  NumericConstant:1
  BinaryOperatorMinus:-(_,_) numeric scalar
@@ -127,7 +127,7 @@
  BinaryOperatorDivide:/(_,_) numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:R$ string scalar
+ Variable:R$(_) string scalar
 760 NEXT X
  Variable:X numeric scalar
 770 REM WE HAVE JUST LEARNED FOREIGN LANGUAGES
@@ -138,7 +138,7 @@
  TextConstant:"SLOWPOKE SAM"
 790 MAT READ Q$(3)                      'NAME ARRAY
  NumericConstant:3
- Variable:Q$ string matrix
+ Variable:Q$(,) string matrix
 800 DATA -2.9,-2.9,-5                   'AMT. SPEED TO BE SUBTRACTED FROM AUTO-PILOT* SPEEDS
  NumericConstant:2.9
  UnaryOperatorMinus:-(_) numeric scalar
@@ -148,10 +148,10 @@
  UnaryOperatorMinus:-(_) numeric scalar
 810 MAT READ Q(3)
  NumericConstant:3
- Variable:Q numeric matrix
+ Variable:Q(,) numeric matrix
 820 MAT READ M$(3)                      'READ NAMES OF TYPES OF ROADWAY
  NumericConstant:3
- Variable:M$ string matrix
+ Variable:M$(,) string matrix
 830 READ X$                             'DEATH MESSAGE
  Variable:X$ string scalar
 840 INPUT A$                            'RESPONSE TO DO YOU KNOW WHAT YOU'RE DOING?
@@ -188,9 +188,9 @@
  Variable:O numeric scalar
 940 LET Q(3)=Q(3)*O
  NumericConstant:3
- Variable:Q numeric scalar
+ Variable:Q(_) numeric scalar
  NumericConstant:3
- Variable:Q numeric scalar
+ Variable:Q(_) numeric scalar
  Variable:O numeric scalar
  BinaryOperatorMultiply:*(_,_) numeric scalar
  AssignmentOperator:=
@@ -198,7 +198,7 @@
  LineNumber:1050
 960 LET O(2) = ASC(A)                   'CREATE O$ ARRAY FOR MULTI-TERMINAL
  NumericConstant:2
- Variable:O numeric scalar
+ Variable:O(_) numeric scalar
  Variable:A numeric scalar
  FunctionAsc:ASC(_) numeric scalar
  AssignmentOperator:=
@@ -208,21 +208,21 @@
  end:     ["Variable:O9 numeric scalar"]
 990      LET O(2) = ASC(C) + I
  NumericConstant:2
- Variable:O numeric scalar
+ Variable:O(_) numeric scalar
  Variable:C numeric scalar
  FunctionAsc:ASC(_) numeric scalar
  Variable:I numeric scalar
  BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 1000      CHANGE O TO O$(I)
- Variable:O numeric array
+ Variable:O() numeric array
  Variable:I numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
 1010 NEXT I
  Variable:I numeric scalar
 1020 PRINT O$(10);"YOU MAY 'DRAFT' (SLIPSTREAM) OFF-OF ANY CAR AHEAD"
  NumericConstant:10
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"YOU MAY 'DRAFT' (SLIPSTREAM) OFF-OF ANY CAR AHEAD"
  CarriageControl:NL
@@ -240,7 +240,7 @@
  BinaryOperatorEqual:=($,$) boolean scalar
 1070 PRINT O$(0)
  NumericConstant:0
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:NL
 1080 PRINT "FOR INSTRUCTIONS, PLEASE TYPE LIST AFTER THE COMPUTER SAYS READY."
  TextConstant:"FOR INSTRUCTIONS, PLEASE TYPE LIST AFTER THE COMPUTER SAYS READY."
@@ -266,7 +266,7 @@
  end:     ["Variable:O9 numeric scalar"]
 1130       PRINT O$(A);"YOUR DRIVING NUMBER IS" ;F2*(A+1)+A 'ADHESION FACTOR IS HOW WELL YOUR CAR GRIPS THE ROAD
  Variable:A numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"YOUR DRIVING NUMBER IS"
  CarriageControl:;
@@ -280,7 +280,7 @@
  CarriageControl:NL
 1140       LET A(R)=RND*.05+.05
  Variable:R numeric scalar
- Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  FunctionRnd:RND numeric scalar
  NumericConstant:.05
  BinaryOperatorMultiply:*(_,_) numeric scalar
@@ -289,12 +289,12 @@
  AssignmentOperator:=
 1150       PRINT O$(A);"ADHESION FACTOR"; A(A)*100-5;".  (THE LOWER THE BETTER)"
  Variable:A numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"ADHESION FACTOR"
  CarriageControl:;
  Variable:A numeric scalar
- Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  NumericConstant:100
  BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:5
@@ -306,7 +306,7 @@
  Variable:A numeric scalar
 1170 PRINT O$(10);"YOUR MAX. SPEED IS 200 MPH. TO SEE STANDINGS INPUT"
  NumericConstant:10
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"YOUR MAX. SPEED IS 200 MPH. TO SEE STANDINGS INPUT"
  CarriageControl:NL
@@ -315,7 +315,7 @@
  CarriageControl:NL
 1190 PRINT O$(0);"WOULD YOU LIKE TO SEE THE COURSE";CHR$(63*SGN(O9));O$; 'PRINT ? IF MULTI-TERM, OTHERWISE DON'T
  NumericConstant:0
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"WOULD YOU LIKE TO SEE THE COURSE"
  CarriageControl:;
@@ -328,10 +328,10 @@
  Variable:O$ string scalar
  CarriageControl:;
 1200 MAT INPUT A$
- Variable:A$ string array
+ Variable:A$() string array
 1210 PRINT O$(10);
  NumericConstant:10
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
 1220 LET A$=A$(NUM)
  Bad expression
@@ -567,7 +567,7 @@
 1540       LET Y=FNA(M$(1),200,1,3/10,65) 'STRAIGHT R, 200 MAX., 3/10 MILE LONG 
  Variable:Y numeric scalar
  NumericConstant:1
- Variable:M$ string scalar
+ Variable:M$(_) string scalar
  NumericConstant:200
  NumericConstant:1
  NumericConstant:3
@@ -579,7 +579,7 @@
 1550       LET Y=FNA(M$(3),125,1,1/10,49) 'CURVE 1, 125 MAX., 1/10 MILE LONG 
  Variable:Y numeric scalar
  NumericConstant:3
- Variable:M$ string scalar
+ Variable:M$(_) string scalar
  NumericConstant:125
  NumericConstant:1
  NumericConstant:1
@@ -591,7 +591,7 @@
 1560       LET Y=FNA(M$(1),200,2,13/20,65) 'STRAIGHT 3, 200 MAX., 13/20 MILE LONG 
  Variable:Y numeric scalar
  NumericConstant:1
- Variable:M$ string scalar
+ Variable:M$(_) string scalar
  NumericConstant:200
  NumericConstant:2
  NumericConstant:13
@@ -603,7 +603,7 @@
 1570       LET Y=FNA(M$(3),125,1,1/10,50) 'CURVE 2, 125 MAX., 1/10 NILE LONG 
  Variable:Y numeric scalar
  NumericConstant:3
- Variable:M$ string scalar
+ Variable:M$(_) string scalar
  NumericConstant:125
  NumericConstant:1
  NumericConstant:1
@@ -615,7 +615,7 @@
 1580       LET Y=FNR(M$(1),200,1,1/5,67) 'STRAIGHT C, 200 MAX., 1/5 MILE LONG 
  Variable:Y numeric scalar
  NumericConstant:1
- Variable:M$ string scalar
+ Variable:M$(_) string scalar
  NumericConstant:200
  NumericConstant:1
  NumericConstant:1
@@ -627,7 +627,7 @@
 1590       LET Y=FNA(M$(3),150,1,3/20,51) 'CURVE 3, 150 MAX., 3/20 MILE LONG 
  Variable:Y numeric scalar
  NumericConstant:3
- Variable:M$ string scalar
+ Variable:M$(_) string scalar
  NumericConstant:150
  NumericConstant:1
  NumericConstant:3
@@ -639,7 +639,7 @@
 1600       LET Y=FNA(M$(1),200,2,3/5,68) 'STRAIGHT D, 200 MAX,, 3/5 MILE LONG 
  Variable:Y numeric scalar
  NumericConstant:1
- Variable:M$ string scalar
+ Variable:M$(_) string scalar
  NumericConstant:200
  NumericConstant:2
  NumericConstant:3
@@ -651,7 +651,7 @@
 1610       LET Y=FNA(M$(3),125,1,1/10,52) 'CURVE 4, 125 MAX., 1/10 MILE LONG 
  Variable:Y numeric scalar
  NumericConstant:3
- Variable:M$ string scalar
+ Variable:M$(_) string scalar
  NumericConstant:125
  NumericConstant:1
  NumericConstant:1
@@ -663,7 +663,7 @@
 1620       LET Y=FNA(M$(1),200,1,1/4,69) 'STRAIGHT E, 200 MAX., 1/4 MILE LONG 
  Variable:Y numeric scalar
  NumericConstant:1
- Variable:M$ string scalar
+ Variable:M$(_) string scalar
  NumericConstant:200
  NumericConstant:1
  NumericConstant:1
@@ -675,7 +675,7 @@
 1630       LET Y=FNA(M$(2),100,.75,3/20,53) 'HAIRPIN 5, 100 MAX., 3/20 MILE LONG 
  Variable:Y numeric scalar
  NumericConstant:2
- Variable:M$ string scalar
+ Variable:M$(_) string scalar
  NumericConstant:100
  NumericConstant:.75
  NumericConstant:3
@@ -687,7 +687,7 @@
 1640       LET Y=FNA(M$(1),200,1.5,9/20,70) 'STRAIGHT F, 200 MAX., 9/20 MILE LONG 
  Variable:Y numeric scalar
  NumericConstant:1
- Variable:M$ string scalar
+ Variable:M$(_) string scalar
  NumericConstant:200
  NumericConstant:1.5
  NumericConstant:9
@@ -699,7 +699,7 @@
 1650       LET Y=FNA(M$(2),100,.75,3/20,54) 'HAIRPIN 5, 100 MAX., 3/20 MILE LONG 
  Variable:Y numeric scalar
  NumericConstant:2
- Variable:M$ string scalar
+ Variable:M$(_) string scalar
  NumericConstant:100
  NumericConstant:.75
  NumericConstant:3
@@ -711,7 +711,7 @@
 1660       LET Y=FNA(M$(1),200,2,1,71) 'STRAIGHT G, 200 MAX., 1 MILE LONG 
  Variable:Y numeric scalar
  NumericConstant:1
- Variable:M$ string scalar
+ Variable:M$(_) string scalar
  NumericConstant:200
  NumericConstant:2
  NumericConstant:1
@@ -721,7 +721,7 @@
 1670       LET Y=FNA(M$(3),125,1,1/10,55) 'CURVE 7, 125 MAX., 1/10 MILE LONG 
  Variable:Y numeric scalar
  NumericConstant:3
- Variable:M$ string scalar
+ Variable:M$(_) string scalar
  NumericConstant:125
  NumericConstant:1
  NumericConstant:1
@@ -733,7 +733,7 @@
 1680       LET Y=FNA(M$(3),150,1,3/20,56) 'CURVE 8, 150 MAX., 3/20 MILE LONG 
  Variable:Y numeric scalar
  NumericConstant:3
- Variable:M$ string scalar
+ Variable:M$(_) string scalar
  NumericConstant:150
  NumericConstant:1
  NumericConstant:3
@@ -745,7 +745,7 @@
 1690       LET Y=FNA(M$(1),200,2,7/10,72) 'STRAIGHT H, 20C MAX., 7/10 MILE LONG 
  Variable:Y numeric scalar
  NumericConstant:1
- Variable:M$ string scalar
+ Variable:M$(_) string scalar
  NumericConstant:200
  NumericConstant:2
  NumericConstant:7
@@ -781,7 +781,7 @@
  BinaryOperatorEqual:=(_,_) boolean scalar
 1760 PRINT O$(10);"DO YOU MEAN THAT EVERYONE ISN'T DEAD? WELL, HERE ARE " 'NO, SO PRINT OUT RESULTS OF RACE
  NumericConstant:10
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"DO YOU MEAN THAT EVERYONE ISN'T DEAD? WELL, HERE ARE "
  CarriageControl:NL
@@ -820,7 +820,7 @@
  BinaryOperatorEqual:=(_,_) boolean scalar
 1860      PRINT Q$(Z);
  Variable:Z numeric scalar
- Variable:Q$ string scalar
+ Variable:Q$(_) string scalar
  CarriageControl:;
 1870      GOTO 1890
  LineNumber:1890
@@ -837,7 +837,7 @@
  CarriageControl:;
 1890      IF D(Z) = 0 THEN 1950
  Variable:Z numeric scalar
- Variable:D numeric scalar
+ Variable:D(_) numeric scalar
  NumericConstant:0
  BinaryOperatorEqual:=(_,_) boolean scalar
 1900      PRINT" IS LOOKIN' AT THEM PEARLY GATES."
@@ -849,13 +849,13 @@
  BinaryOperatorEqual:=(_,_) boolean scalar
 1920      PRINT O$(Z);"TELL ST. LUCIFER NOT TO EXPECT ME, O.K.?"
  Variable:Z numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"TELL ST. LUCIFER NOT TO EXPECT ME, O.K.?"
  CarriageControl:NL
 1930      PRINT O$(10);
  NumericConstant:10
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
 1940      GOTO 1990
  LineNumber:1990
@@ -863,7 +863,7 @@
  TextConstant:" TOOK"
  CarriageControl:;
  Variable:Z numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  CarriageControl:;
  TextConstant:"SECONDS. WHICH AVERAGES OUT TO "
  CarriageControl:;
@@ -873,20 +873,20 @@
  Variable:H numeric scalar
  BinaryOperatorMultiply:*(_,_) numeric scalar
  Variable:Z numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  BinaryOperatorDivide:/(_,_) numeric scalar
  CarriageControl:;
  TextConstant:"MPH"
  CarriageControl:NL
 1960      IF T(Z)>W THEN 1990
  Variable:Z numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:W numeric scalar
  BinaryOperatorGreater:>(_,_) boolean scalar
 1970      LET W=T(Z)                      'NEW LEADING TIME AND DRIVER
  Variable:W numeric scalar
  Variable:Z numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  AssignmentOperator:=
 1980      LET N=F2*(Z+1)+Z 
  Variable:N numeric scalar
@@ -918,7 +918,7 @@
  NumericConstant:1
  BinaryOperatorPlus:+(_,_) numeric scalar
  BinaryOperatorDivide:/(_,_) numeric scalar
- Variable:S numeric scalar
+ Variable:S(_) numeric scalar
  CarriageControl:;
  TextConstant:"NICE RACE, MR"
  CarriageControl:;
@@ -926,7 +926,7 @@
  CarriageControl:NL
 2030 PRINT O$(10);"AND THAT MEANS THAT GUY #";N;"WINS!!!"
  NumericConstant:10
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"AND THAT MEANS THAT GUY #"
  CarriageControl:;
@@ -936,7 +936,7 @@
  CarriageControl:NL
 2040 PRINT O$(0);"ANOTHER RACE";CHR$(63*SGN(O9));O$;
  NumericConstant:0
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"ANOTHER RACE"
  CarriageControl:;
@@ -949,7 +949,7 @@
  Variable:O$ string scalar
  CarriageControl:;
 2050 MAT INPUT A$
- Variable:A$ string array
+ Variable:A$() string array
 2060 LET A$=A$(NUM)
  Bad expression
 2070 GOSUB 2190
@@ -968,16 +968,16 @@
  end:     ["NumericConstant:10"]
 2110      LET T(Z),D(Z)=0
  Variable:Z numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:Z numeric scalar
- Variable:D numeric scalar
+ Variable:D(_) numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 2120 NEXT Z
  Variable:Z numeric scalar
 2130 PRINT O$(10);"NEW SET-UP. NO RAIN, NO DEBRIS";
  NumericConstant:10
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"NEW SET-UP. NO RAIN, NO DEBRIS"
  CarriageControl:;
@@ -1004,7 +1004,7 @@
 2200      IF R$=F$(X) THEN 2230
  Variable:R$ string scalar
  Variable:X numeric scalar
- Variable:F$ string scalar
+ Variable:F$(_) string scalar
  BinaryOperatorEqual:=($,$) boolean scalar
 2210 NEXT X 
  Variable:X numeric scalar
@@ -1012,7 +1012,7 @@
  LineNumber:2280
 2230 PRINT O$(0);R$((X-1)/2*1)
  NumericConstant:0
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  Variable:X numeric scalar
  NumericConstant:1
@@ -1021,7 +1021,7 @@
  BinaryOperatorDivide:/(_,_) numeric scalar
  NumericConstant:1
  BinaryOperatorMultiply:*(_,_) numeric scalar
- Variable:R$ string scalar
+ Variable:R$(_) string scalar
  CarriageControl:NL
 2240 IF X=INT(X/2)*2 THEN 2270
  Variable:X numeric scalar
@@ -1063,18 +1063,18 @@
  end:     ["Variable:O9 numeric scalar"]
 2370      IF D(G)=1 THEN 2780
  Variable:G numeric scalar
- Variable:D numeric scalar
+ Variable:D(_) numeric scalar
  NumericConstant:1
  BinaryOperatorEqual:=(_,_) boolean scalar
 2380      IF (B+A(G)+E)*S(G)/B<=R*(1+RND*.1) THEN 2500
  Variable:B numeric scalar
  Variable:G numeric scalar
- Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:E numeric scalar
  BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:G numeric scalar
- Variable:S numeric scalar
+ Variable:S(_) numeric scalar
  BinaryOperatorMultiply:*(_,_) numeric scalar
  Variable:B numeric scalar
  BinaryOperatorDivide:/(_,_) numeric scalar
@@ -1088,7 +1088,7 @@
  BinaryOperatorLessEqual:<=(_,_) boolean scalar
 2390      PRINT O$(G);X$                   'PRINT DEAD MESSAGE
  Variable:G numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  Variable:X$ string scalar
  CarriageControl:NL
@@ -1100,7 +1100,7 @@
  AssignmentOperator:=
 2410      LET E(F5)=D                      'AND THE 635 SAID "LET THERE BE OIL." AND THERE IT WAS.
  Variable:F5 numeric scalar
- Variable:E numeric scalar
+ Variable:E(_) numeric scalar
  Variable:D numeric scalar
  AssignmentOperator:=
 2420      FOR Z=0 TO O9                    'AND THE TRACK ABOUNDED WITH OIL. AND THE 635 SAID "BOY, WHAT
@@ -1113,7 +1113,7 @@
  BinaryOperatorEqual:=(_,_) boolean scalar
 2440           PRINT O$(Z);"GUY #";F2*(G+1)+G;"JUST WIPED REAL GOOD ('N DEAD!)" 'IN THE MEANTIME, IT HAS BEEN BUSY NOTIFYING PEOPLE
  Variable:Z numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"GUY #"
  CarriageControl:;
@@ -1131,7 +1131,7 @@
  Variable:Z numeric scalar
 2460      LET D(G)=1                       'OFFICIALLY PRONOUNCE DEAD. D IS FOR DEATH
  Variable:G numeric scalar
- Variable:D numeric scalar
+ Variable:D(_) numeric scalar
  NumericConstant:1
  AssignmentOperator:=
 2470      LET Q=Q+1                        'INCREMENT DEAD COUNTER
@@ -1149,17 +1149,17 @@
 2500      LET Y4=T(G)                      'RATS. HE DIDN'T WIPE
  Variable:Y4 numeric scalar
  Variable:G numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  AssignmentOperator:=
 2510 IF (B+A(G)+E)*S(G)/B<= R THEN 2530
  Variable:B numeric scalar
  Variable:G numeric scalar
- Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:E numeric scalar
  BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:G numeric scalar
- Variable:S numeric scalar
+ Variable:S(_) numeric scalar
  BinaryOperatorMultiply:*(_,_) numeric scalar
  Variable:B numeric scalar
  BinaryOperatorDivide:/(_,_) numeric scalar
@@ -1167,22 +1167,22 @@
  BinaryOperatorLessEqual:<=(_,_) boolean scalar
 2520 PRINT O$(G);'"NEARLY HAD TO SAY GOOD BYE." 'ALMOST WIPED
  Variable:G numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
 2530      LET T(G)=T(G)+C/(S(G)/3600)+L(G) 'UPDATE HIS TIME
  Variable:G numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:G numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:C numeric scalar
  Variable:G numeric scalar
- Variable:S numeric scalar
+ Variable:S(_) numeric scalar
  NumericConstant:3600
  BinaryOperatorDivide:/(_,_) numeric scalar
  BinaryOperatorDivide:/(_,_) numeric scalar
  BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:G numeric scalar
- Variable:L numeric scalar
+ Variable:L(_) numeric scalar
  BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
 2540      IF O9>0 THEN 2660                'SEE IF, HEAVEN FORBID, HE PASSED SOMEBODY
@@ -1195,16 +1195,16 @@
  end:     ["NumericConstant:3"]
 2560           IF D(X4)=1 THEN 2650
  Variable:X4 numeric scalar
- Variable:D numeric scalar
+ Variable:D(_) numeric scalar
  NumericConstant:1
  BinaryOperatorEqual:=(_,_) boolean scalar
 2570           LET Z4=T(X4)-(C/(S(X4)/3600))
  Variable:Z4 numeric scalar
  Variable:X4 numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:C numeric scalar
  Variable:X4 numeric scalar
- Variable:S numeric scalar
+ Variable:S(_) numeric scalar
  NumericConstant:3600
  BinaryOperatorDivide:/(_,_) numeric scalar
  BinaryOperatorDivide:/(_,_) numeric scalar
@@ -1219,9 +1219,9 @@
 2590           LET Z2=T(G)-T(X4)
  Variable:Z2 numeric scalar
  Variable:G numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:X4 numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
 2600           IF SGN(Z2)<>-SGN(Z1) THEN 2650
@@ -1240,13 +1240,13 @@
  TextConstant:"YOU JUST PASSED "
  CarriageControl:;
  Variable:X4 numeric scalar
- Variable:Q$ string scalar
+ Variable:Q$(_) string scalar
  CarriageControl:NL
 2630           GOTO 2650
  LineNumber:2650
 2640           PRINT Q$(X4);" JUST PASSED YOU"
  Variable:X4 numeric scalar
- Variable:Q$ string scalar
+ Variable:Q$(_) string scalar
  CarriageControl:;
  TextConstant:" JUST PASSED YOU"
  CarriageControl:NL
@@ -1258,27 +1258,27 @@
  end:     ["Variable:O9 numeric scalar"]
 2670           IF D(X4)=1 THEN 2770
  Variable:X4 numeric scalar
- Variable:D numeric scalar
+ Variable:D(_) numeric scalar
  NumericConstant:1
  BinaryOperatorEqual:=(_,_) boolean scalar
 2680           IF S(X4)=0 THEN 2770
  Variable:X4 numeric scalar
- Variable:S numeric scalar
+ Variable:S(_) numeric scalar
  NumericConstant:0
  BinaryOperatorEqual:=(_,_) boolean scalar
 2690           IF SGN(Y4-T(X4))=SGN(T(G)-(T(X4)+C/(S(X4)/3600))) THEN 2770
  Variable:Y4 numeric scalar
  Variable:X4 numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  BinaryOperatorMinus:-(_,_) numeric scalar
  FunctionSgn:SGN(_) numeric scalar
  Variable:G numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:X4 numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:C numeric scalar
  Variable:X4 numeric scalar
- Variable:S numeric scalar
+ Variable:S(_) numeric scalar
  NumericConstant:3600
  BinaryOperatorDivide:/(_,_) numeric scalar
  BinaryOperatorDivide:/(_,_) numeric scalar
@@ -1288,12 +1288,12 @@
  BinaryOperatorEqual:=(_,_) boolean scalar
 2700           IF SGN(T(G)-(T(X4)+C/(S(X4)/3600)))<>-1 THEN 2740
  Variable:G numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:X4 numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:C numeric scalar
  Variable:X4 numeric scalar
- Variable:S numeric scalar
+ Variable:S(_) numeric scalar
  NumericConstant:3600
  BinaryOperatorDivide:/(_,_) numeric scalar
  BinaryOperatorDivide:/(_,_) numeric scalar
@@ -1305,7 +1305,7 @@
  BinaryOperatorNotEqual:<>(_,_) boolean scalar
 2710           PRINT O$(X4);"GUY";F2*(G+1)+G;"JUST PASSED YOU."
  Variable:X4 numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"GUY"
  CarriageControl:;
@@ -1321,7 +1321,7 @@
  CarriageControl:NL
 2720           PRINT O$(G);"YOU JUST PASSED GUY";F2*-(X4+1)+X4
  Variable:G numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"YOU JUST PASSED GUY"
  CarriageControl:;
@@ -1338,12 +1338,12 @@
  LineNumber:2770
 2740           IF SGN(T(G)-(T(X4)+C/(S(X4)/3600)))=0 THEN 2770
  Variable:G numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:X4 numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:C numeric scalar
  Variable:X4 numeric scalar
- Variable:S numeric scalar
+ Variable:S(_) numeric scalar
  NumericConstant:3600
  BinaryOperatorDivide:/(_,_) numeric scalar
  BinaryOperatorDivide:/(_,_) numeric scalar
@@ -1354,7 +1354,7 @@
  BinaryOperatorEqual:=(_,_) boolean scalar
 2750           PRINT O$(G);"GUY";F2*(X4+1)+X4;"JUST PASSED YOU."
  Variable:G numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"GUY"
  CarriageControl:;
@@ -1370,7 +1370,7 @@
  CarriageControl:NL
 2760           PRINT O$(X4);"Y0U JUST PASSED GUY ";F2*(G+1)+G
  Variable:X4 numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"Y0U JUST PASSED GUY "
  CarriageControl:;
@@ -1392,19 +1392,19 @@
  Remark:HAZARDS 
 2810 PRINT O$(10);
  NumericConstant:10
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
 2820 LET E = 0                                'MAKE SURE WE DON'T USE LAST SECTION'S OIL ON THIS SECTION
  Variable:E numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 2830 MAT L=ZER                                'KILL PIT STOPS FROM LAST TIME
- Variable:L numeric matrix
+ Variable:L(,) numeric matrix
  FunctionZer2:ZER numeric matrix
  AssignmentOperator:=
 2840 LET L(0)=0
  NumericConstant:0
- Variable:L numeric scalar
+ Variable:L(_) numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 2850 IF F5<2 THEN 2900                        'IF COURSE WELL GREASED, DISSOLVE GREASE
@@ -1418,7 +1418,7 @@
  TextConstant:"MOTIONLESS UNTIL DEBRIS IS CLEARED"
  CarriageControl:NL
 2880 MAT E=ZER
- Variable:E numeric matrix
+ Variable:E(,) numeric matrix
  FunctionZer2:ZER numeric matrix
  AssignmentOperator:=
 2890 LET F5=0
@@ -1431,7 +1431,7 @@
  end:     ["Variable:F5 numeric scalar"]
 2910      IF E(X)=D THEN 2940 
  Variable:X numeric scalar
- Variable:E numeric scalar
+ Variable:E(_) numeric scalar
  Variable:D numeric scalar
  BinaryOperatorEqual:=(_,_) boolean scalar
 2920 NEXT X
@@ -1478,9 +1478,9 @@
  end:     ["Variable:O9 numeric scalar"]
 3040      LET A(A)= A(A)-.075                 'DELETE MOST OF THE EFFECTS
  Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  Variable:A numeric scalar
- Variable:A numeric scalar
- Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  NumericConstant:.075
  BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
@@ -1501,9 +1501,9 @@
  end:     ["Variable:O9 numeric scalar"]
 3100      LET A(A)=A(A)+.1
  Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  Variable:A numeric scalar
- Variable:A numeric scalar
- Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  NumericConstant:.1
  BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
@@ -1536,12 +1536,12 @@
  BinaryOperatorLess:<(_,_) boolean scalar
 3170 IF D(X)=1 THEN 3200
  Variable:X numeric scalar
- Variable:D numeric scalar
+ Variable:D(_) numeric scalar
  NumericConstant:1
  BinaryOperatorEqual:=(_,_) boolean scalar
 3180 LET L(X)=RND*3+5
  Variable:X numeric scalar
- Variable:L numeric scalar
+ Variable:L(_) numeric scalar
  FunctionRnd:RND numeric scalar
  NumericConstant:3
  BinaryOperatorMultiply:*(_,_) numeric scalar
@@ -1550,12 +1550,12 @@
  AssignmentOperator:=
 3190 PRINT O$(X);"Y0U ARE IN THE PITS FOR";L(X);"SECONDS."
  Variable:X numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"Y0U ARE IN THE PITS FOR"
  CarriageControl:;
  Variable:X numeric scalar
- Variable:L numeric scalar
+ Variable:L(_) numeric scalar
  CarriageControl:;
  TextConstant:"SECONDS."
  CarriageControl:NL
@@ -1566,7 +1566,7 @@
 3220 REM INPUT
  Remark:INPUT
 3230 MAT S=ZER                                'RESET SPEED ARRAY
- Variable:S numeric matrix
+ Variable:S(,) numeric matrix
  FunctionZer2:ZER numeric matrix
  AssignmentOperator:=
 3240 IF O3>0 THEN 3270                        'PRINT OUT SOMETHING LIKE 'STRAIGHT A'
@@ -1585,7 +1585,7 @@
  LineNumber:3280
 3270 PRINT O$(10);A$;" ";CHR$(D);": ";O$;
  NumericConstant:10
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  Variable:A$ string scalar
  CarriageControl:;
@@ -1600,7 +1600,7 @@
  CarriageControl:;
 3280 LET S(D)=0                               'GET EVERYBODY'S SPEEDS
  Variable:D numeric scalar
- Variable:S numeric scalar
+ Variable:S(_) numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 3290 FOR A=0 TO O9
@@ -1609,12 +1609,12 @@
  end:     ["Variable:O9 numeric scalar"]
 3300      IF D(A)=0 THEN 3330
  Variable:A numeric scalar
- Variable:D numeric scalar
+ Variable:D(_) numeric scalar
  NumericConstant:0
  BinaryOperatorEqual:=(_,_) boolean scalar
 3310      PRINT O$(A)                         'IF HE'S DEAD, DON'T GIVE HIM A CHANCE TO INPUT 
  Variable:A numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:NL
 3320      PRINT O$; 
  Variable:O$ string scalar
@@ -1622,25 +1622,25 @@
 3330 NEXT A
  Variable:A numeric scalar
 3340 MAT INPUT J                              'INPUT SOMEBODY'S SPEED
- Variable:J numeric array
+ Variable:J() numeric array
 3350 IF NUM=1 THEN 3390                       'SOMEBODY TYPED SOMETHING. SET UP SPEED AND TTY#
  Bad expression
 3360 LET N=J(1)
  Variable:N numeric scalar
  NumericConstant:1
- Variable:J numeric scalar
+ Variable:J(_) numeric scalar
  AssignmentOperator:=
 3370 LET S=J(2)
  Variable:S numeric scalar
  NumericConstant:2
- Variable:J numeric scalar
+ Variable:J(_) numeric scalar
  AssignmentOperator:=
 3380 GOTO 3410
  LineNumber:3410
 3390 LET S=J(1)
  Variable:S numeric scalar
  NumericConstant:1
- Variable:J numeric scalar
+ Variable:J(_) numeric scalar
  AssignmentOperator:=
 3400 LET N=0
  Variable:N numeric scalar
@@ -1648,12 +1648,12 @@
  AssignmentOperator:=
 3410 IF D(N)=0 THEN 3450                      'IS THE GUY DEAD?
  Variable:N numeric scalar
- Variable:D numeric scalar
+ Variable:D(_) numeric scalar
  NumericConstant:0
  BinaryOperatorEqual:=(_,_) boolean scalar
 3420 PRINT O$(N);"BUT I THOUGHT YOU WERE DEAD." 'RE-INFORM HIM THAT HE IS AN UN-PERSON
  Variable:N numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"BUT I THOUGHT YOU WERE DEAD."
  CarriageControl:NL
@@ -1664,12 +1664,12 @@
  LineNumber:3340
 3450 IF S(N)=0 THEN 3480                      'HAS THIS GUY ALREADY TOLD US HIS SPEED?
  Variable:N numeric scalar
- Variable:S numeric scalar
+ Variable:S(_) numeric scalar
  NumericConstant:0
  BinaryOperatorEqual:=(_,_) boolean scalar
 3460 PRINT O$(N);"WAIT A SEC.  I STILL NEED";O9-U-Q;"MORE SPEEDS." 'TELL HIM TO BUZZ OFF
  Variable:N numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"WAIT A SEC.  I STILL NEED"
  CarriageControl:;
@@ -1718,7 +1718,7 @@
  BinaryOperatorEqual:=(_,_) boolean scalar
 3540 PRINT O$(N);"ILLEGAL CAR"                'HE DIDN'T
  Variable:N numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"ILLEGAL CAR"
  CarriageControl:NL
@@ -1730,14 +1730,14 @@
  BinaryOperatorGreater:>(_,_) boolean scalar
 3570 IF E(R4)>0 THEN 3540
  Variable:R4 numeric scalar
- Variable:E numeric scalar
+ Variable:E(_) numeric scalar
  NumericConstant:0
  BinaryOperatorGreater:>(_,_) boolean scalar
 3580 IF ABS(T(N)-T(R4)-.5)=>.5 THEN 3540
  Variable:N numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:R4 numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  BinaryOperatorMinus:-(_,_) numeric scalar
  NumericConstant:.5
  BinaryOperatorMinus:-(_,_) numeric scalar
@@ -1748,7 +1748,7 @@
  LineNumber:3700
 3600 PRINT O$(N);"MAYBE A LITTLE HARD ON THE PEDDLE? BE REALISTIC." 'OPTIMIST
  Variable:N numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"MAYBE A LITTLE HARD ON THE PEDDLE? BE REALISTIC."
  CarriageControl:NL
@@ -1779,7 +1779,7 @@
  BinaryOperatorGreaterEqual:=>(_,_) boolean scalar
 3670 PRINT O$(N);"I DOUBT YOU WANT TO GO THAT SLOWLY"
  Variable:N numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"I DOUBT YOU WANT TO GO THAT SLOWLY"
  CarriageControl:NL
@@ -1787,7 +1787,7 @@
  LineNumber:3640
 3690 LET S(N)=S                               'SINCE HE MADE IT THIS FAR, ASSUME THAT IT'S LEGAL
  Variable:N numeric scalar
- Variable:S numeric scalar
+ Variable:S(_) numeric scalar
  Variable:S numeric scalar
  AssignmentOperator:=
 3700 LET U=U+1
@@ -1802,7 +1802,7 @@
  BinaryOperatorEqual:=(_,_) boolean scalar
 3720 LET H(N)=R4                              'IF HE'S DRAFTING, TELL ME TO WHOM
  Variable:N numeric scalar
- Variable:H numeric scalar
+ Variable:H(_) numeric scalar
  Variable:R4 numeric scalar
  AssignmentOperator:=
 3730 LET R4=0
@@ -1829,7 +1829,7 @@
  end:     ["NumericConstant:3"]
 3780      IF D(F0)=1 THEN 3870
  Variable:F0 numeric scalar
- Variable:D numeric scalar
+ Variable:D(_) numeric scalar
  NumericConstant:1
  BinaryOperatorEqual:=(_,_) boolean scalar
 3790      LET S=R*B/(B+.1+E+G8)+(RND*3+Q(F0))
@@ -1849,7 +1849,7 @@
  NumericConstant:3
  BinaryOperatorMultiply:*(_,_) numeric scalar
  Variable:F0 numeric scalar
- Variable:Q numeric scalar
+ Variable:Q(_) numeric scalar
  BinaryOperatorPlus:+(_,_) numeric scalar
  BinaryOperatorPlus:+(_,_) numeric scalar
  AssignmentOperator:=
@@ -1869,15 +1869,15 @@
  BinaryOperatorLessEqual:<=(_,_) boolean scalar
 3810      LET D(F0)=1
  Variable:F0 numeric scalar
- Variable:D numeric scalar
+ Variable:D(_) numeric scalar
  NumericConstant:1
  AssignmentOperator:=
 3820      PRINT O$(10);Q$(F3);" JUST WIPED"       'AND INFORM US IF THEY WIPE
  NumericConstant:10
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  Variable:F3 numeric scalar
- Variable:Q$ string scalar
+ Variable:Q$(_) string scalar
  CarriageControl:;
  TextConstant:" JUST WIPED"
  CarriageControl:NL
@@ -1889,14 +1889,14 @@
  AssignmentOperator:=
 3840      LET E(F5)=D
  Variable:F5 numeric scalar
- Variable:E numeric scalar
+ Variable:E(_) numeric scalar
  Variable:D numeric scalar
  AssignmentOperator:=
 3850      LET T(F0)=T(F0)+C/(S/3600)
  Variable:F0 numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:F0 numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:C numeric scalar
  Variable:S numeric scalar
  NumericConstant:3600
@@ -1906,7 +1906,7 @@
  AssignmentOperator:=
 3860      LET S(F0)=S
  Variable:F0 numeric scalar
- Variable:S numeric scalar
+ Variable:S(_) numeric scalar
  Variable:S numeric scalar
  AssignmentOperator:=
 3870 NEXT F0
@@ -1919,44 +1919,44 @@
  end:     ["Variable:O9 numeric scalar"]
 3900      IF D(X2)=1 THEN 3970
  Variable:X2 numeric scalar
- Variable:D numeric scalar
+ Variable:D(_) numeric scalar
  NumericConstant:1
  BinaryOperatorEqual:=(_,_) boolean scalar
 3910      IF S(X2)<>0 THEN 3970
  Variable:X2 numeric scalar
- Variable:S numeric scalar
+ Variable:S(_) numeric scalar
  NumericConstant:0
  BinaryOperatorNotEqual:<>(_,_) boolean scalar
 3920      IF S(H(X2))<>0 THEN 3950
  Variable:X2 numeric scalar
- Variable:H numeric scalar
- Variable:S numeric scalar
+ Variable:H(_) numeric scalar
+ Variable:S(_) numeric scalar
  NumericConstant:0
  BinaryOperatorNotEqual:<>(_,_) boolean scalar
 3930      LET H(X2)=H(H(X2)) 
  Variable:X2 numeric scalar
- Variable:H numeric scalar
+ Variable:H(_) numeric scalar
  Variable:X2 numeric scalar
- Variable:H numeric scalar
- Variable:H numeric scalar
+ Variable:H(_) numeric scalar
+ Variable:H(_) numeric scalar
  AssignmentOperator:=
 3940      GOTO 3920
  LineNumber:3920
 3950      LET S(X2)=S(H(X2))
  Variable:X2 numeric scalar
- Variable:S numeric scalar
+ Variable:S(_) numeric scalar
  Variable:X2 numeric scalar
- Variable:H numeric scalar
- Variable:S numeric scalar
+ Variable:H(_) numeric scalar
+ Variable:S(_) numeric scalar
  AssignmentOperator:=
 3960      LET T(X2)=(T(X2)+T(H(X2)))/2
  Variable:X2 numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:X2 numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:X2 numeric scalar
- Variable:H numeric scalar
- Variable:T numeric scalar
+ Variable:H(_) numeric scalar
+ Variable:T(_) numeric scalar
  BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:2
  BinaryOperatorDivide:/(_,_) numeric scalar
@@ -1969,7 +1969,7 @@
  Remark:PLACING
 4000 PRINT O$(A)
  Variable:A numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:NL
 4010 IF O9=0 THEN 4040
  Variable:O9 numeric scalar
@@ -1999,7 +1999,7 @@
  BinaryOperatorGreater:>(_,_) boolean scalar
 4080      PRINT O$(G);" IS";
  Variable:G numeric scalar
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:" IS"
  CarriageControl:;
@@ -2020,7 +2020,7 @@
  CarriageControl:;
 4110      IF D(G)<>1 THEN 4140
  Variable:G numeric scalar
- Variable:D numeric scalar
+ Variable:D(_) numeric scalar
  NumericConstant:1
  BinaryOperatorNotEqual:<>(_,_) boolean scalar
 4120      PRINT " OUT OF THE RACE."
@@ -2030,9 +2030,9 @@
  LineNumber:4200
 4140      ON SGN(T(A)-T(G))+2 GOTO 4150,4170,4190 'BUSINESS PART 
  Variable:A numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:G numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  BinaryOperatorMinus:-(_,_) numeric scalar
  FunctionSgn:SGN(_) numeric scalar
  NumericConstant:2
@@ -2042,9 +2042,9 @@
  LineNumber:4190
 4150      PRINT T(G)-T(A);"SECONDS BEHIND YOU" 'GOOD NEWS
  Variable:G numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:A numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  BinaryOperatorMinus:-(_,_) numeric scalar
  CarriageControl:;
  TextConstant:"SECONDS BEHIND YOU"
@@ -2058,9 +2058,9 @@
  LineNumber:4200
 4190      PRINT T(A)-T(G);"SECONDS AHEAD OF YOU." 'BAD NEWS
  Variable:A numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  Variable:G numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  BinaryOperatorMinus:-(_,_) numeric scalar
  CarriageControl:;
  TextConstant:"SECONDS AHEAD OF YOU."
@@ -2071,7 +2071,7 @@
  TextConstant:"YOU'VE TAKEN"
  CarriageControl:;
  Variable:A numeric scalar
- Variable:T numeric scalar
+ Variable:T(_) numeric scalar
  CarriageControl:;
  TextConstant:"SECONDS."
  CarriageControl:NL
@@ -2079,7 +2079,7 @@
  
 4230 PRINT O$(10);"GUY#";F2*(G+1)+G;", THE LAST OF THE GREAT RACERS, JUST WIPED."
  NumericConstant:10
- Variable:O$ string scalar
+ Variable:O$(_) string scalar
  CarriageControl:;
  TextConstant:"GUY#"
  CarriageControl:;

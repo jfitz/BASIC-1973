@@ -16,7 +16,7 @@
  Declaration:L scalar
 210 MAT READ A$(5)
  NumericConstant:5
- Variable:A$ string matrix
+ Variable:A$(,) string matrix
 220 DATA "B" ,"I" ,"N" ,"G" ,"O"
  TextConstant:"B"
  TextConstant:"I"
@@ -31,7 +31,7 @@
  end:     ["NumericConstant:75"]
 250 LET L(K1)=0
  Variable:K1 numeric scalar
- Variable:L numeric scalar
+ Variable:L(_) numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 260 NEXT K1
@@ -86,18 +86,18 @@
  BinaryOperatorLess:<(_,_) boolean scalar
 380 IF L(R)<>0 THEN 360
  Variable:R numeric scalar
- Variable:L numeric scalar
+ Variable:L(_) numeric scalar
  NumericConstant:0
  BinaryOperatorNotEqual:<>(_,_) boolean scalar
 390 LET B(X,Y)=R
  Variable:X numeric scalar
  Variable:Y numeric scalar
- Variable:B numeric scalar
+ Variable:B(_,_) numeric scalar
  Variable:R numeric scalar
  AssignmentOperator:=
 400 LET L(R)=1
  Variable:R numeric scalar
- Variable:L numeric scalar
+ Variable:L(_) numeric scalar
  NumericConstant:1
  AssignmentOperator:=
 410 NEXT X
@@ -142,19 +142,19 @@
 510 IF B(X,Y)=B(F+2,F+2) THEN 540
  Variable:X numeric scalar
  Variable:Y numeric scalar
- Variable:B numeric scalar
+ Variable:B(_,_) numeric scalar
  Variable:F numeric scalar
  NumericConstant:2
  BinaryOperatorPlus:+(_,_) numeric scalar
  Variable:F numeric scalar
  NumericConstant:2
  BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:B numeric scalar
+ Variable:B(_,_) numeric scalar
  BinaryOperatorEqual:=(_,_) boolean scalar
 520 PRINT B(X,Y),
  Variable:X numeric scalar
  Variable:Y numeric scalar
- Variable:B numeric scalar
+ Variable:B(_,_) numeric scalar
  CarriageControl:,
 530 GOTO 550
  LineNumber:550
@@ -238,7 +238,7 @@
  end:     ["NumericConstant:75"]
 830 LET L(K1)=0
  Variable:K1 numeric scalar
- Variable:L numeric scalar
+ Variable:L(_) numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 840 NEXT K1
@@ -248,13 +248,13 @@
 860 LET B(3,3)=0
  NumericConstant:3
  NumericConstant:3
- Variable:B numeric scalar
+ Variable:B(_,_) numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 870 LET B(8,8)=0
  NumericConstant:8
  NumericConstant:8
- Variable:B numeric scalar
+ Variable:B(_,_) numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 875 REM THIS SEQUENCE GENERATES THE BINGO NUMBERS (LINES 880-1100)
@@ -270,12 +270,12 @@
  AssignmentOperator:=
 910 IF L(U)<>0 THEN 880
  Variable:U numeric scalar
- Variable:L numeric scalar
+ Variable:L(_) numeric scalar
  NumericConstant:0
  BinaryOperatorNotEqual:<>(_,_) boolean scalar
 920 LET L(U)=1
  Variable:U numeric scalar
- Variable:L numeric scalar
+ Variable:L(_) numeric scalar
  NumericConstant:1
  AssignmentOperator:=
 930 PRINT
@@ -301,7 +301,7 @@
  FunctionInt:INT(_) numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:A$ string scalar
+ Variable:A$(_) string scalar
  CarriageControl:;
  Variable:U numeric scalar
  CarriageControl:NL
@@ -318,7 +318,7 @@
 1130 IF B(X,Y)=U THEN 1250
  Variable:X numeric scalar
  Variable:Y numeric scalar
- Variable:B numeric scalar
+ Variable:B(_,_) numeric scalar
  Variable:U numeric scalar
  BinaryOperatorEqual:=(_,_) boolean scalar
 1140 NEXT X
@@ -356,7 +356,7 @@
 1250 LET B(X,Y)=0
  Variable:X numeric scalar
  Variable:Y numeric scalar
- Variable:B numeric scalar
+ Variable:B(_,_) numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 1260 GOTO 1140
@@ -383,7 +383,7 @@
 1300 IF B(X,Y)<>0 THEN 1430
  Variable:X numeric scalar
  Variable:Y numeric scalar
- Variable:B numeric scalar
+ Variable:B(_,_) numeric scalar
  NumericConstant:0
  BinaryOperatorNotEqual:<>(_,_) boolean scalar
 1310 IF X<F+4 THEN 1420
@@ -441,7 +441,7 @@
 1480 IF B(X,Y)<>0 THEN 1610 
  Variable:X numeric scalar
  Variable:Y numeric scalar
- Variable:B numeric scalar
+ Variable:B(_,_) numeric scalar
  NumericConstant:0
  BinaryOperatorNotEqual:<>(_,_) boolean scalar
 1490 IF Y<F+4 THEN 1600
@@ -493,7 +493,7 @@
 1640 IF B(X,Y)<>0 THEN 1770
  Variable:X numeric scalar
  Variable:Y numeric scalar
- Variable:B numeric scalar
+ Variable:B(_,_) numeric scalar
  NumericConstant:0
  BinaryOperatorNotEqual:<>(_,_) boolean scalar
 1650 LET X=X+1
@@ -553,7 +553,7 @@
 1800 IF B(X,Y)<>0 THEN 1950
  Variable:X numeric scalar
  Variable:Y numeric scalar
- Variable:B numeric scalar
+ Variable:B(_,_) numeric scalar
  NumericConstant:0
  BinaryOperatorNotEqual:<>(_,_) boolean scalar
 1810 LET X=X-1

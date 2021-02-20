@@ -60,14 +60,14 @@
  AssignmentOperator:=
 100 CHANGE S$ TO S
  Variable:S$ string scalar
- Variable:S numeric array
+ Variable:S() numeric array
 110 FOR I=1 TO 5
  control: Variable:I numeric scalar
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 120 A(I)=45
  Variable:I numeric scalar
- Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  NumericConstant:45
  AssignmentOperator:=
 130 NEXT I
@@ -78,7 +78,7 @@
  end:     ["NumericConstant:5"]
 144 P(J)=0
  Variable:J numeric scalar
- Variable:P numeric scalar
+ Variable:P(_) numeric scalar
  NumericConstant:0
  AssignmentOperator:=
 146 NEXT J
@@ -100,15 +100,15 @@
  BinaryOperatorEqual:=($,$) boolean scalar
 180 CHANGE L$ TO L
  Variable:L$ string scalar
- Variable:L numeric array
+ Variable:L() numeric array
 190 IF L(1)=63 THEN 300
  NumericConstant:1
- Variable:L numeric scalar
+ Variable:L(_) numeric scalar
  NumericConstant:63
  BinaryOperatorEqual:=(_,_) boolean scalar
 200 IF L(0)<>5 THEN 400
  NumericConstant:0
- Variable:L numeric scalar
+ Variable:L(_) numeric scalar
  NumericConstant:5
  BinaryOperatorNotEqual:<>(_,_) boolean scalar
 205 M=0:Q=0
@@ -128,9 +128,9 @@
  end:     ["NumericConstant:5"]
 230 IF S(I)<>L(J) THEN 260
  Variable:I numeric scalar
- Variable:S numeric scalar
+ Variable:S(_) numeric scalar
  Variable:J numeric scalar
- Variable:L numeric scalar
+ Variable:L(_) numeric scalar
  BinaryOperatorNotEqual:<>(_,_) boolean scalar
 231 Q=Q+1
  Variable:Q numeric scalar
@@ -140,9 +140,9 @@
  AssignmentOperator:=
 232 P(Q)=L(J)
  Variable:Q numeric scalar
- Variable:P numeric scalar
+ Variable:P(_) numeric scalar
  Variable:J numeric scalar
- Variable:L numeric scalar
+ Variable:L(_) numeric scalar
  AssignmentOperator:=
 233 IF I<>J THEN 260
  Variable:I numeric scalar
@@ -156,9 +156,9 @@
  AssignmentOperator:=
 250 A(I)=L(J)
  Variable:I numeric scalar
- Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  Variable:J numeric scalar
- Variable:L numeric scalar
+ Variable:L(_) numeric scalar
  AssignmentOperator:=
 260 NEXT J
  Variable:J numeric scalar
@@ -166,19 +166,19 @@
  Variable:I numeric scalar
 270 A(0)=5
  NumericConstant:0
- Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  NumericConstant:5
  AssignmentOperator:=
 272 P(0)=Q
  NumericConstant:0
- Variable:P numeric scalar
+ Variable:P(_) numeric scalar
  Variable:Q numeric scalar
  AssignmentOperator:=
 275 CHANGE A TO A$
- Variable:A numeric array
+ Variable:A() numeric array
  Variable:A$ string scalar
 277 CHANGE P TO P$
- Variable:P numeric array
+ Variable:P() numeric array
  Variable:P$ string scalar
 280 PRINT "THERE WERE"M"MATCHES AND THE COMMON LETTERS WERE...",P$
  TextConstant:"THERE WERE"
@@ -211,7 +211,7 @@
 290 GOTO 150
  LineNumber:150
 300 CHANGE S _ TO S$
- Variable:S numeric array
+ Variable:S() numeric array
  Variable:S$ string scalar
 310 PRINT "THE SECRET WORD IS "S$: PRINT
  TextConstant:"THE SECRET WORD IS "

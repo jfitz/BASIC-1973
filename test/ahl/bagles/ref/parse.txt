@@ -51,7 +51,7 @@
  end:     ["NumericConstant:3"]
 160 A(I) = INT(10*RND)
  Variable:I numeric scalar
- Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  NumericConstant:10
  FunctionRnd:RND numeric scalar
  BinaryOperatorMultiply:*(_,_) numeric scalar
@@ -63,9 +63,9 @@
  end:     ["Variable:I numeric scalar", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) numeric scalar"]
 180 IF A(I)=A(J) THEN 160
  Variable:I numeric scalar
- Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  Variable:J numeric scalar
- Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  BinaryOperatorEqual:=(_,_) boolean scalar
 190 NEXT J
  Variable:J numeric scalar
@@ -88,10 +88,10 @@
  Variable:A$ string scalar
 250 CHANGE A$ TO A1
  Variable:A$ string scalar
- Variable:A1 numeric array
+ Variable:A1() numeric array
 255 IF A1(0)<>3 THEN 630
  NumericConstant:0
- Variable:A1 numeric scalar
+ Variable:A1(_) numeric scalar
  NumericConstant:3
  BinaryOperatorNotEqual:<>(_,_) boolean scalar
 260 FOR J=1 TO 3
@@ -100,19 +100,19 @@
  end:     ["NumericConstant:3"]
 270 IF A1(J)<48 THEN 300
  Variable:J numeric scalar
- Variable:A1 numeric scalar
+ Variable:A1(_) numeric scalar
  NumericConstant:48
  BinaryOperatorLess:<(_,_) boolean scalar
 280 IF A1(J)>57 THEN 300
  Variable:J numeric scalar
- Variable:A1 numeric scalar
+ Variable:A1(_) numeric scalar
  NumericConstant:57
  BinaryOperatorGreater:>(_,_) boolean scalar
 285 B(J)=A1(J)-48
  Variable:J numeric scalar
- Variable:B numeric scalar
+ Variable:B(_) numeric scalar
  Variable:J numeric scalar
- Variable:A1 numeric scalar
+ Variable:A1(_) numeric scalar
  NumericConstant:48
  BinaryOperatorMinus:-(_,_) numeric scalar
  AssignmentOperator:=
@@ -127,21 +127,21 @@
  LineNumber:230
 320 IF B(1)=B(2) THEN 650
  NumericConstant:1
- Variable:B numeric scalar
+ Variable:B(_) numeric scalar
  NumericConstant:2
- Variable:B numeric scalar
+ Variable:B(_) numeric scalar
  BinaryOperatorEqual:=(_,_) boolean scalar
 330 IF B(2)=B(3) THEN 650
  NumericConstant:2
- Variable:B numeric scalar
+ Variable:B(_) numeric scalar
  NumericConstant:3
- Variable:B numeric scalar
+ Variable:B(_) numeric scalar
  BinaryOperatorEqual:=(_,_) boolean scalar
 340 IF B(2)=B(1) THEN 650
  NumericConstant:2
- Variable:B numeric scalar
+ Variable:B(_) numeric scalar
  NumericConstant:1
- Variable:B numeric scalar
+ Variable:B(_) numeric scalar
  BinaryOperatorEqual:=(_,_) boolean scalar
 350 C=0:D=0
  Variable:C numeric scalar
@@ -156,11 +156,11 @@
  end:     ["NumericConstant:2"]
 370 IF A(J)<>B(J+1) THEN 390
  Variable:J numeric scalar
- Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  Variable:J numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:B numeric scalar
+ Variable:B(_) numeric scalar
  BinaryOperatorNotEqual:<>(_,_) boolean scalar
 380 C=C+1
  Variable:C numeric scalar
@@ -172,9 +172,9 @@
  Variable:J numeric scalar
  NumericConstant:1
  BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  Variable:J numeric scalar
- Variable:B numeric scalar
+ Variable:B(_) numeric scalar
  BinaryOperatorNotEqual:<>(_,_) boolean scalar
 400 C=C+1
  Variable:C numeric scalar
@@ -186,9 +186,9 @@
  Variable:J numeric scalar
 420 IF A(1)<>B(3) THEN 440
  NumericConstant:1
- Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  NumericConstant:3
- Variable:B numeric scalar
+ Variable:B(_) numeric scalar
  BinaryOperatorNotEqual:<>(_,_) boolean scalar
 430 C=C+1
  Variable:C numeric scalar
@@ -198,9 +198,9 @@
  AssignmentOperator:=
 440 IF A(3)<>B(1) THEN 460
  NumericConstant:3
- Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  NumericConstant:1
- Variable:B numeric scalar
+ Variable:B(_) numeric scalar
  BinaryOperatorNotEqual:<>(_,_) boolean scalar
 450 C=C+1
  Variable:C numeric scalar
@@ -214,9 +214,9 @@
  end:     ["NumericConstant:3"]
 470 IF A(J)<>B(J) THEN 490
  Variable:J numeric scalar
- Variable:A numeric scalar
+ Variable:A(_) numeric scalar
  Variable:J numeric scalar
- Variable:B numeric scalar
+ Variable:B(_) numeric scalar
  BinaryOperatorNotEqual:<>(_,_) boolean scalar
 480 D=D+1
  Variable:D numeric scalar
@@ -269,15 +269,15 @@
  CarriageControl:
  NumericConstant:100
  NumericConstant:1
- Variable:A1 numeric scalar
+ Variable:A1(_) numeric scalar
  BinaryOperatorMultiply:*(_,_) numeric scalar
  NumericConstant:10
  NumericConstant:2
- Variable:A1 numeric scalar
+ Variable:A1(_) numeric scalar
  BinaryOperatorMultiply:*(_,_) numeric scalar
  BinaryOperatorPlus:+(_,_) numeric scalar
  NumericConstant:3
- Variable:A1 numeric scalar
+ Variable:A1(_) numeric scalar
  BinaryOperatorPlus:+(_,_) numeric scalar
  CarriageControl:NL
 620 GOTO 700
