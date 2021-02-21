@@ -41,14 +41,14 @@
  Remark:BUILD COEFFICIENTS FOR EXPANDED OBJECTIVE FUNCTION
 111 DIM C(N1)
  Variable:N1 numeric scalar
- Declaration:C scalar
+ Declaration:C() array
 112 ARR READ C
  Variable:C() numeric array
 113 DIM C(N1+N2)' EXPAND TO INCLUDE SLACK VARIABLES
  Variable:N1 numeric scalar
  Variable:N2 numeric scalar
  BinaryOperatorPlus:+(_,_) numeric scalar
- Declaration:C scalar
+ Declaration:C() array
 114 C(J) = 0 FOR J = N1 + 1 TO N1+N2
  Variable:J numeric scalar
  Variable:C(_) numeric scalar
@@ -63,7 +63,7 @@
  Variable:N1 numeric scalar
  Variable:N2 numeric scalar
  BinaryOperatorPlus:+(_,_) numeric scalar
- Declaration:C$ scalar
+ Declaration:C$() array
 122 FOR I = 1 TO N1
  control: Variable:I numeric scalar
  start:   ["NumericConstant:1"]
@@ -113,7 +113,7 @@
 141 DIM X(N2, N1)
  Variable:N2 numeric scalar
  Variable:N1 numeric scalar
- Declaration:X scalar
+ Declaration:X(,) matrix
 142 MAT READ X
  Variable:X(,) numeric matrix
 143 DIM X(N2, N1+N2)' EXPAND TO INCLUDE SLACK VARIABLES
@@ -121,7 +121,7 @@
  Variable:N1 numeric scalar
  Variable:N2 numeric scalar
  BinaryOperatorPlus:+(_,_) numeric scalar
- Declaration:X scalar
+ Declaration:X(,) matrix
 144 X(I,J) = 0 FOR J = N1+1 TO N1+N2 FOR I = 1 TO N2
  Variable:I numeric scalar
  Variable:J numeric scalar
@@ -149,14 +149,14 @@
  Remark:BUILD RIGHT-HAND SIDE VALUES (CONSTANTS)
 161 DIM B(N2)
  Variable:N2 numeric scalar
- Declaration:B scalar
+ Declaration:B() array
 162 ARR READ B
  Variable:B() numeric array
 170 REM COPY COEFFICIENTS FOR BASIC VARIABLES
  Remark:COPY COEFFICIENTS FOR BASIC VARIABLES
 171 DIM R(N2)
  Variable:N2 numeric scalar
- Declaration:R scalar
+ Declaration:R() array
 172 R(I) = 0 FOR I = 1 TO N2
  Variable:I numeric scalar
  Variable:R(_) numeric scalar
@@ -230,7 +230,7 @@
  Variable:N1 numeric scalar
  Variable:N2 numeric scalar
  BinaryOperatorPlus:+(_,_) numeric scalar
- Declaration:Z scalar
+ Declaration:Z() array
 302 Z(J) = 0 FOR J = 1 TO N1+N2
  Variable:J numeric scalar
  Variable:Z(_) numeric scalar
@@ -310,7 +310,7 @@
  Remark:EVALUATE BASIC VARIABLES
 331 DIM W(N2)
  Variable:N2 numeric scalar
- Declaration:W scalar
+ Declaration:W() array
 332 W(I) = 0 FOR I = 1 TO N2
  Variable:I numeric scalar
  Variable:W(_) numeric scalar

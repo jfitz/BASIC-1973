@@ -11,10 +11,10 @@
  step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) numeric scalar"]
 30 READ P[S]
  Variable:S numeric scalar
- Variable:P numeric scalar
+ Variable:P(_) numeric scalar
 40 PRINT P[S];
  Variable:S numeric scalar
- Variable:P numeric scalar
+ Variable:P(_) numeric scalar
  CarriageControl:;
 50 NEXT S
  Variable:S numeric scalar
@@ -33,9 +33,9 @@
  Remark:STUDY LINE 80 CAREFULLY!
 80 FOR X=-P[1] TO P[1] STEP SGN(P[1])
  control: Variable:X numeric scalar
- start:   ["NumericConstant:1", "Variable:P numeric scalar", "UnaryOperatorMinus:-(_) numeric scalar"]
- end:     ["NumericConstant:1", "Variable:P numeric scalar"]
- step:    ["NumericConstant:1", "Variable:P numeric scalar", "FunctionSgn:SGN(_) numeric scalar"]
+ start:   ["NumericConstant:1", "Variable:P(_) numeric scalar", "UnaryOperatorMinus:-(_) numeric scalar"]
+ end:     ["NumericConstant:1", "Variable:P(_) numeric scalar"]
+ step:    ["NumericConstant:1", "Variable:P(_) numeric scalar", "FunctionSgn:SGN(_) numeric scalar"]
 88 REM LINE 90 PREVENTS AN ERROR MESSAGE CAUSED BY
  Remark:LINE 90 PREVENTS AN ERROR MESSAGE CAUSED BY
 89 REM DIVIDING BY ZERO
@@ -48,11 +48,11 @@
  Remark:IS X A FACTOR OF P[1]?
 100 IF P[1]/X <> INT(P[1]/X) THEN 140
  NumericConstant:1
- Variable:P numeric scalar
+ Variable:P(_) numeric scalar
  Variable:X numeric scalar
  BinaryOperatorDivide:/(_,_) numeric scalar
  NumericConstant:1
- Variable:P numeric scalar
+ Variable:P(_) numeric scalar
  Variable:X numeric scalar
  BinaryOperatorDivide:/(_,_) numeric scalar
  FunctionInt:INT(_) numeric scalar
@@ -154,7 +154,7 @@
  Variable:P numeric scalar
  Variable:P numeric scalar
  Variable:I numeric scalar
- Variable:P numeric scalar
+ Variable:P(_) numeric scalar
  Variable:X numeric scalar
  Variable:I numeric scalar
  NumericConstant:1
