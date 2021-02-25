@@ -2,30 +2,30 @@
  Remark:* READ NAMES FROM A FILE
 100 DIM N$[72]
  NumericConstant:72
- Declaration:N$() array
+ Declaration:N$() -> $()
 110 FILES "text.txt"
  TextConstant:"text.txt"
 120 PRINT " DOB        NAME"
  TextConstant:" DOB        NAME"
  CarriageControl:NL
 130 FOR I=1 TO 7
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
 140 READ #1,I;N$,A,B
  NumericConstant:1
- UnaryOperatorHash:#(_) filehandle scalar
- Variable:I numeric scalar
- Variable:N$ string scalar
- Variable:A numeric scalar
- Variable:B numeric scalar
+ UnaryOperatorHash:#(_) -> FH
+ Variable:I -> _
+ Variable:N$ -> $
+ Variable:A -> _
+ Variable:B -> _
 150 PRINT A;N$
- Variable:A numeric scalar
+ Variable:A -> _
  CarriageControl:;
- Variable:N$ string scalar
+ Variable:N$ -> $
  CarriageControl:NL
 160 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 170 END
  
 

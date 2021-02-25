@@ -4,19 +4,19 @@
  TextConstant:"Y0U ARE NOW GOING TO PLAY A COMPUTERIZED VERSION OF BINGO--"
  CarriageControl:NL
 180 LET F=1
- Variable:F numeric scalar
+ Variable:F -> _
  NumericConstant:1
  AssignmentOperator:=
 190 DIM B(10,10)
  NumericConstant:10
  NumericConstant:10
- Declaration:B(,) matrix
+ Declaration:B(,) -> _(,)
 200 DIM L(75)
  NumericConstant:75
- Declaration:L() array
+ Declaration:L() -> _()
 210 MAT READ A$(5)
  NumericConstant:5
- Variable:A$(,) string matrix
+ Variable:A$(,) -> $(,)
 220 DATA "B" ,"I" ,"N" ,"G" ,"O"
  TextConstant:"B"
  TextConstant:"I"
@@ -26,25 +26,25 @@
 235 REM THIS SEQUENCE GENERATES THE CARD NUMBERS (LINES 240-430)
  Remark:THIS SEQUENCE GENERATES THE CARD NUMBERS (LINES 240-430)
 240 FOR K1=1 TO 75
- control: Variable:K1 numeric scalar
+ control: Variable:K1 -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:75"]
 250 LET L(K1)=0
- Variable:K1 numeric scalar
- Variable:L(_) numeric scalar
+ Variable:K1 -> _
+ Variable:L(_) -> _
  NumericConstant:0
  AssignmentOperator:=
 260 NEXT K1
- Variable:K1 numeric scalar
+ Variable:K1 -> _
 270 PRINT" "," HERE'S ";
  TextConstant:" "
  CarriageControl:,
  TextConstant:" HERE'S "
  CarriageControl:;
 280 IF F>1 THEN 310
- Variable:F numeric scalar
+ Variable:F -> _
  NumericConstant:1
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 290 PRINT"YOUR CARD"
  TextConstant:"YOUR CARD"
  CarriageControl:NL
@@ -54,62 +54,62 @@
  TextConstant:"MY CARD"
  CarriageControl:NL
 320 LET M=16
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:16
  AssignmentOperator:=
 330 LET G=F+4
- Variable:G numeric scalar
- Variable:F numeric scalar
+ Variable:G -> _
+ Variable:F -> _
  NumericConstant:4
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 340 FOR Y=F TO G
- control: Variable:Y numeric scalar
- start:   ["Variable:F numeric scalar"]
- end:     ["Variable:G numeric scalar"]
+ control: Variable:Y -> _
+ start:   ["Variable:F -> _"]
+ end:     ["Variable:G -> _"]
 350 FOR X=F TO G
- control: Variable:X numeric scalar
- start:   ["Variable:F numeric scalar"]
- end:     ["Variable:G numeric scalar"]
+ control: Variable:X -> _
+ start:   ["Variable:F -> _"]
+ end:     ["Variable:G -> _"]
 360 LET R=INT(M*RND)
- Variable:R numeric scalar
- Variable:M numeric scalar
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ Variable:R -> _
+ Variable:M -> _
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 370 IF R<M-15 THEN 360
- Variable:R numeric scalar
- Variable:M numeric scalar
+ Variable:R -> _
+ Variable:M -> _
  NumericConstant:15
- BinaryOperatorMinus:-(_,_) numeric scalar
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorLess:<(_,_) -> ?
 380 IF L(R)<>0 THEN 360
- Variable:R numeric scalar
- Variable:L(_) numeric scalar
+ Variable:R -> _
+ Variable:L(_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 390 LET B(X,Y)=R
- Variable:X numeric scalar
- Variable:Y numeric scalar
- Variable:B(_,_) numeric scalar
- Variable:R numeric scalar
+ Variable:X -> _
+ Variable:Y -> _
+ Variable:B(_,_) -> _
+ Variable:R -> _
  AssignmentOperator:=
 400 LET L(R)=1
- Variable:R numeric scalar
- Variable:L(_) numeric scalar
+ Variable:R -> _
+ Variable:L(_) -> _
  NumericConstant:1
  AssignmentOperator:=
 410 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 420 LET M=M+15
- Variable:M numeric scalar
- Variable:M numeric scalar
+ Variable:M -> _
+ Variable:M -> _
  NumericConstant:15
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 430 NEXT Y
- Variable:Y numeric scalar
+ Variable:Y -> _
 435 REM THIS SEQUENCE PRINTS THE CARD (LINES 440-670) 
  Remark:THIS SEQUENCE PRINTS THE CARD (LINES 440-670) 
 440 PRINT
@@ -126,9 +126,9 @@
  TextConstant:"--O--"
  CarriageControl:NL
 460 FOR X=F TO G
- control: Variable:X numeric scalar
- start:   ["Variable:F numeric scalar"]
- end:     ["Variable:G numeric scalar"]
+ control: Variable:X -> _
+ start:   ["Variable:F -> _"]
+ end:     ["Variable:G -> _"]
 470 PRINT
  CarriageControl:NL
 480 PRINT
@@ -136,25 +136,25 @@
 490 PRINT
  CarriageControl:NL
 500 FOR Y=F TO G
- control: Variable:Y numeric scalar
- start:   ["Variable:F numeric scalar"]
- end:     ["Variable:G numeric scalar"]
+ control: Variable:Y -> _
+ start:   ["Variable:F -> _"]
+ end:     ["Variable:G -> _"]
 510 IF B(X,Y)=B(F+2,F+2) THEN 540
- Variable:X numeric scalar
- Variable:Y numeric scalar
- Variable:B(_,_) numeric scalar
- Variable:F numeric scalar
+ Variable:X -> _
+ Variable:Y -> _
+ Variable:B(_,_) -> _
+ Variable:F -> _
  NumericConstant:2
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:F numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:F -> _
  NumericConstant:2
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:B(_,_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:B(_,_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 520 PRINT B(X,Y),
- Variable:X numeric scalar
- Variable:Y numeric scalar
- Variable:B(_,_) numeric scalar
+ Variable:X -> _
+ Variable:Y -> _
+ Variable:B(_,_) -> _
  CarriageControl:,
 530 GOTO 550
  LineNumber:550
@@ -162,9 +162,9 @@
  TextConstant:"FREE"
  CarriageControl:,
 550 NEXT Y
- Variable:Y numeric scalar
+ Variable:Y -> _
 560 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 570 PRINT
  CarriageControl:NL
 580 PRINT
@@ -178,19 +178,19 @@
  TextConstant:" [TEAR OFF AFTER MACHINE AUTOMATICALLY ADVANCES PAPER]"
  CarriageControl:NL
 620 FOR K9 = 1 TO 9
- control: Variable:K9 numeric scalar
+ control: Variable:K9 -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:9"]
 630 PRINT
  CarriageControl:NL
 640 NEXT K9
- Variable:K9 numeric scalar
+ Variable:K9 -> _
 650 IF F=6 THEN 680
- Variable:F numeric scalar
+ Variable:F -> _
  NumericConstant:6
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 660 LET F=6
- Variable:F numeric scalar
+ Variable:F -> _
  NumericConstant:6
  AssignmentOperator:=
 670 GOTO 240
@@ -218,11 +218,11 @@
  TextConstant:"ARE YOU READY"
  CarriageControl:;
 760 INPUT R$
- Variable:R$ string scalar
+ Variable:R$ -> $
 770 IF R$<>"NO" THEN 820
- Variable:R$ string scalar
+ Variable:R$ -> $
  TextConstant:"NO"
- BinaryOperatorNotEqual:<>($,$) boolean scalar
+ BinaryOperatorNotEqual:<>($,$) -> ?
 780 PRINT 
  CarriageControl:NL
 790 PRINT"*********:HURRY UP:**********"
@@ -233,57 +233,57 @@
 810 REM
  Remark:
 820 FOR K1 = 1 TO 75
- control: Variable:K1 numeric scalar
+ control: Variable:K1 -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:75"]
 830 LET L(K1)=0
- Variable:K1 numeric scalar
- Variable:L(_) numeric scalar
+ Variable:K1 -> _
+ Variable:L(_) -> _
  NumericConstant:0
  AssignmentOperator:=
 840 NEXT K1
- Variable:K1 numeric scalar
+ Variable:K1 -> _
 850 PRINT
  CarriageControl:NL
 860 LET B(3,3)=0
  NumericConstant:3
  NumericConstant:3
- Variable:B(_,_) numeric scalar
+ Variable:B(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 870 LET B(8,8)=0
  NumericConstant:8
  NumericConstant:8
- Variable:B(_,_) numeric scalar
+ Variable:B(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 875 REM THIS SEQUENCE GENERATES THE BINGO NUMBERS (LINES 880-1100)
  Remark:THIS SEQUENCE GENERATES THE BINGO NUMBERS (LINES 880-1100)
 880 LET U=INT(75*RND)+1
- Variable:U numeric scalar
+ Variable:U -> _
  NumericConstant:75
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionInt:INT(_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 910 IF L(U)<>0 THEN 880
- Variable:U numeric scalar
- Variable:L(_) numeric scalar
+ Variable:U -> _
+ Variable:L(_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 920 LET L(U)=1
- Variable:U numeric scalar
- Variable:L(_) numeric scalar
+ Variable:U -> _
+ Variable:L(_) -> _
  NumericConstant:1
  AssignmentOperator:=
 930 PRINT
  CarriageControl:NL
 940 IF RND > .5 THEN 970
- FunctionRnd:RND numeric scalar
+ FunctionRnd:RND -> _
  NumericConstant:.5
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 950 PRINT"THE NUMBER COMES UP:",
  TextConstant:"THE NUMBER COMES UP:"
  CarriageControl:,
@@ -293,70 +293,70 @@
  TextConstant:"THE NEXT ONE IS:"
  CarriageControl:,
 980 PRINT A$(INT((U-1)/15)+1);U
- Variable:U numeric scalar
+ Variable:U -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  NumericConstant:15
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionInt:INT(_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:A$(_) string scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:A$(_) -> $
  CarriageControl:;
- Variable:U numeric scalar
+ Variable:U -> _
  CarriageControl:NL
 1105 REM THIS IS THE "NUMBER ON CARD?" SEQUENCE (LINES 1110-1260)
  Remark:THIS IS THE "NUMBER ON CARD?" SEQUENCE (LINES 1110-1260)
 1110 FOR Y=1 TO 10
- control: Variable:Y numeric scalar
+ control: Variable:Y -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 1120 FOR X=1 TO 10
- control: Variable:X numeric scalar
+ control: Variable:X -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 1130 IF B(X,Y)=U THEN 1250
- Variable:X numeric scalar
- Variable:Y numeric scalar
- Variable:B(_,_) numeric scalar
- Variable:U numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:X -> _
+ Variable:Y -> _
+ Variable:B(_,_) -> _
+ Variable:U -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 1140 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 1150 NEXT Y
- Variable:Y numeric scalar
+ Variable:Y -> _
 1160 LET F=1
- Variable:F numeric scalar
+ Variable:F -> _
  NumericConstant:1
  AssignmentOperator:=
 1170 GOSUB 1270
  LineNumber:1270
 1180 LET F=6
- Variable:F numeric scalar
+ Variable:F -> _
  NumericConstant:6
  AssignmentOperator:=
 1190 GOSUB 1270
  LineNumber:1270
 1200 IF V=0 THEN 1230
- Variable:V numeric scalar
+ Variable:V -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1210 IF W=1 THEN 1980
- Variable:W numeric scalar
+ Variable:W -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1220 GOTO 2050
  LineNumber:2050
 1230 IF W=0 THEN 880 
- Variable:W numeric scalar
+ Variable:W -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1240 GOTO 2120
  LineNumber:2120
 1250 LET B(X,Y)=0
- Variable:X numeric scalar
- Variable:Y numeric scalar
- Variable:B(_,_) numeric scalar
+ Variable:X -> _
+ Variable:Y -> _
+ Variable:B(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 1260 GOTO 1140
@@ -367,42 +367,42 @@
 1267 REM THIS IS THE VERTICAL CHECK FOR BINGO*** (LINES 1270-1430)
  Remark:THIS IS THE VERTICAL CHECK FOR BINGO*** (LINES 1270-1430)
 1270 LET G=F+4
- Variable:G numeric scalar
- Variable:F numeric scalar
+ Variable:G -> _
+ Variable:F -> _
  NumericConstant:4
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 1280 FOR Y=F TO G
- control: Variable:Y numeric scalar
- start:   ["Variable:F numeric scalar"]
- end:     ["Variable:G numeric scalar"]
+ control: Variable:Y -> _
+ start:   ["Variable:F -> _"]
+ end:     ["Variable:G -> _"]
 1290 FOR X=F TO G
- control: Variable:X numeric scalar
- start:   ["Variable:F numeric scalar"]
- end:     ["Variable:G numeric scalar"]
+ control: Variable:X -> _
+ start:   ["Variable:F -> _"]
+ end:     ["Variable:G -> _"]
 1300 IF B(X,Y)<>0 THEN 1430
- Variable:X numeric scalar
- Variable:Y numeric scalar
- Variable:B(_,_) numeric scalar
+ Variable:X -> _
+ Variable:Y -> _
+ Variable:B(_,_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 1310 IF X<F+4 THEN 1420
- Variable:X numeric scalar
- Variable:F numeric scalar
+ Variable:X -> _
+ Variable:F -> _
  NumericConstant:4
- BinaryOperatorPlus:+(_,_) numeric scalar
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorLess:<(_,_) -> ?
 1320 IF F=6 THEN 1370
- Variable:F numeric scalar
+ Variable:F -> _
  NumericConstant:6
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1330 PRINT
  CarriageControl:NL
 1340 PRINT"YOU'VE GOT A BINGO***"
  TextConstant:"YOU'VE GOT A BINGO***"
  CarriageControl:NL
 1350 LET W=1
- Variable:W numeric scalar
+ Variable:W -> _
  NumericConstant:1
  AssignmentOperator:=
 1360 RETURN
@@ -413,54 +413,54 @@
  TextConstant:"I'VE GOT A BINGO*****"
  CarriageControl:NL
 1390 LET V=1
- Variable:V numeric scalar
+ Variable:V -> _
  NumericConstant:1
  AssignmentOperator:=
 1410 GO TO 1450 
  LineNumber:1450
 1420 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 1430 NEXT Y
- Variable:Y numeric scalar
+ Variable:Y -> _
 1440 REM THIS IS THE HORIZONTAL CHECK FOR BINGO*** (LINES 1450-1610)
  Remark:THIS IS THE HORIZONTAL CHECK FOR BINGO*** (LINES 1450-1610)
 1450 LET G=F+4
- Variable:G numeric scalar
- Variable:F numeric scalar
+ Variable:G -> _
+ Variable:F -> _
  NumericConstant:4
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 1460 FOR X=F TO G
- control: Variable:X numeric scalar
- start:   ["Variable:F numeric scalar"]
- end:     ["Variable:G numeric scalar"]
+ control: Variable:X -> _
+ start:   ["Variable:F -> _"]
+ end:     ["Variable:G -> _"]
 1470 FOR Y=F TO G
- control: Variable:Y numeric scalar
- start:   ["Variable:F numeric scalar"]
- end:     ["Variable:G numeric scalar"]
+ control: Variable:Y -> _
+ start:   ["Variable:F -> _"]
+ end:     ["Variable:G -> _"]
 1480 IF B(X,Y)<>0 THEN 1610 
- Variable:X numeric scalar
- Variable:Y numeric scalar
- Variable:B(_,_) numeric scalar
+ Variable:X -> _
+ Variable:Y -> _
+ Variable:B(_,_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 1490 IF Y<F+4 THEN 1600
- Variable:Y numeric scalar
- Variable:F numeric scalar
+ Variable:Y -> _
+ Variable:F -> _
  NumericConstant:4
- BinaryOperatorPlus:+(_,_) numeric scalar
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorLess:<(_,_) -> ?
 1500 IF F=6 THEN 1550
- Variable:F numeric scalar
+ Variable:F -> _
  NumericConstant:6
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1510 PRINT
  CarriageControl:NL
 1520 PRINT"YOU'VE GOT A BINGO***"
  TextConstant:"YOU'VE GOT A BINGO***"
  CarriageControl:NL
 1530 LET W=1
- Variable:W numeric scalar
+ Variable:W -> _
  NumericConstant:1
  AssignmentOperator:=
 1540 RETURN
@@ -471,55 +471,55 @@
  TextConstant:"I'VE GOT A BINGO*****"
  CarriageControl:NL
 1570 LET V=1
- Variable:V numeric scalar
+ Variable:V -> _
  NumericConstant:1
  AssignmentOperator:=
 1590 GOTO 1620
  LineNumber:1620
 1600 NEXT Y
- Variable:Y numeric scalar
+ Variable:Y -> _
 1610 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 1615 REM THIS IS THE SLANT CHECK (M=-1) FOR BINGO*** (LINES 1620-1770)
  Remark:THIS IS THE SLANT CHECK (M=-1) FOR BINGO*** (LINES 1620-1770)
 1620 LET X=F
- Variable:X numeric scalar
- Variable:F numeric scalar
+ Variable:X -> _
+ Variable:F -> _
  AssignmentOperator:=
 1630 LET Y=F
- Variable:Y numeric scalar
- Variable:F numeric scalar
+ Variable:Y -> _
+ Variable:F -> _
  AssignmentOperator:=
 1640 IF B(X,Y)<>0 THEN 1770
- Variable:X numeric scalar
- Variable:Y numeric scalar
- Variable:B(_,_) numeric scalar
+ Variable:X -> _
+ Variable:Y -> _
+ Variable:B(_,_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 1650 LET X=X+1
- Variable:X numeric scalar
- Variable:X numeric scalar
+ Variable:X -> _
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 1660 LET Y=Y+1
- Variable:Y numeric scalar
- Variable:Y numeric scalar
+ Variable:Y -> _
+ Variable:Y -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 1670 IF Y<F+5 THEN 1640
- Variable:Y numeric scalar
- Variable:F numeric scalar
+ Variable:Y -> _
+ Variable:F -> _
  NumericConstant:5
- BinaryOperatorPlus:+(_,_) numeric scalar
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorLess:<(_,_) -> ?
 1680 IF Y=11 THEN 1740
- Variable:Y numeric scalar
+ Variable:Y -> _
  NumericConstant:11
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1690 LET W=1
- Variable:W numeric scalar
+ Variable:W -> _
  NumericConstant:1
  AssignmentOperator:=
 1700 PRINT
@@ -533,7 +533,7 @@
  TextConstant:"I'VE GOT A BINGO*****"
  CarriageControl:NL
 1750 LET V=1
- Variable:V numeric scalar
+ Variable:V -> _
  NumericConstant:1
  AssignmentOperator:=
 1770 RETURN
@@ -541,50 +541,50 @@
 1775 REM THIS IS THE SLANT CHECK (M=1) FOR BINGO*** (LINES 1780-1950)
  Remark:THIS IS THE SLANT CHECK (M=1) FOR BINGO*** (LINES 1780-1950)
 1780 LET X=F+4
- Variable:X numeric scalar
- Variable:F numeric scalar
+ Variable:X -> _
+ Variable:F -> _
  NumericConstant:4
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 1790 LET Y=X
- Variable:Y numeric scalar
- Variable:X numeric scalar
+ Variable:Y -> _
+ Variable:X -> _
  AssignmentOperator:=
 1800 IF B(X,Y)<>0 THEN 1950
- Variable:X numeric scalar
- Variable:Y numeric scalar
- Variable:B(_,_) numeric scalar
+ Variable:X -> _
+ Variable:Y -> _
+ Variable:B(_,_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 1810 LET X=X-1
- Variable:X numeric scalar
- Variable:X numeric scalar
+ Variable:X -> _
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 1820 LET Y=Y+1
- Variable:Y numeric scalar
- Variable:Y numeric scalar
+ Variable:Y -> _
+ Variable:Y -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 1830 IF Y<F+5 THEN 1800
- Variable:Y numeric scalar
- Variable:F numeric scalar
+ Variable:Y -> _
+ Variable:F -> _
  NumericConstant:5
- BinaryOperatorPlus:+(_,_) numeric scalar
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorLess:<(_,_) -> ?
 1840 IF Y=11 THEN 1900
- Variable:Y numeric scalar
+ Variable:Y -> _
  NumericConstant:11
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1850 PRINT
  CarriageControl:NL
 1860 PRINT"YOU'VE GOT A BINGO***"
  TextConstant:"YOU'VE GOT A BINGO***"
  CarriageControl:NL
 1870 LET W=1
- Variable:W numeric scalar
+ Variable:W -> _
  NumericConstant:1
  AssignmentOperator:=
 1890 RETURN
@@ -595,7 +595,7 @@
  TextConstant:"I'VE GOT A BINGO*****"
  CarriageControl:NL
 1920 LET V=1
- Variable:V numeric scalar
+ Variable:V -> _
  NumericConstant:1
  AssignmentOperator:=
 1950 RETURN
@@ -615,13 +615,13 @@
  TextConstant:"DO YOU WANT TO PLAY AGAIN"
  CarriageControl:;
 2020 INPUT E$
- Variable:E$ string scalar
+ Variable:E$ -> $
 2025 PRINT
  CarriageControl:NL
 2030 IF E$="YES" THEN 180
- Variable:E$ string scalar
+ Variable:E$ -> $
  TextConstant:"YES"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 2040 STOP
  
 2045 REM THIS IS THE "I WIN" SEQUENCE
@@ -629,14 +629,14 @@
 2050 PRINT
  CarriageControl:NL
 2060 FOR S=1 TO 6
- control: Variable:S numeric scalar
+ control: Variable:S -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:6"]
 2070 PRINT"I WIN. ";
  TextConstant:"I WIN. "
  CarriageControl:;
 2080 NEXT S
- Variable:S numeric scalar
+ Variable:S -> _
 2090 PRINT
  CarriageControl:NL
 2100 PRINT

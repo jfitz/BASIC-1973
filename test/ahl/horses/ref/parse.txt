@@ -1,20 +1,20 @@
 1 DIM V(10),U(10),T(10),M(8),O(8),H(8),B(8),P(6)
  NumericConstant:10
- Declaration:V() array
+ Declaration:V() -> _()
  NumericConstant:10
- Declaration:U() array
+ Declaration:U() -> _()
  NumericConstant:10
- Declaration:T() array
+ Declaration:T() -> _()
  NumericConstant:8
- Declaration:M() array
+ Declaration:M() -> _()
  NumericConstant:8
- Declaration:O() array
+ Declaration:O() -> _()
  NumericConstant:8
- Declaration:H() array
+ Declaration:H() -> _()
  NumericConstant:8
- Declaration:B() array
+ Declaration:B() -> _()
  NumericConstant:6
- Declaration:P() array
+ Declaration:P() -> _()
 2 RANDOMIZE \ PRINT "HORSE RACE"
  
  TextConstant:"HORSE RACE"
@@ -29,40 +29,40 @@
 6 PRINT 
  CarriageControl:NL
 7 FOR I=1 TO 8
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
 8 B(I)=I \ GOSUB 210
- Variable:I numeric scalar
- Variable:B(_) numeric scalar
- Variable:I numeric scalar
+ Variable:I -> _
+ Variable:B(_) -> _
+ Variable:I -> _
  AssignmentOperator:=
  LineNumber:210
 9 READ O(I) \ PRINT O(I)":1"
- Variable:I numeric scalar
- Variable:O(_) numeric scalar
- Variable:I numeric scalar
- Variable:O(_) numeric scalar
+ Variable:I -> _
+ Variable:O(_) -> _
+ Variable:I -> _
+ Variable:O(_) -> _
  CarriageControl:
  TextConstant:":1"
  CarriageControl:NL
 10 M(I)=(100+50*O(I)) / (O(I)+1)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:100
  NumericConstant:50
- Variable:I numeric scalar
- Variable:O(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:I numeric scalar
- Variable:O(_) numeric scalar
+ Variable:I -> _
+ Variable:O(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:I -> _
+ Variable:O(_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorDivide:/(_,_) -> _
  AssignmentOperator:=
 11 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 12 PRINT
  CarriageControl:NL
 13 PRINT"ENTER HORSE(1-8);TO WIN, PLACE, SHOW(1,2,3);AND THE WAGER."
@@ -72,187 +72,187 @@
  TextConstant:"AND 0 FOR NO MORE BETTlNG OR 1 OR MORE BETTING."
  CarriageControl:NL
 15 LET S = 0
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:0
  AssignmentOperator:=
 16 PRINT
  CarriageControl:NL
 17 LET S = S + 1
- Variable:S numeric scalar
- Variable:S numeric scalar
+ Variable:S -> _
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 18 PRINT"BET NO. ";S;
  TextConstant:"BET NO. "
  CarriageControl:;
- Variable:S numeric scalar
+ Variable:S -> _
  CarriageControl:;
 19 INPUT T(S),U(S),V(S),M
- Variable:S numeric scalar
- Variable:T(_) numeric scalar
- Variable:S numeric scalar
- Variable:U(_) numeric scalar
- Variable:S numeric scalar
- Variable:V(_) numeric scalar
- Variable:M numeric scalar
+ Variable:S -> _
+ Variable:T(_) -> _
+ Variable:S -> _
+ Variable:U(_) -> _
+ Variable:S -> _
+ Variable:V(_) -> _
+ Variable:M -> _
 20 LET T(S)=ABS(INT(T(S)))
- Variable:S numeric scalar
- Variable:T(_) numeric scalar
- Variable:S numeric scalar
- Variable:T(_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- FunctionAbs:ABS(_) numeric scalar
+ Variable:S -> _
+ Variable:T(_) -> _
+ Variable:S -> _
+ Variable:T(_) -> _
+ FunctionInt:INT(_) -> _
+ FunctionAbs:ABS(_) -> _
  AssignmentOperator:=
 21 IF T(S)>8 THEN 26
- Variable:S numeric scalar
- Variable:T(_) numeric scalar
+ Variable:S -> _
+ Variable:T(_) -> _
  NumericConstant:8
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 22 IF T(S)<1 THEN 26
- Variable:S numeric scalar
- Variable:T(_) numeric scalar
+ Variable:S -> _
+ Variable:T(_) -> _
  NumericConstant:1
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 23 LET U(S)=ABS(INT(U(S)))
- Variable:S numeric scalar
- Variable:U(_) numeric scalar
- Variable:S numeric scalar
- Variable:U(_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- FunctionAbs:ABS(_) numeric scalar
+ Variable:S -> _
+ Variable:U(_) -> _
+ Variable:S -> _
+ Variable:U(_) -> _
+ FunctionInt:INT(_) -> _
+ FunctionAbs:ABS(_) -> _
  AssignmentOperator:=
 24 IF U(S)>3 THEN 26
- Variable:S numeric scalar
- Variable:U(_) numeric scalar
+ Variable:S -> _
+ Variable:U(_) -> _
  NumericConstant:3
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 25 IF U(S)>0 THEN 28
- Variable:S numeric scalar
- Variable:U(_) numeric scalar
+ Variable:S -> _
+ Variable:U(_) -> _
  NumericConstant:0
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 26 PRINT"HORSE NO. OR WIN-PLACE-SHOW IN ERROR" \ GO TO 18
  TextConstant:"HORSE NO. OR WIN-PLACE-SHOW IN ERROR"
  CarriageControl:NL
  LineNumber:18
 28 IF V(S)<2 THEN 30
- Variable:S numeric scalar
- Variable:V(_) numeric scalar
+ Variable:S -> _
+ Variable:V(_) -> _
  NumericConstant:2
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 29 IF V(S)<300 THEN 33
- Variable:S numeric scalar
- Variable:V(_) numeric scalar
+ Variable:S -> _
+ Variable:V(_) -> _
  NumericConstant:300
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 30 PRINT"BET MUST BE >$2 AND <$300. BET AGAIN";
  TextConstant:"BET MUST BE >$2 AND <$300. BET AGAIN"
  CarriageControl:;
 31 INPUT V(S) \ GO TO 28
- Variable:S numeric scalar
- Variable:V(_) numeric scalar
+ Variable:S -> _
+ Variable:V(_) -> _
  LineNumber:28
 33 IF M = 1 THEN 17
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 35 PRINT \ PRINT" THEY'RE OFF AND RUNNING -" \ PRINT
  CarriageControl:NL
  TextConstant:" THEY'RE OFF AND RUNNING -"
  CarriageControl:NL
  CarriageControl:NL
 36 FOR I=1 TO 8 \ H(I)=0 \ NEXT I
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
- Variable:I numeric scalar
- Variable:H(_) numeric scalar
+ Variable:I -> _
+ Variable:H(_) -> _
  NumericConstant:0
  AssignmentOperator:=
- Variable:I numeric scalar
+ Variable:I -> _
 40 FOR K=1 TO 8
- control: Variable:K numeric scalar
+ control: Variable:K -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
 42 SLEEP 6
  NumericConstant:6
 44 FOR J=1 TO 8
- control: Variable:J numeric scalar
+ control: Variable:J -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
 46 H(J)=H(J)+RND(0)*M(J)
- Variable:J numeric scalar
- Variable:H(_) numeric scalar
- Variable:J numeric scalar
- Variable:H(_) numeric scalar
+ Variable:J -> _
+ Variable:H(_) -> _
+ Variable:J -> _
+ Variable:H(_) -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- Variable:J numeric scalar
- Variable:M(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ Variable:J -> _
+ Variable:M(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 48 NEXT J
- Variable:J numeric scalar
+ Variable:J -> _
 52 FOR I=8 TO 1 STEP -1
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:8"]
  end:     ["NumericConstant:1"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> _"]
 54 FOR J=2 TO I
- control: Variable:J numeric scalar
+ control: Variable:J -> _
  start:   ["NumericConstant:2"]
- end:     ["Variable:I numeric scalar"]
+ end:     ["Variable:I -> _"]
 56 ON SGN(H(B(J-1))-H(B(J)))+2 GO TO 60,58,62
- Variable:J numeric scalar
+ Variable:J -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:B(_) numeric scalar
- Variable:H(_) numeric scalar
- Variable:J numeric scalar
- Variable:B(_) numeric scalar
- Variable:H(_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- FunctionSgn:SGN(_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:B(_) -> _
+ Variable:H(_) -> _
+ Variable:J -> _
+ Variable:B(_) -> _
+ Variable:H(_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ FunctionSgn:SGN(_) -> _
  NumericConstant:2
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  LineNumber:60
  LineNumber:58
  LineNumber:62
 58 IF RND(0)>.5 THEN 62
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:.5
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 60 Z=B(J-1) \ B(J-1)=B(J) \ B(J)=Z
- Variable:Z numeric scalar
- Variable:J numeric scalar
+ Variable:Z -> _
+ Variable:J -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:B(_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:B(_) -> _
  AssignmentOperator:=
- Variable:J numeric scalar
+ Variable:J -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:B(_) numeric scalar
- Variable:J numeric scalar
- Variable:B(_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:B(_) -> _
+ Variable:J -> _
+ Variable:B(_) -> _
  AssignmentOperator:=
- Variable:J numeric scalar
- Variable:B(_) numeric scalar
- Variable:Z numeric scalar
+ Variable:J -> _
+ Variable:B(_) -> _
+ Variable:Z -> _
  AssignmentOperator:=
 62 NEXT J
- Variable:J numeric scalar
+ Variable:J -> _
 64 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 68 PRINT \ PRINT "   ";
  CarriageControl:NL
  TextConstant:"   "
  CarriageControl:;
 70 ON K GOTO 72,74,76,78,80,82,84,86
- Variable:K numeric scalar
+ Variable:K -> _
  LineNumber:72
  LineNumber:74
  LineNumber:76
@@ -297,7 +297,7 @@
 90 GO SUB 200
  LineNumber:200
 92 NEXT K
- Variable:K numeric scalar
+ Variable:K -> _
 96 PRINT \ PRINT \ PRINT "$2 MUTUELS PAID:"
  CarriageControl:NL
  CarriageControl:NL
@@ -307,199 +307,199 @@
  TextConstant:" STRAIGHT PLACE SHOW"
  CarriageControl:NL
 100 K=0
- Variable:K numeric scalar
+ Variable:K -> _
  NumericConstant:0
  AssignmentOperator:=
 102 FOR I=1 TO 3
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 104 GO SUB 215
  LineNumber:215
 106 FOR J=1 TO 3
- control: Variable:J numeric scalar
+ control: Variable:J -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 108 L=2*I+J-3 \ P(L)=1.5+.1*INT(.1*INT((4*O(B(I))/(J*(J+1))+RND(0))*100+5))
- Variable:L numeric scalar
+ Variable:L -> _
  NumericConstant:2
- Variable:I numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- Variable:J numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:I -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ Variable:J -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:3
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
- Variable:L numeric scalar
- Variable:P(_) numeric scalar
+ Variable:L -> _
+ Variable:P(_) -> _
  NumericConstant:1.5
  NumericConstant:.1
  NumericConstant:.1
  NumericConstant:4
- Variable:I numeric scalar
- Variable:B(_) numeric scalar
- Variable:O(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- Variable:J numeric scalar
- Variable:J numeric scalar
+ Variable:I -> _
+ Variable:B(_) -> _
+ Variable:O(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ Variable:J -> _
+ Variable:J -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:100
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:5
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 110 PRINT TAB(3+10*J); \ B=-16
  NumericConstant:3
  NumericConstant:10
- Variable:J numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionTab:TAB(_) string scalar
+ Variable:J -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionTab:TAB(_) -> $
  CarriageControl:;
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:16
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 112 FOR M=3 TO -1 STEP -1
- control: Variable:M numeric scalar
+ control: Variable:M -> _
  start:   ["NumericConstant:3"]
- end:     ["NumericConstant:1", "UnaryOperatorMinus:-(_) numeric scalar"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) numeric scalar"]
+ end:     ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> _"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> _"]
 114 P=INT(P(L)/(10^M))
- Variable:P numeric scalar
- Variable:L numeric scalar
- Variable:P(_) numeric scalar
+ Variable:P -> _
+ Variable:L -> _
+ Variable:P(_) -> _
  NumericConstant:10
- Variable:M numeric scalar
- BinaryOperatorPower:^(_,_) numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ Variable:M -> _
+ BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 116 P=P-10*INT(P/10)
- Variable:P numeric scalar
- Variable:P numeric scalar
+ Variable:P -> _
+ Variable:P -> _
  NumericConstant:10
- Variable:P numeric scalar
+ Variable:P -> _
  NumericConstant:10
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 117 IF P=0 THEN 118 \ B=0
- Variable:P numeric scalar
+ Variable:P -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
- Variable:B numeric scalar
+ BinaryOperatorEqual:=(_,_) -> ?
+ Variable:B -> _
  NumericConstant:0
  AssignmentOperator:=
 118 PRINT CHR$(48+P+B);
  NumericConstant:48
- Variable:P numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:B numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionChr:CHR$(_) string scalar
+ Variable:P -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:B -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionChr:CHR$(_) -> $
  CarriageControl:;
 138 IF M<>0 THEN 139 \ PRINT ".";
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
  TextConstant:"."
  CarriageControl:;
 139 NEXT M
- Variable:M numeric scalar
+ Variable:M -> _
 140 PRINT "0";
  TextConstant:"0"
  CarriageControl:;
 142 NEXT J
- Variable:J numeric scalar
+ Variable:J -> _
 144 PRINT
  CarriageControl:NL
 146 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 150 PRINT \ Q=0
  CarriageControl:NL
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:0
  AssignmentOperator:=
 152 FOR J=1 TO S
- control: Variable:J numeric scalar
+ control: Variable:J -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:S numeric scalar"]
+ end:     ["Variable:S -> _"]
 154 PRINT "BET NO. "; J
  TextConstant:"BET NO. "
  CarriageControl:;
- Variable:J numeric scalar
+ Variable:J -> _
  CarriageControl:NL
 156 P=0
- Variable:P numeric scalar
+ Variable:P -> _
  NumericConstant:0
  AssignmentOperator:=
 158 FOR I=1 TO 6 \ H(B(I))=I \ NEXT I
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:6"]
- Variable:I numeric scalar
- Variable:B(_) numeric scalar
- Variable:H(_) numeric scalar
- Variable:I numeric scalar
+ Variable:I -> _
+ Variable:B(_) -> _
+ Variable:H(_) -> _
+ Variable:I -> _
  AssignmentOperator:=
- Variable:I numeric scalar
+ Variable:I -> _
 160 IF U(J)<H(T(J)) THEN 166
- Variable:J numeric scalar
- Variable:U(_) numeric scalar
- Variable:J numeric scalar
- Variable:T(_) numeric scalar
- Variable:H(_) numeric scalar
- BinaryOperatorLess:<(_,_) boolean scalar
+ Variable:J -> _
+ Variable:U(_) -> _
+ Variable:J -> _
+ Variable:T(_) -> _
+ Variable:H(_) -> _
+ BinaryOperatorLess:<(_,_) -> ?
 162 P= .01*INT((V(J)*50)*P(U(J)*H(T(J))*2-3))
- Variable:P numeric scalar
+ Variable:P -> _
  NumericConstant:.01
- Variable:J numeric scalar
- Variable:V(_) numeric scalar
+ Variable:J -> _
+ Variable:V(_) -> _
  NumericConstant:50
- BinaryOperatorMultiply:*(_,_) numeric scalar
- Variable:J numeric scalar
- Variable:U(_) numeric scalar
- Variable:J numeric scalar
- Variable:T(_) numeric scalar
- Variable:H(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
+ Variable:J -> _
+ Variable:U(_) -> _
+ Variable:J -> _
+ Variable:T(_) -> _
+ Variable:H(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:2
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:3
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:P(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:P(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  AssignmentOperator:=
 164 PRINT "YOU COLLECT" P "ON "; \ GO TO 172
  TextConstant:"YOU COLLECT"
  CarriageControl:
- Variable:P numeric scalar
+ Variable:P -> _
  CarriageControl:
  TextConstant:"ON "
  CarriageControl:;
  LineNumber:172
 166 IF H(T(J))>3 THEN 168 \ PRINT "NEXT TIME, BUY A SHOW"; \ GO TO 170
- Variable:J numeric scalar
- Variable:T(_) numeric scalar
- Variable:H(_) numeric scalar
+ Variable:J -> _
+ Variable:T(_) -> _
+ Variable:H(_) -> _
  NumericConstant:3
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
  TextConstant:"NEXT TIME, BUY A SHOW"
  CarriageControl:;
  LineNumber:170
@@ -510,57 +510,57 @@
  TextConstant:" TICKET ON "
  CarriageControl:;
 172 I=0 \ B(0)=T(J) \ GOSUB 215 \ PRINT
- Variable:I numeric scalar
+ Variable:I -> _
  NumericConstant:0
  AssignmentOperator:=
  NumericConstant:0
- Variable:B(_) numeric scalar
- Variable:J numeric scalar
- Variable:T(_) numeric scalar
+ Variable:B(_) -> _
+ Variable:J -> _
+ Variable:T(_) -> _
  AssignmentOperator:=
  LineNumber:215
  CarriageControl:NL
 174 Q=Q+P-V(J)
- Variable:Q numeric scalar
- Variable:Q numeric scalar
- Variable:P numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:J numeric scalar
- Variable:V(_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:Q -> _
+ Variable:Q -> _
+ Variable:P -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:J -> _
+ Variable:V(_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 176 NEXT J
- Variable:J numeric scalar
+ Variable:J -> _
 178 IF Q<0 THEN 182
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:0
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 180 PRINT "YOUR TOTAL WINNINGS AMOUNT TO $" Q \ STOP
  TextConstant:"YOUR TOTAL WINNINGS AMOUNT TO $"
  CarriageControl:
- Variable:Q numeric scalar
+ Variable:Q -> _
  CarriageControl:NL
  
 182 PRINT "YOUR TOTAL LOSSES AMOUNT TO $" ABS(Q) \ STOP
  TextConstant:"YOUR TOTAL LOSSES AMOUNT TO $"
  CarriageControl:
- Variable:Q numeric scalar
- FunctionAbs:ABS(_) numeric scalar
+ Variable:Q -> _
+ FunctionAbs:ABS(_) -> _
  CarriageControl:NL
  
 200 PRINT "POS.  HORSE   LENGTHS BEHIND"
  TextConstant:"POS.  HORSE   LENGTHS BEHIND"
  CarriageControl:NL
 205 FOR I=1 TO 8
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
 210 PRINT I;
- Variable:I numeric scalar
+ Variable:I -> _
  CarriageControl:;
 215 ON B(I) GOTO 220,222,224,226,228,230,232,234
- Variable:I numeric scalar
- Variable:B(_) numeric scalar
+ Variable:I -> _
+ Variable:B(_) -> _
  LineNumber:220
  LineNumber:222
  LineNumber:224
@@ -601,29 +601,29 @@
  TextConstant:"COALTOWN   "
  CarriageControl:;
 240 IF K=0 THEN 260
- Variable:K numeric scalar
+ Variable:K -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 245 IF I>1 THEN 250 \ PRINT \ GO TO 255
- Variable:I numeric scalar
+ Variable:I -> _
  NumericConstant:1
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
  CarriageControl:NL
  LineNumber:255
 250 PRINT .1*INT(H(B(1))-H(B(I)))
  NumericConstant:.1
  NumericConstant:1
- Variable:B(_) numeric scalar
- Variable:H(_) numeric scalar
- Variable:I numeric scalar
- Variable:B(_) numeric scalar
- Variable:H(_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:B(_) -> _
+ Variable:H(_) -> _
+ Variable:I -> _
+ Variable:B(_) -> _
+ Variable:H(_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  CarriageControl:NL
 255 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 260 RETURN
  
 301 DATA 3,4,5,8,9,11,20,30

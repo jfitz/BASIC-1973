@@ -4,76 +4,76 @@
 104 REM * WRITE DATA INTO BINARY FILE
  Remark:* WRITE DATA INTO BINARY FILE
 110 FOR I = 1 TO 5
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 120    READ #1, N$,A1
  NumericConstant:1
- UnaryOperatorHash:#(_) filehandle scalar
- Variable:N$ string scalar
- Variable:A1 numeric scalar
+ UnaryOperatorHash:#(_) -> FH
+ Variable:N$ -> $
+ Variable:A1 -> _
 130    SETW 2 TO 6*(I-1)+1
  Syntax error
 140    WRITE :2, N$,A1
  NumericConstant:2
- UnaryOperatorColon::(_) filehandle scalar
+ UnaryOperatorColon::(_) -> FH
  CarriageControl:,
- Variable:N$ string scalar
+ Variable:N$ -> $
  CarriageControl:,
- Variable:A1 numeric scalar
+ Variable:A1 -> _
  CarriageControl:NL
 150 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 154 REM * NOW ARRANGE THE DATA ACCORDING TO AVERAGES
  Remark:* NOW ARRANGE THE DATA ACCORDING TO AVERAGES
 160 FOR I = 1 TO 4
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 170    FOR J = I + 1 TO 5
- control: Variable:J numeric scalar
- start:   ["Variable:I numeric scalar", "NumericConstant:1", "BinaryOperatorPlus:+(_,_) numeric scalar"]
+ control: Variable:J -> _
+ start:   ["Variable:I -> _", "NumericConstant:1", "BinaryOperatorPlus:+(_,_) -> _"]
  end:     ["NumericConstant:5"]
 180       SETW 2 TO 6*(I-1) + 1
  Syntax error
 190       READ :2, N$,A1
  Syntax error: ":2" Value is not assignable (type UnaryOperatorColon)
- Variable:N$ string scalar
- Variable:A1 numeric scalar
+ Variable:N$ -> $
+ Variable:A1 -> _
 200       SETW 2 TO 6*(J-1) + 1
  Syntax error
 210       READ :2, M$,B1
  Syntax error: ":2" Value is not assignable (type UnaryOperatorColon)
- Variable:M$ string scalar
- Variable:B1 numeric scalar
+ Variable:M$ -> $
+ Variable:B1 -> _
 220          IF A1 <= B1 THEN 270
- Variable:A1 numeric scalar
- Variable:B1 numeric scalar
- BinaryOperatorLessEqual:<=(_,_) boolean scalar
+ Variable:A1 -> _
+ Variable:B1 -> _
+ BinaryOperatorLessEqual:<=(_,_) -> ?
 230       SETW 2 TO 6*(I-1) + 1
  Syntax error
 240       WRITE :2, M$,B1
  NumericConstant:2
- UnaryOperatorColon::(_) filehandle scalar
+ UnaryOperatorColon::(_) -> FH
  CarriageControl:,
- Variable:M$ string scalar
+ Variable:M$ -> $
  CarriageControl:,
- Variable:B1 numeric scalar
+ Variable:B1 -> _
  CarriageControl:NL
 250       SETW 2 TO 6*(J-1) + 1
  Syntax error
 260       WRITE :2, N$,A1
  NumericConstant:2
- UnaryOperatorColon::(_) filehandle scalar
+ UnaryOperatorColon::(_) -> FH
  CarriageControl:,
- Variable:N$ string scalar
+ Variable:N$ -> $
  CarriageControl:,
- Variable:A1 numeric scalar
+ Variable:A1 -> _
  CarriageControl:NL
 270    NEXT J
- Variable:J numeric scalar
+ Variable:J -> _
 280 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 284 REM * AND NOW PRINT THE RESULTS
  Remark:* AND NOW PRINT THE RESULTS
 290 PRINT "  NAME","AVERAGE"
@@ -84,22 +84,22 @@
 300 PRINT
  CarriageControl:NL
 310 FOR I = 1 TO 5
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 320    SETW :2 TO 6*(I-1) + 1
  Syntax error
 330    READ :2, N$,A1
  Syntax error: ":2" Value is not assignable (type UnaryOperatorColon)
- Variable:N$ string scalar
- Variable:A1 numeric scalar
+ Variable:N$ -> $
+ Variable:A1 -> _
 340    PRINT N$,A1
- Variable:N$ string scalar
+ Variable:N$ -> $
  CarriageControl:,
- Variable:A1 numeric scalar
+ Variable:A1 -> _
  CarriageControl:NL
 350 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 360 END
  
 

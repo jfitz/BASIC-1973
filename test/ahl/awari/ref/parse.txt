@@ -2,49 +2,49 @@
  NumericConstant:0
 10 DIMB(13),G(13),F(50):READN
  NumericConstant:13
- Declaration:B() array
+ Declaration:B() -> _()
  NumericConstant:13
- Declaration:G() array
+ Declaration:G() -> _()
  NumericConstant:50
- Declaration:F() array
- Variable:N numeric scalar
+ Declaration:F() -> _()
+ Variable:N -> _
 15 FORI=0TON-1:READF(I):NEXTI
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:0"]
- end:     ["Variable:N numeric scalar", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) numeric scalar"]
- Variable:I numeric scalar
- Variable:F(_) numeric scalar
- Variable:I numeric scalar
+ end:     ["Variable:N -> _", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) -> _"]
+ Variable:I -> _
+ Variable:F(_) -> _
+ Variable:I -> _
 20 PRINT\PRINT "GAME OF *** AWARI ***"\B=0
  CarriageControl:NL
  TextConstant:"GAME OF *** AWARI ***"
  CarriageControl:NL
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:0
  AssignmentOperator:=
 25 FORI=0TO12:LETB(I)=3:NEXTI
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:12"]
- Variable:I numeric scalar
- Variable:B(_) numeric scalar
+ Variable:I -> _
+ Variable:B(_) -> _
  NumericConstant:3
  AssignmentOperator:=
- Variable:I numeric scalar
+ Variable:I -> _
 30 LETC=0:LETF(N)=0:LETB(13)=0:LETB(6)=0
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:0
  AssignmentOperator:=
- Variable:N numeric scalar
- Variable:F(_) numeric scalar
+ Variable:N -> _
+ Variable:F(_) -> _
  NumericConstant:0
  AssignmentOperator:=
  NumericConstant:13
- Variable:B(_) numeric scalar
+ Variable:B(_) -> _
  NumericConstant:0
  AssignmentOperator:=
  NumericConstant:6
- Variable:B(_) numeric scalar
+ Variable:B(_) -> _
  NumericConstant:0
  AssignmentOperator:=
 35 GOSUB500 
@@ -54,76 +54,76 @@
  CarriageControl:;
  LineNumber:110
 45 IFB=0GOTO80
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 50 IFM=HTHENGOSUB100
- Variable:M numeric scalar
- Variable:H numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:M -> _
+ Variable:H -> _
+ BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:100
 55 IFB=0GOTO80
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 60 PRINT"MY MOVE IS";:GOSUB800
  TextConstant:"MY MOVE IS"
  CarriageControl:;
  LineNumber:800
 65 IFB=0GOTO80
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 70 IFM=HTHENPRINT",";:GOSUB800
- Variable:M numeric scalar
- Variable:H numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:M -> _
+ Variable:H -> _
+ BinaryOperatorEqual:=(_,_) -> ?
  TextConstant:","
  CarriageControl:;
  LineNumber:800
 75 IFB>0GOTO35
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:0
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 80 PRINT:PRINT"GAME OVER"
  CarriageControl:NL
  TextConstant:"GAME OVER"
  CarriageControl:NL
 85 LET D=B(6)-B(13):IF D<0 THEN PRINT "I WIN BY";-D"P0INTS":GOTO 20
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:6
- Variable:B(_) numeric scalar
+ Variable:B(_) -> _
  NumericConstant:13
- Variable:B(_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:B(_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:0
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
  TextConstant:"I WIN BY"
  CarriageControl:;
- Variable:D numeric scalar
- UnaryOperatorMinus:-(_) numeric scalar
+ Variable:D -> _
+ UnaryOperatorMinus:-(_) -> _
  CarriageControl:
  TextConstant:"P0INTS"
  CarriageControl:NL
  LineNumber:20
 90 LETN=N+1:IFD=0THENPRINT"DRAWN GAME":GOTO 20
- Variable:N numeric scalar
- Variable:N numeric scalar
+ Variable:N -> _
+ Variable:N -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
  TextConstant:"DRAWN GAME"
  CarriageControl:NL
  LineNumber:20
 95 PRINT"YOU WIN BY "D"POINTS": GOTO20
  TextConstant:"YOU WIN BY "
  CarriageControl:
- Variable:D numeric scalar
+ Variable:D -> _
  CarriageControl:
  TextConstant:"POINTS"
  CarriageControl:NL
@@ -132,17 +132,17 @@
  TextConstant:"AGAIN"
  CarriageControl:;
 110 INPUTM:IFM<7THENIFM>0THENLETM=M-1:GOTO130
- Variable:M numeric scalar
- Variable:M numeric scalar
+ Variable:M -> _
+ Variable:M -> _
  NumericConstant:7
- BinaryOperatorLess:<(_,_) boolean scalar
- Variable:M numeric scalar
+ BinaryOperatorLess:<(_,_) -> ?
+ Variable:M -> _
  NumericConstant:0
- BinaryOperatorGreater:>(_,_) boolean scalar
- Variable:M numeric scalar
- Variable:M numeric scalar
+ BinaryOperatorGreater:>(_,_) -> ?
+ Variable:M -> _
+ Variable:M -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
  LineNumber:130
 120 PRINT"ILLEGAL MOVE":GOTO100
@@ -150,73 +150,73 @@
  CarriageControl:NL
  LineNumber:100
 130 IFB(M)=0GOTO120
- Variable:M numeric scalar
- Variable:B(_) numeric scalar
+ Variable:M -> _
+ Variable:B(_) -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 140 LETM=B:GOSUB200
- Variable:M numeric scalar
- Variable:B numeric scalar
+ Variable:M -> _
+ Variable:B -> _
  AssignmentOperator:=
  LineNumber:200
 150 GOTO500
  LineNumber:500
 200 LETK=M:GOSUB600
- Variable:K numeric scalar
- Variable:M numeric scalar
+ Variable:K -> _
+ Variable:M -> _
  AssignmentOperator:=
  LineNumber:600
 205 LETB=0:IFK>6THENLETK=K-7
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:0
  AssignmentOperator:=
- Variable:K numeric scalar
+ Variable:K -> _
  NumericConstant:6
- BinaryOperatorGreater:>(_,_) boolean scalar
- Variable:K numeric scalar
- Variable:K numeric scalar
+ BinaryOperatorGreater:>(_,_) -> ?
+ Variable:K -> _
+ Variable:K -> _
  NumericConstant:7
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 210 LETC=C+1:IFC<9THENLETF(N)=F(N)*6+K
- Variable:C numeric scalar
- Variable:C numeric scalar
+ Variable:C -> _
+ Variable:C -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:9
- BinaryOperatorLess:<(_,_) boolean scalar
- Variable:N numeric scalar
- Variable:F(_) numeric scalar
- Variable:N numeric scalar
- Variable:F(_) numeric scalar
+ BinaryOperatorLess:<(_,_) -> ?
+ Variable:N -> _
+ Variable:F(_) -> _
+ Variable:N -> _
+ Variable:F(_) -> _
  NumericConstant:6
- BinaryOperatorMultiply:*(_,_) numeric scalar
- Variable:K numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
+ Variable:K -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 215 FORI=0TO5:IFB(I)<>0THEN230
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:5"]
- Variable:I numeric scalar
- Variable:B(_) numeric scalar
+ Variable:I -> _
+ Variable:B(_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 220 NEXTI
- Variable:I numeric scalar
+ Variable:I -> _
 225 RETURN
  
 230 FORI=7TO12:IFB(I)<>0THENLETB=1:RETURN
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:7"]
  end:     ["NumericConstant:12"]
- Variable:I numeric scalar
- Variable:B(_) numeric scalar
+ Variable:I -> _
+ Variable:B(_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
- Variable:B numeric scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
+ Variable:B -> _
  NumericConstant:1
  AssignmentOperator:=
  
@@ -227,16 +227,16 @@
  TextConstant:"   "
  CarriageControl:;
 505 FORI=12TO7STEP-1:GOSUB580
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:12"]
  end:     ["NumericConstant:7"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> _"]
  LineNumber:580
 510 NEXTI
- Variable:I numeric scalar
+ Variable:I -> _
 515 PRINT:LETI=13:GOSUB580
  CarriageControl:NL
- Variable:I numeric scalar
+ Variable:I -> _
  NumericConstant:13
  AssignmentOperator:=
  LineNumber:580
@@ -246,299 +246,299 @@
  TextConstant:"                "
  CarriageControl:,
  NumericConstant:6
- Variable:B(_) numeric scalar
+ Variable:B(_) -> _
  CarriageControl:NL
  TextConstant:"   "
  CarriageControl:;
 525 FORI=0TO5:GOSUB580
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:5"]
  LineNumber:580
 530 NEXTI
- Variable:I numeric scalar
+ Variable:I -> _
 535 PRINT:PRINT:RETURN
  CarriageControl:NL
  CarriageControl:NL
  
 580 IFB(I)<10THENPRINT" ";
- Variable:I numeric scalar
- Variable:B(_) numeric scalar
+ Variable:I -> _
+ Variable:B(_) -> _
  NumericConstant:10
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
  TextConstant:" "
  CarriageControl:;
 585 PRINTB(I);:RETURN
- Variable:I numeric scalar
- Variable:B(_) numeric scalar
+ Variable:I -> _
+ Variable:B(_) -> _
  CarriageControl:;
  
 600 LETP=B(M):LETB(M)=0
- Variable:P numeric scalar
- Variable:M numeric scalar
- Variable:B(_) numeric scalar
+ Variable:P -> _
+ Variable:M -> _
+ Variable:B(_) -> _
  AssignmentOperator:=
- Variable:M numeric scalar
- Variable:B(_) numeric scalar
+ Variable:M -> _
+ Variable:B(_) -> _
  NumericConstant:0
  AssignmentOperator:=
 605 FORP=PTO1STEP-1:LETM=M+1:IFM>13THENLETM=M-14
- control: Variable:P numeric scalar
- start:   ["Variable:P numeric scalar"]
+ control: Variable:P -> _
+ start:   ["Variable:P -> _"]
  end:     ["NumericConstant:1"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) numeric scalar"]
- Variable:M numeric scalar
- Variable:M numeric scalar
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> _"]
+ Variable:M -> _
+ Variable:M -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:13
- BinaryOperatorGreater:>(_,_) boolean scalar
- Variable:M numeric scalar
- Variable:M numeric scalar
+ BinaryOperatorGreater:>(_,_) -> ?
+ Variable:M -> _
+ Variable:M -> _
  NumericConstant:14
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 610 LETB(M)=B(M)+1:NEXTP
- Variable:M numeric scalar
- Variable:B(_) numeric scalar
- Variable:M numeric scalar
- Variable:B(_) numeric scalar
+ Variable:M -> _
+ Variable:B(_) -> _
+ Variable:M -> _
+ Variable:B(_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
- Variable:P numeric scalar
+ Variable:P -> _
 615 IFB(M)=1THENIFM<>6THENIFM<>13THENIFB(12-M)<>0GOTO625
- Variable:M numeric scalar
- Variable:B(_) numeric scalar
+ Variable:M -> _
+ Variable:B(_) -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
- Variable:M numeric scalar
+ BinaryOperatorEqual:=(_,_) -> ?
+ Variable:M -> _
  NumericConstant:6
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
- Variable:M numeric scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
+ Variable:M -> _
  NumericConstant:13
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
  NumericConstant:12
- Variable:M numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:B(_) numeric scalar
+ Variable:M -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:B(_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 620 RETURN
  
 625 LETB(H)=B(H)+B(12-M)+1:LETB(M)=0:LETB(12-M)=0:RETURN
- Variable:H numeric scalar
- Variable:B(_) numeric scalar
- Variable:H numeric scalar
- Variable:B(_) numeric scalar
+ Variable:H -> _
+ Variable:B(_) -> _
+ Variable:H -> _
+ Variable:B(_) -> _
  NumericConstant:12
- Variable:M numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:B(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:M -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:B(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
- Variable:M numeric scalar
- Variable:B(_) numeric scalar
+ Variable:M -> _
+ Variable:B(_) -> _
  NumericConstant:0
  AssignmentOperator:=
  NumericConstant:12
- Variable:M numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:B(_) numeric scalar
+ Variable:M -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:B(_) -> _
  NumericConstant:0
  AssignmentOperator:=
  
 800 LETD=-99:LETH=13
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:99
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
- Variable:H numeric scalar
+ Variable:H -> _
  NumericConstant:13
  AssignmentOperator:=
 805 FORI=0TO13:LETG(I)=B(I):NEXTI
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:13"]
- Variable:I numeric scalar
- Variable:G(_) numeric scalar
- Variable:I numeric scalar
- Variable:B(_) numeric scalar
+ Variable:I -> _
+ Variable:G(_) -> _
+ Variable:I -> _
+ Variable:B(_) -> _
  AssignmentOperator:=
- Variable:I numeric scalar
+ Variable:I -> _
 810 FORJ=7TO12:IFB(J)=0THEN885
- control: Variable:J numeric scalar
+ control: Variable:J -> _
  start:   ["NumericConstant:7"]
  end:     ["NumericConstant:12"]
- Variable:J numeric scalar
- Variable:B(_) numeric scalar
+ Variable:J -> _
+ Variable:B(_) -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 815 LETQ=0:LETM=J:GOSUB600
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:0
  AssignmentOperator:=
- Variable:M numeric scalar
- Variable:J numeric scalar
+ Variable:M -> _
+ Variable:J -> _
  AssignmentOperator:=
  LineNumber:600
 820 FORI=0TO5:IFB(I)=0GOTO845
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:5"]
- Variable:I numeric scalar
- Variable:B(_) numeric scalar
+ Variable:I -> _
+ Variable:B(_) -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 825 LETL=B(I)+1:LETR=0
- Variable:L numeric scalar
- Variable:I numeric scalar
- Variable:B(_) numeric scalar
+ Variable:L -> _
+ Variable:I -> _
+ Variable:B(_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:0
  AssignmentOperator:=
 830 IFL>13THENLETL=L-14:LETR=1:GOTO830
- Variable:L numeric scalar
+ Variable:L -> _
  NumericConstant:13
- BinaryOperatorGreater:>(_,_) boolean scalar
- Variable:L numeric scalar
- Variable:L numeric scalar
+ BinaryOperatorGreater:>(_,_) -> ?
+ Variable:L -> _
+ Variable:L -> _
  NumericConstant:14
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:1
  AssignmentOperator:=
  LineNumber:830
 835 IFB(L)=0THENIFL<>6THENIFL<>13THENLETR=B(12-L)+R
- Variable:L numeric scalar
- Variable:B(_) numeric scalar
+ Variable:L -> _
+ Variable:B(_) -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
- Variable:L numeric scalar
+ BinaryOperatorEqual:=(_,_) -> ?
+ Variable:L -> _
  NumericConstant:6
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
- Variable:L numeric scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
+ Variable:L -> _
  NumericConstant:13
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
- Variable:R numeric scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
+ Variable:R -> _
  NumericConstant:12
- Variable:L numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:B(_) numeric scalar
- Variable:R numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:L -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:B(_) -> _
+ Variable:R -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 840 IFR<>QTHENLETQ=R 
- Variable:R numeric scalar
- Variable:Q numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
- Variable:Q numeric scalar
- Variable:R numeric scalar
+ Variable:R -> _
+ Variable:Q -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
+ Variable:Q -> _
+ Variable:R -> _
  AssignmentOperator:=
 845 NEXTI 
- Variable:I numeric scalar
+ Variable:I -> _
 850 LETQ=B(13)-B(6)-Q:IFC>BGOTO875
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:13
- Variable:B(_) numeric scalar
+ Variable:B(_) -> _
  NumericConstant:6
- Variable:B(_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:Q numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:B(_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:Q -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
- Variable:C numeric scalar
- Variable:B numeric scalar
- BinaryOperatorGreater:>(_,_) boolean scalar
+ Variable:C -> _
+ Variable:B -> _
+ BinaryOperatorGreater:>(_,_) -> ?
 855 LETK=J:IFK>6THENLETK=K-7
- Variable:K numeric scalar
- Variable:J numeric scalar
+ Variable:K -> _
+ Variable:J -> _
  AssignmentOperator:=
- Variable:K numeric scalar
+ Variable:K -> _
  NumericConstant:6
- BinaryOperatorGreater:>(_,_) boolean scalar
- Variable:K numeric scalar
- Variable:K numeric scalar
+ BinaryOperatorGreater:>(_,_) -> ?
+ Variable:K -> _
+ Variable:K -> _
  NumericConstant:7
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 860 FORI=0TON-1:IFF(N)*6+K=INT(F(I)/6^(7-C)+.1)THENLETQ=Q-2
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:0"]
- end:     ["Variable:N numeric scalar", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) numeric scalar"]
- Variable:N numeric scalar
- Variable:F(_) numeric scalar
+ end:     ["Variable:N -> _", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) -> _"]
+ Variable:N -> _
+ Variable:F(_) -> _
  NumericConstant:6
- BinaryOperatorMultiply:*(_,_) numeric scalar
- Variable:K numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:I numeric scalar
- Variable:F(_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
+ Variable:K -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:I -> _
+ Variable:F(_) -> _
  NumericConstant:6
  NumericConstant:7
- Variable:C numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- BinaryOperatorPower:^(_,_) numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
+ Variable:C -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:.1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
- Variable:Q numeric scalar
- Variable:Q numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
+ Variable:Q -> _
+ Variable:Q -> _
  NumericConstant:2
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 870 NEXTI
- Variable:I numeric scalar
+ Variable:I -> _
 875 FOR I=0TO13:LETB(I)=G(I):NEXTI
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:13"]
- Variable:I numeric scalar
- Variable:B(_) numeric scalar
- Variable:I numeric scalar
- Variable:G(_) numeric scalar
+ Variable:I -> _
+ Variable:B(_) -> _
+ Variable:I -> _
+ Variable:G(_) -> _
  AssignmentOperator:=
- Variable:I numeric scalar
+ Variable:I -> _
 880 IFQ>=DTHENLETA=J:LETD=Q
- Variable:Q numeric scalar
- Variable:D numeric scalar
- BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
- Variable:A numeric scalar
- Variable:J numeric scalar
+ Variable:Q -> _
+ Variable:D -> _
+ BinaryOperatorGreaterEqual:>=(_,_) -> ?
+ Variable:A -> _
+ Variable:J -> _
  AssignmentOperator:=
- Variable:D numeric scalar
- Variable:Q numeric scalar
+ Variable:D -> _
+ Variable:Q -> _
  AssignmentOperator:=
 885 NEXTJ
- Variable:J numeric scalar
+ Variable:J -> _
 890 LETM=A:PRINTCHR$(42+M);:GOTO200
- Variable:M numeric scalar
- Variable:A numeric scalar
+ Variable:M -> _
+ Variable:A -> _
  AssignmentOperator:=
  NumericConstant:42
- Variable:M numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionChr:CHR$(_) string scalar
+ Variable:M -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionChr:CHR$(_) -> $
  CarriageControl:;
  LineNumber:200
 900 FORI=0TON-1:PRINTB(I):NEXTI
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:0"]
- end:     ["Variable:N numeric scalar", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) numeric scalar"]
- Variable:I numeric scalar
- Variable:B(_) numeric scalar
+ end:     ["Variable:N -> _", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) -> _"]
+ Variable:I -> _
+ Variable:B(_) -> _
  CarriageControl:NL
- Variable:I numeric scalar
+ Variable:I -> _
 999 END
  
 

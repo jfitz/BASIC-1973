@@ -1,8 +1,8 @@
 5 LET K=3.14159/180
- Variable:K numeric scalar
+ Variable:K -> _
  NumericConstant:3.14159
  NumericConstant:180
- BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
  AssignmentOperator:=
 10 PRINT "ANGLE","1-2COS(G)","2+SIN(2G)","1+2COS(G)-3SIN(G)^2"
  TextConstant:"ANGLE"
@@ -14,80 +14,80 @@
  TextConstant:"1+2COS(G)-3SIN(G)^2"
  CarriageControl:NL
 20 DEF FNR(X)=INT(X*100+.5)/100
- UserFunctionName:FNR
- VariableName:X
- Variable:X numeric scalar
+ UserFunctionName:FNR -> _
+ VariableName:X -> _
+ Variable:X -> _
  NumericConstant:100
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:.5
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  NumericConstant:100
- BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
 30 DEF FNA(X)=1-2*COS(K*X)
- UserFunctionName:FNA
- VariableName:X
+ UserFunctionName:FNA -> _
+ VariableName:X -> _
  NumericConstant:1
  NumericConstant:2
- Variable:K numeric scalar
- Variable:X numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionCos:COS(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:K -> _
+ Variable:X -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionCos:COS(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
 40 DEF FNB(X)=2+SIN(2*K*X)
- UserFunctionName:FNB
- VariableName:X
+ UserFunctionName:FNB -> _
+ VariableName:X -> _
  NumericConstant:2
  NumericConstant:2
- Variable:K numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- Variable:X numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionSin:SIN(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:K -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ Variable:X -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionSin:SIN(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
 50 DEF FNC(X)=1+2*COS(K*X)-3*SIN(K*X)^2
- UserFunctionName:FNC
- VariableName:X
+ UserFunctionName:FNC -> _
+ VariableName:X -> _
  NumericConstant:1
  NumericConstant:2
- Variable:K numeric scalar
- Variable:X numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionCos:COS(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:K -> _
+ Variable:X -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionCos:COS(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:3
- Variable:K numeric scalar
- Variable:X numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionSin:SIN(_) numeric scalar
+ Variable:K -> _
+ Variable:X -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionSin:SIN(_) -> _
  NumericConstant:2
- BinaryOperatorPower:^(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
 60 FOR G=0 TO 360 STEP 15
- control: Variable:G numeric scalar
+ control: Variable:G -> _
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:360"]
  step:    ["NumericConstant:15"]
 70 PRINT G,FNR(FNA(G)),FNR(FNB(G)),FNR(FNC(G))
- Variable:G numeric scalar
+ Variable:G -> _
  CarriageControl:,
- Variable:G numeric scalar
- UserFunction:FNA(_) numeric scalar
- UserFunction:FNR(_) numeric scalar
+ Variable:G -> _
+ UserFunction:FNA(_) -> _
+ UserFunction:FNR(_) -> _
  CarriageControl:,
- Variable:G numeric scalar
- UserFunction:FNB(_) numeric scalar
- UserFunction:FNR(_) numeric scalar
+ Variable:G -> _
+ UserFunction:FNB(_) -> _
+ UserFunction:FNR(_) -> _
  CarriageControl:,
- Variable:G numeric scalar
- UserFunction:FNC(_) numeric scalar
- UserFunction:FNR(_) numeric scalar
+ Variable:G -> _
+ UserFunction:FNC(_) -> _
+ UserFunction:FNR(_) -> _
  CarriageControl:NL
 80 NEXT G
- Variable:G numeric scalar
+ Variable:G -> _
 90 END
  
 

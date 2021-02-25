@@ -7,7 +7,7 @@
  CarriageControl:NL
  TextConstant:"WHAT'S YOUR NAME"
  CarriageControl:;
- Variable:A$ string scalar
+ Variable:A$ -> $
  CarriageControl:NL
 35 PRI " HI THERE ";\GOSUB500\PRI"  ARE YOU ENJOYING YOURSELF HERE
  TextConstant:" HI THERE "
@@ -19,23 +19,23 @@
  TextConstant:"IN BEAUTIFUL MAYNARD, MASS"
  CarriageControl:;
 45 INP B$\PRI
- Variable:B$ string scalar
+ Variable:B$ -> $
  CarriageControl:NL
 50 IF B$="YES" THEN 70
- Variable:B$ string scalar
+ Variable:B$ -> $
  TextConstant:"YES"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 55 IF B$="NO" THEN 80
- Variable:B$ string scalar
+ Variable:B$ -> $
  TextConstant:"NO"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 60 PRI " ";\GOSUB500\PRI", I DON'T UNDERSTAND YOUR ANSWER OF '";B$;"'."
  TextConstant:" "
  CarriageControl:;
  LineNumber:500
  TextConstant:", I DON'T UNDERSTAND YOUR ANSWER OF '"
  CarriageControl:;
- Variable:B$ string scalar
+ Variable:B$ -> $
  CarriageControl:;
  TextConstant:"'."
  CarriageControl:NL
@@ -79,31 +79,31 @@
  TextConstant:"OR JOB)"
  CarriageControl:;
 125 INP C$\PRI
- Variable:C$ string scalar
+ Variable:C$ -> $
  CarriageControl:NL
 130 IF C$="SEX" THEN 200
- Variable:C$ string scalar
+ Variable:C$ -> $
  TextConstant:"SEX"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 132 IF C$="HEALTH" THEN 180
- Variable:C$ string scalar
+ Variable:C$ -> $
  TextConstant:"HEALTH"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 134 IF C$="MONEY" THEN 160
- Variable:C$ string scalar
+ Variable:C$ -> $
  TextConstant:"MONEY"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 136 IF C$="JOB" THEN 145
- Variable:C$ string scalar
+ Variable:C$ -> $
  TextConstant:"JOB"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 138 PRI "OH, ";\GOSUB500\PRI", YOUR ANSWER OF '";C$;"' IS GREEK TO ME."
  TextConstant:"OH, "
  CarriageControl:;
  LineNumber:500
  TextConstant:", YOUR ANSWER OF '"
  CarriageControl:;
- Variable:C$ string scalar
+ Variable:C$ -> $
  CarriageControl:;
  TextConstant:"' IS GREEK TO ME."
  CarriageControl:NL
@@ -164,16 +164,16 @@
  TextConstant:"IS YOUR PROBLEM TOO MUCH OR TOO LITTLE"
  CarriageControl:;
 205 INP D$\PRI
- Variable:D$ string scalar
+ Variable:D$ -> $
  CarriageControl:NL
 210 IF D$="TOO MUCH" THEN 220
- Variable:D$ string scalar
+ Variable:D$ -> $
  TextConstant:"TOO MUCH"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 213 IF D$="TOO LITTLE" THEN 230
- Variable:D$ string scalar
+ Variable:D$ -> $
  TextConstant:"TOO LITTLE"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 215 PRI "DON'T GET ALL SHOOK ";\GOS 500\PRI ",JUST ANSWER THE QUESTION
  TextConstant:"DON'T GET ALL SHOOK "
  CarriageControl:;
@@ -216,16 +216,16 @@
  LineNumber:500
  CarriageControl:;
 260 INP E$\PRI
- Variable:E$ string scalar
+ Variable:E$ -> $
  CarriageControl:NL
 270 IF E$="YES" THEN 280
- Variable:E$ string scalar
+ Variable:E$ -> $
  TextConstant:"YES"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 273 IF E$="NO" THEN 300
- Variable:E$ string scalar
+ Variable:E$ -> $
  TextConstant:"NO"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 275 PRI "JUST A SIMPLE 'YES' OR 'NO' PLEASE, ";\GOSUB500\PRI"."
  TextConstant:"JUST A SIMPLE 'YES' OR 'NO' PLEASE, "
  CarriageControl:;
@@ -258,20 +258,20 @@
  TextConstant:"DID YOU LEAVE THE MONEY"
  CarriageControl:;
 315 INP G$\PRI
- Variable:G$ string scalar
+ Variable:G$ -> $
  CarriageControl:NL
 325 IF G$="YES" THEN 350
- Variable:G$ string scalar
+ Variable:G$ -> $
  TextConstant:"YES"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 330 IF G$="NO" THEN 370
- Variable:G$ string scalar
+ Variable:G$ -> $
  TextConstant:"NO"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 335 PRI "YOUR ANSWER OF '"G$"' CONFUSES ME, ";\GOSUB500\PRI"  PLEASE
  TextConstant:"YOUR ANSWER OF '"
  CarriageControl:
- Variable:G$ string scalar
+ Variable:G$ -> $
  CarriageControl:
  TextConstant:"' CONFUSES ME, "
  CarriageControl:;
@@ -324,19 +324,19 @@
  TextConstant:". HAVE A NICE DAY!!"
  CarriageControl:NL
 400 FOR N = 1 TO 7
- control: Variable:N numeric scalar
+ control: Variable:N -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
 402 PRI
  CarriageControl:NL
 405 NEX N
- Variable:N numeric scalar
+ Variable:N -> _
 410 GOT 10
  LineNumber:10
 500 REM T=A$(0)\FOR I=1 TO INT(T/6+1)\PRINT A$(I);\NEXT I
  Remark:T=A$(0)\FOR I=1 TO INT(T/6+1)\PRINT A$(I);\NEXT I
 502 PRINT A$;
- Variable:A$ string scalar
+ Variable:A$ -> $
  CarriageControl:;
 510 RETURN
  

@@ -9,37 +9,37 @@
  CarriageControl:NL
 130 READ #1, N$
  NumericConstant:1
- UnaryOperatorHash:#(_) filehandle scalar
- Variable:N$ string scalar
+ UnaryOperatorHash:#(_) -> FH
+ Variable:N$ -> $
 150 PRINT N$; TAB(15);
- Variable:N$ string scalar
+ Variable:N$ -> $
  CarriageControl:;
  NumericConstant:15
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:;
 160 FOR I=1 TO 6
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:6"]
 170    READ #1, X
  NumericConstant:1
- UnaryOperatorHash:#(_) filehandle scalar
- Variable:X numeric scalar
+ UnaryOperatorHash:#(_) -> FH
+ Variable:X -> _
 190    PRINT X; "  ";
- Variable:X numeric scalar
+ Variable:X -> _
  CarriageControl:;
  TextConstant:"  "
  CarriageControl:;
 200 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 210 PRINT
  CarriageControl:NL
 230    IF MORE(#1) THEN 130
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:1
- UnaryOperatorHash:#(_) filehandle scalar
- Variable:E() numeric scalar
- BinaryOperatorOr:OR(_,_) boolean scalar
+ UnaryOperatorHash:#(_) -> FH
+ Variable:E() -> _
+ BinaryOperatorOr:OR(_,_) -> ?
 260 END
  
 

@@ -3,19 +3,19 @@
 10 DIM L(1,7)
  NumericConstant:1
  NumericConstant:7
- Declaration:L(,) matrix
+ Declaration:L(,) -> _(,)
 20 MAT L=ZER
- Variable:L(,) numeric matrix
- FunctionZer2:ZER numeric matrix
+ Variable:L(,) -> _(,)
+ FunctionZer2:ZER -> _(,)
  AssignmentOperator:=
 38 REM THE COMPUTER DOES 50 THROUGH 110 1000 TIMES
  Remark:THE COMPUTER DOES 50 THROUGH 110 1000 TIMES
 40 FOR X=1 TO 1000
- control: Variable:X numeric scalar
+ control: Variable:X -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:1000"]
 50 LET C=0
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:0
  AssignmentOperator:=
 55 REM  C IS GOING TO COUNT 1'S
@@ -23,52 +23,52 @@
 56 REM LINES 60 THOUGH 100 ROLL A DICE AND COUNT 1'S
  Remark:LINES 60 THOUGH 100 ROLL A DICE AND COUNT 1'S
 60 FOR R=1 TO 6
- control: Variable:R numeric scalar
+ control: Variable:R -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:6"]
 70 LET U=INT(6*RND(1)+1)
- Variable:U numeric scalar
+ Variable:U -> _
  NumericConstant:6
  NumericConstant:1
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 80 IF U>1 THEN 100
- Variable:U numeric scalar
+ Variable:U -> _
  NumericConstant:1
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 90 LET C=C+1
- Variable:C numeric scalar
- Variable:C numeric scalar
+ Variable:C -> _
+ Variable:C -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 100 NEXT R
- Variable:R numeric scalar
+ Variable:R -> _
 110 LET L[1,C+1]=L[1,C+1]+1
  NumericConstant:1
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:L(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:L(_,_) -> _
  NumericConstant:1
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:L(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:L(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 120 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 130 PRINT "NONE  ONE   TWO   THREE FOUR  FIVE  SIX"
  TextConstant:"NONE  ONE   TWO   THREE FOUR  FIVE  SIX"
  CarriageControl:NL
 140 MAT PRINT L;
- Variable:L(,) numeric matrix
+ Variable:L(,) -> _(,)
  CarriageControl:;
 150 END
  

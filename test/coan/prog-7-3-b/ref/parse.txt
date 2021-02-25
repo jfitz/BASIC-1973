@@ -2,24 +2,24 @@
  Remark:* DEMONSTRATE CHANGE STATEMENT
 100 DIM A(30), B(1)
  NumericConstant:30
- Declaration:A() array
+ Declaration:A() -> _()
  NumericConstant:1
- Declaration:B() array
+ Declaration:B() -> _()
 110 PRINT "STRING";
  TextConstant:"STRING"
  CarriageControl:;
 120 INPUT A$
- Variable:A$ string scalar
+ Variable:A$ -> $
 130 CHANGE A$ TO A
- Variable:A$ string scalar
- Variable:A() numeric array
+ Variable:A$ -> $
+ Variable:A() -> _()
 140 PRINT LEN(A$); "CHARACTERS IN '"; A$; "'"
- Variable:A$ string scalar
- FunctionLen:LEN($) numeric scalar
+ Variable:A$ -> $
+ FunctionLen:LEN($) -> _
  CarriageControl:;
  TextConstant:"CHARACTERS IN '"
  CarriageControl:;
- Variable:A$ string scalar
+ Variable:A$ -> $
  CarriageControl:;
  TextConstant:"'"
  CarriageControl:NL
@@ -27,37 +27,37 @@
  CarriageControl:NL
 160 LET B(0) = 1
  NumericConstant:0
- Variable:B(_) numeric scalar
+ Variable:B(_) -> _
  NumericConstant:1
  AssignmentOperator:=
 170 PRINT "CHAR ASCII CODE"
  TextConstant:"CHAR ASCII CODE"
  CarriageControl:NL
 180 FOR I = 1 TO A(0)
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
- end:     ["NumericConstant:0", "Variable:A(_) numeric scalar"]
+ end:     ["NumericConstant:0", "Variable:A(_) -> _"]
 190    LET B(1) = A(I)
  NumericConstant:1
- Variable:B(_) numeric scalar
- Variable:I numeric scalar
- Variable:A(_) numeric scalar
+ Variable:B(_) -> _
+ Variable:I -> _
+ Variable:A(_) -> _
  AssignmentOperator:=
 200    CHANGE B TO B$
- Variable:B() numeric array
- Variable:B$ string scalar
+ Variable:B() -> _()
+ Variable:B$ -> $
 210    PRINT "'"; B$; "'  "; A(I)
  TextConstant:"'"
  CarriageControl:;
- Variable:B$ string scalar
+ Variable:B$ -> $
  CarriageControl:;
  TextConstant:"'  "
  CarriageControl:;
- Variable:I numeric scalar
- Variable:A(_) numeric scalar
+ Variable:I -> _
+ Variable:A(_) -> _
  CarriageControl:NL
 220 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 230 END
  
 

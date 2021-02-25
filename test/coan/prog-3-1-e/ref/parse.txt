@@ -8,14 +8,14 @@
  TextConstant:"50  FOR X=14 TO 20 PRODUCES THE FOLLIWING VALUES FOR X"
  CarriageControl:NL
 50 FOR X=14 TO 20
- control: Variable:X numeric scalar
+ control: Variable:X -> _
  start:   ["NumericConstant:14"]
  end:     ["NumericConstant:20"]
 60 PRINT X;
- Variable:X numeric scalar
+ Variable:X -> _
  CarriageControl:;
 70 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 80 PRINT
  CarriageControl:NL
 90 REM  BASIC ALLOWS US TO INCREMENT A LOOP BY VALUES OTHER THAN ONE
@@ -26,15 +26,15 @@
  TextConstant:"120  FOR X=1 TO 19 STEP 2 PRODUCES:"
  CarriageControl:NL
 120 FOR X=1 TO 19 STEP 2
- control: Variable:X numeric scalar
+ control: Variable:X -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:19"]
  step:    ["NumericConstant:2"]
 130 PRINT X;
- Variable:X numeric scalar
+ Variable:X -> _
  CarriageControl:;
 140 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 150 PRINT
  CarriageControl:NL
 160 REM    THE STEP NEED NOT INCREASE THE VALUE OF X
@@ -45,15 +45,15 @@
  TextConstant:"190  FOR X=345 TO 282 STEP -9 GIVES:"
  CarriageControl:NL
 190 FOR X=345 TO 282 STEP -9
- control: Variable:X numeric scalar
+ control: Variable:X -> _
  start:   ["NumericConstant:345"]
  end:     ["NumericConstant:282"]
- step:    ["NumericConstant:9", "UnaryOperatorMinus:-(_) numeric scalar"]
+ step:    ["NumericConstant:9", "UnaryOperatorMinus:-(_) -> _"]
 200 PRINT X;
- Variable:X numeric scalar
+ Variable:X -> _
  CarriageControl:;
 210 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 220 PRINT
  CarriageControl:NL
 230 REM  DECIMALS ARE ALLOWED IN BASIC
@@ -64,15 +64,15 @@
  TextConstant:"260  FOR X=91.5 TO 3 STEP -15.7 YIELDS:"
  CarriageControl:NL
 260 FOR X=91.5 TO 3 STEP -15.7
- control: Variable:X numeric scalar
+ control: Variable:X -> _
  start:   ["NumericConstant:91.5"]
  end:     ["NumericConstant:3"]
- step:    ["NumericConstant:15.7", "UnaryOperatorMinus:-(_) numeric scalar"]
+ step:    ["NumericConstant:15.7", "UnaryOperatorMinus:-(_) -> _"]
 270 PRINT X;
- Variable:X numeric scalar
+ Variable:X -> _
  CarriageControl:;
 280 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 290 PRINT
  CarriageControl:NL
 300 REM  VARIABLES MAY BE USED TO SET UP A MACHINE LOOP IN BASIC
@@ -86,27 +86,27 @@
  TextConstant:"360  FOR V=A TO B STEP C  GIVES THESE RESULTS:"
  CarriageControl:NL
 330 LET A=5
- Variable:A numeric scalar
+ Variable:A -> _
  NumericConstant:5
  AssignmentOperator:=
 340 LET B=45
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:45
  AssignmentOperator:=
 350 LET C=6
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:6
  AssignmentOperator:=
 360 FOR V=A TO B STEP C
- control: Variable:V numeric scalar
- start:   ["Variable:A numeric scalar"]
- end:     ["Variable:B numeric scalar"]
- step:    ["Variable:C numeric scalar"]
+ control: Variable:V -> _
+ start:   ["Variable:A -> _"]
+ end:     ["Variable:B -> _"]
+ step:    ["Variable:C -> _"]
 370 PRINT V;
- Variable:V numeric scalar
+ Variable:V -> _
  CarriageControl:;
 380 NEXT V
- Variable:V numeric scalar
+ Variable:V -> _
 390 END
  
 

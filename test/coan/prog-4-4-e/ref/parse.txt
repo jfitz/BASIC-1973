@@ -1,72 +1,72 @@
 10 FOR X=1 TO 10
- control: Variable:X numeric scalar
+ control: Variable:X -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 20 LET L[X]=INT(250*RND(1)+1)
- Variable:X numeric scalar
- Variable:L(_) numeric scalar
+ Variable:X -> _
+ Variable:L(_) -> _
  NumericConstant:250
  NumericConstant:1
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 40 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 58 REM  TURN THE SWITCH OFF!!!
  Remark: TURN THE SWITCH OFF!!!
 60 LET S=0
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:0
  AssignmentOperator:=
 70 FOR I=1 TO 9
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:9"]
 80 IF L[I] <= L[I+1] THEN 130
- Variable:I numeric scalar
- Variable:L(_) numeric scalar
- Variable:I numeric scalar
+ Variable:I -> _
+ Variable:L(_) -> _
+ Variable:I -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:L(_) numeric scalar
- BinaryOperatorLessEqual:<=(_,_) boolean scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:L(_) -> _
+ BinaryOperatorLessEqual:<=(_,_) -> ?
 90 LET K=L[I]
- Variable:K numeric scalar
- Variable:I numeric scalar
- Variable:L(_) numeric scalar
+ Variable:K -> _
+ Variable:I -> _
+ Variable:L(_) -> _
  AssignmentOperator:=
 100 LET L[I]=L[I+1]
- Variable:I numeric scalar
- Variable:L(_) numeric scalar
- Variable:I numeric scalar
+ Variable:I -> _
+ Variable:L(_) -> _
+ Variable:I -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:L(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:L(_) -> _
  AssignmentOperator:=
 110 LET L[I+1]=K
- Variable:I numeric scalar
+ Variable:I -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:L(_) numeric scalar
- Variable:K numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:L(_) -> _
+ Variable:K -> _
  AssignmentOperator:=
 120 LET S=1
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:1
  AssignmentOperator:=
 121 REM *** TURN THE SWITCH ON ***
  Remark:*** TURN THE SWITCH ON ***
 130 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 138 REM  IS THE SWITCH ON??
  Remark: IS THE SWITCH ON??
 140 IF S=1 THEN 60
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 142 REM   IF THE SWITCH IS OFF THERE WERE NO EXCHANGES AND
  Remark:  IF THE SWITCH IS OFF THERE WERE NO EXCHANGES AND
 143 REM THE LIST IS IN ORDER
@@ -75,15 +75,15 @@
  TextConstant:"THE NUMBERS IN ORDER"
  CarriageControl:NL
 150 FOR X=1 TO 10
- control: Variable:X numeric scalar
+ control: Variable:X -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 160 PRINT L[X];
- Variable:X numeric scalar
- Variable:L(_) numeric scalar
+ Variable:X -> _
+ Variable:L(_) -> _
  CarriageControl:;
 170 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 180 END
  
 

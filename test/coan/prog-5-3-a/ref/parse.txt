@@ -3,64 +3,64 @@
 10 DIM S[15,5]
  NumericConstant:15
  NumericConstant:5
- Declaration:S(,) matrix
+ Declaration:S(,) -> _(,)
 20 FOR R=1 TO 15
- control: Variable:R numeric scalar
+ control: Variable:R -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:15"]
 28 REM LINE 30 ENTERS THE ROW NUMBER IN THE FIRST COLUMN
  Remark:LINE 30 ENTERS THE ROW NUMBER IN THE FIRST COLUMN
 30 LET S[R,1]=R
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:1
- Variable:S(_,_) numeric scalar
- Variable:R numeric scalar
+ Variable:S(_,_) -> _
+ Variable:R -> _
  AssignmentOperator:=
 40 FOR C=2 TO 5
- control: Variable:C numeric scalar
+ control: Variable:C -> _
  start:   ["NumericConstant:2"]
  end:     ["NumericConstant:5"]
 48 REM LINE 50 SETS THE LAST 4 COLUMNS AT ZERO
  Remark:LINE 50 SETS THE LAST 4 COLUMNS AT ZERO
 50 LET S[R,C]=0
- Variable:R numeric scalar
- Variable:C numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:R -> _
+ Variable:C -> _
+ Variable:S(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 60 NEXT C
- Variable:C numeric scalar
+ Variable:C -> _
 70 NEXT R
- Variable:R numeric scalar
+ Variable:R -> _
 78 REM 80 READS THE CATEGORY FOR THE NEXT PERSON IN THE SURVEY
  Remark:80 READS THE CATEGORY FOR THE NEXT PERSON IN THE SURVEY
 80 READ P
- Variable:P numeric scalar
+ Variable:P -> _
 90 IF P=-1 THEN 200
- Variable:P numeric scalar
+ Variable:P -> _
  NumericConstant:1
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 98 REM Q GOES THROUGH THE 15 QUESTIONS
  Remark:Q GOES THROUGH THE 15 QUESTIONS
 100 FOR Q=1 TO 15
- control: Variable:Q numeric scalar
+ control: Variable:Q -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:15"]
 110 READ A
- Variable:A numeric scalar
+ Variable:A -> _
 120 LET S[Q,P]=S[Q,P]+A
- Variable:Q numeric scalar
- Variable:P numeric scalar
- Variable:S(_,_) numeric scalar
- Variable:Q numeric scalar
- Variable:P numeric scalar
- Variable:S(_,_) numeric scalar
- Variable:A numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:Q -> _
+ Variable:P -> _
+ Variable:S(_,_) -> _
+ Variable:Q -> _
+ Variable:P -> _
+ Variable:S(_,_) -> _
+ Variable:A -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 130 NEXT Q
- Variable:Q numeric scalar
+ Variable:Q -> _
 138 REM LINE 140 SENSE THE COMPUTER BACK TO READ ANOTHER LINE OF DATA
  Remark:LINE 140 SENSE THE COMPUTER BACK TO READ ANOTHER LINE OF DATA
 140 GOTO 80
@@ -74,24 +74,24 @@
  TextConstant:"NUMBER 21+ UNDER 21+  UNDER"
  CarriageControl:NL
 220 FOR R=1 TO 15
- control: Variable:R numeric scalar
+ control: Variable:R -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:15"]
 230 FOR C=1 TO 5
- control: Variable:C numeric scalar
+ control: Variable:C -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 250 PRINT S[R,C];
- Variable:R numeric scalar
- Variable:C numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:R -> _
+ Variable:C -> _
+ Variable:S(_,_) -> _
  CarriageControl:;
 260 NEXT C
- Variable:C numeric scalar
+ Variable:C -> _
 270 PRINT
  CarriageControl:NL
 280 NEXT R
- Variable:R numeric scalar
+ Variable:R -> _
 498 REM  ***A LINE LIKE 500 MAY HELP TO LINEUP THE DATA LINES
  Remark: ***A LINE LIKE 500 MAY HELP TO LINEUP THE DATA LINES
 499 REM  IN TYPING***
@@ -285,7 +285,7 @@
  NumericConstant:1
 900 DATA -1
  NumericConstant:1
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
 999 END
  
 

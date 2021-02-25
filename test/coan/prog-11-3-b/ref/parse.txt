@@ -1,75 +1,75 @@
 50 DEF FNT(X)=12*X^3-64*X^2+17*X+195
- UserFunctionName:FNT
- VariableName:X
+ UserFunctionName:FNT -> _
+ VariableName:X -> _
  NumericConstant:12
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:3
- BinaryOperatorPower:^(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:64
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:2
- BinaryOperatorPower:^(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  NumericConstant:17
- Variable:X numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:X -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:195
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
 60 LET A=0
- Variable:A numeric scalar
+ Variable:A -> _
  NumericConstant:0
  AssignmentOperator:=
 70 FOR X=-5 TO 5
- control: Variable:X numeric scalar
- start:   ["NumericConstant:5", "UnaryOperatorMinus:-(_) numeric scalar"]
+ control: Variable:X -> _
+ start:   ["NumericConstant:5", "UnaryOperatorMinus:-(_) -> _"]
  end:     ["NumericConstant:5"]
 80 LET S1=FNT(X)
- Variable:S1 numeric scalar
- Variable:X numeric scalar
- UserFunction:FNT(_) numeric scalar
+ Variable:S1 -> _
+ Variable:X -> _
+ UserFunction:FNT(_) -> _
  AssignmentOperator:=
 90 LET S2=FNT(X+1)
- Variable:S2 numeric scalar
- Variable:X numeric scalar
+ Variable:S2 -> _
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- UserFunction:FNT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ UserFunction:FNT(_) -> _
  AssignmentOperator:=
 100 IF S1*S2>0 THEN 130
- Variable:S1 numeric scalar
- Variable:S2 numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:S1 -> _
+ Variable:S2 -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:0
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 110 LET A=A+1
- Variable:A numeric scalar
- Variable:A numeric scalar
+ Variable:A -> _
+ Variable:A -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 120 LET S[A]=X
- Variable:A numeric scalar
- Variable:S(_) numeric scalar
- Variable:X numeric scalar
+ Variable:A -> _
+ Variable:S(_) -> _
+ Variable:X -> _
  AssignmentOperator:=
 130 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 190 PRINT "INTERVAL(S) BEGIN AT:"
  TextConstant:"INTERVAL(S) BEGIN AT:"
  CarriageControl:NL
 200 FOR I=1 TO A
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:A numeric scalar"]
+ end:     ["Variable:A -> _"]
 210 PRINT S[I];
- Variable:I numeric scalar
- Variable:S(_) numeric scalar
+ Variable:I -> _
+ Variable:S(_) -> _
  CarriageControl:;
 220 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 270 END
  
 

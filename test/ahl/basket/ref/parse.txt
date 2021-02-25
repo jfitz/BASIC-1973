@@ -25,29 +25,29 @@
  TextConstant:"YOUR STARTING DEFENSE WILL BE"
  CarriageControl:;
 76 INPUT D
- Variable:D numeric scalar
+ Variable:D -> _
 77 IF D<6 THEN 2010
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:6
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 79 PRINT
  CarriageControl:NL
 80 PRINT "CHOOSE YOUR OPPONENT ";
  TextConstant:"CHOOSE YOUR OPPONENT "
  CarriageControl:;
 82 INPUT O$
- Variable:O$ string scalar
+ Variable:O$ -> $
 370 PRINT "CENTER JUMP"
  TextConstant:"CENTER JUMP"
  CarriageControl:NL
 390 IF RND > 3/5 THEN 420
- FunctionRnd:RND numeric scalar
+ FunctionRnd:RND -> _
  NumericConstant:3
  NumericConstant:5
- BinaryOperatorDivide:/(_,_) numeric scalar
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ BinaryOperatorGreater:>(_,_) -> ?
 400 PRINT O$;" CONTROLS THE TAP."
- Variable:O$ string scalar
+ Variable:O$ -> $
  CarriageControl:;
  TextConstant:" CONTROLS THE TAP."
  CarriageControl:NL
@@ -62,23 +62,23 @@
  TextConstant:"YOUR SHOT"
  CarriageControl:;
 435 LET P=0
- Variable:P numeric scalar
+ Variable:P -> _
  NumericConstant:0
  AssignmentOperator:=
 440 INPUT Z
- Variable:Z numeric scalar
+ Variable:Z -> _
 445 IF Z<>INT(Z) THEN 455
- Variable:Z numeric scalar
- Variable:Z numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:Z -> _
+ Variable:Z -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 446 IF ABS(Z-2)>2 THEN 455
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:2
- BinaryOperatorMinus:-(_,_) numeric scalar
- FunctionAbs:ABS(_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ FunctionAbs:ABS(_) -> _
  NumericConstant:2
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 447 GOTO 460 
  LineNumber:460
 455 PRINT "INCORRECT ANSWER, RETYPE IT";
@@ -89,21 +89,21 @@
 460 GO TO 470
  LineNumber:470
 470 IF RND <.5 THEN 1000
- FunctionRnd:RND numeric scalar
+ FunctionRnd:RND -> _
  NumericConstant:.5
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 480 IF T<100 THEN 1000
- Variable:T numeric scalar
+ Variable:T -> _
  NumericConstant:100
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 490 PRINT
  CarriageControl:NL
 491 IF S(1)<>S(0) THEN 510
  NumericConstant:1
- Variable:S(_) numeric scalar
+ Variable:S(_) -> _
  NumericConstant:0
- Variable:S(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:S(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 493 PRINT " ***** END OF SECOND HALF *****"
  TextConstant:" ***** END OF SECOND HALF *****"
  CarriageControl:NL
@@ -114,14 +114,14 @@
  TextConstant:" DARTMOUTH"
  CarriageControl:
  NumericConstant:1
- Variable:S(_) numeric scalar
+ Variable:S(_) -> _
  CarriageControl:;
- Variable:O$ string scalar
+ Variable:O$ -> $
  CarriageControl:
  TextConstant:" "
  CarriageControl:
  NumericConstant:0
- Variable:S(_) numeric scalar
+ Variable:S(_) -> _
  CarriageControl:NL
 497 PRINT 
  CarriageControl:NL
@@ -129,7 +129,7 @@
  TextConstant:"BEGIN TWO MINUTE OVERTIME PERIOD"
  CarriageControl:NL
 499 LET T=93
- Variable:T numeric scalar
+ Variable:T -> _
  NumericConstant:93
  AssignmentOperator:=
 500 GO TO 370
@@ -141,14 +141,14 @@
  TextConstant:"FINAL SCORE: DARTMOUTH"
  CarriageControl:
  NumericConstant:1
- Variable:S(_) numeric scalar
+ Variable:S(_) -> _
  CarriageControl:;
- Variable:O$ string scalar
+ Variable:O$ -> $
  CarriageControl:
  TextConstant:" "
  CarriageControl:
  NumericConstant:0
- Variable:S(_) numeric scalar
+ Variable:S(_) -> _
  CarriageControl:NL
 520 STOP
  
@@ -162,29 +162,29 @@
 630 RETURN
  
 1000 IF Z=1 THEN 1040
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1020 IF Z=2 THEN 1040
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1036 GO TO 1300
  LineNumber:1300
 1040 LET T=T+1
- Variable:T numeric scalar
- Variable:T numeric scalar
+ Variable:T -> _
+ Variable:T -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 1041 IF T=50 THEN 8000
- Variable:T numeric scalar
+ Variable:T -> _
  NumericConstant:50
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1042 IF T=92 THEN 1046
- Variable:T numeric scalar
+ Variable:T -> _
  NumericConstant:92
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1043 GO TO 1050
  LineNumber:1050
 1046 GOSUB 600 
@@ -193,13 +193,13 @@
  TextConstant:"JUMP SHOT"
  CarriageControl:NL
 1060 IF RND >.341*D/8 THEN 1090
- FunctionRnd:RND numeric scalar
+ FunctionRnd:RND -> _
  NumericConstant:.341
- Variable:D numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:D -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:8
- BinaryOperatorDivide:/(_,_) numeric scalar
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ BinaryOperatorGreater:>(_,_) -> ?
 1070 PRINT "SHOT IS GOOD."
  TextConstant:"SHOT IS GOOD."
  CarriageControl:NL
@@ -208,24 +208,24 @@
 1085 GO TO 3000
  LineNumber:3000
 1090 IF RND >.682*D/8 THEN 1200
- FunctionRnd:RND numeric scalar
+ FunctionRnd:RND -> _
  NumericConstant:.682
- Variable:D numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:D -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:8
- BinaryOperatorDivide:/(_,_) numeric scalar
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ BinaryOperatorGreater:>(_,_) -> ?
 1100 PRINT "SHOT IS OFF TARGET."
  TextConstant:"SHOT IS OFF TARGET."
  CarriageControl:NL
 1105 IF D/6*RND>.45 THEN 1130
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:6
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:.45
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1110 PRINT "DARTMOUTH CONTROLS THE REBOUND."
  TextConstant:"DARTMOUTH CONTROLS THE REBOUND."
  CarriageControl:NL
@@ -234,31 +234,31 @@
 1130 PRINT "REBOUND TO ";O$;","
  TextConstant:"REBOUND TO "
  CarriageControl:;
- Variable:O$ string scalar
+ Variable:O$ -> $
  CarriageControl:;
  TextConstant:","
  CarriageControl:NL
 1137 GO TO 3000
  LineNumber:3000
 1145 IF RND>.40 THEN 1158
- FunctionRnd:RND numeric scalar
+ FunctionRnd:RND -> _
  NumericConstant:.40
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1150 GO TO 1300
  LineNumber:1300
 1158 IF D=6 THEN 5100
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:6
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1160 PRINT "BALL PASSED BACK TO YOU, ";
  TextConstant:"BALL PASSED BACK TO YOU, "
  CarriageControl:;
 1170 GO TO 430
  LineNumber:430
 1180 IF RND>.9THEN1190
- FunctionRnd:RND numeric scalar
+ FunctionRnd:RND -> _
  NumericConstant:.9
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1185 PRINT "PLAYER FOULED, TWO SHOTS."
  TextConstant:"PLAYER FOULED, TWO SHOTS."
  CarriageControl:NL
@@ -269,27 +269,27 @@
 1190 PRINT "BALL STOLEN, ";O$;"'S BALL."
  TextConstant:"BALL STOLEN, "
  CarriageControl:;
- Variable:O$ string scalar
+ Variable:O$ -> $
  CarriageControl:;
  TextConstant:"'S BALL."
  CarriageControl:NL
 1195 GO TO 3000
  LineNumber:3000
 1200 IF RND>.782*D/8 THEN 1250
- FunctionRnd:RND numeric scalar
+ FunctionRnd:RND -> _
  NumericConstant:.782
- Variable:D numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:D -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:8
- BinaryOperatorDivide:/(_,_) numeric scalar
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ BinaryOperatorGreater:>(_,_) -> ?
 1210 PRINT "SHOT IS BLOCKED, BALL CONTROLLED BY";
  TextConstant:"SHOT IS BLOCKED, BALL CONTROLLED BY"
  CarriageControl:;
 1230 IF RND>.5 THEN 1242
- FunctionRnd:RND numeric scalar
+ FunctionRnd:RND -> _
  NumericConstant:.5
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1235 PRINT " DARTMOUTH," 
  TextConstant:" DARTMOUTH,"
  CarriageControl:NL
@@ -298,20 +298,20 @@
 1242 PRINT " ";O$;","
  TextConstant:" "
  CarriageControl:;
- Variable:O$ string scalar
+ Variable:O$ -> $
  CarriageControl:;
  TextConstant:","
  CarriageControl:NL
 1245 GO TO 3000
  LineNumber:3000
 1250 IF RND>.843*D/8 THEN 1270
- FunctionRnd:RND numeric scalar
+ FunctionRnd:RND -> _
  NumericConstant:.843
- Variable:D numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:D -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:8
- BinaryOperatorDivide:/(_,_) numeric scalar
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ BinaryOperatorGreater:>(_,_) -> ?
 1255 PRINT "SHOOTER IS FOULED, TWO SHOTS."
  TextConstant:"SHOOTER IS FOULED, TWO SHOTS."
  CarriageControl:NL
@@ -325,42 +325,42 @@
 1280 GO TO 3000
  LineNumber:3000
 1300 LET T=T+1
- Variable:T numeric scalar
- Variable:T numeric scalar
+ Variable:T -> _
+ Variable:T -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 1301 IF T=50 THEN 8000
- Variable:T numeric scalar
+ Variable:T -> _
  NumericConstant:50
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1302 IF T=92 THEN 1304
- Variable:T numeric scalar
+ Variable:T -> _
  NumericConstant:92
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1303 GO TO 1305
  LineNumber:1305
 1304 GOSUB 600
  LineNumber:600
 1305 IF Z=0 THEN 2010
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1310 IF Z>3 THEN 1700
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:3
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1320 PRINT "LAY UP."
  TextConstant:"LAY UP."
  CarriageControl:NL
 1330 IF 7/D*RND>.4 THEN 1360
  NumericConstant:7
- Variable:D numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:D -> _
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:.4
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1340 PRINT "SHOT IS GOOD, TWO POINTS."
  TextConstant:"SHOT IS GOOD, TWO POINTS."
  CarriageControl:NL
@@ -370,23 +370,23 @@
  LineNumber:3000
 1360 IF 7/D*RND>.7 THEN 1500
  NumericConstant:7
- Variable:D numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:D -> _
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:.7
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1370 PRINT "SHOT IS OFF THE RIM."
  TextConstant:"SHOT IS OFF THE RIM."
  CarriageControl:NL
 1380 IF RND>2/3 THEN 1415
- FunctionRnd:RND numeric scalar
+ FunctionRnd:RND -> _
  NumericConstant:2
  NumericConstant:3
- BinaryOperatorDivide:/(_,_) numeric scalar
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ BinaryOperatorGreater:>(_,_) -> ?
 1390 PRINT O$;" CONTROLS THE REBOUND."
- Variable:O$ string scalar
+ Variable:O$ -> $
  CarriageControl:;
  TextConstant:" CONTROLS THE REBOUND."
  CarriageControl:NL
@@ -397,9 +397,9 @@
  TextConstant:"DARTMOUTH CONTROLS THE REBOUND."
  CarriageControl:NL
 1420 IF RND>.4 THEN 1440
- FunctionRnd:RND numeric scalar
+ FunctionRnd:RND -> _
  NumericConstant:.4
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1430 GO TO 1300
  LineNumber:1300
 1440 PRINT "BALL PASSED BACK TO YOU.";
@@ -409,12 +409,12 @@
  LineNumber:430
 1500 IF 7/D*RND>.875 THEN 1600
  NumericConstant:7
- Variable:D numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:D -> _
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:.875
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1510 PRINT "SHOOTER FOULED, TWO SHOTS."
  TextConstant:"SHOOTER FOULED, TWO SHOTS."
  CarriageControl:NL
@@ -424,16 +424,16 @@
  LineNumber:3000
 1600 IF 7/D*RND>.925 THEN 1630
  NumericConstant:7
- Variable:D numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:D -> _
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:.925
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1610 PRINT "SHOT BLOCKED, "O$;"'S BALL."
  TextConstant:"SHOT BLOCKED, "
  CarriageControl:
- Variable:O$ string scalar
+ Variable:O$ -> $
  CarriageControl:;
  TextConstant:"'S BALL."
  CarriageControl:NL
@@ -453,31 +453,31 @@
  TextConstant:"YOUR NEW DEFENSIVE ALLIGNMENT IS"
  CarriageControl:;
 2020 INPUT D
- Variable:D numeric scalar
+ Variable:D -> _
 2030 IF D<6 THEN 2010
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:6
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 2040 GO TO 425
  LineNumber:425
 3000 LET P=1
- Variable:P numeric scalar
+ Variable:P -> _
  NumericConstant:1
  AssignmentOperator:=
 3005 LET T=T+1
- Variable:T numeric scalar
- Variable:T numeric scalar
+ Variable:T -> _
+ Variable:T -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 3008 IF T=54 THEN 8000
- Variable:T numeric scalar
+ Variable:T -> _
  NumericConstant:54
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 3010 IF T=92 THEN 3015
- Variable:T numeric scalar
+ Variable:T -> _
  NumericConstant:92
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 3012 GO TO 3018
  LineNumber:3018
 3015 GOSUB 600
@@ -485,30 +485,30 @@
 3018 PRINT
  CarriageControl:NL
 3020 LET Z1=10/4*RND+1 
- Variable:Z1 numeric scalar
+ Variable:Z1 -> _
  NumericConstant:10
  NumericConstant:4
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 3030 IF Z>2 THEN 3500
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:2
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 3040PRINT "JUMP SHOT"
  TextConstant:"JUMP SHOT"
  CarriageControl:NL
 3050 IF 8/D*RND>.35 THEN 3100
  NumericConstant:8
- Variable:D numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:D -> _
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:.35
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 3060 PRINT "SHOT IS GOOD."
  TextConstant:"SHOT IS GOOD."
  CarriageControl:NL
@@ -518,45 +518,45 @@
  LineNumber:425
 3100 IF 8/D*RND>.75 THEN 3200
  NumericConstant:8
- Variable:D numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:D -> _
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:.75
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 3105 PRINT "SHOT IS OFF THE RIM."
  TextConstant:"SHOT IS OFF THE RIM."
  CarriageControl:NL
 3110 IF D/6*RND>.5 THEN 3150
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:6
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:.5
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 3120 PRINT "DARTMOUTH CONTROLS THE REBOUND."
  TextConstant:"DARTMOUTH CONTROLS THE REBOUND."
  CarriageControl:NL
 3130 GO TO 425
  LineNumber:425
 3150 PRINT O$;" CONTROLS THE REBOUND."
- Variable:O$ string scalar
+ Variable:O$ -> $
  CarriageControl:;
  TextConstant:" CONTROLS THE REBOUND."
  CarriageControl:NL
 3160 IF D=6 THEN 5000
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:6
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 3165 IF RND>.5 THEN 3175
- FunctionRnd:RND numeric scalar
+ FunctionRnd:RND -> _
  NumericConstant:.5
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 3168 PRINT "PASS BACK TO " O$;" GUARD."
  TextConstant:"PASS BACK TO "
  CarriageControl:
- Variable:O$ string scalar
+ Variable:O$ -> $
  CarriageControl:;
  TextConstant:" GUARD."
  CarriageControl:NL
@@ -566,12 +566,12 @@
  LineNumber:3500
 3200 IF 8/D*RND>.9 THEN 3310
  NumericConstant:8
- Variable:D numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:D -> _
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:.9
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 3210 PRINT "PLAYER FOULED, TWO SHOTS."
  TextConstant:"PLAYER FOULED, TWO SHOTS."
  CarriageControl:NL
@@ -585,20 +585,20 @@
 3320 GO TO 425
  LineNumber:425
 3500 IF Z1>3 THEN 3800
- Variable:Z1 numeric scalar
+ Variable:Z1 -> _
  NumericConstant:3
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 3510 PRINT "LAY UP"
  TextConstant:"LAY UP"
  CarriageControl:NL
 3520 IF 7/D*RND>.413 THEN 3600
  NumericConstant:7
- Variable:D numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:D -> _
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:.413
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 3530 PRINT "SHOT IS GOOD,"
  TextConstant:"SHOT IS GOOD,"
  CarriageControl:NL
@@ -619,46 +619,46 @@
 4000 REM *FOUL SHOOTING*
  Remark:*FOUL SHOOTING*
 4010 IF RND>.49 THEN 4050
- FunctionRnd:RND numeric scalar
+ FunctionRnd:RND -> _
  NumericConstant:.49
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 4020 PRINT "SHOOTER MAKES BOTH SHOTS."
  TextConstant:"SHOOTER MAKES BOTH SHOTS."
  CarriageControl:NL
 4030 LET S(1-P)=S(1-P)+2
  NumericConstant:1
- Variable:P numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:S(_) numeric scalar
+ Variable:P -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:S(_) -> _
  NumericConstant:1
- Variable:P numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:S(_) numeric scalar
+ Variable:P -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:S(_) -> _
  NumericConstant:2
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 4040 GOSUB 6010
  LineNumber:6010
 4041 RETURN
  
 4050 IF RND>.75 THEN 4100
- FunctionRnd:RND numeric scalar
+ FunctionRnd:RND -> _
  NumericConstant:.75
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 4060 PRINT "SHOOTER MAKES ONE SHOT AND MISSES ONE."
  TextConstant:"SHOOTER MAKES ONE SHOT AND MISSES ONE."
  CarriageControl:NL
 4070 LET S(1-P)=S(1-P)+1
  NumericConstant:1
- Variable:P numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:S(_) numeric scalar
+ Variable:P -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:S(_) -> _
  NumericConstant:1
- Variable:P numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:S(_) numeric scalar
+ Variable:P -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:S(_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 4080 GO TO 4040
  LineNumber:4040
@@ -668,9 +668,9 @@
 4110 GO TO 4040
  LineNumber:4040
 5000 IF RND>.75 THEN 5010
- FunctionRnd:RND numeric scalar
+ FunctionRnd:RND -> _
  NumericConstant:.75
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 5005 GO TO 3165
  LineNumber:3165
 5010 PRINT "BALL STOLEN, EASY LAY-UP FOR DARTMOUTH."
@@ -681,15 +681,15 @@
 5030 GO TO 3000
  LineNumber:3000
 5100 IF RND>.6 THEN 5120
- FunctionRnd:RND numeric scalar
+ FunctionRnd:RND -> _
  NumericConstant:.6
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 5110 GO TO 1160
  LineNumber:1160
 5120 PRINT "PASS STOLEN BY ";O$;" EASY LAY-UP."
  TextConstant:"PASS STOLEN BY "
  CarriageControl:;
- Variable:O$ string scalar
+ Variable:O$ -> $
  CarriageControl:;
  TextConstant:" EASY LAY-UP."
  CarriageControl:NL
@@ -699,32 +699,32 @@
  LineNumber:425
 6000 LET S(0)=S(0)+2
  NumericConstant:0
- Variable:S(_) numeric scalar
+ Variable:S(_) -> _
  NumericConstant:0
- Variable:S(_) numeric scalar
+ Variable:S(_) -> _
  NumericConstant:2
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 6010 PRINT "SCORE: " S(1); "TO " S(0)
  TextConstant:"SCORE: "
  CarriageControl:
  NumericConstant:1
- Variable:S(_) numeric scalar
+ Variable:S(_) -> _
  CarriageControl:;
  TextConstant:"TO "
  CarriageControl:
  NumericConstant:0
- Variable:S(_) numeric scalar
+ Variable:S(_) -> _
  CarriageControl:NL
 6020 RETURN
  
 7000 LET S(1)=S(1)+2
  NumericConstant:1
- Variable:S(_) numeric scalar
+ Variable:S(_) -> _
  NumericConstant:1
- Variable:S(_) numeric scalar
+ Variable:S(_) -> _
  NumericConstant:2
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 7010 GOSUB 6010
  LineNumber:6010
@@ -737,14 +737,14 @@
  TextConstant:"SCORE: DARTMOUTH"
  CarriageControl:
  NumericConstant:1
- Variable:S(_) numeric scalar
+ Variable:S(_) -> _
  CarriageControl:;
- Variable:O$ string scalar
+ Variable:O$ -> $
  CarriageControl:
  TextConstant:" "
  CarriageControl:
  NumericConstant:0
- Variable:S(_) numeric scalar
+ Variable:S(_) -> _
  CarriageControl:NL
 8015 PRINT
  CarriageControl:NL

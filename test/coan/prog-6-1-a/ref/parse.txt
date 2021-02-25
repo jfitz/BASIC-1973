@@ -2,53 +2,53 @@
  TextConstant:"N,D"
  CarriageControl:;
 20 INPUT N,D
- Variable:N numeric scalar
- Variable:D numeric scalar
+ Variable:N -> _
+ Variable:D -> _
 25 IF N=0 THEN 120
- Variable:N numeric scalar
+ Variable:N -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 28 REM  FIND THE INTEGER QUOTIENT
  Remark: FIND THE INTEGER QUOTIENT
 30 LET I=INT(N/D)
- Variable:I numeric scalar
- Variable:N numeric scalar
- Variable:D numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ Variable:I -> _
+ Variable:N -> _
+ Variable:D -> _
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 38 REM  FIND THE REMAINDER
  Remark: FIND THE REMAINDER
 40 LET R=N-I*D
- Variable:R numeric scalar
- Variable:N numeric scalar
- Variable:I numeric scalar
- Variable:D numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:R -> _
+ Variable:N -> _
+ Variable:I -> _
+ Variable:D -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 48 REM  IF THE REMAINDER IS ZERO THEN D IS G.C.F.
  Remark: IF THE REMAINDER IS ZERO THEN D IS G.C.F.
 50 IF R=0 THEN 90
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 58 REM  R WAS NOT ZERO, SO WE ITERATE
  Remark: R WAS NOT ZERO, SO WE ITERATE
 60 LET N=D
- Variable:N numeric scalar
- Variable:D numeric scalar
+ Variable:N -> _
+ Variable:D -> _
  AssignmentOperator:=
 70 LET D=R
- Variable:D numeric scalar
- Variable:R numeric scalar
+ Variable:D -> _
+ Variable:R -> _
  AssignmentOperator:=
 80 GOTO 30
  LineNumber:30
 90 PRINT "G.C.F. =";D
  TextConstant:"G.C.F. ="
  CarriageControl:;
- Variable:D numeric scalar
+ Variable:D -> _
  CarriageControl:NL
 100 PRINT
  CarriageControl:NL

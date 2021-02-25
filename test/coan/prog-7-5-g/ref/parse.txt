@@ -2,30 +2,30 @@
  Remark:* FILE PRINT ONE TO A RECORD
 100 DIM N$[72]
  NumericConstant:72
- Declaration:N$() array
+ Declaration:N$() -> $()
 110 FILES "test.txt"
  TextConstant:"test.txt"
 120 FOR I=1 TO 7
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
 130 READ N$,A,B
- Variable:N$ string scalar
- Variable:A numeric scalar
- Variable:B numeric scalar
+ Variable:N$ -> $
+ Variable:A -> _
+ Variable:B -> _
 140 PRINT #1,I;N$,A,B
  NumericConstant:1
- UnaryOperatorHash:#(_) filehandle scalar
- Variable:I numeric scalar
+ UnaryOperatorHash:#(_) -> FH
+ Variable:I -> _
  CarriageControl:;
- Variable:N$ string scalar
+ Variable:N$ -> $
  CarriageControl:,
- Variable:A numeric scalar
+ Variable:A -> _
  CarriageControl:,
- Variable:B numeric scalar
+ Variable:B -> _
  CarriageControl:NL
 150 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 160 DATA "JONES, JOHN PAUL",1747,1792
  TextConstant:"JONES, JOHN PAUL"
  NumericConstant:1747

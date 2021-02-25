@@ -1,23 +1,23 @@
 10 READ A,B,C
- Variable:A numeric scalar
- Variable:B numeric scalar
- Variable:C numeric scalar
+ Variable:A -> _
+ Variable:B -> _
+ Variable:C -> _
 15 IF B =-.001 THEN 9999
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:.001
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 20 PRINT A;B;C
- Variable:A numeric scalar
+ Variable:A -> _
  CarriageControl:;
- Variable:B numeric scalar
+ Variable:B -> _
  CarriageControl:;
- Variable:C numeric scalar
+ Variable:C -> _
  CarriageControl:NL
 25 IF A <> 0 THEN 30
- Variable:A numeric scalar
+ Variable:A -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 26 PRINT "A=0 THEN EXPRESSION IS NOT QUADRATIC"
  TextConstant:"A=0 THEN EXPRESSION IS NOT QUADRATIC"
  CarriageControl:NL
@@ -26,14 +26,14 @@
 28 REM   DETERMINE  MAX. OR MIN.
  Remark:  DETERMINE  MAX. OR MIN.
 30 LET M=SGN(A)
- Variable:M numeric scalar
- Variable:A numeric scalar
- FunctionSgn:SGN(_) numeric scalar
+ Variable:M -> _
+ Variable:A -> _
+ FunctionSgn:SGN(_) -> _
  AssignmentOperator:=
 40 IF M=1 THEN 70
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 50 PRINT "MAXIMUM PARABOLA"
  TextConstant:"MAXIMUM PARABOLA"
  CarriageControl:NL
@@ -45,45 +45,45 @@
 78 REM  FIND THE AXIS OF SYMMETRY
  Remark: FIND THE AXIS OF SYMMETRY
 80 LET X=-B/(2*A)
- Variable:X numeric scalar
- Variable:B numeric scalar
- UnaryOperatorMinus:-(_) numeric scalar
+ Variable:X -> _
+ Variable:B -> _
+ UnaryOperatorMinus:-(_) -> _
  NumericConstant:2
- Variable:A numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
+ Variable:A -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorDivide:/(_,_) -> _
  AssignmentOperator:=
 90 PRINT "AXIS OF SYMMETRY IS  X =";X
  TextConstant:"AXIS OF SYMMETRY IS  X ="
  CarriageControl:;
- Variable:X numeric scalar
+ Variable:X -> _
  CarriageControl:NL
 98 REM  FIND EXTREME VALUE
  Remark: FIND EXTREME VALUE
 100 LET Y=(4*A*C-B^2)/(4*A)
- Variable:Y numeric scalar
+ Variable:Y -> _
  NumericConstant:4
- Variable:A numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- Variable:C numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- Variable:B numeric scalar
+ Variable:A -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ Variable:C -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ Variable:B -> _
  NumericConstant:2
- BinaryOperatorPower:^(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  NumericConstant:4
- Variable:A numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
+ Variable:A -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorDivide:/(_,_) -> _
  AssignmentOperator:=
 110 PRINT "THE TURNING POINT IS (";X;",";Y;")"
  TextConstant:"THE TURNING POINT IS ("
  CarriageControl:;
- Variable:X numeric scalar
+ Variable:X -> _
  CarriageControl:;
  TextConstant:","
  CarriageControl:;
- Variable:Y numeric scalar
+ Variable:Y -> _
  CarriageControl:;
  TextConstant:")"
  CarriageControl:NL
@@ -98,19 +98,19 @@
  NumericConstant:1
  NumericConstant:2
  NumericConstant:3
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  NumericConstant:6
  NumericConstant:13
  NumericConstant:6
 155 DATA -3,5,11
  NumericConstant:3
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  NumericConstant:5
  NumericConstant:11
 160 DATA 4,-.001,1
  NumericConstant:4
  NumericConstant:.001
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  NumericConstant:1
 9999 END
  

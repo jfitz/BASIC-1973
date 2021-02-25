@@ -2,451 +2,451 @@
  Remark:LIFE CLARK BAKER 3/72 C.O.G.
 2 PRINT CHR$(31%);CHR$(29%);CHR$(31%);"ENTER YOUR PATTERN:"
  IntegerConstant:31
- FunctionChr:CHR$(%) string scalar
+ FunctionChr:CHR$(%) -> $
  CarriageControl:;
  IntegerConstant:29
- FunctionChr:CHR$(%) string scalar
+ FunctionChr:CHR$(%) -> $
  CarriageControl:;
  IntegerConstant:31
- FunctionChr:CHR$(%) string scalar
+ FunctionChr:CHR$(%) -> $
  CarriageControl:;
  TextConstant:"ENTER YOUR PATTERN:"
  CarriageControl:NL
 3 X1%,Y1%=1: X2%=24%: Y2%=70%
- Variable:X1% integer scalar
- Variable:Y1% integer scalar
+ Variable:X1% -> %
+ Variable:Y1% -> %
  NumericConstant:1
  AssignmentOperator:=
- Variable:X2% integer scalar
+ Variable:X2% -> %
  IntegerConstant:24
  AssignmentOperator:=
- Variable:Y2% integer scalar
+ Variable:Y2% -> %
  IntegerConstant:70
  AssignmentOperator:=
 10 DIM A%(24%,70%),B$(24%)
  IntegerConstant:24
  IntegerConstant:70
- Declaration:A%(,) matrix
+ Declaration:A%(,) -> %(,)
  IntegerConstant:24
- Declaration:B$() array
+ Declaration:B$() -> $()
 20 OPEN "KB:" AS FILE 1
  Syntax error
 30 ON ERROR GO TO 80
  LineNumber:80
 40 C%=1
- Variable:C% integer scalar
+ Variable:C% -> %
  NumericConstant:1
  AssignmentOperator:=
 50 INPUT LINE #1,B$(C%):B$(C%)=LEFT(B$(C%),LEN(B$(C%))-2%)
  NumericConstant:1
- UnaryOperatorHash:#(_) filehandle scalar
- Variable:C% integer scalar
- Variable:B$(%) string scalar
- Variable:C% integer scalar
- Variable:B$(%) string scalar
- Variable:C% integer scalar
- Variable:B$(%) string scalar
- Variable:C% integer scalar
- Variable:B$(%) string scalar
- FunctionLen:LEN($) numeric scalar
+ UnaryOperatorHash:#(_) -> FH
+ Variable:C% -> %
+ Variable:B$(%) -> $
+ Variable:C% -> %
+ Variable:B$(%) -> $
+ Variable:C% -> %
+ Variable:B$(%) -> $
+ Variable:C% -> %
+ Variable:B$(%) -> $
+ FunctionLen:LEN($) -> _
  IntegerConstant:2
- BinaryOperatorMinus:-(_,%) numeric scalar
- FunctionLeft:LEFT($,_) string scalar
+ BinaryOperatorMinus:-(_,%) -> _
+ FunctionLeft:LEFT($,_) -> $
  AssignmentOperator:=
 60 C%=C%+1
- Variable:C% integer scalar
- Variable:C% integer scalar
+ Variable:C% -> %
+ Variable:C% -> %
  NumericConstant:1
- BinaryOperatorPlus:+(%,_) numeric scalar
+ BinaryOperatorPlus:+(%,_) -> _
  AssignmentOperator:=
 70 GO TO 50
  LineNumber:50
 80 L%=0%
- Variable:L% integer scalar
+ Variable:L% -> %
  IntegerConstant:0
  AssignmentOperator:=
 90 FOR X%=1 TO C%-1
- control: Variable:X% integer scalar
+ control: Variable:X% -> %
  start:   ["NumericConstant:1"]
- end:     ["Variable:C% integer scalar", "NumericConstant:1", "BinaryOperatorMinus:-(%,_) numeric scalar"]
+ end:     ["Variable:C% -> %", "NumericConstant:1", "BinaryOperatorMinus:-(%,_) -> _"]
 100 IF LEN(B$(X%))>=L% THEN L%=LEN(B$(X%))
- Variable:X% integer scalar
- Variable:B$(%) string scalar
- FunctionLen:LEN($) numeric scalar
- Variable:L% integer scalar
- BinaryOperatorGreaterEqual:>=(_,%) boolean scalar
- Variable:L% integer scalar
- Variable:X% integer scalar
- Variable:B$(%) string scalar
- FunctionLen:LEN($) numeric scalar
+ Variable:X% -> %
+ Variable:B$(%) -> $
+ FunctionLen:LEN($) -> _
+ Variable:L% -> %
+ BinaryOperatorGreaterEqual:>=(_,%) -> ?
+ Variable:L% -> %
+ Variable:X% -> %
+ Variable:B$(%) -> $
+ FunctionLen:LEN($) -> _
  AssignmentOperator:=
 110 NEXT X%
- Variable:X% integer scalar
+ Variable:X% -> %
 120 X1%=11%-C%/2%
- Variable:X1% integer scalar
+ Variable:X1% -> %
  IntegerConstant:11
- Variable:C% integer scalar
+ Variable:C% -> %
  IntegerConstant:2
- BinaryOperatorDivide:/(%,%) integer scalar
- BinaryOperatorMinus:-(%,%) integer scalar
+ BinaryOperatorDivide:/(%,%) -> %
+ BinaryOperatorMinus:-(%,%) -> %
  AssignmentOperator:=
 130 Y1%=33%-L%/2%
- Variable:Y1% integer scalar
+ Variable:Y1% -> %
  IntegerConstant:33
- Variable:L% integer scalar
+ Variable:L% -> %
  IntegerConstant:2
- BinaryOperatorDivide:/(%,%) integer scalar
- BinaryOperatorMinus:-(%,%) integer scalar
+ BinaryOperatorDivide:/(%,%) -> %
+ BinaryOperatorMinus:-(%,%) -> %
  AssignmentOperator:=
 140 FOR X%=1 TO C%
- control: Variable:X% integer scalar
+ control: Variable:X% -> %
  start:   ["NumericConstant:1"]
- end:     ["Variable:C% integer scalar"]
+ end:     ["Variable:C% -> %"]
 150 FOR Y%=1 TO LEN(B$(X%))
- control: Variable:Y% integer scalar
+ control: Variable:Y% -> %
  start:   ["NumericConstant:1"]
- end:     ["Variable:X% integer scalar", "Variable:B$(%) string scalar", "FunctionLen:LEN($) numeric scalar"]
+ end:     ["Variable:X% -> %", "Variable:B$(%) -> $", "FunctionLen:LEN($) -> _"]
 160 IF MID(B$(X%),Y%,1)<>" " THEN A%(X1%+X%, Y1%+Y%)=1:P%=P%+1
- Variable:X% integer scalar
- Variable:B$(%) string scalar
- Variable:Y% integer scalar
+ Variable:X% -> %
+ Variable:B$(%) -> $
+ Variable:Y% -> %
  NumericConstant:1
- FunctionMid:MID($,%,_) string scalar
+ FunctionMid:MID($,%,_) -> $
  TextConstant:" "
- BinaryOperatorNotEqual:<>($,$) boolean scalar
- Variable:X1% integer scalar
- Variable:X% integer scalar
- BinaryOperatorPlus:+(%,%) integer scalar
- Variable:Y1% integer scalar
- Variable:Y% integer scalar
- BinaryOperatorPlus:+(%,%) integer scalar
- Variable:A%(%,%) integer scalar
+ BinaryOperatorNotEqual:<>($,$) -> ?
+ Variable:X1% -> %
+ Variable:X% -> %
+ BinaryOperatorPlus:+(%,%) -> %
+ Variable:Y1% -> %
+ Variable:Y% -> %
+ BinaryOperatorPlus:+(%,%) -> %
+ Variable:A%(%,%) -> %
  NumericConstant:1
  AssignmentOperator:=
- Variable:P% integer scalar
- Variable:P% integer scalar
+ Variable:P% -> %
+ Variable:P% -> %
  NumericConstant:1
- BinaryOperatorPlus:+(%,_) numeric scalar
+ BinaryOperatorPlus:+(%,_) -> _
  AssignmentOperator:=
 170 NEXT Y%
- Variable:Y% integer scalar
+ Variable:Y% -> %
 180 NEXT X%
- Variable:X% integer scalar
+ Variable:X% -> %
 200 PRINT CHR$(29%);CHR$(30%);
  IntegerConstant:29
- FunctionChr:CHR$(%) string scalar
+ FunctionChr:CHR$(%) -> $
  CarriageControl:;
  IntegerConstant:30
- FunctionChr:CHR$(%) string scalar
+ FunctionChr:CHR$(%) -> $
  CarriageControl:;
 210 PRINT "GENERATION:";G%,"POPULATION:";P%;CHR$(30%);:IF I9% THEN PRINT ,"INVALID!";
  TextConstant:"GENERATION:"
  CarriageControl:;
- Variable:G% integer scalar
+ Variable:G% -> %
  CarriageControl:,
  TextConstant:"POPULATION:"
  CarriageControl:;
- Variable:P% integer scalar
+ Variable:P% -> %
  CarriageControl:;
  IntegerConstant:30
- FunctionChr:CHR$(%) string scalar
+ FunctionChr:CHR$(%) -> $
  CarriageControl:;
- Variable:I9% integer scalar
+ Variable:I9% -> %
  CarriageControl:,
  TextConstant:"INVALID!"
  CarriageControl:;
 215 X3%=24%:Y3%=70%:X4%,Y4%=1:P%=0%
- Variable:X3% integer scalar
+ Variable:X3% -> %
  IntegerConstant:24
  AssignmentOperator:=
- Variable:Y3% integer scalar
+ Variable:Y3% -> %
  IntegerConstant:70
  AssignmentOperator:=
- Variable:X4% integer scalar
- Variable:Y4% integer scalar
+ Variable:X4% -> %
+ Variable:Y4% -> %
  NumericConstant:1
  AssignmentOperator:=
- Variable:P% integer scalar
+ Variable:P% -> %
  IntegerConstant:0
  AssignmentOperator:=
 220 G%=G%+1%
- Variable:G% integer scalar
- Variable:G% integer scalar
+ Variable:G% -> %
+ Variable:G% -> %
  IntegerConstant:1
- BinaryOperatorPlus:+(%,%) integer scalar
+ BinaryOperatorPlus:+(%,%) -> %
  AssignmentOperator:=
 225 PRINT CHR$(13%);CHR$(10%);CHR$(30%); FOR X%=1 TO X1%
  IntegerConstant:13
- FunctionChr:CHR$(%) string scalar
+ FunctionChr:CHR$(%) -> $
  CarriageControl:;
  IntegerConstant:10
- FunctionChr:CHR$(%) string scalar
+ FunctionChr:CHR$(%) -> $
  CarriageControl:;
  IntegerConstant:30
- FunctionChr:CHR$(%) string scalar
+ FunctionChr:CHR$(%) -> $
  CarriageControl:;
- control: Variable:X% integer scalar
+ control: Variable:X% -> %
  start:   ["NumericConstant:1"]
- end:     ["Variable:X1% integer scalar"]
+ end:     ["Variable:X1% -> %"]
 230 FOR X%=X1% TO X2%
- control: Variable:X% integer scalar
- start:   ["Variable:X1% integer scalar"]
- end:     ["Variable:X2% integer scalar"]
+ control: Variable:X% -> %
+ start:   ["Variable:X1% -> %"]
+ end:     ["Variable:X2% -> %"]
 240 PRINT 
  CarriageControl:NL
 250 FOR Y%=Y1% TO Y2%
- control: Variable:Y% integer scalar
- start:   ["Variable:Y1% integer scalar"]
- end:     ["Variable:Y2% integer scalar"]
+ control: Variable:Y% -> %
+ start:   ["Variable:Y1% -> %"]
+ end:     ["Variable:Y2% -> %"]
 253 IF A%(X%,Y%)=2% THEN A%(X%,Y%)=0%:GO TO 270
- Variable:X% integer scalar
- Variable:Y% integer scalar
- Variable:A%(%,%) integer scalar
+ Variable:X% -> %
+ Variable:Y% -> %
+ Variable:A%(%,%) -> %
  IntegerConstant:2
- BinaryOperatorEqual:=(%,%) boolean scalar
- Variable:X% integer scalar
- Variable:Y% integer scalar
- Variable:A%(%,%) integer scalar
+ BinaryOperatorEqual:=(%,%) -> ?
+ Variable:X% -> %
+ Variable:Y% -> %
+ Variable:A%(%,%) -> %
  IntegerConstant:0
  AssignmentOperator:=
  LineNumber:270
 256 IF A%(X%,Y%)=3% THEN A%(X%,Y%)=1%:GO TO 261
- Variable:X% integer scalar
- Variable:Y% integer scalar
- Variable:A%(%,%) integer scalar
+ Variable:X% -> %
+ Variable:Y% -> %
+ Variable:A%(%,%) -> %
  IntegerConstant:3
- BinaryOperatorEqual:=(%,%) boolean scalar
- Variable:X% integer scalar
- Variable:Y% integer scalar
- Variable:A%(%,%) integer scalar
+ BinaryOperatorEqual:=(%,%) -> ?
+ Variable:X% -> %
+ Variable:Y% -> %
+ Variable:A%(%,%) -> %
  IntegerConstant:1
  AssignmentOperator:=
  LineNumber:261
 260 IF A%(X%,Y%)<>1 THEN 270
- Variable:X% integer scalar
- Variable:Y% integer scalar
- Variable:A%(%,%) integer scalar
+ Variable:X% -> %
+ Variable:Y% -> %
+ Variable:A%(%,%) -> %
  NumericConstant:1
- BinaryOperatorNotEqual:<>(%,_) boolean scalar
+ BinaryOperatorNotEqual:<>(%,_) -> ?
 261 PRINT TAB(Y%);"*";
- Variable:Y% integer scalar
- FunctionTab:TAB(%) string scalar
+ Variable:Y% -> %
+ FunctionTab:TAB(%) -> $
  CarriageControl:;
  TextConstant:"*"
  CarriageControl:;
 262 IF X%<X3% THEN X3%=X%
- Variable:X% integer scalar
- Variable:X3% integer scalar
- BinaryOperatorLess:<(%,%) boolean scalar
- Variable:X3% integer scalar
- Variable:X% integer scalar
+ Variable:X% -> %
+ Variable:X3% -> %
+ BinaryOperatorLess:<(%,%) -> ?
+ Variable:X3% -> %
+ Variable:X% -> %
  AssignmentOperator:=
 264 IF X%>X4% THEN X4%=X%
- Variable:X% integer scalar
- Variable:X4% integer scalar
- BinaryOperatorGreater:>(%,%) boolean scalar
- Variable:X4% integer scalar
- Variable:X% integer scalar
+ Variable:X% -> %
+ Variable:X4% -> %
+ BinaryOperatorGreater:>(%,%) -> ?
+ Variable:X4% -> %
+ Variable:X% -> %
  AssignmentOperator:=
 266 IF Y%<Y3% THEN Y3%=Y%
- Variable:Y% integer scalar
- Variable:Y3% integer scalar
- BinaryOperatorLess:<(%,%) boolean scalar
- Variable:Y3% integer scalar
- Variable:Y% integer scalar
+ Variable:Y% -> %
+ Variable:Y3% -> %
+ BinaryOperatorLess:<(%,%) -> ?
+ Variable:Y3% -> %
+ Variable:Y% -> %
  AssignmentOperator:=
 268 IF Y%>Y4% THEN Y4%=Y%
- Variable:Y% integer scalar
- Variable:Y4% integer scalar
- BinaryOperatorGreater:>(%,%) boolean scalar
- Variable:Y4% integer scalar
- Variable:Y% integer scalar
+ Variable:Y% -> %
+ Variable:Y4% -> %
+ BinaryOperatorGreater:>(%,%) -> ?
+ Variable:Y4% -> %
+ Variable:Y% -> %
  AssignmentOperator:=
 270 NEXT Y%
- Variable:Y% integer scalar
+ Variable:Y% -> %
 280 PRINT CHR$(30%);
  IntegerConstant:30
- FunctionChr:CHR$(%) string scalar
+ FunctionChr:CHR$(%) -> $
  CarriageControl:;
 290 NEXT X%
- Variable:X% integer scalar
+ Variable:X% -> %
 295 PRINT CHR$(30%) FOR X%=X2%+1 TO 24%
  IntegerConstant:30
- FunctionChr:CHR$(%) string scalar
+ FunctionChr:CHR$(%) -> $
  CarriageControl:NL
- control: Variable:X% integer scalar
- start:   ["Variable:X2% integer scalar", "NumericConstant:1", "BinaryOperatorPlus:+(%,_) numeric scalar"]
+ control: Variable:X% -> %
+ start:   ["Variable:X2% -> %", "NumericConstant:1", "BinaryOperatorPlus:+(%,_) -> _"]
  end:     ["IntegerConstant:24"]
 298 PRINT CHR$(29%);
  IntegerConstant:29
- FunctionChr:CHR$(%) string scalar
+ FunctionChr:CHR$(%) -> $
  CarriageControl:;
 299 X1%=X3%:X2%=X4%:Y1%=Y3%:Y2%=Y4%
- Variable:X1% integer scalar
- Variable:X3% integer scalar
+ Variable:X1% -> %
+ Variable:X3% -> %
  AssignmentOperator:=
- Variable:X2% integer scalar
- Variable:X4% integer scalar
+ Variable:X2% -> %
+ Variable:X4% -> %
  AssignmentOperator:=
- Variable:Y1% integer scalar
- Variable:Y3% integer scalar
+ Variable:Y1% -> %
+ Variable:Y3% -> %
  AssignmentOperator:=
- Variable:Y2% integer scalar
- Variable:Y4% integer scalar
+ Variable:Y2% -> %
+ Variable:Y4% -> %
  AssignmentOperator:=
 301 IF X1%<3% THEN X1%=3%:I9%=-1%
- Variable:X1% integer scalar
+ Variable:X1% -> %
  IntegerConstant:3
- BinaryOperatorLess:<(%,%) boolean scalar
- Variable:X1% integer scalar
+ BinaryOperatorLess:<(%,%) -> ?
+ Variable:X1% -> %
  IntegerConstant:3
  AssignmentOperator:=
- Variable:I9% integer scalar
+ Variable:I9% -> %
  IntegerConstant:1
- UnaryOperatorMinus:-(%) integer scalar
+ UnaryOperatorMinus:-(%) -> %
  AssignmentOperator:=
 303 IF X2%>22% THEN X2%=22%:I9%=-1%
- Variable:X2% integer scalar
+ Variable:X2% -> %
  IntegerConstant:22
- BinaryOperatorGreater:>(%,%) boolean scalar
- Variable:X2% integer scalar
+ BinaryOperatorGreater:>(%,%) -> ?
+ Variable:X2% -> %
  IntegerConstant:22
  AssignmentOperator:=
- Variable:I9% integer scalar
+ Variable:I9% -> %
  IntegerConstant:1
- UnaryOperatorMinus:-(%) integer scalar
+ UnaryOperatorMinus:-(%) -> %
  AssignmentOperator:=
 305 IF Y1%<3% THEN Y1%=3%:I9%=-1%
- Variable:Y1% integer scalar
+ Variable:Y1% -> %
  IntegerConstant:3
- BinaryOperatorLess:<(%,%) boolean scalar
- Variable:Y1% integer scalar
+ BinaryOperatorLess:<(%,%) -> ?
+ Variable:Y1% -> %
  IntegerConstant:3
  AssignmentOperator:=
- Variable:I9% integer scalar
+ Variable:I9% -> %
  IntegerConstant:1
- UnaryOperatorMinus:-(%) integer scalar
+ UnaryOperatorMinus:-(%) -> %
  AssignmentOperator:=
 307 IF Y2%>68% THEN Y2%=68%:I9%=-1%
- Variable:Y2% integer scalar
+ Variable:Y2% -> %
  IntegerConstant:68
- BinaryOperatorGreater:>(%,%) boolean scalar
- Variable:Y2% integer scalar
+ BinaryOperatorGreater:>(%,%) -> ?
+ Variable:Y2% -> %
  IntegerConstant:68
  AssignmentOperator:=
- Variable:I9% integer scalar
+ Variable:I9% -> %
  IntegerConstant:1
- UnaryOperatorMinus:-(%) integer scalar
+ UnaryOperatorMinus:-(%) -> %
  AssignmentOperator:=
 309 P%=0%
- Variable:P% integer scalar
+ Variable:P% -> %
  IntegerConstant:0
  AssignmentOperator:=
 500 FOR X%=X1%-1 TO X2%+1
- control: Variable:X% integer scalar
- start:   ["Variable:X1% integer scalar", "NumericConstant:1", "BinaryOperatorMinus:-(%,_) numeric scalar"]
- end:     ["Variable:X2% integer scalar", "NumericConstant:1", "BinaryOperatorPlus:+(%,_) numeric scalar"]
+ control: Variable:X% -> %
+ start:   ["Variable:X1% -> %", "NumericConstant:1", "BinaryOperatorMinus:-(%,_) -> _"]
+ end:     ["Variable:X2% -> %", "NumericConstant:1", "BinaryOperatorPlus:+(%,_) -> _"]
 510 FOR Y%=Y1%-1 TO Y2%+1
- control: Variable:Y% integer scalar
- start:   ["Variable:Y1% integer scalar", "NumericConstant:1", "BinaryOperatorMinus:-(%,_) numeric scalar"]
- end:     ["Variable:Y2% integer scalar", "NumericConstant:1", "BinaryOperatorPlus:+(%,_) numeric scalar"]
+ control: Variable:Y% -> %
+ start:   ["Variable:Y1% -> %", "NumericConstant:1", "BinaryOperatorMinus:-(%,_) -> _"]
+ end:     ["Variable:Y2% -> %", "NumericConstant:1", "BinaryOperatorPlus:+(%,_) -> _"]
 520 C%=0%
- Variable:C% integer scalar
+ Variable:C% -> %
  IntegerConstant:0
  AssignmentOperator:=
 530 FOR I%=X%-1% TO X%+1%
- control: Variable:I% integer scalar
- start:   ["Variable:X% integer scalar", "IntegerConstant:1", "BinaryOperatorMinus:-(%,%) integer scalar"]
- end:     ["Variable:X% integer scalar", "IntegerConstant:1", "BinaryOperatorPlus:+(%,%) integer scalar"]
+ control: Variable:I% -> %
+ start:   ["Variable:X% -> %", "IntegerConstant:1", "BinaryOperatorMinus:-(%,%) -> %"]
+ end:     ["Variable:X% -> %", "IntegerConstant:1", "BinaryOperatorPlus:+(%,%) -> %"]
 540 FOR J%=Y%-1% TO Y%+1%
- control: Variable:J% integer scalar
- start:   ["Variable:Y% integer scalar", "IntegerConstant:1", "BinaryOperatorMinus:-(%,%) integer scalar"]
- end:     ["Variable:Y% integer scalar", "IntegerConstant:1", "BinaryOperatorPlus:+(%,%) integer scalar"]
+ control: Variable:J% -> %
+ start:   ["Variable:Y% -> %", "IntegerConstant:1", "BinaryOperatorMinus:-(%,%) -> %"]
+ end:     ["Variable:Y% -> %", "IntegerConstant:1", "BinaryOperatorPlus:+(%,%) -> %"]
 550 IF A%(I%,J%)=1% OR A%(I%,J%)=2% THEN C%=C%+1%
- Variable:I% integer scalar
- Variable:J% integer scalar
- Variable:A%(%,%) integer scalar
+ Variable:I% -> %
+ Variable:J% -> %
+ Variable:A%(%,%) -> %
  IntegerConstant:1
- BinaryOperatorEqual:=(%,%) boolean scalar
- Variable:I% integer scalar
- Variable:J% integer scalar
- Variable:A%(%,%) integer scalar
+ BinaryOperatorEqual:=(%,%) -> ?
+ Variable:I% -> %
+ Variable:J% -> %
+ Variable:A%(%,%) -> %
  IntegerConstant:2
- BinaryOperatorEqual:=(%,%) boolean scalar
- BinaryOperatorOr:OR(?,?) boolean scalar
- Variable:C% integer scalar
- Variable:C% integer scalar
+ BinaryOperatorEqual:=(%,%) -> ?
+ BinaryOperatorOr:OR(?,?) -> ?
+ Variable:C% -> %
+ Variable:C% -> %
  IntegerConstant:1
- BinaryOperatorPlus:+(%,%) integer scalar
+ BinaryOperatorPlus:+(%,%) -> %
  AssignmentOperator:=
 560 NEXT J%
- Variable:J% integer scalar
+ Variable:J% -> %
 570 NEXT I%
- Variable:I% integer scalar
+ Variable:I% -> %
 580 IF A%(X%,Y%)=0% THEN 610
- Variable:X% integer scalar
- Variable:Y% integer scalar
- Variable:A%(%,%) integer scalar
+ Variable:X% -> %
+ Variable:Y% -> %
+ Variable:A%(%,%) -> %
  IntegerConstant:0
- BinaryOperatorEqual:=(%,%) boolean scalar
+ BinaryOperatorEqual:=(%,%) -> ?
 590 IF C%<3% OR C%>4% THEN A%(X%,Y%)=2% ELSE P%=P%+1
- Variable:C% integer scalar
+ Variable:C% -> %
  IntegerConstant:3
- BinaryOperatorLess:<(%,%) boolean scalar
- Variable:C% integer scalar
+ BinaryOperatorLess:<(%,%) -> ?
+ Variable:C% -> %
  IntegerConstant:4
- BinaryOperatorGreater:>(%,%) boolean scalar
- BinaryOperatorOr:OR(?,?) boolean scalar
- Variable:X% integer scalar
- Variable:Y% integer scalar
- Variable:A%(%,%) integer scalar
+ BinaryOperatorGreater:>(%,%) -> ?
+ BinaryOperatorOr:OR(?,?) -> ?
+ Variable:X% -> %
+ Variable:Y% -> %
+ Variable:A%(%,%) -> %
  IntegerConstant:2
  AssignmentOperator:=
- Variable:P% integer scalar
- Variable:P% integer scalar
+ Variable:P% -> %
+ Variable:P% -> %
  NumericConstant:1
- BinaryOperatorPlus:+(%,_) numeric scalar
+ BinaryOperatorPlus:+(%,_) -> _
  AssignmentOperator:=
 600 GO TO 620
  LineNumber:620
 610 IF C%=3% THEN A%(X%, Y%)=3%:P%=P%+1
- Variable:C% integer scalar
+ Variable:C% -> %
  IntegerConstant:3
- BinaryOperatorEqual:=(%,%) boolean scalar
- Variable:X% integer scalar
- Variable:Y% integer scalar
- Variable:A%(%,%) integer scalar
+ BinaryOperatorEqual:=(%,%) -> ?
+ Variable:X% -> %
+ Variable:Y% -> %
+ Variable:A%(%,%) -> %
  IntegerConstant:3
  AssignmentOperator:=
- Variable:P% integer scalar
- Variable:P% integer scalar
+ Variable:P% -> %
+ Variable:P% -> %
  NumericConstant:1
- BinaryOperatorPlus:+(%,_) numeric scalar
+ BinaryOperatorPlus:+(%,_) -> _
  AssignmentOperator:=
 620 NEXT Y%
- Variable:Y% integer scalar
+ Variable:Y% -> %
 630 NEXT X%
- Variable:X% integer scalar
+ Variable:X% -> %
 635 X1%=X1%-1:Y1%=Y1%-1:X2%=X2%+1:Y2%=Y2%+1
- Variable:X1% integer scalar
- Variable:X1% integer scalar
+ Variable:X1% -> %
+ Variable:X1% -> %
  NumericConstant:1
- BinaryOperatorMinus:-(%,_) numeric scalar
+ BinaryOperatorMinus:-(%,_) -> _
  AssignmentOperator:=
- Variable:Y1% integer scalar
- Variable:Y1% integer scalar
+ Variable:Y1% -> %
+ Variable:Y1% -> %
  NumericConstant:1
- BinaryOperatorMinus:-(%,_) numeric scalar
+ BinaryOperatorMinus:-(%,_) -> _
  AssignmentOperator:=
- Variable:X2% integer scalar
- Variable:X2% integer scalar
+ Variable:X2% -> %
+ Variable:X2% -> %
  NumericConstant:1
- BinaryOperatorPlus:+(%,_) numeric scalar
+ BinaryOperatorPlus:+(%,_) -> _
  AssignmentOperator:=
- Variable:Y2% integer scalar
- Variable:Y2% integer scalar
+ Variable:Y2% -> %
+ Variable:Y2% -> %
  NumericConstant:1
- BinaryOperatorPlus:+(%,_) numeric scalar
+ BinaryOperatorPlus:+(%,_) -> _
  AssignmentOperator:=
 640 GO TO 210
  LineNumber:210

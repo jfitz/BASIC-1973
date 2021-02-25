@@ -2,50 +2,50 @@
  Remark:* DEMONSTRATES STRING SUBSCRIPTS
 100 DIM A$[8]
  NumericConstant:8
- Declaration:A$() array
+ Declaration:A$() -> $()
 110 READ A$
- Variable:A$ string scalar
+ Variable:A$ -> $
 120 IF A$="STOP" THEN 210
- Variable:A$ string scalar
+ Variable:A$ -> $
  TextConstant:"STOP"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 130 PRINT "A$=";A$
  TextConstant:"A$="
  CarriageControl:;
- Variable:A$ string scalar
+ Variable:A$ -> $
  CarriageControl:NL
 140 PRINT "LEN(A$)=";LEN(A$)
  TextConstant:"LEN(A$)="
  CarriageControl:;
- Variable:A$ string scalar
- FunctionLen:LEN($) numeric scalar
+ Variable:A$ -> $
+ FunctionLen:LEN($) -> _
  CarriageControl:NL
 150 FOR I=1 TO LEN(A$) STEP 2
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:A$ string scalar", "FunctionLen:LEN($) numeric scalar"]
+ end:     ["Variable:A$ -> $", "FunctionLen:LEN($) -> _"]
  step:    ["NumericConstant:2"]
 160 PRINT "A$(";I;",";I+1;")=";A$[I,I+1]
  TextConstant:"A$("
  CarriageControl:;
- Variable:I numeric scalar
+ Variable:I -> _
  CarriageControl:;
  TextConstant:","
  CarriageControl:;
- Variable:I numeric scalar
+ Variable:I -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  CarriageControl:;
  TextConstant:")="
  CarriageControl:;
- Variable:I numeric scalar
- Variable:I numeric scalar
+ Variable:I -> _
+ Variable:I -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:A$(_,_) string scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:A$(_,_) -> $
  CarriageControl:NL
 170 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 180 PRINT
  CarriageControl:NL
 190 GOTO 110

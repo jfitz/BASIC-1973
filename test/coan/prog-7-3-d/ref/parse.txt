@@ -1,57 +1,57 @@
 100 DIM A(100)
  NumericConstant:100
- Declaration:A() array
+ Declaration:A() -> _()
 110 PRINT "A$";
  TextConstant:"A$"
  CarriageControl:;
 120 INPUT A$
- Variable:A$ string scalar
+ Variable:A$ -> $
 130 PRINT
  CarriageControl:NL
 140 CHANGE A$ TO A
- Variable:A$ string scalar
- Variable:A() numeric array
+ Variable:A$ -> $
+ Variable:A() -> _()
 150 FOR I = 1 TO A(0) - 1
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
- end:     ["NumericConstant:0", "Variable:A(_) numeric scalar", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) numeric scalar"]
+ end:     ["NumericConstant:0", "Variable:A(_) -> _", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) -> _"]
 160    FOR J = I + 1 TO A(0)
- control: Variable:J numeric scalar
- start:   ["Variable:I numeric scalar", "NumericConstant:1", "BinaryOperatorPlus:+(_,_) numeric scalar"]
- end:     ["NumericConstant:0", "Variable:A(_) numeric scalar"]
+ control: Variable:J -> _
+ start:   ["Variable:I -> _", "NumericConstant:1", "BinaryOperatorPlus:+(_,_) -> _"]
+ end:     ["NumericConstant:0", "Variable:A(_) -> _"]
 170       IF A(I) <= A(J) THEN 210
- Variable:I numeric scalar
- Variable:A(_) numeric scalar
- Variable:J numeric scalar
- Variable:A(_) numeric scalar
- BinaryOperatorLessEqual:<=(_,_) boolean scalar
+ Variable:I -> _
+ Variable:A(_) -> _
+ Variable:J -> _
+ Variable:A(_) -> _
+ BinaryOperatorLessEqual:<=(_,_) -> ?
 175 REM * EXCHANGE OUT OF ORDER CODES
  Remark:* EXCHANGE OUT OF ORDER CODES
 180       LET S = A(I)
- Variable:S numeric scalar
- Variable:I numeric scalar
- Variable:A(_) numeric scalar
+ Variable:S -> _
+ Variable:I -> _
+ Variable:A(_) -> _
  AssignmentOperator:=
 190       LET A(I) = A(J)
- Variable:I numeric scalar
- Variable:A(_) numeric scalar
- Variable:J numeric scalar
- Variable:A(_) numeric scalar
+ Variable:I -> _
+ Variable:A(_) -> _
+ Variable:J -> _
+ Variable:A(_) -> _
  AssignmentOperator:=
 200       LET A(J) = S
- Variable:J numeric scalar
- Variable:A(_) numeric scalar
- Variable:S numeric scalar
+ Variable:J -> _
+ Variable:A(_) -> _
+ Variable:S -> _
  AssignmentOperator:=
 210    NEXT J
- Variable:J numeric scalar
+ Variable:J -> _
 220 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 230 CHANGE A TO A$
- Variable:A() numeric array
- Variable:A$ string scalar
+ Variable:A() -> _()
+ Variable:A$ -> $
 240 PRINT A$
- Variable:A$ string scalar
+ Variable:A$ -> $
  CarriageControl:NL
 250 END
  

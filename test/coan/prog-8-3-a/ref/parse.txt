@@ -1,12 +1,12 @@
 30 DEF FNQ(X)=X^2
- UserFunctionName:FNQ
- VariableName:X
- Variable:X numeric scalar
+ UserFunctionName:FNQ -> _
+ VariableName:X -> _
+ Variable:X -> _
  NumericConstant:2
- BinaryOperatorPower:^(_,_) numeric scalar
+ BinaryOperatorPower:^(_,_) -> _
 60 FOR X=-7 TO 7
- control: Variable:X numeric scalar
- start:   ["NumericConstant:7", "UnaryOperatorMinus:-(_) numeric scalar"]
+ control: Variable:X -> _
+ start:   ["NumericConstant:7", "UnaryOperatorMinus:-(_) -> _"]
  end:     ["NumericConstant:7"]
 62 PRINT
  CarriageControl:NL
@@ -15,28 +15,28 @@
 89 REM ACROSS THE PAGE 0 TO 70
  Remark:ACROSS THE PAGE 0 TO 70
 90 FOR Y =0 TO 70
- control: Variable:Y numeric scalar
+ control: Variable:Y -> _
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:70"]
 120 IF Y=FNQ(X) THEN 210
- Variable:Y numeric scalar
- Variable:X numeric scalar
- UserFunction:FNQ(_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:Y -> _
+ Variable:X -> _
+ UserFunction:FNQ(_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 148 REM   IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
  Remark:  IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
 150 PRINT " ";
  TextConstant:" "
  CarriageControl:;
 180 NEXT Y
- Variable:Y numeric scalar
+ Variable:Y -> _
 210 PRINT "*";
  TextConstant:"*"
  CarriageControl:;
 212 REM   PLOT THE POINT AND GO TO NEXT X
  Remark:  PLOT THE POINT AND GO TO NEXT X
 240 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 270 END
  
 

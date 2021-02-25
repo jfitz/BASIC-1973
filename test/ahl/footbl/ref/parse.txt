@@ -5,11 +5,11 @@
  TextConstant:"IF YOU NEED INSTRUCTIONS FOR PLAYING FOOTBALL, TYPE A 1"
  CarriageControl:NL
 30 INPUT I
- Variable:I numeric scalar
+ Variable:I -> _
 40 IF I<>1 THEN 340
- Variable:I numeric scalar
+ Variable:I -> _
  NumericConstant:1
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 50 PRINT
  CarriageControl:NL
 60 PRINT
@@ -141,25 +141,25 @@
 350 PRINT
  CarriageControl:NL
 360 DEF FNT(X)=SIN(X)/COS(X)
- UserFunctionName:FNT
- VariableName:X
- Variable:X numeric scalar
- FunctionSin:SIN(_) numeric scalar
- Variable:X numeric scalar
- FunctionCos:COS(_) numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
+ UserFunctionName:FNT -> _
+ VariableName:X -> _
+ Variable:X -> _
+ FunctionSin:SIN(_) -> _
+ Variable:X -> _
+ FunctionCos:COS(_) -> _
+ BinaryOperatorDivide:/(_,_) -> _
 370 DIM R(17)
  NumericConstant:17
- Declaration:R() array
+ Declaration:R() -> _()
 380 FOR I=0 TO 17
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:17"]
 390 READ R(I)
- Variable:I numeric scalar
- Variable:R(_) numeric scalar
+ Variable:I -> _
+ Variable:R(_) -> _
 400 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 410 DATA 9,13,10,0,9,10,12,11,12,0,1,5,3,4,6,2,8,7
  NumericConstant:9
  NumericConstant:13
@@ -182,167 +182,167 @@
 420 RANDOMIZE
  
 430 LET F=0
- Variable:F numeric scalar
+ Variable:F -> _
  NumericConstant:0
  AssignmentOperator:=
 440 LET Z3=0
- Variable:Z3 numeric scalar
+ Variable:Z3 -> _
  NumericConstant:0
  AssignmentOperator:=
 450 LET O=0
- Variable:O numeric scalar
+ Variable:O -> _
  NumericConstant:0
  AssignmentOperator:=
 460 LET L=0
- Variable:L numeric scalar
+ Variable:L -> _
  NumericConstant:0
  AssignmentOperator:=
 470 DIM Z(5,3),P(2),D(2,5)
  NumericConstant:5
  NumericConstant:3
- Declaration:Z(,) matrix
+ Declaration:Z(,) -> _(,)
  NumericConstant:2
- Declaration:P() array
+ Declaration:P() -> _()
  NumericConstant:2
  NumericConstant:5
- Declaration:D(,) matrix
+ Declaration:D(,) -> _(,)
 480 FOR A=0 TO 5
- control: Variable:A numeric scalar
+ control: Variable:A -> _
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:5"]
 490 FOR B=0 TO 2
- control: Variable:B numeric scalar
+ control: Variable:B -> _
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:2"]
 500 READ Z(A,B),D(B,A)
- Variable:A numeric scalar
- Variable:B numeric scalar
- Variable:Z(_,_) numeric scalar
- Variable:B numeric scalar
- Variable:A numeric scalar
- Variable:D(_,_) numeric scalar
+ Variable:A -> _
+ Variable:B -> _
+ Variable:Z(_,_) -> _
+ Variable:B -> _
+ Variable:A -> _
+ Variable:D(_,_) -> _
 505 LET P(B)=0
- Variable:B numeric scalar
- Variable:P(_) numeric scalar
+ Variable:B -> _
+ Variable:P(_) -> _
  NumericConstant:0
  AssignmentOperator:=
 510 NEXT B
- Variable:B numeric scalar
+ Variable:B -> _
 520 READ Z(A,3)
- Variable:A numeric scalar
+ Variable:A -> _
  NumericConstant:3
- Variable:Z(_,_) numeric scalar
+ Variable:Z(_,_) -> _
 530 NEXT A
- Variable:A numeric scalar
+ Variable:A -> _
 540 PRINT "DO YOU WANT TO RECEIVE";
  TextConstant:"DO YOU WANT TO RECEIVE"
  CarriageControl:;
 550 LET X=1
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:1
  AssignmentOperator:=
 560 GOSUB 3610
  LineNumber:3610
 570 LET S=2-SGN(13-Q)
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:2
  NumericConstant:13
- Variable:Q numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- FunctionSgn:SGN(_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:Q -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ FunctionSgn:SGN(_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 580 LET K=S
- Variable:K numeric scalar
- Variable:S numeric scalar
+ Variable:K -> _
+ Variable:S -> _
  AssignmentOperator:=
 590 LET T1=120
- Variable:T1 numeric scalar
+ Variable:T1 -> _
  NumericConstant:120
  AssignmentOperator:=
 600 LET U2=3
- Variable:U2 numeric scalar
+ Variable:U2 -> _
  NumericConstant:3
  AssignmentOperator:=
 610 LET U=3
- Variable:U numeric scalar
+ Variable:U -> _
  NumericConstant:3
  AssignmentOperator:=
 620 LET C=900
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:900
  AssignmentOperator:=
 630 GOSUB 2250
  LineNumber:2250
 640 LET F1=50
- Variable:F1 numeric scalar
+ Variable:F1 -> _
  NumericConstant:50
  AssignmentOperator:=
 650 LET B=INT(F1+O*20*RND(0)+(1-O)*29*(2*RND(0)^7-RND(0)^(3-Z2)))
- Variable:B numeric scalar
- Variable:F1 numeric scalar
- Variable:O numeric scalar
+ Variable:B -> _
+ Variable:F1 -> _
+ Variable:O -> _
  NumericConstant:20
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:1
- Variable:O numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:O -> _
+ BinaryOperatorMinus:-(_,_) -> _
  NumericConstant:29
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:2
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:7
- BinaryOperatorPower:^(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:3
- Variable:Z2 numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- BinaryOperatorPower:^(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ Variable:Z2 -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 660 LET O=0
- Variable:O numeric scalar
+ Variable:O -> _
  NumericConstant:0
  AssignmentOperator:=
 670 LET Z9=8
- Variable:Z9 numeric scalar
+ Variable:Z9 -> _
  NumericConstant:8
  AssignmentOperator:=
 680 GOSUB 1490
  LineNumber:1490
 690 LET L=0
- Variable:L numeric scalar
+ Variable:L -> _
  NumericConstant:0
  AssignmentOperator:=
 700 IF B<99 THEN 2340
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:99
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 710 PRINT "A TOUCHBACK"
  TextConstant:"A TOUCHBACK"
  CarriageControl:NL
 720 LET B=20
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:20
  AssignmentOperator:=
 730 LET L=0
- Variable:L numeric scalar
+ Variable:L -> _
  NumericConstant:0
  AssignmentOperator:=
 740 IF S=2 THEN 770
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 750 PRINT "MY ";
  TextConstant:"MY "
  CarriageControl:;
@@ -356,64 +356,64 @@
 790 GOSUB 2980
  LineNumber:2980
 800 LET D=1
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:1
  AssignmentOperator:=
 810 LET F2=.03
- Variable:F2 numeric scalar
+ Variable:F2 -> _
  NumericConstant:.03
  AssignmentOperator:=
 820 LET O=0
- Variable:O numeric scalar
+ Variable:O -> _
  NumericConstant:0
  AssignmentOperator:=
 830 IF C<=0 THEN 2770
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:0
- BinaryOperatorLessEqual:<=(_,_) boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) -> ?
 840 GOSUB 2530
  LineNumber:2530
 850 LET Z2=1
- Variable:Z2 numeric scalar
+ Variable:Z2 -> _
  NumericConstant:1
  AssignmentOperator:=
 860 LET Z3=.3
- Variable:Z3 numeric scalar
+ Variable:Z3 -> _
  NumericConstant:.3
  AssignmentOperator:=
 870 IF C<=F*T1 THEN 2920
- Variable:C numeric scalar
- Variable:F numeric scalar
- Variable:T1 numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorLessEqual:<=(_,_) boolean scalar
+ Variable:C -> _
+ Variable:F -> _
+ Variable:T1 -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorLessEqual:<=(_,_) -> ?
 880 IF C<=0 THEN 2770
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:0
- BinaryOperatorLessEqual:<=(_,_) boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) -> ?
 890 IF L=0 THEN 910
- Variable:L numeric scalar
+ Variable:L -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 900 PRINT "TIME TO GO--";
  TextConstant:"TIME TO GO--"
  CarriageControl:;
 910 PRINT INT(C/60);"MIN.";C-60*INT(C/60);" SEC.  ";
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:60
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionInt:INT(_) -> _
  CarriageControl:;
  TextConstant:"MIN."
  CarriageControl:;
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:60
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:60
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  CarriageControl:;
  TextConstant:" SEC.  "
  CarriageControl:;
@@ -423,121 +423,121 @@
 930 GOSUB 3610
  LineNumber:3610
 940 IF S=1 THEN 980
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 950 IF Q>8 THEN 920
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:8
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 960 LET M=Q
- Variable:M numeric scalar
- Variable:Q numeric scalar
+ Variable:M -> _
+ Variable:Q -> _
  AssignmentOperator:=
 970 GOTO 1000
  LineNumber:1000
 980 LET Y=Q-8
- Variable:Y numeric scalar
- Variable:Q numeric scalar
+ Variable:Y -> _
+ Variable:Q -> _
  NumericConstant:8
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 990 IF ABS(Q-10.5)^2>3 THEN 920
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:10.5
- BinaryOperatorMinus:-(_,_) numeric scalar
- FunctionAbs:ABS(_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ FunctionAbs:ABS(_) -> _
  NumericConstant:2
- BinaryOperatorPower:^(_,_) numeric scalar
+ BinaryOperatorPower:^(_,_) -> _
  NumericConstant:3
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1000 LET C=INT(C-L*(5+23*RND(X)))
- Variable:C numeric scalar
- Variable:C numeric scalar
- Variable:L numeric scalar
+ Variable:C -> _
+ Variable:C -> _
+ Variable:L -> _
  NumericConstant:5
  NumericConstant:23
- Variable:X numeric scalar
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ Variable:X -> _
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 1010 LET L=1
- Variable:L numeric scalar
+ Variable:L -> _
  NumericConstant:1
  AssignmentOperator:=
 1020 IF M=7 THEN 1760
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:7
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1030 IF M=8 THEN 1920
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:8
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1040 LET Y1=Y-1
- Variable:Y1 numeric scalar
- Variable:Y numeric scalar
+ Variable:Y1 -> _
+ Variable:Y -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 1050 IF RND(X)>Z(M-1,Y1) THEN 1240
- Variable:X numeric scalar
- FunctionRnd:RND(_) numeric scalar
- Variable:M numeric scalar
+ Variable:X -> _
+ FunctionRnd:RND(_) -> _
+ Variable:M -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:Y1 numeric scalar
- Variable:Z(_,_) numeric scalar
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:Y1 -> _
+ Variable:Z(_,_) -> _
+ BinaryOperatorGreater:>(_,_) -> ?
 1060 LET A=2
- Variable:A numeric scalar
+ Variable:A -> _
  NumericConstant:2
  AssignmentOperator:=
 1070 GOSUB 3020
  LineNumber:3020
 1080 IF M<4 THEN 1110
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:4
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 1090 PRINT "PASS COMPLETE..";
  TextConstant:"PASS COMPLETE.."
  CarriageControl:;
 1100 LET L=SGN(INT(4*RND(0)))
- Variable:L numeric scalar
+ Variable:L -> _
  NumericConstant:4
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- FunctionSgn:SGN(_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionInt:INT(_) -> _
+ FunctionSgn:SGN(_) -> _
  AssignmentOperator:=
 1110 IF RND(X)<F2 THEN 2510
- Variable:X numeric scalar
- FunctionRnd:RND(_) numeric scalar
- Variable:F2 numeric scalar
- BinaryOperatorLess:<(_,_) boolean scalar
+ Variable:X -> _
+ FunctionRnd:RND(_) -> _
+ Variable:F2 -> _
+ BinaryOperatorLess:<(_,_) -> ?
 1120 IF G>0 THEN 1210
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:0
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1130 IF G=0 THEN 1170
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1140 IF G+B<1 THEN 2170
- Variable:G numeric scalar
- Variable:B numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:G -> _
+ Variable:B -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:1
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 1150 PRINT "LOSS OF";-G;
  TextConstant:"LOSS OF"
  CarriageControl:;
- Variable:G numeric scalar
- UnaryOperatorMinus:-(_) numeric scalar
+ Variable:G -> _
+ UnaryOperatorMinus:-(_) -> _
  CarriageControl:;
 1160 GOTO 1610
  LineNumber:1610
@@ -545,7 +545,7 @@
  TextConstant:"NO GAIN"
  CarriageControl:NL
 1180 LET Z9=2
- Variable:Z9 numeric scalar
+ Variable:Z9 -> _
  NumericConstant:2
  AssignmentOperator:=
 1190 GOSUB 1490 
@@ -553,24 +553,24 @@
 1200 GOTO 1670
  LineNumber:1670
 1210 IF B+G>99 THEN 1650
- Variable:B numeric scalar
- Variable:G numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:B -> _
+ Variable:G -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:99
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1220 PRINT "GAIN OF";G;
  TextConstant:"GAIN OF"
  CarriageControl:;
- Variable:G numeric scalar
+ Variable:G -> _
  CarriageControl:;
 1230 GOTO 1610 
  LineNumber:1610
 1240 IF M>3 THEN 1280
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:3
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1250 LET A=1
- Variable:A numeric scalar
+ Variable:A -> _
  NumericConstant:1
  AssignmentOperator:=
 1260 GOSUB 3020
@@ -578,31 +578,31 @@
 1270 GOTO 1120
  LineNumber:1120
 1280 IF RND(X)<.06*(2-SGN(Y-3)) THEN 1360
- Variable:X numeric scalar
- FunctionRnd:RND(_) numeric scalar
+ Variable:X -> _
+ FunctionRnd:RND(_) -> _
  NumericConstant:.06
  NumericConstant:2
- Variable:Y numeric scalar
+ Variable:Y -> _
  NumericConstant:3
- BinaryOperatorMinus:-(_,_) numeric scalar
- FunctionSgn:SGN(_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ FunctionSgn:SGN(_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorLess:<(_,_) -> ?
 1290 IF RND(0)<.05*INT(Y/3.5)/5 THEN 1510
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:.05
- Variable:Y numeric scalar
+ Variable:Y -> _
  NumericConstant:3.5
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:5
- BinaryOperatorDivide:/(_,_) numeric scalar
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ BinaryOperatorLess:<(_,_) -> ?
 1300 LET Z9=6
- Variable:Z9 numeric scalar
+ Variable:Z9 -> _
  NumericConstant:6
  AssignmentOperator:=
 1310 GOSUB 1490
@@ -611,11 +611,11 @@
  TextConstant:"PASS INCOMPLETE"
  CarriageControl:NL
 1330 LET L=0
- Variable:L numeric scalar
+ Variable:L -> _
  NumericConstant:0
  AssignmentOperator:=
 1340 LET G=0
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:0
  AssignmentOperator:=
 1350 GOTO 3120
@@ -624,114 +624,114 @@
  TextConstant:"PASS **INTERCEPTED**"
  CarriageControl:NL
 1370 LET A=1
- Variable:A numeric scalar
+ Variable:A -> _
  NumericConstant:1
  AssignmentOperator:=
 1380 GOSUB 3020
  LineNumber:3020
 1390 IF B<40 THEN 1410
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:40
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 1400 LET G=20*(1+SGN(G))
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:20
  NumericConstant:1
- Variable:G numeric scalar
- FunctionSgn:SGN(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:G -> _
+ FunctionSgn:SGN(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  AssignmentOperator:=
 1410 LET B=100-B-G
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:100
- Variable:B numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:G numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:B -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:G -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 1420 LET S=3-S
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:3
- Variable:S numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:S -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 1430 LET Z9=9
- Variable:Z9 numeric scalar
+ Variable:Z9 -> _
  NumericConstant:9
  AssignmentOperator:=
 1440 GOSUB 1490
  LineNumber:1490
 1450 IF B<1 THEN 710
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:1
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 1460 IF B>99 THEN 1650
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:99
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1470 PRINT "AT ";
  TextConstant:"AT "
  CarriageControl:;
 1480 GOTO 2360
  LineNumber:2360
 1490 LET C=C-INT(4+Z9/2*(1+RND(0)))
- Variable:C numeric scalar
- Variable:C numeric scalar
+ Variable:C -> _
+ Variable:C -> _
  NumericConstant:4
- Variable:Z9 numeric scalar
+ Variable:Z9 -> _
  NumericConstant:2
- BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:1
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 1500 RETURN
  
 1510 LET G=-(5+INT(10*RND(X)))
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:5
  NumericConstant:10
- Variable:X numeric scalar
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- UnaryOperatorMinus:-(_) numeric scalar
+ Variable:X -> _
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 1520 PRINT "THE QUARTERBACK "
  TextConstant:"THE QUARTERBACK "
  CarriageControl:NL
 1530 IF RND(X)>.5 THEN 1560
- Variable:X numeric scalar
- FunctionRnd:RND(_) numeric scalar
+ Variable:X -> _
+ FunctionRnd:RND(_) -> _
  NumericConstant:.5
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1540 PRINT "IS THROWN FOR A ";
  TextConstant:"IS THROWN FOR A "
  CarriageControl:;
 1550 GOTO 1110
  LineNumber:1110
 1560 LET G=-(2*G*8)
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:2
- Variable:G numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:G -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:8
- BinaryOperatorMultiply:*(_,_) numeric scalar
- UnaryOperatorMinus:-(_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 1570 LET M=B
- Variable:M numeric scalar
- Variable:B numeric scalar
+ Variable:M -> _
+ Variable:B -> _
  AssignmentOperator:=
 1580 LET A=1
- Variable:A numeric scalar
+ Variable:A -> _
  NumericConstant:1
  AssignmentOperator:=
 1590 PRINT "SCRAMBLES FOR A ";
@@ -740,10 +740,10 @@
 1600 GOTO 1110
  LineNumber:1110
 1610 LET B=B+G
- Variable:B numeric scalar
- Variable:B numeric scalar
- Variable:G numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:B -> _
+ Variable:B -> _
+ Variable:G -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 1620 PRINT "TO ";
  TextConstant:"TO "
@@ -751,99 +751,99 @@
 1630 GOSUB 3300
  LineNumber:3300
 1640 IF B<99 THEN 1670
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:99
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 1650 GOSUB 1990
  LineNumber:1990
 1660 GOTO 630
  LineNumber:630
 1670 IF B1>B THEN 3120
- Variable:B1 numeric scalar
- Variable:B numeric scalar
- BinaryOperatorGreater:>(_,_) boolean scalar
+ Variable:B1 -> _
+ Variable:B -> _
+ BinaryOperatorGreater:>(_,_) -> ?
 1680 IF B1<B THEN 1730
- Variable:B1 numeric scalar
- Variable:B numeric scalar
- BinaryOperatorLess:<(_,_) boolean scalar
+ Variable:B1 -> _
+ Variable:B -> _
+ BinaryOperatorLess:<(_,_) -> ?
 1690 IF RND(0)>.5 THEN 1730
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:.5
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1700 PRINT "**MEASUREMENT**"
  TextConstant:"**MEASUREMENT**"
  CarriageControl:NL
 1710 GOSUB 3520
  LineNumber:3520
 1720 IF RND(X)<.5 THEN 3120
- Variable:X numeric scalar
- FunctionRnd:RND(_) numeric scalar
+ Variable:X -> _
+ FunctionRnd:RND(_) -> _
  NumericConstant:.5
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 1730 GOSUB 2980
  LineNumber:2980
 1740 LET D=0
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:0
  AssignmentOperator:=
 1750 GOTO 3120
  LineNumber:3120
 1760 IF RND(X)<.06 THEN 1890
- Variable:X numeric scalar
- FunctionRnd:RND(_) numeric scalar
+ Variable:X -> _
+ FunctionRnd:RND(_) -> _
  NumericConstant:.06
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 1770 LET B=B+30*INT(15*(1*RND(0)^3))
- Variable:B numeric scalar
- Variable:B numeric scalar
+ Variable:B -> _
+ Variable:B -> _
  NumericConstant:30
  NumericConstant:15
  NumericConstant:1
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:3
- BinaryOperatorPower:^(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 1780 LET Z9=2
- Variable:Z9 numeric scalar
+ Variable:Z9 -> _
  NumericConstant:2
  AssignmentOperator:=
 1790 GOSUB 1490
  LineNumber:1490
 1800 IF B<=99 THEN 1550
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:99
- BinaryOperatorLessEqual:<=(_,_) boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) -> ?
 1810 LET P1=3
- Variable:P1 numeric scalar
+ Variable:P1 -> _
  NumericConstant:3
  AssignmentOperator:=
 1820 GOSUB 2030
  LineNumber:2030
 1830 IF P1=0 THEN 710
- Variable:P1 numeric scalar
+ Variable:P1 -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1840 GOTO 630
  LineNumber:630
 1850 PRINT "THE KICK IS ";
  TextConstant:"THE KICK IS "
  CarriageControl:;
 1860 LET Z2=0
- Variable:Z2 numeric scalar
+ Variable:Z2 -> _
  NumericConstant:0
  AssignmentOperator:=
 1870 LET S=3-S
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:3
- Variable:S numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:S -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 1880 GOTO 2340
  LineNumber:2340
@@ -851,12 +851,12 @@
  TextConstant:"**BLOCKED** RECOVERED.."
  CarriageControl:;
 1900 LET G=INT(14*RND(X))
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:14
- Variable:X numeric scalar
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ Variable:X -> _
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 1910 GOTO 1410
  LineNumber:1410
@@ -864,26 +864,26 @@
  TextConstant:"THE PUNT IS "
  CarriageControl:;
 1930 IF RND(X)<.06 THEN 1890
- Variable:X numeric scalar
- FunctionRnd:RND(_) numeric scalar
+ Variable:X -> _
+ FunctionRnd:RND(_) -> _
  NumericConstant:.06
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 1940 LET F1=B
- Variable:F1 numeric scalar
- Variable:B numeric scalar
+ Variable:F1 -> _
+ Variable:B -> _
  AssignmentOperator:=
 1950 LET Z2=1
- Variable:Z2 numeric scalar
+ Variable:Z2 -> _
  NumericConstant:1
  AssignmentOperator:=
 1960 LET S=3-S
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:3
- Variable:S numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:S -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 1970 LET Z3=.65
- Variable:Z3 numeric scalar
+ Variable:Z3 -> _
  NumericConstant:.65
  AssignmentOperator:=
 1980 GOTO 650
@@ -892,35 +892,35 @@
  TextConstant:"**TOUCHDOWN**"
  CarriageControl:NL
 2000 LET P1=1 
- Variable:P1 numeric scalar
+ Variable:P1 -> _
  NumericConstant:1
  AssignmentOperator:=
 2010 LET P(S)=P(S)+6
- Variable:S numeric scalar
- Variable:P(_) numeric scalar
- Variable:S numeric scalar
- Variable:P(_) numeric scalar
+ Variable:S -> _
+ Variable:P(_) -> _
+ Variable:S -> _
+ Variable:P(_) -> _
  NumericConstant:6
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 2020 LET B=130
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:130
  AssignmentOperator:=
 2030 PRINT "THE KICK IS ";
  TextConstant:"THE KICK IS "
  CarriageControl:;
 2040 IF RND(X)<(B/132)^4 THEN 2070
- Variable:X numeric scalar
- FunctionRnd:RND(_) numeric scalar
- Variable:B numeric scalar
+ Variable:X -> _
+ FunctionRnd:RND(_) -> _
+ Variable:B -> _
  NumericConstant:132
- BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:4
- BinaryOperatorPower:^(_,_) numeric scalar
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorLess:<(_,_) -> ?
 2050 LET P1=0
- Variable:P1 numeric scalar
+ Variable:P1 -> _
  NumericConstant:0
  AssignmentOperator:=
 2060 PRINT "NO ";
@@ -930,20 +930,20 @@
  TextConstant:"GOOD"
  CarriageControl:NL
 2080 LET P(S)=P(S)+P1
- Variable:S numeric scalar
- Variable:P(_) numeric scalar
- Variable:S numeric scalar
- Variable:P(_) numeric scalar
- Variable:P1 numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:S -> _
+ Variable:P(_) -> _
+ Variable:S -> _
+ Variable:P(_) -> _
+ Variable:P1 -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 2090 GOSUB 2120
  LineNumber:2120
 2100 LET S=3-S
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:3
- Variable:S numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:S -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 2110 RETURN
  
@@ -951,27 +951,27 @@
  TextConstant:"SCORE! ME"
  CarriageControl:;
  NumericConstant:1
- Variable:P(_) numeric scalar
+ Variable:P(_) -> _
  CarriageControl:;
  TextConstant:" YOU"
  CarriageControl:;
  NumericConstant:2
- Variable:P(_) numeric scalar
+ Variable:P(_) -> _
  CarriageControl:NL
 2130 LET L=0
- Variable:L numeric scalar
+ Variable:L -> _
  NumericConstant:0
  AssignmentOperator:=
 2140 IF X<5 THEN 2160
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:5
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 2150 IF P(1)<>P(2) THEN 2770
  NumericConstant:1
- Variable:P(_) numeric scalar
+ Variable:P(_) -> _
  NumericConstant:2
- Variable:P(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:P(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 2160 RETURN
  
 2170 PRINT "**SAFETY**"
@@ -979,25 +979,25 @@
  CarriageControl:NL
 2180 LET P(3-S)=P(3-S)+2
  NumericConstant:3
- Variable:S numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:P(_) numeric scalar
+ Variable:S -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:P(_) -> _
  NumericConstant:3
- Variable:S numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:P(_) numeric scalar
+ Variable:S -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:P(_) -> _
  NumericConstant:2
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 2190 LET F1=30
- Variable:F1 numeric scalar
+ Variable:F1 -> _
  NumericConstant:30
  AssignmentOperator:=
 2200 LET S=3-S
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:3
- Variable:S numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:S -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 2210 GOSUB 2120
  LineNumber:2120
@@ -1011,37 +1011,37 @@
 2250 GOSUB 3440
  LineNumber:3440
 2260 IF S=2 THEN 2330
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 2270 PRINT "ON-SIDE";
  TextConstant:"ON-SIDE"
  CarriageControl:;
 2280 GOSUB 3610
  LineNumber:3610
 2290 IF Q<>13 THEN 2330
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:13
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 2300 LET F2=.15
- Variable:F2 numeric scalar
+ Variable:F2 -> _
  NumericConstant:.15
  AssignmentOperator:=
 2310 LET Z2=1
- Variable:Z2 numeric scalar
+ Variable:Z2 -> _
  NumericConstant:1
  AssignmentOperator:=
 2320 LET O=1
- Variable:O numeric scalar
+ Variable:O -> _
  NumericConstant:1
  AssignmentOperator:=
 2330 RETURN
  
 2340 LET B=100-B
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:100
- Variable:B numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:B -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 2350 PRINT "RECEIVED AT ";
  TextConstant:"RECEIVED AT "
@@ -1049,65 +1049,65 @@
 2360 GOSUB 3300
  LineNumber:3300
 2370 IF Z2*RND(X)>Z3 THEN 2490
- Variable:Z2 numeric scalar
- Variable:X numeric scalar
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- Variable:Z3 numeric scalar
- BinaryOperatorGreater:>(_,_) boolean scalar
+ Variable:Z2 -> _
+ Variable:X -> _
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ Variable:Z3 -> _
+ BinaryOperatorGreater:>(_,_) -> ?
 2380 IF RND(X)<F2 THEN 2500
- Variable:X numeric scalar
- FunctionRnd:RND(_) numeric scalar
- Variable:F2 numeric scalar
- BinaryOperatorLess:<(_,_) boolean scalar
+ Variable:X -> _
+ FunctionRnd:RND(_) -> _
+ Variable:F2 -> _
+ BinaryOperatorLess:<(_,_) -> ?
 2390 LET G=5*INT(100*RND(0))
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:5
  NumericConstant:100
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  AssignmentOperator:=
 2400 IF RND(0)<.15 THEN 2430
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:.15
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 2410 LET G=INT(24*(1-RND(X)^2))
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:24
  NumericConstant:1
- Variable:X numeric scalar
- FunctionRnd:RND(_) numeric scalar
+ Variable:X -> _
+ FunctionRnd:RND(_) -> _
  NumericConstant:2
- BinaryOperatorPower:^(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 2420 IF G=0 THEN 2490
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 2430 LET B=B+G
- Variable:B numeric scalar
- Variable:B numeric scalar
- Variable:G numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:B -> _
+ Variable:B -> _
+ Variable:G -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 2440 PRINT " AND RUN BACK...";
  TextConstant:" AND RUN BACK..."
  CarriageControl:;
 2450 LET L=1
- Variable:L numeric scalar
+ Variable:L -> _
  NumericConstant:1
  AssignmentOperator:=
 2460 IF B>99 THEN 1650
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:99
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 2470 PRINT " TO ";
  TextConstant:" TO "
  CarriageControl:;
@@ -1115,11 +1115,11 @@
  LineNumber:3300
 2490 IF RND(0)>F2 THEN 3260
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- Variable:F2 numeric scalar
- BinaryOperatorGreater:>(_,_) boolean scalar
+ FunctionRnd:RND(_) -> _
+ Variable:F2 -> _
+ BinaryOperatorGreater:>(_,_) -> ?
 2500 LET G=0
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:0
  AssignmentOperator:=
 2510 PRINT "**FUMBLE**";
@@ -1128,67 +1128,67 @@
 2520 GOTO 1410
  LineNumber:1410
 2530 IF S=1 THEN 2560
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 2540 LET Y=INT(1+3.5*RND(0))
- Variable:Y numeric scalar
+ Variable:Y -> _
  NumericConstant:1
  NumericConstant:3.5
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 2550 RETURN
  
 2560 LET M=INT(55*RND(0)/10.5)+1
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:55
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:10.5
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionInt:INT(_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 2570 IF (B1-B)/(5-D)<3 THEN 2590
- Variable:B1 numeric scalar
- Variable:B numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:B1 -> _
+ Variable:B -> _
+ BinaryOperatorMinus:-(_,_) -> _
  NumericConstant:5
- Variable:D numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
+ Variable:D -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:3
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 2580 LET M=INT(6-4*RND(0)^2)
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:6
  NumericConstant:4
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:2
- BinaryOperatorPower:^(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 2590 IF L*F*60>=C THEN 2670
- Variable:L numeric scalar
- Variable:F numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:L -> _
+ Variable:F -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:60
- BinaryOperatorMultiply:*(_,_) numeric scalar
- Variable:C numeric scalar
- BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
+ BinaryOperatorMultiply:*(_,_) -> _
+ Variable:C -> _
+ BinaryOperatorGreaterEqual:>=(_,_) -> ?
 2600 IF D<4 THEN 2550
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:4
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 2610 PRINT "I'LL ";
  TextConstant:"I'LL "
  CarriageControl:;
@@ -1198,40 +1198,40 @@
  NumericConstant:0
  NumericConstant:4
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- Variable:B1 numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:B numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- BinaryOperatorLess:<(_,_) boolean scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ Variable:B1 -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:B -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorLess:<(_,_) -> ?
 2640 PRINT "TRY FOR A FIELD GOAL"
  TextConstant:"TRY FOR A FIELD GOAL"
  CarriageControl:NL
 2650 LET M=7
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:7
  AssignmentOperator:=
 2660 RETURN
  
 2670 IF P(2)*U2<=P(1)*U2 THEN 2600
  NumericConstant:2
- Variable:P(_) numeric scalar
- Variable:U2 numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:P(_) -> _
+ Variable:U2 -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- Variable:P(_) numeric scalar
- Variable:U2 numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorLessEqual:<=(_,_) boolean scalar
+ Variable:P(_) -> _
+ Variable:U2 -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorLessEqual:<=(_,_) -> ?
 2680 PRINT "TIME OUT"
  TextConstant:"TIME OUT"
  CarriageControl:NL
 2690 LET U2=U2-1
- Variable:U2 numeric scalar
- Variable:U2 numeric scalar
+ Variable:U2 -> _
+ Variable:U2 -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 2700 GOSUB 3520
  LineNumber:3520
@@ -1241,7 +1241,7 @@
  TextConstant:"PUNT"
  CarriageControl:NL
 2730 LET M=8
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:8
  AssignmentOperator:=
 2740 RETURN
@@ -1252,15 +1252,15 @@
 2760 RETURN
  
 2770 IF X<4 THEN 2830
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:4
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 2780 IF P(1)=P(2) THEN 2830
  NumericConstant:1
- Variable:P(_) numeric scalar
+ Variable:P(_) -> _
  NumericConstant:2
- Variable:P(_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:P(_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 2790 PRINT "THE GAME IS OVER"
  TextConstant:"THE GAME IS OVER"
  CarriageControl:NL
@@ -1274,219 +1274,219 @@
 2830 PRINT "END OF PERIOD";X
  TextConstant:"END OF PERIOD"
  CarriageControl:;
- Variable:X numeric scalar
+ Variable:X -> _
  CarriageControl:NL
 2840 GOSUB 2120
  LineNumber:2120
 2850 LET F=1-F
- Variable:F numeric scalar
+ Variable:F -> _
  NumericConstant:1
- Variable:F numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:F -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 2860 GOSUB 3520
  LineNumber:3520
 2870 LET C=900
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:900
  AssignmentOperator:=
 2880 LET X=X+1
- Variable:X numeric scalar
- Variable:X numeric scalar
+ Variable:X -> _
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 2890 IF F<>0 THEN 810
- Variable:F numeric scalar
+ Variable:F -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 2900 LET S=3-K
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:3
- Variable:K numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:K -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 2910 GOTO 580
  LineNumber:580
 2920 IF T1=0 THEN 2770
- Variable:T1 numeric scalar
+ Variable:T1 -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 2930 PRINT "2 MINUTE WARNING"
  TextConstant:"2 MINUTE WARNING"
  CarriageControl:NL
 2940 GOSUB 3520
  LineNumber:3520
 2950 LET T1=0
- Variable:T1 numeric scalar
+ Variable:T1 -> _
  NumericConstant:0
  AssignmentOperator:=
 2960 LET C=120
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:120
  AssignmentOperator:=
 2970 GOTO 880
  LineNumber:880
 2980 LET B1=B+10
- Variable:B1 numeric scalar
- Variable:B numeric scalar
+ Variable:B1 -> _
+ Variable:B -> _
  NumericConstant:10
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 2990 IF B1<=100 THEN 3010
- Variable:B1 numeric scalar
+ Variable:B1 -> _
  NumericConstant:100
- BinaryOperatorLessEqual:<=(_,_) boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) -> ?
 3000 LET B1=100
- Variable:B1 numeric scalar
+ Variable:B1 -> _
  NumericConstant:100
  AssignmentOperator:=
 3010 RETURN
  
 3020 LET Q=1.3*(A*RND(0)-1)-.06
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:1.3
- Variable:A numeric scalar
+ Variable:A -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:.06
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 3030 LET A=1
- Variable:A numeric scalar
+ Variable:A -> _
  NumericConstant:1
  AssignmentOperator:=
 3040 IF Q>=0 THEN 3070
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:0
- BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) -> ?
 3050 LET A=0
- Variable:A numeric scalar
+ Variable:A -> _
  NumericConstant:0
  AssignmentOperator:=
 3060 LET Q=-Q
- Variable:Q numeric scalar
- Variable:Q numeric scalar
- UnaryOperatorMinus:-(_) numeric scalar
+ Variable:Q -> _
+ Variable:Q -> _
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 3070 LET M=M-1
- Variable:M numeric scalar
- Variable:M numeric scalar
+ Variable:M -> _
+ Variable:M -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 3080 LET G=D(A,M1)+FNT(Q)*(D(2,M)-D(A,M))/3.5
- Variable:G numeric scalar
- Variable:A numeric scalar
- Variable:M1 numeric scalar
- Variable:D(_,_) numeric scalar
- Variable:Q numeric scalar
- UserFunction:FNT(_) numeric scalar
+ Variable:G -> _
+ Variable:A -> _
+ Variable:M1 -> _
+ Variable:D(_,_) -> _
+ Variable:Q -> _
+ UserFunction:FNT(_) -> _
  NumericConstant:2
- Variable:M numeric scalar
- Variable:D(_,_) numeric scalar
- Variable:A numeric scalar
- Variable:M numeric scalar
- Variable:D(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:M -> _
+ Variable:D(_,_) -> _
+ Variable:A -> _
+ Variable:M -> _
+ Variable:D(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:3.5
- BinaryOperatorDivide:/(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 3090 LET G=G+INT(RND(0)+.02)*A+100*RND(0)
- Variable:G numeric scalar
- Variable:G numeric scalar
+ Variable:G -> _
+ Variable:G -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:.02
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- Variable:A numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
+ Variable:A -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:100
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 3100 LET G=INT(G)
- Variable:G numeric scalar
- Variable:G numeric scalar
- FunctionInt:INT(_) numeric scalar
+ Variable:G -> _
+ Variable:G -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 3110 RETURN
  
 3120 LET D=D+1
- Variable:D numeric scalar
- Variable:D numeric scalar
+ Variable:D -> _
+ Variable:D -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 3130 IF D=5 THEN 3240
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:5
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 3140 IF D<> 1 THEN 3160
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:1
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3150 PRINT "1ST";
  TextConstant:"1ST"
  CarriageControl:;
 3160 IF D<>2 THEN 3180
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:2
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3170 PRINT "2ND";
  TextConstant:"2ND"
  CarriageControl:;
 3180 IF D<>3 THEN 3200
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:3
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3190 PRINT "3RD";
  TextConstant:"3RD"
  CarriageControl:;
 3200 IF D<4 THEN 3220
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:4
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 3210 PRINT "4TH";
  TextConstant:"4TH"
  CarriageControl:;
 3220 PRINT " AND";B1-B;"    ";
  TextConstant:" AND"
  CarriageControl:;
- Variable:B1 numeric scalar
- Variable:B numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:B1 -> _
+ Variable:B -> _
+ BinaryOperatorMinus:-(_,_) -> _
  CarriageControl:;
  TextConstant:"    "
  CarriageControl:;
 3230 GOTO 810
  LineNumber:810
 3240 LET S=3-S
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:3
- Variable:S numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:S -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 3250 LET B=100-B
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:100
- Variable:B numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:B -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 3260 IF S=2 THEN 770
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 3270 PRINT "MY ";
  TextConstant:"MY "
  CarriageControl:;
@@ -1496,38 +1496,38 @@
  TextConstant:"BALL ON "
  CarriageControl:;
 3300 IF B=50 THEN 3400
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:50
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 3310 LET V=50-ABS(B-50)
- Variable:V numeric scalar
+ Variable:V -> _
  NumericConstant:50
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:50
- BinaryOperatorMinus:-(_,_) numeric scalar
- FunctionAbs:ABS(_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ FunctionAbs:ABS(_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 3320 LET C=C-INT(7+3*RND(0))
- Variable:C numeric scalar
- Variable:C numeric scalar
+ Variable:C -> _
+ Variable:C -> _
  NumericConstant:7
  NumericConstant:3
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 3330 IF S=1 THEN 3420
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 3340 IF B<50 THEN 3370
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:50
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 3350 PRINT "MY ";
  TextConstant:"MY "
  CarriageControl:;
@@ -1537,7 +1537,7 @@
  TextConstant:"YOUR "
  CarriageControl:;
 3380 PRINT V
- Variable:V numeric scalar
+ Variable:V -> _
  CarriageControl:NL
 3390 RETURN
  
@@ -1547,15 +1547,15 @@
 3410 RETURN
  
 3420 IF B<50 THEN 3350
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:50
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 3430 GOTO 3370
  LineNumber:3370
 3440 IF S=2 THEN 3470
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 3450 PRINT "YOU";
  TextConstant:"YOU"
  CarriageControl:;
@@ -1568,17 +1568,17 @@
  TextConstant:" KICK OFF."
  CarriageControl:NL
 3490 LET F2=.06
- Variable:F2 numeric scalar
+ Variable:F2 -> _
  NumericConstant:.06
  AssignmentOperator:=
 3500 LET Z2=0
- Variable:Z2 numeric scalar
+ Variable:Z2 -> _
  NumericConstant:0
  AssignmentOperator:=
 3510 RETURN
  
 3520 LET L=0
- Variable:L numeric scalar
+ Variable:L -> _
  NumericConstant:0
  AssignmentOperator:=
 3530 PRINT "TIMEOUT CALLED..."
@@ -1589,14 +1589,14 @@
 3550 RETURN
  
 3560 IF U=0 THEN 3600
- Variable:U numeric scalar
+ Variable:U -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 3570 LET U=U+1
- Variable:U numeric scalar
- Variable:U numeric scalar
+ Variable:U -> _
+ Variable:U -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 3580 GOSUB 3520
  LineNumber:3520
@@ -1606,34 +1606,34 @@
  TextConstant:"..WRONG, TRY AGAIN"
  CarriageControl:NL
 3610 INPUT A
- Variable:A numeric scalar
+ Variable:A -> _
 3620 IF ABS(INT(A))>17 THEN 3600
- Variable:A numeric scalar
- FunctionInt:INT(_) numeric scalar
- FunctionAbs:ABS(_) numeric scalar
+ Variable:A -> _
+ FunctionInt:INT(_) -> _
+ FunctionAbs:ABS(_) -> _
  NumericConstant:17
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 3630 LET Q=R(INT(ABS(A)))
- Variable:Q numeric scalar
- Variable:A numeric scalar
- FunctionAbs:ABS(_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- Variable:R(_) numeric scalar
+ Variable:Q -> _
+ Variable:A -> _
+ FunctionAbs:ABS(_) -> _
+ FunctionInt:INT(_) -> _
+ Variable:R(_) -> _
  AssignmentOperator:=
 3640 IF Q=0 THEN 3600
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 3650 IF Q=100 THEN 3600
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:100
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 3660 RETURN
  
 3670 DATA .5,-2,.25,4,.5,13,.55
  NumericConstant:.5
  NumericConstant:2
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  NumericConstant:.25
  NumericConstant:4
  NumericConstant:.5
@@ -1642,7 +1642,7 @@
 3680 DATA .4,-2,.3,7,.65,15,.75
  NumericConstant:.4
  NumericConstant:2
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  NumericConstant:.3
  NumericConstant:7
  NumericConstant:.65
@@ -1651,7 +1651,7 @@
 3690 DATA .4,-2,.3,6,.6,15,.35
  NumericConstant:.4
  NumericConstant:2
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  NumericConstant:.3
  NumericConstant:6
  NumericConstant:.6
@@ -1660,7 +1660,7 @@
 3700 DATA .65,-2,.65,6,.6,17,.9
  NumericConstant:.65
  NumericConstant:2
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  NumericConstant:.65
  NumericConstant:6
  NumericConstant:.6

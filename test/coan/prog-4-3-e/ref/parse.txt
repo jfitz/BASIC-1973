@@ -1,81 +1,81 @@
 2 DEF FNH(X)=INT(X*100+.5)/100
- UserFunctionName:FNH
- VariableName:X
- Variable:X numeric scalar
+ UserFunctionName:FNH -> _
+ VariableName:X -> _
+ Variable:X -> _
  NumericConstant:100
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:.5
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  NumericConstant:100
- BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
 10 LET P,P1=56.31
- Variable:P numeric scalar
- Variable:P1 numeric scalar
+ Variable:P -> _
+ Variable:P1 -> _
  NumericConstant:56.31
  AssignmentOperator:=
 20 FOR Y=1 TO 10
- control: Variable:Y numeric scalar
+ control: Variable:Y -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 22 REM  FOR TEN YEARS
  Remark: FOR TEN YEARS
 30 FOR M=1 TO 12
- control: Variable:M numeric scalar
+ control: Variable:M -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
 32 REM  COMPOUNDED MONTHLY AND COMPUTE INTEREST
  Remark: COMPOUNDED MONTHLY AND COMPUTE INTEREST
 40 LET I=P*4.5/100/12
- Variable:I numeric scalar
- Variable:P numeric scalar
+ Variable:I -> _
+ Variable:P -> _
  NumericConstant:4.5
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:100
- BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:12
- BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
  AssignmentOperator:=
 50 LET P=P+I
- Variable:P numeric scalar
- Variable:P numeric scalar
- Variable:I numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:P -> _
+ Variable:P -> _
+ Variable:I -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 60 NEXT M
- Variable:M numeric scalar
+ Variable:M -> _
 62 REM THAT FIGURES THE INTEREST FOR THIS YEAR COMPOUNDED MONTHLY
  Remark:THAT FIGURES THE INTEREST FOR THIS YEAR COMPOUNDED MONTHLY
 70 FOR Q=1 TO 4
- control: Variable:Q numeric scalar
+ control: Variable:Q -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 72 REM  COMPOUNDED QUARTERLY
  Remark: COMPOUNDED QUARTERLY
 80 LET I1=P1*4.75/100/4
- Variable:I1 numeric scalar
- Variable:P1 numeric scalar
+ Variable:I1 -> _
+ Variable:P1 -> _
  NumericConstant:4.75
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:100
- BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:4
- BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
  AssignmentOperator:=
 90 LET P1=P1+I1
- Variable:P1 numeric scalar
- Variable:P1 numeric scalar
- Variable:I1 numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:P1 -> _
+ Variable:P1 -> _
+ Variable:I1 -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 100 NEXT Q
- Variable:Q numeric scalar
+ Variable:Q -> _
 102 REM  THAT TAKES CARE OF THE QUARTERLY INVESTMENT FOR THIS YEAR
  Remark: THAT TAKES CARE OF THE QUARTERLY INVESTMENT FOR THIS YEAR
 108 REM  NOW COMPUTE THE NEXT YEAR
  Remark: NOW COMPUTE THE NEXT YEAR
 110 NEXT Y
- Variable:Y numeric scalar
+ Variable:Y -> _
 120 PRINT "FOR TEN YEARS"
  TextConstant:"FOR TEN YEARS"
  CarriageControl:NL
@@ -83,7 +83,7 @@
  TextConstant:"@4.5% COMPOUNDED MONTHLY..."
  CarriageControl:;
 132 LET X=4
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:4
  AssignmentOperator:=
 138 GOSUB 500
@@ -91,37 +91,37 @@
 140 PRINT "$"FNH(P)
  TextConstant:"$"
  CarriageControl:
- Variable:P numeric scalar
- UserFunction:FNH(_) numeric scalar
+ Variable:P -> _
+ UserFunction:FNH(_) -> _
  CarriageControl:NL
 150 PRINT "@4.75% COMPOUNDED QUARTERLY...";
  TextConstant:"@4.75% COMPOUNDED QUARTERLY..."
  CarriageControl:;
 152 LET X=X-3
- Variable:X numeric scalar
- Variable:X numeric scalar
+ Variable:X -> _
+ Variable:X -> _
  NumericConstant:3
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 158 GOSUB 500
  LineNumber:500
 160 PRINT "$"FNH(P1)
  TextConstant:"$"
  CarriageControl:
- Variable:P1 numeric scalar
- UserFunction:FNH(_) numeric scalar
+ Variable:P1 -> _
+ UserFunction:FNH(_) -> _
  CarriageControl:NL
 490 STOP
  
 500 FOR S=1 TO X
- control: Variable:S numeric scalar
+ control: Variable:S -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:X numeric scalar"]
+ end:     ["Variable:X -> _"]
 510 PRINT " ";
  TextConstant:" "
  CarriageControl:;
 520 NEXT S
- Variable:S numeric scalar
+ Variable:S -> _
 530 RETURN
  
 9999 END

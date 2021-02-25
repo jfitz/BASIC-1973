@@ -10,17 +10,17 @@
  TextConstant:"YOUR NUMBER DIVIDED BY 3 HAS A REMAINDER OF"
  CarriageControl:;
 45 INPUT A
- Variable:A numeric scalar
+ Variable:A -> _
 50 PRINT "YOUR NUMBER DIVIDED BY 5 HAS A REMAINDER OF";
  TextConstant:"YOUR NUMBER DIVIDED BY 5 HAS A REMAINDER OF"
  CarriageControl:;
 55 INPUT B
- Variable:B numeric scalar
+ Variable:B -> _
 60 PRINT "YOUR NUMBER DIVIDED BY 7 HAS A REMAINDER OF";
  TextConstant:"YOUR NUMBER DIVIDED BY 7 HAS A REMAINDER OF"
  CarriageControl:;
 65 INPUT C
- Variable:C numeric scalar
+ Variable:C -> _
 70 PRINT
  CarriageControl:NL
 80 PRINT "LET ME THINK A MOMENT...."
@@ -29,28 +29,28 @@
 90 SLEEP(5)
  NumericConstant:5
 100 D=70*A+21*B+15*C
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:70
- Variable:A numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:A -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:21
- Variable:B numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:B -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:15
- Variable:C numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:C -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 110 IF D<=105 THEN 140
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:105
- BinaryOperatorLessEqual:<=(_,_) boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) -> ?
 120 D=D-105
- Variable:D numeric scalar
- Variable:D numeric scalar
+ Variable:D -> _
+ Variable:D -> _
  NumericConstant:105
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 130 GOTO 110
  LineNumber:110
@@ -59,26 +59,26 @@
 150 PRINT "YOUR NUMBER WAS"D", RIGHT";
  TextConstant:"YOUR NUMBER WAS"
  CarriageControl:
- Variable:D numeric scalar
+ Variable:D -> _
  CarriageControl:
  TextConstant:", RIGHT"
  CarriageControl:;
 160 INPUT A$
- Variable:A$ string scalar
+ Variable:A$ -> $
 165 PRINT
  CarriageControl:NL
 170 IF A$="YES" THEN 220
- Variable:A$ string scalar
+ Variable:A$ -> $
  TextConstant:"YES"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 180 IF A$="NO" THEN 240
- Variable:A$ string scalar
+ Variable:A$ -> $
  TextConstant:"NO"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 190 PRINT "EH? I DON'T UNDERSTAND '"A$"' TRY 'YES' OR 'NO'"
  TextConstant:"EH? I DON'T UNDERSTAND '"
  CarriageControl:
- Variable:A$ string scalar
+ Variable:A$ -> $
  CarriageControl:
  TextConstant:"' TRY 'YES' OR 'NO'"
  CarriageControl:NL

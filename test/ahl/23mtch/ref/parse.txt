@@ -21,7 +21,7 @@
 140 PRINT 
  CarriageControl:NL
 150 LET M=23
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:23
  AssignmentOperator:=
 200 REM ***THE HUMAN MOVES
@@ -31,7 +31,7 @@
 210 PRINT "THERE ARE NOW";M;"MATCHES."
  TextConstant:"THERE ARE NOW"
  CarriageControl:;
- Variable:M numeric scalar
+ Variable:M -> _
  CarriageControl:;
  TextConstant:"MATCHES."
  CarriageControl:NL
@@ -41,98 +41,98 @@
  TextConstant:"HOW MANY DO YOU TAKE"
  CarriageControl:;
 230 INPUT H
- Variable:H numeric scalar
+ Variable:H -> _
 240 IF H>M THEN 510
- Variable:H numeric scalar
- Variable:M numeric scalar
- BinaryOperatorGreater:>(_,_) boolean scalar
+ Variable:H -> _
+ Variable:M -> _
+ BinaryOperatorGreater:>(_,_) -> ?
 250 IF H<>INT(H) THEN 510
- Variable:H numeric scalar
- Variable:H numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:H -> _
+ Variable:H -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 260 IF H<=0 THEN 510
- Variable:H numeric scalar
+ Variable:H -> _
  NumericConstant:0
- BinaryOperatorLessEqual:<=(_,_) boolean scalar
+ BinaryOperatorLessEqual:<=(_,_) -> ?
 270 IF H>=4 THEN 510
- Variable:H numeric scalar
+ Variable:H -> _
  NumericConstant:4
- BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) -> ?
 280 LET M=M-H
- Variable:M numeric scalar
- Variable:M numeric scalar
- Variable:H numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:M -> _
+ Variable:M -> _
+ Variable:H -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 290 IF M=0 THEN 410
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 300 REM ***THE COMPUTER MOVES
  Remark:***THE COMPUTER MOVES
 305 IF M=1 THEN 440
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 310 LET R= M-4*INT(M/4)
- Variable:R numeric scalar
- Variable:M numeric scalar
+ Variable:R -> _
+ Variable:M -> _
  NumericConstant:4
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:4
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 320 IF R<>1 THEN 350
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:1
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 330 LET C=INT(3+RND(0))+1
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:3
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 340 GO TO 360
  LineNumber:360
 350 LET C=(R+3)-4*INT((R+3)/4)
- Variable:C numeric scalar
- Variable:R numeric scalar
+ Variable:C -> _
+ Variable:R -> _
  NumericConstant:3
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:4
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:3
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:4
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 360 LET M=M-C
- Variable:M numeric scalar
- Variable:M numeric scalar
- Variable:C numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:M -> _
+ Variable:M -> _
+ Variable:C -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 370 IF M=0 THEN 440
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 375 PRINT
  CarriageControl:NL
 380 PRINT "I TOOK";C;"...";
  TextConstant:"I TOOK"
  CarriageControl:;
- Variable:C numeric scalar
+ Variable:C -> _
  CarriageControl:;
  TextConstant:"..."
  CarriageControl:;

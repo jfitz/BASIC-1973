@@ -1,16 +1,16 @@
 20 DIM A[4,3],B[5,4]
  NumericConstant:4
  NumericConstant:3
- Declaration:A(,) matrix
+ Declaration:A(,) -> _(,)
  NumericConstant:5
  NumericConstant:4
- Declaration:B(,) matrix
+ Declaration:B(,) -> _(,)
 25 DIM C[5,3]
  NumericConstant:5
  NumericConstant:3
- Declaration:C(,) matrix
+ Declaration:C(,) -> _(,)
 40 MAT READ A
- Variable:A(,) numeric matrix
+ Variable:A(,) -> _(,)
 60 DATA 6,3,2,5,3,2,4,3,2,3,2,1
  NumericConstant:6
  NumericConstant:3
@@ -25,7 +25,7 @@
  NumericConstant:2
  NumericConstant:1
 140 MAT READ B
- Variable:B(,) numeric matrix
+ Variable:B(,) -> _(,)
 160 DATA 1,3,4,2,1,5,3,6,2,4,2,5,1,6,3,2,3,1,0,2
  NumericConstant:1
  NumericConstant:3
@@ -50,7 +50,7 @@
 235 REM  WE STEP THROUGH ROWS OF B  THE CARAVANS
  Remark: WE STEP THROUGH ROWS OF B  THE CARAVANS
 240 FOR R=1 TO 5
- control: Variable:R numeric scalar
+ control: Variable:R -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 255 REM WE STEP THROUGH COLUMNS OF MAT A
@@ -58,15 +58,15 @@
 256 REM   THE TOLL BOOTH IDENTIFICATION
  Remark:  THE TOLL BOOTH IDENTIFICATION
 260 FOR C=1 TO 3
- control: Variable:C numeric scalar
+ control: Variable:C -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 275 REM INITIALIZE C[R,C] HERE
  Remark:INITIALIZE C[R,C] HERE
 280 LET C[R,C]=0
- Variable:R numeric scalar
- Variable:C numeric scalar
- Variable:C(_,_) numeric scalar
+ Variable:R -> _
+ Variable:C -> _
+ Variable:C(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 295 REM X  STEPS THROUGH THE ROWS OF A AND THE COLUMNS OF B
@@ -76,37 +76,37 @@
 297 REM  IN EACH ARRAY
  Remark: IN EACH ARRAY
 300 FOR X=1 TO 4
- control: Variable:X numeric scalar
+ control: Variable:X -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 320 LET C[R,C]=C[R,C]+B[R,X]*A[X,C]
- Variable:R numeric scalar
- Variable:C numeric scalar
- Variable:C(_,_) numeric scalar
- Variable:R numeric scalar
- Variable:C numeric scalar
- Variable:C(_,_) numeric scalar
- Variable:R numeric scalar
- Variable:X numeric scalar
- Variable:B(_,_) numeric scalar
- Variable:X numeric scalar
- Variable:C numeric scalar
- Variable:A(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:R -> _
+ Variable:C -> _
+ Variable:C(_,_) -> _
+ Variable:R -> _
+ Variable:C -> _
+ Variable:C(_,_) -> _
+ Variable:R -> _
+ Variable:X -> _
+ Variable:B(_,_) -> _
+ Variable:X -> _
+ Variable:C -> _
+ Variable:A(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 335 REM  GO TO THE NEXT COLUMN OF B AND THE NEXT ROW OF A
  Remark: GO TO THE NEXT COLUMN OF B AND THE NEXT ROW OF A
 340 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 355 REM GO TO THE NEXT COLUMN OF  MAT A
  Remark:GO TO THE NEXT COLUMN OF  MAT A
 360 NEXT C
- Variable:C numeric scalar
+ Variable:C -> _
 375 REM  GO TO THE NEXT ROW OF MAT B
  Remark: GO TO THE NEXT ROW OF MAT B
 380 NEXT R
- Variable:R numeric scalar
+ Variable:R -> _
 500 PRINT "ROAD","TUNNEL","BRIDGE"
  TextConstant:"ROAD"
  CarriageControl:,
@@ -115,7 +115,7 @@
  TextConstant:"BRIDGE"
  CarriageControl:NL
 520 MAT PRINT C
- Variable:C(,) numeric matrix
+ Variable:C(,) -> _(,)
  CarriageControl:NL
 999 END
  

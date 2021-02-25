@@ -166,6 +166,25 @@ class AbstractElement
     sigils
   end
 
+  def make_type_sigil(type)
+    sigil_chars = {
+      numeric: '_',
+      integer: '%',
+      string: '$',
+      boolean: '?',
+      filehandle: 'FH'
+    }
+
+    sigil_chars[type]
+  end
+  
+  def make_shape_sigil(shape)
+    sigil = ''
+    sigil = '()' if shape == :array
+    sigil = '(,)' if shape == :matrix
+    sigil
+  end
+
   def make_signature(types)
     sigils = make_sigils(types)
 
@@ -1665,7 +1684,8 @@ class VariableName < AbstractElement
   end
 
   def dump
-    "#{self.class}:#{@name}"
+    result = make_type_sigil(content_type)
+    "#{self.class}:#{@name} -> #{result}"
   end
 
   def compatible?(value)
@@ -1748,7 +1768,8 @@ class UserFunctionName < AbstractElement
   end
 
   def dump
-    "#{self.class}:#{@name}"
+    result = make_type_sigil(@content_type) + make_shape_sigil(@shape)
+    "#{self.class}:#{@name} -> #{result}"
   end
 
   def compatible?(value)
@@ -1828,8 +1849,8 @@ class Variable < AbstractElement
       shape_stack.pop if shapes.class.to_s == 'Array'
     end
 
-    @signature = '()' if @shape == :array
-    @signature = '(,)' if @shape == :matrix
+    @signature = make_shape_sigil(@shape) if
+      @shape == :array || @shape == :matrix
 
     shape_stack.push(@shape)
   end
@@ -1847,7 +1868,8 @@ class Variable < AbstractElement
   end
 
   def dump
-    "#{self.class}:#{@variable_name}#{@signature} #{content_type} #{@shape}"
+    result = make_type_sigil(content_type) + make_shape_sigil(@shape)
+    "#{self.class}:#{@variable_name}#{@signature} -> #{result}"
   end
 
   def name
@@ -2077,10 +2099,6 @@ class Declaration < AbstractElement
     @shape = :unknown
   end
 
-  def dump
-    "#{self.class}:#{@variable_name}#{@signature} #{@shape}"
-  end
-
   def name
     @variable_name
   end
@@ -2106,10 +2124,15 @@ class Declaration < AbstractElement
     @shape = :array if shapes.size == 1
     @shape = :matrix if shapes.size == 2
 
-    @signature = '()' if @shape == :array
-    @signature = '(,)' if @shape == :matrix
+    @signature = make_shape_sigil(@shape) if
+      @shape == :array || @shape == :matrix
 
     shape_stack.push(@shape)
+  end
+
+  def dump
+    result = make_type_sigil(content_type) + make_shape_sigil(@shape)
+    "#{self.class}:#{@variable_name}#{@signature} -> #{result}"
   end
 
   def to_s

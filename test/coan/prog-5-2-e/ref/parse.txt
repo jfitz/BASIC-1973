@@ -1,54 +1,54 @@
 10 FOR R=1 TO 8
- control: Variable:R numeric scalar
+ control: Variable:R -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
 14 REM  HERE THE ROW NUMBER IS ENTERED IN THE FIRST COLUMN
  Remark: HERE THE ROW NUMBER IS ENTERED IN THE FIRST COLUMN
 15 LET S[R,1]=R
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:1
- Variable:S(_,_) numeric scalar
- Variable:R numeric scalar
+ Variable:S(_,_) -> _
+ Variable:R -> _
  AssignmentOperator:=
 20 FOR C=2 TO 5
- control: Variable:C numeric scalar
+ control: Variable:C -> _
  start:   ["NumericConstant:2"]
  end:     ["NumericConstant:5"]
 30 LET S[R,C]=0
- Variable:R numeric scalar
- Variable:C numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:R -> _
+ Variable:C -> _
+ Variable:S(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 40 NEXT C
- Variable:C numeric scalar
+ Variable:C -> _
 50 NEXT R
- Variable:R numeric scalar
+ Variable:R -> _
 68 REM WE ARE ENTERING FIGURES IN COLUMNS 2 THROUGH 5 ONLY
  Remark:WE ARE ENTERING FIGURES IN COLUMNS 2 THROUGH 5 ONLY
 70 FOR C=2 TO 5
- control: Variable:C numeric scalar
+ control: Variable:C -> _
  start:   ["NumericConstant:2"]
  end:     ["NumericConstant:5"]
 80 READ N
- Variable:N numeric scalar
+ Variable:N -> _
 85 IF N=-1 THEN 110
- Variable:N numeric scalar
+ Variable:N -> _
  NumericConstant:1
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 90 LET S[N,C]=S[N,C]+1
- Variable:N numeric scalar
- Variable:C numeric scalar
- Variable:S(_,_) numeric scalar
- Variable:N numeric scalar
- Variable:C numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:N -> _
+ Variable:C -> _
+ Variable:S(_,_) -> _
+ Variable:N -> _
+ Variable:C -> _
+ Variable:S(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 100 NEXT C
- Variable:C numeric scalar
+ Variable:C -> _
 105 GOTO 70
  LineNumber:70
 110 PRINT "NUMBER,TV'S, CARS, HOMES,BATHS"
@@ -57,24 +57,24 @@
 119 REM  HERE ARE THE RESULTS PRINTED
  Remark: HERE ARE THE RESULTS PRINTED
 120 FOR R=1 TO 8
- control: Variable:R numeric scalar
+ control: Variable:R -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:8"]
 130 FOR C=1 TO 5
- control: Variable:C numeric scalar
+ control: Variable:C -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 140 PRINT S[R,C];
- Variable:R numeric scalar
- Variable:C numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:R -> _
+ Variable:C -> _
+ Variable:S(_,_) -> _
  CarriageControl:;
 150 NEXT C
- Variable:C numeric scalar
+ Variable:C -> _
 155 PRINT
  CarriageControl:NL
 160 NEXT R
- Variable:R numeric scalar
+ Variable:R -> _
 349 REM EACH GROUP OF FOUR NUMBERS IS FOR ONE FAMILY- T,C,H,B
  Remark:EACH GROUP OF FOUR NUMBERS IS FOR ONE FAMILY- T,C,H,B
 350 DATA 1,1,1,1,2,1,1,2,3,2,1,2,4,3,2,8,4,2,1,5
@@ -146,7 +146,7 @@
  NumericConstant:1
  NumericConstant:2
  NumericConstant:1
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  NumericConstant:0
  NumericConstant:0
  NumericConstant:0

@@ -2,57 +2,57 @@
  TextConstant:"TAKE ROOTS OF COMPLEX NUMBERS IN POLAR FORM"
  CarriageControl:NL
 20 READ R,G,N
- Variable:R numeric scalar
- Variable:G numeric scalar
- Variable:N numeric scalar
+ Variable:R -> _
+ Variable:G -> _
+ Variable:N -> _
 30 PRINT "THE";N;",";N;"TH ROOTS OF (";R;",";G;") ARE:"
  TextConstant:"THE"
  CarriageControl:;
- Variable:N numeric scalar
+ Variable:N -> _
  CarriageControl:;
  TextConstant:","
  CarriageControl:;
- Variable:N numeric scalar
+ Variable:N -> _
  CarriageControl:;
  TextConstant:"TH ROOTS OF ("
  CarriageControl:;
- Variable:R numeric scalar
+ Variable:R -> _
  CarriageControl:;
  TextConstant:","
  CarriageControl:;
- Variable:G numeric scalar
+ Variable:G -> _
  CarriageControl:;
  TextConstant:") ARE:"
  CarriageControl:NL
 40 FOR X=1 TO N
- control: Variable:X numeric scalar
+ control: Variable:X -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:N numeric scalar"]
+ end:     ["Variable:N -> _"]
 50 PRINT "(";R^(1/N);",";G/N;")"
  TextConstant:"("
  CarriageControl:;
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:1
- Variable:N numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
- BinaryOperatorPower:^(_,_) numeric scalar
+ Variable:N -> _
+ BinaryOperatorDivide:/(_,_) -> _
+ BinaryOperatorPower:^(_,_) -> _
  CarriageControl:;
  TextConstant:","
  CarriageControl:;
- Variable:G numeric scalar
- Variable:N numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
+ Variable:G -> _
+ Variable:N -> _
+ BinaryOperatorDivide:/(_,_) -> _
  CarriageControl:;
  TextConstant:")"
  CarriageControl:NL
 60 LET G=G+360
- Variable:G numeric scalar
- Variable:G numeric scalar
+ Variable:G -> _
+ Variable:G -> _
  NumericConstant:360
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 70 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 80 PRINT
  CarriageControl:NL
 90 GOTO 20

@@ -3,35 +3,35 @@
 105 PRINT
  CarriageControl:NL
 106 Q=0
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:0
  AssignmentOperator:=
 110 V = 5+INT(35*RND(0))
- Variable:V numeric scalar
+ Variable:V -> _
  NumericConstant:5
  NumericConstant:35
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 111 PRINT "A BALL IS THROWN UPWARDS AT "V" METERS PER SECOND"
  TextConstant:"A BALL IS THROWN UPWARDS AT "
  CarriageControl:
- Variable:V numeric scalar
+ Variable:V -> _
  CarriageControl:
  TextConstant:" METERS PER SECOND"
  CarriageControl:NL
 112 PRINT
  CarriageControl:NL
 115 A=V^2/19.6
- Variable:A numeric scalar
- Variable:V numeric scalar
+ Variable:A -> _
+ Variable:V -> _
  NumericConstant:2
- BinaryOperatorPower:^(_,_) numeric scalar
+ BinaryOperatorPower:^(_,_) -> _
  NumericConstant:19.6
- BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
  AssignmentOperator:=
 116 PRINT "HOW HIGH WILL IT GO (IN METERS)";
  TextConstant:"HOW HIGH WILL IT GO (IN METERS)"
@@ -39,10 +39,10 @@
 117 GOSUB 500
  LineNumber:500
 120 A=V/4.9
- Variable:A numeric scalar
- Variable:V numeric scalar
+ Variable:A -> _
+ Variable:V -> _
  NumericConstant:4.9
- BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
  AssignmentOperator:=
 122 PRINT "HOW LONG UNTIL IT RETURNS (IN SECONDS)";
  TextConstant:"HOW LONG UNTIL IT RETURNS (IN SECONDS)"
@@ -50,31 +50,31 @@
 124 GOSUB 500
  LineNumber:500
 130 T=(1+INT(2*V+RND(1)))/10
- Variable:T numeric scalar
+ Variable:T -> _
  NumericConstant:1
  NumericConstant:2
- Variable:V numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:V -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:10
- BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
  AssignmentOperator:=
 132 A=V-9.8*T
- Variable:A numeric scalar
- Variable:V numeric scalar
+ Variable:A -> _
+ Variable:V -> _
  NumericConstant:9.8
- Variable:T numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:T -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 134 PRINT "WHAT WILL ITS VELOCITY BE AFTER"T"SECONDS ";
  TextConstant:"WHAT WILL ITS VELOCITY BE AFTER"
  CarriageControl:
- Variable:T numeric scalar
+ Variable:T -> _
  CarriageControl:
  TextConstant:"SECONDS "
  CarriageControl:;
@@ -83,52 +83,52 @@
 140 PRINT
  CarriageControl:NL
 150 PRINT Q"RIGHT OUT OF 3.";
- Variable:Q numeric scalar
+ Variable:Q -> _
  CarriageControl:
  TextConstant:"RIGHT OUT OF 3."
  CarriageControl:;
 160 IF Q<2 THEN 100
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:2
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 170 PRINT " NOT BAD. "
  TextConstant:" NOT BAD. "
  CarriageControl:NL
 180 GO TO 100
  LineNumber:100
 500 INPUT G
- Variable:G numeric scalar
+ Variable:G -> _
 501 G=100*ABS(G-A)
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:100
- Variable:G numeric scalar
- Variable:A numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- FunctionAbs:ABS(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:G -> _
+ Variable:A -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ FunctionAbs:ABS(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  AssignmentOperator:=
 502 IF G<=ABS(A) THEN 507
- Variable:G numeric scalar
- Variable:A numeric scalar
- FunctionAbs:ABS(_) numeric scalar
- BinaryOperatorLessEqual:<=(_,_) boolean scalar
+ Variable:G -> _
+ Variable:A -> _
+ FunctionAbs:ABS(_) -> _
+ BinaryOperatorLessEqual:<=(_,_) -> ?
 503 IF G<=15+ABS(A) THEN 510
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:15
- Variable:A numeric scalar
- FunctionAbs:ABS(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- BinaryOperatorLessEqual:<=(_,_) boolean scalar
+ Variable:A -> _
+ FunctionAbs:ABS(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorLessEqual:<=(_,_) -> ?
 504 PRINT "NOT EVEN CLOSE."
  TextConstant:"NOT EVEN CLOSE."
  CarriageControl:NL
 506 GO TO 512
  LineNumber:512
 507 G=G+1
- Variable:G numeric scalar
- Variable:G numeric scalar
+ Variable:G -> _
+ Variable:G -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 508 PRI"CORRECT! VERY GOOD!"
  TextConstant:"CORRECT! VERY GOOD!"
@@ -139,15 +139,15 @@
  TextConstant:"CLOSE ENOUGH."
  CarriageControl:NL
 511 Q=Q+1
- Variable:Q numeric scalar
- Variable:Q numeric scalar
+ Variable:Q -> _
+ Variable:Q -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 512 PRINT "CORRECT ANSWER IS"A
  TextConstant:"CORRECT ANSWER IS"
  CarriageControl:
- Variable:A numeric scalar
+ Variable:A -> _
  CarriageControl:NL
 520 PRINT
  CarriageControl:NL

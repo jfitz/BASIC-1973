@@ -5,75 +5,75 @@
  TextConstant:"START, END, INCREMENT"
  CarriageControl:;
 30 INPUT F,L,S
- Variable:F numeric scalar
- Variable:L numeric scalar
- Variable:S numeric scalar
+ Variable:F -> _
+ Variable:L -> _
+ Variable:S -> _
 40 IF S=0 THEN 270
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 50 DEF FNT(X)=X^3+49.1809*X^2+2.67761*X-15223.8
- UserFunctionName:FNT
- VariableName:X
- Variable:X numeric scalar
+ UserFunctionName:FNT -> _
+ VariableName:X -> _
+ Variable:X -> _
  NumericConstant:3
- BinaryOperatorPower:^(_,_) numeric scalar
+ BinaryOperatorPower:^(_,_) -> _
  NumericConstant:49.1809
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:2
- BinaryOperatorPower:^(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:2.67761
- Variable:X numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:X -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:15223.8
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
 60 LET A=0
- Variable:A numeric scalar
+ Variable:A -> _
  NumericConstant:0
  AssignmentOperator:=
 70 FOR X=F TO L STEP S
- control: Variable:X numeric scalar
- start:   ["Variable:F numeric scalar"]
- end:     ["Variable:L numeric scalar"]
- step:    ["Variable:S numeric scalar"]
+ control: Variable:X -> _
+ start:   ["Variable:F -> _"]
+ end:     ["Variable:L -> _"]
+ step:    ["Variable:S -> _"]
 80 LET S1=FNT(X)
- Variable:S1 numeric scalar
- Variable:X numeric scalar
- UserFunction:FNT(_) numeric scalar
+ Variable:S1 -> _
+ Variable:X -> _
+ UserFunction:FNT(_) -> _
  AssignmentOperator:=
 90 LET S2=FNT(X+S)
- Variable:S2 numeric scalar
- Variable:X numeric scalar
- Variable:S numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- UserFunction:FNT(_) numeric scalar
+ Variable:S2 -> _
+ Variable:X -> _
+ Variable:S -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ UserFunction:FNT(_) -> _
  AssignmentOperator:=
 100 IF S1*S2>0 THEN 130
- Variable:S1 numeric scalar
- Variable:S2 numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:S1 -> _
+ Variable:S2 -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:0
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 110 LET A=A+1
- Variable:A numeric scalar
- Variable:A numeric scalar
+ Variable:A -> _
+ Variable:A -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 120 LET S[A]=X
- Variable:A numeric scalar
- Variable:S(_) numeric scalar
- Variable:X numeric scalar
+ Variable:A -> _
+ Variable:S(_) -> _
+ Variable:X -> _
  AssignmentOperator:=
 130 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 140 IF A>0 THEN 190
- Variable:A numeric scalar
+ Variable:A -> _
  NumericConstant:0
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 150 PRINT "NO INTERVALS FOUND **** TRY AGAIN "
  TextConstant:"NO INTERVALS FOUND **** TRY AGAIN "
  CarriageControl:NL
@@ -88,15 +88,15 @@
  TextConstant:"INTERVAL(S) BEGIN AT:"
  CarriageControl:NL
 200 FOR I=1 TO A
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:A numeric scalar"]
+ end:     ["Variable:A -> _"]
 210 PRINT S[I];
- Variable:I numeric scalar
- Variable:S(_) numeric scalar
+ Variable:I -> _
+ Variable:S(_) -> _
  CarriageControl:;
 220 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 230 PRINT
  CarriageControl:NL
 240 PRINT

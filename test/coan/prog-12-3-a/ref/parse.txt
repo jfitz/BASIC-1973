@@ -1,16 +1,16 @@
 20 DIM A[4,3],B[5,4]
  NumericConstant:4
  NumericConstant:3
- Declaration:A(,) matrix
+ Declaration:A(,) -> _(,)
  NumericConstant:5
  NumericConstant:4
- Declaration:B(,) matrix
+ Declaration:B(,) -> _(,)
 25 DIM C[5,3]
  NumericConstant:5
  NumericConstant:3
- Declaration:C(,) matrix
+ Declaration:C(,) -> _(,)
 40 MAT READ A
- Variable:A(,) numeric matrix
+ Variable:A(,) -> _(,)
 60 DATA 6,3,2,5,3,2,4,3,2,3,2,1
  NumericConstant:6
  NumericConstant:3
@@ -25,7 +25,7 @@
  NumericConstant:2
  NumericConstant:1
 140 MAT READ B
- Variable:B(,) numeric matrix
+ Variable:B(,) -> _(,)
 160 DATA 1,3,4,2,1,5,3,6,2,4,2,5,1,6,3,2,3,1,0,2
  NumericConstant:1
  NumericConstant:3
@@ -48,10 +48,10 @@
  NumericConstant:0
  NumericConstant:2
 200 MAT C=B*A
- Variable:C(,) numeric matrix
- Variable:B(,) numeric matrix
- Variable:A(,) numeric matrix
- BinaryOperatorMultiply:*(_,_) numeric matrix
+ Variable:C(,) -> _(,)
+ Variable:B(,) -> _(,)
+ Variable:A(,) -> _(,)
+ BinaryOperatorMultiply:*(_,_) -> _(,)
  AssignmentOperator:=
 210 PRINT "ROAD","TUNNEL","BRIDGE"
  TextConstant:"ROAD"
@@ -61,7 +61,7 @@
  TextConstant:"BRIDGE"
  CarriageControl:NL
 230 MAT PRINT C
- Variable:C(,) numeric matrix
+ Variable:C(,) -> _(,)
  CarriageControl:NL
 999 END
  

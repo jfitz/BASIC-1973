@@ -1,35 +1,35 @@
 10 FOR I=1 TO 5
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 20 LET C[I]=0
- Variable:I numeric scalar
- Variable:C(_) numeric scalar
+ Variable:I -> _
+ Variable:C(_) -> _
  NumericConstant:0
  AssignmentOperator:=
 30 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 40 FOR R=1 TO 5
- control: Variable:R numeric scalar
+ control: Variable:R -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 50 READ K
- Variable:K numeric scalar
+ Variable:K -> _
 60 IF K=-1 THEN 100
- Variable:K numeric scalar
+ Variable:K -> _
  NumericConstant:1
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 70 LET C[R]=C[R]+K
- Variable:R numeric scalar
- Variable:C(_) numeric scalar
- Variable:R numeric scalar
- Variable:C(_) numeric scalar
- Variable:K numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:R -> _
+ Variable:C(_) -> _
+ Variable:R -> _
+ Variable:C(_) -> _
+ Variable:K -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 80 NEXT R
- Variable:R numeric scalar
+ Variable:R -> _
 90 GOTO 40
  LineNumber:40
 100 PRINT "CHEMISTRY","PHYSICS","FRENCH","SPANISH","CALCULUS"
@@ -44,15 +44,15 @@
  TextConstant:"CALCULUS"
  CarriageControl:NL
 110 FOR I=1 TO 5
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 120 PRINT C[I],
- Variable:I numeric scalar
- Variable:C(_) numeric scalar
+ Variable:I -> _
+ Variable:C(_) -> _
  CarriageControl:,
 130 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 990 REM DATA IS IN ORDER CHEMISTRY PHYSICS FRENCH SPANISH CALCULUS
  Remark:DATA IS IN ORDER CHEMISTRY PHYSICS FRENCH SPANISH CALCULUS
 995 REM    '1' MEANS YES   '0' MEANS NO
@@ -122,7 +122,7 @@
  NumericConstant:0
 1100 DATA -1
  NumericConstant:1
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
 9999 END
  
 

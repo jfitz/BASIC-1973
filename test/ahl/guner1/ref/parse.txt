@@ -2,20 +2,20 @@
  Remark:ARTILLERY FIRING GAME
 110 DIM A$(3)
  NumericConstant:3
- Declaration:A$() array
+ Declaration:A$() -> $()
 120 RANDOMIZE
  
 130 PRINT "DO YOU WANT INSTRUCTIONS";
  TextConstant:"DO YOU WANT INSTRUCTIONS"
  CarriageControl:;
 140 INPUT A$
- Variable:A$ string scalar
+ Variable:A$ -> $
 150 PRINT
  CarriageControl:NL
 160 IF A$="NO" THEN 330
- Variable:A$ string scalar
+ Variable:A$ -> $
  TextConstant:"NO"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 170 PRINT "    THIS GAME TESTS YOUR ABILITY TO HIT A MOVING TARGET,"
  TextConstant:"    THIS GAME TESTS YOUR ABILITY TO HIT A MOVING TARGET,"
  CarriageControl:NL
@@ -64,90 +64,90 @@
  TextConstant:"ENTER SPEED"
  CarriageControl:;
 340 INPUT S
- Variable:S numeric scalar
+ Variable:S -> _
 350 IF S<1 THEN 330
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 360 IF S>100 THEN 330
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:100
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 370 PRINT "ENTER DISTANCE";
  TextConstant:"ENTER DISTANCE"
  CarriageControl:;
 380 INPUT D
- Variable:D numeric scalar
+ Variable:D -> _
 390 IF D<0 THEN 370
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:0
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 400 IF D>10000 THEN 370
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:10000
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 410 M=100000-75000*RND(0)
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:100000
  NumericConstant:75000
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 420 PRINT
  CarriageControl:NL
 430 PRINT "THE MAXIMUM RANGE OF YOUR GUN IS "M" YARDS"
  TextConstant:"THE MAXIMUM RANGE OF YOUR GUN IS "
  CarriageControl:
- Variable:M numeric scalar
+ Variable:M -> _
  CarriageControl:
  TextConstant:" YARDS"
  CarriageControl:NL
 440 FOR K=1 TO M/10000
- control: Variable:K numeric scalar
+ control: Variable:K -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:M numeric scalar", "NumericConstant:10000", "BinaryOperatorDivide:/(_,_) numeric scalar"]
+ end:     ["Variable:M -> _", "NumericConstant:10000", "BinaryOperatorDivide:/(_,_) -> _"]
 450 LET K1=RND(0)
- Variable:K1 numeric scalar
+ Variable:K1 -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  AssignmentOperator:=
 460 NEXT K
- Variable:K numeric scalar
+ Variable:K -> _
 470 R=.95*M-.6*M*RND(0)
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:.95
- Variable:M numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:M -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:.6
- Variable:M numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:M -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 480 LET N=0
- Variable:N numeric scalar
+ Variable:N -> _
  NumericConstant:0
  AssignmentOperator:=
 490 GOTO 520
  LineNumber:520
 500 IF R>M THEN 840
- Variable:R numeric scalar
- Variable:M numeric scalar
- BinaryOperatorGreater:>(_,_) boolean scalar
+ Variable:R -> _
+ Variable:M -> _
+ BinaryOperatorGreater:>(_,_) -> ?
 510 IF R<(M/2.5) THEN 860
- Variable:R numeric scalar
- Variable:M numeric scalar
+ Variable:R -> _
+ Variable:M -> _
  NumericConstant:2.5
- BinaryOperatorDivide:/(_,_) numeric scalar
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ BinaryOperatorLess:<(_,_) -> ?
 520 PRINT "TARGET RANGE IS"R" YARDS"
  TextConstant:"TARGET RANGE IS"
  CarriageControl:
- Variable:R numeric scalar
+ Variable:R -> _
  CarriageControl:
  TextConstant:" YARDS"
  CarriageControl:NL
@@ -155,85 +155,85 @@
  TextConstant:"ELEVATION"
  CarriageControl:NL
 540 INPUT E
- Variable:E numeric scalar
+ Variable:E -> _
 550 IF E<0 THEN 840
- Variable:E numeric scalar
+ Variable:E -> _
  NumericConstant:0
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 560 IF E> 89 THEN 800
- Variable:E numeric scalar
+ Variable:E -> _
  NumericConstant:89
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 570 IF E <1 THEN 820
- Variable:E numeric scalar
+ Variable:E -> _
  NumericConstant:1
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 580 N=N+1
- Variable:N numeric scalar
- Variable:N numeric scalar
+ Variable:N -> _
+ Variable:N -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 590 K=INT(R-M*SIN(2*E/57.3))
- Variable:K numeric scalar
- Variable:R numeric scalar
- Variable:M numeric scalar
+ Variable:K -> _
+ Variable:R -> _
+ Variable:M -> _
  NumericConstant:2
- Variable:E numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:E -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:57.3
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionSin:SIN(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionSin:SIN(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 600 K=ABS(K)
- Variable:K numeric scalar
- Variable:K numeric scalar
- FunctionAbs:ABS(_) numeric scalar
+ Variable:K -> _
+ Variable:K -> _
+ FunctionAbs:ABS(_) -> _
  AssignmentOperator:=
 610 K1=ABS(K-D)
- Variable:K1 numeric scalar
- Variable:K numeric scalar
- Variable:D numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- FunctionAbs:ABS(_) numeric scalar
+ Variable:K1 -> _
+ Variable:K -> _
+ Variable:D -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ FunctionAbs:ABS(_) -> _
  AssignmentOperator:=
 620 IF K1>D THEN 720
- Variable:K1 numeric scalar
- Variable:D numeric scalar
- BinaryOperatorGreater:>(_,_) boolean scalar
+ Variable:K1 -> _
+ Variable:D -> _
+ BinaryOperatorGreater:>(_,_) -> ?
 630 IF K1<D THEN 740
- Variable:K1 numeric scalar
- Variable:D numeric scalar
- BinaryOperatorLess:<(_,_) boolean scalar
+ Variable:K1 -> _
+ Variable:D -> _
+ BinaryOperatorLess:<(_,_) -> ?
 650 PRINT "*** TARGET DESTROYED ***"
  TextConstant:"*** TARGET DESTROYED ***"
  CarriageControl:NL
 660 GOSUB 940
  LineNumber:940
 670 D=K
- Variable:D numeric scalar
- Variable:K numeric scalar
+ Variable:D -> _
+ Variable:K -> _
  AssignmentOperator:=
 680 FOR K=1 TO N+D/100
- control: Variable:K numeric scalar
+ control: Variable:K -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:N numeric scalar", "Variable:D numeric scalar", "NumericConstant:100", "BinaryOperatorDivide:/(_,_) numeric scalar", "BinaryOperatorPlus:+(_,_) numeric scalar"]
+ end:     ["Variable:N -> _", "Variable:D -> _", "NumericConstant:100", "BinaryOperatorDivide:/(_,_) -> _", "BinaryOperatorPlus:+(_,_) -> _"]
 690 K1=RND(0)
- Variable:K1 numeric scalar
+ Variable:K1 -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  AssignmentOperator:=
 700 NEXT K
- Variable:K numeric scalar
+ Variable:K -> _
 710 GOTO 410
  LineNumber:410
 720 PRINT "SHORT OF TARGET BY "K1" YARDS"
  TextConstant:"SHORT OF TARGET BY "
  CarriageControl:
- Variable:K1 numeric scalar
+ Variable:K1 -> _
  CarriageControl:
  TextConstant:" YARDS"
  CarriageControl:NL
@@ -242,57 +242,57 @@
 740 PRINT "OVER TARGET BY "K1"YARDS"
  TextConstant:"OVER TARGET BY "
  CarriageControl:
- Variable:K1 numeric scalar
+ Variable:K1 -> _
  CarriageControl:
  TextConstant:"YARDS"
  CarriageControl:NL
 745 LET C=INT(2*RND(0)+1)
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:2
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 746 IF C=1 THEN 750
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 748 LET C=-1
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:1
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 749 GOTO 760
  LineNumber:760
 750 LET C=1
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:1
  AssignmentOperator:=
 760 C1=M*S/100*RND(0)
- Variable:C1 numeric scalar
- Variable:M numeric scalar
- Variable:S numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:C1 -> _
+ Variable:M -> _
+ Variable:S -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:100
- BinaryOperatorDivide:/(_,_) numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  AssignmentOperator:=
 770 C1=C*C1
- Variable:C1 numeric scalar
- Variable:C numeric scalar
- Variable:C1 numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:C1 -> _
+ Variable:C -> _
+ Variable:C1 -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  AssignmentOperator:=
 780 R=R+C1
- Variable:R numeric scalar
- Variable:R numeric scalar
- Variable:C1 numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:R -> _
+ Variable:R -> _
+ Variable:C1 -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 790 GOTO 500
  LineNumber:500
@@ -317,11 +317,11 @@
 870 GOTO 670
  LineNumber:670
 940 IF N=1 THEN 970
- Variable:N numeric scalar
+ Variable:N -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 950 PRINT N" ROUNDS EXPENDED"
- Variable:N numeric scalar
+ Variable:N -> _
  CarriageControl:
  TextConstant:" ROUNDS EXPENDED"
  CarriageControl:NL

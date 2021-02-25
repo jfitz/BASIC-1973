@@ -3,26 +3,26 @@
 110 DIM W(25, 103), V(25,103)
  NumericConstant:25
  NumericConstant:103
- Declaration:W(,) matrix
+ Declaration:W(,) -> _(,)
  NumericConstant:25
  NumericConstant:103
- Declaration:V(,) matrix
+ Declaration:V(,) -> _(,)
 120 PRINT "WHAT ARE YOUR WIDTH AND LENGTH?"
  TextConstant:"WHAT ARE YOUR WIDTH AND LENGTH?"
  CarriageControl:NL
 121 INPUT H, V
- Variable:H numeric scalar
- Variable:V numeric scalar
+ Variable:H -> _
+ Variable:V -> _
 122 PRINT
  CarriageControl:NL
 130 IF H<>1 THEN 150
- Variable:H numeric scalar
+ Variable:H -> _
  NumericConstant:1
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 131 IF V<>1 THEN 150
- Variable:V numeric scalar
+ Variable:V -> _
  NumericConstant:1
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 132 PRINT "MEANINGLESS DIMENSIONS, TRY AGAIN"
  TextConstant:"MEANINGLESS DIMENSIONS, TRY AGAIN"
  CarriageControl:NL
@@ -35,31 +35,31 @@
 151 PRINT
  CarriageControl:NL
 160 LET Q=0
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:0
  AssignmentOperator:=
 161 LET Z=0
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:0
  AssignmentOperator:=
 162 LET X=INT(RND(0)*H+1)
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
- Variable:H numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ FunctionRnd:RND(_) -> _
+ Variable:H -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 163 FOR I=1 TO H
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:H numeric scalar"]
+ end:     ["Variable:H -> _"]
 170 IF I=X THEN 173
- Variable:I numeric scalar
- Variable:X numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:I -> _
+ Variable:X -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 171 PRINT ":--";
  TextConstant:":--"
  CarriageControl:;
@@ -69,754 +69,754 @@
  TextConstant:":  "
  CarriageControl:;
 180 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 190 PRINT ":"
  TextConstant:":"
  CarriageControl:NL
 191 LET C=1
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:1
  AssignmentOperator:=
 192 LET W(X, 1)=C
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:1
- Variable:W(_,_) numeric scalar
- Variable:C numeric scalar
+ Variable:W(_,_) -> _
+ Variable:C -> _
  AssignmentOperator:=
 193 LET C = C + 1
- Variable:C numeric scalar
- Variable:C numeric scalar
+ Variable:C -> _
+ Variable:C -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 200 LET R=X
- Variable:R numeric scalar
- Variable:X numeric scalar
+ Variable:R -> _
+ Variable:X -> _
  AssignmentOperator:=
 201 LET S=1
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:1
  AssignmentOperator:=
 202 GO TO 260
  LineNumber:260
 210 IF R<>H THEN 240
- Variable:R numeric scalar
- Variable:H numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:R -> _
+ Variable:H -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 211 IF S<>V THEN 230
- Variable:S numeric scalar
- Variable:V numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:S -> _
+ Variable:V -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 220 LET R=1
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:1
  AssignmentOperator:=
 221 LET S=1
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:1
  AssignmentOperator:=
 222 GO TO 250
  LineNumber:250
 230 LET R=1
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:1
  AssignmentOperator:=
 231 LET S=S+1
- Variable:S numeric scalar
- Variable:S numeric scalar
+ Variable:S -> _
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 232 GO TO 250
  LineNumber:250
 240 LET R=R+1
- Variable:R numeric scalar
- Variable:R numeric scalar
+ Variable:R -> _
+ Variable:R -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 250 IF W(R,S)=0 THEN 210
- Variable:R numeric scalar
- Variable:S numeric scalar
- Variable:W(_,_) numeric scalar
+ Variable:R -> _
+ Variable:S -> _
+ Variable:W(_,_) -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 260 IF R-1=0 THEN 530
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 261 IF W(R-1,S)<>0 THEN 530
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:S numeric scalar
- Variable:W(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:S -> _
+ Variable:W(_,_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 270 IF S-1=0 THEN 390
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 280 IF W(R,S-1)<>0 THEN 390
- Variable:R numeric scalar
- Variable:S numeric scalar
+ Variable:R -> _
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:W(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:W(_,_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 290 IF R=H THEN 330 
- Variable:R numeric scalar
- Variable:H numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:R -> _
+ Variable:H -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 300 IF W(R+1, S)<>0 THEN 320
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:S numeric scalar
- Variable:W(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:S -> _
+ Variable:W(_,_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 310 LET X=INT(RND(0)*3+1)
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:3
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 320 IF X=1 THEN 790
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 321 IF X=2 THEN 820
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 323 IF X=3 THEN 860
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:3
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 330 IF S<>V THEN 340
- Variable:S numeric scalar
- Variable:V numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:S -> _
+ Variable:V -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 331 IF Z=1 THEN 370
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 332 LET Q=1
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:1
  AssignmentOperator:=
 333 GO TO 350
  LineNumber:350
 340 IF W(R, S+1)<>0 THEN 370
- Variable:R numeric scalar
- Variable:S numeric scalar
+ Variable:R -> _
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:W(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:W(_,_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 350 LET X=INT(RND(0)*3+1)
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:3
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 360 IF X=1 THEN 790
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 361 IF X=2 THEN 820
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 362 IF X=3 THEN 910
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:3
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 370 LET X=INT(RND(0)*2+1)
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:2
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 380 IF X=1 THEN 790
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 381 IF X=2 THEN 820
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 390 IF R=H THEN 470
- Variable:R numeric scalar
- Variable:H numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:R -> _
+ Variable:H -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 400 IF W(R+1,S)<>0 THEN 470
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:S numeric scalar
- Variable:W(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:S -> _
+ Variable:W(_,_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 401 IF S<>V THEN 420
- Variable:S numeric scalar
- Variable:V numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:S -> _
+ Variable:V -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 410 IF Z=1 THEN 450
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 411 LET Q=1
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:1
  AssignmentOperator:=
 412 GO TO 430
  LineNumber:430
 420 IF W(R, S+1)<>0 THEN 450
- Variable:R numeric scalar
- Variable:S numeric scalar
+ Variable:R -> _
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:W(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:W(_,_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 430 LET X=INT(RND(0)*2+1)
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:2
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 440 IF X=1 THEN 790
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 441 IF X=2 THEN 860
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 442 IF X=3 THEN 910
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:3
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 450 LET X=INT(RND(0)*2+1)
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:2
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 460 IF X=1 THEN 790
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 461 IF X=2 THEN 860
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 470 IF S<>V THEN 490
- Variable:S numeric scalar
- Variable:V numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:S -> _
+ Variable:V -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 480 IF Z=1 THEN 520
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 481 LET Q=1
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:1
  AssignmentOperator:=
 482 GO TO 500
  LineNumber:500
 490 IF W(R, S+1)<>0 THEN 520
- Variable:R numeric scalar
- Variable:S numeric scalar
+ Variable:R -> _
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:W(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:W(_,_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 500 LET X=INT(RND(0)*2+1)
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:2
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 510 IF X=1 THEN 790
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 511 IF X=2 THEN 910
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 520 GO TO 790
  LineNumber:790
 530 IF S-1=0 THEN 670
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 540 IF W(R, S-1)<>0 THEN 670
- Variable:R numeric scalar
- Variable:S numeric scalar
+ Variable:R -> _
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:W(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:W(_,_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 541 IF R=H THEN 610
- Variable:R numeric scalar
- Variable:H numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:R -> _
+ Variable:H -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 542 IF W(R+1,S)<>0 THEN 610
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:S numeric scalar
- Variable:W(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:S -> _
+ Variable:W(_,_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 550 IF S<>V THEN 560
- Variable:S numeric scalar
- Variable:V numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:S -> _
+ Variable:V -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 551 IF Z=1 THEN 590
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 552 LET Q=1
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:1
  AssignmentOperator:=
 553 GO TO 570
  LineNumber:570
 560 IF W(R, S+1)<>0 THEN 590
- Variable:R numeric scalar
- Variable:S numeric scalar
+ Variable:R -> _
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:W(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:W(_,_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 570 LET X=INT(RND(0)*3+1)
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:3
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 580 IF X=1 THEN 820
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 581 IF X=2 THEN 860
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 582 IF X=3 THEN 910
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:3
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 590 LET X=INT(RND(0)*2+1)
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:2
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 600 IF X=1 THEN 820
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 601 IF X=2 THEN 860
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 610 IF S<>V THEN 630
- Variable:S numeric scalar
- Variable:V numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:S -> _
+ Variable:V -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 620 IF Z=1 THEN 660
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 621 LET Q=1
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:1
  AssignmentOperator:=
 622 GO TO 640
  LineNumber:640
 630 IF W(R, S+1)<>0 THEN 660
- Variable:R numeric scalar
- Variable:S numeric scalar
+ Variable:R -> _
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:W(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:W(_,_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 640 LET X=INT(RND(0)*2+1)
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:2
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 650 IF X=1 THEN 820
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 651 IF X=2 THEN 910
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 660 GO TO 820
  LineNumber:820
 670 IF R=H THEN 740
- Variable:R numeric scalar
- Variable:H numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:R -> _
+ Variable:H -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 680 IF W(R+1,S)<>0 THEN 740
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:S numeric scalar
- Variable:W(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:S -> _
+ Variable:W(_,_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 681 IF S<>V THEN 700
- Variable:S numeric scalar
- Variable:V numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:S -> _
+ Variable:V -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 690 IF Z=1 THEN 730
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 691 LET Q=1
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:1
  AssignmentOperator:=
 692 GO TO 830
  LineNumber:830
 700 IF W(R,S+1)<>0 THEN 730
- Variable:R numeric scalar
- Variable:S numeric scalar
+ Variable:R -> _
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:W(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:W(_,_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 710 LET X=INT(RND(0)*2+1)
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:0
- FunctionRnd:RND(_) numeric scalar
+ FunctionRnd:RND(_) -> _
  NumericConstant:2
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 720 IF X=1 THEN 860
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 721 IF X=2 THEN 910
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 730 GO TO 860
  LineNumber:860
 740 IF S<>V THEN 760
- Variable:S numeric scalar
- Variable:V numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:S -> _
+ Variable:V -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 750 IF Z=1 THEN 780
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 751 LET Q=1
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:1
  AssignmentOperator:=
 752 GO TO 770
  LineNumber:770
 760 IF W(R, S+1)<>0 THEN 780
- Variable:R numeric scalar
- Variable:S numeric scalar
+ Variable:R -> _
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:W(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:W(_,_) -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 770 GO TO 910
  LineNumber:910
 780 GO TO 1000
  LineNumber:1000
 790 LET W(R-1, S)=C
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:S numeric scalar
- Variable:W(_,_) numeric scalar
- Variable:C numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:S -> _
+ Variable:W(_,_) -> _
+ Variable:C -> _
  AssignmentOperator:=
 800 LET C=C+1
- Variable:C numeric scalar
- Variable:C numeric scalar
+ Variable:C -> _
+ Variable:C -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 801 LET V(R-1, S)=2
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:S numeric scalar
- Variable:V(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:S -> _
+ Variable:V(_,_) -> _
  NumericConstant:2
  AssignmentOperator:=
 802 LET R=R-1
- Variable:R numeric scalar
- Variable:R numeric scalar
+ Variable:R -> _
+ Variable:R -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 810 IF C=H*V+1 THEN 1010
- Variable:C numeric scalar
- Variable:H numeric scalar
- Variable:V numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:C -> _
+ Variable:H -> _
+ Variable:V -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 811 LET Q=0
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:0
  AssignmentOperator:=
 812 GO TO 260
  LineNumber:260
 820 LET W(R,S-1)=C
- Variable:R numeric scalar
- Variable:S numeric scalar
+ Variable:R -> _
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:W(_,_) numeric scalar
- Variable:C numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:W(_,_) -> _
+ Variable:C -> _
  AssignmentOperator:=
 830 LET C=C+1
- Variable:C numeric scalar
- Variable:C numeric scalar
+ Variable:C -> _
+ Variable:C -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 840 LET V(R,S-1)=1
- Variable:R numeric scalar
- Variable:S numeric scalar
+ Variable:R -> _
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
- Variable:V(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ Variable:V(_,_) -> _
  NumericConstant:1
  AssignmentOperator:=
 841 LET S=S-1
- Variable:S numeric scalar
- Variable:S numeric scalar
+ Variable:S -> _
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 842 IF C=H*V+1 THEN 1010
- Variable:C numeric scalar
- Variable:H numeric scalar
- Variable:V numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:C -> _
+ Variable:H -> _
+ Variable:V -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 850 LET Q=0
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:0
  AssignmentOperator:=
 851 GO TO 260
  LineNumber:260
 860 LET W(R+1,S)=C
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:S numeric scalar
- Variable:W(_,_) numeric scalar
- Variable:C numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:S -> _
+ Variable:W(_,_) -> _
+ Variable:C -> _
  AssignmentOperator:=
 870 LET C=C+1
- Variable:C numeric scalar
- Variable:C numeric scalar
+ Variable:C -> _
+ Variable:C -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 871 IF V(R,S)=0 THEN 880
- Variable:R numeric scalar
- Variable:S numeric scalar
- Variable:V(_,_) numeric scalar
+ Variable:R -> _
+ Variable:S -> _
+ Variable:V(_,_) -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 872 LET V(R,S)=3
- Variable:R numeric scalar
- Variable:S numeric scalar
- Variable:V(_,_) numeric scalar
+ Variable:R -> _
+ Variable:S -> _
+ Variable:V(_,_) -> _
  NumericConstant:3
  AssignmentOperator:=
 873 GO TO 890
  LineNumber:890
 880 LET V(R,S)=2
- Variable:R numeric scalar
- Variable:S numeric scalar
- Variable:V(_,_) numeric scalar
+ Variable:R -> _
+ Variable:S -> _
+ Variable:V(_,_) -> _
  NumericConstant:2
  AssignmentOperator:=
 890 LET R=R+1
- Variable:R numeric scalar
- Variable:R numeric scalar
+ Variable:R -> _
+ Variable:R -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 900 IF C=H*V+1 THEN 1010
- Variable:C numeric scalar
- Variable:H numeric scalar
- Variable:V numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:C -> _
+ Variable:H -> _
+ Variable:V -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 902 GO TO 530
  LineNumber:530
 910 IF Q=1 THEN 960
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 920 LET W(R,S+1)=C
- Variable:R numeric scalar
- Variable:S numeric scalar
+ Variable:R -> _
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:W(_,_) numeric scalar
- Variable:C numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:W(_,_) -> _
+ Variable:C -> _
  AssignmentOperator:=
 921 LET C=C+1
- Variable:C numeric scalar
- Variable:C numeric scalar
+ Variable:C -> _
+ Variable:C -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 922 IF V(R,S)=0 THEN 940
- Variable:R numeric scalar
- Variable:S numeric scalar
- Variable:V(_,_) numeric scalar
+ Variable:R -> _
+ Variable:S -> _
+ Variable:V(_,_) -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 930 LET V(R,S)=3
- Variable:R numeric scalar
- Variable:S numeric scalar
- Variable:V(_,_) numeric scalar
+ Variable:R -> _
+ Variable:S -> _
+ Variable:V(_,_) -> _
  NumericConstant:3
  AssignmentOperator:=
 931 GO TO 950
  LineNumber:950
 940 LET V(R,S)=1
- Variable:R numeric scalar
- Variable:S numeric scalar
- Variable:V(_,_) numeric scalar
+ Variable:R -> _
+ Variable:S -> _
+ Variable:V(_,_) -> _
  NumericConstant:1
  AssignmentOperator:=
 950 LET S=S+1
- Variable:S numeric scalar
- Variable:S numeric scalar
+ Variable:S -> _
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 951 IF C=H*V+1 THEN 1010
- Variable:C numeric scalar
- Variable:H numeric scalar
- Variable:V numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:C -> _
+ Variable:H -> _
+ Variable:V -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 952 GO TO 260
  LineNumber:260
 960 LET Z=1
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:1
  AssignmentOperator:=
 970 IF V(R,S)=0 THEN 980
- Variable:R numeric scalar
- Variable:S numeric scalar
- Variable:V(_,_) numeric scalar
+ Variable:R -> _
+ Variable:S -> _
+ Variable:V(_,_) -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 971 LET V(R,S)=3
- Variable:R numeric scalar
- Variable:S numeric scalar
- Variable:V(_,_) numeric scalar
+ Variable:R -> _
+ Variable:S -> _
+ Variable:V(_,_) -> _
  NumericConstant:3
  AssignmentOperator:=
 972 LET Q=0
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:0
  AssignmentOperator:=
 973 GO TO 1000
  LineNumber:1000
 980 LET V(R,S)=1
- Variable:R numeric scalar
- Variable:S numeric scalar
- Variable:V(_,_) numeric scalar
+ Variable:R -> _
+ Variable:S -> _
+ Variable:V(_,_) -> _
  NumericConstant:1
  AssignmentOperator:=
 981 LET Q=0
- Variable:Q numeric scalar
+ Variable:Q -> _
  NumericConstant:0
  AssignmentOperator:=
 982 LET R=1
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:1
  AssignmentOperator:=
 990 LET S=1
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:1
  AssignmentOperator:=
 991 GO TO 250
@@ -824,22 +824,22 @@
 1000 GO TO 210
  LineNumber:210
 1010 FOR J=1 TO V
- control: Variable:J numeric scalar
+ control: Variable:J -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:V numeric scalar"]
+ end:     ["Variable:V -> _"]
 1011  PRINT"!";
  TextConstant:"!"
  CarriageControl:;
 1012  FOR I=1 TO H
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:H numeric scalar"]
+ end:     ["Variable:H -> _"]
 1013   IF V(I,J)<2 THEN 1030
- Variable:I numeric scalar
- Variable:J numeric scalar
- Variable:V(_,_) numeric scalar
+ Variable:I -> _
+ Variable:J -> _
+ Variable:V(_,_) -> _
  NumericConstant:2
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 1020   PRINT"   ";
  TextConstant:"   "
  CarriageControl:;
@@ -849,25 +849,25 @@
  TextConstant:"  !"
  CarriageControl:;
 1040  NEXT I 
- Variable:I numeric scalar
+ Variable:I -> _
 1041  PRINT
  CarriageControl:NL
 1042  FOR I=1 TO H
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:H numeric scalar"]
+ end:     ["Variable:H -> _"]
 1045   IF V(I,J)=0 THEN 1060
- Variable:I numeric scalar
- Variable:J numeric scalar
- Variable:V(_,_) numeric scalar
+ Variable:I -> _
+ Variable:J -> _
+ Variable:V(_,_) -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1050   IF V(I,J)=2 THEN 1060
- Variable:I numeric scalar
- Variable:J numeric scalar
- Variable:V(_,_) numeric scalar
+ Variable:I -> _
+ Variable:J -> _
+ Variable:V(_,_) -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1051   PRINT":  ";
  TextConstant:":  "
  CarriageControl:;
@@ -877,12 +877,12 @@
  TextConstant:":--"
  CarriageControl:;
 1070  NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 1071  PRINT":"
  TextConstant:":"
  CarriageControl:NL
 1072 NEXT J
- Variable:J numeric scalar
+ Variable:J -> _
 1073 END
  
 

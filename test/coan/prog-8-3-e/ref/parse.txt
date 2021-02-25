@@ -2,39 +2,39 @@
  TextConstant:"INPUT THE NUMBER OF SPACES DESIRED TO THE LEFT OF ZERO"
  CarriageControl:;
 5 INPUT M
- Variable:M numeric scalar
+ Variable:M -> _
 6 PRINT
  CarriageControl:NL
 8 PRINT "    ";
  TextConstant:"    "
  CarriageControl:;
 10 FOR X=0 TO 50 STEP 10
- control: Variable:X numeric scalar
+ control: Variable:X -> _
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:50"]
  step:    ["NumericConstant:10"]
 12 PRINT "    ";X;
  TextConstant:"    "
  CarriageControl:;
- Variable:X numeric scalar
+ Variable:X -> _
  CarriageControl:;
 14 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 15 PRINT
  CarriageControl:NL
 16 FOR X=1 TO 70
- control: Variable:X numeric scalar
+ control: Variable:X -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:70"]
 18 IF X/10=INT(X/10) THEN 24
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:10
- BinaryOperatorDivide:/(_,_) numeric scalar
- Variable:X numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ Variable:X -> _
  NumericConstant:10
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 20 PRINT "-";
  TextConstant:"-"
  CarriageControl:;
@@ -44,31 +44,31 @@
  TextConstant:"^"
  CarriageControl:;
 26 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 30 DEF FNQ(X)=X^2
- UserFunctionName:FNQ
- VariableName:X
- Variable:X numeric scalar
+ UserFunctionName:FNQ -> _
+ VariableName:X -> _
+ Variable:X -> _
  NumericConstant:2
- BinaryOperatorPower:^(_,_) numeric scalar
+ BinaryOperatorPower:^(_,_) -> _
 60 FOR X=-7 TO 7
- control: Variable:X numeric scalar
- start:   ["NumericConstant:7", "UnaryOperatorMinus:-(_) numeric scalar"]
+ control: Variable:X -> _
+ start:   ["NumericConstant:7", "UnaryOperatorMinus:-(_) -> _"]
  end:     ["NumericConstant:7"]
 62 PRINT
  CarriageControl:NL
 90 FOR Y = -M TO 70-M
- control: Variable:Y numeric scalar
- start:   ["Variable:M numeric scalar", "UnaryOperatorMinus:-(_) numeric scalar"]
- end:     ["NumericConstant:70", "Variable:M numeric scalar", "BinaryOperatorMinus:-(_,_) numeric scalar"]
+ control: Variable:Y -> _
+ start:   ["Variable:M -> _", "UnaryOperatorMinus:-(_) -> _"]
+ end:     ["NumericConstant:70", "Variable:M -> _", "BinaryOperatorMinus:-(_,_) -> _"]
 92 IF Y <> 0 THEN 120
- Variable:Y numeric scalar
+ Variable:Y -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 94 IF X=0 THEN 98
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 95 PRINT "'";
  TextConstant:"'"
  CarriageControl:;
@@ -78,10 +78,10 @@
  TextConstant:"0"
  CarriageControl:;
 100 IF FNQ(X)>0 THEN 180
- Variable:X numeric scalar
- UserFunction:FNQ(_) numeric scalar
+ Variable:X -> _
+ UserFunction:FNQ(_) -> _
  NumericConstant:0
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 102 REM IF  FNQ(X) > 0 GO FIND WHERE IT IS
  Remark:IF  FNQ(X) > 0 GO FIND WHERE IT IS
 103 REM OTHERWISE GET THE NEXT VALUE OF X
@@ -89,24 +89,24 @@
 106 GOTO 240
  LineNumber:240
 120 IF Y=FNQ(X) THEN 210
- Variable:Y numeric scalar
- Variable:X numeric scalar
- UserFunction:FNQ(_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:Y -> _
+ Variable:X -> _
+ UserFunction:FNQ(_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 148 REM   IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
  Remark:  IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
 150 PRINT " ";
  TextConstant:" "
  CarriageControl:;
 180 NEXT Y
- Variable:Y numeric scalar
+ Variable:Y -> _
 210 PRINT "*";
  TextConstant:"*"
  CarriageControl:;
 212 REM   PLOT THE POINT AND GO TO NEXT X
  Remark:  PLOT THE POINT AND GO TO NEXT X
 240 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 270 END
  
 

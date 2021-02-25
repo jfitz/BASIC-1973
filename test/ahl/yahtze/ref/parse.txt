@@ -1,82 +1,82 @@
 1000 A(0)=5
  NumericConstant:0
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  NumericConstant:5
  AssignmentOperator:=
 1010 FOR U=1 TO 5
- control: Variable:U numeric scalar
+ control: Variable:U -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 1020 A(U)=7
- Variable:U numeric scalar
- Variable:A(_) numeric scalar
+ Variable:U -> _
+ Variable:A(_) -> _
  NumericConstant:7
  AssignmentOperator:=
 1030 NEXT U
- Variable:U numeric scalar
+ Variable:U -> _
 1040 CHANGE A TO C$
- Variable:A() numeric array
- Variable:C$ string scalar
+ Variable:A() -> _()
+ Variable:C$ -> $
 1060DIMA(15,15),T(15,15),F(15,15),S(15,15),L(15,15),K(15,15),H(15,15)
  NumericConstant:15
  NumericConstant:15
- Declaration:A(,) matrix
+ Declaration:A(,) -> _(,)
  NumericConstant:15
  NumericConstant:15
- Declaration:T(,) matrix
+ Declaration:T(,) -> _(,)
  NumericConstant:15
  NumericConstant:15
- Declaration:F(,) matrix
+ Declaration:F(,) -> _(,)
  NumericConstant:15
  NumericConstant:15
- Declaration:S(,) matrix
+ Declaration:S(,) -> _(,)
  NumericConstant:15
  NumericConstant:15
- Declaration:L(,) matrix
+ Declaration:L(,) -> _(,)
  NumericConstant:15
  NumericConstant:15
- Declaration:K(,) matrix
+ Declaration:K(,) -> _(,)
  NumericConstant:15
  NumericConstant:15
- Declaration:H(,) matrix
+ Declaration:H(,) -> _(,)
 1070 FOR I=1 TO 5
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 1080 B(I)=0
- Variable:I numeric scalar
- Variable:B(_) numeric scalar
+ Variable:I -> _
+ Variable:B(_) -> _
  NumericConstant:0
  AssignmentOperator:=
 1090 Q(I)=0
- Variable:I numeric scalar
- Variable:Q(_) numeric scalar
+ Variable:I -> _
+ Variable:Q(_) -> _
  NumericConstant:0
  AssignmentOperator:=
 1100 A(I)=0
- Variable:I numeric scalar
- Variable:A(_) numeric scalar
+ Variable:I -> _
+ Variable:A(_) -> _
  NumericConstant:0
  AssignmentOperator:=
 1110 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 1120 RANDOM
  
 1130 PRINT "HOW MANY PLAYERS [TYPE '0' FOP INSTRUCTIONS]";I
  TextConstant:"HOW MANY PLAYERS [TYPE '0' FOP INSTRUCTIONS]"
  CarriageControl:;
- Variable:I numeric scalar
+ Variable:I -> _
  CarriageControl:NL
 1140 INPUT P
- Variable:P numeric scalar
+ Variable:P -> _
 1150 IF P>15 THEN 1180
- Variable:P numeric scalar
+ Variable:P -> _
  NumericConstant:15
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1160 IF P=0 THEN 4980
- Variable:P numeric scalar
+ Variable:P -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1170 GO TO 1200
  LineNumber:1200
 1180 GOSUB 5710
@@ -84,9 +84,9 @@
 1190 GO TO 1130
  LineNumber:1130
 1200 IF P=.01 THEN 1220
- Variable:P numeric scalar
+ Variable:P -> _
  NumericConstant:.01
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1210 GO TO 1240
  LineNumber:1240
 1220 GOSUB 5730
@@ -94,125 +94,125 @@
 1230 GO TO 1140
  LineNumber:1140
 1240 FOR I=1 TO P
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:P numeric scalar"]
+ end:     ["Variable:P -> _"]
 1250 A(1,I)=-5
  NumericConstant:1
- Variable:I numeric scalar
- Variable:A(_,_) numeric scalar
+ Variable:I -> _
+ Variable:A(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 1260 T(1,I)=-5
  NumericConstant:1
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 1270 T(2,I)=-5
  NumericConstant:2
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 1280 F(1,I)=-5
  NumericConstant:1
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 1290 F(2,I)=-5
  NumericConstant:2
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 1300 S(1,I)=-5
  NumericConstant:1
- Variable:I numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 1310 T(3,I)=-5
  NumericConstant:3
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 1320 F(3,I)=-5
  NumericConstant:3
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 1330 F(4,I)=-5
  NumericConstant:4
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 1340 S(2,I)=-5
  NumericConstant:2
- Variable:I numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 1350 L(1,I)=-5
  NumericConstant:1
- Variable:I numeric scalar
- Variable:L(_,_) numeric scalar
+ Variable:I -> _
+ Variable:L(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 1360 Y(I)=-5
- Variable:I numeric scalar
- Variable:Y(_) numeric scalar
+ Variable:I -> _
+ Variable:Y(_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 1370 C(I)=-5
- Variable:I numeric scalar
- Variable:C(_) numeric scalar
+ Variable:I -> _
+ Variable:C(_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 1380 K(1,I)=0
  NumericConstant:1
- Variable:I numeric scalar
- Variable:K(_,_) numeric scalar
+ Variable:I -> _
+ Variable:K(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 1390 K(I)=0
- Variable:I numeric scalar
- Variable:K(_) numeric scalar
+ Variable:I -> _
+ Variable:K(_) -> _
  NumericConstant:0
  AssignmentOperator:=
 1400 M(I)=0
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:0
  AssignmentOperator:=
 1410 PRINT "NAME";
  TextConstant:"NAME"
  CarriageControl:;
 1420 INPUT N$(I)
- Variable:I numeric scalar
- Variable:N$(_) string scalar
+ Variable:I -> _
+ Variable:N$(_) -> $
 1430 IF N$(I)="WHAT?" THEN 1450
- Variable:I numeric scalar
- Variable:N$(_) string scalar
+ Variable:I -> _
+ Variable:N$(_) -> $
  TextConstant:"WHAT?"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 1440 GO TO 1470
  LineNumber:1470
 1450 GOSUB 5580
@@ -220,21 +220,21 @@
 1460 GO TO 1410
  LineNumber:1410
 1470 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 1480 R=0
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:0
  AssignmentOperator:=
 1490 R=R+1
- Variable:R numeric scalar
- Variable:R numeric scalar
+ Variable:R -> _
+ Variable:R -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 1495 IF R>13 THEN 6470
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:13
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 1500 PRINT
  CarriageControl:NL
 1510 PRINT
@@ -242,111 +242,111 @@
 1520 PRINT "ROUND";R
  TextConstant:"ROUND"
  CarriageControl:;
- Variable:R numeric scalar
+ Variable:R -> _
  CarriageControl:NL
 1530 PRINT
  CarriageControl:NL
 1540 FOR I=1 TO P
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:P numeric scalar"]
+ end:     ["Variable:P -> _"]
 1550 PRINT
  CarriageControl:NL
 1560 PRINT
  CarriageControl:NL
 1570 PRINT N$(I);"'S TURN"
- Variable:I numeric scalar
- Variable:N$(_) string scalar
+ Variable:I -> _
+ Variable:N$(_) -> $
  CarriageControl:;
  TextConstant:"'S TURN"
  CarriageControl:NL
 1580 FOR L=1 TO 5
- control: Variable:L numeric scalar
+ control: Variable:L -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 1590 A(L)=INT(6*RND(-1)+1)
- Variable:L numeric scalar
- Variable:A(_) numeric scalar
+ Variable:L -> _
+ Variable:A(_) -> _
  NumericConstant:6
  NumericConstant:1
- UnaryOperatorMinus:-(_) numeric scalar
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 1600 NEXT L
- Variable:L numeric scalar
+ Variable:L -> _
 1605 GOSUB 1610
  LineNumber:1610
 1607 GO TO 1700
  LineNumber:1700
 1610 G=0
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:0
  AssignmentOperator:=
 1620 FOR X=1 TO 5
- control: Variable:X numeric scalar
+ control: Variable:X -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 1630 IF A(X)>=A(X+1) THEN 1680
- Variable:X numeric scalar
- Variable:A(_) numeric scalar
- Variable:X numeric scalar
+ Variable:X -> _
+ Variable:A(_) -> _
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:A(_) numeric scalar
- BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:A(_) -> _
+ BinaryOperatorGreaterEqual:>=(_,_) -> ?
 1640 H=A(X)
- Variable:H numeric scalar
- Variable:X numeric scalar
- Variable:A(_) numeric scalar
+ Variable:H -> _
+ Variable:X -> _
+ Variable:A(_) -> _
  AssignmentOperator:=
 1650 A(X)=A(X+1)
- Variable:X numeric scalar
- Variable:A(_) numeric scalar
- Variable:X numeric scalar
+ Variable:X -> _
+ Variable:A(_) -> _
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:A(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:A(_) -> _
  AssignmentOperator:=
 1660 A(X+1)=H
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:A(_) numeric scalar
- Variable:H numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:A(_) -> _
+ Variable:H -> _
  AssignmentOperator:=
 1670 G=1
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:1
  AssignmentOperator:=
 1680 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 1685 IF G=1 THEN 1610
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1690 RETURN
  
 1700 PRINT "YOU HAVE A ";A(1);A(2);A(3);A(4);A(5)
  TextConstant:"YOU HAVE A "
  CarriageControl:;
  NumericConstant:1
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  CarriageControl:;
  NumericConstant:2
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  CarriageControl:;
  NumericConstant:3
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  CarriageControl:;
  NumericConstant:4
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  CarriageControl:;
  NumericConstant:5
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  CarriageControl:NL
 1710 PRINT "THIS IS YOUR 2ND OF 3 ROLLS,"
  TextConstant:"THIS IS YOUR 2ND OF 3 ROLLS,"
@@ -355,11 +355,11 @@
  TextConstant:"HOW MANY DO YOU WANT TO CHANGE"
  CarriageControl:;
 1730 INPUT Z
- Variable:Z numeric scalar
+ Variable:Z -> _
 1740 IF Z=.01 THEN 1760
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:.01
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1750 GO TO 1780
  LineNumber:1780
 1760 GOSUB 5600
@@ -367,28 +367,28 @@
 1770 GO TO 1730
  LineNumber:1730
 1780 IF Z=0 THEN 2620
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1790 IF Z=5 THEN 1890
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:5
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1800 FOR S=1 TO Z
- control: Variable:S numeric scalar
+ control: Variable:S -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:Z numeric scalar"]
+ end:     ["Variable:Z -> _"]
 1810 PRINT "WHICH";
  TextConstant:"WHICH"
  CarriageControl:;
 1820 INPUT B(S)
- Variable:S numeric scalar
- Variable:B(_) numeric scalar
+ Variable:S -> _
+ Variable:B(_) -> _
 1830 IF B(S)=.01 THEN 1850
- Variable:S numeric scalar
- Variable:B(_) numeric scalar
+ Variable:S -> _
+ Variable:B(_) -> _
  NumericConstant:.01
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 1840 GO TO 1870
  LineNumber:1870
 1850 GOSUB 5620
@@ -396,98 +396,98 @@
 1860 GO TO 1810
  LineNumber:1810
 1870 NEXT S
- Variable:S numeric scalar
+ Variable:S -> _
 1880 GO TO 1930
  LineNumber:1930
 1890 FOR S=1 TO 5
- control: Variable:S numeric scalar
+ control: Variable:S -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 1900 A(S)=INT(6*RND(-1)+1)
- Variable:S numeric scalar
- Variable:A(_) numeric scalar
+ Variable:S -> _
+ Variable:A(_) -> _
  NumericConstant:6
  NumericConstant:1
- UnaryOperatorMinus:-(_) numeric scalar
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 1910 NEXT S
- Variable:S numeric scalar
+ Variable:S -> _
 1920 GO TO 2050
  LineNumber:2050
 1930 FOR L=1 TO S
- control: Variable:L numeric scalar
+ control: Variable:L -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:S numeric scalar"]
+ end:     ["Variable:S -> _"]
 1940 FOR L1=1 TO 5
- control: Variable:L1 numeric scalar
+ control: Variable:L1 -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 1950 IF B(L)=L1 THEN 1970
- Variable:L numeric scalar
- Variable:B(_) numeric scalar
- Variable:L1 numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:L -> _
+ Variable:B(_) -> _
+ Variable:L1 -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 1960 GO TO 1980
  LineNumber:1980
 1970 A(L1)=Q(L1)
- Variable:L1 numeric scalar
- Variable:A(_) numeric scalar
- Variable:L1 numeric scalar
- Variable:Q(_) numeric scalar
+ Variable:L1 -> _
+ Variable:A(_) -> _
+ Variable:L1 -> _
+ Variable:Q(_) -> _
  AssignmentOperator:=
 1980 NEXT L1
- Variable:L1 numeric scalar
+ Variable:L1 -> _
 1990 NEXT L
- Variable:L numeric scalar
+ Variable:L -> _
 2000 FOR S=1 TO 5
- control: Variable:S numeric scalar
+ control: Variable:S -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 2010 IF A(S)=0 THEN 2030
- Variable:S numeric scalar
- Variable:A(_) numeric scalar
+ Variable:S -> _
+ Variable:A(_) -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 2020 GO TO 2040
  LineNumber:2040
 2030 A(S)=INT(6*RND(-1)+1)
- Variable:S numeric scalar
- Variable:A(_) numeric scalar
+ Variable:S -> _
+ Variable:A(_) -> _
  NumericConstant:6
  NumericConstant:1
- UnaryOperatorMinus:-(_) numeric scalar
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 2040 NEXT S
- Variable:S numeric scalar
+ Variable:S -> _
 2050 GOSUB 1610
  LineNumber:1610
 2140 PRINT "YOU HAVE A ";A(1);A(2);A(3);A(4);A(5)
  TextConstant:"YOU HAVE A "
  CarriageControl:;
  NumericConstant:1
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  CarriageControl:;
  NumericConstant:2
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  CarriageControl:;
  NumericConstant:3
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  CarriageControl:;
  NumericConstant:4
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  CarriageControl:;
  NumericConstant:5
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  CarriageControl:NL
 2150 PRINT "THIS IS YOUR LAST ROLL,"
  TextConstant:"THIS IS YOUR LAST ROLL,"
@@ -496,11 +496,11 @@
  TextConstant:"HOW MANY DO YOU WANT TO CHANGE"
  CarriageControl:;
 2170 INPUT Z
- Variable:Z numeric scalar
+ Variable:Z -> _
 2180 IF Z=.01 THEN 2200
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:.01
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 2190 GO TO 2220
  LineNumber:2220
 2200 GOSUB 5600
@@ -508,39 +508,39 @@
 2210 GO TO 2170
  LineNumber:2170
 2220 IF Z=0 THEN 2620
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 2230 IF Z=5 THEN 2360
- Variable:Z numeric scalar
+ Variable:Z -> _
  NumericConstant:5
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 2240 FOR E=1 TO 5
- control: Variable:E numeric scalar
+ control: Variable:E -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 2250 B(E)=0
- Variable:E numeric scalar
- Variable:B(_) numeric scalar
+ Variable:E -> _
+ Variable:B(_) -> _
  NumericConstant:0
  AssignmentOperator:=
 2260 NEXT E
- Variable:E numeric scalar
+ Variable:E -> _
 2270 FOR S=1 TO Z
- control: Variable:S numeric scalar
+ control: Variable:S -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:Z numeric scalar"]
+ end:     ["Variable:Z -> _"]
 2280 PRINT "WHICH";
  TextConstant:"WHICH"
  CarriageControl:;
 2290 INPUT B(S)
- Variable:S numeric scalar
- Variable:B(_) numeric scalar
+ Variable:S -> _
+ Variable:B(_) -> _
 2300 IF B(S)=.01 THEN 2320
- Variable:S numeric scalar
- Variable:B(_) numeric scalar
+ Variable:S -> _
+ Variable:B(_) -> _
  NumericConstant:.01
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 2310 GO TO 2340
  LineNumber:2340
 2320 GOSUB 5620
@@ -548,112 +548,112 @@
 2330 GO TO 2280
  LineNumber:2280
 2340 NEXT S
- Variable:S numeric scalar
+ Variable:S -> _
 2350 GO TO 2400
  LineNumber:2400
 2360 FOR S=1 TO 5
- control: Variable:S numeric scalar
+ control: Variable:S -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 2370 A(S)=INT(6*RND(-1)+1)
- Variable:S numeric scalar
- Variable:A(_) numeric scalar
+ Variable:S -> _
+ Variable:A(_) -> _
  NumericConstant:6
  NumericConstant:1
- UnaryOperatorMinus:-(_) numeric scalar
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 2380 NEXT S
- Variable:S numeric scalar
+ Variable:S -> _
 2390 GO TO 2520
  LineNumber:2520
 2400 FOR L=1 TO 5
- control: Variable:L numeric scalar
+ control: Variable:L -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 2410 FOR L1=1 TO 5
- control: Variable:L1 numeric scalar
+ control: Variable:L1 -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 2420 IF B(L)=L1 THEN 2440
- Variable:L numeric scalar
- Variable:B(_) numeric scalar
- Variable:L1 numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:L -> _
+ Variable:B(_) -> _
+ Variable:L1 -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 2430 GO TO 2450
  LineNumber:2450
 2440 A(L1)=Q(L)
- Variable:L1 numeric scalar
- Variable:A(_) numeric scalar
- Variable:L numeric scalar
- Variable:Q(_) numeric scalar
+ Variable:L1 -> _
+ Variable:A(_) -> _
+ Variable:L -> _
+ Variable:Q(_) -> _
  AssignmentOperator:=
 2450 NEXT L1
- Variable:L1 numeric scalar
+ Variable:L1 -> _
 2460 NEXT L
- Variable:L numeric scalar
+ Variable:L -> _
 2470 FOR S=1 TO 5
- control: Variable:S numeric scalar
+ control: Variable:S -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 2480 IF A(S)=0 THEN 2500
- Variable:S numeric scalar
- Variable:A(_) numeric scalar
+ Variable:S -> _
+ Variable:A(_) -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 2490 GO TO 2510
  LineNumber:2510
 2500 A(S)=INT(6*RND(-1)+1)
- Variable:S numeric scalar
- Variable:A(_) numeric scalar
+ Variable:S -> _
+ Variable:A(_) -> _
  NumericConstant:6
  NumericConstant:1
- UnaryOperatorMinus:-(_) numeric scalar
- FunctionRnd:RND(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
+ FunctionRnd:RND(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 2510 NEXT S
- Variable:S numeric scalar
+ Variable:S -> _
 2520 GOSUB 1610
  LineNumber:1610
 2610 PRINT "YOU HAVE A ";A(1);A(2);A(3);A(4);A(5)
  TextConstant:"YOU HAVE A "
  CarriageControl:;
  NumericConstant:1
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  CarriageControl:;
  NumericConstant:2
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  CarriageControl:;
  NumericConstant:3
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  CarriageControl:;
  NumericConstant:4
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  CarriageControl:;
  NumericConstant:5
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  CarriageControl:NL
 2620 PRINT "HOW DO YOU WANT THIS ROUND SCORED";
  TextConstant:"HOW DO YOU WANT THIS ROUND SCORED"
  CarriageControl:;
 2630 INPUT Z$
- Variable:Z$ string scalar
+ Variable:Z$ -> $
 2640 IF Z$="WHAT?" THEN 2680
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"WHAT?"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 2650 IF Z$="SUMMARY" THEN 2670
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"SUMMARY"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 2660 GO TO 2700
  LineNumber:2700
 2670 GOSUB 6140
@@ -665,618 +665,618 @@
 2690 GO TO 2630
  LineNumber:2630
 2700 IF Z$="ACES" THEN 2850
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"ACES"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 2710 IF Z$="TWOS" THEN 2940
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"TWOS"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 2720 IF Z$="THREES" THEN 3030
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"THREES"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 2730 IF Z$="FOURS" THEN 3120
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"FOURS"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 2740 IF Z$="FIVES" THEN 3210
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"FIVES"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 2750 IF Z$="SIXES" THEN 3300
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"SIXES"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 2760 IF Z$="THREE OF A KIND" THEN 3390
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"THREE OF A KIND"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 2770 IF Z$="FOUR OF A KIND" THEN 3440
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"FOUR OF A KIND"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 2780 IF Z$="FULL HOUSE" THEN 3520
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"FULL HOUSE"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 2790 IF Z$="SM. STRAIGHT" THEN 3620
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"SM. STRAIGHT"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 2800 IF Z$="LG. STRAIGHT" THEN 3660
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"LG. STRAIGHT"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 2810 IF Z$="YAHTZEE" THEN 3730
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"YAHTZEE"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 2820 IF Z$="CHANCE" THEN 3820
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"CHANCE"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 2830 IF Z$="ZERO" THEN 3890
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"ZERO"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 2840 GO TO 2620
  LineNumber:2620
 2850 IF A(1,I)<>-5 THEN 3870
  NumericConstant:1
- Variable:I numeric scalar
- Variable:A(_,_) numeric scalar
+ Variable:I -> _
+ Variable:A(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 2860 A(1,I)=0
  NumericConstant:1
- Variable:I numeric scalar
- Variable:A(_,_) numeric scalar
+ Variable:I -> _
+ Variable:A(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 2870 FOR S=1 TO 5
- control: Variable:S numeric scalar
+ control: Variable:S -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 2880 IF A(S)=1 THEN 2900
- Variable:S numeric scalar
- Variable:A(_) numeric scalar
+ Variable:S -> _
+ Variable:A(_) -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 2890 GO TO 2910
  LineNumber:2910
 2900 A(1,I)=A(1,I)+1
  NumericConstant:1
- Variable:I numeric scalar
- Variable:A(_,_) numeric scalar
+ Variable:I -> _
+ Variable:A(_,_) -> _
  NumericConstant:1
- Variable:I numeric scalar
- Variable:A(_,_) numeric scalar
+ Variable:I -> _
+ Variable:A(_,_) -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 2910 NEXT S
- Variable:S numeric scalar
+ Variable:S -> _
 2920 M(I)=A(1,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:1
- Variable:I numeric scalar
- Variable:A(_,_) numeric scalar
+ Variable:I -> _
+ Variable:A(_,_) -> _
  AssignmentOperator:=
 2930 GO TO 4690
  LineNumber:4690
 2940 IF T(1,I)<>-5 THEN 3870
  NumericConstant:1
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 2950 T(1,I)=0
  NumericConstant:1
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 2960 FOR S=1 TO 5
- control: Variable:S numeric scalar
+ control: Variable:S -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 2970 IF A(S)=2 THEN 2990
- Variable:S numeric scalar
- Variable:A(_) numeric scalar
+ Variable:S -> _
+ Variable:A(_) -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 2980 GO TO 3000
  LineNumber:3000
 2990 T(1,I)=T(1,I)+2
  NumericConstant:1
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:1
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:2
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 3000 NEXT S
- Variable:S numeric scalar
+ Variable:S -> _
 3010 M(I)=T(1,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:1
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  AssignmentOperator:=
 3020 GO TO 4690
  LineNumber:4690
 3030 IF T(2,I)<>-5 THEN 3870
  NumericConstant:2
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3040 T(2,I)=0
  NumericConstant:2
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 3050 FOR S=1 TO 5
- control: Variable:S numeric scalar
+ control: Variable:S -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 3060 IF A(S)=3 THEN 3080
- Variable:S numeric scalar
- Variable:A(_) numeric scalar
+ Variable:S -> _
+ Variable:A(_) -> _
  NumericConstant:3
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 3070 GO TO 3090
  LineNumber:3090
 3080 T(2,I)=T(2,I)+3
  NumericConstant:2
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:2
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:3
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 3090 NEXT S
- Variable:S numeric scalar
+ Variable:S -> _
 3100 M(I)=T(2,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:2
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  AssignmentOperator:=
 3110 GO TO 4690
  LineNumber:4690
 3120 IF F(1,I)<>-5 THEN 3870
  NumericConstant:1
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3130 F(1,I)=0
  NumericConstant:1
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 3140 FOR S=1 TO 5
- control: Variable:S numeric scalar
+ control: Variable:S -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 3150 IF A(S)=4 THEN 3170
- Variable:S numeric scalar
- Variable:A(_) numeric scalar
+ Variable:S -> _
+ Variable:A(_) -> _
  NumericConstant:4
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 3160 GO TO 3180
  LineNumber:3180
 3170 F(1,I)=F(1,I)+4
  NumericConstant:1
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:1
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:4
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 3180 NEXT S
- Variable:S numeric scalar
+ Variable:S -> _
 3185 M(I)=F(1,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:1
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  AssignmentOperator:=
 3190 GO TO 4690
  LineNumber:4690
 3210 IF F(2,I)<>-5 THEN 3870
  NumericConstant:2
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3220 F(2,I)=0
  NumericConstant:2
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 3230 FOR S=1 TO 5
- control: Variable:S numeric scalar
+ control: Variable:S -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 3240 IF A(S)=5 THEN 3260
- Variable:S numeric scalar
- Variable:A(_) numeric scalar
+ Variable:S -> _
+ Variable:A(_) -> _
  NumericConstant:5
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 3250 GO TO 3270
  LineNumber:3270
 3260 F(2,I)=F(2,I)+5
  NumericConstant:2
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:2
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:5
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 3270 NEXT S
- Variable:S numeric scalar
+ Variable:S -> _
 3280 M(I)=F(2,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:2
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  AssignmentOperator:=
 3290 GO TO 4690
  LineNumber:4690
 3300 IF S(1,I)<>-5 THEN 3870
  NumericConstant:1
- Variable:I numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3310 S(1,I)=0
  NumericConstant:1
- Variable:I numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 3320 FOR S=1 TO 5
- control: Variable:S numeric scalar
+ control: Variable:S -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 3330 IF A(S)=6 THEN 3350
- Variable:S numeric scalar
- Variable:A(_) numeric scalar
+ Variable:S -> _
+ Variable:A(_) -> _
  NumericConstant:6
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 3340 GO TO 3360
  LineNumber:3360
 3350 S(1,I)=S(1,I)+6
  NumericConstant:1
- Variable:I numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S(_,_) -> _
  NumericConstant:1
- Variable:I numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S(_,_) -> _
  NumericConstant:6
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 3360 NEXT S
- Variable:S numeric scalar
+ Variable:S -> _
 3370 M(I)=S(1,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:1
- Variable:I numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S(_,_) -> _
  AssignmentOperator:=
 3380 GO TO 4690
  LineNumber:4690
 3390 IF T(3,I)<>-5 THEN 3870
  NumericConstant:3
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3400 T(3,I)=0
  NumericConstant:3
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 3410 T(3,I)=A(1)+A(2)+A(3)+A(4)+A(5)
  NumericConstant:3
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:1
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  NumericConstant:2
- Variable:A(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:A(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:3
- Variable:A(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:A(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:4
- Variable:A(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:A(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:5
- Variable:A(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:A(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 3420 M(I)=T(3,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:3
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  AssignmentOperator:=
 3430 GO TO 4690
  LineNumber:4690
 3440 IF F(3,I)<>-5 THEN 3870
  NumericConstant:3
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3450 IF A(1)<>A(4) THEN 4960
  NumericConstant:1
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  NumericConstant:4
- Variable:A(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:A(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3460 IF A(2)<>A(3) THEN 4960
  NumericConstant:2
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  NumericConstant:3
- Variable:A(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:A(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3470 F(3,I)=0
  NumericConstant:3
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 3480 F(3,I)=A(1)+A(2)+A(3)+A(4)+A(5)
  NumericConstant:3
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:1
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  NumericConstant:2
- Variable:A(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:A(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:3
- Variable:A(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:A(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:4
- Variable:A(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:A(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:5
- Variable:A(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:A(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 3490 M(I)=F(3,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:3
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  AssignmentOperator:=
 3500 F(3,I)=0
  NumericConstant:3
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 3510 GO TO 4690
  LineNumber:4690
 3520 IF F(4,I)<>-5 THEN 3870
  NumericConstant:4
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3530 IF A(1)<>A(2) THEN 4960
  NumericConstant:1
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  NumericConstant:2
- Variable:A(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:A(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3540 IF A(4)<>A(S) THEN 4960
  NumericConstant:4
- Variable:A(_) numeric scalar
- Variable:S numeric scalar
- Variable:A(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:A(_) -> _
+ Variable:S -> _
+ Variable:A(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3550 IF A(3)<>A(2) THEN 3570
  NumericConstant:3
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  NumericConstant:2
- Variable:A(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:A(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3560 GO TO 3590
  LineNumber:3590
 3570 IF A(3)<>A(4) THEN 4960
  NumericConstant:3
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  NumericConstant:4
- Variable:A(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:A(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3580 GO TO 3590
  LineNumber:3590
 3590 F(4,I)=25
  NumericConstant:4
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:25
  AssignmentOperator:=
 3600 M(I)=F(4,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:4
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  AssignmentOperator:=
 3610 GO TO 4690
  LineNumber:4690
 3620 IF S(2,I)<>-5 THEN 3870
  NumericConstant:2
- Variable:I numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3630 S(2,I)=30
  NumericConstant:2
- Variable:I numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S(_,_) -> _
  NumericConstant:30
  AssignmentOperator:=
 3640 M(I)=S(2,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:2
- Variable:I numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S(_,_) -> _
  AssignmentOperator:=
 3650 GO TO 4690
  LineNumber:4690
 3660 IF L(1,I)<>-5 THEN 3870
  NumericConstant:1
- Variable:I numeric scalar
- Variable:L(_,_) numeric scalar
+ Variable:I -> _
+ Variable:L(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3670 IF A(1)<>A(5)+4 THEN 4960
  NumericConstant:1
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  NumericConstant:5
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  NumericConstant:4
- BinaryOperatorPlus:+(_,_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3680 IF A(2)<>A(4)+2 THEN 4960
  NumericConstant:2
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  NumericConstant:4
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  NumericConstant:2
- BinaryOperatorPlus:+(_,_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3690 IF A(3)<>A(5)+2 THEN 4960
  NumericConstant:3
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  NumericConstant:5
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  NumericConstant:2
- BinaryOperatorPlus:+(_,_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3700 L(1,I)=40
  NumericConstant:1
- Variable:I numeric scalar
- Variable:L(_,_) numeric scalar
+ Variable:I -> _
+ Variable:L(_,_) -> _
  NumericConstant:40
  AssignmentOperator:=
 3710 M(I)=L(1,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:1
- Variable:I numeric scalar
- Variable:L(_,_) numeric scalar
+ Variable:I -> _
+ Variable:L(_,_) -> _
  AssignmentOperator:=
 3720 GO TO 4690
  LineNumber:4690
 3730 IF Y(I)<>-5 THEN 3870
- Variable:I numeric scalar
- Variable:Y(_) numeric scalar
+ Variable:I -> _
+ Variable:Y(_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3740 FOR O=1 TO 5
- control: Variable:O numeric scalar
+ control: Variable:O -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 3750 FOR O1=1 TO 5
- control: Variable:O1 numeric scalar
+ control: Variable:O1 -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:5"]
 3760 IF A(O)<>A(O1) THEN 4960
- Variable:O numeric scalar
- Variable:A(_) numeric scalar
- Variable:O1 numeric scalar
- Variable:A(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:O -> _
+ Variable:A(_) -> _
+ Variable:O1 -> _
+ Variable:A(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3770 NEXT O1
- Variable:O1 numeric scalar
+ Variable:O1 -> _
 3780 NEXT O
- Variable:O numeric scalar
+ Variable:O -> _
 3790 Y(I)=50
- Variable:I numeric scalar
- Variable:Y(_) numeric scalar
+ Variable:I -> _
+ Variable:Y(_) -> _
  NumericConstant:50
  AssignmentOperator:=
 3800 M(I)=Y(I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
- Variable:I numeric scalar
- Variable:Y(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
+ Variable:I -> _
+ Variable:Y(_) -> _
  AssignmentOperator:=
 3810 GO TO 4690
  LineNumber:4690
 3820 IF C(I)<>-5 THEN 3870
- Variable:I numeric scalar
- Variable:C(_) numeric scalar
+ Variable:I -> _
+ Variable:C(_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 3830 C(I)=A(1)+A(2)+A(3)+A(4)+A(5)
- Variable:I numeric scalar
- Variable:C(_) numeric scalar
+ Variable:I -> _
+ Variable:C(_) -> _
  NumericConstant:1
- Variable:A(_) numeric scalar
+ Variable:A(_) -> _
  NumericConstant:2
- Variable:A(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:A(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:3
- Variable:A(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:A(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:4
- Variable:A(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:A(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:5
- Variable:A(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:A(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 3840
 3850 M(I)=C(I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
- Variable:I numeric scalar
- Variable:C(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
+ Variable:I -> _
+ Variable:C(_) -> _
  AssignmentOperator:=
 3860 GO TO 4690
  LineNumber:4690
@@ -1288,11 +1288,11 @@
  TextConstant:"WHAT DO YOU WANT TO ZERO"
  CarriageControl:;
 3900 INPUT Z$
- Variable:Z$ string scalar
+ Variable:Z$ -> $
 3920 IF Z$="SUMMARY" THEN 3940
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"SUMMARY"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 3930 GO TO 3970
  LineNumber:3970
 3940 GOSUB 6140
@@ -1304,336 +1304,336 @@
 3960 GO TO 3900
  LineNumber:3900
 3970 IF Z$="ACES" THEN 4110
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"ACES"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 3980 IF Z$="TWOS" THEN 4150
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"TWOS"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 3990 IF Z$="THREES" THEN 4190
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"THREES"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 4000 IF Z$="FOURS" THEN 4230
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"FOURS"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 4010 IF Z$="FIVES" THEN 4270
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"FIVES"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 4020 IF Z$="SIXES" THEN 4310
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"SIXES"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 4030 IF Z$="THREE OF A KIND" THEN 4350
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"THREE OF A KIND"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 4040 IF Z$="FOUR OF A KIND" THEN 4390
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"FOUR OF A KIND"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 4050 IF Z$="FULL HOUSE" THEN 4430
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"FULL HOUSE"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 4060 IF Z$="SM. STRAIGHT" THEN 4470
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"SM. STRAIGHT"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 4070 IF Z$="LG. STRAIGHT" THEN 4510
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"LG. STRAIGHT"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 4080 IF Z$="YAHTZEE" THEN 4550
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"YAHTZEE"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 4090 IF Z$="CHANCE" THEN 4590
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"CHANCE"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 4100 GO TO 3890
  LineNumber:3890
 4110 IF A(1,I)<>-5 THEN 4630
  NumericConstant:1
- Variable:I numeric scalar
- Variable:A(_,_) numeric scalar
+ Variable:I -> _
+ Variable:A(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 4120 A(1,I)=0
  NumericConstant:1
- Variable:I numeric scalar
- Variable:A(_,_) numeric scalar
+ Variable:I -> _
+ Variable:A(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 4130 M(I)=A(1,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:1
- Variable:I numeric scalar
- Variable:A(_,_) numeric scalar
+ Variable:I -> _
+ Variable:A(_,_) -> _
  AssignmentOperator:=
 4140 GO TO 4690
  LineNumber:4690
 4150 IF T(1,I)<>-5 THEN 4630
  NumericConstant:1
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 4160 T(1,I)=0
  NumericConstant:1
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 4170 M(I)=T(1,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:1
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  AssignmentOperator:=
 4180 GO TO 4690
  LineNumber:4690
 4190 IF T(2,I)<>-5 THEN 4630
  NumericConstant:2
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 4200 T(2,I)=0
  NumericConstant:2
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 4210 M(I)=T(2,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:2
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  AssignmentOperator:=
 4220 GO TO 4690
  LineNumber:4690
 4230 IF F(1,I)<>-5 THEN 4630
  NumericConstant:1
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 4240 F(1,I)=0
  NumericConstant:1
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 4250 M(I)=F(1,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:1
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  AssignmentOperator:=
 4260 GO TO 4690
  LineNumber:4690
 4270 IF F(2,I)<>-5 THEN 4630
  NumericConstant:2
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 4280 F(2,I)=0
  NumericConstant:2
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 4290 M(I)=F(2,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:2
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  AssignmentOperator:=
 4300 GO TO 4690
  LineNumber:4690
 4310 IF S(1,I)<>-5 THEN 4630
  NumericConstant:1
- Variable:I numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 4320 S(1,I)=0
  NumericConstant:1
- Variable:I numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 4330 M(1)=S(1,I)
  NumericConstant:1
- Variable:M(_) numeric scalar
+ Variable:M(_) -> _
  NumericConstant:1
- Variable:I numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S(_,_) -> _
  AssignmentOperator:=
 4340 GO TO 4690
  LineNumber:4690
 4350 IF T(3,I)<>-5 THEN 4630
  NumericConstant:3
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 4360 T(3,I)=0
  NumericConstant:3
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 4370 M(I)=T(3,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:3
- Variable:I numeric scalar
- Variable:T(_,_) numeric scalar
+ Variable:I -> _
+ Variable:T(_,_) -> _
  AssignmentOperator:=
 4380 GO TO 4690
  LineNumber:4690
 4390 IF F(3,I)<>-5 THEN 4630
  NumericConstant:3
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 4400 F(3,I)=0
  NumericConstant:3
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 4410 M(I)=F(3,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:3
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  AssignmentOperator:=
 4420 GO TO 4690
  LineNumber:4690
 4430 IF F(4,I)<>-5 THEN 4630
  NumericConstant:4
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 4440 F(4,I)=0
  NumericConstant:4
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 4450 M(I)=F(4,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:4
- Variable:I numeric scalar
- Variable:F(_,_) numeric scalar
+ Variable:I -> _
+ Variable:F(_,_) -> _
  AssignmentOperator:=
 4460 GO TO 4690
  LineNumber:4690
 4470 IF S(2,I)<>-5 THEN 4630
  NumericConstant:2
- Variable:I numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 4480 S(2,I)=0
  NumericConstant:2
- Variable:I numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 4490 M(I)=S(2,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:2
- Variable:I numeric scalar
- Variable:S(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S(_,_) -> _
  AssignmentOperator:=
 4500 GO TO 4690
  LineNumber:4690
 4510 IF L(1,I)<>-5 THEN 4630
  NumericConstant:1
- Variable:I numeric scalar
- Variable:L(_,_) numeric scalar
+ Variable:I -> _
+ Variable:L(_,_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 4520 L(1, I)=0
  NumericConstant:1
- Variable:I numeric scalar
- Variable:L(_,_) numeric scalar
+ Variable:I -> _
+ Variable:L(_,_) -> _
  NumericConstant:0
  AssignmentOperator:=
 4530 M(I)=L(1,I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  NumericConstant:1
- Variable:I numeric scalar
- Variable:L(_,_) numeric scalar
+ Variable:I -> _
+ Variable:L(_,_) -> _
  AssignmentOperator:=
 4540 GO TO 4690
  LineNumber:4690
 4550 IF Y(I)<>-5 THEN 4630
- Variable:I numeric scalar
- Variable:Y(_) numeric scalar
+ Variable:I -> _
+ Variable:Y(_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 4560 Y(I)=0
- Variable:I numeric scalar
- Variable:Y(_) numeric scalar
+ Variable:I -> _
+ Variable:Y(_) -> _
  NumericConstant:0
  AssignmentOperator:=
 4570 M(I)=Y(I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
- Variable:I numeric scalar
- Variable:Y(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
+ Variable:I -> _
+ Variable:Y(_) -> _
  AssignmentOperator:=
 4580 GO TO 4690
  LineNumber:4690
 4590 IF C(I)<>-5 THEN 4630
- Variable:I numeric scalar
- Variable:C(_) numeric scalar
+ Variable:I -> _
+ Variable:C(_) -> _
  NumericConstant:5
- UnaryOperatorMinus:-(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ UnaryOperatorMinus:-(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 4600 C(I)=0
- Variable:I numeric scalar
- Variable:C(_) numeric scalar
+ Variable:I -> _
+ Variable:C(_) -> _
  NumericConstant:0
  AssignmentOperator:=
 4610 M(I)=C(I)
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
- Variable:I numeric scalar
- Variable:C(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
+ Variable:I -> _
+ Variable:C(_) -> _
  AssignmentOperator:=
 4620 GO TO 4690
  LineNumber:4690
@@ -1644,11 +1644,11 @@
 4650 PRINT "YOU HAVE ALREADY USED ";Z$;" AS A CATEGORY";C$
  TextConstant:"YOU HAVE ALREADY USED "
  CarriageControl:;
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  CarriageControl:;
  TextConstant:" AS A CATEGORY"
  CarriageControl:;
- Variable:C$ string scalar
+ Variable:C$ -> $
  CarriageControl:NL
 4660 PRINT
  CarriageControl:NL
@@ -1657,115 +1657,115 @@
 4680 GOTO 2620
  LineNumber:2620
 4690 PRINT N$(I);" YOU GET A SCORE OF ";M(I);" FOR THIS ROUND"
- Variable:I numeric scalar
- Variable:N$(_) string scalar
+ Variable:I -> _
+ Variable:N$(_) -> $
  CarriageControl:;
  TextConstant:" YOU GET A SCORE OF "
  CarriageControl:;
- Variable:I numeric scalar
- Variable:M(_) numeric scalar
+ Variable:I -> _
+ Variable:M(_) -> _
  CarriageControl:;
  TextConstant:" FOR THIS ROUND"
  CarriageControl:NL
 4700 GO TO 5750
  LineNumber:5750
 4710 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 4720 PRINT
  CarriageControl:NL
 4730 FOR J=1 TO P
- control: Variable:J numeric scalar
+ control: Variable:J -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:P numeric scalar"]
+ end:     ["Variable:P -> _"]
 4740 IF M(J)=A(1,J) THEN 4810
- Variable:J numeric scalar
- Variable:M(_) numeric scalar
+ Variable:J -> _
+ Variable:M(_) -> _
  NumericConstant:1
- Variable:J numeric scalar
- Variable:A(_,_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:J -> _
+ Variable:A(_,_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 4750 IF M(J)=T(1,J) THEN 4810
- Variable:J numeric scalar
- Variable:M(_) numeric scalar
+ Variable:J -> _
+ Variable:M(_) -> _
  NumericConstant:1
- Variable:J numeric scalar
- Variable:T(_,_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:J -> _
+ Variable:T(_,_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 4760 IF M(J)=T(2,J) THEN 4810
- Variable:J numeric scalar
- Variable:M(_) numeric scalar
+ Variable:J -> _
+ Variable:M(_) -> _
  NumericConstant:2
- Variable:J numeric scalar
- Variable:T(_,_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:J -> _
+ Variable:T(_,_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 4770 IF M(J)=F(1,J) THEN 4810
- Variable:J numeric scalar
- Variable:M(_) numeric scalar
+ Variable:J -> _
+ Variable:M(_) -> _
  NumericConstant:1
- Variable:J numeric scalar
- Variable:F(_,_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:J -> _
+ Variable:F(_,_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 4780 IF M(J)=F(2,J) THEN 4810
- Variable:J numeric scalar
- Variable:M(_) numeric scalar
+ Variable:J -> _
+ Variable:M(_) -> _
  NumericConstant:2
- Variable:J numeric scalar
- Variable:F(_,_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:J -> _
+ Variable:F(_,_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 4790 IF M(J)=S(1,J) THEN 4810
- Variable:J numeric scalar
- Variable:M(_) numeric scalar
+ Variable:J -> _
+ Variable:M(_) -> _
  NumericConstant:1
- Variable:J numeric scalar
- Variable:S(_,_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:J -> _
+ Variable:S(_,_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 4800 GO TO 4920
  LineNumber:4920
 4810 K(1,J)=K(1,J)+M(J)
  NumericConstant:1
- Variable:J numeric scalar
- Variable:K(_,_) numeric scalar
+ Variable:J -> _
+ Variable:K(_,_) -> _
  NumericConstant:1
- Variable:J numeric scalar
- Variable:K(_,_) numeric scalar
- Variable:J numeric scalar
- Variable:M(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:J -> _
+ Variable:K(_,_) -> _
+ Variable:J -> _
+ Variable:M(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 4820 GO TO 4830
  LineNumber:4830
 4830 IF K(1,J)>=63 THEN 4860
  NumericConstant:1
- Variable:J numeric scalar
- Variable:K(_,_) numeric scalar
+ Variable:J -> _
+ Variable:K(_,_) -> _
  NumericConstant:63
- BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) -> ?
 4840 K(J)=K(J)+M(J)
- Variable:J numeric scalar
- Variable:K(_) numeric scalar
- Variable:J numeric scalar
- Variable:K(_) numeric scalar
- Variable:J numeric scalar
- Variable:M(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:J -> _
+ Variable:K(_) -> _
+ Variable:J -> _
+ Variable:K(_) -> _
+ Variable:J -> _
+ Variable:M(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 4850 GO TO 4930
  LineNumber:4930
 4860 K(1,J)=K(1,J)+35
  NumericConstant:1
- Variable:J numeric scalar
- Variable:K(_,_) numeric scalar
+ Variable:J -> _
+ Variable:K(_,_) -> _
  NumericConstant:1
- Variable:J numeric scalar
- Variable:K(_,_) numeric scalar
+ Variable:J -> _
+ Variable:K(_,_) -> _
  NumericConstant:35
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 4870 PRINT C$;N$(J);" HAS ACCUMULATED AT LEAST 63 POINTS"
- Variable:C$ string scalar
+ Variable:C$ -> $
  CarriageControl:;
- Variable:J numeric scalar
- Variable:N$(_) string scalar
+ Variable:J -> _
+ Variable:N$(_) -> $
  CarriageControl:;
  TextConstant:" HAS ACCUMULATED AT LEAST 63 POINTS"
  CarriageControl:NL
@@ -1775,51 +1775,51 @@
 4890 PRINT "HE SCORES A BONUS OF 35 POINTS!";C$
  TextConstant:"HE SCORES A BONUS OF 35 POINTS!"
  CarriageControl:;
- Variable:C$ string scalar
+ Variable:C$ -> $
  CarriageControl:NL
 4900 K(J)=K(J)+M(J)
- Variable:J numeric scalar
- Variable:K(_) numeric scalar
- Variable:J numeric scalar
- Variable:K(_) numeric scalar
- Variable:J numeric scalar
- Variable:M(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:J -> _
+ Variable:K(_) -> _
+ Variable:J -> _
+ Variable:K(_) -> _
+ Variable:J -> _
+ Variable:M(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 4910 GO TO 4930
  LineNumber:4930
 4920 K(J)=K(J)+M(J)
- Variable:J numeric scalar
- Variable:K(_) numeric scalar
- Variable:J numeric scalar
- Variable:K(_) numeric scalar
- Variable:J numeric scalar
- Variable:M(_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:J -> _
+ Variable:K(_) -> _
+ Variable:J -> _
+ Variable:K(_) -> _
+ Variable:J -> _
+ Variable:M(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 4930 PRINT N$(J);" HAS ";K(J);" POINTS"
- Variable:J numeric scalar
- Variable:N$(_) string scalar
+ Variable:J -> _
+ Variable:N$(_) -> $
  CarriageControl:;
  TextConstant:" HAS "
  CarriageControl:;
- Variable:J numeric scalar
- Variable:K(_) numeric scalar
+ Variable:J -> _
+ Variable:K(_) -> _
  CarriageControl:;
  TextConstant:" POINTS"
  CarriageControl:NL
 4940 NEXT J
- Variable:J numeric scalar
+ Variable:J -> _
 4950 GO TO 1490
  LineNumber:1490
 4960 PRINT "IT IS ILLEGAL TO USE ";Z$;" THIS ROUND";C$
  TextConstant:"IT IS ILLEGAL TO USE "
  CarriageControl:;
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  CarriageControl:;
  TextConstant:" THIS ROUND"
  CarriageControl:;
- Variable:C$ string scalar
+ Variable:C$ -> $
  CarriageControl:NL
 4970 GO TO 2620
  LineNumber:2620
@@ -1832,7 +1832,7 @@
 5010 PRINT "INSTRUCTIONS FOR PLAYING YAHTZEE";C$
  TextConstant:"INSTRUCTIONS FOR PLAYING YAHTZEE"
  CarriageControl:;
- Variable:C$ string scalar
+ Variable:C$ -> $
  CarriageControl:NL
 5020 PRINT
  CarriageControl:NL
@@ -1969,7 +1969,7 @@
 5470 PRINT "A BONUS OF 35 POINTS!";C$
  TextConstant:"A BONUS OF 35 POINTS!"
  CarriageControl:;
- Variable:C$ string scalar
+ Variable:C$ -> $
  CarriageControl:NL
 5480 PRINT
  CarriageControl:NL
@@ -1994,7 +1994,7 @@
 5560 PRINT "GOOD LUCK!!!!!";C$
  TextConstant:"GOOD LUCK!!!!!"
  CarriageControl:;
- Variable:C$ string scalar
+ Variable:C$ -> $
  CarriageControl:NL
 5570 GO TO 1070
  LineNumber:1070
@@ -2040,181 +2040,181 @@
 5740 RETURN
  
 5750 IF Z$="ACES" THEN 5880
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"ACES"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 5760 IF Z$="TWOS" THEN 5900
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"TWOS"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 5770 IF Z$="THREES" THEN 5920
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"THREES"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 5780 IF Z$="FOURS" THEN 5940
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"FOURS"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 5790 IF Z$="FIVES" THEN 5960
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"FIVES"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 5800 IF Z$="SIXES" THEN 5980
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"SIXES"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 5810 IF Z$="THREE OF A KIND" THEN 6000
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"THREE OF A KIND"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 5820 IF Z$="FOUR OF A KIND" THEN 6020
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"FOUR OF A KIND"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 5830 IF Z$="FULL HOUSE" THEN 6040
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"FULL HOUSE"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 5840 IF Z$="SM. STRAIGHT" THEN 6000
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"SM. STRAIGHT"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 5850 IF Z$="LG. STRAIGHT" THEN 6080
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"LG. STRAIGHT"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 5860 IF Z$="YAHTZEE" THEN 6100
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"YAHTZEE"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 5870 IF Z$="CHANCE" THEN 6120
- Variable:Z$ string scalar
+ Variable:Z$ -> $
  TextConstant:"CHANCE"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 5880 H(I,R)=1
- Variable:I numeric scalar
- Variable:R numeric scalar
- Variable:H(_,_) numeric scalar
+ Variable:I -> _
+ Variable:R -> _
+ Variable:H(_,_) -> _
  NumericConstant:1
  AssignmentOperator:=
 5890 GO TO 4710
  LineNumber:4710
 5900 H(I,R)=2
- Variable:I numeric scalar
- Variable:R numeric scalar
- Variable:H(_,_) numeric scalar
+ Variable:I -> _
+ Variable:R -> _
+ Variable:H(_,_) -> _
  NumericConstant:2
  AssignmentOperator:=
 5910 GO TO 4710
  LineNumber:4710
 5920 H(I,R)=3
- Variable:I numeric scalar
- Variable:R numeric scalar
- Variable:H(_,_) numeric scalar
+ Variable:I -> _
+ Variable:R -> _
+ Variable:H(_,_) -> _
  NumericConstant:3
  AssignmentOperator:=
 5930 GO TO 4710
  LineNumber:4710
 5940 H(I,R)=4
- Variable:I numeric scalar
- Variable:R numeric scalar
- Variable:H(_,_) numeric scalar
+ Variable:I -> _
+ Variable:R -> _
+ Variable:H(_,_) -> _
  NumericConstant:4
  AssignmentOperator:=
 5950 GO TO 4710
  LineNumber:4710
 5960 H(I,R)=5
- Variable:I numeric scalar
- Variable:R numeric scalar
- Variable:H(_,_) numeric scalar
+ Variable:I -> _
+ Variable:R -> _
+ Variable:H(_,_) -> _
  NumericConstant:5
  AssignmentOperator:=
 5970 GO TO 4710
  LineNumber:4710
 5980 H(I,R)=6
- Variable:I numeric scalar
- Variable:R numeric scalar
- Variable:H(_,_) numeric scalar
+ Variable:I -> _
+ Variable:R -> _
+ Variable:H(_,_) -> _
  NumericConstant:6
  AssignmentOperator:=
 5990 GO TO 4710
  LineNumber:4710
 6000 H(I,R)=7
- Variable:I numeric scalar
- Variable:R numeric scalar
- Variable:H(_,_) numeric scalar
+ Variable:I -> _
+ Variable:R -> _
+ Variable:H(_,_) -> _
  NumericConstant:7
  AssignmentOperator:=
 6010 GO TO 4710
  LineNumber:4710
 6020 H(I,R)=8
- Variable:I numeric scalar
- Variable:R numeric scalar
- Variable:H(_,_) numeric scalar
+ Variable:I -> _
+ Variable:R -> _
+ Variable:H(_,_) -> _
  NumericConstant:8
  AssignmentOperator:=
 6030 GO TO 4710
  LineNumber:4710
 6040 H(I,R)=9
- Variable:I numeric scalar
- Variable:R numeric scalar
- Variable:H(_,_) numeric scalar
+ Variable:I -> _
+ Variable:R -> _
+ Variable:H(_,_) -> _
  NumericConstant:9
  AssignmentOperator:=
 6050 GO TO 4710
  LineNumber:4710
 6060 H(I,R)=10
- Variable:I numeric scalar
- Variable:R numeric scalar
- Variable:H(_,_) numeric scalar
+ Variable:I -> _
+ Variable:R -> _
+ Variable:H(_,_) -> _
  NumericConstant:10
  AssignmentOperator:=
 6070 GO TO 4710
  LineNumber:4710
 6080 H(I,R)=11
- Variable:I numeric scalar
- Variable:R numeric scalar
- Variable:H(_,_) numeric scalar
+ Variable:I -> _
+ Variable:R -> _
+ Variable:H(_,_) -> _
  NumericConstant:11
  AssignmentOperator:=
 6090 GO TO 4710
  LineNumber:4710
 6100 H(I,R)=12
- Variable:I numeric scalar
- Variable:R numeric scalar
- Variable:H(_,_) numeric scalar
+ Variable:I -> _
+ Variable:R -> _
+ Variable:H(_,_) -> _
  NumericConstant:12
  AssignmentOperator:=
 6110 GO TO 4710
  LineNumber:4710
 6120 H(I,R)=13
- Variable:I numeric scalar
- Variable:R numeric scalar
- Variable:H(_,_) numeric scalar
+ Variable:I -> _
+ Variable:R -> _
+ Variable:H(_,_) -> _
  NumericConstant:13
  AssignmentOperator:=
 6130 GO TO 4710
  LineNumber:4710
 6140 PRINT N$(I);" HAS USED THE FOLLOWING CATEGORIES:"
- Variable:I numeric scalar
- Variable:N$(_) string scalar
+ Variable:I -> _
+ Variable:N$(_) -> $
  CarriageControl:;
  TextConstant:" HAS USED THE FOLLOWING CATEGORIES:"
  CarriageControl:NL
 6150 FOR S= 1 TO (R-1)
- control: Variable:S numeric scalar
+ control: Variable:S -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:R numeric scalar", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) numeric scalar"]
+ end:     ["Variable:R -> _", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) -> _"]
 6160 IF H(I,S)>7 THEN 6180
- Variable:I numeric scalar
- Variable:S numeric scalar
- Variable:H(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S -> _
+ Variable:H(_,_) -> _
  NumericConstant:7
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 6170 ON H(I,S) GO TO 6190,6210,6230,6250,6270,6290,6310
- Variable:I numeric scalar
- Variable:S numeric scalar
- Variable:H(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S -> _
+ Variable:H(_,_) -> _
  LineNumber:6190
  LineNumber:6210
  LineNumber:6230
@@ -2223,11 +2223,11 @@
  LineNumber:6290
  LineNumber:6310
 6180 ON H(I,S)-7 GO TO 6330,6350,6370,6390,6410,6430
- Variable:I numeric scalar
- Variable:S numeric scalar
- Variable:H(_,_) numeric scalar
+ Variable:I -> _
+ Variable:S -> _
+ Variable:H(_,_) -> _
  NumericConstant:7
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  LineNumber:6330
  LineNumber:6350
  LineNumber:6370
@@ -2298,14 +2298,14 @@
  TextConstant:"CHANCE, "
  CarriageControl:;
 6440 NEXT S
- Variable:S numeric scalar
+ Variable:S -> _
 6445 PRINT
  CarriageControl:NL
 6446 PRINT "HE HAS ";K(I);" POINTS,"
  TextConstant:"HE HAS "
  CarriageControl:;
- Variable:I numeric scalar
- Variable:K(_) numeric scalar
+ Variable:I -> _
+ Variable:K(_) -> _
  CarriageControl:;
  TextConstant:" POINTS,"
  CarriageControl:NL
@@ -2313,8 +2313,8 @@
  TextConstant:"AND "
  CarriageControl:;
  NumericConstant:1
- Variable:I numeric scalar
- Variable:K(_,_) numeric scalar
+ Variable:I -> _
+ Variable:K(_,_) -> _
  CarriageControl:;
  TextConstant:" OF THE 65 POINTS NEEDED FOR THE BONUS"
  CarriageControl:;
@@ -2324,111 +2324,111 @@
 6460 RETURN
  
 6470 G=0
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:0
  AssignmentOperator:=
 6480 FOR X=1 TO P
- control: Variable:X numeric scalar
+ control: Variable:X -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:P numeric scalar"]
+ end:     ["Variable:P -> _"]
 6490 IF S(X)>=S(X+1) THEN 6540
- Variable:X numeric scalar
- Variable:S(_) numeric scalar
- Variable:X numeric scalar
+ Variable:X -> _
+ Variable:S(_) -> _
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:S(_) numeric scalar
- BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:S(_) -> _
+ BinaryOperatorGreaterEqual:>=(_,_) -> ?
 6500 H=S(X)
- Variable:H numeric scalar
- Variable:X numeric scalar
- Variable:S(_) numeric scalar
+ Variable:H -> _
+ Variable:X -> _
+ Variable:S(_) -> _
  AssignmentOperator:=
 6510 S(X)=S(X+1)
- Variable:X numeric scalar
- Variable:S(_) numeric scalar
- Variable:X numeric scalar
+ Variable:X -> _
+ Variable:S(_) -> _
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:S(_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:S(_) -> _
  AssignmentOperator:=
 6520 S(X+1)=H
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:S(_) numeric scalar
- Variable:H numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:S(_) -> _
+ Variable:H -> _
  AssignmentOperator:=
 6530 G=1
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:1
  AssignmentOperator:=
 6540 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 6550 IF G=1 THEN 6470
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 6560 PRINT "THE GAME IS OVER."
  TextConstant:"THE GAME IS OVER."
  CarriageControl:NL
 6570 PRINT
  CarriageControl:NL
 6571 FOR X=1 TO P
- control: Variable:X numeric scalar
+ control: Variable:X -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:P numeric scalar"]
+ end:     ["Variable:P -> _"]
 6572 IF K(X)=S(X) THEN 6580
- Variable:X numeric scalar
- Variable:K(_) numeric scalar
- Variable:X numeric scalar
- Variable:S(_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:X -> _
+ Variable:K(_) -> _
+ Variable:X -> _
+ Variable:S(_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 6573 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 6580 PRINT "THE WINNER IS ";N$(1);" WITH";K(1);" POINTS."
  TextConstant:"THE WINNER IS "
  CarriageControl:;
  NumericConstant:1
- Variable:N$(_) string scalar
+ Variable:N$(_) -> $
  CarriageControl:;
  TextConstant:" WITH"
  CarriageControl:;
  NumericConstant:1
- Variable:K(_) numeric scalar
+ Variable:K(_) -> _
  CarriageControl:;
  TextConstant:" POINTS."
  CarriageControl:NL
 6585 IF P=1 THEN 9999
- Variable:P numeric scalar
+ Variable:P -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 6586 PRINT "OTHER FINAL SCORES ARE:"
  TextConstant:"OTHER FINAL SCORES ARE:"
  CarriageControl:NL
 6590 FOR Y=1 TO P
- control: Variable:Y numeric scalar
+ control: Variable:Y -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:P numeric scalar"]
+ end:     ["Variable:P -> _"]
 6600 IF K(Y)=S(X) THEN 6620
- Variable:Y numeric scalar
- Variable:K(_) numeric scalar
- Variable:X numeric scalar
- Variable:S(_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:Y -> _
+ Variable:K(_) -> _
+ Variable:X -> _
+ Variable:S(_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 6610 PRINT N$(Y);" FINISHES WITH ";K(Y);" POINTS."
- Variable:Y numeric scalar
- Variable:N$(_) string scalar
+ Variable:Y -> _
+ Variable:N$(_) -> $
  CarriageControl:;
  TextConstant:" FINISHES WITH "
  CarriageControl:;
- Variable:Y numeric scalar
- Variable:K(_) numeric scalar
+ Variable:Y -> _
+ Variable:K(_) -> _
  CarriageControl:;
  TextConstant:" POINTS."
  CarriageControl:NL
 6620 NEXT Y
- Variable:Y numeric scalar
+ Variable:Y -> _
 9999 END
  
 

@@ -1,26 +1,26 @@
 5 DIM P[10,10]
  NumericConstant:10
  NumericConstant:10
- Declaration:P(,) matrix
+ Declaration:P(,) -> _(,)
 10 READ N
- Variable:N numeric scalar
+ Variable:N -> _
 15 IF N=0 THEN 999
- Variable:N numeric scalar
+ Variable:N -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 20 FOR X=N TO 1 STEP -1
- control: Variable:X numeric scalar
- start:   ["Variable:N numeric scalar"]
+ control: Variable:X -> _
+ start:   ["Variable:N -> _"]
  end:     ["NumericConstant:1"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> _"]
 30 READ P[1,X]
  NumericConstant:1
- Variable:X numeric scalar
- Variable:P(_,_) numeric scalar
+ Variable:X -> _
+ Variable:P(_,_) -> _
 40 PRINT P[1,X];
  NumericConstant:1
- Variable:X numeric scalar
- Variable:P(_,_) numeric scalar
+ Variable:X -> _
+ Variable:P(_,_) -> _
  CarriageControl:;
 48 REM ENTER THE SAME COEFFICIENT IN THE SAME COLUMN
  Remark:ENTER THE SAME COEFFICIENT IN THE SAME COLUMN
@@ -28,106 +28,106 @@
  Remark:OF THE SECOND ROW
 50 LET P[2,X]=P[1,X]
  NumericConstant:2
- Variable:X numeric scalar
- Variable:P(_,_) numeric scalar
+ Variable:X -> _
+ Variable:P(_,_) -> _
  NumericConstant:1
- Variable:X numeric scalar
- Variable:P(_,_) numeric scalar
+ Variable:X -> _
+ Variable:P(_,_) -> _
  AssignmentOperator:=
 58 REM IF THE EXPONENT ON X IS ODD THEN CHANGE THE SIGN
  Remark:IF THE EXPONENT ON X IS ODD THEN CHANGE THE SIGN
 60 IF (X+1)/2=INT((X+1)/2) THEN 80
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:2
- BinaryOperatorDivide:/(_,_) numeric scalar
- Variable:X numeric scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:2
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 70 LET P[2,X]=-P[2,X]
  NumericConstant:2
- Variable:X numeric scalar
- Variable:P(_,_) numeric scalar
+ Variable:X -> _
+ Variable:P(_,_) -> _
  NumericConstant:2
- Variable:X numeric scalar
- Variable:P(_,_) numeric scalar
- UnaryOperatorMinus:-(_) numeric scalar
+ Variable:X -> _
+ Variable:P(_,_) -> _
+ UnaryOperatorMinus:-(_) -> _
  AssignmentOperator:=
 80 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 90 PRINT
  CarriageControl:NL
 100 PRINT N-1;"COMPLEX ZEROS"
- Variable:N numeric scalar
+ Variable:N -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  CarriageControl:;
  TextConstant:"COMPLEX ZEROS"
  CarriageControl:NL
 200 LET V1,V2=0
- Variable:V1 numeric scalar
- Variable:V2 numeric scalar
+ Variable:V1 -> _
+ Variable:V2 -> _
  NumericConstant:0
  AssignmentOperator:=
 210 FOR X=N-1 TO 1 STEP -1
- control: Variable:X numeric scalar
- start:   ["Variable:N numeric scalar", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) numeric scalar"]
+ control: Variable:X -> _
+ start:   ["Variable:N -> _", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) -> _"]
  end:     ["NumericConstant:1"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) numeric scalar"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> _"]
 218 REM LOOK AT POSITIVE ZEROS
  Remark:LOOK AT POSITIVE ZEROS
 220 IF P[1,X]*P[1,X+1]>0 THEN 240
  NumericConstant:1
- Variable:X numeric scalar
- Variable:P(_,_) numeric scalar
+ Variable:X -> _
+ Variable:P(_,_) -> _
  NumericConstant:1
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:P(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:P(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:0
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 230 LET V1=V1+1
- Variable:V1 numeric scalar
- Variable:V1 numeric scalar
+ Variable:V1 -> _
+ Variable:V1 -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 238 REM LOOK AT NEGATIVE ZEROS
  Remark:LOOK AT NEGATIVE ZEROS
 240 IF P[2,X]*P[2,X+1]>0 THEN 260
  NumericConstant:2
- Variable:X numeric scalar
- Variable:P(_,_) numeric scalar
+ Variable:X -> _
+ Variable:P(_,_) -> _
  NumericConstant:2
- Variable:X numeric scalar
+ Variable:X -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:P(_,_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:P(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:0
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 250 LET V2=V2+1
- Variable:V2 numeric scalar
- Variable:V2 numeric scalar
+ Variable:V2 -> _
+ Variable:V2 -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 260 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 300 PRINT V1;"MAX POSITIVE"
- Variable:V1 numeric scalar
+ Variable:V1 -> _
  CarriageControl:;
  TextConstant:"MAX POSITIVE"
  CarriageControl:NL
 310 PRINT V2;"MAX NEGATIVE"
- Variable:V2 numeric scalar
+ Variable:V2 -> _
  CarriageControl:;
  TextConstant:"MAX NEGATIVE"
  CarriageControl:NL
@@ -147,20 +147,20 @@
  NumericConstant:3
  NumericConstant:4
  NumericConstant:8
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  NumericConstant:2
 520 DATA 6,-4,-3,5,-2,1,-3
  NumericConstant:6
  NumericConstant:4
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  NumericConstant:3
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  NumericConstant:5
  NumericConstant:2
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
  NumericConstant:1
  NumericConstant:3
- UnaryOperatorMinus:-(_) numeric scalar
+ UnaryOperatorMinus:-(_) -> _
 600 DATA 0
  NumericConstant:0
 999 END

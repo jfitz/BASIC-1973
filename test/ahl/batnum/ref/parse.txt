@@ -26,203 +26,203 @@
 210 GOTO 330 
  LineNumber:330
 220 FOR I=1 TO 10
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 230 PRINT
  CarriageControl:NL
 240 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 330 PRINT "ENTER PILE SIZE:";
  TextConstant:"ENTER PILE SIZE:"
  CarriageControl:;
 340 INPUT N
- Variable:N numeric scalar
+ Variable:N -> _
 350 IF N<>0 THEN 370
- Variable:N numeric scalar
+ Variable:N -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 360 GOTO 330
  LineNumber:330
 370 IF N<>INT(N) THEN 220
- Variable:N numeric scalar
- Variable:N numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:N -> _
+ Variable:N -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 380 IF N<1 THEN 220
- Variable:N numeric scalar
+ Variable:N -> _
  NumericConstant:1
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 390 PRINT "ENTER WIN OPTION - 1 TO TAKE LAST, 2 TO AVOID LAST:";
  TextConstant:"ENTER WIN OPTION - 1 TO TAKE LAST, 2 TO AVOID LAST:"
  CarriageControl:;
 400 INPUT M
- Variable:M numeric scalar
+ Variable:M -> _
 410 IF M=1 THEN 430
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 420 IF M<>2 THEN 390
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:2
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 430 PRINT "ENTER MIN AND MAX:";
  TextConstant:"ENTER MIN AND MAX:"
  CarriageControl:;
 440 INPUT A, B
- Variable:A numeric scalar
- Variable:B numeric scalar
+ Variable:A -> _
+ Variable:B -> _
 450 IF A>B THEN 430
- Variable:A numeric scalar
- Variable:B numeric scalar
- BinaryOperatorGreater:>(_,_) boolean scalar
+ Variable:A -> _
+ Variable:B -> _
+ BinaryOperatorGreater:>(_,_) -> ?
 460 IF A<1 THEN 430
- Variable:A numeric scalar
+ Variable:A -> _
  NumericConstant:1
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
 470 IF A<>INT(A) THEN 430
- Variable:A numeric scalar
- Variable:A numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:A -> _
+ Variable:A -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 480 IF B<>INT(B) THEN 430
- Variable:B numeric scalar
- Variable:B numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:B -> _
+ Variable:B -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 490 PRINT"ENTER START OPTION - 1 COMPUTER FIRST, 2 YOU FIRST:";
  TextConstant:"ENTER START OPTION - 1 COMPUTER FIRST, 2 YOU FIRST:"
  CarriageControl:;
 500 INPUT S
- Variable:S numeric scalar
+ Variable:S -> _
 510 IF S=1 THEN 530
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 520 IF S<>2 THEN 490
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:2
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 530 LET C=A+B
- Variable:C numeric scalar
- Variable:A numeric scalar
- Variable:B numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:C -> _
+ Variable:A -> _
+ Variable:B -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 540 IF S=2 THEN 570
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 550 GOSUB 600
  LineNumber:600
 560 IF W=1 THEN 220
- Variable:W numeric scalar
+ Variable:W -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 570 GOSUB 810
  LineNumber:810
 580 IF W=1 THEN 220
- Variable:W numeric scalar
+ Variable:W -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 590 GO TO 550
  LineNumber:550
 600 LET Q=N
- Variable:Q numeric scalar
- Variable:N numeric scalar
+ Variable:Q -> _
+ Variable:N -> _
  AssignmentOperator:=
 610 IF M=1 THEN 630
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 620 LET Q=Q-1
- Variable:Q numeric scalar
- Variable:Q numeric scalar
+ Variable:Q -> _
+ Variable:Q -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 630 IF M=1 THEN 680
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 640 IF N>A THEN 720
- Variable:N numeric scalar
- Variable:A numeric scalar
- BinaryOperatorGreater:>(_,_) boolean scalar
+ Variable:N -> _
+ Variable:A -> _
+ BinaryOperatorGreater:>(_,_) -> ?
 650 LET W=1
- Variable:W numeric scalar
+ Variable:W -> _
  NumericConstant:1
  AssignmentOperator:=
 669 PRINT"COMPUTER TAKES"; N; "AND LOSES."
  TextConstant:"COMPUTER TAKES"
  CarriageControl:;
- Variable:N numeric scalar
+ Variable:N -> _
  CarriageControl:;
  TextConstant:"AND LOSES."
  CarriageControl:NL
 670 RETURN
  
 680 IF N>B THEN 720
- Variable:N numeric scalar
- Variable:B numeric scalar
- BinaryOperatorGreater:>(_,_) boolean scalar
+ Variable:N -> _
+ Variable:B -> _
+ BinaryOperatorGreater:>(_,_) -> ?
 690 LET W=1
- Variable:W numeric scalar
+ Variable:W -> _
  NumericConstant:1
  AssignmentOperator:=
 700 PRINT"COMPUTER TAKES"; N; "AND WINS."
  TextConstant:"COMPUTER TAKES"
  CarriageControl:;
- Variable:N numeric scalar
+ Variable:N -> _
  CarriageControl:;
  TextConstant:"AND WINS."
  CarriageControl:NL
 710 RETURN 
  
 720 LET P=Q-C*INT(Q/C)
- Variable:P numeric scalar
- Variable:Q numeric scalar
- Variable:C numeric scalar
- Variable:Q numeric scalar
- Variable:C numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:P -> _
+ Variable:Q -> _
+ Variable:C -> _
+ Variable:Q -> _
+ Variable:C -> _
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 730 IF P>=A THEN 750
- Variable:P numeric scalar
- Variable:A numeric scalar
- BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
+ Variable:P -> _
+ Variable:A -> _
+ BinaryOperatorGreaterEqual:>=(_,_) -> ?
 740 LET P=A
- Variable:P numeric scalar
- Variable:A numeric scalar
+ Variable:P -> _
+ Variable:A -> _
  AssignmentOperator:=
 750 IF P<=B THEN 770
- Variable:P numeric scalar
- Variable:B numeric scalar
- BinaryOperatorLessEqual:<=(_,_) boolean scalar
+ Variable:P -> _
+ Variable:B -> _
+ BinaryOperatorLessEqual:<=(_,_) -> ?
 760 LET P=B
- Variable:P numeric scalar
- Variable:B numeric scalar
+ Variable:P -> _
+ Variable:B -> _
  AssignmentOperator:=
 770 LET N=N-P
- Variable:N numeric scalar
- Variable:N numeric scalar
- Variable:P numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:N -> _
+ Variable:N -> _
+ Variable:P -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 780 PRINT"COMPUTER TAKES"; P; "AND LEAVES"; N
  TextConstant:"COMPUTER TAKES"
  CarriageControl:;
- Variable:P numeric scalar
+ Variable:P -> _
  CarriageControl:;
  TextConstant:"AND LEAVES"
  CarriageControl:;
- Variable:N numeric scalar
+ Variable:N -> _
  CarriageControl:NL
 790 LET W=0
- Variable:W numeric scalar
+ Variable:W -> _
  NumericConstant:0
  AssignmentOperator:=
 800 RETURN
@@ -231,63 +231,63 @@
  TextConstant:"YOUR MOVE:"
  CarriageControl:;
 820 INPUT P
- Variable:P numeric scalar
+ Variable:P -> _
 830 IF P<>0 THEN 870
- Variable:P numeric scalar
+ Variable:P -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 840 PRINT"I TOLD YOU NOT TO USE ZERO. .. COMPUTER WINS BY FORFEIT."
  TextConstant:"I TOLD YOU NOT TO USE ZERO. .. COMPUTER WINS BY FORFEIT."
  CarriageControl:NL
 850 LET W=1
- Variable:W numeric scalar
+ Variable:W -> _
  NumericConstant:1
  AssignmentOperator:=
 860 RETURN 
  
 870 IF P<>INT(P) THEN 920
- Variable:P numeric scalar
- Variable:P numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:P -> _
+ Variable:P -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 880 IF P>=A THEN 910
- Variable:P numeric scalar
- Variable:A numeric scalar
- BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
+ Variable:P -> _
+ Variable:A -> _
+ BinaryOperatorGreaterEqual:>=(_,_) -> ?
 890 IF P=N THEN 960
- Variable:P numeric scalar
- Variable:N numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:P -> _
+ Variable:N -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 900 GO TO 920
  LineNumber:920
 910 IF P<=B THEN 940
- Variable:P numeric scalar
- Variable:B numeric scalar
- BinaryOperatorLessEqual:<=(_,_) boolean scalar
+ Variable:P -> _
+ Variable:B -> _
+ BinaryOperatorLessEqual:<=(_,_) -> ?
 920 PRINT "ILLEGAL MOVE, REENTER IT:";
  TextConstant:"ILLEGAL MOVE, REENTER IT:"
  CarriageControl:;
 930 GO TO 820
  LineNumber:820
 940 LET N=N-P
- Variable:N numeric scalar
- Variable:N numeric scalar
- Variable:P numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:N -> _
+ Variable:N -> _
+ Variable:P -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 950 IF N<>0 THEN 1030
- Variable:N numeric scalar
+ Variable:N -> _
  NumericConstant:0
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 960 IF M=1 THEN 1060
- Variable:M numeric scalar
+ Variable:M -> _
  NumericConstant:1
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 970 PRINT "TOUGH LUCK, YOU LOSE."
  TextConstant:"TOUGH LUCK, YOU LOSE."
  CarriageControl:NL
 980 LET W=1
- Variable:W numeric scalar
+ Variable:W -> _
  NumericConstant:1
  AssignmentOperator:=
 990 RETURN
@@ -296,25 +296,25 @@
  TextConstant:"CONGRATULATIONS, YOU WIN."
  CarriageControl:NL
 1010 LET W=1
- Variable:W numeric scalar
+ Variable:W -> _
  NumericConstant:1
  AssignmentOperator:=
 1020 RETURN
  
 1030 IF N>=0 THEN 1060
- Variable:N numeric scalar
+ Variable:N -> _
  NumericConstant:0
- BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
+ BinaryOperatorGreaterEqual:>=(_,_) -> ?
 1040 LET N=N+P
- Variable:N numeric scalar
- Variable:N numeric scalar
- Variable:P numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:N -> _
+ Variable:N -> _
+ Variable:P -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 1050 GO TO 920
  LineNumber:920
 1060 LET W=0
- Variable:W numeric scalar
+ Variable:W -> _
  NumericConstant:0
  AssignmentOperator:=
 1078 RETURN

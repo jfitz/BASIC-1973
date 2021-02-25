@@ -1,49 +1,49 @@
 8 REM   START THE PRINCIPAL P AT $2000
  Remark:  START THE PRINCIPAL P AT $2000
 10 LET P=2000
- Variable:P numeric scalar
+ Variable:P -> _
  NumericConstant:2000
  AssignmentOperator:=
 18 REM GO FOR 9 YEARS
  Remark:GO FOR 9 YEARS
 20 FOR Y=1 TO 9
- control: Variable:Y numeric scalar
+ control: Variable:Y -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:9"]
 28 REM GO FOUR QUARTERS EACH YEAR
  Remark:GO FOUR QUARTERS EACH YEAR
 30 FOR Q=1 TO 4
- control: Variable:Q numeric scalar
+ control: Variable:Q -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:4"]
 38 REM COMPUTE THE INTEREST FOR THIS QUARTER
  Remark:COMPUTE THE INTEREST FOR THIS QUARTER
 40 LET I=.01*P
- Variable:I numeric scalar
+ Variable:I -> _
  NumericConstant:.01
- Variable:P numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ Variable:P -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  AssignmentOperator:=
 48 REM  ADD THE INTEREST TO THE PRINCIPAL
  Remark: ADD THE INTEREST TO THE PRINCIPAL
 50 LET P=P+I
- Variable:P numeric scalar
- Variable:P numeric scalar
- Variable:I numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:P -> _
+ Variable:P -> _
+ Variable:I -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 52 REM *** WE COULD HAVE USED LETP=P+.01*P HERE
  Remark:*** WE COULD HAVE USED LETP=P+.01*P HERE
 60 NEXT Q
- Variable:Q numeric scalar
+ Variable:Q -> _
 62 REM AFTER FOUR QUARTERS THE COMPUTER GETS TO NEXT Y
  Remark:AFTER FOUR QUARTERS THE COMPUTER GETS TO NEXT Y
 70 NEXT Y
- Variable:Y numeric scalar
+ Variable:Y -> _
 80 PRINT "AFTER 9 YEARS THE AMOUNT IS $";P
  TextConstant:"AFTER 9 YEARS THE AMOUNT IS $"
  CarriageControl:;
- Variable:P numeric scalar
+ Variable:P -> _
  CarriageControl:NL
 90 END
  

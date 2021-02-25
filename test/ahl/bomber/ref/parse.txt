@@ -3,40 +3,40 @@
  TextConstant:"YOU ARE NOW A PILOT IN A WORLD WAR II BOMBER"
  CarriageControl:NL
 10 INPUT "WHAT SIDE  ITALY(1), ALLIES(2). JAPANESE(3), GERMANY(4)";A
- Variable:A numeric scalar
+ Variable:A -> _
 20 IF A>0 AND A<5 THEN 25 ELSE PRINT "TRY AGAIN...."\GOTO 10
- Variable:A numeric scalar
+ Variable:A -> _
  NumericConstant:0
- BinaryOperatorGreater:>(_,_) boolean scalar
- Variable:A numeric scalar
+ BinaryOperatorGreater:>(_,_) -> ?
+ Variable:A -> _
  NumericConstant:5
- BinaryOperatorLess:<(_,_) boolean scalar
- BinaryOperatorAnd:AND(?,?) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorAnd:AND(?,?) -> ?
  TextConstant:"TRY AGAIN...."
  CarriageControl:NL
  LineNumber:10
 25 ON A GOTO 30,110,200,220
- Variable:A numeric scalar
+ Variable:A -> _
  LineNumber:30
  LineNumber:110
  LineNumber:200
  LineNumber:220
 30 INPUT "WHAT IS YOUR TARGET  ALBANIA(1), GREECE(2), NORTH AFRICA(3) ";B
- Variable:B numeric scalar
+ Variable:B -> _
 40 IF B>0 AND B<4 THEN 45 ELSE PRINT "TRY AGAIN...."\GOTO 30
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:0
- BinaryOperatorGreater:>(_,_) boolean scalar
- Variable:B numeric scalar
+ BinaryOperatorGreater:>(_,_) -> ?
+ Variable:B -> _
  NumericConstant:4
- BinaryOperatorLess:<(_,_) boolean scalar
- BinaryOperatorAnd:AND(?,?) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorAnd:AND(?,?) -> ?
  TextConstant:"TRY AGAIN...."
  CarriageControl:NL
  LineNumber:30
 45 PRINT\ONB GOTO 50,80,90
  CarriageControl:NL
- Variable:B numeric scalar
+ Variable:B -> _
  LineNumber:50
  LineNumber:80
  LineNumber:90
@@ -54,21 +54,21 @@
  CarriageControl:NL
  LineNumber:280
 110 INPUT "AIRCRAFT  LIBERATOR(1), B-29(2), B-17(3), LANCASTER(4)";G 
- Variable:G numeric scalar
+ Variable:G -> _
 120 IF G>0 AND G<5 THEN 125 ELSE PRINT "TRY AGAIN...."\GOTO 110
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:0
- BinaryOperatorGreater:>(_,_) boolean scalar
- Variable:G numeric scalar
+ BinaryOperatorGreater:>(_,_) -> ?
+ Variable:G -> _
  NumericConstant:5
- BinaryOperatorLess:<(_,_) boolean scalar
- BinaryOperatorAnd:AND(?,?) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorAnd:AND(?,?) -> ?
  TextConstant:"TRY AGAIN...."
  CarriageControl:NL
  LineNumber:110
 125 PRINT\ON G GOTO 130,150,170,190
  CarriageControl:NL
- Variable:G numeric scalar
+ Variable:G -> _
  LineNumber:130
  LineNumber:150
  LineNumber:170
@@ -97,38 +97,38 @@
  TextConstant:"YOU'RE FLYING A KAMIKAZE (SUICIDE BOMBER) OVER THE USS LEXINGTON,"
  CarriageControl:NL
 205 INPUT "YOUR FIRST KAMIKAZE MISSION (Y OR N)";F$
- Variable:F$ string scalar
+ Variable:F$ -> $
 208 IF F$="N" THEN S=0\GOTO 358
- Variable:F$ string scalar
+ Variable:F$ -> $
  TextConstant:"N"
- BinaryOperatorEqual:=($,$) boolean scalar
- Variable:S numeric scalar
+ BinaryOperatorEqual:=($,$) -> ?
+ Variable:S -> _
  NumericConstant:0
  AssignmentOperator:=
  LineNumber:358
 210 PRINT\IF RND>.65 THEN 325 ELSE 380
  CarriageControl:NL
- FunctionRnd:RND numeric scalar
+ FunctionRnd:RND -> _
  NumericConstant:.65
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 220 PRINT "A NAZI, EH? OH WELL. ARE YOU GOING FOR RUSSIA(1), ENGLAND(2)" 
  TextConstant:"A NAZI, EH? OH WELL. ARE YOU GOING FOR RUSSIA(1), ENGLAND(2)"
  CarriageControl:NL
 230 INPUT"OR FRANCE(3)";M\IF M>0 AND M<4 THEN 235 ELSE PRINT "WHAT??"\GOTO 220
- Variable:M numeric scalar
- Variable:M numeric scalar
+ Variable:M -> _
+ Variable:M -> _
  NumericConstant:0
- BinaryOperatorGreater:>(_,_) boolean scalar
- Variable:M numeric scalar
+ BinaryOperatorGreater:>(_,_) -> ?
+ Variable:M -> _
  NumericConstant:4
- BinaryOperatorLess:<(_,_) boolean scalar
- BinaryOperatorAnd:AND(?,?) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorAnd:AND(?,?) -> ?
  TextConstant:"WHAT??"
  CarriageControl:NL
  LineNumber:220
 235 PRINT\ON M GOTO 250,260,270
  CarriageControl:NL
- Variable:M numeric scalar
+ Variable:M -> _
  LineNumber:250
  LineNumber:260
  LineNumber:270
@@ -147,11 +147,11 @@
 280 PRINT
  CarriageControl:NL
 285 INPUT "HOW MANY MISSIONS HAVE YOU FLOWN";D
- Variable:D numeric scalar
+ Variable:D -> _
 290 IF D<160 THEN 300 ELSE PRINT "MISSIONS, NOT MILES...."
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:160
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
  TextConstant:"MISSIONS, NOT MILES...."
  CarriageControl:NL
 295 PRINT "150 MISSIONS IS HIGH EVEN FOR OLD-TIMERS, NOW THEN,"\GOTO 285
@@ -160,31 +160,31 @@
  LineNumber:285
 300 PRINT\IF D<100 THEN 310 ELSE PRINT "THAT'S PUSHING THE ODDS!"\GOTO 320
  CarriageControl:NL
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:100
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
  TextConstant:"THAT'S PUSHING THE ODDS!"
  CarriageControl:NL
  LineNumber:320
 310 IF D<25 THEN PRINT "FRESH OUT OF TRAINING, EH?"
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:25
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
  TextConstant:"FRESH OUT OF TRAINING, EH?"
  CarriageControl:NL
 320 PRINT\IF D<160*RND THEN 330
  CarriageControl:NL
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:160
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorLess:<(_,_) boolean scalar
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorLess:<(_,_) -> ?
 325 PRINT "DIRECT HIT!!!"\PRINT(100*RND)"KILLED! MISSION SUCCESSFUL."\GOTO 390
  TextConstant:"DIRECT HIT!!!"
  CarriageControl:NL
  NumericConstant:100
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
  CarriageControl:
  TextConstant:"KILLED! MISSION SUCCESSFUL."
  CarriageControl:NL
@@ -194,10 +194,10 @@
  CarriageControl:
  NumericConstant:2
  NumericConstant:30
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionInt:INT(_) -> _
  CarriageControl:
  TextConstant:"MILES!!"
  CarriageControl:NL
@@ -206,49 +206,49 @@
  CarriageControl:NL
  CarriageControl:NL
 340 INPUT "DOES THE ENEMY HAVE GUNS(1), MISSILES(2), OR BOTH(3)";R
- Variable:R numeric scalar
+ Variable:R -> _
 345 IF R>0 AND R<4 THEN 350 ELSE PRINT "TRY AGAIN...."\GOTO 340
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:0
- BinaryOperatorGreater:>(_,_) boolean scalar
- Variable:R numeric scalar
+ BinaryOperatorGreater:>(_,_) -> ?
+ Variable:R -> _
  NumericConstant:4
- BinaryOperatorLess:<(_,_) boolean scalar
- BinaryOperatorAnd:AND(?,?) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorAnd:AND(?,?) -> ?
  TextConstant:"TRY AGAIN...."
  CarriageControl:NL
  LineNumber:340
 350 PRINT\IF R=2 THEN 360 
  CarriageControl:NL
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 355 INPUT "WHAT IS THE PERCENT HIT RATE OF THE ENEMY GUNNERS (10 TO 50)";S
- Variable:S numeric scalar
+ Variable:S -> _
 358 IF S<10 THEN PRINT "YOU LIE, BUT YOU'LL PAY...."\PRINT\GOTO 380
- Variable:S numeric scalar
+ Variable:S -> _
  NumericConstant:10
- BinaryOperatorLess:<(_,_) boolean scalar
+ BinaryOperatorLess:<(_,_) -> ?
  TextConstant:"YOU LIE, BUT YOU'LL PAY...."
  CarriageControl:NL
  CarriageControl:NL
  LineNumber:380
 360 PRINT\IF R>1 THEN T=35
  CarriageControl:NL
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:1
- BinaryOperatorGreater:>(_,_) boolean scalar
- Variable:T numeric scalar
+ BinaryOperatorGreater:>(_,_) -> ?
+ Variable:T -> _
  NumericConstant:35
  AssignmentOperator:=
 365 IF S+T>100*RND THEN 380
- Variable:S numeric scalar
- Variable:T numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:S -> _
+ Variable:T -> _
+ BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:100
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorGreater:>(_,_) boolean scalar
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorGreater:>(_,_) -> ?
 370 PRINT"YOU MADE IT THROUGH TREMENDOUS FLAK!!":GOTO 390
  TextConstant:"YOU MADE IT THROUGH TREMENDOUS FLAK!!"
  CarriageControl:NL
@@ -266,10 +266,10 @@
  CarriageControl:NL
  CarriageControl:NL
  CarriageControl:NL
- Variable:U$ string scalar
- Variable:U$ string scalar
+ Variable:U$ -> $
+ Variable:U$ -> $
  TextConstant:"Y"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 400 PRINT "CHICKEN!!!!"\PRINT\PRINT
  TextConstant:"CHICKEN!!!!"
  CarriageControl:NL

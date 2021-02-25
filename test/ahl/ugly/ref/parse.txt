@@ -3,128 +3,128 @@
  CarriageControl:NL
  CarriageControl:NL
 6 D=1\E=1\F=1\PRINT "DO YOU WANT CHANCE(1), OR SPECIAL(2)"
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:1
  AssignmentOperator:=
- Variable:E numeric scalar
+ Variable:E -> _
  NumericConstant:1
  AssignmentOperator:=
- Variable:F numeric scalar
+ Variable:F -> _
  NumericConstant:1
  AssignmentOperator:=
  TextConstant:"DO YOU WANT CHANCE(1), OR SPECIAL(2)"
  CarriageControl:NL
 7 INPUT G
- Variable:G numeric scalar
+ Variable:G -> _
 8 IF G=2 THEN 17
- Variable:G numeric scalar
+ Variable:G -> _
  NumericConstant:2
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 9 RANDOMIZE
  
 10 A=INT(40*RND)+15
- Variable:A numeric scalar
+ Variable:A -> _
  NumericConstant:40
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionInt:INT(_) -> _
  NumericConstant:15
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 11 B=INT(40*RND)+10
- Variable:B numeric scalar
+ Variable:B -> _
  NumericConstant:40
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionInt:INT(_) -> _
  NumericConstant:10
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 12 C=INT(40*RND)+15
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:40
- FunctionRnd:RND numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ FunctionRnd:RND -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionInt:INT(_) -> _
  NumericConstant:15
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 13 PRINT "A="A,"B="B,"C="C
  TextConstant:"A="
  CarriageControl:
- Variable:A numeric scalar
+ Variable:A -> _
  CarriageControl:,
  TextConstant:"B="
  CarriageControl:
- Variable:B numeric scalar
+ Variable:B -> _
  CarriageControl:,
  TextConstant:"C="
  CarriageControl:
- Variable:C numeric scalar
+ Variable:C -> _
  CarriageControl:NL
 14 PRINT "DO YOU STILL WANT CHANCE  1 FOR YES, 2 FOR NO"
  TextConstant:"DO YOU STILL WANT CHANCE  1 FOR YES, 2 FOR NO"
  CarriageControl:NL
 15 INPUT H
- Variable:H numeric scalar
+ Variable:H -> _
 16 ON H GOTO 19,6
- Variable:H numeric scalar
+ Variable:H -> _
  LineNumber:19
  LineNumber:6
 17 PRINT "WHAT ARE YOUR VALUES FOR A, B, AND C";
  TextConstant:"WHAT ARE YOUR VALUES FOR A, B, AND C"
  CarriageControl:;
 18 INPUT A,B,C
- Variable:A numeric scalar
- Variable:B numeric scalar
- Variable:C numeric scalar
+ Variable:A -> _
+ Variable:B -> _
+ Variable:C -> _
 19 PRINT\PRINT\PRINT TAB(20)"XXX"
  CarriageControl:NL
  CarriageControl:NL
  NumericConstant:20
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"XXX"
  CarriageControl:NL
 20 PRINT TAB(19)"XXXXX"
  NumericConstant:19
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"XXXXX"
  CarriageControl:NL
 25 PRINT TAB(20)"XXX"
  NumericConstant:20
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"XXX"
  CarriageControl:NL
 30 PRINT TAB(21)"X"
  NumericConstant:21
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"X"
  CarriageControl:NL
 35 PRINT TAB(15)"X";
  NumericConstant:15
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"X"
  CarriageControl:;
 40 D=D+1
- Variable:D numeric scalar
- Variable:D numeric scalar
+ Variable:D -> _
+ Variable:D -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 45 PRINT "X";
  TextConstant:"X"
  CarriageControl:;
 50 IF D>=A-2 THEN 60
- Variable:D numeric scalar
- Variable:A numeric scalar
+ Variable:D -> _
+ Variable:A -> _
  NumericConstant:2
- BinaryOperatorMinus:-(_,_) numeric scalar
- BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorGreaterEqual:>=(_,_) -> ?
 55 GOTO 40
  LineNumber:40
 60 PRINT "X"
@@ -132,29 +132,29 @@
  CarriageControl:NL
 65 PRINT TAB(15)"X";
  NumericConstant:15
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"X"
  CarriageControl:;
 70 D=1
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:1
  AssignmentOperator:=
 75 D=D+1
- Variable:D numeric scalar
- Variable:D numeric scalar
+ Variable:D -> _
+ Variable:D -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 80 PRINT "X";
  TextConstant:"X"
  CarriageControl:;
 85 IF D=A-1 THEN 95
- Variable:D numeric scalar
- Variable:A numeric scalar
+ Variable:D -> _
+ Variable:A -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 90 GOTO 75
  LineNumber:75
 95 PRINT "X)."
@@ -162,29 +162,29 @@
  CarriageControl:NL
 100 PRINT TAB(15)"X";
  NumericConstant:15
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"X"
  CarriageControl:;
 105 D=1
- Variable:D numeric scalar
+ Variable:D -> _
  NumericConstant:1
  AssignmentOperator:=
 110 D=D+1
- Variable:D numeric scalar
- Variable:D numeric scalar
+ Variable:D -> _
+ Variable:D -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 115 PRINT "X";
  TextConstant:"X"
  CarriageControl:;
 120 IF D>=A-2 THEN 130
- Variable:D numeric scalar
- Variable:A numeric scalar
+ Variable:D -> _
+ Variable:A -> _
  NumericConstant:2
- BinaryOperatorMinus:-(_,_) numeric scalar
- BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorGreaterEqual:>=(_,_) -> ?
 125 GOTO 110
  LineNumber:110
 130 PRINT "X"
@@ -192,25 +192,25 @@
  CarriageControl:NL
 135 PRINT TAB(15)"X";
  NumericConstant:15
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"X"
  CarriageControl:;
 140 E=E+1
- Variable:E numeric scalar
- Variable:E numeric scalar
+ Variable:E -> _
+ Variable:E -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 150 PRINT "X";
  TextConstant:"X"
  CarriageControl:;
 155 IF E=B-1 THEN 165
- Variable:E numeric scalar
- Variable:B numeric scalar
+ Variable:E -> _
+ Variable:B -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 160 GOTO 140
  LineNumber:140
 165 PRINT "X"
@@ -218,29 +218,29 @@
  CarriageControl:NL
 170 PRINT TAB(15)"X";
  NumericConstant:15
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"X"
  CarriageControl:;
 175 E=1
- Variable:E numeric scalar
+ Variable:E -> _
  NumericConstant:1
  AssignmentOperator:=
 180 E=E+1
- Variable:E numeric scalar
- Variable:E numeric scalar
+ Variable:E -> _
+ Variable:E -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 185 PRINT "X";
  TextConstant:"X"
  CarriageControl:;
 190 IF E=B-1 THEN 205
- Variable:E numeric scalar
- Variable:B numeric scalar
+ Variable:E -> _
+ Variable:B -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 200 GOTO 180
  LineNumber:180
 205 PRINT "X"
@@ -248,29 +248,29 @@
  CarriageControl:NL
 210 PRINT TAB(15)"X";
  NumericConstant:15
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"X"
  CarriageControl:;
 215 E=1
- Variable:E numeric scalar
+ Variable:E -> _
  NumericConstant:1
  AssignmentOperator:=
 220 E=E+1
- Variable:E numeric scalar
- Variable:E numeric scalar
+ Variable:E -> _
+ Variable:E -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 225 PRINT "X";
  TextConstant:"X"
  CarriageControl:;
 230 IF E=B-1 THEN 240
- Variable:E numeric scalar
- Variable:B numeric scalar
+ Variable:E -> _
+ Variable:B -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 235 GOTO 220
  LineNumber:220
 240 PRINT "X"
@@ -278,25 +278,25 @@
  CarriageControl:NL
 245 PRINT TAB(15)"X";
  NumericConstant:15
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"X"
  CarriageControl:;
 250 F=F+1
- Variable:F numeric scalar
- Variable:F numeric scalar
+ Variable:F -> _
+ Variable:F -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 255 PRINT "X";
  TextConstant:"X"
  CarriageControl:;
 260 IF F>=C-2 THEN 270
- Variable:F numeric scalar
- Variable:C numeric scalar
+ Variable:F -> _
+ Variable:C -> _
  NumericConstant:2
- BinaryOperatorMinus:-(_,_) numeric scalar
- BinaryOperatorGreaterEqual:>=(_,_) boolean scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorGreaterEqual:>=(_,_) -> ?
 265 GOTO 250
  LineNumber:250
 270 PRINT "X"
@@ -304,29 +304,29 @@
  CarriageControl:NL
 275 PRINT TAB(15)"X";
  NumericConstant:15
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"X"
  CarriageControl:;
 280 F=1
- Variable:F numeric scalar
+ Variable:F -> _
  NumericConstant:1
  AssignmentOperator:=
 285 F=F+1
- Variable:F numeric scalar
- Variable:F numeric scalar
+ Variable:F -> _
+ Variable:F -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 290 PRINT "X";
  TextConstant:"X"
  CarriageControl:;
 295 IF F=C-1 THEN 305
- Variable:F numeric scalar
- Variable:C numeric scalar
+ Variable:F -> _
+ Variable:C -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 300 GOTO 285
  LineNumber:285
 305 PRINT "X"
@@ -334,35 +334,35 @@
  CarriageControl:NL
 310 PRINT TAB(15)"X";
  NumericConstant:15
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"X"
  CarriageControl:;
 315 F=1
- Variable:F numeric scalar
+ Variable:F -> _
  NumericConstant:1
  AssignmentOperator:=
 316 GOTO 320
  LineNumber:320
 317 F=F+3
- Variable:F numeric scalar
- Variable:F numeric scalar
+ Variable:F -> _
+ Variable:F -> _
  NumericConstant:3
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 320 F=F+1
- Variable:F numeric scalar
- Variable:F numeric scalar
+ Variable:F -> _
+ Variable:F -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 325 PRINT "X";
  TextConstant:"X"
  CarriageControl:;
 327 IF F=7 THEN 329
- Variable:F numeric scalar
+ Variable:F -> _
  NumericConstant:7
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 328 GOTO 331
  LineNumber:331
 329 PRINT "()";
@@ -371,11 +371,11 @@
 330 GOTO 317
  LineNumber:317
 331 IF F=C-1 THEN 340
- Variable:F numeric scalar
- Variable:C numeric scalar
+ Variable:F -> _
+ Variable:C -> _
  NumericConstant:1
- BinaryOperatorMinus:-(_,_) numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 335 GOTO 320
  LineNumber:320
 340 PRINT "X"
@@ -383,37 +383,37 @@
  CarriageControl:NL
 345 PRINT TAB(19)"XX     XX"
  NumericConstant:19
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"XX     XX"
  CarriageControl:NL
 350 PRINT TAB(18)"XX      XX"
  NumericConstant:18
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"XX      XX"
  CarriageControl:NL
 355 PRINT TAB(17)"XX        XX"
  NumericConstant:17
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"XX        XX"
  CarriageControl:NL
 360 PRINT TAB(16)"XX          XX"
  NumericConstant:16
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"XX          XX"
  CarriageControl:NL
 365 PRINT TAB(15)"XX            XX"
  NumericConstant:15
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"XX            XX"
  CarriageControl:NL
 370 PRINT TAB(13)"XXXX            XXXX"
  NumericConstant:13
- FunctionTab:TAB(_) string scalar
+ FunctionTab:TAB(_) -> $
  CarriageControl:
  TextConstant:"XXXX            XXXX"
  CarriageControl:NL
@@ -421,18 +421,18 @@
  CarriageControl:NL
  CarriageControl:NL
 385 IF B<A THEN 6
- Variable:B numeric scalar
- Variable:A numeric scalar
- BinaryOperatorLess:<(_,_) boolean scalar
+ Variable:B -> _
+ Variable:A -> _
+ BinaryOperatorLess:<(_,_) -> ?
 395 FOR X=1 TO 48
- control: Variable:X numeric scalar
+ control: Variable:X -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:48"]
 400 PRINT "UGLY! ";
  TextConstant:"UGLY! "
  CarriageControl:;
 405 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 407 PRINT\PRINT
  CarriageControl:NL
  CarriageControl:NL

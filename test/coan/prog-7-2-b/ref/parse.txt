@@ -4,56 +4,56 @@
  Remark: USING STRING OUTPUT
 100 DIM A$[8],D$[9]
  NumericConstant:8
- Declaration:A$() array
+ Declaration:A$() -> $()
  NumericConstant:9
- Declaration:D$() array
+ Declaration:D$() -> $()
 110 LET D$="123456789"
- Variable:D$ string scalar
+ Variable:D$ -> $
  TextConstant:"123456789"
  AssignmentOperator:=
 120 READ A$
- Variable:A$ string scalar
+ Variable:A$ -> $
 130 IF A$="STOP" THEN 210
- Variable:A$ string scalar
+ Variable:A$ -> $
  TextConstant:"STOP"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 140 PRINT "A$=";A$
  TextConstant:"A$="
  CarriageControl:;
- Variable:A$ string scalar
+ Variable:A$ -> $
  CarriageControl:NL
 150 FOR I=1 TO LEN(A$) STEP 2
- control: Variable:I numeric scalar
+ control: Variable:I -> _
  start:   ["NumericConstant:1"]
- end:     ["Variable:A$ string scalar", "FunctionLen:LEN($) numeric scalar"]
+ end:     ["Variable:A$ -> $", "FunctionLen:LEN($) -> _"]
  step:    ["NumericConstant:2"]
 160 PRINT "A$(";D$[I,I];",";D$[I+1,I+1];")=";A$[I,I+1]
  TextConstant:"A$("
  CarriageControl:;
- Variable:I numeric scalar
- Variable:I numeric scalar
- Variable:D$(_,_) string scalar
+ Variable:I -> _
+ Variable:I -> _
+ Variable:D$(_,_) -> $
  CarriageControl:;
  TextConstant:","
  CarriageControl:;
- Variable:I numeric scalar
+ Variable:I -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:I numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:I -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:D$(_,_) string scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:D$(_,_) -> $
  CarriageControl:;
  TextConstant:")="
  CarriageControl:;
- Variable:I numeric scalar
- Variable:I numeric scalar
+ Variable:I -> _
+ Variable:I -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:A$(_,_) string scalar
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:A$(_,_) -> $
  CarriageControl:NL
 170 NEXT I
- Variable:I numeric scalar
+ Variable:I -> _
 180 PRINT
  CarriageControl:NL
 190 GOTO 110

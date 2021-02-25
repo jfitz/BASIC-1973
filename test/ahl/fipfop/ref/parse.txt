@@ -39,9 +39,9 @@
 180 RANDOMIZE
  
 190 LET Q=RND(Y)
- Variable:Q numeric scalar
- Variable:Y numeric scalar
- FunctionRnd:RND(_) numeric scalar
+ Variable:Q -> _
+ Variable:Y -> _
+ FunctionRnd:RND(_) -> _
  AssignmentOperator:=
 200 PRINT "HERE IS THE STARTING LINE OF X'S:"
  TextConstant:"HERE IS THE STARTING LINE OF X'S:"
@@ -49,7 +49,7 @@
 210 PRINT
  CarriageControl:NL
 220 LET C=0 
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:0
  AssignmentOperator:=
 230 PRINT "1 2 3 4 5 6 7 8 9 10"
@@ -62,18 +62,18 @@
  CarriageControl:NL
 260 DIM A$(20)
  NumericConstant:20
- Declaration:A$() array
+ Declaration:A$() -> $()
 270 FOR X=1 TO 10
- control: Variable:X numeric scalar
+ control: Variable:X -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 280 LET A$(X)="X"
- Variable:X numeric scalar
- Variable:A$(_) string scalar
+ Variable:X -> _
+ Variable:A$(_) -> $
  TextConstant:"X"
  AssignmentOperator:=
 290 NEXT X
- Variable:X numeric scalar
+ Variable:X -> _
 300 GO TO 320
  LineNumber:320
 310 PRINT "ILLEGAL ENTRY TRY AGAIN"
@@ -83,208 +83,208 @@
  TextConstant:"INPUT THE NUMBER"
  CarriageControl:;
 330 INPUT N
- Variable:N numeric scalar
+ Variable:N -> _
 340 IF N<>INT (N) THEN 310
- Variable:N numeric scalar
- Variable:N numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorNotEqual:<>(_,_) boolean scalar
+ Variable:N -> _
+ Variable:N -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorNotEqual:<>(_,_) -> ?
 350 IF N=22 THEN 180
- Variable:N numeric scalar
+ Variable:N -> _
  NumericConstant:22
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 360 IF N>11 THEN 310
- Variable:N numeric scalar
+ Variable:N -> _
  NumericConstant:11
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 370 IF N=0 THEN 230
- Variable:N numeric scalar
+ Variable:N -> _
  NumericConstant:0
- BinaryOperatorEqual:=(_,_) boolean scalar
+ BinaryOperatorEqual:=(_,_) -> ?
 380 IF M=N THEN 510
- Variable:M numeric scalar
- Variable:N numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:M -> _
+ Variable:N -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 390 LET M=N 
- Variable:M numeric scalar
- Variable:N numeric scalar
+ Variable:M -> _
+ Variable:N -> _
  AssignmentOperator:=
 400 IF A$(N)="O" THEN 480
- Variable:N numeric scalar
- Variable:A$(_) string scalar
+ Variable:N -> _
+ Variable:A$(_) -> $
  TextConstant:"O"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 410 LET A$(N)="O"
- Variable:N numeric scalar
- Variable:A$(_) string scalar
+ Variable:N -> _
+ Variable:A$(_) -> $
  TextConstant:"O"
  AssignmentOperator:=
 420 LET R=TAN(Q+N/Q-N)-SIN(Q/N)+336*SIN(.8*N)
- Variable:R numeric scalar
- Variable:Q numeric scalar
- Variable:N numeric scalar
- Variable:Q numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- Variable:N numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- FunctionTan:TAN(_) numeric scalar
- Variable:Q numeric scalar
- Variable:N numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
- FunctionSin:SIN(_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:R -> _
+ Variable:Q -> _
+ Variable:N -> _
+ Variable:Q -> _
+ BinaryOperatorDivide:/(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:N -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ FunctionTan:TAN(_) -> _
+ Variable:Q -> _
+ Variable:N -> _
+ BinaryOperatorDivide:/(_,_) -> _
+ FunctionSin:SIN(_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  NumericConstant:336
  NumericConstant:.8
- Variable:N numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionSin:SIN(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
+ Variable:N -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionSin:SIN(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 430 LET N=ABS(R-INT(R))
- Variable:N numeric scalar
- Variable:R numeric scalar
- Variable:R numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
- FunctionAbs:ABS(_) numeric scalar
+ Variable:N -> _
+ Variable:R -> _
+ Variable:R -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
+ FunctionAbs:ABS(_) -> _
  AssignmentOperator:=
 440 LET N=INT(10*N)
- Variable:N numeric scalar
+ Variable:N -> _
  NumericConstant:10
- Variable:N numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ Variable:N -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 450 IF A$(N)="O" THEN 480
- Variable:N numeric scalar
- Variable:A$(_) string scalar
+ Variable:N -> _
+ Variable:A$(_) -> $
  TextConstant:"O"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 460 LET A$(N) = "O"
- Variable:N numeric scalar
- Variable:A$(_) string scalar
+ Variable:N -> _
+ Variable:A$(_) -> $
  TextConstant:"O"
  AssignmentOperator:=
 470 GO TO 610 
  LineNumber:610
 480 LET A$(N) = "X"
- Variable:N numeric scalar
- Variable:A$(_) string scalar
+ Variable:N -> _
+ Variable:A$(_) -> $
  TextConstant:"X"
  AssignmentOperator:=
 490 IF M=N THEN 420
- Variable:M numeric scalar
- Variable:N numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:M -> _
+ Variable:N -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 500 GO TO 610
  LineNumber:610
 510 IF A$(N)="O" THEN 590
- Variable:N numeric scalar
- Variable:A$(_) string scalar
+ Variable:N -> _
+ Variable:A$(_) -> $
  TextConstant:"O"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 520 LET A$(N)="O"
- Variable:N numeric scalar
- Variable:A$(_) string scalar
+ Variable:N -> _
+ Variable:A$(_) -> $
  TextConstant:"O"
  AssignmentOperator:=
 530 LET R=.592*COT(Q/N+Q)/SIN(N*2+Q)-COS(N)
- Variable:R numeric scalar
+ Variable:R -> _
  NumericConstant:.592
- Variable:Q numeric scalar
- Variable:N numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
- Variable:Q numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionCot:COT(_) numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- Variable:N numeric scalar
+ Variable:Q -> _
+ Variable:N -> _
+ BinaryOperatorDivide:/(_,_) -> _
+ Variable:Q -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionCot:COT(_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ Variable:N -> _
  NumericConstant:2
- BinaryOperatorMultiply:*(_,_) numeric scalar
- Variable:Q numeric scalar
- BinaryOperatorPlus:+(_,_) numeric scalar
- FunctionSin:SIN(_) numeric scalar
- BinaryOperatorDivide:/(_,_) numeric scalar
- Variable:N numeric scalar
- FunctionCos:COS(_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ BinaryOperatorMultiply:*(_,_) -> _
+ Variable:Q -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ FunctionSin:SIN(_) -> _
+ BinaryOperatorDivide:/(_,_) -> _
+ Variable:N -> _
+ FunctionCos:COS(_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 540 LET N=R-INT(R)
- Variable:N numeric scalar
- Variable:R numeric scalar
- Variable:R numeric scalar
- FunctionInt:INT(_) numeric scalar
- BinaryOperatorMinus:-(_,_) numeric scalar
+ Variable:N -> _
+ Variable:R -> _
+ Variable:R -> _
+ FunctionInt:INT(_) -> _
+ BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:=
 550 LET N=INT(10*N)
- Variable:N numeric scalar
+ Variable:N -> _
  NumericConstant:10
- Variable:N numeric scalar
- BinaryOperatorMultiply:*(_,_) numeric scalar
- FunctionInt:INT(_) numeric scalar
+ Variable:N -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ FunctionInt:INT(_) -> _
  AssignmentOperator:=
 560 IF A$(N)="O" THEN 590
- Variable:N numeric scalar
- Variable:A$(_) string scalar
+ Variable:N -> _
+ Variable:A$(_) -> $
  TextConstant:"O"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 570 LET A$(N)="O"
- Variable:N numeric scalar
- Variable:A$(_) string scalar
+ Variable:N -> _
+ Variable:A$(_) -> $
  TextConstant:"O"
  AssignmentOperator:=
 580 GO TO 610
  LineNumber:610
 590 LET A$(N)="X"
- Variable:N numeric scalar
- Variable:A$(_) string scalar
+ Variable:N -> _
+ Variable:A$(_) -> $
  TextConstant:"X"
  AssignmentOperator:=
 600 IF M=N THEN 520
- Variable:M numeric scalar
- Variable:N numeric scalar
- BinaryOperatorEqual:=(_,_) boolean scalar
+ Variable:M -> _
+ Variable:N -> _
+ BinaryOperatorEqual:=(_,_) -> ?
 610 PRINT"1 2 3 4 5 6 7 8 9 10"
  TextConstant:"1 2 3 4 5 6 7 8 9 10"
  CarriageControl:NL
 620 PRINT A$(Z);" ";FOR Z=1 TO 10
- Variable:Z numeric scalar
- Variable:A$(_) string scalar
+ Variable:Z -> _
+ Variable:A$(_) -> $
  CarriageControl:;
  TextConstant:" "
  CarriageControl:;
- control: Variable:Z numeric scalar
+ control: Variable:Z -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 630 LET C=C+1
- Variable:C numeric scalar
- Variable:C numeric scalar
+ Variable:C -> _
+ Variable:C -> _
  NumericConstant:1
- BinaryOperatorPlus:+(_,_) numeric scalar
+ BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:=
 640 PRINT
  CarriageControl:NL
 650 FOR Z=1 TO 10
- control: Variable:Z numeric scalar
+ control: Variable:Z -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:10"]
 660 IF A$(Z)<>"O" THEN 320
- Variable:Z numeric scalar
- Variable:A$(_) string scalar
+ Variable:Z -> _
+ Variable:A$(_) -> $
  TextConstant:"O"
- BinaryOperatorNotEqual:<>($,$) boolean scalar
+ BinaryOperatorNotEqual:<>($,$) -> ?
 670 NEXT Z
- Variable:Z numeric scalar
+ Variable:Z -> _
 680 IF C>12 THEN 710
- Variable:C numeric scalar
+ Variable:C -> _
  NumericConstant:12
- BinaryOperatorGreater:>(_,_) boolean scalar
+ BinaryOperatorGreater:>(_,_) -> ?
 690 PRINT"VERY GOOD. YOU GUESSED IT IN ONLY "C"GUESSES!!!!"
  TextConstant:"VERY GOOD. YOU GUESSED IT IN ONLY "
  CarriageControl:
- Variable:C numeric scalar
+ Variable:C -> _
  CarriageControl:
  TextConstant:"GUESSES!!!!"
  CarriageControl:NL
@@ -293,7 +293,7 @@
 710 PRINT "TRY HARDER NEXT TIME, IT TOOK YOU "C"GUESSES"
  TextConstant:"TRY HARDER NEXT TIME, IT TOOK YOU "
  CarriageControl:
- Variable:C numeric scalar
+ Variable:C -> _
  CarriageControl:
  TextConstant:"GUESSES"
  CarriageControl:NL
@@ -301,11 +301,11 @@
  TextConstant:"DO YOU WANT TO DO ANOTHER PUZZLE"
  CarriageControl:;
 730 INPUT X$
- Variable:X$ string scalar
+ Variable:X$ -> $
 740 IF X$="NO" THEN 780
- Variable:X$ string scalar
+ Variable:X$ -> $
  TextConstant:"NO"
- BinaryOperatorEqual:=($,$) boolean scalar
+ BinaryOperatorEqual:=($,$) -> ?
 760 PRINT
  CarriageControl:NL
 770 GO TO 180
