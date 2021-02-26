@@ -73,7 +73,7 @@
  Variable:X$ -> $
  Variable:X% -> %
  FunctionStr:NUM$(%) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  UserFunction:FNN$ -> $
  Variable:X$ -> $
  IntegerConstant:2
@@ -83,7 +83,7 @@
  IntegerConstant:2
  BinaryOperatorMinus:-(_,%) -> _
  FunctionMid:MID($,_) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  
 110 DIM P$(50%):RANDOMIZE:Q%=0%:PRINT "SINCE I'M A GOOD SPORT, YOU'LL ALWAYS GO FIRST"
  IntegerConstant:50
@@ -91,16 +91,16 @@
  
  Variable:Q% -> %
  IntegerConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= % -> %
  TextConstant:"SINCE I'M A GOOD SPORT, YOU'LL ALWAYS GO FIRST"
  CarriageControl:NL
 120 P%=8%: P$="XXX--OOO":&:&"NUMBERING: ": &"123": &"456": &"789": &
  Variable:P% -> %
  IntegerConstant:8
- AssignmentOperator:=
+ AssignmentOperator:= % -> %
  Variable:P$ -> $
  TextConstant:"XXX--OOO"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  CarriageControl:NL
  TextConstant:"NUMBERING: "
  CarriageControl:NL
@@ -115,10 +115,10 @@
  Variable:D% -> %
  IntegerConstant:1
  UnaryOperatorMinus:-(%) -> %
- AssignmentOperator:=
+ AssignmentOperator:= % -> %
  Variable:Q$ -> $
  TextConstant:"O"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  LineNumber:2000
  Variable:M$ -> $
  TextConstant:""
@@ -169,7 +169,7 @@
  Variable:B% -> %
  TextConstant:"O"
  UserFunction:FNC$($,%,$) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  IntegerConstant:1
  Variable:P$ -> $
  TextConstant:"*"
@@ -191,7 +191,7 @@
  Variable:P% -> %
  IntegerConstant:2
  BinaryOperatorPlus:+(%,%) -> %
- AssignmentOperator:=
+ AssignmentOperator:= % -> %
 310 FOR C%=1% TO Q%: C$=P$(C%): IF VAL(LEFT(C$,1%))=P% AND MID(C$,2%,9%)=P$ THEN M$=RIGHT(C$,11%) : GOTO 400
  control: Variable:C% -> %
  start:   ["IntegerConstant:1"]
@@ -199,7 +199,7 @@
  Variable:C$ -> $
  Variable:C% -> %
  Variable:P$(%) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  Variable:C$ -> $
  IntegerConstant:1
  FunctionLeft:LEFT($,%) -> $
@@ -217,20 +217,20 @@
  Variable:C$ -> $
  IntegerConstant:11
  FunctionRight:RIGHT($,%) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  LineNumber:400
 320 NEXT C%: Q$="*": D%=1%: GOSUB 2000: C%=Q%: IF M$="" THEN PRINT "I CAN'T MOVE, YOU WIN.": GOTO 500
  Variable:C% -> %
  Variable:Q$ -> $
  TextConstant:"*"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  Variable:D% -> %
  IntegerConstant:1
- AssignmentOperator:=
+ AssignmentOperator:= % -> %
  LineNumber:2000
  Variable:C% -> %
  Variable:Q% -> %
- AssignmentOperator:=
+ AssignmentOperator:= % -> %
  Variable:M$ -> $
  TextConstant:""
  BinaryOperatorEqual:=($,$) -> ?
@@ -249,12 +249,12 @@
  Variable:M$ -> $
  IntegerConstant:2
  FunctionLeft:LEFT($,%) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  Variable:M$ -> $
  Variable:M$ -> $
  IntegerConstant:3
  FunctionRight:RIGHT($,%) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  FunctionRnd:RND -> _
  NumericConstant:.33333333
  BinaryOperatorGreater:>(_,_) -> ?
@@ -265,19 +265,19 @@
 420 K%=C%: A%=VAL(LEFT(K$,1%)): B%=VAL(RIGHT(K$,2%)): P$=FNC$(FNC$(P$,A%,"-"),B%,"*")
  Variable:K% -> %
  Variable:C% -> %
- AssignmentOperator:=
+ AssignmentOperator:= % -> %
  Variable:A% -> %
  Variable:K$ -> $
  IntegerConstant:1
  FunctionLeft:LEFT($,%) -> $
  FunctionVal:VAL($) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> %
  Variable:B% -> %
  Variable:K$ -> $
  IntegerConstant:2
  FunctionRight:RIGHT($,%) -> $
  FunctionVal:VAL($) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> %
  Variable:P$ -> $
  Variable:P$ -> $
  Variable:A% -> %
@@ -286,7 +286,7 @@
  Variable:B% -> %
  TextConstant:"*"
  UserFunction:FNC$($,%,$) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 430 IF INSTR(1%,P$,"O")=0% OR INSTR(7%,P$,"*") THEN PRINT "I WIN!": GOTO 510
  IntegerConstant:1
  Variable:P$ -> $
@@ -317,14 +317,14 @@
  Variable:W2% -> %
  IntegerConstant:1
  BinaryOperatorPlus:+(%,%) -> %
- AssignmentOperator:=
+ AssignmentOperator:= % -> %
  Variable:I% -> %
  IntegerConstant:11
  Variable:K% -> %
  Variable:P$(%) -> $
  Variable:K$ -> $
  FunctionInstr:INSTR(%,$,$) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> %
  Variable:K% -> %
  Variable:P$(%) -> $
  Variable:K% -> %
@@ -340,7 +340,7 @@
  BinaryOperatorPlus:+(%,%) -> %
  FunctionRight:RIGHT($,%) -> $
  BinaryOperatorPlus:+($,$) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  Variable:I% -> %
  LineNumber:520
 510 W1%=W1%+1%
@@ -348,7 +348,7 @@
  Variable:W1% -> %
  IntegerConstant:1
  BinaryOperatorPlus:+(%,%) -> %
- AssignmentOperator:=
+ AssignmentOperator:= % -> %
 520 &: &"BOARD:": &LEFT(P$,3%): &MID(P$,4%,3%): &RIGHT(P$,7%): &: & "I HAVE WON" W1% "AND YOU HAVE WON" W2% "OF" W1%+W2% "GAMES"
  CarriageControl:NL
  TextConstant:"BOARD:"
@@ -392,7 +392,7 @@
 2000 M$=""
  Variable:M$ -> $
  TextConstant:""
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 2010 FOR J%=1% TO 9%: IF MID(P$,J%,1%)<>Q$ THEN 2050
  control: Variable:J% -> %
  start:   ["IntegerConstant:1"]
@@ -410,7 +410,7 @@
  IntegerConstant:3
  BinaryOperatorMultiply:*(%,%) -> %
  BinaryOperatorPlus:+(%,%) -> %
- AssignmentOperator:=
+ AssignmentOperator:= % -> %
  Variable:T% -> %
  IntegerConstant:1
  BinaryOperatorLess:<(%,%) -> ?
@@ -433,7 +433,7 @@
  Variable:T% -> %
  UserFunction:FNN$(%) -> $
  BinaryOperatorPlus:+($,$) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 2025 T%=J%+D%*2%: IF T%<1% OR T%>9% OR (D%=1% AND (J%=1% OR J%=4% OR J%=7%)) OR (D%=1% AND (J%=3% OR J%=6% OR J%-9%)) THEN 2035
  Variable:T% -> %
  Variable:J% -> %
@@ -441,7 +441,7 @@
  IntegerConstant:2
  BinaryOperatorMultiply:*(%,%) -> %
  BinaryOperatorPlus:+(%,%) -> %
- AssignmentOperator:=
+ AssignmentOperator:= % -> %
  Variable:T% -> %
  IntegerConstant:1
  BinaryOperatorLess:<(%,%) -> ?
@@ -501,7 +501,7 @@
  Variable:T% -> %
  UserFunction:FNN$(%) -> $
  BinaryOperatorPlus:+($,$) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 2035 T%=J%+D%*4%: IF T%<1% OR T%>9% OR J%=3% OR J%=7% THEN 2050
  Variable:T% -> %
  Variable:J% -> %
@@ -509,7 +509,7 @@
  IntegerConstant:4
  BinaryOperatorMultiply:*(%,%) -> %
  BinaryOperatorPlus:+(%,%) -> %
- AssignmentOperator:=
+ AssignmentOperator:= % -> %
  Variable:T% -> %
  IntegerConstant:1
  BinaryOperatorLess:<(%,%) -> ?
@@ -545,7 +545,7 @@
  Variable:T% -> %
  UserFunction:FNN$(%) -> $
  BinaryOperatorPlus:+($,$) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 2050 NEXT J%: IF D%=1% AND M$<>"" THEN Q%=Q%+1%: P$(Q%)=FNN$(P%)+P$+M$
  Variable:J% -> %
  Variable:D% -> %
@@ -559,7 +559,7 @@
  Variable:Q% -> %
  IntegerConstant:1
  BinaryOperatorPlus:+(%,%) -> %
- AssignmentOperator:=
+ AssignmentOperator:= % -> %
  Variable:Q% -> %
  Variable:P$(%) -> $
  Variable:P% -> %
@@ -568,7 +568,7 @@
  BinaryOperatorPlus:+($,$) -> $
  Variable:M$ -> $
  BinaryOperatorPlus:+($,$) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 2060 RETURN
  
 9999 END

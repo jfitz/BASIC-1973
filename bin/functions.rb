@@ -315,6 +315,7 @@ class FunctionAbs < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -334,6 +335,7 @@ class FunctionAsc < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :string, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -364,6 +366,7 @@ class FunctionArcCos < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -383,6 +386,7 @@ class FunctionArcSin < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -406,6 +410,7 @@ class FunctionArcTan < AbstractScalarFunction
       { 'type' => :numeric, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
     ]
+
     @shape = :scalar
   end
 
@@ -427,8 +432,8 @@ class FunctionChr < AbstractScalarFunction
   def initialize(text)
     super
 
-    @content_type = :string
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -458,6 +463,7 @@ class FunctionCon1 < AbstractScalarFunction
 
     @signature_0 = []
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :array
   end
 
@@ -518,6 +524,7 @@ class FunctionCon2 < AbstractScalarFunction
         { 'type' => :numeric, 'shape' => :scalar },
         { 'type' => :numeric, 'shape' => :scalar }
       ]
+
     @shape = :matrix
   end
 
@@ -576,6 +583,7 @@ class FunctionCos < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -595,6 +603,7 @@ class FunctionCot < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -614,6 +623,7 @@ class FunctionCsc < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -633,6 +643,7 @@ class FunctionDet < AbstractMatrixFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :matrix }]
+
     @shape = :scalar
   end
 
@@ -653,6 +664,7 @@ class FunctionErl < AbstractScalarFunction
 
     @signature_0 = []
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -702,6 +714,7 @@ class FunctionErr < AbstractScalarFunction
     super
 
     @signature_1 = []
+
     @shape = :scalar
   end
 
@@ -747,6 +760,7 @@ class FunctionExp < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -765,13 +779,12 @@ class FunctionExt < AbstractScalarFunction
   def initialize(text)
     super
 
-    @content_type = :string
-
     @signature_1 = [
       { 'type' => :string, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
     ]
+
     @shape = :scalar
   end
 
@@ -801,6 +814,7 @@ class FunctionFrac < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -827,6 +841,7 @@ class FunctionIdn < AbstractScalarFunction
         { 'type' => :numeric, 'shape' => :scalar },
         { 'type' => :numeric, 'shape' => :scalar }
       ]
+
     @shape = :matrix
   end
 
@@ -896,6 +911,7 @@ class FunctionInstr < AbstractScalarFunction
       { 'type' => :string, 'shape' => :scalar },
       { 'type' => :string, 'shape' => :scalar }
     ]
+
     @shape = :scalar
   end
 
@@ -931,6 +947,7 @@ class FunctionInt < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -951,6 +968,7 @@ class FunctionInv < AbstractMatrixFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :matrix }]
+
     @shape = :matrix
   end
 
@@ -977,6 +995,7 @@ class FunctionLeft < AbstractScalarFunction
       { 'type' => :string, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
     ]
+
     @shape = :scalar
   end
 
@@ -1010,6 +1029,7 @@ class FunctionLen < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :string, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -1032,6 +1052,7 @@ class FunctionLog < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -1051,6 +1072,7 @@ class FunctionLog10 < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -1070,6 +1092,7 @@ class FunctionLog2 < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -1095,6 +1118,7 @@ class FunctionMid < AbstractScalarFunction
       { 'type' => :numeric, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
     ]
+
     @shape = :scalar
   end
 
@@ -1137,6 +1161,7 @@ class FunctionMod < AbstractScalarFunction
       { 'type' => :numeric, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
     ]
+
     @shape = :scalar
   end
 
@@ -1151,13 +1176,13 @@ class FunctionMod < AbstractScalarFunction
   end
 end
 
-# function PACK
+# function PACK$
 class FunctionPack < AbstractArrayFunction
   def initialize(text)
     super
 
-    @content_type = :string
     @signature_1 = [{ 'type' => :numeric, 'shape' => :array }]
+
     @shape = :scalar
   end
 
@@ -1187,6 +1212,7 @@ class FunctionRight < AbstractScalarFunction
       { 'type' => :string, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
     ]
+
     @shape = :scalar
   end
 
@@ -1219,6 +1245,7 @@ class FunctionRound < AbstractScalarFunction
       { 'type' => :numeric, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
     ]
+
     @shape = :scalar
   end
 
@@ -1239,6 +1266,7 @@ class FunctionRnd < AbstractScalarFunction
 
     @signature_0 = []
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -1288,6 +1316,7 @@ class FunctionSec < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -1307,6 +1336,7 @@ class FunctionSgn < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -1326,6 +1356,7 @@ class FunctionSin < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -1345,7 +1376,9 @@ class FunctionSpc < AbstractScalarFunction
     super
 
     @content_type = :string
+
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -1376,6 +1409,7 @@ class FunctionSqr < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -1394,12 +1428,12 @@ class FunctionStr < AbstractScalarFunction
   def initialize(text)
     super
 
-    @content_type = :string
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
     @signature_2 = [
       { 'type' => :numeric, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
     ]
+
     @shape = :scalar
   end
 
@@ -1431,7 +1465,9 @@ class FunctionTab < AbstractScalarFunction
     super
 
     @content_type = :string
+
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -1464,6 +1500,7 @@ class FunctionTan < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -1483,6 +1520,7 @@ class FunctionTime < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -1506,6 +1544,7 @@ class FunctionUnpack < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :string, 'shape' => :scalar }]
+
     @shape = :array
   end
 
@@ -1526,6 +1565,7 @@ class FunctionTrn < AbstractMatrixFunction
     super
 
     @signature_1 = [{ 'type' => :numeric, 'shape' => :matrix }]
+
     @shape = :matrix
   end
 
@@ -1547,6 +1587,7 @@ class FunctionVal < AbstractScalarFunction
     super
 
     @signature_1 = [{ 'type' => :string, 'shape' => :scalar }]
+
     @shape = :scalar
   end
 
@@ -1569,6 +1610,7 @@ class FunctionZer1 < AbstractScalarFunction
 
     @signature_0 = []
     @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+
     @shape = :array
   end
 
@@ -1629,6 +1671,7 @@ class FunctionZer2 < AbstractScalarFunction
         { 'type' => :numeric, 'shape' => :scalar },
         { 'type' => :numeric, 'shape' => :scalar }
       ]
+
     @shape = :matrix
   end
 

@@ -58,19 +58,19 @@
  NumericConstant:0
  Variable:O(_) -> _
  NumericConstant:2
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 650 LET O(1) = ASC(SOH)
  NumericConstant:1
  Variable:O(_) -> _
  TextConstant:""
  FunctionAsc:ASC($) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 660 LET O(2) = ASC("N")
  NumericConstant:2
  Variable:O(_) -> _
  TextConstant:"N"
  FunctionAsc:ASC($) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 670 CHANGE O TO O1$
  Variable:O() -> _()
  Variable:O1$ -> $
@@ -79,7 +79,7 @@
  Variable:O(_) -> _
  TextConstant:"Q"
  FunctionAsc:ASC($) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 690 CHANGE O TO O$
  Variable:O() -> _()
  Variable:O$ -> $
@@ -107,7 +107,7 @@
 730 LET K9=5                            'TWICE NUMBER OF KNOWN LANGUAGES 
  Variable:K9 -> _
  NumericConstant:5
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 740 FOR X=1 TO K9-1 STEP 2
  control: Variable:X -> _
  start:   ["NumericConstant:1"]
@@ -168,13 +168,13 @@
  Variable:O9 -> _
  Variable:A$ -> $
  FunctionVal:VAL($) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 880 GOTO 960
  LineNumber:960
 890 LET O$=""                           'SET THINGS UP FOR SINGLE TERMINAL
  Variable:O$ -> $
  TextConstant:""
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 900 GOSUB 2190
  LineNumber:2190
 910 IF A$="NO" THEN 1070
@@ -193,7 +193,7 @@
  Variable:Q(_) -> _
  Variable:O -> _
  BinaryOperatorMultiply:*(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 950 GOTO 1050
  LineNumber:1050
 960 LET O(2) = ASC(A)                   'CREATE O$ ARRAY FOR MULTI-TERMINAL
@@ -201,7 +201,7 @@
  Variable:O(_) -> _
  Variable:A -> _
  FunctionAsc:ASC(_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 980 FOR I = O TO O9
  control: Variable:I -> _
  start:   ["Variable:O -> _"]
@@ -213,7 +213,7 @@
  FunctionAsc:ASC(_) -> _
  Variable:I -> _
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1000      CHANGE O TO O$(I)
  Variable:O() -> _()
  Variable:I -> _
@@ -259,7 +259,7 @@
  FunctionInt:INT(_) -> _
  NumericConstant:6
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1120 FOR A=0 TO O9 'ASSIGN NUMBERS AND ADHESION FACTORS 
  control: Variable:A -> _
  start:   ["NumericConstant:0"]
@@ -286,7 +286,7 @@
  BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:.05
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1150       PRINT O$(A);"ADHESION FACTOR"; A(A)*100-5;".  (THE LOWER THE BETTER)"
  Variable:A -> _
  Variable:O$(_) -> $
@@ -529,7 +529,7 @@
  BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:1
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1460 PRINT"NOTE: THIS IS A";INT(N);"LAP RACE."
  TextConstant:"NOTE: THIS IS A"
  CarriageControl:;
@@ -554,12 +554,12 @@
  Variable:O -> _
  NumericConstant:1
  UnaryOperatorMinus:-(_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1520 LET H=INT(N)
  Variable:H -> _
  Variable:N -> _
  FunctionInt:INT(_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1530 FOR V=1 TO N                      'WORKING PORTION
  control: Variable:V -> _
  start:   ["NumericConstant:1"]
@@ -575,7 +575,7 @@
  BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:65
  UserFunction:FNA($,_,_,_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1550       LET Y=FNA(M$(3),125,1,1/10,49) 'CURVE 1, 125 MAX., 1/10 MILE LONG 
  Variable:Y -> _
  NumericConstant:3
@@ -587,7 +587,7 @@
  BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:49
  UserFunction:FNA($,_,_,_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1560       LET Y=FNA(M$(1),200,2,13/20,65) 'STRAIGHT 3, 200 MAX., 13/20 MILE LONG 
  Variable:Y -> _
  NumericConstant:1
@@ -599,7 +599,7 @@
  BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:65
  UserFunction:FNA($,_,_,_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1570       LET Y=FNA(M$(3),125,1,1/10,50) 'CURVE 2, 125 MAX., 1/10 NILE LONG 
  Variable:Y -> _
  NumericConstant:3
@@ -611,7 +611,7 @@
  BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:50
  UserFunction:FNA($,_,_,_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1580       LET Y=FNR(M$(1),200,1,1/5,67) 'STRAIGHT C, 200 MAX., 1/5 MILE LONG 
  Variable:Y -> _
  NumericConstant:1
@@ -623,7 +623,7 @@
  BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:67
  UserFunction:FNR($,_,_,_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1590       LET Y=FNA(M$(3),150,1,3/20,51) 'CURVE 3, 150 MAX., 3/20 MILE LONG 
  Variable:Y -> _
  NumericConstant:3
@@ -635,7 +635,7 @@
  BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:51
  UserFunction:FNA($,_,_,_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1600       LET Y=FNA(M$(1),200,2,3/5,68) 'STRAIGHT D, 200 MAX,, 3/5 MILE LONG 
  Variable:Y -> _
  NumericConstant:1
@@ -647,7 +647,7 @@
  BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:68
  UserFunction:FNA($,_,_,_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1610       LET Y=FNA(M$(3),125,1,1/10,52) 'CURVE 4, 125 MAX., 1/10 MILE LONG 
  Variable:Y -> _
  NumericConstant:3
@@ -659,7 +659,7 @@
  BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:52
  UserFunction:FNA($,_,_,_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1620       LET Y=FNA(M$(1),200,1,1/4,69) 'STRAIGHT E, 200 MAX., 1/4 MILE LONG 
  Variable:Y -> _
  NumericConstant:1
@@ -671,7 +671,7 @@
  BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:69
  UserFunction:FNA($,_,_,_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1630       LET Y=FNA(M$(2),100,.75,3/20,53) 'HAIRPIN 5, 100 MAX., 3/20 MILE LONG 
  Variable:Y -> _
  NumericConstant:2
@@ -683,7 +683,7 @@
  BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:53
  UserFunction:FNA($,_,_,_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1640       LET Y=FNA(M$(1),200,1.5,9/20,70) 'STRAIGHT F, 200 MAX., 9/20 MILE LONG 
  Variable:Y -> _
  NumericConstant:1
@@ -695,7 +695,7 @@
  BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:70
  UserFunction:FNA($,_,_,_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1650       LET Y=FNA(M$(2),100,.75,3/20,54) 'HAIRPIN 5, 100 MAX., 3/20 MILE LONG 
  Variable:Y -> _
  NumericConstant:2
@@ -707,7 +707,7 @@
  BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:54
  UserFunction:FNA($,_,_,_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1660       LET Y=FNA(M$(1),200,2,1,71) 'STRAIGHT G, 200 MAX., 1 MILE LONG 
  Variable:Y -> _
  NumericConstant:1
@@ -717,7 +717,7 @@
  NumericConstant:1
  NumericConstant:71
  UserFunction:FNA($,_,_,_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1670       LET Y=FNA(M$(3),125,1,1/10,55) 'CURVE 7, 125 MAX., 1/10 MILE LONG 
  Variable:Y -> _
  NumericConstant:3
@@ -729,7 +729,7 @@
  BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:55
  UserFunction:FNA($,_,_,_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1680       LET Y=FNA(M$(3),150,1,3/20,56) 'CURVE 8, 150 MAX., 3/20 MILE LONG 
  Variable:Y -> _
  NumericConstant:3
@@ -741,7 +741,7 @@
  BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:56
  UserFunction:FNA($,_,_,_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1690       LET Y=FNA(M$(1),200,2,7/10,72) 'STRAIGHT H, 20C MAX., 7/10 MILE LONG 
  Variable:Y -> _
  NumericConstant:1
@@ -753,7 +753,7 @@
  BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:72
  UserFunction:FNA($,_,_,_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1700       IF V = H THEN 1740
  Variable:V -> _
  Variable:H -> _
@@ -768,7 +768,7 @@
  BinaryOperatorDivide:/(_,_) -> _
  NumericConstant:127
  UserFunction:FNA($,_,_,_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1720       REM        NAME OF TRACK          ,MAX,#,LEN ,ASC
  Remark:       NAME OF TRACK          ,MAX,#,LEN ,ASC
 1730       REM        START-FINISH, 150 MAX., 3/20 MILE LONG
@@ -791,7 +791,7 @@
 1780 LET W=1E+37
  Variable:W -> _
  NumericConstant:1E+37
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1790 IF O9=0 THEN 1820
  Variable:O9 -> _
  NumericConstant:0
@@ -799,13 +799,13 @@
 1800 LET G5=O9
  Variable:G5 -> _
  Variable:O9 -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1810 GOTO 1830
  LineNumber:1830
 1820 LET G5=3
  Variable:G5 -> _
  NumericConstant:3
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1830 FOR Z=G TO G5
  control: Variable:Z -> _
  start:   ["Variable:G -> _"]
@@ -887,7 +887,7 @@
  Variable:W -> _
  Variable:Z -> _
  Variable:T(_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1980      LET N=F2*(Z+1)+Z 
  Variable:N -> _
  Variable:F2 -> _
@@ -897,7 +897,7 @@
  BinaryOperatorMultiply:*(_,_) -> _
  Variable:Z -> _
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 1990 NEXT Z
  Variable:Z -> _
 2000 IF O9>0 THEN 2020
@@ -972,7 +972,7 @@
  Variable:Z -> _
  Variable:D(_) -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _,_
 2120 NEXT Z
  Variable:Z -> _
 2130 PRINT O$(10);"NEW SET-UP. NO RAIN, NO DEBRIS";
@@ -994,7 +994,7 @@
  Variable:G1 -> _
  Variable:F5 -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _,_
 2180 GOTO 1110
  LineNumber:1110
 2190 FOR X=1 TO K9                         'FOREIGN LANGUAGE HANDLER 
@@ -1035,13 +1035,13 @@
 2250 LET R$="NO"
  Variable:R$ -> $
  TextConstant:"NO"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 2260 GOTO 2280
  LineNumber:2280
 2270 LET A$="YES"
  Variable:A$ -> $
  TextConstant:"YES"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 2280 RETURN
  
 2290 STOP
@@ -1097,12 +1097,12 @@
  Variable:F5 -> _
  NumericConstant:1
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 2410      LET E(F5)=D                      'AND THE 635 SAID "LET THERE BE OIL." AND THERE IT WAS.
  Variable:F5 -> _
  Variable:E(_) -> _
  Variable:D -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 2420      FOR Z=0 TO O9                    'AND THE TRACK ABOUNDED WITH OIL. AND THE 635 SAID "BOY, WHAT
  control: Variable:Z -> _
  start:   ["NumericConstant:0"]
@@ -1133,13 +1133,13 @@
  Variable:G -> _
  Variable:D(_) -> _
  NumericConstant:1
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 2470      LET Q=Q+1                        'INCREMENT DEAD COUNTER
  Variable:Q -> _
  Variable:Q -> _
  NumericConstant:1
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 2480      IF Q=O9 THEN 4230                'EVERYBODY DEAD?
  Variable:Q -> _
  Variable:O9 -> _
@@ -1150,7 +1150,7 @@
  Variable:Y4 -> _
  Variable:G -> _
  Variable:T(_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 2510 IF (B+A(G)+E)*S(G)/B<= R THEN 2530
  Variable:B -> _
  Variable:G -> _
@@ -1184,7 +1184,7 @@
  Variable:G -> _
  Variable:L(_) -> _
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 2540      IF O9>0 THEN 2660                'SEE IF, HEAVEN FORBID, HE PASSED SOMEBODY
  Variable:O9 -> _
  NumericConstant:0
@@ -1209,13 +1209,13 @@
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 2580           LET Z1=Y4-Z4
  Variable:Z1 -> _
  Variable:Y4 -> _
  Variable:Z4 -> _
  BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 2590           LET Z2=T(G)-T(X4)
  Variable:Z2 -> _
  Variable:G -> _
@@ -1223,7 +1223,7 @@
  Variable:X4 -> _
  Variable:T(_) -> _
  BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 2600           IF SGN(Z2)<>-SGN(Z1) THEN 2650
  Variable:Z2 -> _
  FunctionSgn:SGN(_) -> _
@@ -1397,16 +1397,16 @@
 2820 LET E = 0                                'MAKE SURE WE DON'T USE LAST SECTION'S OIL ON THIS SECTION
  Variable:E -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 2830 MAT L=ZER                                'KILL PIT STOPS FROM LAST TIME
  Variable:L(,) -> _(,)
  FunctionZer2:ZER -> _(,)
- AssignmentOperator:=
+ AssignmentOperator:= _(,) -> _(,)
 2840 LET L(0)=0
  NumericConstant:0
  Variable:L(_) -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 2850 IF F5<2 THEN 2900                        'IF COURSE WELL GREASED, DISSOLVE GREASE
  Variable:F5 -> _
  NumericConstant:2
@@ -1420,11 +1420,11 @@
 2880 MAT E=ZER
  Variable:E(,) -> _(,)
  FunctionZer2:ZER -> _(,)
- AssignmentOperator:=
+ AssignmentOperator:= _(,) -> _(,)
 2890 LET F5=0
  Variable:F5 -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 2900 FOR X=1 TO F5                            'SEE IF THOSE PLAYING DESERVE OIL 
  control: Variable:X -> _
  start:   ["NumericConstant:1"]
@@ -1444,7 +1444,7 @@
 2950 LET E=.2
  Variable:E -> _
  NumericConstant:.2
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 2960 GOTO 3130
  LineNumber:3130
 2970 IF F3=1 THEN 3130                        'HAVE WE HAD RAIN?
@@ -1471,7 +1471,7 @@
 3020 LET F3=1                                 'RAIN, RAIN, GO AWAY, WON'T COME BACK ANOTHER DAY 
  Variable:F3 -> _
  NumericConstant:1
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3030 FOR A=0 TO O9
  control: Variable:A -> _
  start:   ["NumericConstant:0"]
@@ -1483,11 +1483,11 @@
  Variable:A(_) -> _
  NumericConstant:.075
  BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3050      LET G8=.025                         'MAKE IT LESS LIKELY TO RAIN IN LATER RACES 
  Variable:G8 -> _
  NumericConstant:.025
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3060 NEXT A
  Variable:A -> _
 3070 GOTO 3130
@@ -1506,11 +1506,11 @@
  Variable:A(_) -> _
  NumericConstant:.1
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3110      LET G8=.1
  Variable:G8 -> _
  NumericConstant:.1
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3120 NEXT A
  Variable:A -> _
 3130 IF C<>9/20 THEN 3210                     'PIT STOPS?
@@ -1547,7 +1547,7 @@
  BinaryOperatorMultiply:*(_,_) -> _
  NumericConstant:5
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3190 PRINT O$(X);"Y0U ARE IN THE PITS FOR";L(X);"SECONDS."
  Variable:X -> _
  Variable:O$(_) -> $
@@ -1568,7 +1568,7 @@
 3230 MAT S=ZER                                'RESET SPEED ARRAY
  Variable:S(,) -> _(,)
  FunctionZer2:ZER -> _(,)
- AssignmentOperator:=
+ AssignmentOperator:= _(,) -> _(,)
 3240 IF O3>0 THEN 3270                        'PRINT OUT SOMETHING LIKE 'STRAIGHT A'
  Variable:O3 -> _
  NumericConstant:0
@@ -1602,7 +1602,7 @@
  Variable:D -> _
  Variable:S(_) -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3290 FOR A=0 TO O9
  control: Variable:A -> _
  start:   ["NumericConstant:0"]
@@ -1629,23 +1629,23 @@
  Variable:N -> _
  NumericConstant:1
  Variable:J(_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3370 LET S=J(2)
  Variable:S -> _
  NumericConstant:2
  Variable:J(_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3380 GOTO 3410
  LineNumber:3410
 3390 LET S=J(1)
  Variable:S -> _
  NumericConstant:1
  Variable:J(_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3400 LET N=0
  Variable:N -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3410 IF D(N)=0 THEN 3450                      'IS THE GUY DEAD?
  Variable:N -> _
  Variable:D(_) -> _
@@ -1686,7 +1686,7 @@
 3480 LET A=N
  Variable:A -> _
  Variable:N -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3490 IF S<=200 THEN 3620                      'DID HE TRY TO EXCEED HIS MAX. SPEED? 
  Variable:S -> _
  NumericConstant:200
@@ -1710,7 +1710,7 @@
  NumericConstant:1
  BinaryOperatorPlus:+(_,_) -> _
  BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3530 IF R4=INT(R4) THEN 3560                  'NOW SEE IF HE PICKED A LEGAL CAR
  Variable:R4 -> _
  Variable:R4 -> _
@@ -1789,13 +1789,13 @@
  Variable:N -> _
  Variable:S(_) -> _
  Variable:S -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3700 LET U=U+1
  Variable:U -> _
  Variable:U -> _
  NumericConstant:1
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3710 IF R4=0 THEN 3740
  Variable:R4 -> _
  NumericConstant:0
@@ -1804,11 +1804,11 @@
  Variable:N -> _
  Variable:H(_) -> _
  Variable:R4 -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3730 LET R4=0
  Variable:R4 -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3740 IF U<O9-Q THEN 3430                      'ARE WE DONE?
  Variable:U -> _
  Variable:O9 -> _
@@ -1818,7 +1818,7 @@
 3750 LET U=0                                  'YES!
  Variable:U -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3760 IF O9>0 THEN 3890                        'SET SPEEDS FOR AUTO-PILOTS
  Variable:O9 -> _
  NumericConstant:0
@@ -1852,7 +1852,7 @@
  Variable:Q(_) -> _
  BinaryOperatorPlus:+(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3800      IF (B+.1+G8+E)*S/B<=R THEN 3850
  Variable:B -> _
  NumericConstant:.1
@@ -1871,7 +1871,7 @@
  Variable:F0 -> _
  Variable:D(_) -> _
  NumericConstant:1
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3820      PRINT O$(10);Q$(F3);" JUST WIPED"       'AND INFORM US IF THEY WIPE
  NumericConstant:10
  Variable:O$(_) -> $
@@ -1886,12 +1886,12 @@
  Variable:F5 -> _
  NumericConstant:1
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3840      LET E(F5)=D
  Variable:F5 -> _
  Variable:E(_) -> _
  Variable:D -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3850      LET T(F0)=T(F0)+C/(S/3600)
  Variable:F0 -> _
  Variable:T(_) -> _
@@ -1903,12 +1903,12 @@
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3860      LET S(F0)=S
  Variable:F0 -> _
  Variable:S(_) -> _
  Variable:S -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3870 NEXT F0
  Variable:F0 -> _
 3880 GOTO 3980
@@ -1939,7 +1939,7 @@
  Variable:X2 -> _
  Variable:H(_) -> _
  Variable:H(_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3940      GOTO 3920
  LineNumber:3920
 3950      LET S(X2)=S(H(X2))
@@ -1948,7 +1948,7 @@
  Variable:X2 -> _
  Variable:H(_) -> _
  Variable:S(_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3960      LET T(X2)=(T(X2)+T(H(X2)))/2
  Variable:X2 -> _
  Variable:T(_) -> _
@@ -1960,7 +1960,7 @@
  BinaryOperatorPlus:+(_,_) -> _
  NumericConstant:2
  BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 3970 NEXT X2
  Variable:X2 -> _
 3980 RETURN
@@ -1978,13 +1978,13 @@
 4020 LET G5=O9
  Variable:G5 -> _
  Variable:O9 -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 4030 GOTO 4050
  LineNumber:4050
 4040 LET G5=3
  Variable:G5 -> _
  NumericConstant:3
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 4050 FOR G=0 TO G5
  control: Variable:G -> _
  start:   ["NumericConstant:0"]
@@ -2096,7 +2096,7 @@
 4240 LET G1=1    'ALL HUMANS ARE DEAD, SO GRIND THIS MANGLE TO A HALT, AND SET A FLAG TO THAT EFFECT 
  Variable:G1 -> _
  NumericConstant:1
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 4250 FNEND 'AND RETURN FROM WHENCE WE CAME
  
 4260 END 

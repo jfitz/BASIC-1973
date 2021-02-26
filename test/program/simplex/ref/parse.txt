@@ -53,7 +53,7 @@
  Variable:J -> _
  Variable:C(_) -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
  control: Variable:J -> _
  start:   ["Variable:N1 -> _", "NumericConstant:1", "BinaryOperatorPlus:+(_,_) -> _"]
  end:     ["Variable:N1 -> _", "Variable:N2 -> _", "BinaryOperatorPlus:+(_,_) -> _"]
@@ -75,7 +75,7 @@
  Variable:I -> _
  FunctionStr:STR$(_) -> $
  BinaryOperatorPlus:+($,$) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 124 NEXT I
  Variable:I -> _
 125 FOR I = 1 TO N2
@@ -91,7 +91,7 @@
  Variable:I -> _
  FunctionStr:STR$(_) -> $
  BinaryOperatorPlus:+($,$) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 127 NEXT I
  Variable:I -> _
 128 FOR I = 1 TO N2
@@ -105,7 +105,7 @@
  Variable:N1 -> _
  BinaryOperatorPlus:+(_,_) -> _
  Variable:C$(_) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 130 NEXT I
  Variable:I -> _
 140 REM BUILD CENTRAL MATRIX (CONSTRAINTS)
@@ -127,7 +127,7 @@
  Variable:J -> _
  Variable:X(_,_) -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
  control: Variable:J -> _
  start:   ["Variable:N1 -> _", "NumericConstant:1", "BinaryOperatorPlus:+(_,_) -> _"]
  end:     ["Variable:N1 -> _", "Variable:N2 -> _", "BinaryOperatorPlus:+(_,_) -> _"]
@@ -141,7 +141,7 @@
  BinaryOperatorPlus:+(_,_) -> _
  Variable:X(_,_) -> _
  NumericConstant:1
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
  control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["Variable:N2 -> _"]
@@ -161,7 +161,7 @@
  Variable:I -> _
  Variable:R(_) -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
  control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["Variable:N2 -> _"]
@@ -235,7 +235,7 @@
  Variable:J -> _
  Variable:Z(_) -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
  control: Variable:J -> _
  start:   ["NumericConstant:1"]
  end:     ["Variable:N1 -> _", "Variable:N2 -> _", "BinaryOperatorPlus:+(_,_) -> _"]
@@ -255,7 +255,7 @@
  Variable:X(_,_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
  control: Variable:J -> _
  start:   ["NumericConstant:1"]
  end:     ["Variable:N1 -> _", "Variable:N2 -> _", "BinaryOperatorPlus:+(_,_) -> _"]
@@ -268,17 +268,17 @@
  Variable:Z() -> _()
  Variable:C() -> _()
  BinaryOperatorMinus:-(_,_) -> _()
- AssignmentOperator:=
+ AssignmentOperator:= _() -> _()
 320 REM CHECK FOR OPTIMUM, IDENTIFY KEY COLUMN
  Remark:CHECK FOR OPTIMUM, IDENTIFY KEY COLUMN
 321 J0 = 0
  Variable:J0 -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 322 M = 0
  Variable:M -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 323 FOR J = 1 TO N1+N2
  control: Variable:J -> _
  start:   ["NumericConstant:1"]
@@ -291,12 +291,12 @@
 325   J0 = J
  Variable:J0 -> _
  Variable:J -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 326   M = Y(J)
  Variable:M -> _
  Variable:J -> _
  Variable:Y(_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 327 NEXT J
  Variable:J -> _
 328 IF M >= 0 THEN 500
@@ -315,7 +315,7 @@
  Variable:I -> _
  Variable:W(_) -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
  control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["Variable:N2 -> _"]
@@ -328,7 +328,7 @@
  Variable:J0 -> _
  Variable:X(_,_) -> _
  BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
  Variable:I -> _
  Variable:J0 -> _
  Variable:X(_,_) -> _
@@ -437,11 +437,11 @@
 381 I0 = 0
  Variable:I0 -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 382 M = 1E6
  Variable:M -> _
  NumericConstant:1E6
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 383 FOR I = 1 TO N2
  control: Variable:I -> _
  start:   ["NumericConstant:1"]
@@ -459,12 +459,12 @@
 385   I0 = I
  Variable:I0 -> _
  Variable:I -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 386   M = W(I)
  Variable:M -> _
  Variable:I -> _
  Variable:W(_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 387 NEXT I
  Variable:I -> _
 389 PRINT "KEY ROW";I0;"VARIABLE ";C1$(I0);" EXITS"
@@ -488,23 +488,23 @@
  Variable:C1$(_) -> $
  Variable:J0 -> _
  Variable:C$(_) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 403 R(I0) = C(J0)
  Variable:I0 -> _
  Variable:R(_) -> _
  Variable:J0 -> _
  Variable:C(_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 410 REM BUILD NEW MATRIX X2 AND ARRAY B2
  Remark:BUILD NEW MATRIX X2 AND ARRAY B2
 411 MAT X2 = X
  Variable:X2(,) -> _(,)
  Variable:X(,) -> _(,)
- AssignmentOperator:=
+ AssignmentOperator:= _(,) -> _(,)
 412 ARR B2 = B
  Variable:B2() -> _()
  Variable:B() -> _()
- AssignmentOperator:=
+ AssignmentOperator:= _() -> _()
 420 REM ADJUST VALUES IN KEY ROW
  Remark:ADJUST VALUES IN KEY ROW
 421 FOR J = 1 TO N1+N2
@@ -522,7 +522,7 @@
  Variable:J0 -> _
  Variable:X(_,_) -> _
  BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 423 NEXT J
  Variable:J -> _
 430 REM ADJUST VALUES IN OTHER ROWS
@@ -558,7 +558,7 @@
  Variable:X(_,_) -> _
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 435   NEXT J
  Variable:J -> _
 436 NEXT I
@@ -574,7 +574,7 @@
  Variable:J0 -> _
  Variable:X(_,_) -> _
  BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 442 FOR I = 1 TO N2
  control: Variable:I -> _
  start:   ["NumericConstant:1"]
@@ -599,7 +599,7 @@
  Variable:X(_,_) -> _
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 445 NEXT I
  Variable:I -> _
 450 REM SWAP IN THE NEW MATRIX AND CONSTANTS
@@ -607,11 +607,11 @@
 451 MAT X = X2
  Variable:X(,) -> _(,)
  Variable:X2(,) -> _(,)
- AssignmentOperator:=
+ AssignmentOperator:= _(,) -> _(,)
 452 ARR B = B2
  Variable:B() -> _()
  Variable:B2() -> _()
- AssignmentOperator:=
+ AssignmentOperator:= _() -> _()
 453 GOTO 200
  LineNumber:200
 500 REM NO MORE CHANGES
@@ -641,7 +641,7 @@
 521 Z = 0
  Variable:Z -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 522 FOR I = 1 TO N2
  control: Variable:I -> _
  start:   ["NumericConstant:1"]
@@ -669,7 +669,7 @@
  Variable:R(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 525 NEXT I
  Variable:I -> _
 527 PRINT "Z = ";Z

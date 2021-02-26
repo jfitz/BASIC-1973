@@ -11,7 +11,7 @@
 525 F$="ANIMAL.GME":ON ERROR GOTO 700
  Variable:F$ -> $
  TextConstant:"ANIMAL.GME"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  LineNumber:700
 550 OPEN F$ FOR INPUT AS FILE 1%:INPUT #1%,N%:INPUT #1%,A$(I%) FOR I%=1%TO N%:CLOSE 1%:A$(0%)=NUM$(N%):ON ERROR GOTO 0:GOTO 1300
  Variable:F$ -> $
@@ -31,7 +31,7 @@
  Variable:A$(%) -> $
  Variable:N% -> %
  FunctionStr:NUM$(%) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  LineNumber:1300
 700 ON ERROR GOTO 1050:F$="$"+F$:RESUME 550
  LineNumber:1050
@@ -39,7 +39,7 @@
  TextConstant:"$"
  Variable:F$ -> $
  BinaryOperatorPlus:+($,$) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  
 1050 READ A$(I%) FOR I%=0% TO 3%
  Variable:I% -> %
@@ -111,13 +111,13 @@
 1350 K%=1%
  Variable:K% -> %
  IntegerConstant:1
- AssignmentOperator:=
+ AssignmentOperator:= % -> %
 1400 K%=FNA%(A$(K%)):GOTO 3000 IF LEN(A$(K%))=0%:GOTO 1400 IF LEFT(A$(K%),2%)="\Q":PRINT "IS IT A "RIGHT(A$(K%),3%);:INPUT Z7$:Z7$=LEFT(Z7$,1%)
  Variable:K% -> %
  Variable:K% -> %
  Variable:A$(%) -> $
  UserFunction:FNA%($) -> %
- AssignmentOperator:=
+ AssignmentOperator:= % -> %
  LineNumber:3000
  Variable:K% -> %
  Variable:A$(%) -> $
@@ -143,7 +143,7 @@
  Variable:Z7$ -> $
  IntegerConstant:1
  FunctionLeft:LEFT($,%) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 1450 IF Z7$="Y" THEN PRINT "WHY NOT TRY ANOTHER ANIMAL":GOTO 1300
  Variable:Z7$ -> $
  TextConstant:"Y"
@@ -178,19 +178,19 @@
  Variable:Z7$ -> $
  IntegerConstant:1
  FunctionLeft:LEFT($,%) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  Variable:Z7$ -> $
  TextConstant:"Y"
  BinaryOperatorEqual:=($,$) -> ?
  Variable:Z6$ -> $
  TextConstant:"N"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  Variable:Z7$ -> $
  TextConstant:"N"
  BinaryOperatorEqual:=($,$) -> ?
  Variable:Z6$ -> $
  TextConstant:"Y"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  TextConstant:"PLEASE ANSWER 'YES' OR 'NO'"
  CarriageControl:NL
  LineNumber:2100
@@ -199,19 +199,19 @@
  IntegerConstant:0
  Variable:A$(%) -> $
  FunctionVal:VAL($) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> %
  IntegerConstant:0
  Variable:A$(%) -> $
  Variable:Z1% -> %
  IntegerConstant:2
  BinaryOperatorPlus:+(%,%) -> %
  FunctionStr:NUM$(%) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  Variable:Z1% -> %
  Variable:A$(%) -> $
  Variable:K% -> %
  Variable:A$(%) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  Variable:Z1% -> %
  IntegerConstant:1
  BinaryOperatorPlus:+(%,%) -> %
@@ -219,7 +219,7 @@
  TextConstant:"\A"
  Variable:Z9$ -> $
  BinaryOperatorPlus:+($,$) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  Variable:K% -> %
  Variable:A$(%) -> $
  TextConstant:"\Q"
@@ -243,7 +243,7 @@
  BinaryOperatorPlus:+($,$) -> $
  TextConstant:"\"
  BinaryOperatorPlus:+($,$) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 2300 GOTO 1300
  LineNumber:1300
 3000 DEF FNA%(Q$):PRINT MID(Q$,3%,INSTR(3%,Q$,"\")-3%);:INPUT Z9$:Z9$=LEFT(Z9$,1%):Z9$="N" IF Z9$<>"Y":Z1%=INSTR(3%,Q$,"\"+Z9$)+2%:Z2%=INSTR(Z1%,Q$,"\"):FNA%=VAL(MID(Q$,Z1%,Z2%-Z1%)):FNEND
@@ -262,10 +262,10 @@
  Variable:Z9$ -> $
  IntegerConstant:1
  FunctionLeft:LEFT($,%) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  Variable:Z9$ -> $
  TextConstant:"N"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  Variable:Z9$ -> $
  TextConstant:"Y"
  BinaryOperatorNotEqual:<>($,$) -> ?
@@ -278,13 +278,13 @@
  FunctionInstr:INSTR(%,$,$) -> _
  IntegerConstant:2
  BinaryOperatorPlus:+(_,%) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> %
  Variable:Z2% -> %
  Variable:Z1% -> %
  Variable:Q$ -> $
  TextConstant:"\"
  FunctionInstr:INSTR(%,$,$) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> %
  UserFunction:FNA% -> %
  Variable:Q$ -> $
  Variable:Z1% -> %
@@ -293,7 +293,7 @@
  BinaryOperatorMinus:-(%,%) -> %
  FunctionMid:MID($,%,%) -> $
  FunctionVal:VAL($) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> %
  
 9999 END 
  

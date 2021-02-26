@@ -24,27 +24,27 @@
 40 C=1:RANDOMIZE:N=50
  Variable:C -> _
  NumericConstant:1
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
  
  Variable:N -> _
  NumericConstant:50
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 50 D$(I)="-" FOR I=1 TO 20:M=0
  Variable:I -> _
  Variable:D$(_) -> $
  TextConstant:"-"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:20"]
  Variable:M -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 60 N$(I)="" FOR I=1 TO 26
  Variable:I -> _
  Variable:N$(_) -> $
  TextConstant:""
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:26"]
@@ -59,7 +59,7 @@
  Variable:J -> _
  Variable:P$(_,_) -> $
  TextConstant:" "
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  Variable:J -> _
  Variable:I -> _
 80 P$(I,1)="X" FOR I=1 TO 12
@@ -67,7 +67,7 @@
  NumericConstant:1
  Variable:P$(_,_) -> $
  TextConstant:"X"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:12"]
@@ -76,7 +76,7 @@
  Variable:I -> _
  Variable:P$(_,_) -> $
  TextConstant:"X"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:7"]
@@ -84,7 +84,7 @@
  NumericConstant:7
  Variable:P$(_,_) -> $
  TextConstant:"X"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 95 IF C<N THEN 100 ELSE PRINT "YOU DID ALL THE WORDS!!":STOP
  Variable:C -> _
  Variable:N -> _
@@ -100,7 +100,7 @@
  NumericConstant:1
  BinaryOperatorPlus:+(_,_) -> _
  FunctionInt:INT(_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 110 IF U(Q)=1 THEN 100 ELSE U(Q)=1:C=C+1:RESTORE:T1=0
  Variable:Q -> _
  Variable:U(_) -> _
@@ -109,16 +109,16 @@
  Variable:Q -> _
  Variable:U(_) -> _
  NumericConstant:1
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
  Variable:C -> _
  Variable:C -> _
  NumericConstant:1
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
  
  Variable:T1 -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 150 READ A$ FOR I=1 TO Q
  Variable:A$ -> $
  control: Variable:I -> _
@@ -128,14 +128,14 @@
  Variable:L -> _
  Variable:A$ -> $
  FunctionLen:LEN($) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
  Variable:I -> _
  Variable:L$(_) -> $
  Variable:A$ -> $
  Variable:I -> _
  Variable:I -> _
  FunctionMid:MID($,_,_) -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["Variable:L -> _"]
@@ -175,7 +175,7 @@
  Variable:G$ -> $
  Variable:R -> _
  NumericConstant:0
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
 220 FOR I=1 TO 26:IF N$(I)="" THEN 250
  control: Variable:I -> _
  start:   ["NumericConstant:1"]
@@ -202,11 +202,11 @@
  Variable:T1 -> _
  NumericConstant:1
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
  Variable:T1 -> _
  Variable:N$(_) -> $
  Variable:G$ -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 260 FOR I=1 TO L:IF L$(I)=G$ THEN 280
  control: Variable:I -> _
  start:   ["NumericConstant:1"]
@@ -225,19 +225,19 @@
  Variable:I -> _
  Variable:D$(_) -> $
  Variable:G$ -> $
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  Variable:R -> _
  Variable:R -> _
  NumericConstant:1
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
  LineNumber:270
 290 M=M+1:GOTO 400
  Variable:M -> _
  Variable:M -> _
  NumericConstant:1
  BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:=
+ AssignmentOperator:= _ -> _
  LineNumber:400
 300 FOR I=1 TO L:IF D$(I)="-" THEN 320
  control: Variable:I -> _
@@ -366,60 +366,60 @@
  NumericConstant:6
  Variable:P$(_,_) -> $
  TextConstant:"-"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  NumericConstant:2
  NumericConstant:7
  Variable:P$(_,_) -> $
  TextConstant:"-"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  NumericConstant:2
  NumericConstant:8
  Variable:P$(_,_) -> $
  TextConstant:"-"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  NumericConstant:4
  NumericConstant:5
  Variable:P$(_,_) -> $
  TextConstant:"("
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  NumericConstant:4
  NumericConstant:6
  Variable:P$(_,_) -> $
  TextConstant:" "
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 481 P$(4,8)=".":P$(4,9)=")":P$(5,6)="-":P$(5,7)="-":P$(5,8)="-":GOTO 580
  NumericConstant:4
  NumericConstant:8
  Variable:P$(_,_) -> $
  TextConstant:"."
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  NumericConstant:4
  NumericConstant:9
  Variable:P$(_,_) -> $
  TextConstant:")"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  NumericConstant:5
  NumericConstant:6
  Variable:P$(_,_) -> $
  TextConstant:"-"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  NumericConstant:5
  NumericConstant:7
  Variable:P$(_,_) -> $
  TextConstant:"-"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  NumericConstant:5
  NumericConstant:8
  Variable:P$(_,_) -> $
  TextConstant:"-"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  LineNumber:580
 490 P$(I,7)="X" FOR I=6 TO 9:GOTO 580
  Variable:I -> _
  NumericConstant:7
  Variable:P$(_,_) -> $
  TextConstant:"X"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  control: Variable:I -> _
  start:   ["NumericConstant:6"]
  end:     ["NumericConstant:9"]
@@ -431,7 +431,7 @@
  BinaryOperatorMinus:-(_,_) -> _
  Variable:P$(_,_) -> $
  TextConstant:"\"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  control: Variable:I -> _
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:7"]
@@ -441,84 +441,84 @@
  NumericConstant:11
  Variable:P$(_,_) -> $
  TextConstant:"/"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  NumericConstant:5
  NumericConstant:10
  Variable:P$(_,_) -> $
  TextConstant:"/"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  NumericConstant:6
  NumericConstant:9
  Variable:P$(_,_) -> $
  TextConstant:"\"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  NumericConstant:7
  NumericConstant:8
  Variable:P$(_,_) -> $
  TextConstant:"/"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  LineNumber:580
 520 P$(10,6)="/":P$(11,5)="/":GOTO 580
  NumericConstant:10
  NumericConstant:6
  Variable:P$(_,_) -> $
  TextConstant:"/"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  NumericConstant:11
  NumericConstant:5
  Variable:P$(_,_) -> $
  TextConstant:"/"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  LineNumber:580
 530 P$(10,8)="\":P$(11,9)="\":GOTO 580
  NumericConstant:10
  NumericConstant:8
  Variable:P$(_,_) -> $
  TextConstant:"\"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  NumericConstant:11
  NumericConstant:9
  Variable:P$(_,_) -> $
  TextConstant:"\"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  LineNumber:580
 540 P$(3,11)="\":GOTO 580
  NumericConstant:3
  NumericConstant:11
  Variable:P$(_,_) -> $
  TextConstant:"\"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  LineNumber:580
 550 P$(3,3)="/":GOTO 580
  NumericConstant:3
  NumericConstant:3
  Variable:P$(_,_) -> $
  TextConstant:"/"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  LineNumber:580
 560 P$(12,10)="\":P$(12,11)="-":GOTO 580
  NumericConstant:12
  NumericConstant:10
  Variable:P$(_,_) -> $
  TextConstant:"\"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  NumericConstant:12
  NumericConstant:11
  Variable:P$(_,_) -> $
  TextConstant:"-"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  LineNumber:580
 570 P$(12,3)="-":P$(12,4)="/"
  NumericConstant:12
  NumericConstant:3
  Variable:P$(_,_) -> $
  TextConstant:"-"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
  NumericConstant:12
  NumericConstant:4
  Variable:P$(_,_) -> $
  TextConstant:"/"
- AssignmentOperator:=
+ AssignmentOperator:= $ -> $
 580 FOR I=1 TO 12:FOR J=1 TO 12:& P$(I,J);:NEXT J
  control: Variable:I -> _
  start:   ["NumericConstant:1"]
