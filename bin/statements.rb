@@ -1542,7 +1542,7 @@ class ChangeStatement < AbstractStatement
     if source_value.text_constant?
       # string to array
 
-      array = source_value.unpack
+      array = source_value.na_unpack
       dims = array.dimensions
       values = array.values(interpreter)
 
