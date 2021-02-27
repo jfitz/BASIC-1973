@@ -1460,6 +1460,10 @@ class BooleanConstant < AbstractValueElement
     @value ? 1 : 0
   end
 
+  def to_f
+    @value ? 1.0 : 0.0
+  end
+
   def to_s
     @value ? 'true' : 'false'
   end
