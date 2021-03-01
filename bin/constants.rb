@@ -23,7 +23,7 @@ class AbstractElement
     @param_start = false
     @separator = false
     @file_handle = false
-    @precedence = 10
+    @precedence = 0
     @shape = nil
     @list = false
     @carriage = false
@@ -1673,7 +1673,7 @@ class VariableName < AbstractElement
     @name = token
     @variable = true
     @operand = true
-    @precedence = 7
+    @precedence = 10
     @content_type = @name.content_type
   end
 
@@ -1752,7 +1752,7 @@ class UserFunctionName < AbstractElement
     @function = true
     @user_function = true
     @operand = true
-    @precedence = 7
+    @precedence = 10
     @content_type = @name.content_type
     @shape = :scalar
   end
@@ -1839,7 +1839,7 @@ class Variable < AbstractElement
     @subscripts = normalize_subscripts(subscripts)
     @variable = true
     @operand = true
-    @precedence = 7
+    @precedence = 10
   end
 
   def content_type
@@ -2187,7 +2187,7 @@ class ExpressionList < AbstractElement
     @list = true
     @expressions = expressions
     @variable = true
-    @precedence = 7
+    @precedence = 10
   end
 
   def dump
