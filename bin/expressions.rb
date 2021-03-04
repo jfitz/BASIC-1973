@@ -1683,7 +1683,7 @@ class DeclarationExpressionSet < AbstractExpressionSet
 
   def check_all_lengths
     @expressions.each do |expression|
-      raise(BASICSyntaxError, 'Empty expression is not declaration') if
+      raise(BASICExpressionError, 'Empty expression is not declaration') if
         expression.empty?
     end
   end
