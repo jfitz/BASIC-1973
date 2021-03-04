@@ -292,6 +292,8 @@ class AbstractValueElement < AbstractElement
   def initialize
     super
 
+    @operand = true
+    @precedence = 0
     @shape = :scalar
     @value = nil
     @symbol = false
@@ -317,67 +319,89 @@ class AbstractValueElement < AbstractElement
 
   def ==(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in =="
+
     raise(BASICExpressionError, message) unless compatible?(other)
+
     @value == other.to_v
   end
 
   def >(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in >"
+
     raise(BASICExpressionError, message) unless compatible?(other)
+
     @value > other.to_v
   end
 
   def >=(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in >="
+
     raise(BASICExpressionError, message) unless compatible?(other)
+
     @value >= other.to_v
   end
 
   def <(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in <"
+
     raise(BASICExpressionError, message) unless compatible?(other)
+
     @value < other.to_v
   end
 
   def <=(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in <="
+
     raise(BASICExpressionError, message) unless compatible?(other)
+
     @value <= other.to_v
   end
 
   def b_eq(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in b_eq()"
+
     raise(BASICExpressionError, message) unless compatible?(other)
+
     BooleanConstant.new(@value == other.to_v)
   end
 
   def b_ne(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in b_ne()"
+
     raise(BASICExpressionError, message) unless compatible?(other)
+
     BooleanConstant.new(@value != other.to_v)
   end
 
   def b_gt(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in b_gt()"
+
     raise(BASICExpressionError, message) unless compatible?(other)
+
     BooleanConstant.new(@value > other.to_v)
   end
 
   def b_ge(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in b_ge()"
+
     raise(BASICExpressionError, message) unless compatible?(other)
+
     BooleanConstant.new(@value >= other.to_v)
   end
 
   def b_lt(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in b_lt()"
+
     raise(BASICExpressionError, message) unless compatible?(other)
+
     BooleanConstant.new(@value < other.to_v)
   end
 
   def b_le(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in b_le()"
+
     raise(BASICExpressionError, message) unless compatible?(other)
+
     BooleanConstant.new(@value <= other.to_v)
   end
 
@@ -432,7 +456,7 @@ class AbstractValueElement < AbstractElement
   def keyword?
     false
   end
-  
+
   def evaluate(_, _)
     self
   end
@@ -460,11 +484,8 @@ class NumericConstant < AbstractValueElement
   end
 
   def self.numeric(text)
-    # #c constant
-    if text.size == 2 && text[0] == '#'
-      text[1].ord
     # nnn(E+nn)
-    elsif /\A\s*[+-]?\d+(E+?\d+)?\z/ =~ text
+    if /\A\s*[+-]?\d+(E+?\d+)?\z/ =~ text
       text.to_f.to_i
     # nnn(E-nn)
     elsif /\A\s*[+-]?\d+(E-\d+)?\z/ =~ text
@@ -475,6 +496,9 @@ class NumericConstant < AbstractValueElement
     # (nnn).nnn(E+-nn)
     elsif /\A\s*[+-]?(\d+)?\.\d*(E[+-]?\d+)?\z/ =~ text
       text.to_f
+    # #c constant
+    elsif text.size == 2 && text[0] == '#'
+      text[1].ord
     end
   end
 
@@ -499,6 +523,7 @@ class NumericConstant < AbstractValueElement
 
     numeric_classes = %w[Fixnum Integer Bignum Float]
     float_classes = %w[Rational NumericConstantToken]
+
     f = nil
     f = text.to_f if float_classes.include?(text.class.to_s)
     f = text if numeric_classes.include?(text.class.to_s)
@@ -524,12 +549,10 @@ class NumericConstant < AbstractValueElement
       f = f.round(num_digits)
     end
 
-    @symbol_text = text.to_s
-    @value = float_to_possible_int(f)
     @content_type = :numeric
     @shape = :scalar
-    @operand = true
-    @precedence = 0
+    @symbol_text = text.to_s
+    @value = float_to_possible_int(f)
     @numeric_constant = true
   end
 
@@ -542,7 +565,7 @@ class NumericConstant < AbstractValueElement
   end
 
   def set_content_type(type_stack)
-    type_stack.push(content_type)
+    type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
@@ -617,8 +640,7 @@ class NumericConstant < AbstractValueElement
   end
 
   def add(other)
-    message =
-      "Type mismatch (#{content_type}/#{other.content_type}) in add()"
+    message = "Type mismatch (#{content_type}/#{other.content_type}) in add()"
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
@@ -910,7 +932,7 @@ class IntegerConstant < AbstractValueElement
   end
 
   def set_content_type(type_stack)
-    type_stack.push(content_type)
+    type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
@@ -1096,6 +1118,11 @@ class IntegerConstant < AbstractValueElement
     IntegerConstant.new(value)
   end
 
+  def mod(other)
+    value = other.to_numeric != 0 ? @value % other.to_numeric.to_v : 0
+    IntegerConstant.new(value)
+  end
+
   def abs
     value = @value >= 0 ? @value : -@value
     IntegerConstant.new(value)
@@ -1198,9 +1225,9 @@ class TextConstant < AbstractValueElement
     classes.include?(token.class.to_s)
   end
 
-  attr_reader :value
   attr_reader :content_type
   attr_reader :shape
+  attr_reader :value
   attr_reader :symbol_text
 
   def initialize(text)
@@ -1215,8 +1242,7 @@ class TextConstant < AbstractValueElement
       @symbol = true
     end
 
-    raise(BASICExpressionError, "'#{text}' is not a text constant") if
-      @value.nil?
+    raise(BASICSyntaxError, "'#{text}' is not a text constant") if @value.nil?
 
     @content_type = :string
     @shape = :scalar
@@ -1226,7 +1252,7 @@ class TextConstant < AbstractValueElement
   end
 
   def set_content_type(type_stack)
-    type_stack.push(content_type)
+    type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
@@ -1336,11 +1362,13 @@ class TextConstant < AbstractValueElement
     values = {}
     values[[NumericConstant.new(0)]] = length
     index = 1
+
     @value.each_char do |char|
       key = [NumericConstant.new(index)]
       values[key] = NumericConstant.new(char.ord)
       index += 1
     end
+
     BASICArray.new(dims, values)
   end
 
@@ -1350,11 +1378,13 @@ class TextConstant < AbstractValueElement
     values = {}
     values[[IntegerConstant.new(0)]] = length
     index = 1
+
     @value.each_char do |char|
       key = [NumericConstant.new(index)]
       values[key] = IntegerConstant.new(char.ord)
       index += 1
     end
+
     BASICArray.new(dims, values)
   end
 end
@@ -1366,9 +1396,9 @@ class BooleanConstant < AbstractValueElement
     classes.include?(token.class.to_s)
   end
 
-  attr_reader :value
   attr_reader :content_type
   attr_reader :shape
+  attr_reader :value
   attr_reader :symbol_text
 
   def initialize(obj)
@@ -1385,15 +1415,15 @@ class BooleanConstant < AbstractValueElement
       (obj_class == 'TextConstant' && !obj.value.strip.size.zero?) ||
       obj_class == 'TrueClass'
 
-    @operand = true
     @content_type = :boolean
     @shape = :scalar
+    @operand = true
     @precedence = 0
     @boolean_constant = true
   end
 
-  def set_content_type(stack)
-    stack.push(content_type)
+  def set_content_type(type_stack)
+    type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
@@ -1446,6 +1476,10 @@ class BooleanConstant < AbstractValueElement
 
   def to_f
     @value ? 1.0 : 0.0
+  end
+
+  def to_ms_i
+    @value ? -1 : 0
   end
 
   def to_s
@@ -1550,7 +1584,7 @@ class CarriageControl
   def keyword?
     false
   end
-  
+
   def to_s
     case @operator
     when ';'
@@ -1662,8 +1696,8 @@ class VariableName < AbstractElement
     @content_type = @name.content_type
   end
 
-  def set_content_type(stack)
-    stack.push(content_type)
+  def set_content_type(type_stack)
+    type_stack.push(@content_type)
   end
 
   def eql?(other)
@@ -1683,7 +1717,7 @@ class VariableName < AbstractElement
   end
 
   def dump
-    result = make_type_sigil(content_type)
+    result = make_type_sigil(@content_type)
     "#{self.class}:#{@name} -> #{result}"
   end
 
@@ -1739,7 +1773,7 @@ class UserFunctionName < AbstractElement
   end
 
   def set_content_type(type_stack)
-    type_stack.push(content_type)
+    type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
@@ -1775,21 +1809,16 @@ class UserFunctionName < AbstractElement
     numerics = %i[numeric integer]
     strings = %i[string]
 
-    compatible = false
-
-    if content_type == :numeric
-      compatible = numerics.include?(value.content_type)
+    case content_type
+    when :numeric
+      numerics.include?(value.content_type)
+    when :string
+      strings.include?(value.content_type)
+    when :integer
+      numerics.include?(value.content_type)
+    else
+      false
     end
-
-    if content_type == :string
-      compatible = strings.include?(value.content_type)
-    end
-
-    if content_type == :integer
-      compatible = numerics.include?(value.content_type)
-    end
-
-    compatible
   end
 
   def subscripts
@@ -1811,14 +1840,13 @@ class Variable < AbstractElement
   def initialize(variable_name, my_shape, subscripts)
     super()
 
-    raise(BASICExpressionError,
-          "'#{variable_name.class}:#{variable_name}' is not a variable name") if
-      variable_name.class.to_s != 'VariableName'
+    raise(BASICSyntaxError, "'#{variable_name}' is not a variable name") unless
+      variable_name.class.to_s == 'VariableName'
 
     @variable_name = variable_name
     @content_type = @variable_name.content_type
-    @valref = :value
     @shape = my_shape
+    @valref = :value
     @subscripts = normalize_subscripts(subscripts)
     @variable = true
     @operand = true
@@ -1837,7 +1865,7 @@ class Variable < AbstractElement
       end
     end
 
-    type_stack.push(content_type)
+    type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
@@ -1865,7 +1893,7 @@ class Variable < AbstractElement
   end
 
   def dump
-    result = make_type_sigil(content_type) + make_shape_sigil(@shape)
+    result = make_type_sigil(@content_type) + make_shape_sigil(@shape)
     "#{self.class}:#{@variable_name}#{@signature} -> #{result}"
   end
 
@@ -1885,21 +1913,16 @@ class Variable < AbstractElement
     numerics = %i[numeric integer]
     strings = %i[string]
 
-    compatible = false
-
-    if content_type == :numeric
-      compatible = numerics.include?(value.content_type)
+    case content_type
+    when :numeric
+      numerics.include?(value.content_type)
+    when :string
+      strings.include?(value.content_type)
+    when :integer
+      numerics.include?(value.content_type)
+    else
+      false
     end
-
-    if content_type == :string
-      compatible = strings.include?(value.content_type)
-    end
-
-    if content_type == :integer
-      compatible = numerics.include?(value.content_type)
-    end
-
-    compatible
   end
 
   def to_s
@@ -1958,6 +1981,7 @@ class Variable < AbstractElement
       @subscripts = interpreter.normalize_subscripts(subscripts)
       interpreter.check_subscripts(@variable_name, @subscripts)
     end
+
     interpreter.get_value(self)
   end
 
@@ -1974,9 +1998,11 @@ class Variable < AbstractElement
 
   def evaluate_value_array(interpreter, _)
     dims = interpreter.get_dimensions(@variable_name)
+
     raise(BASICExpressionError, 'Variable has no dimensions') if dims.nil?
-    raise(BASICExpressionError, 'Array requires one dimension') if
-      dims.size != 1
+    raise(BASICExpressionError, 'Array requires one dimension') unless
+      dims.size == 1
+
     values = evaluate_value_array_1(interpreter, dims[0].to_i)
     BASICArray.new(dims, values)
   end
@@ -1985,6 +2011,7 @@ class Variable < AbstractElement
     values = {}
 
     base = $options['base'].value
+
     (base..n_cols).each do |col|
       coords = AbstractElement.make_coord(col)
       variable = Variable.new(@variable_name, :array, coords)
@@ -1996,7 +2023,9 @@ class Variable < AbstractElement
 
   def evaluate_value_matrix(interpreter, _)
     dims = interpreter.get_dimensions(@variable_name)
+
     raise(BASICExpressionError, 'Variable has no dimensions') if dims.nil?
+
     values = evaluate_matrix_n(interpreter, dims)
     Matrix.new(dims, values)
   end
@@ -2004,16 +2033,16 @@ class Variable < AbstractElement
   def evaluate_matrix_n(interpreter, dims)
     values = {}
 
-    values = evaluate_value_matrix_1(interpreter, dims[0].to_i) if
+    values = evaluate_matrix_1(interpreter, dims[0].to_i) if
       dims.size == 1
 
-    values = evaluate_value_matrix_2(interpreter, dims[0].to_i, dims[1].to_i) if
+    values = evaluate_matrix_2(interpreter, dims[0].to_i, dims[1].to_i) if
       dims.size == 2
 
     values
   end
 
-  def evaluate_value_matrix_1(interpreter, n_cols)
+  def evaluate_matrix_1(interpreter, n_cols)
     values = {}
 
     base = $options['base'].value
@@ -2027,7 +2056,7 @@ class Variable < AbstractElement
     values
   end
 
-  def evaluate_value_matrix_2(interpreter, n_rows, n_cols)
+  def evaluate_matrix_2(interpreter, n_rows, n_cols)
     values = {}
 
     base = $options['base'].value
@@ -2079,6 +2108,7 @@ class Variable < AbstractElement
   end
 end
 
+# Class for declaration (in a DIM statement)
 class Declaration < AbstractElement
   attr_reader :subscripts
   attr_reader :content_type
@@ -2087,9 +2117,8 @@ class Declaration < AbstractElement
   def initialize(variable_name)
     super()
 
-    raise(BASICSyntaxError,
-          "'#{variable_name}' is not a variable name") if
-      variable_name.class.to_s != 'VariableName'
+    raise(BASICSyntaxError, "'#{variable_name}' is not a variable name") unless
+      variable_name.class.to_s == 'VariableName'
 
     @variable_name = variable_name
     @subscripts = []
@@ -2103,7 +2132,7 @@ class Declaration < AbstractElement
   end
 
   def set_content_type(type_stack)
-    type_stack.push(content_type)
+    type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
@@ -2126,7 +2155,7 @@ class Declaration < AbstractElement
   end
 
   def dump
-    result = make_type_sigil(content_type) + make_shape_sigil(@shape)
+    result = make_type_sigil(@content_type) + make_shape_sigil(@shape)
     "#{self.class}:#{@variable_name}#{@signature} -> #{result}"
   end
 
