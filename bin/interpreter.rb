@@ -164,8 +164,8 @@ class Interpreter
     @console_io = console_io
     @tokenbuilders = make_debug_tokenbuilders
 
-    @default_args = {}
     @null_out = NullOut.new
+
     @line_breakpoints = {}
     @line_cond_breakpoints = {}
     @locked_variables = []
@@ -175,19 +175,22 @@ class Interpreter
     @record_read_variables = {}
     @record_write_variables = {}
     @return_stack = []
-    @dimensions = {}
-    @variables = {}
     @fornexts = {}
+    @dimensions = {}
+    @default_args = {}
+    @variables = {}
     @user_function_defs = {}
     @user_function_lines = {}
     @user_var_values = []
-    @get_value_seen = []
+
     @function_stack = []
     @errorgoto_stack = []
     @resume_stack = []
     @error_stack = []
+
+    @get_value_seen = []
     @running = false
-    @start_time = Time.now()
+    @start_time = Time.now
   end
 
   private
@@ -218,13 +221,14 @@ class Interpreter
     tokenbuilders <<
       ListTokenBuilder.new(FunctionFactory.function_names, FunctionToken)
 
+    user_function_names = FunctionFactory.user_function_names
     tokenbuilders <<
-      ListTokenBuilder.new(FunctionFactory.user_function_names,
-                           UserFunctionToken)
+      ListTokenBuilder.new(user_function_names, UserFunctionToken)
 
     tokenbuilders << TextTokenBuilder.new(@quotes)
     tokenbuilders << NumberTokenBuilder.new(false)
     tokenbuilders << IntegerTokenBuilder.new
+
     tokenbuilders << VariableTokenBuilder.new
     tokenbuilders << ListTokenBuilder.new(%w[TRUE FALSE], BooleanConstantToken)
 
@@ -286,7 +290,7 @@ class Interpreter
     renumber_map = @program.renumber(args)
     renumber_breakpoints(renumber_map)
   end
-  
+
   def program_store_line(line, print_seq_errors, print_errors)
     @program.store_line(line, print_seq_errors, print_errors)
   end
@@ -339,7 +343,7 @@ class Interpreter
 
     @previous_stack = []
     clear_previous_lines
-    @start_time = Time.now()
+    @start_time = Time.now
     run_program
   end
 
@@ -371,7 +375,7 @@ class Interpreter
     @user_var_values = []
 
     filename, keywords = parse_args(tokens)
-    
+
     chain_to(filename)
 
     raise(BASICSyntaxError, "Cannot start CHAIN program") unless
@@ -435,8 +439,8 @@ class Interpreter
   end
 
   def seterrorgoto(line_number)
-    if line_number.nil?
-      # zero means we discard the current error handler
+    if line_number.nil? || line_number.zero?
+      # discard the current error handler
       @errorgoto_stack.pop
     else
       # if errorgoto stack is larger than resume stack
@@ -567,7 +571,7 @@ class Interpreter
     when 'PRINT'
       statement = PrintStatement.new(nil, [keyword], [args])
       if statement.errors.empty?
-        statement.execute(self)
+        statement.execute_core(self)
       else
         statement.errors.each { |error| @console_io.print_line(error) }
       end
@@ -700,8 +704,8 @@ class Interpreter
 
   def split_breakpoint_tokens(tokens)
     tokens_lists = []
-
     tokens_list = []
+
     tokens.each do |token|
       if token.separator?
         tokens_lists << tokens_list unless tokens.empty?
@@ -737,6 +741,7 @@ class Interpreter
       #  condition - break on any line if condition is true
       #  variable - break when contents change
       tokens_lists = split_breakpoint_tokens(tokens)
+
       tokens_lists.each do |tokens_list|
         if tokens_list.size == 1
           begin
@@ -765,6 +770,7 @@ class Interpreter
             end
           rescue BASICSyntaxError, BASICExpressionError => e
             tkns = tokens_list.map(&:to_s).join
+
             raise BASICCommandError.new('INVALID BREAKPOINT ' + tkns)
           end
         end
@@ -993,12 +999,14 @@ class Interpreter
       subscripts.class.to_s == 'Array'
 
     int_subscripts = []
+
     subscripts.each do |subscript|
       raise(BASICExpressionError, "Invalid subscript #{subscript}") unless
         subscript.numeric_constant?
 
       int_subscripts << subscript.truncate
     end
+
     int_subscripts
   end
 
@@ -1062,11 +1070,11 @@ class Interpreter
     # check subscript value against lower and upper bounds
     int_subscripts.zip(dimensions).each do |pair|
       if pair[0] < lower
-        raise BASICRuntimeError.new(:te_val_out, pair[0].to_s)
+        raise BASICRuntimeError.new(:te_subscript_out, pair[0].to_s)
       end
 
       if pair[0] > pair[1]
-        raise BASICRuntimeError.new(:te_val_out, pair[0].to_s)
+        raise BASICRuntimeError.new(:te_subscript_out, pair[0].to_s)
       end
     end
   end
@@ -1305,6 +1313,7 @@ class Interpreter
 
     if variable.matrix?
       vs = []
+
       # get names of known variables that start with variable name and no comma
       @variables.keys.each { |v| vs << v if v.include?(',') }
 
@@ -1407,19 +1416,20 @@ class Interpreter
 
   def add_file_names(file_names)
     file_names.each do |name|
-      raise BASICRuntimeError.new(:te_fname_inv) unless
+      raise BASICRuntimeError.new(:te_fname_inv, name.to_s) unless
         name.content_type == :string
 
-      raise BASICRuntimeError.new(:te_file_no_fnd, name.to_v.to_s) unless
+      raise BASICRuntimeError.new(:te_file_no_fnd, name.value.to_s) unless
         File.file?(name.to_v)
 
       file_handle = FileHandle.new(@file_handlers.size + 1)
-      @file_handlers[file_handle] = FileHandler.new(name.to_v)
+      @file_handlers[file_handle] = FileHandler.new(name.value)
     end
   end
 
   def open_file(filename, fh, mode)
-    raise BASICRuntimeError.new(:te_fname_inv) unless filename.text_constant?
+    raise BASICRuntimeError.new(:te_fname_inv, filename.to_s) unless
+      filename.text_constant?
 
     ### todo: check for already open handle
     fhr = FileHandler.new(filename.to_v)
@@ -1428,7 +1438,7 @@ class Interpreter
   end
 
   def close_file(fh)
-    raise BASICRuntimeError.new(:te_fn_unk) unless @file_handlers.key?(fh)
+    raise BASICRuntimeError.new(:te_fh_unk) unless @file_handlers.key?(fh)
 
     fhr = @file_handlers[fh]
     fhr.close
