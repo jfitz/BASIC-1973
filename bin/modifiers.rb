@@ -55,7 +55,7 @@ class IfModifier < AbstractModifier
   end
 
   def pretty
-v    'IF ' + @expression.to_s
+    'IF ' + @expression.to_s
   end
 
   def dump
@@ -167,8 +167,6 @@ class UnlessModifier < AbstractModifier
   end
 
   def execute_post(_) end
-
-  private
 end
 
 # WHILE
@@ -361,7 +359,7 @@ class ForModifier < AbstractModifier
 
   def initialize(control_and_start_tokens, step_tokens, end_tokens, until_tokens, while_tokens)
     super()
-    
+
     parts = split_on_token(control_and_start_tokens, '=')
 
     raise(BASICSyntaxError, 'Incorrect initialization') if
