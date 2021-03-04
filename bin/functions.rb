@@ -257,6 +257,7 @@ class UserFunction < AbstractScalarFunction
       end
     rescue BASICRuntimeError => e
       interpreter.clear_user_var_values
+
       raise e
     end
 
@@ -713,7 +714,7 @@ class FunctionErr < AbstractScalarFunction
   def initialize(text)
     super
 
-    @signature_1 = []
+    @signature_0 = []
 
     @shape = :scalar
   end
@@ -743,7 +744,7 @@ class FunctionErr < AbstractScalarFunction
     if previous_is_array(arg_stack)
       args = arg_stack.pop
 
-      if match_args_to_signature(args, @signature_1)
+      if match_args_to_signature(args, @signature_0)
         interpreter.error_code
       else
         raise BASICRuntimeError.new(:te_args_no_match, @name)
@@ -906,7 +907,7 @@ class FunctionInstr < AbstractScalarFunction
   def initialize(text)
     super
 
-    @signature_1 = [
+    @signature_3 = [
       { 'type' => :numeric, 'shape' => :scalar },
       { 'type' => :string, 'shape' => :scalar },
       { 'type' => :string, 'shape' => :scalar }
@@ -919,7 +920,7 @@ class FunctionInstr < AbstractScalarFunction
     args = arg_stack.pop
 
     raise BASICRuntimeError.new(:te_args_no_match, @name) unless
-      match_args_to_signature(args, @signature_1)
+      match_args_to_signature(args, @signature_3)
 
     start = args[0].to_i
 
@@ -1013,7 +1014,7 @@ class FunctionLeft < AbstractScalarFunction
 
     @content_type = :string
 
-    @signature_1 = [
+    @signature_2 = [
       { 'type' => :string, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
     ]
@@ -1025,7 +1026,7 @@ class FunctionLeft < AbstractScalarFunction
     args = arg_stack.pop
 
     raise BASICRuntimeError.new(:te_args_no_match, @name) unless
-      match_args_to_signature(args, @signature_1)
+      match_args_to_signature(args, @signature_2)
 
     value = args[0].to_v
     count = args[1].to_i
@@ -1135,7 +1136,7 @@ class FunctionMid < AbstractScalarFunction
 
     @content_type = :string
 
-    @signature_1 = [
+    @signature_3 = [
       { 'type' => :string, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar },
       { 'type' => :numeric, 'shape' => :scalar }
@@ -1148,13 +1149,13 @@ class FunctionMid < AbstractScalarFunction
     args = arg_stack.pop
 
     raise BASICRuntimeError.new(:te_args_no_match, @name) unless
-      match_args_to_signature(args, @signature_1)
+      match_args_to_signature(args, @signature_3)
 
     value = args[0].to_v
     start = args[1].to_i
     length = args[2].to_i
 
-    raise BASICRuntimeError.new(:te_val_out, @name) if start < 1
+    raise BASICRuntimeError.new(:te_count_inv, @name) if start < 1
 
     raise BASICRuntimeError.new(:te_len_inv, @name) if length < 0
 
