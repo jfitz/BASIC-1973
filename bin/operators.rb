@@ -32,8 +32,7 @@ class UnaryOperator < AbstractElement
 
     @content_type = @arguments[0].content_type if @content_type == :unknown
 
-    raise(BASICExpressionError, 'Bad expression') if
-      @content_type == :unknown
+    raise(BASICExpressionError, 'Bad expression') if @content_type == :unknown
   end
 
   def pop_stack(stack)
@@ -43,10 +42,12 @@ class UnaryOperator < AbstractElement
   def set_content_type(type_stack)
     raise(BASICExpressionError, 'Not enough operands') if type_stack.empty?
 
+    type = type_stack.pop
+    
     @sigils = make_sigils([type])
     @signature = make_signature([type])
 
-    @content_type = type_stack.pop
+    @content_type = type
     type_stack.push(@content_type)
   end
 
@@ -117,7 +118,7 @@ class BinaryOperator < AbstractElement
   end
 
   def set_arguments(arg_stack)
-    raise(BASICExpressionError, 'Not enough operators') if arg_stack.size < 2
+    raise(BASICExpressionError, 'Not enough operands') if arg_stack.size < 2
 
     @arguments = arg_stack.slice(-2, 2)
     pop_stack(arg_stack)
@@ -130,11 +131,15 @@ class BinaryOperator < AbstractElement
 
     raise(BASICExpressionError, 'Bad expression') if other_type == :unknown
 
+    raise(BASICExpressionError, 'Type mismatch') unless
+      compatible(this_type, other_type)
+
     @content_type = @arguments[0].content_type if @content_type == :unknown
   end
 
   def set_shape(shape_stack)
-    raise(BASICExpressionError, 'Not enough operands +') if shape_stack.size < 2
+    raise(BASICExpressionError, 'Not enough operands') if
+      shape_stack.size < 2
 
     b_shape = shape_stack.pop
     a_shape = shape_stack.pop
@@ -209,7 +214,7 @@ class BinaryOperator < AbstractElement
 
     return :boolean
   end
-  
+
   def op_scalar_matrix_1(op, a, b)
     dims = b.dimensions
     n_cols = dims[0].to_i
@@ -262,6 +267,7 @@ class BinaryOperator < AbstractElement
       coords = AbstractElement.make_coord(col)
       values[coords] = a_value.send(op, b)
     end
+
     values
   end
 
@@ -279,6 +285,7 @@ class BinaryOperator < AbstractElement
         values[coords] = a_value.send(op, b)
       end
     end
+
     values
   end
 
@@ -286,6 +293,7 @@ class BinaryOperator < AbstractElement
     dims = a.dimensions
     values = op_matrix_scalar_1(op, a, b) if dims.size == 1
     values = op_matrix_scalar_2(op, a, b) if dims.size == 2
+
     Matrix.new(dims, values)
   end
 
@@ -301,6 +309,7 @@ class BinaryOperator < AbstractElement
       coords = AbstractElement.make_coord(col)
       values[coords] = a_value.send(:add, b_value)
     end
+
     values
   end
 
@@ -319,6 +328,7 @@ class BinaryOperator < AbstractElement
         values[coords] = a_value.send(:add, b_value)
       end
     end
+
     values
   end
 
@@ -332,6 +342,7 @@ class BinaryOperator < AbstractElement
 
     values = add_matrix_matrix_1(a, b) if a_dims.size == 1
     values = add_matrix_matrix_2(a, b) if a_dims.size == 2
+
     Matrix.new(a_dims, values)
   end
 
@@ -347,6 +358,7 @@ class BinaryOperator < AbstractElement
       coords = AbstractElement.make_coord(col)
       values[coords] = a_value.send(:subtract, b_value)
     end
+
     values
   end
 
@@ -365,6 +377,7 @@ class BinaryOperator < AbstractElement
         values[coords] = a_value.send(:subtract, b_value)
       end
     end
+
     values
   end
 
@@ -378,6 +391,7 @@ class BinaryOperator < AbstractElement
 
     values = subtract_matrix_matrix_1(a, b) if a_dims.size == 1
     values = subtract_matrix_matrix_2(a, b) if a_dims.size == 2
+
     Matrix.new(a_dims, values)
   end
 
@@ -393,6 +407,7 @@ class BinaryOperator < AbstractElement
       coords = AbstractElement.make_coord(col)
       values[coords] = a_value.send(:maximum, b_value)
     end
+
     values
   end
 
@@ -411,6 +426,7 @@ class BinaryOperator < AbstractElement
         values[coords] = a_value.send(:maximum, b_value)
       end
     end
+
     values
   end
 
@@ -419,10 +435,12 @@ class BinaryOperator < AbstractElement
     a_dims = a.dimensions
     b_dims = b.dimensions
 
-    raise BASICRuntimeError.new(:te_arr_dif_siz) if a_dims != b_dims
+    raise(BASICExpressionError, 'Matrix dimensions do not match') if
+      a_dims != b_dims
 
     values = maximum_matrix_matrix_1(a, b) if a_dims.size == 1
     values = maximum_matrix_matrix_2(a, b) if a_dims.size == 2
+
     Matrix.new(a_dims, values)
   end
 
@@ -438,6 +456,7 @@ class BinaryOperator < AbstractElement
       coords = AbstractElement.make_coords(base, col)
       new_values[coords] = value
     end
+
     Matrix.new(new_dims, new_values)
   end
 
@@ -454,6 +473,7 @@ class BinaryOperator < AbstractElement
       coords = AbstractElement.make_coord(col)
       new_values[coords] = value
     end
+
     Matrix.new(new_dims, new_values)
   end
 
@@ -469,6 +489,7 @@ class BinaryOperator < AbstractElement
       coords = AbstractElement.make_coords(col, base)
       new_values[coords] = value
     end
+
     Matrix.new(new_dims, new_values)
   end
 
@@ -485,6 +506,7 @@ class BinaryOperator < AbstractElement
       coords = AbstractElement.make_coord(row)
       new_values[coords] = value
     end
+
     Matrix.new(new_dims, new_values)
   end
 
@@ -499,6 +521,7 @@ class BinaryOperator < AbstractElement
       b_value = b.get_value_2(a_col, r_col)
       f += a_value.to_f * b_value.to_f
     end
+
     NumericConstant.new(f)
   end
 
@@ -515,6 +538,7 @@ class BinaryOperator < AbstractElement
         values[coords] = multiply_matrix_matrix_value(a, b, r_row, r_col)
       end
     end
+
     values
   end
 
@@ -528,6 +552,7 @@ class BinaryOperator < AbstractElement
 
     r_dims = [a_dims[0], b_dims[1]]
     values = multiply_matrix_matrix_work(a, b)
+
     Matrix.new(r_dims, values)
   end
 
@@ -543,6 +568,7 @@ class BinaryOperator < AbstractElement
     r_dims = [a_dims[0], new_b_dims[1]]
     values = multiply_matrix_matrix_work(a, new_b)
     m = Matrix.new(r_dims, values)
+
     vertical_to_array(m)
   end
 
@@ -558,6 +584,7 @@ class BinaryOperator < AbstractElement
     r_dims = [new_a_dims[0], b_dims[1]]
     values = multiply_matrix_matrix_work(new_a, b)
     m = Matrix.new(r_dims, values)
+
     horizontal_to_array(m)
   end
 
@@ -570,7 +597,8 @@ class BinaryOperator < AbstractElement
     elsif dim_counts == [2, 2]
       multiply_matrix_matrix_2_2(a, b)
     else
-      raise(BASICExpressionError, 'Matrix multiplication must have two matrices')
+      raise(BASICExpressionError,
+            'Matrix multiplication must have two matrices')
     end
   end
 
@@ -585,16 +613,18 @@ class BinaryOperator < AbstractElement
   def op_array_array(op, a, b, base)
     dims = b.dimensions
 
-    raise BASICRuntimeError.new(:arr_dif_siz) if a.dimensions != dims
+    raise BASICRuntimeError.new(:te_arr_dif_siz) if a.dimensions != dims
 
     n_cols = dims[0].to_i
     values = {}
+
     (base..n_cols).each do |col|
       a_value = a.get_value(col)
       b_value = b.get_value(col)
       coords = AbstractElement.make_coord(col)
       values[coords] = a_value.send(op, b_value)
     end
+
     BASICArray.new(dims, values)
   end
 
@@ -602,11 +632,13 @@ class BinaryOperator < AbstractElement
     dims = b.dimensions
     n_cols = dims[0].to_i
     values = {}
+
     (base..n_cols).each do |col|
       b_value = b.get_value(col)
       coords = AbstractElement.make_coord(col)
       values[coords] = a.send(op, b_value)
     end
+
     BASICArray.new(dims, values)
   end
 
@@ -614,11 +646,13 @@ class BinaryOperator < AbstractElement
     dims = a.dimensions
     n_cols = dims[0].to_i
     values = {}
+
     (base..n_cols).each do |col|
       a_value = a.get_value(col)
       coords = AbstractElement.make_coord(col)
       values[coords] = a_value.send(op, b)
     end
+
     BASICArray.new(dims, values)
   end
 
@@ -692,7 +726,7 @@ class UnaryOperatorPlus < UnaryOperator
     type = type_stack.pop
 
     arg_types = [:numeric, :integer]
-    
+
     raise(BASICExpressionError, "Type mismatch #{@op} #{type}") if
       !arg_types.include?(type)
 
@@ -802,10 +836,10 @@ class UnaryOperatorMinus < UnaryOperator
     type = type_stack.pop
 
     arg_types = [:numeric, :integer]
-    
+
     raise(BASICExpressionError, "Type mismatch #{@op} #{type}") if
       !arg_types.include?(type)
-    
+
     @sigils = make_sigils([type])
     @signature = make_signature([type])
 
@@ -904,6 +938,7 @@ class UnaryOperatorHash < UnaryOperator
   def initialize(text)
     super
 
+    @content_type = :filehandle
     @precedence = 9
   end
 
@@ -917,10 +952,10 @@ class UnaryOperatorHash < UnaryOperator
     type = type_stack.pop
 
     arg_types = [:numeric, :integer]
-    
+
     raise(BASICExpressionError, "Type mismatch #{@op} #{type}") if
       !arg_types.include?(type)
-    
+
     @sigils = make_sigils([type])
     @signature = make_signature([type])
 
@@ -966,10 +1001,10 @@ class UnaryOperatorColon < UnaryOperator
     type = type_stack.pop
 
     arg_types = [:numeric, :integer]
-    
+
     raise(BASICExpressionError, "Type mismatch #{@op} #{type}") if
       !arg_types.include?(type)
-    
+
     @sigils = make_sigils([type])
     @signature = make_signature([type])
 
@@ -1015,10 +1050,10 @@ class UnaryOperatorNot < UnaryOperator
     type = type_stack.pop
 
     arg_types = [:numeric, :integer, :boolean, :string]
-    
+
     raise(BASICExpressionError, "Type mismatch #{@op} #{type}") if
       !arg_types.include?(type)
-    
+
     @sigils = make_sigils([type])
     @signature = make_signature([type])
 
@@ -1083,7 +1118,7 @@ class BinaryOperatorPlus < BinaryOperator
 
     @sigils = make_sigils([a_type, b_type])
     @signature = make_signature([a_type, b_type])
-    
+
     @content_type = result_type(a_type, b_type)
     type_stack.push(@content_type)
   end
@@ -1168,7 +1203,7 @@ class BinaryOperatorMinus < BinaryOperator
 
     @sigils = make_sigils([a_type, b_type])
     @signature = make_signature([a_type, b_type])
-    
+
     @content_type = result_type(a_type, b_type)
     type_stack.push(@content_type)
   end
@@ -1246,14 +1281,14 @@ class BinaryOperatorMultiply < BinaryOperator
     a_type = type_stack.pop
 
     arg_types = [:numeric, :integer]
-    
+
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
     @sigils = make_sigils([a_type, b_type])
     @signature = make_signature([a_type, b_type])
-    
+
     @content_type = result_type(a_type, b_type)
     type_stack.push(@content_type)
   end
@@ -1331,14 +1366,14 @@ class BinaryOperatorDivide < BinaryOperator
     a_type = type_stack.pop
 
     arg_types = [:numeric, :integer]
-    
+
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
     @sigils = make_sigils([a_type, b_type])
     @signature = make_signature([a_type, b_type])
-    
+
     @content_type = result_type(a_type, b_type)
     type_stack.push(@content_type)
   end
@@ -1424,7 +1459,7 @@ class BinaryOperatorPower < BinaryOperator
 
     @sigils = make_sigils([a_type, b_type])
     @signature = make_signature([a_type, b_type])
-    
+
     @content_type = result_type(a_type, b_type)
     type_stack.push(@content_type)
   end
@@ -1502,14 +1537,14 @@ class BinaryOperatorEqual < BinaryOperator
     a_type = type_stack.pop
 
     arg_types = [:numeric, :integer, :string]
-    
+
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
     @sigils = make_sigils([a_type, b_type])
     @signature = make_signature([a_type, b_type])
-    
+
     @content_type = :boolean
     type_stack.push(@content_type)
   end
@@ -1592,14 +1627,14 @@ class BinaryOperatorNotEqual < BinaryOperator
     a_type = type_stack.pop
 
     arg_types = [:numeric, :integer, :string]
-    
+
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
     @sigils = make_sigils([a_type, b_type])
     @signature = make_signature([a_type, b_type])
-    
+
     @content_type = :boolean
     type_stack.push(@content_type)
   end
@@ -1677,14 +1712,14 @@ class BinaryOperatorLess < BinaryOperator
     a_type = type_stack.pop
 
     arg_types = [:numeric, :integer, :string]
-    
+
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
     @sigils = make_sigils([a_type, b_type])
     @signature = make_signature([a_type, b_type])
-    
+
     @content_type = :boolean
     type_stack.push(@content_type)
   end
@@ -1763,14 +1798,14 @@ class BinaryOperatorLessEqual < BinaryOperator
     a_type = type_stack.pop
 
     arg_types = [:numeric, :integer, :string]
-    
+
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
     @sigils = make_sigils([a_type, b_type])
     @signature = make_signature([a_type, b_type])
-    
+
     @content_type = :boolean
     type_stack.push(@content_type)
   end
@@ -1848,14 +1883,14 @@ class BinaryOperatorGreater < BinaryOperator
     a_type = type_stack.pop
 
     arg_types = [:numeric, :integer, :string]
-    
+
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
     @sigils = make_sigils([a_type, b_type])
     @signature = make_signature([a_type, b_type])
-    
+
     @content_type = :boolean
     type_stack.push(@content_type)
   end
@@ -1934,14 +1969,14 @@ class BinaryOperatorGreaterEqual < BinaryOperator
     a_type = type_stack.pop
 
     arg_types = [:numeric, :integer, :string]
-    
+
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
     @sigils = make_sigils([a_type, b_type])
     @signature = make_signature([a_type, b_type])
-    
+
     @content_type = :boolean
     type_stack.push(@content_type)
   end
@@ -2019,13 +2054,13 @@ class BinaryOperatorAnd < BinaryOperator
     a_type = type_stack.pop
 
     arg_types = [:numeric, :integer, :string, :boolean]
-    
+
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type)
 
     @sigils = make_sigils([a_type, b_type])
     @signature = make_signature([a_type, b_type])
-    
+
     @content_type = :boolean
     @content_type = :integer if
       a_type == :integer && b_type == :integer && $options['int_bitwise'].value
@@ -2105,13 +2140,13 @@ class BinaryOperatorOr < BinaryOperator
     a_type = type_stack.pop
 
     arg_types = [:numeric, :integer, :string, :boolean]
-    
+
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type)
 
     @sigils = make_sigils([a_type, b_type])
     @signature = make_signature([a_type, b_type])
-    
+
     @content_type = :boolean
     @content_type = :integer if
       a_type == :integer && b_type == :integer && $options['int_bitwise'].value
@@ -2191,14 +2226,14 @@ class BinaryOperatorMax < BinaryOperator
     a_type = type_stack.pop
 
     arg_types = [:numeric, :integer, :string]
-    
+
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       b_type != a_type
 
     @sigils = make_sigils([a_type, b_type])
     @signature = make_signature([a_type, b_type])
-    
+
     @content_type = a_type
     type_stack.push(@content_type)
   end
@@ -2276,14 +2311,14 @@ class BinaryOperatorMin < BinaryOperator
     a_type = type_stack.pop
 
     arg_types = [:numeric, :integer, :string]
-    
+
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       b_type != a_type
 
     @sigils = make_sigils([a_type, b_type])
     @signature = make_signature([a_type, b_type])
-    
+
     @content_type = a_type
     type_stack.push(@content_type)
   end
