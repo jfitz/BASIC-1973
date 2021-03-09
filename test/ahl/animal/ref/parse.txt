@@ -11,16 +11,16 @@
 525 F$="ANIMAL.GME":ON ERROR GOTO 700
  Variable:F$ -> $
  TextConstant:"ANIMAL.GME"
- AssignmentOperator:= $ -> $
+ AssignmentOperator:= =$ -> $
  LineNumber:700
 550 OPEN F$ FOR INPUT AS FILE 1%:INPUT #1%,N%:INPUT #1%,A$(I%) FOR I%=1%TO N%:CLOSE 1%:A$(0%)=NUM$(N%):ON ERROR GOTO 0:GOTO 1300
  Variable:F$ -> $
  IntegerConstant:1
  IntegerConstant:1
- UnaryOperatorHash:#(%) -> FH
+ UnaryOperatorHash:#(%) -> =FH
  Variable:N% -> %
  IntegerConstant:1
- UnaryOperatorHash:#(%) -> FH
+ UnaryOperatorHash:#(%) -> =FH
  Variable:I% -> %
  Variable:A$(%) -> $
  control: Variable:I% -> %
@@ -73,7 +73,7 @@
  TextConstant:"ANIMAL.GME"
  IntegerConstant:1
  IntegerConstant:1
- UnaryOperatorHash:#(%) -> FH
+ UnaryOperatorHash:#(%) -> =FH
  Variable:I% -> %
  Variable:A$(%) -> $
  CarriageControl:NL
@@ -81,9 +81,9 @@
  start:   ["IntegerConstant:0"]
  end:     ["IntegerConstant:0", "Variable:A$(%) -> $", "FunctionVal:VAL($) -> _"]
  NumericConstant:1
- UnaryOperatorHash:#(_) -> FH
+ UnaryOperatorHash:#(_) -> =FH
  IntegerConstant:26
- FunctionChr:CHR$(%) -> $
+ FunctionChr:CHR$(%) -> =$
  CarriageControl:NL
  IntegerConstant:1
  LineNumber:1300
@@ -111,7 +111,7 @@
 1350 K%=1%
  Variable:K% -> %
  IntegerConstant:1
- AssignmentOperator:= % -> %
+ AssignmentOperator:= =% -> %
 1400 K%=FNA%(A$(K%)):GOTO 3000 IF LEN(A$(K%))=0%:GOTO 1400 IF LEFT(A$(K%),2%)="\Q":PRINT "IS IT A "RIGHT(A$(K%),3%);:INPUT Z7$:Z7$=LEFT(Z7$,1%)
  Variable:K% -> %
  Variable:K% -> %
@@ -184,13 +184,13 @@
  BinaryOperatorEqual:=($,$) -> ?
  Variable:Z6$ -> $
  TextConstant:"N"
- AssignmentOperator:= $ -> $
+ AssignmentOperator:= =$ -> $
  Variable:Z7$ -> $
  TextConstant:"N"
  BinaryOperatorEqual:=($,$) -> ?
  Variable:Z6$ -> $
  TextConstant:"Y"
- AssignmentOperator:= $ -> $
+ AssignmentOperator:= =$ -> $
  TextConstant:"PLEASE ANSWER 'YES' OR 'NO'"
  CarriageControl:NL
  LineNumber:2100
@@ -265,7 +265,7 @@
  AssignmentOperator:= $ -> $
  Variable:Z9$ -> $
  TextConstant:"N"
- AssignmentOperator:= $ -> $
+ AssignmentOperator:= =$ -> $
  Variable:Z9$ -> $
  TextConstant:"Y"
  BinaryOperatorNotEqual:<>($,$) -> ?

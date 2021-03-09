@@ -309,7 +309,7 @@
 380 F=1\GO TO 270
  Variable:F -> _
  NumericConstant:1
- AssignmentOperator:= _ -> _
+ AssignmentOperator:= =_ -> _
  LineNumber:270
 385 REM -------------------MACHINE'S MOVE-------------------------
  Remark:-------------------MACHINE'S MOVE-------------------------
@@ -320,7 +320,7 @@
  Variable:I -> _
  Variable:V(_) -> _
  NumericConstant:0
- AssignmentOperator:= _ -> _
+ AssignmentOperator:= =_ -> _
  Variable:I -> _
 395 FOR I=1 TO P
  control: Variable:I -> _
@@ -336,7 +336,7 @@
  control: Variable:E -> _
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> _"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
 410       IF S(I)<2^E THEN 415\S2(I)=S2(I)+10^E\S(I)=S(I)-2^E
  Variable:I -> _
  Variable:S(_) -> _
@@ -368,7 +368,7 @@
  control: Variable:Y -> _
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> _"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
 425       X(I,Y)=INT(S2(I)/10^Y)\S2(I)=S2(I)-X(I,Y)*10^Y
  Variable:I -> _
  Variable:Y -> _
@@ -411,12 +411,12 @@
 445 R=0
  Variable:R -> _
  NumericConstant:0
- AssignmentOperator:= _ -> _
+ AssignmentOperator:= =_ -> _
 450 FOR Y=4 TO 0 STEP -1
  control: Variable:Y -> _
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> _"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
 455    IF V(Y)/2-INT(V(Y)/2)=0 THEN 480
  Variable:Y -> _
  Variable:V(_) -> _
@@ -453,10 +453,10 @@
  Variable:Y -> _
  Variable:X(_,_) -> _
  NumericConstant:0
- AssignmentOperator:= _ -> _
+ AssignmentOperator:= =_ -> _
  Variable:R -> _
  NumericConstant:1
- AssignmentOperator:= _ -> _
+ AssignmentOperator:= =_ -> _
  LineNumber:480
 470    IF X(Q,Y)=1 THEN 475\X(Q,Y)=1\GO TO 480
  Variable:Q -> _
@@ -468,14 +468,14 @@
  Variable:Y -> _
  Variable:X(_,_) -> _
  NumericConstant:1
- AssignmentOperator:= _ -> _
+ AssignmentOperator:= =_ -> _
  LineNumber:480
 475    X(Q,Y)=0
  Variable:Q -> _
  Variable:Y -> _
  Variable:X(_,_) -> _
  NumericConstant:0
- AssignmentOperator:= _ -> _
+ AssignmentOperator:= =_ -> _
 480 NEXT Y
  Variable:Y -> _
 485 FOR I=1 TO P
@@ -486,12 +486,12 @@
  Variable:I -> _
  Variable:S2(_) -> _
  NumericConstant:0
- AssignmentOperator:= _ -> _
+ AssignmentOperator:= =_ -> _
 495    FOR Y=4 TO 0 STEP -1
  control: Variable:Y -> _
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> _"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
 500       S3(I)=X(I,Y)*10^Y\S2(I)=S2(I)+S3(I)
  Variable:I -> _
  Variable:S3(_) -> _
@@ -517,7 +517,7 @@
  control: Variable:E -> _
  start:   ["NumericConstant:4"]
  end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> _"]
+ step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
 515       IF S2(I)<10^E THEN 520\S(I)=S(I)+2^E\S2(I)=S2(I)-10^E
  Variable:I -> _
  Variable:S2(_) -> _
@@ -612,7 +612,7 @@
 555 F=0\GO TO 270
  Variable:F -> _
  NumericConstant:0
- AssignmentOperator:= _ -> _
+ AssignmentOperator:= =_ -> _
  LineNumber:270
 560 END
  

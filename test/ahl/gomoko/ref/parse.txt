@@ -58,7 +58,7 @@
  Variable:Y -> _
  Variable:A(_,_) -> _
  NumericConstant:0
- AssignmentOperator:= _ -> _
+ AssignmentOperator:= =_ -> _
  Variable:J -> _
  Variable:I -> _
 300 PRINT\PRINT "WE ALTERNATE MOVES. YOU GO FIRST..."\PRINT
@@ -74,7 +74,7 @@
 320 IF I=-1 THEN 980
  Variable:I -> _
  NumericConstant:1
- UnaryOperatorMinus:-(_) -> _
+ UnaryOperatorMinus:-(_) -> =_
  BinaryOperatorEqual:=(_,_) -> ?
 330 X=I\Y=J\GOSUB 910\IF L=1 THEN 410
  Variable:X -> _
@@ -106,15 +106,15 @@
  Variable:J -> _
  Variable:A(_,_) -> _
  NumericConstant:1
- AssignmentOperator:= _ -> _
+ AssignmentOperator:= =_ -> _
 500 REM *** THE COMPUTER TRIES AN 'INTELLIGENT' MOVE ***
  Remark:*** THE COMPUTER TRIES AN 'INTELLIGENT' MOVE ***
 510 FOR E=-1 TO 1\FOR F=-1 TO 1\IF E+F-E*F=0 THEN 590
  control: Variable:E -> _
- start:   ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> _"]
+ start:   ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
  end:     ["NumericConstant:1"]
  control: Variable:F -> _
- start:   ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> _"]
+ start:   ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
  end:     ["NumericConstant:1"]
  Variable:E -> _
  Variable:F -> _
@@ -186,7 +186,7 @@
  Variable:Y -> _
  Variable:A(_,_) -> _
  NumericConstant:2
- AssignmentOperator:= _ -> _
+ AssignmentOperator:= =_ -> _
  LineNumber:810
  LineNumber:310
 710 X=I-E\Y=J-F\GOSUB 910
@@ -231,7 +231,7 @@
 910 L=1\IF X<1 THEN 970
  Variable:L -> _
  NumericConstant:1
- AssignmentOperator:= _ -> _
+ AssignmentOperator:= =_ -> _
  Variable:X -> _
  NumericConstant:1
  BinaryOperatorLess:<(_,_) -> ?
@@ -252,7 +252,7 @@
 970 LET L=0\RETURN
  Variable:L -> _
  NumericConstant:0
- AssignmentOperator:= _ -> _
+ AssignmentOperator:= =_ -> _
  
 980 PRINT\PRINT"THANKS FOR THE GAME!!"
  CarriageControl:NL

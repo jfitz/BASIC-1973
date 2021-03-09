@@ -287,6 +287,9 @@ public
 
 # class that holds a value
 class AbstractValueElement < AbstractElement
+  attr_reader :content_type
+  attr_reader :shape
+  attr_reader :constant
   attr_reader :symbol
 
   def initialize
@@ -295,6 +298,7 @@ class AbstractValueElement < AbstractElement
     @operand = true
     @precedence = 0
     @shape = :scalar
+    @constant = false
     @value = nil
     @symbol = false
   end
@@ -514,8 +518,6 @@ class NumericConstant < AbstractValueElement
 
   public
 
-  attr_reader :content_type
-  attr_reader :shape
   attr_reader :symbol_text
 
   def initialize(text)
@@ -551,6 +553,7 @@ class NumericConstant < AbstractValueElement
 
     @content_type = :numeric
     @shape = :scalar
+    @constant = true
     @symbol_text = text.to_s
     @value = float_to_possible_int(f)
     @numeric_constant = true
@@ -570,6 +573,10 @@ class NumericConstant < AbstractValueElement
 
   def set_shape(shape_stack)
     shape_stack.push(@shape)
+  end
+
+  def set_constant(constant_stack)
+    constant_stack.push(@constant)
   end
 
   def eql?(other)
@@ -904,8 +911,6 @@ class IntegerConstant < AbstractValueElement
     text.to_f.to_i if /\A\s*[+-]?\d+%\z/ =~ text
   end
 
-  attr_reader :content_type
-  attr_reader :shape
   attr_reader :symbol_text
 
   def initialize(text)
@@ -921,6 +926,7 @@ class IntegerConstant < AbstractValueElement
     @symbol_text = text.to_s
     @content_type = :integer
     @shape = :scalar
+    @constant = true
     @value = f
     @operand = true
     @precedence = 0
@@ -937,6 +943,10 @@ class IntegerConstant < AbstractValueElement
 
   def set_shape(shape_stack)
     shape_stack.push(@shape)
+  end
+
+  def set_constant(constant_stack)
+    constant_stack.push(@constant)
   end
 
   def eql?(other)
@@ -1225,8 +1235,6 @@ class TextConstant < AbstractValueElement
     classes.include?(token.class.to_s)
   end
 
-  attr_reader :content_type
-  attr_reader :shape
   attr_reader :value
   attr_reader :symbol_text
 
@@ -1246,6 +1254,7 @@ class TextConstant < AbstractValueElement
 
     @content_type = :string
     @shape = :scalar
+    @constant = true
     @operand = true
     @precedence = 0
     @text_constant = true
@@ -1257,6 +1266,10 @@ class TextConstant < AbstractValueElement
 
   def set_shape(shape_stack)
     shape_stack.push(@shape)
+  end
+
+  def set_constant(constant_stack)
+    constant_stack.push(@constant)
   end
 
   def eql?(other)
@@ -1396,8 +1409,6 @@ class BooleanConstant < AbstractValueElement
     classes.include?(token.class.to_s)
   end
 
-  attr_reader :content_type
-  attr_reader :shape
   attr_reader :value
   attr_reader :symbol_text
 
@@ -1417,6 +1428,7 @@ class BooleanConstant < AbstractValueElement
 
     @content_type = :boolean
     @shape = :scalar
+    @constant = true
     @operand = true
     @precedence = 0
     @boolean_constant = true
@@ -1428,6 +1440,10 @@ class BooleanConstant < AbstractValueElement
 
   def set_shape(shape_stack)
     shape_stack.push(@shape)
+  end
+
+  def set_constant(constant_stack)
+    constant_stack.push(@constant)
   end
 
   def eql?(other)
@@ -1682,6 +1698,7 @@ class VariableName < AbstractElement
 
   attr_reader :name
   attr_reader :content_type
+  attr_reader :constant
 
   def initialize(token)
     super()
@@ -1694,10 +1711,15 @@ class VariableName < AbstractElement
     @operand = true
     @precedence = 10
     @content_type = @name.content_type
+    @constant = false
   end
 
   def set_content_type(type_stack)
     type_stack.push(@content_type)
+  end
+
+  def set_constant(constant_stack)
+    constant_stack.push(@constant)
   end
 
   def eql?(other)
@@ -1756,6 +1778,7 @@ class UserFunctionName < AbstractElement
   attr_reader :name
   attr_reader :content_type
   attr_reader :shape
+  attr_reader :constant
 
   def initialize(token)
     super()
@@ -1778,6 +1801,10 @@ class UserFunctionName < AbstractElement
 
   def set_shape(shape_stack)
     shape_stack.push(@shape)
+  end
+
+  def set_constant(constant_stack)
+    constant_stack.push(@constant)
   end
 
   def eql?(other)
@@ -1835,6 +1862,7 @@ class Variable < AbstractElement
   attr_writer :valref
   attr_reader :content_type
   attr_reader :shape
+  attr_reader :constant
   attr_reader :subscripts
 
   def initialize(variable_name, my_shape, subscripts)
@@ -1846,6 +1874,7 @@ class Variable < AbstractElement
     @variable_name = variable_name
     @content_type = @variable_name.content_type
     @shape = my_shape
+    @constant = false
     @valref = :value
     @subscripts = normalize_subscripts(subscripts)
     @variable = true
@@ -1878,6 +1907,10 @@ class Variable < AbstractElement
       @shape == :array || @shape == :matrix
 
     shape_stack.push(@shape)
+  end
+
+  def set_constant(constant_stack)
+    constant_stack.push(@constant)
   end
 
   def eql?(other)
@@ -2113,6 +2146,7 @@ class Declaration < AbstractElement
   attr_reader :subscripts
   attr_reader :content_type
   attr_reader :shape
+  attr_reader :constant
 
   def initialize(variable_name)
     super()
@@ -2152,6 +2186,10 @@ class Declaration < AbstractElement
       @shape == :array || @shape == :matrix
 
     shape_stack.push(@shape)
+  end
+
+  def set_constant(constant_stack)
+    constant_stack.push(@constant)
   end
 
   def dump
@@ -2230,6 +2268,20 @@ class ExpressionList < AbstractElement
     @expressions.each { |expression| expression.set_shape }
 
     shape_stack.push(shape)
+  end
+
+  def constant
+    constants = []
+
+    @expressions.each { |expression| constants << expression.constant }
+
+    constants
+  end
+
+  def set_constant(constant_stack)
+    @expressions.each { |expression| expression.set_constant }
+
+    constant_stack.push(constant)
   end
 
   def evaluate(interpreter, _)

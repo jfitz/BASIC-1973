@@ -10,8 +10,11 @@ class UnaryOperator < AbstractElement
 
   attr_reader :content_type
   attr_reader :shape
+  attr_reader :constant
   attr_reader :arguments
   attr_reader :precedence
+  attr_reader :sigils
+  attr_reader :signature
 
   def initialize(text)
     super()
@@ -19,20 +22,10 @@ class UnaryOperator < AbstractElement
     @op = text.to_s
     @content_type = :unknown
     @shape = :unknown
+    @constant = false
     @precedence = 0
     @arguments = nil
     @operator = true
-  end
-
-  def set_arguments(arg_stack)
-    raise(BASICExpressionError, 'Not enough operands') if arg_stack.empty?
-
-    @arguments = arg_stack.slice(-1, 1)
-    pop_stack(arg_stack)
-
-    @content_type = @arguments[0].content_type if @content_type == :unknown
-
-    raise(BASICExpressionError, 'Bad expression') if @content_type == :unknown
   end
 
   def pop_stack(stack)
@@ -59,9 +52,18 @@ class UnaryOperator < AbstractElement
     shape_stack.push(@shape)
   end
 
+  def set_constant(constant_stack)
+    raise(BASICExpressionError, 'Not enough operands') if constant_stack.empty?
+
+    @constant = constant_stack.pop
+
+    constant_stack.push(@constant)
+  end
+
   def dump
     result = make_type_sigil(@content_type) + make_shape_sigil(@shape)
-    "#{self.class}:#{@op}#{@signature} -> #{result}"
+    const = @constant ? '=' : ''
+    "#{self.class}:#{@op}#{@signature} -> #{const}#{result}"
   end
 
   def unary?
@@ -103,8 +105,11 @@ class BinaryOperator < AbstractElement
 
   attr_reader :content_type
   attr_reader :shape
+  attr_reader :constant
   attr_reader :arguments
   attr_reader :precedence
+  attr_reader :sigils
+  attr_reader :signature
 
   def initialize(text)
     super()
@@ -112,29 +117,10 @@ class BinaryOperator < AbstractElement
     @op = text.to_s
     @content_type = :unknown
     @shape = :unknown
+    @constant =  false
     @arguments = nil
     @precedence = 0
     @operator = true
-  end
-
-  def set_arguments(arg_stack)
-    raise(BASICExpressionError, 'Not enough operands') if arg_stack.size < 2
-
-    @arguments = arg_stack.slice(-2, 2)
-    pop_stack(arg_stack)
-
-    this_type = @arguments[0].content_type
-
-    raise(BASICExpressionError, 'Bad expression') if this_type == :unknown
-
-    other_type = @arguments[1].content_type
-
-    raise(BASICExpressionError, 'Bad expression') if other_type == :unknown
-
-    raise(BASICExpressionError, 'Type mismatch') unless
-      compatible(this_type, other_type)
-
-    @content_type = @arguments[0].content_type if @content_type == :unknown
   end
 
   def set_shape(shape_stack)
@@ -165,6 +151,18 @@ class BinaryOperator < AbstractElement
     shape_stack.push(@shape)
   end
 
+  def set_constant(constant_stack)
+    raise(BASICExpressionError, 'Not enough operands') if
+      constant_stack.size < 2
+
+    b_const = constant_stack.pop
+    a_const = constant_stack.pop
+
+    @constant = a_const && b_const
+
+    constant_stack.push(@constant)
+  end
+
   def pop_stack(stack)
     stack.pop
     stack.pop
@@ -172,7 +170,8 @@ class BinaryOperator < AbstractElement
 
   def dump
     result = make_type_sigil(@content_type) + make_shape_sigil(@shape)
-    "#{self.class}:#{@op}#{@signature} -> #{result}"
+    const = @constant ? '=' : ''
+    "#{self.class}:#{@op}#{@signature} -> #{const}#{result}"
   end
 
   def unary?
@@ -992,6 +991,7 @@ class UnaryOperatorColon < UnaryOperator
   def initialize(text)
     super
 
+    @content_type = :filehandle
     @precedence = 9
   end
 
@@ -1041,6 +1041,7 @@ class UnaryOperatorNot < UnaryOperator
   def initialize(text)
     super
 
+    @content_type = :boolean
     @precedence = 9
   end
 
@@ -1527,6 +1528,7 @@ class BinaryOperatorEqual < BinaryOperator
   def initialize(text)
     super
 
+    @content_type = :boolean
     @precedence = 4
   end
 
@@ -1536,7 +1538,7 @@ class BinaryOperatorEqual < BinaryOperator
     b_type = type_stack.pop
     a_type = type_stack.pop
 
-    arg_types = [:numeric, :integer, :string]
+    arg_types = [:numeric, :integer, :string, :boolean]
 
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
@@ -1613,6 +1615,7 @@ class BinaryOperatorNotEqual < BinaryOperator
   def initialize(text)
     super
 
+    @content_type = :boolean
     @precedence = 4
   end
 
@@ -1702,6 +1705,7 @@ class BinaryOperatorLess < BinaryOperator
   def initialize(text)
     super
 
+    @content_type = :boolean
     @precedence = 4
   end
 
@@ -1788,6 +1792,7 @@ class BinaryOperatorLessEqual < BinaryOperator
   def initialize(text)
     super
 
+    @content_type = :boolean
     @precedence = 4
   end
 
@@ -1873,6 +1878,7 @@ class BinaryOperatorGreater < BinaryOperator
   def initialize(text)
     super
 
+    @content_type = :boolean
     @precedence = 4
   end
 
@@ -1959,6 +1965,7 @@ class BinaryOperatorGreaterEqual < BinaryOperator
   def initialize(text)
     super
 
+    @content_type = :boolean
     @precedence = 4
   end
 
@@ -2044,6 +2051,7 @@ class BinaryOperatorAnd < BinaryOperator
   def initialize(text)
     super
 
+    @content_type = :boolean
     @precedence = 3
   end
 
@@ -2130,6 +2138,7 @@ class BinaryOperatorOr < BinaryOperator
   def initialize(text)
     super
 
+    @content_type = :boolean
     @precedence = 2
   end
 

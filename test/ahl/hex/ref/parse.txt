@@ -24,7 +24,7 @@
  CarriageControl:NL
  CarriageControl:NL
  IntegerConstant:9
- FunctionChr:CHR$(%) -> $
+ FunctionChr:CHR$(%) -> =$
  CarriageControl:;
  TextConstant:"O THE BOARD. YOUR PAWNS ARE 'O', THE COMPUTER'S PAWNS ARE '*'"
  CarriageControl:NL
@@ -91,16 +91,16 @@
  
  Variable:Q% -> %
  IntegerConstant:0
- AssignmentOperator:= % -> %
+ AssignmentOperator:= =% -> %
  TextConstant:"SINCE I'M A GOOD SPORT, YOU'LL ALWAYS GO FIRST"
  CarriageControl:NL
 120 P%=8%: P$="XXX--OOO":&:&"NUMBERING: ": &"123": &"456": &"789": &
  Variable:P% -> %
  IntegerConstant:8
- AssignmentOperator:= % -> %
+ AssignmentOperator:= =% -> %
  Variable:P$ -> $
  TextConstant:"XXX--OOO"
- AssignmentOperator:= $ -> $
+ AssignmentOperator:= =$ -> $
  CarriageControl:NL
  TextConstant:"NUMBERING: "
  CarriageControl:NL
@@ -114,11 +114,11 @@
 190 D%=-1%: Q$="O": GOSUB 2000: IF M$="" THEN PRINT "YOU CAN'T MOVE. I WIN.": GOTO 510
  Variable:D% -> %
  IntegerConstant:1
- UnaryOperatorMinus:-(%) -> %
- AssignmentOperator:= % -> %
+ UnaryOperatorMinus:-(%) -> =%
+ AssignmentOperator:= =% -> %
  Variable:Q$ -> $
  TextConstant:"O"
- AssignmentOperator:= $ -> $
+ AssignmentOperator:= =$ -> $
  LineNumber:2000
  Variable:M$ -> $
  TextConstant:""
@@ -223,10 +223,10 @@
  Variable:C% -> %
  Variable:Q$ -> $
  TextConstant:"*"
- AssignmentOperator:= $ -> $
+ AssignmentOperator:= =$ -> $
  Variable:D% -> %
  IntegerConstant:1
- AssignmentOperator:= % -> %
+ AssignmentOperator:= =% -> %
  LineNumber:2000
  Variable:C% -> %
  Variable:Q% -> %
@@ -392,7 +392,7 @@
 2000 M$=""
  Variable:M$ -> $
  TextConstant:""
- AssignmentOperator:= $ -> $
+ AssignmentOperator:= =$ -> $
 2010 FOR J%=1% TO 9%: IF MID(P$,J%,1%)<>Q$ THEN 2050
  control: Variable:J% -> %
  start:   ["IntegerConstant:1"]
