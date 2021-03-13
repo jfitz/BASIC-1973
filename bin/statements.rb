@@ -246,6 +246,7 @@ end
 # parent of all statement classes
 class AbstractStatement
   attr_reader :errors
+  attr_reader :warnings
   attr_reader :keywords
   attr_reader :tokens
   attr_reader :separators
@@ -271,6 +272,7 @@ class AbstractStatement
     @core_tokens = tokens_lists.flatten
     @separators = get_separators(@tokens)
     @errors = []
+    @warnings = []
     @valid = true
     @comment = false
     @modifiers = []
@@ -304,6 +306,7 @@ class AbstractStatement
 
     @modifiers.each do |modifier|
       @errors += modifier.errors
+      @warnings += modifier.warnings
       @comprehension_effort += modifier.comprehension_effort
     end
 
@@ -2049,6 +2052,9 @@ class ForStatement < AbstractStatement
       @errors << 'Syntax error'
     end
 
+    @warnings << 'Constant expression' if !@until.nil? && @until.constant
+    @warnings << 'Constant expression' if !@while.nil? && @while.constant
+
     @mccabe = 1
 
     control = XrefEntry.new(@control.to_s, nil, true)
@@ -2527,6 +2533,9 @@ class GotoStatement < AbstractStatement
         end
       end
 
+      @warnings << 'Constant expression' if
+        !@expression.nil? && @expression.constant
+
       @linenums = @destinations
 
       @destinations.each do |destination|
@@ -2662,6 +2671,9 @@ class AbstractIfStatement < AbstractStatement
 
     if tokens_lists.class.to_s == 'Hash'
       @expression = parse_expression(tokens_lists['expr'])
+      @warnings << 'Constant expression' if
+        !@expression.nil? && @expression.constant
+
       @destination, @statement = parse_target(line_number, tokens_lists['then'])
       @else_dest = nil
       @else_dest, @else_stmt = parse_target(line_number, tokens_lists['else']) if
@@ -2669,12 +2681,14 @@ class AbstractIfStatement < AbstractStatement
 
       unless @statement.nil?
         @errors << 'Invalid substatement' unless @statement.may_be_if_sub
+        @warnings += @statement.warnings
       end
-      
+
       unless @else_stmt.nil?
         @errors << 'Invalid substatement' unless @else_stmt.may_be_if_sub
+        @warnings += @else_stmt.warnings
       end
-      
+
       unless @destination.nil?
         if @destination > line_number
           @comprehension_effort += 1
@@ -2709,6 +2723,9 @@ class AbstractIfStatement < AbstractStatement
       begin
         stack = parse_if(tokens_lists)
         @expression = parse_expression(stack['expr'])
+        @warnings << 'Constant expression' if
+          !@expression.nil? && @expression.constant
+
         @destination, @statement = parse_target(line_number, stack['then'])
         @else_dest = nil
         @else_dest, @else_stmt = parse_target(line_number, stack['else']) if
@@ -2716,10 +2733,12 @@ class AbstractIfStatement < AbstractStatement
 
         unless @statement.nil?
           @errors << 'Invalid substatement' unless @statement.may_be_if_sub
+          @warnings += @statement.warnings
         end
         
         unless @else_stmt.nil?
           @errors << 'Invalid substatement' unless @else_stmt.may_be_if_sub
+          @warnings += @else_stmt.warnings
         end
       
         unless @destination.nil?
@@ -3681,6 +3700,8 @@ class OnStatement < AbstractStatement
       rescue BASICExpressionError => e
         @errors << e.message
       end
+
+      @warnings << 'Constant expression' if @expression.constant
 
       destinations = tokens_lists[2]
       line_nums = split_tokens(destinations, false)

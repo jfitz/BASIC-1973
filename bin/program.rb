@@ -1487,6 +1487,11 @@ class Program
         statement.errors.each { |error| texts << ' ' + error }
       end
 
+      # print the warnings
+      statements.each do |statement|
+        statement.warnings.each { |warning| texts << ' ' + warning }
+      end
+
       next unless list_tokens
 
       tokens = line.tokens
@@ -1510,6 +1515,11 @@ class Program
       # print the errors
       statements.each do |statement|
         statement.errors.each { |error| texts << ' ' + error }
+      end
+
+      # print the warnings
+      statements.each do |statement|
+        statement.warnings.each { |warning| texts << ' ' + warning }
       end
 
       # print the line components
@@ -1536,10 +1546,17 @@ class Program
         number = ' ' * number.size
       end
 
-      # print the errors
       statements = line.statements
+
+      # print the errors
+
       statements.each do |statement|
         statement.errors.each { |error| texts << ' ' + error }
+      end
+
+      # print the warnings
+      statements.each do |statement|
+        statement.warnings.each { |warning| texts << ' ' + warning }
       end
     end
 
