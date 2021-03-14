@@ -3358,10 +3358,13 @@ class AbstractScalarLetStatement < AbstractLetStatement
           @errors << 'Assignment must have left-hand value(s)'
         end
 
-        if @assignment.count_value != 1
-          @errors << 'Assignment must have only one right-hand value'
+        if @assignment.count_value.zero?
+          @errors << 'Assignment must have right-hand value(s)'
         end
 
+        @warnings << 'Extra values ignored' if
+          @assignment.count_value > @assignment.count_target
+        
         @elements = make_references(nil, @assignment)
         @comprehension_effort += @assignment.comprehension_effort
       rescue BASICExpressionError => e
@@ -3375,12 +3378,16 @@ class AbstractScalarLetStatement < AbstractLetStatement
   def execute_core(interpreter)
     l_values = @assignment.eval_target(interpreter)
     r_values = @assignment.eval_value(interpreter)
-    r_value = r_values[0]
 
-    # allow multiple left-hand side values
-    # but only one right-hand side value
+    # more left-hand values -> repeat last rhs
+    # more rhs -> drop extra values
+    i = 0
     l_values.each do |l_value|
+      j = [i, r_values.count - 1].min
+      r_value = r_values[j]
       interpreter.set_value(l_value, r_value)
+
+      i += 1
     end
   end
 end
@@ -5230,10 +5237,13 @@ class ArrLetStatement < AbstractLetStatement
           @errors << 'Assignment must have left-hand value(s)'
         end
 
-        if @assignment.count_value != 1
-          @errors << 'Assignment must have only one right-hand value'
+        if @assignment.count_value.zero?
+          @errors << 'Assignment must have right-hand value(s)'
         end
 
+        @warnings << 'Extra values ignored' if
+          @assignment.count_value > @assignment.count_target
+        
         @elements = make_references(nil, @assignment)
         @comprehension_effort += @assignment.comprehension_effort
       rescue BASICExpressionError => e
@@ -5818,10 +5828,13 @@ class MatLetStatement < AbstractLetStatement
           @errors << 'Assignment must have left-hand value(s)'
         end
 
-        if @assignment.count_value != 1
-          @errors << 'Assignment must have only one right-hand value'
+        if @assignment.count_value.zero?
+          @errors << 'Assignment must have right-hand value(s)'
         end
 
+        @warnings << 'Extra values ignored' if
+          @assignment.count_value > @assignment.count_target
+        
         @elements = make_references(nil, @assignment)
         @comprehension_effort += @assignment.comprehension_effort
       rescue BASICRuntimeError => e

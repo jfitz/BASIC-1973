@@ -1096,6 +1096,30 @@ class Expression
     end
   end
 
+  def make_type_sigil(type)
+    sigil_chars = {
+      numeric: '_',
+      integer: '%',
+      string: '$',
+      boolean: '?',
+      filehandle: 'FH'
+    }
+
+    sigil_chars[type]
+  end
+
+  def make_shape_sigil(shape)
+    sigil = ''
+    sigil = '()' if shape == :array
+    sigil = '(,)' if shape == :matrix
+    sigil
+  end
+
+  def signature
+    c = constant ? '=' : ''
+    c + make_type_sigil(content_type) + make_shape_sigil(shape)
+  end
+
   def dump
     lines = []
 
@@ -1363,36 +1387,22 @@ class AbstractExpressionSet
     AbstractToken.pretty_tokens([], @tokens)
   end
 
-  def make_type_sigil(type)
-    sigil_chars = {
-      numeric: '_',
-      integer: '%',
-      string: '$',
-      boolean: '?',
-      filehandle: 'FH'
-    }
+  def to_ss
+    ss = []
 
-    sigil_chars[type]
-  end
-
-  def make_shape_sigil(shape)
-    sigil = ''
-    sigil = '()' if shape == :array
-    sigil = '(,)' if shape == :matrix
-    sigil
+    @expressions.each do |expression|
+      ss << expression.to_s
+    end
   end
 
   def signature
     sigs = []
 
     @expressions.each do |expression|
-      type = expression.content_type
-      shape = expression.shape
-      sig = make_type_sigil(type) + make_shape_sigil(shape)
-      sigs << sig
+      sigs << expression.signature
     end
 
-    sigs
+    sigs.join(',')
   end
 
   def dump
@@ -1963,6 +1973,10 @@ class Assignment
     @userfuncs = []
 
     @target = TargetExpressionSet.new(@token_lists[0], my_shape)
+
+    raise(BASICExpressionError, 'Duplicate targets') unless
+      @target.to_ss.uniq.size == @target.to_ss.size
+
     @expression = ValueExpressionSet.new(@token_lists[2], my_shape)
     make_references
 
@@ -1972,12 +1986,13 @@ class Assignment
 
   def dump
     lines = []
+
     lines += @target.dump
     lines += @expression.dump
+
     ts = @target.signature
     es = @expression.signature
-    es_const = @expression.constant ? '=' : ''
-    lines << "AssignmentOperator:= #{es_const}#{es.join(',')} -> #{ts.join(',')}"
+    lines << "AssignmentOperator:= #{es} -> #{ts}"
   end
 
   private
