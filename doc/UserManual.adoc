@@ -124,6 +124,12 @@ Interactive mode
 This is the classic mode, in which the user may edit programs and run them in the BASIC environment.
 You may use any of the immediate commands (see below).
 
+Interactive mode displays a prompt when it is ready for input.
+The default prompt is 'READY'.
+The prompt may be changed with the --prompt command-line option and the 'OPTION PROMPT' command.
+Short prompts (length of one character) are displayed when BASIC is ready for input.
+Long prompts (more than one character) are displayed when BASIC is ready for input but not after the entry of a program line.
+
 Run mode
 ~~~~~~~~
 
@@ -167,6 +173,8 @@ When the BASIC program ends, BASIC-1973 ends.
 |--min-max-op |Enable the MIN and MAX operators.
 |--precision |Sets the precision for numeric variables. Default is 6, maximum is 16. Set to "INFINITE" for maximum precision provided by Ruby.
 |--print-width width |Specifies a print width. Lines will wrap at the specified column. Default value is 72.
+|--prompt PROMPT |Specifies the command prompt. Single-character prompts have no linefeed and occur more often.
+|--promptd PROMPT |Specifies the debugger prompt. Single-character prompts have no linefeed and occur more often.
 |--prompt-count |INPUT statement prompts the user with the number of expected values.
 |--provenance |When displaying a variable in a trace, also display the line number where it was set.
 |--qmark-after-prompt |On an INPUT statement, print the question mark after the prompt.
@@ -497,6 +505,8 @@ The OPTION command overrides the command-line setting.
 |PRETTY_MULTILINE |NL |TRUE or FALSE |FALSE |When pretty-listing, print each statement on its own line
 |PRINT_SPEED |NLP |numeric |0 |Limit printing speed (a value of 10 emulates an old TeleType)
 |PRINT_WIDTH |NLP |numeric |72 |Wrap output at the specified column; 0 disables wrapping
+|PROMPT |NL |string |READY |Sets the text of the command prompt
+|PROMPTD |NL |string |DEBUG |Sets the text of the debugger prompt
 |PROMPT_COUNT |NLP |TRUE or FALSE |FALSE |Displays the number of items to be input
 |PROVENANCE |NLP |TRUE or FALSE |FALSE |Expands trace display to include the line in which a variable was assigned its value
 |QMARK_AFTER_PROMPT |NLP |TRUE or FALSE |FALSE |Display '?' after a prompt in an INPUT statement
