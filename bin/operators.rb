@@ -221,8 +221,6 @@ class BinaryOperator < AbstractElement
     y = arg_stack.pop
     x = arg_stack.pop
 
-    base = $options['base'].value
-
     if x.matrix? && y.matrix?
       matrix_matrix(x, y)
     elsif x.matrix? && y.scalar?
@@ -230,11 +228,11 @@ class BinaryOperator < AbstractElement
     elsif x.scalar? && y.matrix?
       scalar_matrix(x, y)
     elsif x.array? && y.array?
-      array_array(x, y, base)
+      array_array(x, y)
     elsif x.array? && y.scalar?
-      array_scalar(x, y, base)
+      array_scalar(x, y)
     elsif x.scalar? && y.array?
-      scalar_array(x, y, base)
+      scalar_array(x, y)
     else
       op_scalar_scalar(x, y)
     end
@@ -254,16 +252,16 @@ class BinaryOperator < AbstractElement
     op_scalar_matrix(@operation, x, y)
   end
 
-  def array_array(x, y, base)
-    op_array_array(@operation, x, y, base)
+  def array_array(x, y)
+    op_array_array(@operation, x, y)
   end
 
-  def array_scalar(x, y, base)
-    op_array_scalar(@operation, x, y, base)
+  def array_scalar(x, y)
+    op_array_scalar(@operation, x, y)
   end
 
-  def scalar_array(x, y, base)
-    op_scalar_array(@operation, x, y, base)
+  def scalar_array(x, y)
+    op_scalar_array(@operation, x, y)
   end
 
   def op_scalar_scalar(x, y)
@@ -687,7 +685,9 @@ class BinaryOperator < AbstractElement
     raise BASICExpressionError, 'Cannot raise matrix to matrix power'
   end
 
-  def op_array_array(op, a, b, base)
+  def op_array_array(op, a, b)
+    base = $options['base'].value
+
     dims = b.dimensions
 
     raise BASICRuntimeError.new(:te_arr_dif_siz) if a.dimensions != dims
@@ -705,7 +705,9 @@ class BinaryOperator < AbstractElement
     BASICArray.new(dims, values)
   end
 
-  def op_scalar_array(op, a, b, base)
+  def op_scalar_array(op, a, b)
+    base = $options['base'].value
+
     dims = b.dimensions
     n_cols = dims[0].to_i
     values = {}
@@ -719,7 +721,9 @@ class BinaryOperator < AbstractElement
     BASICArray.new(dims, values)
   end
 
-  def op_array_scalar(op, a, b, base)
+  def op_array_scalar(op, a, b)
+    base = $options['base'].value
+
     dims = a.dimensions
     n_cols = dims[0].to_i
     values = {}
