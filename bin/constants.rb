@@ -421,6 +421,22 @@ class AbstractValueElement < AbstractElement
     raise(BASICExpressionError, 'Invalid operator OR')
   end
 
+  def posate
+    raise(BASICExpressionError, 'Invalid operator +')
+  end
+
+  def negate
+    raise(BASICExpressionError, 'Invalid operator -')
+  end
+
+  def filehandle
+    raise(BASICExpressionError, 'Invalid operator #')
+  end
+
+  def not
+    raise(BASICExpressionError, 'Invalid operator NOT')
+  end
+
   def +(_)
     raise(BASICExpressionError, 'Invalid operator +')
   end
@@ -621,6 +637,26 @@ class NumericConstant < AbstractValueElement
 
   def b_or(other)
     BooleanConstant.new(to_b || other.to_b)
+  end
+
+  def posate
+    f = to_f
+    NumericConstant.new(f)
+  end
+
+  def negate
+    f = -to_f
+    NumericConstant.new(f)
+  end
+
+  def filehandle
+    num = to_i
+    FileHandle.new(num)
+  end
+
+  def not
+    b = to_b
+    BooleanConstant.new(!b)
   end
 
   def +(other)
@@ -1001,6 +1037,26 @@ class IntegerConstant < AbstractValueElement
     end
   end
 
+  def posate
+    f = to_f
+    NumericConstant.new(f)
+  end
+
+  def negate
+    f = -to_f
+    NumericConstant.new(f)
+  end
+
+  def filehandle
+    num = to_i
+    FileHandle.new(num)
+  end
+
+  def not
+    b = ~to_i
+    IntegerConstant.new(b)
+  end
+
   def +(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in +()"
 
@@ -1306,6 +1362,11 @@ class TextConstant < AbstractValueElement
 
   def <=(other)
     @value <= other.to_v
+  end
+
+  def not
+    b = to_b
+    BooleanConstant.new(!b)
   end
 
   def b_and(other)
