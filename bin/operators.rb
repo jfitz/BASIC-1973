@@ -46,6 +46,8 @@ class UnaryOperator < AbstractElement
   def set_shape(shape_stack)
     raise(BASICExpressionError, 'Not enough operands') if shape_stack.empty?
 
+    @arg_shapes = [@shape]
+
     @shape = shape_stack.pop
 
     shape_stack.push(@shape)
@@ -146,6 +148,8 @@ class BinaryOperator < AbstractElement
 
     b_shape = shape_stack.pop
     a_shape = shape_stack.pop
+
+    @arg_shapes = [a_shape, b_shape]
 
     table =
     {
