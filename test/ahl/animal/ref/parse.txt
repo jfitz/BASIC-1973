@@ -102,7 +102,7 @@
  Variable:I% -> %
  Variable:A$(%) -> $
  TextConstant:"\A"
- FunctionInstr:INSTR(%,$,$) -> _
+ FunctionInstr:INSTR(%,$,$) -> %
  control: Variable:I% -> %
  start:   ["IntegerConstant:1"]
  end:     ["IntegerConstant:200"]
@@ -195,6 +195,7 @@
  CarriageControl:NL
  LineNumber:2100
 2200 Z1%=VAL(A$(0%)):A$(0%)=NUM$(Z1% + 2%):A$(Z1%)=A$(K%):A$(Z1%+1%)='\A'+Z9$:A$(K%)="\Q"+Z8$+"\"+Z7$+NUM$(Z1%+1%)+"\"+Z6$+NUM$(Z1%)+"\"
+ WARNING: Target type (integer) does not match expression type (numeric).
  Variable:Z1% -> %
  IntegerConstant:0
  Variable:A$(%) -> $
@@ -247,15 +248,16 @@
 2300 GOTO 1300
  LineNumber:1300
 3000 DEF FNA%(Q$):PRINT MID(Q$,3%,INSTR(3%,Q$,"\")-3%);:INPUT Z9$:Z9$=LEFT(Z9$,1%):Z9$="N" IF Z9$<>"Y":Z1%=INSTR(3%,Q$,"\"+Z9$)+2%:Z2%=INSTR(Z1%,Q$,"\"):FNA%=VAL(MID(Q$,Z1%,Z2%-Z1%)):FNEND
+ WARNING: Target type (integer) does not match expression type (numeric).
  Variable:Q$ -> $
  IntegerConstant:3
  IntegerConstant:3
  Variable:Q$ -> $
  TextConstant:"\"
- FunctionInstr:INSTR(%,$,$) -> _
+ FunctionInstr:INSTR(%,$,$) -> %
  IntegerConstant:3
- BinaryOperatorMinus:-(_,%) -> _
- FunctionMid:MID($,%,_) -> $
+ BinaryOperatorMinus:-(%,%) -> %
+ FunctionMid:MID($,%,%) -> $
  CarriageControl:;
  Variable:Z9$ -> $
  Variable:Z9$ -> $
@@ -275,16 +277,16 @@
  TextConstant:"\"
  Variable:Z9$ -> $
  BinaryOperatorPlus:+($,$) -> $
- FunctionInstr:INSTR(%,$,$) -> _
+ FunctionInstr:INSTR(%,$,$) -> %
  IntegerConstant:2
- BinaryOperatorPlus:+(_,%) -> _
- AssignmentOperator:= _ -> %
+ BinaryOperatorPlus:+(%,%) -> %
+ AssignmentOperator:= % -> %
  Variable:Z2% -> %
  Variable:Z1% -> %
  Variable:Q$ -> $
  TextConstant:"\"
- FunctionInstr:INSTR(%,$,$) -> _
- AssignmentOperator:= _ -> %
+ FunctionInstr:INSTR(%,$,$) -> %
+ AssignmentOperator:= % -> %
  UserFunction:FNA% -> %
  Variable:Q$ -> $
  Variable:Z1% -> %

@@ -74,6 +74,7 @@ class LineNumberRange
 
   def initialize(start, endline, program_line_numbers)
     @list = []
+
     program_line_numbers.each do |line_number|
       @list << line_number if line_number >= start && line_number <= endline
     end
@@ -86,6 +87,7 @@ class LineNumberCountRange
 
   def initialize(start, count, program_line_numbers)
     @list = []
+
     program_line_numbers.each do |line_number|
       if line_number >= start && count >= 0
         @list << line_number
@@ -189,7 +191,7 @@ class Line
     end
 
     pretty_lines = pl2
-    
+
     unless @comment.nil?
       line_0 = pretty_lines[0]
       space = @text.size - (line_0.size + @comment.to_s.size)
@@ -204,7 +206,10 @@ class Line
 
   def parse
     texts = []
+
     @statements.each { |statement| texts << statement.dump }
+
+    texts
   end
 
   def profile(show_timing)
@@ -686,7 +691,7 @@ class Program
     list_separators = []
 
     operator_keywords = %w[FOR GOTO GOSUB IF NEXT ON RETURN]
-    
+
     @lines.each do |_, line|
       statements = line.statements
 
@@ -832,7 +837,7 @@ class Program
         statement_index += 1
       end
     end
-    
+
     # walk the entire program and mark lines as live
     # repeat until no changes
     any_changes = true
@@ -1030,6 +1035,7 @@ class Program
 
     # assign new line numbers
     new_lines = {}
+
     @lines.keys.sort.each do |line_number|
       new_line_number = renumber_map[line_number]
       line = @lines[line_number]
@@ -1248,6 +1254,7 @@ class Program
       spaces = ' ' * n_spaces
       lines = refs[ref]
       line_refs = lines.map(&:to_s).uniq.join(', ')
+
       texts << token + ":" + spaces + line_refs
     end
 
@@ -1275,6 +1282,7 @@ class Program
       if token.size < 41
         n_spaces = num_spaces - token.size + 2
         spaces = ' ' * n_spaces
+
         texts << token + ":" + spaces + line_refs
       else
         n_spaces = 5
@@ -1293,6 +1301,7 @@ class Program
 
     refs.keys.sort.each do |ref|
       lines = refs[ref]
+
       texts << ref.symbol_text + ":\t" + lines.map(&:to_s).uniq.join(', ')
     end
 
@@ -1480,6 +1489,7 @@ class Program
 
       # print the line
       texts << line_number.to_s + line.list
+
       statements = line.statements
 
       # print the errors
@@ -1489,13 +1499,14 @@ class Program
 
       # print the warnings
       statements.each do |statement|
-        statement.warnings.each { |warning| texts << ' ' + warning }
+        statement.warnings.each { |warning| texts << ' WARNING: ' + warning }
       end
 
       next unless list_tokens
 
       tokens = line.tokens
       text_tokens = tokens.map(&:to_s)
+
       texts << 'TOKENS: ' + text_tokens.to_s
     end
 
@@ -1510,6 +1521,7 @@ class Program
 
       # print the line
       texts << line_number.to_s + line.list
+
       statements = line.statements
 
       # print the errors
@@ -1519,7 +1531,7 @@ class Program
 
       # print the warnings
       statements.each do |statement|
-        statement.warnings.each { |warning| texts << ' ' + warning }
+        statement.warnings.each { |warning| texts << ' WARNING: ' + warning }
       end
 
       # print the line components
@@ -1556,7 +1568,7 @@ class Program
 
       # print the warnings
       statements.each do |statement|
-        statement.warnings.each { |warning| texts << ' ' + warning }
+        statement.warnings.each { |warning| texts << ' WARNING: ' + warning }
       end
     end
 

@@ -13,6 +13,8 @@
  TextConstant:"ENTER YOUR PATTERN:"
  CarriageControl:NL
 3 X1%,Y1%=1: X2%=24%: Y2%=70%
+ WARNING: Target type (integer) does not match expression type (numeric).
+ WARNING: Target type (integer) does not match expression type (numeric).
  Variable:X1% -> %
  Variable:Y1% -> %
  NumericConstant:1
@@ -34,6 +36,7 @@
 30 ON ERROR GO TO 80
  LineNumber:80
 40 C%=1
+ WARNING: Target type (integer) does not match expression type (numeric).
  Variable:C% -> %
  NumericConstant:1
  AssignmentOperator:= =_ -> %
@@ -54,6 +57,7 @@
  FunctionLeft:LEFT($,_) -> $
  AssignmentOperator:= $ -> $
 60 C%=C%+1
+ WARNING: Target type (integer) does not match expression type (numeric).
  Variable:C% -> %
  Variable:C% -> %
  NumericConstant:1
@@ -70,6 +74,7 @@
  start:   ["NumericConstant:1"]
  end:     ["Variable:C% -> %", "NumericConstant:1", "BinaryOperatorMinus:-(%,_) -> _"]
 100 IF LEN(B$(X%))>=L% THEN L%=LEN(B$(X%))
+ WARNING: Target type (integer) does not match expression type (numeric).
  Variable:X% -> %
  Variable:B$(%) -> $
  FunctionLen:LEN($) -> _
@@ -107,6 +112,8 @@
  start:   ["NumericConstant:1"]
  end:     ["Variable:X% -> %", "Variable:B$(%) -> $", "FunctionLen:LEN($) -> _"]
 160 IF MID(B$(X%),Y%,1)<>" " THEN A%(X1%+X%, Y1%+Y%)=1:P%=P%+1
+ WARNING: Target type (integer) does not match expression type (numeric).
+ WARNING: Target type (integer) does not match expression type (numeric).
  Variable:X% -> %
  Variable:B$(%) -> $
  Variable:Y% -> %
@@ -156,6 +163,8 @@
  TextConstant:"INVALID!"
  CarriageControl:;
 215 X3%=24%:Y3%=70%:X4%,Y4%=1:P%=0%
+ WARNING: Target type (integer) does not match expression type (numeric).
+ WARNING: Target type (integer) does not match expression type (numeric).
  Variable:X3% -> %
  IntegerConstant:24
  AssignmentOperator:= =% -> %
@@ -390,6 +399,7 @@
  IntegerConstant:0
  BinaryOperatorEqual:=(%,%) -> ?
 590 IF C%<3% OR C%>4% THEN A%(X%,Y%)=2% ELSE P%=P%+1
+ WARNING: Target type (integer) does not match expression type (numeric).
  Variable:C% -> %
  IntegerConstant:3
  BinaryOperatorLess:<(%,%) -> ?
@@ -410,6 +420,7 @@
 600 GO TO 620
  LineNumber:620
 610 IF C%=3% THEN A%(X%, Y%)=3%:P%=P%+1
+ WARNING: Target type (integer) does not match expression type (numeric).
  Variable:C% -> %
  IntegerConstant:3
  BinaryOperatorEqual:=(%,%) -> ?
@@ -428,6 +439,10 @@
 630 NEXT X%
  Variable:X% -> %
 635 X1%=X1%-1:Y1%=Y1%-1:X2%=X2%+1:Y2%=Y2%+1
+ WARNING: Target type (integer) does not match expression type (numeric).
+ WARNING: Target type (integer) does not match expression type (numeric).
+ WARNING: Target type (integer) does not match expression type (numeric).
+ WARNING: Target type (integer) does not match expression type (numeric).
  Variable:X1% -> %
  Variable:X1% -> %
  NumericConstant:1
