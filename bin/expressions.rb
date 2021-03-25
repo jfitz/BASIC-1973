@@ -1894,8 +1894,8 @@ end
 
 # Target expression
 class TargetExpressionSet < AbstractExpressionSet
-  def initialize(_, _)
-    super
+  def initialize(tokens, my_shape, set_dims)
+    super(tokens, my_shape)
 
     check_length
     check_all_lengths
@@ -1907,6 +1907,7 @@ class TargetExpressionSet < AbstractExpressionSet
       elements = expression.elements
 
       elements[-1].valref = :reference
+      elements[-1].set_dims = set_dims
     end
 
     @expressions.each do |expression|
@@ -2154,7 +2155,7 @@ class Assignment
     @functions = []
     @userfuncs = []
 
-    @targets = TargetExpressionSet.new(@token_lists[0], my_shape)
+    @targets = TargetExpressionSet.new(@token_lists[0], my_shape, false)
 
     raise(BASICExpressionError, 'Duplicate targets') unless
       @targets.to_ss.uniq.size == @targets.to_ss.size
