@@ -1276,6 +1276,10 @@ class Expression
     end
   end
 
+  def uncache
+    @elements.each { |element| element.uncache }
+  end
+
   def make_type_sigil(type)
     sigil_chars = {
       numeric: '_',
@@ -1562,6 +1566,10 @@ class AbstractExpressionSet
         prev = element
       end
     end
+  end
+
+  def uncache
+    @expressions.each {|expression| expression.uncache }
   end
 
   def to_s
@@ -2169,6 +2177,11 @@ class Assignment
 
     @comprehension_effort =
       @targets.comprehension_effort + @expressions.comprehension_effort
+  end
+
+  def uncache
+    @targets.uncache
+    @expressions.uncache
   end
 
   def dump

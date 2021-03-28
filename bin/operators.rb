@@ -225,21 +225,26 @@ class BinaryOperator < AbstractElement
     y = arg_stack.pop
     x = arg_stack.pop
 
+    return @cached unless @cached.nil?
+
     if x.matrix? && y.matrix?
-      matrix_matrix(x, y)
+      res = matrix_matrix(x, y)
     elsif x.matrix? && y.scalar?
-      matrix_scalar(x, y)
+      res = matrix_scalar(x, y)
     elsif x.scalar? && y.matrix?
-      scalar_matrix(x, y)
+      res = scalar_matrix(x, y)
     elsif x.array? && y.array?
-      array_array(x, y)
+      res = array_array(x, y)
     elsif x.array? && y.scalar?
-      array_scalar(x, y)
+      res = array_scalar(x, y)
     elsif x.scalar? && y.array?
-      scalar_array(x, y)
+      res = scalar_array(x, y)
     else
-      op_scalar_scalar(x, y)
+      res = op_scalar_scalar(x, y)
     end
+
+    @cached = res if @constant && $options['cache_const_expr']
+    res
   end
 
   private
@@ -824,7 +829,13 @@ class UnaryOperatorPlus < UnaryOperator
     raise(BASICExpressionError, 'Not enough operands') if arg_stack.empty?
 
     x = arg_stack.pop
-    x.posate
+
+    return @cached unless @cached.nil?
+
+    res = x.posate
+
+    @cached = res if @constant && $options['cache_const_expr']
+    res
   end
 end
 
@@ -859,7 +870,13 @@ class UnaryOperatorMinus < UnaryOperator
     raise(BASICExpressionError, 'Not enough operands') if arg_stack.empty?
 
     x = arg_stack.pop
-    x.negate
+
+    return @cached unless @cached.nil?
+
+    res = x.negate
+
+    @cached = res if @constant && $options['cache_const_expr']
+    res
   end
 end
 
@@ -899,7 +916,13 @@ class UnaryOperatorHash < UnaryOperator
     raise(BASICExpressionError, 'Not enough operands') if arg_stack.empty?
 
     x = arg_stack.pop
-    x.filehandle
+
+    return @cached unless @cached.nil?
+
+    res = x.filehandle
+
+    @cached = res if @constant && $options['cache_const_expr']
+    res
   end
 end
 
@@ -935,7 +958,13 @@ class UnaryOperatorColon < UnaryOperator
     raise(BASICExpressionError, 'Not enough operands') if arg_stack.empty?
 
     x = arg_stack.pop
-    x.filehandle
+
+    return @cached unless @cached.nil?
+
+    res = x.filehandle
+
+    @cached = res if @constant && $options['cache_const_expr']
+    res
   end
 end
 
@@ -973,7 +1002,13 @@ class UnaryOperatorNot < UnaryOperator
     raise(BASICExpressionError, 'Not enough operands') if arg_stack.empty?
 
     x = arg_stack.pop
-    x.not
+
+    return @cached unless @cached.nil?
+
+    res = x.not
+
+    @cached = res if @constant && $options['cache_const_expr']
+    res
   end
 end
 

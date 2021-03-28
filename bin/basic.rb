@@ -518,8 +518,8 @@ def make_command_tokenbuilders(quotes)
     ANALYZE BREAK NOBREAK BRACKETS CROSSREF DELETE DIMS EXIT IF LIST LOAD NEW
     OPTION PARSE PRETTY PROFILE RENUMBER RUN SAVE TOKENS UDFS VARS
     ALLOW_ASCII ALLOW_HASH_CONSTANT ALLOW_PI APOSTROPHE_COMMENT ASC_ALLOW_ALL
-    BACK_TAB BACKSLASH_SEPARATOR BANG_COMMENT
-    BASE
+    BACK_TAB BACKSLASH_SEPARATOR BANG_COMMENT BASE
+    CACHE_CONST_EXPR
     CHR_ALLOW_ALL COLON_FILE COLON_SEPARATOR CRLF_ON_LINE_INPUT
     DEFAULT_PROMPT DETECT_INFINITE_LOOP
     ECHO EXTEND_IF FIELD_SEP FORGET_FORNEXT FORNEXT_ONE_BEYOND HEADING
@@ -613,6 +613,7 @@ OptionParser.new do |opt|
   opt.on('--bang-comment') { |o| options[:bang_comment] = o }
   opt.on('--base BASE') { |o| options[:base] = o }
   opt.on('--brackets') { |o| options[:brackets] = o }
+  opt.on('--no-cache-const-expr') { |o| options[:no_cache_const_expr] = o }
   opt.on('--chr-allow-all') { |o| options[:chr_allow_all] = o }
   opt.on('--colon-file') { |o| options[:colon_file] = o }
   opt.on('--no-colon-separator') { |o| options[:no_colon_sep] = o }
@@ -712,6 +713,9 @@ base = options[:base].to_i if options.key?(:base)
 $options['base'] = Option.new(all_types, int_1, base)
 
 $options['brackets'] = Option.new(only_new, boolean, options.key?(:brackets))
+
+$options['cache_const_expr'] =
+  Option.new(all_types, boolean, !options.key?(:no_cache_const_expr))
 
 $options['chr_allow_all'] =
   Option.new(all_types, boolean, options.key?(:chr_allow_all))
