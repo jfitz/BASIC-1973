@@ -1997,6 +1997,60 @@ class FunctionStr < AbstractFunction
   end
 end
 
+# function SUM
+class FunctionSum < AbstractFunction
+  def initialize(text)
+    super
+
+    @shape = :scalar
+
+    @default_shape = :array
+    @signature_1 = [{ 'type' => :numeric, 'shape' => :array }]
+  end
+
+  def evaluate(_, arg_stack)
+    args = arg_stack.pop
+
+    return @cached unless @cached.nil?
+
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
+      match_args_to_signature(args, @signature_1)
+
+    sum = args[0].sum
+    res = NumericConstant.new(sum)
+
+    @cached = res if @constant && $options['cache_const_expr']
+    res
+  end
+end
+
+# function SUM%
+class FunctionSumI < AbstractFunction
+  def initialize(text)
+    super
+
+    @shape = :scalar
+
+    @default_shape = :array
+    @signature_1 = [{ 'type' => :numeric, 'shape' => :array }]
+  end
+
+  def evaluate(_, arg_stack)
+    args = arg_stack.pop
+
+    return @cached unless @cached.nil?
+
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
+      match_args_to_signature(args, @signature_1)
+
+    sum = args[0].sum
+    res = IntegerConstant.new(sum)
+
+    @cached = res if @constant && $options['cache_const_expr']
+    res
+  end
+end
+
 # function TAB
 class FunctionTab < AbstractFunction
   def initialize(text)
@@ -2420,6 +2474,8 @@ class FunctionFactory
     'SIN' => FunctionSin,
     'SPC' => FunctionSpc,
     'SQR' => FunctionSqr,
+    'SUM' => FunctionSum,
+    'SUM%' => FunctionSumI,
     'STR$' => FunctionStr,
     'TAB' => FunctionTab,
     'TAN' => FunctionTan,
