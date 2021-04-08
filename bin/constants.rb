@@ -1176,8 +1176,7 @@ class IntegerConstant < AbstractValueElement
   end
 
   def floor
-    value = @value.floor
-    IntegerConstant.new(value)
+    IntegerConstant.new(@value)
   end
 
   def exp
