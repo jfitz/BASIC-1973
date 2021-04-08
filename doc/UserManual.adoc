@@ -145,7 +145,7 @@ When the BASIC program ends, BASIC-1973 ends.
 |--analyze filename |Specifies the file to load and analyze.
 |--no-heading |Suppress the heading and trailing messages
 |--trace |Print each statement prior to executing it (useful for debugging). Does the same thing as the 'OPTION TRACE TRUE' command in interactive mode, but from the command line.
-|--asc-allow-all |The ASC() function allows any characters. The default behavior is to limit characters to printable ASCII (32d to 126d).
+|--asc-allow-all |The ASC(), ASC%(), ASCII(), and ASCII%() functions allow any characters. The default behavior is to limit characters to printable ASCII (32d to 126d).
 |--back-tab |Allows the TAB() function to move to the left. Normally, it moves only to the right or not at all.
 |--bang-comment |Allow comments that start with an exclamation point. The apostrophe comments are still allowed.
 |--base 0/1 |Set the minimum for subscripts to either 0 or 1. Default is 0.
@@ -470,7 +470,7 @@ The OPTION command overrides the command-line setting.
 |ALLOW_HASH_CONSTANT |N |TRUE or FALSE |FALSE |Allow hash constant values (#K)
 |ALLOW_PI |N |TRUE or FALSE |FALSE |Allow PI constant
 |APOSTROPHE_COMMENT |N |TRUE or FALSE |Allow comments starting with single quote
-|ASC_ALLOW_ALL |NLP |TRUE or FALSE |FALSE |The ASC() function allows all characters
+|ASC_ALLOW_ALL |NLP |TRUE or FALSE |FALSE |The ASC(), ASC%(), ASCII(), and ASCII%() functions allow all characters
 |BACK_TAB |NLP |TRUE or FALSE |FALSE |The TAB() function can move the printhead to the left
 |BACKSLASH_SEPARATOR |N |TRUE or FALSE |TRUE |Backslash separates statements
 |BANG_COMMENT |N |TRUE or FALSE |FALSE |Allow comments staring with exclamation point
@@ -2578,7 +2578,10 @@ Functions may be used in expressions.
 |==========
 |Function |Return type |Result
 |ABS(x) |numeric |Computes the absolute value of x.
-|ASC(t$) |numeric |Returns the ASCII value of the first character of the string t. The character must be in the printable range of 32 to 126.
+|ASCII(t$) |numeric |Returns the ASCII value of the first character of the string t. The character must be in the printable range of 32 to 126.
+|ASCII%(t$) |integer |Returns the ASCII value of the first character of the string t. The character must be in the printable range of 32 to 126.
+|ASC(t$) |numeric |Synonym for ASCII()
+|ASC%(t$) |integer |Synonym for ASCII%()
 |ARCCOS(x) |numeric |Computes the arccosine of x, providing the answer in radians.
 |ARCSIN(x) |numeric |Computes the arcsine of x, providing the answer in radians.
 |ARCTAN(x) |numeric |Computes the arctangent of x, providing the answer in radians.
