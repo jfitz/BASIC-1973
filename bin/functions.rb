@@ -1178,15 +1178,18 @@ class FunctionIdn < AbstractFunction
   end
 end
 
-# function INSTR
+# function INSTR, INSTR%
 class FunctionInstr < AbstractFunction
   def initialize(text)
     super
 
-    @content_type = :integer
     @shape = :scalar
 
     @default_shape = :scalar
+    @signature_2 = [
+      { 'type' => :string, 'shape' => :scalar },
+      { 'type' => :string, 'shape' => :scalar }
+    ]
     @signature_3 = [
       { 'type' => :numeric, 'shape' => :scalar },
       { 'type' => :string, 'shape' => :scalar },
@@ -1199,16 +1202,21 @@ class FunctionInstr < AbstractFunction
 
     return @cached unless @cached.nil?
 
-    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
-      match_args_to_signature(args, @signature_3)
-
-    start = args[0].to_i
-
+    if match_args_to_signature(args, @signature_2)
+      start = 1
+      value = args[0].to_v
+      search = args[1].to_v
+    elsif match_args_to_signature(args, @signature_3)
+      start = args[0].to_i
+      value = args[1].to_v
+      search = args[2].to_v
+    else
+      raise BASICRuntimeError.new(:te_args_no_match, @name)
+    end
+    
     raise BASICRuntimeError.new(:te_val_out, @name) if start < 1
 
     start -= 1
-    value = args[1].to_v
-    search = args[2].to_v
     index = value.index(search, start)
 
     if index.nil?
@@ -1217,8 +1225,13 @@ class FunctionInstr < AbstractFunction
       index += 1
     end
 
-    token = IntegerConstantToken.new(index)
-    res = IntegerConstant.new(token)
+    if content_type == :integer
+      token = IntegerConstantToken.new(index)
+      res = IntegerConstant.new(token)
+    else
+      token = NumericConstantToken.new(index)
+      res = NumericConstant.new(token)
+    end
 
     @cached = res if @constant && $options['cache_const_expr']
     res
@@ -2487,6 +2500,7 @@ class FunctionFactory
     'FRAC' => FunctionFrac,
     'IDN' => FunctionIdn,
     'INSTR' => FunctionInstr,
+    'INSTR%' => FunctionInstr,
     'INT' => FunctionInt,
     'INT%' => FunctionIntI,
     'INV' => FunctionInv,
