@@ -1110,9 +1110,7 @@ class Interpreter
       v = variable.to_s
       default_type = variable.content_type
       default_value = NumericConstant.new(0)
-
-      default_value = TextConstant.new(TextConstantToken.new('""')) if
-        default_type == :string
+      default_value = TextConstant.new('') if default_type == :string
 
       unless @variables.key?(v)
         if $options['require_initialized'].value
@@ -1176,9 +1174,7 @@ class Interpreter
     if value.numeric_constant? &&
        variable.content_type == :string
       val = value.symbol_text
-      quoted_val = '"' + val + '"'
-      token = TextConstantToken.new(quoted_val)
-      value = TextConstant.new(token)
+      value = TextConstant.new(val)
     end
 
     # convert an integer to a numeric

@@ -1302,7 +1302,7 @@ end
 # Text constants
 class TextConstant < AbstractValueElement
   def self.accept?(token)
-    classes = %w[TextConstantToken TextSymbolToken]
+    classes = %w[TextConstantToken TextSymbolToken String]
     classes.include?(token.class.to_s)
   end
 
@@ -1313,6 +1313,7 @@ class TextConstant < AbstractValueElement
     super()
 
     @value = nil
+    @value = text if text.class.to_s == 'String'
     @value = text.value if text.class.to_s == 'TextConstantToken'
 
     if text.class.to_s == 'TextSymbolToken'
@@ -1393,10 +1394,7 @@ class TextConstant < AbstractValueElement
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
-    unquoted = @value + other.to_v
-    quoted = '"' + unquoted + '"'
-    token = TextConstantToken.new(quoted)
-    TextConstant.new(token)
+    TextConstant.new(@value + other.to_v)
   end
 
   def add(other)
@@ -1404,10 +1402,7 @@ class TextConstant < AbstractValueElement
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
-    unquoted = @value + other.to_v
-    quoted = '"' + unquoted + '"'
-    token = TextConstantToken.new(quoted)
-    TextConstant.new(token)
+    TextConstant.new(@value + other.to_v)
   end
 
   def multiply(other)
@@ -1415,10 +1410,7 @@ class TextConstant < AbstractValueElement
 
     raise(BASICExpressionError, message) unless other.numeric_constant?
 
-    unquoted = @value * other.to_v
-    quoted = '"' + unquoted + '"'
-    token = TextConstantToken.new(quoted)
-    TextConstant.new(token)
+    TextConstant.new(@value * other.to_v)
   end
 
   def maximum(other)

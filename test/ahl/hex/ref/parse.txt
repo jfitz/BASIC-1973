@@ -154,9 +154,9 @@
  Variable:B% -> %
  UserFunction:FNN$(%) -> $
  BinaryOperatorPlus:+($,$) -> $
- FunctionInstr:INSTR(%,$,$) -> %
+ FunctionInstr:INSTR(%,$,$) -> _
  IntegerConstant:0
- BinaryOperatorEqual:=(%,%) -> ?
+ BinaryOperatorEqual:=(_,%) -> ?
  TextConstant:"ILLEGAL MOVE."
  CarriageControl:NL
  LineNumber:210
@@ -173,15 +173,15 @@
  IntegerConstant:1
  Variable:P$ -> $
  TextConstant:"*"
- FunctionInstr:INSTR(%,$,$) -> %
+ FunctionInstr:INSTR(%,$,$) -> _
  IntegerConstant:0
- BinaryOperatorEqual:=(%,%) -> ?
+ BinaryOperatorEqual:=(_,%) -> ?
  IntegerConstant:1
  Variable:P$ -> $
  TextConstant:"O"
- FunctionInstr:INSTR(%,$,$) -> %
+ FunctionInstr:INSTR(%,$,$) -> _
  IntegerConstant:4
- BinaryOperatorEqual:=(%,%) -> ?
+ BinaryOperatorEqual:=(_,%) -> ?
  BinaryOperatorOr:OR(?,?) -> ?
  TextConstant:"YOU WIN."
  CarriageControl:NL
@@ -293,14 +293,14 @@
  IntegerConstant:1
  Variable:P$ -> $
  TextConstant:"O"
- FunctionInstr:INSTR(%,$,$) -> %
+ FunctionInstr:INSTR(%,$,$) -> _
  IntegerConstant:0
- BinaryOperatorEqual:=(%,%) -> ?
+ BinaryOperatorEqual:=(_,%) -> ?
  IntegerConstant:7
  Variable:P$ -> $
  TextConstant:"*"
- FunctionInstr:INSTR(%,$,$) -> %
- BinaryOperatorOr:OR(?,%) -> ?
+ FunctionInstr:INSTR(%,$,$) -> _
+ BinaryOperatorOr:OR(?,_) -> ?
  TextConstant:"I WIN!"
  CarriageControl:NL
  LineNumber:510
@@ -315,6 +315,7 @@
  CarriageControl:NL
  LineNumber:190
 500 W2%=W2%+1%: I%=INSTR(11%,P$(K%),K$) :P$(K%)=LEFT(P$(K%),I%-1%)+RIGHT(P$(K%),I%+2%) IF I%: GOTO 520
+ WARNING: Target type (integer) does not match expression type (numeric).
  Variable:W2% -> %
  Variable:W2% -> %
  IntegerConstant:1
@@ -325,8 +326,8 @@
  Variable:K% -> %
  Variable:P$(%) -> $
  Variable:K$ -> $
- FunctionInstr:INSTR(%,$,$) -> %
- AssignmentOperator:= % -> %
+ FunctionInstr:INSTR(%,$,$) -> _
+ AssignmentOperator:= _ -> %
  Variable:K% -> %
  Variable:P$(%) -> $
  Variable:K% -> %
@@ -492,9 +493,9 @@
  Variable:T% -> %
  IntegerConstant:1
  FunctionMid:MID($,%,%) -> $
- FunctionInstr:INSTR(%,$,$) -> %
+ FunctionInstr:INSTR(%,$,$) -> _
  IntegerConstant:0
- BinaryOperatorEqual:=(%,%) -> ?
+ BinaryOperatorEqual:=(_,%) -> ?
  Variable:M$ -> $
  Variable:M$ -> $
  Variable:J% -> %
@@ -536,9 +537,9 @@
  Variable:T% -> %
  IntegerConstant:1
  FunctionMid:MID($,%,%) -> $
- FunctionInstr:INSTR(%,$,$) -> %
+ FunctionInstr:INSTR(%,$,$) -> _
  IntegerConstant:0
- BinaryOperatorEqual:=(%,%) -> ?
+ BinaryOperatorEqual:=(_,%) -> ?
  Variable:M$ -> $
  Variable:M$ -> $
  Variable:J% -> %
