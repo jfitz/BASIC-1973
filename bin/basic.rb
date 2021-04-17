@@ -530,7 +530,7 @@ def make_command_tokenbuilders(quotes)
     PRECISION PRETTY_MULTILINE PRINT_SPEED PRINT_WIDTH
     PROMPT PROMPTD PROMPT_COUNT PROVENANCE
     QMARK_AFTER_PROMPT RANDOMIZE REQUIRE_INITIALIZED RESPECT_RANDOMIZE
-    SEMICOLON_ZONE_WIDTH SINGLE_QUOTE_STRING TIMING TRACE ZONE_WIDTH
+    SEMICOLON_ZONE_WIDTH SINGLE_QUOTE_STRING TIMING TRACE WRAP ZONE_WIDTH
   ]
   tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
 
@@ -660,6 +660,7 @@ OptionParser.new do |opt|
   opt.on('--no-timing') { |o| options[:no_timing] = o }
   opt.on('--tty') { |o| options[:tty] = o }
   opt.on('--tty-lf') { |o| options[:tty_lf] = o }
+  opt.on('--wrap') { |o| options[:wrap] = o }
   opt.on('--zone-width WIDTH') { |o| options[:zone_width] = o }
 end.parse!
 
@@ -846,6 +847,7 @@ $options['single_quote_strings'] =
 
 $options['timing'] = Option.new(all_types, boolean, !options.key?(:no_timing))
 $options['trace'] = Option.new(all_types, boolean, options.key?(:trace))
+$options['wrap'] = Option.new(all_types, boolean, options.key?(:wrap))
 
 zone_width = 16
 zone_width = options[:zone_width].to_i if options.key?(:zone_width)
