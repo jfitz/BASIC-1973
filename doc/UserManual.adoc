@@ -3107,13 +3107,15 @@ RND$(i)
 string
 
 Return a string of length i, consting of random uppercase letters.
+If i is negative, the length of the string is random, in the range from 1 to i.
 
 RND$(i, c$)
-~~~~~~~
+~~~~~~~~~~~
 
 string
 
 Return a string of length i, consting of random characters from the set specified by c$.
+If i is negative, the length of the string is random, in the range from 1 to i.
 
 |==========
 |C$ |characters
@@ -3128,6 +3130,16 @@ Return a string of length i, consting of random characters from the set specifie
 |"X" |uppercase hexadecimal digits
 |"x" |lowercase hexadecimal digits
 |==========
+
+If c$ is not in the above list, then the contents of c$ are used as the set of characters.
+
+RND$(i, c$, e$)
+~~~~~~~~~~~~~~~
+
+string
+
+Return a string of length i, consting of random characters from the set specified by c$ combined with e$.
+If i is negative, the length of the string is random, in the range from 1 to i.
 
 RND$()
 ~~~~~~
