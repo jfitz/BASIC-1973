@@ -11,6 +11,7 @@
  WARNING: Target type (integer) does not match expression type (numeric).
 50 INPUT LINE #1, B$(C%) : B$(C%) = LEFT(B$(C%), LEN(B$(C%)) - 2%)
 60 C% = C% + 1
+ WARNING: Type mismatch integer + numeric
  WARNING: Target type (integer) does not match expression type (numeric).
 70 GOTO 50
 80 L% = 0%
@@ -24,6 +25,7 @@
 150 FOR Y% = 1 TO LEN(B$(X%))
 160 IF MID(B$(X%), Y%, 1) <> " " THEN A%(X1% + X%, Y1% + Y%) = 1 : P% = P% + 1
  WARNING: Target type (integer) does not match expression type (numeric).
+ WARNING: Type mismatch integer + numeric
  WARNING: Target type (integer) does not match expression type (numeric).
 170 NEXT Y%
 180 NEXT X%
@@ -66,16 +68,22 @@
 570 NEXT I%
 580 IF A%(X%, Y%) = 0% THEN 610
 590 IF C% < 3% OR C% > 4% THEN A%(X%, Y%) = 2% ELSE P% = P% + 1
+ WARNING: Type mismatch integer + numeric
  WARNING: Target type (integer) does not match expression type (numeric).
 600 GOTO 620
 610 IF C% = 3% THEN A%(X%, Y%) = 3% : P% = P% + 1
+ WARNING: Type mismatch integer + numeric
  WARNING: Target type (integer) does not match expression type (numeric).
 620 NEXT Y%
 630 NEXT X%
 635 X1% = X1% - 1 : Y1% = Y1% - 1 : X2% = X2% + 1 : Y2% = Y2% + 1
+ WARNING: Type mismatch integer - numeric
  WARNING: Target type (integer) does not match expression type (numeric).
+ WARNING: Type mismatch integer - numeric
  WARNING: Target type (integer) does not match expression type (numeric).
+ WARNING: Type mismatch integer + numeric
  WARNING: Target type (integer) does not match expression type (numeric).
+ WARNING: Type mismatch integer + numeric
  WARNING: Target type (integer) does not match expression type (numeric).
 640 GOTO 210
 650 END

@@ -11,6 +11,7 @@ class UnaryOperator < AbstractElement
   attr_reader :content_type
   attr_reader :shape
   attr_reader :constant
+  attr_reader :warnings
   attr_reader :arguments
   attr_reader :precedence
 
@@ -21,6 +22,7 @@ class UnaryOperator < AbstractElement
     @content_type = :unknown
     @shape = :unknown
     @constant = false
+    @warnings = []
     @precedence = 0
     @arguments = nil
     @operator = true
@@ -123,6 +125,7 @@ class BinaryOperator < AbstractElement
   attr_reader :content_type
   attr_reader :shape
   attr_reader :constant
+  attr_reader :warnings
   attr_reader :arguments
   attr_reader :precedence
 
@@ -134,6 +137,7 @@ class BinaryOperator < AbstractElement
     @content_type = :unknown
     @shape = :unknown
     @constant =  false
+    @warnings = []
     @arguments = nil
     @precedence = 0
     @operator = true
@@ -1040,6 +1044,9 @@ class BinaryOperatorPlus < BinaryOperator
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
+    @warnings << "Type mismatch #{a_type} #{@op} #{b_type}" if
+      a_type != b_type
+
     @content_type = result_type(a_type, b_type)
     type_stack.push(@content_type)
   end
@@ -1070,6 +1077,9 @@ class BinaryOperatorMinus < BinaryOperator
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
+
+    @warnings << "Type mismatch #{a_type} #{@op} #{b_type}" if
+      a_type != b_type
 
     @content_type = result_type(a_type, b_type)
     type_stack.push(@content_type)
@@ -1102,6 +1112,9 @@ class BinaryOperatorMultiply < BinaryOperator
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") unless
       arg_1_types.include?(a_type) && arg_2_types.include?(b_type)
 
+    @warnings << "Type mismatch #{a_type} #{@op} #{b_type}" if
+      a_type != b_type
+
     @content_type = result_type(a_type, b_type)
     type_stack.push(@content_type)
   end
@@ -1132,6 +1145,9 @@ class BinaryOperatorDivide < BinaryOperator
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
+
+    @warnings << "Type mismatch #{a_type} #{@op} #{b_type}" if
+      a_type != b_type
 
     @content_type = result_type(a_type, b_type)
     type_stack.push(@content_type)
@@ -1197,6 +1213,9 @@ class BinaryOperatorEqual < BinaryOperator
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
+    @warnings << "Type mismatch #{a_type} #{@op} #{b_type}" if
+      a_type != b_type
+
     @content_type = :boolean
     type_stack.push(@content_type)
   end
@@ -1234,6 +1253,9 @@ class BinaryOperatorNotEqual < BinaryOperator
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
+    @warnings << "Type mismatch #{a_type} #{@op} #{b_type}" if
+      a_type != b_type
+
     @content_type = :boolean
     type_stack.push(@content_type)
   end
@@ -1265,6 +1287,9 @@ class BinaryOperatorLess < BinaryOperator
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
+
+    @warnings << "Type mismatch #{a_type} #{@op} #{b_type}" if
+      a_type != b_type
 
     @content_type = :boolean
     type_stack.push(@content_type)
@@ -1299,6 +1324,9 @@ class BinaryOperatorLessEqual < BinaryOperator
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
+    @warnings << "Type mismatch #{a_type} #{@op} #{b_type}" if
+      a_type != b_type
+
     @content_type = :boolean
     type_stack.push(@content_type)
   end
@@ -1330,6 +1358,9 @@ class BinaryOperatorGreater < BinaryOperator
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
+
+    @warnings << "Type mismatch #{a_type} #{@op} #{b_type}" if
+      a_type != b_type
 
     @content_type = :boolean
     type_stack.push(@content_type)
@@ -1364,6 +1395,9 @@ class BinaryOperatorGreaterEqual < BinaryOperator
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       !compatible(a_type, b_type)
 
+    @warnings << "Type mismatch #{a_type} #{@op} #{b_type}" if
+      a_type != b_type
+
     @content_type = :boolean
     type_stack.push(@content_type)
   end
@@ -1394,6 +1428,9 @@ class BinaryOperatorAnd < BinaryOperator
 
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type)
+
+    @warnings << "Type mismatch #{a_type} #{@op} #{b_type}" if
+      a_type != b_type
 
     @content_type = :boolean
     @content_type = :integer if
@@ -1428,6 +1465,9 @@ class BinaryOperatorOr < BinaryOperator
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type)
 
+    @warnings << "Type mismatch #{a_type} #{@op} #{b_type}" if
+      a_type != b_type
+
     @content_type = :boolean
     @content_type = :integer if
       a_type == :integer && b_type == :integer && $options['int_bitwise'].value
@@ -1461,6 +1501,9 @@ class BinaryOperatorMax < BinaryOperator
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       b_type != a_type
 
+    @warnings << "Type mismatch #{a_type} #{@op} #{b_type}" if
+      a_type != b_type
+
     @content_type = a_type
     type_stack.push(@content_type)
   end
@@ -1491,6 +1534,9 @@ class BinaryOperatorMin < BinaryOperator
     raise(BASICExpressionError, "Type mismatch #{a_type} #{@op} #{b_type}") if
       !arg_types.include?(a_type) || !arg_types.include?(b_type) ||
       b_type != a_type
+
+    @warnings << "Type mismatch #{a_type} #{@op} #{b_type}" if
+      a_type != b_type
 
     @content_type = a_type
     type_stack.push(@content_type)

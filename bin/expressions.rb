@@ -1413,6 +1413,16 @@ class Expression
     end
   end
 
+  def warnings
+    warnings = []
+
+    @elements.each do |element|
+      warnings += element.warnings
+    end
+
+    warnings
+  end
+
   def uncache
     @elements.each { |element| element.uncache }
   end
@@ -1666,10 +1676,12 @@ end
 
 # base class for expressions
 class AbstractExpressionSet
+  attr_reader :warnings
   attr_reader :comprehension_effort
   attr_reader :expressions
 
   def initialize(tokens, my_shape)
+    @warnings = []
     @tokens = tokens
     @numeric_constant = tokens.size == 1 && tokens[0].numeric_constant?
     @text_constant = tokens.size == 1 && tokens[0].text_constant?
@@ -1909,6 +1921,10 @@ class ValueExpressionSet < AbstractExpressionSet
     @expressions.each do |expression|
       expression.set_constant
     end
+
+    @expressions.each do |expression|
+      @warnings += expression.warnings
+    end
   end
 
   def printable?
@@ -2013,6 +2029,10 @@ class DeclarationExpressionSet < AbstractExpressionSet
     @expressions.each do |expression|
       expression.set_constant
     end
+
+    @expressions.each do |expression|
+      @warnings += expression.warnings
+    end
   end
 
   private
@@ -2065,6 +2085,10 @@ class TargetExpressionSet < AbstractExpressionSet
 
     @expressions.each do |expression|
       expression.set_constant
+    end
+
+    @expressions.each do |expression|
+      @warnings += expression.warnings
     end
   end
 
@@ -2300,35 +2324,36 @@ class Assignment
     @functions = []
     @userfuncs = []
 
-    @targets = TargetExpressionSet.new(@token_lists[0], my_shape, false)
+    @targetset = TargetExpressionSet.new(@token_lists[0], my_shape, false)
 
     raise(BASICExpressionError, 'Duplicate targets') unless
-      @targets.to_ss.uniq.size == @targets.to_ss.size
+      @targetset.to_ss.uniq.size == @targetset.to_ss.size
 
-    @expression = ValueExpressionSet.new(@token_lists[2], my_shape)
+    @expressionset = ValueExpressionSet.new(@token_lists[2], my_shape)
 
-    @expressions = ValueExpressionSet.new(@token_lists[2], my_shape)
+    @warnings = @targetset.warnings
+    @warnings = @expressionset.warnings
 
     check_types
     make_references
 
     @comprehension_effort =
-      @targets.comprehension_effort + @expressions.comprehension_effort
+      @targetset.comprehension_effort + @expressionset.comprehension_effort
   end
 
   def uncache
-    @targets.uncache
-    @expressions.uncache
+    @targetset.uncache
+    @expressionset.uncache
   end
 
   def dump
     lines = []
 
-    lines += @targets.dump
-    lines += @expressions.dump
+    lines += @targetset.dump
+    lines += @expressionset.dump
 
-    ts = @targets.signature
-    es = @expressions.signature
+    ts = @targetset.signature
+    es = @expressionset.signature
     lines << "AssignmentOperator:= #{es} -> #{ts}"
   end
 
@@ -2367,8 +2392,8 @@ class Assignment
   def check_types
     # more left-hand values -> repeat last rhs
     # more rhs -> drop extra values
-    targets = @targets.expressions
-    expressions = @expressions.expressions
+    targets = @targetset.expressions
+    expressions = @expressionset.expressions
     
     targets.each_with_index do |target, index|
       j = [index, expressions.count - 1].min
@@ -2389,36 +2414,36 @@ class Assignment
   end
 
   def make_references
-    @numerics = @targets.numerics + @expressions.numerics
-    @num_symbols = @targets.num_symbols + @expressions.num_symbols
-    @strings = @targets.strings + @expressions.strings
-    @booleans = @targets.booleans + @expressions.booleans
-    @text_symbols = @targets.text_symbols + @expressions.text_symbols
-    @variables = @targets.variables + @expressions.variables
-    @operators = @targets.operators + @expressions.operators
-    @functions = @targets.functions + @expressions.functions
-    @userfuncs = @targets.userfuncs + @expressions.userfuncs
+    @numerics = @targetset.numerics + @expressionset.numerics
+    @num_symbols = @targetset.num_symbols + @expressionset.num_symbols
+    @strings = @targetset.strings + @expressionset.strings
+    @booleans = @targetset.booleans + @expressionset.booleans
+    @text_symbols = @targetset.text_symbols + @expressionset.text_symbols
+    @variables = @targetset.variables + @expressionset.variables
+    @operators = @targetset.operators + @expressionset.operators
+    @functions = @targetset.functions + @expressionset.functions
+    @userfuncs = @targetset.userfuncs + @expressionset.userfuncs
   end
 
   public
 
   def count_target
-    @targets.count
+    @targetset.count
   end
 
   def count_value
-    @expressions.count
+    @expressionset.count
   end
 
   def eval_value(interpreter)
-    @expressions.evaluate(interpreter)
+    @expressionset.evaluate(interpreter)
   end
 
   def eval_target(interpreter)
-    @targets.evaluate(interpreter)
+    @targetset.evaluate(interpreter)
   end
 
   def to_s
-    @targets.to_s + ' = ' + @expressions.to_s
+    @targetset.to_s + ' = ' + @expressionset.to_s
   end
 end

@@ -307,6 +307,7 @@ class AbstractValueElement < AbstractElement
   attr_reader :shape
   attr_reader :constant
   attr_reader :symbol
+  attr_reader :warnings
 
   def initialize
     super
@@ -317,6 +318,7 @@ class AbstractValueElement < AbstractElement
     @constant = false
     @value = nil
     @symbol = false
+    @warnings = []
   end
 
   def dump
@@ -1644,6 +1646,10 @@ class FileHandle < AbstractElement
     @number == other.number
   end
 
+  def warnings
+    []
+  end
+
   def to_s
     '#' + @number.to_s
   end
@@ -1671,6 +1677,10 @@ class CarriageControl
     @carriage = true
     @file_handle = false
     @comprehension_effort = 0
+  end
+
+  def warnings
+    []
   end
 
   def uncache ; end
@@ -1861,6 +1871,7 @@ class UserFunctionName < AbstractElement
   attr_reader :content_type
   attr_reader :shape
   attr_reader :constant
+  attr_reader :warnings
 
   def initialize(token)
     super()
@@ -1875,6 +1886,7 @@ class UserFunctionName < AbstractElement
     @precedence = 10
     @content_type = @name.content_type
     @shape = :scalar
+    @warnings = []
   end
 
   def set_content_type(type_stack)
@@ -1951,6 +1963,7 @@ class Variable < AbstractElement
   attr_reader :shape
   attr_reader :constant
   attr_reader :subscripts
+  attr_reader :warnings
 
   def initialize(variable_name, my_shape, subscripts, wrapped_subscripts)
     super()
@@ -1962,6 +1975,7 @@ class Variable < AbstractElement
     @content_type = @variable_name.content_type
     @shape = my_shape
     @constant = false
+    @warnings = []
     @valref = :value
     @subscripts = normalize_subscripts(subscripts)
     @wrapped_subscripts = wrapped_subscripts
@@ -2265,6 +2279,7 @@ class Declaration < AbstractElement
   attr_reader :content_type
   attr_reader :shape
   attr_reader :constant
+  attr_reader :warnings
 
   def initialize(variable_name)
     super()
@@ -2277,6 +2292,7 @@ class Declaration < AbstractElement
     @variable = true
     @content_type = @variable_name.content_type
     @shape = :unknown
+    @warnings = []
     @arg_types = []
     @arg_shapes = []
     @arg_consts = []
@@ -2354,12 +2370,14 @@ end
 # A list (needed because it has precedence value)
 class ExpressionList < AbstractElement
   attr_reader :expressions
+  attr_reader :warnings
 
   def initialize(expressions)
     super()
 
     @list = true
     @expressions = expressions
+    @warnings = []
     @variable = true
     @precedence = 10
   end
