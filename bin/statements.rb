@@ -5350,6 +5350,7 @@ class ArrLetStatement < AbstractLetStatement
     interpreter.set_default_args('CON1', l_dims)
     interpreter.set_default_args('RND1', l_dims)
     interpreter.set_default_args('RND1%', l_dims)
+    interpreter.set_default_args('RND1$', l_dims)
     interpreter.set_default_args('ZER1', l_dims)
 
     r_value = first_value(interpreter)
@@ -5357,6 +5358,7 @@ class ArrLetStatement < AbstractLetStatement
     interpreter.set_default_args('CON1', nil)
     interpreter.set_default_args('RND1', nil)
     interpreter.set_default_args('RND1%', nil)
+    interpreter.set_default_args('RND1$', nil)
     interpreter.set_default_args('ZER1', nil)
 
     r_dims = r_value.dimensions
