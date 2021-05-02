@@ -1725,6 +1725,10 @@ class CarriageControl
     false
   end
 
+  def has_tab
+    false
+  end
+
   def to_s
     case @operator
     when ';'
