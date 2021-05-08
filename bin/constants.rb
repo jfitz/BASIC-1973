@@ -1815,6 +1815,10 @@ class CarriageControl
       printer.print_item(',')
     end
   end
+
+  def compound_plot(printer, _)
+    printer.newline
+  end
 end
 
 # Hold a variable name
