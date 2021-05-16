@@ -711,8 +711,8 @@ class BinaryOperator < AbstractElement
     values = {}
 
     (base..n_cols).each do |col|
-      a_value = a.get_value(col)
-      b_value = b.get_value(col)
+      a_value = a.get_value_1(col)
+      b_value = b.get_value_1(col)
       coords = AbstractElement.make_coord(col)
       values[coords] = a_value.send(op, b_value)
     end
@@ -728,7 +728,7 @@ class BinaryOperator < AbstractElement
     values = {}
 
     (base..n_cols).each do |col|
-      b_value = b.get_value(col)
+      b_value = b.get_value_1(col)
       coords = AbstractElement.make_coord(col)
       values[coords] = a.send(op, b_value)
     end
@@ -744,7 +744,7 @@ class BinaryOperator < AbstractElement
     values = {}
 
     (base..n_cols).each do |col|
-      a_value = a.get_value(col)
+      a_value = a.get_value_1(col)
       coords = AbstractElement.make_coord(col)
       values[coords] = a_value.send(op, b)
     end
