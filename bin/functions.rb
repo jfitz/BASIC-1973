@@ -771,6 +771,34 @@ class FunctionCsc < AbstractFunction
   end
 end
 
+# function DEG
+class FunctionDeg < AbstractFunction
+  def initialize(text)
+    super
+
+    @shape = :scalar
+
+    @default_shape = :scalar
+    @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+  end
+
+  def evaluate(_, arg_stack)
+    args = arg_stack.pop
+
+    return @cached unless @cached.nil?
+
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
+      match_args_to_signature(args, @signature_1)
+
+    v = args[0].to_v
+    v1 = v * 180 / 3.14156926
+    res = NumericConstant.new(v1)
+
+    @cached = res if @constant && $options['cache_const_expr']
+    res
+  end
+end
+
 # function DET
 class FunctionDet < AbstractFunction
   def initialize(text)
@@ -2097,6 +2125,34 @@ class FunctionProd < AbstractFunction
 
     sum = args[0].prod
     res = NumericConstant.new(sum)
+
+    @cached = res if @constant && $options['cache_const_expr']
+    res
+  end
+end
+
+# function RAD
+class FunctionRad < AbstractFunction
+  def initialize(text)
+    super
+
+    @shape = :scalar
+
+    @default_shape = :scalar
+    @signature_1 = [{ 'type' => :numeric, 'shape' => :scalar }]
+  end
+
+  def evaluate(_, arg_stack)
+    args = arg_stack.pop
+
+    return @cached unless @cached.nil?
+
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
+      match_args_to_signature(args, @signature_1)
+
+    v = args[0].to_v
+    v1 = v * 3.14156926 / 180
+    res = NumericConstant.new(v1)
 
     @cached = res if @constant && $options['cache_const_expr']
     res
@@ -3686,6 +3742,7 @@ class FunctionFactory
     'COS' => FunctionCos,
     'COT' => FunctionCot,
     'CSC' => FunctionCsc,
+    'DEG' => FunctionDeg,
     'DET' => FunctionDet,
     'ERL' => FunctionErl,
     'ERR' => FunctionErr,
@@ -3731,6 +3788,7 @@ class FunctionFactory
     'PACK$' => FunctionPack,
     'PROD' => FunctionProd,
     'PROD%' => FunctionProd,
+    'RAD' => FunctionRad,
     'RIGHT' => FunctionRight,
     'RND' => FunctionRnd,
     'RND%' => FunctionRndI,
