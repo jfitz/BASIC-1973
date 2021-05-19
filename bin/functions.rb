@@ -1396,6 +1396,32 @@ class FunctionLog2 < AbstractFunction
   end
 end
 
+# function LOWER$
+class FunctionLowerT < AbstractFunction
+  def initialize(text)
+    super
+
+    @shape = :scalar
+
+    @default_shape = :scalar
+    @signature_1 = [{ 'type' => :string, 'shape' => :scalar }]
+  end
+
+  def evaluate(_, arg_stack)
+    args = arg_stack.pop
+
+    return @cached unless @cached.nil?
+
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
+      match_args_to_signature(args, @signature_1)
+
+    res = args[0].lower
+
+    @cached = res if @constant && $options['cache_const_expr']
+    res
+  end
+end
+
 # function MAXA
 class FunctionMaxA < AbstractFunction
   def initialize(text)
@@ -3401,6 +3427,32 @@ class FunctionUnpack < AbstractFunction
   end
 end
 
+# function UPPER$
+class FunctionUpperT < AbstractFunction
+  def initialize(text)
+    super
+
+    @shape = :scalar
+
+    @default_shape = :scalar
+    @signature_1 = [{ 'type' => :string, 'shape' => :scalar }]
+  end
+
+  def evaluate(_, arg_stack)
+    args = arg_stack.pop
+
+    return @cached unless @cached.nil?
+
+    raise BASICRuntimeError.new(:te_args_no_match, @name) unless
+      match_args_to_signature(args, @signature_1)
+
+    res = args[0].upper
+
+    @cached = res if @constant && $options['cache_const_expr']
+    res
+  end
+end
+
 # function TRN
 class FunctionTrn < AbstractFunction
   def initialize(text)
@@ -3653,6 +3705,7 @@ class FunctionFactory
     'LOG' => FunctionLog,
     'LOG10' => FunctionLog10,
     'LOG2' => FunctionLog2,
+    'LOWER$' => FunctionLowerT,
     'MAXA' => FunctionMaxA,
     'MAXA%' => FunctionMaxAI,
     'MAXA$' => FunctionMaxAT,
@@ -3707,6 +3760,7 @@ class FunctionFactory
     'TRN' => FunctionTrn,
     'UNPACK' => FunctionUnpack,
     'UNPACK%' => FunctionUnpack,
+    'UPPER$' => FunctionUpperT,
     'VAL' => FunctionVal,
     'ZER' => FunctionZer2,
     'ZER1' => FunctionZer1,

@@ -1514,6 +1514,14 @@ class TextConstant < AbstractValueElement
 
     BASICArray.new(dims, values)
   end
+
+  def lower
+    TextConstant.new(@value.downcase)
+  end
+
+  def upper
+    TextConstant.new(@value.upcase)
+  end
 end
 
 # Boolean constants
