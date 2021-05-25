@@ -496,6 +496,7 @@ The OPTION command overrides the command-line setting.
 |INT_FLOOR |NLP |TRUE or FALSE |FALSE |Sets truncation towards negative infinity instead of towards zero
 |LOCK_FORNEXT |NLP |TRUE or FALSE |FALSE |Do not allow changes to FOR/NEXT control variables within the loop
 |MATCH_FORNEXT |NLP |TRUE or FALSE |FALSE |Require exact pairing of FOR and NEXT statements
+|MAX_DIM |NLP |numeric |100 |Limits the dimensions of arrays and matrices
 |MAX_LINE_NUM |N |numeric |9999 |Maximum line number allowed
 |MIN_LINE_NUM |N |numeric |1 |Minimum line number allowed
 |MIN_MAX_OP |N |TRUE or FALSE |FALSE |Allow MIN and MAX operators
@@ -1064,6 +1065,9 @@ A program may set the upper bounds lower, and then raise them, and the original 
     40 REM code with A and smaller dimensions - A(10,6) is allowed, but not A(11,7)
     50 DIM A(20,10)
     60 PRINT A(11,7) ' prints 5
+
+The MAX_DIM option specifies the limit for dimensions.
+The default limit is 100.
 
 END
 ~~~
