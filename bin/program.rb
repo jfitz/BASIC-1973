@@ -10,7 +10,7 @@ class LineNumber
 
     raise BASICSyntaxError, "Invalid line number '#{@line_number}'" unless
       @line_number >= $options['min_line_num'].value
-    
+
     raise BASICSyntaxError, "Invalid line number '#{@line_number}'" unless
       @line_number <= $options['max_line_num'].value
   end
@@ -173,7 +173,7 @@ class Line
   end
 
   def uncache
-    @statements.each { |statement| statement.uncache }
+    @statements.each(&:uncache)
   end
 
   def list
@@ -400,9 +400,7 @@ class Program
     index = line_numbers.index(line_number)
     line_number = line_numbers[index + 1]
 
-    unless line_number.nil?
-      return LineNumberIdx.new(line_number, 0)
-    end
+    return LineNumberIdx.new(line_number, 0) unless line_number.nil?
 
     # nothing left to execute
     nil
@@ -563,7 +561,7 @@ class Program
     end
 
     raise(BASICCommandError, 'Invalid renumber step') if step.zero?
-    
+
     [start, step]
   end
 
@@ -590,7 +588,7 @@ class Program
     raise(BASICCommandError, 'No program loaded') if @lines.empty?
 
     texts = []
-    
+
     # report statistics
     texts << 'Statistics:'
     texts << ''
@@ -623,9 +621,7 @@ class Program
     @lines.keys.sort.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
-      statements.each do |statement|
-        statement.reset_profile_metrics
-      end
+      statements.each(&:reset_profile_metrics)
     end
   end
 
@@ -1268,7 +1264,7 @@ class Program
       lines = refs[ref]
       line_refs = lines.map(&:to_s).uniq.join(', ')
 
-      texts << token + ":" + spaces + line_refs
+      texts << token + ':' + spaces + line_refs
     end
 
     texts << ''
@@ -1296,12 +1292,12 @@ class Program
         n_spaces = num_spaces - token.size + 2
         spaces = ' ' * n_spaces
 
-        texts << token + ":" + spaces + line_refs
+        texts << token + ':' + spaces + line_refs
       else
         n_spaces = 5
         spaces = ' ' * n_spaces
 
-        texts << token + ":"
+        texts << token + ':'
         texts << spaces + line_refs
       end
     end
@@ -1359,7 +1355,7 @@ class Program
 
     texts
   end
-  
+
   def make_summary(list)
     summary = {}
 
@@ -1382,7 +1378,7 @@ class Program
     raise(BASICCommandError, 'No program loaded') if @lines.empty?
 
     texts = []
-    
+
     texts << 'Cross reference'
     texts << ''
 

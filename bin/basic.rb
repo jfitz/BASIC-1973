@@ -702,8 +702,8 @@ int_1 = { type: :int, max: 1, min: 0 }
 int_32767 = { type: :int, max: 32767, min: 999 }
 separator = { type: :list, values: %w[COMMA SEMI NL NONE] }
 
-all_types = %i[new, loaded, runtime]
-loaded = %i[new, loaded]
+all_types = %i[new loaded runtime]
+loaded = %i[new loaded]
 only_new = %i[new]
 
 $options = {}

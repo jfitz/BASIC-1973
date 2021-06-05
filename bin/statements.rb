@@ -304,7 +304,7 @@ class AbstractStatement
   private
 
   def extract_modifiers(tokens_lists)
-    while make_modifier(tokens_lists) ; end
+    while make_modifier(tokens_lists); end
 
     @modifiers.each do |modifier|
       @errors += modifier.errors
@@ -320,10 +320,10 @@ class AbstractStatement
   def uncache
     uncache_core
     
-    @modifiers.each { |modifier| modifier.uncache }
+    @modifiers.each(&:uncache)
   end
 
-  def uncache_core ; end
+  def uncache_core; end
 
   def pretty
     AbstractToken.pretty_tokens(@keywords, @tokens)
@@ -533,17 +533,9 @@ class AbstractStatement
 
     text = ''
 
-    if index < 0
-      text = pre_trace(index)
-    end
-
-    if index.zero?
-      text = core_trace
-    end
-
-    if index > 0
-      text = post_trace(index)
-    end
+    text = pre_trace(index) if index < 0
+    text = core_trace if index.zero?
+    text = post_trace(index) if index > 0
 
     text = ' ' + text unless text.empty?
     text = current_line_index.to_s + ':' + text
@@ -1276,7 +1268,7 @@ module InputFunctions
   end
 
   def uncache_core
-    @items.each {|item| item.uncache }
+    @items.each(&:uncache)
   end
 
   def file_values(fhr, interpreter)
@@ -1333,9 +1325,7 @@ module PrintFunctions
 
   def uncache_core
     @items.each do |item|
-      if item.class.to_s == 'Array'
-        item.each { |it| it.uncache }
-      end
+      item.each(&:uncache) if item.class.to_s == 'Array'
     end
   end
 
@@ -1427,7 +1417,7 @@ module ReadFunctions
   end
 
   def uncache_core
-    @items.each {|item| item.uncache }
+    @items.each(&:uncache)
   end
 end
 
@@ -1463,7 +1453,7 @@ module WriteFunctions
   end
 
   def uncache_core
-    @items.each {|item| item.uncache }
+    @items.each(&:uncache)
   end
 end
 
@@ -1834,7 +1824,7 @@ class DimStatement < AbstractStatement
           @errors << 'Invalid ' + tokens_list.map(&:to_s).join + ' ' + e.to_s
         end
       end
-      
+
       @elements = make_references(@declarations)
 
       @declarations.each do |expression|
@@ -2042,7 +2032,7 @@ class ForStatement < AbstractStatement
         @step = ValueExpressionSet.new(tokens_lists[4], :scalar)
       rescue BASICExpressionError => e
         @errors << e.message
-     end
+      end
     elsif check_template(tokens_lists, template_step_to)
       begin
         tokens1, tokens2 = control_and_start(tokens_lists[0])
@@ -2143,7 +2133,7 @@ class ForStatement < AbstractStatement
     @elements[:functions] = []
     @elements[:userfuncs] = []
 
-    if !@start.nil?
+    unless @start.nil?
       @elements[:numerics] += @start.numerics
       @elements[:strings] += @start.strings
       @elements[:booleans] += @start.booleans
@@ -2152,8 +2142,8 @@ class ForStatement < AbstractStatement
       @elements[:functions] += @start.functions
       @elements[:userfuncs] += @start.userfuncs
     end
-    
-    if !@end.nil?
+
+    unless @end.nil?
       @elements[:numerics] += @end.numerics
       @elements[:strings] += @end.strings
       @elements[:booleans] += @end.booleans
@@ -2163,7 +2153,7 @@ class ForStatement < AbstractStatement
       @elements[:userfuncs] += @end.userfuncs
     end
 
-    if !@step.nil?
+    unless @step.nil?
       @elements[:numerics] += @step.numerics
       @elements[:strings] += @step.strings
       @elements[:booleans] += @step.booleans
@@ -2173,7 +2163,7 @@ class ForStatement < AbstractStatement
       @elements[:userfuncs] += @step.userfuncs
     end
 
-    if !@until.nil?
+    unless @until.nil?
       @elements[:numerics] += @until.numerics
       @elements[:strings] += @until.strings
       @elements[:booleans] += @until.booleans
@@ -2183,7 +2173,7 @@ class ForStatement < AbstractStatement
       @elements[:userfuncs] += @until.userfuncs
     end
 
-    if !@while.nil?
+    unless @while.nil?
       @elements[:numerics] += @while.numerics
       @elements[:strings] += @while.strings
       @elements[:booleans] += @while.booleans
@@ -2228,16 +2218,16 @@ class ForStatement < AbstractStatement
     step = NumericConstant.new(1)
     step = @step.evaluate(interpreter)[0] unless @step.nil?
 
-    if !@end.nil?
+    unless @end.nil?
       to = @end.evaluate(interpreter)[0]
       fornext_control = ForToControl.new(@control, from, step, to)
     end
 
-    if !@until.nil?
+    unless @until.nil?
       fornext_control = ForUntilControl.new(@control, from, step, @until)
     end
 
-    if !@while.nil?
+    unless @while.nil?
       fornext_control = ForWhileControl.new(@control, from, step, @while)
     end
 
@@ -2349,7 +2339,7 @@ class GetStatement < AbstractStatement
 
   include FileFunctions
   include InputFunctions
-  
+
   def initialize(line_number, keywords, tokens_lists)
     super
 
@@ -2769,7 +2759,7 @@ class AbstractIfStatement < AbstractStatement
     if tokens_lists.class.to_s == 'Hash'
       @expression = parse_expression(tokens_lists['expr'])
       @errors << 'TAB() not allowed' if @expression.has_tab
-      
+
       @warnings << 'Constant expression' if
         !@expression.nil? && @expression.constant
 
@@ -2838,12 +2828,12 @@ class AbstractIfStatement < AbstractStatement
           @errors << 'Invalid substatement' unless @statement.may_be_if_sub
           @warnings += @statement.warnings
         end
-        
+
         unless @else_stmt.nil?
           @errors << 'Invalid substatement' unless @else_stmt.may_be_if_sub
           @warnings += @else_stmt.warnings
         end
-      
+
         unless @destination.nil?
           if @destination > line_number
             @comprehension_effort += 1
@@ -4229,7 +4219,7 @@ class PrintStatement < AbstractStatement
     j = 0
     while j < @items.size
       item = @items[j]
-      
+
       if item.class.to_s == 'Array'
         i = 0
         last_was_printable = false
@@ -4268,7 +4258,7 @@ class PrintStatement < AbstractStatement
         fhr = interpreter.console_io
 
         # FIX: if item is not Array, throw exception
-        
+
         last_was_printable = false
 
         i = 0
@@ -5058,7 +5048,7 @@ class ArrInputStatement < AbstractStatement
 
         interpreter.set_dimensions(target, target.dimensions) if
           target.dimensions?
-        
+
         # make sure dimension is one
         dims = interpreter.get_dimensions(name)
         raise(BASICExpressionError, 'Not an array') unless dims.size == 1
@@ -5128,7 +5118,7 @@ class ArrPlotStatement < AbstractStatement
       @items.each do |item|
         if item.class.to_s == 'ValueExpressionSet'
           @errors << 'Wrong type' unless
-            [:numeric, :integer].include?(item.content_type)
+            %i[numeric integer].include?(item.content_type)
         end
       end
 
@@ -5524,8 +5514,8 @@ class ArrLetStatement < AbstractLetStatement
 
   def execute_core(interpreter)
     l_values = @assignment.eval_target(interpreter)
-    l_value = l_values[0]
-    l_dims = interpreter.get_dimensions(l_value.name)
+    l_value0 = l_values[0]
+    l_dims = interpreter.get_dimensions(l_value0.name)
 
     interpreter.set_default_args('CON1', l_dims)
     interpreter.set_default_args('RND1', l_dims)
@@ -5685,7 +5675,7 @@ class MatInputStatement < AbstractStatement
         if dims.size == 1
           base = $options['base'].value
           (base..dims[0].to_i).each do |col|
-            coord = AbstractElement.make_coord(col)
+            coords = AbstractElement.make_coord(col)
             wcoords = interpreter.wrap_subscripts(name, coords)
             variable = Variable.new(name, :matrix, coords, wcoords)
             item_names << variable
@@ -5758,10 +5748,9 @@ class MatPlotStatement < AbstractStatement
       @items.each do |item|
         if item.class.to_s == 'ValueExpressionSet'
           @errors << 'Wrong type' unless
-            [:numeric, :integer].include?(item.content_type)
+            %i[numeric integer].include?(item.content_type)
         end
       end
-
 
       @elements = make_references(@items, @file_tokens)
       @items.each { |item| @comprehension_effort += item.comprehension_effort }
@@ -5876,7 +5865,7 @@ class MatPrintStatement < AbstractStatement
     j = 0
     while j < @items.size
       item = @items[j]
-      
+
       if item.class.to_s == 'Array'
         i = 0
         last_was_printable = false
@@ -5958,7 +5947,7 @@ class MatPrintStatement < AbstractStatement
               carriage = CarriageControl.new('')
               carriage.print(fhr, interpreter)
             end
-            
+
             formats = nil
             item.compound_print(fhr, interpreter, formats)
           else
@@ -6189,7 +6178,7 @@ class MatLetStatement < AbstractLetStatement
 
         @warnings << 'Extra values ignored' if
           @assignment.count_value > @assignment.count_target
-        
+
         @elements = make_references(nil, @assignment)
         @comprehension_effort += @assignment.comprehension_effort
       rescue BASICRuntimeError => e
@@ -6203,8 +6192,8 @@ class MatLetStatement < AbstractLetStatement
 
   def execute_core(interpreter)
     l_values = @assignment.eval_target(interpreter)
-    l_value = l_values[0]
-    l_dims = interpreter.get_dimensions(l_value.name)
+    l_value0 = l_values[0]
+    l_dims = interpreter.get_dimensions(l_value0.name)
 
     interpreter.set_default_args('CON2', l_dims)
     interpreter.set_default_args('CON', l_dims)
