@@ -105,7 +105,7 @@ class IfModifier < AbstractModifier
     interpreter.next_line_index = get_counterpart(interpreter)
   end
 
-  def execute_post(_) end
+  def execute_post(_interpreter) end
 end
 
 # UNLESS
@@ -180,7 +180,7 @@ class UnlessModifier < AbstractModifier
     interpreter.next_line_index = get_counterpart(interpreter)
   end
 
-  def execute_post(_) end
+  def execute_post(_interpreter) end
 end
 
 # WHILE
@@ -380,7 +380,7 @@ class ForModifier < AbstractModifier
   end
 
   def self.extra_keywords
-    %w[TO STEP UNTIL]
+    %w[STEP TO UNTIL WHILE]
   end
 
   def initialize(control_and_start_tokens, step_tokens, end_tokens, until_tokens, while_tokens)
