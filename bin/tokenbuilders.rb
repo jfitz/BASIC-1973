@@ -395,7 +395,7 @@ class NumericSymbolTokenBuilder
   attr_reader :count
 
   def try(text)
-    legals = %w(PI)
+    legals = %w(PI EUL AUR)
 
     candidate = ''
     i = 0

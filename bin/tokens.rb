@@ -413,7 +413,9 @@ class NumericSymbolToken < AbstractToken
     @is_symbol_constant = true
 
     @values = {
-      'PI' => 3.1415926
+      'PI' => 3.14159265358979,
+      'EUL' => 2.71828182845905,
+      'AUR' => 1.61803398874989
     }
   end
 

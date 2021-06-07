@@ -520,8 +520,7 @@ def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads)
   allow_hash_constant = $options['allow_hash_constant'].value
   tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
   tokenbuilders << IntegerTokenBuilder.new
-  allow_pi = $options['allow_pi'].value
-  tokenbuilders << NumericSymbolTokenBuilder.new if allow_pi
+  tokenbuilders << NumericSymbolTokenBuilder.new
   allow_ascii = $options['allow_ascii'].value
   tokenbuilders << TextSymbolTokenBuilder.new if allow_ascii
   tokenbuilders << VariableTokenBuilder.new
@@ -535,7 +534,7 @@ def make_command_tokenbuilders(quotes)
   keywords = %w[
     ANALYZE BREAK NOBREAK BRACKETS CROSSREF DELETE DIMS EXIT IF LIST LOAD NEW
     OPTION PARSE PRETTY PROFILE RENUMBER RUN SAVE TOKENS UDFS VARS
-    ALLOW_ASCII ALLOW_HASH_CONSTANT ALLOW_PI APOSTROPHE_COMMENT ASC_ALLOW_ALL
+    ALLOW_ASCII ALLOW_HASH_CONSTANT APOSTROPHE_COMMENT ASC_ALLOW_ALL
     BACK_TAB BACKSLASH_SEPARATOR BANG_COMMENT BASE
     CACHE_CONST_EXPR
     CHR_ALLOW_ALL COLON_FILE COLON_SEPARATOR CRLF_ON_LINE_INPUT
@@ -637,7 +636,6 @@ OptionParser.new do |opt|
   opt.on('--no-colon-separator') { |o| options[:no_colon_sep] = o }
   opt.on('--crlf-on-line-input') { |o| options[:crlf_on_line_input] = o }
   opt.on('--define-ascii') { |o| options[:allow_ascii] = o }
-  opt.on('--define-pi') { |o| options[:allow_pi] = o }
 
   opt.on('--no-detect-infinite-loop') do |o|
     options[:no_detect_infinite_loop] = o
@@ -713,8 +711,6 @@ $options['allow_ascii'] =
 
 $options['allow_hash_constant'] =
   Option.new(only_new, boolean, options.key?(:hash_constant))
-
-$options['allow_pi'] = Option.new(only_new, boolean, options.key?(:allow_pi))
 
 $options['apostrophe_comment'] =
   Option.new(only_new, boolean, options.key?(:apostrophe_comment))
