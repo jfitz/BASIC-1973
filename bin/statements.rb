@@ -4299,7 +4299,12 @@ class PrintStatement < AbstractStatement
             end
           end
 
-          item.print(fhr, interpreter)
+          if item.carriage_control?
+            item.print(fhr, interpreter)
+          else
+            item.print(fhr, interpreter)
+          end
+
           last_was_printable = !item.carriage_control?
 
           i += 1
@@ -4936,7 +4941,12 @@ class WriteStatement < AbstractStatement
         end
       end
 
-      item.write(fhr, interpreter)
+      if item.carriage_control?
+        item.write(fhr, interpreter)
+      else
+        item.write(fhr, interpreter)
+      end
+
       last_was_printable = !item.carriage_control?
 
       i += 1
@@ -5254,11 +5264,13 @@ class ArrPrintStatement < AbstractStatement
               carriage = CarriageControl.new('')
               carriage.print(fhr, interpreter)
             end
+          end
 
+          if it.carriage_control?
+            it.print(fhr, interpreter)
+          else
             formats = nil
             it.compound_print(fhr, interpreter, formats)
-          else
-            it.print(fhr, interpreter)
           end
 
           last_was_printable = !it.carriage_control?
@@ -5316,11 +5328,13 @@ class ArrPrintStatement < AbstractStatement
               carriage = CarriageControl.new('')
               carriage.print(fhr, interpreter)
             end
+          end
 
+          if item.carriage_control?
+            item.print(fhr, interpreter)
+          else
             formats = nil
             item.compound_print(fhr, interpreter, formats)
-          else
-            item.print(fhr, interpreter)
           end
 
           last_was_printable = !item.carriage_control?
@@ -5464,10 +5478,12 @@ class ArrWriteStatement < AbstractStatement
           carriage = CarriageControl.new('')
           carriage.write(fhr, interpreter)
         end
+      end
 
-        item.compound_write(fhr, interpreter)
-      else
+      if item.carriage_control?
         item.write(fhr, interpreter)
+      else
+        item.compound_write(fhr, interpreter)
       end
 
       last_was_printable = !item.carriage_control?
@@ -5899,15 +5915,15 @@ class MatPrintStatement < AbstractStatement
               carriage = CarriageControl.new('')
               carriage.print(fhr, interpreter)
             end
+          end
 
-            formats = nil
-            it.compound_print(fhr, interpreter, formats)
-          else
+          if it.carriage_control?
             # MAT PRINT has different operations for carriage controls
             carriage = map_carriage(it)
-
-            # print the revised carriage control
             carriage.print(fhr, interpreter)
+          else
+            formats = nil
+            it.compound_print(fhr, interpreter, formats)
           end
 
           last_was_printable = !it.carriage_control?
@@ -5967,13 +5983,15 @@ class MatPrintStatement < AbstractStatement
               carriage = CarriageControl.new('')
               carriage.print(fhr, interpreter)
             end
+          end
 
-            formats = nil
-            item.compound_print(fhr, interpreter, formats)
-          else
+          if item.carriage_control?
             # MAT PRINT has different operations for carriage controls
             carriage = map_carriage(item)
             carriage.print(fhr, interpreter)
+          else
+            formats = nil
+            item.compound_print(fhr, interpreter, formats)
           end
 
           last_was_printable = !item.carriage_control?
@@ -6157,10 +6175,12 @@ class MatWriteStatement < AbstractStatement
           carriage = CarriageControl.new('')
           carriage.write(fhr, interpreter)
         end
+      end
 
-        item.compound_write(fhr, interpreter)
-      else
+      if item.carriage_control?
         item.write(fhr, interpreter)
+      else
+        item.compound_write(fhr, interpreter)
       end
 
       last_was_printable = !item.carriage_control?
