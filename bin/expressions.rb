@@ -450,7 +450,7 @@ class AbstractCompound
     values_sorted[mid].to_v
   end
 
-  def plot_1(printer, _interpreter)
+  def plot_1(printer)
     base = $options['base'].value
     upper = @dimensions[0].to_i
 
@@ -546,7 +546,7 @@ class AbstractCompound
     end
   end
 
-  def plot_2(printer, _interpreter)
+  def plot_2(printer)
     base = $options['base'].value
     upper_r = @dimensions[0].to_i
     upper_c = @dimensions[1].to_i
@@ -739,34 +739,34 @@ class BASICArray < AbstractCompound
     'ARRAY: ' + @values.to_s
   end
 
-  def plot(printer, interpreter)
+  def plot(printer, _interpreter)
     case @dimensions.size
     when 0
       raise BASICSyntaxError, 'Need dimension in array'
     when 1
-      plot_1(printer, interpreter)
+      plot_1(printer)
     else
       raise BASICSyntaxError, 'Too many dimensions in array'
     end
   end
 
-  def print(printer, interpreter, formats)
+  def print(printer, _interpreter, formats)
     case @dimensions.size
     when 0
       raise BASICSyntaxError, 'Need dimension in array'
     when 1
-      print_1(printer, interpreter, formats)
+      print_1(printer, formats)
     else
       raise BASICSyntaxError, 'Too many dimensions in array'
     end
   end
 
-  def write(printer, interpreter)
+  def write(printer, _interpreter)
     case @dimensions.size
     when 0
       raise BASICSyntaxError, 'Need dimension in array'
     when 1
-      write_1(printer, interpreter)
+      write_1(printer)
     else
       raise BASICSyntaxError, 'Too many dimensions in array'
     end
@@ -878,7 +878,7 @@ class BASICArray < AbstractCompound
     prod
   end
 
-  def print_1(printer, interpreter, formats)
+  def print_1(printer, formats)
     n_cols = @dimensions[0].to_i
 
     base = $options['base'].value
@@ -899,11 +899,11 @@ class BASICArray < AbstractCompound
         end
       end
 
-      fs_carriage.print(printer, interpreter) if col < n_cols
+      fs_carriage.print(printer) if col < n_cols
     end
   end
 
-  def write_1(printer, interpreter)
+  def write_1(printer)
     n_cols = @dimensions[0].to_i
 
     base = $options['base'].value
@@ -913,7 +913,7 @@ class BASICArray < AbstractCompound
     (base..n_cols).each do |col|
       value = get_value_1(col)
       value.write(printer)
-      fs_carriage.write(printer, interpreter) if col < n_cols
+      fs_carriage.write(printer) if col < n_cols
     end
   end
 end
@@ -1027,40 +1027,40 @@ class Matrix < AbstractCompound
     'MATRIX: ' + @values.to_s
   end
 
-  def plot(printer, interpreter)
+  def plot(printer, _interpreter)
     case @dimensions.size
     when 0
       raise BASICSyntaxError, 'Need dimension in matrix'
     when 1
-      plot_1(printer, interpreter)
+      plot_1(printer)
     when 2
-      plot_2(printer, interpreter)
+      plot_2(printer)
     else
       raise BASICSyntaxError, 'Too many dimensions in matrix'
     end
   end
 
-  def print(printer, interpreter, formats)
+  def print(printer, _interpreter, formats)
     case @dimensions.size
     when 0
       raise BASICSyntaxError, 'Need dimensions in matrix'
     when 1
-      print_1(printer, interpreter, formats)
+      print_1(printer, formats)
     when 2
-      print_2(printer, interpreter, formats)
+      print_2(printer, formats)
     else
       raise BASICSyntaxError, 'Too many dimensions in matrix'
     end
   end
 
-  def write(printer, interpreter)
+  def write(printer, _interpreter)
     case @dimensions.size
     when 0
       raise BASICSyntaxError, 'Need dimensions in matrix'
     when 1
-      write_1(printer, interpreter)
+      write_1(printer)
     when 2
-      write_2(printer, interpreter)
+      write_2(printer)
     else
       raise BASICSyntaxError, 'Too many dimensions in matrix'
     end
@@ -1124,7 +1124,7 @@ class Matrix < AbstractCompound
 
   private
 
-  def print_1(printer, interpreter, formats)
+  def print_1(printer, formats)
     n_cols = @dimensions[0].to_i
 
     base = $options['base'].value
@@ -1147,13 +1147,13 @@ class Matrix < AbstractCompound
         end
       end
 
-      fs_carriage.print(printer, interpreter) if col < n_cols
+      fs_carriage.print(printer) if col < n_cols
     end
 
-    rs_carriage.print(printer, interpreter)
+    rs_carriage.print(printer)
   end
 
-  def print_2(printer, interpreter, formats)
+  def print_2(printer, formats)
     n_rows = @dimensions[0].to_i
     n_cols = @dimensions[1].to_i
 
@@ -1177,16 +1177,16 @@ class Matrix < AbstractCompound
           end
         end
 
-        fs_carriage.print(printer, interpreter) if col < n_cols
+        fs_carriage.print(printer) if col < n_cols
       end
 
-      gs_carriage.print(printer, interpreter) if row < n_rows
+      gs_carriage.print(printer) if row < n_rows
     end
 
-    rs_carriage.print(printer, interpreter)
+    rs_carriage.print(printer)
   end
 
-  def write_1(printer, interpreter)
+  def write_1(printer)
     n_cols = @dimensions[0].to_i
 
     base = $options['base'].value
@@ -1197,13 +1197,13 @@ class Matrix < AbstractCompound
     (base..n_cols).each do |col|
       value = get_value_1(col)
       value.write(printer)
-      fs_carriage.write(printer, interpreter) if col < n_cols
+      fs_carriage.write(printer) if col < n_cols
     end
 
-    rs_carriage.write(printer, interpreter)
+    rs_carriage.write(printer)
   end
 
-  def write_2(printer, interpreter)
+  def write_2(printer)
     n_rows = @dimensions[0].to_i
     n_cols = @dimensions[1].to_i
 
@@ -1216,13 +1216,13 @@ class Matrix < AbstractCompound
       (base..n_cols).each do |col|
         value = get_value_2(row, col)
         value.write(printer)
-        fs_carriage.write(printer, interpreter) if col < n_cols
+        fs_carriage.write(printer) if col < n_cols
       end
 
-      gs_carriage.write(printer, interpreter) if row < n_rows
+      gs_carriage.write(printer) if row < n_rows
     end
 
-    rs_carriage.write(printer, interpreter)
+    rs_carriage.write(printer)
   end
 
   def determinant_2

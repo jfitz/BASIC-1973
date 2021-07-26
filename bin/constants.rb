@@ -1774,7 +1774,7 @@ class CarriageControl
     []
   end
 
-  def print(printer, _)
+  def print(printer)
     case @operator
     when ','
       printer.tab
@@ -1787,7 +1787,7 @@ class CarriageControl
     end
   end
 
-  def write(printer, _)
+  def write(printer)
     case @operator
     when ','
       printer.print_item(@operator)
