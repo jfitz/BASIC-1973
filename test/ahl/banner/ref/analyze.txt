@@ -19,6 +19,340 @@ Halstead complexity:
  intelligence: 141.189
  time: 298.911
 
+(0 1) 100 REM PROGRAM WRITTEN BY DANIEL R. VERNON
+(0 1) 110 REM SENIOR AT BUTLER SENIOR HIGH SCHOOL
+(0 1) 120 REM           BUTLER, PENNSYLVANIA 16001
+(0 1) 130 REM DATE: 2/1/73
+(0 1) 140 REM COMPUTER SUPERVISION: MR. WILLIAM ELLIS
+(0 1) 150 REM COMPUTER TOPICS INSTRUCTION: MR. ALBERT STEWART
+(0 1) 160 REM
+(0 1) 170 REM THIS PROGRAM DESIGNED TO CREATE POSTERS
+(0 1) 180 REM
+(0 6) 190 DIM G$(6), H$(6), B$(9), G(6), A(54)
+(0 2) 200 PRINT "INPUT HEIGHTH, WIDTH IN INCHES";
+(2 3)     INPUT L, R
+(0 3)     S = 0
+(0 4)     A = R * 2
+(0 3)     C = A
+(0 2) 210 PRINT "HOW FAR, IN INCHES FROM THE LEFT HAND SIDE, DO YOU WANT TO PLACE "
+(0 2) 220 PRINT "THE LETTERS";
+(1 2)     INPUT S
+(0 4)     S = 12 * S
+(0 2) 230 PRINT "INPUT MESSAGE HERE"
+(1 2) 240 LINPUT B$
+(0 3) 250 CHANGE B$ TO A
+(1 3) 260 FOR X = 1 TO 6
+(1 2)     READ H$(X)
+(0 1)     NEXT X
+(0 3)     H$ = H$(L)
+(0 2)     GOSUB 940
+(0 4) 270 F = F + 1
+(1 4)     IF F > A(0) THEN 990
+(0 3)     G(0) = L
+(1 3)     FOR X = 1 TO 6
+(0 3)     G(X) = A(F)
+(0 1)     NEXT X
+(0 3)     CHANGE G TO G$
+(1 3) 280 FOR X = 1 TO 6
+(0 3)     G(0) = X
+(0 3)     CHANGE G TO G$(X)
+(0 1)     NEXT X
+(1 4) 290 FOR X = 1 TO A / 2
+(0 2)     PRINT
+(0 1)     NEXT X
+(1 4) 300 IF A(F) = 46 THEN 345
+(1 4)     IF A(F) = 36 THEN 990
+(1 4)     IF A(F) = 32 THEN 630
+(1 5)     IF A(F) < 48 THEN 270
+(1 4) 309 IF A(F) > 57 THEN 310
+(10 13)     ON A(F) - 47 GOTO 500, 440, 620, 625, 635, 550, 615, 605, 595, 585
+(1 5) 310 IF A(F) < 65 THEN 270
+(1 4)     IF A(F) > 79 THEN 330
+(15 18) 320 ON A(F) - 64 GOTO 350, 360, 370, 380, 390, 400, 410, 430, 440, 450, 460, 470, 480, 490, 500
+(1 5) 330 IF A > 90 THEN 270
+(11 14)     ON A(F) - 79 GOTO 510, 520, 540, 550, 560, 570, 580, 590, 600, 610, 620
+(0 3) 340 GOTO 270
+(1 3) 345 FOR X = 1 TO A
+(0 5)     PRINT TAB(S); G$; G$
+(0 1)     NEXT X
+(0 3)     GOTO 270
+(0 2) 350 GOSUB 640
+(0 2)     GOSUB 690
+(0 2)     GOSUB 640
+(0 3)     GOTO 270
+(0 2) 360 GOSUB 640
+(0 2)     GOSUB 650
+(0 4)     A = C * .5
+(0 2)     GOSUB 640
+(0 3)     A = C
+(0 2)     GOSUB 610
+(0 3)     GOTO 270
+(0 2) 370 GOSUB 640
+(0 2)     GOSUB 700
+(0 2)     GOSUB 700
+(0 3)     GOTO 270
+(0 2) 380 GOSUB 640
+(0 2)     GOSUB 700
+(0 4)     A = C * .5
+(0 2)     GOSUB 640
+(0 3)     A = C
+(0 2)     GOSUB 640
+(0 3)     GOTO 270
+(0 2) 390 GOSUB 640
+(0 2)     GOSUB 650
+(0 2)     GOSUB 650
+(0 3)     GOTO 270
+(0 2) 400 GOSUB 640
+(0 2)     GOSUB 690
+(0 2)     GOSUB 690
+(0 3)     GOTO 270
+(0 2) 410 GOSUB 640
+(0 4)     A = C * .75
+(0 2)     GOSUB 700
+(0 4)     A = C * .25
+(0 2)     GOSUB 650
+(0 3)     A = C
+(0 2)     GOSUB 760
+(0 4) 420 A = C * .25
+(0 2)     GOSUB 710
+(0 3)     A = C
+(0 3)     GOTO 270
+(0 2) 430 GOSUB 640
+(0 2)     GOSUB 710
+(0 2)     GOSUB 640
+(0 3)     GOTO 270
+(0 2) 440 GOSUB 640
+(0 3)     GOTO 270
+(0 2) 450 GOSUB 750
+(0 2)     GOSUB 740
+(0 2)     GOSUB 640
+(0 3)     GOTO 270
+(0 2) 460 GOSUB 640
+(0 2)     GOSUB 860
+(0 3)     GOTO 270
+(0 2) 470 GOSUB 640
+(0 2)     GOSUB 740
+(0 2)     GOSUB 740
+(0 3)     GOTO 270
+(0 2) 480 GOSUB 640
+(0 2)     GOSUB 890
+(0 2)     GOSUB 880
+(0 2)     GOSUB 640
+(0 3)     GOTO 270
+(0 2) 490 GOSUB 640
+(0 2)     GOSUB 890
+(0 2)     GOSUB 640
+(0 3)     GOTO 270
+(0 2) 500 GOSUB 640
+(0 2)     GOSUB 700
+(0 2)     GOSUB 640
+(0 3)     GOTO 270
+(0 2) 510 GOSUB 640
+(0 2)     GOSUB 690
+(0 2)     GOSUB 790
+(0 3)     GOTO 270
+(0 2) 520 GOSUB 640
+(0 4)     A = C * .75
+(0 2)     GOSUB 700
+(0 4)     A = .25 * C
+(0 2)     GOSUB 650
+(0 3)     A = C
+(0 2)     GOSUB 640
+(0 4) 530 A = C * .25
+(0 2)     GOSUB 710
+(0 3)     A = C
+(0 3)     GOTO 270
+(0 2) 540 GOSUB 640
+(0 2)     GOSUB 690
+(0 4)     A = C * .5
+(0 2)     GOSUB 640
+(0 2)     GOSUB 810
+(0 3)     A = C
+(0 3)     GOTO 270
+(0 2) 550 GOSUB 770
+(0 2)     GOSUB 650
+(0 2)     GOSUB 760
+(0 3)     GOTO 270
+(0 2) 560 GOSUB 780
+(0 2)     GOSUB 640
+(0 2)     GOSUB 780
+(0 3)     GOTO 270
+(0 2) 570 GOSUB 640
+(0 2)     GOSUB 740
+(0 2)     GOSUB 640
+(0 3)     GOTO 270
+(0 2) 580 GOSUB 890
+(0 2)     GOSUB 880
+(0 3)     GOTO 270
+(0 2) 585 GOSUB 790
+(0 2)     GOSUB 690
+(0 2)     GOSUB 640
+(0 3)     GOTO 270
+(0 2) 590 GOSUB 640
+(0 2)     GOSUB 880
+(0 2)     GOSUB 890
+(0 2)     GOSUB 640
+(0 3)     GOTO 270
+(0 2) 595 GOSUB 640
+(0 2)     GOSUB 650
+(0 2)     GOSUB 640
+(0 3)     GOTO 270
+(0 2) 600 GOSUB 900
+(0 3)     GOTO 270
+(0 2) 605 GOSUB 780
+(0 2)     GOSUB 780
+(0 2)     GOSUB 640
+(0 3)     GOTO 270
+(0 2) 610 GOSUB 970
+(0 2)     GOSUB 800
+(0 2)     GOSUB 960
+(0 3)     GOTO 270
+(0 2) 615 GOSUB 640
+(0 2)     GOSUB 650
+(0 2)     GOSUB 760
+(0 3)     GOTO 270
+(0 2) 620 GOSUB 920
+(0 3)     GOTO 270
+(0 2) 625 GOSUB 700
+(0 2)     GOSUB 650
+(0 4)     A = C * .5
+(0 2)     GOSUB 640
+(0 3)     A = C
+(0 2)     GOSUB 810
+(0 3)     GOTO 270
+(0 2) 630 GOSUB 940
+(0 3)     GOTO 270
+(0 2) 635 GOSUB 790
+(0 2)     GOSUB 710
+(0 2)     GOSUB 640
+(0 3)     GOTO 270
+(1 3) 640 FOR Y = 1 TO A
+(0 3)     PRINT TAB(S);
+(1 3)     FOR X = 1 TO 10
+(0 2)     PRINT G$;
+(0 1)     NEXT X
+(0 2)     PRINT
+(0 1)     NEXT Y
+(0 1)     RETURN
+(1 4) 650 IF A < 1 THEN 660
+(0 2)     GOTO 670
+(0 3) 660 LET A = 1
+(1 3) 670 FOR X = 1 TO A
+(0 13)     PRINT TAB(S); G$; G$; H$; H$; G$; G$; H$; H$; G$; G$
+(0 1)     NEXT X
+(0 1)     RETURN
+(0 3) 680 PRINT TAB(S);
+(1 3) 690 FOR X = 1 TO A
+(0 9)     PRINT TAB(4 * L + S); G$; G$; H$; H$; G$; G$
+(0 1)     NEXT X
+(0 1)     RETURN
+(1 3) 700 FOR X = 1 TO A
+(0 5)     PRINT TAB(S); G$; G$;
+(0 5)     PRINT TAB(8 * L + S); G$; G$
+(0 1)     NEXT X
+(0 1)     RETURN
+(1 4) 710 IF A < 1 THEN 720
+(0 2)     GOTO 730
+(0 3) 720 LET A = 1
+(1 3) 730 FOR X = 1 TO A
+(0 5)     PRINT TAB(4 * L + S); G$; G$
+(0 1)     NEXT X
+(0 1)     RETURN
+(1 3) 740 FOR X = 1 TO A
+(0 5)     PRINT TAB(S); G$; G$
+(0 1)     NEXT X
+(0 1)     RETURN
+(1 3) 750 FOR X = 1 TO A
+(0 7)     PRINT TAB(S); G$; G$; G$; G$
+(0 1)     NEXT X
+(0 1)     RETURN
+(1 3) 760 FOR Y = 1 TO A
+(0 13)     PRINT TAB(S); G$; G$; G$; G$; G$; G$; H$; H$; G$; G$
+(0 1)     NEXT Y
+(0 1)     RETURN
+(1 3) 770 FOR X = 1 TO A
+(0 13)     PRINT TAB(S); G$; G$; H$; H$; G$; G$; G$; G$; G$; G$
+(0 1)     NEXT X
+(0 1)     RETURN
+(1 3) 780 FOR X = 1 TO A
+(0 5)     PRINT TAB(8 * L + S); G$; G$
+(0 1)     NEXT X
+(0 1)     RETURN
+(1 3) 790 FOR X = 1 TO A
+(0 9)     PRINT TAB(4 * L + S); G$; G$; G$; G$; G$; G$
+(0 1)     NEXT X
+(0 1)     RETURN
+(1 3) 800 FOR X = 1 TO A
+(0 9)     PRINT TAB(S); G$; G$; G$; G$; G$; G$
+(0 1)     NEXT X
+(0 1)     RETURN
+(1 4) 810 FOR X = 1 TO C / 2
+(0 3)     PRINT TAB(S);
+(1 3)     FOR Y = 1 TO 2
+(1 5)     FOR Z = 1 TO (5 + L) - X
+(0 2)     PRINT G$(1);
+(0 1)     NEXT Z
+(1 4) 820 IF X > 3 THEN 950
+(0 3)     V = X
+(0 2) 830 PRINT H$(2 * V);
+(0 1)     NEXT Y
+(0 2)     PRINT
+(0 1)     NEXT X
+(0 1)     RETURN
+(1 4) 840 FOR X = 1 TO C / 2
+(0 4)     PRINT TAB(S); H$(X);
+(1 7)     FOR Y = 1 TO 10 * L - (2 + X)
+(0 2)     PRINT G$(1);
+(0 1)     NEXT Y
+(0 2)     PRINT
+(0 1) 850 NEXT X
+(0 1)     RETURN
+(1 10) 860 FOR X = 4 * L TO 7 * L STEP 14 * L / (C * 6)
+(0 6)     PRINT TAB(X + S); G$; G$; G$;
+(0 6) 870 PRINT TAB(7 * L - X + S); G$; G$; G$
+(0 1)     NEXT X
+(0 1)     RETURN
+(1 7) 880 FOR X = 0 TO 6 * L STEP 6 * L / C
+(0 7)     PRINT TAB(X + S); G$; G$; G$; G$
+(0 1)     NEXT X
+(0 1)     RETURN
+(1 8) 890 FOR X = 6 * L TO 0 STEP -6 * L / C
+(0 7)     PRINT TAB(X + S); G$; G$; G$; G$
+(0 1)     NEXT X
+(0 1)     RETURN
+(1 9) 900 FOR X = 0 TO 7 * L STEP (14 * L) / (C * 6)
+(0 6)     PRINT TAB(X + S); G$; G$; G$;
+(0 6) 910 PRINT TAB(7 * L - X + S); G$; G$; G$
+(0 1)     NEXT X
+(0 1)     RETURN
+(1 9) 920 FOR X = 0 TO 7 * L STEP (7 * L) / (C * 3)
+(0 10)     PRINT TAB(S); G$; G$; TAB(X + S); G$; G$; G$;
+(0 5) 930 PRINT TAB(8 * L + S); G$; G$
+(0 1)     NEXT X
+(0 1)     RETURN
+(1 4) 940 FOR X = 1 TO A * 3
+(0 2)     PRINT
+(0 1)     NEXT X
+(0 1)     RETURN
+(1 4) 950 FOR W = 1 TO X - 3
+(0 2)     PRINT " ";
+(0 1)     NEXT W
+(0 3)     V = 3
+(0 3)     GOTO 830
+(1 8) 960 FOR X = 4 * L TO 7 * L STEP L * 4 / C
+(0 6)     PRINT TAB(X + S); G$; G$; G$
+(0 1)     NEXT X
+(0 1)     RETURN
+(1 9) 970 FOR X = 7 * L TO 4 * L STEP -4 * L / C
+(0 6)     PRINT TAB(X + S); G$; G$; G$
+(0 1)     NEXT X
+(0 1)     RETURN
+(0 2) 980 DATA " ", "  ", "   ", "    ", "     ", "      ", ""
+(1 4) 990 FOR X = 1 TO C * 3
+(0 2)     PRINT
+(0 1)     NEXT X
+(0 1) 1000 END
+
 Unreachable code:
 
 680: PRINT TAB(S);

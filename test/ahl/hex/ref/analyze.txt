@@ -19,6 +19,123 @@ Halstead complexity:
  intelligence: 52.949
  time: 204.905
 
+(0 0) 1 
+(0 0) 2 
+(0 0) 3 
+(0 0) 4 
+(0 0) 5 
+(1 2) 10 INPUT "INSTRUCTIONS"; C$
+(1 5)    IF LEFT(C$, 1%) <> "Y" THEN 110
+(0 2) 20 &
+(0 3)    &, "THIS PROGRAM PLAYS THE GAME OF HEXAPAWN."
+(0 2)    & "HEXAPAWN IS PLAYED WITH CHESS PAWNS ON A 3 BY 3 BOARD. THE PAWNS ARE"
+(0 2)    & "MOVED AS IN CHESS - ONE SPACE FORWARD TO AN EMPTY SPACE OR ONE SPACE"
+(0 2) 30 & "FORWARD AND DIAGONALLY TO CAPTURE AN OPPOSING MAN. "
+(0 2)    &
+(0 4)    & CHR$(9%); "O THE BOARD. YOUR PAWNS ARE 'O', THE COMPUTER'S PAWNS ARE '*'"
+(0 2)    & "AND EMPTY SQUARES ARE '-'. TO ENTER A MOVE, TYPE THE NUMBER OF THE"
+(0 2) 40 & "SQUARE YOU WILL MOVE FROM FOLLOWED BY THE NUMBER OF THE SQUARE"
+(0 2)    & "YOU WILL MOVE TO. (THE NUMBERS ARE SEPARATED BY A COMMA.)"
+(0 2)    &
+(0 2) 50 & "    THE PROGRAM STARTS A SERIES OF GAMES KNOWING ONLY WHEN THE"
+(0 2)    & "GAME IS WON (A DRAW IS IMPOSSIBLE) AND HOW TO MOVE. IT HAS NO"
+(0 2)    & "STRATEGY AT FIRST AND JUST MOVES RANDOMLY. HOWEVER, IT LEARNS"
+(0 2) 60 & "FROM EACH GAME. THUS, DEFEATING IT BECOMES MORE AND MORE"
+(0 2)    & "DIFFICULT. ALSO, TO HELP OFFSET YOUR INITIAL ADVANTAGE, YOU WILL"
+(0 2)    & "NOT BE TOLD HOW TO WIN THE GAME BUT MUST LEARN THIS BY PLAYING"
+(0 2)    &
+(0 6) 100 DEF FNC$(X$, X%, Y$) = LEFT(X$, X%, 1%) + Y$ + RIGHT(X$, X% + LEN(Y$))
+(0 1) 105 DEF FNN$(X%)
+(0 4)     X$ = NUM$(X%)
+(0 6)     FNN$ = MID(X$, 2% * LEN(X$) - 2%)
+(0 1)     FNEND
+(0 2) 110 DIM P$(50%)
+(0 1)     RANDOMIZE
+(0 3)     Q% = 0%
+(0 2)     PRINT "SINCE I'M A GOOD SPORT, YOU'LL ALWAYS GO FIRST"
+(0 3) 120 P% = 8%
+(0 3)     P$ = "XXX--OOO"
+(0 2)     &
+(0 2)     & "NUMBERING: "
+(0 2)     & "123"
+(0 2)     & "456"
+(0 2)     & "789"
+(0 2)     &
+(0 4) 190 D% = -1%
+(0 3)     Q$ = "O"
+(0 2)     GOSUB 2000
+(1 5)     IF M$ = "" THEN PRINT "YOU CAN'T MOVE. I WIN."
+(0 2)     GOTO 510
+(0 2) 200 &
+(0 2)     & "BOARD:"
+(0 3)     & LEFT(P$, 3%)
+(0 3)     & MID(P$, 4%, 3%)
+(0 3)     & RIGHT(P$, 7%)
+(0 2)     &
+(2 3) 210 INPUT "WHAT IS YOUR MOVE"; A%, B%
+(1 6)     IF INSTR(1%, M$, FNN$(A%) + FNN$(B%)) = 0% THEN PRINT "ILLEGAL MOVE."
+(0 3)     GOTO 210
+(0 5) 230 P$ = FNC$(FNC$(P$, A%, "-"), B%, "O")
+(1 10)     IF INSTR(1%, P$, "*") = 0% OR INSTR(1%, P$, "O") = 4% THEN PRINT "YOU WIN."
+(0 2)     GOTO 500
+(0 4) 300 P% = P% + 2%
+(1 3) 310 FOR C% = 1% TO Q%
+(0 3)     C$ = P$(C%)
+(1 12)     IF VAL(LEFT(C$, 1%)) = P% AND MID(C$, 2%, 9%) = P$ THEN M$ = RIGHT(C$, 11%)
+(0 2)     GOTO 400
+(0 1) 320 NEXT C%
+(0 3)     Q$ = "*"
+(0 3)     D% = 1%
+(0 2)     GOSUB 2000
+(0 3)     C% = Q%
+(1 5)     IF M$ = "" THEN PRINT "I CAN'T MOVE, YOU WIN."
+(0 2)     GOTO 500
+(1 5) 400 IF M$ = "" THEN PRINT "I RESIGN."
+(0 2)     GOTO 500
+(0 4) 410 K$ = LEFT(M$, 2%)
+(0 4)     M$ = RIGHT(M$, 3%)
+(1 9)     IF RND > .33333333 AND M$ <> "" THEN 410
+(0 3) 420 K% = C%
+(0 4)     A% = VAL(LEFT(K$, 1%))
+(0 4)     B% = VAL(RIGHT(K$, 2%))
+(0 5)     P$ = FNC$(FNC$(P$, A%, "-"), B%, "*")
+(1 8) 430 IF INSTR(1%, P$, "O") = 0% OR INSTR(7%, P$, "*") THEN PRINT "I WIN!"
+(0 2)     GOTO 510
+(0 5) 440 PRINT "I MOVE FROM" A% "TO" B%
+(0 3)     GOTO 190
+(0 4) 500 W2% = W2% + 1%
+(0 4)     I% = INSTR(11%, P$(K%), K$)
+(1 7)     P$(K%) = LEFT(P$(K%), I% - 1%) + RIGHT(P$(K%), I% + 2%) IF I%
+(0 2)     GOTO 520
+(0 4) 510 W1% = W1% + 1%
+(0 2) 520 &
+(0 2)     & "BOARD:"
+(0 3)     & LEFT(P$, 3%)
+(0 3)     & MID(P$, 4%, 3%)
+(0 3)     & RIGHT(P$, 7%)
+(0 2)     &
+(0 9)     & "I HAVE WON" W1% "AND YOU HAVE WON" W2% "OF" W1% + W2% "GAMES"
+(1 2) 530 INPUT "ANOTHER GAME"; C$
+(1 6)     IF C$ = "NO" THEN 9999 ELSE 120
+(0 0) 900 
+(0 3) 2000 M$ = ""
+(1 3) 2010 FOR J% = 1% TO 9%
+(1 5)      IF MID(P$, J%, 1%) <> Q$ THEN 2050
+(0 6) 2015 T% = J% + D% * 3%
+(1 7)      IF T% < 1% OR T% > 9% THEN 2025
+(1 13) 2020 IF MID(P$, T%, 1%) = "-" THEN M$ = M$ + FNN$(J%) + FNN$(T%)
+(0 6) 2025 T% = J% + D% * 2%
+(1 31)      IF T% < 1% OR T% > 9% OR (D% = 1% AND (J% = 1% OR J% = 4% OR J% = 7%)) OR (D% = 1% AND (J% = 3% OR J% = 6% OR J% - 9%)) THEN 2035
+(1 13) 2030 IF INSTR(1%, Q$ + "-", MID(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN$(J%) + FNN$(T%)
+(0 6) 2035 T% = J% + D% * 4%
+(1 13)      IF T% < 1% OR T% > 9% OR J% = 3% OR J% = 7% THEN 2050
+(1 13) 2040 IF INSTR(1%, Q$ + "-", MID(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN$(J%) + FNN$(T%)
+(0 1) 2050 NEXT J%
+(1 10)      IF D% = 1% AND M$ <> "" THEN Q% = Q% + 1%
+(0 7)      P$(Q%) = FNN$(P%) + P$ + M$
+(0 1) 2060 RETURN
+(0 1) 9999 END
+
 Unreachable code:
 
 200: &
