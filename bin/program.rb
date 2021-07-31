@@ -1618,14 +1618,19 @@ class Program
 
     line_numbers.each do |line_number|
       line = @lines[line_number]
+
       number = line_number.to_s
+
       statements = line.statements
-      statement_index = 0
 
       statements.each do |statement|
         profile = statement.profile(show_timing)
-        texts << number + '.' + statement_index.to_s + profile
-        statement_index += 1
+
+        text = number + profile
+
+        texts << text
+
+        number = ' ' * number.size
       end
     end
 
