@@ -5154,7 +5154,11 @@ class ArrPlotStatement < AbstractStatement
     fhr = interpreter.get_file_handler(fh, :print)
 
     @items.each do |item|
-      item.compound_plot(fhr, interpreter)
+      if item.carriage_control?
+        item.plot(fhr)
+      else
+        item.plot(fhr, interpreter)
+      end
     end
   end
 end
@@ -5458,7 +5462,7 @@ class ArrWriteStatement < AbstractStatement
       if item.carriage_control?
         item.write(fhr)
       else
-        item.compound_write(fhr, interpreter)
+        item.write(fhr, interpreter)
       end
 
       last_was_carriage = item.carriage_control?
@@ -5790,7 +5794,11 @@ class MatPlotStatement < AbstractStatement
     fhr = interpreter.get_file_handler(fh, :print)
 
     @items.each do |item|
-      item.compound_plot(fhr, interpreter)
+      if item.carriage_control?
+        item.plot(fhr)
+      else
+        item.plot(fhr, interpreter)
+      end
     end
   end
 end
@@ -6140,7 +6148,7 @@ class MatWriteStatement < AbstractStatement
       if item.carriage_control?
         item.write(fhr)
       else
-        item.compound_write(fhr, interpreter)
+        item.write(fhr, interpreter)
       end
 
       last_was_carriage = item.carriage_control?

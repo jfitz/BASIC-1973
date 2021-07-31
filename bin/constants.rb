@@ -1774,6 +1774,10 @@ class CarriageControl
     []
   end
 
+  def plot(printer)
+    printer.newline
+  end
+
   def print(printer)
     case @operator
     when ','
@@ -1798,10 +1802,6 @@ class CarriageControl
     when ''
       printer.print_item(',')
     end
-  end
-
-  def compound_plot(printer, _)
-    printer.newline
   end
 end
 
