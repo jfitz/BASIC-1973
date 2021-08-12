@@ -1,0 +1,231 @@
+100 REM DEFINITIONS
+ Remark:DEFINITIONS
+110 REM POSITION OF HOBOKEN (meters)
+ Remark:POSITION OF HOBOKEN (meters)
+111 LET K0 = 0
+ Variable:K0 -> _
+ NumericConstant:0
+ AssignmentOperator:= =_ -> _
+120 REM POSITION OF HARMON COVE (meters)
+ Remark:POSITION OF HARMON COVE (meters)
+121 LET K1 = 8.0E3
+ Variable:K1 -> _
+ NumericConstant:8.0E3
+ AssignmentOperator:= =_ -> _
+130 REM ACCELERATION (meters/second^2)
+ Remark:ACCELERATION (meters/second^2)
+131 LET A0 = 1.0
+ Variable:A0 -> _
+ NumericConstant:1.0
+ AssignmentOperator:= =_ -> _
+140 REM MAX VELOCITY (meters/second)
+ Remark:MAX VELOCITY (meters/second)
+141 LET V9 = 80
+ Variable:V9 -> _
+ NumericConstant:80
+ AssignmentOperator:= =_ -> _
+200 REM ONE TRIP
+ Remark:ONE TRIP
+201 LET X = K0
+ Variable:X -> _
+ Variable:K0 -> _
+ AssignmentOperator:= _ -> _
+202 LET V = 0
+ Variable:V -> _
+ NumericConstant:0
+ AssignmentOperator:= =_ -> _
+290 PRINT "T  ";"X  ";"V  ";"A  ";"T5 ";"X5 ";"K1 ";"STATUS"
+ TextConstant:"T  "
+ CarriageControl:;
+ TextConstant:"X  "
+ CarriageControl:;
+ TextConstant:"V  "
+ CarriageControl:;
+ TextConstant:"A  "
+ CarriageControl:;
+ TextConstant:"T5 "
+ CarriageControl:;
+ TextConstant:"X5 "
+ CarriageControl:;
+ TextConstant:"K1 "
+ CarriageControl:;
+ TextConstant:"STATUS"
+ CarriageControl:NL
+299 LET T = 0
+ Variable:T -> _
+ NumericConstant:0
+ AssignmentOperator:= =_ -> _
+1000 REM LOOP
+ Remark:LOOP
+1001 LET S$ = ""
+ Variable:S$ -> $
+ TextConstant:""
+ AssignmentOperator:= =$ -> $
+1010 REM COMPUTE STOPPING TIME
+ Remark:COMPUTE STOPPING TIME
+1011 LET T5 = 2.0*V/A0
+ Variable:T5 -> _
+ NumericConstant:2.0
+ Variable:V -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ Variable:A0 -> _
+ BinaryOperatorDivide:/(_,_) -> _
+ AssignmentOperator:= _ -> _
+1020 REM COMPUTE STOPPING DISTANCE
+ Remark:COMPUTE STOPPING DISTANCE
+1021 LET X5 = V*T5 + 0.5*(A0)*T5^2
+ Variable:X5 -> _
+ Variable:V -> _
+ Variable:T5 -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ NumericConstant:0.5
+ Variable:A0 -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ Variable:T5 -> _
+ NumericConstant:2
+ BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ AssignmentOperator:= _ -> _
+1230 REM IF CLOSE TO DESTINATION, SLOW DOWN
+ Remark:IF CLOSE TO DESTINATION, SLOW DOWN
+1231 IF X + X5 >= K1 THEN 1234
+ Variable:X -> _
+ Variable:X5 -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:K1 -> _
+ BinaryOperatorGreaterEqual:>=(_,_) -> ?
+1232 LET A = A0
+ Variable:A -> _
+ Variable:A0 -> _
+ AssignmentOperator:= _ -> _
+1233 GOTO 1700
+ LineNumber:1700
+1234 LET A = -A0
+ Variable:A -> _
+ Variable:A0 -> _
+ UnaryOperatorMinus:-(_) -> _
+ AssignmentOperator:= _ -> _
+1235 LET S$ = "BRAKING FOR STATION"
+ Variable:S$ -> $
+ TextConstant:"BRAKING FOR STATION"
+ AssignmentOperator:= =$ -> $
+1700 REM ADJUST SPEED
+ Remark:ADJUST SPEED
+1711 IF A < 0 THEN 1750
+ Variable:A -> _
+ NumericConstant:0
+ BinaryOperatorLess:<(_,_) -> ?
+1712 IF V > V9 THEN 1760
+ Variable:V -> _
+ Variable:V9 -> _
+ BinaryOperatorGreater:>(_,_) -> ?
+1720 REM CONTINUE OR INCREASE
+ Remark:CONTINUE OR INCREASE
+1721 IF V = V9 THEN 1740
+ Variable:V -> _
+ Variable:V9 -> _
+ BinaryOperatorEqual:=(_,_) -> ?
+1730 REM INCREASE
+ Remark:INCREASE
+1731 LET V = V + A
+ Variable:V -> _
+ Variable:V -> _
+ Variable:A -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ AssignmentOperator:= _ -> _
+1739 GOTO 1900
+ LineNumber:1900
+1740 REM CONTINUE
+ Remark:CONTINUE
+1742 LET A = 0
+ Variable:A -> _
+ NumericConstant:0
+ AssignmentOperator:= =_ -> _
+1749 GOTO 1900
+ LineNumber:1900
+1750 REM BRAKE
+ Remark:BRAKE
+1751 IF V <= 0 THEN 1900
+ Variable:V -> _
+ NumericConstant:0
+ BinaryOperatorLessEqual:<=(_,_) -> ?
+1752 LET V = V + A
+ Variable:V -> _
+ Variable:V -> _
+ Variable:A -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ AssignmentOperator:= _ -> _
+1759 GOTO 1900
+ LineNumber:1900
+1760 REM BRAKE
+ Remark:BRAKE
+1761 LET A = -A0
+ Variable:A -> _
+ Variable:A0 -> _
+ UnaryOperatorMinus:-(_) -> _
+ AssignmentOperator:= _ -> _
+1762 LET V = V + A
+ Variable:V -> _
+ Variable:V -> _
+ Variable:A -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ AssignmentOperator:= _ -> _
+1900 REM CHECK VELOCITY
+ Remark:CHECK VELOCITY
+1901 IF V >= 0 THEN 1960
+ Variable:V -> _
+ NumericConstant:0
+ BinaryOperatorGreaterEqual:>=(_,_) -> ?
+1902 LET V = 0
+ Variable:V -> _
+ NumericConstant:0
+ AssignmentOperator:= =_ -> _
+1960 REM MOVE THE TRAIN
+ Remark:MOVE THE TRAIN
+1961 LET X = X + V
+ Variable:X -> _
+ Variable:X -> _
+ Variable:V -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ AssignmentOperator:= _ -> _
+1970 REM REPORT POSITION AND SPEED
+ Remark:REPORT POSITION AND SPEED
+1971 PRINT T;X;V;A;T5;X5;K1;S$
+ Variable:T -> _
+ CarriageControl:;
+ Variable:X -> _
+ CarriageControl:;
+ Variable:V -> _
+ CarriageControl:;
+ Variable:A -> _
+ CarriageControl:;
+ Variable:T5 -> _
+ CarriageControl:;
+ Variable:X5 -> _
+ CarriageControl:;
+ Variable:K1 -> _
+ CarriageControl:;
+ Variable:S$ -> $
+ CarriageControl:NL
+1980 REM IF AT STOPPING POINT, STOP SIMULATION
+ Remark:IF AT STOPPING POINT, STOP SIMULATION
+1981 IF X >= K1 THEN 9998
+ Variable:X -> _
+ Variable:K1 -> _
+ BinaryOperatorGreaterEqual:>=(_,_) -> ?
+1990 REM STEP INTO FUTURE
+ Remark:STEP INTO FUTURE
+1991 LET T = T + 1
+ Variable:T -> _
+ Variable:T -> _
+ NumericConstant:1
+ BinaryOperatorPlus:+(_,_) -> _
+ AssignmentOperator:= _ -> _
+1999 GOTO 1000
+ LineNumber:1000
+9998 STOP
+ 
+9999 END
+ 
+

@@ -1624,13 +1624,14 @@ class Program
       statements = line.statements
 
       statements.each do |statement|
-        profile = statement.profile(show_timing)
+        profile_lines = statement.profile(show_timing)
 
-        text = number + profile
+        profile_lines.each do |profile|
+          text = number + profile
+          texts << text
 
-        texts << text
-
-        number = ' ' * number.size
+          number = ' ' * number.size
+        end
       end
     end
 

@@ -1,0 +1,84 @@
+Statistics:
+
+Number of lines: 58
+Number of valid statements: 37
+Number of comments: 21
+Number of executable statements: 36
+
+Complexity:
+
+Comment density: 0.568
+Comprehension effort: 160
+McCabe complexity: 8
+Halstead complexity:
+ length: 147
+ volume: 611.356
+ difficulty: 14.847
+ effort: 9076.762
+ language: 2.773
+ intelligence: 41.177
+ time: 8.404
+
+(0 1) 100 REM DEFINITIONS
+(0 1) 110 REM POSITION OF HOBOKEN (meters)
+(0 3) 111 LET K0 = 0
+(0 1) 120 REM POSITION OF HARMON COVE (meters)
+(0 3) 121 LET K1 = 8.0E3
+(0 1) 130 REM ACCELERATION (meters/second^2)
+(0 3) 131 LET A0 = 1.0
+(0 1) 140 REM MAX VELOCITY (meters/second)
+(0 3) 141 LET V9 = 80
+(0 1) 200 REM ONE TRIP
+(0 3) 201 LET X = K0
+(0 3) 202 LET V = 0
+(0 9) 290 PRINT "T  "; "X  "; "V  "; "A  "; "T5 "; "X5 "; "K1 "; "STATUS"
+(0 3) 299 LET T = 0
+(0 1) 1000 REM LOOP
+(0 3) 1001 LET S$ = ""
+(0 1) 1010 REM COMPUTE STOPPING TIME
+(0 5) 1011 LET T5 = 2.0 * V / A0
+(0 1) 1020 REM COMPUTE STOPPING DISTANCE
+(0 10) 1021 LET X5 = V * T5 + 0.5 * (A0) * T5 ^ 2
+(0 1) 1230 REM IF CLOSE TO DESTINATION, SLOW DOWN
+(1 5) 1231 IF X + X5 >= K1 THEN 1234
+(0 3) 1232 LET A = A0
+(0 2) 1233 GOTO 1700
+(0 4) 1234 LET A = -A0
+(0 3) 1235 LET S$ = "BRAKING FOR STATION"
+(0 1) 1700 REM ADJUST SPEED
+(1 4) 1711 IF A < 0 THEN 1750
+(1 4) 1712 IF V > V9 THEN 1760
+(0 1) 1720 REM CONTINUE OR INCREASE
+(1 4) 1721 IF V = V9 THEN 1740
+(0 1) 1730 REM INCREASE
+(0 4) 1731 LET V = V + A
+(0 2) 1739 GOTO 1900
+(0 1) 1740 REM CONTINUE
+(0 3) 1742 LET A = 0
+(0 2) 1749 GOTO 1900
+(0 1) 1750 REM BRAKE
+(1 4) 1751 IF V <= 0 THEN 1900
+(0 4) 1752 LET V = V + A
+(0 2) 1759 GOTO 1900
+(0 1) 1760 REM BRAKE
+(0 4) 1761 LET A = -A0
+(0 4) 1762 LET V = V + A
+(0 1) 1900 REM CHECK VELOCITY
+(1 4) 1901 IF V >= 0 THEN 1960
+(0 3) 1902 LET V = 0
+(0 1) 1960 REM MOVE THE TRAIN
+(0 4) 1961 LET X = X + V
+(0 1) 1970 REM REPORT POSITION AND SPEED
+(0 9) 1971 PRINT T; X; V; A; T5; X5; K1; S$
+(0 1) 1980 REM IF AT STOPPING POINT, STOP SIMULATION
+(1 4) 1981 IF X >= K1 THEN 9998
+(0 1) 1990 REM STEP INTO FUTURE
+(0 4) 1991 LET T = T + 1
+(0 3) 1999 GOTO 1000
+(0 1) 9998 STOP
+(0 1) 9999 END
+
+Unreachable code:
+
+All executable lines are reachable.
+
