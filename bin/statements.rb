@@ -174,7 +174,15 @@ class StatementFactory
       UnlessModifier,
       WhileModifier,
       UntilModifier,
-      ForModifier
+      ForToModifier,
+      ForToStepModifier,
+      ForStepToModifier,
+      ForUntilModifier,
+      ForUntilStepModifier,
+      ForStepUntilModifier,
+      ForWhileModifier,
+      ForWhileStepModifier,
+      ForStepWhileModifier
     ]
   end
 
@@ -681,7 +689,8 @@ class AbstractStatement
       expression_tokens = tokens_lists.last(4)
       control_and_start_tokens = tokens_lists[-3]
       end_tokens = tokens_lists.last
-      modifier = ForModifier.new(expression_tokens, control_and_start_tokens, nil, end_tokens, nil, nil)
+
+      modifier = ForToModifier.new(expression_tokens, control_and_start_tokens, end_tokens)
       @modifiers.unshift(modifier)
 
       # remove the tokens used for the modifier
@@ -698,8 +707,9 @@ class AbstractStatement
       control_and_start_tokens = tokens_lists[-5]
       end_tokens = tokens_lists[-3]
       step_tokens = tokens_lists.last
+
       modifier =
-        ForModifier.new(expression_tokens, control_and_start_tokens, step_tokens, end_tokens, nil, nil)
+        ForToStepModifier.new(expression_tokens, control_and_start_tokens, step_tokens, end_tokens)
       @modifiers.unshift(modifier)
 
       # remove the tokens used for the modifier
@@ -716,8 +726,9 @@ class AbstractStatement
       control_and_start_tokens = tokens_lists[-5]
       end_tokens = tokens_lists.last
       step_tokens = tokens_lists[-3]
+
       modifier =
-        ForModifier.new(expression_tokens, control_and_start_tokens, step_tokens, end_tokens, nil, nil)
+        ForStepToModifier.new(expression_tokens, control_and_start_tokens, step_tokens, end_tokens)
       @modifiers.unshift(modifier)
 
       # remove the tokens used for the modifier
@@ -733,7 +744,8 @@ class AbstractStatement
       expression_tokens = tokens_lists.last(4)
       control_and_start_tokens = tokens_lists[-3]
       until_tokens = tokens_lists.last
-      modifier = ForModifier.new(expression_tokens, control_and_start_tokens, nil, nil, until_tokens, nil)
+
+      modifier = ForUntilModifier.new(expression_tokens, control_and_start_tokens, until_tokens)
       @modifiers.unshift(modifier)
 
       # remove the tokens used for the modifier
@@ -750,8 +762,9 @@ class AbstractStatement
       control_and_start_tokens = tokens_lists[-5]
       until_tokens = tokens_lists[-3]
       step_tokens = tokens_lists.last
+
       modifier =
-        ForModifier.new(expression_tokens, control_and_start_tokens, step_tokens, nil, until_tokens, nil)
+        ForUntilStepModifier.new(expression_tokens, control_and_start_tokens, step_tokens, until_tokens)
       @modifiers.unshift(modifier)
 
       # remove the tokens used for the modifier
@@ -768,8 +781,9 @@ class AbstractStatement
       control_and_start_tokens = tokens_lists[-5]
       until_tokens = tokens_lists.last
       step_tokens = tokens_lists[-3]
+
       modifier =
-        ForModifier.new(expression_tokens, control_and_start_tokens, step_tokens, nil, until_tokens, nil)
+        ForStepUntilModifier.new(expression_tokens, control_and_start_tokens, step_tokens, until_tokens)
       @modifiers.unshift(modifier)
 
       # remove the tokens used for the modifier
@@ -785,7 +799,8 @@ class AbstractStatement
       expression_tokens = tokens_lists.last(4)
       control_and_start_tokens = tokens_lists[-3]
       while_tokens = tokens_lists.last
-      modifier = ForModifier.new(expression_tokens, control_and_start_tokens, nil, nil, nil, while_tokens)
+
+      modifier = ForWhileModifier.new(expression_tokens, control_and_start_tokens, while_tokens)
       @modifiers.unshift(modifier)
 
       # remove the tokens used for the modifier
@@ -802,8 +817,9 @@ class AbstractStatement
       control_and_start_tokens = tokens_lists[-5]
       while_tokens = tokens_lists[-3]
       step_tokens = tokens_lists.last
+
       modifier =
-        ForModifier.new(expression_tokens, control_and_start_tokens, step_tokens, nil, nil, while_tokens)
+        ForWhileStepModifier.new(expression_tokens, control_and_start_tokens, step_tokens, while_tokens)
       @modifiers.unshift(modifier)
 
       # remove the tokens used for the modifier
@@ -820,8 +836,9 @@ class AbstractStatement
       control_and_start_tokens = tokens_lists[-5]
       while_tokens = tokens_lists.last
       step_tokens = tokens_lists[-3]
+
       modifier =
-        ForModifier.new(expression_tokens, control_and_start_tokens, step_tokens, nil, nil, while_tokens)
+        ForStepWhileModifier.new(expression_tokens, control_and_start_tokens, step_tokens, while_tokens)
       @modifiers.unshift(modifier)
 
       # remove the tokens used for the modifier
