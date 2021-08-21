@@ -30,19 +30,23 @@ Halstead complexity:
 (0 1)    RANDOMIZE
 (0 3)    N = 50
 (0 3) 50 D$(I) = "-"
-(1 2)      FOR I = 1 TO 20
+(1 1)      FOR I = 1 TO 20
+(0 1)      NEXT I
 (0 3)    M = 0
 (0 3) 60 N$(I) = ""
-(1 2)      FOR I = 1 TO 26
+(1 1)      FOR I = 1 TO 26
+(0 1)      NEXT I
 (1 3) 70 FOR I = 1 TO 12
 (1 3)    FOR J = 1 TO 12
 (0 3)    P$(I, J) = " "
 (0 1)    NEXT J
 (0 1)    NEXT I
 (0 3) 80 P$(I, 1) = "X"
-(1 2)      FOR I = 1 TO 12
+(1 1)      FOR I = 1 TO 12
+(0 1)      NEXT I
 (0 3) 90 P$(1, I) = "X"
-(1 2)      FOR I = 1 TO 7
+(1 1)      FOR I = 1 TO 7
+(0 1)      NEXT I
 (0 3)    P$(2, 7) = "X"
 (1 6) 95 IF C < N THEN 100 ELSE PRINT "YOU DID ALL THE WORDS!!"
 (0 1)    STOP
@@ -52,10 +56,12 @@ Halstead complexity:
 (0 1)     RESTORE
 (0 3)     T1 = 0
 (1 2) 150 READ A$
-(1 2)       FOR I = 1 TO Q
+(1 1)       FOR I = 1 TO Q
+(0 1)       NEXT I
 (0 4) 160 L = LEN(A$)
 (0 4)     L$(I) = MID(A$, I, I)
-(1 2)       FOR I = 1 TO L
+(1 1)       FOR I = 1 TO L
+(0 1)       NEXT I
 (0 2) 170 & "HERE ARE THE LETTERS YOU USED."
 (1 3) 180 FOR I = 1 TO 26
 (0 2)     & N$(I);
@@ -148,10 +154,12 @@ Halstead complexity:
 (0 3)     P$(5, 8) = "-"
 (0 2)     GOTO 580
 (0 3) 490 P$(I, 7) = "X"
-(1 2)       FOR I = 6 TO 9
+(1 1)       FOR I = 6 TO 9
+(0 1)       NEXT I
 (0 2)     GOTO 580
 (0 3) 500 P$(I, I - 1) = "\"
-(1 2)       FOR I = 4 TO 7
+(1 1)       FOR I = 4 TO 7
+(0 1)       NEXT I
 (0 2)     GOTO 580
 (0 3) 510 P$(4, 11) = "/"
 (0 3)     P$(5, 10) = "/"

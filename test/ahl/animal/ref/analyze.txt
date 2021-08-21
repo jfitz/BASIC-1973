@@ -8,7 +8,7 @@ Number of executable statements: 60
 Complexity:
 
 Comment density: 0.000
-Comprehension effort: 230
+Comprehension effort: 236
 McCabe complexity: 28
 Halstead complexity:
  length: 357
@@ -28,7 +28,8 @@ Halstead complexity:
 (0 3) 550 OPEN F$ FOR INPUT AS FILE 1%
 (1 2)     INPUT #1%, N%
 (1 2)     INPUT #1%, A$(I%)
-(1 2)       FOR I% = 1% TO N%
+(1 1)       FOR I% = 1% TO N%
+(0 1)       NEXT I%
 (0 2)     CLOSE 1%
 (0 4)     A$(0%) = NUM$(N%)
 (1 1)     ON ERROR GOTO 0
@@ -37,31 +38,39 @@ Halstead complexity:
 (0 4)     F$ = "$" + F$
 (0 1)     RESUME 550
 (1 2) 1050 READ A$(I%)
-(1 2)        FOR I% = 0% TO 3%
+(1 1)        FOR I% = 0% TO 3%
+(0 1)        NEXT I%
 (0 2) 1100 DATA "4", "\QDOES IT SWIM\Y2\N3\", "\AFISH", "\ABIRD"
 (1 2) 1300 INPUT "ARE YOU THINKING OF AN ANIMAL", Z9$
 (0 2)      GOTO 1350
 (1 3)        IF LEFT(Z9$, 1%) = "Y"
+(0 1)        ENDIF
 (0 3)      GOTO 1300
 (1 3)        IF LEFT(Z9$, 1%) = "N"
+(0 1)        ENDIF
 (1 6) 1310 IF Z9$ = "SAVE" THEN OPEN "ANIMAL.GME" FOR OUTPUT AS FILE 1%
 (0 2)      PRINT #1%, A$(I%)
-(1 3)        FOR I% = 0% TO VAL(A$(0%))
+(1 2)        FOR I% = 0% TO VAL(A$(0%))
+(0 1)        NEXT I%
 (0 3)      PRINT #1, CHR$(26%)
 (0 2)      CLOSE 1%
 (0 3)      GOTO 1300
 (1 5) 1320 IF Z9$ = "LIST" THEN PRINT "ANIMALS I ALREADY KNOW ARE:"
 (0 3)      PRINT RIGHT(A$(I%), 3%),
 (1 2)        IF INSTR(1%, A$(I%), "\A")
-(1 2)        FOR I% = 1% TO 200%
+(0 1)        ENDIF
+(1 1)        FOR I% = 1% TO 200%
+(0 1)        NEXT I%
 (0 2)      PRINT
 (0 3)      GOTO 1300
 (0 3) 1350 K% = 1%
 (0 5) 1400 K% = FNA%(A$(K%))
 (0 2)      GOTO 3000
 (1 3)        IF LEN(A$(K%)) = 0%
+(0 1)        ENDIF
 (0 3)      GOTO 1400
 (1 3)        IF LEFT(A$(K%), 2%) = "\Q"
+(0 1)        ENDIF
 (0 4)      PRINT "IS IT A " RIGHT(A$(K%), 3%);
 (1 2)      INPUT Z7$
 (0 4)      Z7$ = LEFT(Z7$, 1%)
@@ -87,6 +96,7 @@ Halstead complexity:
 (0 4)      Z9$ = LEFT(Z9$, 1%)
 (0 3)      Z9$ = "N"
 (1 2)        IF Z9$ <> "Y"
+(0 1)        ENDIF
 (0 5)      Z1% = INSTR(3%, Q$, "\" + Z9$) + 2%
 (0 4)      Z2% = INSTR(Z1%, Q$, "\")
 (0 6)      FNA% = VAL(MID(Q$, Z1%, Z2% - Z1%))
