@@ -4,6 +4,8 @@
 500  DIM A$(200%)
 525  F$ = "ANIMAL.GME" :
      ON ERROR GOTO 700
+ WARNING: Line exceeds LIST width limit 72
+ WARNING: Line exceeds PRETTY width limit 72
 550  OPEN F$ FOR INPUT AS FILE 1% :
      INPUT #1%, N% :
      INPUT #1%, A$(I%) FOR I% = 1% TO N% :
@@ -16,19 +18,27 @@
      RESUME 550
 1050  READ A$(I%) FOR I% = 0% TO 3%
 1100  DATA "4", "\QDOES IT SWIM\Y2\N3\", "\AFISH", "\ABIRD"
+ WARNING: Line exceeds LIST width limit 72
+ WARNING: Line exceeds PRETTY width limit 72
 1300  INPUT "ARE YOU THINKING OF AN ANIMAL", Z9$ :
       GOTO 1350 IF LEFT(Z9$, 1%) = "Y" :
       GOTO 1300 IF LEFT(Z9$, 1%) = "N"
+ WARNING: Line exceeds LIST width limit 72
+ WARNING: Line exceeds PRETTY width limit 72
 1310  IF Z9$ = "SAVE" THEN OPEN "ANIMAL.GME" FOR OUTPUT AS FILE 1% :
       PRINT #1%, A$(I%) FOR I% = 0% TO VAL(A$(0%)) :
       PRINT #1, CHR$(26%) :
       CLOSE 1% :
       GOTO 1300
+ WARNING: Line exceeds LIST width limit 72
+ WARNING: Line exceeds PRETTY width limit 72
 1320  IF Z9$ = "LIST" THEN PRINT "ANIMALS I ALREADY KNOW ARE:" :
       PRINT RIGHT(A$(I%), 3%), IF INSTR(1%, A$(I%), "\A") FOR I% = 1% TO 200% :
       PRINT :
       GOTO 1300
 1350  K% = 1%
+ WARNING: Line exceeds LIST width limit 72
+ WARNING: Line exceeds PRETTY width limit 72
 1400  K% = FNA%(A$(K%)) :
       GOTO 3000 IF LEN(A$(K%)) = 0% :
       GOTO 1400 IF LEFT(A$(K%), 2%) = "\Q" :
@@ -38,13 +48,19 @@
 1450  IF Z7$ = "Y" THEN PRINT "WHY NOT TRY ANOTHER ANIMAL" :
       GOTO 1300
 2000  INPUT "THE ANIMAL YOU WERE THINKING OF WAS A "; Z9$
+ WARNING: Line exceeds LIST width limit 72
+ WARNING: Line exceeds PRETTY width limit 72
 2050  PRINT "PLEASE TYPE IN A QUESTION THAT WOULD DISTINGUISH A " Z9$ " FROM A " RIGHT(A$(K%), 3%) :
       INPUT Z8$
+ WARNING: Line exceeds LIST width limit 72
+ WARNING: Line exceeds PRETTY width limit 72
 2100  PRINT "FOR A " Z9$ " THE ANSWER WOULD BE"; :
       INPUT Z7$ :
       Z7$ = LEFT(Z7$, 1%) :
       IF Z7$ = "Y" THEN Z6$ = "N" ELSE IF Z7$ = "N" THEN Z6$ = "Y" ELSE PRINT "PLEASE ANSWER 'YES' OR 'NO'" :
       GOTO 2100
+ WARNING: Line exceeds LIST width limit 72
+ WARNING: Line exceeds PRETTY width limit 72
 2200  Z1% = VAL(A$(0%)) :
       A$(0%) = NUM$(Z1% + 2%) :
       A$(Z1%) = A$(K%) :
@@ -52,6 +68,8 @@
       A$(K%) = "\Q" + Z8$ + "\" + Z7$ + NUM$(Z1% + 1%) + "\" + Z6$ + NUM$(Z1%) + "\"
  WARNING: Target type (integer) does not match expression type (numeric).
 2300  GOTO 1300
+ WARNING: Line exceeds LIST width limit 72
+ WARNING: Line exceeds PRETTY width limit 72
 3000  DEF FNA%(Q$) :
       PRINT MID(Q$, 3%, INSTR(3%, Q$, "\") - 3%); :
       INPUT Z9$ :

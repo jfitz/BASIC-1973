@@ -14,6 +14,7 @@
 70 IF M = H THEN PRINT ","; : GOSUB 800
 75 IF B > 0 GOTO 35
 80 PRINT : PRINT "GAME OVER"
+ WARNING: Line exceeds PRETTY width limit 72
 85 LET D = B(6) - B(13) : IF D < 0 THEN PRINT "I WIN BY"; -D "P0INTS" : GOTO 20
 90 LET N = N + 1 : IF D = 0 THEN PRINT "DRAWN GAME" : GOTO 20
 95 PRINT "YOU WIN BY " D "POINTS" : GOTO 20
@@ -44,8 +45,10 @@
 600 LET P = B(M) : LET B(M) = 0
 605 FOR P = P TO 1 STEP -1 : LET M = M + 1 : IF M > 13 THEN LET M = M - 14
 610 LET B(M) = B(M) + 1 : NEXT P
+ WARNING: Line exceeds PRETTY width limit 72
 615 IF B(M) = 1 THEN IF M <> 6 THEN IF M <> 13 THEN IF B(12 - M) <> 0 GOTO 625
 620 RETURN
+ WARNING: Line exceeds PRETTY width limit 72
 625 LET B(H) = B(H) + B(12 - M) + 1 : LET B(M) = 0 : LET B(12 - M) = 0 : RETURN
 800 LET D = -99 : LET H = 13
 805 FOR I = 0 TO 13 : LET G(I) = B(I) : NEXT I
@@ -59,6 +62,7 @@
 845 NEXT I
 850 LET Q = B(13) - B(6) - Q : IF C > B GOTO 875
 855 LET K = J : IF K > 6 THEN LET K = K - 7
+ WARNING: Line exceeds PRETTY width limit 72
 860 FOR I = 0 TO N - 1 : IF F(N) * 6 + K = INT(F(I) / 6 ^ (7 - C) + .1) THEN LET Q = Q - 2
 870 NEXT I
 875 FOR I = 0 TO 13 : LET B(I) = G(I) : NEXT I
