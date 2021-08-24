@@ -20,335 +20,611 @@ Halstead complexity:
  time: 150.560
 
 (0 2) 100 DIM B(16)
+  Origs: 
+  Dests: 110
 (0 3) 110 LET Z(0) = .5
 (0 3)     LET Z = .5
+  Origs: 100
+  Dests: 120
 (0 3) 120 LET I = 1
+  Origs: 110
+  Dests: 130
 (0 3) 130 LET B1 = 0
 (0 3)     LET B2 = 0
 (0 3)     LET B3 = 0
 (0 3)     LET I1 = 0
 (0 3)     LET I2 = 0
 (0 3)     LET I3 = 0
+  Origs: 120, 260
+  Dests: 140
 (0 3) 140 LET C1 = 0
 (0 3)     LET C2 = 0
 (0 2)     PRINT
+  Origs: 130, 150, 160, 420, 1320, 1330
+  Dests: 150
 (1 4) 150 IF C2 <> 4 THEN 160
 (0 2)     PRINT "THE BATTER WALKS."
 (0 2)     GOSUB 920
 (0 3)     GOTO 140
+  Origs: 140, 1310, 1390, 1410
+  Dests: 140, 160, 920
 (1 4) 160 IF C1 <> 3 THEN 180
 (0 2)     PRINT "THE BATTER STRUCK OUT."
 (0 4)     LET C3 = C3 + 1
 (0 3)     GOTO 140
+  Origs: 150
+  Dests: 140, 180
 (1 4) 170 IF S1 = 1 THEN 180
 (0 4)     LET X = X + 1
+  Origs: 
+  Dests: 180, 180
 (1 4) 180 IF C3 < 3 THEN 270
 (1 4)     IF S1 = 1 THEN 190
 (0 3)     LET S1 = 1
 (0 2)     GOTO 200
+  Origs: 160, 170, 170
+  Dests: 190, 200, 270
 (0 4) 190 PRINT "AFTER"; I; "INNINGS";
 (0 4)     LET I = I + 1
 (0 3)     LET S1 = 0
+  Origs: 180
+  Dests: 200
 (0 11) 200 PRINT I2; "RUNS,"; I1; "HITS,"; I3; "ERRORS AND"; B1 + B2 + B3; "LEFT ON BASE."
+  Origs: 180, 190
+  Dests: 210
 (1 4) 210 IF I = 5 THEN 1420
 (1 4)     IF S1 = 0 THEN 230
 (0 2)     PRINT "I'M";
 (0 2)     GOTO 240
+  Origs: 200
+  Dests: 230, 240, 1420
 (1 4) 220 IF S1 = 0 THEN 230
 (0 2)     PRINT "I'M";
 (0 2)     GOTO 240
+  Origs: 
+  Dests: 230, 240
 (0 2) 230 PRINT "YOU'RE";
+  Origs: 210, 220
+  Dests: 240
 (0 2) 240 PRINT " UP NOW."
 (0 5)     PRINT "SCORE: ME"; S2; "YOU"; S3
+  Origs: 210, 220, 230
+  Dests: 250
 (0 2) 250 PRINT
 (0 3)     LET C3 = 0
+  Origs: 240
+  Dests: 260
 (0 3) 260 GOTO 130
+  Origs: 250
+  Dests: 130
 (0 2) 270 PRINT "YOUR PLAY? ";
+  Origs: 180, 390, 410, 440, 460, 1270
+  Dests: 280
 (1 3) 280 FOR A = 1 TO 20
 (1 2)     INPUT$ B(A)
 (1 4)     IF B(A) = 141 THEN 290
 (0 1)     NEXT A
+  Origs: 270
+  Dests: 290, 290
 (0 5) 290 LET D = 1 * RND(5)
 (0 2)     PRINT
+  Origs: 280, 280
+  Dests: 300
 (0 5) 300 LET C = 100 * B(1) + B(2)
 (1 4)     IF S1 = 0 THEN 420
+  Origs: 290
+  Dests: 310, 420
 (1 4) 310 IF C <> 19713 THEN 320
 (0 4)     LET D = D + C(X)
 (0 2)     GOTO 1280
+  Origs: 300
+  Dests: 320, 1280
 (1 4) 320 IF C <> 19993 THEN 330
 (0 4)     LET D = D + F(X)
 (0 2)     GOTO 1280
+  Origs: 310
+  Dests: 330, 1280
 (1 4) 330 IF C = 19597 THEN 1280
+  Origs: 320
+  Dests: 340, 1280
 (1 4) 340 IF C = 19610 THEN 1280
+  Origs: 330
+  Dests: 350, 1280
 (1 4) 350 IF C = 21304 THEN 1280
+  Origs: 340
+  Dests: 360, 1280
 (1 4) 360 IF C = 20506 THEN 1280
+  Origs: 350
+  Dests: 370, 1280
 (1 4) 370 IF C <> 20110 THEN 380
 (1 4)     IF D < .8 THEN 1280
 (0 2)     GOTO 1270
+  Origs: 360
+  Dests: 380, 1270, 1280
 (1 4) 380 IF C <> 21308 THEN 390
 (1 4)     IF D < .8 THEN 1280
 (0 2)     GOTO 1270
+  Origs: 370
+  Dests: 390, 1270, 1280
 (1 4) 390 IF C <> 19700 THEN 400
 (0 2)     PRINT "RUNNERS ARE STICKING."
 (0 3)     GOTO 270
+  Origs: 380
+  Dests: 270, 400
 (1 4) 400 IF C <> 19593 THEN 410
 (0 2)     PRINT "MY BATTER";
 (0 2)     GOTO 1300
+  Origs: 390
+  Dests: 410, 1300
 (1 4) 410 FOR A1 = A TO A - 1
 (0 3)     PRINT CHR$(B(A1));
 (0 1)     NEXT A1
 (0 2)     PRINT "?"
 (0 3)     GOTO 270
+  Origs: 400, 510
+  Dests: 270
 (1 4) 420 IF C <> 19613 THEN 430
 (0 2)     PRINT "YOUR BATTER";
 (0 2)     GOSUB 570
 (0 3)     GOTO 140
+  Origs: 300
+  Dests: 140, 430, 570
 (1 4) 430 IF C = 21315 THEN 1280
+  Origs: 420
+  Dests: 440, 1280
 (1 4) 440 IF C <> 19700 THEN 450
 (0 2)     PRINT "CHECK NOT YET IN."
 (0 3)     GOTO 270
+  Origs: 430
+  Dests: 270, 450
 (1 4) 450 IF C = 20201 THEN 1280
+  Origs: 440
+  Dests: 460, 1280
 (1 4) 460 IF C <> 21312 THEN 470
 (0 2)     PRINT "STEAL NOT YET IN."
 (0 3)     GOTO 270
+  Origs: 450
+  Dests: 270, 470
 (1 4) 470 IF C = 21293 THEN 1280
+  Origs: 460
+  Dests: 480, 1280
 (1 4) 480 IF C = 20110 THEN 1280
+  Origs: 470
+  Dests: 490, 1280
 (1 4) 490 IF C = 20004 THEN 1280
+  Origs: 480
+  Dests: 500, 1280
 (1 4) 500 IF C = 20501 THEN 1280
+  Origs: 490
+  Dests: 510, 1280
 (0 3) 510 GOTO 410
+  Origs: 500
+  Dests: 410
 (0 5) 520 LET A = 9 * RND(6)
 (1 4)     IF S1 = 0 THEN 530
 (0 2)     PRINT "MY BATTER";
 (0 2)     GOTO 540
+  Origs: 1320
+  Dests: 530, 540
 (0 2) 530 PRINT "YOUR BATTER";
+  Origs: 520
+  Dests: 540
 (1 4) 540 IF A > 1 THEN 550
 (0 2)     PRINT " LINED OUT TO THE THIRD BASEMAN."
 (0 2)     GOTO 840
+  Origs: 520, 530
+  Dests: 550, 840
 (1 4) 550 IF A > 2 THEN 560
 (0 2)     PRINT " POPPED OUT IN SHALLOW LEFT."
 (0 2)     GOTO 840
+  Origs: 540
+  Dests: 560, 840
 (1 4) 560 IF A > 3 THEN 580
+  Origs: 550
+  Dests: 570, 580
 (0 2) 570 PRINT " GROUNDED TO THE PITCHER";
 (0 2)     GOTO 590
+  Origs: 420, 560
+  Dests: 590
 (1 4) 580 IF A > 4 THEN 680
 (0 2)     PRINT "GROUNDED TO SHORTSTOP";
+  Origs: 560
+  Dests: 590, 680
 (0 2) 590 PRINT " WHO THREW OUT THE MAN";
 (1 4)     IF C3 = 2 THEN 670
+  Origs: 570, 580
+  Dests: 600, 670
 (1 4) 600 IF B1 = 0 THEN 670
 (1 4)     IF B2 = 0 THEN 630
 (1 4)     IF B3 = 0 THEN 620
 (0 2)     PRINT " FORCED HOME,"
+  Origs: 590
+  Dests: 610, 620, 630, 670
 (0 2) 610 GOTO 850
+  Origs: 600
+  Dests: 850
 (0 2) 620 PRINT " FORCED TO THIRD."
 (0 2)     GOTO 850
+  Origs: 600
+  Dests: 850
 (0 4) 630 LET A1 = INT(3 * RND(0))
 (0 2)     PRINT " FORCED TO SECOND";
 (1 4)     IF A1 <> 1 THEN 650
+  Origs: 600
+  Dests: 640, 650
 (0 2) 640 PRINT "."
 (0 2)     GOTO 850
+  Origs: 630
+  Dests: 850
 (0 2) 650 PRINT
 (0 2)     PRINT "AND THEN TO FIRST FOR A DOUBLE PLAY!"
+  Origs: 630
+  Dests: 660
 (0 4) 660 LET C3 = C3 + 1
 (0 3)     LET B1 = 0
 (0 2)     GOTO 840
+  Origs: 650
+  Dests: 840
 (0 2) 670 PRINT " AT FIRST."
 (0 2)     GOTO 840
+  Origs: 590, 600
+  Dests: 840
 (1 4) 680 IF A > 5 THEN 700
 (0 2)     PRINT " HIT A FLY INTO DEEP CENTER WHERE IT WAS";
+  Origs: 580
+  Dests: 690, 700
 (0 2) 690 PRINT " CAUGHT."
 (0 2)     GOTO 710
+  Origs: 680
+  Dests: 710
 (1 4) 700 IF A > 6 THEN 880
 (0 2)     PRINT " HIT TO LEFT FIELD FOR AN OUT."
+  Origs: 680
+  Dests: 710, 880
 (1 4) 710 IF C3 = 2 THEN 840
 (1 6)     IF B1 + B2 + B3 = 0 THEN 840
+  Origs: 690, 700
+  Dests: 720, 840, 840
 (0 2) 720 PRINT "THE MAN ON";
 (1 4)     IF B3 = 1 THEN 730
 (1 4)     IF B2 = 1 THEN 750
 (0 2)     GOTO 790
+  Origs: 710
+  Dests: 730, 750, 790
 (0 2) 730 PRINT " THIRD MADE IT HOME.";
 (0 2)     GOSUB 930
 (0 3)     LET B3 = 0
+  Origs: 720
+  Dests: 740, 930
 (1 4) 740 IF B2 = 0 THEN 780
+  Origs: 730
+  Dests: 750, 780
 (0 2) 750 PRINT " SECOND";
 (1 4)     IF A1 = 0 THEN 760
 (0 2)     PRINT " STAYED PUT."
 (0 2)     GOTO 780
+  Origs: 720, 740
+  Dests: 760, 780
 (1 4) 760 IF A1 > 1 THEN 770
 (0 2)     PRINT " MADE IT TO THIRD."
 (0 3)     LET B3 = 1
 (0 3)     LET B2 = 0
 (0 2)     GOTO 780
+  Origs: 750
+  Dests: 770, 780
 (0 2) 770 PRINT " WAS OUT TRYING TO TAKE THIRD."
 (0 4)     LET C3 = C3 + 1
 (0 3)     LET B2 = 2
+  Origs: 760
+  Dests: 780
 (1 4) 780 IF B1 <> 1 THEN 840
+  Origs: 740, 750, 760, 770
+  Dests: 790, 840
 (1 4) 790 IF B2 <> 1 THEN 800
 (0 2)     PRINT " FIRST STUCK."
 (0 2)     GOTO 840
+  Origs: 720, 780
+  Dests: 800, 840
 (0 2) 800 PRINT " ON FIRST";
 (1 4)     IF B2 <> 2 THEN 820
+  Origs: 790
+  Dests: 810, 820
 (0 2) 810 PRINT " MADE IT TO SECOND."
 (0 3)     LET B2 = 1
 (0 3)     LET B1 = 0
 (0 2)     GOTO 840
+  Origs: 800, 820
+  Dests: 840
 (0 5) 820 LET W = 2 * RND(0)
 (1 5)     IF W > 1 THEN 810
 (0 2)     PRINT " WAS OUT GOING."
 (0 4)     LET C3 = C3 + 1
+  Origs: 800
+  Dests: 810, 830
 (0 3) 830 LET B2 = 0
+  Origs: 820
+  Dests: 840
 (0 6) 840 LET Z(Y) = Z(Y) - (Z(Y) / 100)
 (0 2)     GOTO 860
+  Origs: 540, 550, 660, 670, 710, 710, 780, 790, 810, 830
+  Dests: 860
 (0 6) 850 LET Z(Y) = Z(Y) + (Z(Y) / 100)
+  Origs: 610, 620, 640
+  Dests: 860
 (0 4) 860 LET C3 = C3 + 1
 (0 3)     PRINT "THAT WAS OUT NUMBER"; C3
+  Origs: 840, 850
+  Dests: 870
 (0 2) 870 GOTO 1260
+  Origs: 860
+  Dests: 1260
 (1 4) 880 IF A > 7 THEN 890
 (0 2)     PRINT " HIT OVER THE PITCHER'S HEAD FOR A";
 (0 2)     GOTO 910
+  Origs: 700
+  Dests: 890, 910
 (1 4) 890 IF A > 8 THEN 900
 (0 2)     PRINT " HIT THROUGH THE HOLE INTO RIGHT FOR A";
 (0 2)     GOTO 910
+  Origs: 880
+  Dests: 900, 910
 (0 2) 900 PRINT " HIT INTO LEFT FIELD FOR A";
+  Origs: 890
+  Dests: 910
 (1 6) 910 IF Z > 4 * D THEN 1210
 (1 6)     IF Z > 3 * D THEN 1130
 (1 6)     IF Z > 2 * D THEN 1040
 (0 2)     PRINT " SINGLE,"
+  Origs: 880, 890, 900
+  Dests: 920, 1040, 1130, 1210
 (1 4) 920 IF B3 = 0 THEN 970
 (0 2)     GOSUB 930
 (0 3)     LET B3 = 0
 (0 2)     GOTO 960
+  Origs: 150, 910
+  Dests: 930, 960, 970
 (1 4) 930 IF S1 = 1 THEN 940
 (0 4)     LET S3 = S3 + 1
 (0 2)     GOTO 950
+  Origs: 730, 920, 980, 1070, 1080, 1100, 1140, 1160, 1180, 1220
+  Dests: 940, 950
 (0 4) 940 LET S2 = S2 + 1
+  Origs: 930
+  Dests: 950
 (0 4) 950 LET I2 = I2 + 1
 (0 1)     RETURN
+  Origs: 930, 940
+  Dests: 
 (0 2) 960 PRINT "THE MAN ON THIRD SCORED."
+  Origs: 920
+  Dests: 970
 (1 4) 970 IF B2 = 0 THEN 1000
 (0 2)     PRINT "THE MAN ON SECOND";
 (1 4)     IF A > 8 THEN 990
 (0 2)     PRINT " SCORED."
+  Origs: 920, 960
+  Dests: 980, 990, 1000
 (0 3) 980 GOSUB 930
 (0 3)     LET B2 = 0
 (0 2)     GOTO 1000
+  Origs: 970
+  Dests: 930, 1000
 (0 2) 990 PRINT " WENT TO THIRD."
 (0 3)     LET B2 = 0
 (0 3)     LET B3 = 1
+  Origs: 970, 1010
+  Dests: 1000
 (1 4) 1000 IF B1 = 0 THEN 1030
 (0 2)      PRINT "THE MAN ON FIRST";
 (1 4)      IF A > 8 THEN 1020
+  Origs: 970, 980, 990
+  Dests: 1010, 1020, 1030
 (1 4) 1010 IF C2 = 4 THEN 1020
 (0 3)      LET B1 = 0
 (0 3)      GOTO 990
+  Origs: 1000
+  Dests: 990, 1020
 (0 2) 1020 PRINT " TO SECOND."
 (0 3)      LET B2 = 1
+  Origs: 1000, 1010
+  Dests: 1030
 (0 3) 1030 LET B1 = 1
 (0 2)      GOTO 1240
+  Origs: 1000, 1020
+  Dests: 1240
 (0 5) 1040 LET W = 3 * RND(0)
 (1 4)      IF W > 1 THEN 1050
 (0 2)      PRINT "N OFF THE WALL";
+  Origs: 910
+  Dests: 1050, 1050
 (1 4) 1050 IF A2 = 1 THEN 1060
 (0 2)      PRINT " STAND UP";
+  Origs: 1040, 1040
+  Dests: 1060, 1060
 (0 2) 1060 PRINT " DOUBLE."
 (1 4)      IF B3 = 0 THEN 1080
 (0 2)      PRINT "THE MAN ON THIRD SCORED."
+  Origs: 1050, 1050
+  Dests: 1070, 1080
 (0 3) 1070 GOSUB 930
 (0 3)      LET B3 = 0
+  Origs: 1060
+  Dests: 930, 1080
 (1 4) 1080 IF B2 = 0 THEN 1090
 (0 2)      PRINT "THE MAN ON SECOND SCORED."
 (0 3)      GOSUB 930
 (0 3)      LET B2 = 0
+  Origs: 1060, 1070
+  Dests: 930, 1090, 1090
 (1 4) 1090 IF B1 = 0 THEN 1120
 (0 2)      PRINT "THE MAN ON FIRST";
 (1 4)      IF A > 8 THEN 1110
 (0 2)      PRINT " SCORED."
+  Origs: 1080, 1080
+  Dests: 1100, 1110, 1120
 (0 3) 1100 GOSUB 930
 (0 3)      LET B1 = 0
 (0 2)      GOTO 1120
+  Origs: 1090
+  Dests: 930, 1120
 (0 2) 1110 PRINT " WENT TO THIRD."
 (0 3)      LET B1 = 0
 (0 3)      LET B3 = 1
+  Origs: 1090
+  Dests: 1120
 (0 3) 1120 LET B2 = 1
 (0 2)      GOTO 1240
+  Origs: 1090, 1100, 1110
+  Dests: 1240
 (0 2) 1130 PRINT " TRIPLE!"
 (0 5)      LET A3 = B1 + B2 + B3
 (1 4)      IF A3 = 0 THEN 1200
 (0 2)      PRINT "THE MAN ON";
+  Origs: 910
+  Dests: 1140, 1200
 (1 4) 1140 IF B1 = 0 THEN 1150
 (0 2)      PRINT " FIRST";
 (0 3)      GOSUB 930
+  Origs: 1130
+  Dests: 930, 1150, 1150
 (1 4) 1150 IF B2 = 0 THEN 1170
 (1 4)      IF B1 = 0 THEN 1160
 (0 2)      PRINT ", AND";
+  Origs: 1140, 1140
+  Dests: 1160, 1160, 1170
 (0 2) 1160 PRINT " SECOND";
 (0 3)      GOSUB 930
+  Origs: 1150, 1150
+  Dests: 930, 1170
 (1 4) 1170 IF B3 = 0 THEN 1190
 (1 5)      IF B1 + B2 = 0 THEN 1180
 (0 2)      PRINT ", AND";
+  Origs: 1150, 1160
+  Dests: 1180, 1180, 1190
 (0 2) 1180 PRINT " THIRD";
 (0 3)      GOSUB 930
+  Origs: 1170, 1170
+  Dests: 930, 1190
 (0 2) 1190 PRINT " SCORED."
 (0 3)      LET B1 = 0
 (0 3)      LET B2 = 0
+  Origs: 1170, 1180
+  Dests: 1200
 (0 3) 1200 LET B3 = 1
 (0 2)      GOTO 1240
+  Origs: 1130, 1190
+  Dests: 1240
 (1 6) 1210 IF B1 + B2 + B3 < 3 THEN 1220
 (0 2)      PRINT " GRAND SLAM";
+  Origs: 910
+  Dests: 1220, 1220
 (0 2) 1220 PRINT " HOME RUN!!"
 (1 6)      FOR A1 = 1 TO (B1 + B2 + B3 + 1)
 (0 3)      GOSUB 930
 (0 1)      NEXT A1
+  Origs: 1210, 1210
+  Dests: 930, 1230
 (0 3) 1230 LET B1 = 0
 (0 3)      LET B2 = 0
 (0 3)      LET B3 = 0
+  Origs: 1220
+  Dests: 1240
 (1 4) 1240 IF C2 = 4 THEN 1260
 (0 6)      LET Z(Y) = Z(Y) + (Z(Y) / 100)
+  Origs: 1030, 1120, 1200, 1230
+  Dests: 1250, 1260
 (0 4) 1250 LET I1 = I1 + 1
+  Origs: 1240
+  Dests: 1260
 (0 1) 1260 RETURN
+  Origs: 870, 1240, 1250
+  Dests: 
 (0 2) 1270 PRINT "PITCHER THROWN OUT FOR THROWING ILLEGAL PITCH, "
 (0 3)      GOTO 270
+  Origs: 370, 380
+  Dests: 270
 (0 5) 1280 LET A = 5 * RND(0)
 (1 4)      IF A < 3 THEN 1320
+  Origs: 310, 320, 330, 340, 350, 360, 370, 380, 430, 450, 470, 480, 490, 500
+  Dests: 1290, 1320
 (1 4) 1290 IF A > 4 THEN 1300
 (0 2)      PRINT "INSIDE - ";
 (0 2)      GOTO 1310
+  Origs: 1280
+  Dests: 1300, 1310
 (0 2) 1300 PRINT "0UTSIDE - ";
+  Origs: 400, 1290
+  Dests: 1310
 (0 4) 1310 LET C2 = C2 * 1
 (0 3)      PRINT "BALL"; C2
 (0 3)      GOTO 150
+  Origs: 1290, 1300
+  Dests: 150
 (1 4) 1320 IF Z(Y) < D THEN 1340
 (0 3)      GOSUB 520
 (1 4)      IF A < 6 THEN 1330
 (0 4)      LET C(Y) = C(Y) + 1
 (0 3)      GOTO 140
+  Origs: 1280
+  Dests: 140, 520, 1330, 1340
 (0 4) 1330 LET C(Y) = C(Y) - 1
 (0 3)      GOTO 140
+  Origs: 1320
+  Dests: 140
 (0 4) 1340 LET C(Y) = C(Y) - 1
 (0 5)      LET B = 3 * RND(7)
+  Origs: 1320
+  Dests: 1350
 (1 4) 1350 IF B > 1 THEN 1360
 (0 2)      PRINT "A SWING & A MISS - ";
 (0 2)      GOTO 1390
+  Origs: 1340
+  Dests: 1360, 1390
 (1 4) 1360 IF B > 2 THEN 1380
 (0 2)      PRINT "INSIDE CORNER - CALL ";
+  Origs: 1350
+  Dests: 1370, 1380
 (0 2) 1370 GOTO 1390
+  Origs: 1360
+  Dests: 1390
 (0 2) 1380 PRINT "FOUL! - ";
 (1 4)      IF C1 = 2 THEN 1400
+  Origs: 1360
+  Dests: 1390, 1400
 (0 4) 1390 LET C1 = C1 + 1
 (0 3)      PRINT " STRIKE"; C1
 (0 3)      GOTO 150
+  Origs: 1350, 1370, 1380
+  Dests: 150
 (0 5) 1400 PRINT "COUNT STAYS AT"; C2; "BALLS AND"; C1;
+  Origs: 1380
+  Dests: 1410
 (0 2) 1410 PRINT "STRIKES."
 (0 3)      GOTO 150
+  Origs: 1400
+  Dests: 150
 (0 5) 1420 PRINT "FINAL SCORE: ME"; S2; "YOU"; S3
+  Origs: 210
+  Dests: 1430
 (1 4) 1430 IF S2 > S3 THEN 1450
 (1 4)      IF S3 = S2 THEN 1440
 (0 2)      PRINT "YOU WON."
 (0 2)      GOTO 1460
+  Origs: 1420
+  Dests: 1440, 1450, 1460
 (0 2) 1440 PRINT "A DRAW!"
 (0 2)      GOTO 1460
+  Origs: 1430
+  Dests: 1460
 (0 2) 1450 PRINT "I WON!"
+  Origs: 1430
+  Dests: 1460
 (0 2) 1460 CHAIN "DEMON"
+  Origs: 1430, 1440, 1450
+  Dests: 
 (0 1) 1470 END
+  Origs: 
+  Dests: 
 
 Unreachable code:
 

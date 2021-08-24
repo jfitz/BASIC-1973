@@ -20,116 +20,320 @@ Halstead complexity:
  time: 20.865
 
 (0 2) 5 PRINT "WELCOME TO DIGITAL EDUSYSTEM COMPUTER BLACKJACK!!"
+  Origs: 
+  Dests: 6
 (0 2) 6 PRINT
 (0 2)   PRINT "YOUR DEALER TONIGHT IS PETEY P. EIGHT."
+  Origs: 5
+  Dests: 7
 (0 2) 7 PRINT "WATCH HIM CLOSELY. ... HE HAS A REPUTATION FOR"
+  Origs: 6
+  Dests: 8
 (0 2) 8 PRINT "DEALING OFF THE BOTTOM OF THE DECK. "
 (0 2)   PRINT
+  Origs: 7
+  Dests: 9
 (0 1) 9 RANDOMIZE
+  Origs: 8
+  Dests: 19
 (0 2) 19 DIM A(13)
+  Origs: 9
+  Dests: 20
 (0 2) 20 PRINT "QUESTIONS REQUIRING A YES OR NO ANSWER"
+  Origs: 19
+  Dests: 25
 (0 2) 25 PRINT "SHOULD BE ANSWERED WITH A 'Y' FOR YES, 'N' FOR NO. "
 (0 2)    PRINT
+  Origs: 20
+  Dests: 30
 (0 2) 30 PRINT "DON'T START PLAYING WITH LESS THAN $180. HAVE FUN! "
 (0 2)    PRINT
+  Origs: 25
+  Dests: 40
 (0 2) 40 PRINT "HOW MANY DOLLARS ARE YOU STARTING WITH";
+  Origs: 30
+  Dests: 41
 (1 2) 41 INPUT F
+  Origs: 40
+  Dests: 42
 (0 2) 42 PRINT
+  Origs: 41
+  Dests: 43
 (0 3) 43 F1 = F
+  Origs: 42
+  Dests: 50
 (0 2) 50 PRINT "WHAT IS YOUR WAGER THIS TIME";
+  Origs: 43, 57, 59, 986
+  Dests: 51
 (1 2) 51 INPUT W
+  Origs: 50
+  Dests: 52
 (0 2) 52 PRINT
+  Origs: 51
+  Dests: 53
 (1 4) 53 IF W > F GOTO 56
+  Origs: 52
+  Dests: 54, 56
 (1 4) 54 IF W < 10 GOTO 58
+  Origs: 53
+  Dests: 55, 58
 (0 2) 55 GOTO 100
+  Origs: 54
+  Dests: 100
 (0 2) 56 PRINT "YOUR BET EXCEEDS YOUR REMAINING DOLLARS. "
+  Origs: 53
+  Dests: 57
 (0 3) 57 GOTO 50
+  Origs: 56
+  Dests: 50
 (0 2) 58 PRINT "MINIMUM WAGER IS $10."
+  Origs: 54
+  Dests: 59
 (0 3) 59 GOTO 50
+  Origs: 58
+  Dests: 50
 (0 2) 100 GOSUB 780
+  Origs: 55
+  Dests: 102, 780
 (0 3) 102 P1 = I
+  Origs: 100
+  Dests: 104
 (0 4) 104 PRINT "YOUR FIRST CARD IS " CHR$(L)
+  Origs: 102
+  Dests: 106
 (0 2) 106 GOSUB 780
+  Origs: 104
+  Dests: 110, 780
 (0 3) 110 P2 = I
+  Origs: 106
+  Dests: 112
 (0 4) 112 PRINT "YOUR SECOND CARD IS " CHR$(L)
+  Origs: 110
+  Dests: 115
 (0 2) 115 GOTO 200
+  Origs: 112
+  Dests: 200
 (0 4) 117 PRINT "YOU HAVE " P3 " SHOWING."
+  Origs: 124, 210
+  Dests: 119
 (0 2) 119 GOSUB 760
+  Origs: 117
+  Dests: 120, 760
 (0 4) 120 P3 = P3 + I
+  Origs: 119
+  Dests: 122
 (0 4) 122 PRINT "YOU GOT A " CHR$(L)
+  Origs: 120
+  Dests: 123
 (1 4) 123 IF P3 > 21 GOTO 820
+  Origs: 122
+  Dests: 124, 820
 (0 3) 124 GOTO 117
+  Origs: 123
+  Dests: 117
 (0 2) 200 GOSUB 780
+  Origs: 115
+  Dests: 201, 780
 (0 4) 201 P3 = P1 + P2
+  Origs: 200
+  Dests: 202
 (0 3) 202 D1 = I
+  Origs: 201
+  Dests: 204
 (0 2) 204 GOSUB 780
+  Origs: 202
+  Dests: 206, 780
 (0 3) 206 D2 = I
+  Origs: 204
+  Dests: 208
 (0 4) 208 PRINT "DEALER SHOWS A " CHR$(L)
+  Origs: 206
+  Dests: 210
 (0 3) 210 GOTO 117
+  Origs: 208
+  Dests: 117
 (0 4) 212 D3 = D1 + D2
+  Origs: 766
+  Dests: 214
 (0 3) 214 PRINT "DEALER HAS " D3
+  Origs: 212, 220
+  Dests: 216
 (1 4) 216 IF D3 > 16 GOTO 222
+  Origs: 214
+  Dests: 217, 222
 (0 2) 217 GOSUB 780
+  Origs: 216
+  Dests: 218, 780
 (0 4) 218 PRINT "DEALER GETS A " CHR$(L)
+  Origs: 217
+  Dests: 219
 (0 4) 219 D3 = D3 + I
+  Origs: 218
+  Dests: 220
 (0 3) 220 GOTO 214
+  Origs: 219
+  Dests: 214
 (1 4) 222 IF D3 < 22 GOTO 800
+  Origs: 216
+  Dests: 224, 800
 (0 2) 224 PRINT "DEALER BUSTED."
+  Origs: 222
+  Dests: 226
 (0 2) 226 GOTO 802
+  Origs: 224
+  Dests: 802
 (0 2) 760 PRINT "DO YOU WANT A HIT?";
+  Origs: 119
+  Dests: 762
 (1 2) 762 INPUT$ K
+  Origs: 760
+  Dests: 764
 (0 2) 764 PRINT
+  Origs: 762
+  Dests: 766
 (1 5) 766 IF K = #N GOTO 212
+  Origs: 764
+  Dests: 212, 768
 (0 2) 768 GOSUB 780
+  Origs: 766
+  Dests: 770, 780
 (0 1) 770 RETURN
+  Origs: 768
+  Dests: 
 (0 4) 780 I = INT(13 * RND(0) + 1)
+  Origs: 100, 106, 200, 204, 217, 768, 784
+  Dests: 782
 (0 4) 782 A(I) = A(I) + 1
+  Origs: 780
+  Dests: 784
 (1 5) 784 IF A(I) > 4 GOTO 780
+  Origs: 782
+  Dests: 780, 786
 (0 2) 786 GOSUB 900
+  Origs: 784
+  Dests: 788, 900
 (0 1) 788 RETURN
+  Origs: 786
+  Dests: 
 (1 4) 800 IF D3 >= P3 GOTO 820
+  Origs: 222
+  Dests: 802, 820
 (0 4) 802 F = F + W
+  Origs: 226, 800
+  Dests: 806
 (0 3) 806 PRINT "YOU WIN. YOU NOW HAVE $" F
+  Origs: 802
+  Dests: 808
 (0 2) 808 GOTO 980
+  Origs: 806
+  Dests: 980
 (0 4) 820 F = F - W
+  Origs: 123, 800
+  Dests: 822
 (0 3) 822 PRINT "YOU LOSE. YOU NOW HAVE $" F
+  Origs: 820
+  Dests: 824
 (0 2) 824 GOTO 980
+  Origs: 822
+  Dests: 980
 (1 4) 900 IF I <> 1 GOTO 910
+  Origs: 786
+  Dests: 904, 910
 (0 3) 904 I = 11
+  Origs: 900
+  Dests: 906
 (0 3) 906 L = #A
+  Origs: 904
+  Dests: 908
 (0 2) 908 GOTO 942
+  Origs: 906
+  Dests: 942
 (1 4) 910 IF 1 <> 13 GOTO 920
+  Origs: 900
+  Dests: 912, 920
 (0 3) 912 I = 16
+  Origs: 910
+  Dests: 914
 (0 3) 914 L = #K
+  Origs: 912
+  Dests: 916
 (0 2) 916 GOTO 942
+  Origs: 914
+  Dests: 942
 (1 3) 920 IF 1012 GOTO 930
+  Origs: 910
+  Dests: 922, 930
 (0 3) 922 I = 10
+  Origs: 920
+  Dests: 924
 (0 3) 924 L = #Q
+  Origs: 922
+  Dests: 926
 (0 2) 926 GOTO 942
+  Origs: 924
+  Dests: 942
 (1 4) 930 IF I <> 11 GOTO 937
+  Origs: 920
+  Dests: 932, 937
 (0 3) 932 I = 10
+  Origs: 930
+  Dests: 934
 (0 3) 934 L = #J
+  Origs: 932
+  Dests: 936
 (0 2) 936 GOTO 942
+  Origs: 934
+  Dests: 942
 (1 4) 937 IF I <> 10 GOTO 940
+  Origs: 930
+  Dests: 938, 940
 (0 3) 938 L = #T
+  Origs: 937
+  Dests: 939
 (0 2) 939 GOTO 942
+  Origs: 938
+  Dests: 942
 (0 4) 940 L = I + 48
+  Origs: 937
+  Dests: 942
 (0 1) 942 RETURN
+  Origs: 908, 916, 926, 936, 939, 940
+  Dests: 
 (0 2) 980 PRINT "DO YOU WISH TO PLAY AGAIN?";
+  Origs: 808, 824
+  Dests: 982
 (1 2) 982 INPUT$ K
+  Origs: 980
+  Dests: 984
 (0 2) 984 PRINT
 (0 2)     PRINT
+  Origs: 982
+  Dests: 986
 (1 5) 986 IF K = #Y GOTO 50
+  Origs: 984
+  Dests: 50, 987
 (0 2) 987 PRINT
 (0 2)     PRINT
 (0 2)     PRINT
 (1 4)     IF F > F1 THEN 995
+  Origs: 986
+  Dests: 988, 995
 (0 5) 988 PRINT "TOO BAD! YOU LOST " F1 - F "DOLLARS AT THE EDUSYSTEM CASINO."
+  Origs: 987
+  Dests: 990
 (0 2) 990 GOTO 998
+  Origs: 988
+  Dests: 998
 (0 5) 995 PRINT "NOT BAD! YOU WON" F - F1 "DOLLARS AT THE EDUSYSTEM CASINO."
+  Origs: 987
+  Dests: 998
 (0 2) 998 PRINT
 (0 2)     PRINT "HOPE YOU ENJOYED YOURSELF. THANKS FOR PLAYING."
+  Origs: 990, 995
+  Dests: 999
 (0 1) 999 END
+  Origs: 998
+  Dests: 
 
 Unreachable code:
 

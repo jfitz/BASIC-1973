@@ -20,79 +20,183 @@ Halstead complexity:
  time: 21.052
 
 (0 1) 5 REM *** SYNONM CONVERTED TO RSTS/E BASIC-PLUS BY DAVE AHL, DIGITAL
+  Origs: 
+  Dests: 10
 (0 5) 10 DIM R$(5), W$(10), L(30), R(30)
+  Origs: 5
+  Dests: 20
 (0 3) 20 R$(1) = "RIGHT"
 (0 3)    R$(2) = "CORRECT"
 (0 3)    R$(3) = "FINE"
 (0 3)    R$(4) = "GOOD!"
 (0 3)    R$(5) = "CHECK"
+  Origs: 10
+  Dests: 70
 (0 1) 70 RANDOMIZE
 (0 3)    C = 0
 (0 2)    PRINT
 (0 2)    PRINT "SYNONYMS"
 (0 2)    PRINT
+  Origs: 20
+  Dests: 90
 (0 2) 90 PRINT "A SYNONYM OF A WORD MEANS ANOTHER WORD IN THE ENGLISH"
+  Origs: 70
+  Dests: 100
 (0 2) 100 PRINT "LANGUAGE WHICH HAS THE SAME OR VERY NEARLY THE SAME"
+  Origs: 90
+  Dests: 110
 (0 2) 110 PRINT "MEANING."
 (0 2)     PRINT
+  Origs: 100
+  Dests: 130
 (0 2) 130 PRINT "I CHOOSE A WORD  YOU TYPE A SYNONYM."
+  Origs: 110
+  Dests: 140
 (0 2) 140 PRINT "IF YOU CAN'T THINK OF A SYNONYM, TYPE THE WORD 'HELP'"
+  Origs: 130
+  Dests: 145
 (0 2) 145 PRINT "AND I WILL TELL YOU A SYNONYM."
 (0 2)     PRINT
+  Origs: 140
+  Dests: 150
 (0 1) 150 RESTORE
 (0 4)     C = C + 1
 (1 2)     READ N
+  Origs: 145, 330
+  Dests: 160
 (1 4) 160 IF C > N THEN 420
+  Origs: 150
+  Dests: 170, 420
 (0 4) 170 N1 = INT(RND * N + 1)
+  Origs: 160, 174
+  Dests: 174
 (1 5) 174 IF R(N1) = 1 THEN 170
+  Origs: 170
+  Dests: 170, 176
 (0 3) 176 R(N1) = 1
+  Origs: 174
+  Dests: 180
 (1 3) 180 FOR I = 1 TO N1
+  Origs: 176
+  Dests: 190
 (1 2) 190 READ N2
+  Origs: 180
+  Dests: 200
 (1 3) 200 FOR J = 1 TO N2
+  Origs: 190
+  Dests: 210
 (1 2) 210 READ W$(J)
+  Origs: 200
+  Dests: 220
 (0 1) 220 NEXT J
+  Origs: 210
+  Dests: 230
 (0 1) 230 NEXT I
+  Origs: 220
+  Dests: 232
 (0 3) 232 L(J) = J
 (1 1)       FOR J = 1 TO N2
 (0 1)       NEXT J
+  Origs: 230
+  Dests: 235
 (0 3) 235 L(0) = N2
 (0 3)     G = 1
 (0 2)     PRINT
+  Origs: 232
+  Dests: 237
 (0 3) 237 L(G) = L(L(0))
 (0 4)     L(0) = N2 - 1
 (0 2)     PRINT
+  Origs: 235
+  Dests: 240
 (0 3) 240 PRINT "WHAT IS A SYNONYM OF " W$(G);
 (1 2)     INPUT A$
+  Origs: 237, 310, 390
+  Dests: 250
 (1 4) 250 IF A$ = "HELP" THEN 340
+  Origs: 240
+  Dests: 260, 340
 (1 3) 260 FOR J = 1 TO N2
+  Origs: 250
+  Dests: 270
 (1 4) 270 IF G = J THEN 290
+  Origs: 260
+  Dests: 280, 290
 (1 4) 280 IF A$ = W$(J) THEN 320
+  Origs: 270
+  Dests: 290, 320
 (0 1) 290 NEXT J
+  Origs: 270, 280
+  Dests: 300
 (0 2) 300 PRINT "TRY AGAIN."
+  Origs: 290
+  Dests: 310
 (0 3) 310 GOTO 240
+  Origs: 300
+  Dests: 240
 (0 2) 320 PRINT R$(RND * 5 + 1)
+  Origs: 280
+  Dests: 330
 (0 3) 330 GOTO 150
+  Origs: 320
+  Dests: 150
 (0 4) 340 G1 = INT(RND * L(0) + 1)
+  Origs: 250
+  Dests: 360
 (0 6) 360 PRINT "**** A SYNONYM OF " W$(G) " IS " W$(L(G1)) "."
+  Origs: 340
+  Dests: 365
 (0 2) 365 PRINT
+  Origs: 360
+  Dests: 370
 (0 3) 370 L(G1) = L(L(0))
 (0 4)     L(0) = L(0) - 1
+  Origs: 365
+  Dests: 390
 (0 3) 390 GOTO 240
+  Origs: 370
+  Dests: 240
 (0 2) 420 PRINT
 (0 2)     PRINT "SYNONYM DRILL COMPLETED."
 (0 1)     STOP
+  Origs: 160
+  Dests: 
 (0 2) 500 DATA 10
+  Origs: 
+  Dests: 510
 (0 2) 510 DATA 5, "FIRST", "START", "BEGINNING", "ONSET", "INITIAL"
+  Origs: 500
+  Dests: 520
 (0 2) 520 DATA 5, "SIMILAR", "ALIKE", "SAME", "LIKE", "RESEMBLING"
+  Origs: 510
+  Dests: 530
 (0 2) 530 DATA 5, "MODEL", "PATTERN", "PROTOTYPE", "STANDARD", "CRITERION"
+  Origs: 520
+  Dests: 540
 (0 2) 540 DATA 5, "SMALL", "INSIGNIFICANT", "LITTLE", "TINY", "MINUTE"
+  Origs: 530
+  Dests: 550
 (0 2) 550 DATA 6, "STOP", "HALT", "STAY", "ARREST", "CHECK", "STANDSTILL"
+  Origs: 540
+  Dests: 560
 (0 2) 560 DATA 6, "HOUSE", "DWELLING", "RESIDENCE", "DOMICILE", "LODGING", "HABITATION"
+  Origs: 550
+  Dests: 570
 (0 2) 570 DATA 7, "PIT", "HOLE", "HOLLOW", "WELL", "GULF", "CHASM", "ABYSS"
+  Origs: 560
+  Dests: 580
 (0 2) 580 DATA 7, "PUSH", "SHOVE", "THRUST", "PROD", "POKE", "BUTT", "PRESS"
+  Origs: 570
+  Dests: 590
 (0 2) 590 DATA 6, "RED", "ROUGE", "SCARLET", "CRIMSON", "FLAME", "RUBY"
+  Origs: 580
+  Dests: 600
 (0 2) 600 DATA 7, "PAIN", "SUFFERING", "HURT", "MISERY", "DISTRESS", "ACHE", "DISCOMFORT"
+  Origs: 590
+  Dests: 999
 (0 1) 999 END
+  Origs: 600
+  Dests: 
 
 Unreachable code:
 

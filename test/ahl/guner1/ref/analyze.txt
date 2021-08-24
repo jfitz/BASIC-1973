@@ -20,92 +20,266 @@ Halstead complexity:
  time: 23.296
 
 (0 1) 100 REM ARTILLERY FIRING GAME
+  Origs: 
+  Dests: 110
 (0 2) 110 DIM A$(3)
+  Origs: 100
+  Dests: 120
 (0 1) 120 RANDOMIZE
+  Origs: 110
+  Dests: 130
 (0 2) 130 PRINT "DO YOU WANT INSTRUCTIONS";
+  Origs: 120
+  Dests: 140
 (1 2) 140 INPUT A$
+  Origs: 130
+  Dests: 150
 (0 2) 150 PRINT
+  Origs: 140
+  Dests: 160
 (1 4) 160 IF A$ = "NO" THEN 330
+  Origs: 150
+  Dests: 170, 330
 (0 2) 170 PRINT "    THIS GAME TESTS YOUR ABILITY TO HIT A MOVING TARGET,"
+  Origs: 160
+  Dests: 180
 (0 2) 180 PRINT "YOU MUST DESTROY IT BEFORE IT DESTROYS YOU OR MOVES OUT"
+  Origs: 170
+  Dests: 190
 (0 2) 190 PRINT "OF RANGE. THE TARGET WILL MOVE RAMDOMLY."
+  Origs: 180
+  Dests: 200
 (0 2) 200 PRINT
+  Origs: 190
+  Dests: 210
 (0 2) 210 PRINT "    TYPE CTRL/C TO TERMINATE THE PROGRAM. TO THE QUESTION"
+  Origs: 200
+  Dests: 220
 (0 2) 220 PRINT "'ENTER SPEED' TYPE A NUMBER BETWEEN 1 AND 100. THIS IS THE "
+  Origs: 210
+  Dests: 230
 (0 2) 230 PRINT "RELATIVE SPEED OF THE TARGET WHERE 1 IS THE SLOWEST AND 100"
+  Origs: 220
+  Dests: 240
 (0 2) 240 PRINT "IS THE FASTEST."
+  Origs: 230
+  Dests: 250
 (0 2) 250 PRINT
+  Origs: 240
+  Dests: 260
 (0 2) 260 PRINT "TO THE QUESTION 'ENTER DISTANCE' ENTER THE MAXIMUM DISTANCE"
+  Origs: 250
+  Dests: 270
 (0 2) 270 PRINT "YOU CAN HIT FROM THE TARGET AND STILL DESTROY IT. THIS IS"
+  Origs: 260
+  Dests: 280
 (0 2) 280 PRINT "THE KILL RADIUS AND 5000 IS SUGGESTED FOR STARTERS."
+  Origs: 270
+  Dests: 290
 (0 2) 290 PRINT
+  Origs: 280
+  Dests: 300
 (0 2) 300 PRINT "ELEVATION IS THE ELEVATION OF YOUR GUN IN DEGREES WHEN YOU"
+  Origs: 290
+  Dests: 310
 (0 2) 310 PRINT "FIRE AT THE TARGET. THE MAXIMUN RANGE IS AT 45 DEGREES"
+  Origs: 300
+  Dests: 320
 (0 2) 320 PRINT
+  Origs: 310
+  Dests: 330
 (0 2) 330 PRINT "ENTER SPEED";
+  Origs: 160, 320, 350, 360
+  Dests: 340
 (1 2) 340 INPUT S
+  Origs: 330
+  Dests: 350
 (1 5) 350 IF S < 1 THEN 330
+  Origs: 340
+  Dests: 330, 360
 (1 5) 360 IF S > 100 THEN 330
+  Origs: 350
+  Dests: 330, 370
 (0 2) 370 PRINT "ENTER DISTANCE";
+  Origs: 360, 390, 400
+  Dests: 380
 (1 2) 380 INPUT D
+  Origs: 370
+  Dests: 390
 (1 5) 390 IF D < 0 THEN 370
+  Origs: 380
+  Dests: 370, 400
 (1 5) 400 IF D > 10000 THEN 370
+  Origs: 390
+  Dests: 370, 410
 (0 7) 410 M = 100000 - 75000 * RND(0)
+  Origs: 400, 710
+  Dests: 420
 (0 2) 420 PRINT
+  Origs: 410
+  Dests: 430
 (0 4) 430 PRINT "THE MAXIMUM RANGE OF YOUR GUN IS " M " YARDS"
+  Origs: 420
+  Dests: 440
 (1 4) 440 FOR K = 1 TO M / 10000
+  Origs: 430
+  Dests: 450
 (0 4) 450 LET K1 = RND(0)
+  Origs: 440
+  Dests: 460
 (0 1) 460 NEXT K
+  Origs: 450
+  Dests: 470
 (0 9) 470 R = .95 * M - .6 * M * RND(0)
+  Origs: 460
+  Dests: 480
 (0 3) 480 LET N = 0
+  Origs: 470
+  Dests: 490
 (0 2) 490 GOTO 520
+  Origs: 480
+  Dests: 520
 (1 4) 500 IF R > M THEN 840
+  Origs: 790
+  Dests: 510, 840
 (1 6) 510 IF R < (M / 2.5) THEN 860
+  Origs: 500
+  Dests: 520, 860
 (0 4) 520 PRINT "TARGET RANGE IS" R " YARDS"
+  Origs: 490, 510
+  Dests: 530
 (0 2) 530 PRINT "ELEVATION"
+  Origs: 520, 810, 830
+  Dests: 540
 (1 2) 540 INPUT E
+  Origs: 530
+  Dests: 550
 (1 4) 550 IF E < 0 THEN 840
+  Origs: 540
+  Dests: 560, 840
 (1 4) 560 IF E > 89 THEN 800
+  Origs: 550
+  Dests: 570, 800
 (1 4) 570 IF E < 1 THEN 820
+  Origs: 560
+  Dests: 580, 820
 (0 4) 580 N = N + 1
+  Origs: 570
+  Dests: 590
 (0 4) 590 K = INT(R - M * SIN(2 * E / 57.3))
+  Origs: 580
+  Dests: 600
 (0 4) 600 K = ABS(K)
+  Origs: 590
+  Dests: 610
 (0 4) 610 K1 = ABS(K - D)
+  Origs: 600
+  Dests: 620
 (1 4) 620 IF K1 > D THEN 720
+  Origs: 610
+  Dests: 630, 720
 (1 4) 630 IF K1 < D THEN 740
+  Origs: 620
+  Dests: 650, 740
 (0 2) 650 PRINT "*** TARGET DESTROYED ***"
+  Origs: 630
+  Dests: 660
 (0 2) 660 GOSUB 940
+  Origs: 650
+  Dests: 670, 940
 (0 3) 670 D = K
+  Origs: 660, 850, 870
+  Dests: 680
 (1 6) 680 FOR K = 1 TO N + D / 100
+  Origs: 670
+  Dests: 690
 (0 4) 690 K1 = RND(0)
+  Origs: 680
+  Dests: 700
 (0 1) 700 NEXT K
+  Origs: 690
+  Dests: 710
 (0 3) 710 GOTO 410
+  Origs: 700
+  Dests: 410
 (0 4) 720 PRINT "SHORT OF TARGET BY " K1 " YARDS"
+  Origs: 620
+  Dests: 730
 (0 2) 730 GOTO 745
+  Origs: 720
+  Dests: 745
 (0 4) 740 PRINT "OVER TARGET BY " K1 "YARDS"
+  Origs: 630
+  Dests: 745
 (0 4) 745 LET C = INT(2 * RND(0) + 1)
+  Origs: 730, 740
+  Dests: 746
 (1 4) 746 IF C = 1 THEN 750
+  Origs: 745
+  Dests: 748, 750
 (0 4) 748 LET C = -1
+  Origs: 746
+  Dests: 749
 (0 2) 749 GOTO 760
+  Origs: 748
+  Dests: 760
 (0 3) 750 LET C = 1
+  Origs: 746
+  Dests: 760
 (0 7) 760 C1 = M * S / 100 * RND(0)
+  Origs: 749, 750
+  Dests: 770
 (0 4) 770 C1 = C * C1
+  Origs: 760
+  Dests: 780
 (0 4) 780 R = R + C1
+  Origs: 770
+  Dests: 790
 (0 3) 790 GOTO 500
+  Origs: 780
+  Dests: 500
 (0 2) 800 PRINT "MAXIMUM ELEVATION IS 89 DEGREES"
+  Origs: 560
+  Dests: 810
 (0 3) 810 GOTO 530
+  Origs: 800
+  Dests: 530
 (0 2) 820 PRINT "MINIMUM ELEVATION IS 1 DEGREE"
+  Origs: 570
+  Dests: 830
 (0 3) 830 GOTO 530
+  Origs: 820
+  Dests: 530
 (0 2) 840 PRINT "* TARGET OUT OF RANGE *"
+  Origs: 500, 550
+  Dests: 850
 (0 3) 850 GOTO 670
+  Origs: 840
+  Dests: 670
 (0 2) 860 PRINT "THE TARGET HAS DESTROYED YOU!"
+  Origs: 510
+  Dests: 870
 (0 3) 870 GOTO 670
+  Origs: 860
+  Dests: 670
 (1 4) 940 IF N = 1 THEN 970
+  Origs: 660
+  Dests: 950, 970
 (0 3) 950 PRINT N " ROUNDS EXPENDED"
+  Origs: 940
+  Dests: 960
 (0 1) 960 RETURN
+  Origs: 950
+  Dests: 
 (0 2) 970 PRINT "***** DIRECT HIT *****"
+  Origs: 940
+  Dests: 980
 (0 1) 980 RETURN
+  Origs: 970
+  Dests: 
 (0 1) 990 END
+  Origs: 
+  Dests: 
 
 Unreachable code:
 

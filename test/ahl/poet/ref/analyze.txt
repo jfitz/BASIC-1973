@@ -20,51 +20,119 @@ Halstead complexity:
  time: 14.970
 
 (0 1) 90 RANDOMIZE
+  Origs: 
+  Dests: 100
 (1 6) 100 IF I <> 1 THEN 101 ELSE PRINT "MIDNIGHT DREARY";
+  Origs: 90, 240
+  Dests: 101
 (1 6) 101 IF I <> 2 THEN 102 ELSE PRINT "FIREY EYES";
+  Origs: 100
+  Dests: 102
 (1 6) 102 IF I <> 3 THEN 103 ELSE PRINT "BIRD OR FIEND";
+  Origs: 101
+  Dests: 103
 (1 6) 103 IF I <> 4 THEN 104 ELSE PRINT "THING OF EVIL";
+  Origs: 102
+  Dests: 104
 (1 6) 104 IF I <> 5 THEN 210 ELSE PRINT "PHOPHET";
+  Origs: 103
+  Dests: 105, 210
 (0 2) 105 GOTO 210
+  Origs: 104
+  Dests: 210
 (1 6) 110 IF I <> 1 THEN 111 ELSE PRINT "BEGUILING ME";
+  Origs: 240, 270
+  Dests: 111
 (1 6) 111 IF I <> 2 THEN 112 ELSE PRINT "THRILLED ME";
+  Origs: 110
+  Dests: 112
 (1 6) 112 IF I <> 3 THEN 113 ELSE PRINT "STILL SITTING..."
 (0 2)     GOTO 212
+  Origs: 111
+  Dests: 113, 212
 (1 6) 113 IF I <> 4 THEN 114 ELSE PRINT "BURNED. "
 (0 2)     GOTO 212
+  Origs: 112
+  Dests: 114, 212
 (1 6) 114 IF I <> 5 THEN 210 ELSE PRINT "NEVER FLITTING";
+  Origs: 113
+  Dests: 115, 210
 (0 2) 115 GOTO 210
+  Origs: 114
+  Dests: 210
 (2 10) 120 IF I <> 1 THEN 121 ELSE IF U = 0 THEN 210 ELSE PRINT "SIGN OF PARTING";
+  Origs: 240
+  Dests: 121, 210
 (1 6) 121 IF I <> 2 THEN 122 ELSE PRINT "AND MY SOUL";
+  Origs: 120
+  Dests: 122
 (1 6) 122 IF I <> 3 THEN 123 ELSE PRINT "DARKNESS THERE";
+  Origs: 121
+  Dests: 123
 (1 6) 123 IF I <> 4 THEN 124 ELSE PRINT "SHALL BE LIFTED";
+  Origs: 122
+  Dests: 124
 (1 6) 124 IF I <> 5 THEN 210 ELSE PRINT "QUOTH THE RAVEN";
+  Origs: 123
+  Dests: 125, 210
 (0 2) 125 GOTO 210
+  Origs: 124
+  Dests: 210
 (1 6) 130 IF I <> 1 THEN 131 ELSE PRINT "NOTHING MORE";
+  Origs: 240
+  Dests: 131
 (1 6) 131 IF I <> 2 THEN 132 ELSE PRINT "YET AGAIN";
+  Origs: 130
+  Dests: 132
 (1 6) 132 IF I <> 3 THEN 133 ELSE PRINT "SLOWLY CREEPING";
+  Origs: 131
+  Dests: 133
 (1 6) 133 IF I <> 4 THEN 134 ELSE PRINT "...NEVERMORE";
+  Origs: 132
+  Dests: 134
 (1 6) 134 IF I <> 5 THEN 210 ELSE PRINT "EVERMORE.";
+  Origs: 133
+  Dests: 210
 (2 11) 210 IF U = 0 THEN 212 ELSE IF RND > .19 THEN 212 ELSE PRINT ",";
 (0 3)     U = 2
+  Origs: 104, 105, 114, 115, 120, 124, 125, 134
+  Dests: 212, 212
 (1 7) 212 IF RND > .65 THEN 214 ELSE PRINT " ";
 (0 4)     U = U + 1
 (0 2)     GOTO 215
+  Origs: 112, 113, 210, 210
+  Dests: 214, 215
 (0 2) 214 PRINT
 (0 3)     U = 0
+  Origs: 212
+  Dests: 215
 (0 4) 215 I = INT(5 * RND + 1)
+  Origs: 212, 214, 250
+  Dests: 220
 (0 4) 220 J = J + 1
 (0 4)     K = K + 1
+  Origs: 215
+  Dests: 230
 (2 13) 230 IF U > 0 THEN 240 ELSE IF INT(J / 2) <> J / 2 THEN 240 ELSE PRINT "     ";
+  Origs: 220
+  Dests: 240
 (5 11) 240 ON J GOTO 100, 110, 120, 130, 250
+  Origs: 230
+  Dests: 100, 110, 120, 130, 250
 (0 3) 250 J = 0
 (0 2)     PRINT
 (1 7)     IF K > 20 THEN 270 ELSE GOTO 215
+  Origs: 240
+  Dests: 215, 270
 (0 2) 270 PRINT
 (0 3)     U = 0
 (0 3)     K = 0
 (0 3)     GOTO 110
+  Origs: 250
+  Dests: 110
 (0 1) 999 END
+  Origs: 
+  Dests: 
 
 Unreachable code:
 

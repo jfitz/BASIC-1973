@@ -20,229 +20,677 @@ Halstead complexity:
  time: 189.280
 
 (0 2) 100 PRINT "YOU HAVE THE OPPORTUNITY OF TRYING TO BEAT THE COMPUTER"
+  Origs: 
+  Dests: 130
 (0 2) 130 PRINT "AT TIC-TAC-TOE, ENTER YOUR MOVES AS FOLLOWS:"
+  Origs: 100
+  Dests: 140
 (0 2) 140 PRINT
+  Origs: 130
+  Dests: 150
 (0 2) 150 DIM C(11)
+  Origs: 140
+  Dests: 160
 (0 2) 160 DIM D(11)
+  Origs: 150
+  Dests: 170
 (1 3) 170 FOR K = 1 TO 11
+  Origs: 160
+  Dests: 180
 (2 3) 180 READ C(K), D(K)
+  Origs: 170
+  Dests: 190
 (0 1) 190 NEXT K
+  Origs: 180
+  Dests: 200
 (0 2) 200 PRINT
+  Origs: 190
+  Dests: 210
 (0 2) 210 PRINT
+  Origs: 200
+  Dests: 220
 (0 2) 220 PRINT "ROWS ARE HORIZONTAL (ACROSS), COLUMNS ARE VERTICAL(UP + DOWN)"
+  Origs: 210
+  Dests: 230
 (0 2) 230 DIM B(9)
+  Origs: 220
+  Dests: 240
 (0 2) 240 DIM A(3, 3)
+  Origs: 230
+  Dests: 250
 (0 2) 250 PRINT
+  Origs: 240, 2090
+  Dests: 260
 (0 2) 260 PRINT "NEW GAME STARTED NOW............................."
+  Origs: 250
+  Dests: 270
 (1 3) 270 FOR J = 1 TO 3
+  Origs: 260
+  Dests: 280
 (1 3) 280 FOR I = 1 TO 3
+  Origs: 270
+  Dests: 290
 (0 3) 290 LET A(I, J) = 0
+  Origs: 280
+  Dests: 300
 (0 1) 300 NEXT I
+  Origs: 290
+  Dests: 301
 (0 4) 301 LET I = I - 1
+  Origs: 300
+  Dests: 310
 (0 1) 310 NEXT J
+  Origs: 301
+  Dests: 311
 (0 4) 311 LET J = J - 1
+  Origs: 310
+  Dests: 320
 (0 3) 320 LET Z = 0
+  Origs: 311
+  Dests: 330
 (0 2) 330 PRINT "YOUR MOVE",
+  Origs: 320, 600, 640
+  Dests: 340
 (2 3) 340 INPUT R, C
+  Origs: 330
+  Dests: 350
 (0 2) 350 PRINT
+  Origs: 340
+  Dests: 360
 (1 4) 360 IF R > 3 THEN 620
+  Origs: 350
+  Dests: 370, 620
 (1 4) 370 IF C > 3 THEN 620
+  Origs: 360
+  Dests: 380, 620
 (1 4) 380 IF A(R, C) <> 0 THEN 620
+  Origs: 370
+  Dests: 390, 620
 (0 4) 390 LET A(R, C) = -1
+  Origs: 380
+  Dests: 400
 (0 2) 400 GOSUB 1660
+  Origs: 390
+  Dests: 410, 1660
 (1 4) 410 IF Z = 1 THEN 2070
+  Origs: 400
+  Dests: 420, 2070
 (0 1) 420 REM MACHINE MOVE...
+  Origs: 410
+  Dests: 430
 (0 2) 430 GOSUB 1100
+  Origs: 420
+  Dests: 440, 1100
 (0 1) 440 REM TEST FOR GAME WIN...
+  Origs: 430
+  Dests: 450
 (0 2) 450 GOSUB 1660
+  Origs: 440
+  Dests: 460, 1660
 (1 4) 460 IF Z = 0 THEN 650
+  Origs: 450
+  Dests: 470, 650
 (0 1) 470 REM PRINT GAME BOARD...
+  Origs: 460
+  Dests: 480
 (0 2) 480 GOTO 490
+  Origs: 470, 740, 750, 810
+  Dests: 490
 (0 2) 490 PRINT
+  Origs: 480
+  Dests: 500
 (1 3) 500 FOR K = 1 TO 3
+  Origs: 490
+  Dests: 510
 (0 3) 510 LET B = A(K, 1)
+  Origs: 500
+  Dests: 520
 (0 3) 520 LET D = A(K, 2)
+  Origs: 510
+  Dests: 530
 (0 3) 530 LET F = A(K, 3)
+  Origs: 520
+  Dests: 540
 (0 2) 540 GOSUB 840
+  Origs: 530
+  Dests: 550, 840
 (1 4) 550 IF K > 2 THEN 570
+  Origs: 540
+  Dests: 560, 570
 (0 2) 560 PRINT "***************"
+  Origs: 550
+  Dests: 570
 (0 1) 570 NEXT K
+  Origs: 550, 560
+  Dests: 571
 (0 4) 571 LET K = K - 1
+  Origs: 570
+  Dests: 580
 (0 2) 580 PRINT
+  Origs: 571
+  Dests: 590
 (1 4) 590 IF Z <> 0 THEN 2070
+  Origs: 580
+  Dests: 600, 2070
 (0 3) 600 GOTO 330
+  Origs: 590
+  Dests: 330
 (0 1) 610 STOP
+  Origs: 
+  Dests: 
 (0 2) 620 PRINT "---- ILLEGAL MOVE  TRY AGAIN ---"
+  Origs: 360, 370, 380
+  Dests: 630
 (0 2) 630 PRINT
+  Origs: 620
+  Dests: 640
 (0 3) 640 GOTO 330
+  Origs: 630
+  Dests: 330
 (0 3) 650 LET T2 = 0
+  Origs: 460
+  Dests: 660
 (1 3) 660 FOR J = 1 TO 3
+  Origs: 650
+  Dests: 670
 (1 3) 670 FOR I = 1 TO 3
+  Origs: 660
+  Dests: 680
 (1 4) 680 IF A(I, J) <> 0 THEN 700
+  Origs: 670
+  Dests: 690, 700
 (0 4) 690 LET T2 = T2 + 1
+  Origs: 680
+  Dests: 700
 (0 1) 700 NEXT I
+  Origs: 680, 690
+  Dests: 701
 (0 4) 701 LET I = I - 1
+  Origs: 700
+  Dests: 710
 (0 1) 710 NEXT J
+  Origs: 701
+  Dests: 711
 (0 4) 711 LET J = J - 1
+  Origs: 710
+  Dests: 720
 (1 4) 720 IF T2 > 0 THEN 750
+  Origs: 711
+  Dests: 730, 750
 (0 2) 730 GOSUB 1340
+  Origs: 720, 790
+  Dests: 740, 1340
 (0 3) 740 GOTO 480
+  Origs: 730
+  Dests: 480
 (1 5) 750 IF T2 > 1 THEN 480
+  Origs: 720
+  Dests: 480, 760
 (1 3) 760 FOR J = 1 TO 8
+  Origs: 750
+  Dests: 770
 (1 6) 770 IF B(J) = -2 THEN 800
+  Origs: 760
+  Dests: 780, 800
 (0 1) 780 NEXT J
+  Origs: 770
+  Dests: 781
 (0 4) 781 LET J = J - 1
+  Origs: 780
+  Dests: 790
 (0 3) 790 GOTO 730
+  Origs: 781
+  Dests: 730
 (0 2) 800 GOSUB 2000
+  Origs: 770
+  Dests: 810, 2000
 (0 3) 810 GOTO 480
+  Origs: 800
+  Dests: 480
 (0 1) 820 REM PRINT TIC-TAC-TOE BOARD ROW
+  Origs: 
+  Dests: 830
 (0 1) 830 REM
+  Origs: 820
+  Dests: 840
 (1 4) 840 IF B <> 0 THEN 910
+  Origs: 540, 830
+  Dests: 850, 910
 (0 2) 850 PRINT "    * ";
+  Origs: 840
+  Dests: 860
 (1 4) 860 IF D <> 0 THEN 940
+  Origs: 850, 930, 1010
+  Dests: 870, 940
 (0 2) 870 PRINT "    * ";
+  Origs: 860
+  Dests: 880
 (1 4) 880 IF F <> 0 THEN 970
+  Origs: 870, 960, 1030
+  Dests: 890, 970
 (0 2) 890 PRINT "    "
+  Origs: 880
+  Dests: 900
 (0 2) 900 GOTO 1070
+  Origs: 890, 990, 1050
+  Dests: 1070
 (1 4) 910 IF B > 0 THEN 1000
+  Origs: 840
+  Dests: 920, 1000
 (0 2) 920 PRINT "YOU * ";
+  Origs: 910
+  Dests: 930
 (0 3) 930 GOTO 860
+  Origs: 920
+  Dests: 860
 (1 4) 940 IF D > 0 THEN 1020
+  Origs: 860
+  Dests: 950, 1020
 (0 2) 950 PRINT "YOU * ";
+  Origs: 940
+  Dests: 960
 (0 3) 960 GOTO 880
+  Origs: 950
+  Dests: 880
 (1 4) 970 IF F > 0 THEN 1040
+  Origs: 880
+  Dests: 980, 1040
 (0 2) 980 PRINT "YOU"
+  Origs: 970
+  Dests: 990
 (0 3) 990 GOTO 900
+  Origs: 980
+  Dests: 900
 (0 2) 1000 PRINT "PDP * ";
+  Origs: 910
+  Dests: 1010
 (0 3) 1010 GOTO 860
+  Origs: 1000
+  Dests: 860
 (0 2) 1020 PRINT "PDP * ";
+  Origs: 940
+  Dests: 1030
 (0 3) 1030 GOTO 880
+  Origs: 1020
+  Dests: 880
 (0 2) 1040 PRINT "PDP"
+  Origs: 970
+  Dests: 1050
 (0 3) 1050 GOTO 900
+  Origs: 1040
+  Dests: 900
 (0 1) 1060 REM PRINT LEGENDS..
+  Origs: 
+  Dests: 1070
 (0 2) 1070 PRINT "    *     * "
+  Origs: 900, 1060
+  Dests: 1080
 (0 1) 1080 RETURN
+  Origs: 1070
+  Dests: 
 (0 1) 1090 REM PROGRAM TO MAKE MOVE FOR THE MACHINE....
+  Origs: 
+  Dests: 1100
 (0 4) 1100 LET M = INT(3.33 * RND(1))
+  Origs: 430, 1090, 1120, 1130
+  Dests: 1110
 (0 4) 1110 LET N = INT(3.33333 * RND(N))
+  Origs: 1100, 1140, 1150
+  Dests: 1120
 (1 5) 1120 IF M = 0 THEN 1100
+  Origs: 1110
+  Dests: 1100, 1130
 (1 5) 1130 IF M > 3 THEN 1100
+  Origs: 1120
+  Dests: 1100, 1140
 (1 5) 1140 IF N = 0 THEN 1110
+  Origs: 1130
+  Dests: 1110, 1150
 (1 5) 1150 IF N > 3 THEN 1110
+  Origs: 1140
+  Dests: 1110, 1160
 (0 3) 1160 LET C(2) = M
+  Origs: 1150
+  Dests: 1170
 (0 3) 1170 LET D(2) = N
+  Origs: 1160
+  Dests: 1180
 (0 3) 1180 LET C(3) = N
+  Origs: 1170
+  Dests: 1190
 (0 3) 1190 LET D(3) = M
+  Origs: 1180
+  Dests: 1200
 (1 3) 1200 FOR I = 1 TO 8
+  Origs: 1190
+  Dests: 1210
 (1 4) 1210 IF B(I) > 1 THEN 1370
+  Origs: 1200
+  Dests: 1220, 1370
 (0 1) 1220 NEXT I
+  Origs: 1210
+  Dests: 1221
 (0 4) 1221 LET I = I - 1
+  Origs: 1220
+  Dests: 1230
 (1 3) 1230 FOR I = 1 TO 8
+  Origs: 1221
+  Dests: 1240
 (1 6) 1240 IF B(I) < -1 THEN 1370
+  Origs: 1230
+  Dests: 1250, 1370
 (0 1) 1250 NEXT I
+  Origs: 1240
+  Dests: 1251
 (0 4) 1251 LET I = I - 1
+  Origs: 1250
+  Dests: 1260
 (1 5) 1260 IF R + C = 0 THEN 1550
+  Origs: 1251
+  Dests: 1270, 1550
 (1 3) 1270 FOR K = 1 TO 11
+  Origs: 1260
+  Dests: 1280
 (0 3) 1280 LET I = C(K)
+  Origs: 1270
+  Dests: 1300
 (1 4) 1300 IF A(I, J) <> 0 THEN 1330
+  Origs: 1280
+  Dests: 1310, 1330
 (0 3) 1310 LET A(I, J) = 1
+  Origs: 1300
+  Dests: 1320
 (0 2) 1320 GOTO 1360
+  Origs: 1310
+  Dests: 1360
 (0 1) 1330 NEXT K
+  Origs: 1300
+  Dests: 1331
 (0 4) 1331 LET K = K - 1
+  Origs: 1330
+  Dests: 1340
 (0 2) 1340 PRINT " ... TIE GAME ... "
+  Origs: 730, 1331
+  Dests: 1350
 (0 3) 1350 LET Z = 3
+  Origs: 1340
+  Dests: 1360
 (0 1) 1360 RETURN
+  Origs: 1320, 1350, 1410, 1430, 1480, 1500, 1580, 1600, 1620, 1640
+  Dests: 
 (1 4) 1370 IF I > 3 THEN 1440
+  Origs: 1210, 1240
+  Dests: 1380, 1440
 (1 3) 1380 FOR J = 1 TO 3
+  Origs: 1370
+  Dests: 1390
 (1 4) 1390 IF A(I, J) = 0 THEN 1420
+  Origs: 1380
+  Dests: 1400, 1420
 (0 1) 1400 NEXT J
+  Origs: 1390
+  Dests: 1401
 (0 4) 1401 LET J = J - 1
+  Origs: 1400
+  Dests: 1410
 (0 3) 1410 GOTO 1360
+  Origs: 1401
+  Dests: 1360
 (0 3) 1420 LET A(I, J) = 1
+  Origs: 1390
+  Dests: 1430
 (0 3) 1430 GOTO 1360
+  Origs: 1420
+  Dests: 1360
 (1 4) 1440 IF I > 6 THEN 1510
+  Origs: 1370
+  Dests: 1450, 1510
 (1 3) 1450 FOR J = 1 TO 3
+  Origs: 1440
+  Dests: 1460
 (1 4) 1460 IF A(J, I - 3) = 0 THEN 1490
+  Origs: 1450
+  Dests: 1470, 1490
 (0 1) 1470 NEXT J
+  Origs: 1460
+  Dests: 1471
 (0 4) 1471 LET J = J - 1
+  Origs: 1470
+  Dests: 1480
 (0 3) 1480 GOTO 1360
+  Origs: 1471
+  Dests: 1360
 (0 3) 1490 LET A(J, I - 3) = 1
+  Origs: 1460
+  Dests: 1500
 (0 3) 1500 GOTO 1360
+  Origs: 1490
+  Dests: 1360
 (1 4) 1510 IF I > 7 THEN 1550
+  Origs: 1440
+  Dests: 1520, 1550
 (1 3) 1520 FOR J = 1 TO 3
+  Origs: 1510
+  Dests: 1530
 (1 4) 1530 IF A(J, J) = 0 THEN 1590
+  Origs: 1520
+  Dests: 1540, 1590
 (0 1) 1540 NEXT J
+  Origs: 1530
+  Dests: 1541
 (0 4) 1541 LET J = J - 1
+  Origs: 1540
+  Dests: 1550
 (1 4) 1550 IF A(1, 3) = 0 THEN 1610
+  Origs: 1260, 1510, 1541
+  Dests: 1560, 1610
 (1 4) 1560 IF A(3, 1) = 0 THEN 1630
+  Origs: 1550
+  Dests: 1570, 1630
 (0 3) 1570 LET A(2, 2) = 1
+  Origs: 1560
+  Dests: 1580
 (0 3) 1580 GOTO 1360
+  Origs: 1570
+  Dests: 1360
 (0 3) 1590 LET A(J, J) = 1
+  Origs: 1530
+  Dests: 1600
 (0 3) 1600 GOTO 1360
+  Origs: 1590
+  Dests: 1360
 (0 3) 1610 LET A(1, 3) = 1
+  Origs: 1550
+  Dests: 1620
 (0 3) 1620 GOTO 1360
+  Origs: 1610
+  Dests: 1360
 (0 3) 1630 LET A(3, 1) = 1
+  Origs: 1560
+  Dests: 1640
 (0 3) 1640 GOTO 1360
+  Origs: 1630
+  Dests: 1360
 (0 1) 1650 REM PROGRAM TO TEST FOR GAME WINNER....
+  Origs: 
+  Dests: 1660
 (0 3) 1660 LET T1 = 0
+  Origs: 400, 450, 1650
+  Dests: 1670
 (1 3) 1670 FOR J = 1 TO 9
+  Origs: 1660
+  Dests: 1680
 (0 3) 1680 LET B(J) = 0
+  Origs: 1670
+  Dests: 1690
 (0 1) 1690 NEXT J
+  Origs: 1680
+  Dests: 1691
 (0 4) 1691 LET J = J - 1
+  Origs: 1690
+  Dests: 1700
 (1 3) 1700 FOR J = 1 TO 3
+  Origs: 1691
+  Dests: 1710
 (1 3) 1710 FOR I = 1 TO 3
+  Origs: 1700
+  Dests: 1720
 (1 4) 1720 IF A(J, 1) <> A(J, I) THEN 1750
+  Origs: 1710
+  Dests: 1730, 1750
 (0 1) 1730 NEXT I
+  Origs: 1720
+  Dests: 1731
 (0 4) 1731 LET I = I - 1
+  Origs: 1730
+  Dests: 1740
 (0 3) 1740 LET T1 = A(J, I)
+  Origs: 1731
+  Dests: 1750
 (0 1) 1750 NEXT J
+  Origs: 1720, 1740
+  Dests: 1751
 (0 4) 1751 LET J = J - 1
+  Origs: 1750
+  Dests: 1760
 (1 3) 1760 FOR J = 1 TO 3
+  Origs: 1751
+  Dests: 1770
 (1 3) 1770 FOR I = 1 TO 3
+  Origs: 1760
+  Dests: 1780
 (1 4) 1780 IF A(1, J) <> A(I, J) THEN 1810
+  Origs: 1770
+  Dests: 1790, 1810
 (0 1) 1790 NEXT I
+  Origs: 1780
+  Dests: 1791
 (0 4) 1791 LET I = I - 1
+  Origs: 1790
+  Dests: 1800
 (0 3) 1800 LET T1 = A(I, J)
+  Origs: 1791
+  Dests: 1810
 (0 1) 1810 NEXT J
+  Origs: 1780, 1800
+  Dests: 1811
 (0 4) 1811 LET J = J - 1
+  Origs: 1810
+  Dests: 1820
 (1 4) 1820 IF A(1, 1) = A(3, 3) THEN 1930
+  Origs: 1811
+  Dests: 1830, 1930
 (1 4) 1830 IF A(3, 1) = A(1, 3) THEN 1970
+  Origs: 1820, 1940
+  Dests: 1840, 1970
 (1 4) 1840 IF T1 <> 0 THEN 1990
+  Origs: 1830, 1960, 1980
+  Dests: 1850, 1990
 (1 3) 1850 FOR J = 1 TO 3
+  Origs: 1840, 2020, 2050
+  Dests: 1860
 (1 3) 1860 FOR I = 1 TO 3
+  Origs: 1850
+  Dests: 1870
 (0 4) 1870 LET B(J) = B(J) + A(J, I)
+  Origs: 1860
+  Dests: 1880
 (0 4) 1880 LET B(J + 3) = B(J + 3) + A(I, J)
+  Origs: 1870
+  Dests: 1890
 (0 1) 1890 NEXT I
+  Origs: 1880
+  Dests: 1891
 (0 4) 1891 LET I = I - 1
+  Origs: 1890
+  Dests: 1900
 (0 1) 1900 NEXT J
+  Origs: 1891
+  Dests: 1901
 (0 4) 1901 LET J = J - 1
+  Origs: 1900
+  Dests: 1910
 (0 5) 1910 LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
+  Origs: 1901
+  Dests: 1920
 (0 1) 1920 RETURN
+  Origs: 1910
+  Dests: 
 (1 4) 1930 IF A(2, 2) = A(3, 3) THEN 1950
+  Origs: 1820
+  Dests: 1940, 1950
 (0 3) 1940 GOTO 1830
+  Origs: 1930
+  Dests: 1830
 (0 3) 1950 LET T1 = A(2, 2)
+  Origs: 1930, 1970
+  Dests: 1960
 (0 3) 1960 GOTO 1840
+  Origs: 1950
+  Dests: 1840
 (1 5) 1970 IF A(2, 2) = A(1, 3) THEN 1950
+  Origs: 1830
+  Dests: 1950, 1980
 (0 3) 1980 GOTO 1840
+  Origs: 1970
+  Dests: 1840
 (1 4) 1990 IF T1 > 0 THEN 2030
+  Origs: 1840
+  Dests: 2000, 2030
 (0 2) 2000 PRINT " ...YOU WIN THIS TIME..."
+  Origs: 800, 1990
+  Dests: 2010
 (0 3) 2010 LET Z = 1
+  Origs: 2000
+  Dests: 2020
 (0 3) 2020 GOTO 1850
+  Origs: 2010
+  Dests: 1850
 (0 2) 2030 PRINT " ... THE PDP-8 WINS THIS TIME ..."
+  Origs: 1990
+  Dests: 2040
 (0 3) 2040 LET Z = 2
+  Origs: 2030
+  Dests: 2050
 (0 3) 2050 GOTO 1850
+  Origs: 2040
+  Dests: 1850
 (0 1) 2060 REM END OF TEST WINNER PROGRAM......
+  Origs: 
+  Dests: 2070
 (0 2) 2070 PRINT "DO YOU WANT TO PLAY ANOTHER GAME: YES(1) NO(0)";
+  Origs: 410, 590, 2060
+  Dests: 2080
 (1 2) 2080 INPUT X1
+  Origs: 2070, 2120
+  Dests: 2090
 (1 5) 2090 IF X1 = 1 THEN 250
+  Origs: 2080
+  Dests: 250, 2100
 (1 4) 2100 IF X1 = 0 THEN 2130
+  Origs: 2090
+  Dests: 2110, 2130
 (0 2) 2110 PRINT "I SAID ONE OR ZERO, TRY AGAIN"
+  Origs: 2100
+  Dests: 2120
 (0 3) 2120 GOTO 2080
+  Origs: 2110
+  Dests: 2080
 (0 2) 2130 PRINT "IT'S BEEN FUN, COME AGAIN SOMETIME"
+  Origs: 2100
+  Dests: 2140
 (0 2) 2140 GOTO 2160
+  Origs: 2130
+  Dests: 2160
 (0 2) 2150 DATA 2, 2, 0, 0, 0, 0, 1, 1, 3, 3, 1, 3, 3, 1, 1, 2, 3, 2, 2, 3, 2, 1
+  Origs: 
+  Dests: 2160
 (0 1) 2160 REM CHAIN "DEMON "
+  Origs: 2140, 2150
+  Dests: 2170
 (0 1) 2170 END
+  Origs: 2160
+  Dests: 
 
 Unreachable code:
 

@@ -20,194 +20,572 @@ Halstead complexity:
  time: 196.772
 
 (0 1) 100 RANDOMIZE
+  Origs: 
+  Dests: 110
 (0 3) 110 DIM W(25, 103), V(25, 103)
+  Origs: 100
+  Dests: 120
 (0 2) 120 PRINT "WHAT ARE YOUR WIDTH AND LENGTH?"
+  Origs: 110, 141
+  Dests: 121
 (2 3) 121 INPUT H, V
+  Origs: 120
+  Dests: 122
 (0 2) 122 PRINT
+  Origs: 121
+  Dests: 130
 (1 4) 130 IF H <> 1 THEN 150
+  Origs: 122
+  Dests: 131, 150
 (1 4) 131 IF V <> 1 THEN 150
+  Origs: 130
+  Dests: 132, 150
 (0 2) 132 PRINT "MEANINGLESS DIMENSIONS, TRY AGAIN"
+  Origs: 131
+  Dests: 140
 (0 2) 140 PRINT
+  Origs: 132
+  Dests: 141
 (0 3) 141 GOTO 120
+  Origs: 140
+  Dests: 120
 (0 2) 150 PRINT
+  Origs: 130, 131
+  Dests: 151
 (0 2) 151 PRINT
+  Origs: 150
+  Dests: 160
 (0 3) 160 LET Q = 0
+  Origs: 151
+  Dests: 161
 (0 3) 161 LET Z = 0
+  Origs: 160
+  Dests: 162
 (0 4) 162 LET X = INT(RND(0) * H + 1)
+  Origs: 161
+  Dests: 163
 (1 3) 163 FOR I = 1 TO H
+  Origs: 162
+  Dests: 170
 (1 4) 170 IF I = X THEN 173
+  Origs: 163
+  Dests: 171, 173
 (0 2) 171 PRINT ":--";
+  Origs: 170
+  Dests: 172
 (0 2) 172 GOTO 180
+  Origs: 171
+  Dests: 180
 (0 2) 173 PRINT ":  ";
+  Origs: 170
+  Dests: 180
 (0 1) 180 NEXT I
+  Origs: 172, 173
+  Dests: 190
 (0 2) 190 PRINT ":"
+  Origs: 180
+  Dests: 191
 (0 3) 191 LET C = 1
+  Origs: 190
+  Dests: 192
 (0 3) 192 LET W(X, 1) = C
+  Origs: 191
+  Dests: 193
 (0 4) 193 LET C = C + 1
+  Origs: 192
+  Dests: 200
 (0 3) 200 LET R = X
+  Origs: 193
+  Dests: 201
 (0 3) 201 LET S = 1
+  Origs: 200
+  Dests: 202
 (0 2) 202 GOTO 260
+  Origs: 201
+  Dests: 260
 (1 4) 210 IF R <> H THEN 240
+  Origs: 250, 1000
+  Dests: 211, 240
 (1 4) 211 IF S <> V THEN 230
+  Origs: 210
+  Dests: 220, 230
 (0 3) 220 LET R = 1
+  Origs: 211
+  Dests: 221
 (0 3) 221 LET S = 1
+  Origs: 220
+  Dests: 222
 (0 2) 222 GOTO 250
+  Origs: 221
+  Dests: 250
 (0 3) 230 LET R = 1
+  Origs: 211
+  Dests: 231
 (0 4) 231 LET S = S + 1
+  Origs: 230
+  Dests: 232
 (0 2) 232 GOTO 250
+  Origs: 231
+  Dests: 250
 (0 4) 240 LET R = R + 1
+  Origs: 210
+  Dests: 250
 (1 5) 250 IF W(R, S) = 0 THEN 210
+  Origs: 222, 232, 240, 991
+  Dests: 210, 260
 (1 5) 260 IF R - 1 = 0 THEN 530
+  Origs: 202, 250, 812, 851, 952
+  Dests: 261, 530
 (1 4) 261 IF W(R - 1, S) <> 0 THEN 530
+  Origs: 260
+  Dests: 270, 530
 (1 5) 270 IF S - 1 = 0 THEN 390
+  Origs: 261
+  Dests: 280, 390
 (1 4) 280 IF W(R, S - 1) <> 0 THEN 390
+  Origs: 270
+  Dests: 290, 390
 (1 4) 290 IF R = H THEN 330
+  Origs: 280
+  Dests: 300, 330
 (1 4) 300 IF W(R + 1, S) <> 0 THEN 320
+  Origs: 290
+  Dests: 310, 320
 (0 4) 310 LET X = INT(RND(0) * 3 + 1)
+  Origs: 300
+  Dests: 320
 (1 4) 320 IF X = 1 THEN 790
+  Origs: 300, 310
+  Dests: 321, 790
 (1 4) 321 IF X = 2 THEN 820
+  Origs: 320
+  Dests: 323, 820
 (1 4) 323 IF X = 3 THEN 860
+  Origs: 321
+  Dests: 330, 860
 (1 4) 330 IF S <> V THEN 340
+  Origs: 290, 323
+  Dests: 331, 340
 (1 4) 331 IF Z = 1 THEN 370
+  Origs: 330
+  Dests: 332, 370
 (0 3) 332 LET Q = 1
+  Origs: 331
+  Dests: 333
 (0 2) 333 GOTO 350
+  Origs: 332
+  Dests: 350
 (1 4) 340 IF W(R, S + 1) <> 0 THEN 370
+  Origs: 330
+  Dests: 350, 370
 (0 4) 350 LET X = INT(RND(0) * 3 + 1)
+  Origs: 333, 340
+  Dests: 360
 (1 4) 360 IF X = 1 THEN 790
+  Origs: 350
+  Dests: 361, 790
 (1 4) 361 IF X = 2 THEN 820
+  Origs: 360
+  Dests: 362, 820
 (1 4) 362 IF X = 3 THEN 910
+  Origs: 361
+  Dests: 370, 910
 (0 4) 370 LET X = INT(RND(0) * 2 + 1)
+  Origs: 331, 340, 362
+  Dests: 380
 (1 4) 380 IF X = 1 THEN 790
+  Origs: 370
+  Dests: 381, 790
 (1 4) 381 IF X = 2 THEN 820
+  Origs: 380
+  Dests: 390, 820
 (1 4) 390 IF R = H THEN 470
+  Origs: 270, 280, 381
+  Dests: 400, 470
 (1 4) 400 IF W(R + 1, S) <> 0 THEN 470
+  Origs: 390
+  Dests: 401, 470
 (1 4) 401 IF S <> V THEN 420
+  Origs: 400
+  Dests: 410, 420
 (1 4) 410 IF Z = 1 THEN 450
+  Origs: 401
+  Dests: 411, 450
 (0 3) 411 LET Q = 1
+  Origs: 410
+  Dests: 412
 (0 2) 412 GOTO 430
+  Origs: 411
+  Dests: 430
 (1 4) 420 IF W(R, S + 1) <> 0 THEN 450
+  Origs: 401
+  Dests: 430, 450
 (0 4) 430 LET X = INT(RND(0) * 2 + 1)
+  Origs: 412, 420
+  Dests: 440
 (1 4) 440 IF X = 1 THEN 790
+  Origs: 430
+  Dests: 441, 790
 (1 4) 441 IF X = 2 THEN 860
+  Origs: 440
+  Dests: 442, 860
 (1 4) 442 IF X = 3 THEN 910
+  Origs: 441
+  Dests: 450, 910
 (0 4) 450 LET X = INT(RND(0) * 2 + 1)
+  Origs: 410, 420, 442
+  Dests: 460
 (1 4) 460 IF X = 1 THEN 790
+  Origs: 450
+  Dests: 461, 790
 (1 4) 461 IF X = 2 THEN 860
+  Origs: 460
+  Dests: 470, 860
 (1 4) 470 IF S <> V THEN 490
+  Origs: 390, 400, 461
+  Dests: 480, 490
 (1 4) 480 IF Z = 1 THEN 520
+  Origs: 470
+  Dests: 481, 520
 (0 3) 481 LET Q = 1
+  Origs: 480
+  Dests: 482
 (0 2) 482 GOTO 500
+  Origs: 481
+  Dests: 500
 (1 4) 490 IF W(R, S + 1) <> 0 THEN 520
+  Origs: 470
+  Dests: 500, 520
 (0 4) 500 LET X = INT(RND(0) * 2 + 1)
+  Origs: 482, 490
+  Dests: 510
 (1 4) 510 IF X = 1 THEN 790
+  Origs: 500
+  Dests: 511, 790
 (1 4) 511 IF X = 2 THEN 910
+  Origs: 510
+  Dests: 520, 910
 (0 2) 520 GOTO 790
+  Origs: 480, 490, 511
+  Dests: 790
 (1 5) 530 IF S - 1 = 0 THEN 670
+  Origs: 260, 261, 902
+  Dests: 540, 670
 (1 4) 540 IF W(R, S - 1) <> 0 THEN 670
+  Origs: 530
+  Dests: 541, 670
 (1 4) 541 IF R = H THEN 610
+  Origs: 540
+  Dests: 542, 610
 (1 4) 542 IF W(R + 1, S) <> 0 THEN 610
+  Origs: 541
+  Dests: 550, 610
 (1 4) 550 IF S <> V THEN 560
+  Origs: 542
+  Dests: 551, 560
 (1 4) 551 IF Z = 1 THEN 590
+  Origs: 550
+  Dests: 552, 590
 (0 3) 552 LET Q = 1
+  Origs: 551
+  Dests: 553
 (0 2) 553 GOTO 570
+  Origs: 552
+  Dests: 570
 (1 4) 560 IF W(R, S + 1) <> 0 THEN 590
+  Origs: 550
+  Dests: 570, 590
 (0 4) 570 LET X = INT(RND(0) * 3 + 1)
+  Origs: 553, 560
+  Dests: 580
 (1 4) 580 IF X = 1 THEN 820
+  Origs: 570
+  Dests: 581, 820
 (1 4) 581 IF X = 2 THEN 860
+  Origs: 580
+  Dests: 582, 860
 (1 4) 582 IF X = 3 THEN 910
+  Origs: 581
+  Dests: 590, 910
 (0 4) 590 LET X = INT(RND(0) * 2 + 1)
+  Origs: 551, 560, 582
+  Dests: 600
 (1 4) 600 IF X = 1 THEN 820
+  Origs: 590
+  Dests: 601, 820
 (1 4) 601 IF X = 2 THEN 860
+  Origs: 600
+  Dests: 610, 860
 (1 4) 610 IF S <> V THEN 630
+  Origs: 541, 542, 601
+  Dests: 620, 630
 (1 4) 620 IF Z = 1 THEN 660
+  Origs: 610
+  Dests: 621, 660
 (0 3) 621 LET Q = 1
+  Origs: 620
+  Dests: 622
 (0 2) 622 GOTO 640
+  Origs: 621
+  Dests: 640
 (1 4) 630 IF W(R, S + 1) <> 0 THEN 660
+  Origs: 610
+  Dests: 640, 660
 (0 4) 640 LET X = INT(RND(0) * 2 + 1)
+  Origs: 622, 630
+  Dests: 650
 (1 4) 650 IF X = 1 THEN 820
+  Origs: 640
+  Dests: 651, 820
 (1 4) 651 IF X = 2 THEN 910
+  Origs: 650
+  Dests: 660, 910
 (0 2) 660 GOTO 820
+  Origs: 620, 630, 651
+  Dests: 820
 (1 4) 670 IF R = H THEN 740
+  Origs: 530, 540
+  Dests: 680, 740
 (1 4) 680 IF W(R + 1, S) <> 0 THEN 740
+  Origs: 670
+  Dests: 681, 740
 (1 4) 681 IF S <> V THEN 700
+  Origs: 680
+  Dests: 690, 700
 (1 4) 690 IF Z = 1 THEN 730
+  Origs: 681
+  Dests: 691, 730
 (0 3) 691 LET Q = 1
+  Origs: 690
+  Dests: 692
 (0 2) 692 GOTO 830
+  Origs: 691
+  Dests: 830
 (1 4) 700 IF W(R, S + 1) <> 0 THEN 730
+  Origs: 681
+  Dests: 710, 730
 (0 4) 710 LET X = INT(RND(0) * 2 + 1)
+  Origs: 700
+  Dests: 720
 (1 4) 720 IF X = 1 THEN 860
+  Origs: 710
+  Dests: 721, 860
 (1 4) 721 IF X = 2 THEN 910
+  Origs: 720
+  Dests: 730, 910
 (0 2) 730 GOTO 860
+  Origs: 690, 700, 721
+  Dests: 860
 (1 4) 740 IF S <> V THEN 760
+  Origs: 670, 680
+  Dests: 750, 760
 (1 4) 750 IF Z = 1 THEN 780
+  Origs: 740
+  Dests: 751, 780
 (0 3) 751 LET Q = 1
+  Origs: 750
+  Dests: 752
 (0 2) 752 GOTO 770
+  Origs: 751
+  Dests: 770
 (1 4) 760 IF W(R, S + 1) <> 0 THEN 780
+  Origs: 740
+  Dests: 770, 780
 (0 2) 770 GOTO 910
+  Origs: 752, 760
+  Dests: 910
 (0 2) 780 GOTO 1000
+  Origs: 750, 760
+  Dests: 1000
 (0 3) 790 LET W(R - 1, S) = C
+  Origs: 320, 360, 380, 440, 460, 510, 520
+  Dests: 800
 (0 4) 800 LET C = C + 1
+  Origs: 790
+  Dests: 801
 (0 3) 801 LET V(R - 1, S) = 2
+  Origs: 800
+  Dests: 802
 (0 4) 802 LET R = R - 1
+  Origs: 801
+  Dests: 810
 (1 7) 810 IF C = H * V + 1 THEN 1010
+  Origs: 802
+  Dests: 811, 1010
 (0 3) 811 LET Q = 0
+  Origs: 810
+  Dests: 812
 (0 3) 812 GOTO 260
+  Origs: 811
+  Dests: 260
 (0 3) 820 LET W(R, S - 1) = C
+  Origs: 321, 361, 381, 580, 600, 650, 660
+  Dests: 830
 (0 4) 830 LET C = C + 1
+  Origs: 692, 820
+  Dests: 840
 (0 3) 840 LET V(R, S - 1) = 1
+  Origs: 830
+  Dests: 841
 (0 4) 841 LET S = S - 1
+  Origs: 840
+  Dests: 842
 (1 7) 842 IF C = H * V + 1 THEN 1010
+  Origs: 841
+  Dests: 850, 1010
 (0 3) 850 LET Q = 0
+  Origs: 842
+  Dests: 851
 (0 3) 851 GOTO 260
+  Origs: 850
+  Dests: 260
 (0 3) 860 LET W(R + 1, S) = C
+  Origs: 323, 441, 461, 581, 601, 720, 730
+  Dests: 870
 (0 4) 870 LET C = C + 1
+  Origs: 860
+  Dests: 871
 (1 4) 871 IF V(R, S) = 0 THEN 880
+  Origs: 870
+  Dests: 872, 880
 (0 3) 872 LET V(R, S) = 3
+  Origs: 871
+  Dests: 873
 (0 2) 873 GOTO 890
+  Origs: 872
+  Dests: 890
 (0 3) 880 LET V(R, S) = 2
+  Origs: 871
+  Dests: 890
 (0 4) 890 LET R = R + 1
+  Origs: 873, 880
+  Dests: 900
 (1 7) 900 IF C = H * V + 1 THEN 1010
+  Origs: 890
+  Dests: 902, 1010
 (0 3) 902 GOTO 530
+  Origs: 900
+  Dests: 530
 (1 4) 910 IF Q = 1 THEN 960
+  Origs: 362, 442, 511, 582, 651, 721, 770
+  Dests: 920, 960
 (0 3) 920 LET W(R, S + 1) = C
+  Origs: 910
+  Dests: 921
 (0 4) 921 LET C = C + 1
+  Origs: 920
+  Dests: 922
 (1 4) 922 IF V(R, S) = 0 THEN 940
+  Origs: 921
+  Dests: 930, 940
 (0 3) 930 LET V(R, S) = 3
+  Origs: 922
+  Dests: 931
 (0 2) 931 GOTO 950
+  Origs: 930
+  Dests: 950
 (0 3) 940 LET V(R, S) = 1
+  Origs: 922
+  Dests: 950
 (0 4) 950 LET S = S + 1
+  Origs: 931, 940
+  Dests: 951
 (1 7) 951 IF C = H * V + 1 THEN 1010
+  Origs: 950
+  Dests: 952, 1010
 (0 3) 952 GOTO 260
+  Origs: 951
+  Dests: 260
 (0 3) 960 LET Z = 1
+  Origs: 910
+  Dests: 970
 (1 4) 970 IF V(R, S) = 0 THEN 980
+  Origs: 960
+  Dests: 971, 980
 (0 3) 971 LET V(R, S) = 3
+  Origs: 970
+  Dests: 972
 (0 3) 972 LET Q = 0
+  Origs: 971
+  Dests: 973
 (0 2) 973 GOTO 1000
+  Origs: 972
+  Dests: 1000
 (0 3) 980 LET V(R, S) = 1
+  Origs: 970
+  Dests: 981
 (0 3) 981 LET Q = 0
+  Origs: 980
+  Dests: 982
 (0 3) 982 LET R = 1
+  Origs: 981
+  Dests: 990
 (0 3) 990 LET S = 1
+  Origs: 982
+  Dests: 991
 (0 3) 991 GOTO 250
+  Origs: 990
+  Dests: 250
 (0 3) 1000 GOTO 210
+  Origs: 780, 973
+  Dests: 210
 (1 3) 1010 FOR J = 1 TO V
+  Origs: 810, 842, 900, 951
+  Dests: 1011
 (0 2) 1011 PRINT "!";
+  Origs: 1010
+  Dests: 1012
 (1 3) 1012 FOR I = 1 TO H
+  Origs: 1011
+  Dests: 1013
 (1 4) 1013 IF V(I, J) < 2 THEN 1030
+  Origs: 1012
+  Dests: 1020, 1030
 (0 2) 1020 PRINT "   ";
+  Origs: 1013
+  Dests: 1021
 (0 2) 1021 GOTO 1040
+  Origs: 1020
+  Dests: 1040
 (0 2) 1030 PRINT "  !";
+  Origs: 1013
+  Dests: 1040
 (0 1) 1040 NEXT I
+  Origs: 1021, 1030
+  Dests: 1041
 (0 2) 1041 PRINT
+  Origs: 1040
+  Dests: 1042
 (1 3) 1042 FOR I = 1 TO H
+  Origs: 1041
+  Dests: 1045
 (1 4) 1045 IF V(I, J) = 0 THEN 1060
+  Origs: 1042
+  Dests: 1050, 1060
 (1 4) 1050 IF V(I, J) = 2 THEN 1060
+  Origs: 1045
+  Dests: 1051, 1060
 (0 2) 1051 PRINT ":  ";
+  Origs: 1050
+  Dests: 1052
 (0 2) 1052 GOTO 1070
+  Origs: 1051
+  Dests: 1070
 (0 2) 1060 PRINT ":--";
+  Origs: 1045, 1050
+  Dests: 1070
 (0 1) 1070 NEXT I
+  Origs: 1052, 1060
+  Dests: 1071
 (0 2) 1071 PRINT ":"
+  Origs: 1070
+  Dests: 1072
 (0 1) 1072 NEXT J
+  Origs: 1071
+  Dests: 1073
 (0 1) 1073 END
+  Origs: 1072
+  Dests: 
 
 Unreachable code:
 

@@ -20,241 +20,713 @@ Halstead complexity:
  time: 413.230
 
 (0 1) 1 REM "  QUBIC-  "
+  Origs: 
+  Dests: 5
 (0 2) 5 PRINT "DO YOU WANT INSTRUCTIONS";
+  Origs: 1
+  Dests: 6
 (1 2) 6 INPUT C$
+  Origs: 5, 10
+  Dests: 7
 (1 4) 7 IF C$ = "NO" THEN 20
+  Origs: 6
+  Dests: 8, 20
 (1 4) 8 IF C$ = "YES" THEN 13
+  Origs: 7
+  Dests: 9, 13
 (0 2) 9 PRINT "INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'";
+  Origs: 8
+  Dests: 10
 (0 3) 10 GOTO 6
+  Origs: 9
+  Dests: 6
 (0 2) 13 PRINT "THE GAME IS TIC-TAC-TOE IN A 4 X 4 X 4 CUBE."
+  Origs: 8
+  Dests: 14
 (0 2) 14 PRINT "EACH MOVE IS INDICATED BY A 3 DIGIT NUMBER, WITH EACH"
+  Origs: 13
+  Dests: 15
 (0 2) 15 PRINT "DIGIT BETWEEN 1 AND 4 INCLUSIVE. THE DIGITS INDICATE THE"
+  Origs: 14
+  Dests: 16
 (0 2) 16 PRINT "LEVEL, COLUMN, AND ROW, RESPECTIVELY, OF THE OCCUPIED PLACE,"
+  Origs: 15
+  Dests: 20
 (0 5) 20 DIM X(64), L(76), M(76, 4), Y(16)
+  Origs: 7, 16
+  Dests: 21
 (1 3) 21 FOR I = 1 TO 16
+  Origs: 20
+  Dests: 22
 (1 2) 22 READ Y(I)
+  Origs: 21
+  Dests: 23
 (0 1) 23 NEXT I
+  Origs: 22
+  Dests: 24
 (1 3) 24 FOR I = 1 TO 76
+  Origs: 23
+  Dests: 25
 (1 3) 25 FOR J = 1 TO 4
+  Origs: 24
+  Dests: 26
 (1 2) 26 READ M(I, J)
+  Origs: 25
+  Dests: 27
 (0 1) 27 NEXT J
+  Origs: 26
+  Dests: 28
 (0 1) 28 NEXT I
+  Origs: 27
+  Dests: 35
 (1 3) 35 FOR I = 1 TO 64
+  Origs: 28, 515
+  Dests: 40
 (0 3) 40 LET X(I) = 0
+  Origs: 35
+  Dests: 50
 (0 1) 50 NEXT I
+  Origs: 40
+  Dests: 54
 (0 3) 54 LET Z = 1
+  Origs: 50
+  Dests: 55
 (0 2) 55 PRINT "DO YOU WANT TO MOVE FIRST";
+  Origs: 54
+  Dests: 60
 (1 2) 60 INPUT S$
+  Origs: 55, 69
+  Dests: 66
 (1 4) 66 IF S$ = "NO" THEN 110
+  Origs: 60
+  Dests: 67, 110
 (1 4) 67 IF S$ = "YES" THEN 70
+  Origs: 66
+  Dests: 68, 70
 (0 2) 68 PRINT "INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'";
+  Origs: 67
+  Dests: 69
 (0 3) 69 GOTO 60
+  Origs: 68
+  Dests: 60
 (0 2) 70 PRINT " "
+  Origs: 67, 101, 243, 390, 1230, 1640, 1780
+  Dests: 72
 (0 2) 72 PRINT "YOUR MOVE";
+  Origs: 70
+  Dests: 80
 (1 2) 80 INPUT J1
+  Origs: 72
+  Dests: 85
 (0 2) 85 GOSUB 1800
+  Origs: 80
+  Dests: 90, 1800
 (0 4) 90 LET K1 = INT(J1 / 100)
+  Origs: 85
+  Dests: 95
 (0 6) 95 LET J2 = (J1 - K1 * 100)
+  Origs: 90
+  Dests: 96
 (0 4) 96 LET K2 = INT(J2 / 10)
+  Origs: 95
+  Dests: 97
 (0 9) 97 LET K3 = J1 - K1 * 100 - K2 * 10
+  Origs: 96
+  Dests: 98
 (0 9) 98 LET M = 16 * K1 + 4 * K2 + K3 - 20
+  Origs: 97
+  Dests: 99
 (1 4) 99 IF X(M) = 0 THEN 109
+  Origs: 98
+  Dests: 100, 109
 (0 2) 100 PRINT "THAT SQUARE IS USED, TRY AGAIN"
+  Origs: 99
+  Dests: 101
 (0 3) 101 GOTO 70
+  Origs: 100
+  Dests: 70
 (0 3) 109 LET X(M) = 1
+  Origs: 99
+  Dests: 110
 (0 2) 110 GOSUB 1050
+  Origs: 66, 109
+  Dests: 180, 1050
 (1 3) 180 FOR J = 1 TO 3
+  Origs: 110
+  Dests: 190
 (1 3) 190 FOR I = 1 TO 76
+  Origs: 180
+  Dests: 200
 (1 4) 200 IF J = 1 THEN 210
+  Origs: 190
+  Dests: 201, 210
 (1 4) 201 IF J = 2 THEN 220
+  Origs: 200
+  Dests: 203, 220
 (1 4) 203 IF J = 3 THEN 235
+  Origs: 201
+  Dests: 205, 235
 (0 1) 205 NEXT I
+  Origs: 203, 210, 220, 235
+  Dests: 206
 (0 1) 206 NEXT J
+  Origs: 205
+  Dests: 207
 (0 2) 207 GOTO 400
+  Origs: 206
+  Dests: 400
 (1 5) 210 IF L(I) <> 4 THEN 205
+  Origs: 200
+  Dests: 205, 211
 (0 2) 211 PRINT "YOU WIN AS FOLLOWS";
+  Origs: 210
+  Dests: 212
 (1 3) 212 FOR J = 1 TO 4
+  Origs: 211
+  Dests: 213
 (0 3) 213 LET M = M(I, J)
+  Origs: 212
+  Dests: 214
 (0 2) 214 GOSUB 1000
+  Origs: 213
+  Dests: 216, 1000
 (0 1) 216 NEXT J
+  Origs: 214
+  Dests: 217
 (0 2) 217 GOTO 500
+  Origs: 216
+  Dests: 500
 (1 5) 220 IF L(I) <> 15 THEN 205
+  Origs: 201
+  Dests: 205, 221
 (1 3) 221 FOR J = 1 TO 4
+  Origs: 220
+  Dests: 222
 (0 3) 222 LET M = M(I, J)
+  Origs: 221
+  Dests: 223
 (1 4) 223 IF X(M) <> 0 THEN 227
+  Origs: 222
+  Dests: 224, 227
 (0 3) 224 LET X(M) = 5
+  Origs: 223
+  Dests: 225
 (0 2) 225 PRINT "MACHINE MOVES TO";
+  Origs: 224
+  Dests: 226
 (0 2) 226 GOSUB 1000
+  Origs: 225
+  Dests: 227, 1000
 (0 1) 227 NEXT J
+  Origs: 223, 226
+  Dests: 228
 (0 2) 228 PRINT ", AND WINS AS FOLLOWS"
+  Origs: 227
+  Dests: 229
 (1 3) 229 FOR J = 1 TO 4
+  Origs: 228
+  Dests: 230
 (0 3) 230 LET M = M(I, J)
+  Origs: 229
+  Dests: 231
 (0 2) 231 GOSUB 1000
+  Origs: 230
+  Dests: 233, 1000
 (0 1) 233 NEXT J
+  Origs: 231
+  Dests: 234
 (0 2) 234 GOTO 500
+  Origs: 233
+  Dests: 500
 (1 5) 235 IF L(I) <> 3 THEN 205
+  Origs: 203
+  Dests: 205, 236
 (0 2) 236 PRINT "NICE TRY MACHINE MOVES TO";
+  Origs: 235
+  Dests: 237
 (1 3) 237 FOR J = 1 TO 4
+  Origs: 236
+  Dests: 238
 (0 3) 238 LET M = M(I, J)
+  Origs: 237
+  Dests: 239
 (1 4) 239 IF X(M) <> 0 THEN 245
+  Origs: 238
+  Dests: 240, 245
 (0 3) 240 LET X(M) = 5
+  Origs: 239
+  Dests: 241
 (0 2) 241 GOSUB 1000
+  Origs: 240
+  Dests: 243, 1000
 (0 3) 243 GOTO 70
+  Origs: 241
+  Dests: 70
 (0 1) 245 NEXT J
+  Origs: 239
+  Dests: 248
 (0 2) 248 GOTO 400
+  Origs: 245
+  Dests: 400
 (1 3) 250 FOR I = 1 TO 76
+  Origs: 493
+  Dests: 251
 (0 6) 251 LET L(I) = X(M(I, 1)) + X(M(I, 2)) + X(M(I, 3)) + X(M(I, 4))
+  Origs: 250
+  Dests: 252
 (0 3) 252 LET L = L(I)
+  Origs: 251
+  Dests: 255
 (1 4) 255 IF L < 2 THEN 290
+  Origs: 252
+  Dests: 260, 290
 (1 4) 260 IF L >= 3 THEN 290
+  Origs: 255
+  Dests: 265, 290
 (1 4) 265 IF L > 2 THEN 1600
+  Origs: 260
+  Dests: 270, 1600
 (1 3) 270 FOR J = 1 TO 4
+  Origs: 265
+  Dests: 275
 (1 4) 275 IF X(M(I, J)) <> 0 THEN 285
+  Origs: 270
+  Dests: 280, 285
 (0 4) 280 LET X(M(I, J)) = 1 / 8
+  Origs: 275
+  Dests: 285
 (0 1) 285 NEXT J
+  Origs: 275, 280
+  Dests: 290
 (0 1) 290 NEXT I
+  Origs: 255, 260, 285
+  Dests: 295
 (0 2) 295 GOSUB 1050
+  Origs: 290
+  Dests: 300, 1050
 (1 3) 300 FOR I = 1 TO 76
+  Origs: 295
+  Dests: 305
 (1 6) 305 IF L(I) = 1 / 2 THEN 1700
+  Origs: 300
+  Dests: 310, 1700
 (1 8) 310 IF L(I) = 1 + 3 / 8 THEN 1700
+  Origs: 305
+  Dests: 315, 1700
 (0 1) 315 NEXT I
+  Origs: 310
+  Dests: 320
 (0 2) 320 GOTO 1300
+  Origs: 315
+  Dests: 1300
 (0 3) 360 LET Z = 1
+  Origs: 1396
+  Dests: 362
 (1 4) 362 IF X(Y(Z)) = 0 THEN 380
+  Origs: 360, 368
+  Dests: 365, 380
 (0 4) 365 LET Z = Z + 1
+  Origs: 362
+  Dests: 368
 (1 5) 368 IF Z <> 17 THEN 362
+  Origs: 365
+  Dests: 362, 375
 (0 2) 375 GOTO 1200
+  Origs: 368
+  Dests: 1200
 (0 3) 380 LET M = Y(Z)
+  Origs: 362
+  Dests: 381
 (0 3) 381 LET X(M) = 5
+  Origs: 380
+  Dests: 385
 (0 2) 385 PRINT "MACHINE MOVES TO";
+  Origs: 381
+  Dests: 389
 (0 2) 389 GOSUB 1000
+  Origs: 385
+  Dests: 390, 1000
 (0 3) 390 GOTO 70
+  Origs: 389
+  Dests: 70
 (0 3) 400 LET X = X
+  Origs: 207, 248
+  Dests: 410
 (1 3) 410 FOR I = 1 TO 76
+  Origs: 400
+  Dests: 412
 (0 6) 412 LET L(I) = X(M(I, 1)) + X(M(I, 2)) + X(M(I, 3)) + X(M(I, 4))
+  Origs: 410
+  Dests: 415
 (0 3) 415 LET L = L(I)
+  Origs: 412
+  Dests: 420
 (1 4) 420 IF L < 10 THEN 455
+  Origs: 415
+  Dests: 425, 455
 (1 4) 425 IF L >= 11 THEN 455
+  Origs: 420
+  Dests: 430, 455
 (1 4) 430 IF L > 10 THEN 1600
+  Origs: 425
+  Dests: 435, 1600
 (1 3) 435 FOR J = 1 TO 4
+  Origs: 430
+  Dests: 440
 (1 4) 440 IF X(M(I, J)) <> 0 THEN 450
+  Origs: 435
+  Dests: 445, 450
 (0 4) 445 LET X(M(I, J)) = 1 / 8
+  Origs: 440
+  Dests: 450
 (0 1) 450 NEXT J
+  Origs: 440, 445
+  Dests: 455
 (0 1) 455 NEXT I
+  Origs: 420, 425, 450
+  Dests: 470
 (0 2) 470 GOSUB 1050
+  Origs: 455
+  Dests: 475, 1050
 (1 3) 475 FOR I = 1 TO 76
+  Origs: 470
+  Dests: 480
 (1 4) 480 IF L(I) = .5 THEN 1700
+  Origs: 475
+  Dests: 485, 1700
 (1 8) 485 IF L(I) = 5 + 3 / 8 THEN 1700
+  Origs: 480
+  Dests: 490, 1700
 (0 1) 490 NEXT I
+  Origs: 485
+  Dests: 492
 (0 2) 492 GOSUB 1800
+  Origs: 490
+  Dests: 493, 1800
 (0 3) 493 GOTO 250
+  Origs: 492
+  Dests: 250
 (0 2) 500 PRINT " "
+  Origs: 217, 234, 1255, 1665
+  Dests: 505
 (0 2) 505 PRINT "DO YOU WANT TO TRY ANOTHER GAME";
+  Origs: 500
+  Dests: 510
 (1 2) 510 INPUT X$
+  Origs: 505, 518
+  Dests: 515
 (1 5) 515 IF X$ = "YES" THEN 35
+  Origs: 510
+  Dests: 35, 516
 (1 4) 516 IF X$ = "NO" THEN 520
+  Origs: 515
+  Dests: 517, 520
 (0 2) 517 PRINT "INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'";
+  Origs: 516
+  Dests: 518
 (0 3) 518 GOTO 510
+  Origs: 517
+  Dests: 510
 (0 1) 520 STOP
+  Origs: 516
+  Dests: 
 (0 5) 1000 LET K1 = INT((M - 1) / 16) + 1
+  Origs: 214, 226, 231, 241, 389, 1227, 1630, 1770
+  Dests: 1010
 (0 8) 1010 LET J2 = M - 16 * (K1 - 1)
+  Origs: 1000
+  Dests: 1030
 (0 5) 1030 LET K2 = INT((J2 - 1) / 4) + 1
+  Origs: 1010
+  Dests: 1035
 (0 11) 1035 LET K3 = M - (K1 - 1) * 16 - (K2 - 1) * 4
+  Origs: 1030
+  Dests: 1040
 (0 8) 1040 LET M = K1 * 100 + K2 * 10 + K3
+  Origs: 1035
+  Dests: 1042
 (0 2) 1042 PRINT M;
+  Origs: 1040
+  Dests: 1045
 (0 1) 1045 RETURN
+  Origs: 1042
+  Dests: 
 (1 3) 1050 FOR S = 1 TO 76
+  Origs: 110, 295, 470
+  Dests: 1060
 (0 3) 1060 LET J1 = M(S, 1)
+  Origs: 1050
+  Dests: 1070
 (0 3) 1070 LET J2 = M(S, 2)
+  Origs: 1060
+  Dests: 1080
 (0 3) 1080 LET J3 = M(S, 3)
+  Origs: 1070
+  Dests: 1090
 (0 3) 1090 LET J4 = M(S, 4)
+  Origs: 1080
+  Dests: 1100
 (0 6) 1100 LET L(S) = X(J1) + X(J2) + X(J3) + X(J4)
+  Origs: 1090
+  Dests: 1110
 (0 1) 1110 NEXT S
+  Origs: 1100
+  Dests: 1120
 (0 1) 1120 RETURN
+  Origs: 1110
+  Dests: 
 (1 3) 1200 FOR I = 1 TO 64
+  Origs: 375
+  Dests: 1210
 (1 4) 1210 IF X(I) <> 0 THEN 1250
+  Origs: 1200
+  Dests: 1220, 1250
 (0 3) 1220 LET X(I) = 5
+  Origs: 1210
+  Dests: 1225
 (0 3) 1225 LET M = I
+  Origs: 1220
+  Dests: 1226
 (0 2) 1226 PRINT "MACHINE LIKES";
+  Origs: 1225
+  Dests: 1227
 (0 3) 1227 GOSUB 1000
+  Origs: 1226
+  Dests: 1000, 1228
 (0 2) 1228 PRINT " "
+  Origs: 1227
+  Dests: 1230
 (0 3) 1230 GOTO 70
+  Origs: 1228
+  Dests: 70
 (0 1) 1250 NEXT I
+  Origs: 1210
+  Dests: 1252
 (0 2) 1252 PRINT "THE GAME IS A DRAW"
+  Origs: 1250
+  Dests: 1255
 (0 3) 1255 GOTO 500
+  Origs: 1252
+  Dests: 500
 (1 3) 1300 FOR K = 1 TO 18
+  Origs: 320
+  Dests: 1305
 (0 3) 1305 LET P = 0
+  Origs: 1300
+  Dests: 1310
 (1 6) 1310 FOR I = 4 * K - 3 TO 4 * K
+  Origs: 1305
+  Dests: 1315
 (1 3) 1315 FOR J = 1 TO 4
+  Origs: 1310
+  Dests: 1320
 (0 4) 1320 LET P = P + X(M(I, J))
+  Origs: 1315
+  Dests: 1325
 (0 1) 1325 NEXT J
+  Origs: 1320
+  Dests: 1330
 (0 1) 1330 NEXT I
+  Origs: 1325
+  Dests: 1345
 (1 4) 1345 IF P < 4 THEN 1390
+  Origs: 1330
+  Dests: 1350, 1390
 (1 4) 1350 IF P < 5 THEN 1400
+  Origs: 1345
+  Dests: 1355, 1400
 (1 4) 1355 IF P < 9 THEN 1390
+  Origs: 1350
+  Dests: 1360, 1390
 (1 4) 1360 IF P < 10 THEN 1400
+  Origs: 1355
+  Dests: 1390, 1400
 (0 1) 1390 NEXT K
+  Origs: 1345, 1355, 1360
+  Dests: 1395
 (0 2) 1395 GOSUB 1800
+  Origs: 1390
+  Dests: 1396, 1800
 (0 3) 1396 GOTO 360
+  Origs: 1395
+  Dests: 360
 (0 4) 1400 LET S = 1 / 8
+  Origs: 1350, 1360
+  Dests: 1405
 (1 6) 1405 FOR I = 4 * K - 3 TO 4 * K
+  Origs: 1400, 1425
+  Dests: 1410
 (0 2) 1410 GOTO 1703
+  Origs: 1405
+  Dests: 1703
 (0 1) 1415 NEXT I
+  Origs: 1735
+  Dests: 1420
 (0 3) 1420 LET S = 0
+  Origs: 1415
+  Dests: 1425
 (0 3) 1425 GOTO 1405
+  Origs: 1420
+  Dests: 1405
 (0 2) 1500 DATA 1, 49, 52, 4, 13, 61, 64, 16, 22, 39, 23, 38, 26, 42, 27, 43
+  Origs: 
+  Dests: 1510
 (0 2) 1510 DATA 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
+  Origs: 1500
+  Dests: 1520
 (0 2) 1520 DATA 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38
+  Origs: 1510
+  Dests: 1521
 (0 2) 1521 DATA 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56
+  Origs: 1520
+  Dests: 1522
 (0 2) 1522 DATA 57, 58, 59, 60, 61, 62, 63, 64
+  Origs: 1521
+  Dests: 1523
 (0 2) 1523 DATA 1, 17, 33, 49, 5, 21, 37, 53, 9, 25, 41, 57, 13, 29, 45, 61
+  Origs: 1522
+  Dests: 1524
 (0 2) 1524 DATA 2, 18, 34, 50, 6, 22, 38, 54, 10, 26, 42, 58, 14, 30, 46, 62
+  Origs: 1523
+  Dests: 1525
 (0 2) 1525 DATA 3, 19, 35, 51, 7, 23, 39, 55, 11, 27, 43, 59, 15, 31, 47, 63
+  Origs: 1524
+  Dests: 1527
 (0 2) 1527 DATA 4, 20, 36, 52, 8, 24, 40, 56, 12, 28, 44, 60, 16, 32, 48, 64
+  Origs: 1525
+  Dests: 1529
 (0 2) 1529 DATA 1, 5, 9, 13, 17, 21, 25, 29, 33, 37, 41, 45, 49, 53, 57, 61
+  Origs: 1527
+  Dests: 1532
 (0 2) 1532 DATA 2, 6, 10, 14, 18, 22, 26, 30, 34, 38, 42, 46, 50, 54, 58, 62
+  Origs: 1529
+  Dests: 1534
 (0 2) 1534 DATA 3, 7, 11, 15, 19, 23, 27, 31, 35, 39, 43, 47, 51, 55, 59, 63
+  Origs: 1532
+  Dests: 1536
 (0 2) 1536 DATA 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64
+  Origs: 1534
+  Dests: 1538
 (0 2) 1538 DATA 1, 6, 11, 16, 17, 22, 27, 32, 33, 38, 43, 48, 49, 54, 59, 64
+  Origs: 1536
+  Dests: 1540
 (0 2) 1540 DATA 13, 10, 7, 4, 29, 26, 23, 20, 45, 42, 39, 36, 61, 58, 55, 52
+  Origs: 1538
+  Dests: 1542
 (0 2) 1542 DATA 1, 21, 41, 61, 2, 22, 42, 62, 3, 23, 43, 63, 4, 24, 44, 64
+  Origs: 1540
+  Dests: 1544
 (0 2) 1544 DATA 49, 37, 25, 13, 50, 38, 26, 14, 51, 39, 27, 15, 52, 40, 28, 16
+  Origs: 1542
+  Dests: 1546
 (0 2) 1546 DATA 1, 18, 35, 52, 5, 22, 39, 56, 9, 26, 43, 60, 13, 30, 47, 64
+  Origs: 1544
+  Dests: 1548
 (0 2) 1548 DATA 49, 34, 19, 4, 53, 38, 23, 8, 57, 42, 27, 12, 61, 46, 31, 16
+  Origs: 1546
+  Dests: 1550
 (0 2) 1550 DATA 1, 22, 43, 64, 16, 27, 38, 49, 4, 23, 42, 61, 13, 26, 39, 52
+  Origs: 1548
+  Dests: 1600
 (1 3) 1600 FOR J = 1 TO 4
+  Origs: 265, 430, 1550
+  Dests: 1605
 (1 6) 1605 IF X(M(I, J)) <> 1 / 8 THEN 1650
+  Origs: 1600
+  Dests: 1610, 1650
 (0 3) 1610 LET X(M(I, J)) = 5
+  Origs: 1605
+  Dests: 1615
 (1 4) 1615 IF L(I) < 5 THEN 1625
+  Origs: 1610
+  Dests: 1620, 1625
 (0 2) 1620 PRINT "LET'S SEE YOU GET OUT OF THIS! MACHINE MOVES TO";
+  Origs: 1615
+  Dests: 1622
 (0 2) 1622 GOTO 1626
+  Origs: 1620
+  Dests: 1626
 (0 2) 1625 PRINT "YOU FOX. JUST IN THE NICK OF TIME, MACHINE MOVES TO";
+  Origs: 1615
+  Dests: 1626
 (0 3) 1626 LET M = M(I, J)
+  Origs: 1622, 1625
+  Dests: 1630
 (0 3) 1630 GOSUB 1000
+  Origs: 1626
+  Dests: 1000, 1640
 (0 3) 1640 GOTO 70
+  Origs: 1630
+  Dests: 70
 (0 1) 1650 NEXT J
+  Origs: 1605
+  Dests: 1660
 (0 2) 1660 PRINT "MACHINE CONCEDES THIS GAME."
+  Origs: 1650
+  Dests: 1665
 (0 3) 1665 GOTO 500
+  Origs: 1660
+  Dests: 500
 (0 4) 1700 LET S = 1 / 8
+  Origs: 305, 310, 480, 485
+  Dests: 1703
 (1 8) 1703 IF I - INT(I / 4) * 4 > 1 THEN 1715
+  Origs: 1410, 1700
+  Dests: 1705, 1715
 (0 3) 1705 LET A = 1
+  Origs: 1703
+  Dests: 1710
 (0 2) 1710 GOTO 1720
+  Origs: 1705
+  Dests: 1720
 (0 3) 1715 LET A = 2
+  Origs: 1703
+  Dests: 1720
 (1 8) 1720 FOR J = A TO 5 - A STEP 5 - 2 * A
+  Origs: 1710, 1715
+  Dests: 1725
 (1 4) 1725 IF X(M(I, J)) = S THEN 1750
+  Origs: 1720
+  Dests: 1730, 1750
 (0 1) 1730 NEXT J
+  Origs: 1725
+  Dests: 1735
 (0 3) 1735 GOTO 1415
+  Origs: 1730
+  Dests: 1415
 (0 3) 1750 LET X(M(I, J)) = 5
+  Origs: 1725
+  Dests: 1755
 (0 3) 1755 LET M = M(I, J)
+  Origs: 1750
+  Dests: 1760
 (0 2) 1760 PRINT "MACHINE TAKES";
+  Origs: 1755
+  Dests: 1770
 (0 3) 1770 GOSUB 1000
+  Origs: 1760
+  Dests: 1000, 1780
 (0 3) 1780 GOTO 70
+  Origs: 1770
+  Dests: 70
 (1 3) 1800 FOR I = 1 TO 64
+  Origs: 85, 492, 1395
+  Dests: 1810
 (1 6) 1810 IF X(I) <> 1 / 8 THEN 1850
+  Origs: 1800
+  Dests: 1815, 1850
 (0 3) 1815 LET X(I) = 0
+  Origs: 1810
+  Dests: 1850
 (0 1) 1850 NEXT I
+  Origs: 1810, 1815
+  Dests: 1860
 (0 1) 1860 RETURN
+  Origs: 1850
+  Dests: 
 (0 1) 2000 END
+  Origs: 
+  Dests: 
 
 Unreachable code:
 
