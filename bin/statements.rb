@@ -2496,7 +2496,8 @@ class GetStatement < AbstractStatement
 
   def execute_core(interpreter)
     file_no = @items[0]
-    fh = get_file_handle(interpreter, file_no)
+    file_num = file_no.evaluate(interpreter)
+    fh = FileHandle.new(file_num[0])
     fhr = interpreter.get_file_handler(fh, :memory)
 
     rec_no = @items[2]
@@ -4479,7 +4480,8 @@ class PutStatement < AbstractStatement
 
   def execute_core(interpreter)
     file_no = @items[0]
-    fh = get_file_handle(interpreter, file_no)
+    file_num = file_no.evaluate(interpreter)
+    fh = FileHandle.new(file_num[0])
     fhr = interpreter.get_file_handler(fh, :memory)
 
     rec_no = @items[2]
