@@ -500,15 +500,20 @@ class AbstractStatement
     true
   end
 
-  def preexecute_a_statement(line_number, interpreter, console_io)
-    if errors.empty?
-      pre_execute(interpreter)
-    else
+  def check_for_errors(line_number, interpreter, console_io)
+    unless errors.empty?
       interpreter.stop_running
       console_io.print_line("Errors in line #{line_number}:")
       print_errors(console_io)
     end
+
     errors.empty?
+  end
+
+  def preexecute(interpreter)
+    define_user_functions(interpreter)
+    load_data(interpreter)
+    load_file_names(interpreter)
   end
 
   private
@@ -525,7 +530,11 @@ class AbstractStatement
     separators
   end
 
-  def pre_execute(_) end
+  def define_user_functions(_) end
+
+  def load_data(_) end
+
+  def load_file_names(_) end
 
   public
 
@@ -1141,7 +1150,15 @@ class InvalidStatement < AbstractStatement
     @text
   end
 
-  def pre_execute(_)
+  def define_user_functions(_)
+    raise(BASICSyntaxError, @errors[0])
+  end
+
+  def load_data(_)
+    raise(BASICSyntaxError, @errors[0])
+  end
+
+  def load_file_names(_)
     raise(BASICSyntaxError, @errors[0])
   end
 
@@ -1815,7 +1832,7 @@ class DataStatement < AbstractStatement
     lines
   end
 
-  def pre_execute(interpreter)
+  def load_data(interpreter)
     ds = interpreter.get_data_store(nil)
     data_list = @expressions.evaluate(interpreter)
     ds.store(data_list)
@@ -1879,7 +1896,7 @@ class DefineFunctionStatement < AbstractStatement
     lines
   end
 
-  def pre_execute(interpreter)
+  def define_user_functions(interpreter)
     name = @definition.name
     sigils = @definition.sigils
     interpreter.set_user_function(name, sigils, @definition)
@@ -2030,7 +2047,7 @@ class FilesStatement < AbstractStatement
     @expressions.dump unless @expressions.nil?
   end
 
-  def pre_execute(interpreter)
+  def load_file_names(interpreter)
     file_names = @expressions.evaluate(interpreter)
     interpreter.add_file_names(file_names)
   rescue BASICRuntimeError => e
