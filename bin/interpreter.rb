@@ -421,6 +421,7 @@ class Interpreter
 
   def run_statements
     # run each statement
+    # start with the first line number
     @current_line_index = find_first_statement
 
     @running = true
@@ -668,28 +669,29 @@ class Interpreter
         @current_line_index = @next_line_index
       end
     rescue BASICTrappableError => e
+      @console_io.newline_when_needed
+
       if @errorgoto_stack.size > @resume_stack.size
         @resume_stack << @current_line_index
         @error_stack << e.code
         @current_line_index = @errorgoto_stack[-1]
       else
         if @current_line_index.nil?
-          @console_io.newline_when_needed
           @console_io.print_line("Error #{e.code} #{e.message}")
         else
           line_number = @current_line_index.number
-          @console_io.newline_when_needed
           @console_io.print_line("Error #{e.code} #{e.message} in line #{line_number}")
         end
+
         stop_running
       end
     rescue BASICSyntaxError => e
+      @console_io.newline_when_needed
+
       if @current_line_index.nil?
-        @console_io.newline_when_needed
         @console_io.print_line(e.message)
       else
         line_number = @current_line_index.number
-        @console_io.newline_when_needed
         @console_io.print_line("#{e.message} in line #{line_number}")
       end
       stop_running
@@ -799,11 +801,13 @@ class Interpreter
             @line_cond_breakpoints.delete(line_number)
           rescue BASICSyntaxError
             tkns = tokens_list.map(&:to_s).join
+
             raise BASICCommandError.new('INVALID BREAKPOINT ' + tkns)
           end
         else
           # TODO: remove a conditional breakpoint
           tkns = tokens_list.map(&:to_s).join
+
           raise BASICCommandError.new('INVALID BREAKPOINT ' + tkns)
         end
       end
@@ -976,6 +980,10 @@ class Interpreter
     @randomizer = Random.new if $options['respect_randomize'].value
   end
 
+  def find_closing_next(control)
+    @program.find_closing_next(control, @current_line_index)
+  end
+
   # get the current value for ERL()
   def error_line(part)
     raise BASICRuntimeError.new(:te_erl_no_err) if @resume_stack.empty?
@@ -1068,10 +1076,6 @@ class Interpreter
 
   def dimensions?(variable_name)
     @dimensions.key?(variable_name)
-  end
-
-  def find_closing_next(control)
-    @program.find_closing_next(control, @current_line_index)
   end
 
   def set_user_function(name, sigils, definition)
@@ -1322,9 +1326,7 @@ class Interpreter
   end
 
   def forget_compound_values(variable)
-    legals = [
-      'Variable'
-    ]
+    legals = %w[Variable]
 
     raise(BASICSyntaxError,
           "#{variable.class}:#{variable} is not a variable name") unless

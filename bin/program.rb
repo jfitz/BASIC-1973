@@ -188,8 +188,8 @@ class Line
     @statements.each(&:uncache)
   end
 
-  def list
-    @text
+  def reset_profile_metrics
+    @statements.each(&:reset_profile_metrics)
   end
 
   def number_valid_statements
@@ -222,6 +222,10 @@ class Line
     num
   end
 
+  def list
+    @text
+  end
+
   def pretty(multiline)
     if multiline
       pretty_lines = AbstractToken.pretty_multiline([], @tokens)
@@ -250,14 +254,6 @@ class Line
     pretty_lines
   end
 
-  def parse
-    texts = []
-
-    @statements.each { |statement| texts << statement.dump }
-
-    texts
-  end
-
   def analyze_pretty(number)
     texts = []
 
@@ -266,6 +262,14 @@ class Line
 
       number = ' ' * number.size
     end
+
+    texts
+  end
+
+  def parse
+    texts = []
+
+    @statements.each { |statement| texts << statement.dump }
 
     texts
   end
@@ -285,10 +289,6 @@ class Line
     end
 
     texts
-  end
-
-  def reset_profile_metrics
-    @statements.each(&:reset_profile_metrics)
   end
 
   def renumber(renumber_map)
@@ -683,6 +683,7 @@ class Program
     texts = []
 
     goto_line_idxs = build_destinations
+
     # convert line-number-indexes to line-numbers
     gotos = {}
     goto_line_idxs.each do |line_idx, dest_idxs|
@@ -731,7 +732,6 @@ class Program
     raise(BASICCommandError, 'No program loaded') if @lines.empty?
 
     line_number_range = line_list_spec(args)
-
     line_numbers = line_number_range.line_numbers
     pretty_lines_errors(line_numbers, pretty_multiline)
   end
@@ -900,7 +900,6 @@ class Program
           goto_line_idxs << next_line_idx unless next_line_idx.nil?
         end
       end
-
     end
 
     goto_line_idxs
@@ -1628,10 +1627,10 @@ class Program
     line_numbers.each do |line_number|
       line = @lines[line_number]
 
-      line.warnings.each { |warning| texts << ' WARNING: ' + warning }
-
       # print the line
       texts << line_number.to_s + line.list
+
+      line.warnings.each { |warning| texts << ' WARNING: ' + warning }
 
       statements = line.statements
 
@@ -1695,8 +1694,6 @@ class Program
     line_numbers.each do |line_number|
       line = @lines[line_number]
 
-      line.warnings.each { |warning| texts << ' WARNING: ' + warning }
-
       # print the line
       number = line_number.to_s
       pretty_lines = line.pretty(pretty_multiline)
@@ -1705,10 +1702,11 @@ class Program
         number = ' ' * number.size
       end
 
+      line.warnings.each { |warning| texts << ' WARNING: ' + warning }
+
       statements = line.statements
 
       # print the errors
-
       statements.each do |statement|
         statement.errors.each { |error| texts << ' ' + error }
       end

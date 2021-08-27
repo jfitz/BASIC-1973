@@ -26,13 +26,13 @@ class StatementFactory
       comment = all_tokens.pop if
         !all_tokens.empty? && all_tokens[-1].comment?
 
-      line = create(line_number, line_text, all_tokens, comment, line_number)
+      line = create(line_number, line_text, all_tokens, comment)
     end
 
     [line_number, line]
   end
 
-  def create(line_number, text, all_tokens, comment, _)
+  def create(line_number, text, all_tokens, comment)
     statements = []
     statements_tokens = split_on_statement_separators(all_tokens)
 
@@ -45,7 +45,7 @@ class StatementFactory
         statement = UnknownStatement.new(line_number, text)
 
         begin
-          statement = create_statement(line_number, statement_tokens)
+          statement = create_statement(line_number, text, statement_tokens)
         rescue BASICExpressionError, BASICRuntimeError => e
           statement = InvalidStatement.new(line_number, text, all_tokens, e)
         end
@@ -58,7 +58,7 @@ class StatementFactory
     Line.new(text, statements, all_tokens, comment)
   end
 
-  def create_statement(line_number, statement_tokens)
+  def create_statement(line_number, text, statement_tokens)
     if statement_tokens.empty?
       statement = EmptyStatement.new(line_number)
     else
@@ -551,7 +551,7 @@ class AbstractStatement
     text = ' ' + text unless text.empty?
 
     if show_timing
-      timing = @profile_time.round(3).to_s
+      timing = @profile_time.round(4).to_s
       line = ' (' + timing + '/' + @profile_count.to_s + ')' + text
     else
       line = ' (' + @profile_count.to_s + ')' + text
@@ -2799,7 +2799,9 @@ class GotoStatement < AbstractStatement
     unless @destination.nil?
       line_number = @destination
       index = interpreter.statement_start_index(line_number, 0)
+
       raise(BASICSyntaxError, 'Line number not found') if index.nil?
+
       destination = LineNumberIndex.new(line_number, 0, index)
       interpreter.next_line_index = destination
     end
@@ -3236,7 +3238,7 @@ class AbstractIfStatement < AbstractStatement
 
     if @destination.nil? && @statement.nil?
       console_io.print_line(
-        "Invalid or missing line number in line #{line_number}"
+        "Invalid or missing line number in line #{line_number_index}"
       )
     end
 
@@ -3346,8 +3348,9 @@ class AbstractIfStatement < AbstractStatement
     else
       statement_factory = StatementFactory.instance
 
+      text = tokens.map(&:to_s).join(' ')
       statement =
-        statement_factory.create_statement(line_number, tokens.flatten)
+        statement_factory.create_statement(line_number, text, tokens.flatten)
 
       @errors += statement.errors
     end
