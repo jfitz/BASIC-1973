@@ -21,72 +21,72 @@ Halstead complexity:
 
 (0 1) 5 RANDOMIZE
   Origs: 
-  Dests: 8
+  Dests: 8:auto
 (0 2) 8 PRINT "THIS IS A GAME OF >>>>>>>>>>RUSSIAN ROULETTE"
-  Origs: 5
-  Dests: 10
+  Origs: 5:auto
+  Dests: 10:auto
 (0 2) 10 PRINT
 (0 2)    PRINT "HERE IS A REVOLVER"
-  Origs: 8, 90
-  Dests: 20
+  Origs: 8:auto, 90:goto
+  Dests: 20:auto
 (0 2) 20 PRINT "HIT '1' TO SPIN CHAMBER AND PULL TRIGGER"
-  Origs: 10, 72
-  Dests: 22
+  Origs: 10:auto, 72:goto
+  Dests: 22:auto
 (0 2) 22 PRINT "    (HIT '2' 1 TO GIVE UP) "
 (0 2)    PRINT "GO";
-  Origs: 20
-  Dests: 25
+  Origs: 20:auto
+  Dests: 25:auto
 (0 3) 25 N = 0
-  Origs: 22
-  Dests: 30
+  Origs: 22:auto
+  Dests: 30:auto
 (1 2) 30 INPUT I
-  Origs: 25, 60
-  Dests: 31
+  Origs: 25:auto, 60:goto
+  Dests: 31:auto
 (1 4) 31 IF I <> 2 THEN 35
-  Origs: 30
-  Dests: 32, 35
+  Origs: 30:auto
+  Dests: 32:auto, 35:ifthen
 (0 2) 32 PRINT "      CHICKEN !!!"
 (0 2)    GOTO 72
-  Origs: 31
-  Dests: 72
+  Origs: 31:auto
+  Dests: 72:goto
 (0 4) 35 N = N + 1
-  Origs: 31
-  Dests: 40
+  Origs: 31:ifthen
+  Dests: 40:auto
 (1 5) 40 IF RND(0) > 0.83323 THEN 70
-  Origs: 35
-  Dests: 45, 70
+  Origs: 35:auto
+  Dests: 45:auto, 70:ifthen
 (1 4) 45 IF N > 10 THEN 80
-  Origs: 40
-  Dests: 50, 80
+  Origs: 40:auto
+  Dests: 50:auto, 80:ifthen
 (0 2) 50 PRINT "- CLICK -"
-  Origs: 45
-  Dests: 60
+  Origs: 45:auto
+  Dests: 60:auto
 (0 2) 60 PRINT
 (0 3)    GOTO 30
-  Origs: 50
-  Dests: 30
+  Origs: 50:auto
+  Dests: 30:goto
 (0 2) 70 PRINT "     BANG!!!! YOU'RE DEAD!"
-  Origs: 40
-  Dests: 71
+  Origs: 40:ifthen
+  Dests: 71:auto
 (0 2) 71 PRINT "CONDOLENCES WILL BE SENT TO YOUR RELATIVES."
-  Origs: 70
-  Dests: 72
+  Origs: 70:auto
+  Dests: 72:auto
 (0 2) 72 PRINT
 (0 2)    PRINT
 (0 2)    PRINT
 (0 2)    PRINT " .. NEXT VICTIM. "
 (0 3)    GOTO 20
-  Origs: 32, 71
-  Dests: 20
+  Origs: 32:goto, 71:auto
+  Dests: 20:goto
 (0 2) 80 PRINT "YOU WIN !!!"
-  Origs: 45
-  Dests: 85
+  Origs: 45:ifthen
+  Dests: 85:auto
 (0 2) 85 PRINT "LET SOMEONE ELSE BLOW HIS BRAINS OUT."
-  Origs: 80
-  Dests: 90
+  Origs: 80:auto
+  Dests: 90:auto
 (0 3) 90 GOTO 10
-  Origs: 85
-  Dests: 10
+  Origs: 85:auto
+  Dests: 10:goto
 (0 1) 99 END
   Origs: 
   Dests: 

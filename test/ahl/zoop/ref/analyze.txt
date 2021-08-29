@@ -22,104 +22,104 @@ Halstead complexity:
 (0 2) 100 PRINT
 (0 2)     PRINT "READY"
 (0 2)     PRINT
-  Origs: 130, 140, 150, 160, 180, 190, 200, 210, 220, 230, 250, 260, 290
-  Dests: 110
+  Origs: 130:goto, 140:goto, 150:goto, 160:goto, 180:goto, 190:goto, 200:goto, 210:goto, 220:goto, 230:goto, 250:goto, 260:goto, 290:goto
+  Dests: 110:auto
 (1 2) 110 INPUT$ A
 (1 4)     IF A = 253 THEN 300
 (1 2)     INPUT$ B
 (1 4)     IF B = 253 THEN 300
-  Origs: 100
-  Dests: 120, 300, 300
+  Origs: 100:auto
+  Dests: 120:auto, 300:ifthen, 300:ifthen
 (0 5) 120 LET K = 10 * A + B
-  Origs: 110
-  Dests: 130
+  Origs: 110:auto
+  Dests: 130:auto
 (1 4) 130 IF K <> 2313 THEN 140
 (0 2)     PRINT "N  NO FILE YOU BOOB"
 (0 3)     GOTO 100
-  Origs: 120
-  Dests: 100, 140
+  Origs: 120:auto
+  Dests: 100:goto, 140:ifthen
 (1 4) 140 IF K <> 2143 THEN 150
 (0 2)     PRINT "TALOG  TRY MONTGOMERY WARD'S"
 (0 3)     GOTO 100
-  Origs: 130
-  Dests: 100, 150
+  Origs: 130:ifthen
+  Dests: 100:goto, 150:ifthen
 (1 4) 150 IF K <> 2241 THEN 160
 (0 2)     PRINT "STNH  I DON'T FEEL LIKE IT"
 (0 3)     GOTO 100
-  Origs: 140
-  Dests: 100, 160
+  Origs: 140:ifthen
+  Dests: 100:goto, 160:ifthen
 (1 4) 160 IF K <> 2257 THEN 170
 (0 2)     PRINT "W YES I'M QUITE NEW"
 (0 3)     GOTO 100
-  Origs: 150
-  Dests: 100, 170
+  Origs: 150:ifthen
+  Dests: 100:goto, 170:ifthen
 (1 4) 170 IF K <> 2274 THEN 190
 (0 2)     PRINT "D I'M NOT THAT OLD, BUT I'M OLD ENOUGH!!!"
-  Origs: 160
-  Dests: 180, 190
+  Origs: 160:ifthen
+  Dests: 180:auto, 190:ifthen
 (0 3) 180 GOTO 100
-  Origs: 170
-  Dests: 100
+  Origs: 170:auto
+  Dests: 100:goto
 (1 4) 190 IF K <> 2297 THEN 210
 (0 2)     PRINT "NAME WHY? I LIKE MY NAME"
 (0 3)     GOTO 100
-  Origs: 170
-  Dests: 100, 210
+  Origs: 170:ifthen
+  Dests: 100:goto, 210:ifthen
 (1 4) 200 IF K <> 207 THEN 210
 (0 2)     PRINT "NAME WHY? I LIKE MY NAME"
 (0 3)     GOTO 100
   Origs: 
-  Dests: 100, 210
+  Dests: 100:goto, 210:ifthen
 (1 4) 210 IF K <> 2157 THEN 220
 (0 2)     PRINT "BUG GET A CAN OF RAID"
 (0 3)     GOTO 100
-  Origs: 190, 200
-  Dests: 100, 220
+  Origs: 190:ifthen, 200:ifthen
+  Dests: 100:goto, 220:ifthen
 (1 4) 220 IF K <> 2387 THEN 230
 (0 2)     PRINT "OP THE FUN IS JUST STARTING"
 (0 3)     GOTO 100
-  Origs: 210
-  Dests: 100, 230
+  Origs: 210:ifthen
+  Dests: 100:goto, 230:ifthen
 (1 4) 230 IF K <> 2303 THEN 240
 (0 2)     PRINT "VE I DON'T LIKE BANKS"
 (0 3)     GOTO 100
-  Origs: 220
-  Dests: 100, 240
+  Origs: 220:ifthen
+  Dests: 100:goto, 240:ifthen
 (1 4) 240 IF K <> 2336 THEN 250
 (0 2)     PRINT "SAVE O.K., THE WHOLE DEC TAPE"
 (0 1)     REM CHAIN "ZOOP  "\GOTO100
-  Origs: 230
-  Dests: 250, 250
+  Origs: 230:ifthen
+  Dests: 250:auto, 250:ifthen
 (1 4) 250 IF K <> 2305 THEN 260
 (0 2)     PRINT "RATCH  GOT AN ITCH?"
 (0 3)     GOTO 100
-  Origs: 240, 240
-  Dests: 100, 260
+  Origs: 240:auto, 240:ifthen
+  Dests: 100:goto, 260:ifthen
 (1 4) 260 IF K <> 2166 THEN 270
 (0 2)     PRINT "IT THIS IS NO NEWSPAPER!"
 (0 3)     GOTO 100
-  Origs: 250
-  Dests: 100, 270
+  Origs: 250:ifthen
+  Dests: 100:goto, 270:ifthen
 (1 2) 270 INPUT$ C
 (1 4)     IF C = 253 THEN 300
-  Origs: 260, 280
-  Dests: 280, 300
+  Origs: 260:ifthen, 280:ifthen
+  Dests: 280:auto, 300:ifthen
 (1 5) 280 IF C <> 141 THEN 270
-  Origs: 270
-  Dests: 270, 290
+  Origs: 270:auto
+  Dests: 270:ifthen, 290:auto
 (0 2) 290 PRINT
 (0 2)     PRINT "WHAT??"
 (0 3)     GOTO 100
-  Origs: 280
-  Dests: 100
+  Origs: 280:auto
+  Dests: 100:goto
 (0 2) 300 PRINT "WIPED OUT COMPLETELY!!!"
-  Origs: 110, 110, 270
-  Dests: 310
+  Origs: 110:ifthen, 110:ifthen, 270:ifthen
+  Dests: 310:auto
 (0 1) 310 REM CHAIN "DEMON "
-  Origs: 300
-  Dests: 320
+  Origs: 300:auto
+  Dests: 320:auto
 (0 1) 320 END
-  Origs: 310
+  Origs: 310:auto
   Dests: 
 
 Unreachable code:

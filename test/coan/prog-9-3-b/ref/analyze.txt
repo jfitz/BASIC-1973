@@ -1,0 +1,104 @@
+Statistics:
+
+Number of lines: 26
+Number of valid statements: 21
+Number of comments: 5
+Number of executable statements: 15
+
+Complexity:
+
+Comment density: 0.238
+Comprehension effort: 111
+McCabe complexity: 5
+Halstead complexity:
+ length: 179
+ volume: 714.028
+ difficulty: 17.474
+ effort: 12476.702
+ language: 2.339
+ intelligence: 40.863
+ time: 11.553
+
+(0 4) 10 DEF FNR(X) = INT(X * 100 + .5) / 100
+  Origs: 
+  Dests: 15:auto
+(0 5) 15 PRINT "  ", " A", " B", " C"
+  Origs: 10:auto
+  Dests: 20:auto
+(3 4) 20 READ A, B, C
+  Origs: 15:auto, 150:goto
+  Dests: 30:auto
+(1 4) 30 IF A = 0 THEN 999
+  Origs: 20:auto
+  Dests: 40:auto, 999:ifthen
+(0 5) 40 PRINT "THE SIDES ARE", A, B, C
+  Origs: 30:auto
+  Dests: 48:auto
+(0 1) 48 REM  T IS REALLY COS(A1)
+  Origs: 40:auto
+  Dests: 50:auto
+(0 14) 50 LET T = (B ^ 2 + C ^ 2 - A ^ 2) / (2 * B * C)
+  Origs: 48:auto
+  Dests: 58:auto
+(0 1) 58 REM T1 IS REALL SIN(A)
+  Origs: 50:auto
+  Dests: 60:auto
+(0 4) 60 LET T1 = SQR(1 - T ^ 2)
+  Origs: 58:auto
+  Dests: 68:auto
+(0 1) 68 REM  A1 IS THE ANGLE INCLUDED BY SIDES B AND C
+  Origs: 60:auto
+  Dests: 70:auto
+(0 4) 70 LET A1 = ATN(T1 / T)
+  Origs: 68:auto
+  Dests: 78:auto
+(0 1) 78 REM    CONVERT RADIANS TO DEGREES
+  Origs: 70:auto
+  Dests: 80:auto
+(0 5) 80 LET A1 = A1 * 180 / 3.14159
+  Origs: 78:auto
+  Dests: 88:auto
+(0 1) 88 REM  WE NOW REPEAT THE PROCESS TO FIND ANGLE B1
+  Origs: 80:auto
+  Dests: 90:auto
+(0 14) 90 LET T = (A ^ 2 + C ^ 2 - B ^ 2) / (2 * A * C)
+  Origs: 88:auto
+  Dests: 100:auto
+(0 4) 100 LET T1 = SQR(1 - T ^ 2)
+  Origs: 90:auto
+  Dests: 110:auto
+(0 4) 110 LET B1 = ATN(T1 / T)
+  Origs: 100:auto
+  Dests: 120:auto
+(0 5) 120 LET B1 = B1 * 180 / 3.14159
+  Origs: 110:auto
+  Dests: 130:auto
+(0 16) 130 PRINT "THEN ANGLES ARE", FNR(A1), FNR(B1), 180 - (FNR(A1) + FNR(B1))
+  Origs: 120:auto
+  Dests: 140:auto
+(0 2) 140 PRINT
+  Origs: 130:auto
+  Dests: 150:auto
+(0 3) 150 GOTO 20
+  Origs: 140:auto
+  Dests: 20:goto
+(0 2) 500 DATA 3, 4, 5, 300, 400, 500
+  Origs: 
+  Dests: 510:auto
+(0 2) 510 DATA 1.73205, 1, 2
+  Origs: 500:auto
+  Dests: 520:auto
+(0 2) 520 DATA 2, 2, 3
+  Origs: 510:auto
+  Dests: 530:auto
+(0 2) 530 DATA 0, 0, 0
+  Origs: 520:auto
+  Dests: 999:auto
+(0 1) 999 END
+  Origs: 30:ifthen, 530:auto
+  Dests: 
+
+Unreachable code:
+
+All executable lines are reachable.
+

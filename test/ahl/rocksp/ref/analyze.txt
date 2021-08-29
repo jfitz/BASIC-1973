@@ -21,113 +21,113 @@ Halstead complexity:
 
 (0 2) 1 PRINT "THIS PROGRAM ALLOWS YOU TO PLAY THE OLD GAME OF"
   Origs: 
-  Dests: 2
+  Dests: 2:auto
 (0 2) 2 PRINT "ROCKS, PAPER, AND SISSORS AGAINST THE COMPUTER "
-  Origs: 1
-  Dests: 5
+  Origs: 1:auto
+  Dests: 5:auto
 (0 1) 5 RANDOMIZE
-  Origs: 2
-  Dests: 6
+  Origs: 2:auto
+  Dests: 6:auto
 (1 2) 6 INPUT "HOW MANY GAMES DO YOU WANT? "; Q
-  Origs: 5, 9
-  Dests: 8
+  Origs: 5:auto, 9:goto
+  Dests: 8:auto
 (1 4) 8 IF Q < 11 THEN 11
-  Origs: 6
-  Dests: 9, 11
+  Origs: 6:auto
+  Dests: 9:auto, 11:ifthen
 (0 2) 9 PRINT "SORRY, BUT WE AREN'T ALLOWED TO PLAY THAT MANY."
 (0 3)   GOTO 6
-  Origs: 8
-  Dests: 6
+  Origs: 8:auto
+  Dests: 6:goto
 (1 3) 11 FOR G = 1 TO Q
-  Origs: 8
-  Dests: 15
+  Origs: 8:ifthen
+  Dests: 15:auto
 (0 2) 15 PRINT
 (0 3)    PRINT "GAME NUMBER" G
-  Origs: 11
-  Dests: 20
+  Origs: 11:auto
+  Dests: 20:auto
 (0 4) 20 X = INT(RND * 3 + 1)
-  Origs: 15
-  Dests: 25
+  Origs: 15:auto
+  Dests: 25:auto
 (0 2) 25 PRINT "3=ROCK... 2=SISSORS... 1=PAPER"
-  Origs: 20, 32
-  Dests: 30
+  Origs: 20:auto, 32:goto
+  Dests: 30:auto
 (1 2) 30 INPUT "1....2....3.... WHAT'S YOUR CHOICE "; K
-  Origs: 25
-  Dests: 32
+  Origs: 25:auto
+  Dests: 32:auto
 (1 12) 32 IF (K - 1) * (K - 2) * (K - 3) <> 0 THEN PRINT "INVALID"
 (0 3)    GOTO 25
-  Origs: 30
-  Dests: 25, 35
+  Origs: 30:auto
+  Dests: 25:goto
 (0 2) 35 PRINT "THIS IS MY CHOICE..."
-  Origs: 32
-  Dests: 40
+  Origs: 
+  Dests: 40:auto
 (3 5) 40 ON X GOTO 50, 60, 70
-  Origs: 35
-  Dests: 50, 60, 70
+  Origs: 35:auto
+  Dests: 50:auto, 50:goto, 60:goto, 70:goto
 (0 2) 50 PRINT "... PAPER"
 (0 2)    GOTO 80
-  Origs: 40
-  Dests: 80
+  Origs: 40:auto, 40:goto
+  Dests: 80:goto
 (0 2) 60 PRINT "... SISSORS"
 (0 2)    GOTO 80
-  Origs: 40
-  Dests: 80
+  Origs: 40:goto
+  Dests: 80:goto
 (0 2) 70 PRINT "... ROCK"
-  Origs: 40
-  Dests: 80
+  Origs: 40:goto
+  Dests: 80:auto
 (1 4) 80 IF X = K THEN 155
-  Origs: 50, 60, 70
-  Dests: 85, 155
+  Origs: 50:goto, 60:goto, 70:auto
+  Dests: 85:auto, 155:ifthen
 (1 4) 85 IF X > K THEN 125
-  Origs: 80
-  Dests: 90, 125
+  Origs: 80:auto
+  Dests: 90:auto, 125:ifthen
 (1 4) 90 IF X = 1 THEN 105
-  Origs: 85
-  Dests: 95, 105
+  Origs: 85:auto
+  Dests: 95:auto, 105:ifthen
 (0 2) 95 PRINT "YOU WIN!!!"
 (0 4)    H = H + 1
 (0 2)    GOTO 160
-  Origs: 90, 105, 140
-  Dests: 160
+  Origs: 90:auto, 105:goto, 140:ifthen
+  Dests: 160:goto
 (1 7) 105 IF K = 3 THEN 115 ELSE GOTO 95
-  Origs: 90
-  Dests: 95, 115
+  Origs: 90:ifthen
+  Dests: 95:goto, 115:auto, 115:ifthen
 (0 2) 115 PRINT "WOW! I WIN!!"
 (0 4)     C = C + 1
 (0 2)     GOTO 160
-  Origs: 105, 125, 140
-  Dests: 160
+  Origs: 105:auto, 105:ifthen, 125:ifthen, 140:ifthen
+  Dests: 160:goto
 (1 5) 125 IF K <> 1 THEN 115
-  Origs: 85
-  Dests: 115, 140
+  Origs: 85:ifthen
+  Dests: 115:ifthen, 140:auto
 (1 7) 140 IF X <> 3 THEN 115 ELSE 95
-  Origs: 125
-  Dests: 95, 115, 155
+  Origs: 125:auto
+  Dests: 95:ifthen, 115:ifthen, 155:auto
 (0 2) 155 PRINT "TIE GAME, NO WINNER."
-  Origs: 80, 140
-  Dests: 160
+  Origs: 80:ifthen, 140:auto
+  Dests: 160:auto
 (0 1) 160 NEXT G
-  Origs: 95, 115, 155
-  Dests: 170
+  Origs: 95:goto, 115:goto, 155:auto
+  Dests: 170:auto
 (0 2) 170 PRINT
 (0 2)     PRINT "HERE IS THE FINAL SCORE."
-  Origs: 160
-  Dests: 175
+  Origs: 160:auto
+  Dests: 175:auto
 (0 4) 175 PRINT "I HAVE WON " C " GAME(S),"
-  Origs: 170
-  Dests: 180
+  Origs: 170:auto
+  Dests: 180:auto
 (0 4) 180 PRINT "YOU HAVE WON " H " GAME(S),"
-  Origs: 175
-  Dests: 185
+  Origs: 175:auto
+  Dests: 185:auto
 (0 7) 185 PRINT "AND " G - (C + H) " GAME(S) ENDED IN A TIE"
-  Origs: 180
-  Dests: 195
+  Origs: 180:auto
+  Dests: 195:auto
 (0 2) 195 PRINT
 (0 2)     PRINT "THANKS FOR PLAYING!"
-  Origs: 185
-  Dests: 200
+  Origs: 185:auto
+  Dests: 200:auto
 (0 1) 200 END
-  Origs: 195
+  Origs: 195:auto
   Dests: 
 
 Unreachable code:

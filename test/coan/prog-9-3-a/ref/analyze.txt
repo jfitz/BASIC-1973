@@ -1,0 +1,110 @@
+Statistics:
+
+Number of lines: 28
+Number of valid statements: 20
+Number of comments: 8
+Number of executable statements: 13
+
+Complexity:
+
+Comment density: 0.400
+Comprehension effort: 99
+McCabe complexity: 5
+Halstead complexity:
+ length: 139
+ volume: 566.778
+ difficulty: 12.345
+ effort: 6997.006
+ language: 3.719
+ intelligence: 45.911
+ time: 6.479
+
+(0 1) 8 REM  WE COMPUTE THE CONVERSION FACTOR
+  Origs: 
+  Dests: 10:auto
+(0 4) 10 LET R = 3.14159 / 180
+  Origs: 8:auto
+  Dests: 18:auto
+(0 1) 18 REM   DEFINE THE TRIG FUNCTION FOR DEGREES
+  Origs: 10:auto
+  Dests: 20:auto
+(0 3) 20 DEF FNT(G) = SIN(G * R)
+  Origs: 18:auto
+  Dests: 28:auto
+(0 1) 28 REM   DEFINE A ROUNDING FUNCTION
+  Origs: 20:auto
+  Dests: 30:auto
+(0 4) 30 DEF FNR(X) = INT(X * 100 + .5) / 100
+  Origs: 28:auto
+  Dests: 38:auto
+(0 1) 38 REM   A1 AND B1 ARE ANGLES AND A IS A SIDE
+  Origs: 30:auto
+  Dests: 40:auto
+(3 4) 40 READ A1, B1, A
+  Origs: 38:auto, 150:goto
+  Dests: 50:auto
+(1 4) 50 IF A1 = 0 THEN 999
+  Origs: 40:auto
+  Dests: 58:auto, 999:ifthen
+(0 1) 58 REM   FIND THE THIRD ANGLE
+  Origs: 50:auto
+  Dests: 60:auto
+(0 6) 60 LET C1 = 180 - (A1 + B1)
+  Origs: 58:auto
+  Dests: 68:auto
+(0 1) 68 REM   70 AND 80 COMPUTE THE OTHER TWO SIDES
+  Origs: 60:auto
+  Dests: 70:auto
+(0 9) 70 LET B = A * FNT(B1) / FNT(A1)
+  Origs: 68:auto
+  Dests: 80:auto
+(0 9) 80 LET C = B * FNT(C1) / FNT(B1)
+  Origs: 70:auto
+  Dests: 88:auto
+(0 1) 88 REM COMPUTE AREA
+  Origs: 80:auto
+  Dests: 90:auto
+(0 8) 90 LET A2 = .5 * A * B * FNT(C1)
+  Origs: 88:auto
+  Dests: 98:auto
+(0 1) 98 REM NOW PRINT THE RESULTS
+  Origs: 90:auto
+  Dests: 100:auto
+(0 5) 100 PRINT " ", " A", " B", " C"
+  Origs: 98:auto
+  Dests: 110:auto
+(0 5) 110 PRINT "THE ANGLES ARE", A1, B1, C1
+  Origs: 100:auto
+  Dests: 120:auto
+(0 11) 120 PRINT "THE SIDES ARE", FNR(A), FNR(B), FNR(C)
+  Origs: 110:auto
+  Dests: 130:auto
+(0 5) 130 PRINT "AND THE AREA IS "; FNR(A2)
+  Origs: 120:auto
+  Dests: 140:auto
+(0 2) 140 PRINT
+  Origs: 130:auto
+  Dests: 150:auto
+(0 3) 150 GOTO 40
+  Origs: 140:auto
+  Dests: 40:goto
+(0 2) 500 DATA 24, 51, 10
+  Origs: 
+  Dests: 510:auto
+(0 2) 510 DATA 30, 60, 15
+  Origs: 500:auto
+  Dests: 520:auto
+(0 2) 520 DATA 45, 45, 20
+  Origs: 510:auto
+  Dests: 530:auto
+(0 2) 530 DATA 0, 0, 0
+  Origs: 520:auto
+  Dests: 999:auto
+(0 1) 999 END
+  Origs: 50:ifthen, 530:auto
+  Dests: 
+
+Unreachable code:
+
+All executable lines are reachable.
+

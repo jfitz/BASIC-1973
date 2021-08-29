@@ -1,0 +1,116 @@
+Statistics:
+
+Number of lines: 30
+Number of valid statements: 25
+Number of comments: 5
+Number of executable statements: 23
+
+Complexity:
+
+Comment density: 0.200
+Comprehension effort: 61
+McCabe complexity: 7
+Halstead complexity:
+ length: 97
+ volume: 364.836
+ difficulty: 11.483
+ effort: 4189.538
+ language: 2.767
+ intelligence: 31.771
+ time: 3.879
+
+(0 1) 10 REM  WE ARE READING THE LIST FROM DATA
+  Origs: 
+  Dests: 20:auto
+(1 3) 20 FOR X = 1 TO 10
+  Origs: 10:auto
+  Dests: 30:auto
+(1 2) 30 READ L[X]
+  Origs: 20:auto
+  Dests: 40:auto
+(0 1) 40 NEXT X
+  Origs: 30:auto
+  Dests: 50:auto
+(0 2) 50 PRINT "HERE IS THE LIST IN ORIGINAL ORDER"
+  Origs: 40:auto
+  Dests: 60:auto
+(0 2) 60 GOSUB 410
+  Origs: 50:auto
+  Dests: 95:auto, 410:gosub
+(0 2) 95 PRINT "HERE WE ARE ARRANGING THE LIST"
+  Origs: 60:auto
+  Dests: 100:auto
+(0 1) 100 REM  NOW WE TEST PAIRS OF NUMBERS TO SEE IF THEY ARE IN ORDER
+  Origs: 95:auto
+  Dests: 110:auto
+(1 3) 110 FOR I = 1 TO 9
+  Origs: 100:auto
+  Dests: 118:auto
+(0 1) 118 REM  WHY DON'T WE SAY FOR I-1 TO 10????
+  Origs: 110:auto
+  Dests: 120:auto
+(1 4) 120 FOR J = I + 1 TO 10
+  Origs: 118:auto
+  Dests: 130:auto
+(1 4) 130 IF L[I] <= L[J] THEN 300
+  Origs: 120:auto
+  Dests: 140:auto, 300:ifthen
+(0 3) 140 LET S = L[I]
+  Origs: 130:auto
+  Dests: 150:auto
+(0 3) 150 LET L[I] = L[J]
+  Origs: 140:auto
+  Dests: 160:auto
+(0 3) 160 LET L[J] = S
+  Origs: 150:auto
+  Dests: 170:auto
+(0 1) 170 REM  WE HAVE REVERSED TWO ELEMENTS OF THE LIST
+  Origs: 160:auto
+  Dests: 180:auto
+(0 1) 180 REM ****  SEE PROGRAM LIST1  ****
+  Origs: 170:auto
+  Dests: 200:auto
+(0 2) 200 GOSUB 410
+  Origs: 180:auto
+  Dests: 300:auto, 410:gosub
+(0 1) 300 NEXT J
+  Origs: 130:ifthen, 200:auto
+  Dests: 400:auto
+(0 1) 400 NEXT I
+  Origs: 300:auto
+  Dests: 405:auto
+(0 2) 405 PRINT "AND HERE IS THE LIST IN ORDER FROM SMALLEST TO GREATEST"
+  Origs: 400:auto
+  Dests: 407:auto
+(0 2) 407 GOSUB 410
+  Origs: 405:auto
+  Dests: 408:auto, 410:gosub
+(0 2) 408 GOTO 999
+  Origs: 407:auto
+  Dests: 999:goto
+(1 3) 410 FOR Y = 1 TO 10
+  Origs: 60:gosub, 200:gosub, 407:gosub
+  Dests: 420:auto
+(0 2) 420 PRINT L[Y];
+  Origs: 410:auto
+  Dests: 430:auto
+(0 1) 430 NEXT Y
+  Origs: 420:auto
+  Dests: 440:auto
+(0 2) 440 PRINT
+  Origs: 430:auto
+  Dests: 450:auto
+(0 1) 450 RETURN
+  Origs: 440:auto
+  Dests: 
+(0 4) 500 DATA 6, -19, 28, 20, -32, 74, 19, 28, 23, 43
+  Origs: 
+  Dests: 999:auto
+(0 1) 999 END
+  Origs: 408:goto, 500:auto
+  Dests: 
+
+Unreachable code:
+
+All executable lines are reachable.
+

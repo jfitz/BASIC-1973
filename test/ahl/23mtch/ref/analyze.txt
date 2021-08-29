@@ -21,133 +21,133 @@ Halstead complexity:
 
 (0 1) 100 REM ***23 MATCHES
   Origs: 
-  Dests: 110
+  Dests: 110:auto
 (0 2) 110 PRINT "LET'S PLAY 23 MATCHES. WE START WITH 23 MATCHES."
-  Origs: 100
-  Dests: 115
+  Origs: 100:auto
+  Dests: 115:auto
 (0 2) 115 PRINT "YOU MOVE FIRST. YOU MAY TAKE 1, 2 OR 3 MATCHES."
-  Origs: 110
-  Dests: 120
+  Origs: 110:auto
+  Dests: 120:auto
 (0 2) 120 PRINT "THEN I MOVE... I MAY TAKE 1, 2 OR 3 MATCHES."
-  Origs: 115
-  Dests: 125
+  Origs: 115:auto
+  Dests: 125:auto
 (0 2) 125 PRINT "YOU MOVE, I MOVE AND SO ON. THE ONE WHO HAS TO"
-  Origs: 120
-  Dests: 130
+  Origs: 120:auto
+  Dests: 130:auto
 (0 2) 130 PRINT "TAKE THE LAST MATCH LOSES."
-  Origs: 125
-  Dests: 135
+  Origs: 125:auto
+  Dests: 135:auto
 (0 2) 135 PRINT "GOOD LUCK AND MAY THE BEST COMPUTER (HA HA) WIN."
-  Origs: 130
-  Dests: 140
+  Origs: 130:auto
+  Dests: 140:auto
 (0 2) 140 PRINT
-  Origs: 135, 430, 460
-  Dests: 150
+  Origs: 135:auto, 430:goto, 460:goto
+  Dests: 150:auto
 (0 3) 150 LET M = 23
-  Origs: 140
-  Dests: 200
+  Origs: 140:auto
+  Dests: 200:auto
 (0 1) 200 REM ***THE HUMAN MOVES
-  Origs: 150
-  Dests: 205
+  Origs: 150:auto
+  Dests: 205:auto
 (0 2) 205 PRINT
-  Origs: 200
-  Dests: 210
+  Origs: 200:auto
+  Dests: 210:auto
 (0 4) 210 PRINT "THERE ARE NOW"; M; "MATCHES."
-  Origs: 205, 390
-  Dests: 215
+  Origs: 205:auto, 390:goto
+  Dests: 215:auto
 (0 2) 215 PRINT
-  Origs: 210, 520
-  Dests: 220
+  Origs: 210:auto, 520:goto
+  Dests: 220:auto
 (0 2) 220 PRINT "HOW MANY DO YOU TAKE";
-  Origs: 215
-  Dests: 230
+  Origs: 215:auto
+  Dests: 230:auto
 (1 2) 230 INPUT H
-  Origs: 220
-  Dests: 240
+  Origs: 220:auto
+  Dests: 240:auto
 (1 4) 240 IF H > M THEN 510
-  Origs: 230
-  Dests: 250, 510
+  Origs: 230:auto
+  Dests: 250:auto, 510:ifthen
 (1 5) 250 IF H <> INT(H) THEN 510
-  Origs: 240
-  Dests: 260, 510
+  Origs: 240:auto
+  Dests: 260:auto, 510:ifthen
 (1 4) 260 IF H <= 0 THEN 510
-  Origs: 250
-  Dests: 270, 510
+  Origs: 250:auto
+  Dests: 270:auto, 510:ifthen
 (1 4) 270 IF H >= 4 THEN 510
-  Origs: 260
-  Dests: 280, 510
+  Origs: 260:auto
+  Dests: 280:auto, 510:ifthen
 (0 4) 280 LET M = M - H
-  Origs: 270
-  Dests: 290
+  Origs: 270:auto
+  Dests: 290:auto
 (1 4) 290 IF M = 0 THEN 410
-  Origs: 280
-  Dests: 300, 410
+  Origs: 280:auto
+  Dests: 300:auto, 410:ifthen
 (0 1) 300 REM ***THE COMPUTER MOVES
-  Origs: 290
-  Dests: 305
+  Origs: 290:auto
+  Dests: 305:auto
 (1 4) 305 IF M = 1 THEN 440
-  Origs: 300
-  Dests: 310, 440
+  Origs: 300:auto
+  Dests: 310:auto, 440:ifthen
 (0 7) 310 LET R = M - 4 * INT(M / 4)
-  Origs: 305
-  Dests: 320
+  Origs: 305:auto
+  Dests: 320:auto
 (1 4) 320 IF R <> 1 THEN 350
-  Origs: 310
-  Dests: 330, 350
+  Origs: 310:auto
+  Dests: 330:auto, 350:ifthen
 (0 5) 330 LET C = INT(3 + RND(0)) + 1
-  Origs: 320
-  Dests: 340
+  Origs: 320:auto
+  Dests: 340:auto
 (0 2) 340 GOTO 360
-  Origs: 330
-  Dests: 360
+  Origs: 330:auto
+  Dests: 360:goto
 (0 8) 350 LET C = (R + 3) - 4 * INT((R + 3) / 4)
-  Origs: 320
-  Dests: 360
+  Origs: 320:ifthen
+  Dests: 360:auto
 (0 4) 360 LET M = M - C
-  Origs: 340, 350
-  Dests: 370
+  Origs: 340:goto, 350:auto
+  Dests: 370:auto
 (1 4) 370 IF M = 0 THEN 440
-  Origs: 360
-  Dests: 375, 440
+  Origs: 360:auto
+  Dests: 375:auto, 440:ifthen
 (0 2) 375 PRINT
-  Origs: 370
-  Dests: 380
+  Origs: 370:auto
+  Dests: 380:auto
 (0 4) 380 PRINT "I TOOK"; C; "...";
-  Origs: 375
-  Dests: 390
+  Origs: 375:auto
+  Dests: 390:auto
 (0 3) 390 GOTO 210
-  Origs: 380
-  Dests: 210
+  Origs: 380:auto
+  Dests: 210:goto
 (0 1) 400 REM ***SOMEBODY WON (SEE LINES 290,205,370)
   Origs: 
-  Dests: 410
+  Dests: 410:auto
 (0 2) 410 PRINT
-  Origs: 290, 400
-  Dests: 420
+  Origs: 290:ifthen, 400:auto
+  Dests: 420:auto
 (0 2) 420 PRINT "I WON!!! BETTER LUCK NEXT TIME."
-  Origs: 410
-  Dests: 430
+  Origs: 410:auto
+  Dests: 430:auto
 (0 3) 430 GOTO 140
-  Origs: 420
-  Dests: 140
+  Origs: 420:auto
+  Dests: 140:goto
 (0 2) 440 PRINT
-  Origs: 305, 370
-  Dests: 450
+  Origs: 305:ifthen, 370:ifthen
+  Dests: 450:auto
 (0 2) 450 PRINT "O.K. SO YOU WON. LET'S PLAY AGAIN."
-  Origs: 440
-  Dests: 460
+  Origs: 440:auto
+  Dests: 460:auto
 (0 3) 460 GOTO 140
-  Origs: 450
-  Dests: 140
+  Origs: 450:auto
+  Dests: 140:goto
 (0 1) 500 REM ***THE HUMAN CHEATED! (SEE LINES 240 THRU 270)
   Origs: 
-  Dests: 510
+  Dests: 510:auto
 (0 2) 510 PRINT "YOU CHEATED! BUT I'LL GIVE YOU ANOTHER CHANCE."
-  Origs: 240, 250, 260, 270, 500
-  Dests: 520
+  Origs: 240:ifthen, 250:ifthen, 260:ifthen, 270:ifthen, 500:auto
+  Dests: 520:auto
 (0 3) 520 GOTO 215
-  Origs: 510
-  Dests: 215
+  Origs: 510:auto
+  Dests: 215:goto
 (0 1) 999 END
   Origs: 
   Dests: 

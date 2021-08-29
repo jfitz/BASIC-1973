@@ -1,0 +1,125 @@
+Statistics:
+
+Number of lines: 33
+Number of valid statements: 28
+Number of comments: 5
+Number of executable statements: 23
+
+Complexity:
+
+Comment density: 0.179
+Comprehension effort: 96
+McCabe complexity: 9
+Halstead complexity:
+ length: 190
+ volume: 750.736
+ difficulty: 25.676
+ effort: 19276.259
+ language: 1.139
+ intelligence: 29.238
+ time: 17.848
+
+(0 2) 5 DIM P[10, 10]
+  Origs: 
+  Dests: 10:auto
+(1 2) 10 READ N
+  Origs: 5:auto, 340:goto
+  Dests: 15:auto
+(1 4) 15 IF N = 0 THEN 999
+  Origs: 10:auto
+  Dests: 20:auto, 999:ifthen
+(1 5) 20 FOR X = N TO 1 STEP -1
+  Origs: 15:auto
+  Dests: 30:auto
+(1 2) 30 READ P[1, X]
+  Origs: 20:auto
+  Dests: 40:auto
+(0 2) 40 PRINT P[1, X];
+  Origs: 30:auto
+  Dests: 48:auto
+(0 1) 48 REM ENTER THE SAME COEFFICIENT IN THE SAME COLUMN
+  Origs: 40:auto
+  Dests: 49:auto
+(0 1) 49 REM OF THE SECOND ROW
+  Origs: 48:auto
+  Dests: 50:auto
+(0 3) 50 LET P[2, X] = P[1, X]
+  Origs: 49:auto
+  Dests: 58:auto
+(0 1) 58 REM IF THE EXPONENT ON X IS ODD THEN CHANGE THE SIGN
+  Origs: 50:auto
+  Dests: 60:auto
+(1 7) 60 IF (X + 1) / 2 = INT((X + 1) / 2) THEN 80
+  Origs: 58:auto
+  Dests: 70:auto, 80:ifthen
+(0 4) 70 LET P[2, X] = -P[2, X]
+  Origs: 60:auto
+  Dests: 80:auto
+(0 1) 80 NEXT X
+  Origs: 60:ifthen, 70:auto
+  Dests: 90:auto
+(0 2) 90 PRINT
+  Origs: 80:auto
+  Dests: 100:auto
+(0 4) 100 PRINT N - 1; "COMPLEX ZEROS"
+  Origs: 90:auto
+  Dests: 200:auto
+(0 3) 200 LET V1, V2 = 0
+  Origs: 100:auto
+  Dests: 210:auto
+(1 6) 210 FOR X = N - 1 TO 1 STEP -1
+  Origs: 200:auto
+  Dests: 218:auto
+(0 1) 218 REM LOOK AT POSITIVE ZEROS
+  Origs: 210:auto
+  Dests: 220:auto
+(1 5) 220 IF P[1, X] * P[1, X + 1] > 0 THEN 240
+  Origs: 218:auto
+  Dests: 230:auto, 240:ifthen
+(0 4) 230 LET V1 = V1 + 1
+  Origs: 220:auto
+  Dests: 238:auto
+(0 1) 238 REM LOOK AT NEGATIVE ZEROS
+  Origs: 230:auto
+  Dests: 240:auto
+(1 5) 240 IF P[2, X] * P[2, X + 1] > 0 THEN 260
+  Origs: 220:ifthen, 238:auto
+  Dests: 250:auto, 260:ifthen
+(0 4) 250 LET V2 = V2 + 1
+  Origs: 240:auto
+  Dests: 260:auto
+(0 1) 260 NEXT X
+  Origs: 240:ifthen, 250:auto
+  Dests: 300:auto
+(0 3) 300 PRINT V1; "MAX POSITIVE"
+  Origs: 260:auto
+  Dests: 310:auto
+(0 3) 310 PRINT V2; "MAX NEGATIVE"
+  Origs: 300:auto
+  Dests: 320:auto
+(0 2) 320 PRINT
+  Origs: 310:auto
+  Dests: 340:auto
+(0 3) 340 GOTO 10
+  Origs: 320:auto
+  Dests: 10:goto
+(0 2) 500 DATA 4, 6, 103, 201, 90
+  Origs: 
+  Dests: 510:auto
+(0 3) 510 DATA 5, 1, 3, 4, -8, 2
+  Origs: 500:auto
+  Dests: 520:auto
+(0 6) 520 DATA 6, -4, -3, 5, -2, 1, -3
+  Origs: 510:auto
+  Dests: 600:auto
+(0 2) 600 DATA 0
+  Origs: 520:auto
+  Dests: 999:auto
+(0 1) 999 END
+  Origs: 15:ifthen, 600:auto
+  Dests: 
+
+Unreachable code:
+
+All executable lines are reachable.
+

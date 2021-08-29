@@ -1,0 +1,107 @@
+Statistics:
+
+Number of lines: 27
+Number of valid statements: 17
+Number of comments: 10
+Number of executable statements: 14
+
+Complexity:
+
+Comment density: 0.588
+Comprehension effort: 51
+McCabe complexity: 6
+Halstead complexity:
+ length: 140
+ volume: 471.421
+ difficulty: 11.932
+ effort: 5624.915
+ language: 3.311
+ intelligence: 39.510
+ time: 5.208
+
+(0 3) 20 DIM A[4, 3], B[5, 4]
+  Origs: 
+  Dests: 25:auto
+(0 2) 25 DIM C[5, 3]
+  Origs: 20:auto
+  Dests: 40:auto
+(1 2) 40 MAT READ A
+  Origs: 25:auto
+  Dests: 60:auto
+(0 2) 60 DATA 6, 3, 2, 5, 3, 2, 4, 3, 2, 3, 2, 1
+  Origs: 40:auto
+  Dests: 140:auto
+(1 2) 140 MAT READ B
+  Origs: 60:auto
+  Dests: 160:auto
+(0 2) 160 DATA 1, 3, 4, 2, 1, 5, 3, 6, 2, 4, 2, 5, 1, 6, 3, 2, 3, 1, 0, 2
+  Origs: 140:auto
+  Dests: 235:auto
+(0 1) 235 REM  WE STEP THROUGH ROWS OF B  THE CARAVANS
+  Origs: 160:auto
+  Dests: 240:auto
+(1 3) 240 FOR R = 1 TO 5
+  Origs: 235:auto
+  Dests: 255:auto
+(0 1) 255 REM WE STEP THROUGH COLUMNS OF MAT A
+  Origs: 240:auto
+  Dests: 256:auto
+(0 1) 256 REM   THE TOLL BOOTH IDENTIFICATION
+  Origs: 255:auto
+  Dests: 260:auto
+(1 3) 260 FOR C = 1 TO 3
+  Origs: 256:auto
+  Dests: 275:auto
+(0 1) 275 REM INITIALIZE C[R,C] HERE
+  Origs: 260:auto
+  Dests: 280:auto
+(0 3) 280 LET C[R, C] = 0
+  Origs: 275:auto
+  Dests: 295:auto
+(0 1) 295 REM X  STEPS THROUGH THE ROWS OF A AND THE COLUMNS OF B
+  Origs: 280:auto
+  Dests: 296:auto
+(0 1) 296 REM  THERE WE FIND 'TRUCKS BUSES CARS MOTORCYCLES'
+  Origs: 295:auto
+  Dests: 297:auto
+(0 1) 297 REM  IN EACH ARRAY
+  Origs: 296:auto
+  Dests: 300:auto
+(1 3) 300 FOR X = 1 TO 4
+  Origs: 297:auto
+  Dests: 320:auto
+(0 6) 320 LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+  Origs: 300:auto
+  Dests: 335:auto
+(0 1) 335 REM  GO TO THE NEXT COLUMN OF B AND THE NEXT ROW OF A
+  Origs: 320:auto
+  Dests: 340:auto
+(0 1) 340 NEXT X
+  Origs: 335:auto
+  Dests: 355:auto
+(0 1) 355 REM GO TO THE NEXT COLUMN OF  MAT A
+  Origs: 340:auto
+  Dests: 360:auto
+(0 1) 360 NEXT C
+  Origs: 355:auto
+  Dests: 375:auto
+(0 1) 375 REM  GO TO THE NEXT ROW OF MAT B
+  Origs: 360:auto
+  Dests: 380:auto
+(0 1) 380 NEXT R
+  Origs: 375:auto
+  Dests: 500:auto
+(0 4) 500 PRINT "ROAD", "TUNNEL", "BRIDGE"
+  Origs: 380:auto
+  Dests: 520:auto
+(0 2) 520 MAT PRINT C
+  Origs: 500:auto
+  Dests: 999:auto
+(0 1) 999 END
+  Origs: 520:auto
+  Dests: 
+
+Unreachable code:
+
+All executable lines are reachable.
+

@@ -1,0 +1,77 @@
+Statistics:
+
+Number of lines: 17
+Number of valid statements: 13
+Number of comments: 4
+Number of executable statements: 12
+
+Complexity:
+
+Comment density: 0.308
+Comprehension effort: 45
+McCabe complexity: 5
+Halstead complexity:
+ length: 39
+ volume: 127.066
+ difficulty: 8.800
+ effort: 1118.179
+ language: 1.641
+ intelligence: 14.439
+ time: 1.035
+
+(0 2) 10 PRINT "N,D";
+  Origs: 110:goto
+  Dests: 20:auto
+(2 3) 20 INPUT N, D
+  Origs: 10:auto
+  Dests: 25:auto
+(1 4) 25 IF N = 0 THEN 120
+  Origs: 20:auto
+  Dests: 28:auto, 120:ifthen
+(0 1) 28 REM  FIND THE INTEGER QUOTIENT
+  Origs: 25:auto
+  Dests: 30:auto
+(0 4) 30 LET I = INT(N / D)
+  Origs: 28:auto, 80:goto
+  Dests: 38:auto
+(0 1) 38 REM  FIND THE REMAINDER
+  Origs: 30:auto
+  Dests: 40:auto
+(0 6) 40 LET R = N - I * D
+  Origs: 38:auto
+  Dests: 48:auto
+(0 1) 48 REM  IF THE REMAINDER IS ZERO THEN D IS G.C.F.
+  Origs: 40:auto
+  Dests: 50:auto
+(1 4) 50 IF R = 0 THEN 90
+  Origs: 48:auto
+  Dests: 58:auto, 90:ifthen
+(0 1) 58 REM  R WAS NOT ZERO, SO WE ITERATE
+  Origs: 50:auto
+  Dests: 60:auto
+(0 3) 60 LET N = D
+  Origs: 58:auto
+  Dests: 70:auto
+(0 3) 70 LET D = R
+  Origs: 60:auto
+  Dests: 80:auto
+(0 3) 80 GOTO 30
+  Origs: 70:auto
+  Dests: 30:goto
+(0 3) 90 PRINT "G.C.F. ="; D
+  Origs: 50:ifthen
+  Dests: 100:auto
+(0 2) 100 PRINT
+  Origs: 90:auto
+  Dests: 110:auto
+(0 3) 110 GOTO 10
+  Origs: 100:auto
+  Dests: 10:goto
+(0 1) 120 END
+  Origs: 25:ifthen
+  Dests: 
+
+Unreachable code:
+
+All executable lines are reachable.
+

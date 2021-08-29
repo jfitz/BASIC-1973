@@ -21,18 +21,18 @@ Halstead complexity:
 
 (0 2) 100 & "PLAY 'GUESS THE ANIMAL' WITH RSTS"
   Origs: 
-  Dests: 150
+  Dests: 150:auto
 (0 2) 150 & "THINK OF AN ANIMAL AND THE COMPUTER WILL TRY TO GUESS IT..."
 (0 2)     &
-  Origs: 100
-  Dests: 500
+  Origs: 100:auto
+  Dests: 500:auto
 (0 2) 500 DIM A$(200%)
-  Origs: 150
-  Dests: 525
+  Origs: 150:auto
+  Dests: 525:auto
 (0 3) 525 F$ = "ANIMAL.GME"
 (1 2)     ON ERROR GOTO 700
-  Origs: 500
-  Dests: 550, 700
+  Origs: 500:auto
+  Dests: 550:auto, 700:onerror
 (0 3) 550 OPEN F$ FOR INPUT AS FILE 1%
 (1 2)     INPUT #1%, N%
 (1 2)     INPUT #1%, A$(I%)
@@ -42,21 +42,21 @@ Halstead complexity:
 (0 4)     A$(0%) = NUM$(N%)
 (1 1)     ON ERROR GOTO 0
 (0 2)     GOTO 1300
-  Origs: 525
-  Dests: 1300
+  Origs: 525:auto
+  Dests: 1300:goto
 (1 2) 700 ON ERROR GOTO 1050
 (0 4)     F$ = "$" + F$
 (0 1)     RESUME 550
-  Origs: 525
-  Dests: 1050
+  Origs: 525:onerror
+  Dests: 1050:onerror
 (1 2) 1050 READ A$(I%)
 (1 1)        FOR I% = 0% TO 3%
 (0 1)        NEXT I%
-  Origs: 700
-  Dests: 1100
+  Origs: 700:onerror
+  Dests: 1100:auto
 (0 2) 1100 DATA "4", "\QDOES IT SWIM\Y2\N3\", "\AFISH", "\ABIRD"
-  Origs: 1050
-  Dests: 1300
+  Origs: 1050:auto
+  Dests: 1300:auto
 (1 2) 1300 INPUT "ARE YOU THINKING OF AN ANIMAL", Z9$
 (0 2)      GOTO 1350
 (1 3)        IF LEFT(Z9$, 1%) = "Y"
@@ -64,8 +64,8 @@ Halstead complexity:
 (0 3)      GOTO 1300
 (1 3)        IF LEFT(Z9$, 1%) = "N"
 (0 1)        ENDIF
-  Origs: 550, 1100, 1310, 1320, 1450, 2300
-  Dests: 1310, 1350
+  Origs: 550:goto, 1100:auto, 1300:goto, 1310:goto, 1320:goto, 1450:goto, 2300:goto
+  Dests: 1300:goto, 1310:auto, 1350:goto
 (1 6) 1310 IF Z9$ = "SAVE" THEN OPEN "ANIMAL.GME" FOR OUTPUT AS FILE 1%
 (0 2)      PRINT #1%, A$(I%)
 (1 2)        FOR I% = 0% TO VAL(A$(0%))
@@ -73,8 +73,8 @@ Halstead complexity:
 (0 3)      PRINT #1, CHR$(26%)
 (0 2)      CLOSE 1%
 (0 3)      GOTO 1300
-  Origs: 1300
-  Dests: 1300, 1320
+  Origs: 1300:auto
+  Dests: 1300:goto
 (1 5) 1320 IF Z9$ = "LIST" THEN PRINT "ANIMALS I ALREADY KNOW ARE:"
 (0 3)      PRINT RIGHT(A$(I%), 3%),
 (1 2)        IF INSTR(1%, A$(I%), "\A")
@@ -83,11 +83,11 @@ Halstead complexity:
 (0 1)        NEXT I%
 (0 2)      PRINT
 (0 3)      GOTO 1300
-  Origs: 1310
-  Dests: 1300, 1350
+  Origs: 
+  Dests: 1300:goto
 (0 3) 1350 K% = 1%
-  Origs: 1300, 1320
-  Dests: 1400
+  Origs: 1300:goto
+  Dests: 1400:auto
 (0 5) 1400 K% = FNA%(A$(K%))
 (0 2)      GOTO 3000
 (1 3)        IF LEN(A$(K%)) = 0%
@@ -98,36 +98,36 @@ Halstead complexity:
 (0 4)      PRINT "IS IT A " RIGHT(A$(K%), 3%);
 (1 2)      INPUT Z7$
 (0 4)      Z7$ = LEFT(Z7$, 1%)
-  Origs: 1350
-  Dests: 1450, 3000
+  Origs: 1350:auto, 1400:goto
+  Dests: 1400:goto, 1450:auto, 3000:goto
 (1 5) 1450 IF Z7$ = "Y" THEN PRINT "WHY NOT TRY ANOTHER ANIMAL"
 (0 3)      GOTO 1300
-  Origs: 1400
-  Dests: 1300, 2000
+  Origs: 1400:auto
+  Dests: 1300:goto
 (1 2) 2000 INPUT "THE ANIMAL YOU WERE THINKING OF WAS A "; Z9$
-  Origs: 1450
-  Dests: 2050
+  Origs: 
+  Dests: 2050:auto
 (0 6) 2050 PRINT "PLEASE TYPE IN A QUESTION THAT WOULD DISTINGUISH A " Z9$ " FROM A " RIGHT(A$(K%), 3%)
 (1 2)      INPUT Z8$
-  Origs: 2000
-  Dests: 2100
+  Origs: 2000:auto
+  Dests: 2100:auto
 (0 4) 2100 PRINT "FOR A " Z9$ " THE ANSWER WOULD BE";
 (1 2)      INPUT Z7$
 (0 4)      Z7$ = LEFT(Z7$, 1%)
 (2 14)      IF Z7$ = "Y" THEN Z6$ = "N" ELSE IF Z7$ = "N" THEN Z6$ = "Y" ELSE PRINT "PLEASE ANSWER 'YES' OR 'NO'"
 (0 3)      GOTO 2100
-  Origs: 2050
-  Dests: 
+  Origs: 2050:auto, 2100:goto
+  Dests: 2100:goto
 (0 4) 2200 Z1% = VAL(A$(0%))
 (0 4)      A$(0%) = NUM$(Z1% + 2%)
 (0 3)      A$(Z1%) = A$(K%)
 (0 4)      A$(Z1% + 1%) = '\A' + Z9$
 (0 13)      A$(K%) = "\Q" + Z8$ + "\" + Z7$ + NUM$(Z1% + 1%) + "\" + Z6$ + NUM$(Z1%) + "\"
   Origs: 
-  Dests: 2300
+  Dests: 2300:auto
 (0 3) 2300 GOTO 1300
-  Origs: 2200
-  Dests: 1300
+  Origs: 2200:auto
+  Dests: 1300:goto
 (0 1) 3000 DEF FNA%(Q$)
 (0 3)      PRINT MID(Q$, 3%, INSTR(3%, Q$, "\") - 3%);
 (1 2)      INPUT Z9$
@@ -139,10 +139,10 @@ Halstead complexity:
 (0 4)      Z2% = INSTR(Z1%, Q$, "\")
 (0 6)      FNA% = VAL(MID(Q$, Z1%, Z2% - Z1%))
 (0 1)      FNEND
-  Origs: 1400
-  Dests: 9999
+  Origs: 1400:goto
+  Dests: 9999:auto
 (0 1) 9999 END
-  Origs: 3000
+  Origs: 3000:auto
   Dests: 
 
 Unreachable code:

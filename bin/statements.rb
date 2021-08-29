@@ -2628,7 +2628,7 @@ class GosubStatement < AbstractStatement
   end
 
   def gotos
-    [@destination]
+    [TransferRef.new(@destination, :gosub)]
   end
 
   def okay(program, console_io, line_number_index)
@@ -2767,8 +2767,13 @@ class GotoStatement < AbstractStatement
   end
 
   def gotos
-    return [@destination] unless @destination.nil?
-    @destinations
+    return [TransferRef.new(@destination, :goto)] unless @destination.nil?
+
+    goto_refs = []
+
+    @destinations.each { |goto| goto_refs << TransferRef.new(goto, :goto) }
+
+    goto_refs
   end
 
   def okay(program, console_io, line_number_index)
@@ -3214,7 +3219,9 @@ class AbstractIfStatement < AbstractStatement
     lines = []
 
     lines += @expression.dump unless @expression.nil?
+    lines << @destination.dump unless @destination.nil?
     lines += @statement.dump unless @statement.nil?
+    lines << @else_dest.dump unless @else_dest.nil?
     lines += @else_stmt.dump unless @else_stmt.nil?
 
     @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
@@ -3223,14 +3230,14 @@ class AbstractIfStatement < AbstractStatement
   end
 
   def gotos
-    destinations = []
+    goto_refs = []
 
-    destinations << @destination unless @destination.nil?
-    destinations += @statement.gotos unless @statement.nil?
-    destinations << @else_dest unless @else_dest.nil?
-    destinations += @else_stmt.gotos unless @else_stmt.nil?
+    goto_refs << TransferRef.new(@destination, :ifthen) unless @destination.nil?
+    goto_refs += @statement.gotos unless @statement.nil?
+    goto_refs << TransferRef.new(@else_dest, :ifthen) unless @else_dest.nil?
+    goto_refs += @else_stmt.gotos unless @else_stmt.nil?
 
-    destinations
+    goto_refs
   end
 
   def okay(program, console_io, line_number_index)
@@ -3878,7 +3885,7 @@ class OnErrorStatement < AbstractStatement
   def gotos
     destinations = []
 
-    destinations << @destination unless @destination.nil?
+    destinations << TransferRef.new(@destination, :onerror) unless @destination.nil?
 
     destinations
   end
@@ -3998,7 +4005,11 @@ class OnStatement < AbstractStatement
   end
 
   def gotos
-    @destinations
+    goto_refs = []
+
+    @destinations.each { |goto| goto_refs << TransferRef.new(goto, :goto) }
+
+    goto_refs
   end
 
   def okay(program, console_io, line_number_index)

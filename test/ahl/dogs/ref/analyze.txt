@@ -21,47 +21,47 @@ Halstead complexity:
 
 (0 1) 5 REM V.NAHIGIAN 8TH GRADE DOG RACE GAME
   Origs: 
-  Dests: 10
+  Dests: 10:auto
 (0 6) 10 DIM S(10), C(10), J(20), W(10), A(10)
-  Origs: 5
-  Dests: 15
+  Origs: 5:auto
+  Dests: 15:auto
 (0 4) 15 DIM N$(20), H$(10), P(20)
-  Origs: 10
-  Dests: 20
+  Origs: 10:auto
+  Dests: 20:auto
 (0 4) 20 DIM Y(10), B(11), M5(20)
-  Origs: 15
-  Dests: 25
+  Origs: 15:auto
+  Dests: 25:auto
 (1 1) 25 RECORD V
-  Origs: 20
-  Dests: 30
+  Origs: 20:auto
+  Dests: 30:auto
 (1 1) 30 RECORD X
-  Origs: 25
-  Dests: 35
+  Origs: 25:auto
+  Dests: 35:auto
 (0 3) 35 OPEN 8, "WINS"
 (0 3)    OPEN 9, "LOSSES"
-  Origs: 30, 65
-  Dests: 40
+  Origs: 30:auto, 65:goto
+  Dests: 40:auto
 (1 4) 40 IF S9 = 6 THEN 70
 (1 3)    FOR I = 1 TO 10
 (3 5)    GET 8, 25, I
 (0 4)    V9 = V9 + V
 (0 1)    NEXT I
-  Origs: 35
-  Dests: 45, 70
+  Origs: 35:auto
+  Dests: 45:auto, 70:ifthen
 (1 4) 45 IF V9 < 25 THEN 60
 (1 4)    IF V9 > 200 THEN 55
-  Origs: 40
-  Dests: 50, 55, 60
+  Origs: 40:auto
+  Dests: 50:auto, 55:ifthen, 60:ifthen
 (0 2) 50 GOTO 100
-  Origs: 45
-  Dests: 100
+  Origs: 45:auto
+  Dests: 100:goto
 (0 2) 55 UNSAVE 8
 (0 2)    UNSAVE 9
-  Origs: 45
-  Dests: 60
+  Origs: 45:ifthen
+  Dests: 60:auto
 (0 2) 60 PRINT "PLEASE WAIT, DISREGARD THE 25 BELLS"
-  Origs: 45, 55
-  Dests: 65
+  Origs: 45:ifthen, 55:auto
+  Dests: 65:auto
 (0 2) 65 PRINT
 (0 2)    PRINT
 (0 2)    PRINT
@@ -69,696 +69,696 @@ Halstead complexity:
 (0 2)    PRINT
 (0 3)    S9 = 6
 (0 3)    GOTO 35
-  Origs: 60
-  Dests: 35
+  Origs: 60:auto
+  Dests: 35:goto
 (1 4) 70 FOR I = 1 TO 26 - V9
 (0 1)    RANDOMIZE
 (0 5)    H = INT(10 * RND(X)) + 1
 (3 5)    GET 8, 25, H
-  Origs: 40
-  Dests: 75
+  Origs: 40:ifthen
+  Dests: 75:auto
 (0 4) 75 V = V + 1
 (3 6)    PUT 8, 25, H
 (1 3)    FOR T = 1 TO 10
 (1 4)    IF H = T THEN 85
-  Origs: 70
-  Dests: 80, 85
+  Origs: 70:auto
+  Dests: 80:auto, 85:ifthen
 (3 5) 80 GET 9, 30, T
 (0 4)    X = X + 1
 (3 6)    PUT 9, 30, T
-  Origs: 75
-  Dests: 85
+  Origs: 75:auto
+  Dests: 85:auto
 (0 1) 85 NEXT T
-  Origs: 75, 80
-  Dests: 90
+  Origs: 75:ifthen, 80:auto
+  Dests: 90:auto
 (0 3) 90 PRINT CHR$(135);
-  Origs: 85
-  Dests: 95
+  Origs: 85:auto
+  Dests: 95:auto
 (0 1) 95 NEXT I
-  Origs: 90
-  Dests: 100
+  Origs: 90:auto
+  Dests: 100:auto
 (0 2) 100 PRINT
 (0 2)     PRINT
 (0 2)     PRINT
-  Origs: 50, 95
-  Dests: 105
+  Origs: 50:goto, 95:auto
+  Dests: 105:auto
 (0 4) 105 PRINT TAB(10); "WELCOME TO ROOK-A-DAY RACE TRACK!!!"
-  Origs: 100
-  Dests: 110
+  Origs: 100:auto
+  Dests: 110:auto
 (0 2) 110 PRINT
 (0 2)     PRINT
-  Origs: 105
-  Dests: 115
+  Origs: 105:auto
+  Dests: 115:auto
 (0 2) 115 PRINT "DO YOU WANT THE INSTRUCTIONS";
 (1 2)     INPUT I$
 (0 2)     GOTO 215
-  Origs: 110
-  Dests: 215
+  Origs: 110:auto
+  Dests: 215:goto
 (0 2) 120 PRINT "THIS IS A DOG RACE GAME, THERE ARE 10 DOGS"
-  Origs: 215
-  Dests: 125
+  Origs: 215:ifthen
+  Dests: 125:auto
 (0 2) 125 PRINT "WHICH RUN IN THIS RACE, THE WINS AND LOSSES OF"
-  Origs: 120
-  Dests: 130
+  Origs: 120:auto
+  Dests: 130:auto
 (0 2) 130 PRINT "EACH DOG ARE RECORDED SO THAT EVEN AFTER YOU"
-  Origs: 125
-  Dests: 135
+  Origs: 125:auto
+  Dests: 135:auto
 (0 2) 135 PRINT "LOG-OFF, THE WINS AND LOSSES OF THE DOGS WILL STILL"
-  Origs: 130
-  Dests: 140
+  Origs: 130:auto
+  Dests: 140:auto
 (0 2) 140 PRINT "BE RECORDED,"
-  Origs: 135
-  Dests: 145
+  Origs: 135:auto
+  Dests: 145:auto
 (0 2) 145 PRINT " THE WINNER OF THE RACE WILL BE DETERMENED BY HOW"
-  Origs: 140
-  Dests: 150
+  Origs: 140:auto
+  Dests: 150:auto
 (0 2) 150 PRINT "MANY WINS AND LOSSES EACH DOG HAS, AFTER THE WINS AND"
-  Origs: 145
-  Dests: 155
+  Origs: 145:auto
+  Dests: 155:auto
 (0 2) 155 PRINT "LOSSES OF EACH DOG HAVE BEEN POSTED, YOU WILL HAVE A "
-  Origs: 150
-  Dests: 160
+  Origs: 150:auto
+  Dests: 160:auto
 (0 2) 160 PRINT "CHANCE TO BET, NO MORE THAN 19 PEOPLE ARE ALLOWED"
-  Origs: 155
-  Dests: 165
+  Origs: 155:auto
+  Dests: 165:auto
 (0 2) 165 PRINT "TO BET IN THIS GAME, WHEN BETTING, YOU CANNOT BET OVER"
-  Origs: 160
-  Dests: 170
+  Origs: 160:auto
+  Dests: 170:auto
 (0 2) 170 PRINT "$500,00 AND MUST BET AT LEAST $2,00, MORE THAN 1"
-  Origs: 165
-  Dests: 175
+  Origs: 165:auto
+  Dests: 175:auto
 (0 2) 175 PRINT "PERSON MAY BET ON THE SAME DOG, AFTER THE BETS"
-  Origs: 170
-  Dests: 180
+  Origs: 170:auto
+  Dests: 180:auto
 (0 2) 180 PRINT "ARE MADE THE ODDS WILL BE FIGURED AND POSTED AND THE "
-  Origs: 175
-  Dests: 185
+  Origs: 175:auto
+  Dests: 185:auto
 (0 2) 185 PRINT "RACE WILL BEGIN,"
-  Origs: 180
-  Dests: 190
+  Origs: 180:auto
+  Dests: 190:auto
 (0 2) 190 PRINT " THE STRATEGY OF THIS GAME IS TO PICK THE WINNER"
-  Origs: 185
-  Dests: 195
+  Origs: 185:auto
+  Dests: 195:auto
 (0 2) 195 PRINT " INSUCH A WAY THAT THE ODDS ON THAT DOG ARE GOOD"
-  Origs: 190
-  Dests: 200
+  Origs: 190:auto
+  Dests: 200:auto
 (0 2) 200 PRINT "IN YOUR FAVOR."
-  Origs: 195
-  Dests: 210
+  Origs: 195:auto
+  Dests: 210:auto
 (0 2) 210 PRINT
 (0 4)     PRINT TAB(10); "GOOD LUCK!|"
 (0 2)     GOTO 220
-  Origs: 200
-  Dests: 220
+  Origs: 200:auto
+  Dests: 220:goto
 (1 5) 215 IF I$ = "YES" THEN 120
 (0 2)     GOTO 220
-  Origs: 115
-  Dests: 120, 220
+  Origs: 115:goto
+  Dests: 120:ifthen, 220:goto
 (0 2) 220 GOSUB 225
 (0 2)     GOTO 255
-  Origs: 210, 215
-  Dests: 225, 255
+  Origs: 210:goto, 215:goto
+  Dests: 225:gosub, 255:goto
 (0 2) 225 PRINT
 (0 2)     PRINT
 (0 5)     PRINT "DOG", "NUMBER", "WINS", "LOSSES"
-  Origs: 220, 910
-  Dests: 230
+  Origs: 220:gosub, 910:gosub
+  Dests: 230:auto
 (1 3) 230 FOR I = 1 TO 10
-  Origs: 225
-  Dests: 235
+  Origs: 225:auto
+  Dests: 235:auto
 (1 2) 235 READ H$(I)
-  Origs: 230
-  Dests: 240
+  Origs: 230:auto
+  Dests: 240:auto
 (3 5) 240 GET 8, 25, I
 (3 5)     GET 9, 30, I
-  Origs: 235
-  Dests: 245
+  Origs: 235:auto
+  Dests: 245:auto
 (0 5) 245 PRINT H$(I), T, V, X
-  Origs: 240
-  Dests: 250
+  Origs: 240:auto
+  Dests: 250:auto
 (0 1) 250 NEXT I
 (0 1)     RETURN
-  Origs: 245
+  Origs: 245:auto
   Dests: 
 (0 2) 255 PRINT
 (0 2)     PRINT
 (0 2)     PRINT "HOW MANY WISH TO BET";
-  Origs: 220, 265
-  Dests: 260
+  Origs: 220:goto, 265:goto
+  Dests: 260:auto
 (1 2) 260 INPUT G
 (1 4)     IF Q < 20 THEN 270
-  Origs: 255
-  Dests: 265, 270
+  Origs: 255:auto
+  Dests: 265:auto, 270:ifthen
 (0 2) 265 PRINT "NO MORE THAN. 19 ALLOWED"
 (0 2)     PRINT
 (0 3)     GOTO 255
-  Origs: 260
-  Dests: 255
+  Origs: 260:auto
+  Dests: 255:goto
 (1 3) 270 FOR Z = 1 TO Q
-  Origs: 260
-  Dests: 275
+  Origs: 260:ifthen
+  Dests: 275:auto
 (0 2) 275 PRINT "BETTOR'S NAME";
 (1 2)     INPUT N$(Z)
-  Origs: 270
-  Dests: 280
+  Origs: 270:auto
+  Dests: 280:auto
 (0 2) 280 PRINT "DOG'S NUMBER";
 (1 2)     INPUT J(Z)
-  Origs: 275
-  Dests: 285
+  Origs: 275:auto
+  Dests: 285:auto
 (0 2) 285 PRINT "AND YOUR BET";
 (1 2)     INPUT P(Z)
-  Origs: 280
-  Dests: 290
+  Origs: 280:auto
+  Dests: 290:auto
 (1 4) 290 IF P(Z) < 2 THEN 300
 (1 4)     IF P(Z) > 500 THEN 315
-  Origs: 285, 310
-  Dests: 295, 300, 315
+  Origs: 285:auto, 310:goto
+  Dests: 295:auto, 300:ifthen, 315:ifthen
 (0 2) 295 PRINT
 (0 1)     NEXT Z
 (0 2)     GOTO 325
-  Origs: 290
-  Dests: 325
+  Origs: 290:auto
+  Dests: 325:goto
 (0 3) 300 PRINT "YOU MUST BET AT LEAST $2,00, TRY AGAIN " N$(Z)
-  Origs: 290
-  Dests: 305
+  Origs: 290:ifthen
+  Dests: 305:auto
 (0 2) 305 PRINT "YOUR BET";
 (1 2)     INPUT P(Z)
-  Origs: 300, 320
-  Dests: 310
+  Origs: 300:auto, 320:goto
+  Dests: 310:auto
 (0 3) 310 GOTO 290
-  Origs: 305
-  Dests: 290
+  Origs: 305:auto
+  Dests: 290:goto
 (0 4) 315 PRINT "YOU CAN'T BET OVER 500,00 " N$(Z) " TRY AGAIN"
-  Origs: 290
-  Dests: 320
+  Origs: 290:ifthen
+  Dests: 320:auto
 (0 3) 320 GOTO 305
-  Origs: 315
-  Dests: 305
+  Origs: 315:auto
+  Dests: 305:goto
 (1 3) 325 FOR I = 1 TO 10
-  Origs: 295, 940, 1065, 1080
-  Dests: 330
+  Origs: 295:goto, 940:ifthen, 1065:goto, 1080:goto
+  Dests: 330:auto
 (0 4) 330 B(11) = B(11) + P(I)
-  Origs: 325
-  Dests: 335
+  Origs: 325:auto
+  Dests: 335:auto
 (0 1) 335 NEXT I
-  Origs: 330
-  Dests: 340
+  Origs: 330:auto
+  Dests: 340:auto
 (1 3) 340 FOR I = 1 TO Q
-  Origs: 335
-  Dests: 345
+  Origs: 335:auto
+  Dests: 345:auto
 (1 3) 345 FOR I3 = 1 TO 10
-  Origs: 340
-  Dests: 350
+  Origs: 340:auto
+  Dests: 350:auto
 (1 4) 350 IF J(I) <> I3 THEN 360
-  Origs: 345
-  Dests: 355, 360
+  Origs: 345:auto
+  Dests: 355:auto, 360:ifthen
 (0 4) 355 A(I3) = A(I3) + P(I)
-  Origs: 350
-  Dests: 360
+  Origs: 350:auto
+  Dests: 360:auto
 (0 1) 360 NEXT I3
-  Origs: 350, 355
-  Dests: 365
+  Origs: 350:ifthen, 355:auto
+  Dests: 365:auto
 (0 1) 365 NEXT I
-  Origs: 360
-  Dests: 370
+  Origs: 360:auto
+  Dests: 370:auto
 (1 3) 370 FOR I = 1 TO 10
-  Origs: 365
-  Dests: 375
+  Origs: 365:auto
+  Dests: 375:auto
 (1 4) 375 IF A(I) >= 2 THEN 390
-  Origs: 370
-  Dests: 380, 390
+  Origs: 370:auto
+  Dests: 380:auto, 390:ifthen
 (0 5) 380 B(I) = INT(B(11) * RND(X)) + 1
-  Origs: 375
-  Dests: 385
+  Origs: 375:auto
+  Dests: 385:auto
 (0 2) 385 GOTO 395
-  Origs: 380
-  Dests: 395
+  Origs: 380:auto
+  Dests: 395:goto
 (0 4) 390 B(I) = INT((B(11) - A(I)) / (A(I) - (.17 * A(I))))
-  Origs: 375
-  Dests: 395
+  Origs: 375:ifthen
+  Dests: 395:auto
 (1 4) 395 IF B(I) <= 2 THEN 405
-  Origs: 385, 390
-  Dests: 400, 405
+  Origs: 385:goto, 390:auto
+  Dests: 400:auto, 405:ifthen
 (0 2) 400 GOTO 410
-  Origs: 395
-  Dests: 410
+  Origs: 395:auto
+  Dests: 410:goto
 (0 3) 405 B(I) = 2
-  Origs: 395
-  Dests: 410
+  Origs: 395:ifthen
+  Dests: 410:auto
 (0 1) 410 NEXT I
-  Origs: 400, 405
-  Dests: 415
+  Origs: 400:goto, 405:auto
+  Dests: 415:auto
 (0 2) 415 PRINT
-  Origs: 410
-  Dests: 420
+  Origs: 410:auto
+  Dests: 420:auto
 (0 4) 420 PRINT "DOG", "NUMBER", "ODDS"
-  Origs: 415
-  Dests: 425
+  Origs: 415:auto
+  Dests: 425:auto
 (1 3) 425 FOR I = 1 TO 10
-  Origs: 420
-  Dests: 430
+  Origs: 420:auto
+  Dests: 430:auto
 (0 5) 430 PRINT H$(I), I, B(I) ": 1"
-  Origs: 425
-  Dests: 435
+  Origs: 425:auto
+  Dests: 435:auto
 (0 1) 435 NEXT I
-  Origs: 430
-  Dests: 440
+  Origs: 430:auto
+  Dests: 440:auto
 (1 3) 440 FOR I = 1 TO 10
-  Origs: 435
-  Dests: 445
+  Origs: 435:auto
+  Dests: 445:auto
 (3 5) 445 GET 8, 25, I
 (3 5)     GET 9, 30, I
 (1 5)     IF V + X <= 0 THEN 470
-  Origs: 440
-  Dests: 450, 470
+  Origs: 440:auto
+  Dests: 450:auto, 470:ifthen
 (0 1) 450 RANDOMIZE
-  Origs: 445
-  Dests: 455
+  Origs: 445:auto
+  Dests: 455:auto
 (0 4) 455 Y(I) = INT(V / ABS((V + X)) + INT(V * RND(X)) * 1)
-  Origs: 450
-  Dests: 460
+  Origs: 450:auto
+  Dests: 460:auto
 (1 4) 460 IF Y(I) < 7 THEN 470
-  Origs: 455
-  Dests: 465, 470
+  Origs: 455:auto
+  Dests: 465:auto, 470:ifthen
 (0 2) 465 GOTO 475
-  Origs: 460
-  Dests: 475
+  Origs: 460:auto
+  Dests: 475:goto
 (0 5) 470 Y(I) = INT(7 * RND(X)) + 1
-  Origs: 445, 460
-  Dests: 475
+  Origs: 445:ifthen, 460:ifthen
+  Dests: 475:auto
 (0 1) 475 NEXT I
-  Origs: 465, 470
-  Dests: 480
+  Origs: 465:goto, 470:auto
+  Dests: 480:auto
 (1 3) 480 FOR R = 1 TO 10
-  Origs: 475
-  Dests: 485
+  Origs: 475:auto
+  Dests: 485:auto
 (0 3) 485 S(R) = 0
-  Origs: 480
-  Dests: 490
+  Origs: 480:auto
+  Dests: 490:auto
 (0 1) 490 NEXT R
-  Origs: 485
-  Dests: 495
+  Origs: 485:auto
+  Dests: 495:auto
 (0 2) 495 PRINT
-  Origs: 490
-  Dests: 500
+  Origs: 490:auto
+  Dests: 500:auto
 (0 5) 500 PRINT TAB(2); "-1 2 3 4 5 6 7 8 9 10", "AND THEY'RE OFF!!!"
-  Origs: 495
-  Dests: 505
+  Origs: 495:auto
+  Dests: 505:auto
 (0 11) 505 PRINT CHR$(135); CHR$(135); CHR$(135); CHR$(135); CHR$(135)
-  Origs: 500
-  Dests: 510
+  Origs: 500:auto
+  Dests: 510:auto
 (1 3) 510 FOR R = 1 TO 10
-  Origs: 505, 635
-  Dests: 515
+  Origs: 505:auto, 635:goto
+  Dests: 515:auto
 (0 1) 515 RANDOMIZE
-  Origs: 510
-  Dests: 520
+  Origs: 510:auto
+  Dests: 520:auto
 (0 5) 520 C(R) = INT(Y(R) * RND(X)) + 1
-  Origs: 515
-  Dests: 525
+  Origs: 515:auto
+  Dests: 525:auto
 (0 4) 525 S(R) = S(R) + C(R)
-  Origs: 520
-  Dests: 530
+  Origs: 520:auto
+  Dests: 530:auto
 (0 1) 530 NEXT R
-  Origs: 525
-  Dests: 535
+  Origs: 525:auto
+  Dests: 535:auto
 (0 4) 535 PRINT TAB(2); "XXXXXXXXSTARTXXXXXXXX"
-  Origs: 530
-  Dests: 540
+  Origs: 530:auto
+  Dests: 540:auto
 (1 3) 540 FOR P = 1 TO 20
-  Origs: 535
-  Dests: 545
+  Origs: 535:auto
+  Dests: 545:auto
 (1 3) 545 FOR R = 1 TO 10
-  Origs: 540
-  Dests: 550
+  Origs: 540:auto
+  Dests: 550:auto
 (1 4) 550 IF P = S(R) THEN 580
-  Origs: 545
-  Dests: 555, 580
+  Origs: 545:auto
+  Dests: 555:auto, 580:ifthen
 (1 4) 555 IF S(R) > 20 THEN 590
-  Origs: 550
-  Dests: 560, 590
+  Origs: 550:auto
+  Dests: 560:auto, 590:ifthen
 (0 1) 560 NEXT R
-  Origs: 555, 585, 600, 620
-  Dests: 565
+  Origs: 555:auto, 585:goto, 600:goto, 620:goto
+  Dests: 565:auto
 (0 2) 565 PRINT
-  Origs: 560
-  Dests: 570
+  Origs: 560:auto
+  Dests: 570:auto
 (0 1) 570 NEXT P
-  Origs: 565
-  Dests: 575
+  Origs: 565:auto
+  Dests: 575:auto
 (0 2) 575 GOTO 625
-  Origs: 570
-  Dests: 625
+  Origs: 570:auto
+  Dests: 625:goto
 (0 6) 580 PRINT TAB(R * 2); R; CHR$(141)
-  Origs: 550
-  Dests: 585
+  Origs: 550:ifthen
+  Dests: 585:auto
 (0 3) 585 GOTO 560
-  Origs: 580
-  Dests: 560
+  Origs: 580:auto
+  Dests: 560:goto
 (1 4) 590 IF W(1) <> 0 THEN 605
-  Origs: 555
-  Dests: 595, 605
+  Origs: 555:ifthen
+  Dests: 595:auto, 605:ifthen
 (0 3) 595 W(1) = R
-  Origs: 590
-  Dests: 600
+  Origs: 590:auto
+  Dests: 600:auto
 (0 3) 600 GOTO 560
-  Origs: 595
-  Dests: 560
+  Origs: 595:auto
+  Dests: 560:goto
 (0 3) 605 D = 2
-  Origs: 590
-  Dests: 610
+  Origs: 590:ifthen
+  Dests: 610:auto
 (0 3) 610 W(D) = R
-  Origs: 605
-  Dests: 615
+  Origs: 605:auto
+  Dests: 615:auto
 (0 4) 615 D = D + 1
-  Origs: 610
-  Dests: 620
+  Origs: 610:auto
+  Dests: 620:auto
 (0 3) 620 GOTO 560
-  Origs: 615
-  Dests: 560
+  Origs: 615:auto
+  Dests: 560:goto
 (1 4) 625 IF W(1) <> 0 THEN 640
-  Origs: 575
-  Dests: 630, 640
+  Origs: 575:goto
+  Dests: 630:auto, 640:ifthen
 (0 4) 630 PRINT TAB(2); "XXXXXXXFINISHXXXXXXXX"
-  Origs: 625
-  Dests: 635
+  Origs: 625:auto
+  Dests: 635:auto
 (0 3) 635 GOTO 510
-  Origs: 630
-  Dests: 510
+  Origs: 630:auto
+  Dests: 510:goto
 (1 3) 640 FOR Y = 2 TO 22
-  Origs: 625
-  Dests: 645
+  Origs: 625:ifthen
+  Dests: 645:auto
 (0 8) 645 PRINT TAB(Y); "X"; TAB(Y); CHR$(135);
-  Origs: 640
-  Dests: 650
+  Origs: 640:auto
+  Dests: 650:auto
 (1 4) 650 IF Y = 7 THEN 665
-  Origs: 645
-  Dests: 655, 665
+  Origs: 645:auto
+  Dests: 655:auto, 665:ifthen
 (0 1) 655 NEXT Y
-  Origs: 650, 675
-  Dests: 660
+  Origs: 650:auto, 675:goto
+  Dests: 660:auto
 (0 2) 660 GOTO 680
-  Origs: 655
-  Dests: 680
+  Origs: 655:auto
+  Dests: 680:goto
 (0 2) 665 PRINT " FINISH";
-  Origs: 650
-  Dests: 670
+  Origs: 650:ifthen
+  Dests: 670:auto
 (0 3) 670 Y = 13
-  Origs: 665
-  Dests: 675
+  Origs: 665:auto
+  Dests: 675:auto
 (0 3) 675 GOTO 655
-  Origs: 670
-  Dests: 655
+  Origs: 670:auto
+  Dests: 655:goto
 (0 2) 680 PRINT
-  Origs: 660
-  Dests: 685
+  Origs: 660:goto
+  Dests: 685:auto
 (0 2) 685 PRINT "  ";
-  Origs: 680
-  Dests: 690
+  Origs: 680:auto
+  Dests: 690:auto
 (1 3) 690 FOR I = 2 TO 22
 (0 2)     PRINT "*";
 (0 1)     NEXT I
 (0 2)     PRINT
-  Origs: 685
-  Dests: 695
+  Origs: 685:auto
+  Dests: 695:auto
 (1 4) 695 IF D <= 1 THEN 735
-  Origs: 690
-  Dests: 700, 735
+  Origs: 690:auto
+  Dests: 700:auto, 735:ifthen
 (0 3) 700 G = W(1)
-  Origs: 695
-  Dests: 705
+  Origs: 695:auto
+  Dests: 705:auto
 (1 3) 705 FOR I2 = 1 TO D
-  Origs: 700
-  Dests: 710
+  Origs: 700:auto
+  Dests: 710:auto
 (1 4) 710 IF S(W(I2)) < S(W(I2 + 1)) THEN 725
-  Origs: 705
-  Dests: 715, 725
+  Origs: 705:auto
+  Dests: 715:auto, 725:ifthen
 (0 1) 715 NEXT I2
-  Origs: 710, 730
-  Dests: 720
+  Origs: 710:auto, 730:goto
+  Dests: 720:auto
 (0 2) 720 GOTO 735
-  Origs: 715
-  Dests: 735
+  Origs: 715:auto
+  Dests: 735:goto
 (0 3) 725 G = W(I2 + 1)
-  Origs: 710
-  Dests: 730
+  Origs: 710:ifthen
+  Dests: 730:auto
 (0 3) 730 GOTO 715
-  Origs: 725
-  Dests: 715
+  Origs: 725:auto
+  Dests: 715:goto
 (0 2) 735 PRINT
-  Origs: 695, 720
-  Dests: 740
+  Origs: 695:ifthen, 720:goto
+  Dests: 740:auto
 (0 2) 740 PRINT
-  Origs: 735
-  Dests: 745
+  Origs: 735:auto
+  Dests: 745:auto
 (0 4) 745 PRINT "AND THE WINNER IS DOG NUMBER"; G, H$(G)
-  Origs: 740
-  Dests: 750
+  Origs: 740:auto
+  Dests: 750:auto
 (0 2) 750 PRINT
 (0 2)     GOTO 970
-  Origs: 745
-  Dests: 970
+  Origs: 745:auto
+  Dests: 970:goto
 (0 1) 755 RESTORE
-  Origs: 1005
-  Dests: 760
+  Origs: 1005:goto
+  Dests: 760:auto
 (1 3) 760 FOR E = 1 TO Q
-  Origs: 755
-  Dests: 765
+  Origs: 755:auto
+  Dests: 765:auto
 (1 4) 765 IF G = J(E) THEN 790
-  Origs: 760
-  Dests: 770, 790
+  Origs: 760:auto
+  Dests: 770:auto, 790:ifthen
 (0 4) 770 M5(E) = M5(E) - P(E)
-  Origs: 765
-  Dests: 775
+  Origs: 765:auto
+  Dests: 775:auto
 (0 4) 775 N7 = N7 + P(E)
-  Origs: 770
-  Dests: 780
+  Origs: 770:auto
+  Dests: 780:auto
 (0 1) 780 NEXT E
-  Origs: 775, 830
-  Dests: 785
+  Origs: 775:auto, 830:goto
+  Dests: 785:auto
 (0 2) 785 GOTO 835
-  Origs: 780
-  Dests: 835
+  Origs: 780:auto
+  Dests: 835:goto
 (1 4) 790 IF B(G) = 2 THEN 800
-  Origs: 765
-  Dests: 795, 800
+  Origs: 765:ifthen
+  Dests: 795:auto, 800:ifthen
 (0 2) 795 GOTO 805
-  Origs: 790
-  Dests: 805
+  Origs: 790:auto
+  Dests: 805:goto
 (0 3) 800 B(G) = 1
-  Origs: 790
-  Dests: 805
+  Origs: 790:ifthen
+  Dests: 805:auto
 (0 4) 805 M = INT(100 * (B(G) * P(E) * P(E)) / 100)
-  Origs: 795, 800
-  Dests: 810
+  Origs: 795:goto, 800:auto
+  Dests: 810:auto
 (0 5) 810 PRINT "CONGRATULATION " N$(E) " YOU HAVE WON $"; M
-  Origs: 805
-  Dests: 815
+  Origs: 805:auto
+  Dests: 815:auto
 (0 4) 815 M5(E) = M5(E) + M
-  Origs: 810
-  Dests: 820
+  Origs: 810:auto
+  Dests: 820:auto
 (0 4) 820 N7 = N7 - M
-  Origs: 815
-  Dests: 825
+  Origs: 815:auto
+  Dests: 825:auto
 (0 2) 825 PRINT
-  Origs: 820
-  Dests: 830
+  Origs: 820:auto
+  Dests: 830:auto
 (0 3) 830 GOTO 780
-  Origs: 825
-  Dests: 780
+  Origs: 825:auto
+  Dests: 780:goto
 (0 2) 835 PRINT "WOULD YOU AVID RACE FANS LIKE TO PLAY AGAIN";
-  Origs: 785
-  Dests: 840
+  Origs: 785:goto
+  Dests: 840:auto
 (1 2) 840 INPUT L$
-  Origs: 835
-  Dests: 845
+  Origs: 835:auto
+  Dests: 845:auto
 (1 4) 845 IF L$ = "YES" THEN 870
-  Origs: 840
-  Dests: 850, 870
+  Origs: 840:auto
+  Dests: 850:auto, 870:ifthen
 (0 2) 850 PRINT
 (0 3)     PRINT "PERSON", "AMOUNT "
 (1 3)     FOR I = 1 TO Q
-  Origs: 845
-  Dests: 855
+  Origs: 845:auto
+  Dests: 855:auto
 (0 3) 855 PRINT N$(I), M5(I)
 (0 1)     NEXT I
 (0 3)     PRINT "COMP", N7
-  Origs: 850
-  Dests: 860
+  Origs: 850:auto
+  Dests: 860:auto
 (1 3) 860 FOR I = 1 TO 5
 (0 2)     PRINT
 (0 1)     NEXT I
 (0 2)     GOTO 1085
-  Origs: 855
-  Dests: 1085
+  Origs: 855:auto
+  Dests: 1085:goto
 (0 2) 865 GOTO 1085
   Origs: 
-  Dests: 1085
+  Dests: 1085:goto
 (1 3) 870 FOR K = 1 TO 10
-  Origs: 845
-  Dests: 875
+  Origs: 845:ifthen
+  Dests: 875:auto
 (0 3) 875 A(K) = 0
-  Origs: 870
-  Dests: 880
+  Origs: 870:auto
+  Dests: 880:auto
 (0 3) 880 S(K) = 0
-  Origs: 875
-  Dests: 885
+  Origs: 875:auto
+  Dests: 885:auto
 (0 3) 885 W(K) = 0
-  Origs: 880
-  Dests: 890
+  Origs: 880:auto
+  Dests: 890:auto
 (0 3) 890 C(K) = 0
-  Origs: 885
-  Dests: 895
+  Origs: 885:auto
+  Dests: 895:auto
 (0 3) 895 J(K) = 0
-  Origs: 890
-  Dests: 900
+  Origs: 890:auto
+  Dests: 900:auto
 (0 3) 900 B(11) = 0
-  Origs: 895
-  Dests: 905
+  Origs: 895:auto
+  Dests: 905:auto
 (0 3) 905 B(K) = 0
-  Origs: 900
-  Dests: 910
+  Origs: 900:auto
+  Dests: 910:auto
 (0 1) 910 NEXT K
 (0 3)     GOSUB 225
-  Origs: 905
-  Dests: 225, 915
+  Origs: 905:auto
+  Dests: 225:gosub, 915:auto
 (0 2) 915 PRINT "ANY NEWCOMERS";
 (1 2)     INPUT C$
-  Origs: 910
-  Dests: 920
+  Origs: 910:auto
+  Dests: 920:auto
 (1 3) 920 FOR I = 1 TO Q
-  Origs: 915
-  Dests: 925
+  Origs: 915:auto
+  Dests: 925:auto
 (0 4) 925 PRINT N$(I); " YOUR DOGS NUMBER" I
 (1 2)     INPUT J(I)
-  Origs: 920
-  Dests: 930
+  Origs: 920:auto
+  Dests: 930:auto
 (0 2) 930 PRINT "AND YOUR BET";
 (1 2)     INPUT P(I)
-  Origs: 925, 965
-  Dests: 935
+  Origs: 925:auto, 965:goto
+  Dests: 935:auto
 (1 4) 935 IF P(I) < 2 THEN 950
 (1 4)     IF P(I) > 500 THEN 960
 (0 1)     NEXT I
-  Origs: 930, 955
-  Dests: 940, 950, 960
+  Origs: 930:auto, 955:goto
+  Dests: 940:auto, 950:ifthen, 960:ifthen
 (1 5) 940 IF C$ = "NO" THEN 325
-  Origs: 935
-  Dests: 325, 945
+  Origs: 935:auto
+  Dests: 325:ifthen, 945:auto
 (0 2) 945 GOTO 1025
-  Origs: 940
-  Dests: 1025
+  Origs: 940:auto
+  Dests: 1025:goto
 (0 4) 950 PRINT "YOU MUST BET AT LEAST $2.00 " N$(I) "YOUR BET";
-  Origs: 935
-  Dests: 955
+  Origs: 935:ifthen
+  Dests: 955:auto
 (1 2) 955 INPUT P(I)
 (0 3)     GOTO 935
-  Origs: 950
-  Dests: 935
+  Origs: 950:auto
+  Dests: 935:goto
 (0 4) 960 PRINT "YOU CAN'T BET OVER $500.00 " N$(I) " TRY AGAIN"
-  Origs: 935
-  Dests: 965
+  Origs: 935:ifthen
+  Dests: 965:auto
 (0 3) 965 GOTO 930
-  Origs: 960
-  Dests: 930
+  Origs: 960:auto
+  Dests: 930:goto
 (1 3) 970 FOR I = 1 TO 10
-  Origs: 750
-  Dests: 975
+  Origs: 750:goto
+  Dests: 975:auto
 (3 5) 975 GET 8, 25, I
 (3 5)     GET 9, 30, I
-  Origs: 970
-  Dests: 980
+  Origs: 970:auto
+  Dests: 980:auto
 (1 4) 980 IF I = G THEN 995
-  Origs: 975
-  Dests: 985, 995
+  Origs: 975:auto
+  Dests: 985:auto, 995:ifthen
 (0 4) 985 X = X + 1
 (3 6)     PUT 9, 30, I
-  Origs: 980
-  Dests: 990
+  Origs: 980:auto
+  Dests: 990:auto
 (0 2) 990 GOTO 1000
-  Origs: 985
-  Dests: 1000
+  Origs: 985:auto
+  Dests: 1000:goto
 (0 4) 995 V = V + 1
 (3 6)     PUT 8, 25, I
-  Origs: 980
-  Dests: 1000
+  Origs: 980:ifthen
+  Dests: 1000:auto
 (0 1) 1000 NEXT T
-  Origs: 990, 995
-  Dests: 1005
+  Origs: 990:goto, 995:auto
+  Dests: 1005:auto
 (0 3) 1005 GOTO 755
-  Origs: 1000
-  Dests: 755
+  Origs: 1000:auto
+  Dests: 755:goto
 (0 2) 1010 DATA "FASTER ", "ZELDA", "SPEEDY", "ZIFFLE", "KILLER"
   Origs: 
-  Dests: 1015
+  Dests: 1015:auto
 (0 2) 1015 DATA "BURBON", "BUGZY", "SNOOPY", "LASSIE", "WINNER"
-  Origs: 1010
-  Dests: 1020
+  Origs: 1010:auto
+  Dests: 1020:auto
 (0 2) 1020 GOTO 1085
-  Origs: 1015
-  Dests: 1085
+  Origs: 1015:auto
+  Dests: 1085:goto
 (0 2) 1025 PRINT
 (0 2)      PRINT "HOW MANY NEWCOMERS";
 (0 3)      Q4 = 0
 (1 2)      INPUT J6
 (0 4)      Q4 = Q + J6
-  Origs: 945, 1035
-  Dests: 1030
+  Origs: 945:goto, 1035:goto
+  Dests: 1030:auto
 (1 4) 1030 IF Q4 >= 20 THEN 1035
 (0 3)      Q = Q4
 (0 3)      Q4 = 0
 (0 2)      GOTO 1040
-  Origs: 1025
-  Dests: 1035, 1040
+  Origs: 1025:auto
+  Dests: 1035:ifthen, 1040:goto
 (0 3) 1035 PRINT "NO MORE THAN 19 ALLOWED, YOU NOW HAVE " Q
 (0 3)      Q4 = 0
 (0 3)      GOTO 1025
-  Origs: 1030
-  Dests: 1025
+  Origs: 1030:ifthen
+  Dests: 1025:goto
 (1 3) 1040 FOR Z = I TO Q
-  Origs: 1030
-  Dests: 1045
+  Origs: 1030:goto
+  Dests: 1045:auto
 (0 2) 1045 PRINT "BETTORS NAME";
 (1 2)      INPUT N$(Z)
-  Origs: 1040
-  Dests: 1050
+  Origs: 1040:auto
+  Dests: 1050:auto
 (0 2) 1050 PRINT "DOGS NUMBER";
 (1 2)      INPUT J(Z)
-  Origs: 1045
-  Dests: 1055
+  Origs: 1045:auto
+  Dests: 1055:auto
 (0 2) 1055 PRINT "AND YOUR BET";
 (1 2)      INPUT P(Z)
 (1 4)      IF P(Z) < 2 THEN 1070
-  Origs: 1050, 1070, 1075
-  Dests: 1060, 1070
+  Origs: 1050:auto, 1070:goto, 1075:goto
+  Dests: 1060:auto, 1070:ifthen
 (1 4) 1060 IF P(Z) > 500 THEN 1075
-  Origs: 1055
-  Dests: 1065, 1075
+  Origs: 1055:auto
+  Dests: 1065:auto, 1075:ifthen
 (0 2) 1065 PRINT
 (0 1)      NEXT Z
 (0 3)      GOTO 325
-  Origs: 1060
-  Dests: 325
+  Origs: 1060:auto
+  Dests: 325:goto
 (0 2) 1070 PRINT "YOU MUST BET AT LEAST $2.00"
 (0 3)      GOTO 1055
-  Origs: 1055
-  Dests: 1055
+  Origs: 1055:ifthen
+  Dests: 1055:goto
 (0 2) 1075 PRINT "YOU CAN'T BET OVER $500,00"
 (0 3)      GOTO 1055
-  Origs: 1060
-  Dests: 1055
+  Origs: 1060:ifthen
+  Dests: 1055:goto
 (0 3) 1080 GOTO 325
   Origs: 
-  Dests: 325
+  Dests: 325:goto
 (0 2) 1085 CLOSE 8
 (0 2)      CLOSE 9
-  Origs: 860, 865, 1020
-  Dests: 1090
+  Origs: 860:goto, 865:goto, 1020:goto
+  Dests: 1090:auto
 (0 1) 1090 REM
-  Origs: 1085
-  Dests: 1095
+  Origs: 1085:auto
+  Dests: 1095:auto
 (0 1) 1095 END
-  Origs: 1090
+  Origs: 1090:auto
   Dests: 
 
 Unreachable code:

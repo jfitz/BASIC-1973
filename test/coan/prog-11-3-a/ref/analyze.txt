@@ -1,0 +1,158 @@
+Statistics:
+
+Number of lines: 44
+Number of valid statements: 32
+Number of comments: 12
+Number of executable statements: 26
+
+Complexity:
+
+Comment density: 0.375
+Comprehension effort: 116
+McCabe complexity: 10
+Halstead complexity:
+ length: 176
+ volume: 717.647
+ difficulty: 25.568
+ effort: 18348.478
+ language: 1.098
+ intelligence: 28.069
+ time: 16.989
+
+(0 2) 10 PRINT
+  Origs: 
+  Dests: 20:auto
+(0 2) 20 PRINT
+  Origs: 10:auto, 150:ifthen, 165:goto
+  Dests: 23:auto
+(1 2) 23 READ N
+  Origs: 20:auto
+  Dests: 25:auto
+(1 5) 25 FOR S = N TO 1 STEP -1
+  Origs: 23:auto
+  Dests: 30:auto
+(1 2) 30 READ P[S]
+  Origs: 25:auto
+  Dests: 40:auto
+(0 2) 40 PRINT P[S];
+  Origs: 30:auto
+  Dests: 50:auto
+(0 1) 50 NEXT S
+  Origs: 40:auto
+  Dests: 55:auto
+(0 2) 55 PRINT
+  Origs: 50:auto
+  Dests: 60:auto
+(0 2) 60 PRINT "INTEGRAL ZERO(S):  ";
+  Origs: 55:auto
+  Dests: 68:auto
+(0 1) 68 REM TURN SWITCH OFF
+  Origs: 60:auto
+  Dests: 70:auto
+(0 3) 70 LET K = 0
+  Origs: 68:auto
+  Dests: 78:auto
+(0 1) 78 REM STUDY LINE 80 CAREFULLY!
+  Origs: 70:auto
+  Dests: 80:auto
+(1 6) 80 FOR X = -P[1] TO P[1] STEP SGN(P[1])
+  Origs: 78:auto
+  Dests: 88:auto
+(0 1) 88 REM LINE 90 PREVENTS AN ERROR MESSAGE CAUSED BY
+  Origs: 80:auto
+  Dests: 89:auto
+(0 1) 89 REM DIVIDING BY ZERO
+  Origs: 88:auto
+  Dests: 90:auto
+(1 4) 90 IF X = 0 THEN 140
+  Origs: 89:auto
+  Dests: 98:auto, 140:ifthen
+(0 1) 98 REM IS X A FACTOR OF P[1]?
+  Origs: 90:auto
+  Dests: 100:auto
+(1 6) 100 IF P[1] / X <> INT(P[1] / X) THEN 140
+  Origs: 98:auto
+  Dests: 105:auto, 140:ifthen
+(0 2) 105 GOSUB 500
+  Origs: 100:auto
+  Dests: 108:auto, 500:gosub
+(0 1) 108 REM IS THE REMAINDER ZERO?
+  Origs: 105:auto
+  Dests: 110:auto
+(1 4) 110 IF P <> 0 THEN 140
+  Origs: 108:auto
+  Dests: 118:auto, 140:ifthen
+(0 1) 118 REM IF THE COMPUTER GETS THROUGH HERE, THE
+  Origs: 110:auto
+  Dests: 119:auto
+(0 1) 119 REM VALUE OF X IS A ZERO OF THE FUNCTION
+  Origs: 118:auto
+  Dests: 120:auto
+(0 2) 120 PRINT X;
+  Origs: 119:auto
+  Dests: 128:auto
+(0 1) 128 REM TURN THE SWITCH ON - WE HAVE A ZERO
+  Origs: 120:auto
+  Dests: 130:auto
+(0 3) 130 LET K = 1
+  Origs: 128:auto
+  Dests: 140:auto
+(0 1) 140 NEXT X
+  Origs: 90:ifthen, 100:ifthen, 110:ifthen, 130:auto
+  Dests: 150:auto
+(1 5) 150 IF K = 1 THEN 20
+  Origs: 140:auto
+  Dests: 20:ifthen, 160:auto
+(0 2) 160 PRINT "NONE FOUND";
+  Origs: 150:auto
+  Dests: 165:auto
+(0 3) 165 GOTO 20
+  Origs: 160:auto
+  Dests: 20:goto
+(0 4) 170 DATA 4, 1, -2, -11, 12
+  Origs: 
+  Dests: 180:auto
+(0 4) 180 DATA 4, 1, 1, -5, -2
+  Origs: 170:auto
+  Dests: 190:auto
+(0 4) 190 DATA 4, 1, -2, 3, -4
+  Origs: 180:auto
+  Dests: 200:auto
+(0 5) 200 DATA 5, 2, -1, -11, 11, -2
+  Origs: 190:auto
+  Dests: 210:auto
+(0 5) 210 DATA 7, 2, -5, -6, 9, 9, -39, 36
+  Origs: 200:auto
+  Dests: 490:auto
+(0 1) 490 REM SUBROUTINE 500 THROUGH 540 TAKES THE PLACE OF A
+  Origs: 210:auto
+  Dests: 491:auto
+(0 1) 491 REM DEF STATEMENT AND EVALUATES A POLYNOMIAL OF
+  Origs: 490:auto
+  Dests: 492:auto
+(0 1) 492 REM OF DEGREE N-1.
+  Origs: 491:auto
+  Dests: 500:auto
+(0 3) 500 LET P = 0
+  Origs: 105:gosub, 492:auto
+  Dests: 510:auto
+(1 5) 510 FOR I = N TO 1 STEP -1
+  Origs: 500:auto
+  Dests: 520:auto
+(0 10) 520 LET P = P + P[I] * X ^ (I - 1)
+  Origs: 510:auto
+  Dests: 530:auto
+(0 1) 530 NEXT I
+  Origs: 520:auto
+  Dests: 540:auto
+(0 1) 540 RETURN
+  Origs: 530:auto
+  Dests: 
+(0 1) 999 END
+  Origs: 
+  Dests: 
+
+Unreachable code:
+
+All executable lines are reachable.
+

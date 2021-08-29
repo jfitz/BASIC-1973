@@ -1,0 +1,74 @@
+Statistics:
+
+Number of lines: 16
+Number of valid statements: 16
+Number of comments: 0
+Number of executable statements: 14
+
+Complexity:
+
+Comment density: 0.000
+Comprehension effort: 46
+McCabe complexity: 4
+Halstead complexity:
+ length: 51
+ volume: 185.517
+ difficulty: 9.783
+ effort: 1814.839
+ language: 1.939
+ intelligence: 18.964
+ time: 1.680
+
+(1 2) 10 READ N
+  Origs: 90:goto
+  Dests: 20:auto
+(0 3) 20 PRINT N; "BASE TEN =";
+  Origs: 10:auto
+  Dests: 30:auto
+(1 5) 30 FOR E = 20 TO 0 STEP -1
+  Origs: 20:auto
+  Dests: 40:auto
+(0 4) 40 LET I = INT(N / 2 ^ E)
+  Origs: 30:auto
+  Dests: 45:auto
+(1 4) 45 IF I = 1 THEN 55
+  Origs: 40:auto
+  Dests: 50:auto, 55:ifthen
+(0 2) 50 PRINT "0";
+  Origs: 45:auto
+  Dests: 52:auto
+(0 2) 52 GOTO 60
+  Origs: 50:auto
+  Dests: 60:goto
+(0 2) 55 PRINT "1";
+  Origs: 45:ifthen
+  Dests: 60:auto
+(0 8) 60 LET R = N - I * 2 ^ E
+  Origs: 52:goto, 55:auto
+  Dests: 70:auto
+(0 3) 70 LET N = R
+  Origs: 60:auto
+  Dests: 80:auto
+(0 1) 80 NEXT E
+  Origs: 70:auto
+  Dests: 85:auto
+(0 2) 85 PRINT " BASE TWO"
+  Origs: 80:auto
+  Dests: 86:auto
+(0 2) 86 PRINT
+  Origs: 85:auto
+  Dests: 90:auto
+(0 3) 90 GOTO 10
+  Origs: 86:auto
+  Dests: 10:goto
+(0 2) 100 DATA 45, 9875, 123456
+  Origs: 
+  Dests: 110:auto
+(0 1) 110 END
+  Origs: 100:auto
+  Dests: 
+
+Unreachable code:
+
+All executable lines are reachable.
+

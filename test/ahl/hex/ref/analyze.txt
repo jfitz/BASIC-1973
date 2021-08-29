@@ -21,66 +21,66 @@ Halstead complexity:
 
 (0 0) 1 
   Origs: 
-  Dests: 2
+  Dests: 2:auto
 (0 0) 2 
-  Origs: 1
-  Dests: 3
+  Origs: 1:auto
+  Dests: 3:auto
 (0 0) 3 
-  Origs: 2
-  Dests: 4
+  Origs: 2:auto
+  Dests: 4:auto
 (0 0) 4 
-  Origs: 3
-  Dests: 5
+  Origs: 3:auto
+  Dests: 5:auto
 (0 0) 5 
-  Origs: 4
-  Dests: 10
+  Origs: 4:auto
+  Dests: 10:auto
 (1 2) 10 INPUT "INSTRUCTIONS"; C$
 (1 5)    IF LEFT(C$, 1%) <> "Y" THEN 110
-  Origs: 5
-  Dests: 20, 110
+  Origs: 5:auto
+  Dests: 20:auto, 110:ifthen
 (0 2) 20 &
 (0 3)    &, "THIS PROGRAM PLAYS THE GAME OF HEXAPAWN."
 (0 2)    & "HEXAPAWN IS PLAYED WITH CHESS PAWNS ON A 3 BY 3 BOARD. THE PAWNS ARE"
 (0 2)    & "MOVED AS IN CHESS - ONE SPACE FORWARD TO AN EMPTY SPACE OR ONE SPACE"
-  Origs: 10
-  Dests: 30
+  Origs: 10:auto
+  Dests: 30:auto
 (0 2) 30 & "FORWARD AND DIAGONALLY TO CAPTURE AN OPPOSING MAN. "
 (0 2)    &
 (0 4)    & CHR$(9%); "O THE BOARD. YOUR PAWNS ARE 'O', THE COMPUTER'S PAWNS ARE '*'"
 (0 2)    & "AND EMPTY SQUARES ARE '-'. TO ENTER A MOVE, TYPE THE NUMBER OF THE"
-  Origs: 20
-  Dests: 40
+  Origs: 20:auto
+  Dests: 40:auto
 (0 2) 40 & "SQUARE YOU WILL MOVE FROM FOLLOWED BY THE NUMBER OF THE SQUARE"
 (0 2)    & "YOU WILL MOVE TO. (THE NUMBERS ARE SEPARATED BY A COMMA.)"
 (0 2)    &
-  Origs: 30
-  Dests: 50
+  Origs: 30:auto
+  Dests: 50:auto
 (0 2) 50 & "    THE PROGRAM STARTS A SERIES OF GAMES KNOWING ONLY WHEN THE"
 (0 2)    & "GAME IS WON (A DRAW IS IMPOSSIBLE) AND HOW TO MOVE. IT HAS NO"
 (0 2)    & "STRATEGY AT FIRST AND JUST MOVES RANDOMLY. HOWEVER, IT LEARNS"
-  Origs: 40
-  Dests: 60
+  Origs: 40:auto
+  Dests: 60:auto
 (0 2) 60 & "FROM EACH GAME. THUS, DEFEATING IT BECOMES MORE AND MORE"
 (0 2)    & "DIFFICULT. ALSO, TO HELP OFFSET YOUR INITIAL ADVANTAGE, YOU WILL"
 (0 2)    & "NOT BE TOLD HOW TO WIN THE GAME BUT MUST LEARN THIS BY PLAYING"
 (0 2)    &
-  Origs: 50
-  Dests: 100
+  Origs: 50:auto
+  Dests: 100:auto
 (0 6) 100 DEF FNC$(X$, X%, Y$) = LEFT(X$, X%, 1%) + Y$ + RIGHT(X$, X% + LEN(Y$))
-  Origs: 60
-  Dests: 105
+  Origs: 60:auto
+  Dests: 105:auto
 (0 1) 105 DEF FNN$(X%)
 (0 4)     X$ = NUM$(X%)
 (0 6)     FNN$ = MID(X$, 2% * LEN(X$) - 2%)
 (0 1)     FNEND
-  Origs: 100
-  Dests: 110
+  Origs: 100:auto
+  Dests: 110:auto
 (0 2) 110 DIM P$(50%)
 (0 1)     RANDOMIZE
 (0 3)     Q% = 0%
 (0 2)     PRINT "SINCE I'M A GOOD SPORT, YOU'LL ALWAYS GO FIRST"
-  Origs: 10, 105
-  Dests: 120
+  Origs: 10:ifthen, 105:auto
+  Dests: 120:auto
 (0 3) 120 P% = 8%
 (0 3)     P$ = "XXX--OOO"
 (0 2)     &
@@ -89,15 +89,15 @@ Halstead complexity:
 (0 2)     & "456"
 (0 2)     & "789"
 (0 2)     &
-  Origs: 110, 530
-  Dests: 190
+  Origs: 110:auto, 530:ifthen
+  Dests: 190:auto
 (0 4) 190 D% = -1%
 (0 3)     Q$ = "O"
 (0 2)     GOSUB 2000
 (1 5)     IF M$ = "" THEN PRINT "YOU CAN'T MOVE. I WIN."
 (0 2)     GOTO 510
-  Origs: 120, 440
-  Dests: 510, 2000
+  Origs: 120:auto, 440:goto
+  Dests: 510:goto, 2000:gosub
 (0 2) 200 &
 (0 2)     & "BOARD:"
 (0 3)     & LEFT(P$, 3%)
@@ -105,26 +105,26 @@ Halstead complexity:
 (0 3)     & RIGHT(P$, 7%)
 (0 2)     &
   Origs: 
-  Dests: 210
+  Dests: 210:auto
 (2 3) 210 INPUT "WHAT IS YOUR MOVE"; A%, B%
 (1 6)     IF INSTR(1%, M$, FNN$(A%) + FNN$(B%)) = 0% THEN PRINT "ILLEGAL MOVE."
 (0 3)     GOTO 210
-  Origs: 200
-  Dests: 
+  Origs: 200:auto, 210:goto
+  Dests: 210:goto
 (0 5) 230 P$ = FNC$(FNC$(P$, A%, "-"), B%, "O")
 (1 10)     IF INSTR(1%, P$, "*") = 0% OR INSTR(1%, P$, "O") = 4% THEN PRINT "YOU WIN."
 (0 2)     GOTO 500
   Origs: 
-  Dests: 500
+  Dests: 500:goto
 (0 4) 300 P% = P% + 2%
   Origs: 
-  Dests: 310
+  Dests: 310:auto
 (1 3) 310 FOR C% = 1% TO Q%
 (0 3)     C$ = P$(C%)
 (1 12)     IF VAL(LEFT(C$, 1%)) = P% AND MID(C$, 2%, 9%) = P$ THEN M$ = RIGHT(C$, 11%)
 (0 2)     GOTO 400
-  Origs: 300
-  Dests: 400
+  Origs: 300:auto
+  Dests: 400:goto
 (0 1) 320 NEXT C%
 (0 3)     Q$ = "*"
 (0 3)     D% = 1%
@@ -133,41 +133,41 @@ Halstead complexity:
 (1 5)     IF M$ = "" THEN PRINT "I CAN'T MOVE, YOU WIN."
 (0 2)     GOTO 500
   Origs: 
-  Dests: 500, 2000
+  Dests: 500:goto, 2000:gosub
 (1 5) 400 IF M$ = "" THEN PRINT "I RESIGN."
 (0 2)     GOTO 500
-  Origs: 310
-  Dests: 500
+  Origs: 310:goto
+  Dests: 500:goto
 (0 4) 410 K$ = LEFT(M$, 2%)
 (0 4)     M$ = RIGHT(M$, 3%)
 (1 9)     IF RND > .33333333 AND M$ <> "" THEN 410
-  Origs: 
-  Dests: 420
+  Origs: 410:ifthen
+  Dests: 410:ifthen, 420:auto
 (0 3) 420 K% = C%
 (0 4)     A% = VAL(LEFT(K$, 1%))
 (0 4)     B% = VAL(RIGHT(K$, 2%))
 (0 5)     P$ = FNC$(FNC$(P$, A%, "-"), B%, "*")
-  Origs: 410
-  Dests: 430
+  Origs: 410:auto
+  Dests: 430:auto
 (1 8) 430 IF INSTR(1%, P$, "O") = 0% OR INSTR(7%, P$, "*") THEN PRINT "I WIN!"
 (0 2)     GOTO 510
-  Origs: 420
-  Dests: 510
+  Origs: 420:auto
+  Dests: 510:goto
 (0 5) 440 PRINT "I MOVE FROM" A% "TO" B%
 (0 3)     GOTO 190
   Origs: 
-  Dests: 190
+  Dests: 190:goto
 (0 4) 500 W2% = W2% + 1%
 (0 4)     I% = INSTR(11%, P$(K%), K$)
 (0 6)     P$(K%) = LEFT(P$(K%), I% - 1%) + RIGHT(P$(K%), I% + 2%)
 (1 1)       IF I%
 (0 1)       ENDIF
 (0 2)     GOTO 520
-  Origs: 230, 320, 400
-  Dests: 520
+  Origs: 230:goto, 320:goto, 400:goto
+  Dests: 520:goto
 (0 4) 510 W1% = W1% + 1%
-  Origs: 190, 430
-  Dests: 520
+  Origs: 190:goto, 430:goto
+  Dests: 520:auto
 (0 2) 520 &
 (0 2)     & "BOARD:"
 (0 3)     & LEFT(P$, 3%)
@@ -175,53 +175,53 @@ Halstead complexity:
 (0 3)     & RIGHT(P$, 7%)
 (0 2)     &
 (0 9)     & "I HAVE WON" W1% "AND YOU HAVE WON" W2% "OF" W1% + W2% "GAMES"
-  Origs: 500, 510
-  Dests: 530
+  Origs: 500:goto, 510:auto
+  Dests: 530:auto
 (1 2) 530 INPUT "ANOTHER GAME"; C$
 (1 6)     IF C$ = "NO" THEN 9999 ELSE 120
-  Origs: 520
-  Dests: 120, 900, 9999
+  Origs: 520:auto
+  Dests: 120:ifthen, 900:auto, 9999:ifthen
 (0 0) 900 
-  Origs: 530
-  Dests: 2000
+  Origs: 530:auto
+  Dests: 2000:auto
 (0 3) 2000 M$ = ""
-  Origs: 190, 320, 900
-  Dests: 2010
+  Origs: 190:gosub, 320:gosub, 900:auto
+  Dests: 2010:auto
 (1 3) 2010 FOR J% = 1% TO 9%
 (1 5)      IF MID(P$, J%, 1%) <> Q$ THEN 2050
-  Origs: 2000
-  Dests: 2015, 2050
+  Origs: 2000:auto
+  Dests: 2015:auto, 2050:ifthen
 (0 6) 2015 T% = J% + D% * 3%
 (1 7)      IF T% < 1% OR T% > 9% THEN 2025
-  Origs: 2010
-  Dests: 2020, 2025
+  Origs: 2010:auto
+  Dests: 2020:auto, 2025:ifthen
 (1 13) 2020 IF MID(P$, T%, 1%) = "-" THEN M$ = M$ + FNN$(J%) + FNN$(T%)
-  Origs: 2015
-  Dests: 2025
+  Origs: 2015:auto
+  Dests: 2025:auto
 (0 6) 2025 T% = J% + D% * 2%
 (1 31)      IF T% < 1% OR T% > 9% OR (D% = 1% AND (J% = 1% OR J% = 4% OR J% = 7%)) OR (D% = 1% AND (J% = 3% OR J% = 6% OR J% - 9%)) THEN 2035
-  Origs: 2015, 2020
-  Dests: 2030, 2035
+  Origs: 2015:ifthen, 2020:auto
+  Dests: 2030:auto, 2035:ifthen
 (1 13) 2030 IF INSTR(1%, Q$ + "-", MID(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN$(J%) + FNN$(T%)
-  Origs: 2025
-  Dests: 2035
+  Origs: 2025:auto
+  Dests: 2035:auto
 (0 6) 2035 T% = J% + D% * 4%
 (1 13)      IF T% < 1% OR T% > 9% OR J% = 3% OR J% = 7% THEN 2050
-  Origs: 2025, 2030
-  Dests: 2040, 2050
+  Origs: 2025:ifthen, 2030:auto
+  Dests: 2040:auto, 2050:ifthen
 (1 13) 2040 IF INSTR(1%, Q$ + "-", MID(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN$(J%) + FNN$(T%)
-  Origs: 2035
-  Dests: 2050
+  Origs: 2035:auto
+  Dests: 2050:auto
 (0 1) 2050 NEXT J%
 (1 10)      IF D% = 1% AND M$ <> "" THEN Q% = Q% + 1%
 (0 7)      P$(Q%) = FNN$(P%) + P$ + M$
-  Origs: 2010, 2035, 2040
-  Dests: 2060
+  Origs: 2010:ifthen, 2035:ifthen, 2040:auto
+  Dests: 2060:auto
 (0 1) 2060 RETURN
-  Origs: 2050
+  Origs: 2050:auto
   Dests: 
 (0 1) 9999 END
-  Origs: 530
+  Origs: 530:ifthen
   Dests: 
 
 Unreachable code:
