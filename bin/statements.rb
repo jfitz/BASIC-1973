@@ -15,7 +15,8 @@ class StatementFactory
     m = /\A\d+/.match(text)
 
     unless m.nil?
-      number = NumericConstantToken.new(m[0])
+      token = NumericConstantToken.new(m[0])
+      number = IntegerConstant.new(token)
       line_number = LineNumber.new(number)
       line_text = m.post_match
       all_tokens = tokenize(line_text)
@@ -2464,9 +2465,10 @@ class GetStatement < AbstractStatement
         if line_no.empty?
           @errors << 'No line number'
         else
-          line_num = line_no[0]
+          token = line_no[0]
           begin
-            @line_number = LineNumber.new(line_num)
+            number = IntegerConstant.new(token)
+            @line_number = LineNumber.new(number)
 
             if @line_number > line_number
               @comprehension_effort += 2
@@ -2606,7 +2608,8 @@ class GosubStatement < AbstractStatement
 
     if check_template(tokens_lists, template)
       if tokens_lists[0][0].numeric_constant?
-        @destination = LineNumber.new(tokens_lists[0][0])
+        number = IntegerConstant.new(tokens_lists[0][0])
+        @destination = LineNumber.new(number)
         @linenums = [@destination]
 
         if @destination > line_number
@@ -2689,7 +2692,8 @@ class GotoStatement < AbstractStatement
 
     if check_template(tokens_lists, template1)
       if tokens_lists[0][0].numeric_constant?
-        @destination = LineNumber.new(tokens_lists[0][0])
+        number = IntegerConstant.new(tokens_lists[0][0])
+        @destination = LineNumber.new(number)
         @linenums = [@destination]
 
         if @destination > line_number
@@ -2723,9 +2727,10 @@ class GotoStatement < AbstractStatement
 
       line_nums.each do |line_num|
         if line_num.size == 1
-          destination = line_num[0]
-          if destination.numeric_constant?
-            @destinations << LineNumber.new(destination)
+          token = line_num[0]
+          if token.numeric_constant?
+            number = IntegerConstant.new(token)
+            @destinations << LineNumber.new(number)
           else
             @errors << "Invalid line number #{destination}"
           end
@@ -3354,7 +3359,8 @@ class AbstractIfStatement < AbstractStatement
     if tokens.class.to_s == 'Hash'
       statement = IfStatement.new(line_number, nil, tokens)
     elsif tokens.size == 1 && tokens[0].numeric_constant?
-      destination = LineNumber.new(tokens[0])
+      number = IntegerConstant.new(tokens[0])
+      destination = LineNumber.new(number)
     else
       statement_factory = StatementFactory.instance
 
@@ -3848,15 +3854,16 @@ class OnErrorStatement < AbstractStatement
     if check_template(tokens_lists, template)
       destinations = tokens_lists[0]
       line_nums = split_tokens(destinations, false)
-      destinations = line_nums[0]
-      destination = destinations[0]
+      tokens = line_nums[0]
+      token = tokens[0]
 
-      if destination.numeric_constant?
-        if destination.to_i == 0
+      if token.numeric_constant?
+        if token.to_i == 0
           @destination = nil
           @linenums = []
         else
-          @destination = LineNumber.new(destination)
+          number = IntegerConstant.new(token) 
+          @destination = LineNumber.new(number)
           @linenums = [@destination]
 
           if @destination > line_number
@@ -3962,11 +3969,12 @@ class OnStatement < AbstractStatement
 
       line_nums.each do |line_num|
         if line_num.size == 1
-          destination = line_num[0]
-          if destination.numeric_constant?
-            @destinations << LineNumber.new(destination)
+          token = line_num[0]
+          if token.numeric_constant?
+            number = IntegerConstant.new(token)
+            @destinations << LineNumber.new(number)
           else
-            @errors << "Invalid line number #{destination}"
+            @errors << "Invalid line number #{token}"
           end
         else
           @errors << "Invalid line specification #{line_num}"
@@ -4462,9 +4470,10 @@ class PutStatement < AbstractStatement
         if line_no.empty?
           @errors << 'No line number'
         else
-          line_num = line_no[0]
+          token = line_no[0]
           begin
-            @line_number = LineNumber.new(line_num)
+            number = IntegerConstant.new(token)
+            @line_number = LineNumber.new(number)
 
             if @line_number > line_number
               @comprehension_effort += 1
@@ -4793,7 +4802,8 @@ class ResumeStatement < AbstractStatement
     @target = nil
     unless target.nil?
       begin
-        @target = LineNumber.new(target)
+        number = IntegerConstant.new(target)
+        @target = LineNumber.new(number)
         @linenums = [@target]
       rescue BASICSyntaxError
         @errors << 'Invalid target'
