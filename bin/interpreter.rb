@@ -2,14 +2,14 @@
 class AbstractForControl
   attr_reader :control
   attr_reader :start
-  attr_accessor :loop_start_index
+  attr_accessor :start_line_stmt_mod
   attr_accessor :forget
 
-  def initialize(control, start, step)
+  def initialize(control, start, step, start_line_stmt_mod)
     @control = control
     @start = start
     @step = step
-    @loop_start_index = nil
+    @start_line_stmt_mod = start_line_stmt_mod
     @forget = false
   end
 
@@ -31,8 +31,8 @@ end
 class ForToControl < AbstractForControl
   attr_reader :end
 
-  def initialize(control, start, step, endv)
-    super(control, start, step)
+  def initialize(control, start, step, endv, start_line_stmt_mod)
+    super(control, start, step, start_line_stmt_mod)
 
     @end = endv
   end
@@ -71,8 +71,8 @@ end
 class ForUntilControl < AbstractForControl
   attr_reader :end
 
-  def initialize(control, start, step, expression)
-    super(control, start, step)
+  def initialize(control, start, step, expression, start_line_stmt_mod)
+    super(control, start, step, start_line_stmt_mod)
 
     @expression = expression
   end
@@ -108,8 +108,8 @@ end
 class ForWhileControl < AbstractForControl
   attr_reader :end
 
-  def initialize(control, start, step, expression)
-    super(control, start, step)
+  def initialize(control, start, step, expression, start_line_stmt_mod)
+    super(control, start, step, start_line_stmt_mod)
 
     @expression = expression
   end
@@ -405,7 +405,7 @@ class Interpreter
       modifier = statement.start_index
     end
 
-    LineNumberStmtNumberModNumber.new(line_number, 0, modifier)
+    LineStmtMod.new(line_number, 0, modifier)
   end
 
   public
@@ -448,7 +448,7 @@ class Interpreter
       # then we replace the top entry
       # if not, we are in main or an error handler and we add the entry
       @errorgoto_stack.pop if @errorgoto_stack.size > @resume_stack.size
-      @errorgoto_stack << LineNumberStmtNumberModNumber.new(line_number, 0, 0)
+      @errorgoto_stack << LineStmtMod.new(line_number, 0, 0)
     end
   end
 
@@ -464,7 +464,7 @@ class Interpreter
       # set next line index from parameter
       @resume_stack.pop
       @error_stack.pop
-      @next_line_stmt_mod = LineNumberStmtNumberModNumber.new(line_number, 0, 0)
+      @next_line_stmt_mod = LineStmtMod.new(line_number, 0, 0)
     end
   end
 
@@ -862,6 +862,14 @@ class Interpreter
 
   def find_next_line
     @program.find_next_line(@current_line_stmt_mod)
+  end
+
+  def find_next_line_stmt
+    @program.find_next_line_stmt(@current_line_stmt_mod)
+  end
+
+  def find_next_line_stmt_mod
+    @program.find_next_line_stmt_mod(@current_line_stmt_mod)
   end
 
   def statement_start_index(line_number, _statement_index)
@@ -1456,7 +1464,6 @@ class Interpreter
     control = fornext_control.control
     v = control.to_s
     fornext_control.forget = !@variables.key?(v)
-    fornext_control.loop_start_index = @next_line_stmt_mod
     @fornexts[control] = fornext_control
     from = fornext_control.start
     set_value(control, from)
