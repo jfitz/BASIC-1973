@@ -24,9 +24,9 @@ Halstead complexity:
   Dests: 60:auto
 (1 4) 60 FOR X = -7 TO 7
   Origs: 30:auto
-  Dests: 62:auto
+  Dests: 62:fornext, 240:fornext
 (0 2) 62 PRINT
-  Origs: 60:auto
+  Origs: 60:fornext
   Dests: 88:auto
 (0 1) 88 REM   LINE 90 HAS THE EFFECT OF NUMBERING THE SPACES
   Origs: 62:auto
@@ -36,9 +36,9 @@ Halstead complexity:
   Dests: 90:auto
 (1 3) 90 FOR Y = 0 TO 70
   Origs: 89:auto
-  Dests: 120:auto
+  Dests: 120:fornext, 180:fornext
 (1 6) 120 IF Y = FNQ(X) THEN 210
-  Origs: 90:auto
+  Origs: 90:fornext
   Dests: 148:auto, 210:ifthen
 (0 1) 148 REM   IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
   Origs: 120:auto
@@ -47,7 +47,7 @@ Halstead complexity:
   Origs: 148:auto
   Dests: 180:auto
 (0 1) 180 NEXT Y
-  Origs: 150:auto
+  Origs: 90:fornext, 150:auto
   Dests: 210:auto
 (0 2) 210 PRINT "*";
   Origs: 120:ifthen, 180:auto
@@ -56,7 +56,7 @@ Halstead complexity:
   Origs: 210:auto
   Dests: 240:auto
 (0 1) 240 NEXT X
-  Origs: 212:auto
+  Origs: 60:fornext, 212:auto
   Dests: 270:auto
 (0 1) 270 END
   Origs: 240:auto

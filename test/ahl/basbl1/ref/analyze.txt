@@ -104,8 +104,8 @@ Halstead complexity:
 (1 2)     INPUT$ B(A)
 (1 4)     IF B(A) = 141 THEN 290
 (0 1)     NEXT A
-  Origs: 270:auto
-  Dests: 290:auto, 290:ifthen
+  Origs: 270:auto, 280:fornext, 280:fornext
+  Dests: 280:fornext, 280:fornext, 290:auto, 290:ifthen
 (0 5) 290 LET D = 1 * RND(5)
 (0 2)     PRINT
   Origs: 280:auto, 280:ifthen
@@ -161,8 +161,8 @@ Halstead complexity:
 (0 1)     NEXT A1
 (0 2)     PRINT "?"
 (0 3)     GOTO 270
-  Origs: 400:ifthen, 510:goto
-  Dests: 270:goto
+  Origs: 400:ifthen, 410:fornext, 410:fornext, 510:goto
+  Dests: 270:goto, 410:fornext, 410:fornext
 (1 4) 420 IF C <> 19613 THEN 430
 (0 2)     PRINT "YOUR BATTER";
 (0 2)     GOSUB 570
@@ -522,8 +522,8 @@ Halstead complexity:
 (1 6)      FOR A1 = 1 TO (B1 + B2 + B3 + 1)
 (0 3)      GOSUB 930
 (0 1)      NEXT A1
-  Origs: 1210:auto, 1210:ifthen
-  Dests: 930:gosub, 1230:auto
+  Origs: 1210:auto, 1210:ifthen, 1220:fornext, 1220:fornext
+  Dests: 930:gosub, 1220:fornext, 1220:fornext, 1230:auto
 (0 3) 1230 LET B1 = 0
 (0 3)      LET B2 = 0
 (0 3)      LET B3 = 0

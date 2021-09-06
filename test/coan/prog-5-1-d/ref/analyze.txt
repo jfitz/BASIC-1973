@@ -21,24 +21,24 @@ Halstead complexity:
 
 (1 3) 10 FOR I = 1 TO 5
   Origs: 
-  Dests: 20:auto
+  Dests: 20:fornext, 30:fornext
 (0 3) 20 LET C[I] = 0
-  Origs: 10:auto
+  Origs: 10:fornext
   Dests: 30:auto
 (0 1) 30 NEXT I
-  Origs: 20:auto
+  Origs: 10:fornext, 20:auto
   Dests: 33:auto
 (0 1) 33 REM THIS LOOP SIMULATES 500 PEOPLE
   Origs: 30:auto
   Dests: 35:auto
 (1 3) 35 FOR X = 1 TO 500
   Origs: 33:auto
-  Dests: 40:auto
+  Dests: 40:fornext, 90:fornext
 (1 3) 40 FOR R = 1 TO 5
-  Origs: 35:auto
-  Dests: 42:auto
+  Origs: 35:fornext
+  Dests: 42:fornext, 80:fornext
 (0 1) 42 REM  THIS LOOP LOOKS AT FIVE COURSES FOR EACH PERSON
-  Origs: 40:auto
+  Origs: 40:fornext
   Dests: 48:auto
 (0 1) 48 REM   PICK A RANDOM NUMBER ZERO OR ONE
   Origs: 42:auto
@@ -56,25 +56,25 @@ Halstead complexity:
   Origs: 70:auto
   Dests: 80:auto
 (0 1) 80 NEXT R
-  Origs: 78:auto
+  Origs: 40:fornext, 78:auto
   Dests: 88:auto
 (0 1) 88 REM   NEXT PERSON
   Origs: 80:auto
   Dests: 90:auto
 (0 1) 90 NEXT X
-  Origs: 88:auto
+  Origs: 35:fornext, 88:auto
   Dests: 100:auto
 (0 6) 100 PRINT "CHEMISTRY", "PHYSICS", "FRENCH", "SPANISH", "CALCULUS"
   Origs: 60:ifthen, 90:auto
   Dests: 110:auto
 (1 3) 110 FOR I = 1 TO 5
   Origs: 100:auto
-  Dests: 120:auto
+  Dests: 120:fornext, 130:fornext
 (0 2) 120 PRINT C[I],
-  Origs: 110:auto
+  Origs: 110:fornext
   Dests: 130:auto
 (0 1) 130 NEXT I
-  Origs: 120:auto
+  Origs: 110:fornext, 120:auto
   Dests: 9999:auto
 (0 1) 9999 END
   Origs: 130:auto

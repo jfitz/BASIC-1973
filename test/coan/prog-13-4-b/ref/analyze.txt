@@ -21,15 +21,15 @@ Halstead complexity:
 
 (1 3) 2 FOR Y = 1 TO 10
   Origs: 
-  Dests: 5:auto
+  Dests: 5:fornext, 125:fornext
 (0 3) 5 LET C = 0
-  Origs: 2:auto
+  Origs: 2:fornext
   Dests: 10:auto
 (1 3) 10 FOR X = 1 TO 50
   Origs: 5:auto
-  Dests: 20:auto
+  Dests: 20:fornext, 100:fornext
 (0 4) 20 LET F = INT(2 * RND(1))
-  Origs: 10:auto
+  Origs: 10:fornext
   Dests: 30:auto
 (1 4) 30 IF F = 1 THEN 60
   Origs: 20:auto
@@ -50,7 +50,7 @@ Halstead complexity:
   Origs: 60:auto
   Dests: 100:auto
 (0 1) 100 NEXT X
-  Origs: 50:goto, 70:auto
+  Origs: 10:fornext, 50:goto, 70:auto
   Dests: 110:auto
 (0 2) 110 PRINT
   Origs: 100:auto
@@ -59,7 +59,7 @@ Halstead complexity:
   Origs: 110:auto
   Dests: 125:auto
 (0 1) 125 NEXT Y
-  Origs: 120:auto
+  Origs: 2:fornext, 120:auto
   Dests: 130:auto
 (0 1) 130 END
   Origs: 125:auto

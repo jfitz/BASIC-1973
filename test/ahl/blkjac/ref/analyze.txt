@@ -135,30 +135,30 @@ Halstead complexity:
   Dests: 215:auto
 (1 3) 215 FOR A = 1 TO 52
   Origs: 210:auto
-  Dests: 220:auto
+  Dests: 220:fornext, 225:fornext
 (0 3) 220 LET D(A) = 0
-  Origs: 215:auto
+  Origs: 215:fornext
   Dests: 225:auto
 (0 1) 225 NEXT A
-  Origs: 220:auto
+  Origs: 215:fornext, 220:auto
   Dests: 230:auto
 (0 2) 230 DIM Q(52)
   Origs: 225:auto
   Dests: 235:auto
 (1 4) 235 FOR A = 0 TO 39 STEP 13
   Origs: 230:auto
-  Dests: 240:auto
+  Dests: 240:fornext, 255:fornext
 (1 3) 240 FOR C = 1 TO 13
-  Origs: 235:auto
-  Dests: 245:auto
+  Origs: 235:fornext
+  Dests: 245:fornext, 250:fornext
 (0 3) 245 LET Q(A + C) = C
-  Origs: 240:auto
+  Origs: 240:fornext
   Dests: 250:auto
 (0 1) 250 NEXT C
-  Origs: 245:auto
+  Origs: 240:fornext, 245:auto
   Dests: 255:auto
 (0 1) 255 NEXT A
-  Origs: 250:auto
+  Origs: 235:fornext, 250:auto
   Dests: 260:auto
 (0 2) 260 PRINT
   Origs: 255:auto
@@ -168,9 +168,9 @@ Halstead complexity:
   Dests: 270:auto
 (1 3) 270 FOR P = 1 TO 5
   Origs: 265:auto
-  Dests: 275:auto
+  Dests: 275:fornext, 290:fornext
 (0 3) 275 LET E(P) = 0
-  Origs: 270:auto
+  Origs: 270:fornext
   Dests: 280:auto
 (0 3) 280 LET V(P) = 0
   Origs: 275:auto
@@ -179,7 +179,7 @@ Halstead complexity:
   Origs: 280:auto
   Dests: 290:auto
 (0 1) 290 NEXT P
-  Origs: 285:auto
+  Origs: 270:fornext, 285:auto
   Dests: 295:auto
 (0 3) 295 LET V(3) = 1
   Origs: 290:auto
@@ -552,15 +552,15 @@ Halstead complexity:
   Dests: 910:auto
 (1 3) 910 FOR A = 1 TO N
   Origs: 905:auto
-  Dests: 915:auto
+  Dests: 915:fornext, 925:fornext
 (0 4) 915 LET X = INT(52.999999 * RND(Y))
-  Origs: 910:auto, 920:ifthen
+  Origs: 910:fornext, 920:ifthen
   Dests: 920:auto
 (1 5) 920 IF X = 0 THEN 915
   Origs: 915:auto
   Dests: 915:ifthen, 925:auto
 (0 1) 925 NEXT A
-  Origs: 920:auto
+  Origs: 910:fornext, 920:auto
   Dests: 930:auto
 (1 4) 930 IF D(X) = 0 THEN 980
   Origs: 925:auto
@@ -573,15 +573,15 @@ Halstead complexity:
   Dests: 900:ifthen, 945:auto
 (1 3) 945 FOR A = 1 TO 52
   Origs: 900:ifthen, 940:auto
-  Dests: 950:auto
+  Dests: 950:fornext, 960:fornext
 (1 4) 950 IF D(A) = K THEN 960
-  Origs: 945:auto
+  Origs: 945:fornext
   Dests: 955:auto, 960:ifthen
 (0 3) 955 LET D(A) = 0
   Origs: 950:auto
   Dests: 960:auto
 (0 1) 960 NEXT A
-  Origs: 950:ifthen, 955:auto
+  Origs: 945:fornext, 950:ifthen, 955:auto
   Dests: 965:auto
 (0 3) 965 LET R = 0
   Origs: 960:auto
@@ -993,12 +993,12 @@ Halstead complexity:
   Dests: 1330:goto
 (1 3) 1645 FOR M9 = 1 TO 52
   Origs: 350:gosub
-  Dests: 1650:auto
+  Dests: 1650:fornext, 1655:fornext
 (0 3) 1650 LET D(M9) = 0
-  Origs: 1645:auto
+  Origs: 1645:fornext
   Dests: 1655:auto
 (0 1) 1655 NEXT M9
-  Origs: 1650:auto
+  Origs: 1645:fornext, 1650:auto
   Dests: 1660:auto
 (0 3) 1660 LET R = 0
   Origs: 1655:auto

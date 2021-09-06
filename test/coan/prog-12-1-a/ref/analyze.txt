@@ -27,33 +27,33 @@ Halstead complexity:
   Dests: 10:auto
 (1 3) 10 FOR R = 1 TO 3
   Origs: 8:auto
-  Dests: 20:auto
+  Dests: 20:fornext, 50:fornext
 (1 3) 20 FOR C = 1 TO 4
-  Origs: 10:auto
-  Dests: 30:auto
+  Origs: 10:fornext
+  Dests: 30:fornext, 40:fornext
 (0 4) 30 LET A[R, C] = -1
-  Origs: 20:auto
+  Origs: 20:fornext
   Dests: 40:auto
 (0 1) 40 NEXT C
-  Origs: 30:auto
+  Origs: 20:fornext, 30:auto
   Dests: 50:auto
 (0 1) 50 NEXT R
-  Origs: 40:auto
+  Origs: 10:fornext, 40:auto
   Dests: 98:auto
 (0 1) 98 REM LINES 100 TO 160 PRINT THE ARRAY
   Origs: 50:auto
   Dests: 100:auto
 (1 3) 100 FOR R = 1 TO 3
   Origs: 98:auto
-  Dests: 110:auto
+  Dests: 110:fornext, 160:fornext
 (1 3) 110 FOR C = 1 TO 4
-  Origs: 100:auto
-  Dests: 120:auto
+  Origs: 100:fornext
+  Dests: 120:fornext, 130:fornext
 (0 2) 120 PRINT A[R, C];
-  Origs: 110:auto
+  Origs: 110:fornext
   Dests: 130:auto
 (0 1) 130 NEXT C
-  Origs: 120:auto
+  Origs: 110:fornext, 120:auto
   Dests: 140:auto
 (0 2) 140 PRINT
   Origs: 130:auto
@@ -62,7 +62,7 @@ Halstead complexity:
   Origs: 140:auto
   Dests: 160:auto
 (0 1) 160 NEXT R
-  Origs: 150:auto
+  Origs: 100:fornext, 150:auto
   Dests: 200:auto
 (0 1) 200 END
   Origs: 160:auto

@@ -105,11 +105,11 @@ Halstead complexity:
 (0 2) 220 PRINT
 (1 3)     FOR I = 1 TO P
   Origs: 210:goto
-  Dests: 225:auto
+  Dests: 225:fornext, 240:fornext
 (0 3) 225 PRINT "HOW MANY STICKS IN PILE" I;
 (1 2)     INPUT L(I)
 (1 4)     IF L(I) > 20 THEN 235
-  Origs: 220:auto, 235:goto
+  Origs: 220:fornext, 235:goto
   Dests: 230:auto, 235:ifthen
 (1 5) 230 IF L(I) > INT(L(I)) THEN 235
 (1 4)     IF L(I) <= 0 THEN 235
@@ -122,14 +122,14 @@ Halstead complexity:
   Origs: 225:ifthen, 230:ifthen, 230:ifthen
   Dests: 225:goto
 (0 1) 240 NEXT I
-  Origs: 230:goto
+  Origs: 220:fornext, 230:goto
   Dests: 245:auto
 (1 3) 245 FOR I = 1 TO P
 (0 3)     S(I) = L(I)
 (0 4)     G = G + L(I)
 (0 1)     NEXT I
-  Origs: 240:auto
-  Dests: 250:auto
+  Origs: 240:auto, 245:fornext, 245:fornext
+  Dests: 245:fornext, 245:fornext, 250:auto
 (0 2) 250 PRINT
 (0 2)     PRINT "DO YOU WANT TO GO FIRST";
   Origs: 245:auto
@@ -196,10 +196,10 @@ Halstead complexity:
 (1 3) 325 FOR I = 1 TO P
 (1 4)     IF S(I) = 0 THEN 330
 (0 3)     PRINT I, S(I)
-  Origs: 320:auto
-  Dests: 330:auto, 330:ifthen
+  Origs: 320:auto, 325:fornext
+  Dests: 325:fornext, 330:auto, 330:fornext, 330:ifthen
 (0 1) 330 NEXT I
-  Origs: 325:auto, 325:ifthen
+  Origs: 325:auto, 325:fornext, 325:ifthen
   Dests: 335:auto
 (0 1) 335 REM -------------------PLAYER'S MOVE-------------------------
   Origs: 330:auto
@@ -253,49 +253,49 @@ Halstead complexity:
 (1 3) 390 FOR I = 0 TO 4
 (0 3)     V(I) = 0
 (0 1)     NEXT I
-  Origs: 255:ifthen, 270:ifthen, 385:auto
-  Dests: 395:auto
+  Origs: 255:ifthen, 270:ifthen, 385:auto, 390:fornext, 390:fornext
+  Dests: 390:fornext, 390:fornext, 395:auto
 (1 3) 395 FOR I = 1 TO P
   Origs: 390:auto
-  Dests: 400:auto
+  Dests: 400:fornext, 440:fornext
 (0 3) 400 C(I) = S(I)
-  Origs: 395:auto
+  Origs: 395:fornext
   Dests: 405:auto
 (1 5) 405 FOR E = 4 TO 0 STEP -1
   Origs: 400:auto
-  Dests: 410:auto
+  Dests: 410:fornext, 415:fornext
 (1 6) 410 IF S(I) < 2 ^ E THEN 415
 (0 6)     S2(I) = S2(I) + 10 ^ E
 (0 6)     S(I) = S(I) - 2 ^ E
-  Origs: 405:auto
+  Origs: 405:fornext
   Dests: 415:auto, 415:ifthen
 (0 1) 415 NEXT E
-  Origs: 410:auto, 410:ifthen
+  Origs: 405:fornext, 410:auto, 410:ifthen
   Dests: 420:auto
 (1 5) 420 FOR Y = 4 TO 0 STEP -1
   Origs: 415:auto
-  Dests: 425:auto
+  Dests: 425:fornext, 435:fornext
 (0 4) 425 X(I, Y) = INT(S2(I) / 10 ^ Y)
 (0 8)     S2(I) = S2(I) - X(I, Y) * 10 ^ Y
-  Origs: 420:auto
+  Origs: 420:fornext
   Dests: 430:auto
 (0 4) 430 V(Y) = V(Y) + X(I, Y)
   Origs: 425:auto
   Dests: 435:auto
 (0 1) 435 NEXT Y
-  Origs: 430:auto
+  Origs: 420:fornext, 430:auto
   Dests: 440:auto
 (0 1) 440 NEXT I
-  Origs: 435:auto
+  Origs: 395:fornext, 435:auto
   Dests: 445:auto
 (0 3) 445 R = 0
   Origs: 440:auto
   Dests: 450:auto
 (1 5) 450 FOR Y = 4 TO 0 STEP -1
   Origs: 445:auto
-  Dests: 455:auto
+  Dests: 455:fornext, 480:fornext
 (1 7) 455 IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
-  Origs: 450:auto
+  Origs: 450:fornext
   Dests: 460:auto, 480:ifthen
 (1 4) 460 IF R = 1 THEN 470
 (0 5)     Q = INT(P * RND(X)) + 1
@@ -316,37 +316,37 @@ Halstead complexity:
   Origs: 470:ifthen
   Dests: 480:auto
 (0 1) 480 NEXT Y
-  Origs: 455:ifthen, 465:goto, 470:goto, 475:auto
+  Origs: 450:fornext, 455:ifthen, 465:goto, 470:goto, 475:auto
   Dests: 485:auto
 (1 3) 485 FOR I = 1 TO P
   Origs: 480:auto
-  Dests: 490:auto
+  Dests: 490:fornext, 525:fornext
 (0 3) 490 S2(I) = 0
-  Origs: 485:auto
+  Origs: 485:fornext
   Dests: 495:auto
 (1 5) 495 FOR Y = 4 TO 0 STEP -1
   Origs: 490:auto
-  Dests: 500:auto
+  Dests: 500:fornext, 505:fornext
 (0 6) 500 S3(I) = X(I, Y) * 10 ^ Y
 (0 4)     S2(I) = S2(I) + S3(I)
-  Origs: 495:auto
+  Origs: 495:fornext
   Dests: 505:auto
 (0 1) 505 NEXT Y
-  Origs: 500:auto
+  Origs: 495:fornext, 500:auto
   Dests: 510:auto
 (1 5) 510 FOR E = 4 TO 0 STEP -1
   Origs: 505:auto
-  Dests: 515:auto
+  Dests: 515:fornext, 520:fornext
 (1 6) 515 IF S2(I) < 10 ^ E THEN 520
 (0 6)     S(I) = S(I) + 2 ^ E
 (0 6)     S2(I) = S2(I) - 10 ^ E
-  Origs: 510:auto
+  Origs: 510:fornext
   Dests: 520:auto, 520:ifthen
 (0 1) 520 NEXT E
-  Origs: 515:auto, 515:ifthen
+  Origs: 510:fornext, 515:auto, 515:ifthen
   Dests: 525:auto
 (0 1) 525 NEXT I
-  Origs: 520:auto
+  Origs: 485:fornext, 520:auto
   Dests: 530:auto
 (1 4) 530 IF R = 1 THEN 535
 (0 5)     Q = INT(P * RND(X)) + 1

@@ -123,8 +123,8 @@ Halstead complexity:
 (0 3)     C$ = P$(C%)
 (1 12)     IF VAL(LEFT(C$, 1%)) = P% AND MID(C$, 2%, 9%) = P$ THEN M$ = RIGHT(C$, 11%)
 (0 2)     GOTO 400
-  Origs: 300:auto
-  Dests: 400:goto
+  Origs: 300:auto, 310:fornext
+  Dests: 310:fornext, 320:fornext, 400:goto
 (0 1) 320 NEXT C%
 (0 3)     Q$ = "*"
 (0 3)     D% = 1%
@@ -132,7 +132,7 @@ Halstead complexity:
 (0 3)     C% = Q%
 (1 5)     IF M$ = "" THEN PRINT "I CAN'T MOVE, YOU WIN."
 (0 2)     GOTO 500
-  Origs: 
+  Origs: 310:fornext
   Dests: 500:goto, 2000:gosub
 (1 5) 400 IF M$ = "" THEN PRINT "I RESIGN."
 (0 2)     GOTO 500
@@ -189,8 +189,8 @@ Halstead complexity:
   Dests: 2010:auto
 (1 3) 2010 FOR J% = 1% TO 9%
 (1 5)      IF MID(P$, J%, 1%) <> Q$ THEN 2050
-  Origs: 2000:auto
-  Dests: 2015:auto, 2050:ifthen
+  Origs: 2000:auto, 2010:fornext
+  Dests: 2010:fornext, 2015:auto, 2050:fornext, 2050:ifthen
 (0 6) 2015 T% = J% + D% * 3%
 (1 7)      IF T% < 1% OR T% > 9% THEN 2025
   Origs: 2010:auto
@@ -215,7 +215,7 @@ Halstead complexity:
 (0 1) 2050 NEXT J%
 (1 10)      IF D% = 1% AND M$ <> "" THEN Q% = Q% + 1%
 (0 7)      P$(Q%) = FNN$(P%) + P$ + M$
-  Origs: 2010:ifthen, 2035:ifthen, 2040:auto
+  Origs: 2010:fornext, 2010:ifthen, 2035:ifthen, 2040:auto
   Dests: 2060:auto
 (0 1) 2060 RETURN
   Origs: 2050:auto

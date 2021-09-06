@@ -21,33 +21,33 @@ Halstead complexity:
 
 (1 3) 10 FOR R = 1 TO 8
   Origs: 
-  Dests: 14:auto
+  Dests: 14:fornext, 50:fornext
 (0 1) 14 REM  HERE THE ROW NUMBER IS ENTERED IN THE FIRST COLUMN
-  Origs: 10:auto
+  Origs: 10:fornext
   Dests: 15:auto
 (0 3) 15 LET S[R, 1] = R
   Origs: 14:auto
   Dests: 20:auto
 (1 3) 20 FOR C = 2 TO 5
   Origs: 15:auto
-  Dests: 30:auto
+  Dests: 30:fornext, 40:fornext
 (0 3) 30 LET S[R, C] = 0
-  Origs: 20:auto
+  Origs: 20:fornext
   Dests: 40:auto
 (0 1) 40 NEXT C
-  Origs: 30:auto
+  Origs: 20:fornext, 30:auto
   Dests: 50:auto
 (0 1) 50 NEXT R
-  Origs: 40:auto
+  Origs: 10:fornext, 40:auto
   Dests: 68:auto
 (0 1) 68 REM WE ARE ENTERING FIGURES IN COLUMNS 2 THROUGH 5 ONLY
   Origs: 50:auto
   Dests: 70:auto
 (1 3) 70 FOR C = 2 TO 5
   Origs: 68:auto, 105:goto
-  Dests: 80:auto
+  Dests: 80:fornext, 100:fornext
 (1 2) 80 READ N
-  Origs: 70:auto
+  Origs: 70:fornext
   Dests: 85:auto
 (1 6) 85 IF N = -1 THEN 110
   Origs: 80:auto
@@ -56,7 +56,7 @@ Halstead complexity:
   Origs: 85:auto
   Dests: 100:auto
 (0 1) 100 NEXT C
-  Origs: 90:auto
+  Origs: 70:fornext, 90:auto
   Dests: 105:auto
 (0 3) 105 GOTO 70
   Origs: 100:auto
@@ -69,21 +69,21 @@ Halstead complexity:
   Dests: 120:auto
 (1 3) 120 FOR R = 1 TO 8
   Origs: 119:auto
-  Dests: 130:auto
+  Dests: 130:fornext, 160:fornext
 (1 3) 130 FOR C = 1 TO 5
-  Origs: 120:auto
-  Dests: 140:auto
+  Origs: 120:fornext
+  Dests: 140:fornext, 150:fornext
 (0 2) 140 PRINT S[R, C];
-  Origs: 130:auto
+  Origs: 130:fornext
   Dests: 150:auto
 (0 1) 150 NEXT C
-  Origs: 140:auto
+  Origs: 130:fornext, 140:auto
   Dests: 155:auto
 (0 2) 155 PRINT
   Origs: 150:auto
   Dests: 160:auto
 (0 1) 160 NEXT R
-  Origs: 155:auto
+  Origs: 120:fornext, 155:auto
   Dests: 349:auto
 (0 1) 349 REM EACH GROUP OF FOUR NUMBERS IS FOR ONE FAMILY- T,C,H,B
   Origs: 160:auto

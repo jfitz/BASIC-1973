@@ -24,48 +24,48 @@ Halstead complexity:
   Dests: 20:auto
 (1 3) 20 FOR I = 1 TO 4
   Origs: 10:auto
-  Dests: 30:auto
+  Dests: 30:fornext, 40:fornext
 (1 2) 30 READ A[I]
-  Origs: 20:auto
+  Origs: 20:fornext
   Dests: 40:auto
 (0 1) 40 NEXT I
-  Origs: 30:auto
+  Origs: 20:fornext, 30:auto
   Dests: 45:auto
 (0 1) 45 REM 50 TO 65 READ THE B LIST
   Origs: 40:auto
   Dests: 50:auto
 (1 3) 50 FOR J = 1 TO 4
   Origs: 45:auto
-  Dests: 60:auto
+  Dests: 60:fornext, 65:fornext
 (1 2) 60 READ B[J]
-  Origs: 50:auto
+  Origs: 50:fornext
   Dests: 65:auto
 (0 1) 65 NEXT J
-  Origs: 60:auto
+  Origs: 50:fornext, 60:auto
   Dests: 67:auto
 (0 1) 67 REM HERE IS ANOTHER NESTED LOOP
   Origs: 65:auto
   Dests: 70:auto
 (1 3) 70 FOR K = 1 TO 4
   Origs: 67:auto
-  Dests: 80:auto
+  Dests: 80:fornext, 120:fornext
 (1 3) 80 FOR L = 1 TO 4
-  Origs: 70:auto
-  Dests: 90:auto
+  Origs: 70:fornext
+  Dests: 90:fornext, 100:fornext
 (0 3) 90 PRINT A[K]; B[L],
-  Origs: 80:auto
+  Origs: 80:fornext
   Dests: 91:auto
 (0 1) 91 REM *** NOTICE THE USE OF THE SEMICOLON AND THE COMMA
   Origs: 90:auto
   Dests: 100:auto
 (0 1) 100 NEXT L
-  Origs: 91:auto
+  Origs: 80:fornext, 91:auto
   Dests: 110:auto
 (0 2) 110 PRINT
   Origs: 100:auto
   Dests: 120:auto
 (0 1) 120 NEXT K
-  Origs: 110:auto
+  Origs: 70:fornext, 110:auto
   Dests: 500:auto
 (0 2) 500 DATA 1, 3, 5, 7
   Origs: 120:auto

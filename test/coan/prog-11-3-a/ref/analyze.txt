@@ -30,15 +30,15 @@ Halstead complexity:
   Dests: 25:auto
 (1 5) 25 FOR S = N TO 1 STEP -1
   Origs: 23:auto
-  Dests: 30:auto
+  Dests: 30:fornext, 50:fornext
 (1 2) 30 READ P[S]
-  Origs: 25:auto
+  Origs: 25:fornext
   Dests: 40:auto
 (0 2) 40 PRINT P[S];
   Origs: 30:auto
   Dests: 50:auto
 (0 1) 50 NEXT S
-  Origs: 40:auto
+  Origs: 25:fornext, 40:auto
   Dests: 55:auto
 (0 2) 55 PRINT
   Origs: 50:auto
@@ -57,9 +57,9 @@ Halstead complexity:
   Dests: 80:auto
 (1 6) 80 FOR X = -P[1] TO P[1] STEP SGN(P[1])
   Origs: 78:auto
-  Dests: 88:auto
+  Dests: 88:fornext, 140:fornext
 (0 1) 88 REM LINE 90 PREVENTS AN ERROR MESSAGE CAUSED BY
-  Origs: 80:auto
+  Origs: 80:fornext
   Dests: 89:auto
 (0 1) 89 REM DIVIDING BY ZERO
   Origs: 88:auto
@@ -98,7 +98,7 @@ Halstead complexity:
   Origs: 128:auto
   Dests: 140:auto
 (0 1) 140 NEXT X
-  Origs: 90:ifthen, 100:ifthen, 110:ifthen, 130:auto
+  Origs: 80:fornext, 90:ifthen, 100:ifthen, 110:ifthen, 130:auto
   Dests: 150:auto
 (1 5) 150 IF K = 1 THEN 20
   Origs: 140:auto
@@ -138,12 +138,12 @@ Halstead complexity:
   Dests: 510:auto
 (1 5) 510 FOR I = N TO 1 STEP -1
   Origs: 500:auto
-  Dests: 520:auto
+  Dests: 520:fornext, 530:fornext
 (0 10) 520 LET P = P + P[I] * X ^ (I - 1)
-  Origs: 510:auto
+  Origs: 510:fornext
   Dests: 530:auto
 (0 1) 530 NEXT I
-  Origs: 520:auto
+  Origs: 510:fornext, 520:auto
   Dests: 540:auto
 (0 1) 540 RETURN
   Origs: 530:auto

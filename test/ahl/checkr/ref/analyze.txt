@@ -54,12 +54,12 @@ Halstead complexity:
   Dests: 1200:auto
 (1 3) 1200 FOR X = 1 TO 8
   Origs: 1100:auto
-  Dests: 1300:auto
+  Dests: 1300:fornext, 2100:fornext
 (1 3) 1300 FOR Y = 1 TO 8
-  Origs: 1200:auto
-  Dests: 1400:auto
+  Origs: 1200:fornext
+  Dests: 1400:fornext, 2000:fornext
 (1 2) 1400 READ J
-  Origs: 1300:auto
+  Origs: 1300:fornext
   Dests: 1500:auto
 (1 4) 1500 IF J = 15 THEN 1800
   Origs: 1400:auto
@@ -77,10 +77,10 @@ Halstead complexity:
   Origs: 1800:auto
   Dests: 2000:auto
 (0 1) 2000 NEXT Y
-  Origs: 1700:goto, 1900:auto
+  Origs: 1300:fornext, 1700:goto, 1900:auto
   Dests: 2100:auto
 (0 1) 2100 NEXT X
-  Origs: 2000:auto
+  Origs: 1200:fornext, 2000:auto
   Dests: 2200:auto
 (0 1) 2200 REM
   Origs: 2100:auto
@@ -90,12 +90,12 @@ Halstead complexity:
   Dests: 2400:auto
 (1 3) 2400 FOR X = 1 TO 8
   Origs: 2300:auto
-  Dests: 2500:auto
+  Dests: 2500:fornext, 3900:fornext
 (1 3) 2500 FOR Y = 1 TO 8
-  Origs: 2400:auto
-  Dests: 2600:auto
+  Origs: 2400:fornext
+  Dests: 2600:fornext, 3800:fornext
 (1 4) 2600 IF S(X, Y) = 0 THEN 3500
-  Origs: 2500:auto
+  Origs: 2500:fornext
   Dests: 2700:auto, 3500:ifthen
 (1 4) 2700 IF G > 0 THEN 3000
   Origs: 2600:auto
@@ -131,10 +131,10 @@ Halstead complexity:
   Origs: 3600:auto
   Dests: 
 (0 1) 3800 NEXT Y
-  Origs: 3500:ifthen, 3600:ifthen
+  Origs: 2500:fornext, 3500:ifthen, 3600:ifthen
   Dests: 3900:auto
 (0 1) 3900 NEXT X
-  Origs: 3800:auto
+  Origs: 2400:fornext, 3800:auto
   Dests: 4000:auto
 (0 2) 4000 PRINT
   Origs: 3900:auto
@@ -147,9 +147,9 @@ Halstead complexity:
   Dests: 2300:goto
 (1 5) 4300 FOR A = -1 TO 1 STEP 2
   Origs: 3200:gosub
-  Dests: 4400:auto
+  Dests: 4400:fornext, 6300:fornext
 (0 4) 4400 LET U = X + A
-  Origs: 4300:auto
+  Origs: 4300:fornext
   Dests: 4500:auto
 (0 4) 4500 LET V = Y + G
   Origs: 4400:auto
@@ -206,7 +206,7 @@ Halstead complexity:
   Origs: 6100:auto
   Dests: 6300:auto, 9100:gosub
 (0 1) 6300 NEXT A
-  Origs: 4600:ifthen, 4700:ifthen, 4800:ifthen, 4900:ifthen, 5200:goto, 5300:ifthen, 5400:ifthen, 5700:ifthen, 5800:ifthen, 5900:ifthen, 6000:ifthen, 6100:ifthen, 6200:auto
+  Origs: 4300:fornext, 4600:ifthen, 4700:ifthen, 4800:ifthen, 4900:ifthen, 5200:goto, 5300:ifthen, 5400:ifthen, 5700:ifthen, 5800:ifthen, 5900:ifthen, 6000:ifthen, 6100:ifthen, 6200:auto
   Dests: 6400:auto
 (0 1) 6400 RETURN
   Origs: 6300:auto
@@ -216,12 +216,12 @@ Halstead complexity:
   Dests: 6600:auto
 (1 5) 6600 FOR A = -1 TO 1 STEP 2
   Origs: 6500:auto
-  Dests: 6700:auto
+  Dests: 6700:fornext, 8800:fornext
 (1 5) 6700 FOR B = -1 TO 1 STEP 2
-  Origs: 6600:auto
-  Dests: 6800:auto
+  Origs: 6600:fornext
+  Dests: 6800:fornext, 8700:fornext
 (0 4) 6800 LET U = X + A
-  Origs: 6700:auto
+  Origs: 6700:fornext
   Dests: 6900:auto
 (0 4) 6900 LET V = Y + B
   Origs: 6800:auto
@@ -278,10 +278,10 @@ Halstead complexity:
   Origs: 8500:auto
   Dests: 8700:auto, 9100:gosub
 (0 1) 8700 NEXT B
-  Origs: 7000:ifthen, 7100:ifthen, 7200:ifthen, 7300:ifthen, 7600:goto, 7700:ifthen, 7800:ifthen, 8100:ifthen, 8200:ifthen, 8300:ifthen, 8400:ifthen, 8500:ifthen, 8600:auto
+  Origs: 6700:fornext, 7000:ifthen, 7100:ifthen, 7200:ifthen, 7300:ifthen, 7600:goto, 7700:ifthen, 7800:ifthen, 8100:ifthen, 8200:ifthen, 8300:ifthen, 8400:ifthen, 8500:ifthen, 8600:auto
   Dests: 8800:auto
 (0 1) 8800 NEXT A
-  Origs: 8700:auto
+  Origs: 6600:fornext, 8700:auto
   Dests: 8900:auto
 (0 1) 8900 RETURN
   Origs: 8800:auto
@@ -327,9 +327,9 @@ Halstead complexity:
   Dests: 10300:auto
 (1 5) 10300 FOR C = -1 TO 1 STEP 2
   Origs: 10100:ifthen, 10200:auto
-  Dests: 10400:auto
+  Dests: 10400:fornext, 11000:fornext
 (1 4) 10400 IF S(U + C, V + G) < 1 THEN 10800
-  Origs: 10300:auto
+  Origs: 10300:fornext
   Dests: 10500:auto, 10800:ifthen
 (0 4) 10500 LET Q = Q - 1
   Origs: 10400:auto
@@ -347,7 +347,7 @@ Halstead complexity:
   Origs: 10800:auto
   Dests: 11000:auto
 (0 1) 11000 NEXT C
-  Origs: 10900:auto
+  Origs: 10300:fornext, 10900:auto
   Dests: 11100:auto
 (0 3) 11100 LET R(P) = Q
   Origs: 11000:auto
@@ -363,18 +363,18 @@ Halstead complexity:
   Dests: 11500:auto, 18800:ifthen
 (1 6) 11500 FOR J = 10 TO -10 STEP -1
   Origs: 11400:auto
-  Dests: 11600:auto
+  Dests: 11600:fornext, 11900:fornext
 (1 3) 11600 FOR F = 1 TO P
-  Origs: 11500:auto
-  Dests: 11700:auto
+  Origs: 11500:fornext
+  Dests: 11700:fornext, 11800:fornext
 (1 4) 11700 IF R(F) = J THEN 12000
-  Origs: 11600:auto
+  Origs: 11600:fornext
   Dests: 11800:auto, 12000:ifthen
 (0 1) 11800 NEXT F
-  Origs: 11700:auto
+  Origs: 11600:fornext, 11700:auto
   Dests: 11900:auto
 (0 1) 11900 NEXT J
-  Origs: 11800:auto
+  Origs: 11500:fornext, 11800:auto
   Dests: 12000:auto
 (0 4) 12000 LET K = F + P
   Origs: 11700:ifthen, 11900:auto
@@ -444,12 +444,12 @@ Halstead complexity:
   Dests: 14200:auto
 (1 5) 14200 FOR Y = 8 TO 1 STEP -1
   Origs: 9000:goto, 14100:auto
-  Dests: 14300:auto
+  Dests: 14300:fornext, 15700:fornext
 (1 3) 14300 FOR X = 1 TO 8
-  Origs: 14200:auto
-  Dests: 14400:auto
+  Origs: 14200:fornext
+  Dests: 14400:fornext, 15500:fornext
 (0 4) 14400 LET I = 2 * X
-  Origs: 14300:auto
+  Origs: 14300:fornext
   Dests: 14500:auto
 (1 4) 14500 IF S(X, Y) <> 0 THEN 14700
   Origs: 14400:auto
@@ -482,13 +482,13 @@ Halstead complexity:
   Origs: 15300:auto
   Dests: 15500:auto
 (0 1) 15500 NEXT X
-  Origs: 15300:ifthen, 15400:auto
+  Origs: 14300:fornext, 15300:ifthen, 15400:auto
   Dests: 15600:auto
 (0 2) 15600 PRINT
   Origs: 15500:auto
   Dests: 15700:auto
 (0 1) 15700 NEXT Y
-  Origs: 15600:auto
+  Origs: 14200:fornext, 15600:auto
   Dests: 15800:auto
 (0 2) 15800 PRINT
   Origs: 13900:gosub, 15700:auto
@@ -567,18 +567,18 @@ Halstead complexity:
   Dests: 18300:auto
 (1 3) 18300 FOR X = 8 TO 8
   Origs: 18100:ifthen, 18200:auto
-  Dests: 18400:auto
+  Dests: 18400:fornext, 18700:fornext
 (1 3) 18400 FOR Y = 8 TO 8
-  Origs: 18300:auto
-  Dests: 18500:auto
+  Origs: 18300:fornext
+  Dests: 18500:fornext, 18600:fornext
 (0 1) 18500 RETURN
-  Origs: 18400:auto
+  Origs: 18400:fornext
   Dests: 
 (0 1) 18600 NEXT Y
-  Origs: 
+  Origs: 18400:fornext
   Dests: 18700:auto
 (0 1) 18700 NEXT X
-  Origs: 18600:auto
+  Origs: 18300:fornext, 18600:auto
   Dests: 18800:auto
 (0 2) 18800 PRINT "    VERY GOOD, YOU WIN!"
   Origs: 11400:ifthen, 18700:auto
@@ -599,6 +599,4 @@ Halstead complexity:
 Unreachable code:
 
 9000: GOTO 14200
-18600: NEXT Y
-18700: NEXT X
 

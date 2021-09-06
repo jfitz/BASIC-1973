@@ -42,18 +42,18 @@ Halstead complexity:
   Dests: 170:auto
 (1 3) 170 FOR B1 = 1 TO 3
   Origs: 160:auto
-  Dests: 180:auto
+  Dests: 180:fornext, 190:fornext
 (0 5) 180 LET D(B1) = INT(RND(0) * 6) + 1
-  Origs: 170:auto
+  Origs: 170:fornext
   Dests: 190:auto
 (0 1) 190 NEXT B1
-  Origs: 180:auto
+  Origs: 170:fornext, 180:auto
   Dests: 200:auto
 (1 3) 200 FOR G1 = 1 TO 3
   Origs: 190:auto
-  Dests: 210:auto
+  Dests: 210:fornext, 390:fornext
 (1 4) 210 IF D(G1) = 1 THEN 280
-  Origs: 200:auto
+  Origs: 200:fornext
   Dests: 220:auto, 280:ifthen
 (1 4) 220 IF D(G1) = 2 THEN 300
   Origs: 210:auto
@@ -107,7 +107,7 @@ Halstead complexity:
   Origs: 260:ifthen
   Dests: 390:auto
 (0 1) 390 NEXT G1
-  Origs: 290:goto, 310:goto, 330:goto, 350:goto, 370:goto, 380:auto
+  Origs: 200:fornext, 290:goto, 310:goto, 330:goto, 350:goto, 370:goto, 380:auto
   Dests: 400:auto
 (0 3) 400 PRINT TAB(28);
   Origs: 390:auto

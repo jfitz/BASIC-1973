@@ -57,36 +57,36 @@ Halstead complexity:
   Dests: 21:auto
 (1 3) 21 FOR I = 1 TO 16
   Origs: 20:auto
-  Dests: 22:auto
+  Dests: 22:fornext, 23:fornext
 (1 2) 22 READ Y(I)
-  Origs: 21:auto
+  Origs: 21:fornext
   Dests: 23:auto
 (0 1) 23 NEXT I
-  Origs: 22:auto
+  Origs: 21:fornext, 22:auto
   Dests: 24:auto
 (1 3) 24 FOR I = 1 TO 76
   Origs: 23:auto
-  Dests: 25:auto
+  Dests: 25:fornext, 28:fornext
 (1 3) 25 FOR J = 1 TO 4
-  Origs: 24:auto
-  Dests: 26:auto
+  Origs: 24:fornext
+  Dests: 26:fornext, 27:fornext
 (1 2) 26 READ M(I, J)
-  Origs: 25:auto
+  Origs: 25:fornext
   Dests: 27:auto
 (0 1) 27 NEXT J
-  Origs: 26:auto
+  Origs: 25:fornext, 26:auto
   Dests: 28:auto
 (0 1) 28 NEXT I
-  Origs: 27:auto
+  Origs: 24:fornext, 27:auto
   Dests: 35:auto
 (1 3) 35 FOR I = 1 TO 64
   Origs: 28:auto, 515:ifthen
-  Dests: 40:auto
+  Dests: 40:fornext, 50:fornext
 (0 3) 40 LET X(I) = 0
-  Origs: 35:auto
+  Origs: 35:fornext
   Dests: 50:auto
 (0 1) 50 NEXT I
-  Origs: 40:auto
+  Origs: 35:fornext, 40:auto
   Dests: 54:auto
 (0 3) 54 LET Z = 1
   Origs: 50:auto
@@ -153,12 +153,12 @@ Halstead complexity:
   Dests: 180:auto, 1050:gosub
 (1 3) 180 FOR J = 1 TO 3
   Origs: 110:auto
-  Dests: 190:auto
+  Dests: 190:fornext, 206:fornext
 (1 3) 190 FOR I = 1 TO 76
-  Origs: 180:auto
-  Dests: 200:auto
+  Origs: 180:fornext
+  Dests: 200:fornext, 205:fornext
 (1 4) 200 IF J = 1 THEN 210
-  Origs: 190:auto
+  Origs: 190:fornext
   Dests: 201:auto, 210:ifthen
 (1 4) 201 IF J = 2 THEN 220
   Origs: 200:auto
@@ -167,10 +167,10 @@ Halstead complexity:
   Origs: 201:auto
   Dests: 205:auto, 235:ifthen
 (0 1) 205 NEXT I
-  Origs: 203:auto, 210:ifthen, 220:ifthen, 235:ifthen
+  Origs: 190:fornext, 203:auto, 210:ifthen, 220:ifthen, 235:ifthen
   Dests: 206:auto
 (0 1) 206 NEXT J
-  Origs: 205:auto
+  Origs: 180:fornext, 205:auto
   Dests: 207:auto
 (0 2) 207 GOTO 400
   Origs: 206:auto
@@ -183,15 +183,15 @@ Halstead complexity:
   Dests: 212:auto
 (1 3) 212 FOR J = 1 TO 4
   Origs: 211:auto
-  Dests: 213:auto
+  Dests: 213:fornext, 216:fornext
 (0 3) 213 LET M = M(I, J)
-  Origs: 212:auto
+  Origs: 212:fornext
   Dests: 214:auto
 (0 2) 214 GOSUB 1000
   Origs: 213:auto
   Dests: 216:auto, 1000:gosub
 (0 1) 216 NEXT J
-  Origs: 214:auto
+  Origs: 212:fornext, 214:auto
   Dests: 217:auto
 (0 2) 217 GOTO 500
   Origs: 216:auto
@@ -201,9 +201,9 @@ Halstead complexity:
   Dests: 205:ifthen, 221:auto
 (1 3) 221 FOR J = 1 TO 4
   Origs: 220:auto
-  Dests: 222:auto
+  Dests: 222:fornext, 227:fornext
 (0 3) 222 LET M = M(I, J)
-  Origs: 221:auto
+  Origs: 221:fornext
   Dests: 223:auto
 (1 4) 223 IF X(M) <> 0 THEN 227
   Origs: 222:auto
@@ -218,22 +218,22 @@ Halstead complexity:
   Origs: 225:auto
   Dests: 227:auto, 1000:gosub
 (0 1) 227 NEXT J
-  Origs: 223:ifthen, 226:auto
+  Origs: 221:fornext, 223:ifthen, 226:auto
   Dests: 228:auto
 (0 2) 228 PRINT ", AND WINS AS FOLLOWS"
   Origs: 227:auto
   Dests: 229:auto
 (1 3) 229 FOR J = 1 TO 4
   Origs: 228:auto
-  Dests: 230:auto
+  Dests: 230:fornext, 233:fornext
 (0 3) 230 LET M = M(I, J)
-  Origs: 229:auto
+  Origs: 229:fornext
   Dests: 231:auto
 (0 2) 231 GOSUB 1000
   Origs: 230:auto
   Dests: 233:auto, 1000:gosub
 (0 1) 233 NEXT J
-  Origs: 231:auto
+  Origs: 229:fornext, 231:auto
   Dests: 234:auto
 (0 2) 234 GOTO 500
   Origs: 233:auto
@@ -246,9 +246,9 @@ Halstead complexity:
   Dests: 237:auto
 (1 3) 237 FOR J = 1 TO 4
   Origs: 236:auto
-  Dests: 238:auto
+  Dests: 238:fornext, 245:fornext
 (0 3) 238 LET M = M(I, J)
-  Origs: 237:auto
+  Origs: 237:fornext
   Dests: 239:auto
 (1 4) 239 IF X(M) <> 0 THEN 245
   Origs: 238:auto
@@ -263,16 +263,16 @@ Halstead complexity:
   Origs: 241:auto
   Dests: 70:goto
 (0 1) 245 NEXT J
-  Origs: 239:ifthen
+  Origs: 237:fornext, 239:ifthen
   Dests: 248:auto
 (0 2) 248 GOTO 400
   Origs: 245:auto
   Dests: 400:goto
 (1 3) 250 FOR I = 1 TO 76
   Origs: 493:goto
-  Dests: 251:auto
+  Dests: 251:fornext, 290:fornext
 (0 6) 251 LET L(I) = X(M(I, 1)) + X(M(I, 2)) + X(M(I, 3)) + X(M(I, 4))
-  Origs: 250:auto
+  Origs: 250:fornext
   Dests: 252:auto
 (0 3) 252 LET L = L(I)
   Origs: 251:auto
@@ -288,33 +288,33 @@ Halstead complexity:
   Dests: 270:auto, 1600:ifthen
 (1 3) 270 FOR J = 1 TO 4
   Origs: 265:auto
-  Dests: 275:auto
+  Dests: 275:fornext, 285:fornext
 (1 4) 275 IF X(M(I, J)) <> 0 THEN 285
-  Origs: 270:auto
+  Origs: 270:fornext
   Dests: 280:auto, 285:ifthen
 (0 4) 280 LET X(M(I, J)) = 1 / 8
   Origs: 275:auto
   Dests: 285:auto
 (0 1) 285 NEXT J
-  Origs: 275:ifthen, 280:auto
+  Origs: 270:fornext, 275:ifthen, 280:auto
   Dests: 290:auto
 (0 1) 290 NEXT I
-  Origs: 255:ifthen, 260:ifthen, 285:auto
+  Origs: 250:fornext, 255:ifthen, 260:ifthen, 285:auto
   Dests: 295:auto
 (0 2) 295 GOSUB 1050
   Origs: 290:auto
   Dests: 300:auto, 1050:gosub
 (1 3) 300 FOR I = 1 TO 76
   Origs: 295:auto
-  Dests: 305:auto
+  Dests: 305:fornext, 315:fornext
 (1 6) 305 IF L(I) = 1 / 2 THEN 1700
-  Origs: 300:auto
+  Origs: 300:fornext
   Dests: 310:auto, 1700:ifthen
 (1 8) 310 IF L(I) = 1 + 3 / 8 THEN 1700
   Origs: 305:auto
   Dests: 315:auto, 1700:ifthen
 (0 1) 315 NEXT I
-  Origs: 310:auto
+  Origs: 300:fornext, 310:auto
   Dests: 320:auto
 (0 2) 320 GOTO 1300
   Origs: 315:auto
@@ -354,9 +354,9 @@ Halstead complexity:
   Dests: 410:auto
 (1 3) 410 FOR I = 1 TO 76
   Origs: 400:auto
-  Dests: 412:auto
+  Dests: 412:fornext, 455:fornext
 (0 6) 412 LET L(I) = X(M(I, 1)) + X(M(I, 2)) + X(M(I, 3)) + X(M(I, 4))
-  Origs: 410:auto
+  Origs: 410:fornext
   Dests: 415:auto
 (0 3) 415 LET L = L(I)
   Origs: 412:auto
@@ -372,33 +372,33 @@ Halstead complexity:
   Dests: 435:auto, 1600:ifthen
 (1 3) 435 FOR J = 1 TO 4
   Origs: 430:auto
-  Dests: 440:auto
+  Dests: 440:fornext, 450:fornext
 (1 4) 440 IF X(M(I, J)) <> 0 THEN 450
-  Origs: 435:auto
+  Origs: 435:fornext
   Dests: 445:auto, 450:ifthen
 (0 4) 445 LET X(M(I, J)) = 1 / 8
   Origs: 440:auto
   Dests: 450:auto
 (0 1) 450 NEXT J
-  Origs: 440:ifthen, 445:auto
+  Origs: 435:fornext, 440:ifthen, 445:auto
   Dests: 455:auto
 (0 1) 455 NEXT I
-  Origs: 420:ifthen, 425:ifthen, 450:auto
+  Origs: 410:fornext, 420:ifthen, 425:ifthen, 450:auto
   Dests: 470:auto
 (0 2) 470 GOSUB 1050
   Origs: 455:auto
   Dests: 475:auto, 1050:gosub
 (1 3) 475 FOR I = 1 TO 76
   Origs: 470:auto
-  Dests: 480:auto
+  Dests: 480:fornext, 490:fornext
 (1 4) 480 IF L(I) = .5 THEN 1700
-  Origs: 475:auto
+  Origs: 475:fornext
   Dests: 485:auto, 1700:ifthen
 (1 8) 485 IF L(I) = 5 + 3 / 8 THEN 1700
   Origs: 480:auto
   Dests: 490:auto, 1700:ifthen
 (0 1) 490 NEXT I
-  Origs: 485:auto
+  Origs: 475:fornext, 485:auto
   Dests: 492:auto
 (0 2) 492 GOSUB 1800
   Origs: 490:auto
@@ -453,9 +453,9 @@ Halstead complexity:
   Dests: 
 (1 3) 1050 FOR S = 1 TO 76
   Origs: 110:gosub, 295:gosub, 470:gosub
-  Dests: 1060:auto
+  Dests: 1060:fornext, 1110:fornext
 (0 3) 1060 LET J1 = M(S, 1)
-  Origs: 1050:auto
+  Origs: 1050:fornext
   Dests: 1070:auto
 (0 3) 1070 LET J2 = M(S, 2)
   Origs: 1060:auto
@@ -470,16 +470,16 @@ Halstead complexity:
   Origs: 1090:auto
   Dests: 1110:auto
 (0 1) 1110 NEXT S
-  Origs: 1100:auto
+  Origs: 1050:fornext, 1100:auto
   Dests: 1120:auto
 (0 1) 1120 RETURN
   Origs: 1110:auto
   Dests: 
 (1 3) 1200 FOR I = 1 TO 64
   Origs: 375:goto
-  Dests: 1210:auto
+  Dests: 1210:fornext, 1250:fornext
 (1 4) 1210 IF X(I) <> 0 THEN 1250
-  Origs: 1200:auto
+  Origs: 1200:fornext
   Dests: 1220:auto, 1250:ifthen
 (0 3) 1220 LET X(I) = 5
   Origs: 1210:auto
@@ -500,7 +500,7 @@ Halstead complexity:
   Origs: 1228:auto
   Dests: 70:goto
 (0 1) 1250 NEXT I
-  Origs: 1210:ifthen
+  Origs: 1200:fornext, 1210:ifthen
   Dests: 1252:auto
 (0 2) 1252 PRINT "THE GAME IS A DRAW"
   Origs: 1250:auto
@@ -510,24 +510,24 @@ Halstead complexity:
   Dests: 500:goto
 (1 3) 1300 FOR K = 1 TO 18
   Origs: 320:goto
-  Dests: 1305:auto
+  Dests: 1305:fornext, 1390:fornext
 (0 3) 1305 LET P = 0
-  Origs: 1300:auto
+  Origs: 1300:fornext
   Dests: 1310:auto
 (1 6) 1310 FOR I = 4 * K - 3 TO 4 * K
   Origs: 1305:auto
-  Dests: 1315:auto
+  Dests: 1315:fornext, 1330:fornext
 (1 3) 1315 FOR J = 1 TO 4
-  Origs: 1310:auto
-  Dests: 1320:auto
+  Origs: 1310:fornext
+  Dests: 1320:fornext, 1325:fornext
 (0 4) 1320 LET P = P + X(M(I, J))
-  Origs: 1315:auto
+  Origs: 1315:fornext
   Dests: 1325:auto
 (0 1) 1325 NEXT J
-  Origs: 1320:auto
+  Origs: 1315:fornext, 1320:auto
   Dests: 1330:auto
 (0 1) 1330 NEXT I
-  Origs: 1325:auto
+  Origs: 1310:fornext, 1325:auto
   Dests: 1345:auto
 (1 4) 1345 IF P < 4 THEN 1390
   Origs: 1330:auto
@@ -542,7 +542,7 @@ Halstead complexity:
   Origs: 1355:auto
   Dests: 1390:auto, 1400:ifthen
 (0 1) 1390 NEXT K
-  Origs: 1345:ifthen, 1355:ifthen, 1360:auto
+  Origs: 1300:fornext, 1345:ifthen, 1355:ifthen, 1360:auto
   Dests: 1395:auto
 (0 2) 1395 GOSUB 1800
   Origs: 1390:auto
@@ -555,12 +555,12 @@ Halstead complexity:
   Dests: 1405:auto
 (1 6) 1405 FOR I = 4 * K - 3 TO 4 * K
   Origs: 1400:auto, 1425:goto
-  Dests: 1410:auto
+  Dests: 1410:fornext, 1415:fornext
 (0 2) 1410 GOTO 1703
-  Origs: 1405:auto
+  Origs: 1405:fornext
   Dests: 1703:goto
 (0 1) 1415 NEXT I
-  Origs: 1735:goto
+  Origs: 1405:fornext, 1735:goto
   Dests: 1420:auto
 (0 3) 1420 LET S = 0
   Origs: 1415:auto
@@ -630,9 +630,9 @@ Halstead complexity:
   Dests: 1600:auto
 (1 3) 1600 FOR J = 1 TO 4
   Origs: 265:ifthen, 430:ifthen, 1550:auto
-  Dests: 1605:auto
+  Dests: 1605:fornext, 1650:fornext
 (1 6) 1605 IF X(M(I, J)) <> 1 / 8 THEN 1650
-  Origs: 1600:auto
+  Origs: 1600:fornext
   Dests: 1610:auto, 1650:ifthen
 (0 3) 1610 LET X(M(I, J)) = 5
   Origs: 1605:auto
@@ -659,7 +659,7 @@ Halstead complexity:
   Origs: 1630:auto
   Dests: 70:goto
 (0 1) 1650 NEXT J
-  Origs: 1605:ifthen
+  Origs: 1600:fornext, 1605:ifthen
   Dests: 1660:auto
 (0 2) 1660 PRINT "MACHINE CONCEDES THIS GAME."
   Origs: 1650:auto
@@ -684,12 +684,12 @@ Halstead complexity:
   Dests: 1720:auto
 (1 8) 1720 FOR J = A TO 5 - A STEP 5 - 2 * A
   Origs: 1710:goto, 1715:auto
-  Dests: 1725:auto
+  Dests: 1725:fornext, 1730:fornext
 (1 4) 1725 IF X(M(I, J)) = S THEN 1750
-  Origs: 1720:auto
+  Origs: 1720:fornext
   Dests: 1730:auto, 1750:ifthen
 (0 1) 1730 NEXT J
-  Origs: 1725:auto
+  Origs: 1720:fornext, 1725:auto
   Dests: 1735:auto
 (0 3) 1735 GOTO 1415
   Origs: 1730:auto
@@ -711,15 +711,15 @@ Halstead complexity:
   Dests: 70:goto
 (1 3) 1800 FOR I = 1 TO 64
   Origs: 85:gosub, 492:gosub, 1395:gosub
-  Dests: 1810:auto
+  Dests: 1810:fornext, 1850:fornext
 (1 6) 1810 IF X(I) <> 1 / 8 THEN 1850
-  Origs: 1800:auto
+  Origs: 1800:fornext
   Dests: 1815:auto, 1850:ifthen
 (0 3) 1815 LET X(I) = 0
   Origs: 1810:auto
   Dests: 1850:auto
 (0 1) 1850 NEXT I
-  Origs: 1810:ifthen, 1815:auto
+  Origs: 1800:fornext, 1810:ifthen, 1815:auto
   Dests: 1860:auto
 (0 1) 1860 RETURN
   Origs: 1850:auto

@@ -72,15 +72,15 @@ Halstead complexity:
   Dests: 130:auto
 (1 3) 130 FOR I = 1 TO 5
   Origs: 120:auto, 200:goto
-  Dests: 140:auto
+  Dests: 140:fornext, 180:fornext
 (0 5) 140 LET R = 100 * RND(0)
-  Origs: 130:auto
+  Origs: 130:fornext
   Dests: 170:auto
 (1 4) 170 IF R > 10 THEN 190
   Origs: 140:auto
   Dests: 180:auto, 190:ifthen
 (0 1) 180 NEXT I
-  Origs: 170:auto
+  Origs: 130:fornext, 170:auto
   Dests: 190:auto
 (1 4) 190 IF R <= 40 THEN 210
   Origs: 170:ifthen, 180:auto
@@ -96,15 +96,15 @@ Halstead complexity:
   Dests: 230:auto
 (1 3) 230 FOR F = I TO 5
   Origs: 220:auto, 300:goto
-  Dests: 240:auto
+  Dests: 240:fornext, 280:fornext
 (0 5) 240 LET S = 10000 * RND(0)
-  Origs: 230:auto
+  Origs: 230:fornext
   Dests: 270:auto
 (1 4) 270 IF S > 1000 THEN 290
   Origs: 240:auto
   Dests: 280:auto, 290:ifthen
 (0 1) 280 NEXT F
-  Origs: 270:auto
+  Origs: 230:fornext, 270:auto
   Dests: 290:auto
 (1 4) 290 IF S <= 10000 THEN 310
   Origs: 270:ifthen, 280:auto

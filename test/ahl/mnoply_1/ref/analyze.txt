@@ -39,8 +39,8 @@ Halstead complexity:
 (1 3)   FOR I = 1 TO 8
 (0 3)   U(I) = 0
 (0 1)   NEXT I
-  Origs: 3:auto
-  Dests: 15:auto
+  Origs: 3:auto, 8:fornext, 8:fornext, 8:fornext, 8:fornext
+  Dests: 8:fornext, 8:fornext, 8:fornext, 8:fornext, 15:auto
 (0 2) 15 & M$(1)
 (0 2)    &
 (0 2)    &
@@ -265,10 +265,10 @@ Halstead complexity:
   Dests: 3154:auto
 (1 3) 3154 FOR I = 1 TO 39
   Origs: 3152:auto
-  Dests: 3156:auto
+  Dests: 3156:fornext, 3162:fornext
 (2 8) 3156 IF V$ = G$(I) THEN IF L%(I) = 0 THEN PRINT M$(16)
 (0 1)      RETURN
-  Origs: 3154:auto
+  Origs: 3154:fornext
   Dests: 
 (2 10) 3158 IF V$ = G$(I) THEN IF L%(I) = 1 THEN M(1) = M(1) + V
 (0 4)      M(2) = M(2) - V
@@ -283,7 +283,7 @@ Halstead complexity:
   Origs: 
   Dests: 3165:goto
 (0 1) 3162 NEXT I
-  Origs: 
+  Origs: 3154:fornext
   Dests: 3165:auto
 (0 2) 3165 PRINT M$(18);
 (1 2)      INPUT F$
@@ -293,31 +293,31 @@ Halstead complexity:
 (0 3) 3170 C, D = 0
 (1 3)      FOR I = 1 TO 39
   Origs: 3150:gosub, 3165:auto
-  Dests: 3172:auto
+  Dests: 3172:fornext, 3175:fornext
 (1 7) 3172 IF L%(I) = 1 THEN C = C + 1
 (0 3)      A$(C) = G$(I)
-  Origs: 3170:auto
+  Origs: 3170:fornext
   Dests: 3174:auto
 (1 7) 3174 IF L%(I) = 2 THEN D = D + 1
 (0 3)      B$(D) = G$(I)
   Origs: 3172:auto
   Dests: 3175:auto
 (0 1) 3175 NEXT I
-  Origs: 3174:auto
+  Origs: 3170:fornext, 3174:auto
   Dests: 3176:auto
 (0 3) 3176 PRINT N$(1) "'S PROPERTY"
 (1 3)      FOR I = 1 TO C
 (0 2)      PRINT A$(I)
 (0 1)      NEXT I
-  Origs: 3175:auto
-  Dests: 3178:auto
+  Origs: 3175:auto, 3176:fornext, 3176:fornext
+  Dests: 3176:fornext, 3176:fornext, 3178:auto
 (0 3) 3178 PRINT N$(2) "'S PROPERTY"
 (1 3)      FOR I = 1 TO D
 (0 2)      PRINT B$(I)
 (0 1)      NEXT I
 (0 1)      RETURN
-  Origs: 3176:auto
-  Dests: 
+  Origs: 3176:auto, 3178:fornext, 3178:fornext
+  Dests: 3178:fornext, 3178:fornext
 (1 8) 3200 IF L%(1) = Z AND L%(3) = Z THEN & "HOW MANY HOUSES AT $50 EACH DO YOU WANT ON"
 (0 4)      PRINT G$(1) " " G$(3);
 (1 2)      INPUT U
@@ -588,10 +588,10 @@ Halstead complexity:
   Dests: 30002:auto
 (1 3) 30002 FOR I = I TO 39
   Origs: 30000:auto
-  Dests: 30004:auto
+  Dests: 30004:fornext, 30008:fornext
 (1 7) 30004 IF L%(I) = 1 THEN C = C + 1
 (0 3)       A$(C) = G$(I)
-  Origs: 30002:auto
+  Origs: 30002:fornext
   Dests: 30006:auto
 (1 7) 30006 IF L%(I) = 2 THEN D = D + 1
 (0 3)       B$(D) = G$(I)
@@ -600,14 +600,14 @@ Halstead complexity:
 (0 1) 30008 NEXT I
 (0 2)       PRINT
 (0 2)       PRINT
-  Origs: 30006:auto
+  Origs: 30002:fornext, 30006:auto
   Dests: 30009:auto
 (0 3) 30009 PRINT N$(1); " OWNED THE FOLLOWING PROPERTY"
 (1 3)       FOR I = 1 TO C
 (0 2)       PRINT A$(I)
 (0 1)       NEXT I
-  Origs: 30008:auto
-  Dests: 30010:auto
+  Origs: 30008:auto, 30009:fornext, 30009:fornext
+  Dests: 30009:fornext, 30009:fornext, 30010:auto
 (0 4) 30010 PRINT "AND HAD"; M(1); "DOLLARS AT THE END OF THE GAME"
   Origs: 30009:auto
   Dests: 30011:auto

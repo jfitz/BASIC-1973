@@ -33,21 +33,21 @@ Halstead complexity:
   Dests: 10:auto
 (1 4) 10 FOR X = 0 TO 50 STEP 10
   Origs: 8:auto
-  Dests: 12:auto
+  Dests: 12:fornext, 14:fornext
 (0 3) 12 PRINT "    "; X;
-  Origs: 10:auto
+  Origs: 10:fornext
   Dests: 14:auto
 (0 1) 14 NEXT X
-  Origs: 12:auto
+  Origs: 10:fornext, 12:auto
   Dests: 15:auto
 (0 2) 15 PRINT
   Origs: 14:auto
   Dests: 16:auto
 (1 3) 16 FOR X = 1 TO 70
   Origs: 15:auto
-  Dests: 18:auto
+  Dests: 18:fornext, 26:fornext
 (1 6) 18 IF X / 10 = INT(X / 10) THEN 24
-  Origs: 16:auto
+  Origs: 16:fornext
   Dests: 20:auto, 24:ifthen
 (0 2) 20 PRINT "-";
   Origs: 18:auto
@@ -59,22 +59,22 @@ Halstead complexity:
   Origs: 18:ifthen
   Dests: 26:auto
 (0 1) 26 NEXT X
-  Origs: 22:goto, 24:auto
+  Origs: 16:fornext, 22:goto, 24:auto
   Dests: 30:auto
 (0 3) 30 DEF FNQ(X) = X ^ 2
   Origs: 26:auto
   Dests: 60:auto
 (1 4) 60 FOR X = -7 TO 7
   Origs: 30:auto
-  Dests: 62:auto
+  Dests: 62:fornext, 240:fornext
 (0 2) 62 PRINT
-  Origs: 60:auto
+  Origs: 60:fornext
   Dests: 90:auto
 (1 5) 90 FOR Y = -M TO 70 - M
   Origs: 62:auto
-  Dests: 92:auto
+  Dests: 92:fornext, 180:fornext
 (1 4) 92 IF Y <> 0 THEN 120
-  Origs: 90:auto
+  Origs: 90:fornext
   Dests: 94:auto, 120:ifthen
 (1 4) 94 IF X = 0 THEN 98
   Origs: 92:auto
@@ -110,7 +110,7 @@ Halstead complexity:
   Origs: 148:auto
   Dests: 180:auto
 (0 1) 180 NEXT Y
-  Origs: 100:ifthen, 150:auto
+  Origs: 90:fornext, 100:ifthen, 150:auto
   Dests: 210:auto
 (0 2) 210 PRINT "*";
   Origs: 120:ifthen, 180:auto
@@ -119,7 +119,7 @@ Halstead complexity:
   Origs: 210:auto
   Dests: 240:auto
 (0 1) 240 NEXT X
-  Origs: 106:goto, 212:auto
+  Origs: 60:fornext, 106:goto, 212:auto
   Dests: 270:auto
 (0 1) 270 END
   Origs: 240:auto

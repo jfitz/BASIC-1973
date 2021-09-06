@@ -312,12 +312,12 @@ Halstead complexity:
   Dests: 1950:goto
 (1 3) 2000 FOR H1 = 0 TO 10000
   Origs: 1970:ifthen
-  Dests: 2010:auto
+  Dests: 2010:fornext, 2020:fornext
 (1 4) 2010 IF H1 = H THEN 2060
-  Origs: 2000:auto
+  Origs: 2000:fornext
   Dests: 2020:auto, 2060:ifthen
 (0 1) 2020 NEXT H1
-  Origs: 2010:auto
+  Origs: 2000:fornext, 2010:auto
   Dests: 2030:auto
 (0 2) 2030 GOSUB 2840
   Origs: 2020:auto
@@ -384,12 +384,12 @@ Halstead complexity:
   Dests: 2190:goto
 (1 3) 2240 FOR I2 = 0 TO 10000
   Origs: 2210:ifthen
-  Dests: 2250:auto
+  Dests: 2250:fornext, 2260:fornext
 (1 4) 2250 IF I2 = I THEN 2300
-  Origs: 2240:auto
+  Origs: 2240:fornext
   Dests: 2260:auto, 2300:ifthen
 (0 1) 2260 NEXT I2
-  Origs: 2250:auto
+  Origs: 2240:fornext, 2250:auto
   Dests: 2270:auto
 (0 2) 2270 GOSUB 2840
   Origs: 2260:auto
@@ -459,12 +459,12 @@ Halstead complexity:
   Dests: 2440:goto
 (1 3) 2490 FOR B9 = 0 TO 10000
   Origs: 2460:ifthen
-  Dests: 2500:auto
+  Dests: 2500:fornext, 2510:fornext
 (1 4) 2500 IF B8 = B9 THEN 2540
-  Origs: 2490:auto
+  Origs: 2490:fornext
   Dests: 2510:auto, 2540:ifthen
 (0 1) 2510 NEXT B9
-  Origs: 2500:auto
+  Origs: 2490:fornext, 2500:auto
   Dests: 2520:auto
 (0 3) 2520 GOTO 2440
   Origs: 2510:auto
@@ -501,12 +501,12 @@ Halstead complexity:
   Dests: 2630:auto
 (1 3) 2630 FOR M = 0 TO 36
   Origs: 2620:auto
-  Dests: 2640:auto
+  Dests: 2640:fornext, 2650:fornext
 (1 4) 2640 IF F = M THEN 2690
-  Origs: 2630:auto
+  Origs: 2630:fornext
   Dests: 2650:auto, 2690:ifthen
 (0 1) 2650 NEXT M
-  Origs: 2640:auto
+  Origs: 2630:fornext, 2640:auto
   Dests: 2660:auto
 (0 2) 2660 PRINT "THAT IS AN ILLEGAL NUMBER"
   Origs: 2650:auto
@@ -534,12 +534,12 @@ Halstead complexity:
   Dests: 2690:goto
 (1 3) 2740 FOR G9 = 0 TO 10000
   Origs: 2710:ifthen
-  Dests: 2750:auto
+  Dests: 2750:fornext, 2760:fornext
 (1 4) 2750 IF G = G9 THEN 2880
-  Origs: 2740:auto
+  Origs: 2740:fornext
   Dests: 2760:auto, 2880:ifthen
 (0 1) 2760 NEXT G9
-  Origs: 2750:auto
+  Origs: 2740:fornext, 2750:auto
   Dests: 2770:auto
 (0 2) 2770 GOSUB 2840
   Origs: 2760:auto
@@ -711,24 +711,24 @@ Halstead complexity:
   Dests: 3640:auto, 3680:ifthen
 (1 4) 3640 FOR X = 1 TO 35 STEP 2
   Origs: 3630:auto
-  Dests: 3650:auto
+  Dests: 3650:fornext, 3660:fornext
 (1 4) 3650 IF T = X THEN 3750
-  Origs: 3640:auto
+  Origs: 3640:fornext
   Dests: 3660:auto, 3750:ifthen
 (0 1) 3660 NEXT X
-  Origs: 3650:auto
+  Origs: 3640:fornext, 3650:auto
   Dests: 3670:auto
 (0 2) 3670 GOTO 3710
   Origs: 3660:auto
   Dests: 3710:goto
 (1 4) 3680 FOR X1 = 2 TO 36 STEP 2
   Origs: 3630:ifthen
-  Dests: 3690:auto
+  Dests: 3690:fornext, 3700:fornext
 (1 4) 3690 IF T = X1 THEN 3750
-  Origs: 3680:auto
+  Origs: 3680:fornext
   Dests: 3700:auto, 3750:ifthen
 (0 1) 3700 NEXT X1
-  Origs: 3690:auto
+  Origs: 3680:fornext, 3690:auto
   Dests: 3710:auto
 (0 3) 3710 PRINT " YOU LOSE $" H;
   Origs: 3620:ifthen, 3670:goto, 3700:auto
@@ -765,39 +765,39 @@ Halstead complexity:
   Dests: 3820:auto, 3980:ifthen
 (1 4) 3820 FOR A1 = 1 TO 9 STEP 2
   Origs: 3810:auto
-  Dests: 3830:auto
+  Dests: 3830:fornext, 3840:fornext
 (1 4) 3830 IF T = A1 THEN 3970
-  Origs: 3820:auto
+  Origs: 3820:fornext
   Dests: 3840:auto, 3970:ifthen
 (0 1) 3840 NEXT A1
-  Origs: 3830:auto
+  Origs: 3820:fornext, 3830:auto
   Dests: 3850:auto
 (1 4) 3850 FOR A2 = 12 TO 18 STEP 2
   Origs: 3840:auto
-  Dests: 3860:auto
+  Dests: 3860:fornext, 3870:fornext
 (1 4) 3860 IF T = A2 THEN 3970
-  Origs: 3850:auto
+  Origs: 3850:fornext
   Dests: 3870:auto, 3970:ifthen
 (0 1) 3870 NEXT A2
-  Origs: 3860:auto
+  Origs: 3850:fornext, 3860:auto
   Dests: 3880:auto
 (1 4) 3880 FOR A3 = 19 TO 25 STEP 2
   Origs: 3870:auto
-  Dests: 3890:auto
+  Dests: 3890:fornext, 3900:fornext
 (1 4) 3890 IF T = A3 THEN 3970
-  Origs: 3880:auto
+  Origs: 3880:fornext
   Dests: 3900:auto, 3970:ifthen
 (0 1) 3900 NEXT A3
-  Origs: 3890:auto
+  Origs: 3880:fornext, 3890:auto
   Dests: 3910:auto
 (1 4) 3910 FOR A4 = 30 TO 36 STEP 2
   Origs: 3900:auto
-  Dests: 3920:auto
+  Dests: 3920:fornext, 3930:fornext
 (1 4) 3920 IF T = A4 THEN 3970
-  Origs: 3910:auto
+  Origs: 3910:fornext
   Dests: 3930:auto, 3970:ifthen
 (0 1) 3930 NEXT A4
-  Origs: 3920:auto
+  Origs: 3910:fornext, 3920:auto
   Dests: 3940:auto
 (1 4) 3940 IF T = 26 THEN 3970
   Origs: 3930:auto
@@ -849,30 +849,30 @@ Halstead complexity:
   Dests: 4100:auto, 4300:ifthen
 (1 4) 4100 FOR B3 = 1 TO 34 STEP 3
   Origs: 4090:auto
-  Dests: 4110:auto
+  Dests: 4110:fornext, 4120:fornext
 (1 4) 4110 IF T = B3 THEN 4190
-  Origs: 4100:auto
+  Origs: 4100:fornext
   Dests: 4120:auto, 4190:ifthen
 (0 1) 4120 NEXT B3
-  Origs: 4110:auto
+  Origs: 4100:fornext, 4110:auto
   Dests: 4130:auto
 (1 4) 4130 FOR B4 = 2 TO 35 STEP 3
   Origs: 4120:auto
-  Dests: 4140:auto
+  Dests: 4140:fornext, 4150:fornext
 (1 4) 4140 IF T = B4 THEN 4210
-  Origs: 4130:auto
+  Origs: 4130:fornext
   Dests: 4150:auto, 4210:ifthen
 (0 1) 4150 NEXT B4
-  Origs: 4140:auto
+  Origs: 4130:fornext, 4140:auto
   Dests: 4160:auto
 (1 4) 4160 FOR B5 = 3 TO 36 STEP 3
   Origs: 4150:auto
-  Dests: 4170:auto
+  Dests: 4170:fornext, 4180:fornext
 (1 4) 4170 IF T = B5 THEN 4230
-  Origs: 4160:auto
+  Origs: 4160:fornext
   Dests: 4180:auto, 4230:ifthen
 (0 1) 4180 NEXT B5
-  Origs: 4170:auto
+  Origs: 4160:fornext, 4170:auto
   Dests: 4190:auto
 (1 4) 4190 IF B2 = 1 THEN 4250
   Origs: 4110:ifthen, 4180:auto

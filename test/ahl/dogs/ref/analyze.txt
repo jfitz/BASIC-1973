@@ -46,8 +46,8 @@ Halstead complexity:
 (3 5)    GET 8, 25, I
 (0 4)    V9 = V9 + V
 (0 1)    NEXT I
-  Origs: 35:auto
-  Dests: 45:auto, 70:ifthen
+  Origs: 35:auto, 40:fornext, 40:fornext
+  Dests: 40:fornext, 40:fornext, 45:auto, 70:ifthen
 (1 4) 45 IF V9 < 25 THEN 60
 (1 4)    IF V9 > 200 THEN 55
   Origs: 40:auto
@@ -75,27 +75,27 @@ Halstead complexity:
 (0 1)    RANDOMIZE
 (0 5)    H = INT(10 * RND(X)) + 1
 (3 5)    GET 8, 25, H
-  Origs: 40:ifthen
-  Dests: 75:auto
+  Origs: 40:ifthen, 70:fornext
+  Dests: 70:fornext, 75:auto, 95:fornext
 (0 4) 75 V = V + 1
 (3 6)    PUT 8, 25, H
 (1 3)    FOR T = 1 TO 10
 (1 4)    IF H = T THEN 85
-  Origs: 70:auto
-  Dests: 80:auto, 85:ifthen
+  Origs: 70:auto, 75:fornext
+  Dests: 75:fornext, 80:auto, 85:fornext, 85:ifthen
 (3 5) 80 GET 9, 30, T
 (0 4)    X = X + 1
 (3 6)    PUT 9, 30, T
   Origs: 75:auto
   Dests: 85:auto
 (0 1) 85 NEXT T
-  Origs: 75:ifthen, 80:auto
+  Origs: 75:fornext, 75:ifthen, 80:auto
   Dests: 90:auto
 (0 3) 90 PRINT CHR$(135);
   Origs: 85:auto
   Dests: 95:auto
 (0 1) 95 NEXT I
-  Origs: 90:auto
+  Origs: 70:fornext, 90:auto
   Dests: 100:auto
 (0 2) 100 PRINT
 (0 2)     PRINT
@@ -185,9 +185,9 @@ Halstead complexity:
   Dests: 230:auto
 (1 3) 230 FOR I = 1 TO 10
   Origs: 225:auto
-  Dests: 235:auto
+  Dests: 235:fornext, 250:fornext
 (1 2) 235 READ H$(I)
-  Origs: 230:auto
+  Origs: 230:fornext
   Dests: 240:auto
 (3 5) 240 GET 8, 25, I
 (3 5)     GET 9, 30, I
@@ -198,7 +198,7 @@ Halstead complexity:
   Dests: 250:auto
 (0 1) 250 NEXT I
 (0 1)     RETURN
-  Origs: 245:auto
+  Origs: 230:fornext, 245:auto
   Dests: 
 (0 2) 255 PRINT
 (0 2)     PRINT
@@ -216,10 +216,10 @@ Halstead complexity:
   Dests: 255:goto
 (1 3) 270 FOR Z = 1 TO Q
   Origs: 260:ifthen
-  Dests: 275:auto
+  Dests: 275:fornext, 295:fornext
 (0 2) 275 PRINT "BETTOR'S NAME";
 (1 2)     INPUT N$(Z)
-  Origs: 270:auto
+  Origs: 270:fornext
   Dests: 280:auto
 (0 2) 280 PRINT "DOG'S NUMBER";
 (1 2)     INPUT J(Z)
@@ -236,7 +236,7 @@ Halstead complexity:
 (0 2) 295 PRINT
 (0 1)     NEXT Z
 (0 2)     GOTO 325
-  Origs: 290:auto
+  Origs: 270:fornext, 290:auto
   Dests: 325:goto
 (0 3) 300 PRINT "YOU MUST BET AT LEAST $2,00, TRY AGAIN " N$(Z)
   Origs: 290:ifthen
@@ -256,36 +256,36 @@ Halstead complexity:
   Dests: 305:goto
 (1 3) 325 FOR I = 1 TO 10
   Origs: 295:goto, 940:ifthen, 1065:goto, 1080:goto
-  Dests: 330:auto
+  Dests: 330:fornext, 335:fornext
 (0 4) 330 B(11) = B(11) + P(I)
-  Origs: 325:auto
+  Origs: 325:fornext
   Dests: 335:auto
 (0 1) 335 NEXT I
-  Origs: 330:auto
+  Origs: 325:fornext, 330:auto
   Dests: 340:auto
 (1 3) 340 FOR I = 1 TO Q
   Origs: 335:auto
-  Dests: 345:auto
+  Dests: 345:fornext, 365:fornext
 (1 3) 345 FOR I3 = 1 TO 10
-  Origs: 340:auto
-  Dests: 350:auto
+  Origs: 340:fornext
+  Dests: 350:fornext, 360:fornext
 (1 4) 350 IF J(I) <> I3 THEN 360
-  Origs: 345:auto
+  Origs: 345:fornext
   Dests: 355:auto, 360:ifthen
 (0 4) 355 A(I3) = A(I3) + P(I)
   Origs: 350:auto
   Dests: 360:auto
 (0 1) 360 NEXT I3
-  Origs: 350:ifthen, 355:auto
+  Origs: 345:fornext, 350:ifthen, 355:auto
   Dests: 365:auto
 (0 1) 365 NEXT I
-  Origs: 360:auto
+  Origs: 340:fornext, 360:auto
   Dests: 370:auto
 (1 3) 370 FOR I = 1 TO 10
   Origs: 365:auto
-  Dests: 375:auto
+  Dests: 375:fornext, 410:fornext
 (1 4) 375 IF A(I) >= 2 THEN 390
-  Origs: 370:auto
+  Origs: 370:fornext
   Dests: 380:auto, 390:ifthen
 (0 5) 380 B(I) = INT(B(11) * RND(X)) + 1
   Origs: 375:auto
@@ -306,7 +306,7 @@ Halstead complexity:
   Origs: 395:ifthen
   Dests: 410:auto
 (0 1) 410 NEXT I
-  Origs: 400:goto, 405:auto
+  Origs: 370:fornext, 400:goto, 405:auto
   Dests: 415:auto
 (0 2) 415 PRINT
   Origs: 410:auto
@@ -316,20 +316,20 @@ Halstead complexity:
   Dests: 425:auto
 (1 3) 425 FOR I = 1 TO 10
   Origs: 420:auto
-  Dests: 430:auto
+  Dests: 430:fornext, 435:fornext
 (0 5) 430 PRINT H$(I), I, B(I) ": 1"
-  Origs: 425:auto
+  Origs: 425:fornext
   Dests: 435:auto
 (0 1) 435 NEXT I
-  Origs: 430:auto
+  Origs: 425:fornext, 430:auto
   Dests: 440:auto
 (1 3) 440 FOR I = 1 TO 10
   Origs: 435:auto
-  Dests: 445:auto
+  Dests: 445:fornext, 475:fornext
 (3 5) 445 GET 8, 25, I
 (3 5)     GET 9, 30, I
 (1 5)     IF V + X <= 0 THEN 470
-  Origs: 440:auto
+  Origs: 440:fornext
   Dests: 450:auto, 470:ifthen
 (0 1) 450 RANDOMIZE
   Origs: 445:auto
@@ -347,16 +347,16 @@ Halstead complexity:
   Origs: 445:ifthen, 460:ifthen
   Dests: 475:auto
 (0 1) 475 NEXT I
-  Origs: 465:goto, 470:auto
+  Origs: 440:fornext, 465:goto, 470:auto
   Dests: 480:auto
 (1 3) 480 FOR R = 1 TO 10
   Origs: 475:auto
-  Dests: 485:auto
+  Dests: 485:fornext, 490:fornext
 (0 3) 485 S(R) = 0
-  Origs: 480:auto
+  Origs: 480:fornext
   Dests: 490:auto
 (0 1) 490 NEXT R
-  Origs: 485:auto
+  Origs: 480:fornext, 485:auto
   Dests: 495:auto
 (0 2) 495 PRINT
   Origs: 490:auto
@@ -369,9 +369,9 @@ Halstead complexity:
   Dests: 510:auto
 (1 3) 510 FOR R = 1 TO 10
   Origs: 505:auto, 635:goto
-  Dests: 515:auto
+  Dests: 515:fornext, 530:fornext
 (0 1) 515 RANDOMIZE
-  Origs: 510:auto
+  Origs: 510:fornext
   Dests: 520:auto
 (0 5) 520 C(R) = INT(Y(R) * RND(X)) + 1
   Origs: 515:auto
@@ -380,31 +380,31 @@ Halstead complexity:
   Origs: 520:auto
   Dests: 530:auto
 (0 1) 530 NEXT R
-  Origs: 525:auto
+  Origs: 510:fornext, 525:auto
   Dests: 535:auto
 (0 4) 535 PRINT TAB(2); "XXXXXXXXSTARTXXXXXXXX"
   Origs: 530:auto
   Dests: 540:auto
 (1 3) 540 FOR P = 1 TO 20
   Origs: 535:auto
-  Dests: 545:auto
+  Dests: 545:fornext, 570:fornext
 (1 3) 545 FOR R = 1 TO 10
-  Origs: 540:auto
-  Dests: 550:auto
+  Origs: 540:fornext
+  Dests: 550:fornext, 560:fornext
 (1 4) 550 IF P = S(R) THEN 580
-  Origs: 545:auto
+  Origs: 545:fornext
   Dests: 555:auto, 580:ifthen
 (1 4) 555 IF S(R) > 20 THEN 590
   Origs: 550:auto
   Dests: 560:auto, 590:ifthen
 (0 1) 560 NEXT R
-  Origs: 555:auto, 585:goto, 600:goto, 620:goto
+  Origs: 545:fornext, 555:auto, 585:goto, 600:goto, 620:goto
   Dests: 565:auto
 (0 2) 565 PRINT
   Origs: 560:auto
   Dests: 570:auto
 (0 1) 570 NEXT P
-  Origs: 565:auto
+  Origs: 540:fornext, 565:auto
   Dests: 575:auto
 (0 2) 575 GOTO 625
   Origs: 570:auto
@@ -447,15 +447,15 @@ Halstead complexity:
   Dests: 510:goto
 (1 3) 640 FOR Y = 2 TO 22
   Origs: 625:ifthen
-  Dests: 645:auto
+  Dests: 645:fornext, 655:fornext
 (0 8) 645 PRINT TAB(Y); "X"; TAB(Y); CHR$(135);
-  Origs: 640:auto
+  Origs: 640:fornext
   Dests: 650:auto
 (1 4) 650 IF Y = 7 THEN 665
   Origs: 645:auto
   Dests: 655:auto, 665:ifthen
 (0 1) 655 NEXT Y
-  Origs: 650:auto, 675:goto
+  Origs: 640:fornext, 650:auto, 675:goto
   Dests: 660:auto
 (0 2) 660 GOTO 680
   Origs: 655:auto
@@ -479,8 +479,8 @@ Halstead complexity:
 (0 2)     PRINT "*";
 (0 1)     NEXT I
 (0 2)     PRINT
-  Origs: 685:auto
-  Dests: 695:auto
+  Origs: 685:auto, 690:fornext, 690:fornext
+  Dests: 690:fornext, 690:fornext, 695:auto
 (1 4) 695 IF D <= 1 THEN 735
   Origs: 690:auto
   Dests: 700:auto, 735:ifthen
@@ -489,12 +489,12 @@ Halstead complexity:
   Dests: 705:auto
 (1 3) 705 FOR I2 = 1 TO D
   Origs: 700:auto
-  Dests: 710:auto
+  Dests: 710:fornext, 715:fornext
 (1 4) 710 IF S(W(I2)) < S(W(I2 + 1)) THEN 725
-  Origs: 705:auto
+  Origs: 705:fornext
   Dests: 715:auto, 725:ifthen
 (0 1) 715 NEXT I2
-  Origs: 710:auto, 730:goto
+  Origs: 705:fornext, 710:auto, 730:goto
   Dests: 720:auto
 (0 2) 720 GOTO 735
   Origs: 715:auto
@@ -523,9 +523,9 @@ Halstead complexity:
   Dests: 760:auto
 (1 3) 760 FOR E = 1 TO Q
   Origs: 755:auto
-  Dests: 765:auto
+  Dests: 765:fornext, 780:fornext
 (1 4) 765 IF G = J(E) THEN 790
-  Origs: 760:auto
+  Origs: 760:fornext
   Dests: 770:auto, 790:ifthen
 (0 4) 770 M5(E) = M5(E) - P(E)
   Origs: 765:auto
@@ -534,7 +534,7 @@ Halstead complexity:
   Origs: 770:auto
   Dests: 780:auto
 (0 1) 780 NEXT E
-  Origs: 775:auto, 830:goto
+  Origs: 760:fornext, 775:auto, 830:goto
   Dests: 785:auto
 (0 2) 785 GOTO 835
   Origs: 780:auto
@@ -579,26 +579,26 @@ Halstead complexity:
 (0 3)     PRINT "PERSON", "AMOUNT "
 (1 3)     FOR I = 1 TO Q
   Origs: 845:auto
-  Dests: 855:auto
+  Dests: 855:fornext, 855:fornext
 (0 3) 855 PRINT N$(I), M5(I)
 (0 1)     NEXT I
 (0 3)     PRINT "COMP", N7
-  Origs: 850:auto
+  Origs: 850:fornext, 850:fornext
   Dests: 860:auto
 (1 3) 860 FOR I = 1 TO 5
 (0 2)     PRINT
 (0 1)     NEXT I
 (0 2)     GOTO 1085
-  Origs: 855:auto
-  Dests: 1085:goto
+  Origs: 855:auto, 860:fornext, 860:fornext
+  Dests: 860:fornext, 860:fornext, 1085:goto
 (0 2) 865 GOTO 1085
   Origs: 
   Dests: 1085:goto
 (1 3) 870 FOR K = 1 TO 10
   Origs: 845:ifthen
-  Dests: 875:auto
+  Dests: 875:fornext, 910:fornext
 (0 3) 875 A(K) = 0
-  Origs: 870:auto
+  Origs: 870:fornext
   Dests: 880:auto
 (0 3) 880 S(K) = 0
   Origs: 875:auto
@@ -620,7 +620,7 @@ Halstead complexity:
   Dests: 910:auto
 (0 1) 910 NEXT K
 (0 3)     GOSUB 225
-  Origs: 905:auto
+  Origs: 870:fornext, 905:auto
   Dests: 225:gosub, 915:auto
 (0 2) 915 PRINT "ANY NEWCOMERS";
 (1 2)     INPUT C$
@@ -628,10 +628,10 @@ Halstead complexity:
   Dests: 920:auto
 (1 3) 920 FOR I = 1 TO Q
   Origs: 915:auto
-  Dests: 925:auto
+  Dests: 925:fornext, 935:fornext
 (0 4) 925 PRINT N$(I); " YOUR DOGS NUMBER" I
 (1 2)     INPUT J(I)
-  Origs: 920:auto
+  Origs: 920:fornext
   Dests: 930:auto
 (0 2) 930 PRINT "AND YOUR BET";
 (1 2)     INPUT P(I)
@@ -640,7 +640,7 @@ Halstead complexity:
 (1 4) 935 IF P(I) < 2 THEN 950
 (1 4)     IF P(I) > 500 THEN 960
 (0 1)     NEXT I
-  Origs: 930:auto, 955:goto
+  Origs: 920:fornext, 930:auto, 955:goto
   Dests: 940:auto, 950:ifthen, 960:ifthen
 (1 5) 940 IF C$ = "NO" THEN 325
   Origs: 935:auto
@@ -663,10 +663,10 @@ Halstead complexity:
   Dests: 930:goto
 (1 3) 970 FOR I = 1 TO 10
   Origs: 750:goto
-  Dests: 975:auto
+  Dests: 975:fornext, 1000:fornext
 (3 5) 975 GET 8, 25, I
 (3 5)     GET 9, 30, I
-  Origs: 970:auto
+  Origs: 970:fornext
   Dests: 980:auto
 (1 4) 980 IF I = G THEN 995
   Origs: 975:auto
@@ -683,7 +683,7 @@ Halstead complexity:
   Origs: 980:ifthen
   Dests: 1000:auto
 (0 1) 1000 NEXT I
-  Origs: 990:goto, 995:auto
+  Origs: 970:fornext, 990:goto, 995:auto
   Dests: 1005:auto
 (0 3) 1005 GOTO 755
   Origs: 1000:auto
@@ -717,10 +717,10 @@ Halstead complexity:
   Dests: 1025:goto
 (1 3) 1040 FOR Z = I TO Q
   Origs: 1030:goto
-  Dests: 1045:auto
+  Dests: 1045:fornext, 1065:fornext
 (0 2) 1045 PRINT "BETTORS NAME";
 (1 2)      INPUT N$(Z)
-  Origs: 1040:auto
+  Origs: 1040:fornext
   Dests: 1050:auto
 (0 2) 1050 PRINT "DOGS NUMBER";
 (1 2)      INPUT J(Z)
@@ -737,7 +737,7 @@ Halstead complexity:
 (0 2) 1065 PRINT
 (0 1)      NEXT Z
 (0 3)      GOTO 325
-  Origs: 1060:auto
+  Origs: 1040:fornext, 1060:auto
   Dests: 325:goto
 (0 2) 1070 PRINT "YOU MUST BET AT LEAST $2.00"
 (0 3)      GOTO 1055

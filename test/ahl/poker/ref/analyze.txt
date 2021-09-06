@@ -87,12 +87,12 @@ Halstead complexity:
   Dests: 23:auto
 (1 3) 23 FOR Z = 1 TO 10
   Origs: 22:auto
-  Dests: 24:auto
+  Dests: 24:fornext, 25:fornext
 (0 2) 24 GOSUB 174
-  Origs: 23:auto
+  Origs: 23:fornext
   Dests: 25:auto, 174:gosub
 (0 1) 25 NEXT Z
-  Origs: 24:auto
+  Origs: 23:fornext, 24:auto
   Dests: 26:auto
 (0 2) 26 PRINT "YOUR HAND:"
   Origs: 25:auto
@@ -291,15 +291,15 @@ Halstead complexity:
   Dests: 91:auto
 (1 3) 91 FOR Q = 1 TO T
   Origs: 90:auto
-  Dests: 92:auto
+  Dests: 92:fornext, 94:fornext
 (1 2) 92 INPUT U
-  Origs: 91:auto
+  Origs: 91:fornext
   Dests: 93:auto
 (0 2) 93 GOSUB 173
   Origs: 92:auto
   Dests: 94:auto, 173:gosub
 (0 1) 94 NEXT Q
-  Origs: 93:auto
+  Origs: 91:fornext, 93:auto
   Dests: 95:auto
 (0 2) 95 PRINT "YOUR NEW HAND: "
   Origs: 94:auto
@@ -315,15 +315,15 @@ Halstead complexity:
   Dests: 99:auto
 (1 3) 99 FOR U = 6 TO 10
   Origs: 98:auto
-  Dests: 100:auto
+  Dests: 100:fornext, 102:fornext
 (1 8) 100 IF INT(X / 10 ^ (U - 6)) <> 10 * INT(X / 10 ^ (U - 5)) THEN 102
-  Origs: 99:auto
+  Origs: 99:fornext
   Dests: 101:auto, 102:ifthen
 (0 2) 101 GOSUB 173
   Origs: 100:auto
   Dests: 102:auto, 173:gosub
 (0 1) 102 NEXT U
-  Origs: 100:ifthen, 101:auto
+  Origs: 99:fornext, 100:ifthen, 101:auto
   Dests: 103:auto
 (0 2) 103 PRINT
   Origs: 102:auto
@@ -549,12 +549,12 @@ Halstead complexity:
   Dests: 174:ifthen, 177:auto
 (1 4) 177 FOR K = 1 TO Z - 1
   Origs: 176:auto
-  Dests: 178:auto
+  Dests: 178:fornext, 179:fornext
 (1 5) 178 IF A(Z) = A(K) THEN 174
-  Origs: 177:auto
+  Origs: 177:fornext
   Dests: 174:ifthen, 179:auto
 (0 1) 179 NEXT K
-  Origs: 178:auto
+  Origs: 177:fornext, 178:auto
   Dests: 180:auto
 (1 4) 180 IF Z <= 10 THEN 184
   Origs: 179:auto
@@ -573,9 +573,9 @@ Halstead complexity:
   Dests: 
 (1 4) 185 FOR Z = N TO N + 4
   Origs: 28:gosub, 97:gosub, 152:gosub
-  Dests: 186:auto
+  Dests: 186:fornext, 192:fornext
 (0 3) 186 PRINT Z "-  ";
-  Origs: 185:auto
+  Origs: 185:fornext
   Dests: 187:auto
 (0 2) 187 GOSUB 195
   Origs: 186:auto
@@ -593,7 +593,7 @@ Halstead complexity:
   Origs: 190:auto
   Dests: 192:auto
 (0 1) 192 NEXT Z
-  Origs: 190:ifthen, 191:auto
+  Origs: 185:fornext, 190:ifthen, 191:auto
   Dests: 193:auto
 (0 2) 193 PRINT
   Origs: 192:auto
@@ -672,9 +672,9 @@ Halstead complexity:
   Dests: 218:auto
 (1 4) 218 FOR Z = N TO N + 4
   Origs: 217:auto
-  Dests: 219:auto
+  Dests: 219:fornext, 223:fornext
 (0 5) 219 LET B(Z) = FNB(A(Z))
-  Origs: 218:auto
+  Origs: 218:fornext
   Dests: 220:auto
 (1 6) 220 IF Z = N + 4 THEN 223
   Origs: 219:auto
@@ -686,7 +686,7 @@ Halstead complexity:
   Origs: 221:auto
   Dests: 223:auto
 (0 1) 223 NEXT Z
-  Origs: 220:ifthen, 221:ifthen, 222:auto
+  Origs: 218:fornext, 220:ifthen, 221:ifthen, 222:auto
   Dests: 224:auto
 (1 4) 224 IF U <> 4 THEN 231
   Origs: 223:auto
@@ -711,12 +711,12 @@ Halstead complexity:
   Dests: 
 (1 4) 231 FOR Z = N TO N + 3
   Origs: 224:ifthen
-  Dests: 232:auto
+  Dests: 232:fornext, 240:fornext
 (1 5) 232 FOR K = Z + 1 TO N + 4
-  Origs: 231:auto
-  Dests: 233:auto
+  Origs: 231:fornext
+  Dests: 233:fornext, 239:fornext
 (1 4) 233 IF B(Z) <= B(K) THEN 239
-  Origs: 232:auto
+  Origs: 232:fornext
   Dests: 234:auto, 239:ifthen
 (0 3) 234 LET X = A(Z)
   Origs: 233:auto
@@ -734,19 +734,19 @@ Halstead complexity:
   Origs: 237:auto
   Dests: 239:auto
 (0 1) 239 NEXT K
-  Origs: 233:ifthen, 238:auto
+  Origs: 232:fornext, 233:ifthen, 238:auto
   Dests: 240:auto
 (0 1) 240 NEXT Z
-  Origs: 239:auto
+  Origs: 231:fornext, 239:auto
   Dests: 241:auto
 (0 3) 241 LET X = 0
   Origs: 240:auto
   Dests: 242:auto
 (1 4) 242 FOR Z = N TO N + 3
   Origs: 241:auto
-  Dests: 243:auto
+  Dests: 243:fornext, 247:fornext
 (1 4) 243 IF B(Z) <> B(Z + 1) THEN 247
-  Origs: 242:auto
+  Origs: 242:fornext
   Dests: 244:auto, 247:ifthen
 (0 10) 244 LET X = X + 11 * 10 ^ (Z - N)
   Origs: 243:auto
@@ -758,7 +758,7 @@ Halstead complexity:
   Origs: 245:auto
   Dests: 247:auto, 276:gosub
 (0 1) 247 NEXT Z
-  Origs: 243:ifthen, 246:auto
+  Origs: 242:fornext, 243:ifthen, 246:auto
   Dests: 248:auto
 (1 4) 248 IF X <> 0 THEN 262
   Origs: 247:auto

@@ -33,9 +33,9 @@ Halstead complexity:
   Dests: 40:auto
 (1 3) 40 FOR X = 1 TO 1000
   Origs: 38:auto
-  Dests: 50:auto
+  Dests: 50:fornext, 120:fornext
 (0 3) 50 LET C = 0
-  Origs: 40:auto
+  Origs: 40:fornext
   Dests: 55:auto
 (0 1) 55 REM  C IS GOING TO COUNT 1'S
   Origs: 50:auto
@@ -45,9 +45,9 @@ Halstead complexity:
   Dests: 60:auto
 (1 3) 60 FOR R = 1 TO 6
   Origs: 56:auto
-  Dests: 70:auto
+  Dests: 70:fornext, 100:fornext
 (0 4) 70 LET U = INT(6 * RND(1) + 1)
-  Origs: 60:auto
+  Origs: 60:fornext
   Dests: 80:auto
 (1 4) 80 IF U > 1 THEN 100
   Origs: 70:auto
@@ -56,13 +56,13 @@ Halstead complexity:
   Origs: 80:auto
   Dests: 100:auto
 (0 1) 100 NEXT R
-  Origs: 80:ifthen, 90:auto
+  Origs: 60:fornext, 80:ifthen, 90:auto
   Dests: 110:auto
 (0 4) 110 LET L[1, C + 1] = L[1, C + 1] + 1
   Origs: 100:auto
   Dests: 120:auto
 (0 1) 120 NEXT X
-  Origs: 110:auto
+  Origs: 40:fornext, 110:auto
   Dests: 130:auto
 (0 2) 130 PRINT "NONE  ONE   TWO   THREE FOUR  FIVE  SIX"
   Origs: 120:auto
