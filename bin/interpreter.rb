@@ -1089,7 +1089,7 @@ class Interpreter
   end
 
   def set_user_function(name, sigils, definition)
-    signature = name.to_s + '(' + sigils.join(',') + ')'
+    signature = name.to_s + XrefEntry.format_sigils(sigils)
 
     raise BASICRuntimeError.new(:te_func_alr, signature) if
       @user_function_defs.key?(signature)
@@ -1098,7 +1098,7 @@ class Interpreter
   end
 
   def get_user_function(name, sigils)
-    signature = name.to_s + '(' + sigils.join(',') + ')'
+    signature = name.to_s + XrefEntry.format_sigils(sigils)
 
     raise BASICRuntimeError.new(:te_func_no, signature) unless
       @user_function_defs.key?(signature)
