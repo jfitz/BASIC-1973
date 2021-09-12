@@ -635,7 +635,7 @@ class Program
   end
 
   def assign_function_markers
-    user_function_lines = {}
+    @user_function_start_lines = {}
     part_of_user_function = nil
 
     line_numbers = @lines.keys.sort
@@ -648,7 +648,7 @@ class Program
         if statement.multidef?
           function_name = statement.function_name
           line_index = LineStmtMod.new(line_number, statement_index, 0)
-          user_function_lines[function_name] = line_index
+          @user_function_start_lines[function_name] = line_index
           part_of_user_function = function_name
         end
 
@@ -659,8 +659,10 @@ class Program
         statement_index += 1
       end
     end
+  end
 
-    user_function_lines
+  def user_function_line(name)
+    @user_function_start_lines[name]
   end
 
   private
