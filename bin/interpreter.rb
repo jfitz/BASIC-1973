@@ -279,6 +279,7 @@ class Interpreter
 
   def program_analyze
     @program.optimize(self)
+    @program.assign_function_markers
     @program.analyze
   end
 
@@ -335,7 +336,6 @@ class Interpreter
     @variables = {}
     @data_store.reset
     @user_function_defs = {}
-    @program.assign_function_markers
 
     @previous_stack = []
     clear_previous_lines
@@ -345,7 +345,8 @@ class Interpreter
 
   def run_program
     if @program.check_for_errors(self) &&
-       @program.optimize(self)
+       @program.optimize(self) &&
+       @program.assign_function_markers &&
        @program.init_data(self)
       begin
         # run each statement
@@ -374,6 +375,7 @@ class Interpreter
     raise BASICRuntimeError.new(:te_chain_errors, filename) unless
       @program.check_for_errors(self) &&
       @program.optimize(self) &&
+      @program.assign_function_markers &&
       @program.init_data(self)
 
   rescue Errno::ENOENT, Errno::EISDIR
