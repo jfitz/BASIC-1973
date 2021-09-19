@@ -386,8 +386,10 @@ class LineListSpec
   def make_single(token, program_line_numbers)
     number = IntegerConstant.new(token)
     line_number = LineNumber.new(number)
+
     @line_numbers << line_number if
       program_line_numbers.include?(line_number)
+
     @range_type = :single
   end
 
@@ -558,13 +560,13 @@ class Program
     nil
   end
 
-  def find_next_line_stmt(current_line_idx)
+  def find_next_line_stmt(current_line_stmt)
     # find next index with current statement
-    line_number = current_line_idx.line_number
+    line_number = current_line_stmt.line_number
     line = @lines[line_number]
 
     statements = line.statements
-    statement_index = current_line_idx.statement
+    statement_index = current_line_stmt.statement
 
     # find next statement within the current line
     if statement_index < statements.size - 1
@@ -574,7 +576,7 @@ class Program
 
     # find the next line
     line_numbers = @lines.keys.sort
-    line_number = current_line_idx.line_number
+    line_number = current_line_stmt.line_number
     index = line_numbers.index(line_number)
     line_number = line_numbers[index + 1]
 
@@ -650,6 +652,7 @@ class Program
     line_numbers.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
+
       statements.each do |statement|
         if !part_of_user_function.nil? && statement.multidef?
           errors << "Missing FNEND before DEF in line #{line_number}"
@@ -761,10 +764,10 @@ class Program
 
     @lines.keys.sort.each do |line_number|
       line = @lines[line_number]
- 
+
       # pretty-print the line with complexity statistics
       number = line_number.to_s
-       
+
       texts += line.analyze_pretty(number)
 
       # print origins to this line
@@ -1078,6 +1081,7 @@ class Program
       @lines.keys.each do |line_number|
         statements = @lines[line_number].statements
         index = 0
+
         statements.each do |_|
           line_number_idx = LineStmt.new(line_number, index)
 
@@ -1149,6 +1153,7 @@ class Program
       line = @lines[line_number]
       @line_number = line_number
       statements = line.statements
+
       statements.each do |statement|
         begin
           okay &=
@@ -1170,9 +1175,11 @@ class Program
       @line_number = line_number
       line = @lines[line_number]
       statements = line.statements
+
       statements.each_with_index do |statement, index|
         mod = statement.start_index
         line_stmt_mod = LineStmtMod.new(line_number, index, mod)
+
         begin
           statement.optimize(interpreter, line_stmt_mod, self)
         rescue BASICPreexecuteError => e
@@ -1195,6 +1202,7 @@ class Program
       line = @lines[line_number]
       statements = line.statements
       statement_index = 0
+
       statements.each do |statement|
         if statement.multidef?
           function_name = statement.function_name
@@ -1221,6 +1229,7 @@ class Program
       @line_number = line_number
       line = @lines[line_number]
       statements = line.statements
+
       statements.each do |statement|
         begin
           statement.init_data(interpreter)
@@ -1367,6 +1376,7 @@ class Program
       statements = line.statements
 
       rs = []
+
       statements.each do |statement|
         rs += statement.numerics
         rs += statement.modifier_numerics
@@ -1386,6 +1396,7 @@ class Program
       statements = line.statements
 
       rs = []
+
       statements.each do |statement|
         rs += statement.num_symbols
       end
@@ -1404,6 +1415,7 @@ class Program
       statements = line.statements
 
       rs = []
+
       statements.each do |statement|
         rs += statement.booleans
         rs += statement.modifier_booleans
@@ -1423,6 +1435,7 @@ class Program
       statements = line.statements
 
       rs = []
+
       statements.each do |statement|
         rs += statement.strings
         rs += statement.modifier_strings
@@ -1442,6 +1455,7 @@ class Program
       statements = line.statements
 
       rs = []
+
       statements.each do |statement|
         rs += statement.text_symbols
       end
@@ -1460,6 +1474,7 @@ class Program
       statements = line.statements
 
       rs = []
+
       statements.each do |statement|
         rs = statement.functions
         rs += statement.modifier_functions
@@ -1479,6 +1494,7 @@ class Program
       statements = line.statements
 
       rs = []
+
       statements.each do |statement|
         rs += statement.userfuncs
         rs += statement.modifier_userfuncs
@@ -1498,6 +1514,7 @@ class Program
       statements = line.statements
 
       rs = []
+
       statements.each do |statement|
         rs += statement.variables
         rs += statement.modifier_variables
@@ -1517,6 +1534,7 @@ class Program
       statements = line.statements
 
       rs = []
+
       statements.each do |statement|
         rs += statement.operators
         rs += statement.modifier_operators
@@ -1536,6 +1554,7 @@ class Program
       statements = line.statements
 
       rs = []
+
       statements.each do |statement|
         rs += statement.linenums
       end

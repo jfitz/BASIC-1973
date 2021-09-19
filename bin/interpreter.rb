@@ -261,8 +261,8 @@ class Interpreter
     @program.list(args, list_tokens)
   end
 
-  def program_pretty(args, pretty_multiline)
-    @program.pretty(args, pretty_multiline)
+  def program_pretty(args, multiline)
+    @program.pretty(args, multiline)
   end
 
   def program_delete(args)
@@ -625,8 +625,8 @@ class Interpreter
       @program.find_next_line_stmt_mod(@current_line_stmt_mod)
 
     next_line_stmt_mod = nil
-    next_line_stmt_mod =
-      @next_line_stmt_mod.clone unless @next_line_stmt_mod.nil?
+    next_line_stmt_mod = @next_line_stmt_mod.clone unless
+      @next_line_stmt_mod.nil?
 
     line_number = @current_line_stmt_mod.line_number
     line_statement = @current_line_stmt_mod.statement
@@ -702,6 +702,7 @@ class Interpreter
         line_number = @current_line_stmt_mod.line_number
         @console_io.print_line("#{e.message} in line #{line_number}")
       end
+
       stop_running
     end
   end
@@ -806,7 +807,7 @@ class Interpreter
         if tokens_list.size == 1
           begin
             number = IntegerConstant.new(tokens_list[0])
-            line_number = LineNumber.newn(number)
+            line_number = LineNumber.new(number)
             # TODO: distinguish between line and condition breakpoints
             @line_breakpoints.delete(line_number)
             @line_cond_breakpoints.delete(line_number)

@@ -2160,6 +2160,8 @@ class AbstractExpressionSet
     @expressions.each do |expression|
       ss << expression.to_s
     end
+
+    ss
   end
 
   def signature
