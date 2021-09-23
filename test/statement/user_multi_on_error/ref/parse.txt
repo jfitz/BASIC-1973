@@ -16,10 +16,12 @@
 99 STOP
  
 400 DEF FNA(A)
+ UserFunctionName:FNA -> _
+ VariableName:A -> _
 410 ON ERROR GOTO 480
  LineNumber:480
 420 FNA = 1 / A
- UserFunction:FNA -> _
+ UserFunction:FNA() -> _
  NumericConstant:1
  Variable:A -> _
  BinaryOperatorDivide:/(_,_) -> _
@@ -32,7 +34,7 @@
 470 GOTO 490
  LineNumber:490
 480 FNA = 0
- UserFunction:FNA -> _
+ UserFunction:FNA() -> _
  NumericConstant:0
  AssignmentOperator:= =_ -> _
 481 RESUME 430

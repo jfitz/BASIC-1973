@@ -347,7 +347,7 @@ class AbstractStatement
 
     text = ''
 
-    text += "(#{@part_of_user_function}) " unless @part_of_user_function.nil?
+    text += "#{@part_of_user_function} " unless @part_of_user_function.nil?
 
     text += "(#{@mccabe} #{@comprehension_effort}) #{number} #{core_pretty}"
 
@@ -581,7 +581,7 @@ class AbstractStatement
 
     line = ''
 
-    line = " (#{@part_of_user_function})" unless @part_of_user_function.nil?
+    line = " #{@part_of_user_function}" unless @part_of_user_function.nil?
 
     if show_timing
       line += " (#{@profile_time.round(4)}/#{@profile_count})"
@@ -655,7 +655,7 @@ class AbstractStatement
   def print_trace_info(trace_out, current_line_stmt_mod)
     trace_out.newline_when_needed
 
-    trace_out.print_out "(#{@part_of_user_function}) " unless
+    trace_out.print_out "#{@part_of_user_function} " unless
       @part_of_user_function.nil?
 
     index = current_line_stmt_mod.index
@@ -678,7 +678,9 @@ class AbstractStatement
     print_trace_info(trace_out, current_line_stmt_mod)
 
     if part_of_user_function.nil? || function_running
-      if @part_of_user_function != interpreter.current_user_function
+      current_user_function = interpreter.current_user_function
+
+      if @part_of_user_function != current_user_function
         raise(BASICSyntaxError, 'Invalid transfer in/out of function')
       end
 
@@ -1920,11 +1922,14 @@ class DefineFunctionStatement < AbstractStatement
     @definition.name
   end
 
+  def function_signature
+    @definition.signature
+  end
+
   def dump
     lines = []
 
-    lines += @definition.dump unless
-      @definition.nil? || @definition.multidef?
+    lines += @definition.dump unless @definition.nil?
 
     @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
 
@@ -1934,9 +1939,7 @@ class DefineFunctionStatement < AbstractStatement
   def define_user_functions(interpreter)
     unless @definition.nil?
       begin
-        name = @definition.name
-        sigils = @definition.sigils
-        interpreter.set_user_function(name, sigils, @definition)
+        interpreter.set_user_function(@definition)
       rescue BASICRuntimeError => e
         raise BASICPreexecuteError.new(e.scode, e.extra)
       end
@@ -3728,6 +3731,7 @@ class AbstractScalarLetStatement < AbstractLetStatement
 
   def execute_core(interpreter)
     l_values = @assignment.eval_target(interpreter)
+
     r_values = @assignment.eval_value(interpreter)
 
     # more left-hand values -> repeat last rhs
@@ -3735,6 +3739,12 @@ class AbstractScalarLetStatement < AbstractLetStatement
     l_values.each_with_index do |l_value, index|
       j = [index, r_values.count - 1].min
       r_value = r_values[j]
+
+      # if l_value is a function name
+      # replace with current function name
+      l_value = interpreter.current_user_function if
+        l_value.class.to_s == 'UserFunction'
+
       interpreter.set_value(l_value, r_value)
     end
   end
