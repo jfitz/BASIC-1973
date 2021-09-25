@@ -686,7 +686,7 @@ class AbstractStatement
 
       execute(interpreter)
     else
-      trace_out.print_line(' Line ignored')
+      trace_out.print_line(' Statement ignored')
     end
   end
 
@@ -696,6 +696,10 @@ class AbstractStatement
 
   def last_index
     @modifiers.size
+  end
+
+  def singledef?
+    false
   end
 
   def multidef?
@@ -1910,6 +1914,12 @@ class DefineFunctionStatement < AbstractStatement
     else
       @errors << 'Syntax error'
     end
+  end
+
+  def singledef?
+    return false if @definition.nil?
+
+    @definition.singledef?
   end
 
   def multidef?
