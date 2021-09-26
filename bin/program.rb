@@ -1145,7 +1145,7 @@ class Program
           okay &=
           statement.check_for_errors(line_number, interpreter, @console_io)
         rescue BASICPreexecuteError => e
-          @console_io.print_line("Error #{e.code} #{e.message} in line #{line_number}")
+          @errors << "Error #{e.code} #{e.message} in line #{line_number}"
           okay = false
         end
       end
@@ -1169,7 +1169,7 @@ class Program
         begin
           statement.optimize(interpreter, line_stmt_mod, self)
         rescue BASICPreexecuteError => e
-          @console_io.print_line("Error #{e.code} #{e.message} in line #{line_number}")
+          @errors << "Error #{e.code} #{e.message} in line #{line_number}"
           okay = false
         end
       end
@@ -1232,7 +1232,7 @@ class Program
           if statement.part_of_user_function.nil?
             statement.part_of_user_function = part_of_user_function 
           else
-            @console_io.print_line("Embedded function #{statement.part_of_user_function} in line #{line_number}")
+            @errors << "Embedded function #{statement.part_of_user_function} in line #{line_number}"
             okay = false
           end
         end
@@ -1258,7 +1258,7 @@ class Program
         begin
           statement.init_data(interpreter)
         rescue BASICPreexecuteError => e
-          @console_io.print_line("Error #{e.code} #{e.message} in line #{line_number}")
+          @errors << "Error #{e.code} #{e.message} in line #{line_number}"
           okay = false
         end
       end
