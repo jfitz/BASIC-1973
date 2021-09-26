@@ -67,13 +67,13 @@ Halstead complexity:
   Origs: 50:auto
   Dests: 100:auto
 FNC$($,%,$) (0 6) 100 DEF FNC$(X$, X%, Y$) = LEFT(X$, X%, 1%) + Y$ + RIGHT(X$, X% + LEN(Y$))
-  Origs: 60:auto
+  Origs: 60:auto, 230:function, 420:function
   Dests: 105:auto
 FNN$(%) (0 1) 105 DEF FNN$(X%)
 FNN$(%) (0 4)     X$ = NUM$(X%)
 FNN$(%) (0 6)     FNN$ = MID(X$, 2% * LEN(X$) - 2%)
 FNN$(%) (0 1)     FNEND
-  Origs: 100:auto
+  Origs: 100:auto, 2020:function, 2020:function, 2030:function, 2030:function, 2040:function, 2040:function, 2050:function
   Dests: 110:auto
 (0 2) 110 DIM P$(50%)
 (0 1)     RANDOMIZE
@@ -115,7 +115,7 @@ FNN$(%) (0 1)     FNEND
 (1 10)     IF INSTR(1%, P$, "*") = 0% OR INSTR(1%, P$, "O") = 4% THEN PRINT "YOU WIN."
 (0 2)     GOTO 500
   Origs: 
-  Dests: 500:goto
+  Dests: 100:function, 500:goto
 (0 4) 300 P% = P% + 2%
   Origs: 
   Dests: 310:auto
@@ -148,7 +148,7 @@ FNN$(%) (0 1)     FNEND
 (0 4)     B% = VAL(RIGHT(K$, 2%))
 (0 5)     P$ = FNC$(FNC$(P$, A%, "-"), B%, "*")
   Origs: 410:auto
-  Dests: 430:auto
+  Dests: 100:function, 430:auto
 (1 8) 430 IF INSTR(1%, P$, "O") = 0% OR INSTR(7%, P$, "*") THEN PRINT "I WIN!"
 (0 2)     GOTO 510
   Origs: 420:auto
@@ -197,26 +197,26 @@ FNN$(%) (0 1)     FNEND
   Dests: 2020:auto, 2025:ifthen
 (1 13) 2020 IF MID(P$, T%, 1%) = "-" THEN M$ = M$ + FNN$(J%) + FNN$(T%)
   Origs: 2015:auto
-  Dests: 2025:auto
+  Dests: 105:function, 105:function, 2025:auto
 (0 6) 2025 T% = J% + D% * 2%
 (1 31)      IF T% < 1% OR T% > 9% OR (D% = 1% AND (J% = 1% OR J% = 4% OR J% = 7%)) OR (D% = 1% AND (J% = 3% OR J% = 6% OR J% - 9%)) THEN 2035
   Origs: 2015:ifthen, 2020:auto
   Dests: 2030:auto, 2035:ifthen
 (1 13) 2030 IF INSTR(1%, Q$ + "-", MID(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN$(J%) + FNN$(T%)
   Origs: 2025:auto
-  Dests: 2035:auto
+  Dests: 105:function, 105:function, 2035:auto
 (0 6) 2035 T% = J% + D% * 4%
 (1 13)      IF T% < 1% OR T% > 9% OR J% = 3% OR J% = 7% THEN 2050
   Origs: 2025:ifthen, 2030:auto
   Dests: 2040:auto, 2050:ifthen
 (1 13) 2040 IF INSTR(1%, Q$ + "-", MID(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN$(J%) + FNN$(T%)
   Origs: 2035:auto
-  Dests: 2050:auto
+  Dests: 105:function, 105:function, 2050:auto
 (0 1) 2050 NEXT J%
 (1 10)      IF D% = 1% AND M$ <> "" THEN Q% = Q% + 1%
 (0 7)      P$(Q%) = FNN$(P%) + P$ + M$
   Origs: 2010:fornext, 2010:ifthen, 2035:ifthen, 2040:auto
-  Dests: 2060:auto
+  Dests: 105:function, 2060:auto
 (0 1) 2060 RETURN
   Origs: 2050:auto
   Dests: 

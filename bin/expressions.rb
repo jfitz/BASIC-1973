@@ -1740,6 +1740,29 @@ class Expression
     @elements = elements
   end
 
+  def uncache
+    @elements.each(&:uncache)
+  end
+
+  def set_content_type
+    stack = []
+
+    @elements.each do |element|
+      element.set_content_type(stack)
+    end
+
+    raise BASICExpressionError.new('Too many operands') if
+      stack.size > 1
+  end
+
+  def set_shape
+    stack = []
+
+    @elements.each do |element|
+      element.set_shape(stack)
+    end
+  end
+
   def empty?
     @elements.empty?
   end
@@ -1755,15 +1778,12 @@ class Expression
     content_type
   end
 
-  def set_content_type
+  def set_constant
     stack = []
 
     @elements.each do |element|
-      element.set_content_type(stack)
+      element.set_constant(stack)
     end
-
-    raise BASICExpressionError.new('Too many operands') if
-      stack.size > 1
   end
 
   def shape
@@ -1777,14 +1797,6 @@ class Expression
     my_shape
   end
 
-  def set_shape
-    stack = []
-
-    @elements.each do |element|
-      element.set_shape(stack)
-    end
-  end
-
   def constant
     constant = false
 
@@ -1796,14 +1808,6 @@ class Expression
     constant
   end
 
-  def set_constant
-    stack = []
-
-    @elements.each do |element|
-      element.set_constant(stack)
-    end
-  end
-
   def warnings
     warnings = []
 
@@ -1812,10 +1816,6 @@ class Expression
     end
 
     warnings
-  end
-
-  def uncache
-    @elements.each(&:uncache)
   end
 
   def make_type_sigil(type)
@@ -1858,6 +1858,16 @@ class Expression
     end
 
     has
+  end
+
+  def destinations(user_function_start_lines)
+    dests = []
+
+    @elements.each do |element|
+      dests += element.destinations(user_function_start_lines)
+    end
+
+    dests
   end
 
   def evaluate(interpreter)
@@ -2218,6 +2228,16 @@ class AbstractExpressionSet
 
   def userfuncs
     Expression.parsed_expressions_userfuncs(@expressions)
+  end
+
+  def destinations(user_function_start_lines)
+    dests = []
+
+    @expressions.each do |expression|
+      dests += expression.destinations(user_function_start_lines)
+    end
+
+    dests
   end
 
   private
@@ -2730,7 +2750,15 @@ class Assignment
 
     ts = @targetset.signature
     es = @expressionset.signature
+
     lines << "AssignmentOperator:= #{es} -> #{ts}"
+  end
+
+  def destinations(user_function_start_lines)
+    td = @targetset.destinations(user_function_start_lines)
+    ed = @expressionset.destinations(user_function_start_lines)
+
+    td + ed
   end
 
   private

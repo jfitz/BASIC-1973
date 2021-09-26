@@ -498,7 +498,7 @@ class AbstractStatement
     vars
   end
 
-  def gotos
+  def gotos(_)
     []
   end
 
@@ -2384,7 +2384,7 @@ class ForStatement < AbstractStatement
     lines
   end
 
-  def gotos
+  def gotos(_)
     goto_refs = []
 
     unless @loopstart_line_stmt_mod.nil?
@@ -2723,7 +2723,7 @@ class GosubStatement < AbstractStatement
     lines
   end
 
-  def gotos
+  def gotos(_)
     [TransferRefLineStmt.new(@destination, 0, :gosub)]
   end
 
@@ -2864,7 +2864,7 @@ class GotoStatement < AbstractStatement
     lines
   end
 
-  def gotos
+  def gotos(_)
     return [TransferRefLineStmt.new(@destination, 0, :goto)] unless
       @destination.nil?
 
@@ -3338,18 +3338,20 @@ class AbstractIfStatement < AbstractStatement
     lines
   end
 
-  def gotos
+  def gotos(user_function_start_lines)
     goto_refs = []
 
     goto_refs << TransferRefLineStmt.new(@destination, 0, :ifthen) unless
       @destination.nil?
 
-    goto_refs += @statement.gotos unless @statement.nil?
+    goto_refs += @statement.gotos(user_function_start_lines) unless
+      @statement.nil?
 
     goto_refs << TransferRefLineStmt.new(@else_dest, 0, :ifthen) unless
       @else_dest.nil?
 
-    goto_refs += @else_stmt.gotos unless @else_stmt.nil?
+    goto_refs += @else_stmt.gotos(user_function_start_lines) unless
+      @else_stmt.nil?
 
     goto_refs
   end
@@ -3700,6 +3702,12 @@ class AbstractLetStatement < AbstractStatement
 
     lines
   end
+
+  def gotos(user_function_start_lines)
+    return [] if @assignment.nil?
+
+    @assignment.destinations(user_function_start_lines)
+  end
 end
 
 # common functions for scalar LET and LET-less statement
@@ -4014,7 +4022,7 @@ class OnErrorStatement < AbstractStatement
     lines
   end
 
-  def gotos
+  def gotos(_)
     destinations = []
 
     destinations << TransferRefLineStmt.new(@destination, 0, :onerror) unless
@@ -4138,7 +4146,7 @@ class OnStatement < AbstractStatement
     lines
   end
 
-  def gotos
+  def gotos(_)
     goto_refs = []
 
     @destinations.each do |goto|
