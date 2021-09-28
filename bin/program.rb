@@ -317,13 +317,11 @@ class Line
 
   def okay(program, console_io, line_number)
     retval = true
-    index = 0
 
-    @statements.each do |statement|
-      line_number_index = LineStmtMod.new(line_number, index, 0)
+    @statements.each_with_index do |statement, stmt|
+      line_number_index = LineStmtMod.new(line_number, stmt, 0)
       r = statement.okay(program, console_io, line_number_index)
       retval &&= r
-      index += 1
     end
 
     retval
@@ -551,8 +549,8 @@ class Program
       line = @lines[line_number]
       statements = line.statements
       statement = statements[0]
-      index = statement.start_index
-      next_line_stmt_mod = LineStmtMod.new(line_number, 0, index)
+      start_mod = statement.start_index
+      next_line_stmt_mod = LineStmtMod.new(line_number, 0, start_mod)
       return next_line_stmt_mod
     end
 
@@ -566,12 +564,12 @@ class Program
     line = @lines[line_number]
 
     statements = line.statements
-    statement_index = current_line_stmt.statement
+    stmt = current_line_stmt.statement
 
     # find next statement within the current line
-    if statement_index < statements.size - 1
-      statement_index += 1
-      return LineStmt.new(line_number, statement_index)
+    if stmt < statements.size - 1
+      stmt += 1
+      return LineStmt.new(line_number, stmt)
     end
 
     # find the next line
@@ -592,22 +590,22 @@ class Program
     line = @lines[line_number]
 
     statements = line.statements
-    statement_index = current_line_stmt_mod.statement
-    statement = statements[statement_index]
+    stmt = current_line_stmt_mod.statement
+    statement = statements[stmt]
 
-    index = current_line_stmt_mod.index
+    mod = current_line_stmt_mod.index
 
-    if index < statement.last_index
-      index += 1
-      return LineStmtMod.new(line_number, statement_index, index)
+    if mod < statement.last_index
+      mod += 1
+      return LineStmtMod.new(line_number, stmt, mod)
     end
 
     # find next statement within the current line
-    if statement_index < statements.size - 1
-      statement_index += 1
-      statement = statements[statement_index]
-      index = statement.start_index
-      return LineStmtMod.new(line_number, statement_index, index)
+    if stmt < statements.size - 1
+      stmt += 1
+      statement = statements[stmt]
+      start_mod = statement.start_index
+      return LineStmtMod.new(line_number, stmt, start_mod)
     end
 
     # find the next line
@@ -620,8 +618,8 @@ class Program
       line = @lines[line_number]
       statements = line.statements
       statement = statements[0]
-      index = statement.start_index
-      return LineStmtMod.new(line_number, 0, index)
+      start_mod = statement.start_index
+      return LineStmtMod.new(line_number, 0, start_mod)
     end
 
     # nothing left to execute
@@ -678,19 +676,16 @@ class Program
     start = 10
     step = 10
 
-    i = 0
-    tokens.each do |token|
+    tokens.each_with_index do |token, i|
       if token.class.to_s == 'NumericConstantToken'
         case i
         when 0
           # first number is step
           step = token.to_i
           start = token.to_i
-          i += 1
         when 1
           # second number is start
           start = token.to_i
-          i += 1
         end
       end
     end
@@ -859,10 +854,12 @@ class Program
 
         tokens = statement.keywords.flatten + statement.tokens
         keywords = []
+
         tokens.each do |token|
           t = token.to_s
           keywords << t if token.keyword?
         end
+
         keywords.each do |keyword|
           list_operators << keyword if operator_keywords.include?(keyword)
         end
@@ -1051,6 +1048,7 @@ class Program
 
     # assume statements are dead until connected to a live statement
     reachable = {}
+
     gotos.keys.each { |line_number_idx| reachable[line_number_idx] = false }
 
     # first line is live
@@ -1075,6 +1073,7 @@ class Program
           if reachable[line_number_idx]
             # a reachable line updates its targets to 'reachable'
             statement_gotos = gotos[line_number_idx]
+
             statement_gotos.each do |goto_number_idx|
               unless reachable[goto_number_idx]
                 reachable[goto_number_idx] = true
@@ -1090,6 +1089,7 @@ class Program
 
     # build list of lines that are not reachable
     lines = []
+
     reachable.keys.each do |line_number_idx|
       line_number = line_number_idx.line_number
       index = line_number_idx.statement
@@ -1163,8 +1163,8 @@ class Program
       statements = line.statements
 
       statements.each_with_index do |statement, index|
-        mod = statement.start_index
-        line_stmt_mod = LineStmtMod.new(line_number, index, mod)
+        start_mod = statement.start_index
+        line_stmt_mod = LineStmtMod.new(line_number, index, start_mod)
 
         begin
           statement.optimize(interpreter, line_stmt_mod, self)
@@ -1187,12 +1187,11 @@ class Program
     line_numbers.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
-      statement_index = 0
 
-      statements.each do |statement|
+      statements.each_with_index do |statement, stmt|
         if statement.singledef?
           function_signature = statement.function_signature
-          line_index = LineStmtMod.new(line_number, statement_index, 0)
+          line_index = LineStmtMod.new(line_number, stmt, 0)
           @user_function_start_lines[function_signature] = line_index
           part_of_user_function = function_signature
         end
@@ -1200,8 +1199,6 @@ class Program
         statement.part_of_user_function = part_of_user_function
 
         part_of_user_function = nil
-
-        statement_index += 1
       end
     end
 
@@ -1218,12 +1215,11 @@ class Program
     line_numbers.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
-      statement_index = 0
 
-      statements.each do |statement|
+      statements.each_with_index do |statement, stmt|
         if statement.multidef?
           function_signature = statement.function_signature
-          line_index = LineStmtMod.new(line_number, statement_index, 0)
+          line_index = LineStmtMod.new(line_number, stmt, 0)
           @user_function_start_lines[function_signature] = line_index
           part_of_user_function = function_signature
         end
@@ -1238,8 +1234,6 @@ class Program
         end
 
         part_of_user_function = nil if statement.multiend?
-
-        statement_index += 1
       end
     end
 
@@ -1272,7 +1266,7 @@ class Program
     line_number = current_line_stmt_mod.line_number
     line = @lines[line_number]
     statements = line.statements
-    statement_index = current_line_stmt_mod.statement + 1
+
     line_numbers = @lines.keys.sort
 
     walk_line_stmt = current_line_stmt_mod
@@ -1578,11 +1572,7 @@ class Program
       statements = line.statements
 
       rs = []
-
-      statements.each do |statement|
-        rs += statement.linenums
-      end
-
+      statements.each { |statement| rs += statement.linenums }
       refs[line_number] = rs
     end
 
@@ -1594,6 +1584,7 @@ class Program
 
     # find length of longest token
     num_spaces = 0
+
     refs.keys.sort.each do |ref|
       token = ref.symbol_text
       size = token.size
@@ -1619,6 +1610,7 @@ class Program
 
     # find length of longest token
     num_spaces = 0
+
     refs.keys.sort.each do |ref|
       token = ref.to_s
       size = token.size
@@ -1667,6 +1659,7 @@ class Program
     # split variable references into 'reference' and 'value' lists
     vars_refs = []
     vars_vals = []
+
     variables.keys.sort.each do |xref|
       if xref.is_ref
         vars_refs << xref.to_text
@@ -1677,12 +1670,14 @@ class Program
 
     # identify variables assigned but not used
     unused = []
+
     vars_refs.each do |var_ref|
       unused << var_ref unless vars_vals.include?(var_ref)
     end
 
     # identify variables used but not assigned
     unassigned = []
+
     vars_vals.each do |var_val|
       unassigned << var_val unless vars_refs.include?(var_val)
     end
@@ -1705,6 +1700,7 @@ class Program
 
     list.each do |line_number, refs|
       line_ref = LineRef.new(line_number, false)
+
       refs.each do |ref|
         entries = summary.key?(ref) ? summary[ref] : []
         entries << line_ref
@@ -1910,6 +1906,7 @@ class Program
       # print the line
       number = line_number.to_s
       pretty_lines = line.pretty(pretty_multiline)
+
       pretty_lines.each do |pretty_line|
         texts << number + pretty_line
         number = ' ' * number.size
