@@ -132,11 +132,11 @@ class LineStmtMod
   attr_reader :statement
   attr_reader :index
 
-  def initialize(line_number, statement, index)
+  def initialize(line_number, statement, mod)
     raise BASICError.new("line_number class is #{line_number.class}") unless line_number.class.to_s == 'LineNumber'
     @line_number = line_number
     @statement = statement
-    @index = index
+    @index = mod
   end
 
   def eql?(other)
@@ -319,8 +319,8 @@ class Line
     retval = true
 
     @statements.each_with_index do |statement, stmt|
-      line_number_index = LineStmtMod.new(line_number, stmt, 0)
-      r = statement.okay(program, console_io, line_number_index)
+      line_number_stmt = LineStmtMod.new(line_number, stmt, 0)
+      r = statement.okay(program, console_io, line_number_stmt)
       retval &&= r
     end
 
@@ -1014,8 +1014,8 @@ class Program
     ]
   end
 
-  def build_statement_destinations_line(line_number_idx, statement)
-    goto_line_idxs = []
+  def build_statement_destinations_line(line_number_stmt, statement)
+    goto_line_stmts = []
     statement_gotos_line_stmt = statement.gotos(@user_function_start_lines)
     statement_gotos = []
 
@@ -1025,11 +1025,11 @@ class Program
 
     if statement.autonext
       # find next statement (possibly in same line)
-      next_line_stmt = find_next_line_stmt(line_number_idx)
+      next_line_stmt = find_next_line_stmt(line_number_stmt)
 
       unless next_line_stmt.nil?
         next_line_number = next_line_stmt.line_number
-        line_number = line_number_idx.line_number
+        line_number = line_number_stmt.line_number
 
         statement_gotos << TransferRefLine.new(next_line_number, :auto) unless
           next_line_number == line_number
@@ -1044,10 +1044,10 @@ class Program
 
     dests = []
 
-    statements.each_with_index do |statement, index|
-      line_number_idx = LineStmt.new(line_number, index)
+    statements.each_with_index do |statement, stmt|
+      line_number_stmt = LineStmt.new(line_number, stmt)
 
-      dests += build_statement_destinations_line(line_number_idx, statement)
+      dests += build_statement_destinations_line(line_number_stmt, statement)
     end
 
     dests
@@ -1065,35 +1065,35 @@ class Program
     dests
   end
 
-  def build_statement_destinations_stmt(line_number_idx, statement)
-    goto_line_idxs = []
+  def build_statement_destinations_stmt(line_number_stmt, statement)
+    goto_line_stmts = []
     statement_gotos = statement.gotos(@user_function_start_lines)
 
     statement_gotos.each do |goto|
-      goto_line_idxs << LineStmt.new(goto.line_number, goto.statement)
+      goto_line_stmts << LineStmt.new(goto.line_number, goto.statement)
     end
 
     if statement.autonext
       # find next statement (possibly in same line)
-      next_line_stmt = find_next_line_stmt(line_number_idx)
+      next_line_stmt = find_next_line_stmt(line_number_stmt)
 
-      goto_line_idxs << next_line_stmt unless next_line_stmt.nil?
+      goto_line_stmts << next_line_stmt unless next_line_stmt.nil?
 
       if statement.is_if_no_else && $options['extend_if'].value
         # find next line (possibly does not exist)
         line_numbers = @lines.keys.sort
-        line_number = line_number_idx.line_number
+        line_number = line_number_stmt.line_number
         index = line_numbers.index(line_number)
         next_line_number = line_numbers[index + 1]
 
         unless next_line_number.nil?
           next_line_stmt = LineStmt.new(next_line_number, 0)
-          goto_line_idxs << next_line_stmt unless next_line_stmt.nil?
+          goto_line_stmts << next_line_stmt unless next_line_stmt.nil?
         end
       end
     end
 
-    goto_line_idxs
+    goto_line_stmts
   end
 
   def build_line_destinations_stmt(line, line_number)
@@ -1101,13 +1101,13 @@ class Program
 
     gotos = {}
 
-    statements.each_with_index do |statement, index|
-      line_number_idx = LineStmt.new(line_number, index)
+    statements.each_with_index do |statement, stmt|
+      line_number_stmt = LineStmt.new(line_number, stmt)
 
-      goto_line_idxs =
-        build_statement_destinations_stmt(line_number_idx, statement)
+      goto_line_stmts =
+        build_statement_destinations_stmt(line_number_stmt, statement)
 
-      gotos[line_number_idx] = goto_line_idxs
+      gotos[line_number_stmt] = goto_line_stmts
     end
 
     gotos
@@ -1121,8 +1121,8 @@ class Program
       line = @lines[line_number]
       line_destinations = build_line_destinations_stmt(line, line_number)
 
-      line_destinations.each do |line_number_idx, dests|
-        gotos[line_number_idx] = dests
+      line_destinations.each do |line_number_stmt, dests|
+        gotos[line_number_stmt] = dests
       end
     end
 
@@ -1135,7 +1135,7 @@ class Program
     # assume statements are dead until connected to a live statement
     reachable = {}
 
-    gotos.keys.each { |line_number_idx| reachable[line_number_idx] = false }
+    gotos.keys.each { |line_number_stmt| reachable[line_number_stmt] = false }
 
     # first line is live
     first_line_number_stmt_mod = find_first_statement
@@ -1247,9 +1247,9 @@ class Program
       line = @lines[line_number]
       statements = line.statements
 
-      statements.each_with_index do |statement, index|
+      statements.each_with_index do |statement, stmt|
         start_mod = statement.start_index
-        line_stmt_mod = LineStmtMod.new(line_number, index, start_mod)
+        line_stmt_mod = LineStmtMod.new(line_number, stmt, start_mod)
 
         begin
           statement.optimize(interpreter, line_stmt_mod, self)
@@ -1276,8 +1276,8 @@ class Program
       statements.each_with_index do |statement, stmt|
         if statement.singledef?
           function_signature = statement.function_signature
-          line_index = LineStmtMod.new(line_number, stmt, 0)
-          @user_function_start_lines[function_signature] = line_index
+          line_stmt_mod = LineStmtMod.new(line_number, stmt, 0)
+          @user_function_start_lines[function_signature] = line_stmt_mod
           part_of_user_function = function_signature
         end
 
@@ -1304,8 +1304,8 @@ class Program
       statements.each_with_index do |statement, stmt|
         if statement.multidef?
           function_signature = statement.function_signature
-          line_index = LineStmtMod.new(line_number, stmt, 0)
-          @user_function_start_lines[function_signature] = line_index
+          line_stmt_mod = LineStmtMod.new(line_number, stmt, 0)
+          @user_function_start_lines[function_signature] = line_stmt_mod
           part_of_user_function = function_signature
         end
 
