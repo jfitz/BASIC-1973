@@ -805,6 +805,12 @@ class Program
 
     texts = []
 
+    unless @errors.empty?
+      @errors.each { |error| texts << error }
+
+      texts << ''
+    end
+    
     # report statistics
     texts << 'Statistics:'
     texts << ''
