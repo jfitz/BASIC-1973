@@ -270,6 +270,14 @@ class Line
       number = ' ' * number.size
     end
 
+    @statements.each do |statement|
+      errors = statement.errors
+
+      errors.each do |error|
+        texts << "#{number} #{error}"
+      end
+    end
+
     texts
   end
 
@@ -526,6 +534,18 @@ class Program
     texts = []
 
     @errors.each { |error| texts << error }
+
+    @lines.keys.sort.each do |line_number|
+      line = @lines[line_number]
+      statements = line.statements
+
+      statements.each do |statement|
+        errors = statement.errors
+        errors.each do |error|
+          texts << error + " in line #{line_number}"
+        end
+      end
+    end
 
     texts
   end
@@ -1235,22 +1255,15 @@ class Program
 
   public
 
-  def check_for_errors(interpreter)
+  def check_for_errors
     okay = true
 
     @lines.keys.sort.each do |line_number|
       line = @lines[line_number]
-      @line_number = line_number
       statements = line.statements
 
       statements.each do |statement|
-        begin
-          okay &=
-            statement.check_for_errors(line_number, interpreter, @console_io)
-        rescue BASICPreexecuteError => e
-          @errors << "Error #{e.code} #{e.message} in line #{line_number}"
-          okay = false
-        end
+        okay &= statement.check_for_errors
       end
     end
 
