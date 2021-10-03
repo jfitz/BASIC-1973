@@ -3,7 +3,7 @@ class LineNumber
   attr_reader :line_number
 
   def initialize(line_number)
-    raise BASICSyntaxError, "Invalid line number object '#{line_number.class}:#{line_number}'" unless
+    raise BASICSyntaxError, "Invalid line number object '#{line_number}'" unless
       line_number.class.to_s == 'IntegerConstant'
 
     @line_number = line_number.to_i
@@ -495,7 +495,6 @@ end
 # program container
 class Program
   attr_reader :lines
-  attr_reader :errors
 
   def initialize(console_io, tokenbuilders)
     @console_io = console_io
@@ -521,6 +520,14 @@ class Program
 
   def empty?
     @lines.empty?
+  end
+
+  def errors
+    texts = []
+
+    @errors.each { |error| texts << error }
+
+    texts
   end
 
   def check
@@ -762,7 +769,11 @@ class Program
     start = 10
     step = 10
 
-    tokens.each_with_index do |token, i|
+    i = 0
+
+    # do not change to each_with_index
+    # separator tokens are still present
+    tokens.each do |token|
       if token.class.to_s == 'NumericConstantToken'
         case i
         when 0
@@ -773,6 +784,8 @@ class Program
           # second number is start
           start = token.to_i
         end
+
+        i += 1
       end
     end
 
@@ -829,7 +842,6 @@ class Program
     texts << 'Unreachable code:'
     texts << ''
     texts += unreachable_code
-    texts << ''
   end
 
   def analyze_pretty
@@ -1234,7 +1246,7 @@ class Program
       statements.each do |statement|
         begin
           okay &=
-          statement.check_for_errors(line_number, interpreter, @console_io)
+            statement.check_for_errors(line_number, interpreter, @console_io)
         rescue BASICPreexecuteError => e
           @errors << "Error #{e.code} #{e.message} in line #{line_number}"
           okay = false
@@ -1547,7 +1559,7 @@ class Program
     refs
   end
 
-  def booleans_refs
+  def boolean_refs
     refs = {}
 
     @lines.keys.sort.each do |line_number|
@@ -1701,8 +1713,8 @@ class Program
     refs
   end
 
-  def print_numeric_refs(title, refs)
-    texts = [title]
+  def print_numeric_refs(refs)
+    texts = []
 
     # find length of longest token
     num_spaces = 0
@@ -1724,11 +1736,11 @@ class Program
       texts << token + ':' + spaces + line_refs
     end
 
-    texts << ''
+    texts
   end
 
-  def print_object_refs(title, refs)
-    texts = [title]
+  def print_object_refs(refs)
+    texts = []
 
     # find length of longest token
     num_spaces = 0
@@ -1760,11 +1772,11 @@ class Program
       end
     end
 
-    texts << ''
+    texts
   end
 
-  def print_symbol_refs(title, refs)
-    texts = [title]
+  def print_symbol_refs(refs)
+    texts = []
 
     refs.keys.sort.each do |ref|
       lines = refs[ref]
@@ -1772,7 +1784,7 @@ class Program
       texts << ref.symbol_text + ":\t" + lines.map(&:to_s).uniq.join(', ')
     end
 
-    texts << ''
+    texts
   end
 
   def print_unused(variables)
@@ -1805,13 +1817,13 @@ class Program
     end
 
     unless unused.empty?
-      texts << 'Assigned but not used: ' + unused.join(', ')
       texts << ''
+      texts << 'Assigned but not used: ' + unused.join(', ')
     end
 
     unless unassigned.empty?
-      texts << 'Used but not assigned: ' + unassigned.join(', ')
       texts << ''
+      texts << 'Used but not assigned: ' + unassigned.join(', ')
     end
 
     texts
@@ -1842,61 +1854,88 @@ class Program
     texts = []
 
     texts << 'Cross reference'
-    texts << ''
 
     nums_list = numeric_refs
     numerics = make_summary(nums_list)
-    texts += print_numeric_refs('Numeric constants:', numerics) unless
-      numerics.empty?
+    unless numerics.empty?
+      texts << ''
+      texts << 'Numeric constants:'
+      texts += print_numeric_refs(numerics)
+    end
 
     num_syms_list = num_symbol_refs
     num_symbols = make_summary(num_syms_list)
-    texts += print_symbol_refs('Numeric symbol constants:', num_symbols) unless
-      num_symbols.empty?
+    unless num_symbols.empty?
+      texts << ''
+      texts << 'Numeric symbol constants:'
+      texts += print_symbol_refs(num_symbols)
+    end
 
     strs_list = strings_refs
     strings = make_summary(strs_list)
-    texts += print_object_refs('String constants:', strings) unless
-      strings.empty?
+    unless strings.empty?
+      texts << ''
+      texts << 'String constants:'
+      texts += print_object_refs(strings)
+    end
 
     text_syms_list = text_symbol_refs
     text_symbols = make_summary(text_syms_list)
-    texts += print_symbol_refs('Text symbol constants:', text_symbols) unless
-      text_symbols.empty?
+    unless text_symbols.empty?
+      texts << ''
+      texts << 'Text symbol constants:'
+      texts += print_symbol_refs(text_symbols)
+    end
 
-    bool_list = booleans_refs
+    bool_list = boolean_refs
     booleans = make_summary(bool_list)
-    texts += print_numeric_refs('Boolean constants:', booleans) unless
-      booleans.empty?
+    unless booleans.empty?
+      texts << ''
+      texts << 'Boolean constants:'
+      texts += print_numeric_refs(booleans)
+    end
 
     funcs_list = function_refs
     functions = make_summary(funcs_list)
-    texts += print_object_refs('Functions:', functions) unless
-      functions.empty?
+    unless functions.empty?
+      texts << ''
+      texts << 'Functions:'
+      texts += print_object_refs(functions)
+    end
 
     udfs_list = user_function_refs
     userfuncs = make_summary(udfs_list)
     unless userfuncs.empty?
-      texts += print_object_refs('User-defined functions:', userfuncs)
+      texts << ''
+      texts << 'User-defined functions:'
+      texts += print_object_refs(userfuncs)
       texts += print_unused(userfuncs)
     end
 
     vars_list = variables_refs
     variables = make_summary(vars_list)
     unless variables.empty?
-      texts += print_object_refs('Variables:', variables)
+      texts << ''
+      texts << 'Variables:'
+      texts += print_object_refs(variables)
       texts += print_unused(variables)
     end
 
     opers_list = operators_refs
     operators = make_summary(opers_list)
-    texts += print_object_refs('Operators:', operators) unless
-      operators.empty?
+    unless operators.empty?
+      texts << ''
+      texts << 'Operators:'
+      texts += print_object_refs(operators)
+    end
 
     lines_list = linenums_refs
     linenums = make_summary(lines_list)
-    texts += print_object_refs('Line numbers:', linenums) unless
-      linenums.empty?
+    unless linenums.empty?
+      texts << ''
+      texts << 'Line numbers:'
+      texts += print_object_refs(linenums)
+    end
 
     texts
   end
@@ -1960,9 +1999,7 @@ class Program
 
       # print the line
       texts << line_number.to_s + line.list
-
       line.warnings.each { |warning| texts << ' WARNING: ' + warning }
-
       statements = line.statements
 
       # print the errors
