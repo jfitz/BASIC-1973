@@ -106,15 +106,15 @@ Halstead complexity:
 (0 2)    PRINT "PERFECT LANDING! (LUCKY) "
 (0 2)    GOTO 95
   Origs: 51:auto
-  Dests: 53:ifthen, 95:goto
+  Dests: 53:auto, 53:ifthen, 95:goto
 (1 4) 53 IF W > 10 THEN 56
 (0 2)    PRINT "GOOD LANDING (COULD BE BETTER) "
 (0 2)    GOTO 95
-  Origs: 52:ifthen
-  Dests: 56:ifthen, 95:goto
+  Origs: 52:auto, 52:ifthen
+  Dests: 56:auto, 56:ifthen, 95:goto
 (1 4) 56 IF W > 60 THEN 58
 (0 2)    PRINT "CRAFT DAMAGE YOU'RE STRANDED HERE UNTIL"
-  Origs: 53:ifthen
+  Origs: 53:auto, 53:ifthen
   Dests: 57:auto, 58:ifthen
 (0 2) 57 PRINT "A RESCUE PARTY ARRIVES, HOPE YOU HAVE ENOUGH OXYGEN!"
 (0 2)    GOTO 95
@@ -158,10 +158,10 @@ Halstead complexity:
 (1 5)    IF Y > 0 THEN 81
 (0 3)    GOTO 31
   Origs: 81:auto
-  Dests: 31:goto, 31:ifthen, 61:gosub, 71:ifthen, 81:ifthen
+  Dests: 31:goto, 31:ifthen, 61:gosub, 71:ifthen, 81:ifthen, 91:auto
 (0 5) 91 Q = S * K / M
 (0 27)    J = V + G * S + Z * (-Q - Q * Q / 2 - Q ^ 3 / 3 - Q ^ 4 / 4 - Q ^ 5 / 5)
-  Origs: 35:gosub, 73:gosub, 81:gosub
+  Origs: 35:gosub, 73:gosub, 81:gosub, 83:auto
   Dests: 94:auto
 (0 33) 94 I = A - G * S * S / 2 - V * S + Z * S * (Q / 2 + Q ^ 2 / 6 + Q ^ 3 / 12 + Q ^ 4 / 20 + Q ^ 5 / 30)
 (0 1)    RETURN

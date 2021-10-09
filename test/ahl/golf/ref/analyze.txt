@@ -185,9 +185,9 @@ Halstead complexity:
 (0 2)     PRINT "HOLE IN ONE!!!"
 (0 2)     GOTO 990
   Origs: 610:auto
-  Dests: 630:ifthen, 990:goto, 990:ifthen
+  Dests: 630:auto, 630:ifthen, 990:goto, 990:ifthen
 (0 4) 630 PRINT "DISTANCE OF SHOT IS"; X(D); "YARDS"
-  Origs: 620:ifthen
+  Origs: 620:auto, 620:ifthen
   Dests: 640:auto
 (0 4) 640 LET L = INT(RND(X) * 100)
   Origs: 630:auto
@@ -196,14 +196,14 @@ Halstead complexity:
 (1 4)     IF L = 43 THEN 670
 (1 4)     IF L = 88 THEN 670
   Origs: 640:auto
-  Dests: 660:auto, 670:ifthen, 670:ifthen, 670:ifthen
+  Dests: 660:auto, 670:ifthen
 (1 4) 660 IF L <> 25 THEN 760
   Origs: 650:auto
   Dests: 670:auto, 760:ifthen
 (0 2) 670 PRINT "IN TRAP"
 (0 4)     LET C = ABS(H - X(D))
 (0 2)     GOTO 680
-  Origs: 650:ifthen, 650:ifthen, 650:ifthen, 660:auto
+  Origs: 650:ifthen, 660:auto
   Dests: 680:goto
 (0 4) 680 LET L8 = INT(RND(X) * 10)
   Origs: 670:goto, 690:ifthen, 1430:goto
@@ -235,20 +235,20 @@ Halstead complexity:
 (1 4) 760 IF L = 13 THEN 780
 (1 4)     IF L = 88 THEN 780
   Origs: 660:ifthen
-  Dests: 770:auto, 780:ifthen, 780:ifthen
+  Dests: 770:auto, 780:ifthen
 (1 4) 770 IF L <> 25 THEN 800
   Origs: 760:auto
   Dests: 780:auto, 800:ifthen
 (0 2) 780 PRINT "IN ROUGH"
 (0 4)     LET C = ABS(H - X(D))
 (0 2)     GOTO 850
-  Origs: 760:ifthen, 760:ifthen, 770:auto
+  Origs: 760:ifthen, 770:auto
   Dests: 850:goto
 (1 4) 790 IF L = 69 THEN 810
 (1 4)     IF L = 73 THEN 810
 (1 4)     IF L = 41 THEN 810
   Origs: 
-  Dests: 800:auto, 810:ifthen, 810:ifthen, 810:ifthen
+  Dests: 800:auto, 810:ifthen
 (1 4) 800 IF L <> 75 THEN 830
   Origs: 770:ifthen, 790:auto
   Dests: 810:auto, 830:ifthen
@@ -256,7 +256,7 @@ Halstead complexity:
 (0 4)     LET T = T + 1
 (0 2)     PRINT "YOU LOSE 1 STROKE"
 (0 4)     LET C = ABS(H - X(D))
-  Origs: 790:ifthen, 790:ifthen, 790:ifthen, 800:auto
+  Origs: 790:ifthen, 800:auto
   Dests: 820:auto
 (0 2) 820 GOTO 850
   Origs: 810:auto

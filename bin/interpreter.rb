@@ -272,6 +272,7 @@ class Interpreter
     @program.optimize(self)
     @program.assign_singleline_function_markers
     @program.assign_multiline_function_markers
+    @program.assign_autonext
     @program.analyze
   end
 
@@ -339,6 +340,7 @@ class Interpreter
        @program.optimize(self) &&
        @program.assign_singleline_function_markers &&
        @program.assign_multiline_function_markers &&
+       @program.assign_autonext &&
        @program.init_data(self)
       begin
         # run each statement
@@ -368,10 +370,11 @@ class Interpreter
     end
 
     raise BASICRuntimeError.new(:te_chain_errors, filename) unless
-      @program.check_for_errors(self) &&
+      @program.check_for_errors &&
       @program.optimize(self) &&
       @program.assign_singleline_function_markers &&
       @program.assign_multiline_function_markers &&
+      @program.assign_autonext &&
       @program.init_data(self)
 
   rescue Errno::ENOENT, Errno::EISDIR

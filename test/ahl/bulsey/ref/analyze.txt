@@ -87,9 +87,9 @@ Halstead complexity:
 (1 8) 180 IF T < 0 OR T > 3 THEN PRINT "INPUT 1, 2, OR 3"
 (0 3)     GOTO 170
   Origs: 170:auto
-  Dests: 170:goto
+  Dests: 170:goto, 190:auto
 (3 5) 190 ON T GOTO 200, 210, 220
-  Origs: 
+  Origs: 180:auto
   Dests: 200:auto, 200:goto, 210:goto, 220:goto
 (0 3) 200 P1 = .65
 (0 3)     P2 = .55
@@ -118,25 +118,25 @@ Halstead complexity:
 (0 3)     B = 40
 (0 2)     GOTO 290
   Origs: 230:auto
-  Dests: 290:goto
+  Dests: 250:auto, 290:goto
 (1 5) 250 IF U >= P2 THEN PRINT "30-POINT ZONE! "
 (0 3)     B = 30
 (0 2)     GOTO 290
-  Origs: 
-  Dests: 290:goto
+  Origs: 240:auto
+  Dests: 260:auto, 290:goto
 (1 5) 260 IF U >= P3 THEN PRINT "20-POINT ZONE"
 (0 3)     B = 20
 (0 2)     GOTO 290
-  Origs: 
-  Dests: 290:goto
+  Origs: 250:auto
+  Dests: 270:auto, 290:goto
 (1 5) 270 IF U >= P4 THEN PRINT "WHEW! 10 POINTS."
 (0 3)     B = 10
 (0 2)     GOTO 290
-  Origs: 
-  Dests: 290:goto
+  Origs: 260:auto
+  Dests: 280:auto, 290:goto
 (0 2) 280 PRINT "MISSED THE TARGET. TOO BAD!"
 (0 3)     B = 0
-  Origs: 
+  Origs: 270:auto
   Dests: 290:auto
 (0 4) 290 S(I) = S(I) + B
 (0 3)     PRINT "TOTAL SCORE =" S(I)

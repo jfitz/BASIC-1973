@@ -73,7 +73,7 @@ FNN$(%) (0 1) 105 DEF FNN$(X%)
 FNN$(%) (0 4)     X$ = NUM$(X%)
 FNN$(%) (0 6)     FNN$ = MID(X$, 2% * LEN(X$) - 2%)
 FNN$(%) (0 1)     FNEND
-  Origs: 2020:function, 2020:function, 2030:function, 2030:function, 2040:function, 2040:function, 2050:function
+  Origs: 2020:function, 2030:function, 2040:function, 2050:function
   Dests: 
 (0 2) 110 DIM P$(50%)
 (0 1)     RANDOMIZE
@@ -97,34 +97,34 @@ FNN$(%) (0 1)     FNEND
 (1 5)     IF M$ = "" THEN PRINT "YOU CAN'T MOVE. I WIN."
 (0 2)     GOTO 510
   Origs: 120:auto, 440:goto
-  Dests: 510:goto, 2000:gosub
+  Dests: 200:auto, 510:goto, 2000:gosub
 (0 2) 200 &
 (0 2)     & "BOARD:"
 (0 3)     & LEFT(P$, 3%)
 (0 3)     & MID(P$, 4%, 3%)
 (0 3)     & RIGHT(P$, 7%)
 (0 2)     &
-  Origs: 
+  Origs: 190:auto
   Dests: 210:auto
 (2 3) 210 INPUT "WHAT IS YOUR MOVE"; A%, B%
 (1 6)     IF INSTR(1%, M$, FNN$(A%) + FNN$(B%)) = 0% THEN PRINT "ILLEGAL MOVE."
 (0 3)     GOTO 210
-  Origs: 200:auto, 210:goto
-  Dests: 210:goto
+  Origs: 200:auto
+  Dests: 230:auto
 (0 5) 230 P$ = FNC$(FNC$(P$, A%, "-"), B%, "O")
 (1 10)     IF INSTR(1%, P$, "*") = 0% OR INSTR(1%, P$, "O") = 4% THEN PRINT "YOU WIN."
 (0 2)     GOTO 500
-  Origs: 
-  Dests: 100:function, 500:goto
+  Origs: 210:auto
+  Dests: 100:function, 300:auto, 500:goto
 (0 4) 300 P% = P% + 2%
-  Origs: 
+  Origs: 230:auto
   Dests: 310:auto
 (1 3) 310 FOR C% = 1% TO Q%
 (0 3)     C$ = P$(C%)
 (1 12)     IF VAL(LEFT(C$, 1%)) = P% AND MID(C$, 2%, 9%) = P$ THEN M$ = RIGHT(C$, 11%)
 (0 2)     GOTO 400
-  Origs: 300:auto, 310:fornext
-  Dests: 310:fornext, 320:fornext, 400:goto
+  Origs: 300:auto
+  Dests: 320:auto, 320:fornext, 400:goto
 (0 1) 320 NEXT C%
 (0 3)     Q$ = "*"
 (0 3)     D% = 1%
@@ -132,17 +132,17 @@ FNN$(%) (0 1)     FNEND
 (0 3)     C% = Q%
 (1 5)     IF M$ = "" THEN PRINT "I CAN'T MOVE, YOU WIN."
 (0 2)     GOTO 500
-  Origs: 310:fornext
-  Dests: 500:goto, 2000:gosub
+  Origs: 310:auto, 310:fornext
+  Dests: 400:auto, 500:goto, 2000:gosub
 (1 5) 400 IF M$ = "" THEN PRINT "I RESIGN."
 (0 2)     GOTO 500
-  Origs: 310:goto
-  Dests: 500:goto
+  Origs: 310:goto, 320:auto
+  Dests: 410:auto, 500:goto
 (0 4) 410 K$ = LEFT(M$, 2%)
 (0 4)     M$ = RIGHT(M$, 3%)
 (1 9)     IF RND > .33333333 AND M$ <> "" THEN 410
-  Origs: 410:ifthen
-  Dests: 410:ifthen, 420:auto
+  Origs: 400:auto
+  Dests: 420:auto
 (0 3) 420 K% = C%
 (0 4)     A% = VAL(LEFT(K$, 1%))
 (0 4)     B% = VAL(RIGHT(K$, 2%))
@@ -152,10 +152,10 @@ FNN$(%) (0 1)     FNEND
 (1 8) 430 IF INSTR(1%, P$, "O") = 0% OR INSTR(7%, P$, "*") THEN PRINT "I WIN!"
 (0 2)     GOTO 510
   Origs: 420:auto
-  Dests: 510:goto
+  Dests: 440:auto, 510:goto
 (0 5) 440 PRINT "I MOVE FROM" A% "TO" B%
 (0 3)     GOTO 190
-  Origs: 
+  Origs: 430:auto
   Dests: 190:goto
 (0 4) 500 W2% = W2% + 1%
 (0 4)     I% = INSTR(11%, P$(K%), K$)
@@ -189,29 +189,29 @@ FNN$(%) (0 1)     FNEND
   Dests: 2010:auto
 (1 3) 2010 FOR J% = 1% TO 9%
 (1 5)      IF MID(P$, J%, 1%) <> Q$ THEN 2050
-  Origs: 2000:auto, 2010:fornext
-  Dests: 2010:fornext, 2015:auto, 2050:fornext, 2050:ifthen
+  Origs: 2000:auto
+  Dests: 2015:auto, 2050:fornext, 2050:ifthen
 (0 6) 2015 T% = J% + D% * 3%
 (1 7)      IF T% < 1% OR T% > 9% THEN 2025
   Origs: 2010:auto
   Dests: 2020:auto, 2025:ifthen
 (1 13) 2020 IF MID(P$, T%, 1%) = "-" THEN M$ = M$ + FNN$(J%) + FNN$(T%)
   Origs: 2015:auto
-  Dests: 105:function, 105:function, 2025:auto
+  Dests: 105:function, 2025:auto
 (0 6) 2025 T% = J% + D% * 2%
 (1 31)      IF T% < 1% OR T% > 9% OR (D% = 1% AND (J% = 1% OR J% = 4% OR J% = 7%)) OR (D% = 1% AND (J% = 3% OR J% = 6% OR J% - 9%)) THEN 2035
   Origs: 2015:ifthen, 2020:auto
   Dests: 2030:auto, 2035:ifthen
 (1 13) 2030 IF INSTR(1%, Q$ + "-", MID(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN$(J%) + FNN$(T%)
   Origs: 2025:auto
-  Dests: 105:function, 105:function, 2035:auto
+  Dests: 105:function, 2035:auto
 (0 6) 2035 T% = J% + D% * 4%
 (1 13)      IF T% < 1% OR T% > 9% OR J% = 3% OR J% = 7% THEN 2050
   Origs: 2025:ifthen, 2030:auto
   Dests: 2040:auto, 2050:ifthen
 (1 13) 2040 IF INSTR(1%, Q$ + "-", MID(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN$(J%) + FNN$(T%)
   Origs: 2035:auto
-  Dests: 105:function, 105:function, 2050:auto
+  Dests: 105:function, 2050:auto
 (0 1) 2050 NEXT J%
 (1 10)      IF D% = 1% AND M$ <> "" THEN Q% = Q% + 1%
 (0 7)      P$(Q%) = FNN$(P%) + P$ + M$
@@ -226,45 +226,5 @@ FNN$(%) (0 1)     FNEND
 
 Unreachable code:
 
-200: &
-200.1: & "BOARD:"
-200.2: & LEFT(P$, 3%)
-200.3: & MID(P$, 4%, 3%)
-200.4: & RIGHT(P$, 7%)
-200.5: &
-210: INPUT "WHAT IS YOUR MOVE"; A%, B%
-210.1: IF INSTR(1%, M$, FNN$(A%) + FNN$(B%)) = 0% THEN PRINT "ILLEGAL MOVE."
-210.2: GOTO 210
-230: P$ = FNC$(FNC$(P$, A%, "-"), B%, "O")
-230.1: IF INSTR(1%, P$, "*") = 0% OR INSTR(1%, P$, "O") = 4% THEN PRINT "YOU WIN."
-230.2: GOTO 500
-300: P% = P% + 2%
-310: FOR C% = 1% TO Q%
-310.1: C$ = P$(C%)
-310.2: IF VAL(LEFT(C$, 1%)) = P% AND MID(C$, 2%, 9%) = P$ THEN M$ = RIGHT(C$, 11%)
-310.3: GOTO 400
-320: NEXT C%
-320.1: Q$ = "*"
-320.2: D% = 1%
-320.3: GOSUB 2000
-320.4: C% = Q%
-320.5: IF M$ = "" THEN PRINT "I CAN'T MOVE, YOU WIN."
-320.6: GOTO 500
-400: IF M$ = "" THEN PRINT "I RESIGN."
-400.1: GOTO 500
-410: K$ = LEFT(M$, 2%)
-410.1: M$ = RIGHT(M$, 3%)
-410.2: IF RND > .33333333 AND M$ <> "" THEN 410
-420: K% = C%
-420.1: A% = VAL(LEFT(K$, 1%))
-420.2: B% = VAL(RIGHT(K$, 2%))
-420.3: P$ = FNC$(FNC$(P$, A%, "-"), B%, "*")
-430: IF INSTR(1%, P$, "O") = 0% OR INSTR(7%, P$, "*") THEN PRINT "I WIN!"
-430.1: GOTO 510
-440: PRINT "I MOVE FROM" A% "TO" B%
-440.1: GOTO 190
-500: W2% = W2% + 1%
-500.1: I% = INSTR(11%, P$(K%), K$)
-500.2: P$(K%) = LEFT(P$(K%), I% - 1%) + RIGHT(P$(K%), I% + 2%) IF I%
-500.3: GOTO 520
+All executable lines are reachable.
 

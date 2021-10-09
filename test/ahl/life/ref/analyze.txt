@@ -34,6 +34,7 @@ Halstead complexity:
   Origs: 3:auto
   Dests: 20:auto
 (0 1) 20 OPEN "KB:" AS FILE 1
+   Syntax error
   Origs: 10:auto
   Dests: 30:auto
 (1 2) 30 ON ERROR GOTO 80
@@ -119,13 +120,13 @@ Halstead complexity:
 (1 6) 253 IF A%(X%, Y%) = 2% THEN A%(X%, Y%) = 0%
 (0 2)     GOTO 270
   Origs: 250:fornext
-  Dests: 270:goto
+  Dests: 256:auto, 270:goto
 (1 6) 256 IF A%(X%, Y%) = 3% THEN A%(X%, Y%) = 1%
 (0 2)     GOTO 261
-  Origs: 
-  Dests: 261:goto
+  Origs: 253:auto
+  Dests: 260:auto, 261:goto
 (1 4) 260 IF A%(X%, Y%) <> 1 THEN 270
-  Origs: 
+  Origs: 256:auto
   Dests: 261:auto, 270:ifthen
 (0 4) 261 PRINT TAB(Y%); "*";
   Origs: 256:goto, 260:auto
@@ -242,12 +243,5 @@ Halstead complexity:
 
 Unreachable code:
 
-256: IF A%(X%, Y%) = 3% THEN A%(X%, Y%) = 1%
-256.1: GOTO 261
-260: IF A%(X%, Y%) <> 1 THEN 270
-261: PRINT TAB(Y%); "*";
-262: IF X% < X3% THEN X3% = X%
-264: IF X% > X4% THEN X4% = X%
-266: IF Y% < Y3% THEN Y3% = Y%
-268: IF Y% > Y4% THEN Y4% = Y%
+All executable lines are reachable.
 

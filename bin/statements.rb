@@ -332,6 +332,14 @@ class AbstractStatement
 
   def uncache_core; end
 
+  def set_autonext_line_stmt(line_stmt_mod)
+    @autonext_line_stmt = line_stmt_mod
+  end
+
+  def set_autonext_line(line_stmt_mod)
+    @autonext_line = line_stmt_mod
+  end
+
   def pretty
     AbstractToken.pretty_tokens(@keywords, @tokens)
   end
@@ -497,7 +505,16 @@ class AbstractStatement
   end
 
   def gotos(_)
-    []
+    transfer_refs = []
+
+    if @autonext_line_stmt
+      line_number = @autonext_line_stmt.line_number
+      stmt = @autonext_line_stmt.statement
+
+      transfer_refs << TransferRefLineStmt.new(line_number, stmt, :auto)
+    end
+
+    transfer_refs
   end
 
   def print_errors(console_io)
@@ -1183,6 +1200,10 @@ class InvalidStatement < AbstractStatement
   end
 
   def set_endfunc_lines(_, _)
+    raise(BASICSyntaxError, @errors[0])
+  end
+
+  def set_autonext(_, _)
     raise(BASICSyntaxError, @errors[0])
   end
 
@@ -1892,12 +1913,14 @@ class DefineFunctionStatement < AbstractStatement
 
     @executable = false
     @may_be_if_sub = false
+    @autonext = false
 
     template = [[1, '>=']]
 
     if check_template(tokens_lists, template)
       begin
         @definition = UserFunctionDefinition.new(tokens_lists[0])
+        @autonext = @definition.multidef?
 
         @elements = make_references(nil, @definition)
         @comprehension_effort += @definition.comprehension_effort
@@ -2164,6 +2187,7 @@ class ForStatement < AbstractStatement
 
     @autonext = false
     @may_be_if_sub = false
+    @autonext = false
 
     template_to = [[1, '>='], 'TO', [1, '>=']]
     template_to_step = [[1, '>='], 'TO', [1, '>='], 'STEP', [1, '>=']]
@@ -2387,21 +2411,28 @@ class ForStatement < AbstractStatement
   end
 
   def gotos(_)
-    goto_refs = []
+    transfer_refs = []
+
+    if @autonext_line_stmt
+      line_number = @autonext_line_stmt.line_number
+      stmt = @autonext_line_stmt.statement
+
+      transfer_refs << TransferRefLineStmt.new(line_number, stmt, :auto)
+    end
 
     unless @loopstart_line_stmt_mod.nil?
       line_number = @loopstart_line_stmt_mod.line_number
       statement = @loopstart_line_stmt_mod.statement
-      goto_refs << TransferRefLineStmt.new(line_number, statement, :fornext)
+      transfer_refs << TransferRefLineStmt.new(line_number, statement, :fornext)
     end
-    
+
     unless @nextstmt_line_stmt_mod.nil?
       line_number = @nextstmt_line_stmt_mod.line_number
       statement = @nextstmt_line_stmt_mod.statement
-      goto_refs << TransferRefLineStmt.new(line_number, statement, :fornext)
+      transfer_refs << TransferRefLineStmt.new(line_number, statement, :fornext)
     end
-      
-    goto_refs
+
+    transfer_refs
   end
 
   def execute_core(interpreter)
@@ -2724,7 +2755,18 @@ class GosubStatement < AbstractStatement
   end
 
   def gotos(_)
-    [TransferRefLineStmt.new(@destination, 0, :gosub)]
+    transfer_refs = []
+
+    if @autonext_line_stmt
+      line_number = @autonext_line_stmt.line_number
+      stmt = @autonext_line_stmt.statement
+
+      transfer_refs << TransferRefLineStmt.new(line_number, stmt, :auto)
+    end
+
+    transfer_refs << TransferRefLineStmt.new(@destination, 0, :gosub)
+
+    transfer_refs
   end
 
   def okay(program, console_io, line_number_stmt)
@@ -2865,16 +2907,25 @@ class GotoStatement < AbstractStatement
   end
 
   def gotos(_)
-    return [TransferRefLineStmt.new(@destination, 0, :goto)] unless
-      @destination.nil?
+    transfer_refs = []
 
-    goto_refs = []
+    if @autonext_line_stmt
+      line_number = @autonext_line_stmt.line_number
+      stmt = @autonext_line_stmt.statement
 
-    @destinations.each do |goto|
-      goto_refs << TransferRefLineStmt.new(goto, 0, :goto)
+      transfer_refs << TransferRefLineStmt.new(line_number, stmt, :auto)
     end
 
-    goto_refs
+    transfer_refs << TransferRefLineStmt.new(@destination, 0, :goto) unless
+      @destination.nil?
+
+    unless @destinations.nil?
+      @destinations.each do |goto|
+        transfer_refs << TransferRefLineStmt.new(goto, 0, :goto)
+      end
+    end
+
+    transfer_refs
   end
 
   def okay(program, console_io, line_number_stmt)
@@ -3322,6 +3373,20 @@ class AbstractIfStatement < AbstractStatement
     @else_stmt.uncache unless @else_stmt.nil?
   end
 
+  def set_autonext_line_stmt(line_stmt_mod)
+    @autonext_line_stmt = line_stmt_mod
+
+    @statement.set_autonext_line_stmt(line_stmt_mod) unless @statement.nil?
+    @else_stmt.set_autonext_line_stmt(line_stmt_mod) unless @else_stmt.nil?
+  end
+
+  def set_autonext_line(line_stmt_mod)
+    @autonext_line = line_stmt_mod
+
+    @statement.set_autonext_line(line_stmt_mod) unless @statement.nil?
+    @else_stmt.set_autonext_line(line_stmt_mod) unless @else_stmt.nil?
+  end
+
   def dump
     lines = []
 
@@ -3337,21 +3402,37 @@ class AbstractIfStatement < AbstractStatement
   end
 
   def gotos(user_function_start_lines)
-    goto_refs = []
+    transfer_refs = []
 
-    goto_refs << TransferRefLineStmt.new(@destination, 0, :ifthen) unless
+    # autonext to next statement unless both THEN and ELSE are numbers
+    if @autonext_line_stmt && (!@destination.nil? || !@else_dest.nil?)
+      line_number = @autonext_line_stmt.line_number
+      stmt = @autonext_line_stmt.statement
+
+      transfer_refs << TransferRefLineStmt.new(line_number, stmt, :auto)
+    end
+
+    transfer_refs << TransferRefLineStmt.new(@destination, 0, :ifthen) unless
       @destination.nil?
 
-    goto_refs += @statement.gotos(user_function_start_lines) unless
+    transfer_refs += @statement.gotos(user_function_start_lines) unless
       @statement.nil?
 
-    goto_refs << TransferRefLineStmt.new(@else_dest, 0, :ifthen) unless
+    transfer_refs << TransferRefLineStmt.new(@else_dest, 0, :ifthen) unless
       @else_dest.nil?
 
-    goto_refs += @else_stmt.gotos(user_function_start_lines) unless
+    transfer_refs += @else_stmt.gotos(user_function_start_lines) unless
       @else_stmt.nil?
 
-    goto_refs
+    # autonext to next line if no ELSE
+    if @autonext_line && @else_dest.nil? && @else_stmt.nil?
+      line_number = @autonext_line.line_number
+      stmt = @autonext_line.statement
+
+      transfer_refs << TransferRefLineStmt.new(line_number, stmt, :auto)
+    end
+
+    transfer_refs
   end
 
   def okay(program, console_io, line_number_stmt)
@@ -3700,9 +3781,20 @@ class AbstractLetStatement < AbstractStatement
   end
 
   def gotos(user_function_start_lines)
-    return [] if @assignment.nil?
+    transfer_refs = []
 
-    @assignment.destinations(user_function_start_lines)
+    if @autonext_line_stmt
+      line_number = @autonext_line_stmt.line_number
+      stmt = @autonext_line_stmt.statement
+
+      transfer_refs << TransferRefLineStmt.new(line_number, stmt, :auto)
+    end
+
+    unless @assignment.nil?
+      transfer_refs += @assignment.destinations(user_function_start_lines)
+    end
+
+    transfer_refs
   end
 end
 
@@ -4019,12 +4111,19 @@ class OnErrorStatement < AbstractStatement
   end
 
   def gotos(_)
-    destinations = []
+    transfer_refs = []
 
-    destinations << TransferRefLineStmt.new(@destination, 0, :onerror) unless
+    if @autonext_line_stmt
+      line_number = @autonext_line_stmt.line_number
+      stmt = @autonext_line_stmt.statement
+
+      transfer_refs << TransferRefLineStmt.new(line_number, stmt, :auto)
+    end
+
+    transfer_refs << TransferRefLineStmt.new(@destination, 0, :onerror) unless
       @destination.nil?
 
-    destinations
+    transfer_refs
   end
 
   def okay(program, console_io, line_number_stmt)
@@ -4143,13 +4242,20 @@ class OnStatement < AbstractStatement
   end
 
   def gotos(_)
-    goto_refs = []
+    transfer_refs = []
 
-    @destinations.each do |goto|
-      goto_refs << TransferRefLineStmt.new(goto, 0, :goto)
+    if @autonext_line_stmt
+      line_number = @autonext_line_stmt.line_number
+      stmt = @autonext_line_stmt.statement
+
+      transfer_refs << TransferRefLineStmt.new(line_number, stmt, :auto)
     end
 
-    goto_refs
+    @destinations.each do |goto|
+      transfer_refs << TransferRefLineStmt.new(goto, 0, :goto)
+    end
+
+    transfer_refs
   end
 
   def okay(program, console_io, line_number_stmt)
@@ -4923,12 +5029,12 @@ class ResumeStatement < AbstractStatement
       @errors << 'Syntax error'
     end
 
-    @target = nil
+    @destination = nil
     unless target.nil?
       begin
         number = IntegerConstant.new(target)
-        @target = LineNumber.new(number)
-        @linenums = [@target]
+        @destination = LineNumber.new(number)
+        @linenums = [@destination]
       rescue BASICSyntaxError
         @errors << 'Invalid target'
       end
@@ -4941,6 +5047,22 @@ class ResumeStatement < AbstractStatement
     @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
 
     lines
+  end
+
+  def gotos(_)
+    transfer_refs = []
+
+    if @autonext_line_stmt
+      line_number = @autonext_line_stmt.line_number
+      stmt = @autonext_line_stmt.statement
+
+      transfer_refs << TransferRefLineStmt.new(line_number, stmt, :auto)
+    end
+
+    transfer_refs << TransferRefLineStmt.new(@destination, 0, :resume) unless
+      @destination.nil?
+
+    transfer_refs
   end
 
   def execute_core(interpreter)

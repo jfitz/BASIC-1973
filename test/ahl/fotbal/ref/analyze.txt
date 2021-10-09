@@ -130,8 +130,8 @@ Halstead complexity:
 (1 3) 300 FOR I = 1 TO 40
 (1 2)     READ N
 (1 4)     IF I < 20 THEN 350
-  Origs: 290:auto, 300:fornext
-  Dests: 300:fornext, 330:auto, 350:ifthen, 360:fornext
+  Origs: 290:auto
+  Dests: 330:auto, 350:ifthen, 360:fornext
 (0 3) 330 A(N) = I
 (0 2)     GOTO 360
   Origs: 300:auto
@@ -225,12 +225,12 @@ Halstead complexity:
 (1 3) 660 FOR X = 1 TO 11
 (0 2)     PRINT
 (0 1)     NEXT X
-  Origs: 640:auto, 660:fornext, 660:fornext
-  Dests: 660:fornext, 660:fornext, 670:auto
+  Origs: 640:auto
+  Dests: 670:auto
 (1 3) 670 FOR Z = 1 TO 3000
 (0 1)     NEXT Z
-  Origs: 660:auto, 670:fornext, 670:fornext
-  Dests: 670:fornext, 670:fornext, 680:auto
+  Origs: 660:auto
+  Dests: 680:auto
 (1 5) 680 IF L = 20 THEN 410
   Origs: 670:auto
   Dests: 410:ifthen, 690:auto
@@ -381,11 +381,11 @@ Halstead complexity:
 (1 4) 980 IF P1 > 20 THEN 1800
 (1 4)     IF P1 < 1 THEN 1800
   Origs: 975:auto
-  Dests: 990:auto, 1800:ifthen, 1800:ifthen
+  Dests: 990:auto, 1800:ifthen
 (1 4) 990 IF P2 > 20 THEN 1800
 (1 4)     IF P2 < 1 THEN 1800
   Origs: 980:auto
-  Dests: 995:auto, 1800:ifthen, 1800:ifthen
+  Dests: 995:auto, 1800:ifthen
 (0 4) 995 P1 = INT(P1)
 (0 4)     P2 = INT(P2)
   Origs: 990:auto
@@ -400,9 +400,9 @@ Halstead complexity:
 (1 4) 1010 IF A(P1) < 11 THEN 1048
 (0 2)      GOTO 1820
   Origs: 1005:auto
-  Dests: 1048:ifthen, 1820:goto
+  Dests: 1015:auto, 1048:ifthen, 1820:goto
 (1 4) 1015 IF B(P2) < 11 THEN 1048
-  Origs: 1005:ifthen
+  Origs: 1005:ifthen, 1010:auto
   Dests: 1020:auto, 1048:ifthen
 (1 4) 1020 IF U <> 0 THEN 1035
 (0 3)      PRINT "PASS INCOMPLETE TEAM" T
@@ -499,10 +499,10 @@ Halstead complexity:
 (1 4)      IF A$ <> "NO" THEN 1280
 (0 3)      GOTO 920
   Origs: 1200:auto
-  Dests: 920:goto, 1280:ifthen, 1640:ifthen
+  Dests: 920:goto, 1230:auto, 1280:ifthen, 1640:ifthen
 (0 2) 1230 PRINT
 (0 4)      PRINT "SAFETY AGAINST TEAM" T "------------------------- OH OH"
-  Origs: 1120:ifthen, 1500:ifthen
+  Origs: 1120:ifthen, 1210:auto, 1500:ifthen
   Dests: 1240:auto
 (0 4) 1240 H(T(T)) = H(T(T)) + 2
 (0 2)      GOSUB 1810
@@ -565,10 +565,10 @@ Halstead complexity:
 (1 6) 1500 IF W(T) * P >= Z(T) THEN 1230
 (0 3)      GOTO 880
   Origs: 1490:auto
-  Dests: 880:goto, 1230:ifthen
+  Dests: 880:goto, 1230:ifthen, 1640:auto
 (0 2) 1640 PRINT
 (0 4)      PRINT "TEAM " T "WILL ATTEMPT A FIELDGOAL"
-  Origs: 1210:ifthen
+  Origs: 1210:ifthen, 1500:auto
   Dests: 1645:auto
 (0 1) 1645 RANDOMIZE
 (0 4)      G = RND(0)
@@ -611,10 +611,10 @@ Halstead complexity:
 (0 3)      T = T(T)
 (0 3)      GOTO 794
   Origs: 1740:auto
-  Dests: 794:goto, 1745:ifthen, 1850:gosub
+  Dests: 794:goto, 1745:auto, 1745:ifthen, 1850:gosub
 (0 2) 1745 PRINT
 (0 3)      PRINT "BALL NOW ON " P
-  Origs: 1742:ifthen
+  Origs: 1742:auto, 1742:ifthen
   Dests: 1750:auto
 (0 3) 1750 T = T(T)
 (0 2)      GOSUB 1900
@@ -628,7 +628,7 @@ Halstead complexity:
   Origs: 1770:auto
   Dests: 1800:auto
 (1 5) 1800 IF P1 <> 99 THEN 936
-  Origs: 980:ifthen, 980:ifthen, 990:ifthen, 990:ifthen, 1780:auto
+  Origs: 980:ifthen, 990:ifthen, 1780:auto
   Dests: 936:ifthen, 1810:auto
 (0 2) 1810 PRINT
 (0 3)      PRINT "TEAM 1 SCORE IS" H(1)
@@ -642,13 +642,13 @@ Halstead complexity:
 (0 4)      PRINT "TEAM" T "WINS *************"
 (0 2)      GOTO 2000
   Origs: 1820:auto
-  Dests: 1830:ifthen, 2000:goto
+  Dests: 1830:auto, 1830:ifthen, 2000:goto
 (1 5) 1830 IF P1 = 99 THEN 940
 (0 1)      RETURN
-  Origs: 1825:ifthen
-  Dests: 940:ifthen
+  Origs: 1825:auto, 1825:ifthen
+  Dests: 940:ifthen, 1850:auto
 (0 2) 1850 PRINT
-  Origs: 1100:gosub, 1170:gosub, 1195:gosub, 1742:gosub
+  Origs: 1100:gosub, 1170:gosub, 1195:gosub, 1742:gosub, 1830:auto
   Dests: 1860:auto
 (0 2) 1860 PRINT "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
   Origs: 770:gosub, 1850:auto
@@ -679,31 +679,4 @@ Unreachable code:
 1210: IF A$ = "YES" THEN 1640
 1210.1: IF A$ <> "NO" THEN 1280
 1210.2: GOTO 920
-1640: PRINT
-1640.1: PRINT "TEAM " T "WILL ATTEMPT A FIELDGOAL"
-1645: RANDOMIZE
-1645.1: G = RND(0)
-1645.2: IF G < .825 THEN 1080
-1650: F = INT(35 * RND(0) + 20)
-1660: PRINT
-1660.1: PRINT "KICK IS" F " YARDS LONG"
-1680: P = P - W(T) * F
-1680.1: RANDOMIZE
-1680.2: G = RND(0)
-1690: IF G < .35 THEN 1735
-1700: IF Y(T) * P < X(T) THEN 1740
-1710: PRINT "FIELDGOAL GOOD FOR TEAM" T "*****************YEA"
-1720: Q = 3
-1720.1: GOTO 1390
-1735: PRINT " BALL WENT WIDE"
-1740: PRINT "FIELDGOAL UNSUCCESSFUL TEAM" T "--------------------- TOO BAD"
-1742: GOSUB 1850
-1742.1: IF Y(T) * P < X(T) + 10 THEN 1745
-1742.2: T = T(T)
-1742.3: GOTO 794
-1745: PRINT
-1745.1: PRINT "BALL NOW ON " P
-1750: T = T(T)
-1750.1: GOSUB 1900
-1750.2: GOTO 830
 

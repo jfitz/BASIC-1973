@@ -102,10 +102,10 @@ Halstead complexity:
 (1 6) 208 IF F$ = "N" THEN S = 0
 (0 2)     GOTO 358
   Origs: 205:auto
-  Dests: 358:goto
+  Dests: 210:auto, 358:goto
 (0 2) 210 PRINT
 (1 6)     IF RND > .65 THEN 325 ELSE 380
-  Origs: 
+  Origs: 208:auto
   Dests: 220:auto, 325:ifthen, 380:ifthen
 (0 2) 220 PRINT "A NAZI, EH? OH WELL. ARE YOU GOING FOR RUSSIA(1), ENGLAND(2)"
   Origs: 25:goto, 210:auto, 230:goto
@@ -187,10 +187,10 @@ Halstead complexity:
 (0 2)     PRINT
 (0 2)     GOTO 380
   Origs: 208:goto, 355:auto
-  Dests: 380:goto
+  Dests: 360:auto, 380:goto
 (0 2) 360 PRINT
 (1 6)     IF R > 1 THEN T = 35
-  Origs: 350:ifthen
+  Origs: 350:ifthen, 358:auto
   Dests: 365:auto
 (1 8) 365 IF S + T > 100 * RND THEN 380
   Origs: 360:auto
@@ -226,6 +226,5 @@ Halstead complexity:
 
 Unreachable code:
 
-210: PRINT
-210.1: IF RND > .65 THEN 325 ELSE 380
+All executable lines are reachable.
 
