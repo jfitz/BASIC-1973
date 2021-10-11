@@ -336,11 +336,11 @@ class Interpreter
   end
 
   def run_program
-    if @program.check_for_errors &&
-       @program.optimize(self) &&
+    if @program.optimize(self) &&
        @program.assign_singleline_function_markers &&
        @program.assign_multiline_function_markers &&
        @program.assign_autonext &&
+       !@program.errors? &&
        @program.init_data(self)
       begin
         # run each statement
@@ -370,11 +370,11 @@ class Interpreter
     end
 
     raise BASICRuntimeError.new(:te_chain_errors, filename) unless
-      @program.check_for_errors &&
       @program.optimize(self) &&
       @program.assign_singleline_function_markers &&
       @program.assign_multiline_function_markers &&
       @program.assign_autonext &&
+      !@program.errors? &&
       @program.init_data(self)
 
   rescue Errno::ENOENT, Errno::EISDIR

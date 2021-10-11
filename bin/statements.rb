@@ -260,6 +260,7 @@ end
 class AbstractStatement
   attr_reader :errors
   attr_reader :warnings
+  attr_reader :program_errors
   attr_reader :keywords
   attr_reader :tokens
   attr_reader :separators
@@ -284,6 +285,7 @@ class AbstractStatement
     @separators = get_separators(@core_tokens)
     @errors = []
     @warnings = []
+    @program_errors = []
     @valid = true
     @comment = false
     @modifiers = []
@@ -525,11 +527,13 @@ class AbstractStatement
     true
   end
 
-  def check_for_errors
-    @errors.empty?
+  def errors?
+    !@errors.empty? || !@program_errors.empty?
   end
 
   def optimize(interpreter, line_stmt, program)
+    @program_errors = []
+
     set_for_lines(interpreter, line_stmt, program)
     define_user_functions(interpreter)
     set_endfunc_lines(line_stmt, program)
@@ -1941,8 +1945,12 @@ class DefineFunctionStatement < AbstractStatement
 
     name = @definition.name
 
-    @endfunc_line_stmt =
-      program.find_closing_endfunc_line_stmt(name, line_stmt)
+    begin
+      @endfunc_line_stmt =
+        program.find_closing_endfunc_line_stmt(name, line_stmt)
+    rescue BASICPreexecuteError => e
+      @program_errors << e.message
+    end
   end
 
   def singledef?
@@ -1980,7 +1988,7 @@ class DefineFunctionStatement < AbstractStatement
       begin
         interpreter.set_user_function(@definition)
       rescue BASICRuntimeError => e
-        raise BASICPreexecuteError.new(e.scode, e.extra)
+        @program_errors << e.message
       end
     end
   end
@@ -2393,9 +2401,13 @@ class ForStatement < AbstractStatement
   def set_for_lines(interpreter, line_stmt, program)
     @loopstart_line_stmt_mod = program.find_next_line_stmt_mod(line_stmt)
 
-    unless @control.nil?
-      @nextstmt_line_stmt =
-        program.find_closing_next_line_stmt(@control, line_stmt)
+    begin
+      unless @control.nil?
+        @nextstmt_line_stmt =
+          program.find_closing_next_line_stmt(@control, line_stmt)
+      end
+    rescue BASICPreexecuteError => e
+      @program_errors << e.message
     end
   end
 
