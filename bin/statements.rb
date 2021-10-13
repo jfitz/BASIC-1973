@@ -1902,7 +1902,7 @@ class DataStatement < AbstractStatement
     data_list = @expressions.evaluate(interpreter)
     ds.store(data_list)
   rescue BASICRuntimeError => e
-    raise BASICPreexecuteError.new(e.scode, e.extra)
+    @errors << e.message
   end
 
   def execute_core(_) end
@@ -2140,7 +2140,7 @@ class FilesStatement < AbstractStatement
     file_names = @expressions.evaluate(interpreter)
     interpreter.add_file_names(file_names)
   rescue BASICRuntimeError => e
-    raise BASICPreexecuteError.new(e.scode, e.extra)
+    @errors << e.message
   end
 
   def execute_core(_) end
