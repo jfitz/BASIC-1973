@@ -342,6 +342,7 @@ class Interpreter
     @program.assign_multiline_function_markers
     @program.assign_autonext
     @program.init_data(self)
+    @program.check_program
 
     if !@program.errors?
       begin
@@ -375,10 +376,11 @@ class Interpreter
     @program.assign_singleline_function_markers
     @program.assign_multiline_function_markers
     @program.assign_autonext
+    @program.init_data(self)
+    @program.check_program
 
     raise BASICRuntimeError.new(:te_chain_errors, filename) unless
-      !@program.errors? &&
-      @program.init_data(self)
+      !@program.errors?
 
   rescue Errno::ENOENT, Errno::EISDIR
     raise BASICRuntimeError.new(:te_no_chain, filename)
