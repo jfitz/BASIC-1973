@@ -523,10 +523,6 @@ class AbstractStatement
     @errors.each { |error| console_io.print_line(' ' + error) }
   end
 
-  def okay(_, _, _)
-    true
-  end
-
   def errors?
     !@errors.empty? || !@program_errors.empty?
   end
@@ -553,8 +549,7 @@ class AbstractStatement
     load_file_names(interpreter)
   end
 
-  def check_program(program)
-    # check_any_after_end
+  def check_program(_, _)
     # check_gosub_destinations
     # check_goto_destinations
     # check_if_destinations
@@ -682,7 +677,7 @@ class AbstractStatement
     trace_out.print_out "#{@part_of_user_function} " unless
       @part_of_user_function.nil?
 
-    mod  = current_line_stmt_mod.index
+    mod = current_line_stmt_mod.index
 
     text = ''
 
@@ -2088,14 +2083,10 @@ class EndStatement < AbstractStatement
     lines
   end
 
-  def okay(program, console_io, line_number_stmt)
-    next_line = program.find_next_line_stmt_mod(line_number_stmt)
+  def check_program(program, line_number_stmt)
+    next_line_stmt = program.find_next_line_stmt(line_number_stmt)
 
-    return true if next_line.nil?
-
-    console_io.print_line("Statements after END in line #{line_number_stmt}")
-
-    false
+    @program_errors << 'Statements after END' unless next_line_stmt.nil?
   end
 
   def execute_core(interpreter)
@@ -2161,6 +2152,7 @@ class FnendStatement < AbstractStatement
     super
 
     @may_be_if_sub = false
+    @autonext = false
 
     template = []
 
@@ -2202,7 +2194,6 @@ class ForStatement < AbstractStatement
 
     @autonext = false
     @may_be_if_sub = false
-    @autonext = false
 
     template_to = [[1, '>='], 'TO', [1, '>=']]
     template_to_step = [[1, '>='], 'TO', [1, '>='], 'STEP', [1, '>=']]
@@ -2645,17 +2636,9 @@ class GetStatement < AbstractStatement
     lines
   end
 
-  def okay(program, console_io, line_number_stmt)
-    retval = true
-
-    unless program.line_number?(@line_number)
-      console_io.print_line(
-        "Line number #{@line_number} not found in line #{line_number_stmt}"
-      )
-      retval = false
-    end
-
-    retval
+  def check_program(program, line_number_stmt)
+    @program_errors << "Line number #{@destination} not found" unless
+      program.line_number?(@line_number)
   end
 
   def execute_core(interpreter)
@@ -2788,14 +2771,9 @@ class GosubStatement < AbstractStatement
     transfer_refs
   end
 
-  def okay(program, console_io, line_number_stmt)
-    return true if program.line_number?(@destination)
-
-    console_io.print_line(
-      "Line number #{@destination} not found in line #{line_number_stmt}"
-    )
-
-    false
+  def check_program(program, line_number_stmt)
+    @program_errors << "Line number #{@destination} not found" unless
+      program.line_number?(@destination)
   end
 
   def execute_core(interpreter)
@@ -2947,28 +2925,18 @@ class GotoStatement < AbstractStatement
     transfer_refs
   end
 
-  def okay(program, console_io, line_number_stmt)
-    retval = true
-
-    unless @destination.nil? || program.line_number?(@destination)
-      console_io.print_line(
-        "Line number #{@destination} not found in line #{line_number_stmt}"
-      )
-      retval = false
+  def check_program(program, line_number_stmt)
+    unless @destination.nil?
+      @program_errors << "Line number #{@destination} not found" unless
+        program.line_number?(@destination)
     end
 
     unless @destinations.nil?
       @destinations.each do |destination|
-        next if program.line_number?(destination)
-
-        console_io.print_line(
-          "Line number #{destination} not found in line #{line_number_stmt}"
-        )
-        retval = false
+        @program_errors << "Line number #{destination} not found" unless
+          program.line_number?(destination)
       end
     end
-
-    retval
   end
 
   def execute_core(interpreter)
@@ -3454,30 +3422,18 @@ class AbstractIfStatement < AbstractStatement
     transfer_refs
   end
 
-  def okay(program, console_io, line_number_stmt)
-    retval = true
-
+  def check_program(program, line_number_stmt)
     if @destination.nil? && @statement.nil?
-      console_io.print_line(
-        "Invalid or missing line number in line #{line_number_stmt}"
-      )
+      @program_errors << "Invalid or missing line number"
     end
 
     unless @destination.nil? || program.line_number?(@destination)
-      console_io.print_line(
-        "Line number #{@destination} not found in line #{line_number_stmt}"
-      )
-      retval = false
+      @program_errors << "Line number #{@destination} not found"
     end
 
     unless @else_dest.nil? || program.line_number?(@else_dest)
-      console_io.print_line(
-        "Line number #{@else_dest} not found in line #{line_number_stmt}"
-      )
-      retval = false
+      @program_errors << "Line number #{@else_dest} not found"
     end
-
-    retval
   end
 
   def renumber(renumber_map)
@@ -4145,19 +4101,12 @@ class OnErrorStatement < AbstractStatement
     transfer_refs
   end
 
-  def okay(program, console_io, line_number_stmt)
-    retval = true
-
+  def check_program(program, line_number_stmt)
     unless @destination.nil?
       unless program.line_number?(@destination)
-        console_io.print_line(
-          "Line number #{@destination} not found in line #{line_number_stmt}"
-        )
-        retval = false
+        @program_errors << "Line number #{@destination} not found"
       end
     end
-
-    retval
   end
 
   def execute_core(interpreter)
@@ -4277,21 +4226,14 @@ class OnStatement < AbstractStatement
     transfer_refs
   end
 
-  def okay(program, console_io, line_number_stmt)
-    retval = true
-
+  def check_program(program, line_number_stmt)
     unless @destinations.nil?
       @destinations.each do |destination|
         unless program.line_number?(destination)
-          console_io.print_line(
-            "Line number #{destination} not found in line #{line_number_stmt}"
-          )
-          retval = false
+          @program_errors <<  "Line number #{destination} not found"
         end
       end
     end
-
-    retval
   end
 
   def execute_core(interpreter)
@@ -4758,17 +4700,10 @@ class PutStatement < AbstractStatement
     lines
   end
 
-  def okay(program, console_io, line_number_stmt)
-    retval = true
-
+  def check_program(program, line_number_stmt)
     unless program.line_number?(@line_number)
-      console_io.print_line(
-        "Line number #{@line_number} not found in line #{line_number_stmt}"
-      )
-      retval = false
+      @program_errors << "Line number #{@line_number} not found"
     end
-
-    retval
   end
 
   def execute_core(interpreter)
