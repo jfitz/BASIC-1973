@@ -3498,8 +3498,7 @@ class AbstractIfStatement < AbstractStatement
 
       if @else_dest.nil? && @else_stmt.nil? && $options['extend_if'].value
         # go to next numbered line, not next statement
-        next_line_stmt_mod = interpreter.find_next_line
-        interpreter.next_line_stmt_mod = next_line_stmt_mod
+        interpreter.next_line_stmt_mod = @autonext_line
       end
 
       @else_stmt.execute_core(interpreter) unless @else_stmt.nil?
@@ -5020,7 +5019,7 @@ class ResumeStatement < AbstractStatement
   end
 
   def execute_core(interpreter)
-    interpreter.resume(@target)
+    interpreter.resume(@destination)
   end
 end
 
