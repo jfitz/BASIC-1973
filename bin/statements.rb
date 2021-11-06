@@ -2996,7 +2996,7 @@ class GotoStatement < AbstractStatement
   def execute_core(interpreter)
     raise(BASICSyntaxError, "Line number not found") if
       @dest_line_stmt_mod.nil? && @dest_line_stmt_mods.nil?
-    
+
     unless @dest_line_stmt_mod.nil?
       interpreter.next_line_stmt_mod = @dest_line_stmt_mod
     end
@@ -4210,6 +4210,52 @@ class OnStatement < AbstractStatement
     end
   end
 
+  def set_destinations(interpreter, _, _)
+    unless @dest_lines.nil?
+      @dest_line_stmt_mods = []
+
+      @dest_lines.each do |dest_line|
+        mod = interpreter.statement_start_index(dest_line)
+
+        @dest_line_stmt_mods << LineStmtMod.new(dest_line, 0, mod) unless
+          mod.nil?
+      end
+    end
+  end
+
+  def check_program(program, line_number_stmt)
+    unless @dest_lines.nil?
+      @dest_lines.each do |dest_line|
+        unless program.line_number?(dest_line)
+          @program_errors << "Line number #{dest_line} not found"
+        end
+      end
+    end
+  end
+
+  def renumber(renumber_map)
+    new_dest_lines = []
+
+    @dest_lines.each do |dest_line|
+      new_dest_lines << renumber_map[dest_line]
+    end
+
+    index = 0
+    @tokens.each_with_index do |token, i|
+      index = i if token.to_s == 'THEN'
+      index = i if token.to_s == 'GOTO'
+    end
+
+    new_dest_lines.each do |dest_line|
+      @tokens[index + 1] = NumericConstantToken.new(dest_line.line_number)
+
+      index += 2
+    end
+
+    @dest_lines = new_dest_lines
+    @linenums = @dest_lines
+  end
+
   def uncache_core
     @expression.uncache
   end
@@ -4244,17 +4290,10 @@ class OnStatement < AbstractStatement
     transfer_refs
   end
 
-  def check_program(program, line_number_stmt)
-    unless @dest_lines.nil?
-      @dest_lines.each do |dest_line|
-        unless program.line_number?(dest_line)
-          @program_errors << "Line number #{dest_line} not found"
-        end
-      end
-    end
-  end
-
   def execute_core(interpreter)
+    raise(BASICSyntaxError, "Line number not found") if
+      @dest_line_stmt_mods.nil?
+
     values = @expression.evaluate(interpreter)
 
     raise(BASICExpressionError, 'Expecting one value') unless values.size == 1
@@ -4268,38 +4307,10 @@ class OnStatement < AbstractStatement
     index = value.to_i
 
     raise BASICRuntimeError.new(:te_val_out) if
-      index < 1 || index > @dest_lines.size
+      index < 1 || index > @dest_line_stmt_mods.size
 
     # get destination in list
-    line_number = @dest_lines[index - 1]
-    mod = interpreter.statement_start_index(line_number)
-
-    raise(BASICSyntaxError, 'Line number not found') if mod.nil?
-
-    interpreter.next_line_stmt_mod = LineStmtMod.new(line_number, 0, mod)
-  end
-
-  def renumber(renumber_map)
-    new_dest_lines = []
-
-    @dest_lines.each do |dest_line|
-      new_dest_lines << renumber_map[dest_line]
-    end
-
-    index = 0
-    @tokens.each_with_index do |token, i|
-      index = i if token.to_s == 'THEN'
-      index = i if token.to_s == 'GOTO'
-    end
-
-    new_dest_lines.each do |dest_line|
-      @tokens[index + 1] = NumericConstantToken.new(dest_line.line_number)
-
-      index += 2
-    end
-
-    @dest_lines = new_dest_lines
-    @linenums = @dest_lines
+    interpreter.next_line_stmt_mod = @dest_line_stmt_mods[index - 1]
   end
 end
 
