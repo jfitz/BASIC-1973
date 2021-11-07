@@ -1,0 +1,203 @@
+Statistics:
+
+Number of lines: 59
+Number of valid statements: 43
+Number of comments: 16
+Number of executable statements: 42
+
+Complexity:
+
+Comment density: 0.372
+Comprehension effort: 127
+McCabe complexity: 5
+Halstead complexity:
+ length: 172
+ volume: 650.881
+ difficulty: 30.780
+ effort: 20034.105
+ language: 0.687
+ intelligence: 21.146
+ time: 18.550
+
+(0 1) 10 REM GEOMEDIAVERAGE CALCULATION
+  Origs: :start
+  Dests: 11:auto
+(0 2) 11 OPTION REQUIRE_INITIALIZED TRUE
+  Origs: 10:auto
+  Dests: 12:auto
+(0 2) 12 OPTION BASE 1
+  Origs: 11:auto
+  Dests: 13:auto
+(0 2) 13 OPTION PRECISION 6
+  Origs: 12:auto
+  Dests: 20:auto
+(0 1) 20 REM START WITH SOME NUMBERS
+  Origs: 13:auto
+  Dests: 21:auto
+(0 1) 21 RANDOMIZE
+  Origs: 20:auto
+  Dests: 22:auto
+(0 4) 22 ARR LET N0 = RND1(3, 100)
+  Origs: 21:auto
+  Dests: 23:auto
+(0 2) 23 DIM N(3)
+  Origs: 22:auto
+  Dests: 24:auto
+(0 2) 24 DIM M(3, 100)
+  Origs: 23:auto
+  Dests: 30:auto
+(0 3) 30 LET I = 1
+  Origs: 24:auto
+  Dests: 40:auto
+(0 2) 40 GOSUB 500
+  Origs: 30:auto
+  Dests: 100:auto, 500:gosub
+(0 1) 100 REM PRINT THE NUMBERS
+  Origs: 40:auto, 159:goto
+  Dests: 101:auto
+(0 2) 101 GOSUB 400
+  Origs: 100:auto
+  Dests: 110:auto, 400:gosub
+(0 1) 110 REM CALCULATE AVERAGE, GEOMETRIC MEAN, MEDIAN
+  Origs: 101:auto
+  Dests: 111:auto
+(0 4) 111 LET N(1) = AVG(N0)
+  Origs: 110:auto
+  Dests: 112:auto
+(0 8) 112 LET N(2) = PROD(N0) ^ (1 / NELEM(N0))
+  Origs: 111:auto
+  Dests: 113:auto
+(0 4) 113 LET N(3) = MEDIAN(N0)
+  Origs: 112:auto
+  Dests: 120:auto
+(0 1) 120 REM CHECK FOR CONVERGENCE
+  Origs: 113:auto
+  Dests: 121:auto
+(1 5) 121 IF NELEM(UNIQ1(N)) = 1 THEN 300
+  Origs: 120:auto
+  Dests: 130:auto, 300:ifthen
+(0 1) 130 REM CHECK FOR STUCK LOOP
+  Origs: 121:auto
+  Dests: 131:auto
+(1 10) 131 IF N(1) = N0(1) AND N(2) = N0(2) AND N(3) = N0(3) THEN 310
+  Origs: 130:auto
+  Dests: 132:auto, 310:ifthen
+(0 1) 132 REM IF N() = N0() THEN 310
+  Origs: 131:auto
+  Dests: 140:auto
+(0 1) 140 REM CHECK ITERATION LIMIT
+  Origs: 132:auto
+  Dests: 141:auto
+(1 4) 141 IF I > 99 THEN 320
+  Origs: 140:auto
+  Dests: 150:auto, 320:ifthen
+(0 1) 150 REM PERFORM ANOTHER LOOP
+  Origs: 141:auto
+  Dests: 151:auto
+(0 4) 151 LET I = I + 1
+  Origs: 150:auto
+  Dests: 152:auto
+(0 3) 152 ARR LET N0 = N
+  Origs: 151:auto
+  Dests: 153:auto
+(0 2) 153 GOSUB 500
+  Origs: 152:auto
+  Dests: 159:auto, 500:gosub
+(0 3) 159 GOTO 100
+  Origs: 153:auto
+  Dests: 100:goto
+(0 1) 300 REM RESULT - CONVERGENCE
+  Origs: 121:ifthen
+  Dests: 301:auto
+(0 2) 301 GOSUB 410
+  Origs: 300:auto
+  Dests: 302:auto, 410:gosub
+(0 2) 302 PRINT "CONVERGENCE"
+  Origs: 301:auto
+  Dests: 303:auto
+(0 2) 303 GOSUB 510
+  Origs: 302:auto
+  Dests: 309:auto, 510:gosub
+(0 1) 309 STOP
+  Origs: 303:auto
+  Dests: :stop
+(0 1) 310 REM RESULT - STUCK IN LOOP
+  Origs: 131:ifthen
+  Dests: 311:auto
+(0 2) 311 GOSUB 400
+  Origs: 310:auto
+  Dests: 312:auto, 400:gosub
+(0 2) 312 PRINT "STUCK IN LOOP"
+  Origs: 311:auto
+  Dests: 313:auto
+(0 2) 313 GOSUB 510
+  Origs: 312:auto
+  Dests: 319:auto, 510:gosub
+(0 1) 319 STOP
+  Origs: 313:auto
+  Dests: :stop
+(0 1) 320 REM RESULT - TOO MANY ITERATIONS
+  Origs: 141:ifthen
+  Dests: 321:auto
+(0 2) 321 PRINT "TOO MANY ITERATIONS"
+  Origs: 320:auto
+  Dests: 329:auto
+(0 1) 329 STOP
+  Origs: 321:auto
+  Dests: :stop
+(0 1) 400 REM PROCEDURE - PRINT NUMBERS
+  Origs: 101:gosub, 311:gosub
+  Dests: 401:auto
+(0 2) 401 PRINT I,
+  Origs: 400:auto
+  Dests: 402:auto
+(0 2) 402 ARR PRINT N0
+  Origs: 401:auto
+  Dests: 409:auto
+(0 1) 409 RETURN
+  Origs: 402:auto
+  Dests: 
+(0 1) 410 REM PROCEDURE - PRINT NUMBERS
+  Origs: 301:gosub
+  Dests: 411:auto
+(0 2) 411 PRINT I,
+  Origs: 410:auto
+  Dests: 412:auto
+(0 2) 412 ARR PRINT N
+  Origs: 411:auto
+  Dests: 419:auto
+(0 1) 419 RETURN
+  Origs: 412:auto
+  Dests: 
+(0 1) 500 REM STORE NUMBERS TO HISTORY
+  Origs: 40:gosub, 153:gosub
+  Dests: 501:auto
+(0 3) 501 LET M(1, I) = N0(1)
+  Origs: 500:auto
+  Dests: 502:auto
+(0 3) 502 LET M(2, I) = N0(2)
+  Origs: 501:auto
+  Dests: 503:auto
+(0 3) 503 LET M(3, I) = N0(3)
+  Origs: 502:auto
+  Dests: 509:auto
+(0 1) 509 RETURN
+  Origs: 503:auto
+  Dests: 
+(0 1) 510 REM PLOT HISTORY
+  Origs: 303:gosub, 313:gosub
+  Dests: 511:auto
+(0 2) 511 DIM M(3, I)
+  Origs: 510:auto
+  Dests: 512:auto
+(1 2) 512 MAT PLOT M
+  Origs: 511:auto
+  Dests: 999:auto
+(0 1) 999 END
+  Origs: 512:auto
+  Dests: :stop
+
+Unreachable code:
+
+All executable lines are reachable.
+
