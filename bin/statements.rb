@@ -536,7 +536,7 @@ class AbstractStatement
     vars
   end
 
-  def gotos(_)
+  def destinations(_)
     transfer_refs = []
 
     if @autonext_line_stmt
@@ -552,7 +552,7 @@ class AbstractStatement
   def destinations_line(line_number, user_function_start_lines)
     transfer_ref_lines = []
 
-    transfer_ref_line_stmts = gotos(user_function_start_lines)
+    transfer_ref_line_stmts = destinations(user_function_start_lines)
 
     # convert TransferRefLineStmt objects to TransferRefLine (no Stmt) objects
     transfer_ref_line_stmts.each do |goto|
@@ -565,7 +565,7 @@ class AbstractStatement
   def destinations_stmt(user_function_start_lines)
     line_stmts = []
 
-    transfer_ref_line_stmts = gotos(user_function_start_lines)
+    transfer_ref_line_stmts = destinations(user_function_start_lines)
 
     # convert TransferRefLineStmt objects to LineStmt objects
     transfer_ref_line_stmts.each do |goto|
@@ -1658,7 +1658,7 @@ class ChainStatement < AbstractStatement
     lines
   end
 
-  def gotos(_)
+  def destinations(_)
     transfer_refs = []
 
     if @autonext_line_stmt
@@ -2098,7 +2098,7 @@ class EndStatement < AbstractStatement
     lines
   end
 
-  def gotos(_)
+  def destinations(_)
     transfer_refs = []
 
     if @autonext_line_stmt
@@ -2445,7 +2445,7 @@ class ForStatement < AbstractStatement
     lines
   end
 
-  def gotos(_)
+  def destinations(_)
     transfer_refs = []
 
     if @autonext_line_stmt
@@ -2799,7 +2799,7 @@ class GosubStatement < AbstractStatement
     lines
   end
 
-  def gotos(_)
+  def destinations(_)
     transfer_refs = []
 
     if @autonext_line_stmt
@@ -2997,7 +2997,7 @@ class GotoStatement < AbstractStatement
     lines
   end
 
-  def gotos(_)
+  def destinations(_)
     transfer_refs = []
 
     if @autonext_line_stmt
@@ -3281,7 +3281,7 @@ class AbstractIfStatement < AbstractStatement
     end
   end
 
-  def gotos(user_function_start_lines)
+  def destinations(user_function_start_lines)
     transfer_refs = []
 
     if @autonext_line_stmt
@@ -3294,13 +3294,13 @@ class AbstractIfStatement < AbstractStatement
     transfer_refs << TransferRefLineStmt.new(@dest_line, 0, :ifthen) unless
       @dest_line.nil?
 
-    transfer_refs += @statement.gotos(user_function_start_lines) unless
+    transfer_refs += @statement.destinations(user_function_start_lines) unless
       @statement.nil?
 
     transfer_refs << TransferRefLineStmt.new(@else_dest_line, 0, :ifthen) unless
       @else_dest_line.nil?
 
-    transfer_refs += @else_stmt.gotos(user_function_start_lines) unless
+    transfer_refs += @else_stmt.destinations(user_function_start_lines) unless
       @else_stmt.nil?
 
     # autonext to next line if no ELSE
@@ -3802,7 +3802,7 @@ class AbstractLetStatement < AbstractStatement
     lines
   end
 
-  def gotos(user_function_start_lines)
+  def destinations(user_function_start_lines)
     transfer_refs = []
 
     if @autonext_line_stmt
@@ -4131,7 +4131,7 @@ class OnErrorStatement < AbstractStatement
     lines
   end
 
-  def gotos(_)
+  def destinations(_)
     transfer_refs = []
 
     if @autonext_line_stmt
@@ -4301,7 +4301,7 @@ class OnStatement < AbstractStatement
     lines
   end
 
-  def gotos(_)
+  def destinations(_)
     transfer_refs = []
 
     if @autonext_line_stmt
@@ -5060,7 +5060,7 @@ class ResumeStatement < AbstractStatement
     lines
   end
 
-  def gotos(_)
+  def destinations(_)
     transfer_refs = []
 
     if @autonext_line_stmt
@@ -5143,7 +5143,7 @@ class RunStatement < AbstractStatement
     lines
   end
 
-  def gotos(_)
+  def destinations(_)
     transfer_refs = []
 
     if @autonext_line_stmt
@@ -5247,7 +5247,7 @@ class StopStatement < AbstractStatement
     lines
   end
 
-  def gotos(_)
+  def destinations(_)
     transfer_refs = []
 
     if @autonext_line_stmt
