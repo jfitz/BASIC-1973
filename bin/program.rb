@@ -339,8 +339,8 @@ class Line
     Line.new(text, @statements, tokens.flatten, @comment)
   end
 
-  def transfers_line(line_number, user_function_start_lines)
-    dests = []
+  def build_destinations(line_number)
+    @destinations = []
 
     @statements.each do |statement|
       # built-in transfers
@@ -353,15 +353,13 @@ class Line
       xfers.each do |xfer|
         # only transfers that have a different line number
         # we don't care about intra-line transfers
-        dests << TransferRefLine.new(xfer.line_number, xfer.type) if
+        @destinations << TransferRefLine.new(xfer.line_number, xfer.type) if
           xfer.line_number != line_number
       end
     end
-
-    dests
   end
 
-  def line_stmts(line_number, user_function_start_lines)
+  def line_stmts(line_number)
     dests = {}
 
     @statements.each_with_index do |statement, stmt|
@@ -1086,19 +1084,8 @@ class Program
 
   def build_line_destinations
     # build list of "gotos"
-    @lines.each { |_, line| line.destinations = [] }
-
-    destinations = {}
-
-    # for each line
-    @lines.keys.each do |line_number|
-      line = @lines[line_number]
-
-      # get destinations
-      destinations =
-        line.transfers_line(line_number, @user_function_start_lines)
-
-      line.destinations = destinations
+    @lines.each do |line_number, line|
+      line.build_destinations(line_number)
     end
   end
 
@@ -1130,11 +1117,8 @@ class Program
     # build list of "gotos"
     destinations = {}
 
-    @lines.keys.each do |line_number|
-      line = @lines[line_number]
-
-      line_destinations =
-        line.line_stmts(line_number, @user_function_start_lines)
+    @lines.each do |line_number, line|
+      line_destinations = line.line_stmts(line_number)
 
       line_destinations.each do |line_number_stmt, dests|
         destinations[line_number_stmt] = dests
