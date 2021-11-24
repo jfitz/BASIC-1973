@@ -23,14 +23,14 @@ module Reader
     evens = tokens.values_at(* tokens.each_index.select(&:even?))
 
     evens.each do |token|
-      raise BASICRuntimeError.new(:te_inp_no_num_text) unless
+      raise BASICRuntimeError, :te_inp_no_num_text unless
         token.numeric_constant? || token.text_constant?
     end
 
     odds = tokens.values_at(* tokens.each_index.select(&:odd?))
 
     odds.each do |token|
-      raise BASICRuntimeError.new(:te_inp_inv) unless token.separator?
+      raise BASICRuntimeError, :te_inp_inv unless token.separator?
     end
   end
 end
@@ -82,22 +82,24 @@ class ConsoleIo
   include Inputter
 
   def read_char
-    if STDIN.tty?
-      input_text = STDIN.getch
-    else
-      input_text = STDIN.getc
+    input_text = if STDIN.tty?
+                   STDIN.getch
+                 else
+                   STDIN.getc
+                 end
+
+    raise BASICRuntimeError, :te_eof if input_text.nil?
+
+    raise BASICRuntimeError, :te_eof if input_text.empty?
+
+    input_text.bytes.collect do |c|
+      raise BASICRuntimeError, :te_break if
+                               c < 8
     end
-
-    raise BASICRuntimeError.new(:te_eof) if input_text.nil?
-
-    raise BASICRuntimeError.new(:te_eof) if input_text.empty?
-
-    input_text.bytes.collect { |c| raise BASICRuntimeError.new(:te_break) if
-                               c < 8 }
 
     ascii_text = ascii_printables(input_text)
 
-    raise BASICRuntimeError.new(:te_eof) if ascii_text.empty?
+    raise BASICRuntimeError, :te_eof if ascii_text.empty?
 
     print(ascii_text)
 
@@ -109,7 +111,7 @@ class ConsoleIo
   def read_line
     input_text = gets
 
-    raise BASICRuntimeError.new(:te_eof) if input_text.nil?
+    raise BASICRuntimeError, :te_eof if input_text.nil?
 
     ascii_text = ascii_printables(input_text)
 
@@ -163,9 +165,7 @@ class ConsoleIo
 
     zone_width = $options['zone_width'].value
 
-    if zone_width > 0
-      print_item(' ') while @column % zone_width != 0
-    end
+    print_item(' ') while @column % zone_width != 0 if zone_width > 0
 
     @last_was_numeric = false
     @last_was_tab = true
@@ -176,9 +176,7 @@ class ConsoleIo
 
     zone_width = $options['semicolon_zone_width'].value
 
-    if zone_width > 0
-      print_item(' ') while @column % zone_width != 0
-    end
+    print_item(' ') while @column % zone_width != 0 if zone_width > 0
 
     @last_was_numeric = false
     @last_was_tab = false
@@ -303,7 +301,7 @@ class DataStore
   end
 
   def read
-    raise BASICRuntimeError.new(:te_out_of_data) if
+    raise BASICRuntimeError, :te_out_of_data if
       @data_index >= @data_store.size
 
     @data_index += 1
@@ -318,7 +316,7 @@ end
 # reads values from file and writes values to file
 class FileHandler
   def initialize(file_name)
-    raise BASICRuntimeError.new(:te_fname_no) if file_name.nil?
+    raise BASICRuntimeError, :te_fname_no if file_name.nil?
 
     @quotes = ['"']
     @file_name = file_name
@@ -349,12 +347,12 @@ class FileHandler
         @records = read_file(@file_name)
         @rec_number = 0
       else
-        raise BASICRuntimeError.new(:te_mode_inv)
+        raise BASICRuntimeError, :te_mode_inv
       end
 
       @mode = mode
     else
-      raise BASICRuntimeError.new(:te_op_inc) unless @mode == mode
+      raise BASICRuntimeError, :te_op_inc unless @mode == mode
     end
   end
 
@@ -365,7 +363,7 @@ class FileHandler
         @records[@rec_number] = @record
         @record = ''
       end
-      
+
       write_file(@file_name, @records)
       @records = []
       @rec_number = -1
@@ -379,16 +377,16 @@ class FileHandler
   end
 
   def read_record(interpreter, rec_number)
-    raise BASICRuntimeError.new(:te_mode_inc) if @mode != :memory
+    raise BASICRuntimeError, :te_mode_inc if @mode != :memory
 
     # error if format not specified by RECORD
-    raise BASICRuntimeError.new(:te_recno_inv) if rec_number < 0
+    raise BASICRuntimeError, :te_recno_inv if rec_number < 0
 
-    raise BASICRuntimeError.new(:te_recno_inv) if rec_number > 65534
+    raise BASICRuntimeError, :te_recno_inv if rec_number > 65_534
 
-    raise BASICRuntimeError.new(:te_recno_out) if
+    raise BASICRuntimeError, :te_recno_out if
       rec_number >= @records.size
-    
+
     input_text = @records[rec_number]
 
     tokenbuilders = make_tokenbuilders(@quotes)
@@ -408,22 +406,22 @@ class FileHandler
   end
 
   def write_record(record, rec_number)
-    raise BASICRuntimeError.new(:te_mode_inc) if @mode != :memory
+    raise BASICRuntimeError, :te_mode_inc if @mode != :memory
 
     # error if format not specified by RECORD
-    raise BASICRuntimeError.new(:te_recno_inv) if rec_number < 0
+    raise BASICRuntimeError, :te_recno_inv if rec_number < 0
 
-    raise BASICRuntimeError.new(:te_recno_inv) if rec_number > 65534
+    raise BASICRuntimeError, :te_recno_inv if rec_number > 65_534
 
     # add empty lines if rec_num > size
-    @records << "" while @records.size < rec_number
+    @records << '' while @records.size < rec_number
 
     # write to data store
     @records[rec_number] = record
   end
 
   def read_line
-    raise BASICRuntimeError.new(:te_eof) if @rec_number >= @records.size
+    raise BASICRuntimeError, :te_eof if @rec_number >= @records.size
 
     input_text = @records[@rec_number]
     @rec_number += 1
@@ -488,7 +486,7 @@ class FileHandler
 
   def refill(data_store, tokenizer)
     while data_store.empty?
-      raise BASICRuntimeError.new(:te_eof) if @rec_number >= @records.size
+      raise BASICRuntimeError, :te_eof if @rec_number >= @records.size
 
       line = @records[@rec_number]
       @rec_number += 1
