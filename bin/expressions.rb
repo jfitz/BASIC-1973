@@ -894,7 +894,7 @@ class BASICArray < AbstractCompound
         formats.each do |format|
           value = nil
           value = get_value_1(col) if format.wants_item
-          text = format.format(value)
+          text = format.pretty_format(value)
           text.print(printer)
         end
       end
@@ -1142,7 +1142,7 @@ class Matrix < AbstractCompound
           value.print(printer)
           value = nil
           value = get_value_1(col) if format.wants_item
-          text = format.format(value)
+          text = format.pretty_format(value)
           text.print(printer)
         end
       end
@@ -1172,7 +1172,7 @@ class Matrix < AbstractCompound
           formats.each do |format|
             value = nil
             value = get_value_2(row, col) if format.wants_item
-            text = format.format(value)
+            text = format.pretty_format(value)
             text.print(printer)
           end
         end
