@@ -1,11 +1,6 @@
 # function (provides a result)
 class AbstractFunction < AbstractElement
-  attr_reader :name
-  attr_reader :default_shape
-  attr_reader :content_type
-  attr_reader :shape
-  attr_reader :constant
-  attr_reader :warnings
+  attr_reader :name, :default_shape, :content_type, :shape, :constant, :warnings
 
   def initialize(text)
     super()
@@ -183,9 +178,8 @@ end
 
 # signature for user-defined function
 class UserFunctionSignature < AbstractElement
-  attr_reader :name
-  attr_reader :sigils
-  
+  attr_reader :name, :sigils
+
   def initialize(name, sigils)
     @name = name
     @sigils = sigils
@@ -246,8 +240,7 @@ end
 
 # User-defined function (provides a scalar value)
 class UserFunction < AbstractFunction
-  attr_writer :valref
-  attr_writer :set_dims
+  attr_writer :valref, :set_dims
 
   def self.accept?(token)
     classes = %w[UserFunctionToken]
@@ -268,25 +261,24 @@ class UserFunction < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      constant_stack.pop if constant_stack[-1].class.to_s == 'Array'
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constant_stack.pop
     end
 
     # user function is never const, as it can be re-assigned
@@ -347,18 +339,18 @@ class UserFunction < AbstractFunction
     # dummy variable names and their (now known) values
     params = definition.arguments
     param_names_values = params.zip(arguments)
-    names_and_values = Hash[param_names_values]
+    names_and_values = param_names_values.to_h
     interpreter.define_user_var_values(names_and_values)
 
     begin
       expression = definition.expression
-      if !expression.nil?
-        results = expression.evaluate(interpreter)
-      else
+      if expression.nil?
         signature = UserFunctionSignature.new(@name, sigils)
         interpreter.run_user_function(signature)
 
         results = [interpreter.get_value(signature)]
+      else
+        results = expression.evaluate(interpreter)
       end
     rescue BASICRuntimeError => e
       interpreter.clear_user_var_values
@@ -382,7 +374,7 @@ class UserFunction < AbstractFunction
 
   # return a single value, a reference to this object
   def evaluate_ref_scalar(_interpreter, arg_stack)
-    raise BASICSyntaxError.new('function evaluated with arguments') if
+    raise BASICSyntaxError, 'function evaluated with arguments' if
       previous_is_array(arg_stack)
 
     self
@@ -390,7 +382,7 @@ class UserFunction < AbstractFunction
 
   # return a single value, a reference to this object
   def evaluate_ref_compound(_interpreter, arg_stack)
-    raise BASICSyntaxError.new('function evaluated with arguments') if
+    raise BASICSyntaxError, 'function evaluated with arguments' if
       previous_is_array(arg_stack)
 
     self
@@ -451,11 +443,11 @@ class FunctionAscii < AbstractFunction
     raise BASICRuntimeError.new(:te_val_out, @name) unless
       value.between?(32, 126) || $options['asc_allow_all'].value
 
-    if content_type == :integer
-      res = IntegerConstant.new(value)
-    else
-      res = NumericConstant.new(value)
-    end
+    res = if content_type == :integer
+            IntegerConstant.new(value)
+          else
+            NumericConstant.new(value)
+          end
 
     @cached = res if @constant && $options['cache_const_expr']
     res
@@ -621,33 +613,30 @@ class FunctionCon1 < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      if constant_stack[-1].class.to_s == 'Array'
-        constants = constant_stack.pop
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constants = constant_stack.pop
 
-        if constants.empty?
-          @constant = false
-        else
-          @constant = true
-          constants.each { |c| @constant &&= c }
-        end
+      if constants.empty?
+        @constant = false
+      else
+        @constant = true
+        constants.each { |c| @constant &&= c }
       end
     end
 
@@ -699,33 +688,30 @@ class FunctionCon1I < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      if constant_stack[-1].class.to_s == 'Array'
-        constants = constant_stack.pop
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constants = constant_stack.pop
 
-        if constants.empty?
-          @constant = false
-        else
-          @constant = true
-          constants.each { |c| @constant &&= c }
-        end
+      if constants.empty?
+        @constant = false
+      else
+        @constant = true
+        constants.each { |c| @constant &&= c }
       end
     end
 
@@ -782,33 +768,30 @@ class FunctionCon1T < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      if constant_stack[-1].class.to_s == 'Array'
-        constants = constant_stack.pop
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constants = constant_stack.pop
 
-        if constants.empty?
-          @constant = false
-        else
-          @constant = true
-          constants.each { |c| @constant &&= c }
-        end
+      if constants.empty?
+        @constant = false
+      else
+        @constant = true
+        constants.each { |c| @constant &&= c }
       end
     end
 
@@ -858,33 +841,30 @@ class FunctionCon2 < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      if constant_stack[-1].class.to_s == 'Array'
-        constants = constant_stack.pop
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constants = constant_stack.pop
 
-        if constants.empty?
-          @constant = false
-        else
-          @constant = true
-          constants.each { |c| @constant &&= c }
-        end
+      if constants.empty?
+        @constant = false
+      else
+        @constant = true
+        constants.each { |c| @constant &&= c }
       end
     end
 
@@ -949,33 +929,30 @@ class FunctionCon2I < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      if constant_stack[-1].class.to_s == 'Array'
-        constants = constant_stack.pop
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constants = constant_stack.pop
 
-        if constants.empty?
-          @constant = false
-        else
-          @constant = true
-          constants.each { |c| @constant &&= c }
-        end
+      if constants.empty?
+        @constant = false
+      else
+        @constant = true
+        constants.each { |c| @constant &&= c }
       end
     end
 
@@ -1045,33 +1022,30 @@ class FunctionCon2T < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      if constant_stack[-1].class.to_s == 'Array'
-        constants = constant_stack.pop
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constants = constant_stack.pop
 
-        if constants.empty?
-          @constant = false
-        else
-          @constant = true
-          constants.each { |c| @constant &&= c }
-        end
+      if constants.empty?
+        @constant = false
+      else
+        @constant = true
+        constants.each { |c| @constant &&= c }
       end
     end
 
@@ -1257,25 +1231,24 @@ class FunctionErl < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      constant_stack.pop if constant_stack[-1].class.to_s == 'Array'
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constant_stack.pop
     end
 
     # ERL() is never constant
@@ -1321,25 +1294,24 @@ class FunctionErr < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      constant_stack.pop if constant_stack[-1].class.to_s == 'Array'
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constant_stack.pop
     end
 
     # ERR() is never constant
@@ -1451,11 +1423,11 @@ class FunctionFix < AbstractFunction
     raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature1)
 
-    if content_type == :integer
-      res = args[0].floor.to_int
-    else
-      res = args[0].floor
-    end
+    res = if content_type == :integer
+            args[0].floor.to_int
+          else
+            args[0].floor
+          end
 
     @cached = res if @constant && $options['cache_const_expr']
     res
@@ -1507,33 +1479,30 @@ class FunctionIdn < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      if constant_stack[-1].class.to_s == 'Array'
-        constants = constant_stack.pop
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constants = constant_stack.pop
 
-        if constants.empty?
-          @constant = false
-        else
-          @constant = true
-          constants.each { |c| @constant &&= c }
-        end
+      if constants.empty?
+        @constant = false
+      else
+        @constant = true
+        constants.each { |c| @constant &&= c }
       end
     end
 
@@ -1628,11 +1597,11 @@ class FunctionInstr < AbstractFunction
       index += 1
     end
 
-    if content_type == :integer
-      res = IntegerConstant.new(index)
-    else
-      res = NumericConstant.new(index)
-    end
+    res = if content_type == :integer
+            IntegerConstant.new(index)
+          else
+            NumericConstant.new(index)
+          end
 
     @cached = res if @constant && $options['cache_const_expr']
     res
@@ -2325,8 +2294,8 @@ class FunctionNcol < AbstractFunction
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      constant_stack.pop if constant_stack[-1].class.to_s == 'Array'
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constant_stack.pop
     end
 
     # NCOL() is never constant
@@ -2347,11 +2316,11 @@ class FunctionNcol < AbstractFunction
       match_args_to_signature(args, @signature2) ||
       match_args_to_signature(args, @signature3)
 
-    if content_type == :integer
-      res = IntegerConstant.new(args[0].ncol)
-    else
-      res = NumericConstant.new(args[0].ncol)
-    end
+    res = if content_type == :integer
+            IntegerConstant.new(args[0].ncol)
+          else
+            NumericConstant.new(args[0].ncol)
+          end
 
     @cached = res if @constant && $options['cache_const_expr']
     res
@@ -2372,8 +2341,8 @@ class FunctionNelem < AbstractFunction
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      constant_stack.pop if constant_stack[-1].class.to_s == 'Array'
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constant_stack.pop
     end
 
     # NELEM() is never constant
@@ -2394,11 +2363,11 @@ class FunctionNelem < AbstractFunction
       match_args_to_signature(args, @signature2) ||
       match_args_to_signature(args, @signature3)
 
-    if content_type == :integer
-      res = IntegerConstant.new(args[0].size)
-    else
-      res = NumericConstant.new(args[0].size)
-    end
+    res = if content_type == :integer
+            IntegerConstant.new(args[0].size)
+          else
+            NumericConstant.new(args[0].size)
+          end
 
     @cached = res if @constant && $options['cache_const_expr']
     res
@@ -2419,8 +2388,8 @@ class FunctionNrow < AbstractFunction
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      constant_stack.pop if constant_stack[-1].class.to_s == 'Array'
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constant_stack.pop
     end
 
     # NROW() is never constant
@@ -2441,11 +2410,11 @@ class FunctionNrow < AbstractFunction
       match_args_to_signature(args, @signature2) ||
       match_args_to_signature(args, @signature3)
 
-    if content_type == :integer
-      res = IntegerConstant.new(args[0].nrow)
-    else
-      res = NumericConstant.new(args[0].nrow)
-    end
+    res = if content_type == :integer
+            IntegerConstant.new(args[0].nrow)
+          else
+            NumericConstant.new(args[0].nrow)
+          end
 
     @cached = res if @constant && $options['cache_const_expr']
     res
@@ -2467,16 +2436,14 @@ class FunctionNum < AbstractFunction
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      if constant_stack[-1].class.to_s == 'Array'
-        constants = constant_stack.pop
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constants = constant_stack.pop
 
-        if constants.empty?
-          @constant = false
-        else
-          @constant = true
-          constants.each { |c| @constant &&= c }
-        end
+      if constants.empty?
+        @constant = false
+      else
+        @constant = true
+        constants.each { |c| @constant &&= c }
       end
     end
 
@@ -2673,25 +2640,24 @@ class FunctionRnd < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      constant_stack.pop if constant_stack[-1].class.to_s == 'Array'
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constant_stack.pop
     end
 
     # RND() is never constant
@@ -2738,25 +2704,24 @@ class FunctionRndI < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      constant_stack.pop if constant_stack[-1].class.to_s == 'Array'
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constant_stack.pop
     end
 
     # RND%() is never constant
@@ -2822,29 +2787,27 @@ class FunctionRndT < AbstractFunction
       'X' => '01234567890ABCDEF',
       'x' => '01234567890abcdef'
     }
-
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      constant_stack.pop if constant_stack[-1].class.to_s == 'Array'
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constant_stack.pop
     end
 
     # RND$() is never constant
@@ -2911,25 +2874,24 @@ class FunctionRnd1 < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      constant_stack.pop if constant_stack[-1].class.to_s == 'Array'
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constant_stack.pop
     end
 
     # RND1() is never constant
@@ -2992,25 +2954,24 @@ class FunctionRnd1I < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      constant_stack.pop if constant_stack[-1].class.to_s == 'Array'
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constant_stack.pop
     end
 
     # RND1%() is never constant
@@ -3094,29 +3055,27 @@ class FunctionRnd1T < AbstractFunction
       'X' => '01234567890ABCDEF',
       'x' => '01234567890abcdef'
     }
-
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      constant_stack.pop if constant_stack[-1].class.to_s == 'Array'
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constant_stack.pop
     end
 
     # RND1() is never constant
@@ -3204,26 +3163,24 @@ class FunctionRnd2 < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      constants = constant_stack.pop if
-        constant_stack[-1].class.to_s == 'Array'
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constants = constant_stack.pop
     end
 
     # RND2() is never constant
@@ -3297,25 +3254,24 @@ class FunctionRnd2I < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      constant_stack.pop if constant_stack[-1].class.to_s == 'Array'
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constant_stack.pop
     end
 
     # RND2%() is never constant
@@ -3413,29 +3369,27 @@ class FunctionRnd2T < AbstractFunction
       'X' => '01234567890ABCDEF',
       'x' => '01234567890abcdef'
     }
-
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      constant_stack.pop if constant_stack[-1].class.to_s == 'Array'
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constant_stack.pop
     end
 
     # RND2$() is never constant
@@ -3679,12 +3633,12 @@ class FunctionSpace < AbstractFunction
 
     width = args[0].to_v
 
-    if width > 0
-      spaces = ' ' * width
-    else
-      # zero or negative value yields empty string
-      spaces = ''
-    end
+    spaces = if width > 0
+               ' ' * width
+             else
+               # zero or negative value yields empty string
+               ''
+             end
 
     res = TextConstant.new(spaces)
 
@@ -3807,7 +3761,7 @@ class FunctionStr < AbstractFunction
     elsif match_args_to_signature(args, @signature2)
       places = args[1].to_i
       value = args[0].to_f
-      text = sprintf('%.*f', places, value)
+      text = format('%.*f', places, value)
       res = TextConstant.new(text)
     else
       raise BASICRuntimeError.new(:te_args_no_match, @name)
@@ -3849,12 +3803,12 @@ class FunctionString < AbstractFunction
 
     width = args[1].to_v
 
-    if width > 0
-      s = char * width
-    else
-      # zero or negative value yields empty string
-      s = ''
-    end
+    s = if width > 0
+          char * width
+        else
+          # zero or negative value yields empty string
+          ''
+        end
 
     res = TextConstant.new(s)
 
@@ -3884,11 +3838,11 @@ class FunctionSum < AbstractFunction
 
     sum = args[0].sum
 
-    if content_type == :integer
-      res = IntegerConstant.new(sum)
-    else
-      res = NumericConstant.new(sum)
-    end
+    res = if content_type == :integer
+            IntegerConstant.new(sum)
+          else
+            NumericConstant.new(sum)
+          end
 
     @cached = res if @constant && $options['cache_const_expr']
     res
@@ -3909,8 +3863,8 @@ class FunctionTab < AbstractFunction
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      constant_stack.pop if constant_stack[-1].class.to_s == 'Array'
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constant_stack.pop
     end
 
     # TAB() is never constant
@@ -3929,13 +3883,13 @@ class FunctionTab < AbstractFunction
     console_io = interpreter.console_io
     width = console_io.columns_to_advance(args[0].to_v)
 
-    if width > 0
-      spaces = ' ' * width
-    elsif width < 0
-      spaces = "\b" * -width
-    else
-      spaces = ''
-    end
+    spaces = if width > 0
+               ' ' * width
+             elsif width < 0
+               "\b" * -width
+             else
+               ''
+             end
 
     res = TextConstant.new(spaces)
 
@@ -4049,11 +4003,11 @@ class FunctionUnpack < AbstractFunction
       match_args_to_signature(args, @signature1)
 
     text = args[0]
-    if @content_type == :integer
-      res = text.na_unpack
-    else
-      res = text.ia_unpack
-    end
+    res = if @content_type == :integer
+            text.na_unpack
+          else
+            text.ia_unpack
+          end
 
     @cached = res if @constant && $options['cache_const_expr']
     res
@@ -4154,33 +4108,30 @@ class FunctionZer1 < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      if constant_stack[-1].class.to_s == 'Array'
-        constants = constant_stack.pop
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constants = constant_stack.pop
 
-        if constants.empty?
-          @constant = false
-        else
-          @constant = true
-          constants.each { |c| @constant &&= c }
-        end
+      if constants.empty?
+        @constant = false
+      else
+        @constant = true
+        constants.each { |c| @constant &&= c }
       end
     end
 
@@ -4232,33 +4183,30 @@ class FunctionZer1I < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      if constant_stack[-1].class.to_s == 'Array'
-        constants = constant_stack.pop
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constants = constant_stack.pop
 
-        if constants.empty?
-          @constant = false
-        else
-          @constant = true
-          constants.each { |c| @constant &&= c }
-        end
+      if constants.empty?
+        @constant = false
+      else
+        @constant = true
+        constants.each { |c| @constant &&= c }
       end
     end
 
@@ -4310,33 +4258,30 @@ class FunctionZer1T < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      if constant_stack[-1].class.to_s == 'Array'
-        constants = constant_stack.pop
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constants = constant_stack.pop
 
-        if constants.empty?
-          @constant = false
-        else
-          @constant = true
-          constants.each { |c| @constant &&= c }
-        end
+      if constants.empty?
+        @constant = false
+      else
+        @constant = true
+        constants.each { |c| @constant &&= c }
       end
     end
 
@@ -4393,33 +4338,30 @@ class FunctionZer2 < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      if constant_stack[-1].class.to_s == 'Array'
-        constants = constant_stack.pop
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constants = constant_stack.pop
 
-        if constants.empty?
-          @constant = false
-        else
-          @constant = true
-          constants.each { |c| @constant &&= c }
-        end
+      if constants.empty?
+        @constant = false
+      else
+        @constant = true
+        constants.each { |c| @constant &&= c }
       end
     end
 
@@ -4484,33 +4426,30 @@ class FunctionZer2I < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      if constant_stack[-1].class.to_s == 'Array'
-        constants = constant_stack.pop
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constants = constant_stack.pop
 
-        if constants.empty?
-          @constant = false
-        else
-          @constant = true
-          constants.each { |c| @constant &&= c }
-        end
+      if constants.empty?
+        @constant = false
+      else
+        @constant = true
+        constants.each { |c| @constant &&= c }
       end
     end
 
@@ -4575,33 +4514,30 @@ class FunctionZer2T < AbstractFunction
   end
 
   def set_content_type(type_stack)
-    unless type_stack.empty?
-      @arg_types = type_stack.pop if
-        type_stack[-1].class.to_s == 'Array'
+    if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
+      @arg_types = type_stack.pop
     end
 
     type_stack.push(@content_type)
   end
 
   def set_shape(shape_stack)
-    unless shape_stack.empty?
-      @arg_shapes = shape_stack.pop if shape_stack[-1].class.to_s == 'Array'
+    if !shape_stack.empty? && (shape_stack[-1].class.to_s == 'Array')
+      @arg_shapes = shape_stack.pop
     end
 
     shape_stack.push(@shape)
   end
 
   def set_constant(constant_stack)
-    unless constant_stack.empty?
-      if constant_stack[-1].class.to_s == 'Array'
-        constants = constant_stack.pop
+    if !constant_stack.empty? && (constant_stack[-1].class.to_s == 'Array')
+      constants = constant_stack.pop
 
-        if constants.empty?
-          @constant = false
-        else
-          @constant = true
-          constants.each { |c| @constant &&= c }
-        end
+      if constants.empty?
+        @constant = false
+      else
+        @constant = true
+        constants.each { |c| @constant &&= c }
       end
     end
 
