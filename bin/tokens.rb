@@ -252,9 +252,6 @@ end
 
 # remark token
 class RemarkToken < AbstractToken
-  def initialize(text)
-    super
-  end
 end
 
 # statement separator token
@@ -528,6 +525,7 @@ class VariableToken < AbstractToken
     super
 
     raise(BASICSyntaxError, 'invalid token') unless text.class.to_s == 'String'
+
     @is_variable = true
     @content_type = :numeric
     @content_type = :string if text.include?('$')
@@ -568,7 +566,7 @@ class NumericFormatToken < AbstractToken
       spec = '%' + width.to_s + '.0f'
     end
 
-    text = sprintf(spec, numeric_constant.to_v)
+    text = format(spec, numeric_constant.to_v)
 
     text.tr!(' ', '*') if @text.include?('*')
     TextConstant.new(text)
@@ -577,10 +575,6 @@ end
 
 # PRINT USING token for character
 class CharFormatToken < AbstractToken
-  def initialize(text)
-    super
-  end
-
   def wants_item
     true
   end
@@ -594,10 +588,6 @@ end
 
 # PRINT USING token for plain string
 class PlainStringFormatToken < AbstractToken
-  def initialize(text)
-    super
-  end
-
   def wants_item
     true
   end
@@ -610,10 +600,6 @@ end
 
 # PRINT USING token for padded string
 class PaddedStringFormatToken < AbstractToken
-  def initialize(text)
-    super
-  end
-
   def wants_item
     true
   end
@@ -627,15 +613,11 @@ end
 
 # PRINT USING token for constant text
 class ConstantFormatToken < AbstractToken
-  def initialize(text)
-    super
-  end
-
   def wants_item
     false
   end
 
-  def pretty_format(text_constant)
+  def pretty_format(_text_constant)
     TextConstant.new(@text)
   end
 end

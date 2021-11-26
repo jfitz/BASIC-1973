@@ -83,7 +83,7 @@ class RemarkTokenBuilder
   attr_reader :count
 
   def initialize
-    @legals = %w(REMARK REM)
+    @legals = %w[REMARK REM]
     @count = 0
   end
 
@@ -203,7 +203,7 @@ class TextTokenBuilder
       end
     end
 
-    if !candidate.empty?
+    unless candidate.empty?
       lead_quote = text[0]
       candidate += lead_quote if candidate.count(lead_quote) == 1
       @token = candidate if candidate.count(lead_quote) == 2
@@ -317,7 +317,7 @@ class NumberTokenBuilder
   def accept?(candidate, c)
     result = false
 
-    if candidate.size .zero? || candidate[0] != '#'
+    if candidate.size.zero? || candidate[0] != '#'
       # can always append a digit
       result = true if c =~ /[0-9]/
       # can append a decimal point if no decimal point and no E
@@ -395,7 +395,7 @@ class NumericSymbolTokenBuilder
   attr_reader :count
 
   def try(text)
-    legals = %w(PI EUL AUR)
+    legals = %w[PI EUL AUR]
 
     candidate = ''
     i = 0
@@ -426,9 +426,9 @@ class TextSymbolTokenBuilder
 
   def try(text)
     legals =
-      %w(NUL SOH STX ETX EOT ENQ ACK BEL BS HT LF VT FF CR
+      %w[NUL SOH STX ETX EOT ENQ ACK BEL BS HT LF VT FF CR
          SO SI DLE DC1 DC2 DC3 DC4 NAK SYN ETB CAN EM SUB
-         ESC FS GS RS US)
+         ESC FS GS RS US]
 
     candidate = ''
     i = 0
@@ -484,8 +484,8 @@ class VariableTokenBuilder
       /\A[A-Z]\d\z/,
       /\A[A-Z]\$\z/,
       /\A[A-Z]\d\$\z/,
-      /\A[A-Z]\%\z/,
-      /\A[A-Z]\d\%\z/
+      /\A[A-Z]%\z/,
+      /\A[A-Z]\d%\z/
     ]
 
     @token = ''
