@@ -1,9 +1,7 @@
 # Helper class for FOR/NEXT
 class AbstractForControl
-  attr_reader :control
-  attr_reader :start
-  attr_accessor :start_line_stmt_mod
-  attr_accessor :forget
+  attr_reader :control, :start
+  attr_accessor :start_line_stmt_mod, :forget
 
   def initialize(control, start, step, start_line_stmt_mod)
     @control = control
@@ -144,11 +142,8 @@ end
 # the interpreter
 class Interpreter
   attr_writer :program
-  attr_reader :current_line_stmt_mod
+  attr_reader :current_line_stmt_mod, :console_io, :trace_out, :start_time
   attr_accessor :next_line_stmt_mod
-  attr_reader :console_io
-  attr_reader :trace_out
-  attr_reader :start_time
 
   def initialize(console_io)
     @randomizer = Random.new(1)
@@ -339,7 +334,10 @@ class Interpreter
 
     @program.init_data(self)
 
-    if !@program.errors?
+    if @program.errors?
+      errors = @program.errors
+      errors.each { |error| @console_io.print_line(error) }
+    else
       begin
         # run each statement
         # start with the first line number
@@ -352,9 +350,6 @@ class Interpreter
       end
 
       close_all_files
-    else
-      errors = @program.errors
-      errors.each { |error| @console_io.print_line(error) }
     end
   end
 
@@ -373,9 +368,8 @@ class Interpreter
 
     @program.init_data(self)
 
-    raise BASICRuntimeError.new(:te_chain_errors, filename) unless
-      !@program.errors?
-
+    raise BASICRuntimeError.new(:te_chain_errors, filename) if
+      @program.errors?
   rescue Errno::ENOENT, Errno::EISDIR
     raise BASICRuntimeError.new(:te_no_chain, filename)
   end
@@ -491,7 +485,8 @@ class Interpreter
     raise(BASICSyntaxError, "Function #{function_signature} not defined") if
       line_index.nil?
 
-    @function_stack.push [function_signature, @current_line_stmt_mod, @next_line_stmt_mod]
+    @function_stack.push [function_signature, @current_line_stmt_mod,
+                          @next_line_stmt_mod]
     ## puts "PUSH #{function_signature} #{@current_line_stmt_mod} #{@next_line_stmt_mod}"
     @previous_stack.push @previous_line_indexes
     @previous_line_indexes = []
@@ -501,9 +496,7 @@ class Interpreter
     @function_running = true
 
     begin
-      while @running && @function_running
-        execute_step
-      end
+      execute_step while @running && @function_running
     rescue Interrupt
       stop_running
     end
@@ -630,15 +623,13 @@ class Interpreter
       breakpoint = true
     end
 
-    unless breakpoint
-      if @line_cond_breakpoints.key?(line_number)
-        expressions = @line_cond_breakpoints[line_number]
+    if !breakpoint && @line_cond_breakpoints.key?(line_number)
+      expressions = @line_cond_breakpoints[line_number]
 
-        expressions.each do |expression|
-          results = expression.evaluate(self)
-          result = results[0]
-          breakpoint = true if result.value
-        end
+      expressions.each do |expression|
+        results = expression.evaluate(self)
+        result = results[0]
+        breakpoint = true if result.value
       end
     end
 
@@ -750,7 +741,7 @@ class Interpreter
             @line_breakpoints[line_number] = ''
           rescue BASICSyntaxError
             tkns = tokens_list.map(&:to_s).join
-            raise BASICCommandError.new('INVALID BREAKPOINT ' + tkns)
+            raise BASICCommandError, 'INVALID BREAKPOINT ' + tkns
           end
         else # tokens_list.size > 1
           begin
@@ -773,7 +764,7 @@ class Interpreter
           rescue BASICSyntaxError, BASICExpressionError
             tkns = tokens_list.map(&:to_s).join
 
-            raise BASICCommandError.new('INVALID BREAKPOINT ' + tkns)
+            raise BASICCommandError, 'INVALID BREAKPOINT ' + tkns
           end
         end
       end
@@ -809,13 +800,13 @@ class Interpreter
           rescue BASICSyntaxError
             tkns = tokens_list.map(&:to_s).join
 
-            raise BASICCommandError.new('INVALID BREAKPOINT ' + tkns)
+            raise BASICCommandError, 'INVALID BREAKPOINT ' + tkns
           end
         else
           # TODO: remove a conditional breakpoint
           tkns = tokens_list.map(&:to_s).join
 
-          raise BASICCommandError.new('INVALID BREAKPOINT ' + tkns)
+          raise BASICCommandError, 'INVALID BREAKPOINT ' + tkns
         end
       end
     end
@@ -832,12 +823,12 @@ class Interpreter
     errors = []
 
     @line_breakpoints.keys.each do |bp_line|
-      errors << 'Breakpoint for non-existent line ' + bp_line.to_s unless
+      errors << ('Breakpoint for non-existent line ' + bp_line.to_s) unless
         lines.key?(bp_line)
     end
 
     @line_cond_breakpoints.keys.each do |bp_line|
-      errors << 'Breakpoint for non-existent line ' + bp_line.to_s unless
+      errors << ('Breakpoint for non-existent line ' + bp_line.to_s) unless
         lines.key?(bp_line)
     end
 
@@ -997,7 +988,7 @@ class Interpreter
 
   # get the current value for ERL()
   def error_line(part)
-    raise BASICRuntimeError.new(:te_erl_no_err) if @resume_stack.empty?
+    raise BASICRuntimeError, :te_erl_no_err if @resume_stack.empty?
 
     line_index = @resume_stack[-1]
 
@@ -1017,7 +1008,7 @@ class Interpreter
 
   # get the current value for ERR()
   def error_code
-    raise BASICRuntimeError.new(:te_err_no_err) if @error_stack.empty?
+    raise BASICRuntimeError, :te_err_no_err if @error_stack.empty?
 
     code = @error_stack[-1]
     NumericConstant.new(code)
@@ -1092,7 +1083,7 @@ class Interpreter
   def set_user_function(definition)
     signature = definition.signature
 
-    raise BASICError.new("invalid signature #{signature.class}") unless
+    raise BASICError, "invalid signature #{signature.class}" unless
       signature.class.to_s == 'UserFunctionSignature'
 
     raise BASICRuntimeError.new(:te_func_alr, signature) if
@@ -1163,9 +1154,10 @@ class Interpreter
   def get_value(variable)
     legals = %w[Variable UserFunctionSignature]
 
-    raise(BASICSyntaxError,
-          "#{variable.class}:#{variable} is not a variable") unless
-      legals.include?(variable.class.to_s)
+    unless legals.include?(variable.class.to_s)
+      raise(BASICSyntaxError,
+            "#{variable.class}:#{variable} is not a variable")
+    end
 
     value = nil
 
@@ -1209,11 +1201,11 @@ class Interpreter
     if trace && !seen
       provenance_option = $options['provenance'].value
 
-      if provenance_option && !provenance.nil?
-        text = ' ' + variable.to_s + ': (' + provenance.to_s + ') ' + value.to_s
-      else
-        text = ' ' + variable.to_s + ': ' + value.to_s
-      end
+      text = if provenance_option && !provenance.nil?
+               ' ' + variable.to_s + ': (' + provenance.to_s + ') ' + value.to_s
+             else
+               ' ' + variable.to_s + ': ' + value.to_s
+             end
 
       @trace_out.newline_when_needed
       @trace_out.print_line(text)
@@ -1226,13 +1218,15 @@ class Interpreter
   def set_value(variable, value)
     legals = %w[Variable UserFunctionSignature]
 
-    raise(BASICSyntaxError,
-          "#{variable.class}:#{variable} is not a variable name") unless
-      legals.include?(variable.class.to_s)
+    unless legals.include?(variable.class.to_s)
+      raise(BASICSyntaxError,
+            "#{variable.class}:#{variable} is not a variable name")
+    end
 
-    raise(BASICSyntaxError,
-          "#{variable.class}:#{variable} is not a scalar variable name") if
-      variable.class.to_s == 'VariableName' && !variable.scalar?
+    if variable.class.to_s == 'VariableName' && !variable.scalar?
+      raise(BASICSyntaxError,
+            "#{variable.class}:#{variable} is not a scalar variable name")
+    end
 
     if $options['lock_fornext'].value &&
        @locked_variables.include?(variable)
@@ -1311,13 +1305,15 @@ class Interpreter
       'Variable'
     ]
 
-    raise(BASICSyntaxError,
-          "#{variable.class}:#{variable} is not a variable name") unless
-      legals.include?(variable.class.to_s)
+    unless legals.include?(variable.class.to_s)
+      raise(BASICSyntaxError,
+            "#{variable.class}:#{variable} is not a variable name")
+    end
 
-    raise(BASICSyntaxError,
-          "#{variable.class}:#{variable} is not a scalar variable name") if
-      variable.class.to_s == 'VariableName' && !variable.scalar?
+    if variable.class.to_s == 'VariableName' && !variable.scalar?
+      raise(BASICSyntaxError,
+            "#{variable.class}:#{variable} is not a scalar variable name")
+    end
 
     if $options['lock_fornext'].value &&
        @locked_variables.include?(variable)
@@ -1326,10 +1322,8 @@ class Interpreter
 
     v = variable.to_s
 
-    unless @variables.key?(v)
-      if $options['require_initialized'].value
-        raise BASICRuntimeError.new(:te_var_uninit, v)
-      end
+    if !@variables.key?(v) && $options['require_initialized'].value
+      raise BASICRuntimeError.new(:te_var_uninit, v)
     end
 
     # removing a variable is a change
@@ -1344,13 +1338,15 @@ class Interpreter
   def forget_compound_values(variable)
     legals = %w[Variable]
 
-    raise(BASICSyntaxError,
-          "#{variable.class}:#{variable} is not a variable name") unless
-      legals.include?(variable.class.to_s)
+    unless legals.include?(variable.class.to_s)
+      raise(BASICSyntaxError,
+            "#{variable.class}:#{variable} is not a variable name")
+    end
 
-    raise(BASICSyntaxError,
-          "#{variable.class}:#{variable} is not a scalar variable name") if
-      variable.class.to_s == 'VariableName' && !(variable.array? || variable.matrix?)
+    if variable.class.to_s == 'VariableName' && !(variable.array? || variable.matrix?)
+      raise(BASICSyntaxError,
+            "#{variable.class}:#{variable} is not a scalar variable name")
+    end
 
     variable_name = variable.name
     vname_s = variable_name.to_s
@@ -1450,7 +1446,7 @@ class Interpreter
   end
 
   def pop_return
-    raise BASICRuntimeError.new(:te_ret_no_gos) if @return_stack.empty?
+    raise BASICRuntimeError, :te_ret_no_gos if @return_stack.empty?
 
     # remove all lines from the subroutine in the 'visited' list
     while !@previous_line_indexes.empty? &&
@@ -1473,7 +1469,7 @@ class Interpreter
   def retrieve_fornext(control)
     fornext = @fornexts[control]
 
-    raise BASICRuntimeError.new(:te_next_no_for) if fornext.nil?
+    raise BASICRuntimeError, :te_next_no_for if fornext.nil?
 
     fornext
   end
@@ -1483,7 +1479,7 @@ class Interpreter
   end
 
   def exit_fornext(forget, control)
-    raise BASICRuntimeError.new(:te_next_no_for) if @fornext_stack.empty?
+    raise BASICRuntimeError, :te_next_no_for if @fornext_stack.empty?
 
     @fornext_stack.pop
 
@@ -1491,7 +1487,7 @@ class Interpreter
   end
 
   def top_fornext
-    raise BASICRuntimeError.new(:te_inext_no_for) if @fornext_stack.empty?
+    raise BASICRuntimeError, :te_inext_no_for if @fornext_stack.empty?
 
     @fornext_stack[-1]
   end
@@ -1520,7 +1516,7 @@ class Interpreter
   end
 
   def close_file(fh)
-    raise BASICRuntimeError.new(:te_fh_unk) unless @file_handlers.key?(fh)
+    raise BASICRuntimeError, :te_fh_unk unless @file_handlers.key?(fh)
 
     fhr = @file_handlers[fh]
     fhr.close
@@ -1530,7 +1526,7 @@ class Interpreter
   def get_file_handler(file_handle, mode)
     return @console_io if file_handle.nil?
 
-    raise BASICRuntimeError.new(:te_fh_unk) unless
+    raise BASICRuntimeError, :te_fh_unk unless
       @file_handlers.key?(file_handle)
 
     fh = @file_handlers[file_handle]
@@ -1566,7 +1562,7 @@ class Interpreter
   def get_data_store(file_handle)
     return @data_store if file_handle.nil?
 
-    raise BASICRuntimeError.new(:te_fh_unk) unless
+    raise BASICRuntimeError, :te_fh_unk unless
       @file_handlers.key?(file_handle)
 
     fh = @file_handlers[file_handle]
