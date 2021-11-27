@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # token class
 class AbstractElement
   def self.make_coord(c)
@@ -596,7 +598,7 @@ class NumericConstant < AbstractValueElement
   end
 
   def dump
-    self.class.to_s + ':' + @symbol_text
+    "#{self.class}:#{@symbol_text}"
   end
 
   def zero?
@@ -790,18 +792,18 @@ class NumericConstant < AbstractValueElement
   end
 
   def log
-    value = @value > 0 ? Math.log(@value) : 0
+    value = @value.positive? ? Math.log(@value) : 0
     NumericConstant.new(value)
   end
 
   def logb(lbase)
     lbase_v = lbase.to_v
-    value = @value > 0 ? Math.log(@value, lbase_v) : 0
+    value = @value.positive? ? Math.log(@value, lbase_v) : 0
     NumericConstant.new(value)
   end
 
   def mod(other)
-    value = other.to_v == 0 ? 0 : @value % other.to_v
+    value = other.to_v.zero? ? 0 : @value % other.to_v
     NumericConstant.new(value)
   end
 
@@ -815,7 +817,7 @@ class NumericConstant < AbstractValueElement
   end
 
   def sqrt
-    value = @value > 0 ? Math.sqrt(@value) : 0
+    value = @value.positive? ? Math.sqrt(@value) : 0
     NumericConstant.new(value)
   end
 
@@ -894,8 +896,8 @@ class NumericConstant < AbstractValueElement
 
   def sign
     result = 0
-    result = 1 if @value > 0
-    result = -1 if @value < 0
+    result = 1 if @value.positive?
+    result = -1 if @value.negative?
     NumericConstant.new(result)
   end
 
@@ -1182,22 +1184,22 @@ class IntegerConstant < AbstractValueElement
   end
 
   def log
-    value = @value > 0 ? Math.log(@value) : 0
+    value = @value.positive? ? Math.log(@value) : 0
     IntegerConstant.new(value)
   end
 
   def log10
-    value = @value > 0 ? Math.log10(@value) : 0
+    value = @value.positive? ? Math.log10(@value) : 0
     IntegerConstant.new(value)
   end
 
   def log2
-    value = @value > 0 ? Math.log2(@value) : 0
+    value = @value.positive? ? Math.log2(@value) : 0
     IntegerConstant.new(value)
   end
 
   def mod(other)
-    value = other.to_numeric == 0 ? 0 : @value % other.to_numeric.to_v
+    value = other.to_numeric.zero? ? 0 : @value % other.to_numeric.to_v
     IntegerConstant.new(value)
   end
 
@@ -1207,7 +1209,7 @@ class IntegerConstant < AbstractValueElement
   end
 
   def sqrt
-    value = @value > 0 ? Math.sqrt(@value) : 0
+    value = @value.positive? ? Math.sqrt(@value) : 0
     IntegerConstant.new(value)
   end
 
@@ -1247,8 +1249,8 @@ class IntegerConstant < AbstractValueElement
 
   def sign
     result = 0
-    result = 1 if @value > 0
-    result = -1 if @value < 0
+    result = 1 if @value.positive?
+    result = -1 if @value.negative?
     IntegerConstant.new(result)
   end
 
@@ -1307,7 +1309,7 @@ class TextConstant < AbstractValueElement
 
   def self.new_rand(interpreter, length, set)
     # negative length means random length up to positive value
-    if length < 0
+    if length.negative?
       v1 = interpreter.rand(NumericConstant.new(-length))
       v2 = v1 + 1
       length = v2.to_i
@@ -1319,7 +1321,7 @@ class TextConstant < AbstractValueElement
     (1..length).each do
       v1 = interpreter.rand(NumericConstant.new(set.size))
       v2 = v1.to_i
-      raise Exception, 'RND$ out of range' if v2 >= set.size
+      raise StandardError, 'RND$ out of range' if v2 >= set.size
 
       c = set[v2]
       s += c
@@ -1658,7 +1660,7 @@ class FileHandle < AbstractElement
     raise BASICRuntimeError, :te_fh_inv unless
       legals.include?(num.class.to_s)
 
-    raise BASICRuntimeError, :te_fnum_inv if num.to_i < 0
+    raise BASICRuntimeError, :te_fnum_inv if num.to_i.negative?
 
     @number = num.to_i
     @file_handle = true
@@ -1677,7 +1679,7 @@ class FileHandle < AbstractElement
   end
 
   def to_s
-    '#' + @number.to_s
+    "##{@number}"
   end
 
   def to_i
@@ -2095,7 +2097,7 @@ class Variable < AbstractElement
     if subscripts.empty?
       @variable_name.to_s
     else
-      @variable_name.to_s + '(' + @subscripts.join(',') + ')'
+      "#{@variable_name}(#{@subscripts.join(',')})"
     end
   end
 
@@ -2103,7 +2105,7 @@ class Variable < AbstractElement
     if subscripts.empty?
       @variable_name.to_s
     else
-      @variable_name.to_s + '(' + @wrapped_subscripts.join(',') + ')'
+      "#{@variable_name}(#{@wrapped_subscripts.join(',')})"
     end
   end
 
@@ -2377,7 +2379,7 @@ class Declaration < AbstractElement
     if subscripts.empty?
       @variable_name.to_s
     else
-      @variable_name.to_s + '(' + @subscripts.join(',') + ')'
+      "#{@variable_name}(#{@subscripts.join(',')})"
     end
   end
 

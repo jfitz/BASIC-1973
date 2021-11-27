@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # abstract token
 class AbstractToken
   def self.pretty_tokens(keywords, tokens)
@@ -360,7 +362,7 @@ class NumericConstantToken < AbstractToken
   end
 
   def negate
-    @text = @text[0] == '-' ? @text[1..-1] : '-' + @text
+    @text = @text[0] == '-' ? @text[1..-1] : "-#{@text}"
   end
 
   def to_f
@@ -385,7 +387,7 @@ class IntegerConstantToken < AbstractToken
   end
 
   def negate
-    @text = @text[0] == '-' ? @text[1..-1] : '-' + @text
+    @text = @text[0] == '-' ? @text[1..-1] : "-#{@text}"
   end
 
   def to_f
@@ -547,10 +549,6 @@ end
 
 # PRINT USING token for numeric
 class NumericFormatToken < AbstractToken
-  def initialize(text)
-    super
-  end
-
   def wants_item
     true
   end
@@ -561,9 +559,9 @@ class NumericFormatToken < AbstractToken
     if @text.include?('.')
       parts = @text.split('.')
       decimals = parts[1].size
-      spec = '%' + width.to_s + '.' + decimals.to_s + 'f'
+      spec = "%#{width}.#{decimals}f"
     else
-      spec = '%' + width.to_s + '.0f'
+      spec = "%#{width}.0f"
     end
 
     text = format(spec, numeric_constant.to_v)

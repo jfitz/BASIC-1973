@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # accept any characters
 class InvalidTokenBuilder
   def try(text)
@@ -554,7 +556,7 @@ class InputBareTextTokenBuilder
   end
 
   def token
-    quoted = '"' + @token + '"'
+    quoted = "\"#{@token}\""
     TextConstantToken.new(quoted)
   end
 end
@@ -635,7 +637,7 @@ end
 class PlainStringFormatTokenBuilder
   def try(text)
     @token = ''
-    @token += text[0] if text.size > 0 && text[0] == '&'
+    @token += text[0] if text.size.positive? && text[0] == '&'
   end
 
   def count

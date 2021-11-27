@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Statement factory class
 class StatementFactory
   include Singleton
@@ -359,7 +361,7 @@ class AbstractStatement
     @profile_count = 0
     @profile_time = 0
 
-    @modifiers.each { |modifier| modifier.reset_profile_metrics }
+    @modifiers.each(&:reset_profile_metrics)
   end
 
   def pretty
@@ -556,7 +558,7 @@ class AbstractStatement
   end
 
   def print_errors(console_io)
-    @errors.each { |error| console_io.print_line(' ' + error) }
+    @errors.each { |error| console_io.print_line(" #{error}") }
   end
 
   def errors?
@@ -576,7 +578,7 @@ class AbstractStatement
   def profile(show_timing)
     # core statement
     text = AbstractToken.pretty_tokens(@keywords, @core_tokens)
-    text = ' ' + text unless text.empty?
+    text = " #{text}" unless text.empty?
 
     line = ''
 
@@ -599,24 +601,22 @@ class AbstractStatement
 
       if show_timing
         timing = modifier.profile_pre_time.round(3).to_s
-        line = ' (' + timing + '/' + modifier.profile_pre_count.to_s + ')' + text
-        lines << line
+        line = " (#{timing}/#{modifier.profile_pre_count})#{text}"
       else
-        line = ' (' + modifier.profile_pre_count.to_s + ')' + text
-        lines << line
+        line = " (#{modifier.profile_pre_count})#{text}"
       end
+      lines << line
 
       # then the post line
       text = modifier.post_pretty
 
       if show_timing
         timing = modifier.profile_post_time.round(3).to_s
-        line = ' (' + timing + '/' + modifier.profile_post_count.to_s + ')' + text
-        lines << line
+        line = " (#{timing}/#{modifier.profile_post_count})#{text}"
       else
-        line = ' (' + modifier.profile_post_count.to_s + ')' + text
-        lines << line
+        line = " (#{modifier.profile_post_count})#{text}"
       end
+      lines << line
     end
 
     lines
@@ -632,12 +632,12 @@ class AbstractStatement
 
     text = ''
 
-    text = pre_trace(mod) if mod < 0
+    text = pre_trace(mod) if mod.negative?
     text = core_trace if mod.zero?
-    text = post_trace(mod) if mod > 0
+    text = post_trace(mod) if mod.positive?
 
-    text = ' ' + text unless text.empty?
-    text = current_line_stmt_mod.to_s + ':' + text
+    text = " #{text}" unless text.empty?
+    text = "#{current_line_stmt_mod}:#{text}"
 
     trace_out.print_out(text)
     trace_out.newline
@@ -1162,7 +1162,7 @@ class AbstractStatement
     current_line_stmt_mod = interpreter.current_line_stmt_mod
     mod = current_line_stmt_mod.index
 
-    execute_premodifier(interpreter) if mod < 0
+    execute_premodifier(interpreter) if mod.negative?
 
     if mod.zero?
       timing = Benchmark.measure { execute_core(interpreter) }
@@ -1175,7 +1175,7 @@ class AbstractStatement
       @profile_count += 1
     end
 
-    execute_postmodifier(interpreter) if mod > 0
+    execute_postmodifier(interpreter) if mod.positive?
   end
 
   def get_separators(tokens)
@@ -1200,7 +1200,7 @@ class InvalidStatement < AbstractStatement
     @executable = false
     @autonext = false
     @text = text
-    @errors << ('Invalid statement: ' + error.message)
+    @errors << ("Invalid statement: #{error.message}")
   end
 
   def to_s
@@ -1273,7 +1273,7 @@ class RemarkStatement < AbstractStatement
   def dump
     lines = [@rest.dump]
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -1336,9 +1336,9 @@ module FileFunctions
     lines = []
 
     lines += @file_tokens.dump unless @file_tokens.nil?
-    @items.each { |item| lines += item.dump } unless @items.nil?
+    @items&.each { |item| lines += item.dump }
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -1388,7 +1388,7 @@ module InputFunctions
              end
   rescue BASICExpressionError => e
     line_text = tokens.map(&:to_s).join
-    @errors << ('Syntax error: "' + line_text + '" ' + e.to_s)
+    @errors << ("Syntax error: \"#{line_text}\" #{e}")
   end
 
   def zip(names, values)
@@ -1469,7 +1469,7 @@ module PrintFunctions
     end
   rescue BASICExpressionError => e
     line_text = tokens.map(&:to_s).join
-    @errors << ('Syntax error: "' + line_text + '" ' + e.to_s)
+    @errors << ("Syntax error: \"#{line_text}\" #{e}")
   end
 
   def uncache_core
@@ -1530,11 +1530,11 @@ module PrintFunctions
       if item.class.to_s == 'Array'
         item.each { |it| lines += it.dump }
       elsif item.keyword?
-        lines << ('Keyword:' + item.to_s)
+        lines << ("Keyword:#{item}")
       end
     end
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -1562,7 +1562,7 @@ module ReadFunctions
              end
   rescue BASICExpressionError => e
     line_text = tokens.map(&:to_s).join
-    @errors << ('Syntax error: "' + line_text + '" ' + e.to_s)
+    @errors << ("Syntax error: \"#{line_text}\" #{e}")
   end
 
   def uncache_core
@@ -1598,7 +1598,7 @@ module WriteFunctions
     end
   rescue BASICExpressionError => e
     line_text = tokens.map(&:to_s).join
-    @errors << ('Syntax error: "' + line_text + '" ' + e.to_s)
+    @errors << ("Syntax error: \"#{line_text}\" #{e}")
   end
 
   def uncache_core
@@ -1642,7 +1642,7 @@ class ChainStatement < AbstractStatement
 
     lines += @target.dump
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -1735,7 +1735,7 @@ class ChangeStatement < AbstractStatement
     lines += @source.dump unless @source.nil?
     lines += @target.dump unless @target.nil?
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -1831,7 +1831,7 @@ class CloseStatement < AbstractStatement
   def dump
     lines = @filenum_expression.dump
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -1872,7 +1872,7 @@ class DataStatement < AbstractStatement
   end
 
   def uncache_core
-    @expressions.uncache unless @expressions.nil?
+    @expressions&.uncache
   end
 
   def dump
@@ -1880,7 +1880,7 @@ class DataStatement < AbstractStatement
 
     lines += @expressions.dump unless @expressions.nil?
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -1976,7 +1976,7 @@ class DefineFunctionStatement < AbstractStatement
 
     lines += @definition.dump unless @definition.nil?
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -2004,7 +2004,7 @@ class DimStatement < AbstractStatement
       tokens_lists.each do |tokens_list|
         @declarations << DeclarationExpressionSet.new(tokens_list)
       rescue BASICExpressionError => e
-        @errors << ('Invalid ' + tokens_list.map(&:to_s).join + ' ' + e.to_s)
+        @errors << ("Invalid #{tokens_list.map(&:to_s).join} #{e}")
       end
 
       @elements = make_references(@declarations)
@@ -2022,7 +2022,7 @@ class DimStatement < AbstractStatement
 
     @declarations.each { |expression| lines += expression.dump }
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -2072,7 +2072,7 @@ class EndStatement < AbstractStatement
   def dump
     lines = ['']
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -2129,7 +2129,7 @@ class FilesStatement < AbstractStatement
   end
 
   def dump
-    @expressions.dump unless @expressions.nil?
+    @expressions&.dump
   end
 
   def execute_core(_) end
@@ -2162,7 +2162,7 @@ class FnendStatement < AbstractStatement
   def dump
     lines = ['']
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -2393,24 +2393,24 @@ class ForStatement < AbstractStatement
   end
 
   def uncache_core
-    @start.uncache unless @start.nil?
-    @end.uncache unless @end.nil?
-    @step.uncache unless @step.nil?
-    @until.uncache unless @until.nil?
-    @while.uncache unless @while.nil?
+    @start&.uncache
+    @end&.uncache
+    @step&.uncache
+    @until&.uncache
+    @while&.uncache
   end
 
   def dump
     lines = []
 
-    lines << ('control: ' + @control.dump) unless @control.nil?
-    lines << ('start:   ' + @start.dump.to_s) unless @start.nil?
-    lines << ('end:     ' + @end.dump.to_s) unless @end.nil?
-    lines << ('step:    ' + @step.dump.to_s) unless @step.nil?
-    lines << ('until:   ' + @until.dump.to_s) unless @until.nil?
-    lines << ('while:   ' + @while.dump.to_s) unless @while.nil?
+    lines << ("control: #{@control.dump}") unless @control.nil?
+    lines << ("start:   #{@start.dump}") unless @start.nil?
+    lines << ("end:     #{@end.dump}") unless @end.nil?
+    lines << ("step:    #{@step.dump}") unless @step.nil?
+    lines << ("until:   #{@until.dump}") unless @until.nil?
+    lines << ("while:   #{@while.dump}") unless @while.nil?
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -2551,7 +2551,7 @@ class ForgetStatement < AbstractStatement
 
     @variables.each { |variable| lines << variable.dump }
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -2697,7 +2697,7 @@ class GetStatement < AbstractStatement
     items << ValueExpressionSet.new(tokens, shape)
   rescue BASICExpressionError
     line_text = tokens.map(&:to_s).join
-    @errors << ('Syntax error: "' + line_text + '" is not a value or operator')
+    @errors << ("Syntax error: \"#{line_text}\" is not a value or operator")
   end
 end
 
@@ -2757,7 +2757,7 @@ class GosubStatement < AbstractStatement
   def dump
     lines = [@dest_line.dump]
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -2893,11 +2893,9 @@ class GotoStatement < AbstractStatement
       @program_errors << "Line number #{@dest_line} not found"
     end
 
-    unless @dest_lines.nil?
-      @dest_lines.each do |dest_line|
-        @program_errors << "Line number #{dest_line} not found" unless
-          program.line_number?(dest_line)
-      end
+    @dest_lines&.each do |dest_line|
+      @program_errors << "Line number #{dest_line} not found" unless
+        program.line_number?(dest_line)
     end
   end
 
@@ -2932,7 +2930,7 @@ class GotoStatement < AbstractStatement
   end
 
   def uncache_core
-    @expression.uncache unless @expression.nil?
+    @expression&.uncache
   end
 
   def dump
@@ -2941,11 +2939,9 @@ class GotoStatement < AbstractStatement
     lines << @dest_line.dump unless @dest_line.nil?
     lines += @expression.dump unless @expression.nil?
 
-    unless @dest_lines.nil?
-      @dest_lines.each { |destination| lines << destination.dump }
-    end
+    @dest_lines&.each { |destination| lines << destination.dump }
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -2956,10 +2952,8 @@ class GotoStatement < AbstractStatement
     @transfers << TransferRefLineStmt.new(@dest_line, 0, :goto) unless
       @dest_line.nil?
 
-    unless @dest_lines.nil?
-      @dest_lines.each do |goto|
-        @transfers << TransferRefLineStmt.new(goto, 0, :goto)
-      end
+    @dest_lines&.each do |goto|
+      @transfers << TransferRefLineStmt.new(goto, 0, :goto)
     end
   end
 
@@ -2982,7 +2976,7 @@ class GotoStatement < AbstractStatement
         value.numeric_constant?
 
       io = interpreter.trace_out
-      io.trace_output(' ' + @expression.to_s + ' = ' + value.to_s)
+      io.trace_output(" #{@expression} = #{value}")
       index = value.to_i
 
       unless @dest_line_stmt_mods.nil?
@@ -3114,7 +3108,7 @@ class AbstractIfStatement < AbstractStatement
 
         @linenums = make_linenum_references
       rescue BASICExpressionError => e
-        @errors << ('Syntax Error: ' + e.message)
+        @errors << ("Syntax Error: #{e.message}")
       end
     end
 
@@ -3136,11 +3130,9 @@ class AbstractIfStatement < AbstractStatement
   end
 
   def set_for_lines(interpreter, line_stmt_mod, program)
-    @statement.set_for_lines(interpreter, line_stmt_mod, program) unless
-      @statement.nil?
+    @statement&.set_for_lines(interpreter, line_stmt_mod, program)
 
-    @else_stmt.set_for_lines(interpreter, line_stmt_mod, program) unless
-      @else_stmt.nil?
+    @else_stmt&.set_for_lines(interpreter, line_stmt_mod, program)
   end
 
   def renumber(renumber_map)
@@ -3162,8 +3154,8 @@ class AbstractIfStatement < AbstractStatement
 
     @linenums = make_linenum_references
 
-    @statement.renumber(renumber_map) unless @statement.nil?
-    @else_stmt.renumber(renumber_map) unless @else_stmt.nil?
+    @statement&.renumber(renumber_map)
+    @else_stmt&.renumber(renumber_map)
   end
 
   def set_destinations(interpreter, _, _)
@@ -3181,28 +3173,28 @@ class AbstractIfStatement < AbstractStatement
         mod.nil?
     end
 
-    @statement.set_destinations(interpreter, _, _) unless @statement.nil?
-    @else_stmt.set_destinations(interpreter, _, _) unless @else_stmt.nil?
+    @statement&.set_destinations(interpreter, _, _)
+    @else_stmt&.set_destinations(interpreter, _, _)
   end
 
   def set_autonext_line_stmt(line_stmt_mod)
     @autonext_line_stmt = line_stmt_mod
 
-    @statement.set_autonext_line_stmt(line_stmt_mod) unless @statement.nil?
-    @else_stmt.set_autonext_line_stmt(line_stmt_mod) unless @else_stmt.nil?
+    @statement&.set_autonext_line_stmt(line_stmt_mod)
+    @else_stmt&.set_autonext_line_stmt(line_stmt_mod)
   end
 
   def set_autonext_line(line_stmt_mod)
     @autonext_line = line_stmt_mod
 
-    @statement.set_autonext_line(line_stmt_mod) unless @statement.nil?
-    @else_stmt.set_autonext_line(line_stmt_mod) unless @else_stmt.nil?
+    @statement&.set_autonext_line(line_stmt_mod)
+    @else_stmt&.set_autonext_line(line_stmt_mod)
   end
 
   def uncache_core
-    @expression.uncache unless @expression.nil?
-    @statement.uncache unless @statement.nil?
-    @else_stmt.uncache unless @else_stmt.nil?
+    @expression&.uncache
+    @statement&.uncache
+    @else_stmt&.uncache
   end
 
   def dump
@@ -3214,7 +3206,7 @@ class AbstractIfStatement < AbstractStatement
     lines << @else_dest_line.dump unless @else_dest_line.nil?
     lines += @else_stmt.dump unless @else_stmt.nil?
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -3239,12 +3231,12 @@ class AbstractIfStatement < AbstractStatement
     @transfers << TransferRefLineStmt.new(@dest_line, 0, :ifthen) unless
       @dest_line.nil?
 
-    @statement.set_transfers(user_function_start_lines) unless @statement.nil?
+    @statement&.set_transfers(user_function_start_lines)
 
     @transfers << TransferRefLineStmt.new(@else_dest_line, 0, :ifthen) unless
       @else_dest_line.nil?
 
-    @else_stmt.set_transfers(user_function_start_lines) unless @else_stmt.nil?
+    @else_stmt&.set_transfers(user_function_start_lines)
 
     # autonext to next line if no ELSE
     if @autonext_line && @else_dest_line.nil? && @else_stmt.nil?
@@ -3293,7 +3285,7 @@ class AbstractIfStatement < AbstractStatement
         interpreter.next_line_stmt_mod = @autonext_line
       end
 
-      @statement.execute_core(interpreter) unless @statement.nil?
+      @statement&.execute_core(interpreter)
     else
       interpreter.next_line_stmt_mod = @else_dest_line_stmt_mod unless
         @else_dest_line_stmt_mod.nil?
@@ -3303,10 +3295,10 @@ class AbstractIfStatement < AbstractStatement
         interpreter.next_line_stmt_mod = @autonext_line
       end
 
-      @else_stmt.execute_core(interpreter) unless @else_stmt.nil?
+      @else_stmt&.execute_core(interpreter)
     end
 
-    s = ' ' + @expression.to_s + ': ' + result.to_s
+    s = " #{@expression}: #{result}"
     io = interpreter.trace_out
     io.trace_output(s)
   end
@@ -3395,7 +3387,7 @@ class AbstractIfStatement < AbstractStatement
 
     x0.each do |x|
       expr_s += if x.class.to_s == 'Array'
-                  '[' + x.map(&:to_s).join(', ') + ']'
+                  "[#{x.map(&:to_s).join(', ')}]"
                 else
                   x.to_s
                 end
@@ -3409,12 +3401,12 @@ class AbstractIfStatement < AbstractStatement
       ax1 = []
       x1.each do |x|
         ax1 << if x.class.to_s == 'Array'
-                 ('[' + x.map(&:to_s).join(', ') + ']')
+                 "[#{x.map(&:to_s).join(', ')}]"
                else
                  x.to_s
                end
       end
-      then_s = '[' + ax1.join(', ') + ']'
+      then_s = "[#{ax1.join(', ')}]"
     else
       then_s = 'DICT'
     end
@@ -3427,12 +3419,12 @@ class AbstractIfStatement < AbstractStatement
         ax2 = []
         x2.each do |x|
           ax2 << if x.class.to_s == 'Array'
-                   ('[' + x.map(&:to_s).join(', ') + ']')
+                   "[#{x.map(&:to_s).join(', ')}]"
                  else
                    x.to_s
                  end
         end
-        else_s = '[' + ax2.join(', ') + ']'
+        else_s = "[#{ax2.join(', ')}]"
       else
         else_s = 'DICT'
       end
@@ -3551,10 +3543,6 @@ class IfStatement < AbstractIfStatement
 
   def self.extra_keywords
     %w[THEN ELSE]
-  end
-
-  def initialize(_, _, _)
-    super
   end
 
   private
@@ -3734,10 +3722,6 @@ end
 
 # common functions for LET and LET-less statements
 class AbstractLetStatement < AbstractStatement
-  def initialize(_, _, _)
-    super
-  end
-
   def uncache_core
     @assignment.uncache
   end
@@ -3747,7 +3731,7 @@ class AbstractLetStatement < AbstractStatement
 
     lines += @assignment.dump unless @assignment.nil?
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -3826,10 +3810,6 @@ class LetStatement < AbstractScalarLetStatement
       [KeywordToken.new('LET')]
     ]
   end
-
-  def initialize(_, _, _)
-    super
-  end
 end
 
 # LET-less assignment
@@ -3838,10 +3818,6 @@ class LetLessStatement < AbstractScalarLetStatement
     [
       []
     ]
-  end
-
-  def initialize(_, _, _)
-    super
   end
 end
 
@@ -3968,7 +3944,7 @@ class NextStatement < AbstractStatement
   def dump
     lines = [@control.dump]
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -3996,7 +3972,7 @@ class NextStatement < AbstractStatement
     # if matches end value, stop here
     terminated = fornext_control.terminated?(interpreter)
     io = interpreter.trace_out
-    s = ' terminated:' + terminated.to_s
+    s = " terminated:#{terminated}"
     io.trace_output(s)
 
     if terminated
@@ -4038,7 +4014,7 @@ class OnErrorStatement < AbstractStatement
       token = tokens[0]
 
       if token.numeric_constant?
-        if token.to_i == 0
+        if token.to_i.zero?
           @dest_line = nil
           @linenums = []
         else
@@ -4067,7 +4043,7 @@ class OnErrorStatement < AbstractStatement
 
     lines << @dest_line.dump unless @dest_line.nil?
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -4182,11 +4158,9 @@ class OnStatement < AbstractStatement
   end
 
   def check_program(program, _line_number_stmt)
-    unless @dest_lines.nil?
-      @dest_lines.each do |dest_line|
-        unless program.line_number?(dest_line)
-          @program_errors << "Line number #{dest_line} not found"
-        end
+    @dest_lines&.each do |dest_line|
+      unless program.line_number?(dest_line)
+        @program_errors << "Line number #{dest_line} not found"
       end
     end
   end
@@ -4223,10 +4197,9 @@ class OnStatement < AbstractStatement
 
     lines += @expression.dump unless @expression.nil?
 
-    @dest_lines.each { |dest_line| lines << dest_line.dump } unless
-      @dest_lines.nil?
+    @dest_lines&.each { |dest_line| lines << dest_line.dump }
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -4252,7 +4225,7 @@ class OnStatement < AbstractStatement
     raise(BASICExpressionError, 'Invalid value') unless value.numeric_constant?
 
     io = interpreter.trace_out
-    io.trace_output(' ' + @expression.to_s + ' = ' + value.to_s)
+    io.trace_output(" #{@expression} = #{value}")
     index = value.to_i
 
     raise BASICRuntimeError, :te_val_out if
@@ -4357,7 +4330,7 @@ class OpenStatement < AbstractStatement
     lines += @filename_expression.dump unless @filename_expression.nil?
     lines += @filenum_expression.dump unless @filenum_expression.nil?
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -4401,14 +4374,14 @@ class OptionStatement < AbstractStatement
         @elements = make_references(nil, @expression)
         @comprehension_effort += @expression.comprehension_effort
       else
-        @errors << ('Cannot set option ' + kwd)
+        @errors << ("Cannot set option #{kwd}")
       end
     elsif tokens_lists.size == 1 &&
           extras.include?(tokens_lists[0].to_s)
       kwd = tokens_lists[0].to_s.upcase
       @key = kwd.downcase
 
-      @errors << ('Cannot set option ' + kwd) unless
+      @errors << ("Cannot set option #{kwd}") unless
         $options[@key].types.include?(:runtime)
     else
       @errors << 'Syntax error'
@@ -4416,7 +4389,7 @@ class OptionStatement < AbstractStatement
   end
 
   def uncache_core
-    @expression.uncache unless @expression.nil?
+    @expression&.uncache
   end
 
   def dump
@@ -4424,7 +4397,7 @@ class OptionStatement < AbstractStatement
 
     lines += @expression.dump unless @expression.nil?
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -4497,7 +4470,7 @@ class PrintStatement < AbstractStatement
 
     # if item is keyword then it must be 'USING'
     @items.each do |item|
-      if !(item.class.to_s == 'Array') && !(item.keyword? && item.to_s == 'USING')
+      if item.class.to_s != 'Array' && !(item.keyword? && item.to_s == 'USING')
         @errors << 'Syntax error'
       end
     end
@@ -4735,7 +4708,7 @@ class PutStatement < AbstractStatement
     items << ValueExpressionSet.new(tokens, shape)
   rescue BASICExpressionError
     line_text = tokens.map(&:to_s).join
-    @errors << ('Syntax error: "' + line_text + '" is not a value or operator')
+    @errors << ("Syntax error: \"#{line_text}\" is not a value or operator")
   end
 end
 
@@ -4763,7 +4736,7 @@ class RandomizeStatement < AbstractStatement
   def dump
     lines = ['']
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -4885,14 +4858,14 @@ class RecordStatement < AbstractStatement
     items << ValueExpressionSet.new(tokens, shape)
   rescue BASICExpressionError
     line_text = tokens.map(&:to_s).join
-    @errors << ('Syntax error: "' + line_text + '" is not a value or operator')
+    @errors << ("Syntax error: \"#{line_text}\" is not a value or operator")
   end
 
   def add_target_expression(items, tokens, shape)
     items << TargetExpressionSet.new(tokens, shape, false)
   rescue BASICExpressionError
     line_text = tokens.map(&:to_s).join
-    @errors << ('Syntax error: "' + line_text + '" is not a value or operator')
+    @errors << ("Syntax error: \"#{line_text}\" is not a value or operator")
   end
 end
 
@@ -4919,7 +4892,7 @@ class RestoreStatement < AbstractStatement
   def dump
     lines = ['']
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -4972,7 +4945,7 @@ class ResumeStatement < AbstractStatement
   def dump
     lines = ['']
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -5013,7 +4986,7 @@ class ReturnStatement < AbstractStatement
   def dump
     lines = ['']
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -5046,7 +5019,7 @@ class RunStatement < AbstractStatement
   def dump
     lines = ['']
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -5105,7 +5078,7 @@ class SleepStatement < AbstractStatement
   def dump
     lines = @expression.dump
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -5141,7 +5114,7 @@ class StopStatement < AbstractStatement
   def dump
     lines = ['']
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -5304,7 +5277,7 @@ class ArrForgetStatement < AbstractStatement
 
     @variables.each { |variable| lines << variable.dump }
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -5463,7 +5436,7 @@ class ArrPlotStatement < AbstractStatement
       lines += item.dump
     end
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -5532,7 +5505,7 @@ class ArrPrintStatement < AbstractStatement
 
     # if item is keyword then it must be 'USING'
     @items.each do |item|
-      if !(item.class.to_s == 'Array') && !(item.keyword? && item.to_s == 'USING')
+      if item.class.to_s != 'Array' && !(item.keyword? && item.to_s == 'USING')
         @errors << 'Syntax error'
       end
     end
@@ -5927,7 +5900,7 @@ class MatForgetStatement < AbstractStatement
 
     @variables.each { |variable| lines << variable.dump }
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -6099,7 +6072,7 @@ class MatPlotStatement < AbstractStatement
       lines += item.dump
     end
 
-    @modifiers.each { |item| lines += item.dump } unless @modifiers.nil?
+    @modifiers&.each { |item| lines += item.dump }
 
     lines
   end
@@ -6168,7 +6141,7 @@ class MatPrintStatement < AbstractStatement
 
     # if item is keyword then it must be 'USING'
     @items.each do |item|
-      if !(item.class.to_s == 'Array') && !(item.keyword? && item.to_s == 'USING')
+      if item.class.to_s != 'Array' && !(item.keyword? && item.to_s == 'USING')
         @errors << 'Syntax error'
       end
     end

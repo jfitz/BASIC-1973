@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+# frozen_string_literal: true
 
 require 'benchmark'
 require 'optparse'
@@ -67,9 +68,9 @@ class Option
     when :float
       v.to_s
     when :string
-      '"' + v.to_s + '"'
+      "\"#{v}\""
     when :list
-      '"' + v.to_s + '"'
+      "\"#{v}\""
     end
   end
 
@@ -239,7 +240,7 @@ class Shell
       $options.each do |option|
         name = option[0].upcase
         value = option[1].to_s.upcase
-        lines << ('OPTION ' + name + ' ' + value)
+        lines << ("OPTION #{name} #{value}")
       end
     elsif args.size == 1
       kwd = args[0].to_s
@@ -247,7 +248,7 @@ class Shell
 
       if $options.key?(kwd_d)
         value = $options[kwd_d].to_s.upcase
-        lines << ('OPTION ' + kwd + ' ' + value.to_s) if echo_set
+        lines << ("OPTION #{kwd} #{value}") if echo_set
       else
         raise BASICCommandError, "Unknown option #{kwd}"
       end
@@ -277,7 +278,7 @@ class Shell
       end
 
       value = $options[kwd_d].value.to_s.upcase
-      lines << ('OPTION ' + kwd + ' ' + value)
+      lines << ("OPTION #{kwd} #{value}")
     else
       raise BASICCommandError, 'Too many arguments'
     end
@@ -351,7 +352,7 @@ class Shell
       if keywords.include?('OPTION')
         option_lines = option_command([], false)
         option_lines.each do |line|
-          lines << ('.' + line)
+          lines << (".#{line}")
         end
       end
 
@@ -360,7 +361,7 @@ class Shell
       if keywords.include?('BREAK')
         break_lines = @interpreter.set_breakpoints([])
         break_lines.each do |line|
-          lines << ('.' + line)
+          lines << (".#{line}")
         end
       end
 
@@ -459,7 +460,7 @@ class Shell
 
     need_prompt
   rescue BASICCommandError, BASICRuntimeError, BASICSyntaxError => e
-    line = keyword.to_s + ' ' + args.map(&:to_s).join(' ')
+    line = "#{keyword} #{args.map(&:to_s).join(' ')}"
     @console_io.print_line(line)
     @console_io.print_line(e.to_s)
     @console_io.newline
@@ -939,11 +940,10 @@ unless list_filename.nil?
     interpreter.program_optimize
 
     texts = interpreter.program_list('', list_tokens)
-    texts.each { |text| console_io.print_line(text) }
   else
     texts = interpreter.program_errors
-    texts.each { |text| console_io.print_line(text) }
   end
+  texts.each { |text| console_io.print_line(text) }
 
   console_io.newline
 end
@@ -958,11 +958,10 @@ unless parse_filename.nil?
     interpreter.program_optimize
 
     texts = interpreter.program_parse('')
-    texts.each { |text| console_io.print_line(text) }
   else
     texts = interpreter.program_errors
-    texts.each { |text| console_io.print_line(text) }
   end
+  texts.each { |text| console_io.print_line(text) }
 
   console_io.newline
 end
