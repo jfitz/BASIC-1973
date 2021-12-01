@@ -392,7 +392,7 @@ class Interpreter
     raise(BASICSyntaxError, 'Cannot start CHAIN program') unless
       program_okay?
 
-    @next_line_stmt_mod = @program.find_first_statement
+    @next_line_stmt_mod = @program.first_line_number_stmt_mod
   end
 
   private
@@ -415,7 +415,7 @@ class Interpreter
 
     close_all_files
 
-    @next_line_stmt_mod = @program.find_first_statement
+    @next_line_stmt_mod = @program.first_line_number_stmt_mod
   end
 
   def seterrorgoto(line_number)
