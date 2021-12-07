@@ -42,24 +42,24 @@ FNQ(_) (0 3) 30 DEF FNQ(X) = X ^ 2
   Dests: 120:fornext, 180:fornext
 (1 6) 120 IF Y = FNQ(X) THEN 210
   Origs: 90:fornext
-  Dests: 148:auto, 210:ifthen
+  Dests: 148:auto, 150:auto, 210:ifthen
 (0 1) 148 REM   IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
   Origs: 120:auto
   Dests: 150:auto
 (0 2) 150 PRINT " ";
-  Origs: 148:auto
+  Origs: 120:auto, 148:auto
   Dests: 180:auto
 (0 1) 180 NEXT Y
   Origs: 90:fornext, 150:auto
   Dests: 210:auto
 (0 2) 210 PRINT "*";
   Origs: 120:ifthen, 180:auto
-  Dests: 212:auto
-(0 1) 212 REM   PLOT THE POINT AND GO TO NEXT X
-  Origs: 210:auto
   Dests: 240:auto
+(0 1) 212 REM   PLOT THE POINT AND GO TO NEXT X
+  Origs: 
+  Dests: 
 (0 1) 240 NEXT X
-  Origs: 60:fornext, 212:auto
+  Origs: 60:fornext, 210:auto
   Dests: 270:auto
 (0 1) 270 END
   Origs: 240:auto

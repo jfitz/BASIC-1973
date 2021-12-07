@@ -90,36 +90,36 @@ FNQ(_) (0 3) 150 DEF FNQ(X) = X ^ 2
   Dests: 240:auto
 (1 6) 240 IF FNQ(X) > 0 THEN 310
   Origs: 220:goto, 230:auto
-  Dests: 250:auto, 310:ifthen
+  Dests: 250:auto, 270:auto, 310:ifthen
 (0 1) 250 REM IF  FNQ(X) > 0 GO FIND WHERE IT IS
   Origs: 240:auto
-  Dests: 260:auto
-(0 1) 260 REM OTHERWISE GET THE NEXT VALUE OF X
-  Origs: 250:auto
   Dests: 270:auto
+(0 1) 260 REM OTHERWISE GET THE NEXT VALUE OF X
+  Origs: 
+  Dests: 
 (0 2) 270 GOTO 340
-  Origs: 260:auto
+  Origs: 240:auto, 250:auto
   Dests: 340:goto
 (1 6) 280 IF Y = FNQ(X) THEN 320
   Origs: 190:ifthen
-  Dests: 290:auto, 320:ifthen
+  Dests: 290:auto, 300:auto, 320:ifthen
 (0 1) 290 REM   IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
   Origs: 280:auto
   Dests: 300:auto
 (0 2) 300 PRINT " ";
-  Origs: 290:auto
+  Origs: 280:auto, 290:auto
   Dests: 310:auto
 (0 1) 310 NEXT Y
   Origs: 180:fornext, 240:ifthen, 300:auto
   Dests: 320:auto
 (0 2) 320 PRINT "*";
   Origs: 280:ifthen, 310:auto
-  Dests: 330:auto
-(0 1) 330 REM   PLOT THE POINT AND GO TO NEXT X
-  Origs: 320:auto
   Dests: 340:auto
+(0 1) 330 REM   PLOT THE POINT AND GO TO NEXT X
+  Origs: 
+  Dests: 
 (0 1) 340 NEXT X
-  Origs: 160:fornext, 270:goto, 330:auto
+  Origs: 160:fornext, 270:goto, 320:auto
   Dests: 350:auto
 (0 1) 350 END
   Origs: 340:auto

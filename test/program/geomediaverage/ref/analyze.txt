@@ -30,12 +30,12 @@ Halstead complexity:
   Dests: 13:auto
 (0 2) 13 OPTION PRECISION 6
   Origs: 12:auto
-  Dests: 20:auto
-(0 1) 20 REM START WITH SOME NUMBERS
-  Origs: 13:auto
   Dests: 21:auto
+(0 1) 20 REM START WITH SOME NUMBERS
+  Origs: 
+  Dests: 
 (0 1) 21 RANDOMIZE
-  Origs: 20:auto
+  Origs: 13:auto
   Dests: 22:auto
 (0 4) 22 ARR LET N0 = RND1(3, 100)
   Origs: 21:auto
@@ -51,51 +51,51 @@ Halstead complexity:
   Dests: 40:auto
 (0 2) 40 GOSUB 500
   Origs: 30:auto
-  Dests: 100:auto, 500:gosub
+  Dests: 101:auto, 500:gosub
 (0 1) 100 REM PRINT THE NUMBERS
-  Origs: 40:auto, 159:goto
+  Origs: 159:goto
   Dests: 101:auto
 (0 2) 101 GOSUB 400
-  Origs: 100:auto
-  Dests: 110:auto, 400:gosub
+  Origs: 40:auto, 100:auto
+  Dests: 111:auto, 400:gosub
 (0 1) 110 REM CALCULATE AVERAGE, GEOMETRIC MEAN, MEDIAN
-  Origs: 101:auto
-  Dests: 111:auto
+  Origs: 
+  Dests: 
 (0 4) 111 LET N(1) = AVG(N0)
-  Origs: 110:auto
+  Origs: 101:auto
   Dests: 112:auto
 (0 8) 112 LET N(2) = PROD(N0) ^ (1 / NELEM(N0))
   Origs: 111:auto
   Dests: 113:auto
 (0 4) 113 LET N(3) = MEDIAN(N0)
   Origs: 112:auto
-  Dests: 120:auto
-(0 1) 120 REM CHECK FOR CONVERGENCE
-  Origs: 113:auto
   Dests: 121:auto
+(0 1) 120 REM CHECK FOR CONVERGENCE
+  Origs: 
+  Dests: 
 (1 5) 121 IF NELEM(UNIQ1(N)) = 1 THEN 300
-  Origs: 120:auto
-  Dests: 130:auto, 300:ifthen
+  Origs: 113:auto
+  Dests: 130:auto, 131:auto, 300:ifthen
 (0 1) 130 REM CHECK FOR STUCK LOOP
   Origs: 121:auto
   Dests: 131:auto
 (1 10) 131 IF N(1) = N0(1) AND N(2) = N0(2) AND N(3) = N0(3) THEN 310
-  Origs: 130:auto
-  Dests: 132:auto, 310:ifthen
+  Origs: 121:auto, 130:auto
+  Dests: 132:auto, 141:auto, 310:ifthen
 (0 1) 132 REM IF N() = N0() THEN 310
   Origs: 131:auto
-  Dests: 140:auto
-(0 1) 140 REM CHECK ITERATION LIMIT
-  Origs: 132:auto
   Dests: 141:auto
+(0 1) 140 REM CHECK ITERATION LIMIT
+  Origs: 
+  Dests: 
 (1 4) 141 IF I > 99 THEN 320
-  Origs: 140:auto
-  Dests: 150:auto, 320:ifthen
+  Origs: 131:auto, 132:auto
+  Dests: 150:auto, 151:auto, 320:ifthen
 (0 1) 150 REM PERFORM ANOTHER LOOP
   Origs: 141:auto
   Dests: 151:auto
 (0 4) 151 LET I = I + 1
-  Origs: 150:auto
+  Origs: 141:auto, 150:auto
   Dests: 152:auto
 (0 3) 152 ARR LET N0 = N
   Origs: 151:auto

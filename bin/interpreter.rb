@@ -606,7 +606,7 @@ class Interpreter
   def execute_step
     # pick the next line number
     @next_line_stmt_mod =
-      @program.find_next_line_stmt_mod(@current_line_stmt_mod)
+      @program.find_next_exec_line_stmt_mod(@current_line_stmt_mod)
 
     next_line_stmt_mod = nil
     next_line_stmt_mod = @next_line_stmt_mod.clone unless
@@ -646,7 +646,7 @@ class Interpreter
       @current_line_stmt_mod = @next_line_stmt_mod
 
       @next_line_stmt_mod =
-        @program.find_next_line_stmt_mod(@current_line_stmt_mod)
+        @program.find_next_exec_line_stmt_mod(@current_line_stmt_mod)
     end
 
     begin

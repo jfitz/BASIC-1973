@@ -45,57 +45,57 @@ Halstead complexity:
   Dests: 60:auto
 (0 2) 60 PRINT "INTEGRAL ZERO(S):  ";
   Origs: 55:auto
-  Dests: 68:auto
-(0 1) 68 REM TURN SWITCH OFF
-  Origs: 60:auto
   Dests: 70:auto
+(0 1) 68 REM TURN SWITCH OFF
+  Origs: 
+  Dests: 
 (0 3) 70 LET K = 0
-  Origs: 68:auto
-  Dests: 78:auto
-(0 1) 78 REM STUDY LINE 80 CAREFULLY!
-  Origs: 70:auto
+  Origs: 60:auto
   Dests: 80:auto
+(0 1) 78 REM STUDY LINE 80 CAREFULLY!
+  Origs: 
+  Dests: 
 (1 6) 80 FOR X = -P[1] TO P[1] STEP SGN(P[1])
-  Origs: 78:auto
+  Origs: 70:auto
   Dests: 88:fornext, 140:fornext
 (0 1) 88 REM LINE 90 PREVENTS AN ERROR MESSAGE CAUSED BY
   Origs: 80:fornext
-  Dests: 89:auto
-(0 1) 89 REM DIVIDING BY ZERO
-  Origs: 88:auto
   Dests: 90:auto
+(0 1) 89 REM DIVIDING BY ZERO
+  Origs: 
+  Dests: 
 (1 4) 90 IF X = 0 THEN 140
-  Origs: 89:auto
-  Dests: 98:auto, 140:ifthen
+  Origs: 88:auto
+  Dests: 98:auto, 100:auto, 140:ifthen
 (0 1) 98 REM IS X A FACTOR OF P[1]?
   Origs: 90:auto
   Dests: 100:auto
 (1 6) 100 IF P[1] / X <> INT(P[1] / X) THEN 140
-  Origs: 98:auto
+  Origs: 90:auto, 98:auto
   Dests: 105:auto, 140:ifthen
 (0 2) 105 GOSUB 500
   Origs: 100:auto
-  Dests: 108:auto, 500:gosub
+  Dests: 110:auto, 500:gosub
 (0 1) 108 REM IS THE REMAINDER ZERO?
-  Origs: 105:auto
-  Dests: 110:auto
+  Origs: 
+  Dests: 
 (1 4) 110 IF P <> 0 THEN 140
-  Origs: 108:auto
-  Dests: 118:auto, 140:ifthen
+  Origs: 105:auto
+  Dests: 118:auto, 120:auto, 140:ifthen
 (0 1) 118 REM IF THE COMPUTER GETS THROUGH HERE, THE
   Origs: 110:auto
-  Dests: 119:auto
-(0 1) 119 REM VALUE OF X IS A ZERO OF THE FUNCTION
-  Origs: 118:auto
   Dests: 120:auto
+(0 1) 119 REM VALUE OF X IS A ZERO OF THE FUNCTION
+  Origs: 
+  Dests: 
 (0 2) 120 PRINT X;
-  Origs: 119:auto
-  Dests: 128:auto
-(0 1) 128 REM TURN THE SWITCH ON - WE HAVE A ZERO
-  Origs: 120:auto
+  Origs: 110:auto, 118:auto
   Dests: 130:auto
+(0 1) 128 REM TURN THE SWITCH ON - WE HAVE A ZERO
+  Origs: 
+  Dests: 
 (0 3) 130 LET K = 1
-  Origs: 128:auto
+  Origs: 120:auto
   Dests: 140:auto
 (0 1) 140 NEXT X
   Origs: 80:fornext, 90:ifthen, 100:ifthen, 110:ifthen, 130:auto

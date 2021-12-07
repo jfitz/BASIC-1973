@@ -27,30 +27,30 @@ Halstead complexity:
   Dests: 25:auto
 (1 4) 25 IF N = 0 THEN 120
   Origs: 20:auto
-  Dests: 28:auto, 120:ifthen
+  Dests: 28:auto, 30:auto, 120:ifthen
 (0 1) 28 REM  FIND THE INTEGER QUOTIENT
   Origs: 25:auto
   Dests: 30:auto
 (0 4) 30 LET I = INT(N / D)
-  Origs: 28:auto, 80:goto
-  Dests: 38:auto
-(0 1) 38 REM  FIND THE REMAINDER
-  Origs: 30:auto
+  Origs: 25:auto, 28:auto, 80:goto
   Dests: 40:auto
+(0 1) 38 REM  FIND THE REMAINDER
+  Origs: 
+  Dests: 
 (0 6) 40 LET R = N - I * D
-  Origs: 38:auto
-  Dests: 48:auto
-(0 1) 48 REM  IF THE REMAINDER IS ZERO THEN D IS G.C.F.
-  Origs: 40:auto
+  Origs: 30:auto
   Dests: 50:auto
+(0 1) 48 REM  IF THE REMAINDER IS ZERO THEN D IS G.C.F.
+  Origs: 
+  Dests: 
 (1 4) 50 IF R = 0 THEN 90
-  Origs: 48:auto
-  Dests: 58:auto, 90:ifthen
+  Origs: 40:auto
+  Dests: 58:auto, 60:auto, 90:ifthen
 (0 1) 58 REM  R WAS NOT ZERO, SO WE ITERATE
   Origs: 50:auto
   Dests: 60:auto
 (0 3) 60 LET N = D
-  Origs: 58:auto
+  Origs: 50:auto, 58:auto
   Dests: 70:auto
 (0 3) 70 LET D = R
   Origs: 60:auto

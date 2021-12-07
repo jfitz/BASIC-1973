@@ -48,12 +48,12 @@ Halstead complexity:
   Dests: 1000:auto
 (0 2) 1000 DIM S(10, 10)
   Origs: 900:auto
-  Dests: 1100:auto
-(0 5) 1100 DATA 1, 0, 1, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, -1, 0, -1, 15
-  Origs: 1000:auto
   Dests: 1200:auto
+(0 5) 1100 DATA 1, 0, 1, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, -1, 0, -1, 15
+  Origs: 
+  Dests: 
 (1 3) 1200 FOR X = 1 TO 8
-  Origs: 1100:auto
+  Origs: 1000:auto
   Dests: 1300:fornext, 2100:fornext
 (1 3) 1300 FOR Y = 1 TO 8
   Origs: 1200:fornext
@@ -81,12 +81,12 @@ Halstead complexity:
   Dests: 2100:auto
 (0 1) 2100 NEXT X
   Origs: 1200:fornext, 2000:auto
-  Dests: 2200:auto
-(0 1) 2200 REM
-  Origs: 2100:auto
   Dests: 2300:auto
+(0 1) 2200 REM
+  Origs: 
+  Dests: 
 (0 5) 2300 LET L = -1 * L
-  Origs: 2200:auto, 4200:goto, 12100:gosub
+  Origs: 2100:auto, 4200:goto, 12100:gosub
   Inconsistent GOSUB origins
   Dests: 2400:auto
 (1 3) 2400 FOR X = 1 TO 8
@@ -310,12 +310,12 @@ Halstead complexity:
   Dests: 9700:auto, 9800:ifthen
 (0 4) 9700 LET Q = Q - 2
   Origs: 9600:auto
-  Dests: 9800:auto
+  Dests: 9900:auto
 (0 1) 9800 REM
-  Origs: 9600:ifthen, 9700:auto
+  Origs: 9600:ifthen
   Dests: 9900:auto
 (1 4) 9900 IF U <> 1 THEN 10100
-  Origs: 9800:auto
+  Origs: 9700:auto, 9800:auto
   Dests: 10000:auto, 10100:ifthen
 (0 4) 10000 LET Q = Q + 1
   Origs: 9900:auto
@@ -340,15 +340,15 @@ Halstead complexity:
   Dests: 10700:auto, 10800:ifthen
 (0 4) 10700 LET Q = Q - 1
   Origs: 10600:auto
-  Dests: 10800:auto
-(0 1) 10800 REM THIS WAS THE EVALUATION SECTION
-  Origs: 10400:ifthen, 10600:ifthen, 10700:auto
-  Dests: 10900:auto
-(0 1) 10900 REM
-  Origs: 10800:auto
   Dests: 11000:auto
+(0 1) 10800 REM THIS WAS THE EVALUATION SECTION
+  Origs: 10400:ifthen, 10600:ifthen
+  Dests: 11000:auto
+(0 1) 10900 REM
+  Origs: 
+  Dests: 
 (0 1) 11000 NEXT C
-  Origs: 10300:fornext, 10900:auto
+  Origs: 10300:fornext, 10700:auto, 10800:auto
   Dests: 11100:auto
 (0 3) 11100 LET R(P) = Q
   Origs: 11000:auto
