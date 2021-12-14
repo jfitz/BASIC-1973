@@ -273,7 +273,7 @@ class AbstractStatement
 
   def initialize(_, keywords, tokens_lists)
     @keywords = keywords
-    @executable = true
+    @executable = :run
     @tokens = tokens_lists.flatten
     @core_tokens = tokens_lists.flatten
     @separators = get_separators(@core_tokens)
@@ -319,8 +319,6 @@ class AbstractStatement
 
     set_destinations(interpreter, line_stmt, program)
     set_for_lines(interpreter, line_stmt, program)
-    define_user_functions(interpreter)
-    set_endfunc_lines(line_stmt, program)
 
     line_number = line_stmt.line_number
     stmt = line_stmt.statement
@@ -330,6 +328,11 @@ class AbstractStatement
       mod_line_stmt_mod = LineStmtMod.new(line_number, stmt, mod)
       modifier.optimize(interpreter, mod_line_stmt_mod, program)
     end
+  end
+
+  def init_user_functions(interpreter, line_stmt, program)
+    define_user_functions(interpreter)
+    set_endfunc_lines(line_stmt, program)
   end
 
   def init_data(interpreter)
@@ -536,7 +539,7 @@ class AbstractStatement
     @transfers_auto = []
 
     # convert auto-next to TransferRefLineStmt
-    if @autonext && @autonext_line_stmt && (@executable || @origins.size.positive?)
+    if @autonext && @autonext_line_stmt && (@executable == :run || @origins.size.positive?)
       dest_line_number = @autonext_line_stmt.line_number
       dest_stmt = @autonext_line_stmt.statement
 
@@ -1199,7 +1202,7 @@ class InvalidStatement < AbstractStatement
     super(line_number, [], all_tokens)
 
     @valid = false
-    @executable = false
+    @executable = :none
     @autonext = false
     @text = text
     @errors << ("Invalid statement: #{error.message}")
@@ -1220,7 +1223,7 @@ class UnknownStatement < AbstractStatement
     super(line_number, [], [])
 
     @valid = false
-    @executable = false
+    @executable = :none
     @text = text
     @errors << "Unknown statement '#{text.strip}'"
   end
@@ -1238,7 +1241,7 @@ class EmptyStatement < AbstractStatement
     super(line_number, [], [])
 
     @valid = false
-    @executable = false
+    @executable = :none
     @comprehension_effort = 0
   end
 
@@ -1267,7 +1270,7 @@ class RemarkStatement < AbstractStatement
 
     @valid = false
     @comment = true
-    @executable = false
+    @executable = :none
     @rest = Remark.new(nil)
     @rest = Remark.new(tokens_lists[0]) unless tokens_lists.empty?
   end
@@ -1857,7 +1860,7 @@ class DataStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
-    @executable = false
+    @executable = :load_data
     @may_be_if_sub = false
 
     template = [[1, '>=']]
@@ -1909,7 +1912,7 @@ class DefineFunctionStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
-    @executable = false
+    @executable = :def_fn
     @may_be_if_sub = false
     @autonext = false
 
@@ -2103,7 +2106,7 @@ class FilesStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
-    @executable = false
+    @executable = :files
     @may_be_if_sub = false
 
     template = [[1, '>=']]

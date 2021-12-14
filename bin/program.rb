@@ -270,7 +270,7 @@ class Line
 
   def number_exec_statements
     num = 0
-    @statements.each { |statement| num += 1 if statement.executable }
+    @statements.each { |statement| num += 1 if statement.executable == :run}
     num
   end
 
@@ -725,7 +725,7 @@ class Program
 
     stmt += 1 while
       stmt < statements.size &&
-      (!statements[stmt].executable ||
+      (statements[stmt].executable != :run ||
       statements[stmt].part_of_user_function != part_of_user_function)
 
     return LineStmt.new(line_number, stmt) if stmt < statements.size
@@ -744,7 +744,7 @@ class Program
 
       stmt += 1 while
         stmt < statements.size &&
-        (!statements[stmt].executable ||
+        (statements[stmt].executable != :run ||
         statements[stmt].part_of_user_function != part_of_user_function)
 
       return LineStmt.new(line_number, stmt) if stmt < statements.size
@@ -1010,7 +1010,7 @@ class Program
 
       stmt += 1 while
         stmt < statements.size &&
-        (!statements[stmt].executable ||
+        (statements[stmt].executable != :run ||
         statements[stmt].part_of_user_function != part_of_user_function)
 
       if stmt < statements.size
@@ -1261,7 +1261,7 @@ class Program
     @lines.each do |line_number, line|
       statements = line.statements
       statements.each_with_index do |statement, stmt|
-        next unless statement.executable && !statement.reachable
+        next unless statement.executable == :run && !statement.reachable
 
         text = statement.pretty
         line_number_stmt = LineStmt.new(line_number, stmt)
@@ -1315,6 +1315,7 @@ class Program
 
   def optimize(interpreter)
     optimize_statements(interpreter)
+    init_user_functions(interpreter)
     assign_singleline_function_markers
     assign_multiline_function_markers
     @first_line_number_stmt_mod = find_first_statement
@@ -1337,6 +1338,19 @@ class Program
       statements.each_with_index do |statement, stmt|
         line_stmt = LineStmt.new(line_number, stmt)
         statement.optimize(interpreter, line_stmt, self)
+      end
+    end
+  end
+
+  def init_user_functions(interpreter)
+    @lines.keys.sort.each do |line_number|
+      @line_number = line_number
+      line = @lines[line_number]
+      statements = line.statements
+
+      statements.each_with_index do |statement, stmt|
+        line_stmt = LineStmt.new(line_number, stmt)
+        statement.init_user_functions(interpreter, line_stmt, self)
       end
     end
   end
@@ -1480,6 +1494,7 @@ class Program
       statements = line.statements
 
       statements.each do |statement|
+        # add trace output
         statement.init_data(interpreter)
       end
     end
