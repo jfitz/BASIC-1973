@@ -1,0 +1,59 @@
+110: DATA 5, 6, 7, 8
+10: DIM X[2, 2], A[2, 2], P[2, 2]
+20: MAT READ A
+ A(1,1) = 5
+ A(1,2) = 6
+ A(2,1) = 7
+ A(2,2) = 8
+30: MAT X = INV(A)
+ A(1,1): 5
+ A(1,2): 6
+ A(2,1): 7
+ A(2,2): 8
+ X(1,1) = -4
+ X(1,2) = 3
+ X(2,1) = 3.5
+ X(2,2) = -2.5
+40: PRINT "ORIGINAL MATRIX"
+ORIGINAL MATRIX
+50: MAT PRINT A;
+ A(1,1): 5
+ A(1,2): 6
+ A(2,1): 7
+ A(2,2): 8
+ 5               6
+ 7               8
+60: PRINT "INVERSE MATRIX"
+INVERSE MATRIX
+70: MAT PRINT X;
+ X(1,1): -4
+ X(1,2): 3
+ X(2,1): 3.5
+ X(2,2): -2.5
+-4               3
+ 3.5            -2.5
+80: PRINT "THE PRODUCT IS"
+THE PRODUCT IS
+90: MAT P = X * A
+ X(1,1): -4
+ X(1,2): 3
+ X(2,1): 3.5
+ X(2,2): -2.5
+ A(1,1): 5
+ A(1,2): 6
+ A(2,1): 7
+ A(2,2): 8
+ P(1,1) = 1
+ P(1,2) = 0
+ P(2,1) = 0
+ P(2,2) = 1
+100: MAT PRINT P;
+ P(1,1): 1
+ P(1,2): 0
+ P(2,1): 0
+ P(2,2): 1
+ 1               0
+ 0               1
+120: END
+STOP in line 120
+

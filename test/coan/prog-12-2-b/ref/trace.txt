@@ -1,0 +1,987 @@
+60: DATA 6, 3, 2, 5, 3, 2, 4, 3, 2, 3, 2, 1
+160: DATA 1, 3, 4, 2, 1, 5, 3, 6, 2, 4, 2, 5, 1, 6, 3, 2, 3, 1, 0, 2
+20: DIM A[4, 3], B[5, 4]
+25: DIM C[5, 3]
+40: MAT READ A
+ A(1,1) = 6
+ A(1,2) = 3
+ A(1,3) = 2
+ A(2,1) = 5
+ A(2,2) = 3
+ A(2,3) = 2
+ A(3,1) = 4
+ A(3,2) = 3
+ A(3,3) = 2
+ A(4,1) = 3
+ A(4,2) = 2
+ A(4,3) = 1
+140: MAT READ B
+ B(1,1) = 1
+ B(1,2) = 3
+ B(1,3) = 4
+ B(1,4) = 2
+ B(2,1) = 1
+ B(2,2) = 5
+ B(2,3) = 3
+ B(2,4) = 6
+ B(3,1) = 2
+ B(3,2) = 4
+ B(3,3) = 2
+ B(3,4) = 5
+ B(4,1) = 1
+ B(4,2) = 6
+ B(4,3) = 3
+ B(4,4) = 2
+ B(5,1) = 3
+ B(5,2) = 1
+ B(5,3) = 0
+ B(5,4) = 2
+240: FOR R = 1 TO 5
+ R = 1
+ terminated:false
+255: REM WE STEP THROUGH COLUMNS OF MAT A
+260: FOR C = 1 TO 3
+ C = 1
+ terminated:false
+275: REM INITIALIZE C[R,C] HERE
+280: LET C[R, C] = 0
+ R: 1
+ C: 1
+ C(1,1) = 0
+300: FOR X = 1 TO 4
+ X = 1
+ terminated:false
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 1
+ C: 1
+ C(1,1): 0
+ X: 1
+ B(1,1): 1
+ A(1,1): 6
+ C(1,1) = 6
+340: NEXT X
+ X: 1
+ terminated:false
+ X = 2
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 1
+ C: 1
+ C(1,1): 6
+ X: 2
+ B(1,2): 3
+ A(2,1): 5
+ C(1,1) = 21
+340: NEXT X
+ X: 2
+ terminated:false
+ X = 3
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 1
+ C: 1
+ C(1,1): 21
+ X: 3
+ B(1,3): 4
+ A(3,1): 4
+ C(1,1) = 37
+340: NEXT X
+ X: 3
+ terminated:false
+ X = 4
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 1
+ C: 1
+ C(1,1): 37
+ X: 4
+ B(1,4): 2
+ A(4,1): 3
+ C(1,1) = 43
+340: NEXT X
+ X: 4
+ terminated:true
+360: NEXT C
+ C: 1
+ terminated:false
+ C = 2
+275: REM INITIALIZE C[R,C] HERE
+280: LET C[R, C] = 0
+ R: 1
+ C: 2
+ C(1,2) = 0
+300: FOR X = 1 TO 4
+ X = 1
+ terminated:false
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 1
+ C: 2
+ C(1,2): 0
+ X: 1
+ B(1,1): 1
+ A(1,2): 3
+ C(1,2) = 3
+340: NEXT X
+ X: 1
+ terminated:false
+ X = 2
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 1
+ C: 2
+ C(1,2): 3
+ X: 2
+ B(1,2): 3
+ A(2,2): 3
+ C(1,2) = 12
+340: NEXT X
+ X: 2
+ terminated:false
+ X = 3
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 1
+ C: 2
+ C(1,2): 12
+ X: 3
+ B(1,3): 4
+ A(3,2): 3
+ C(1,2) = 24
+340: NEXT X
+ X: 3
+ terminated:false
+ X = 4
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 1
+ C: 2
+ C(1,2): 24
+ X: 4
+ B(1,4): 2
+ A(4,2): 2
+ C(1,2) = 28
+340: NEXT X
+ X: 4
+ terminated:true
+360: NEXT C
+ C: 2
+ terminated:false
+ C = 3
+275: REM INITIALIZE C[R,C] HERE
+280: LET C[R, C] = 0
+ R: 1
+ C: 3
+ C(1,3) = 0
+300: FOR X = 1 TO 4
+ X = 1
+ terminated:false
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 1
+ C: 3
+ C(1,3): 0
+ X: 1
+ B(1,1): 1
+ A(1,3): 2
+ C(1,3) = 2
+340: NEXT X
+ X: 1
+ terminated:false
+ X = 2
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 1
+ C: 3
+ C(1,3): 2
+ X: 2
+ B(1,2): 3
+ A(2,3): 2
+ C(1,3) = 8
+340: NEXT X
+ X: 2
+ terminated:false
+ X = 3
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 1
+ C: 3
+ C(1,3): 8
+ X: 3
+ B(1,3): 4
+ A(3,3): 2
+ C(1,3) = 16
+340: NEXT X
+ X: 3
+ terminated:false
+ X = 4
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 1
+ C: 3
+ C(1,3): 16
+ X: 4
+ B(1,4): 2
+ A(4,3): 1
+ C(1,3) = 18
+340: NEXT X
+ X: 4
+ terminated:true
+360: NEXT C
+ C: 3
+ terminated:true
+380: NEXT R
+ R: 1
+ terminated:false
+ R = 2
+255: REM WE STEP THROUGH COLUMNS OF MAT A
+260: FOR C = 1 TO 3
+ C = 1
+ terminated:false
+275: REM INITIALIZE C[R,C] HERE
+280: LET C[R, C] = 0
+ R: 2
+ C: 1
+ C(2,1) = 0
+300: FOR X = 1 TO 4
+ X = 1
+ terminated:false
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 2
+ C: 1
+ C(2,1): 0
+ X: 1
+ B(2,1): 1
+ A(1,1): 6
+ C(2,1) = 6
+340: NEXT X
+ X: 1
+ terminated:false
+ X = 2
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 2
+ C: 1
+ C(2,1): 6
+ X: 2
+ B(2,2): 5
+ A(2,1): 5
+ C(2,1) = 31
+340: NEXT X
+ X: 2
+ terminated:false
+ X = 3
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 2
+ C: 1
+ C(2,1): 31
+ X: 3
+ B(2,3): 3
+ A(3,1): 4
+ C(2,1) = 43
+340: NEXT X
+ X: 3
+ terminated:false
+ X = 4
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 2
+ C: 1
+ C(2,1): 43
+ X: 4
+ B(2,4): 6
+ A(4,1): 3
+ C(2,1) = 61
+340: NEXT X
+ X: 4
+ terminated:true
+360: NEXT C
+ C: 1
+ terminated:false
+ C = 2
+275: REM INITIALIZE C[R,C] HERE
+280: LET C[R, C] = 0
+ R: 2
+ C: 2
+ C(2,2) = 0
+300: FOR X = 1 TO 4
+ X = 1
+ terminated:false
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 2
+ C: 2
+ C(2,2): 0
+ X: 1
+ B(2,1): 1
+ A(1,2): 3
+ C(2,2) = 3
+340: NEXT X
+ X: 1
+ terminated:false
+ X = 2
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 2
+ C: 2
+ C(2,2): 3
+ X: 2
+ B(2,2): 5
+ A(2,2): 3
+ C(2,2) = 18
+340: NEXT X
+ X: 2
+ terminated:false
+ X = 3
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 2
+ C: 2
+ C(2,2): 18
+ X: 3
+ B(2,3): 3
+ A(3,2): 3
+ C(2,2) = 27
+340: NEXT X
+ X: 3
+ terminated:false
+ X = 4
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 2
+ C: 2
+ C(2,2): 27
+ X: 4
+ B(2,4): 6
+ A(4,2): 2
+ C(2,2) = 39
+340: NEXT X
+ X: 4
+ terminated:true
+360: NEXT C
+ C: 2
+ terminated:false
+ C = 3
+275: REM INITIALIZE C[R,C] HERE
+280: LET C[R, C] = 0
+ R: 2
+ C: 3
+ C(2,3) = 0
+300: FOR X = 1 TO 4
+ X = 1
+ terminated:false
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 2
+ C: 3
+ C(2,3): 0
+ X: 1
+ B(2,1): 1
+ A(1,3): 2
+ C(2,3) = 2
+340: NEXT X
+ X: 1
+ terminated:false
+ X = 2
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 2
+ C: 3
+ C(2,3): 2
+ X: 2
+ B(2,2): 5
+ A(2,3): 2
+ C(2,3) = 12
+340: NEXT X
+ X: 2
+ terminated:false
+ X = 3
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 2
+ C: 3
+ C(2,3): 12
+ X: 3
+ B(2,3): 3
+ A(3,3): 2
+ C(2,3) = 18
+340: NEXT X
+ X: 3
+ terminated:false
+ X = 4
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 2
+ C: 3
+ C(2,3): 18
+ X: 4
+ B(2,4): 6
+ A(4,3): 1
+ C(2,3) = 24
+340: NEXT X
+ X: 4
+ terminated:true
+360: NEXT C
+ C: 3
+ terminated:true
+380: NEXT R
+ R: 2
+ terminated:false
+ R = 3
+255: REM WE STEP THROUGH COLUMNS OF MAT A
+260: FOR C = 1 TO 3
+ C = 1
+ terminated:false
+275: REM INITIALIZE C[R,C] HERE
+280: LET C[R, C] = 0
+ R: 3
+ C: 1
+ C(3,1) = 0
+300: FOR X = 1 TO 4
+ X = 1
+ terminated:false
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 3
+ C: 1
+ C(3,1): 0
+ X: 1
+ B(3,1): 2
+ A(1,1): 6
+ C(3,1) = 12
+340: NEXT X
+ X: 1
+ terminated:false
+ X = 2
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 3
+ C: 1
+ C(3,1): 12
+ X: 2
+ B(3,2): 4
+ A(2,1): 5
+ C(3,1) = 32
+340: NEXT X
+ X: 2
+ terminated:false
+ X = 3
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 3
+ C: 1
+ C(3,1): 32
+ X: 3
+ B(3,3): 2
+ A(3,1): 4
+ C(3,1) = 40
+340: NEXT X
+ X: 3
+ terminated:false
+ X = 4
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 3
+ C: 1
+ C(3,1): 40
+ X: 4
+ B(3,4): 5
+ A(4,1): 3
+ C(3,1) = 55
+340: NEXT X
+ X: 4
+ terminated:true
+360: NEXT C
+ C: 1
+ terminated:false
+ C = 2
+275: REM INITIALIZE C[R,C] HERE
+280: LET C[R, C] = 0
+ R: 3
+ C: 2
+ C(3,2) = 0
+300: FOR X = 1 TO 4
+ X = 1
+ terminated:false
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 3
+ C: 2
+ C(3,2): 0
+ X: 1
+ B(3,1): 2
+ A(1,2): 3
+ C(3,2) = 6
+340: NEXT X
+ X: 1
+ terminated:false
+ X = 2
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 3
+ C: 2
+ C(3,2): 6
+ X: 2
+ B(3,2): 4
+ A(2,2): 3
+ C(3,2) = 18
+340: NEXT X
+ X: 2
+ terminated:false
+ X = 3
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 3
+ C: 2
+ C(3,2): 18
+ X: 3
+ B(3,3): 2
+ A(3,2): 3
+ C(3,2) = 24
+340: NEXT X
+ X: 3
+ terminated:false
+ X = 4
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 3
+ C: 2
+ C(3,2): 24
+ X: 4
+ B(3,4): 5
+ A(4,2): 2
+ C(3,2) = 34
+340: NEXT X
+ X: 4
+ terminated:true
+360: NEXT C
+ C: 2
+ terminated:false
+ C = 3
+275: REM INITIALIZE C[R,C] HERE
+280: LET C[R, C] = 0
+ R: 3
+ C: 3
+ C(3,3) = 0
+300: FOR X = 1 TO 4
+ X = 1
+ terminated:false
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 3
+ C: 3
+ C(3,3): 0
+ X: 1
+ B(3,1): 2
+ A(1,3): 2
+ C(3,3) = 4
+340: NEXT X
+ X: 1
+ terminated:false
+ X = 2
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 3
+ C: 3
+ C(3,3): 4
+ X: 2
+ B(3,2): 4
+ A(2,3): 2
+ C(3,3) = 12
+340: NEXT X
+ X: 2
+ terminated:false
+ X = 3
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 3
+ C: 3
+ C(3,3): 12
+ X: 3
+ B(3,3): 2
+ A(3,3): 2
+ C(3,3) = 16
+340: NEXT X
+ X: 3
+ terminated:false
+ X = 4
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 3
+ C: 3
+ C(3,3): 16
+ X: 4
+ B(3,4): 5
+ A(4,3): 1
+ C(3,3) = 21
+340: NEXT X
+ X: 4
+ terminated:true
+360: NEXT C
+ C: 3
+ terminated:true
+380: NEXT R
+ R: 3
+ terminated:false
+ R = 4
+255: REM WE STEP THROUGH COLUMNS OF MAT A
+260: FOR C = 1 TO 3
+ C = 1
+ terminated:false
+275: REM INITIALIZE C[R,C] HERE
+280: LET C[R, C] = 0
+ R: 4
+ C: 1
+ C(4,1) = 0
+300: FOR X = 1 TO 4
+ X = 1
+ terminated:false
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 4
+ C: 1
+ C(4,1): 0
+ X: 1
+ B(4,1): 1
+ A(1,1): 6
+ C(4,1) = 6
+340: NEXT X
+ X: 1
+ terminated:false
+ X = 2
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 4
+ C: 1
+ C(4,1): 6
+ X: 2
+ B(4,2): 6
+ A(2,1): 5
+ C(4,1) = 36
+340: NEXT X
+ X: 2
+ terminated:false
+ X = 3
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 4
+ C: 1
+ C(4,1): 36
+ X: 3
+ B(4,3): 3
+ A(3,1): 4
+ C(4,1) = 48
+340: NEXT X
+ X: 3
+ terminated:false
+ X = 4
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 4
+ C: 1
+ C(4,1): 48
+ X: 4
+ B(4,4): 2
+ A(4,1): 3
+ C(4,1) = 54
+340: NEXT X
+ X: 4
+ terminated:true
+360: NEXT C
+ C: 1
+ terminated:false
+ C = 2
+275: REM INITIALIZE C[R,C] HERE
+280: LET C[R, C] = 0
+ R: 4
+ C: 2
+ C(4,2) = 0
+300: FOR X = 1 TO 4
+ X = 1
+ terminated:false
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 4
+ C: 2
+ C(4,2): 0
+ X: 1
+ B(4,1): 1
+ A(1,2): 3
+ C(4,2) = 3
+340: NEXT X
+ X: 1
+ terminated:false
+ X = 2
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 4
+ C: 2
+ C(4,2): 3
+ X: 2
+ B(4,2): 6
+ A(2,2): 3
+ C(4,2) = 21
+340: NEXT X
+ X: 2
+ terminated:false
+ X = 3
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 4
+ C: 2
+ C(4,2): 21
+ X: 3
+ B(4,3): 3
+ A(3,2): 3
+ C(4,2) = 30
+340: NEXT X
+ X: 3
+ terminated:false
+ X = 4
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 4
+ C: 2
+ C(4,2): 30
+ X: 4
+ B(4,4): 2
+ A(4,2): 2
+ C(4,2) = 34
+340: NEXT X
+ X: 4
+ terminated:true
+360: NEXT C
+ C: 2
+ terminated:false
+ C = 3
+275: REM INITIALIZE C[R,C] HERE
+280: LET C[R, C] = 0
+ R: 4
+ C: 3
+ C(4,3) = 0
+300: FOR X = 1 TO 4
+ X = 1
+ terminated:false
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 4
+ C: 3
+ C(4,3): 0
+ X: 1
+ B(4,1): 1
+ A(1,3): 2
+ C(4,3) = 2
+340: NEXT X
+ X: 1
+ terminated:false
+ X = 2
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 4
+ C: 3
+ C(4,3): 2
+ X: 2
+ B(4,2): 6
+ A(2,3): 2
+ C(4,3) = 14
+340: NEXT X
+ X: 2
+ terminated:false
+ X = 3
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 4
+ C: 3
+ C(4,3): 14
+ X: 3
+ B(4,3): 3
+ A(3,3): 2
+ C(4,3) = 20
+340: NEXT X
+ X: 3
+ terminated:false
+ X = 4
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 4
+ C: 3
+ C(4,3): 20
+ X: 4
+ B(4,4): 2
+ A(4,3): 1
+ C(4,3) = 22
+340: NEXT X
+ X: 4
+ terminated:true
+360: NEXT C
+ C: 3
+ terminated:true
+380: NEXT R
+ R: 4
+ terminated:false
+ R = 5
+255: REM WE STEP THROUGH COLUMNS OF MAT A
+260: FOR C = 1 TO 3
+ C = 1
+ terminated:false
+275: REM INITIALIZE C[R,C] HERE
+280: LET C[R, C] = 0
+ R: 5
+ C: 1
+ C(5,1) = 0
+300: FOR X = 1 TO 4
+ X = 1
+ terminated:false
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 5
+ C: 1
+ C(5,1): 0
+ X: 1
+ B(5,1): 3
+ A(1,1): 6
+ C(5,1) = 18
+340: NEXT X
+ X: 1
+ terminated:false
+ X = 2
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 5
+ C: 1
+ C(5,1): 18
+ X: 2
+ B(5,2): 1
+ A(2,1): 5
+ C(5,1) = 23
+340: NEXT X
+ X: 2
+ terminated:false
+ X = 3
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 5
+ C: 1
+ C(5,1): 23
+ X: 3
+ B(5,3): 0
+ A(3,1): 4
+ C(5,1) = 23
+340: NEXT X
+ X: 3
+ terminated:false
+ X = 4
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 5
+ C: 1
+ C(5,1): 23
+ X: 4
+ B(5,4): 2
+ A(4,1): 3
+ C(5,1) = 29
+340: NEXT X
+ X: 4
+ terminated:true
+360: NEXT C
+ C: 1
+ terminated:false
+ C = 2
+275: REM INITIALIZE C[R,C] HERE
+280: LET C[R, C] = 0
+ R: 5
+ C: 2
+ C(5,2) = 0
+300: FOR X = 1 TO 4
+ X = 1
+ terminated:false
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 5
+ C: 2
+ C(5,2): 0
+ X: 1
+ B(5,1): 3
+ A(1,2): 3
+ C(5,2) = 9
+340: NEXT X
+ X: 1
+ terminated:false
+ X = 2
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 5
+ C: 2
+ C(5,2): 9
+ X: 2
+ B(5,2): 1
+ A(2,2): 3
+ C(5,2) = 12
+340: NEXT X
+ X: 2
+ terminated:false
+ X = 3
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 5
+ C: 2
+ C(5,2): 12
+ X: 3
+ B(5,3): 0
+ A(3,2): 3
+ C(5,2) = 12
+340: NEXT X
+ X: 3
+ terminated:false
+ X = 4
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 5
+ C: 2
+ C(5,2): 12
+ X: 4
+ B(5,4): 2
+ A(4,2): 2
+ C(5,2) = 16
+340: NEXT X
+ X: 4
+ terminated:true
+360: NEXT C
+ C: 2
+ terminated:false
+ C = 3
+275: REM INITIALIZE C[R,C] HERE
+280: LET C[R, C] = 0
+ R: 5
+ C: 3
+ C(5,3) = 0
+300: FOR X = 1 TO 4
+ X = 1
+ terminated:false
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 5
+ C: 3
+ C(5,3): 0
+ X: 1
+ B(5,1): 3
+ A(1,3): 2
+ C(5,3) = 6
+340: NEXT X
+ X: 1
+ terminated:false
+ X = 2
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 5
+ C: 3
+ C(5,3): 6
+ X: 2
+ B(5,2): 1
+ A(2,3): 2
+ C(5,3) = 8
+340: NEXT X
+ X: 2
+ terminated:false
+ X = 3
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 5
+ C: 3
+ C(5,3): 8
+ X: 3
+ B(5,3): 0
+ A(3,3): 2
+ C(5,3) = 8
+340: NEXT X
+ X: 3
+ terminated:false
+ X = 4
+320: LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+ R: 5
+ C: 3
+ C(5,3): 8
+ X: 4
+ B(5,4): 2
+ A(4,3): 1
+ C(5,3) = 10
+340: NEXT X
+ X: 4
+ terminated:true
+360: NEXT C
+ C: 3
+ terminated:true
+380: NEXT R
+ R: 5
+ terminated:true
+500: PRINT "ROAD", "TUNNEL", "BRIDGE"
+ROAD            TUNNEL          BRIDGE
+520: MAT PRINT C
+ C(1,1): 43
+ C(1,2): 28
+ C(1,3): 18
+ C(2,1): 61
+ C(2,2): 39
+ C(2,3): 24
+ C(3,1): 55
+ C(3,2): 34
+ C(3,3): 21
+ C(4,1): 54
+ C(4,2): 34
+ C(4,3): 22
+ C(5,1): 29
+ C(5,2): 16
+ C(5,3): 10
+ 43              28              18
+ 61              39              24
+ 55              34              21
+ 54              34              22
+ 29              16              10
+
+999: END
+STOP in line 999
+
