@@ -2615,17 +2615,25 @@ class GetStatement < AbstractStatement
 
   def renumber(renumber_map)
     @line_number = renumber_map[@line_number]
-    @token_index = -1
+    token_index = -1
     num_commas = 1
     new_token = NumericConstantToken.new(@line_number.line_number)
 
     @tokens.each_with_index do |token, i|
-      @token_index = i if token.numeric_constant? && num_commas == 1
+      token_index = i if token.numeric_constant? && num_commas == 1
 
       num_commas += 1 if token.separator?
     end
 
-    @tokens[@token_index] = new_token
+    @tokens[token_index] = new_token
+
+    @core_tokens.each_with_index do |token, i|
+      token_index = i if token.numeric_constant? && num_commas == 1
+
+      num_commas += 1 if token.separator?
+    end
+
+    @core_tokens[token_index] = new_token
   end
 
   def check_program(program, _line_number_stmt)
@@ -2738,6 +2746,7 @@ class GosubStatement < AbstractStatement
     @linenums = [@dest_line]
     new_token = NumericConstantToken.new(@dest_line.line_number)
     @tokens[-1] = new_token
+    @core_tokens[-1] = new_token
   end
 
   def set_destinations(interpreter, _, _)
@@ -2903,6 +2912,7 @@ class GotoStatement < AbstractStatement
       @linenums = [@dest_line]
       new_token = NumericConstantToken.new(@dest_line.line_number)
       @tokens[-1] = new_token
+      @core_tokens[-1] = new_token
     end
 
     return if @dest_lines.nil?
@@ -3134,18 +3144,25 @@ class AbstractIfStatement < AbstractStatement
       new_token = NumericConstantToken.new(@dest_line.line_number)
 
       index = 0
-
       @tokens.each_with_index do |token, i|
         index = i if token.to_s == 'THEN'
       end
 
       @tokens[index + 1] = new_token
+
+      index = 0
+      @core_tokens.each_with_index do |token, i|
+        index = i if token.to_s == 'THEN'
+      end
+
+      @core_tokens[index + 1] = new_token
     end
 
     unless @else_dest_line.nil?
       @else_dest_line = renumber_map[@else_dest_line]
       new_token = NumericConstantToken.new(@else_dest_line.line_number)
       @tokens[-1] = new_token
+      @core_tokens[-1] = new_token
     end
 
     @linenums = make_linenum_references
@@ -4067,6 +4084,7 @@ class OnErrorStatement < AbstractStatement
       new_token = NumericConstantToken.new(@dest_line.line_number)
       @linenums = [@dest_line]
       @tokens[-1] = new_token
+      @core_tokens[-1] = new_token
     end
   end
 end
@@ -4678,16 +4696,16 @@ class PutStatement < AbstractStatement
     @line_number = renumber_map[@line_number]
     new_token = NumericConstantToken.new(@line_number.line_number)
 
-    @token_index = -1
+    token_index = -1
     num_commas = 1
 
     @tokens.each_with_index do |token, i|
-      @token_index = i if token.numeric_constant? && num_commas == 1
+      token_index = i if token.numeric_constant? && num_commas == 1
 
       num_commas += 1 if token.separator?
     end
 
-    @tokens[@token_index] = new_token
+    @tokens[token_index] = new_token
   end
 
   private
