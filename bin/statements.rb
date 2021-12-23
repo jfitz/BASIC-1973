@@ -2617,13 +2617,15 @@ class GetStatement < AbstractStatement
     @line_number = renumber_map[@line_number]
     @token_index = -1
     num_commas = 1
+    new_token = NumericConstantToken.new(@line_number.line_number)
 
     @tokens.each_with_index do |token, i|
       @token_index = i if token.numeric_constant? && num_commas == 1
 
       num_commas += 1 if token.separator?
     end
-    @tokens[@token_index] = NumericConstantToken.new(@line_number.line_number)
+
+    @tokens[@token_index] = new_token
   end
 
   def check_program(program, _line_number_stmt)
@@ -2734,7 +2736,8 @@ class GosubStatement < AbstractStatement
   def renumber(renumber_map)
     @dest_line = renumber_map[@dest_line]
     @linenums = [@dest_line]
-    @tokens[-1] = NumericConstantToken.new(@dest_line.line_number)
+    new_token = NumericConstantToken.new(@dest_line.line_number)
+    @tokens[-1] = new_token
   end
 
   def set_destinations(interpreter, _, _)
@@ -2898,7 +2901,8 @@ class GotoStatement < AbstractStatement
     unless @dest_line.nil?
       @dest_line = renumber_map[@dest_line]
       @linenums = [@dest_line]
-      @tokens[-1] = NumericConstantToken.new(@dest_line.line_number)
+      new_token = NumericConstantToken.new(@dest_line.line_number)
+      @tokens[-1] = new_token
     end
 
     return if @dest_lines.nil?
@@ -3073,19 +3077,13 @@ class AbstractIfStatement < AbstractStatement
         end
 
         unless @dest_line.nil?
-          @comprehension_effort += if @dest_line > line_number
-                                     1
-                                   else
-                                     2
-                                   end
+          @comprehension_effort += 1
+          @comprehension_effort += 1 if @dest_line <= line_number
         end
 
         unless @else_dest_line.nil?
-          @comprehension_effort += if @else_dest_line > line_number
-                                     1
-                                   else
-                                     2
-                                   end
+          @comprehension_effort += 1
+          @comprehension_effort += 1 if @else_dest_line <= line_number
         end
 
         @elements[:numerics] = make_numeric_references
@@ -3133,18 +3131,21 @@ class AbstractIfStatement < AbstractStatement
   def renumber(renumber_map)
     unless @dest_line.nil?
       @dest_line = renumber_map[@dest_line]
+      new_token = NumericConstantToken.new(@dest_line.line_number)
+
       index = 0
 
       @tokens.each_with_index do |token, i|
         index = i if token.to_s == 'THEN'
       end
 
-      @tokens[index + 1] = NumericConstantToken.new(@dest_line.line_number)
+      @tokens[index + 1] = new_token
     end
 
     unless @else_dest_line.nil?
       @else_dest_line = renumber_map[@else_dest_line]
-      @tokens[-1] = NumericConstantToken.new(@else_dest_line.line_number)
+      new_token = NumericConstantToken.new(@else_dest_line.line_number)
+      @tokens[-1] = new_token
     end
 
     @linenums = make_linenum_references
@@ -4063,8 +4064,9 @@ class OnErrorStatement < AbstractStatement
   def renumber(renumber_map)
     unless @dest_line.nil?
       @dest_line = renumber_map[@dest_line]
+      new_token = NumericConstantToken.new(@dest_line.line_number)
       @linenums = [@dest_line]
-      @tokens[-1] = NumericConstantToken.new(@dest_line.line_number)
+      @tokens[-1] = new_token
     end
   end
 end
@@ -4174,7 +4176,8 @@ class OnStatement < AbstractStatement
     end
 
     new_dest_lines.each do |dest_line|
-      @tokens[index + 1] = NumericConstantToken.new(dest_line.line_number)
+      new_token = NumericConstantToken.new(dest_line.line_number)
+      @tokens[index + 1] = new_token
 
       index += 2
     end
@@ -4673,6 +4676,8 @@ class PutStatement < AbstractStatement
 
   def renumber(renumber_map)
     @line_number = renumber_map[@line_number]
+    new_token = NumericConstantToken.new(@line_number.line_number)
+
     @token_index = -1
     num_commas = 1
 
@@ -4682,7 +4687,7 @@ class PutStatement < AbstractStatement
       num_commas += 1 if token.separator?
     end
 
-    @tokens[@token_index] = NumericConstantToken.new(@line_number.line_number)
+    @tokens[@token_index] = new_token
   end
 
   private
