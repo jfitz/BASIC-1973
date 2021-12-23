@@ -544,14 +544,14 @@ class Interpreter
     when 'GOTO'
       statement = GotoStatement.new(nil, [keyword], [args])
       if statement.errors.empty?
-        statement.execute(self)
+        statement.execute_core(self)
       else
         statement.errors.each { |error| @console_io.print_line(error) }
       end
     when 'LET'
       statement = LetStatement.new(nil, [keyword], [args])
       if statement.errors.empty?
-        statement.execute(self)
+        statement.execute_core(self)
       else
         statement.errors.each { |error| @console_io.print_line(error) }
       end
