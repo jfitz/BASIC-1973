@@ -43,15 +43,15 @@ Halstead complexity:
   Dests: 210:auto
 (1 4) 210 IF A$ <> "YES" THEN 230
   Origs: 200:auto
-  Dests: 220:auto, 230:ifthen
+  Dests: 220:auto, 240:ifthen
 (0 2) 220 GOTO 5820
   Origs: 210:auto
   Dests: 5820:goto
 (0 1) 230 REM *** PROGRAM BEGINS HERE
-  Origs: 210:ifthen, 4030:goto, 4107:ifthen, 6500:goto
-  Dests: 240:auto
+  Origs: 
+  Dests: 
 (0 3) 240 Z$, R$, Q$ = "                                                                          "
-  Origs: 230:auto
+  Origs: 210:ifthen, 4030:goto, 4107:ifthen, 6500:goto
   Dests: 260:auto
 (0 6) 260 DIM G(8, 8), C(9, 2), K(3, 3), N(3), Z(8, 8)
   Origs: 240:auto
@@ -256,7 +256,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 1010:auto
 (0 2) 1010 GOSUB 5510
   Origs: 1000:auto
-  Dests: 1020:auto, 5510:gosub
+  Dests: 1020:auto, 5520:gosub
 (1 3) 1020 FOR I = 1 TO K3
   Origs: 1010:auto
   Dests: 1030:fornext, 1110:fornext
@@ -277,7 +277,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 1070:auto
 (0 2) 1070 GOSUB 5510
   Origs: 1060:auto
-  Dests: 1080:auto, 5510:gosub
+  Dests: 1080:auto, 5520:gosub
 (0 3) 1080 K(I, 1) = R1
 (0 3)      K(I, 2) = R2
 (0 3)      K(I, 3) = S9
@@ -302,7 +302,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 1170:auto
 (0 2) 1170 GOSUB 5510
   Origs: 1140:auto
-  Dests: 1180:auto, 5510:gosub
+  Dests: 1180:auto, 5520:gosub
 (0 1) 1180 NEXT I
   Origs: 1120:fornext, 1170:auto
   Dests: 1190:auto
@@ -322,13 +322,13 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 1240:auto
 (0 2) 1240 GOSUB 5510
   Origs: 1210:auto
-  Dests: 1250:auto, 5510:gosub
+  Dests: 1250:auto, 5520:gosub
 (0 1) 1250 NEXT I
   Origs: 1190:fornext, 1240:auto
   Dests: 1260:auto
 (0 2) 1260 GOSUB 4111
   Origs: 1250:auto, 1291:ifthen, 2160:goto
-  Dests: 1270:auto, 4111:gosub
+  Dests: 1270:auto, 4120:gosub
 (1 2) 1270 INPUT "COMMAND:"; A
   Origs: 1260:auto, 1400:goto, 1430:ifthen, 1600:goto, 2360:goto, 2500:goto, 2560:goto, 2790:goto, 2820:goto, 2850:goto, 2880:ifthen, 3450:goto, 3480:goto, 3510:ifthen, 3550:goto, 3580:goto, 3660:goto, 3680:goto, 4640:goto, 4820:goto, 5320:goto
   Dests: 1290:auto
@@ -479,7 +479,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 1710:auto
 (0 2) 1710 GOSUB 5610
   Origs: 1690:auto
-  Dests: 1720:auto, 5610:gosub
+  Dests: 1720:auto, 5620:gosub
 (0 2) 1720 PRINT " DAMAGED"
 (0 2)      PRINT
 (0 2)      GOTO 1810
@@ -494,7 +494,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 1780:auto
 (0 2) 1780 GOSUB 5610
   Origs: 1760:auto
-  Dests: 1790:auto, 5610:gosub
+  Dests: 1790:auto, 5620:gosub
 (0 2) 1790 PRINT " STATE OF REPAIR IMPROVED"
 (0 2)      PRINT
   Origs: 1780:auto
@@ -507,7 +507,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 1850:auto
 (0 2) 1850 GOSUB 5510
   Origs: 1810:auto
-  Dests: 1860:auto, 5510:gosub
+  Dests: 1860:auto, 5520:gosub
 (0 10) 1860 X1 = C(C1, 1) + (C(C1 + 1, 1) - C(C1, 1)) * (C1 - INT(C1))
   Origs: 1850:auto
   Dests: 1870:auto
@@ -569,7 +569,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 2110:auto
 (0 2) 2110 GOSUB 5510
   Origs: 2080:auto
-  Dests: 2120:auto, 5510:gosub
+  Dests: 2120:auto, 5520:gosub
 (0 5) 2120 E = E - N + 5
 (1 4)      IF W1 < 1 THEN 2150
   Origs: 2110:auto
@@ -813,7 +813,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 3040:auto
 (0 2) 3040 GOSUB 5680
   Origs: 3010:auto
-  Dests: 3050:auto, 5680:gosub
+  Dests: 3050:auto, 5690:gosub
 (1 4) 3050 IF Z3 = 0 THEN 3220
   Origs: 3040:auto
   Dests: 3060:auto, 3220:ifthen
@@ -827,7 +827,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 3100:auto
 (0 2) 3100 GOSUB 5680
   Origs: 3070:auto
-  Dests: 3110:auto, 5680:gosub
+  Dests: 3110:auto, 5690:gosub
 (1 4) 3110 IF Z3 = 0 THEN 3220
   Origs: 3100:auto
   Dests: 3120:auto, 3220:ifthen
@@ -862,7 +862,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 3230:auto
 (0 2) 3230 GOSUB 5680
   Origs: 3220:auto
-  Dests: 3240:auto, 5680:gosub
+  Dests: 3240:auto, 5690:gosub
 (1 4) 3240 IF Z3 = 0 THEN 3290
   Origs: 3230:auto
   Dests: 3270:auto, 3290:ifthen
@@ -896,7 +896,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 3390:auto
 (0 2) 3390 GOSUB 5510
   Origs: 3360:auto
-  Dests: 3400:auto, 5510:gosub
+  Dests: 3400:auto, 5520:gosub
 (0 8) 3400 G(Q1, Q2) = K3 * 100 + B3 * 10 + S3
   Origs: 3390:auto
   Dests: 3410:auto
@@ -967,7 +967,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 3620:fornext, 3640:fornext
 (0 2) 3620 GOSUB 5610
   Origs: 3610:fornext
-  Dests: 3630:auto, 5610:gosub
+  Dests: 3630:auto, 5620:gosub
 (0 2) 3630 PRINT D(R1)
   Origs: 3620:auto
   Dests: 3640:auto
@@ -996,7 +996,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 3760:auto
 (0 2) 3760 GOSUB 5510
   Origs: 3710:auto
-  Dests: 3770:auto, 5510:gosub
+  Dests: 3770:auto, 5520:gosub
 (0 8) 3770 G(Q1, Q2) = K3 * 100 + B3 * 10 + S3
   Origs: 3760:auto
   Dests: 3780:auto
@@ -1076,7 +1076,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
 (0 2)      PRINT "YOU GET ANOTHER CHANCE..."
 (0 3)      GOTO 230
   Origs: 4020:auto
-  Dests: 230:goto
+  Dests: 240:goto
 (0 2) 4040 PRINT
 (0 2)      PRINT "THF LAST KLINGON BATTLE CRUISER IN THE GALAXY HAS BEEN DESTROYED"
   Origs: 2760:ifthen, 3150:ifthen
@@ -1104,15 +1104,15 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 4107:auto
 (1 5) 4107 IF R$ = "YES" THEN 230
   Origs: 4106:auto
-  Dests: 230:ifthen, 4110:auto
+  Dests: 240:ifthen, 4110:auto
 (0 2) 4110 GOTO 6510
   Origs: 4107:auto
   Dests: 6510:goto
 (0 1) 4111 REM *** SHORT RANGE SENSOR SCAN AND STARTING POINT CODE
-  Origs: 1260:gosub
-  Dests: 4120:auto
+  Origs: 
+  Dests: 
 (1 5) 4120 FOR I = S1 - 1 TO S1 + 1
-  Origs: 4111:auto
+  Origs: 1260:gosub
   Dests: 4130:fornext, 4210:fornext
 (1 5) 4130 FOR J = S2 - 1 TO S2 + 1
   Origs: 4120:fornext
@@ -1127,7 +1127,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 4180:auto
 (0 2) 4180 GOSUB 5680
   Origs: 4150:auto
-  Dests: 4190:auto, 5680:gosub
+  Dests: 4190:auto, 5690:gosub
 (1 4) 4190 IF Z3 = 1 THEN 4240
   Origs: 4180:auto
   Dests: 4200:auto, 4240:ifthen
@@ -1463,7 +1463,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 5430:auto
 (0 2) 5430 GOSUB 5680
   Origs: 5380:auto
-  Dests: 5440:auto, 5680:gosub
+  Dests: 5440:auto, 5690:gosub
 (1 5) 5440 IF Z3 = 0 THEN 5380
   Origs: 5430:auto
   Dests: 5380:ifthen, 5450:auto
@@ -1471,11 +1471,11 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Origs: 5440:auto
   Dests: 
 (0 1) 5510 REM *** INSERTION IN STRING ARRAY FOR QUADRANT ***
-  Origs: 1010:gosub, 1070:gosub, 1170:gosub, 1240:gosub, 1850:gosub, 2110:gosub, 3390:gosub, 3760:gosub
-  Dests: 5520:auto
+  Origs: 
+  Dests: 
 (0 8) 5520 S8 = Z1 * 24 + Z2 * 3 - 26
 (1 4)      IF S8 > 72 THEN 5560
-  Origs: 5510:auto
+  Origs: 1010:gosub, 1070:gosub, 1170:gosub, 1240:gosub, 1850:gosub, 2110:gosub, 3390:gosub, 3760:gosub
   Dests: 5540:auto, 5560:ifthen
 (0 7) 5540 Q$ = LEFT(Q$, S8 - 1) + A$ + RIGHT(Q$, S8 + 3)
   Origs: 5520:auto
@@ -1499,11 +1499,11 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Origs: 5550:goto, 5580:goto, 5590:auto
   Dests: 
 (0 1) 5610 REM *** PRINTS DEVICE NAME FROM ARRAY***
-  Origs: 1710:gosub, 1780:gosub, 3620:gosub
-  Dests: 5620:auto
+  Origs: 
+  Dests: 
 (0 5) 5620 S8 = R1 * 12 - 11
 (1 4)      IF S8 > 72 THEN 5660
-  Origs: 5610:auto
+  Origs: 1710:gosub, 1780:gosub, 3620:gosub
   Dests: 5640:auto, 5660:ifthen
 (0 3) 5640 PRINT MID(D$, S8, 11),
 (0 2)      GOTO 5670
@@ -1517,12 +1517,12 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Origs: 5640:goto, 5660:auto
   Dests: 
 (0 1) 5680 REM ***STRING COMPARISON IN QUADRANT ARRAY*** 
-  Origs: 3040:gosub, 3100:gosub, 3230:gosub, 4180:gosub, 5430:gosub
-  Dests: 5690:auto
+  Origs: 
+  Dests: 
 (0 8) 5690 S8 = Z1 * 24 + Z2 * 3 - 26
 (0 3)      Z3 = 0
 (1 4)      IF S8 > 72 THEN 5750
-  Origs: 5680:auto
+  Origs: 3040:gosub, 3100:gosub, 3230:gosub, 4180:gosub, 5430:gosub
   Dests: 5720:auto, 5750:ifthen
 (1 5) 5720 IF MID(Q$, S8, 3) <> A$ THEN 5810
   Origs: 5690:auto
@@ -1750,7 +1750,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 6500:auto
 (0 3) 6500 GOTO 230
   Origs: 6400:auto
-  Dests: 230:goto
+  Dests: 240:goto
 (0 1) 6510 END
   Origs: 1298:ifthen, 4110:goto
   Dests: :stop

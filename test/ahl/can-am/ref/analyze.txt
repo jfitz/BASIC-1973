@@ -690,10 +690,10 @@ FNA($,_,_,_,_) (1 4) 2330 IF G1 < 1 THEN 4250
   Dests: 2340:auto, 4250:ifthen
 FNA($,_,_,_,_) (0 2) 2340 GOSUB 2800
   Origs: 2330:auto
-  Dests: 2350:auto, 2800:gosub
+  Dests: 2350:auto, 2810:gosub
 FNA($,_,_,_,_) (0 2) 2350 GOSUB 3220
   Origs: 2340:auto
-  Dests: 2360:auto, 3220:gosub
+  Dests: 2360:auto, 3230:gosub
 FNA($,_,_,_,_) (1 3) 2360 FOR G = 0 TO O9
   Origs: 2350:auto
   Dests: 2370:fornext, 2780:fornext
@@ -827,10 +827,10 @@ FNA($,_,_,_,_) (0 2) 2790 GOTO 4250
   Origs: 2780:auto
   Dests: 4250:goto
 FNA($,_,_,_,_) (0 1) 2800 REM HAZARDS 
-  Origs: 2340:gosub
-  Dests: 2810:auto
+  Origs: 
+  Dests: 
 FNA($,_,_,_,_) (0 2) 2810 PRINT O$(10);
-  Origs: 2800:auto
+  Origs: 2340:gosub
   Dests: 2820:auto
 FNA($,_,_,_,_) (0 3) 2820 LET E = 0
   Origs: 2810:auto
@@ -953,10 +953,10 @@ FNA($,_,_,_,_) (0 1) 3210 RETURN
   Origs: 3130:ifthen, 3140:ifthen, 3200:auto
   Dests: 
 FNA($,_,_,_,_) (0 1) 3220 REM INPUT
-  Origs: 2350:gosub
-  Dests: 3230:auto
+  Origs: 
+  Dests: 
 FNA($,_,_,_,_) (0 4) 3230 MAT S = ZER
-  Origs: 3220:auto
+  Origs: 2350:gosub
   Dests: 3240:auto
 FNA($,_,_,_,_) (1 4) 3240 IF O3 > 0 THEN 3270
   Origs: 3230:auto
@@ -1077,7 +1077,7 @@ FNA($,_,_,_,_) (1 4) 3620 IF S > 0 THEN 3660
   Dests: 3630:auto, 3660:ifthen
 FNA($,_,_,_,_) (0 2) 3630 GOSUB 3990
   Origs: 3620:auto
-  Dests: 3640:auto, 3990:gosub
+  Dests: 3640:auto, 4000:gosub
 FNA($,_,_,_,_) (0 5) 3640 PRINT "HOW FAST"; CHR$(63 * SGN(O9)); O$;
   Origs: 3550:goto, 3610:goto, 3630:auto, 3680:goto
   Dests: 3650:auto
@@ -1184,10 +1184,10 @@ FNA($,_,_,_,_) (0 1) 3980 RETURN
   Origs: 3880:goto, 3970:auto
   Dests: 
 FNA($,_,_,_,_) (0 1) 3990 REM PLACING
-  Origs: 3630:gosub
-  Dests: 4000:auto
+  Origs: 
+  Dests: 
 FNA($,_,_,_,_) (0 2) 4000 PRINT O$(A)
-  Origs: 3990:auto
+  Origs: 3630:gosub
   Dests: 4010:auto
 FNA($,_,_,_,_) (1 4) 4010 IF O9 = 0 THEN 4040
   Origs: 4000:auto

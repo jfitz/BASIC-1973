@@ -121,7 +121,7 @@ Halstead complexity:
   Dests: 3400:auto, 3500:ifthen
 (0 2) 3400 GOSUB 6500
   Origs: 3300:auto
-  Dests: 3500:auto, 6500:gosub
+  Dests: 3500:auto, 6600:gosub
 (1 4) 3500 IF X <> 8 THEN 3800
   Origs: 2600:ifthen, 2800:ifthen, 3000:ifthen, 3300:ifthen, 3400:auto
   Dests: 3600:auto, 3800:ifthen
@@ -172,7 +172,7 @@ Halstead complexity:
   Dests: 5100:auto, 5300:ifthen
 (0 2) 5100 GOSUB 9100
   Origs: 5000:auto
-  Dests: 5200:auto, 9100:gosub
+  Dests: 5200:auto, 9200:gosub
 (0 2) 5200 GOTO 6300
   Origs: 5100:auto
   Dests: 6300:goto
@@ -205,7 +205,7 @@ Halstead complexity:
   Dests: 6200:auto, 6300:ifthen
 (0 2) 6200 GOSUB 9100
   Origs: 6100:auto
-  Dests: 6300:auto, 9100:gosub
+  Dests: 6300:auto, 9200:gosub
 (0 1) 6300 NEXT A
   Origs: 4300:fornext, 4600:ifthen, 4700:ifthen, 4800:ifthen, 4900:ifthen, 5200:goto, 5300:ifthen, 5400:ifthen, 5700:ifthen, 5800:ifthen, 5900:ifthen, 6000:ifthen, 6100:ifthen, 6200:auto
   Dests: 6400:auto
@@ -213,10 +213,10 @@ Halstead complexity:
   Origs: 6300:auto
   Dests: 
 (0 1) 6500 REM KING MOVES
-  Origs: 3400:gosub
-  Dests: 6600:auto
+  Origs: 
+  Dests: 
 (1 5) 6600 FOR A = -1 TO 1 STEP 2
-  Origs: 6500:auto
+  Origs: 3400:gosub
   Dests: 6700:fornext, 8800:fornext
 (1 5) 6700 FOR B = -1 TO 1 STEP 2
   Origs: 6600:fornext
@@ -244,7 +244,7 @@ Halstead complexity:
   Dests: 7500:auto, 7700:ifthen
 (0 2) 7500 GOSUB 9100
   Origs: 7400:auto
-  Dests: 7600:auto, 9100:gosub
+  Dests: 7600:auto, 9200:gosub
 (0 2) 7600 GOTO 8700
   Origs: 7500:auto
   Dests: 8700:goto
@@ -277,7 +277,7 @@ Halstead complexity:
   Dests: 8600:auto, 8700:ifthen
 (0 2) 8600 GOSUB 9100
   Origs: 8500:auto
-  Dests: 8700:auto, 9100:gosub
+  Dests: 8700:auto, 9200:gosub
 (0 1) 8700 NEXT B
   Origs: 6700:fornext, 7000:ifthen, 7100:ifthen, 7200:ifthen, 7300:ifthen, 7600:goto, 7700:ifthen, 7800:ifthen, 8100:ifthen, 8200:ifthen, 8300:ifthen, 8400:ifthen, 8500:ifthen, 8600:auto
   Dests: 8800:auto
@@ -291,10 +291,10 @@ Halstead complexity:
   Origs: 
   Dests: 14200:goto
 (0 1) 9100 REM
-  Origs: 5100:gosub, 6200:gosub, 7500:gosub, 8600:gosub
-  Dests: 9200:auto
+  Origs: 
+  Dests: 
 (0 4) 9200 LET P = P + 1
-  Origs: 9100:auto
+  Origs: 5100:gosub, 6200:gosub, 7500:gosub, 8600:gosub
   Dests: 9300:auto
 (1 4) 9300 IF P = K THEN 12300
   Origs: 9200:auto
@@ -307,15 +307,15 @@ Halstead complexity:
   Dests: 9600:auto
 (1 8) 9600 IF X <> (4.5 - (3.5 * G)) THEN 9800
   Origs: 9400:ifthen, 9500:auto
-  Dests: 9700:auto, 9800:ifthen
+  Dests: 9700:auto, 9900:ifthen
 (0 4) 9700 LET Q = Q - 2
   Origs: 9600:auto
   Dests: 9900:auto
 (0 1) 9800 REM
-  Origs: 9600:ifthen
-  Dests: 9900:auto
+  Origs: 
+  Dests: 
 (1 4) 9900 IF U <> 1 THEN 10100
-  Origs: 9700:auto, 9800:auto
+  Origs: 9600:ifthen, 9700:auto
   Dests: 10000:auto, 10100:ifthen
 (0 4) 10000 LET Q = Q + 1
   Origs: 9900:auto
@@ -331,24 +331,24 @@ Halstead complexity:
   Dests: 10400:fornext, 11000:fornext
 (1 4) 10400 IF S(U + C, V + G) < 1 THEN 10800
   Origs: 10300:fornext
-  Dests: 10500:auto, 10800:ifthen
+  Dests: 10500:auto, 10900:ifthen
 (0 4) 10500 LET Q = Q - 1
   Origs: 10400:auto
   Dests: 10600:auto
 (1 4) 10600 IF S(U - C, V - G) <> 0 THEN 10800
   Origs: 10500:auto
-  Dests: 10700:auto, 10800:ifthen
+  Dests: 10700:auto, 10900:ifthen
 (0 4) 10700 LET Q = Q - 1
   Origs: 10600:auto
   Dests: 11000:auto
 (0 1) 10800 REM THIS WAS THE EVALUATION SECTION
-  Origs: 10400:ifthen, 10600:ifthen
-  Dests: 11000:auto
-(0 1) 10900 REM
   Origs: 
   Dests: 
+(0 1) 10900 REM
+  Origs: 10400:ifthen, 10600:ifthen
+  Dests: 11000:auto
 (0 1) 11000 NEXT C
-  Origs: 10300:fornext, 10700:auto, 10800:auto
+  Origs: 10300:fornext, 10700:auto, 10900:auto
   Dests: 11100:auto
 (0 3) 11100 LET R(P) = Q
   Origs: 11000:auto
@@ -533,7 +533,7 @@ Halstead complexity:
   Dests: 17100:auto
 (1 4) 17100 IF S(X, Y) = 0 THEN 17500
   Origs: 17000:auto
-  Dests: 17200:auto, 17500:ifthen
+  Dests: 17200:auto, 17600:ifthen
 (0 2) 17200 PRINT "THAT SPACE IS ALREADY OCCUPIED"
   Origs: 17100:auto
   Dests: 17300:auto
@@ -544,10 +544,10 @@ Halstead complexity:
   Origs: 17300:auto
   Dests: 16700:goto
 (0 1) 17500 REM LET S(A$B)=S(E,H)
-  Origs: 17100:ifthen
-  Dests: 17600:auto
+  Origs: 
+  Dests: 
 (0 3) 17600 LET S(A, B) = S(E, H)
-  Origs: 17500:auto
+  Origs: 17100:ifthen
   Dests: 17700:auto
 (0 3) 17700 LET S(E, H) = 0
   Origs: 17600:auto
