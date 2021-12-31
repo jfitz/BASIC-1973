@@ -149,9 +149,8 @@ class LineStmtMod
   attr_reader :line_number, :statement, :index
 
   def initialize(line_number, statement, mod)
-    unless line_number.class.to_s == 'LineNumber'
-      raise BASICError, "line_number class is #{line_number.class}"
-    end
+    raise BASICError, "line_number class is #{line_number.class}" unless
+      line_number.class.to_s == 'LineNumber'
 
     @line_number = line_number
     @statement = statement
@@ -390,11 +389,7 @@ class Line
     @destinations = []
 
     @statements.each do |statement|
-      # built-in transfers
-      xfers = statement.transfers
-
-      # auto-line transfers
-      xfers += statement.transfers_auto
+      xfers = statement.transfers + statement.transfers_auto
 
       # convert TransferRefLineStmt objects to TransferRefLine objects
       xfers.each do |xfer|
@@ -410,7 +405,6 @@ class Line
     @origins = []
 
     @statements.each do |statement|
-      # built-in transfers
       xfers = statement.origins
 
       # convert TransferRefLineStmt objects to TransferRefLine objects
@@ -429,8 +423,7 @@ class Line
     @statements.each_with_index do |statement, stmt|
       line_number_stmt = LineStmt.new(line_number, stmt)
 
-      xfers = statement.transfers
-      xfers += statement.transfers_auto
+      xfers = statement.transfers + statement.transfers_auto
 
       line_stmts = []
 
@@ -897,7 +890,6 @@ class Program
     end
 
     # nothing left to execute
-    puts "RET nil"
     nil
   end
 
@@ -1302,10 +1294,9 @@ class Program
           next unless statement.reachable
 
           # a reachable line updates its targets to 'reachable'
-          statement_transfers =
-            statement.transfers + statement.transfers_auto
+          xfers = statement.transfers + statement.transfers_auto
 
-          statement_transfers.each do |xfer|
+          xfers.each do |xfer|
             dest_line_number = xfer.line_number
             dest_line = @lines[dest_line_number]
             unless dest_line.nil?
@@ -1388,6 +1379,7 @@ class Program
     set_transfers
     transfers_to_origins
     set_transfers_auto
+    assign_sub_markers
     check_program
     check_function_markers
   end
@@ -1400,8 +1392,8 @@ class Program
       statements = line.statements
 
       statements.each_with_index do |statement, stmt|
-        line_stmt = LineStmt.new(line_number, stmt)
-        statement.optimize(interpreter, line_stmt, self)
+        line_number_stmt = LineStmt.new(line_number, stmt)
+        statement.optimize(interpreter, line_number_stmt, self)
       end
     end
   end
@@ -1416,6 +1408,32 @@ class Program
         statement.set_endfunc_lines(line_stmt, self)
       end
     end
+  end
+
+  def assign_sub_markers
+    part_of_sub = nil
+
+    @lines.keys.sort.each do |line_number|
+      line = @lines[line_number]
+      statements = line.statements
+
+      statements.each_with_index do |statement, stmt|
+        statement.assign_sub_markers(self)
+      end
+    end
+  end
+
+  def get_statement(line_number, stmt)
+    statement = nil
+
+    line = @lines[line_number]
+
+    unless line.nil?
+      statements = line.statements
+      statement = statements[stmt]
+    end
+
+    statement
   end
 
   def assign_singleline_function_markers
@@ -1579,11 +1597,11 @@ class Program
       end
     end
 
-    @lines.keys.sort.each_with_index do |line_number, stmt|
+    @lines.keys.sort.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
 
-      statements.each do |statement|
+      statements.each_with_index do |statement, stmt|
         if statement.executable == :files
           line_number_stmt = LineStmt.new(line_number, stmt)
           # add trace output
@@ -1955,7 +1973,11 @@ class Program
       statements = line.statements
 
       rs = []
-      statements.each { |statement| rs += statement.linenums }
+
+      statements.each do |statement|
+        rs += statement.linenums
+      end
+
       refs[line_number] = rs
     end
 
@@ -2253,6 +2275,7 @@ class Program
       # print the line
       texts << (line_number.to_s + line.list)
       line.warnings.each { |warning| texts << (" WARNING: #{warning}") }
+
       statements = line.statements
 
       # print the errors
@@ -2264,6 +2287,7 @@ class Program
       # print the warnings
       statements.each do |statement|
         statement.warnings.each { |warning| texts << (" WARNING: #{warning}") }
+        statement.program_warnings.each { |warning| texts << (" WARNING: #{warning}") }
       end
 
       next unless list_tokens
@@ -2299,6 +2323,7 @@ class Program
       # print the warnings
       statements.each do |statement|
         statement.warnings.each { |warning| texts << (" WARNING: #{warning}") }
+        statement.program_warnings.each { |warning| texts << (" WARNING: #{warning}") }
       end
 
       # print the line components
@@ -2339,6 +2364,7 @@ class Program
       # print the warnings
       statements.each do |statement|
         statement.warnings.each { |warning| texts << (" WARNING: #{warning}") }
+        statement.program_warnings.each { |warning| texts << (" WARNING: #{warning}") }
       end
     end
 
