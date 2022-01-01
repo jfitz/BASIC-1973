@@ -1,9 +1,12 @@
 5 GOSUB 500
+ WARNING: Statement before GOSUB entry point
 10 DIM D(10, 4), B(10), C(18), G(10)
+ WARNING: Statement before GOSUB entry point
  WARNING: Inconsistent GOSUB target (500, 400)
 15 RANDOMIZE : PRINT : PRINT : PRINT
 20 LET A = 0 : GOTO 200
 30 PRINT : PRINT : PRINT : LET J = 0
+ WARNING: Statement before GOSUB entry point
 35 PRINT "YOUR GUESS"; : INPUT N : LET N = (N + .1) / 100000
 40 FOR I = 0 TO 4 : LET G(I) = INT(10 * N) : LET N = 10 * N - INT(10 * N)
 41 FOR K = 0 TO I - 1 : IF G(I) = G(K) GOTO 170
@@ -28,6 +31,7 @@
 110 GOTO 20
 150 PRINT : PRINT "YOU HAVE GIVEN ME IMPOSSIBLE SCORES - GAME SPOILED" : GOTO 5
  WARNING: Line exceeds PRETTY width limit 72
+ WARNING: Statement before GOSUB entry point
 170 PRINT "REPEATED DIGITS NOT ALLOWED" : GOTO 35
 200 FOR P = 0 TO 4
 210 LET D(A, P) = INT(10 * RND(1))
