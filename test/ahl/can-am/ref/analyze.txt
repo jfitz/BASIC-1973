@@ -643,34 +643,34 @@ Halstead complexity:
 (0 3) 2180 GOTO 1110
   Origs: 2170:auto
   Dests: 1110:goto
-(2190) (1 3) 2190 FOR X = 1 TO K9
+G(2190) (1 3) 2190 FOR X = 1 TO K9
   Origs: 900:gosub, 1230:gosub, 2070:gosub
   Dests: 2200:fornext, 2210:fornext
-(2190) (1 4) 2200 IF R$ = F$(X) THEN 2230
+G(2190) (1 4) 2200 IF R$ = F$(X) THEN 2230
   Origs: 2190:fornext
   Dests: 2210:auto, 2230:ifthen
-(2190) (0 1) 2210 NEXT X
+G(2190) (0 1) 2210 NEXT X
   Origs: 2190:fornext, 2200:auto
   Dests: 2220:auto
-(2190) (0 2) 2220 GOTO 2280
+G(2190) (0 2) 2220 GOTO 2280
   Origs: 2210:auto
   Dests: 2280:goto
-(2190) (0 3) 2230 PRINT O$(0); R$((X - 1) / 2 * 1)
+G(2190) (0 3) 2230 PRINT O$(0); R$((X - 1) / 2 * 1)
   Origs: 2200:ifthen
   Dests: 2240:auto
-(2190) (1 7) 2240 IF X = INT(X / 2) * 2 THEN 2270
+G(2190) (1 7) 2240 IF X = INT(X / 2) * 2 THEN 2270
   Origs: 2230:auto
   Dests: 2250:auto, 2270:ifthen
-(2190) (0 3) 2250 LET R$ = "NO"
+G(2190) (0 3) 2250 LET R$ = "NO"
   Origs: 2240:auto
   Dests: 2260:auto
-(2190) (0 2) 2260 GOTO 2280
+G(2190) (0 2) 2260 GOTO 2280
   Origs: 2250:auto
   Dests: 2280:goto
-(2190) (0 3) 2270 LET A$ = "YES"
+G(2190) (0 3) 2270 LET A$ = "YES"
   Origs: 2240:ifthen
   Dests: 2280:auto
-(2190) (0 1) 2280 RETURN
+G(2190) (0 1) 2280 RETURN
   Origs: 2220:goto, 2260:goto, 2270:auto
   Dests: 
 (0 1) 2290 STOP
@@ -829,430 +829,430 @@ FNA($,_,_,_,_) (0 2) 2790 GOTO 4250
 FNA($,_,_,_,_) (0 1) 2800 REM HAZARDS 
   Origs: 
   Dests: 
-FNA($,_,_,_,_) (2810) (0 2) 2810 PRINT O$(10);
+FNA($,_,_,_,_) G(2810) (0 2) 2810 PRINT O$(10);
   Origs: 2340:gosub
   Dests: 2820:auto
-FNA($,_,_,_,_) (2810) (0 3) 2820 LET E = 0
+FNA($,_,_,_,_) G(2810) (0 3) 2820 LET E = 0
   Origs: 2810:auto
   Dests: 2830:auto
-FNA($,_,_,_,_) (2810) (0 4) 2830 MAT L = ZER
+FNA($,_,_,_,_) G(2810) (0 4) 2830 MAT L = ZER
   Origs: 2820:auto
   Dests: 2840:auto
-FNA($,_,_,_,_) (2810) (0 3) 2840 LET L(0) = 0
+FNA($,_,_,_,_) G(2810) (0 3) 2840 LET L(0) = 0
   Origs: 2830:auto
   Dests: 2850:auto
-FNA($,_,_,_,_) (2810) (1 4) 2850 IF F5 < 2 THEN 2900
+FNA($,_,_,_,_) G(2810) (1 4) 2850 IF F5 < 2 THEN 2900
   Origs: 2840:auto
   Dests: 2860:auto, 2900:ifthen
-FNA($,_,_,_,_) (2810) (0 2) 2860 PRINT "THE RED FLAG HAS BEEN PUT OUT. CARS REMAIN"
+FNA($,_,_,_,_) G(2810) (0 2) 2860 PRINT "THE RED FLAG HAS BEEN PUT OUT. CARS REMAIN"
   Origs: 2850:auto
   Dests: 2870:auto
-FNA($,_,_,_,_) (2810) (0 2) 2870 PRINT "MOTIONLESS UNTIL DEBRIS IS CLEARED"
+FNA($,_,_,_,_) G(2810) (0 2) 2870 PRINT "MOTIONLESS UNTIL DEBRIS IS CLEARED"
   Origs: 2860:auto
   Dests: 2880:auto
-FNA($,_,_,_,_) (2810) (0 4) 2880 MAT E = ZER
+FNA($,_,_,_,_) G(2810) (0 4) 2880 MAT E = ZER
   Origs: 2870:auto
   Dests: 2890:auto
-FNA($,_,_,_,_) (2810) (0 3) 2890 LET F5 = 0
+FNA($,_,_,_,_) G(2810) (0 3) 2890 LET F5 = 0
   Origs: 2880:auto
   Dests: 2900:auto
-FNA($,_,_,_,_) (2810) (1 3) 2900 FOR X = 1 TO F5
+FNA($,_,_,_,_) G(2810) (1 3) 2900 FOR X = 1 TO F5
   Origs: 2850:ifthen, 2890:auto
   Dests: 2910:fornext, 2920:fornext
-FNA($,_,_,_,_) (2810) (1 4) 2910 IF E(X) = D THEN 2940
+FNA($,_,_,_,_) G(2810) (1 4) 2910 IF E(X) = D THEN 2940
   Origs: 2900:fornext
   Dests: 2920:auto, 2940:ifthen
-FNA($,_,_,_,_) (2810) (0 1) 2920 NEXT X
+FNA($,_,_,_,_) G(2810) (0 1) 2920 NEXT X
   Origs: 2900:fornext, 2910:auto
   Dests: 2930:auto
-FNA($,_,_,_,_) (2810) (0 2) 2930 GOTO 2970
+FNA($,_,_,_,_) G(2810) (0 2) 2930 GOTO 2970
   Origs: 2920:auto
   Dests: 2970:goto
-FNA($,_,_,_,_) (2810) (0 2) 2940 PRINT "YIKES! OIL ON THE TRACK!"
+FNA($,_,_,_,_) G(2810) (0 2) 2940 PRINT "YIKES! OIL ON THE TRACK!"
   Origs: 2910:ifthen
   Dests: 2950:auto
-FNA($,_,_,_,_) (2810) (0 3) 2950 LET E = .2
+FNA($,_,_,_,_) G(2810) (0 3) 2950 LET E = .2
   Origs: 2940:auto
   Dests: 2960:auto
-FNA($,_,_,_,_) (2810) (0 2) 2960 GOTO 3130
+FNA($,_,_,_,_) G(2810) (0 2) 2960 GOTO 3130
   Origs: 2950:auto
   Dests: 3130:goto
-FNA($,_,_,_,_) (2810) (1 4) 2970 IF F3 = 1 THEN 3130
+FNA($,_,_,_,_) G(2810) (1 4) 2970 IF F3 = 1 THEN 3130
   Origs: 2930:goto
   Dests: 2980:auto, 3130:ifthen
-FNA($,_,_,_,_) (2810) (1 7) 2980 IF RND > .025 + G8 THEN 3130
+FNA($,_,_,_,_) G(2810) (1 7) 2980 IF RND > .025 + G8 THEN 3130
   Origs: 2970:auto
   Dests: 2990:auto, 3130:ifthen
-FNA($,_,_,_,_) (2810) (1 5) 2990 IF RND < .1 THEN 3080
+FNA($,_,_,_,_) G(2810) (1 5) 2990 IF RND < .1 THEN 3080
   Origs: 2980:auto
   Dests: 3000:auto, 3080:ifthen
-FNA($,_,_,_,_) (2810) (1 5) 3000 IF RND > .5 THEN 3130
+FNA($,_,_,_,_) G(2810) (1 5) 3000 IF RND > .5 THEN 3130
   Origs: 2990:auto
   Dests: 3010:auto, 3130:ifthen
-FNA($,_,_,_,_) (2810) (0 2) 3010 PRINT "GLORY BE, THE RAIN HAS STOPPED! BUT REMEMBER IT IS STILL WET"
+FNA($,_,_,_,_) G(2810) (0 2) 3010 PRINT "GLORY BE, THE RAIN HAS STOPPED! BUT REMEMBER IT IS STILL WET"
   Origs: 3000:auto
   Dests: 3020:auto
-FNA($,_,_,_,_) (2810) (0 3) 3020 LET F3 = 1
+FNA($,_,_,_,_) G(2810) (0 3) 3020 LET F3 = 1
   Origs: 3010:auto
   Dests: 3030:auto
-FNA($,_,_,_,_) (2810) (1 3) 3030 FOR A = 0 TO O9
+FNA($,_,_,_,_) G(2810) (1 3) 3030 FOR A = 0 TO O9
   Origs: 3020:auto
   Dests: 3040:fornext, 3060:fornext
-FNA($,_,_,_,_) (2810) (0 4) 3040 LET A(A) = A(A) - .075
+FNA($,_,_,_,_) G(2810) (0 4) 3040 LET A(A) = A(A) - .075
   Origs: 3030:fornext
   Dests: 3050:auto
-FNA($,_,_,_,_) (2810) (0 3) 3050 LET G8 = .025
+FNA($,_,_,_,_) G(2810) (0 3) 3050 LET G8 = .025
   Origs: 3040:auto
   Dests: 3060:auto
-FNA($,_,_,_,_) (2810) (0 1) 3060 NEXT A
+FNA($,_,_,_,_) G(2810) (0 1) 3060 NEXT A
   Origs: 3030:fornext, 3050:auto
   Dests: 3070:auto
-FNA($,_,_,_,_) (2810) (0 2) 3070 GOTO 3130
+FNA($,_,_,_,_) G(2810) (0 2) 3070 GOTO 3130
   Origs: 3060:auto
   Dests: 3130:goto
-FNA($,_,_,_,_) (2810) (0 2) 3080 PRINT "RAIN! SLOW DOWN!!"
+FNA($,_,_,_,_) G(2810) (0 2) 3080 PRINT "RAIN! SLOW DOWN!!"
   Origs: 2990:ifthen
   Dests: 3090:auto
-FNA($,_,_,_,_) (2810) (1 3) 3090 FOR A = 0 TO O9
+FNA($,_,_,_,_) G(2810) (1 3) 3090 FOR A = 0 TO O9
   Origs: 3080:auto
   Dests: 3100:fornext, 3120:fornext
-FNA($,_,_,_,_) (2810) (0 4) 3100 LET A(A) = A(A) + .1
+FNA($,_,_,_,_) G(2810) (0 4) 3100 LET A(A) = A(A) + .1
   Origs: 3090:fornext
   Dests: 3110:auto
-FNA($,_,_,_,_) (2810) (0 3) 3110 LET G8 = .1
+FNA($,_,_,_,_) G(2810) (0 3) 3110 LET G8 = .1
   Origs: 3100:auto
   Dests: 3120:auto
-FNA($,_,_,_,_) (2810) (0 1) 3120 NEXT A
+FNA($,_,_,_,_) G(2810) (0 1) 3120 NEXT A
   Origs: 3090:fornext, 3110:auto
   Dests: 3130:auto
-FNA($,_,_,_,_) (2810) (1 6) 3130 IF C <> 9 / 20 THEN 3210
+FNA($,_,_,_,_) G(2810) (1 6) 3130 IF C <> 9 / 20 THEN 3210
   Origs: 2960:goto, 2970:ifthen, 2980:ifthen, 3000:ifthen, 3070:goto, 3120:auto
   Dests: 3140:auto, 3210:ifthen
-FNA($,_,_,_,_) (2810) (1 5) 3140 IF RND < .125 THEN 3210
+FNA($,_,_,_,_) G(2810) (1 5) 3140 IF RND < .125 THEN 3210
   Origs: 3130:auto
   Dests: 3150:auto, 3210:ifthen
-FNA($,_,_,_,_) (2810) (1 3) 3150 FOR X = 0 TO O9
+FNA($,_,_,_,_) G(2810) (1 3) 3150 FOR X = 0 TO O9
   Origs: 3140:auto
   Dests: 3160:fornext, 3200:fornext
-FNA($,_,_,_,_) (2810) (1 7) 3160 IF RND * SGN(O9) < .75 THEN 3200
+FNA($,_,_,_,_) G(2810) (1 7) 3160 IF RND * SGN(O9) < .75 THEN 3200
   Origs: 3150:fornext
   Dests: 3170:auto, 3200:ifthen
-FNA($,_,_,_,_) (2810) (1 4) 3170 IF D(X) = 1 THEN 3200
+FNA($,_,_,_,_) G(2810) (1 4) 3170 IF D(X) = 1 THEN 3200
   Origs: 3160:auto
   Dests: 3180:auto, 3200:ifthen
-FNA($,_,_,_,_) (2810) (0 6) 3180 LET L(X) = RND * 3 + 5
+FNA($,_,_,_,_) G(2810) (0 6) 3180 LET L(X) = RND * 3 + 5
   Origs: 3170:auto
   Dests: 3190:auto
-FNA($,_,_,_,_) (2810) (0 5) 3190 PRINT O$(X); "Y0U ARE IN THE PITS FOR"; L(X); "SECONDS."
+FNA($,_,_,_,_) G(2810) (0 5) 3190 PRINT O$(X); "Y0U ARE IN THE PITS FOR"; L(X); "SECONDS."
   Origs: 3180:auto
   Dests: 3200:auto
-FNA($,_,_,_,_) (2810) (0 1) 3200 NEXT X
+FNA($,_,_,_,_) G(2810) (0 1) 3200 NEXT X
   Origs: 3150:fornext, 3160:ifthen, 3170:ifthen, 3190:auto
   Dests: 3210:auto
-FNA($,_,_,_,_) (2810) (0 1) 3210 RETURN
+FNA($,_,_,_,_) G(2810) (0 1) 3210 RETURN
   Origs: 3130:ifthen, 3140:ifthen, 3200:auto
   Dests: 
 FNA($,_,_,_,_) (0 1) 3220 REM INPUT
   Origs: 
   Dests: 
-FNA($,_,_,_,_) (3230) (0 4) 3230 MAT S = ZER
+FNA($,_,_,_,_) G(3230) (0 4) 3230 MAT S = ZER
   Origs: 2350:gosub
   Dests: 3240:auto
-FNA($,_,_,_,_) (3230) (1 4) 3240 IF O3 > 0 THEN 3270
+FNA($,_,_,_,_) G(3230) (1 4) 3240 IF O3 > 0 THEN 3270
   Origs: 3230:auto
   Dests: 3250:auto, 3270:ifthen
-FNA($,_,_,_,_) (3230) (0 5) 3250 PRINT A$; " "; CHR$(D);
+FNA($,_,_,_,_) G(3230) (0 5) 3250 PRINT A$; " "; CHR$(D);
   Origs: 3240:auto
   Dests: 3260:auto
-FNA($,_,_,_,_) (3230) (0 2) 3260 GOTO 3280
+FNA($,_,_,_,_) G(3230) (0 2) 3260 GOTO 3280
   Origs: 3250:auto
   Dests: 3280:goto
-FNA($,_,_,_,_) (3230) (0 8) 3270 PRINT O$(10); A$; " "; CHR$(D); ": "; O$;
+FNA($,_,_,_,_) G(3230) (0 8) 3270 PRINT O$(10); A$; " "; CHR$(D); ": "; O$;
   Origs: 3240:ifthen
   Dests: 3280:auto
-FNA($,_,_,_,_) (3230) (0 3) 3280 LET S(D) = 0
+FNA($,_,_,_,_) G(3230) (0 3) 3280 LET S(D) = 0
   Origs: 3260:goto, 3270:auto
   Dests: 3290:auto
-FNA($,_,_,_,_) (3230) (1 3) 3290 FOR A = 0 TO O9
+FNA($,_,_,_,_) G(3230) (1 3) 3290 FOR A = 0 TO O9
   Origs: 3280:auto
   Dests: 3300:fornext, 3330:fornext
-FNA($,_,_,_,_) (3230) (1 4) 3300 IF D(A) = 0 THEN 3330
+FNA($,_,_,_,_) G(3230) (1 4) 3300 IF D(A) = 0 THEN 3330
   Origs: 3290:fornext
   Dests: 3310:auto, 3330:ifthen
-FNA($,_,_,_,_) (3230) (0 2) 3310 PRINT O$(A)
+FNA($,_,_,_,_) G(3230) (0 2) 3310 PRINT O$(A)
   Origs: 3300:auto
   Dests: 3320:auto
-FNA($,_,_,_,_) (3230) (0 2) 3320 PRINT O$;
+FNA($,_,_,_,_) G(3230) (0 2) 3320 PRINT O$;
   Origs: 3310:auto
   Dests: 3330:auto
-FNA($,_,_,_,_) (3230) (0 1) 3330 NEXT A
+FNA($,_,_,_,_) G(3230) (0 1) 3330 NEXT A
   Origs: 3290:fornext, 3300:ifthen, 3320:auto
   Dests: 3340:auto
-FNA($,_,_,_,_) (3230) (0 2) 3340 MAT INPUT J
+FNA($,_,_,_,_) G(3230) (0 2) 3340 MAT INPUT J
   Origs: 3330:auto, 3440:goto, 3650:goto
   Dests: 3350:auto
-FNA($,_,_,_,_) (3230) (1 5) 3350 IF NUM = 1 THEN 3390
+FNA($,_,_,_,_) G(3230) (1 5) 3350 IF NUM = 1 THEN 3390
   Origs: 3340:auto
   Dests: 3360:auto, 3390:ifthen
-FNA($,_,_,_,_) (3230) (0 3) 3360 LET N = J(1)
+FNA($,_,_,_,_) G(3230) (0 3) 3360 LET N = J(1)
   Origs: 3350:auto
   Dests: 3370:auto
-FNA($,_,_,_,_) (3230) (0 3) 3370 LET S = J(2)
+FNA($,_,_,_,_) G(3230) (0 3) 3370 LET S = J(2)
   Origs: 3360:auto
   Dests: 3380:auto
-FNA($,_,_,_,_) (3230) (0 2) 3380 GOTO 3410
+FNA($,_,_,_,_) G(3230) (0 2) 3380 GOTO 3410
   Origs: 3370:auto
   Dests: 3410:goto
-FNA($,_,_,_,_) (3230) (0 3) 3390 LET S = J(1)
+FNA($,_,_,_,_) G(3230) (0 3) 3390 LET S = J(1)
   Origs: 3350:ifthen
   Dests: 3400:auto
-FNA($,_,_,_,_) (3230) (0 3) 3400 LET N = 0
+FNA($,_,_,_,_) G(3230) (0 3) 3400 LET N = 0
   Origs: 3390:auto
   Dests: 3410:auto
-FNA($,_,_,_,_) (3230) (1 4) 3410 IF D(N) = 0 THEN 3450
+FNA($,_,_,_,_) G(3230) (1 4) 3410 IF D(N) = 0 THEN 3450
   Origs: 3380:goto, 3400:auto
   Dests: 3420:auto, 3450:ifthen
-FNA($,_,_,_,_) (3230) (0 3) 3420 PRINT O$(N); "BUT I THOUGHT YOU WERE DEAD."
+FNA($,_,_,_,_) G(3230) (0 3) 3420 PRINT O$(N); "BUT I THOUGHT YOU WERE DEAD."
   Origs: 3410:auto
   Dests: 3430:auto
-FNA($,_,_,_,_) (3230) (0 2) 3430 PRINT O$;
+FNA($,_,_,_,_) G(3230) (0 2) 3430 PRINT O$;
   Origs: 3420:auto, 3470:goto, 3740:ifthen
   Dests: 3440:auto
-FNA($,_,_,_,_) (3230) (0 3) 3440 GOTO 3340
+FNA($,_,_,_,_) G(3230) (0 3) 3440 GOTO 3340
   Origs: 3430:auto
   Dests: 3340:goto
-FNA($,_,_,_,_) (3230) (1 4) 3450 IF S(N) = 0 THEN 3480
+FNA($,_,_,_,_) G(3230) (1 4) 3450 IF S(N) = 0 THEN 3480
   Origs: 3410:ifthen
   Dests: 3460:auto, 3480:ifthen
-FNA($,_,_,_,_) (3230) (0 7) 3460 PRINT O$(N); "WAIT A SEC.  I STILL NEED"; O9 - U - Q; "MORE SPEEDS."
+FNA($,_,_,_,_) G(3230) (0 7) 3460 PRINT O$(N); "WAIT A SEC.  I STILL NEED"; O9 - U - Q; "MORE SPEEDS."
   Origs: 3450:auto
   Dests: 3470:auto
-FNA($,_,_,_,_) (3230) (0 3) 3470 GOTO 3430
+FNA($,_,_,_,_) G(3230) (0 3) 3470 GOTO 3430
   Origs: 3460:auto
   Dests: 3430:goto
-FNA($,_,_,_,_) (3230) (0 3) 3480 LET A = N
+FNA($,_,_,_,_) G(3230) (0 3) 3480 LET A = N
   Origs: 3450:ifthen
   Dests: 3490:auto
-FNA($,_,_,_,_) (3230) (1 4) 3490 IF S <= 200 THEN 3620
+FNA($,_,_,_,_) G(3230) (1 4) 3490 IF S <= 200 THEN 3620
   Origs: 3480:auto
   Dests: 3500:auto, 3620:ifthen
-FNA($,_,_,_,_) (3230) (1 4) 3500 IF O9 = 0 THEN 3600
+FNA($,_,_,_,_) G(3230) (1 4) 3500 IF O9 = 0 THEN 3600
   Origs: 3490:auto
   Dests: 3510:auto, 3600:ifthen
-FNA($,_,_,_,_) (3230) (1 4) 3510 IF S < 1000 THEN 3600
+FNA($,_,_,_,_) G(3230) (1 4) 3510 IF S < 1000 THEN 3600
   Origs: 3500:auto
   Dests: 3520:auto, 3600:ifthen
-FNA($,_,_,_,_) (3230) (0 8) 3520 LET R4 = (S - 1000 - F2) / (F2 + 1)
+FNA($,_,_,_,_) G(3230) (0 8) 3520 LET R4 = (S - 1000 - F2) / (F2 + 1)
   Origs: 3510:auto
   Dests: 3530:auto
-FNA($,_,_,_,_) (3230) (1 5) 3530 IF R4 = INT(R4) THEN 3560
+FNA($,_,_,_,_) G(3230) (1 5) 3530 IF R4 = INT(R4) THEN 3560
   Origs: 3520:auto
   Dests: 3540:auto, 3560:ifthen
-FNA($,_,_,_,_) (3230) (0 3) 3540 PRINT O$(N); "ILLEGAL CAR"
+FNA($,_,_,_,_) G(3230) (0 3) 3540 PRINT O$(N); "ILLEGAL CAR"
   Origs: 3530:auto, 3560:ifthen, 3570:ifthen, 3580:ifthen
   Dests: 3550:auto
-FNA($,_,_,_,_) (3230) (0 2) 3550 GOTO 3640
+FNA($,_,_,_,_) G(3230) (0 2) 3550 GOTO 3640
   Origs: 3540:auto
   Dests: 3640:goto
-FNA($,_,_,_,_) (3230) (1 5) 3560 IF R4 > O9 THEN 3540
+FNA($,_,_,_,_) G(3230) (1 5) 3560 IF R4 > O9 THEN 3540
   Origs: 3530:ifthen
   Dests: 3540:ifthen, 3570:auto
-FNA($,_,_,_,_) (3230) (1 5) 3570 IF E(R4) > 0 THEN 3540
+FNA($,_,_,_,_) G(3230) (1 5) 3570 IF E(R4) > 0 THEN 3540
   Origs: 3560:auto
   Dests: 3540:ifthen, 3580:auto
-FNA($,_,_,_,_) (3230) (1 6) 3580 IF ABS(T(N) - T(R4) - .5) => .5 THEN 3540
+FNA($,_,_,_,_) G(3230) (1 6) 3580 IF ABS(T(N) - T(R4) - .5) => .5 THEN 3540
   Origs: 3570:auto
   Dests: 3540:ifthen, 3590:auto
-FNA($,_,_,_,_) (3230) (0 2) 3590 GOTO 3700
+FNA($,_,_,_,_) G(3230) (0 2) 3590 GOTO 3700
   Origs: 3580:auto
   Dests: 3700:goto
-FNA($,_,_,_,_) (3230) (0 3) 3600 PRINT O$(N); "MAYBE A LITTLE HARD ON THE PEDDLE? BE REALISTIC."
+FNA($,_,_,_,_) G(3230) (0 3) 3600 PRINT O$(N); "MAYBE A LITTLE HARD ON THE PEDDLE? BE REALISTIC."
   Origs: 3500:ifthen, 3510:ifthen
   Dests: 3610:auto
-FNA($,_,_,_,_) (3230) (0 2) 3610 GOTO 3640
+FNA($,_,_,_,_) G(3230) (0 2) 3610 GOTO 3640
   Origs: 3600:auto
   Dests: 3640:goto
-FNA($,_,_,_,_) (3230) (1 4) 3620 IF S > 0 THEN 3660
+FNA($,_,_,_,_) G(3230) (1 4) 3620 IF S > 0 THEN 3660
   Origs: 3490:ifthen
   Dests: 3630:auto, 3660:ifthen
-FNA($,_,_,_,_) (3230) (0 2) 3630 GOSUB 3990
+FNA($,_,_,_,_) G(3230) (0 2) 3630 GOSUB 3990
   Origs: 3620:auto
   Dests: 3640:auto, 4000:gosub
-FNA($,_,_,_,_) (3230) (0 5) 3640 PRINT "HOW FAST"; CHR$(63 * SGN(O9)); O$;
+FNA($,_,_,_,_) G(3230) (0 5) 3640 PRINT "HOW FAST"; CHR$(63 * SGN(O9)); O$;
   Origs: 3550:goto, 3610:goto, 3630:auto, 3680:goto
   Dests: 3650:auto
-FNA($,_,_,_,_) (3230) (0 3) 3650 GOTO 3340
+FNA($,_,_,_,_) G(3230) (0 3) 3650 GOTO 3340
   Origs: 3640:auto
   Dests: 3340:goto
-FNA($,_,_,_,_) (3230) (1 4) 3660 IF S => 20 THEN 3690
+FNA($,_,_,_,_) G(3230) (1 4) 3660 IF S => 20 THEN 3690
   Origs: 3620:ifthen
   Dests: 3670:auto, 3690:ifthen
-FNA($,_,_,_,_) (3230) (0 3) 3670 PRINT O$(N); "I DOUBT YOU WANT TO GO THAT SLOWLY"
+FNA($,_,_,_,_) G(3230) (0 3) 3670 PRINT O$(N); "I DOUBT YOU WANT TO GO THAT SLOWLY"
   Origs: 3660:auto
   Dests: 3680:auto
-FNA($,_,_,_,_) (3230) (0 3) 3680 GOTO 3640
+FNA($,_,_,_,_) G(3230) (0 3) 3680 GOTO 3640
   Origs: 3670:auto
   Dests: 3640:goto
-FNA($,_,_,_,_) (3230) (0 3) 3690 LET S(N) = S
+FNA($,_,_,_,_) G(3230) (0 3) 3690 LET S(N) = S
   Origs: 3660:ifthen
   Dests: 3700:auto
-FNA($,_,_,_,_) (3230) (0 4) 3700 LET U = U + 1
+FNA($,_,_,_,_) G(3230) (0 4) 3700 LET U = U + 1
   Origs: 3590:goto, 3690:auto
   Dests: 3710:auto
-FNA($,_,_,_,_) (3230) (1 4) 3710 IF R4 = 0 THEN 3740
+FNA($,_,_,_,_) G(3230) (1 4) 3710 IF R4 = 0 THEN 3740
   Origs: 3700:auto
   Dests: 3720:auto, 3740:ifthen
-FNA($,_,_,_,_) (3230) (0 3) 3720 LET H(N) = R4
+FNA($,_,_,_,_) G(3230) (0 3) 3720 LET H(N) = R4
   Origs: 3710:auto
   Dests: 3730:auto
-FNA($,_,_,_,_) (3230) (0 3) 3730 LET R4 = 0
+FNA($,_,_,_,_) G(3230) (0 3) 3730 LET R4 = 0
   Origs: 3720:auto
   Dests: 3740:auto
-FNA($,_,_,_,_) (3230) (1 7) 3740 IF U < O9 - Q THEN 3430
+FNA($,_,_,_,_) G(3230) (1 7) 3740 IF U < O9 - Q THEN 3430
   Origs: 3710:ifthen, 3730:auto
   Dests: 3430:ifthen, 3750:auto
-FNA($,_,_,_,_) (3230) (0 3) 3750 LET U = 0
+FNA($,_,_,_,_) G(3230) (0 3) 3750 LET U = 0
   Origs: 3740:auto
   Dests: 3760:auto
-FNA($,_,_,_,_) (3230) (1 4) 3760 IF O9 > 0 THEN 3890
+FNA($,_,_,_,_) G(3230) (1 4) 3760 IF O9 > 0 THEN 3890
   Origs: 3750:auto
   Dests: 3770:auto, 3890:ifthen
-FNA($,_,_,_,_) (3230) (1 3) 3770 FOR F0 = 1 TO 3
+FNA($,_,_,_,_) G(3230) (1 3) 3770 FOR F0 = 1 TO 3
   Origs: 3760:auto
   Dests: 3780:fornext, 3870:fornext
-FNA($,_,_,_,_) (3230) (1 4) 3780 IF D(F0) = 1 THEN 3870
+FNA($,_,_,_,_) G(3230) (1 4) 3780 IF D(F0) = 1 THEN 3870
   Origs: 3770:fornext
   Dests: 3790:auto, 3870:ifthen
-FNA($,_,_,_,_) (3230) (0 14) 3790 LET S = R * B / (B + .1 + E + G8) + (RND * 3 + Q(F0))
+FNA($,_,_,_,_) G(3230) (0 14) 3790 LET S = R * B / (B + .1 + E + G8) + (RND * 3 + Q(F0))
   Origs: 3780:auto
   Dests: 3800:auto
-FNA($,_,_,_,_) (3230) (1 9) 3800 IF (B + .1 + G8 + E) * S / B <= R THEN 3850
+FNA($,_,_,_,_) G(3230) (1 9) 3800 IF (B + .1 + G8 + E) * S / B <= R THEN 3850
   Origs: 3790:auto
   Dests: 3810:auto, 3850:ifthen
-FNA($,_,_,_,_) (3230) (0 3) 3810 LET D(F0) = 1
+FNA($,_,_,_,_) G(3230) (0 3) 3810 LET D(F0) = 1
   Origs: 3800:auto
   Dests: 3820:auto
-FNA($,_,_,_,_) (3230) (0 4) 3820 PRINT O$(10); Q$(F3); " JUST WIPED"
+FNA($,_,_,_,_) G(3230) (0 4) 3820 PRINT O$(10); Q$(F3); " JUST WIPED"
   Origs: 3810:auto
   Dests: 3830:auto
-FNA($,_,_,_,_) (3230) (0 4) 3830 LET F5 = F5 + 1
+FNA($,_,_,_,_) G(3230) (0 4) 3830 LET F5 = F5 + 1
   Origs: 3820:auto
   Dests: 3840:auto
-FNA($,_,_,_,_) (3230) (0 3) 3840 LET E(F5) = D
+FNA($,_,_,_,_) G(3230) (0 3) 3840 LET E(F5) = D
   Origs: 3830:auto
   Dests: 3850:auto
-FNA($,_,_,_,_) (3230) (0 8) 3850 LET T(F0) = T(F0) + C / (S / 3600)
+FNA($,_,_,_,_) G(3230) (0 8) 3850 LET T(F0) = T(F0) + C / (S / 3600)
   Origs: 3800:ifthen, 3840:auto
   Dests: 3860:auto
-FNA($,_,_,_,_) (3230) (0 3) 3860 LET S(F0) = S
+FNA($,_,_,_,_) G(3230) (0 3) 3860 LET S(F0) = S
   Origs: 3850:auto
   Dests: 3870:auto
-FNA($,_,_,_,_) (3230) (0 1) 3870 NEXT F0
+FNA($,_,_,_,_) G(3230) (0 1) 3870 NEXT F0
   Origs: 3770:fornext, 3780:ifthen, 3860:auto
   Dests: 3880:auto
-FNA($,_,_,_,_) (3230) (0 2) 3880 GOTO 3980
+FNA($,_,_,_,_) G(3230) (0 2) 3880 GOTO 3980
   Origs: 3870:auto
   Dests: 3980:goto
-FNA($,_,_,_,_) (3230) (1 3) 3890 FOR X2 = 0 TO O9
+FNA($,_,_,_,_) G(3230) (1 3) 3890 FOR X2 = 0 TO O9
   Origs: 3760:ifthen
   Dests: 3900:fornext, 3970:fornext
-FNA($,_,_,_,_) (3230) (1 4) 3900 IF D(X2) = 1 THEN 3970
+FNA($,_,_,_,_) G(3230) (1 4) 3900 IF D(X2) = 1 THEN 3970
   Origs: 3890:fornext
   Dests: 3910:auto, 3970:ifthen
-FNA($,_,_,_,_) (3230) (1 4) 3910 IF S(X2) <> 0 THEN 3970
+FNA($,_,_,_,_) G(3230) (1 4) 3910 IF S(X2) <> 0 THEN 3970
   Origs: 3900:auto
   Dests: 3920:auto, 3970:ifthen
-FNA($,_,_,_,_) (3230) (1 4) 3920 IF S(H(X2)) <> 0 THEN 3950
+FNA($,_,_,_,_) G(3230) (1 4) 3920 IF S(H(X2)) <> 0 THEN 3950
   Origs: 3910:auto, 3940:goto
   Dests: 3930:auto, 3950:ifthen
-FNA($,_,_,_,_) (3230) (0 3) 3930 LET H(X2) = H(H(X2))
+FNA($,_,_,_,_) G(3230) (0 3) 3930 LET H(X2) = H(H(X2))
   Origs: 3920:auto
   Dests: 3940:auto
-FNA($,_,_,_,_) (3230) (0 3) 3940 GOTO 3920
+FNA($,_,_,_,_) G(3230) (0 3) 3940 GOTO 3920
   Origs: 3930:auto
   Dests: 3920:goto
-FNA($,_,_,_,_) (3230) (0 3) 3950 LET S(X2) = S(H(X2))
+FNA($,_,_,_,_) G(3230) (0 3) 3950 LET S(X2) = S(H(X2))
   Origs: 3920:ifthen
   Dests: 3960:auto
-FNA($,_,_,_,_) (3230) (0 5) 3960 LET T(X2) = (T(X2) + T(H(X2))) / 2
+FNA($,_,_,_,_) G(3230) (0 5) 3960 LET T(X2) = (T(X2) + T(H(X2))) / 2
   Origs: 3950:auto
   Dests: 3970:auto
-FNA($,_,_,_,_) (3230) (0 1) 3970 NEXT X2
+FNA($,_,_,_,_) G(3230) (0 1) 3970 NEXT X2
   Origs: 3890:fornext, 3900:ifthen, 3910:ifthen, 3960:auto
   Dests: 3980:auto
-FNA($,_,_,_,_) (3230) (0 1) 3980 RETURN
+FNA($,_,_,_,_) G(3230) (0 1) 3980 RETURN
   Origs: 3880:goto, 3970:auto
   Dests: 
 FNA($,_,_,_,_) (0 1) 3990 REM PLACING
   Origs: 
   Dests: 
-FNA($,_,_,_,_) (4000) (0 2) 4000 PRINT O$(A)
+FNA($,_,_,_,_) G(4000) (0 2) 4000 PRINT O$(A)
   Origs: 3630:gosub
   Dests: 4010:auto
-FNA($,_,_,_,_) (4000) (1 4) 4010 IF O9 = 0 THEN 4040
+FNA($,_,_,_,_) G(4000) (1 4) 4010 IF O9 = 0 THEN 4040
   Origs: 4000:auto
   Dests: 4020:auto, 4040:ifthen
-FNA($,_,_,_,_) (4000) (0 3) 4020 LET G5 = O9
+FNA($,_,_,_,_) G(4000) (0 3) 4020 LET G5 = O9
   Origs: 4010:auto
   Dests: 4030:auto
-FNA($,_,_,_,_) (4000) (0 2) 4030 GOTO 4050
+FNA($,_,_,_,_) G(4000) (0 2) 4030 GOTO 4050
   Origs: 4020:auto
   Dests: 4050:goto
-FNA($,_,_,_,_) (4000) (0 3) 4040 LET G5 = 3
+FNA($,_,_,_,_) G(4000) (0 3) 4040 LET G5 = 3
   Origs: 4010:ifthen
   Dests: 4050:auto
-FNA($,_,_,_,_) (4000) (1 3) 4050 FOR G = 0 TO G5
+FNA($,_,_,_,_) G(4000) (1 3) 4050 FOR G = 0 TO G5
   Origs: 4030:goto, 4040:auto
   Dests: 4060:fornext, 4200:fornext
-FNA($,_,_,_,_) (4000) (1 4) 4060 IF G = A THEN 4200
+FNA($,_,_,_,_) G(4000) (1 4) 4060 IF G = A THEN 4200
   Origs: 4050:fornext
   Dests: 4070:auto, 4200:ifthen
-FNA($,_,_,_,_) (4000) (1 4) 4070 IF O9 > 0 THEN 4100
+FNA($,_,_,_,_) G(4000) (1 4) 4070 IF O9 > 0 THEN 4100
   Origs: 4060:auto
   Dests: 4080:auto, 4100:ifthen
-FNA($,_,_,_,_) (4000) (0 3) 4080 PRINT O$(G); " IS";
+FNA($,_,_,_,_) G(4000) (0 3) 4080 PRINT O$(G); " IS";
   Origs: 4070:auto
   Dests: 4090:auto
-FNA($,_,_,_,_) (4000) (0 2) 4090 GOTO 4110
+FNA($,_,_,_,_) G(4000) (0 2) 4090 GOTO 4110
   Origs: 4080:auto
   Dests: 4110:goto
-FNA($,_,_,_,_) (4000) (0 8) 4100 PRINT "GUY#"; F2 * (G + 1) + G; "IS ";
+FNA($,_,_,_,_) G(4000) (0 8) 4100 PRINT "GUY#"; F2 * (G + 1) + G; "IS ";
   Origs: 4070:ifthen
   Dests: 4110:auto
-FNA($,_,_,_,_) (4000) (1 4) 4110 IF D(G) <> 1 THEN 4140
+FNA($,_,_,_,_) G(4000) (1 4) 4110 IF D(G) <> 1 THEN 4140
   Origs: 4090:goto, 4100:auto
   Dests: 4120:auto, 4140:ifthen
-FNA($,_,_,_,_) (4000) (0 2) 4120 PRINT " OUT OF THE RACE."
+FNA($,_,_,_,_) G(4000) (0 2) 4120 PRINT " OUT OF THE RACE."
   Origs: 4110:auto
   Dests: 4130:auto
-FNA($,_,_,_,_) (4000) (0 2) 4130 GOTO 4200
+FNA($,_,_,_,_) G(4000) (0 2) 4130 GOTO 4200
   Origs: 4120:auto
   Dests: 4200:goto
-FNA($,_,_,_,_) (4000) (3 7) 4140 ON SGN(T(A) - T(G)) + 2 GOTO 4150, 4170, 4190
+FNA($,_,_,_,_) G(4000) (3 7) 4140 ON SGN(T(A) - T(G)) + 2 GOTO 4150, 4170, 4190
   Origs: 4110:ifthen
   Dests: 4150:auto, 4150:goto, 4170:goto, 4190:goto
-FNA($,_,_,_,_) (4000) (0 4) 4150 PRINT T(G) - T(A); "SECONDS BEHIND YOU"
+FNA($,_,_,_,_) G(4000) (0 4) 4150 PRINT T(G) - T(A); "SECONDS BEHIND YOU"
   Origs: 4140:auto, 4140:goto
   Dests: 4160:auto
-FNA($,_,_,_,_) (4000) (0 2) 4160 GOTO 4200
+FNA($,_,_,_,_) G(4000) (0 2) 4160 GOTO 4200
   Origs: 4150:auto
   Dests: 4200:goto
-FNA($,_,_,_,_) (4000) (0 2) 4170 PRINT " RIGHT BESIDE YOU."
+FNA($,_,_,_,_) G(4000) (0 2) 4170 PRINT " RIGHT BESIDE YOU."
   Origs: 4140:goto
   Dests: 4180:auto
-FNA($,_,_,_,_) (4000) (0 2) 4180 GOTO 4200
+FNA($,_,_,_,_) G(4000) (0 2) 4180 GOTO 4200
   Origs: 4170:auto
   Dests: 4200:goto
-FNA($,_,_,_,_) (4000) (0 4) 4190 PRINT T(A) - T(G); "SECONDS AHEAD OF YOU."
+FNA($,_,_,_,_) G(4000) (0 4) 4190 PRINT T(A) - T(G); "SECONDS AHEAD OF YOU."
   Origs: 4140:goto
   Dests: 4200:auto
-FNA($,_,_,_,_) (4000) (0 1) 4200 NEXT G
+FNA($,_,_,_,_) G(4000) (0 1) 4200 NEXT G
   Origs: 4050:fornext, 4060:ifthen, 4130:goto, 4160:goto, 4180:goto, 4190:auto
   Dests: 4210:auto
-FNA($,_,_,_,_) (4000) (0 4) 4210 PRINT "YOU'VE TAKEN"; T(A); "SECONDS."
+FNA($,_,_,_,_) G(4000) (0 4) 4210 PRINT "YOU'VE TAKEN"; T(A); "SECONDS."
   Origs: 4200:auto
   Dests: 4220:auto
-FNA($,_,_,_,_) (4000) (0 1) 4220 RETURN
+FNA($,_,_,_,_) G(4000) (0 1) 4220 RETURN
   Origs: 4210:auto
   Dests: 
 FNA($,_,_,_,_) (0 9) 4230 PRINT O$(10); "GUY#"; F2 * (G + 1) + G; ", THE LAST OF THE GREAT RACERS, JUST WIPED."

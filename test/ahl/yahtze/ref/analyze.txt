@@ -208,35 +208,35 @@ Halstead complexity:
 (0 2) 1607 GOTO 1700
   Origs: 1605:auto
   Dests: 1700:goto
-(1610) (0 3) 1610 G = 0
+G(1610) (0 3) 1610 G = 0
   Origs: 1605:gosub, 1685:ifthen, 2050:gosub, 2520:gosub
   Inconsistent GOSUB origins
   Dests: 1620:auto
-(1610) (1 3) 1620 FOR X = 1 TO 5
+G(1610) (1 3) 1620 FOR X = 1 TO 5
   Origs: 1610:auto
   Dests: 1630:fornext, 1680:fornext
-(1610) (1 4) 1630 IF A(X) >= A(X + 1) THEN 1680
+G(1610) (1 4) 1630 IF A(X) >= A(X + 1) THEN 1680
   Origs: 1620:fornext
   Dests: 1640:auto, 1680:ifthen
-(1610) (0 3) 1640 H = A(X)
+G(1610) (0 3) 1640 H = A(X)
   Origs: 1630:auto
   Dests: 1650:auto
-(1610) (0 3) 1650 A(X) = A(X + 1)
+G(1610) (0 3) 1650 A(X) = A(X + 1)
   Origs: 1640:auto
   Dests: 1660:auto
-(1610) (0 3) 1660 A(X + 1) = H
+G(1610) (0 3) 1660 A(X + 1) = H
   Origs: 1650:auto
   Dests: 1670:auto
-(1610) (0 3) 1670 G = 1
+G(1610) (0 3) 1670 G = 1
   Origs: 1660:auto
   Dests: 1680:auto
-(1610) (0 1) 1680 NEXT X
+G(1610) (0 1) 1680 NEXT X
   Origs: 1620:fornext, 1630:ifthen, 1670:auto
   Dests: 1685:auto
-(1610) (1 5) 1685 IF G = 1 THEN 1610
+G(1610) (1 5) 1685 IF G = 1 THEN 1610
   Origs: 1680:auto
   Dests: 1610:ifthen, 1690:auto
-(1610) (0 1) 1690 RETURN
+G(1610) (0 1) 1690 RETURN
   Origs: 1685:auto
   Dests: 
 (0 7) 1700 PRINT "YOU HAVE A "; A(1); A(2); A(3); A(4); A(5)
@@ -1079,13 +1079,13 @@ Halstead complexity:
 (0 3) 4640 GOTO 2620
   Origs: 4630:auto
   Dests: 2620:goto
-(4650) (0 5) 4650 PRINT "YOU HAVE ALREADY USED "; Z$; " AS A CATEGORY"; C$
+G(4650) (0 5) 4650 PRINT "YOU HAVE ALREADY USED "; Z$; " AS A CATEGORY"; C$
   Origs: 3870:gosub, 4630:gosub
   Dests: 4660:auto
-(4650) (0 2) 4660 PRINT
+G(4650) (0 2) 4660 PRINT
   Origs: 4650:auto
   Dests: 4670:auto
-(4650) (0 1) 4670 RETURN
+G(4650) (0 1) 4670 RETURN
   Origs: 4660:auto
   Dests: 
 (0 3) 4680 GOTO 2620
@@ -1358,53 +1358,53 @@ Halstead complexity:
 (0 3) 5570 GOTO 1070
   Origs: 5560:auto
   Dests: 1070:goto
-(5580) (0 2) 5580 PRINT "WHAT DO YOU WANT ONE OF THE PLAYERS CALLED BY"
+G(5580) (0 2) 5580 PRINT "WHAT DO YOU WANT ONE OF THE PLAYERS CALLED BY"
   Origs: 1450:gosub
   Dests: 5590:auto
-(5580) (0 1) 5590 RETURN
+G(5580) (0 1) 5590 RETURN
   Origs: 5580:auto
   Dests: 
-(5600) (0 2) 5600 PRINT "HOW MANY DICE DO YOU WANT TO ROLL AGAIN";
+G(5600) (0 2) 5600 PRINT "HOW MANY DICE DO YOU WANT TO ROLL AGAIN";
   Origs: 1760:gosub, 2200:gosub
   Dests: 5610:auto
-(5600) (0 1) 5610 RETURN
+G(5600) (0 1) 5610 RETURN
   Origs: 5600:auto
   Dests: 
-(5620) (0 2) 5620 PRINT "WHICH DIE DO YOU WANT TO CHANGE"
+G(5620) (0 2) 5620 PRINT "WHICH DIE DO YOU WANT TO CHANGE"
   Origs: 1850:gosub, 2320:gosub
   Dests: 5630:auto
-(5620) (0 2) 5630 PRINT "TYPE: '1' FOR THE 1ST DIE, '2' FOR THE 2ND DIE, ETC."
+G(5620) (0 2) 5630 PRINT "TYPE: '1' FOR THE 1ST DIE, '2' FOR THE 2ND DIE, ETC."
   Origs: 5620:auto
   Dests: 5640:auto
-(5620) (0 1) 5640 RETURN
+G(5620) (0 1) 5640 RETURN
   Origs: 5630:auto
   Dests: 
-(5650) (0 2) 5650 PRINT "IN WHICH CATEGORY DO YOU WANT THIS ROUND SCORED"
+G(5650) (0 2) 5650 PRINT "IN WHICH CATEGORY DO YOU WANT THIS ROUND SCORED"
   Origs: 2680:gosub
   Dests: 5660:auto
-(5650) (0 2) 5660 PRINT "TYPING: 'SUMMARY' WILL TELL YOU WHICH CATEGORIES YOU HAVE USED";
+G(5650) (0 2) 5660 PRINT "TYPING: 'SUMMARY' WILL TELL YOU WHICH CATEGORIES YOU HAVE USED";
      WARNING: Inconsistent GOSUB target (5650, 5680)
   Origs: 5650:auto, 5690:goto
   Dests: 5670:auto
-(5650) (0 1) 5670 RETURN
+G(5650) (0 1) 5670 RETURN
   Origs: 5660:auto
   Dests: 
-(5680) (0 2) 5680 PRINT "WHICH CATEGORY DO YOU WANT ZEROED"
+G(5680) (0 2) 5680 PRINT "WHICH CATEGORY DO YOU WANT ZEROED"
   Origs: 3950:gosub
   Dests: 5690:auto
-(5680) (0 3) 5690 GOTO 5660
+G(5680) (0 3) 5690 GOTO 5660
   Origs: 5680:auto
   Dests: 5660:goto
-(5710) (0 2) 5710 PRINT "A MAXIMUM OF 15 PLAYERS IS ALLOWED"
+G(5710) (0 2) 5710 PRINT "A MAXIMUM OF 15 PLAYERS IS ALLOWED"
   Origs: 1180:gosub
   Dests: 5720:auto
-(5710) (0 1) 5720 RETURN
+G(5710) (0 1) 5720 RETURN
   Origs: 5710:auto
   Dests: 
-(5730) (0 2) 5730 PRINT "HOW MANY PEOPLE WISH TO PLAY";
+G(5730) (0 2) 5730 PRINT "HOW MANY PEOPLE WISH TO PLAY";
   Origs: 1220:gosub
   Dests: 5740:auto
-(5730) (0 1) 5740 RETURN
+G(5730) (0 1) 5740 RETURN
   Origs: 5730:auto
   Dests: 
 (1 4) 5750 IF Z$ = "ACES" THEN 5880
@@ -1524,112 +1524,112 @@ Halstead complexity:
 (0 3) 6130 GOTO 4710
   Origs: 6120:auto
   Dests: 4710:goto
-(6140) (0 3) 6140 PRINT N$(I); " HAS USED THE FOLLOWING CATEGORIES:"
+G(6140) (0 3) 6140 PRINT N$(I); " HAS USED THE FOLLOWING CATEGORIES:"
   Origs: 2670:gosub, 3940:gosub
   Dests: 6150:auto
-(6140) (1 4) 6150 FOR S = 1 TO (R - 1)
+G(6140) (1 4) 6150 FOR S = 1 TO (R - 1)
   Origs: 6140:auto
   Dests: 6160:fornext, 6440:fornext
-(6140) (1 4) 6160 IF H(I, S) > 7 THEN 6180
+G(6140) (1 4) 6160 IF H(I, S) > 7 THEN 6180
   Origs: 6150:fornext
   Dests: 6170:auto, 6180:ifthen
-(6140) (7 9) 6170 ON H(I, S) GOTO 6190, 6210, 6230, 6250, 6270, 6290, 6310
+G(6140) (7 9) 6170 ON H(I, S) GOTO 6190, 6210, 6230, 6250, 6270, 6290, 6310
   Origs: 6160:auto
   Dests: 6180:auto, 6190:goto, 6210:goto, 6230:goto, 6250:goto, 6270:goto, 6290:goto, 6310:goto
-(6140) (6 9) 6180 ON H(I, S) - 7 GOTO 6330, 6350, 6370, 6390, 6410, 6430
+G(6140) (6 9) 6180 ON H(I, S) - 7 GOTO 6330, 6350, 6370, 6390, 6410, 6430
   Origs: 6160:ifthen, 6170:auto
   Dests: 6190:auto, 6330:goto, 6350:goto, 6370:goto, 6390:goto, 6410:goto, 6430:goto
-(6140) (0 2) 6190 PRINT "ACES, ";
+G(6140) (0 2) 6190 PRINT "ACES, ";
   Origs: 6170:goto, 6180:auto
   Dests: 6200:auto
-(6140) (0 2) 6200 GOTO 6440
+G(6140) (0 2) 6200 GOTO 6440
   Origs: 6190:auto
   Dests: 6440:goto
-(6140) (0 2) 6210 PRINT "TWOS, ";
+G(6140) (0 2) 6210 PRINT "TWOS, ";
   Origs: 6170:goto
   Dests: 6220:auto
-(6140) (0 2) 6220 GOTO 6440
+G(6140) (0 2) 6220 GOTO 6440
   Origs: 6210:auto
   Dests: 6440:goto
-(6140) (0 2) 6230 PRINT "THREES, ";
+G(6140) (0 2) 6230 PRINT "THREES, ";
   Origs: 6170:goto
   Dests: 6240:auto
-(6140) (0 2) 6240 GOTO 6440
+G(6140) (0 2) 6240 GOTO 6440
   Origs: 6230:auto
   Dests: 6440:goto
-(6140) (0 2) 6250 PRINT "FOURS, ";
+G(6140) (0 2) 6250 PRINT "FOURS, ";
   Origs: 6170:goto
   Dests: 6260:auto
-(6140) (0 2) 6260 GOTO 6440
+G(6140) (0 2) 6260 GOTO 6440
   Origs: 6250:auto
   Dests: 6440:goto
-(6140) (0 2) 6270 PRINT "FIVES, ";
+G(6140) (0 2) 6270 PRINT "FIVES, ";
   Origs: 6170:goto
   Dests: 6280:auto
-(6140) (0 2) 6280 GOTO 6440
+G(6140) (0 2) 6280 GOTO 6440
   Origs: 6270:auto
   Dests: 6440:goto
-(6140) (0 2) 6290 PRINT "SIXES, ";
+G(6140) (0 2) 6290 PRINT "SIXES, ";
   Origs: 6170:goto
   Dests: 6300:auto
-(6140) (0 2) 6300 GOTO 6440
+G(6140) (0 2) 6300 GOTO 6440
   Origs: 6290:auto
   Dests: 6440:goto
-(6140) (0 2) 6310 PRINT "THREE OF A KIND ";
+G(6140) (0 2) 6310 PRINT "THREE OF A KIND ";
   Origs: 6170:goto
   Dests: 6320:auto
-(6140) (0 2) 6320 GOTO 6440
+G(6140) (0 2) 6320 GOTO 6440
   Origs: 6310:auto
   Dests: 6440:goto
-(6140) (0 2) 6330 PRINT "FOUR OF A KIND, ";
+G(6140) (0 2) 6330 PRINT "FOUR OF A KIND, ";
   Origs: 6180:goto
   Dests: 6340:auto
-(6140) (0 2) 6340 GOTO 6440
+G(6140) (0 2) 6340 GOTO 6440
   Origs: 6330:auto
   Dests: 6440:goto
-(6140) (0 2) 6350 PRINT "FULL HOUSE, ";
+G(6140) (0 2) 6350 PRINT "FULL HOUSE, ";
   Origs: 6180:goto
   Dests: 6360:auto
-(6140) (0 2) 6360 GOTO 6440
+G(6140) (0 2) 6360 GOTO 6440
   Origs: 6350:auto
   Dests: 6440:goto
-(6140) (0 2) 6370 PRINT "SM. STRAIGHT, ";
+G(6140) (0 2) 6370 PRINT "SM. STRAIGHT, ";
   Origs: 6180:goto
   Dests: 6380:auto
-(6140) (0 2) 6380 GOTO 6440
+G(6140) (0 2) 6380 GOTO 6440
   Origs: 6370:auto
   Dests: 6440:goto
-(6140) (0 2) 6390 PRINT "LG. STRAIGHT, ";
+G(6140) (0 2) 6390 PRINT "LG. STRAIGHT, ";
   Origs: 6180:goto
   Dests: 6400:auto
-(6140) (0 2) 6400 GOTO 6440
+G(6140) (0 2) 6400 GOTO 6440
   Origs: 6390:auto
   Dests: 6440:goto
-(6140) (0 2) 6410 PRINT "YAHTZEE, ";
+G(6140) (0 2) 6410 PRINT "YAHTZEE, ";
   Origs: 6180:goto
   Dests: 6420:auto
-(6140) (0 2) 6420 GOTO 6440
+G(6140) (0 2) 6420 GOTO 6440
   Origs: 6410:auto
   Dests: 6440:goto
-(6140) (0 2) 6430 PRINT "CHANCE, ";
+G(6140) (0 2) 6430 PRINT "CHANCE, ";
   Origs: 6180:goto
   Dests: 6440:auto
-(6140) (0 1) 6440 NEXT S
+G(6140) (0 1) 6440 NEXT S
   Origs: 6150:fornext, 6200:goto, 6220:goto, 6240:goto, 6260:goto, 6280:goto, 6300:goto, 6320:goto, 6340:goto, 6360:goto, 6380:goto, 6400:goto, 6420:goto, 6430:auto
   Dests: 6445:auto
-(6140) (0 2) 6445 PRINT
+G(6140) (0 2) 6445 PRINT
   Origs: 6440:auto
   Dests: 6446:auto
-(6140) (0 4) 6446 PRINT "HE HAS "; K(I); " POINTS,"
+G(6140) (0 4) 6446 PRINT "HE HAS "; K(I); " POINTS,"
   Origs: 6445:auto
   Dests: 6447:auto
-(6140) (0 4) 6447 PRINT "AND "; K(1, I); " OF THE 65 POINTS NEEDED FOR THE BONUS";
+G(6140) (0 4) 6447 PRINT "AND "; K(1, I); " OF THE 65 POINTS NEEDED FOR THE BONUS";
   Origs: 6446:auto
   Dests: 6450:auto
-(6140) (0 2) 6450 PRINT "."
+G(6140) (0 2) 6450 PRINT "."
   Origs: 6447:auto
   Dests: 6460:auto
-(6140) (0 1) 6460 RETURN
+G(6140) (0 1) 6460 RETURN
   Origs: 6450:auto
   Dests: 
 (0 3) 6470 G = 0

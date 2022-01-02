@@ -430,49 +430,49 @@ Halstead complexity:
 (0 1) 520 STOP
   Origs: 516:ifthen
   Dests: :stop
-(1000) (0 5) 1000 LET K1 = INT((M - 1) / 16) + 1
+G(1000) (0 5) 1000 LET K1 = INT((M - 1) / 16) + 1
   Origs: 214:gosub, 226:gosub, 231:gosub, 241:gosub, 389:gosub, 1227:gosub, 1630:gosub, 1770:gosub
   Dests: 1010:auto
-(1000) (0 8) 1010 LET J2 = M - 16 * (K1 - 1)
+G(1000) (0 8) 1010 LET J2 = M - 16 * (K1 - 1)
   Origs: 1000:auto
   Dests: 1030:auto
-(1000) (0 5) 1030 LET K2 = INT((J2 - 1) / 4) + 1
+G(1000) (0 5) 1030 LET K2 = INT((J2 - 1) / 4) + 1
   Origs: 1010:auto
   Dests: 1035:auto
-(1000) (0 11) 1035 LET K3 = M - (K1 - 1) * 16 - (K2 - 1) * 4
+G(1000) (0 11) 1035 LET K3 = M - (K1 - 1) * 16 - (K2 - 1) * 4
   Origs: 1030:auto
   Dests: 1040:auto
-(1000) (0 8) 1040 LET M = K1 * 100 + K2 * 10 + K3
+G(1000) (0 8) 1040 LET M = K1 * 100 + K2 * 10 + K3
   Origs: 1035:auto
   Dests: 1042:auto
-(1000) (0 2) 1042 PRINT M;
+G(1000) (0 2) 1042 PRINT M;
   Origs: 1040:auto
   Dests: 1045:auto
-(1000) (0 1) 1045 RETURN
+G(1000) (0 1) 1045 RETURN
   Origs: 1042:auto
   Dests: 
-(1050) (1 3) 1050 FOR S = 1 TO 76
+G(1050) (1 3) 1050 FOR S = 1 TO 76
   Origs: 110:gosub, 295:gosub, 470:gosub
   Dests: 1060:fornext, 1110:fornext
-(1050) (0 3) 1060 LET J1 = M(S, 1)
+G(1050) (0 3) 1060 LET J1 = M(S, 1)
   Origs: 1050:fornext
   Dests: 1070:auto
-(1050) (0 3) 1070 LET J2 = M(S, 2)
+G(1050) (0 3) 1070 LET J2 = M(S, 2)
   Origs: 1060:auto
   Dests: 1080:auto
-(1050) (0 3) 1080 LET J3 = M(S, 3)
+G(1050) (0 3) 1080 LET J3 = M(S, 3)
   Origs: 1070:auto
   Dests: 1090:auto
-(1050) (0 3) 1090 LET J4 = M(S, 4)
+G(1050) (0 3) 1090 LET J4 = M(S, 4)
   Origs: 1080:auto
   Dests: 1100:auto
-(1050) (0 6) 1100 LET L(S) = X(J1) + X(J2) + X(J3) + X(J4)
+G(1050) (0 6) 1100 LET L(S) = X(J1) + X(J2) + X(J3) + X(J4)
   Origs: 1090:auto
   Dests: 1110:auto
-(1050) (0 1) 1110 NEXT S
+G(1050) (0 1) 1110 NEXT S
   Origs: 1050:fornext, 1100:auto
   Dests: 1120:auto
-(1050) (0 1) 1120 RETURN
+G(1050) (0 1) 1120 RETURN
   Origs: 1110:auto
   Dests: 
 (1 3) 1200 FOR I = 1 TO 64
@@ -709,19 +709,19 @@ Halstead complexity:
 (0 3) 1780 GOTO 70
   Origs: 1770:auto
   Dests: 70:goto
-(1800) (1 3) 1800 FOR I = 1 TO 64
+G(1800) (1 3) 1800 FOR I = 1 TO 64
   Origs: 85:gosub, 492:gosub, 1395:gosub
   Dests: 1810:fornext, 1850:fornext
-(1800) (1 6) 1810 IF X(I) <> 1 / 8 THEN 1850
+G(1800) (1 6) 1810 IF X(I) <> 1 / 8 THEN 1850
   Origs: 1800:fornext
   Dests: 1815:auto, 1850:ifthen
-(1800) (0 3) 1815 LET X(I) = 0
+G(1800) (0 3) 1815 LET X(I) = 0
   Origs: 1810:auto
   Dests: 1850:auto
-(1800) (0 1) 1850 NEXT I
+G(1800) (0 1) 1850 NEXT I
   Origs: 1800:fornext, 1810:ifthen, 1815:auto
   Dests: 1860:auto
-(1800) (0 1) 1860 RETURN
+G(1800) (0 1) 1860 RETURN
   Origs: 1850:auto
   Dests: 
 (0 1) 2000 END

@@ -200,158 +200,158 @@ Halstead complexity:
 (0 3) 510 GOTO 410
   Origs: 500:auto
   Dests: 410:goto
-(520) (0 5) 520 LET A = 9 * RND(6)
-(520) (1 4)     IF S1 = 0 THEN 530
-(520) (0 2)     PRINT "MY BATTER";
-(520) (0 2)     GOTO 540
+G(520) (0 5) 520 LET A = 9 * RND(6)
+G(520) (1 4)     IF S1 = 0 THEN 530
+G(520) (0 2)     PRINT "MY BATTER";
+G(520) (0 2)     GOTO 540
   Origs: 1320:gosub
   Dests: 530:auto, 530:ifthen, 540:goto
-(520) (0 2) 530 PRINT "YOUR BATTER";
+G(520) (0 2) 530 PRINT "YOUR BATTER";
   Origs: 520:auto, 520:ifthen
   Dests: 540:auto
-(520) (1 4) 540 IF A > 1 THEN 550
-(520) (0 2)     PRINT " LINED OUT TO THE THIRD BASEMAN."
-(520) (0 2)     GOTO 840
+G(520) (1 4) 540 IF A > 1 THEN 550
+G(520) (0 2)     PRINT " LINED OUT TO THE THIRD BASEMAN."
+G(520) (0 2)     GOTO 840
   Origs: 520:goto, 530:auto
   Dests: 550:auto, 550:ifthen, 840:goto
-(520) (1 4) 550 IF A > 2 THEN 560
-(520) (0 2)     PRINT " POPPED OUT IN SHALLOW LEFT."
-(520) (0 2)     GOTO 840
+G(520) (1 4) 550 IF A > 2 THEN 560
+G(520) (0 2)     PRINT " POPPED OUT IN SHALLOW LEFT."
+G(520) (0 2)     GOTO 840
   Origs: 540:auto, 540:ifthen
   Dests: 560:auto, 560:ifthen, 840:goto
-(520) (1 4) 560 IF A > 3 THEN 580
+G(520) (1 4) 560 IF A > 3 THEN 580
   Origs: 550:auto, 550:ifthen
   Dests: 570:auto, 580:ifthen
-(570) (0 2) 570 PRINT " GROUNDED TO THE PITCHER";
-(570) (0 2)     GOTO 590
+G(570) (0 2) 570 PRINT " GROUNDED TO THE PITCHER";
+G(570) (0 2)     GOTO 590
     WARNING: Inconsistent GOSUB target (570, 520)
     WARNING: Inconsistent GOSUB target (570, 520)
     WARNING: Inconsistent GOSUB target (570, 520)
   Origs: 420:gosub, 560:auto
   Inconsistent GOSUB origins
   Dests: 590:goto
-(520) (1 4) 580 IF A > 4 THEN 680
-(520) (0 2)     PRINT "GROUNDED TO SHORTSTOP";
+G(520) (1 4) 580 IF A > 4 THEN 680
+G(520) (0 2)     PRINT "GROUNDED TO SHORTSTOP";
   Origs: 560:ifthen
   Dests: 590:auto, 680:ifthen
-(570) (0 2) 590 PRINT " WHO THREW OUT THE MAN";
-(570) (1 4)     IF C3 = 2 THEN 670
+G(570) (0 2) 590 PRINT " WHO THREW OUT THE MAN";
+G(570) (1 4)     IF C3 = 2 THEN 670
     WARNING: Inconsistent GOSUB target (570, 520)
     WARNING: Inconsistent GOSUB target (570, 520)
   Origs: 570:goto, 580:auto
   Dests: 600:auto, 670:ifthen
-(570) (1 4) 600 IF B1 = 0 THEN 670
-(570) (1 4)     IF B2 = 0 THEN 630
-(570) (1 4)     IF B3 = 0 THEN 620
-(570) (0 2)     PRINT " FORCED HOME,"
+G(570) (1 4) 600 IF B1 = 0 THEN 670
+G(570) (1 4)     IF B2 = 0 THEN 630
+G(570) (1 4)     IF B3 = 0 THEN 620
+G(570) (0 2)     PRINT " FORCED HOME,"
   Origs: 590:auto
   Dests: 610:auto, 620:ifthen, 630:ifthen, 670:ifthen
-(570) (0 2) 610 GOTO 850
+G(570) (0 2) 610 GOTO 850
   Origs: 600:auto
   Dests: 850:goto
-(570) (0 2) 620 PRINT " FORCED TO THIRD."
-(570) (0 2)     GOTO 850
+G(570) (0 2) 620 PRINT " FORCED TO THIRD."
+G(570) (0 2)     GOTO 850
   Origs: 600:ifthen
   Dests: 850:goto
-(570) (0 4) 630 LET A1 = INT(3 * RND(0))
-(570) (0 2)     PRINT " FORCED TO SECOND";
-(570) (1 4)     IF A1 <> 1 THEN 650
+G(570) (0 4) 630 LET A1 = INT(3 * RND(0))
+G(570) (0 2)     PRINT " FORCED TO SECOND";
+G(570) (1 4)     IF A1 <> 1 THEN 650
   Origs: 600:ifthen
   Dests: 640:auto, 650:ifthen
-(570) (0 2) 640 PRINT "."
-(570) (0 2)     GOTO 850
+G(570) (0 2) 640 PRINT "."
+G(570) (0 2)     GOTO 850
   Origs: 630:auto
   Dests: 850:goto
-(570) (0 2) 650 PRINT
-(570) (0 2)     PRINT "AND THEN TO FIRST FOR A DOUBLE PLAY!"
+G(570) (0 2) 650 PRINT
+G(570) (0 2)     PRINT "AND THEN TO FIRST FOR A DOUBLE PLAY!"
   Origs: 630:ifthen
   Dests: 660:auto
-(570) (0 4) 660 LET C3 = C3 + 1
-(570) (0 3)     LET B1 = 0
-(570) (0 2)     GOTO 840
+G(570) (0 4) 660 LET C3 = C3 + 1
+G(570) (0 3)     LET B1 = 0
+G(570) (0 2)     GOTO 840
   Origs: 650:auto
   Dests: 840:goto
-(570) (0 2) 670 PRINT " AT FIRST."
-(570) (0 2)     GOTO 840
+G(570) (0 2) 670 PRINT " AT FIRST."
+G(570) (0 2)     GOTO 840
   Origs: 590:ifthen, 600:ifthen
   Dests: 840:goto
-(520) (1 4) 680 IF A > 5 THEN 700
-(520) (0 2)     PRINT " HIT A FLY INTO DEEP CENTER WHERE IT WAS";
+G(520) (1 4) 680 IF A > 5 THEN 700
+G(520) (0 2)     PRINT " HIT A FLY INTO DEEP CENTER WHERE IT WAS";
   Origs: 580:ifthen
   Dests: 690:auto, 700:ifthen
-(520) (0 2) 690 PRINT " CAUGHT."
-(520) (0 2)     GOTO 710
+G(520) (0 2) 690 PRINT " CAUGHT."
+G(520) (0 2)     GOTO 710
   Origs: 680:auto
   Dests: 710:goto
-(520) (1 4) 700 IF A > 6 THEN 880
-(520) (0 2)     PRINT " HIT TO LEFT FIELD FOR AN OUT."
+G(520) (1 4) 700 IF A > 6 THEN 880
+G(520) (0 2)     PRINT " HIT TO LEFT FIELD FOR AN OUT."
   Origs: 680:ifthen
   Dests: 710:auto, 880:ifthen
-(520) (1 4) 710 IF C3 = 2 THEN 840
-(520) (1 6)     IF B1 + B2 + B3 = 0 THEN 840
+G(520) (1 4) 710 IF C3 = 2 THEN 840
+G(520) (1 6)     IF B1 + B2 + B3 = 0 THEN 840
   Origs: 690:goto, 700:auto
   Dests: 720:auto, 840:ifthen
-(520) (0 2) 720 PRINT "THE MAN ON";
-(520) (1 4)     IF B3 = 1 THEN 730
-(520) (1 4)     IF B2 = 1 THEN 750
-(520) (0 2)     GOTO 790
+G(520) (0 2) 720 PRINT "THE MAN ON";
+G(520) (1 4)     IF B3 = 1 THEN 730
+G(520) (1 4)     IF B2 = 1 THEN 750
+G(520) (0 2)     GOTO 790
   Origs: 710:auto
   Dests: 730:auto, 730:ifthen, 750:ifthen, 790:goto
-(520) (0 2) 730 PRINT " THIRD MADE IT HOME.";
-(520) (0 2)     GOSUB 930
-(520) (0 3)     LET B3 = 0
+G(520) (0 2) 730 PRINT " THIRD MADE IT HOME.";
+G(520) (0 2)     GOSUB 930
+G(520) (0 3)     LET B3 = 0
   Origs: 720:auto, 720:ifthen
   Dests: 740:auto, 930:gosub
-(520) (1 4) 740 IF B2 = 0 THEN 780
+G(520) (1 4) 740 IF B2 = 0 THEN 780
   Origs: 730:auto
   Dests: 750:auto, 780:ifthen
-(520) (0 2) 750 PRINT " SECOND";
-(520) (1 4)     IF A1 = 0 THEN 760
-(520) (0 2)     PRINT " STAYED PUT."
-(520) (0 2)     GOTO 780
+G(520) (0 2) 750 PRINT " SECOND";
+G(520) (1 4)     IF A1 = 0 THEN 760
+G(520) (0 2)     PRINT " STAYED PUT."
+G(520) (0 2)     GOTO 780
   Origs: 720:ifthen, 740:auto
   Dests: 760:auto, 760:ifthen, 780:goto
-(520) (1 4) 760 IF A1 > 1 THEN 770
-(520) (0 2)     PRINT " MADE IT TO THIRD."
-(520) (0 3)     LET B3 = 1
-(520) (0 3)     LET B2 = 0
-(520) (0 2)     GOTO 780
+G(520) (1 4) 760 IF A1 > 1 THEN 770
+G(520) (0 2)     PRINT " MADE IT TO THIRD."
+G(520) (0 3)     LET B3 = 1
+G(520) (0 3)     LET B2 = 0
+G(520) (0 2)     GOTO 780
   Origs: 750:auto, 750:ifthen
   Dests: 770:auto, 770:ifthen, 780:goto
-(520) (0 2) 770 PRINT " WAS OUT TRYING TO TAKE THIRD."
-(520) (0 4)     LET C3 = C3 + 1
-(520) (0 3)     LET B2 = 2
+G(520) (0 2) 770 PRINT " WAS OUT TRYING TO TAKE THIRD."
+G(520) (0 4)     LET C3 = C3 + 1
+G(520) (0 3)     LET B2 = 2
   Origs: 760:auto, 760:ifthen
   Dests: 780:auto
-(520) (1 4) 780 IF B1 <> 1 THEN 840
+G(520) (1 4) 780 IF B1 <> 1 THEN 840
   Origs: 740:ifthen, 750:goto, 760:goto, 770:auto
   Dests: 790:auto, 840:ifthen
-(520) (1 4) 790 IF B2 <> 1 THEN 800
-(520) (0 2)     PRINT " FIRST STUCK."
-(520) (0 2)     GOTO 840
+G(520) (1 4) 790 IF B2 <> 1 THEN 800
+G(520) (0 2)     PRINT " FIRST STUCK."
+G(520) (0 2)     GOTO 840
   Origs: 720:goto, 780:auto
   Dests: 800:auto, 800:ifthen, 840:goto
-(520) (0 2) 800 PRINT " ON FIRST";
-(520) (1 4)     IF B2 <> 2 THEN 820
+G(520) (0 2) 800 PRINT " ON FIRST";
+G(520) (1 4)     IF B2 <> 2 THEN 820
   Origs: 790:auto, 790:ifthen
   Dests: 810:auto, 820:ifthen
-(520) (0 2) 810 PRINT " MADE IT TO SECOND."
-(520) (0 3)     LET B2 = 1
-(520) (0 3)     LET B1 = 0
-(520) (0 2)     GOTO 840
+G(520) (0 2) 810 PRINT " MADE IT TO SECOND."
+G(520) (0 3)     LET B2 = 1
+G(520) (0 3)     LET B1 = 0
+G(520) (0 2)     GOTO 840
   Origs: 800:auto, 820:ifthen
   Dests: 840:goto
-(520) (0 5) 820 LET W = 2 * RND(0)
-(520) (1 5)     IF W > 1 THEN 810
-(520) (0 2)     PRINT " WAS OUT GOING."
-(520) (0 4)     LET C3 = C3 + 1
+G(520) (0 5) 820 LET W = 2 * RND(0)
+G(520) (1 5)     IF W > 1 THEN 810
+G(520) (0 2)     PRINT " WAS OUT GOING."
+G(520) (0 4)     LET C3 = C3 + 1
   Origs: 800:ifthen
   Dests: 810:ifthen, 830:auto
-(520) (0 3) 830 LET B2 = 0
+G(520) (0 3) 830 LET B2 = 0
   Origs: 820:auto
   Dests: 840:auto
-(570) (0 6) 840 LET Z(Y) = Z(Y) - (Z(Y) / 100)
-(570) (0 2)     GOTO 860
+G(570) (0 6) 840 LET Z(Y) = Z(Y) - (Z(Y) / 100)
+G(570) (0 2)     GOTO 860
     WARNING: Inconsistent GOSUB target (570, 520)
     WARNING: Inconsistent GOSUB target (570, 520)
     WARNING: Inconsistent GOSUB target (570, 520)
@@ -362,39 +362,39 @@ Halstead complexity:
     WARNING: Inconsistent GOSUB target (570, 520)
   Origs: 540:goto, 550:goto, 660:goto, 670:goto, 710:ifthen, 780:ifthen, 790:goto, 810:goto, 830:auto
   Dests: 860:goto
-(570) (0 6) 850 LET Z(Y) = Z(Y) + (Z(Y) / 100)
+G(570) (0 6) 850 LET Z(Y) = Z(Y) + (Z(Y) / 100)
   Origs: 610:goto, 620:goto, 640:goto
   Dests: 860:auto
-(570) (0 4) 860 LET C3 = C3 + 1
-(570) (0 3)     PRINT "THAT WAS OUT NUMBER"; C3
+G(570) (0 4) 860 LET C3 = C3 + 1
+G(570) (0 3)     PRINT "THAT WAS OUT NUMBER"; C3
   Origs: 840:goto, 850:auto
   Dests: 870:auto
-(570) (0 2) 870 GOTO 1260
+G(570) (0 2) 870 GOTO 1260
   Origs: 860:auto
   Dests: 1260:goto
-(520) (1 4) 880 IF A > 7 THEN 890
-(520) (0 2)     PRINT " HIT OVER THE PITCHER'S HEAD FOR A";
-(520) (0 2)     GOTO 910
+G(520) (1 4) 880 IF A > 7 THEN 890
+G(520) (0 2)     PRINT " HIT OVER THE PITCHER'S HEAD FOR A";
+G(520) (0 2)     GOTO 910
   Origs: 700:ifthen
   Dests: 890:auto, 890:ifthen, 910:goto
-(520) (1 4) 890 IF A > 8 THEN 900
-(520) (0 2)     PRINT " HIT THROUGH THE HOLE INTO RIGHT FOR A";
-(520) (0 2)     GOTO 910
+G(520) (1 4) 890 IF A > 8 THEN 900
+G(520) (0 2)     PRINT " HIT THROUGH THE HOLE INTO RIGHT FOR A";
+G(520) (0 2)     GOTO 910
   Origs: 880:auto, 880:ifthen
   Dests: 900:auto, 900:ifthen, 910:goto
-(520) (0 2) 900 PRINT " HIT INTO LEFT FIELD FOR A";
+G(520) (0 2) 900 PRINT " HIT INTO LEFT FIELD FOR A";
   Origs: 890:auto, 890:ifthen
   Dests: 910:auto
-(520) (1 6) 910 IF Z > 4 * D THEN 1210
-(520) (1 6)     IF Z > 3 * D THEN 1130
-(520) (1 6)     IF Z > 2 * D THEN 1040
-(520) (0 2)     PRINT " SINGLE,"
+G(520) (1 6) 910 IF Z > 4 * D THEN 1210
+G(520) (1 6)     IF Z > 3 * D THEN 1130
+G(520) (1 6)     IF Z > 2 * D THEN 1040
+G(520) (0 2)     PRINT " SINGLE,"
   Origs: 880:goto, 890:goto, 900:auto
   Dests: 920:auto, 1040:ifthen, 1130:ifthen, 1210:ifthen
-(920) (1 4) 920 IF B3 = 0 THEN 970
-(920) (0 2)     GOSUB 930
-(920) (0 3)     LET B3 = 0
-(920) (0 2)     GOTO 960
+G(920) (1 4) 920 IF B3 = 0 THEN 970
+G(920) (0 2)     GOSUB 930
+G(920) (0 3)     LET B3 = 0
+G(920) (0 2)     GOTO 960
     WARNING: Inconsistent GOSUB target (920, 520)
     WARNING: Inconsistent GOSUB target (920, 520)
     WARNING: Inconsistent GOSUB target (920, 520)
@@ -402,9 +402,9 @@ Halstead complexity:
   Origs: 150:gosub, 910:auto
   Inconsistent GOSUB origins
   Dests: 930:auto, 930:gosub, 960:goto, 970:ifthen
-(920) (1 4) 930 IF S1 = 1 THEN 940
-(920) (0 4)     LET S3 = S3 + 1
-(920) (0 2)     GOTO 950
+G(920) (1 4) 930 IF S1 = 1 THEN 940
+G(920) (0 4)     LET S3 = S3 + 1
+G(920) (0 2)     GOTO 950
     WARNING: Inconsistent GOSUB target (920, 930)
     WARNING: Inconsistent GOSUB target (920, 930)
     WARNING: Inconsistent GOSUB target (920, 930)
@@ -418,158 +418,158 @@ Halstead complexity:
   Origs: 730:gosub, 920:auto, 920:gosub, 980:gosub, 1070:gosub, 1080:gosub, 1100:gosub, 1140:gosub, 1160:gosub, 1180:gosub, 1220:gosub
   Inconsistent GOSUB origins
   Dests: 940:auto, 940:ifthen, 950:goto
-(920) (0 4) 940 LET S2 = S2 + 1
+G(920) (0 4) 940 LET S2 = S2 + 1
   Origs: 930:auto, 930:ifthen
   Dests: 950:auto
-(920) (0 4) 950 LET I2 = I2 + 1
-(920) (0 1)     RETURN
+G(920) (0 4) 950 LET I2 = I2 + 1
+G(920) (0 1)     RETURN
   Origs: 930:goto, 940:auto
   Dests: 
-(920) (0 2) 960 PRINT "THE MAN ON THIRD SCORED."
+G(920) (0 2) 960 PRINT "THE MAN ON THIRD SCORED."
   Origs: 920:goto
   Dests: 970:auto
-(920) (1 4) 970 IF B2 = 0 THEN 1000
-(920) (0 2)     PRINT "THE MAN ON SECOND";
-(920) (1 4)     IF A > 8 THEN 990
-(920) (0 2)     PRINT " SCORED."
+G(920) (1 4) 970 IF B2 = 0 THEN 1000
+G(920) (0 2)     PRINT "THE MAN ON SECOND";
+G(920) (1 4)     IF A > 8 THEN 990
+G(920) (0 2)     PRINT " SCORED."
   Origs: 920:ifthen, 960:auto
   Dests: 980:auto, 990:ifthen, 1000:ifthen
-(920) (0 3) 980 GOSUB 930
-(920) (0 3)     LET B2 = 0
-(920) (0 2)     GOTO 1000
+G(920) (0 3) 980 GOSUB 930
+G(920) (0 3)     LET B2 = 0
+G(920) (0 2)     GOTO 1000
   Origs: 970:auto
   Dests: 930:gosub, 1000:goto
-(920) (0 2) 990 PRINT " WENT TO THIRD."
-(920) (0 3)     LET B2 = 0
-(920) (0 3)     LET B3 = 1
+G(920) (0 2) 990 PRINT " WENT TO THIRD."
+G(920) (0 3)     LET B2 = 0
+G(920) (0 3)     LET B3 = 1
   Origs: 970:ifthen, 1010:goto
   Dests: 1000:auto
-(920) (1 4) 1000 IF B1 = 0 THEN 1030
-(920) (0 2)      PRINT "THE MAN ON FIRST";
-(920) (1 4)      IF A > 8 THEN 1020
+G(920) (1 4) 1000 IF B1 = 0 THEN 1030
+G(920) (0 2)      PRINT "THE MAN ON FIRST";
+G(920) (1 4)      IF A > 8 THEN 1020
   Origs: 970:ifthen, 980:goto, 990:auto
   Dests: 1010:auto, 1020:ifthen, 1030:ifthen
-(920) (1 4) 1010 IF C2 = 4 THEN 1020
-(920) (0 3)      LET B1 = 0
-(920) (0 3)      GOTO 990
+G(920) (1 4) 1010 IF C2 = 4 THEN 1020
+G(920) (0 3)      LET B1 = 0
+G(920) (0 3)      GOTO 990
   Origs: 1000:auto
   Dests: 990:goto, 1020:auto, 1020:ifthen
-(920) (0 2) 1020 PRINT " TO SECOND."
-(920) (0 3)      LET B2 = 1
+G(920) (0 2) 1020 PRINT " TO SECOND."
+G(920) (0 3)      LET B2 = 1
   Origs: 1000:ifthen, 1010:auto, 1010:ifthen
   Dests: 1030:auto
-(920) (0 3) 1030 LET B1 = 1
-(920) (0 2)      GOTO 1240
+G(920) (0 3) 1030 LET B1 = 1
+G(920) (0 2)      GOTO 1240
   Origs: 1000:ifthen, 1020:auto
   Dests: 1240:goto
-(520) (0 5) 1040 LET W = 3 * RND(0)
-(520) (1 4)      IF W > 1 THEN 1050
-(520) (0 2)      PRINT "N OFF THE WALL";
+G(520) (0 5) 1040 LET W = 3 * RND(0)
+G(520) (1 4)      IF W > 1 THEN 1050
+G(520) (0 2)      PRINT "N OFF THE WALL";
   Origs: 910:ifthen
   Dests: 1050:auto, 1050:ifthen
-(520) (1 4) 1050 IF A2 = 1 THEN 1060
-(520) (0 2)      PRINT " STAND UP";
+G(520) (1 4) 1050 IF A2 = 1 THEN 1060
+G(520) (0 2)      PRINT " STAND UP";
   Origs: 1040:auto, 1040:ifthen
   Dests: 1060:auto, 1060:ifthen
-(520) (0 2) 1060 PRINT " DOUBLE."
-(520) (1 4)      IF B3 = 0 THEN 1080
-(520) (0 2)      PRINT "THE MAN ON THIRD SCORED."
+G(520) (0 2) 1060 PRINT " DOUBLE."
+G(520) (1 4)      IF B3 = 0 THEN 1080
+G(520) (0 2)      PRINT "THE MAN ON THIRD SCORED."
   Origs: 1050:auto, 1050:ifthen
   Dests: 1070:auto, 1080:ifthen
-(520) (0 3) 1070 GOSUB 930
-(520) (0 3)      LET B3 = 0
+G(520) (0 3) 1070 GOSUB 930
+G(520) (0 3)      LET B3 = 0
   Origs: 1060:auto
   Dests: 930:gosub, 1080:auto
-(520) (1 4) 1080 IF B2 = 0 THEN 1090
-(520) (0 2)      PRINT "THE MAN ON SECOND SCORED."
-(520) (0 3)      GOSUB 930
-(520) (0 3)      LET B2 = 0
+G(520) (1 4) 1080 IF B2 = 0 THEN 1090
+G(520) (0 2)      PRINT "THE MAN ON SECOND SCORED."
+G(520) (0 3)      GOSUB 930
+G(520) (0 3)      LET B2 = 0
   Origs: 1060:ifthen, 1070:auto
   Dests: 930:gosub, 1090:auto, 1090:ifthen
-(520) (1 4) 1090 IF B1 = 0 THEN 1120
-(520) (0 2)      PRINT "THE MAN ON FIRST";
-(520) (1 4)      IF A > 8 THEN 1110
-(520) (0 2)      PRINT " SCORED."
+G(520) (1 4) 1090 IF B1 = 0 THEN 1120
+G(520) (0 2)      PRINT "THE MAN ON FIRST";
+G(520) (1 4)      IF A > 8 THEN 1110
+G(520) (0 2)      PRINT " SCORED."
   Origs: 1080:auto, 1080:ifthen
   Dests: 1100:auto, 1110:ifthen, 1120:ifthen
-(520) (0 3) 1100 GOSUB 930
-(520) (0 3)      LET B1 = 0
-(520) (0 2)      GOTO 1120
+G(520) (0 3) 1100 GOSUB 930
+G(520) (0 3)      LET B1 = 0
+G(520) (0 2)      GOTO 1120
   Origs: 1090:auto
   Dests: 930:gosub, 1120:goto
-(520) (0 2) 1110 PRINT " WENT TO THIRD."
-(520) (0 3)      LET B1 = 0
-(520) (0 3)      LET B3 = 1
+G(520) (0 2) 1110 PRINT " WENT TO THIRD."
+G(520) (0 3)      LET B1 = 0
+G(520) (0 3)      LET B3 = 1
   Origs: 1090:ifthen
   Dests: 1120:auto
-(520) (0 3) 1120 LET B2 = 1
-(520) (0 2)      GOTO 1240
+G(520) (0 3) 1120 LET B2 = 1
+G(520) (0 2)      GOTO 1240
   Origs: 1090:ifthen, 1100:goto, 1110:auto
   Dests: 1240:goto
-(520) (0 2) 1130 PRINT " TRIPLE!"
-(520) (0 5)      LET A3 = B1 + B2 + B3
-(520) (1 4)      IF A3 = 0 THEN 1200
-(520) (0 2)      PRINT "THE MAN ON";
+G(520) (0 2) 1130 PRINT " TRIPLE!"
+G(520) (0 5)      LET A3 = B1 + B2 + B3
+G(520) (1 4)      IF A3 = 0 THEN 1200
+G(520) (0 2)      PRINT "THE MAN ON";
   Origs: 910:ifthen
   Dests: 1140:auto, 1200:ifthen
-(520) (1 4) 1140 IF B1 = 0 THEN 1150
-(520) (0 2)      PRINT " FIRST";
-(520) (0 3)      GOSUB 930
+G(520) (1 4) 1140 IF B1 = 0 THEN 1150
+G(520) (0 2)      PRINT " FIRST";
+G(520) (0 3)      GOSUB 930
   Origs: 1130:auto
   Dests: 930:gosub, 1150:auto, 1150:ifthen
-(520) (1 4) 1150 IF B2 = 0 THEN 1170
-(520) (1 4)      IF B1 = 0 THEN 1160
-(520) (0 2)      PRINT ", AND";
+G(520) (1 4) 1150 IF B2 = 0 THEN 1170
+G(520) (1 4)      IF B1 = 0 THEN 1160
+G(520) (0 2)      PRINT ", AND";
   Origs: 1140:auto, 1140:ifthen
   Dests: 1160:auto, 1160:ifthen, 1170:ifthen
-(520) (0 2) 1160 PRINT " SECOND";
-(520) (0 3)      GOSUB 930
+G(520) (0 2) 1160 PRINT " SECOND";
+G(520) (0 3)      GOSUB 930
   Origs: 1150:auto, 1150:ifthen
   Dests: 930:gosub, 1170:auto
-(520) (1 4) 1170 IF B3 = 0 THEN 1190
-(520) (1 5)      IF B1 + B2 = 0 THEN 1180
-(520) (0 2)      PRINT ", AND";
+G(520) (1 4) 1170 IF B3 = 0 THEN 1190
+G(520) (1 5)      IF B1 + B2 = 0 THEN 1180
+G(520) (0 2)      PRINT ", AND";
   Origs: 1150:ifthen, 1160:auto
   Dests: 1180:auto, 1180:ifthen, 1190:ifthen
-(520) (0 2) 1180 PRINT " THIRD";
-(520) (0 3)      GOSUB 930
+G(520) (0 2) 1180 PRINT " THIRD";
+G(520) (0 3)      GOSUB 930
   Origs: 1170:auto, 1170:ifthen
   Dests: 930:gosub, 1190:auto
-(520) (0 2) 1190 PRINT " SCORED."
-(520) (0 3)      LET B1 = 0
-(520) (0 3)      LET B2 = 0
+G(520) (0 2) 1190 PRINT " SCORED."
+G(520) (0 3)      LET B1 = 0
+G(520) (0 3)      LET B2 = 0
   Origs: 1170:ifthen, 1180:auto
   Dests: 1200:auto
-(520) (0 3) 1200 LET B3 = 1
-(520) (0 2)      GOTO 1240
+G(520) (0 3) 1200 LET B3 = 1
+G(520) (0 2)      GOTO 1240
   Origs: 1130:ifthen, 1190:auto
   Dests: 1240:goto
-(520) (1 6) 1210 IF B1 + B2 + B3 < 3 THEN 1220
-(520) (0 2)      PRINT " GRAND SLAM";
+G(520) (1 6) 1210 IF B1 + B2 + B3 < 3 THEN 1220
+G(520) (0 2)      PRINT " GRAND SLAM";
   Origs: 910:ifthen
   Dests: 1220:auto, 1220:ifthen
-(520) (0 2) 1220 PRINT " HOME RUN!!"
-(520) (1 6)      FOR A1 = 1 TO (B1 + B2 + B3 + 1)
-(520) (0 3)      GOSUB 930
-(520) (0 1)      NEXT A1
+G(520) (0 2) 1220 PRINT " HOME RUN!!"
+G(520) (1 6)      FOR A1 = 1 TO (B1 + B2 + B3 + 1)
+G(520) (0 3)      GOSUB 930
+G(520) (0 1)      NEXT A1
   Origs: 1210:auto, 1210:ifthen
   Dests: 930:gosub, 1230:auto
-(520) (0 3) 1230 LET B1 = 0
-(520) (0 3)      LET B2 = 0
-(520) (0 3)      LET B3 = 0
+G(520) (0 3) 1230 LET B1 = 0
+G(520) (0 3)      LET B2 = 0
+G(520) (0 3)      LET B3 = 0
   Origs: 1220:auto
   Dests: 1240:auto
-(920) (1 4) 1240 IF C2 = 4 THEN 1260
-(920) (0 6)      LET Z(Y) = Z(Y) + (Z(Y) / 100)
+G(920) (1 4) 1240 IF C2 = 4 THEN 1260
+G(920) (0 6)      LET Z(Y) = Z(Y) + (Z(Y) / 100)
      WARNING: Inconsistent GOSUB target (920, 520)
      WARNING: Inconsistent GOSUB target (920, 520)
      WARNING: Inconsistent GOSUB target (920, 520)
   Origs: 1030:goto, 1120:goto, 1200:goto, 1230:auto
   Dests: 1250:auto, 1260:ifthen
-(920) (0 4) 1250 LET I1 = I1 + 1
+G(920) (0 4) 1250 LET I1 = I1 + 1
   Origs: 1240:auto
   Dests: 1260:auto
-(920) (0 1) 1260 RETURN
+G(920) (0 1) 1260 RETURN
      WARNING: Inconsistent GOSUB target (920, 570)
   Origs: 870:goto, 1240:ifthen, 1250:auto
   Dests: 

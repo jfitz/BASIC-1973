@@ -187,40 +187,40 @@ FNN$(%) (0 1)     FNEND
 (0 0) 900 
   Origs: 
   Dests: 
-(2000) (0 3) 2000 M$ = ""
+G(2000) (0 3) 2000 M$ = ""
   Origs: 190:gosub, 320:gosub
   Dests: 2010:auto
-(2000) (1 3) 2010 FOR J% = 1% TO 9%
-(2000) (1 5)      IF MID(P$, J%, 1%) <> Q$ THEN 2050
+G(2000) (1 3) 2010 FOR J% = 1% TO 9%
+G(2000) (1 5)      IF MID(P$, J%, 1%) <> Q$ THEN 2050
   Origs: 2000:auto
   Dests: 2015:auto, 2050:fornext, 2050:ifthen
-(2000) (0 6) 2015 T% = J% + D% * 3%
-(2000) (1 7)      IF T% < 1% OR T% > 9% THEN 2025
+G(2000) (0 6) 2015 T% = J% + D% * 3%
+G(2000) (1 7)      IF T% < 1% OR T% > 9% THEN 2025
   Origs: 2010:auto
   Dests: 2020:auto, 2025:ifthen
-(2000) (1 13) 2020 IF MID(P$, T%, 1%) = "-" THEN M$ = M$ + FNN$(J%) + FNN$(T%)
+G(2000) (1 13) 2020 IF MID(P$, T%, 1%) = "-" THEN M$ = M$ + FNN$(J%) + FNN$(T%)
   Origs: 2015:auto
   Dests: 105:function, 2025:auto
-(2000) (0 6) 2025 T% = J% + D% * 2%
-(2000) (1 31)      IF T% < 1% OR T% > 9% OR (D% = 1% AND (J% = 1% OR J% = 4% OR J% = 7%)) OR (D% = 1% AND (J% = 3% OR J% = 6% OR J% - 9%)) THEN 2035
+G(2000) (0 6) 2025 T% = J% + D% * 2%
+G(2000) (1 31)      IF T% < 1% OR T% > 9% OR (D% = 1% AND (J% = 1% OR J% = 4% OR J% = 7%)) OR (D% = 1% AND (J% = 3% OR J% = 6% OR J% - 9%)) THEN 2035
   Origs: 2015:ifthen, 2020:auto
   Dests: 2030:auto, 2035:ifthen
-(2000) (1 13) 2030 IF INSTR(1%, Q$ + "-", MID(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN$(J%) + FNN$(T%)
+G(2000) (1 13) 2030 IF INSTR(1%, Q$ + "-", MID(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN$(J%) + FNN$(T%)
   Origs: 2025:auto
   Dests: 105:function, 2035:auto
-(2000) (0 6) 2035 T% = J% + D% * 4%
-(2000) (1 13)      IF T% < 1% OR T% > 9% OR J% = 3% OR J% = 7% THEN 2050
+G(2000) (0 6) 2035 T% = J% + D% * 4%
+G(2000) (1 13)      IF T% < 1% OR T% > 9% OR J% = 3% OR J% = 7% THEN 2050
   Origs: 2025:ifthen, 2030:auto
   Dests: 2040:auto, 2050:ifthen
-(2000) (1 13) 2040 IF INSTR(1%, Q$ + "-", MID(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN$(J%) + FNN$(T%)
+G(2000) (1 13) 2040 IF INSTR(1%, Q$ + "-", MID(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN$(J%) + FNN$(T%)
   Origs: 2035:auto
   Dests: 105:function, 2050:auto
-(2000) (0 1) 2050 NEXT J%
-(2000) (1 10)      IF D% = 1% AND M$ <> "" THEN Q% = Q% + 1%
-(2000) (0 7)      P$(Q%) = FNN$(P%) + P$ + M$
+G(2000) (0 1) 2050 NEXT J%
+G(2000) (1 10)      IF D% = 1% AND M$ <> "" THEN Q% = Q% + 1%
+G(2000) (0 7)      P$(Q%) = FNN$(P%) + P$ + M$
   Origs: 2010:fornext, 2010:ifthen, 2035:ifthen, 2040:auto
   Dests: 105:function, 2060:auto
-(2000) (0 1) 2060 RETURN
+G(2000) (0 1) 2060 RETURN
   Origs: 2050:auto
   Dests: 
 (0 1) 9999 END
