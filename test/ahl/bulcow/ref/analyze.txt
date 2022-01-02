@@ -20,9 +20,12 @@ Halstead complexity:
  time: 117.747
 
 (400) (0 2) 5 GOSUB 500
+  WARNING: Statement before GOSUB entry point
   Origs: :start, 150:goto
   Dests: 10:auto, 500:gosub
 (500) (0 5) 10 DIM D(10, 4), B(10), C(18), G(10)
+   WARNING: Statement before GOSUB entry point
+   WARNING: Inconsistent GOSUB target (500, 400)
   Origs: 5:auto, 510:goto
   Dests: 15:auto
 (500) (0 1) 15 RANDOMIZE
@@ -39,6 +42,7 @@ Halstead complexity:
 (500) (0 2)    PRINT
 (500) (0 2)    PRINT
 (500) (0 3)    LET J = 0
+   WARNING: Statement before GOSUB entry point
   Origs: 250:ifthen
   Dests: 35:auto
 (500) (0 2) 35 PRINT "YOUR GUESS";
@@ -126,6 +130,7 @@ Halstead complexity:
 (400) (0 2) 150 PRINT
 (400) (0 2)     PRINT "YOU HAVE GIVEN ME IMPOSSIBLE SCORES - GAME SPOILED"
 (400) (0 3)     GOTO 5
+    WARNING: Statement before GOSUB entry point
   Origs: 432:ifthen, 440:goto
   Dests: 5:goto
 (500) (0 2) 170 PRINT "REPEATED DIGITS NOT ALLOWED"

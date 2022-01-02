@@ -51,6 +51,7 @@ Halstead complexity:
   Origs: 
   Dests: 
 (3790) (0 3) 240 Z$, R$, Q$ = "                                                                          "
+    WARNING: Statement before GOSUB entry point
   Origs: 210:ifthen, 4030:goto, 4107:ifthen, 6500:goto
   Dests: 260:auto
 (3790) (0 6) 260 DIM G(8, 8), C(9, 2), K(3, 3), N(3), Z(8, 8)
@@ -836,6 +837,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Dests: 3130:auto
 (3790) (0 4) 3130 K3 = K3 - 1
 (3790) (0 4)      K9 = K9 - 1
+     WARNING: Statement before GOSUB entry point
   Origs: 3120:auto, 5030:ifthen
   Dests: 3150:auto
 (3790) (1 4) 3150 IF K9 <= 8 THEN 4040
@@ -1510,6 +1512,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Origs: 5620:auto
   Dests: 5670:goto
 (5620) (0 3) 5660 PRINT MID(E$, S8 - 72, 11),
+     WARNING: Inconsistent GOSUB target (5620, 5660)
   Origs: 3320:gosub, 5620:ifthen
   Inconsistent GOSUB origins
   Dests: 5670:auto
@@ -1752,6 +1755,7 @@ FND(_) (0 3) 360 DEF FND(D) = SQR((K(I, 1) - S1) ** 2 + (K(I, 2) - S2) ** 2)
   Origs: 6400:auto
   Dests: 240:goto
 (3790) (0 1) 6510 END
+     WARNING: Terminating statement in GOSUB
   Origs: 1298:ifthen, 4110:goto
   Dests: :stop
 

@@ -28,19 +28,22 @@ Halstead complexity:
 (0 3) 3 X1%, Y1% = 1
 (0 3)   X2% = 24%
 (0 3)   Y2% = 70%
+  WARNING: Target type (integer) does not match expression type (numeric).
+  WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 2:auto
   Dests: 10:auto
 (0 3) 10 DIM A%(24%, 70%), B$(24%)
   Origs: 3:auto
   Dests: 20:auto
 (0 1) 20 OPEN "KB:" AS FILE 1
-   Syntax error
+   ERROR: Syntax error
   Origs: 10:auto
   Dests: 30:auto
 (1 2) 30 ON ERROR GOTO 80
   Origs: 20:auto
   Dests: 40:auto, 80:onerror
 (0 3) 40 C% = 1
+   WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 30:auto
   Dests: 50:auto
 (1 2) 50 INPUT LINE #1, B$(C%)
@@ -48,6 +51,8 @@ Halstead complexity:
   Origs: 40:auto, 70:goto
   Dests: 60:auto
 (0 4) 60 C% = C% + 1
+   WARNING: Type mismatch integer + numeric
+   WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 50:auto
   Dests: 70:auto
 (0 3) 70 GOTO 50
@@ -60,6 +65,7 @@ Halstead complexity:
   Origs: 80:auto
   Dests: 100:fornext, 110:fornext
 (1 8) 100 IF LEN(B$(X%)) >= L% THEN L% = LEN(B$(X%))
+    WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 90:fornext
   Dests: 110:auto
 (0 1) 110 NEXT X%
@@ -79,6 +85,9 @@ Halstead complexity:
   Dests: 160:fornext, 170:fornext
 (1 7) 160 IF MID(B$(X%), Y%, 1) <> " " THEN A%(X1% + X%, Y1% + Y%) = 1
 (0 4)     P% = P% + 1
+    WARNING: Target type (integer) does not match expression type (numeric).
+    WARNING: Type mismatch integer + numeric
+    WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 150:fornext
   Dests: 170:auto
 (0 1) 170 NEXT Y%
@@ -98,6 +107,8 @@ Halstead complexity:
 (0 3)     Y3% = 70%
 (0 3)     X4%, Y4% = 1
 (0 3)     P% = 0%
+    WARNING: Target type (integer) does not match expression type (numeric).
+    WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 210:auto
   Dests: 220:auto
 (0 4) 220 G% = G% + 1%
@@ -213,6 +224,8 @@ Halstead complexity:
   Origs: 570:auto
   Dests: 590:auto, 610:ifthen
 (1 13) 590 IF C% < 3% OR C% > 4% THEN A%(X%, Y%) = 2% ELSE P% = P% + 1
+    WARNING: Type mismatch integer + numeric
+    WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 580:auto
   Dests: 600:auto
 (0 2) 600 GOTO 620
@@ -220,6 +233,8 @@ Halstead complexity:
   Dests: 620:goto
 (1 6) 610 IF C% = 3% THEN A%(X%, Y%) = 3%
 (0 4)     P% = P% + 1
+    WARNING: Type mismatch integer + numeric
+    WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 580:ifthen
   Dests: 620:auto
 (0 1) 620 NEXT Y%
@@ -232,6 +247,14 @@ Halstead complexity:
 (0 4)     Y1% = Y1% - 1
 (0 4)     X2% = X2% + 1
 (0 4)     Y2% = Y2% + 1
+    WARNING: Type mismatch integer - numeric
+    WARNING: Target type (integer) does not match expression type (numeric).
+    WARNING: Type mismatch integer - numeric
+    WARNING: Target type (integer) does not match expression type (numeric).
+    WARNING: Type mismatch integer + numeric
+    WARNING: Target type (integer) does not match expression type (numeric).
+    WARNING: Type mismatch integer + numeric
+    WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 630:auto
   Dests: 640:auto
 (0 3) 640 GOTO 210

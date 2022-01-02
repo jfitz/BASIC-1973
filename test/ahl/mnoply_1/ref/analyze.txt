@@ -31,6 +31,8 @@ Halstead complexity:
 (0 3) 3 M(1), M(2) = 1500%
 (0 3)   I(1), I(2) = 0
 (0 4)   DIM A$(25), B$(25), H%(40)
+  WARNING: Target type (numeric) does not match expression type (integer).
+  WARNING: Target type (numeric) does not match expression type (integer).
   Origs: :start
   Dests: 8:auto
 (1 3) 8 FOR I = 1 TO 39
@@ -39,6 +41,8 @@ Halstead complexity:
 (1 3)   FOR I = 1 TO 8
 (0 3)   U(I) = 0
 (0 1)   NEXT I
+  WARNING: Target type (integer) does not match expression type (numeric).
+  WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3:auto
   Dests: 15:auto
 (0 2) 15 & M$(1)
@@ -63,6 +67,7 @@ Halstead complexity:
 (0 3) 102 Z = 1%
 (0 2)     GOSUB 1000
 (0 2)     GOSUB 2000
+    WARNING: Target type (numeric) does not match expression type (integer).
   Origs: 100:auto, 115:goto
   Dests: 115:auto, 1000:gosub, 2000:gosub
 (1 7) 115 IF D = D1 THEN F = F + 1
@@ -73,6 +78,7 @@ Halstead complexity:
 (1 5) 117 IF F = 3 THEN PRINT M$(10)
 (0 3)     I(Z) = 10
 (0 4)     M(Z) = M(Z) - 50%
+    WARNING: Type mismatch numeric - integer
   Origs: 115:auto
   Dests: 200:auto
 (0 2) 200 PRINT
@@ -83,6 +89,7 @@ Halstead complexity:
 (0 3) 202 Z = 2%
 (0 2)     GOSUB 1000
 (0 2)     GOSUB 2000
+    WARNING: Target type (numeric) does not match expression type (integer).
   Origs: 200:auto, 215:goto
   Dests: 215:auto, 1000:gosub, 2000:gosub
 (1 7) 215 IF D = D1 THEN F = F + 1
@@ -93,6 +100,7 @@ Halstead complexity:
 (1 5) 217 IF F = 3 THEN PRINT M$(10)
 (0 3)     I(Z) = 10
 (0 4)     M(Z) = M(Z) - 50%
+    WARNING: Type mismatch numeric - integer
   Origs: 215:auto
   Dests: 225:auto
 (0 2) 225 PRINT M$(11);
@@ -149,6 +157,8 @@ Halstead complexity:
   Dests: 1016:auto
 (1000) (1 7) 1016 IF I(Z) > 40% THEN I(Z) = I(Z) - 40%
 (1000) (0 4)      M(Z) = M(Z) + 200%
+     WARNING: Type mismatch numeric - integer
+     WARNING: Type mismatch numeric + integer
   Origs: 1015:auto
   Dests: 1017:auto
 (1000) (0 1) 1017 RETURN
@@ -162,6 +172,7 @@ Halstead complexity:
   Dests: 2004:auto, 4100:ifthen
 (2000) (1 7) 2004 IF I(Z) = 4 THEN M(Z) = M(Z) - 200%
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric - integer
   Origs: 2002:auto
   Dests: 2006:auto
 (2000) (1 10) 2006 IF I(Z) = 7 OR I(Z) = 22 OR I(Z) = 36 THEN 4400
@@ -173,15 +184,18 @@ Halstead complexity:
 (2000) (1 7) 2010 IF I(Z) = 30 THEN M(Z) = M(Z) - 50%
 (2000) (0 3)      I(Z) = 10
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric - integer
   Origs: 2008:auto
   Dests: 2011:auto
 (2000) (1 7) 2011 IF I(Z) = 38 THEN M(Z) = M(Z) - 75%
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric - integer
   Origs: 2010:auto
   Dests: 2012:auto
 (2000) (1 7) 2012 IF I(Z) = 40 THEN M(Z) = M(Z) + 200%
 (2000) (0 3)      I(Z) = 01
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric + integer
   Origs: 2011:auto
   Dests: 2018:auto
 (2000) (1 5) 2018 IF L%(I(Z)) = Z THEN PRINT M$(12)
@@ -208,6 +222,7 @@ Halstead complexity:
   Dests: 2027:auto
 (2000) (0 3) 2027 L%(I(Z)) = Z
 (2000) (0 2)      GOTO 3100
+     WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 2026:auto
   Dests: 3100:goto
 (2000) (1 9) 2100 IF Z = 1 THEN M(Z) = M(Z) - FNR
@@ -275,12 +290,14 @@ Halstead complexity:
 (2000) (0 4)      M(2) = M(2) - V
 (2000) (0 3)      L%(I) = 2
 (2000) (0 2)      GOTO 3165
+     WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3156:auto
   Dests: 3160:auto, 3165:goto
 (2000) (2 10) 3160 IF V$ = G$(I) THEN IF L%(I) = 2 THEN M(2) = M(2) + V
 (2000) (0 4)      M(1) = M(1) - V
 (2000) (0 3)      L%(I) = 1
 (2000) (0 2)      GOTO 3165
+     WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3158:auto
   Dests: 3162:auto, 3165:goto
 (2000) (0 1) 3162 NEXT I
@@ -377,10 +394,14 @@ Halstead complexity:
 (3250) (0 6)      M(Z) = M(Z) + (U * 100%)
 (3250) (0 3)      U(1) = U
 (3250) (0 1)      RETURN
+     WARNING: Type mismatch numeric * integer
+     WARNING: Type mismatch numeric * integer
   Origs: 3200:gosub
   Dests: 3251:auto
 (3250) (0 3) 3251 H%(1), H%(3) = U(1)
 (3250) (0 1)      RETURN
+     WARNING: Target type (integer) does not match expression type (numeric).
+     WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3250:auto
   Dests: 
 (3252) (0 4) 3252 U(2) = U(2) + U
@@ -389,10 +410,15 @@ Halstead complexity:
 (3252) (0 6)      M(Z) = M(Z) + (U * 150%)
 (3252) (0 4)      U(2) = U(2) - U
 (3252) (0 1)      RETURN
+     WARNING: Type mismatch numeric * integer
+     WARNING: Type mismatch numeric * integer
   Origs: 3202:gosub
   Dests: 3253:auto
 (3252) (0 3) 3253 H%(6), H%(8), H%(9) = U(2)
 (3252) (0 1)      RETURN
+     WARNING: Target type (integer) does not match expression type (numeric).
+     WARNING: Target type (integer) does not match expression type (numeric).
+     WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3252:auto
   Dests: 
 (3254) (0 4) 3254 U(3) = U(3) + U
@@ -401,10 +427,15 @@ Halstead complexity:
 (3254) (0 6)      M(Z) = M(Z) + (U * 150%)
 (3254) (0 4)      U(3) = U(3) - U
 (3254) (0 1)      RETURN
+     WARNING: Type mismatch numeric * integer
+     WARNING: Type mismatch numeric * integer
   Origs: 3204:gosub
   Dests: 3255:auto
 (3254) (0 3) 3255 H%(11), H%(13), H%(14) = U(3)
 (3254) (0 1)      RETURN
+     WARNING: Target type (integer) does not match expression type (numeric).
+     WARNING: Target type (integer) does not match expression type (numeric).
+     WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3254:auto
   Dests: 
 (3256) (0 4) 3256 U(4) = U(4) + U
@@ -413,10 +444,15 @@ Halstead complexity:
 (3256) (0 6)      M(Z) = M(Z) + (U * 300%)
 (3256) (0 4)      U(4) = U(4) - U
 (3256) (0 1)      RETURN
+     WARNING: Type mismatch numeric * integer
+     WARNING: Type mismatch numeric * integer
   Origs: 3206:gosub
   Dests: 3257:auto
 (3256) (0 3) 3257 H%(16), H%(18), H%(19) = U(4)
 (3256) (0 1)      RETURN
+     WARNING: Target type (integer) does not match expression type (numeric).
+     WARNING: Target type (integer) does not match expression type (numeric).
+     WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3256:auto
   Dests: 
 (3258) (0 4) 3258 U(6) = U(5) + U
@@ -425,10 +461,15 @@ Halstead complexity:
 (3258) (0 6)      M(Z) = M(Z) + (U * 450%)
 (3258) (0 4)      U(5) = U(5) - U
 (3258) (0 1)      RETURN
+     WARNING: Type mismatch numeric * integer
+     WARNING: Type mismatch numeric * integer
   Origs: 3208:gosub
   Dests: 3259:auto
 (3258) (0 3) 3259 H%(21), H%(23), H%(24) = U(5)
 (3258) (0 1)      RETURN
+     WARNING: Target type (integer) does not match expression type (numeric).
+     WARNING: Target type (integer) does not match expression type (numeric).
+     WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3258:auto
   Dests: 
 (3260) (0 4) 3260 U(6) = U(6) + U
@@ -437,10 +478,15 @@ Halstead complexity:
 (3260) (0 6)      M(Z) = M(Z) + (U * 450%)
 (3260) (0 4)      U(6) = U(6) - U
 (3260) (0 1)      RETURN
+     WARNING: Type mismatch numeric * integer
+     WARNING: Type mismatch numeric * integer
   Origs: 3210:gosub
   Dests: 3261:auto
 (3260) (0 3) 3261 H%(26), H%(27), H%(29) = U(6)
 (3260) (0 1)      RETURN
+     WARNING: Target type (integer) does not match expression type (numeric).
+     WARNING: Target type (integer) does not match expression type (numeric).
+     WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3260:auto
   Dests: 
 (3262) (0 4) 3262 U(7) = U(7) + U
@@ -449,10 +495,15 @@ Halstead complexity:
 (3262) (0 6)      M(Z) = M(Z) + (U * 600%)
 (3262) (0 4)      U(7) = U(7) - U
 (3262) (0 1)      RETURN
+     WARNING: Type mismatch numeric * integer
+     WARNING: Type mismatch numeric * integer
   Origs: 3212:gosub
   Dests: 3263:auto
 (3262) (0 3) 3263 H%(31), H%(32), H%(34) = U(7)
 (3262) (0 1)      RETURN
+     WARNING: Target type (integer) does not match expression type (numeric).
+     WARNING: Target type (integer) does not match expression type (numeric).
+     WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3262:auto
   Dests: 
 (3264) (0 4) 3264 U(8) = U(8) + U
@@ -461,10 +512,14 @@ Halstead complexity:
 (3264) (0 6)      M(Z) = M(Z) + (U * 400%)
 (3264) (0 4)      U(8) = U(8) - U
 (3264) (0 1)      RETURN
+     WARNING: Type mismatch numeric * integer
+     WARNING: Type mismatch numeric * integer
   Origs: 3214:gosub
   Dests: 3265:auto
 (3264) (0 3) 3265 H%(37), H%(39) = U(8)
 (3264) (0 1)      RETURN
+     WARNING: Target type (integer) does not match expression type (numeric).
+     WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3264:auto
   Dests: 
 (2000) (0 1) 4100 RANDOMIZE
@@ -474,53 +529,63 @@ Halstead complexity:
 (2000) (1 8) 4102 IF L >= 0 AND L <= .1 THEN PRINT Z$(1)
 (2000) (0 4)      M(Z) = M(Z) + 100%
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric + integer
   Origs: 4100:auto
   Dests: 4104:auto
 (2000) (1 8) 4104 IF L > .1 AND L <= .2 THEN PRINT Z$(2)
 (2000) (0 4)      M(Z) = M(Z) + 100%
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric + integer
   Origs: 4102:auto
   Dests: 4106:auto
 (2000) (1 8) 4106 IF L > .2 AND L <= .3 THEN PRINT Z$(3)
 (2000) (0 4)      M(Z) = M(Z) + 20%
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric + integer
   Origs: 4104:auto
   Dests: 4108:auto
 (2000) (1 8) 4108 IF L > .3 AND L <= .4 THEN PRINT Z$(4)
 (2000) (0 4)      M(Z) = M(Z) - 50%
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric - integer
   Origs: 4106:auto
   Dests: 4110:auto
 (2000) (1 8) 4110 IF L > .4 AND L <= .5 THEN PRINT Z$(5)
 (2000) (0 4)      M(Z) = M(Z) + 100%
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric + integer
   Origs: 4108:auto
   Dests: 4112:auto
 (2000) (1 8) 4112 IF L > .5 AND L <= .6 THEN PRINT Z$(6)
 (2000) (0 4)      M(Z) = M(Z) + 200%
 (2000) (0 3)      I(Z) = 0
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric + integer
   Origs: 4110:auto
   Dests: 4114:auto
 (2000) (1 8) 4114 IF L > .6 AND L <= .7 THEN PRINT Z$(7)
 (2000) (0 4)      M(Z) = M(Z) - 100%
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric - integer
   Origs: 4112:auto
   Dests: 4116:auto
 (2000) (1 8) 4116 IF L > .7 AND L <= .8 THEN PRINT Z$(8)
 (2000) (0 4)      M(Z) = M(Z) - 50%
 (2000) (0 3)      I(Z) = 10
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric - integer
   Origs: 4114:auto
   Dests: 4118:auto
 (2000) (1 8) 4118 IF L > .8 AND L <= .9 THEN PRINT Z$(9)
 (2000) (0 4)      M(Z) = M(Z) - 50%
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric - integer
   Origs: 4116:auto
   Dests: 4120:auto
 (2000) (1 8) 4120 IF L > .9 AND L <= 1 THEN PRINT Z$(10)
 (2000) (0 4)      M(Z) = M(Z) + 200%
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric + integer
   Origs: 4118:auto
   Dests: 4400:auto
 (2000) (0 1) 4400 RANDOMIZE
@@ -530,6 +595,7 @@ Halstead complexity:
 (2000) (1 8) 4402 IF L >= 0 AND L <= .1 THEN PRINT C$(1)
 (2000) (0 4)      M(Z) = M(Z) - 15%
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric - integer
   Origs: 4400:auto
   Dests: 4404:auto
 (2000) (1 8) 4404 IF L > .1 AND L <= .2 THEN PRINT C$(2)
@@ -548,11 +614,13 @@ Halstead complexity:
 (2000) (0 3)      I(Z) = 0
 (2000) (0 4)      M(Z) = M(Z) + 200%
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric + integer
   Origs: 4406:auto
   Dests: 4410:auto
 (2000) (1 8) 4410 IF L > .4 AND L <= .5 THEN PRINT C$(S)
 (2000) (0 4)      M(Z) = M(Z) + 50%
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric + integer
   Origs: 4408:auto
   Dests: 4412:auto
 (2000) (1 8) 4412 IF L > .5 AND L <= .6 THEN PRINT C$(6)
@@ -560,17 +628,20 @@ Halstead complexity:
 (2000) (0 4)      M(Z) = M(Z) + 200%
 (2000) (0 3)      GOSUB 2000
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric + integer
   Origs: 4410:auto
   Dests: 2000:gosub, 4414:auto
 (2000) (1 8) 4414 IF L > .6 AND L <= .7 THEN PRINT C$(7)
 (2000) (0 3)      I(Z) = 10
 (2000) (0 4)      M(Z) = M(Z) - 50%
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric - integer
   Origs: 4412:auto
   Dests: 4416:auto
 (2000) (1 8) 4416 IF L > .7 AND L <= .8 THEN PRINT C$(8)
 (2000) (0 4)      M(Z) = M(Z) + 150%
 (2000) (0 1)      RETURN
+     WARNING: Type mismatch numeric + integer
   Origs: 4414:auto
   Dests: 4418:auto
 (2000) (1 8) 4418 IF L > .8 AND L <= .9 THEN PRINT C$(9)
@@ -625,6 +696,7 @@ Halstead complexity:
   Dests: 30013:auto
 (2000) (0 2) 30013 CLOSE 1, 3
 (2000) (0 1)       END
+      WARNING: Terminating statement in GOSUB
   Origs: 30012:auto
   Dests: :stop
 

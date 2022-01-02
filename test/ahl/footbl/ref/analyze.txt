@@ -194,6 +194,7 @@ FNT(_) (0 5) 360 DEF FNT(X) = SIN(X) / COS(X)
   Origs: 560:auto
   Dests: 580:auto
 (2120) (0 3) 580 LET K = S
+    WARNING: Statement before GOSUB entry point
   Origs: 570:auto, 2910:goto
   Dests: 590:auto
 (2120) (0 3) 590 LET T1 = 120
@@ -209,6 +210,7 @@ FNT(_) (0 5) 360 DEF FNT(X) = SIN(X) / COS(X)
   Origs: 610:auto
   Dests: 630:auto
 (2120) (0 2) 630 GOSUB 2250
+    WARNING: Statement before GOSUB entry point
   Origs: 620:auto, 1660:goto, 1840:goto
   Dests: 640:auto, 2250:gosub
 (2120) (0 3) 640 LET F1 = 50
@@ -233,6 +235,7 @@ FNT(_) (0 5) 360 DEF FNT(X) = SIN(X) / COS(X)
   Origs: 690:auto
   Dests: 710:auto, 2340:ifthen
 (2120) (0 2) 710 PRINT "A TOUCHBACK"
+    WARNING: Statement before GOSUB entry point
   Origs: 700:auto, 1450:ifthen, 1830:ifthen
   Dests: 720:auto
 (2120) (0 3) 720 LET B = 20
@@ -263,6 +266,7 @@ FNT(_) (0 5) 360 DEF FNT(X) = SIN(X) / COS(X)
   Origs: 790:auto
   Dests: 810:auto
 (2120) (0 3) 810 LET F2 = .03
+    WARNING: Statement before GOSUB entry point
   Origs: 800:auto, 2890:ifthen, 3230:goto
   Dests: 820:auto
 (2120) (0 3) 820 LET O = 0
@@ -284,6 +288,7 @@ FNT(_) (0 5) 360 DEF FNT(X) = SIN(X) / COS(X)
   Origs: 860:auto
   Dests: 880:auto, 2920:ifthen
 (2120) (1 4) 880 IF C <= 0 THEN 2770
+    WARNING: Statement before GOSUB entry point
   Origs: 870:auto, 2970:goto
   Dests: 890:auto, 2770:ifthen
 (2120) (1 4) 890 IF L = 0 THEN 910
@@ -353,6 +358,7 @@ FNT(_) (0 5) 360 DEF FNT(X) = SIN(X) / COS(X)
   Origs: 1090:auto
   Dests: 1110:auto
 (2120) (1 5) 1110 IF RND(X) < F2 THEN 2510
+     WARNING: Statement before GOSUB entry point
   Origs: 1080:ifthen, 1100:auto, 1550:goto, 1600:goto
   Dests: 1120:auto, 2510:ifthen
 (2120) (1 4) 1120 IF G > 0 THEN 1210
@@ -443,6 +449,7 @@ FNT(_) (0 5) 360 DEF FNT(X) = SIN(X) / COS(X)
   Origs: 1390:auto
   Dests: 1410:auto
 (2120) (0 5) 1410 LET B = 100 - B - G
+     WARNING: Statement before GOSUB entry point
   Origs: 1390:ifthen, 1400:auto, 1910:goto, 2520:goto
   Dests: 1420:auto
 (2120) (0 4) 1420 LET S = 3 - S
@@ -485,6 +492,7 @@ FNT(_) (0 5) 360 DEF FNT(X) = SIN(X) / COS(X)
   Origs: 1530:auto
   Dests: 1550:auto
 (2120) (0 3) 1550 GOTO 1110
+     WARNING: Statement before GOSUB entry point
   Origs: 1540:auto, 1800:ifthen
   Dests: 1110:goto
 (2120) (0 7) 1560 LET G = -(2 * G * 8)
@@ -629,6 +637,7 @@ FNT(_) (0 5) 360 DEF FNT(X) = SIN(X) / COS(X)
   Origs: 2010:auto
   Dests: 2030:auto
 (1990) (0 2) 2030 PRINT "THE KICK IS ";
+     WARNING: Inconsistent GOSUB target (1990, 2030)
   Origs: 1820:gosub, 2020:auto
   Inconsistent GOSUB origins
   Dests: 2040:auto
@@ -807,7 +816,7 @@ FNT(_) (0 5) 360 DEF FNT(X) = SIN(X) / COS(X)
   Origs: 2600:auto
   Dests: 2620:auto
 (2530) (1 2) 2620 IF B5 5 THEN 2720
-     Too many operands
+     ERROR: Too many operands
   Origs: 2610:auto
   Dests: 2630:auto, 2720:ifthen
 (2530) (1 9) 2630 IF 0 < 4 * RND(0) - B1 + B THEN 2750
@@ -868,6 +877,7 @@ FNT(_) (0 5) 360 DEF FNT(X) = SIN(X) / COS(X)
   Origs: 2800:auto
   Dests: 2120:gosub, 2820:auto
 (2120) (0 1) 2820 STOP
+     WARNING: Terminating statement in GOSUB
   Origs: 2810:auto
   Dests: :stop
 (2120) (0 3) 2830 PRINT "END OF PERIOD"; X
@@ -1012,6 +1022,9 @@ FNT(_) (0 5) 360 DEF FNT(X) = SIN(X) / COS(X)
   Origs: 780:gosub
   Dests: 3300:auto
 (3290) (1 4) 3300 IF B = 50 THEN 3400
+     WARNING: Inconsistent GOSUB target (3290, 3300)
+     WARNING: Inconsistent GOSUB target (3290, 3300)
+     WARNING: Inconsistent GOSUB target (3290, 3300)
   Origs: 1630:gosub, 2360:gosub, 2480:gosub, 3290:auto
   Inconsistent GOSUB origins
   Dests: 3310:auto, 3400:ifthen
@@ -1103,6 +1116,7 @@ FNT(_) (0 5) 360 DEF FNT(X) = SIN(X) / COS(X)
   Origs: 3580:auto
   Dests: 3610:goto
 (3610) (0 2) 3600 PRINT "..WRONG, TRY AGAIN"
+     WARNING: Statement before GOSUB entry point
   Origs: 3560:ifthen, 3620:ifthen, 3640:ifthen, 3650:ifthen
   Dests: 3610:auto
 (3610) (1 2) 3610 INPUT A
