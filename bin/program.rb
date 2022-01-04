@@ -1295,7 +1295,7 @@ class Program
       @lines.each do |line_number, _line|
         statements = @lines[line_number].statements
 
-        statements.each_with_index do |statement, _stmt|
+        statements.each do |statement|
           # only reachable lines can reach other lines
           next unless statement.reachable
 
@@ -1386,6 +1386,7 @@ class Program
     transfers_to_origins
     set_transfers_auto
     assign_sub_markers
+    assign_on_error_markers
     check_program
     check_function_markers
   end
@@ -1417,14 +1418,23 @@ class Program
   end
 
   def assign_sub_markers
-    part_of_sub = nil
-
     @lines.keys.sort.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
 
-      statements.each_with_index do |statement, stmt|
+      statements.each do |statement|
         statement.assign_sub_markers(self)
+      end
+    end
+  end
+
+  def assign_on_error_markers
+    @lines.keys.sort.each do |line_number|
+      line = @lines[line_number]
+      statements = line.statements
+
+      statements.each do |statement|
+        statement.assign_on_error_markers(self)
       end
     end
   end
@@ -1589,7 +1599,7 @@ class Program
       end
     end
 
-    @lines.keys.sort.each_with_index do |line_number, stmt|
+    @lines.keys.sort.each do |line_number|
       line = @lines[line_number]
       statements = line.statements
 
