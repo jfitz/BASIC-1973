@@ -78,6 +78,7 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
 3100 PRINT M$(13):PRINT M$(14):INPUT F$:IF F$="SELL" THEN GOSUB 3150
 3105 PRINT M$(19):INPUT H$: IF H$="HOUSE" THEN 3200 ELSE RETURN
 3150 PRINT M$(15):INPUT F$: IF F$="LIST" THEN GOSUB 3170
+ WARNING: Inconsistent GOSUB origins
 3152 PRINT M$(17):INPUT V$: INPUT "HOW MUCH DO YOU WANT FOR IT";V
 3154 FOR I=1 TO 39
 3156 IF V$=G$(I) THEN IF L%(I)=0 THEN PRINT M$(16): RETURN
@@ -92,6 +93,7 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
 3162 NEXT I
 3165 PRINT M$(18);:INPUT F$: IF F$="YES" THEN 3152 ELSE RETURN
 3170 C,D=0: FOR I=1 TO 39
+ WARNING: Inconsistent GOSUB origins
 3172 IF L%(I)=1 THEN C=C+1: A$(C)=G$(I)
 3174 IF L%(I)=2 THEN D=D+1: B$(D)=G$(I)
 3175 NEXT I
