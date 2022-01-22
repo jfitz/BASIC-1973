@@ -240,6 +240,7 @@ class Interpreter
   def program_optimize
     clear_user_functions
 
+    @program.pessimize
     @program.optimize(self)
   end
 
