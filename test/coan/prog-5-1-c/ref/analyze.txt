@@ -19,43 +19,43 @@ Halstead complexity:
  intelligence: 24.078
  time: 13.353
 
-(1 3) 10 FOR I = 1 TO 5
+F(I) (1 3) 10 FOR I = 1 TO 5
   Origs: :start
   Dests: 20:fornext, 30:fornext
-(0 3) 20 LET C[I] = 0
+F(I) (0 3) 20 LET C[I] = 0
   Origs: 10:fornext
   Dests: 30:auto
-(0 1) 30 NEXT I
+F(I) (0 1) 30 NEXT I
   Origs: 10:fornext, 20:auto
   Dests: 40:auto
-(1 3) 40 FOR R = 1 TO 5
+F(R) (1 3) 40 FOR R = 1 TO 5
   Origs: 30:auto, 90:goto
   Dests: 50:fornext, 80:fornext
-(1 2) 50 READ K
+F(R) (1 2) 50 READ K
   Origs: 40:fornext
   Dests: 60:auto
-(1 6) 60 IF K = -1 THEN 100
+F(R) (1 6) 60 IF K = -1 THEN 100
   Origs: 50:auto
   Dests: 70:auto, 100:ifthen
-(0 4) 70 LET C[R] = C[R] + K
+F(R) (0 4) 70 LET C[R] = C[R] + K
   Origs: 60:auto
   Dests: 80:auto
-(0 1) 80 NEXT R
+F(R) (0 1) 80 NEXT R
   Origs: 40:fornext, 70:auto
   Dests: 90:auto
 (0 3) 90 GOTO 40
   Origs: 80:auto
   Dests: 40:goto
-(0 6) 100 PRINT "CHEMISTRY", "PHYSICS", "FRENCH", "SPANISH", "CALCULUS"
+F(R) (0 6) 100 PRINT "CHEMISTRY", "PHYSICS", "FRENCH", "SPANISH", "CALCULUS"
   Origs: 60:ifthen
   Dests: 110:auto
-(1 3) 110 FOR I = 1 TO 5
+F(R,I) (1 3) 110 FOR I = 1 TO 5
   Origs: 100:auto
   Dests: 120:fornext, 130:fornext
-(0 2) 120 PRINT C[I],
+F(R,I) (0 2) 120 PRINT C[I],
   Origs: 110:fornext
   Dests: 130:auto
-(0 1) 130 NEXT I
+F(R,I) (0 1) 130 NEXT I
   Origs: 110:fornext, 120:auto
   Dests: 9999:auto
 (0 1) 990 REM DATA IS IN ORDER CHEMISTRY PHYSICS FRENCH SPANISH CALCULUS
@@ -76,7 +76,8 @@ Halstead complexity:
 (0 3) 1100 DATA -1
   Origs: 
   Dests: 
-(0 1) 9999 END
+F(R) (0 1) 9999 END
+     WARNING: Terminating statement in FOR/NEXT
   Origs: 130:auto
   Dests: :stop
 

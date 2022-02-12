@@ -130,13 +130,13 @@ FNT(_) (0 5) 360 DEF FNT(X) = SIN(X) / COS(X)
 (0 2) 370 DIM R(17)
   Origs: 350:auto
   Dests: 380:auto
-(1 3) 380 FOR I = 0 TO 17
+F(I) (1 3) 380 FOR I = 0 TO 17
   Origs: 370:auto
   Dests: 390:fornext, 400:fornext
-(1 2) 390 READ R(I)
+F(I) (1 2) 390 READ R(I)
   Origs: 380:fornext
   Dests: 400:auto
-(0 1) 400 NEXT I
+F(I) (0 1) 400 NEXT I
   Origs: 380:fornext, 390:auto
   Dests: 420:auto
 (0 2) 410 DATA 9, 13, 10, 0, 9, 10, 12, 11, 12, 0, 1, 5, 3, 4, 6, 2, 8, 7
@@ -160,25 +160,25 @@ FNT(_) (0 5) 360 DEF FNT(X) = SIN(X) / COS(X)
 (0 4) 470 DIM Z(5, 3), P(2), D(2, 5)
   Origs: 460:auto
   Dests: 480:auto
-(1 3) 480 FOR A = 0 TO 5
+F(A) (1 3) 480 FOR A = 0 TO 5
   Origs: 470:auto
   Dests: 490:fornext, 530:fornext
-(1 3) 490 FOR B = 0 TO 2
+F(A,B) (1 3) 490 FOR B = 0 TO 2
   Origs: 480:fornext
   Dests: 500:fornext, 510:fornext
-(2 3) 500 READ Z(A, B), D(B, A)
+F(A,B) (2 3) 500 READ Z(A, B), D(B, A)
   Origs: 490:fornext
   Dests: 505:auto
-(0 3) 505 LET P(B) = 0
+F(A,B) (0 3) 505 LET P(B) = 0
   Origs: 500:auto
   Dests: 510:auto
-(0 1) 510 NEXT B
+F(A,B) (0 1) 510 NEXT B
   Origs: 490:fornext, 505:auto
   Dests: 520:auto
-(1 2) 520 READ Z(A, 3)
+F(A) (1 2) 520 READ Z(A, 3)
   Origs: 510:auto
   Dests: 530:auto
-(0 1) 530 NEXT A
+F(A) (0 1) 530 NEXT A
   Origs: 480:fornext, 520:auto
   Dests: 540:auto
 (0 2) 540 PRINT "DO YOU WANT TO RECEIVE";

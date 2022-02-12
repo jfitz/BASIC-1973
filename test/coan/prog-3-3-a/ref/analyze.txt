@@ -22,13 +22,13 @@ Halstead complexity:
 (0 1) 8 REM   WE ARE READING FOUR ITEMS OF DATA WITH A LOOP
   Origs: 
   Dests: 
-(1 3) 10 FOR S = 1 TO 4
+F(S) (1 3) 10 FOR S = 1 TO 4
   Origs: :start
   Dests: 20:fornext, 30:fornext
-(1 2) 20 READ L[S]
+F(S) (1 2) 20 READ L[S]
   Origs: 10:fornext
   Dests: 30:auto
-(0 1) 30 NEXT S
+F(S) (0 1) 30 NEXT S
   Origs: 10:fornext, 20:auto
   Dests: 38:auto
 (0 2) 38 PRINT "WE CAN PRINT THE ITEMS OF THE LIST EXPLICITLY"
@@ -49,13 +49,13 @@ Halstead complexity:
 (0 2) 80 PRINT "BEING ABLE TO USE A LOOP IS"
   Origs: 70:auto
   Dests: 90:auto
-(1 3) 90 FOR X = 1 TO 4
+F(X) (1 3) 90 FOR X = 1 TO 4
   Origs: 80:auto
   Dests: 100:fornext, 110:fornext
-(0 2) 100 PRINT L[X];
+F(X) (0 2) 100 PRINT L[X];
   Origs: 90:fornext
   Dests: 110:auto
-(0 1) 110 NEXT X
+F(X) (0 1) 110 NEXT X
   Origs: 90:fornext, 100:auto
   Dests: 130:auto
 (0 2) 130 PRINT
@@ -70,13 +70,13 @@ Halstead complexity:
 (0 2) 145 PRINT "  B   L[B]  B*L[B]"
   Origs: 140:auto
   Dests: 150:auto
-(1 3) 150 FOR B = 1 TO 4
+F(B) (1 3) 150 FOR B = 1 TO 4
   Origs: 145:auto
   Dests: 155:fornext, 160:fornext
-(0 5) 155 PRINT B; L[B]; B * L[B]
+F(B) (0 5) 155 PRINT B; L[B]; B * L[B]
   Origs: 150:fornext
   Dests: 160:auto
-(0 1) 160 NEXT B
+F(B) (0 1) 160 NEXT B
   Origs: 150:fornext, 155:auto
   Dests: 170:auto
 (0 2) 170 PRINT
@@ -85,13 +85,13 @@ Halstead complexity:
 (0 2) 180 PRINT "WE CAN PRINT THE LIST BACKWARDS WITH FOR X=4 TO 1 STEP -1"
   Origs: 170:auto
   Dests: 190:auto
-(1 5) 190 FOR X = 4 TO 1 STEP -1
+F(X) (1 5) 190 FOR X = 4 TO 1 STEP -1
   Origs: 180:auto
   Dests: 200:fornext, 210:fornext
-(0 2) 200 PRINT L[X];
+F(X) (0 2) 200 PRINT L[X];
   Origs: 190:fornext
   Dests: 210:auto
-(0 1) 210 NEXT X
+F(X) (0 1) 210 NEXT X
   Origs: 190:fornext, 200:auto
   Dests: 220:auto
 (0 2) 220 PRINT
@@ -145,22 +145,22 @@ Halstead complexity:
 (0 2) 330 PRINT "WE CAN PUSH EVERY NUMBER UP FOUR LOCATIONS IN THE LIST"
   Origs: 320:auto
   Dests: 340:auto
-(1 3) 340 FOR P = 1 TO 4
+F(P) (1 3) 340 FOR P = 1 TO 4
   Origs: 330:auto
   Dests: 350:fornext, 360:fornext
-(0 3) 350 LET L[P + 4] = L[P]
+F(P) (0 3) 350 LET L[P + 4] = L[P]
   Origs: 340:fornext
   Dests: 360:auto
-(0 1) 360 NEXT P
+F(P) (0 1) 360 NEXT P
   Origs: 340:fornext, 350:auto
   Dests: 370:auto
-(1 3) 370 FOR N = 1 TO 8
+F(N) (1 3) 370 FOR N = 1 TO 8
   Origs: 360:auto
   Dests: 380:fornext, 390:fornext
-(0 2) 380 PRINT L[N];
+F(N) (0 2) 380 PRINT L[N];
   Origs: 370:fornext
   Dests: 390:auto
-(0 1) 390 NEXT N
+F(N) (0 1) 390 NEXT N
   Origs: 370:fornext, 380:auto
   Dests: 9999:auto
 (0 3) 500 DATA 4, 9, -92, 8

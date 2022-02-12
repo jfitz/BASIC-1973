@@ -55,379 +55,382 @@ Halstead complexity:
 (0 5) 20 DIM X(64), L(76), M(76, 4), Y(16)
   Origs: 7:ifthen, 16:auto
   Dests: 21:auto
-(1 3) 21 FOR I = 1 TO 16
+F(I) (1 3) 21 FOR I = 1 TO 16
   Origs: 20:auto
   Dests: 22:fornext, 23:fornext
-(1 2) 22 READ Y(I)
+F(I) (1 2) 22 READ Y(I)
   Origs: 21:fornext
   Dests: 23:auto
-(0 1) 23 NEXT I
+F(I) (0 1) 23 NEXT I
   Origs: 21:fornext, 22:auto
   Dests: 24:auto
-(1 3) 24 FOR I = 1 TO 76
+F(I) (1 3) 24 FOR I = 1 TO 76
   Origs: 23:auto
   Dests: 25:fornext, 28:fornext
-(1 3) 25 FOR J = 1 TO 4
+F(I,J) (1 3) 25 FOR J = 1 TO 4
   Origs: 24:fornext
   Dests: 26:fornext, 27:fornext
-(1 2) 26 READ M(I, J)
+F(I,J) (1 2) 26 READ M(I, J)
   Origs: 25:fornext
   Dests: 27:auto
-(0 1) 27 NEXT J
+F(I,J) (0 1) 27 NEXT J
   Origs: 25:fornext, 26:auto
   Dests: 28:auto
-(0 1) 28 NEXT I
+F(I) (0 1) 28 NEXT I
   Origs: 24:fornext, 27:auto
   Dests: 35:auto
-(1 3) 35 FOR I = 1 TO 64
+F(I,J,K) (1 3) 35 FOR I = 1 TO 64
   Origs: 28:auto, 515:ifthen
   Dests: 40:fornext, 50:fornext
-(0 3) 40 LET X(I) = 0
+F(I,J,K) (0 3) 40 LET X(I) = 0
   Origs: 35:fornext
   Dests: 50:auto
-(0 1) 50 NEXT I
+F(I,J,K) (0 1) 50 NEXT I
   Origs: 35:fornext, 40:auto
   Dests: 54:auto
-(0 3) 54 LET Z = 1
+F(J,K) (0 3) 54 LET Z = 1
   Origs: 50:auto
   Dests: 55:auto
-(0 2) 55 PRINT "DO YOU WANT TO MOVE FIRST";
+F(J,K) (0 2) 55 PRINT "DO YOU WANT TO MOVE FIRST";
   Origs: 54:auto
   Dests: 60:auto
-(1 2) 60 INPUT S$
+F(J,K) (1 2) 60 INPUT S$
   Origs: 55:auto, 69:goto
   Dests: 66:auto
-(1 4) 66 IF S$ = "NO" THEN 110
+F(J,K) (1 4) 66 IF S$ = "NO" THEN 110
   Origs: 60:auto
   Dests: 67:auto, 110:ifthen
-(1 4) 67 IF S$ = "YES" THEN 70
+F(J,K) (1 4) 67 IF S$ = "YES" THEN 70
   Origs: 66:auto
   Dests: 68:auto, 70:ifthen
-(0 2) 68 PRINT "INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'";
+F(J,K) (0 2) 68 PRINT "INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'";
   Origs: 67:auto
   Dests: 69:auto
-(0 3) 69 GOTO 60
+F(J,K) (0 3) 69 GOTO 60
   Origs: 68:auto
   Dests: 60:goto
-(0 2) 70 PRINT " "
+F(J,I,K) (0 2) 70 PRINT " "
   Origs: 67:ifthen, 101:goto, 243:goto, 390:goto, 1230:goto, 1640:goto, 1780:goto
   Dests: 72:auto
-(0 2) 72 PRINT "YOUR MOVE";
+F(J,I,K) (0 2) 72 PRINT "YOUR MOVE";
   Origs: 70:auto
   Dests: 80:auto
-(1 2) 80 INPUT J1
+F(J,I,K) (1 2) 80 INPUT J1
   Origs: 72:auto
   Dests: 85:auto
-(0 2) 85 GOSUB 1800
+F(J,I,K) (0 2) 85 GOSUB 1800
   Origs: 80:auto
   Dests: 90:auto, 1800:gosub
-(0 4) 90 LET K1 = INT(J1 / 100)
+F(J,I,K) (0 4) 90 LET K1 = INT(J1 / 100)
   Origs: 85:auto
   Dests: 95:auto
-(0 6) 95 LET J2 = (J1 - K1 * 100)
+F(J,I,K) (0 6) 95 LET J2 = (J1 - K1 * 100)
   Origs: 90:auto
   Dests: 96:auto
-(0 4) 96 LET K2 = INT(J2 / 10)
+F(J,I,K) (0 4) 96 LET K2 = INT(J2 / 10)
   Origs: 95:auto
   Dests: 97:auto
-(0 9) 97 LET K3 = J1 - K1 * 100 - K2 * 10
+F(J,I,K) (0 9) 97 LET K3 = J1 - K1 * 100 - K2 * 10
   Origs: 96:auto
   Dests: 98:auto
-(0 9) 98 LET M = 16 * K1 + 4 * K2 + K3 - 20
+F(J,I,K) (0 9) 98 LET M = 16 * K1 + 4 * K2 + K3 - 20
   Origs: 97:auto
   Dests: 99:auto
-(1 4) 99 IF X(M) = 0 THEN 109
+F(J,I,K) (1 4) 99 IF X(M) = 0 THEN 109
   Origs: 98:auto
   Dests: 100:auto, 109:ifthen
-(0 2) 100 PRINT "THAT SQUARE IS USED, TRY AGAIN"
+F(J,I,K) (0 2) 100 PRINT "THAT SQUARE IS USED, TRY AGAIN"
   Origs: 99:auto
   Dests: 101:auto
-(0 3) 101 GOTO 70
+F(J,I,K) (0 3) 101 GOTO 70
   Origs: 100:auto
   Dests: 70:goto
-(0 3) 109 LET X(M) = 1
+F(J,I,K) (0 3) 109 LET X(M) = 1
   Origs: 99:ifthen
   Dests: 110:auto
-(0 2) 110 GOSUB 1050
+F(J,I,K) (0 2) 110 GOSUB 1050
   Origs: 66:ifthen, 109:auto
   Dests: 180:auto, 1050:gosub
-(1 3) 180 FOR J = 1 TO 3
+F(J,I,K) (1 3) 180 FOR J = 1 TO 3
   Origs: 110:auto
   Dests: 190:fornext, 206:fornext
-(1 3) 190 FOR I = 1 TO 76
+F(J,I,K) (1 3) 190 FOR I = 1 TO 76
   Origs: 180:fornext
   Dests: 200:fornext, 205:fornext
-(1 4) 200 IF J = 1 THEN 210
+F(J,I,K) (1 4) 200 IF J = 1 THEN 210
   Origs: 190:fornext
   Dests: 201:auto, 210:ifthen
-(1 4) 201 IF J = 2 THEN 220
+F(J,I,K) (1 4) 201 IF J = 2 THEN 220
   Origs: 200:auto
   Dests: 203:auto, 220:ifthen
-(1 4) 203 IF J = 3 THEN 235
+F(J,I,K) (1 4) 203 IF J = 3 THEN 235
   Origs: 201:auto
   Dests: 205:auto, 235:ifthen
-(0 1) 205 NEXT I
+F(J,I,K) (0 1) 205 NEXT I
   Origs: 190:fornext, 203:auto, 210:ifthen, 220:ifthen, 235:ifthen
   Dests: 206:auto
-(0 1) 206 NEXT J
+F(J,I,K) (0 1) 206 NEXT J
   Origs: 180:fornext, 205:auto
   Dests: 207:auto
-(0 2) 207 GOTO 400
+F(I,K) (0 2) 207 GOTO 400
   Origs: 206:auto
   Dests: 400:goto
-(1 5) 210 IF L(I) <> 4 THEN 205
+F(J,I,K) (1 5) 210 IF L(I) <> 4 THEN 205
   Origs: 200:ifthen
   Dests: 205:ifthen, 211:auto
-(0 2) 211 PRINT "YOU WIN AS FOLLOWS";
+F(J,I,K) (0 2) 211 PRINT "YOU WIN AS FOLLOWS";
   Origs: 210:auto
   Dests: 212:auto
-(1 3) 212 FOR J = 1 TO 4
+F(J,I,J,K) (1 3) 212 FOR J = 1 TO 4
   Origs: 211:auto
   Dests: 213:fornext, 216:fornext
-(0 3) 213 LET M = M(I, J)
+F(J,I,J,K) (0 3) 213 LET M = M(I, J)
   Origs: 212:fornext
   Dests: 214:auto
-(0 2) 214 GOSUB 1000
+F(J,I,K) (0 2) 214 GOSUB 1000
   Origs: 213:auto
   Dests: 216:auto, 1000:gosub
-(0 1) 216 NEXT J
+F(J,I,K) (0 1) 216 NEXT J
   Origs: 212:fornext, 214:auto
   Dests: 217:auto
-(0 2) 217 GOTO 500
+F(J,I,K) (0 2) 217 GOTO 500
   Origs: 216:auto
   Dests: 500:goto
-(1 5) 220 IF L(I) <> 15 THEN 205
+F(J,I,K) (1 5) 220 IF L(I) <> 15 THEN 205
   Origs: 201:ifthen
   Dests: 205:ifthen, 221:auto
-(1 3) 221 FOR J = 1 TO 4
+F(J,I,J,K) (1 3) 221 FOR J = 1 TO 4
   Origs: 220:auto
   Dests: 222:fornext, 227:fornext
-(0 3) 222 LET M = M(I, J)
+F(J,I,J,K) (0 3) 222 LET M = M(I, J)
   Origs: 221:fornext
   Dests: 223:auto
-(1 4) 223 IF X(M) <> 0 THEN 227
+F(J,I,K) (1 4) 223 IF X(M) <> 0 THEN 227
   Origs: 222:auto
   Dests: 224:auto, 227:ifthen
-(0 3) 224 LET X(M) = 5
+F(J,I,K) (0 3) 224 LET X(M) = 5
   Origs: 223:auto
   Dests: 225:auto
-(0 2) 225 PRINT "MACHINE MOVES TO";
+F(J,I,K) (0 2) 225 PRINT "MACHINE MOVES TO";
   Origs: 224:auto
   Dests: 226:auto
-(0 2) 226 GOSUB 1000
+F(J,I,K) (0 2) 226 GOSUB 1000
   Origs: 225:auto
   Dests: 227:auto, 1000:gosub
-(0 1) 227 NEXT J
+F(J,I,K) (0 1) 227 NEXT J
   Origs: 221:fornext, 223:ifthen, 226:auto
   Dests: 228:auto
-(0 2) 228 PRINT ", AND WINS AS FOLLOWS"
+F(J,I,K) (0 2) 228 PRINT ", AND WINS AS FOLLOWS"
   Origs: 227:auto
   Dests: 229:auto
-(1 3) 229 FOR J = 1 TO 4
+F(J,I,J,K) (1 3) 229 FOR J = 1 TO 4
   Origs: 228:auto
   Dests: 230:fornext, 233:fornext
-(0 3) 230 LET M = M(I, J)
+F(J,I,J,K) (0 3) 230 LET M = M(I, J)
   Origs: 229:fornext
   Dests: 231:auto
-(0 2) 231 GOSUB 1000
+F(J,I,K) (0 2) 231 GOSUB 1000
   Origs: 230:auto
   Dests: 233:auto, 1000:gosub
-(0 1) 233 NEXT J
+F(J,I,K) (0 1) 233 NEXT J
   Origs: 229:fornext, 231:auto
   Dests: 234:auto
-(0 2) 234 GOTO 500
+F(J,I,K) (0 2) 234 GOTO 500
   Origs: 233:auto
   Dests: 500:goto
-(1 5) 235 IF L(I) <> 3 THEN 205
+F(J,I,K) (1 5) 235 IF L(I) <> 3 THEN 205
   Origs: 203:ifthen
   Dests: 205:ifthen, 236:auto
-(0 2) 236 PRINT "NICE TRY MACHINE MOVES TO";
+F(J,I,K) (0 2) 236 PRINT "NICE TRY MACHINE MOVES TO";
   Origs: 235:auto
   Dests: 237:auto
-(1 3) 237 FOR J = 1 TO 4
+F(J,I,J,K) (1 3) 237 FOR J = 1 TO 4
   Origs: 236:auto
   Dests: 238:fornext, 245:fornext
-(0 3) 238 LET M = M(I, J)
+F(J,I,J,K) (0 3) 238 LET M = M(I, J)
   Origs: 237:fornext
   Dests: 239:auto
-(1 4) 239 IF X(M) <> 0 THEN 245
+F(J,I,K) (1 4) 239 IF X(M) <> 0 THEN 245
   Origs: 238:auto
   Dests: 240:auto, 245:ifthen
-(0 3) 240 LET X(M) = 5
+F(J,I,K) (0 3) 240 LET X(M) = 5
   Origs: 239:auto
   Dests: 241:auto
-(0 2) 241 GOSUB 1000
+F(J,I,K) (0 2) 241 GOSUB 1000
   Origs: 240:auto
   Dests: 243:auto, 1000:gosub
-(0 3) 243 GOTO 70
+F(J,I,K) (0 3) 243 GOTO 70
   Origs: 241:auto
   Dests: 70:goto
-(0 1) 245 NEXT J
+F(J,I,K) (0 1) 245 NEXT J
   Origs: 237:fornext, 239:ifthen
   Dests: 248:auto
-(0 2) 248 GOTO 400
+F(J,I,K) (0 2) 248 GOTO 400
   Origs: 245:auto
   Dests: 400:goto
-(1 3) 250 FOR I = 1 TO 76
+F(J,I,I,K) (1 3) 250 FOR I = 1 TO 76
   Origs: 493:goto
   Dests: 251:fornext, 290:fornext
-(0 6) 251 LET L(I) = X(M(I, 1)) + X(M(I, 2)) + X(M(I, 3)) + X(M(I, 4))
+F(J,I,I,K) (0 6) 251 LET L(I) = X(M(I, 1)) + X(M(I, 2)) + X(M(I, 3)) + X(M(I, 4))
   Origs: 250:fornext
   Dests: 252:auto
-(0 3) 252 LET L = L(I)
+F(J,I,K) (0 3) 252 LET L = L(I)
   Origs: 251:auto
   Dests: 255:auto
-(1 4) 255 IF L < 2 THEN 290
+F(J,I,K) (1 4) 255 IF L < 2 THEN 290
   Origs: 252:auto
   Dests: 260:auto, 290:ifthen
-(1 4) 260 IF L >= 3 THEN 290
+F(J,I,K) (1 4) 260 IF L >= 3 THEN 290
   Origs: 255:auto
   Dests: 265:auto, 290:ifthen
-(1 4) 265 IF L > 2 THEN 1600
+F(J,I,K) (1 4) 265 IF L > 2 THEN 1600
   Origs: 260:auto
   Dests: 270:auto, 1600:ifthen
-(1 3) 270 FOR J = 1 TO 4
+F(J,I,J,K) (1 3) 270 FOR J = 1 TO 4
   Origs: 265:auto
   Dests: 275:fornext, 285:fornext
-(1 4) 275 IF X(M(I, J)) <> 0 THEN 285
+F(J,I,J,K) (1 4) 275 IF X(M(I, J)) <> 0 THEN 285
   Origs: 270:fornext
   Dests: 280:auto, 285:ifthen
-(0 4) 280 LET X(M(I, J)) = 1 / 8
+F(J,I,K) (0 4) 280 LET X(M(I, J)) = 1 / 8
   Origs: 275:auto
   Dests: 285:auto
-(0 1) 285 NEXT J
+F(J,I,K) (0 1) 285 NEXT J
   Origs: 270:fornext, 275:ifthen, 280:auto
   Dests: 290:auto
-(0 1) 290 NEXT I
+F(J,I,K) (0 1) 290 NEXT I
   Origs: 250:fornext, 255:ifthen, 260:ifthen, 285:auto
   Dests: 295:auto
-(0 2) 295 GOSUB 1050
+F(J,I,K) (0 2) 295 GOSUB 1050
   Origs: 290:auto
   Dests: 300:auto, 1050:gosub
-(1 3) 300 FOR I = 1 TO 76
+F(J,I,I,K) (1 3) 300 FOR I = 1 TO 76
   Origs: 295:auto
   Dests: 305:fornext, 315:fornext
-(1 6) 305 IF L(I) = 1 / 2 THEN 1700
+F(J,I,I,K) (1 6) 305 IF L(I) = 1 / 2 THEN 1700
   Origs: 300:fornext
   Dests: 310:auto, 1700:ifthen
-(1 8) 310 IF L(I) = 1 + 3 / 8 THEN 1700
+F(J,I,K) (1 8) 310 IF L(I) = 1 + 3 / 8 THEN 1700
   Origs: 305:auto
   Dests: 315:auto, 1700:ifthen
-(0 1) 315 NEXT I
+F(J,I,K) (0 1) 315 NEXT I
   Origs: 300:fornext, 310:auto
   Dests: 320:auto
-(0 2) 320 GOTO 1300
+F(J,I,K) (0 2) 320 GOTO 1300
   Origs: 315:auto
   Dests: 1300:goto
-(0 3) 360 LET Z = 1
+F(J,I) (0 3) 360 LET Z = 1
   Origs: 1396:goto
   Dests: 362:auto
-(1 4) 362 IF X(Y(Z)) = 0 THEN 380
+F(J,I) (1 4) 362 IF X(Y(Z)) = 0 THEN 380
   Origs: 360:auto, 368:ifthen
   Dests: 365:auto, 380:ifthen
-(0 4) 365 LET Z = Z + 1
+F(J,I) (0 4) 365 LET Z = Z + 1
   Origs: 362:auto
   Dests: 368:auto
-(1 5) 368 IF Z <> 17 THEN 362
+F(J,I) (1 5) 368 IF Z <> 17 THEN 362
   Origs: 365:auto
   Dests: 362:ifthen, 375:auto
-(0 2) 375 GOTO 1200
+F(J,I) (0 2) 375 GOTO 1200
   Origs: 368:auto
   Dests: 1200:goto
-(0 3) 380 LET M = Y(Z)
+F(J,I) (0 3) 380 LET M = Y(Z)
   Origs: 362:ifthen
   Dests: 381:auto
-(0 3) 381 LET X(M) = 5
+F(J,I) (0 3) 381 LET X(M) = 5
   Origs: 380:auto
   Dests: 385:auto
-(0 2) 385 PRINT "MACHINE MOVES TO";
+F(J,I) (0 2) 385 PRINT "MACHINE MOVES TO";
   Origs: 381:auto
   Dests: 389:auto
-(0 2) 389 GOSUB 1000
+F(J,I) (0 2) 389 GOSUB 1000
   Origs: 385:auto
   Dests: 390:auto, 1000:gosub
-(0 3) 390 GOTO 70
+F(J,I) (0 3) 390 GOTO 70
   Origs: 389:auto
   Dests: 70:goto
-(0 3) 400 LET X = X
+F(J,I,K) (0 3) 400 LET X = X
   Origs: 207:goto, 248:goto
   Dests: 410:auto
-(1 3) 410 FOR I = 1 TO 76
+F(J,I,I,K) (1 3) 410 FOR I = 1 TO 76
   Origs: 400:auto
   Dests: 412:fornext, 455:fornext
-(0 6) 412 LET L(I) = X(M(I, 1)) + X(M(I, 2)) + X(M(I, 3)) + X(M(I, 4))
+F(J,I,I,K) (0 6) 412 LET L(I) = X(M(I, 1)) + X(M(I, 2)) + X(M(I, 3)) + X(M(I, 4))
   Origs: 410:fornext
   Dests: 415:auto
-(0 3) 415 LET L = L(I)
+F(J,I,K) (0 3) 415 LET L = L(I)
   Origs: 412:auto
   Dests: 420:auto
-(1 4) 420 IF L < 10 THEN 455
+F(J,I,K) (1 4) 420 IF L < 10 THEN 455
   Origs: 415:auto
   Dests: 425:auto, 455:ifthen
-(1 4) 425 IF L >= 11 THEN 455
+F(J,I,K) (1 4) 425 IF L >= 11 THEN 455
   Origs: 420:auto
   Dests: 430:auto, 455:ifthen
-(1 4) 430 IF L > 10 THEN 1600
+F(J,I,K) (1 4) 430 IF L > 10 THEN 1600
   Origs: 425:auto
   Dests: 435:auto, 1600:ifthen
-(1 3) 435 FOR J = 1 TO 4
+F(J,I,J,K) (1 3) 435 FOR J = 1 TO 4
   Origs: 430:auto
   Dests: 440:fornext, 450:fornext
-(1 4) 440 IF X(M(I, J)) <> 0 THEN 450
+F(J,I,J,K) (1 4) 440 IF X(M(I, J)) <> 0 THEN 450
   Origs: 435:fornext
   Dests: 445:auto, 450:ifthen
-(0 4) 445 LET X(M(I, J)) = 1 / 8
+F(J,I,K) (0 4) 445 LET X(M(I, J)) = 1 / 8
   Origs: 440:auto
   Dests: 450:auto
-(0 1) 450 NEXT J
+F(J,I,K) (0 1) 450 NEXT J
   Origs: 435:fornext, 440:ifthen, 445:auto
   Dests: 455:auto
-(0 1) 455 NEXT I
+F(J,I,K) (0 1) 455 NEXT I
   Origs: 410:fornext, 420:ifthen, 425:ifthen, 450:auto
   Dests: 470:auto
-(0 2) 470 GOSUB 1050
+F(J,I,K) (0 2) 470 GOSUB 1050
   Origs: 455:auto
   Dests: 475:auto, 1050:gosub
-(1 3) 475 FOR I = 1 TO 76
+F(J,I,I,K) (1 3) 475 FOR I = 1 TO 76
   Origs: 470:auto
   Dests: 480:fornext, 490:fornext
-(1 4) 480 IF L(I) = .5 THEN 1700
+F(J,I,I,K) (1 4) 480 IF L(I) = .5 THEN 1700
   Origs: 475:fornext
   Dests: 485:auto, 1700:ifthen
-(1 8) 485 IF L(I) = 5 + 3 / 8 THEN 1700
+F(J,I,K) (1 8) 485 IF L(I) = 5 + 3 / 8 THEN 1700
   Origs: 480:auto
   Dests: 490:auto, 1700:ifthen
-(0 1) 490 NEXT I
+F(J,I,K) (0 1) 490 NEXT I
   Origs: 475:fornext, 485:auto
   Dests: 492:auto
-(0 2) 492 GOSUB 1800
+F(J,I,K) (0 2) 492 GOSUB 1800
   Origs: 490:auto
   Dests: 493:auto, 1800:gosub
-(0 3) 493 GOTO 250
+F(J,I,K) (0 3) 493 GOTO 250
   Origs: 492:auto
   Dests: 250:goto
-(0 2) 500 PRINT " "
+F(J,I,K) (0 2) 500 PRINT " "
   Origs: 217:goto, 234:goto, 1255:goto, 1665:goto
   Dests: 505:auto
-(0 2) 505 PRINT "DO YOU WANT TO TRY ANOTHER GAME";
+F(J,I,K) (0 2) 505 PRINT "DO YOU WANT TO TRY ANOTHER GAME";
   Origs: 500:auto
   Dests: 510:auto
-(1 2) 510 INPUT X$
+F(J,I,K) (1 2) 510 INPUT X$
   Origs: 505:auto, 518:goto
   Dests: 515:auto
-(1 5) 515 IF X$ = "YES" THEN 35
+F(J,I,K) (1 5) 515 IF X$ = "YES" THEN 35
   Origs: 510:auto
   Dests: 35:ifthen, 516:auto
-(1 4) 516 IF X$ = "NO" THEN 520
+F(J,I,K) (1 4) 516 IF X$ = "NO" THEN 520
   Origs: 515:auto
   Dests: 517:auto, 520:ifthen
-(0 2) 517 PRINT "INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'";
+F(J,I,K) (0 2) 517 PRINT "INCORRECT ANSWER. PLEASE TYPE 'YES' OR 'NO'";
   Origs: 516:auto
   Dests: 518:auto
-(0 3) 518 GOTO 510
+F(J,I,K) (0 3) 518 GOTO 510
   Origs: 517:auto
   Dests: 510:goto
-(0 1) 520 STOP
+F(J,I,K) (0 1) 520 STOP
+    WARNING: Terminating statement in FOR/NEXT
+    WARNING: Terminating statement in FOR/NEXT
+    WARNING: Terminating statement in FOR/NEXT
   Origs: 516:ifthen
   Dests: :stop
 G(1000) (0 5) 1000 LET K1 = INT((M - 1) / 16) + 1
@@ -451,121 +454,121 @@ G(1000) (0 2) 1042 PRINT M;
 G(1000) (0 1) 1045 RETURN
   Origs: 1042:auto
   Dests: 
-G(1050) (1 3) 1050 FOR S = 1 TO 76
+G(1050) F(S) (1 3) 1050 FOR S = 1 TO 76
   Origs: 110:gosub, 295:gosub, 470:gosub
   Dests: 1060:fornext, 1110:fornext
-G(1050) (0 3) 1060 LET J1 = M(S, 1)
+G(1050) F(S) (0 3) 1060 LET J1 = M(S, 1)
   Origs: 1050:fornext
   Dests: 1070:auto
-G(1050) (0 3) 1070 LET J2 = M(S, 2)
+G(1050) F(S) (0 3) 1070 LET J2 = M(S, 2)
   Origs: 1060:auto
   Dests: 1080:auto
-G(1050) (0 3) 1080 LET J3 = M(S, 3)
+G(1050) F(S) (0 3) 1080 LET J3 = M(S, 3)
   Origs: 1070:auto
   Dests: 1090:auto
-G(1050) (0 3) 1090 LET J4 = M(S, 4)
+G(1050) F(S) (0 3) 1090 LET J4 = M(S, 4)
   Origs: 1080:auto
   Dests: 1100:auto
-G(1050) (0 6) 1100 LET L(S) = X(J1) + X(J2) + X(J3) + X(J4)
+G(1050) F(S) (0 6) 1100 LET L(S) = X(J1) + X(J2) + X(J3) + X(J4)
   Origs: 1090:auto
   Dests: 1110:auto
-G(1050) (0 1) 1110 NEXT S
+G(1050) F(S) (0 1) 1110 NEXT S
   Origs: 1050:fornext, 1100:auto
   Dests: 1120:auto
 G(1050) (0 1) 1120 RETURN
   Origs: 1110:auto
   Dests: 
-(1 3) 1200 FOR I = 1 TO 64
+F(J,I,I) (1 3) 1200 FOR I = 1 TO 64
   Origs: 375:goto
   Dests: 1210:fornext, 1250:fornext
-(1 4) 1210 IF X(I) <> 0 THEN 1250
+F(J,I,I) (1 4) 1210 IF X(I) <> 0 THEN 1250
   Origs: 1200:fornext
   Dests: 1220:auto, 1250:ifthen
-(0 3) 1220 LET X(I) = 5
+F(J,I) (0 3) 1220 LET X(I) = 5
   Origs: 1210:auto
   Dests: 1225:auto
-(0 3) 1225 LET M = I
+F(J,I) (0 3) 1225 LET M = I
   Origs: 1220:auto
   Dests: 1226:auto
-(0 2) 1226 PRINT "MACHINE LIKES";
+F(J,I) (0 2) 1226 PRINT "MACHINE LIKES";
   Origs: 1225:auto
   Dests: 1227:auto
-(0 3) 1227 GOSUB 1000
+F(J,I) (0 3) 1227 GOSUB 1000
   Origs: 1226:auto
   Dests: 1000:gosub, 1228:auto
-(0 2) 1228 PRINT " "
+F(J,I) (0 2) 1228 PRINT " "
   Origs: 1227:auto
   Dests: 1230:auto
-(0 3) 1230 GOTO 70
+F(J,I) (0 3) 1230 GOTO 70
   Origs: 1228:auto
   Dests: 70:goto
-(0 1) 1250 NEXT I
+F(J,I) (0 1) 1250 NEXT I
   Origs: 1200:fornext, 1210:ifthen
   Dests: 1252:auto
-(0 2) 1252 PRINT "THE GAME IS A DRAW"
+F(J,I) (0 2) 1252 PRINT "THE GAME IS A DRAW"
   Origs: 1250:auto
   Dests: 1255:auto
-(0 3) 1255 GOTO 500
+F(J,I) (0 3) 1255 GOTO 500
   Origs: 1252:auto
   Dests: 500:goto
-(1 3) 1300 FOR K = 1 TO 18
+F(J,I,K) (1 3) 1300 FOR K = 1 TO 18
   Origs: 320:goto
   Dests: 1305:fornext, 1390:fornext
-(0 3) 1305 LET P = 0
+F(J,I,K) (0 3) 1305 LET P = 0
   Origs: 1300:fornext
   Dests: 1310:auto
-(1 6) 1310 FOR I = 4 * K - 3 TO 4 * K
+F(J,I,K,I) (1 6) 1310 FOR I = 4 * K - 3 TO 4 * K
   Origs: 1305:auto
   Dests: 1315:fornext, 1330:fornext
-(1 3) 1315 FOR J = 1 TO 4
+F(J,I,K,I,J) (1 3) 1315 FOR J = 1 TO 4
   Origs: 1310:fornext
   Dests: 1320:fornext, 1325:fornext
-(0 4) 1320 LET P = P + X(M(I, J))
+F(J,I,K,J) (0 4) 1320 LET P = P + X(M(I, J))
   Origs: 1315:fornext
   Dests: 1325:auto
-(0 1) 1325 NEXT J
+F(J,I,K) (0 1) 1325 NEXT J
   Origs: 1315:fornext, 1320:auto
   Dests: 1330:auto
-(0 1) 1330 NEXT I
+F(J,I,K) (0 1) 1330 NEXT I
   Origs: 1310:fornext, 1325:auto
   Dests: 1345:auto
-(1 4) 1345 IF P < 4 THEN 1390
+F(J,I,K) (1 4) 1345 IF P < 4 THEN 1390
   Origs: 1330:auto
   Dests: 1350:auto, 1390:ifthen
-(1 4) 1350 IF P < 5 THEN 1400
+F(J,I,K) (1 4) 1350 IF P < 5 THEN 1400
   Origs: 1345:auto
   Dests: 1355:auto, 1400:ifthen
-(1 4) 1355 IF P < 9 THEN 1390
+F(J,I,K) (1 4) 1355 IF P < 9 THEN 1390
   Origs: 1350:auto
   Dests: 1360:auto, 1390:ifthen
-(1 4) 1360 IF P < 10 THEN 1400
+F(J,I,K) (1 4) 1360 IF P < 10 THEN 1400
   Origs: 1355:auto
   Dests: 1390:auto, 1400:ifthen
-(0 1) 1390 NEXT K
+F(J,I,K) (0 1) 1390 NEXT K
   Origs: 1300:fornext, 1345:ifthen, 1355:ifthen, 1360:auto
   Dests: 1395:auto
-(0 2) 1395 GOSUB 1800
+F(J,I) (0 2) 1395 GOSUB 1800
   Origs: 1390:auto
   Dests: 1396:auto, 1800:gosub
-(0 3) 1396 GOTO 360
+F(J,I) (0 3) 1396 GOTO 360
   Origs: 1395:auto
   Dests: 360:goto
-(0 4) 1400 LET S = 1 / 8
+F(J,I,K) (0 4) 1400 LET S = 1 / 8
   Origs: 1350:ifthen, 1360:ifthen
   Dests: 1405:auto
-(1 6) 1405 FOR I = 4 * K - 3 TO 4 * K
+F(J,I,K,I) (1 6) 1405 FOR I = 4 * K - 3 TO 4 * K
   Origs: 1400:auto, 1425:goto
   Dests: 1410:fornext, 1415:fornext
-(0 2) 1410 GOTO 1703
+F(J,I,K,I) (0 2) 1410 GOTO 1703
   Origs: 1405:fornext
   Dests: 1703:goto
-(0 1) 1415 NEXT I
+F(J,I,K) (0 1) 1415 NEXT I
   Origs: 1405:fornext, 1735:goto
   Dests: 1420:auto
-(0 3) 1420 LET S = 0
+F(J,I,K) (0 3) 1420 LET S = 0
   Origs: 1415:auto
   Dests: 1425:auto
-(0 3) 1425 GOTO 1405
+F(J,I,K) (0 3) 1425 GOTO 1405
   Origs: 1420:auto
   Dests: 1405:goto
 (0 2) 1500 DATA 1, 49, 52, 4, 13, 61, 64, 16, 22, 39, 23, 38, 26, 42, 27, 43
@@ -628,97 +631,97 @@ G(1050) (0 1) 1120 RETURN
 (0 2) 1550 DATA 1, 22, 43, 64, 16, 27, 38, 49, 4, 23, 42, 61, 13, 26, 39, 52
   Origs: 
   Dests: 
-(1 3) 1600 FOR J = 1 TO 4
+F(J,I,K,J) (1 3) 1600 FOR J = 1 TO 4
   Origs: 265:ifthen, 430:ifthen
   Dests: 1605:fornext, 1650:fornext
-(1 6) 1605 IF X(M(I, J)) <> 1 / 8 THEN 1650
+F(J,I,K,J) (1 6) 1605 IF X(M(I, J)) <> 1 / 8 THEN 1650
   Origs: 1600:fornext
   Dests: 1610:auto, 1650:ifthen
-(0 3) 1610 LET X(M(I, J)) = 5
+F(J,I,K) (0 3) 1610 LET X(M(I, J)) = 5
   Origs: 1605:auto
   Dests: 1615:auto
-(1 4) 1615 IF L(I) < 5 THEN 1625
+F(J,I,K) (1 4) 1615 IF L(I) < 5 THEN 1625
   Origs: 1610:auto
   Dests: 1620:auto, 1625:ifthen
-(0 2) 1620 PRINT "LET'S SEE YOU GET OUT OF THIS! MACHINE MOVES TO";
+F(J,I,K) (0 2) 1620 PRINT "LET'S SEE YOU GET OUT OF THIS! MACHINE MOVES TO";
   Origs: 1615:auto
   Dests: 1622:auto
-(0 2) 1622 GOTO 1626
+F(J,I,K) (0 2) 1622 GOTO 1626
   Origs: 1620:auto
   Dests: 1626:goto
-(0 2) 1625 PRINT "YOU FOX. JUST IN THE NICK OF TIME, MACHINE MOVES TO";
+F(J,I,K) (0 2) 1625 PRINT "YOU FOX. JUST IN THE NICK OF TIME, MACHINE MOVES TO";
   Origs: 1615:ifthen
   Dests: 1626:auto
-(0 3) 1626 LET M = M(I, J)
+F(J,I,K) (0 3) 1626 LET M = M(I, J)
   Origs: 1622:goto, 1625:auto
   Dests: 1630:auto
-(0 3) 1630 GOSUB 1000
+F(J,I,K) (0 3) 1630 GOSUB 1000
   Origs: 1626:auto
   Dests: 1000:gosub, 1640:auto
-(0 3) 1640 GOTO 70
+F(J,I,K) (0 3) 1640 GOTO 70
   Origs: 1630:auto
   Dests: 70:goto
-(0 1) 1650 NEXT J
+F(J,I,K) (0 1) 1650 NEXT J
   Origs: 1600:fornext, 1605:ifthen
   Dests: 1660:auto
-(0 2) 1660 PRINT "MACHINE CONCEDES THIS GAME."
+F(J,I,K) (0 2) 1660 PRINT "MACHINE CONCEDES THIS GAME."
   Origs: 1650:auto
   Dests: 1665:auto
-(0 3) 1665 GOTO 500
+F(J,I,K) (0 3) 1665 GOTO 500
   Origs: 1660:auto
   Dests: 500:goto
-(0 4) 1700 LET S = 1 / 8
+F(J,I,K) (0 4) 1700 LET S = 1 / 8
   Origs: 305:ifthen, 310:ifthen, 480:ifthen, 485:ifthen
   Dests: 1703:auto
-(1 8) 1703 IF I - INT(I / 4) * 4 > 1 THEN 1715
+F(J,I,K) (1 8) 1703 IF I - INT(I / 4) * 4 > 1 THEN 1715
   Origs: 1410:goto, 1700:auto
   Dests: 1705:auto, 1715:ifthen
-(0 3) 1705 LET A = 1
+F(J,I,K) (0 3) 1705 LET A = 1
   Origs: 1703:auto
   Dests: 1710:auto
-(0 2) 1710 GOTO 1720
+F(J,I,K) (0 2) 1710 GOTO 1720
   Origs: 1705:auto
   Dests: 1720:goto
-(0 3) 1715 LET A = 2
+F(J,I,K) (0 3) 1715 LET A = 2
   Origs: 1703:ifthen
   Dests: 1720:auto
-(1 8) 1720 FOR J = A TO 5 - A STEP 5 - 2 * A
+F(J,I,K,J) (1 8) 1720 FOR J = A TO 5 - A STEP 5 - 2 * A
   Origs: 1710:goto, 1715:auto
   Dests: 1725:fornext, 1730:fornext
-(1 4) 1725 IF X(M(I, J)) = S THEN 1750
+F(J,I,K,J) (1 4) 1725 IF X(M(I, J)) = S THEN 1750
   Origs: 1720:fornext
   Dests: 1730:auto, 1750:ifthen
-(0 1) 1730 NEXT J
+F(J,I,K) (0 1) 1730 NEXT J
   Origs: 1720:fornext, 1725:auto
   Dests: 1735:auto
-(0 3) 1735 GOTO 1415
+F(J,I,K) (0 3) 1735 GOTO 1415
   Origs: 1730:auto
   Dests: 1415:goto
-(0 3) 1750 LET X(M(I, J)) = 5
+F(J,I,K) (0 3) 1750 LET X(M(I, J)) = 5
   Origs: 1725:ifthen
   Dests: 1755:auto
-(0 3) 1755 LET M = M(I, J)
+F(J,I,K) (0 3) 1755 LET M = M(I, J)
   Origs: 1750:auto
   Dests: 1760:auto
-(0 2) 1760 PRINT "MACHINE TAKES";
+F(J,I,K) (0 2) 1760 PRINT "MACHINE TAKES";
   Origs: 1755:auto
   Dests: 1770:auto
-(0 3) 1770 GOSUB 1000
+F(J,I,K) (0 3) 1770 GOSUB 1000
   Origs: 1760:auto
   Dests: 1000:gosub, 1780:auto
-(0 3) 1780 GOTO 70
+F(J,I,K) (0 3) 1780 GOTO 70
   Origs: 1770:auto
   Dests: 70:goto
-G(1800) (1 3) 1800 FOR I = 1 TO 64
+G(1800) F(I) (1 3) 1800 FOR I = 1 TO 64
   Origs: 85:gosub, 492:gosub, 1395:gosub
   Dests: 1810:fornext, 1850:fornext
-G(1800) (1 6) 1810 IF X(I) <> 1 / 8 THEN 1850
+G(1800) F(I) (1 6) 1810 IF X(I) <> 1 / 8 THEN 1850
   Origs: 1800:fornext
   Dests: 1815:auto, 1850:ifthen
-G(1800) (0 3) 1815 LET X(I) = 0
+G(1800) F(I) (0 3) 1815 LET X(I) = 0
   Origs: 1810:auto
   Dests: 1850:auto
-G(1800) (0 1) 1850 NEXT I
+G(1800) F(I) (0 1) 1850 NEXT I
   Origs: 1800:fornext, 1810:ifthen, 1815:auto
   Dests: 1860:auto
 G(1800) (0 1) 1860 RETURN

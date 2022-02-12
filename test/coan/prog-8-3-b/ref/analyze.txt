@@ -31,37 +31,38 @@ Halstead complexity:
 FNQ(_) (0 3) 30 DEF FNQ(X) = X ^ 2
   Origs: 
   Dests: 
-(1 4) 60 FOR X = -7 TO 7
+F(X) (1 4) 60 FOR X = -7 TO 7
   Origs: 6:auto
   Dests: 62:fornext, 240:fornext
-(0 2) 62 PRINT
+F(X) (0 2) 62 PRINT
   Origs: 60:fornext
   Dests: 90:auto
-(1 5) 90 FOR Y = -M TO 70 - M
+F(X,Y) (1 5) 90 FOR Y = -M TO 70 - M
   Origs: 62:auto
   Dests: 120:fornext, 180:fornext
-(1 6) 120 IF Y = FNQ(X) THEN 210
+F(X,Y) (1 6) 120 IF Y = FNQ(X) THEN 210
   Origs: 90:fornext
   Dests: 148:auto, 150:auto, 210:ifthen
-(0 1) 148 REM   IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
+F(X,Y) (0 1) 148 REM   IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
   Origs: 120:auto
   Dests: 150:auto
-(0 2) 150 PRINT " ";
+F(X,Y) (0 2) 150 PRINT " ";
   Origs: 120:auto, 148:auto
   Dests: 180:auto
-(0 1) 180 NEXT Y
+F(X,Y) (0 1) 180 NEXT Y
   Origs: 90:fornext, 150:auto
   Dests: 210:auto
-(0 2) 210 PRINT "*";
+F(X,Y) (0 2) 210 PRINT "*";
   Origs: 120:ifthen, 180:auto
   Dests: 240:auto
 (0 1) 212 REM   PLOT THE POINT AND GO TO NEXT X
   Origs: 
   Dests: 
-(0 1) 240 NEXT X
+F(X,Y) (0 1) 240 NEXT X
   Origs: 60:fornext, 210:auto
   Dests: 270:auto
-(0 1) 270 END
+F(X) (0 1) 270 END
+    WARNING: Terminating statement in FOR/NEXT
   Origs: 240:auto
   Dests: :stop
 

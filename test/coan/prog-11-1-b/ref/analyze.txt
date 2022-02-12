@@ -31,16 +31,16 @@ Halstead complexity:
 (0 1) 18 REM  READ PRINT PRINT ORIGINAL POLYNOMIAL IN LINES 20 THRU 50
   Origs: 
   Dests: 
-(1 5) 20 FOR N = 4 TO 1 STEP -1
+F(N) (1 5) 20 FOR N = 4 TO 1 STEP -1
   Origs: 10:auto
   Dests: 30:fornext, 50:fornext
-(1 2) 30 READ P[N]
+F(N) (1 2) 30 READ P[N]
   Origs: 20:fornext
   Dests: 40:auto
-(0 2) 40 PRINT P[N];
+F(N) (0 2) 40 PRINT P[N];
   Origs: 30:auto
   Dests: 50:auto
-(0 1) 50 NEXT N
+F(N) (0 1) 50 NEXT N
   Origs: 20:fornext, 40:auto
   Dests: 60:auto
 (0 4) 60 PRINT "DIVIDED BY X - "; R; "YIELDS"
@@ -58,19 +58,19 @@ Halstead complexity:
 (0 2) 80 PRINT Q[4];
   Origs: 70:auto
   Dests: 90:auto
-(1 5) 90 FOR X = 3 TO 1 STEP -1
+F(X) (1 5) 90 FOR X = 3 TO 1 STEP -1
   Origs: 80:auto
   Dests: 98:fornext, 120:fornext
-(0 1) 98 REM  "MULTIPLY AND ADD"
+F(X) (0 1) 98 REM  "MULTIPLY AND ADD"
   Origs: 90:fornext
   Dests: 100:auto
-(0 6) 100 LET Q[X] = P[X] + Q[X + 1] * R
+F(X) (0 6) 100 LET Q[X] = P[X] + Q[X + 1] * R
   Origs: 98:auto
   Dests: 110:auto
-(0 2) 110 PRINT Q[X];
+F(X) (0 2) 110 PRINT Q[X];
   Origs: 100:auto
   Dests: 120:auto
-(0 1) 120 NEXT X
+F(X) (0 1) 120 NEXT X
   Origs: 90:fornext, 110:auto
   Dests: 140:auto
 (0 4) 130 DATA 3, 2, -3, -10, 3

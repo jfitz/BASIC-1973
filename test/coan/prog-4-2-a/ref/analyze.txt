@@ -19,16 +19,16 @@ Halstead complexity:
  intelligence: 22.165
  time: 2.252
 
-(2 3) 10 READ N, D
+F(P) (2 3) 10 READ N, D
   Origs: :start, 60:goto, 100:goto
   Dests: 20:auto
-(1 5) 20 FOR P = N TO 2 STEP -1
+F(P) (1 5) 20 FOR P = N TO 2 STEP -1
   Origs: 10:auto
   Dests: 30:fornext, 40:fornext
-(1 6) 30 IF N / P = INT(N / P) THEN 70
+F(P) (1 6) 30 IF N / P = INT(N / P) THEN 70
   Origs: 20:fornext
   Dests: 40:auto, 70:ifthen
-(0 1) 40 NEXT P
+F(P) (0 1) 40 NEXT P
   Origs: 20:fornext, 30:auto, 80:goto
   Dests: 50:auto
 (0 4) 50 PRINT N "/" D
@@ -37,16 +37,16 @@ Halstead complexity:
 (0 3) 60 GOTO 10
   Origs: 50:auto
   Dests: 10:goto
-(1 6) 70 IF D / P = INT(D / P) THEN 90
+F(P) (1 6) 70 IF D / P = INT(D / P) THEN 90
   Origs: 30:ifthen
   Dests: 80:auto, 90:ifthen
-(0 3) 80 GOTO 40
+F(P) (0 3) 80 GOTO 40
   Origs: 70:auto
   Dests: 40:goto
-(0 10) 90 PRINT N "/" D "=" N / P "/" D / P
+F(P) (0 10) 90 PRINT N "/" D "=" N / P "/" D / P
   Origs: 70:ifthen
   Dests: 100:auto
-(0 3) 100 GOTO 10
+F(P) (0 3) 100 GOTO 10
   Origs: 90:auto
   Dests: 10:goto
 (0 2) 110 DATA 5, 6

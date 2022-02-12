@@ -22,16 +22,16 @@ Halstead complexity:
 (0 1) 8 REM LINES 0 THROUGH 40 READ AND PRINT THE FIRST POLYNOMIAL
   Origs: 
   Dests: 
-(1 5) 10 FOR X = 3 TO 1 STEP -1
+F(X) (1 5) 10 FOR X = 3 TO 1 STEP -1
   Origs: :start
   Dests: 20:fornext, 40:fornext
-(1 2) 20 READ F[X]
+F(X) (1 2) 20 READ F[X]
   Origs: 10:fornext
   Dests: 30:auto
-(0 2) 30 PRINT F[X];
+F(X) (0 2) 30 PRINT F[X];
   Origs: 20:auto
   Dests: 40:auto
-(0 1) 40 NEXT X
+F(X) (0 1) 40 NEXT X
   Origs: 10:fornext, 30:auto
   Dests: 50:auto
 (0 2) 50 PRINT "TIMES  ";
@@ -40,58 +40,58 @@ Halstead complexity:
 (0 1) 58 REM LINES 60 THROUGH 90 READ AND PRINT THE SECOND POLYNOMIAL
   Origs: 
   Dests: 
-(1 5) 60 FOR Y = 2 TO 1 STEP -1
+F(Y) (1 5) 60 FOR Y = 2 TO 1 STEP -1
   Origs: 50:auto
   Dests: 70:fornext, 90:fornext
-(1 2) 70 READ S[Y]
+F(Y) (1 2) 70 READ S[Y]
   Origs: 60:fornext
   Dests: 80:auto
-(0 2) 80 PRINT S[Y];
+F(Y) (0 2) 80 PRINT S[Y];
   Origs: 70:auto
   Dests: 90:auto
-(0 1) 90 NEXT Y
+F(Y) (0 1) 90 NEXT Y
   Origs: 60:fornext, 80:auto
   Dests: 100:auto
 (0 1) 98 REM 100 THROUGH 120 SET THE RESULT LIST AT ALL ZEROS
   Origs: 
   Dests: 
-(1 3) 100 FOR W = 1 TO 4
+F(W) (1 3) 100 FOR W = 1 TO 4
   Origs: 90:auto
   Dests: 110:fornext, 120:fornext
-(0 3) 110 LET P[W] = 0
+F(W) (0 3) 110 LET P[W] = 0
   Origs: 100:fornext
   Dests: 120:auto
-(0 1) 120 NEXT W
+F(W) (0 1) 120 NEXT W
   Origs: 100:fornext, 110:auto
   Dests: 130:auto
 (0 1) 128 REM LINES 130 THROUGH 170 DO THE ACTUAL MULTIPLYING
   Origs: 
   Dests: 
-(1 3) 130 FOR I = 1 TO 3
+F(I) (1 3) 130 FOR I = 1 TO 3
   Origs: 120:auto
   Dests: 140:fornext, 170:fornext
-(1 3) 140 FOR J = 1 TO 2
+F(I,J) (1 3) 140 FOR J = 1 TO 2
   Origs: 130:fornext
   Dests: 150:fornext, 160:fornext
-(0 6) 150 LET P[I + J - 1] = P[I + J - 1] + F[I] * S[J]
+F(I,J) (0 6) 150 LET P[I + J - 1] = P[I + J - 1] + F[I] * S[J]
   Origs: 140:fornext
   Dests: 160:auto
-(0 1) 160 NEXT J
+F(I,J) (0 1) 160 NEXT J
   Origs: 140:fornext, 150:auto
   Dests: 170:auto
-(0 1) 170 NEXT I
+F(I) (0 1) 170 NEXT I
   Origs: 130:fornext, 160:auto
   Dests: 180:auto
 (0 2) 180 PRINT "YIELDS  ";
   Origs: 170:auto
   Dests: 190:auto
-(1 5) 190 FOR Z = 4 TO 1 STEP -1
+F(Z) (1 5) 190 FOR Z = 4 TO 1 STEP -1
   Origs: 180:auto
   Dests: 200:fornext, 210:fornext
-(0 2) 200 PRINT P[Z];
+F(Z) (0 2) 200 PRINT P[Z];
   Origs: 190:fornext
   Dests: 210:auto
-(0 1) 210 NEXT Z
+F(Z) (0 1) 210 NEXT Z
   Origs: 190:fornext, 200:auto
   Dests: 230:auto
 (0 1) 218 REM THE FIRST THREE NUMBERS REPRESENT 3X^2+11X-5

@@ -19,46 +19,46 @@ Halstead complexity:
  intelligence: 19.139
  time: 1.104
 
-(1 3) 2 FOR Y = 1 TO 10
+F(Y) (1 3) 2 FOR Y = 1 TO 10
   Origs: :start
   Dests: 5:fornext, 125:fornext
-(0 3) 5 LET C = 0
+F(Y) (0 3) 5 LET C = 0
   Origs: 2:fornext
   Dests: 10:auto
-(1 3) 10 FOR X = 1 TO 50
+F(Y,X) (1 3) 10 FOR X = 1 TO 50
   Origs: 5:auto
   Dests: 20:fornext, 100:fornext
-(0 4) 20 LET F = INT(2 * RND(1))
+F(Y,X) (0 4) 20 LET F = INT(2 * RND(1))
   Origs: 10:fornext
   Dests: 30:auto
-(1 4) 30 IF F = 1 THEN 60
+F(Y,X) (1 4) 30 IF F = 1 THEN 60
   Origs: 20:auto
   Dests: 40:auto, 60:ifthen
-(0 2) 40 PRINT "T";
+F(Y,X) (0 2) 40 PRINT "T";
   Origs: 30:auto
   Dests: 50:auto
-(0 2) 50 GOTO 100
+F(Y,X) (0 2) 50 GOTO 100
   Origs: 40:auto
   Dests: 100:goto
 (0 1) 58 REM C COUNTS THE NUMBER OF HEADS
   Origs: 
   Dests: 
-(0 4) 60 LET C = C + 1
+F(Y,X) (0 4) 60 LET C = C + 1
   Origs: 30:ifthen
   Dests: 70:auto
-(0 2) 70 PRINT "H";
+F(Y,X) (0 2) 70 PRINT "H";
   Origs: 60:auto
   Dests: 100:auto
-(0 1) 100 NEXT X
+F(Y,X) (0 1) 100 NEXT X
   Origs: 10:fornext, 50:goto, 70:auto
   Dests: 110:auto
-(0 2) 110 PRINT
+F(Y) (0 2) 110 PRINT
   Origs: 100:auto
   Dests: 120:auto
-(0 4) 120 PRINT "HEADS  "; C; "OUT OF 50 FLIPS"
+F(Y) (0 4) 120 PRINT "HEADS  "; C; "OUT OF 50 FLIPS"
   Origs: 110:auto
   Dests: 125:auto
-(0 1) 125 NEXT Y
+F(Y) (0 1) 125 NEXT Y
   Origs: 2:fornext, 120:auto
   Dests: 130:auto
 (0 1) 130 END

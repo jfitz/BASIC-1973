@@ -121,25 +121,25 @@ STOP in line 1000
 230 (1) PRINT "INPUT MESSAGE HERE"
 240 (1) LINPUT B$
 250 (1) CHANGE B$ TO A
-260 (1) FOR X = 1 TO 6
-    (6) READ H$(X)
-    (6) NEXT X
+260 F(X) (1) FOR X = 1 TO 6
+    F(X) (6) READ H$(X)
+    F(X) (6) NEXT X
     (1) H$ = H$(L)
     (1) GOSUB 940
 270 G(610) (6) F = F + 1
     G(610) (6) IF F > A(0) THEN 990
     G(610) (5) G(0) = L
-    G(610) (5) FOR X = 1 TO 6
-    G(610) (30) G(X) = A(F)
-    G(610) (30) NEXT X
+    G(610) F(X) (5) FOR X = 1 TO 6
+    G(610) F(X) (30) G(X) = A(F)
+    G(610) F(X) (30) NEXT X
     G(610) (5) CHANGE G TO G$
-280 G(610) (5) FOR X = 1 TO 6
-    G(610) (30) G(0) = X
-    G(610) (30) CHANGE G TO G$(X)
-    G(610) (30) NEXT X
-290 G(610) (5) FOR X = 1 TO A / 2
-    G(610) (10) PRINT
-    G(610) (10) NEXT X
+280 G(610) F(X) (5) FOR X = 1 TO 6
+    G(610) F(X) (30) G(0) = X
+    G(610) F(X) (30) CHANGE G TO G$(X)
+    G(610) F(X) (30) NEXT X
+290 G(610) F(X) (5) FOR X = 1 TO A / 2
+    G(610) F(X) (10) PRINT
+    G(610) F(X) (10) NEXT X
 300 G(610) (5) IF A(F) = 46 THEN 345
     G(610) (5) IF A(F) = 36 THEN 990
     G(610) (5) IF A(F) = 32 THEN 630
@@ -152,9 +152,9 @@ STOP in line 1000
 330 G(610) (0) IF A > 90 THEN 270
     G(610) (0) ON A(F) - 79 GOTO 510, 520, 540, 550, 560, 570, 580, 590, 600, 610, 620
 340 G(610) (0) GOTO 270
-345 G(610) (0) FOR X = 1 TO A
-    G(610) (0) PRINT TAB(S); G$; G$
-    G(610) (0) NEXT X
+345 G(610) F(X) (0) FOR X = 1 TO A
+    G(610) F(X) (0) PRINT TAB(S); G$; G$
+    G(610) F(X) (0) NEXT X
     G(610) (0) GOTO 270
 350 G(610) (0) GOSUB 640
     G(610) (0) GOSUB 690
@@ -306,130 +306,130 @@ STOP in line 1000
     G(610) (0) GOSUB 710
     G(610) (0) GOSUB 640
     G(610) (0) GOTO 270
-640 G(640) (7) FOR Y = 1 TO A
-    G(640) (28) PRINT TAB(S);
-    G(640) (28) FOR X = 1 TO 10
-    G(640) (280) PRINT G$;
-    G(640) (280) NEXT X
-    G(640) (28) PRINT
-    G(640) (28) NEXT Y
+640 G(640) F(Y) (7) FOR Y = 1 TO A
+    G(640) F(Y) (28) PRINT TAB(S);
+    G(640) F(Y,X) (28) FOR X = 1 TO 10
+    G(640) F(Y,X) (280) PRINT G$;
+    G(640) F(Y,X) (280) NEXT X
+    G(640) F(Y) (28) PRINT
+    G(640) F(Y) (28) NEXT Y
     G(640) (7) RETURN
 650 G(650) (2) IF A < 1 THEN 660
     G(650) (2) GOTO 670
 660 G(650) (0) LET A = 1
-670 G(650) (2) FOR X = 1 TO A
-    G(650) (8) PRINT TAB(S); G$; G$; H$; H$; G$; G$; H$; H$; G$; G$
-    G(650) (8) NEXT X
+670 G(650) F(X) (2) FOR X = 1 TO A
+    G(650) F(X) (8) PRINT TAB(S); G$; G$; H$; H$; G$; G$; H$; H$; G$; G$
+    G(650) F(X) (8) NEXT X
     G(650) (2) RETURN
 680 (0) PRINT TAB(S);
-690 G(690) (0) FOR X = 1 TO A
-    G(690) (0) PRINT TAB(4 * L + S); G$; G$; H$; H$; G$; G$
-    G(690) (0) NEXT X
+690 G(690) F(X) (0) FOR X = 1 TO A
+    G(690) F(X) (0) PRINT TAB(4 * L + S); G$; G$; H$; H$; G$; G$
+    G(690) F(X) (0) NEXT X
     G(690) (0) RETURN
-700 G(700) (1) FOR X = 1 TO A
-    G(700) (4) PRINT TAB(S); G$; G$;
-    G(700) (4) PRINT TAB(8 * L + S); G$; G$
-    G(700) (4) NEXT X
+700 G(700) F(X) (1) FOR X = 1 TO A
+    G(700) F(X) (4) PRINT TAB(S); G$; G$;
+    G(700) F(X) (4) PRINT TAB(8 * L + S); G$; G$
+    G(700) F(X) (4) NEXT X
     G(700) (1) RETURN
 710 G(710) (1) IF A < 1 THEN 720
     G(710) (1) GOTO 730
 720 G(710) (0) LET A = 1
-730 G(710) (1) FOR X = 1 TO A
-    G(710) (4) PRINT TAB(4 * L + S); G$; G$
-    G(710) (4) NEXT X
+730 G(710) F(X) (1) FOR X = 1 TO A
+    G(710) F(X) (4) PRINT TAB(4 * L + S); G$; G$
+    G(710) F(X) (4) NEXT X
     G(710) (1) RETURN
-740 G(740) (4) FOR X = 1 TO A
-    G(740) (16) PRINT TAB(S); G$; G$
-    G(740) (16) NEXT X
+740 G(740) F(X) (4) FOR X = 1 TO A
+    G(740) F(X) (16) PRINT TAB(S); G$; G$
+    G(740) F(X) (16) NEXT X
     G(740) (4) RETURN
-750 G(750) (0) FOR X = 1 TO A
-    G(750) (0) PRINT TAB(S); G$; G$; G$; G$
-    G(750) (0) NEXT X
+750 G(750) F(X) (0) FOR X = 1 TO A
+    G(750) F(X) (0) PRINT TAB(S); G$; G$; G$; G$
+    G(750) F(X) (0) NEXT X
     G(750) (0) RETURN
-760 G(760) (0) FOR Y = 1 TO A
-    G(760) (0) PRINT TAB(S); G$; G$; G$; G$; G$; G$; H$; H$; G$; G$
-    G(760) (0) NEXT Y
+760 G(760) F(Y) (0) FOR Y = 1 TO A
+    G(760) F(Y) (0) PRINT TAB(S); G$; G$; G$; G$; G$; G$; H$; H$; G$; G$
+    G(760) F(Y) (0) NEXT Y
     G(760) (0) RETURN
-770 G(770) (0) FOR X = 1 TO A
-    G(770) (0) PRINT TAB(S); G$; G$; H$; H$; G$; G$; G$; G$; G$; G$
-    G(770) (0) NEXT X
+770 G(770) F(X) (0) FOR X = 1 TO A
+    G(770) F(X) (0) PRINT TAB(S); G$; G$; H$; H$; G$; G$; G$; G$; G$; G$
+    G(770) F(X) (0) NEXT X
     G(770) (0) RETURN
-780 G(780) (0) FOR X = 1 TO A
-    G(780) (0) PRINT TAB(8 * L + S); G$; G$
-    G(780) (0) NEXT X
+780 G(780) F(X) (0) FOR X = 1 TO A
+    G(780) F(X) (0) PRINT TAB(8 * L + S); G$; G$
+    G(780) F(X) (0) NEXT X
     G(780) (0) RETURN
-790 G(790) (0) FOR X = 1 TO A
-    G(790) (0) PRINT TAB(4 * L + S); G$; G$; G$; G$; G$; G$
-    G(790) (0) NEXT X
+790 G(790) F(X) (0) FOR X = 1 TO A
+    G(790) F(X) (0) PRINT TAB(4 * L + S); G$; G$; G$; G$; G$; G$
+    G(790) F(X) (0) NEXT X
     G(790) (0) RETURN
-800 G(800) (0) FOR X = 1 TO A
-    G(800) (0) PRINT TAB(S); G$; G$; G$; G$; G$; G$
-    G(800) (0) NEXT X
+800 G(800) F(X) (0) FOR X = 1 TO A
+    G(800) F(X) (0) PRINT TAB(S); G$; G$; G$; G$; G$; G$
+    G(800) F(X) (0) NEXT X
     G(800) (0) RETURN
-810 G(810) (0) FOR X = 1 TO C / 2
-    G(810) (0) PRINT TAB(S);
-    G(810) (0) FOR Y = 1 TO 2
-    G(810) (0) FOR Z = 1 TO (5 + L) - X
-    G(810) (0) PRINT G$(1);
-    G(810) (0) NEXT Z
-820 G(810) (0) IF X > 3 THEN 950
-    G(810) (0) V = X
-830 G(810) (0) PRINT H$(2 * V);
-    G(810) (0) NEXT Y
-    G(810) (0) PRINT
-    G(810) (0) NEXT X
+810 G(810) F(X) (0) FOR X = 1 TO C / 2
+    G(810) F(X) (0) PRINT TAB(S);
+    G(810) F(X,Y) (0) FOR Y = 1 TO 2
+    G(810) F(X,Y,Z) (0) FOR Z = 1 TO (5 + L) - X
+    G(810) F(X,Y,Z) (0) PRINT G$(1);
+    G(810) F(X,Y,Z) (0) NEXT Z
+820 G(810) F(X,Y) (0) IF X > 3 THEN 950
+    G(810) F(X,Y) (0) V = X
+830 G(810) F(X,Y) (0) PRINT H$(2 * V);
+    G(810) F(X,Y) (0) NEXT Y
+    G(810) F(X) (0) PRINT
+    G(810) F(X) (0) NEXT X
     G(810) (0) RETURN
-840 (0) FOR X = 1 TO C / 2
-    (0) PRINT TAB(S); H$(X);
-    (0) FOR Y = 1 TO 10 * L - (2 + X)
-    (0) PRINT G$(1);
-    (0) NEXT Y
-    (0) PRINT
-850 (0) NEXT X
+840 F(X) (0) FOR X = 1 TO C / 2
+    F(X) (0) PRINT TAB(S); H$(X);
+    F(X,Y) (0) FOR Y = 1 TO 10 * L - (2 + X)
+    F(X,Y) (0) PRINT G$(1);
+    F(X,Y) (0) NEXT Y
+    F(X) (0) PRINT
+850 F(X) (0) NEXT X
     (0) RETURN
-860 G(860) (0) FOR X = 4 * L TO 7 * L STEP 14 * L / (C * 6)
-    G(860) (0) PRINT TAB(X + S); G$; G$; G$;
-870 G(860) (0) PRINT TAB(7 * L - X + S); G$; G$; G$
-    G(860) (0) NEXT X
+860 G(860) F(X) (0) FOR X = 4 * L TO 7 * L STEP 14 * L / (C * 6)
+    G(860) F(X) (0) PRINT TAB(X + S); G$; G$; G$;
+870 G(860) F(X) (0) PRINT TAB(7 * L - X + S); G$; G$; G$
+    G(860) F(X) (0) NEXT X
     G(860) (0) RETURN
-880 G(880) (0) FOR X = 0 TO 6 * L STEP 6 * L / C
-    G(880) (0) PRINT TAB(X + S); G$; G$; G$; G$
-    G(880) (0) NEXT X
+880 G(880) F(X) (0) FOR X = 0 TO 6 * L STEP 6 * L / C
+    G(880) F(X) (0) PRINT TAB(X + S); G$; G$; G$; G$
+    G(880) F(X) (0) NEXT X
     G(880) (0) RETURN
-890 G(890) (0) FOR X = 6 * L TO 0 STEP -6 * L / C
-    G(890) (0) PRINT TAB(X + S); G$; G$; G$; G$
-    G(890) (0) NEXT X
+890 G(890) F(X) (0) FOR X = 6 * L TO 0 STEP -6 * L / C
+    G(890) F(X) (0) PRINT TAB(X + S); G$; G$; G$; G$
+    G(890) F(X) (0) NEXT X
     G(890) (0) RETURN
-900 G(900) (0) FOR X = 0 TO 7 * L STEP (14 * L) / (C * 6)
-    G(900) (0) PRINT TAB(X + S); G$; G$; G$;
-910 G(900) (0) PRINT TAB(7 * L - X + S); G$; G$; G$
-    G(900) (0) NEXT X
+900 G(900) F(X) (0) FOR X = 0 TO 7 * L STEP (14 * L) / (C * 6)
+    G(900) F(X) (0) PRINT TAB(X + S); G$; G$; G$;
+910 G(900) F(X) (0) PRINT TAB(7 * L - X + S); G$; G$; G$
+    G(900) F(X) (0) NEXT X
     G(900) (0) RETURN
-920 G(920) (0) FOR X = 0 TO 7 * L STEP (7 * L) / (C * 3)
-    G(920) (0) PRINT TAB(S); G$; G$; TAB(X + S); G$; G$; G$;
-930 G(920) (0) PRINT TAB(8 * L + S); G$; G$
-    G(920) (0) NEXT X
+920 G(920) F(X) (0) FOR X = 0 TO 7 * L STEP (7 * L) / (C * 3)
+    G(920) F(X) (0) PRINT TAB(S); G$; G$; TAB(X + S); G$; G$; G$;
+930 G(920) F(X) (0) PRINT TAB(8 * L + S); G$; G$
+    G(920) F(X) (0) NEXT X
     G(920) (0) RETURN
-940 G(940) (1) FOR X = 1 TO A * 3
-    G(940) (12) PRINT
-    G(940) (12) NEXT X
+940 G(940) F(X) (1) FOR X = 1 TO A * 3
+    G(940) F(X) (12) PRINT
+    G(940) F(X) (12) NEXT X
     G(940) (1) RETURN
-950 G(810) (0) FOR W = 1 TO X - 3
-    G(810) (0) PRINT " ";
-    G(810) (0) NEXT W
-    G(810) (0) V = 3
-    G(810) (0) GOTO 830
-960 G(960) (0) FOR X = 4 * L TO 7 * L STEP L * 4 / C
-    G(960) (0) PRINT TAB(X + S); G$; G$; G$
-    G(960) (0) NEXT X
+950 G(810) F(X,Y,W) (0) FOR W = 1 TO X - 3
+    G(810) F(X,Y,W) (0) PRINT " ";
+    G(810) F(X,Y,W) (0) NEXT W
+    G(810) F(X,Y) (0) V = 3
+    G(810) F(X,Y) (0) GOTO 830
+960 G(960) F(X) (0) FOR X = 4 * L TO 7 * L STEP L * 4 / C
+    G(960) F(X) (0) PRINT TAB(X + S); G$; G$; G$
+    G(960) F(X) (0) NEXT X
     G(960) (0) RETURN
-970 G(970) (0) FOR X = 7 * L TO 4 * L STEP -4 * L / C
-    G(970) (0) PRINT TAB(X + S); G$; G$; G$
-    G(970) (0) NEXT X
+970 G(970) F(X) (0) FOR X = 7 * L TO 4 * L STEP -4 * L / C
+    G(970) F(X) (0) PRINT TAB(X + S); G$; G$; G$
+    G(970) F(X) (0) NEXT X
     G(970) (0) RETURN
 980 (0) DATA " ", "  ", "   ", "    ", "     ", "      ", ""
-990 G(610) (1) FOR X = 1 TO C * 3
-    G(610) (12) PRINT
-    G(610) (12) NEXT X
+990 G(610) F(X) (1) FOR X = 1 TO C * 3
+    G(610) F(X) (12) PRINT
+    G(610) F(X) (12) NEXT X
 1000 G(610) (1) END
 

@@ -52,17 +52,17 @@ STOP in line 999
 35 (1) RESTORE
 40 (1) READ N
 50 (1) C = INT(RND * N + 1)
-60 (1) FOR I = 1 TO C
-70 (6) READ S$
-80 (6) NEXT I
+60 F(I) (1) FOR I = 1 TO C
+70 F(I) (6) READ S$
+80 F(I) (6) NEXT I
 90 (1) G = 0
 100 (1) CHANGE S$ TO S
-110 (1) FOR I = 1 TO 5
-120 (5) A(I) = 45
-130 (5) NEXT I
-140 (1) FOR J = 1 TO 5
-144 (5) P(J) = 0
-146 (5) NEXT J
+110 F(I) (1) FOR I = 1 TO 5
+120 F(I) (5) A(I) = 45
+130 F(I) (5) NEXT I
+140 F(J) (1) FOR J = 1 TO 5
+144 F(J) (5) P(J) = 0
+146 F(J) (5) NEXT J
 150 (5) PRINT "GUESS A FIVE-LETTER WORD";
 160 (5) INPUT L$
 170 (5) G = G + 1
@@ -72,16 +72,16 @@ STOP in line 999
 200 (4) IF L(0) <> 5 THEN 400
 205 (4) M = 0
     (4) Q = 0
-210 (4) FOR I = 1 TO 5
-220 (20) FOR J = 1 TO 5
-230 (100) IF S(I) <> L(J) THEN 260
-231 (10) Q = Q + 1
-232 (10) P(Q) = L(J)
-233 (10) IF I <> J THEN 260
-240 (7) M = M + 1
-250 (7) A(I) = L(J)
-260 (100) NEXT J
-265 (20) NEXT I
+210 F(I) (4) FOR I = 1 TO 5
+220 F(I,J) (20) FOR J = 1 TO 5
+230 F(I,J) (100) IF S(I) <> L(J) THEN 260
+231 F(I,J) (10) Q = Q + 1
+232 F(I,J) (10) P(Q) = L(J)
+233 F(I,J) (10) IF I <> J THEN 260
+240 F(I,J) (7) M = M + 1
+250 F(I,J) (7) A(I) = L(J)
+260 F(I,J) (100) NEXT J
+265 F(I) (20) NEXT I
 270 (4) A(0) = 5
 272 (4) P(0) = Q
 275 (4) CHANGE A TO A$

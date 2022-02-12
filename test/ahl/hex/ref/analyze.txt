@@ -81,51 +81,51 @@ FNN$(%) (0 1)     FNEND
 (0 2)     PRINT "SINCE I'M A GOOD SPORT, YOU'LL ALWAYS GO FIRST"
   Origs: 10:ifthen, 60:auto
   Dests: 120:auto
-(0 3) 120 P% = 8%
-(0 3)     P$ = "XXX--OOO"
-(0 2)     &
-(0 2)     & "NUMBERING: "
-(0 2)     & "123"
-(0 2)     & "456"
-(0 2)     & "789"
-(0 2)     &
+F(C%) (0 3) 120 P% = 8%
+F(C%) (0 3)     P$ = "XXX--OOO"
+F(C%) (0 2)     &
+F(C%) (0 2)     & "NUMBERING: "
+F(C%) (0 2)     & "123"
+F(C%) (0 2)     & "456"
+F(C%) (0 2)     & "789"
+F(C%) (0 2)     &
   Origs: 110:auto, 530:ifthen
   Dests: 190:auto
-(0 4) 190 D% = -1%
-(0 3)     Q$ = "O"
-(0 2)     GOSUB 2000
-(1 5)     IF M$ = "" THEN PRINT "YOU CAN'T MOVE. I WIN."
-(0 2)     GOTO 510
+F(C%) (0 4) 190 D% = -1%
+F(C%) (0 3)     Q$ = "O"
+F(C%) (0 2)     GOSUB 2000
+F(C%) (1 5)     IF M$ = "" THEN PRINT "YOU CAN'T MOVE. I WIN."
+F(C%) (0 2)     GOTO 510
   Origs: 120:auto, 440:goto
   Dests: 200:auto, 510:goto, 2000:gosub
-(0 2) 200 &
-(0 2)     & "BOARD:"
-(0 3)     & LEFT(P$, 3%)
-(0 3)     & MID(P$, 4%, 3%)
-(0 3)     & RIGHT(P$, 7%)
-(0 2)     &
+F(C%) (0 2) 200 &
+F(C%) (0 2)     & "BOARD:"
+F(C%) (0 3)     & LEFT(P$, 3%)
+F(C%) (0 3)     & MID(P$, 4%, 3%)
+F(C%) (0 3)     & RIGHT(P$, 7%)
+F(C%) (0 2)     &
   Origs: 190:auto
   Dests: 210:auto
-(2 3) 210 INPUT "WHAT IS YOUR MOVE"; A%, B%
-(1 6)     IF INSTR(1%, M$, FNN$(A%) + FNN$(B%)) = 0% THEN PRINT "ILLEGAL MOVE."
-(0 3)     GOTO 210
+F(C%) (2 3) 210 INPUT "WHAT IS YOUR MOVE"; A%, B%
+F(C%) (1 6)     IF INSTR(1%, M$, FNN$(A%) + FNN$(B%)) = 0% THEN PRINT "ILLEGAL MOVE."
+F(C%) (0 3)     GOTO 210
   Origs: 200:auto
   Dests: 230:auto
-(0 5) 230 P$ = FNC$(FNC$(P$, A%, "-"), B%, "O")
-(1 10)     IF INSTR(1%, P$, "*") = 0% OR INSTR(1%, P$, "O") = 4% THEN PRINT "YOU WIN."
-(0 2)     GOTO 500
+F(C%) (0 5) 230 P$ = FNC$(FNC$(P$, A%, "-"), B%, "O")
+F(C%) (1 10)     IF INSTR(1%, P$, "*") = 0% OR INSTR(1%, P$, "O") = 4% THEN PRINT "YOU WIN."
+F(C%) (0 2)     GOTO 500
   Origs: 210:auto
   Dests: 100:function, 300:auto, 500:goto
-(0 4) 300 P% = P% + 2%
+F(C%) (0 4) 300 P% = P% + 2%
   Origs: 230:auto
   Dests: 310:auto
-(1 3) 310 FOR C% = 1% TO Q%
-(0 3)     C$ = P$(C%)
-(1 12)     IF VAL(LEFT(C$, 1%)) = P% AND MID(C$, 2%, 9%) = P$ THEN M$ = RIGHT(C$, 11%)
-(0 2)     GOTO 400
+F(C%) (1 3) 310 FOR C% = 1% TO Q%
+F(C%) (0 3)     C$ = P$(C%)
+F(C%) (1 12)     IF VAL(LEFT(C$, 1%)) = P% AND MID(C$, 2%, 9%) = P$ THEN M$ = RIGHT(C$, 11%)
+F(C%) (0 2)     GOTO 400
   Origs: 300:auto
   Dests: 320:auto, 320:fornext, 400:goto
-(0 1) 320 NEXT C%
+F(C%) (0 1) 320 NEXT C%
 (0 3)     Q$ = "*"
 (0 3)     D% = 1%
 (0 2)     GOSUB 2000
@@ -134,54 +134,54 @@ FNN$(%) (0 1)     FNEND
 (0 2)     GOTO 500
   Origs: 310:auto, 310:fornext
   Dests: 400:auto, 500:goto, 2000:gosub
-(1 5) 400 IF M$ = "" THEN PRINT "I RESIGN."
-(0 2)     GOTO 500
+F(C%) (1 5) 400 IF M$ = "" THEN PRINT "I RESIGN."
+F(C%) (0 2)     GOTO 500
   Origs: 310:goto, 320:auto
   Dests: 410:auto, 500:goto
-(0 4) 410 K$ = LEFT(M$, 2%)
-(0 4)     M$ = RIGHT(M$, 3%)
-(1 9)     IF RND > .33333333 AND M$ <> "" THEN 410
+F(C%) (0 4) 410 K$ = LEFT(M$, 2%)
+F(C%) (0 4)     M$ = RIGHT(M$, 3%)
+F(C%) (1 9)     IF RND > .33333333 AND M$ <> "" THEN 410
   Origs: 400:auto
   Dests: 420:auto
-(0 3) 420 K% = C%
-(0 4)     A% = VAL(LEFT(K$, 1%))
-(0 4)     B% = VAL(RIGHT(K$, 2%))
-(0 5)     P$ = FNC$(FNC$(P$, A%, "-"), B%, "*")
+F(C%) (0 3) 420 K% = C%
+F(C%) (0 4)     A% = VAL(LEFT(K$, 1%))
+F(C%) (0 4)     B% = VAL(RIGHT(K$, 2%))
+F(C%) (0 5)     P$ = FNC$(FNC$(P$, A%, "-"), B%, "*")
     WARNING: Target type (integer) does not match expression type (numeric).
     WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 410:auto
   Dests: 100:function, 430:auto
-(1 8) 430 IF INSTR(1%, P$, "O") = 0% OR INSTR(7%, P$, "*") THEN PRINT "I WIN!"
-(0 2)     GOTO 510
+F(C%) (1 8) 430 IF INSTR(1%, P$, "O") = 0% OR INSTR(7%, P$, "*") THEN PRINT "I WIN!"
+F(C%) (0 2)     GOTO 510
   Origs: 420:auto
   Dests: 440:auto, 510:goto
-(0 5) 440 PRINT "I MOVE FROM" A% "TO" B%
-(0 3)     GOTO 190
+F(C%) (0 5) 440 PRINT "I MOVE FROM" A% "TO" B%
+F(C%) (0 3)     GOTO 190
   Origs: 430:auto
   Dests: 190:goto
-(0 4) 500 W2% = W2% + 1%
-(0 4)     I% = INSTR(11%, P$(K%), K$)
-(0 6)     P$(K%) = LEFT(P$(K%), I% - 1%) + RIGHT(P$(K%), I% + 2%)
+F(C%) (0 4) 500 W2% = W2% + 1%
+F(C%) (0 4)     I% = INSTR(11%, P$(K%), K$)
+F(C%) (0 6)     P$(K%) = LEFT(P$(K%), I% - 1%) + RIGHT(P$(K%), I% + 2%)
 (1 1)       IF I%
 (0 1)       ENDIF
-(0 2)     GOTO 520
+F(C%) (0 2)     GOTO 520
     WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 230:goto, 320:goto, 400:goto
   Dests: 520:goto
-(0 4) 510 W1% = W1% + 1%
+F(C%) (0 4) 510 W1% = W1% + 1%
   Origs: 190:goto, 430:goto
   Dests: 520:auto
-(0 2) 520 &
-(0 2)     & "BOARD:"
-(0 3)     & LEFT(P$, 3%)
-(0 3)     & MID(P$, 4%, 3%)
-(0 3)     & RIGHT(P$, 7%)
-(0 2)     &
-(0 9)     & "I HAVE WON" W1% "AND YOU HAVE WON" W2% "OF" W1% + W2% "GAMES"
+F(C%) (0 2) 520 &
+F(C%) (0 2)     & "BOARD:"
+F(C%) (0 3)     & LEFT(P$, 3%)
+F(C%) (0 3)     & MID(P$, 4%, 3%)
+F(C%) (0 3)     & RIGHT(P$, 7%)
+F(C%) (0 2)     &
+F(C%) (0 9)     & "I HAVE WON" W1% "AND YOU HAVE WON" W2% "OF" W1% + W2% "GAMES"
   Origs: 500:goto, 510:auto
   Dests: 530:auto
-(1 2) 530 INPUT "ANOTHER GAME"; C$
-(1 6)     IF C$ = "NO" THEN 9999 ELSE 120
+F(C%) (1 2) 530 INPUT "ANOTHER GAME"; C$
+F(C%) (1 6)     IF C$ = "NO" THEN 9999 ELSE 120
   Origs: 520:auto
   Dests: 120:ifthen, 9999:ifthen
 (0 0) 900 
@@ -190,32 +190,32 @@ FNN$(%) (0 1)     FNEND
 G(2000) (0 3) 2000 M$ = ""
   Origs: 190:gosub, 320:gosub
   Dests: 2010:auto
-G(2000) (1 3) 2010 FOR J% = 1% TO 9%
-G(2000) (1 5)      IF MID(P$, J%, 1%) <> Q$ THEN 2050
+G(2000) F(J%) (1 3) 2010 FOR J% = 1% TO 9%
+G(2000) F(J%) (1 5)      IF MID(P$, J%, 1%) <> Q$ THEN 2050
   Origs: 2000:auto
   Dests: 2015:auto, 2050:fornext, 2050:ifthen
-G(2000) (0 6) 2015 T% = J% + D% * 3%
-G(2000) (1 7)      IF T% < 1% OR T% > 9% THEN 2025
+G(2000) F(J%) (0 6) 2015 T% = J% + D% * 3%
+G(2000) F(J%) (1 7)      IF T% < 1% OR T% > 9% THEN 2025
   Origs: 2010:auto
   Dests: 2020:auto, 2025:ifthen
-G(2000) (1 13) 2020 IF MID(P$, T%, 1%) = "-" THEN M$ = M$ + FNN$(J%) + FNN$(T%)
+G(2000) F(J%) (1 13) 2020 IF MID(P$, T%, 1%) = "-" THEN M$ = M$ + FNN$(J%) + FNN$(T%)
   Origs: 2015:auto
   Dests: 105:function, 2025:auto
-G(2000) (0 6) 2025 T% = J% + D% * 2%
-G(2000) (1 31)      IF T% < 1% OR T% > 9% OR (D% = 1% AND (J% = 1% OR J% = 4% OR J% = 7%)) OR (D% = 1% AND (J% = 3% OR J% = 6% OR J% - 9%)) THEN 2035
+G(2000) F(J%) (0 6) 2025 T% = J% + D% * 2%
+G(2000) F(J%) (1 31)      IF T% < 1% OR T% > 9% OR (D% = 1% AND (J% = 1% OR J% = 4% OR J% = 7%)) OR (D% = 1% AND (J% = 3% OR J% = 6% OR J% - 9%)) THEN 2035
   Origs: 2015:ifthen, 2020:auto
   Dests: 2030:auto, 2035:ifthen
-G(2000) (1 13) 2030 IF INSTR(1%, Q$ + "-", MID(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN$(J%) + FNN$(T%)
+G(2000) F(J%) (1 13) 2030 IF INSTR(1%, Q$ + "-", MID(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN$(J%) + FNN$(T%)
   Origs: 2025:auto
   Dests: 105:function, 2035:auto
-G(2000) (0 6) 2035 T% = J% + D% * 4%
-G(2000) (1 13)      IF T% < 1% OR T% > 9% OR J% = 3% OR J% = 7% THEN 2050
+G(2000) F(J%) (0 6) 2035 T% = J% + D% * 4%
+G(2000) F(J%) (1 13)      IF T% < 1% OR T% > 9% OR J% = 3% OR J% = 7% THEN 2050
   Origs: 2025:ifthen, 2030:auto
   Dests: 2040:auto, 2050:ifthen
-G(2000) (1 13) 2040 IF INSTR(1%, Q$ + "-", MID(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN$(J%) + FNN$(T%)
+G(2000) F(J%) (1 13) 2040 IF INSTR(1%, Q$ + "-", MID(P$, T%, 1%)) = 0% THEN M$ = M$ + FNN$(J%) + FNN$(T%)
   Origs: 2035:auto
   Dests: 105:function, 2050:auto
-G(2000) (0 1) 2050 NEXT J%
+G(2000) F(J%) (0 1) 2050 NEXT J%
 G(2000) (1 10)      IF D% = 1% AND M$ <> "" THEN Q% = Q% + 1%
 G(2000) (0 7)      P$(Q%) = FNN$(P%) + P$ + M$
   Origs: 2010:fornext, 2010:ifthen, 2035:ifthen, 2040:auto
@@ -223,7 +223,8 @@ G(2000) (0 7)      P$(Q%) = FNN$(P%) + P$ + M$
 G(2000) (0 1) 2060 RETURN
   Origs: 2050:auto
   Dests: 
-(0 1) 9999 END
+F(C%) (0 1) 9999 END
+     WARNING: Terminating statement in FOR/NEXT
   Origs: 530:ifthen
   Dests: :stop
 

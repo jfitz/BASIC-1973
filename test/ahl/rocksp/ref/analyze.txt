@@ -38,75 +38,75 @@ Halstead complexity:
 (0 3)   GOTO 6
   Origs: 8:auto
   Dests: 6:goto
-(1 3) 11 FOR G = 1 TO Q
+F(G) (1 3) 11 FOR G = 1 TO Q
   Origs: 8:ifthen
   Dests: 15:fornext, 160:fornext
-(0 2) 15 PRINT
-(0 3)    PRINT "GAME NUMBER" G
+F(G) (0 2) 15 PRINT
+F(G) (0 3)    PRINT "GAME NUMBER" G
   Origs: 11:fornext
   Dests: 20:auto
-(0 4) 20 X = INT(RND * 3 + 1)
+F(G) (0 4) 20 X = INT(RND * 3 + 1)
   Origs: 15:auto
   Dests: 25:auto
-(0 2) 25 PRINT "3=ROCK... 2=SISSORS... 1=PAPER"
+F(G) (0 2) 25 PRINT "3=ROCK... 2=SISSORS... 1=PAPER"
   Origs: 20:auto, 32:goto
   Dests: 30:auto
-(1 2) 30 INPUT "1....2....3.... WHAT'S YOUR CHOICE "; K
+F(G) (1 2) 30 INPUT "1....2....3.... WHAT'S YOUR CHOICE "; K
   Origs: 25:auto
   Dests: 32:auto
-(1 12) 32 IF (K - 1) * (K - 2) * (K - 3) <> 0 THEN PRINT "INVALID"
-(0 3)    GOTO 25
+F(G) (1 12) 32 IF (K - 1) * (K - 2) * (K - 3) <> 0 THEN PRINT "INVALID"
+F(G) (0 3)    GOTO 25
   Origs: 30:auto
   Dests: 25:goto, 35:auto
-(0 2) 35 PRINT "THIS IS MY CHOICE..."
+F(G) (0 2) 35 PRINT "THIS IS MY CHOICE..."
   Origs: 32:auto
   Dests: 40:auto
-(3 5) 40 ON X GOTO 50, 60, 70
+F(G) (3 5) 40 ON X GOTO 50, 60, 70
   Origs: 35:auto
   Dests: 50:auto, 50:goto, 60:goto, 70:goto
-(0 2) 50 PRINT "... PAPER"
-(0 2)    GOTO 80
+F(G) (0 2) 50 PRINT "... PAPER"
+F(G) (0 2)    GOTO 80
   Origs: 40:auto, 40:goto
   Dests: 80:goto
-(0 2) 60 PRINT "... SISSORS"
-(0 2)    GOTO 80
+F(G) (0 2) 60 PRINT "... SISSORS"
+F(G) (0 2)    GOTO 80
   Origs: 40:goto
   Dests: 80:goto
-(0 2) 70 PRINT "... ROCK"
+F(G) (0 2) 70 PRINT "... ROCK"
   Origs: 40:goto
   Dests: 80:auto
-(1 4) 80 IF X = K THEN 155
+F(G) (1 4) 80 IF X = K THEN 155
   Origs: 50:goto, 60:goto, 70:auto
   Dests: 85:auto, 155:ifthen
-(1 4) 85 IF X > K THEN 125
+F(G) (1 4) 85 IF X > K THEN 125
   Origs: 80:auto
   Dests: 90:auto, 125:ifthen
-(1 4) 90 IF X = 1 THEN 105
+F(G) (1 4) 90 IF X = 1 THEN 105
   Origs: 85:auto
   Dests: 95:auto, 105:ifthen
-(0 2) 95 PRINT "YOU WIN!!!"
-(0 4)    H = H + 1
-(0 2)    GOTO 160
+F(G) (0 2) 95 PRINT "YOU WIN!!!"
+F(G) (0 4)    H = H + 1
+F(G) (0 2)    GOTO 160
   Origs: 90:auto, 105:goto, 140:ifthen
   Dests: 160:goto
-(1 7) 105 IF K = 3 THEN 115 ELSE GOTO 95
+F(G) (1 7) 105 IF K = 3 THEN 115 ELSE GOTO 95
   Origs: 90:ifthen
   Dests: 95:goto, 115:auto, 115:ifthen
-(0 2) 115 PRINT "WOW! I WIN!!"
-(0 4)     C = C + 1
-(0 2)     GOTO 160
+F(G) (0 2) 115 PRINT "WOW! I WIN!!"
+F(G) (0 4)     C = C + 1
+F(G) (0 2)     GOTO 160
   Origs: 105:auto, 105:ifthen, 125:ifthen, 140:ifthen
   Dests: 160:goto
-(1 5) 125 IF K <> 1 THEN 115
+F(G) (1 5) 125 IF K <> 1 THEN 115
   Origs: 85:ifthen
   Dests: 115:ifthen, 140:auto
-(1 7) 140 IF X <> 3 THEN 115 ELSE 95
+F(G) (1 7) 140 IF X <> 3 THEN 115 ELSE 95
   Origs: 125:auto
   Dests: 95:ifthen, 115:ifthen
-(0 2) 155 PRINT "TIE GAME, NO WINNER."
+F(G) (0 2) 155 PRINT "TIE GAME, NO WINNER."
   Origs: 80:ifthen
   Dests: 160:auto
-(0 1) 160 NEXT G
+F(G) (0 1) 160 NEXT G
   Origs: 11:fornext, 95:goto, 115:goto, 155:auto
   Dests: 170:auto
 (0 2) 170 PRINT

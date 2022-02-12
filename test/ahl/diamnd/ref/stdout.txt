@@ -61,37 +61,37 @@ STOP in line 99
 5 (1) INPUT R
   (1) PRINT
 6 (1) Q = INT(60 / R)
-8 (1) FOR L = 1 TO Q
-10 (4) X = 1
-   (4) Y = R
-   (4) Z = 2
-20 (8) FOR N = X TO Y STEP Z
-25 (52) PRINT TAB((R - N) / 2);
-28 (52) FOR M = 1 TO Q
-29 (208) C = 1
-30 (208) FOR A = 1 TO N
-31 (1360) IF C = 1 THEN 40
-32 (1152) IF C = 2 THEN 42
-33 (976) IF C = 3 THEN 44
-35 (800) PRINT "!";
-   (800) GOTO 50
-40 (208) PRINT "D";
-   (208) GOTO 47
-42 (176) PRINT "E";
-   (176) GOTO 47
-44 (176) PRINT "C";
-47 (560) C = C + 1
-50 (1360) NEXT A
-53 (208) IF M = Q THEN 60
-55 (156) PRINT TAB(R * M + (R - N) / 2);
-56 (156) NEXT M
-60 (52) PRINT
-70 (52) NEXT N
-83 (8) IF X <> 1 THEN 95
-85 (4) X = R - 2
-   (4) Y = 1
-   (4) Z = -2
-90 (4) GOTO 20
-95 (4) NEXT L
-99 (1) END
+8 F(L) (1) FOR L = 1 TO Q
+10 F(L) (4) X = 1
+   F(L) (4) Y = R
+   F(L) (4) Z = 2
+20 F(L,N) (8) FOR N = X TO Y STEP Z
+25 F(L,N) (52) PRINT TAB((R - N) / 2);
+28 F(L,N,M) (52) FOR M = 1 TO Q
+29 F(L,N,M) (208) C = 1
+30 F(L,N,M,A) (208) FOR A = 1 TO N
+31 F(L,N,M,A) (1360) IF C = 1 THEN 40
+32 F(L,N,M,A) (1152) IF C = 2 THEN 42
+33 F(L,N,M,A) (976) IF C = 3 THEN 44
+35 F(L,N,M,A) (800) PRINT "!";
+   F(L,N,M,A) (800) GOTO 50
+40 F(L,N,M,A) (208) PRINT "D";
+   F(L,N,M,A) (208) GOTO 47
+42 F(L,N,M,A) (176) PRINT "E";
+   F(L,N,M,A) (176) GOTO 47
+44 F(L,N,M,A) (176) PRINT "C";
+47 F(L,N,M,A) (560) C = C + 1
+50 F(L,N,M,A) (1360) NEXT A
+53 F(L,N,M) (208) IF M = Q THEN 60
+55 F(L,N,M) (156) PRINT TAB(R * M + (R - N) / 2);
+56 F(L,N,M) (156) NEXT M
+60 F(L,N,M) (52) PRINT
+70 F(L,N,M) (52) NEXT N
+83 F(L,N) (8) IF X <> 1 THEN 95
+85 F(L,N) (4) X = R - 2
+   F(L,N) (4) Y = 1
+   F(L,N) (4) Z = -2
+90 F(L,N) (4) GOTO 20
+95 F(L,N) (4) NEXT L
+99 F(L) (1) END
 

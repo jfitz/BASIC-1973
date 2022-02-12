@@ -22,25 +22,25 @@ Halstead complexity:
 (0 1) 10 REM  WE ARE READING THE LIST FROM DATA
   Origs: 
   Dests: 
-(1 3) 20 FOR X = 1 TO 10
+F(X) (1 3) 20 FOR X = 1 TO 10
   Origs: :start
   Dests: 30:fornext, 40:fornext
-(1 2) 30 READ L[X]
+F(X) (1 2) 30 READ L[X]
   Origs: 20:fornext
   Dests: 40:auto
-(0 1) 40 NEXT X
+F(X) (0 1) 40 NEXT X
   Origs: 20:fornext, 30:auto
   Dests: 50:auto
 (0 2) 50 PRINT "HERE IS THE LIST IN ORIGINAL ORDER"
   Origs: 40:auto
   Dests: 60:auto
-(1 3) 60 FOR Y = 1 TO 10
+F(Y) (1 3) 60 FOR Y = 1 TO 10
   Origs: 50:auto
   Dests: 70:fornext, 80:fornext
-(0 2) 70 PRINT L[Y];
+F(Y) (0 2) 70 PRINT L[Y];
   Origs: 60:fornext
   Dests: 80:auto
-(0 1) 80 NEXT Y
+F(Y) (0 1) 80 NEXT Y
   Origs: 60:fornext, 70:auto
   Dests: 90:auto
 (0 2) 90 PRINT
@@ -49,25 +49,25 @@ Halstead complexity:
 (0 1) 100 REM  NOW WE TEST PAIRS OF NUMBERS TO SEE IF THEY ARE IN ORDER
   Origs: 
   Dests: 
-(1 3) 110 FOR I = 1 TO 9
+F(I) (1 3) 110 FOR I = 1 TO 9
   Origs: 90:auto
   Dests: 118:fornext, 400:fornext
-(0 1) 118 REM  WHY DON'T WE SAY FOR I-1 TO 10????
+F(I) (0 1) 118 REM  WHY DON'T WE SAY FOR I-1 TO 10????
   Origs: 110:fornext
   Dests: 120:auto
-(1 4) 120 FOR J = I + 1 TO 10
+F(I,J) (1 4) 120 FOR J = I + 1 TO 10
   Origs: 118:auto
   Dests: 130:fornext, 300:fornext
-(1 4) 130 IF L[I] <= L[J] THEN 300
+F(I,J) (1 4) 130 IF L[I] <= L[J] THEN 300
   Origs: 120:fornext
   Dests: 140:auto, 300:ifthen
-(0 3) 140 LET S = L[I]
+F(I,J) (0 3) 140 LET S = L[I]
   Origs: 130:auto
   Dests: 150:auto
-(0 3) 150 LET L[I] = L[J]
+F(I,J) (0 3) 150 LET L[I] = L[J]
   Origs: 140:auto
   Dests: 160:auto
-(0 3) 160 LET L[J] = S
+F(I,J) (0 3) 160 LET L[J] = S
   Origs: 150:auto
   Dests: 300:auto
 (0 1) 170 REM  WE HAVE REVERSED TWO ELEMENTS OF THE LIST
@@ -76,22 +76,22 @@ Halstead complexity:
 (0 1) 180 REM ****  SEE PROGRAM LIST1  ****
   Origs: 
   Dests: 
-(0 1) 300 NEXT J
+F(I,J) (0 1) 300 NEXT J
   Origs: 120:fornext, 130:ifthen, 160:auto
   Dests: 400:auto
-(0 1) 400 NEXT I
+F(I) (0 1) 400 NEXT I
   Origs: 110:fornext, 300:auto
   Dests: 405:auto
 (0 2) 405 PRINT "AND HERE IS THE LIST IN ORDER FROM SMALLEST TO GREATEST"
   Origs: 400:auto
   Dests: 410:auto
-(1 3) 410 FOR Y = 1 TO 10
+F(Y) (1 3) 410 FOR Y = 1 TO 10
   Origs: 405:auto
   Dests: 420:fornext, 430:fornext
-(0 2) 420 PRINT L[Y];
+F(Y) (0 2) 420 PRINT L[Y];
   Origs: 410:fornext
   Dests: 430:auto
-(0 1) 430 NEXT Y
+F(Y) (0 1) 430 NEXT Y
   Origs: 410:fornext, 420:auto
   Dests: 999:auto
 (0 4) 500 DATA 6, -19, 28, 20, -32, 74, 19, 28, 23, 43

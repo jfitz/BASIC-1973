@@ -133,31 +133,31 @@ Halstead complexity:
 (0 6) 210 DIM D(52), E(5), V(5), T(5), W(5)
   Origs: 200:auto
   Dests: 215:auto
-(1 3) 215 FOR A = 1 TO 52
+F(A) (1 3) 215 FOR A = 1 TO 52
   Origs: 210:auto
   Dests: 220:fornext, 225:fornext
-(0 3) 220 LET D(A) = 0
+F(A) (0 3) 220 LET D(A) = 0
   Origs: 215:fornext
   Dests: 225:auto
-(0 1) 225 NEXT A
+F(A) (0 1) 225 NEXT A
   Origs: 215:fornext, 220:auto
   Dests: 230:auto
 (0 2) 230 DIM Q(52)
   Origs: 225:auto
   Dests: 235:auto
-(1 4) 235 FOR A = 0 TO 39 STEP 13
+F(A) (1 4) 235 FOR A = 0 TO 39 STEP 13
   Origs: 230:auto
   Dests: 240:fornext, 255:fornext
-(1 3) 240 FOR C = 1 TO 13
+F(A,C) (1 3) 240 FOR C = 1 TO 13
   Origs: 235:fornext
   Dests: 245:fornext, 250:fornext
-(0 3) 245 LET Q(A + C) = C
+F(A,C) (0 3) 245 LET Q(A + C) = C
   Origs: 240:fornext
   Dests: 250:auto
-(0 1) 250 NEXT C
+F(A,C) (0 1) 250 NEXT C
   Origs: 240:fornext, 245:auto
   Dests: 255:auto
-(0 1) 255 NEXT A
+F(A) (0 1) 255 NEXT A
   Origs: 235:fornext, 250:auto
   Dests: 260:auto
 (0 2) 260 PRINT
@@ -167,19 +167,19 @@ G(1335) (0 4) 265 LET K = K + 1
     WARNING: Statement before GOSUB entry point
   Origs: 260:auto, 1340:goto
   Dests: 270:auto
-G(1335) (1 3) 270 FOR P = 1 TO 5
+G(1335) F(P) (1 3) 270 FOR P = 1 TO 5
   Origs: 265:auto
   Dests: 275:fornext, 290:fornext
-G(1335) (0 3) 275 LET E(P) = 0
+G(1335) F(P) (0 3) 275 LET E(P) = 0
   Origs: 270:fornext
   Dests: 280:auto
-G(1335) (0 3) 280 LET V(P) = 0
+G(1335) F(P) (0 3) 280 LET V(P) = 0
   Origs: 275:auto
   Dests: 285:auto
-G(1335) (0 3) 285 LET T(P) = 0
+G(1335) F(P) (0 3) 285 LET T(P) = 0
   Origs: 280:auto
   Dests: 290:auto
-G(1335) (0 1) 290 NEXT P
+G(1335) F(P) (0 1) 290 NEXT P
   Origs: 270:fornext, 285:auto
   Dests: 295:auto
 G(1335) (0 3) 295 LET V(3) = 1
@@ -553,16 +553,16 @@ G(900) (1 4) 900 IF R >= 50 THEN 945
 G(900) (0 7) 905 LET N = 10 * (1 + ABS(COS(N + W1)))
   Origs: 900:auto
   Dests: 910:auto
-G(900) (1 3) 910 FOR A = 1 TO N
+G(900) F(A) (1 3) 910 FOR A = 1 TO N
   Origs: 905:auto
   Dests: 915:fornext, 925:fornext
-G(900) (0 4) 915 LET X = INT(52.999999 * RND(Y))
+G(900) F(A) (0 4) 915 LET X = INT(52.999999 * RND(Y))
   Origs: 910:fornext, 920:ifthen
   Dests: 920:auto
-G(900) (1 5) 920 IF X = 0 THEN 915
+G(900) F(A) (1 5) 920 IF X = 0 THEN 915
   Origs: 915:auto
   Dests: 915:ifthen, 925:auto
-G(900) (0 1) 925 NEXT A
+G(900) F(A) (0 1) 925 NEXT A
   Origs: 910:fornext, 920:auto
   Dests: 930:auto
 G(900) (1 4) 930 IF D(X) = 0 THEN 980
@@ -574,16 +574,16 @@ G(900) (0 4) 935 LET R = R + 1
 G(900) (1 5) 940 IF R < 50 THEN 900
   Origs: 935:auto
   Dests: 900:ifthen, 945:auto
-G(900) (1 3) 945 FOR A = 1 TO 52
+G(900) F(A) (1 3) 945 FOR A = 1 TO 52
   Origs: 900:ifthen, 940:auto
   Dests: 950:fornext, 960:fornext
-G(900) (1 4) 950 IF D(A) = K THEN 960
+G(900) F(A) (1 4) 950 IF D(A) = K THEN 960
   Origs: 945:fornext
   Dests: 955:auto, 960:ifthen
-G(900) (0 3) 955 LET D(A) = 0
+G(900) F(A) (0 3) 955 LET D(A) = 0
   Origs: 950:auto
   Dests: 960:auto
-G(900) (0 1) 960 NEXT A
+G(900) F(A) (0 1) 960 NEXT A
   Origs: 945:fornext, 950:ifthen, 955:auto
   Dests: 965:auto
 G(900) (0 3) 965 LET R = 0
@@ -999,13 +999,13 @@ G(1335) (0 2) 1635 PRINT
 G(1335) (0 3) 1640 GOTO 1330
   Origs: 1635:auto
   Dests: 1330:goto
-G(1645) (1 3) 1645 FOR M9 = 1 TO 52
+G(1645) F(M9) (1 3) 1645 FOR M9 = 1 TO 52
   Origs: 350:gosub
   Dests: 1650:fornext, 1655:fornext
-G(1645) (0 3) 1650 LET D(M9) = 0
+G(1645) F(M9) (0 3) 1650 LET D(M9) = 0
   Origs: 1645:fornext
   Dests: 1655:auto
-G(1645) (0 1) 1655 NEXT M9
+G(1645) F(M9) (0 1) 1655 NEXT M9
   Origs: 1645:fornext, 1650:auto
   Dests: 1660:auto
 G(1645) (0 3) 1660 LET R = 0

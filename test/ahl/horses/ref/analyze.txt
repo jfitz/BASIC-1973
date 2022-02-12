@@ -36,21 +36,21 @@ Halstead complexity:
 (0 2) 6 PRINT
   Origs: 5:auto
   Dests: 7:auto
-(1 3) 7 FOR I = 1 TO 8
+F(I) (1 3) 7 FOR I = 1 TO 8
   Origs: 6:auto
   Dests: 8:fornext, 11:fornext
-(0 3) 8 B(I) = I
-(0 2)   GOSUB 210
+F(I) (0 3) 8 B(I) = I
+F(I) (0 2)   GOSUB 210
   Origs: 7:fornext
   Dests: 9:auto, 210:gosub
-(1 2) 9 READ O(I)
-(0 3)   PRINT O(I) ":1"
+F(I) (1 2) 9 READ O(I)
+F(I) (0 3)   PRINT O(I) ":1"
   Origs: 8:auto
   Dests: 10:auto
-(0 9) 10 M(I) = (100 + 50 * O(I)) / (O(I) + 1)
+F(I) (0 9) 10 M(I) = (100 + 50 * O(I)) / (O(I) + 1)
   Origs: 9:auto
   Dests: 11:auto
-(0 1) 11 NEXT I
+F(I) (0 1) 11 NEXT I
   Origs: 7:fornext, 10:auto
   Dests: 12:auto
 (0 2) 12 PRINT
@@ -120,94 +120,94 @@ Halstead complexity:
 (0 2)    PRINT
   Origs: 33:auto
   Dests: 36:auto
-(1 3) 36 FOR I = 1 TO 8
-(0 3)    H(I) = 0
-(0 1)    NEXT I
+F(I) (1 3) 36 FOR I = 1 TO 8
+F(I) (0 3)    H(I) = 0
+F(I) (0 1)    NEXT I
   Origs: 35:auto
   Dests: 40:auto
-(1 3) 40 FOR K = 1 TO 8
+F(K) (1 3) 40 FOR K = 1 TO 8
   Origs: 36:auto
   Dests: 42:fornext, 92:fornext
-(0 2) 42 SLEEP 6
+F(K) (0 2) 42 SLEEP 6
   Origs: 40:fornext
   Dests: 44:auto
-(1 3) 44 FOR J = 1 TO 8
+F(K,J) (1 3) 44 FOR J = 1 TO 8
   Origs: 42:auto
   Dests: 46:fornext, 48:fornext
-(0 7) 46 H(J) = H(J) + RND(0) * M(J)
+F(K,J) (0 7) 46 H(J) = H(J) + RND(0) * M(J)
   Origs: 44:fornext
   Dests: 48:auto
-(0 1) 48 NEXT J
+F(K,J) (0 1) 48 NEXT J
   Origs: 44:fornext, 46:auto
   Dests: 52:auto
-(1 5) 52 FOR I = 8 TO 1 STEP -1
+F(K,I) (1 5) 52 FOR I = 8 TO 1 STEP -1
   Origs: 48:auto
   Dests: 54:fornext, 64:fornext
-(1 3) 54 FOR J = 2 TO I
+F(K,I,J) (1 3) 54 FOR J = 2 TO I
   Origs: 52:fornext
   Dests: 56:fornext, 62:fornext
-(3 7) 56 ON SGN(H(B(J - 1)) - H(B(J))) + 2 GOTO 60, 58, 62
+F(K,I,J) (3 7) 56 ON SGN(H(B(J - 1)) - H(B(J))) + 2 GOTO 60, 58, 62
   Origs: 54:fornext
   Dests: 58:auto, 58:goto, 60:goto, 62:goto
-(1 5) 58 IF RND(0) > .5 THEN 62
+F(K,I,J) (1 5) 58 IF RND(0) > .5 THEN 62
   Origs: 56:auto, 56:goto
   Dests: 60:auto, 62:ifthen
-(0 3) 60 Z = B(J - 1)
-(0 3)    B(J - 1) = B(J)
-(0 3)    B(J) = Z
+F(K,I,J) (0 3) 60 Z = B(J - 1)
+F(K,I,J) (0 3)    B(J - 1) = B(J)
+F(K,I,J) (0 3)    B(J) = Z
   Origs: 56:goto, 58:auto
   Dests: 62:auto
-(0 1) 62 NEXT J
+F(K,I,J) (0 1) 62 NEXT J
   Origs: 54:fornext, 56:goto, 58:ifthen, 60:auto
   Dests: 64:auto
-(0 1) 64 NEXT I
+F(K,I) (0 1) 64 NEXT I
   Origs: 52:fornext, 62:auto
   Dests: 68:auto
-(0 2) 68 PRINT
-(0 2)    PRINT "   ";
+F(K) (0 2) 68 PRINT
+F(K) (0 2)    PRINT "   ";
   Origs: 64:auto
   Dests: 70:auto
-(8 10) 70 ON K GOTO 72, 74, 76, 78, 80, 82, 84, 86
+F(K) (8 10) 70 ON K GOTO 72, 74, 76, 78, 80, 82, 84, 86
   Origs: 68:auto
   Dests: 72:auto, 72:goto, 74:goto, 76:goto, 78:goto, 80:goto, 82:goto, 84:goto, 86:goto
-(0 2) 72 PRINT "AS THEY BREAK FROM THE GATE"
-(0 2)    GOTO 88
+F(K) (0 2) 72 PRINT "AS THEY BREAK FROM THE GATE"
+F(K) (0 2)    GOTO 88
   Origs: 70:auto, 70:goto
   Dests: 90:goto
-(0 2) 74 PRINT "AT THE 1/4 MILE POLE"
-(0 2)    GOTO 88
+F(K) (0 2) 74 PRINT "AT THE 1/4 MILE POLE"
+F(K) (0 2)    GOTO 88
   Origs: 70:goto
   Dests: 90:goto
-(0 2) 76 PRINT "NEARING THE HALFWAY MARK"
-(0 2)    GOTO 88
+F(K) (0 2) 76 PRINT "NEARING THE HALFWAY MARK"
+F(K) (0 2)    GOTO 88
   Origs: 70:goto
   Dests: 90:goto
-(0 2) 78 PRINT "MIDWAY IN THE RACE"
-(0 2)    GOTO 88
+F(K) (0 2) 78 PRINT "MIDWAY IN THE RACE"
+F(K) (0 2)    GOTO 88
   Origs: 70:goto
   Dests: 90:goto
-(0 2) 80 PRINT "AT 5/8 OF A MILE"
-(0 2)    GOTO 88
+F(K) (0 2) 80 PRINT "AT 5/8 OF A MILE"
+F(K) (0 2)    GOTO 88
   Origs: 70:goto
   Dests: 90:goto
-(0 2) 82 PRINT "ROUNDING THE TURN"
-(0 2)    GOTO 88
+F(K) (0 2) 82 PRINT "ROUNDING THE TURN"
+F(K) (0 2)    GOTO 88
   Origs: 70:goto
   Dests: 90:goto
-(0 2) 84 PRINT "COMING DOWN THE STRETCH"
-(0 2)    GOTO 88
+F(K) (0 2) 84 PRINT "COMING DOWN THE STRETCH"
+F(K) (0 2)    GOTO 88
   Origs: 70:goto
   Dests: 90:goto
-(0 2) 86 PRINT " FINISH"
+F(K) (0 2) 86 PRINT " FINISH"
   Origs: 70:goto
   Dests: 90:auto
 (0 1) 88 REM
   Origs: 
   Dests: 
-(0 2) 90 GOSUB 200
+F(K) (0 2) 90 GOSUB 200
   Origs: 72:goto, 74:goto, 76:goto, 78:goto, 80:goto, 82:goto, 84:goto, 86:auto
   Dests: 92:auto, 200:gosub
-(0 1) 92 NEXT K
+F(K) (0 1) 92 NEXT K
   Origs: 40:fornext, 90:auto
   Dests: 96:auto
 (0 2) 96 PRINT
@@ -221,107 +221,107 @@ Halstead complexity:
 (0 3) 100 K = 0
   Origs: 98:auto
   Dests: 102:auto
-(1 3) 102 FOR I = 1 TO 3
+F(I) (1 3) 102 FOR I = 1 TO 3
   Origs: 100:auto
   Dests: 104:fornext, 146:fornext
-(0 2) 104 GOSUB 215
+F(I) (0 2) 104 GOSUB 215
   Origs: 102:fornext
   Dests: 106:auto, 215:gosub
-(1 3) 106 FOR J = 1 TO 3
+F(I,J) (1 3) 106 FOR J = 1 TO 3
   Origs: 104:auto
   Dests: 108:fornext, 142:fornext
-(0 6) 108 L = 2 * I + J - 3
-(0 7)     P(L) = 1.5 + .1 * INT(.1 * INT((4 * O(B(I)) / (J * (J + 1)) + RND(0)) * 100 + 5))
+F(I,J) (0 6) 108 L = 2 * I + J - 3
+F(I,J) (0 7)     P(L) = 1.5 + .1 * INT(.1 * INT((4 * O(B(I)) / (J * (J + 1)) + RND(0)) * 100 + 5))
   Origs: 106:fornext
   Dests: 110:auto
-(0 3) 110 PRINT TAB(3 + 10 * J);
-(0 4)     B = -16
+F(I,J) (0 3) 110 PRINT TAB(3 + 10 * J);
+F(I,J) (0 4)     B = -16
   Origs: 108:auto
   Dests: 112:auto
-(1 6) 112 FOR M = 3 TO -1 STEP -1
+F(I,J,M) (1 6) 112 FOR M = 3 TO -1 STEP -1
   Origs: 110:auto
   Dests: 114:fornext, 139:fornext
-(0 4) 114 P = INT(P(L) / (10 ^ M))
+F(I,J,M) (0 4) 114 P = INT(P(L) / (10 ^ M))
   Origs: 112:fornext
   Dests: 116:auto
-(0 7) 116 P = P - 10 * INT(P / 10)
+F(I,J,M) (0 7) 116 P = P - 10 * INT(P / 10)
   Origs: 114:auto
   Dests: 117:auto
-(1 4) 117 IF P = 0 THEN 118
-(0 3)     B = 0
+F(I,J,M) (1 4) 117 IF P = 0 THEN 118
+F(I,J,M) (0 3)     B = 0
   Origs: 116:auto
   Dests: 118:auto, 118:ifthen
-(0 3) 118 PRINT CHR$(48 + P + B);
+F(I,J,M) (0 3) 118 PRINT CHR$(48 + P + B);
   Origs: 117:auto, 117:ifthen
   Dests: 138:auto
-(1 4) 138 IF M <> 0 THEN 139
-(0 2)     PRINT ".";
+F(I,J,M) (1 4) 138 IF M <> 0 THEN 139
+F(I,J,M) (0 2)     PRINT ".";
   Origs: 118:auto
   Dests: 139:auto, 139:ifthen
-(0 1) 139 NEXT M
+F(I,J,M) (0 1) 139 NEXT M
   Origs: 112:fornext, 138:auto, 138:ifthen
   Dests: 140:auto
-(0 2) 140 PRINT "0";
+F(I,J) (0 2) 140 PRINT "0";
   Origs: 139:auto
   Dests: 142:auto
-(0 1) 142 NEXT J
+F(I,J) (0 1) 142 NEXT J
   Origs: 106:fornext, 140:auto
   Dests: 144:auto
-(0 2) 144 PRINT
+F(I) (0 2) 144 PRINT
   Origs: 142:auto
   Dests: 146:auto
-(0 1) 146 NEXT I
+F(I) (0 1) 146 NEXT I
   Origs: 102:fornext, 144:auto
   Dests: 150:auto
 (0 2) 150 PRINT
 (0 3)     Q = 0
   Origs: 146:auto
   Dests: 152:auto
-(1 3) 152 FOR J = 1 TO S
+F(J) (1 3) 152 FOR J = 1 TO S
   Origs: 150:auto
   Dests: 154:fornext, 176:fornext
-(0 3) 154 PRINT "BET NO. "; J
+F(J) (0 3) 154 PRINT "BET NO. "; J
   Origs: 152:fornext
   Dests: 156:auto
-(0 3) 156 P = 0
+F(J) (0 3) 156 P = 0
   Origs: 154:auto
   Dests: 158:auto
-(1 3) 158 FOR I = 1 TO 6
-(0 3)     H(B(I)) = I
-(0 1)     NEXT I
+F(J,I) (1 3) 158 FOR I = 1 TO 6
+F(J,I) (0 3)     H(B(I)) = I
+F(J,I) (0 1)     NEXT I
   Origs: 156:auto
   Dests: 160:auto
-(1 4) 160 IF U(J) < H(T(J)) THEN 166
+F(J) (1 4) 160 IF U(J) < H(T(J)) THEN 166
   Origs: 158:auto
   Dests: 162:auto, 166:ifthen
-(0 5) 162 P = .01 * INT((V(J) * 50) * P(U(J) * H(T(J)) * 2 - 3))
+F(J) (0 5) 162 P = .01 * INT((V(J) * 50) * P(U(J) * H(T(J)) * 2 - 3))
   Origs: 160:auto
   Dests: 164:auto
-(0 4) 164 PRINT "YOU COLLECT" P "ON ";
-(0 2)     GOTO 172
+F(J) (0 4) 164 PRINT "YOU COLLECT" P "ON ";
+F(J) (0 2)     GOTO 172
   Origs: 162:auto
   Dests: 172:goto
-(1 4) 166 IF H(T(J)) > 3 THEN 168
-(0 2)     PRINT "NEXT TIME, BUY A SHOW";
-(0 2)     GOTO 170
+F(J) (1 4) 166 IF H(T(J)) > 3 THEN 168
+F(J) (0 2)     PRINT "NEXT TIME, BUY A SHOW";
+F(J) (0 2)     GOTO 170
   Origs: 160:ifthen
   Dests: 168:auto, 168:ifthen, 170:goto
-(0 2) 168 PRINT "TEAR UP YOUR";
+F(J) (0 2) 168 PRINT "TEAR UP YOUR";
   Origs: 166:auto, 166:ifthen
   Dests: 170:auto
-(0 2) 170 PRINT " TICKET ON ";
+F(J) (0 2) 170 PRINT " TICKET ON ";
   Origs: 166:goto, 168:auto
   Dests: 172:auto
-(0 3) 172 I = 0
-(0 3)     B(0) = T(J)
-(0 2)     GOSUB 215
-(0 2)     PRINT
+F(J) (0 3) 172 I = 0
+F(J) (0 3)     B(0) = T(J)
+F(J) (0 2)     GOSUB 215
+F(J) (0 2)     PRINT
   Origs: 164:goto, 170:auto
   Dests: 174:auto, 215:gosub
-(0 5) 174 Q = Q + P - V(J)
+F(J) (0 5) 174 Q = Q + P - V(J)
   Origs: 172:auto
   Dests: 176:auto
-(0 1) 176 NEXT J
+F(J) (0 1) 176 NEXT J
   Origs: 152:fornext, 174:auto
   Dests: 178:auto
 (1 4) 178 IF Q < 0 THEN 182
@@ -338,67 +338,67 @@ Halstead complexity:
 G(200) (0 2) 200 PRINT "POS.  HORSE   LENGTHS BEHIND"
   Origs: 90:gosub
   Dests: 205:auto
-G(200) (1 3) 205 FOR I = 1 TO 8
+G(200) F(I) (1 3) 205 FOR I = 1 TO 8
   Origs: 200:auto
   Dests: 210:fornext, 255:fornext
-G(210) (0 2) 210 PRINT I;
+G(210) F(I) (0 2) 210 PRINT I;
     WARNING: Inconsistent GOSUB target (210, 200)
     WARNING: Inconsistent GOSUB origins
   Origs: 8:gosub, 205:fornext
   Dests: 215:auto
-G(210) (8 10) 215 ON B(I) GOTO 220, 222, 224, 226, 228, 230, 232, 234
+G(210) F(I) (8 10) 215 ON B(I) GOTO 220, 222, 224, 226, 228, 230, 232, 234
     WARNING: Inconsistent GOSUB target (210, 215)
     WARNING: Inconsistent GOSUB target (210, 215)
     WARNING: Inconsistent GOSUB origins
   Origs: 104:gosub, 172:gosub, 210:auto
   Dests: 220:auto, 220:goto, 222:goto, 224:goto, 226:goto, 228:goto, 230:goto, 232:goto, 234:goto
-G(210) (0 2) 220 PRINT "MAN O'WAR  ";
-G(210) (0 2)     GOTO 240
+G(210) F(I) (0 2) 220 PRINT "MAN O'WAR  ";
+G(210) F(I) (0 2)     GOTO 240
   Origs: 215:auto, 215:goto
   Dests: 240:goto
-G(210) (0 2) 222 PRINT "CITATION   ";
-G(210) (0 2)     GOTO 240
+G(210) F(I) (0 2) 222 PRINT "CITATION   ";
+G(210) F(I) (0 2)     GOTO 240
   Origs: 215:goto
   Dests: 240:goto
-G(210) (0 2) 224 PRINT "WHIRLAWAY  ";
-G(210) (0 2)     GOTO 240
+G(210) F(I) (0 2) 224 PRINT "WHIRLAWAY  ";
+G(210) F(I) (0 2)     GOTO 240
   Origs: 215:goto
   Dests: 240:goto
-G(210) (0 2) 226 PRINT "ASSAULT    ";
-G(210) (0 2)     GOTO 240
+G(210) F(I) (0 2) 226 PRINT "ASSAULT    ";
+G(210) F(I) (0 2)     GOTO 240
   Origs: 215:goto
   Dests: 240:goto
-G(210) (0 2) 228 PRINT "SEABISCUIT ";
-G(210) (0 2)     GOTO 240
+G(210) F(I) (0 2) 228 PRINT "SEABISCUIT ";
+G(210) F(I) (0 2)     GOTO 240
   Origs: 215:goto
   Dests: 240:goto
-G(210) (0 2) 230 PRINT "GALLANT FOX";
-G(210) (0 2)     GOTO 240
+G(210) F(I) (0 2) 230 PRINT "GALLANT FOX";
+G(210) F(I) (0 2)     GOTO 240
   Origs: 215:goto
   Dests: 240:goto
-G(210) (0 2) 232 PRINT "STYMIE     ";
-G(210) (0 2)     GOTO 240
+G(210) F(I) (0 2) 232 PRINT "STYMIE     ";
+G(210) F(I) (0 2)     GOTO 240
   Origs: 215:goto
   Dests: 240:goto
-G(210) (0 2) 234 PRINT "COALTOWN   ";
+G(210) F(I) (0 2) 234 PRINT "COALTOWN   ";
   Origs: 215:goto
   Dests: 240:auto
-G(210) (1 4) 240 IF K = 0 THEN 260
+G(210) F(I) (1 4) 240 IF K = 0 THEN 260
   Origs: 220:goto, 222:goto, 224:goto, 226:goto, 228:goto, 230:goto, 232:goto, 234:auto
   Dests: 245:auto, 260:ifthen
-G(210) (1 4) 245 IF I > 1 THEN 250
-G(210) (0 2)     PRINT
-G(210) (0 2)     GOTO 255
+G(210) F(I) (1 4) 245 IF I > 1 THEN 250
+G(210) F(I) (0 2)     PRINT
+G(210) F(I) (0 2)     GOTO 255
   Origs: 240:auto
   Dests: 250:auto, 250:ifthen, 255:goto
-G(210) (0 4) 250 PRINT .1 * INT(H(B(1)) - H(B(I)))
+G(210) F(I) (0 4) 250 PRINT .1 * INT(H(B(1)) - H(B(I)))
   Origs: 245:auto, 245:ifthen
   Dests: 255:auto
-G(210) (0 1) 255 NEXT I
+G(210) F(I) (0 1) 255 NEXT I
     WARNING: Inconsistent GOSUB target (210, 200)
   Origs: 205:fornext, 245:goto, 250:auto
   Dests: 260:auto
-G(210) (0 1) 260 RETURN
+G(210) F(I) (0 1) 260 RETURN
   Origs: 240:ifthen, 255:auto
   Dests: 
 (0 2) 301 DATA 3, 4, 5, 8, 9, 11, 20, 30
