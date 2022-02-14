@@ -92,7 +92,6 @@ F(I) (0 1) 13 NEXT I
   Origs: 
   Dests: 
 G(2000) (0 2) 100 PRINT "WHERE WOULD YOU LIKE TO START";
-    WARNING: Statement before GOSUB entry point
   Origs: 29:goto, 30:auto, 180:goto, 4040:ifthen
   Dests: 110:auto
 G(2000) (1 2) 110 INPUT M1
@@ -123,6 +122,7 @@ G(2000) (0 2) 170 PRINT
   Origs: 165:auto
   Dests: 180:auto
 G(2000) (0 3) 180 GOTO 100
+    WARNING: Branch to line before GOSUB start
   Origs: 170:auto
   Dests: 100:goto
 G(2000) (0 2) 200 GOSUB 2000
@@ -177,18 +177,21 @@ G(2000) (1 4) 290 IF L <= 0 THEN 3200
   Origs: 280:auto
   Dests: 295:auto, 3200:ifthen
 G(2000) (0 3) 295 GOTO 200
+    WARNING: Branch to line before GOSUB start
   Origs: 290:auto
   Dests: 200:goto
 G(2000) (1 5) 300 IF T1 - T <> P THEN 320
   Origs: 270:ifthen
   Dests: 310:auto, 320:ifthen
 G(2000) (0 3) 310 GOTO 200
+    WARNING: Branch to line before GOSUB start
   Origs: 300:auto
   Dests: 200:goto
 G(2000) (1 7) 320 IF T1 - T <> 2 * P THEN 3200
   Origs: 300:ifthen
   Dests: 330:auto, 3200:ifthen
 G(2000) (0 3) 330 GOTO 200
+    WARNING: Branch to line before GOSUB start
   Origs: 320:auto
   Dests: 200:goto
 (0 1) 1990 REM LOCATE MOVE FOR MACHINE
@@ -327,6 +330,7 @@ G(2000) (0 2) 3210 PRINT "Y O U   C H E A T . . . TRY AGAIN"
   Origs: 3200:auto
   Dests: 3220:auto
 G(2000) (0 3) 3220 GOTO 230
+     WARNING: Branch to line before GOSUB start
   Origs: 3210:auto
   Dests: 230:goto
 (0 1) 3290 REM PLAYER WINS.
@@ -417,6 +421,7 @@ G(2000) (0 2) 4030 PRINT
   Origs: 4020:auto
   Dests: 4040:auto
 G(2000) (1 5) 4040 IF Q$ = "YES" THEN 100
+     WARNING: Branch to line before GOSUB start
   Origs: 4030:auto
   Dests: 100:ifthen, 4042:auto
 G(2000) (1 4) 4042 IF Q$ = "NO" THEN 4050

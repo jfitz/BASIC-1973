@@ -1,12 +1,9 @@
 5 GOSUB 500
- WARNING: Statement before GOSUB entry point
 10 DIM D(10, 4), B(10), C(18), G(10)
- WARNING: Statement before GOSUB entry point
  WARNING: Inconsistent GOSUB target (500, 400)
 15 RANDOMIZE : PRINT : PRINT : PRINT
 20 LET A = 0 : GOTO 200
 30 PRINT : PRINT : PRINT : LET J = 0
- WARNING: Statement before GOSUB entry point
 35 PRINT "YOUR GUESS"; : INPUT N : LET N = (N + .1) / 100000
 40 FOR I = 0 TO 4 : LET G(I) = INT(10 * N) : LET N = 10 * N - INT(10 * N)
 41 FOR K = 0 TO I - 1 : IF G(I) = G(K) GOTO 170
@@ -15,6 +12,7 @@
 45 LET P = 4 : LET A = 0 : GOSUB 300
 50 PRINT V "BULL"; : IF V <> 1 THEN PRINT "S";
 55 IF V = 5 THEN PRINT " - YOU WIN" : GOTO 20
+ WARNING: Branch to line before GOSUB start
 60 PRINT W - V "COW"; : IF W <> V + 1 THEN PRINT "S";
 65 IF J = 0 THEN LET A = 1 : GOTO 200
 68 GOSUB 400
@@ -23,7 +21,9 @@
 80 PRINT " MY SCORE "; : INPUT B(J), C(J) : LET C(J) = C(J) + B(J)
 81 IF B(J) > -1 THEN IF B(J) < 6 THEN IF C(J) < 6 THEN IF C(J) - B(J) > -1 GOTO 80
  WARNING: Line exceeds PRETTY width limit 72
+ WARNING: Branch to line before GOSUB start
 82 PRINT " - RIDICULOUS! !"; : GOTO 70
+ WARNING: Branch to line before GOSUB start
 83 IF B(J) = 4 THEN IF C(J) = 5 GOTO 82
 85 IF B(J) = 5 THEN PRINT " - I WIN - MY NUMBER WAS"; : GOTO 100
 98 GOTO 35
@@ -31,15 +31,19 @@
 110 GOTO 20
 150 PRINT : PRINT "YOU HAVE GIVEN ME IMPOSSIBLE SCORES - GAME SPOILED" : GOTO 5
  WARNING: Line exceeds PRETTY width limit 72
- WARNING: Statement before GOSUB entry point
+ WARNING: Branch to line before GOSUB start
 170 PRINT "REPEATED DIGITS NOT ALLOWED" : GOTO 35
+ WARNING: Branch to line before GOSUB start
 200 FOR P = 0 TO 4
 210 LET D(A, P) = INT(10 * RND(1))
 220 FOR I = 0 TO P - 1 : IF D(A, I) = D(A, P) GOTO 210
+ WARNING: Branch to line before GOSUB start
 230 NEXT I
 240 NEXT P
 250 IF A = 0 GOTO 30
+ WARNING: Branch to line before GOSUB start
 260 LET J = 1 : GOTO 70
+ WARNING: Branch to line before GOSUB start
 300 LET V = 0 : LET W = 0
 310 FOR I = 0 TO P : IF D(A, I) = G(I) THEN LET V = V + 1
 320 FOR K = 0 TO 4 : IF D(A, K) = G(I) THEN LET W = W + 1
@@ -55,8 +59,10 @@
  WARNING: Line exceeds PRETTY width limit 72
 430 LET G(P) = G(P) + 3 : IF G(P) > 9 THEN LET G(P) = G(P) - 10
 432 IF P = 0 THEN IF G(P) = D(1, 0) GOTO 150
+ WARNING: Branch to line before GOSUB start
 435 IF G(P) <> D(J, P) GOTO 410
 440 LET P = P - 1 : IF P < 0 THEN GOTO 150
+ WARNING: Branch to line before GOSUB start
 445 GOTO 430
 448 NEXT A
 450 LET P = P + 1 : IF P < 5 GOTO 405
@@ -67,5 +73,6 @@
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
 510 GOTO 10
+ WARNING: Branch to line before GOSUB start
 999 END
 

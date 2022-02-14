@@ -51,7 +51,6 @@ Halstead complexity:
   Origs: 
   Dests: 
 G(3790) F(I) (0 3) 240 Z$, R$, Q$ = "                                                                          "
-    WARNING: Statement before GOSUB entry point
   Origs: 210:ifthen, 4030:goto, 4107:ifthen, 6500:goto
   Dests: 260:auto
 G(3790) F(I) (0 6) 260 DIM G(8, 8), C(9, 2), K(3, 3), N(3), Z(8, 8)
@@ -337,6 +336,7 @@ G(3790) F(I) (1 4) 1290 IF A = 0 GOTO 1410
   Origs: 1270:auto
   Dests: 1291:auto, 1410:ifthen
 G(3790) F(I) (1 5) 1291 IF A = 1 GOTO 1260
+     WARNING: Branch to line before GOSUB start
   Origs: 1290:auto
   Dests: 1260:ifthen, 1292:auto
 G(3790) F(I) (1 4) 1292 IF A = 2 GOTO 2330
@@ -390,6 +390,7 @@ G(3790) F(I) (0 2)      PRINT
   Origs: 1380:auto
   Dests: 1400:auto
 G(3790) F(I) (0 3) 1400 GOTO 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 1390:auto
   Dests: 1270:goto
 (0 1) 1401 REM *** COURSE, CONTROL CODE BEGIMS HERE
@@ -399,15 +400,18 @@ G(3790) F(I) (1 2) 1410 INPUT "COURSE (1-9):"; C1
   Origs: 1290:ifthen, 1440:ifthen, 1470:ifthen, 1500:goto
   Dests: 1430:auto
 G(3790) F(I) (1 5) 1430 IF C1 = 0 THEN 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 1410:auto
   Dests: 1270:ifthen, 1440:auto
 G(3790) F(I) (1 8) 1440 IF C1 < 1 OR C1 > 9 THEN 1410
+     WARNING: Branch to line before GOSUB start
   Origs: 1430:auto
   Dests: 1410:ifthen, 1450:auto
 G(3790) F(I) (1 2) 1450 INPUT "WARP FACTOR (0-8):"; W1
   Origs: 1440:auto
   Dests: 1470:auto
 G(3790) F(I) (1 8) 1470 IF W1 < 1 OR W1 > 8 THEN 1410
+     WARNING: Branch to line before GOSUB start
   Origs: 1450:auto
   Dests: 1410:ifthen, 1480:auto
 G(3790) F(I) (1 7) 1480 IF D(1) > 0 OR W1 <= .2 THEN 1810
@@ -417,6 +421,7 @@ G(3790) F(I) (0 2) 1490 PRINT "WARP ENGINES ARE DAMAGEO. MAXIMUM SPEED = WARP .2
   Origs: 1480:auto
   Dests: 1500:auto
 G(3790) F(I) (0 3) 1500 GOTO 1410
+     WARNING: Branch to line before GOSUB start
   Origs: 1490:auto
   Dests: 1410:goto
 (1 4) 1510 IF K3 <= 0 THEN 1560
@@ -582,6 +587,7 @@ G(3790) F(I) (1 6) 2150 IF T > T0 + T9 THEN 3970
   Origs: 2120:ifthen, 2140:auto
   Dests: 2160:auto, 3970:ifthen
 G(3790) F(I) (0 3) 2160 GOTO 1260
+     WARNING: Branch to line before GOSUB start
   Origs: 2150:auto
   Dests: 1260:goto
 G(3790) F(I) (0 8) 2170 X = Q1 * 8 + X + X1 * N
@@ -616,6 +622,7 @@ G(3790) F(I) (1 6) 2310 IF T > T0 + T9 THEN 3970
   Origs: 2290:auto
   Dests: 2320:auto, 3970:ifthen
 G(3790) F(I) (0 3) 2320 GOTO 810
+     WARNING: Branch to line before GOSUB start
   Origs: 2310:auto
   Dests: 810:goto
 (0 1) 2321 REM *** LONG RANGE SENSOR SCAN CODE BEGINS HERE
@@ -628,6 +635,7 @@ G(3790) F(I) (0 2) 2340 PRINT "LONG RANGE SENSORS ARE INOPERABLE"
   Origs: 2330:auto
   Dests: 2360:auto
 G(3790) F(I) (0 3) 2360 GOTO 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 2340:auto
   Dests: 1270:goto
 G(3790) F(I) (0 5) 2370 PRINT "LONG RANGE SENSOR SCAN FOR QUADRANT " Q1 "." Q2
@@ -673,6 +681,7 @@ G(3790) F(I) (0 1) 2490 NEXT I
   Origs: 2390:fornext, 2480:auto
   Dests: 2500:auto
 G(3790) F(I) (0 3) 2500 GOTO 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 2490:auto
   Dests: 1270:goto
 (0 1) 2501 REM *** PHASER CONTROL CODE BEGINS HERE
@@ -685,6 +694,7 @@ G(3790) F(I) (1 4) 2540 IF D(4) > 0 THEN 2570
   Origs: 2530:auto
   Dests: 2560:auto, 2570:ifthen
 G(3790) F(I) (0 3) 2560 GOTO 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 2540:auto
   Dests: 1270:goto
 G(3790) F(I) (1 4) 2570 IF D(7) > 0 THEN 2590
@@ -703,6 +713,7 @@ G(3790) F(I) (1 3) 2620 IF X < 01270
   Origs: 2600:auto
   Dests: 2630:auto
 G(3790) F(I) (1 6) 2630 IF E - X < 0 THEN 2570
+     WARNING: Branch to line before GOSUB start
   Origs: 2620:auto
   Dests: 2570:ifthen, 2640:auto
 G(3790) F(I) (0 4) 2640 E = E - X
@@ -751,6 +762,7 @@ G(3790) F(I) (1 4) 2780 IF E < 0 THEN 4000
   Origs: 2770:auto
   Dests: 2790:auto, 4000:ifthen
 G(3790) F(I) (0 3) 2790 GOTO 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 2780:auto
   Dests: 1270:goto
 (0 1) 2791 REM *** PHOTON TORPEDO CODE BEGINS HERE
@@ -763,6 +775,7 @@ G(3790) F(I) (0 2) 2810 PRINT "PHOTON TUBES ARE NOT OPERATIONAL"
   Origs: 2800:auto
   Dests: 2820:auto
 G(3790) F(I) (0 3) 2820 GOTO 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 2810:auto
   Dests: 1270:goto
 G(3790) F(I) (1 4) 2830 IF P > 0 THEN 2860
@@ -772,15 +785,18 @@ G(3790) F(I) (0 2) 2840 PRINT "ALL PHOTON TORPEDOES EXPENDED"
   Origs: 2830:auto
   Dests: 2850:auto
 G(3790) F(I) (0 3) 2850 GOTO 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 2840:auto
   Dests: 1270:goto
 G(3790) F(I) (1 2) 2860 INPUT "TORPEDO COURSE (1-9):"; C1
   Origs: 2830:ifthen, 2890:ifthen
   Dests: 2880:auto
 G(3790) F(I) (1 5) 2880 IF C1 < 0 THEN 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 2860:auto
   Dests: 1270:ifthen, 2890:auto
 G(3790) F(I) (1 8) 2890 IF C1 < 1 OR C1 > 9 THEN 2860
+     WARNING: Branch to line before GOSUB start
   Origs: 2880:auto
   Dests: 2860:ifthen, 2900:auto
 G(3790) F(I) (0 10) 2900 X1 = C(C1, 1) + (C(C1 + 1, 1) - C(C1, 1)) * (C1 - INT(C1))
@@ -819,6 +835,7 @@ G(3790) F(I) (1 4) 3050 IF Z3 = 0 THEN 3220
   Origs: 3040:auto
   Dests: 3060:auto, 3220:ifthen
 G(3790) F(I) (0 3) 3060 GOTO 2960
+     WARNING: Branch to line before GOSUB start
   Origs: 3050:auto
   Dests: 2960:goto
 (0 3) 3070 A$ = "***"
@@ -837,7 +854,6 @@ G(3790) F(I) (0 3) 3060 GOTO 2960
   Dests: 3130:auto
 G(3790) F(I) (0 4) 3130 K3 = K3 - 1
 G(3790) F(I) (0 4)      K9 = K9 - 1
-     WARNING: Statement before GOSUB entry point
   Origs: 3120:auto, 5030:ifthen
   Dests: 3150:auto
 G(3790) F(I) (1 4) 3150 IF K9 <= 8 THEN 4040
@@ -883,6 +899,7 @@ G(3790) F(I) (0 2) 3320 GOSUB 5660
   Origs: 3290:auto
   Dests: 3330:auto, 5660:gosub
 G(3790) F(I) (1 5) 3330 IF Z3 = 0 THEN 2690
+     WARNING: Branch to line before GOSUB start
   Origs: 3320:auto
   Dests: 2690:ifthen, 3340:auto
 G(3790) F(I) (0 2) 3340 PRINT "*** STAR BASE DESTROYED *** .......CONGRATULATIONS"
@@ -915,6 +932,7 @@ G(3790) F(I) (1 4) 3440 IF E < 0 THEN 4000
   Origs: 3430:auto
   Dests: 3450:auto, 4000:ifthen
 G(3790) F(I) (0 3) 3450 GOTO 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 3440:auto
   Dests: 1270:goto
 (0 1) 3451 REM *** SHIELD CONTROL CODE BEGINS HERE
@@ -927,6 +945,7 @@ G(3790) F(I) (0 2) 3470 PRINT "SHIELD CONTROL IS NON-OPERATIONAL"
   Origs: 3460:auto
   Dests: 3480:auto
 G(3790) F(I) (0 3) 3480 GOTO 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 3470:auto
   Dests: 1270:goto
 G(3790) F(I) (0 4) 3490 PRINT "ENERGY AVAILABLE =" F * S;
@@ -936,9 +955,11 @@ G(3790) F(I) (1 2) 3500 INPUT "   NUMBER OF UNTTS TO SHIELDS:"; X
   Origs: 3490:auto
   Dests: 3510:auto
 G(3790) F(I) (1 5) 3510 IF X <= 0 THEN 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 3500:auto
   Dests: 1270:ifthen, 3520:auto
 G(3790) F(I) (1 7) 3520 IF E + S - X < 0 THEN 3490
+     WARNING: Branch to line before GOSUB start
   Origs: 3510:auto
   Dests: 3490:ifthen, 3530:auto
 G(3790) F(I) (0 5) 3530 F = E + S - X
@@ -946,6 +967,7 @@ G(3790) F(I) (0 3)      S = X
   Origs: 3520:auto
   Dests: 3550:auto
 G(3790) F(I) (0 3) 3550 GOTO 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 3530:auto
   Dests: 1270:goto
 (0 1) 3551 REM *** DAMAGE CONTROL RFPORT CODE BEGINS HERE
@@ -958,6 +980,7 @@ G(3790) F(I) (0 2) 3570 PRINT "DAMAGE CONTROL REPORT IS NOT AVAILABLE"
   Origs: 3560:auto
   Dests: 3580:auto
 G(3790) F(I) (0 3) 3580 GOTO 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 3570:auto
   Dests: 1270:goto
 G(3790) F(I) (0 2) 3590 PRINT
@@ -978,12 +1001,14 @@ G(3790) F(I) (0 2)      PRINT
   Origs: 3610:fornext, 3630:auto
   Dests: 3660:auto
 G(3790) F(I) (0 3) 3660 GOTO 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 3640:auto
   Dests: 1270:goto
 G(3790) F(I) (0 2) 3670 PRINT "SHORT RANGE SENSORS REPORT NO KLINGONS IN THIS QUADRANT"
   Origs: 2530:ifthen
   Dests: 3680:auto
 G(3790) F(I) (0 3) 3680 GOTO 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 3670:auto
   Dests: 1270:goto
 G(3690) (0 6) 3690 PRINT "KLINGON AT SECTOR " K(I, 1) "," K(I, 2) "DESTROYED ***"
@@ -1077,6 +1102,7 @@ G(3790) F(I) (0 2)      PRINT
 G(3790) F(I) (0 2)      PRINT
 G(3790) F(I) (0 2)      PRINT "YOU GET ANOTHER CHANCE..."
 G(3790) F(I) (0 3)      GOTO 230
+     WARNING: Branch to line before GOSUB start
   Origs: 4020:auto
   Dests: 240:goto
 G(3790) F(I) (0 2) 4040 PRINT
@@ -1105,6 +1131,7 @@ G(3790) F(I) (1 2) 4106 INPUT "DO YOU WANT TO TRY AGAIN"; R$
   Origs: 4105:auto
   Dests: 4107:auto
 G(3790) F(I) (1 5) 4107 IF R$ = "YES" THEN 230
+     WARNING: Branch to line before GOSUB start
   Origs: 4106:auto
   Dests: 240:ifthen, 4110:auto
 G(3790) F(I) (0 2) 4110 GOTO 6510
@@ -1254,6 +1281,7 @@ G(3790) F(I) (1 4) 4630 IF D(8) >= 0 THEN 4660
   Dests: 4640:auto, 4660:ifthen
 G(3790) F(I) (0 2) 4640 PRINT "COMPUTER DISABLED"
 G(3790) F(I) (0 3)      GOTO 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 4630:auto
   Dests: 1270:goto
 G(3790) F(I) (1 2) 4660 INPUT "CDMPUTER ACTIVE AND AWAITING COMMAND:"; A
@@ -1311,6 +1339,7 @@ G(3790) F(I) (0 1) 4810 NEXT I
   Origs: 4780:fornext, 4800:auto
   Dests: 4820:auto
 G(3790) F(I) (0 3) 4820 GOTO 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 4810:auto
   Dests: 1270:goto
 (0 1) 4821 REM *** STATUS REPORT CODE BEGINS HERE
@@ -1332,6 +1361,7 @@ G(3790) F(I) (0 3) 4860 PRINT "NUMBER OF STARBASES LEFT =" B9
   Origs: 4851:auto
   Dests: 4870:auto
 G(3790) F(I) (0 3) 4870 GOTO 3560
+     WARNING: Branch to line before GOSUB start
   Origs: 4860:auto
   Dests: 3560:goto
 G(3790) F(I) (0 2) 4880 PRINT
@@ -1367,6 +1397,7 @@ G(3790) F(I) (0 4)      A = C1 - W1
   Origs: 4960:goto, 4990:auto
   Dests: 5030:auto
 G(3790) F(I) (1 5) 5030 IF X < 0 THEN 3130
+     WARNING: Branch to line before GOSUB start
   Origs: 5010:auto
   Dests: 3130:ifthen, 5031:auto
 G(3790) F(I) (1 4) 5031 IF A < 0 THEN 5190
@@ -1376,6 +1407,7 @@ G(3790) F(I) (1 4) 5050 IF X > 0 THEN 5070
   Origs: 5031:auto
   Dests: 5060:auto, 5070:ifthen
 G(3790) F(I) (1 5) 5060 IF A = 0 THEN 3150
+     WARNING: Branch to line before GOSUB start
   Origs: 5050:auto
   Dests: 3150:ifthen, 5070:auto
 G(3790) F(I) (0 3) 5070 C1 = 1
@@ -1450,6 +1482,7 @@ G(3790) F(I) (1 5) 5310 IF A$ <> "NO" THEN 5280
   Origs: 5300:auto
   Dests: 5280:ifthen, 5320:auto
 G(3790) F(I) (0 3) 5320 GOTO 1270
+     WARNING: Branch to line before GOSUB start
   Origs: 5250:ifthen, 5310:auto
   Dests: 1270:goto
 (0 1) 5321 REM *** END OF. LIBRARY COMPUTER CODE

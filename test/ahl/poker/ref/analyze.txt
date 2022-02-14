@@ -53,7 +53,6 @@ FNB(_) (0 6) 3 DEF FNB(X) = X - 100 * INT(X / 100)
   Origs: 10:auto
   Dests: 12:auto
 G(65) (0 3) 12 LET P = 0
-   WARNING: Statement before GOSUB entry point
   Origs: 11:auto, 72:ifthen
   Dests: 13:auto
 G(65) (0 1) 13 RANDOM
@@ -144,7 +143,6 @@ G(65) (0 3) 41 LET X = 11111
   Origs: 40:auto
   Dests: 42:auto
 G(65) (0 3) 42 LET I = 7
-   WARNING: Statement before GOSUB entry point
   Origs: 36:goto, 39:goto, 41:auto, 49:goto
   Dests: 43:auto
 G(65) (0 3) 43 LET Z = 23
@@ -166,6 +164,7 @@ G(65) (1 6) 48 IF FNA(0) >= 2 THEN 50
   Origs: 47:auto
   Dests: 49:auto, 50:ifthen
 G(65) (0 3) 49 GOTO 42
+   WARNING: Branch to line before GOSUB start
   Origs: 48:auto
   Dests: 42:goto
 G(65) (0 3) 50 LET Z = 0
@@ -235,6 +234,7 @@ G(65) (1 2) 71 INPUT H$
   Origs: 70:auto
   Dests: 72:auto
 G(65) (1 5) 72 IF H$ = "YES" THEN 12
+   WARNING: Branch to line before GOSUB start
   Origs: 71:auto
   Dests: 12:ifthen, 73:auto
 G(65) (1 4) 73 IF H$ = "NO" THEN 410
@@ -526,6 +526,7 @@ G(65) (0 4) 168 PRINT "ALL $" P " REMAIN IN THE POT"
   Origs: 167:auto
   Dests: 169:auto
 G(65) (0 3) 169 GOTO 14
+    WARNING: Branch to line before GOSUB start
   Origs: 168:auto
   Dests: 14:goto
 G(65) (1 9) 170 IF FNB(M) > FNB(D) THEN 67
@@ -1035,7 +1036,6 @@ G(305) (1 4) 335 IF Z = 2 THEN 343
   Origs: 327:ifthen, 331:ifthen, 342:ifthen
   Dests: 336:auto, 343:ifthen
 G(348) (0 2) 336 PRINT "I'LL SEE YOU"
-    WARNING: Statement before GOSUB entry point
     WARNING: Inconsistent GOSUB target (348, 305)
     WARNING: Inconsistent GOSUB target (348, 305)
   Origs: 335:auto, 352:ifthen
@@ -1089,6 +1089,7 @@ G(348) (0 1) 351 RETURN
   Origs: 350:auto
   Dests: 
 G(348) (1 6) 352 IF C - G >= 0 THEN 336
+    WARNING: Branch to line before GOSUB start
   Origs: 349:ifthen
   Dests: 336:ifthen, 353:auto
 G(348) (1 6) 353 IF O / 2 <> INT(O / 2) THEN 360

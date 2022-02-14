@@ -134,7 +134,6 @@
  CarriageControl:NL
  LineNumber:20
 100 PRINT "AGAIN";
- WARNING: Statement before GOSUB entry point
  WARNING: Inconsistent GOSUB origins
  TextConstant:"AGAIN"
  CarriageControl:;
@@ -154,6 +153,7 @@
  AssignmentOperator:= _ -> _
  LineNumber:130
 120 PRINT"ILLEGAL MOVE":GOTO100
+ WARNING: Branch to line before GOSUB start
  TextConstant:"ILLEGAL MOVE"
  CarriageControl:NL
  LineNumber:100
@@ -171,7 +171,6 @@
 150 GOTO500
  LineNumber:500
 200 LETK=M:GOSUB600
- WARNING: Statement before GOSUB entry point
  WARNING: Inconsistent GOSUB target (800, 200)
  WARNING: Inconsistent GOSUB origins
  Variable:K -> _
@@ -218,7 +217,6 @@
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:230
 220 NEXTI
- WARNING: Statement before GOSUB entry point
  Variable:I -> _
 225 RETURN
  
@@ -235,6 +233,7 @@
  AssignmentOperator:= =_ -> _
  
 235 GOTO 220
+ WARNING: Branch to line before GOSUB start
  LineNumber:220
 500 PRINT:PRINT"   ";
  WARNING: Inconsistent GOSUB target (500, 110)
@@ -546,6 +545,7 @@
 885 NEXTJ
  Variable:J -> _
 890 LETM=A:PRINTCHR$(42+M);:GOTO200
+ WARNING: Branch to line before GOSUB start
  Variable:M -> _
  Variable:A -> _
  AssignmentOperator:= _ -> _

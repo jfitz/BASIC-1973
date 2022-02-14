@@ -194,7 +194,6 @@ F(A) (0 1) 530 NEXT A
   Origs: 560:auto
   Dests: 580:auto
 G(2120) (0 3) 580 LET K = S
-    WARNING: Statement before GOSUB entry point
   Origs: 570:auto, 2910:goto
   Dests: 590:auto
 G(2120) (0 3) 590 LET T1 = 120
@@ -210,7 +209,6 @@ G(2120) (0 3) 620 LET C = 900
   Origs: 610:auto
   Dests: 630:auto
 G(2120) (0 2) 630 GOSUB 2250
-    WARNING: Statement before GOSUB entry point
   Origs: 620:auto, 1660:goto, 1840:goto
   Dests: 640:auto, 2250:gosub
 G(2120) (0 3) 640 LET F1 = 50
@@ -235,7 +233,6 @@ G(2120) (1 4) 700 IF B < 99 THEN 2340
   Origs: 690:auto
   Dests: 710:auto, 2340:ifthen
 G(2120) (0 2) 710 PRINT "A TOUCHBACK"
-    WARNING: Statement before GOSUB entry point
   Origs: 700:auto, 1450:ifthen, 1830:ifthen
   Dests: 720:auto
 G(2120) (0 3) 720 LET B = 20
@@ -266,7 +263,6 @@ G(2120) (0 3) 800 LET D = 1
   Origs: 790:auto
   Dests: 810:auto
 G(2120) (0 3) 810 LET F2 = .03
-    WARNING: Statement before GOSUB entry point
   Origs: 800:auto, 2890:ifthen, 3230:goto
   Dests: 820:auto
 G(2120) (0 3) 820 LET O = 0
@@ -288,7 +284,6 @@ G(2120) (1 6) 870 IF C <= F * T1 THEN 2920
   Origs: 860:auto
   Dests: 880:auto, 2920:ifthen
 G(2120) (1 4) 880 IF C <= 0 THEN 2770
-    WARNING: Statement before GOSUB entry point
   Origs: 870:auto, 2970:goto
   Dests: 890:auto, 2770:ifthen
 G(2120) (1 4) 890 IF L = 0 THEN 910
@@ -310,6 +305,7 @@ G(2120) (1 4) 940 IF S = 1 THEN 980
   Origs: 930:auto
   Dests: 950:auto, 980:ifthen
 G(2120) (1 5) 950 IF Q > 8 THEN 920
+    WARNING: Branch to line before GOSUB start
   Origs: 940:auto
   Dests: 920:ifthen, 960:auto
 G(2120) (0 3) 960 LET M = Q
@@ -322,6 +318,7 @@ G(2120) (0 4) 980 LET Y = Q - 8
   Origs: 940:ifthen
   Dests: 990:auto
 G(2120) (1 7) 990 IF ABS(Q - 10.5) ^ 2 > 3 THEN 920
+    WARNING: Branch to line before GOSUB start
   Origs: 980:auto
   Dests: 920:ifthen, 1000:auto
 G(2120) (0 4) 1000 LET C = INT(C - L * (5 + 23 * RND(X)))
@@ -358,7 +355,6 @@ G(2120) (0 4) 1100 LET L = SGN(INT(4 * RND(0)))
   Origs: 1090:auto
   Dests: 1110:auto
 G(2120) (1 5) 1110 IF RND(X) < F2 THEN 2510
-     WARNING: Statement before GOSUB entry point
   Origs: 1080:ifthen, 1100:auto, 1550:goto, 1600:goto
   Dests: 1120:auto, 2510:ifthen
 G(2120) (1 4) 1120 IF G > 0 THEN 1210
@@ -407,6 +403,7 @@ G(2120) (0 2) 1260 GOSUB 3020
   Origs: 1250:auto
   Dests: 1270:auto, 3020:gosub
 G(2120) (0 3) 1270 GOTO 1120
+     WARNING: Branch to line before GOSUB start
   Origs: 1260:auto
   Dests: 1120:goto
 G(2120) (1 10) 1280 IF RND(X) < .06 * (2 - SGN(Y - 3)) THEN 1360
@@ -449,7 +446,6 @@ G(2120) (0 7) 1400 LET G = 20 * (1 + SGN(G))
   Origs: 1390:auto
   Dests: 1410:auto
 G(2120) (0 5) 1410 LET B = 100 - B - G
-     WARNING: Statement before GOSUB entry point
   Origs: 1390:ifthen, 1400:auto, 1910:goto, 2520:goto
   Dests: 1420:auto
 G(2120) (0 4) 1420 LET S = 3 - S
@@ -462,6 +458,7 @@ G(2120) (0 2) 1440 GOSUB 1490
   Origs: 1430:auto
   Dests: 1450:auto, 1490:gosub
 G(2120) (1 5) 1450 IF B < 1 THEN 710
+     WARNING: Branch to line before GOSUB start
   Origs: 1440:auto
   Dests: 710:ifthen, 1460:auto
 G(2120) (1 4) 1460 IF B > 99 THEN 1650
@@ -492,7 +489,7 @@ G(2120) (0 2) 1540 PRINT "IS THROWN FOR A ";
   Origs: 1530:auto
   Dests: 1550:auto
 G(2120) (0 3) 1550 GOTO 1110
-     WARNING: Statement before GOSUB entry point
+     WARNING: Branch to line before GOSUB start
   Origs: 1540:auto, 1800:ifthen
   Dests: 1110:goto
 G(2120) (0 7) 1560 LET G = -(2 * G * 8)
@@ -508,6 +505,7 @@ G(2120) (0 2) 1590 PRINT "SCRAMBLES FOR A ";
   Origs: 1580:auto
   Dests: 1600:auto
 G(2120) (0 3) 1600 GOTO 1110
+     WARNING: Branch to line before GOSUB start
   Origs: 1590:auto
   Dests: 1110:goto
 G(2120) (0 4) 1610 LET B = B + G
@@ -526,6 +524,7 @@ G(2120) (0 2) 1650 GOSUB 1990
   Origs: 1210:ifthen, 1460:ifthen, 1640:auto, 2460:ifthen
   Dests: 1660:auto, 1990:gosub
 G(2120) (0 3) 1660 GOTO 630
+     WARNING: Branch to line before GOSUB start
   Origs: 1650:auto
   Dests: 630:goto
 G(2120) (1 4) 1670 IF B1 > B THEN 3120
@@ -568,6 +567,7 @@ G(2120) (0 3) 1790 GOSUB 1490
   Origs: 1780:auto
   Dests: 1490:gosub, 1800:auto
 G(2120) (1 5) 1800 IF B <= 99 THEN 1550
+     WARNING: Branch to line before GOSUB start
   Origs: 1790:auto
   Dests: 1550:ifthen, 1810:auto
 G(2120) (0 3) 1810 LET P1 = 3
@@ -577,9 +577,11 @@ G(2120) (0 2) 1820 GOSUB 2030
   Origs: 1810:auto
   Dests: 1830:auto, 2030:gosub
 G(2120) (1 5) 1830 IF P1 = 0 THEN 710
+     WARNING: Branch to line before GOSUB start
   Origs: 1820:auto
   Dests: 710:ifthen, 1840:auto
 G(2120) (0 3) 1840 GOTO 630
+     WARNING: Branch to line before GOSUB start
   Origs: 1830:auto
   Dests: 630:goto
 (0 2) 1850 PRINT "THE KICK IS ";
@@ -601,12 +603,14 @@ G(2120) (0 4) 1900 LET G = INT(14 * RND(X))
   Origs: 1890:auto
   Dests: 1910:auto
 G(2120) (0 3) 1910 GOTO 1410
+     WARNING: Branch to line before GOSUB start
   Origs: 1900:auto
   Dests: 1410:goto
 G(2120) (0 2) 1920 PRINT "THE PUNT IS ";
   Origs: 1030:ifthen
   Dests: 1930:auto
 G(2120) (1 6) 1930 IF RND(X) < .06 THEN 1890
+     WARNING: Branch to line before GOSUB start
   Origs: 1920:auto
   Dests: 1890:ifthen, 1940:auto
 G(2120) (0 3) 1940 LET F1 = B
@@ -622,6 +626,7 @@ G(2120) (0 3) 1970 LET Z3 = .65
   Origs: 1960:auto
   Dests: 1980:auto
 G(2120) (0 3) 1980 GOTO 650
+     WARNING: Branch to line before GOSUB start
   Origs: 1970:auto
   Dests: 650:goto
 G(1990) (0 2) 1990 PRINT "**TOUCHDOWN**"
@@ -702,6 +707,7 @@ G(2120) (0 2) 2230 PRINT "FROM THE 20"
   Origs: 2220:auto
   Dests: 2240:auto
 G(2120) (0 3) 2240 GOTO 650
+     WARNING: Branch to line before GOSUB start
   Origs: 2230:auto
   Dests: 650:goto
 G(2250) (0 2) 2250 GOSUB 3440
@@ -768,6 +774,7 @@ G(2120) (0 3) 2450 LET L = 1
   Origs: 2440:auto
   Dests: 2460:auto
 G(2120) (1 5) 2460 IF B > 99 THEN 1650
+     WARNING: Branch to line before GOSUB start
   Origs: 2450:auto
   Dests: 1650:ifthen, 2470:auto
 G(2120) (0 2) 2470 PRINT " TO ";
@@ -786,6 +793,7 @@ G(2120) (0 2) 2510 PRINT "**FUMBLE**";
   Origs: 1110:ifthen, 2500:auto
   Dests: 2520:auto
 G(2120) (0 3) 2520 GOTO 1410
+     WARNING: Branch to line before GOSUB start
   Origs: 2510:auto
   Dests: 1410:goto
 G(2530) (1 4) 2530 IF S = 1 THEN 2560
@@ -899,12 +907,14 @@ G(2120) (0 4) 2880 LET X = X + 1
   Origs: 2870:auto
   Dests: 2890:auto
 G(2120) (1 5) 2890 IF F <> 0 THEN 810
+     WARNING: Branch to line before GOSUB start
   Origs: 2880:auto
   Dests: 810:ifthen, 2900:auto
 G(2120) (0 4) 2900 LET S = 3 - K
   Origs: 2890:auto
   Dests: 2910:auto
 G(2120) (0 3) 2910 GOTO 580
+     WARNING: Branch to line before GOSUB start
   Origs: 2900:auto
   Dests: 580:goto
 G(2120) (1 5) 2920 IF T1 = 0 THEN 2770
@@ -923,6 +933,7 @@ G(2120) (0 3) 2960 LET C = 120
   Origs: 2950:auto
   Dests: 2970:auto
 G(2120) (0 3) 2970 GOTO 880
+     WARNING: Branch to line before GOSUB start
   Origs: 2960:auto
   Dests: 880:goto
 G(2980) (0 4) 2980 LET B1 = B + 10
@@ -1001,6 +1012,7 @@ G(2120) (0 5) 3220 PRINT " AND"; B1 - B; "    ";
   Origs: 3200:ifthen, 3210:auto
   Dests: 3230:auto
 G(2120) (0 3) 3230 GOTO 810
+     WARNING: Branch to line before GOSUB start
   Origs: 3220:auto
   Dests: 810:goto
 G(2120) (0 4) 3240 LET S = 3 - S
@@ -1010,12 +1022,14 @@ G(2120) (0 4) 3250 LET B = 100 - B
   Origs: 3240:auto
   Dests: 3260:auto
 G(2120) (1 5) 3260 IF S = 2 THEN 770
+     WARNING: Branch to line before GOSUB start
   Origs: 2490:ifthen, 3250:auto
   Dests: 770:ifthen, 3270:auto
 G(2120) (0 2) 3270 PRINT "MY ";
   Origs: 3260:auto
   Dests: 3280:auto
 G(2120) (0 3) 3280 GOTO 780
+     WARNING: Branch to line before GOSUB start
   Origs: 3270:auto
   Dests: 780:goto
 G(3290) (0 2) 3290 PRINT "BALL ON ";
@@ -1116,7 +1130,6 @@ G(3520) (0 1) 3550 RETURN
   Origs: 3580:auto
   Dests: 3610:goto
 G(3610) (0 2) 3600 PRINT "..WRONG, TRY AGAIN"
-     WARNING: Statement before GOSUB entry point
   Origs: 3560:ifthen, 3620:ifthen, 3640:ifthen, 3650:ifthen
   Dests: 3610:auto
 G(3610) (1 2) 3610 INPUT A
@@ -1124,15 +1137,18 @@ G(3610) (1 2) 3610 INPUT A
   Origs: 560:gosub, 930:gosub, 2280:gosub, 3590:goto, 3600:auto
   Dests: 3620:auto
 G(3610) (1 6) 3620 IF ABS(INT(A)) > 17 THEN 3600
+     WARNING: Branch to line before GOSUB start
   Origs: 3610:auto
   Dests: 3600:ifthen, 3630:auto
 G(3610) (0 3) 3630 LET Q = R(INT(ABS(A)))
   Origs: 3620:auto
   Dests: 3640:auto
 G(3610) (1 5) 3640 IF Q = 0 THEN 3600
+     WARNING: Branch to line before GOSUB start
   Origs: 3630:auto
   Dests: 3600:ifthen, 3650:auto
 G(3610) (1 5) 3650 IF Q = 100 THEN 3600
+     WARNING: Branch to line before GOSUB start
   Origs: 3640:auto
   Dests: 3600:ifthen, 3660:auto
 G(3610) (0 1) 3660 RETURN
