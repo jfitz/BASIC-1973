@@ -410,15 +410,17 @@ G(1100) F(K) (0 1) 1330 NEXT K
 G(1100) (0 4) 1331 LET K = K - 1
   Origs: 1330:auto
   Dests: 1340:auto
-G(1100) (0 2) 1340 PRINT " ... TIE GAME ... "
-     WARNING: Inconsistent GOSUB target (1100, 1340)
+G(1100,1340) (0 2) 1340 PRINT " ... TIE GAME ... "
      WARNING: Inconsistent GOSUB origins
+     WARNING: Multiple GOSUB entry points
   Origs: 730:gosub, 1331:auto
   Dests: 1350:auto
-G(1100) (0 3) 1350 LET Z = 3
+G(1100,1340) (0 3) 1350 LET Z = 3
+     WARNING: Multiple GOSUB entry points
   Origs: 1340:auto
   Dests: 1360:auto
-G(1100) F(I,K,J) (0 1) 1360 RETURN
+G(1100,1340) F(I,K,J) (0 1) 1360 RETURN
+     WARNING: Multiple GOSUB entry points
   Origs: 1320:goto, 1350:auto, 1410:goto, 1430:goto, 1480:goto, 1500:goto, 1580:goto, 1600:goto, 1620:goto, 1640:goto
   Dests: 
 G(1100) F(I) (1 4) 1370 IF I > 3 THEN 1440
@@ -589,34 +591,44 @@ G(1660) F(J) (1 4) 1830 IF A(3, 1) = A(1, 3) THEN 1970
 G(1660) F(J) (1 4) 1840 IF T1 <> 0 THEN 1990
   Origs: 1830:auto, 1960:goto, 1980:goto
   Dests: 1850:auto, 1990:ifthen
-G(1660) F(J,J) (1 3) 1850 FOR J = 1 TO 3
+G(1660,2000) F(J,J) (1 3) 1850 FOR J = 1 TO 3
+     WARNING: Multiple GOSUB entry points
   Origs: 1840:auto, 2020:goto, 2050:goto
   Dests: 1860:fornext, 1900:fornext
-G(1660) F(J,J,I) (1 3) 1860 FOR I = 1 TO 3
+G(1660,2000) F(J,J,I) (1 3) 1860 FOR I = 1 TO 3
+     WARNING: Multiple GOSUB entry points
   Origs: 1850:fornext
   Dests: 1870:fornext, 1890:fornext
-G(1660) F(J,I) (0 4) 1870 LET B(J) = B(J) + A(J, I)
+G(1660,2000) F(J,I) (0 4) 1870 LET B(J) = B(J) + A(J, I)
+     WARNING: Multiple GOSUB entry points
   Origs: 1860:fornext
   Dests: 1880:auto
-G(1660) F(J,I) (0 4) 1880 LET B(J + 3) = B(J + 3) + A(I, J)
+G(1660,2000) F(J,I) (0 4) 1880 LET B(J + 3) = B(J + 3) + A(I, J)
+     WARNING: Multiple GOSUB entry points
   Origs: 1870:auto
   Dests: 1890:auto
-G(1660) F(J,I) (0 1) 1890 NEXT I
+G(1660,2000) F(J,I) (0 1) 1890 NEXT I
+     WARNING: Multiple GOSUB entry points
   Origs: 1860:fornext, 1880:auto
   Dests: 1891:auto
-G(1660) F(J) (0 4) 1891 LET I = I - 1
+G(1660,2000) F(J) (0 4) 1891 LET I = I - 1
+     WARNING: Multiple GOSUB entry points
   Origs: 1890:auto
   Dests: 1900:auto
-G(1660) F(J) (0 1) 1900 NEXT J
+G(1660,2000) F(J) (0 1) 1900 NEXT J
+     WARNING: Multiple GOSUB entry points
   Origs: 1850:fornext, 1891:auto
   Dests: 1901:auto
-G(1660) F(J) (0 4) 1901 LET J = J - 1
+G(1660,2000) F(J) (0 4) 1901 LET J = J - 1
+     WARNING: Multiple GOSUB entry points
   Origs: 1900:auto
   Dests: 1910:auto
-G(1660) F(J) (0 5) 1910 LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
+G(1660,2000) F(J) (0 5) 1910 LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
+     WARNING: Multiple GOSUB entry points
   Origs: 1901:auto
   Dests: 1920:auto
-G(1660) F(J) (0 1) 1920 RETURN
+G(1660,2000) F(J) (0 1) 1920 RETURN
+     WARNING: Multiple GOSUB entry points
   Origs: 1910:auto
   Dests: 
 G(1660) F(J) (1 4) 1930 IF A(2, 2) = A(3, 3) THEN 1950
@@ -640,15 +652,17 @@ G(1660) F(J) (0 3) 1980 GOTO 1840
 G(1660) F(J) (1 4) 1990 IF T1 > 0 THEN 2030
   Origs: 1840:ifthen
   Dests: 2000:auto, 2030:ifthen
-G(1660) F(J) (0 2) 2000 PRINT " ...YOU WIN THIS TIME..."
-     WARNING: Inconsistent GOSUB target (1660, 2000)
+G(1660,2000) F(J) (0 2) 2000 PRINT " ...YOU WIN THIS TIME..."
      WARNING: Inconsistent GOSUB origins
+     WARNING: Multiple GOSUB entry points
   Origs: 800:gosub, 1990:auto
   Dests: 2010:auto
-G(1660) F(J) (0 3) 2010 LET Z = 1
+G(1660,2000) F(J) (0 3) 2010 LET Z = 1
+     WARNING: Multiple GOSUB entry points
   Origs: 2000:auto
   Dests: 2020:auto
-G(1660) F(J) (0 3) 2020 GOTO 1850
+G(1660,2000) F(J) (0 3) 2020 GOTO 1850
+     WARNING: Multiple GOSUB entry points
   Origs: 2010:auto
   Dests: 1850:goto
 G(1660) F(J) (0 2) 2030 PRINT " ... THE PDP-8 WINS THIS TIME ..."

@@ -491,112 +491,144 @@ G(14100) F(Y) (0 2) 15600 PRINT
 G(14100) F(Y) (0 1) 15700 NEXT Y
   Origs: 14200:fornext, 15600:auto
   Dests: 15800:auto
-G(14100) (0 2) 15800 PRINT
-      WARNING: Inconsistent GOSUB target (14100, 15800)
+G(14100,15800) (0 2) 15800 PRINT
       WARNING: Inconsistent GOSUB origins
+      WARNING: Multiple GOSUB entry points
   Origs: 13900:gosub, 15700:auto
   Dests: 15900:auto
-G(14100) (0 2) 15900 PRINT "FROM";
+G(14100,15800) (0 2) 15900 PRINT "FROM";
+      WARNING: Multiple GOSUB entry points
   Origs: 15800:auto, 16600:goto
   Dests: 16000:auto
-G(14100) (2 3) 16000 INPUT E, H
+G(14100,15800) (2 3) 16000 INPUT E, H
+      WARNING: Multiple GOSUB entry points
   Origs: 15900:auto
   Dests: 16100:auto
-G(14100) (0 3) 16100 LET X = E
+G(14100,15800) (0 3) 16100 LET X = E
+      WARNING: Multiple GOSUB entry points
   Origs: 16000:auto
   Dests: 16200:auto
-G(14100) (0 3) 16200 LET Y = H
+G(14100,15800) (0 3) 16200 LET Y = H
+      WARNING: Multiple GOSUB entry points
   Origs: 16100:auto
   Dests: 16300:auto
-G(14100) (1 4) 16300 IF S(X, Y) <> 0 THEN 16700
+G(14100,15800) (1 4) 16300 IF S(X, Y) <> 0 THEN 16700
+      WARNING: Multiple GOSUB entry points
   Origs: 16200:auto
   Dests: 16400:auto, 16700:ifthen
-G(14100) (0 2) 16400 PRINT "THERE IS NO ONE OCCUPING THAT SPACE"
+G(14100,15800) (0 2) 16400 PRINT "THERE IS NO ONE OCCUPING THAT SPACE"
+      WARNING: Multiple GOSUB entry points
   Origs: 16300:auto
   Dests: 16500:auto
-G(14100) (0 2) 16500 PRINT
+G(14100,15800) (0 2) 16500 PRINT
+      WARNING: Multiple GOSUB entry points
   Origs: 16400:auto
   Dests: 16600:auto
-G(14100) (0 3) 16600 GOTO 15900
+G(14100,15800) (0 3) 16600 GOTO 15900
+      WARNING: Multiple GOSUB entry points
   Origs: 16500:auto
   Dests: 15900:goto
-G(14100) (0 2) 16700 PRINT "TO";
+G(14100,15800) (0 2) 16700 PRINT "TO";
+      WARNING: Multiple GOSUB entry points
   Origs: 16300:ifthen, 17400:goto
   Dests: 16800:auto
-G(14100) (2 3) 16800 INPUT A, B
+G(14100,15800) (2 3) 16800 INPUT A, B
+      WARNING: Multiple GOSUB entry points
   Origs: 16700:auto
   Dests: 16900:auto
-G(14100) (0 3) 16900 LET X = A
+G(14100,15800) (0 3) 16900 LET X = A
+      WARNING: Multiple GOSUB entry points
   Origs: 16800:auto
   Dests: 17000:auto
-G(14100) (0 3) 17000 LET Y = B
+G(14100,15800) (0 3) 17000 LET Y = B
+      WARNING: Multiple GOSUB entry points
   Origs: 16900:auto
   Dests: 17100:auto
-G(14100) (1 4) 17100 IF S(X, Y) = 0 THEN 17500
+G(14100,15800) (1 4) 17100 IF S(X, Y) = 0 THEN 17500
+      WARNING: Multiple GOSUB entry points
   Origs: 17000:auto
   Dests: 17200:auto, 17600:ifthen
-G(14100) (0 2) 17200 PRINT "THAT SPACE IS ALREADY OCCUPIED"
+G(14100,15800) (0 2) 17200 PRINT "THAT SPACE IS ALREADY OCCUPIED"
+      WARNING: Multiple GOSUB entry points
   Origs: 17100:auto
   Dests: 17300:auto
-G(14100) (0 2) 17300 PRINT
+G(14100,15800) (0 2) 17300 PRINT
+      WARNING: Multiple GOSUB entry points
   Origs: 17200:auto
   Dests: 17400:auto
-G(14100) (0 3) 17400 GOTO 16700
+G(14100,15800) (0 3) 17400 GOTO 16700
+      WARNING: Multiple GOSUB entry points
   Origs: 17300:auto
   Dests: 16700:goto
 (0 1) 17500 REM LET S(A$B)=S(E,H)
   Origs: 
   Dests: 
-G(14100) (0 3) 17600 LET S(A, B) = S(E, H)
+G(14100,15800) (0 3) 17600 LET S(A, B) = S(E, H)
+      WARNING: Multiple GOSUB entry points
   Origs: 17100:ifthen
   Dests: 17700:auto
-G(14100) (0 3) 17700 LET S(E, H) = 0
+G(14100,15800) (0 3) 17700 LET S(E, H) = 0
+      WARNING: Multiple GOSUB entry points
   Origs: 17600:auto
   Dests: 17800:auto
-G(14100) (0 6) 17800 LET T = (4.5 - (3.5 * G))
+G(14100,15800) (0 6) 17800 LET T = (4.5 - (3.5 * G))
+      WARNING: Multiple GOSUB entry points
   Origs: 17700:auto
   Dests: 17900:auto
-G(14100) (1 5) 17900 IF ABS(E - A) <> 2 THEN 18100
+G(14100,15800) (1 5) 17900 IF ABS(E - A) <> 2 THEN 18100
+      WARNING: Multiple GOSUB entry points
   Origs: 17800:auto
   Dests: 18000:auto, 18100:ifthen
-G(14100) (0 3) 18000 LET S((E + A) / 2, (H + B) / 2) = 0
+G(14100,15800) (0 3) 18000 LET S((E + A) / 2, (H + B) / 2) = 0
+      WARNING: Multiple GOSUB entry points
   Origs: 17900:auto
   Dests: 18100:auto
-G(14100) (1 4) 18100 IF B <> T THEN 18300
+G(14100,15800) (1 4) 18100 IF B <> T THEN 18300
+      WARNING: Multiple GOSUB entry points
   Origs: 17900:ifthen, 18000:auto
   Dests: 18200:auto, 18300:ifthen
-G(14100) (0 5) 18200 LET S(A, B) = -2 * G
+G(14100,15800) (0 5) 18200 LET S(A, B) = -2 * G
+      WARNING: Multiple GOSUB entry points
   Origs: 18100:auto
   Dests: 18300:auto
-G(14100) F(X) (1 3) 18300 FOR X = 8 TO 8
+G(14100,15800) F(X) (1 3) 18300 FOR X = 8 TO 8
+      WARNING: Multiple GOSUB entry points
   Origs: 18100:ifthen, 18200:auto
   Dests: 18400:fornext, 18700:fornext
-G(14100) F(X,Y) (1 3) 18400 FOR Y = 8 TO 8
+G(14100,15800) F(X,Y) (1 3) 18400 FOR Y = 8 TO 8
+      WARNING: Multiple GOSUB entry points
   Origs: 18300:fornext
   Dests: 18500:fornext, 18600:fornext
-G(14100) F(X,Y) (0 1) 18500 RETURN
+G(14100,15800) F(X,Y) (0 1) 18500 RETURN
+      WARNING: Multiple GOSUB entry points
   Origs: 18400:fornext
   Dests: 
-G(14100) F(X) (0 1) 18600 NEXT Y
+G(14100,15800) F(X) (0 1) 18600 NEXT Y
+      WARNING: Multiple GOSUB entry points
   Origs: 18400:fornext
   Dests: 18700:auto
-G(14100) F(X) (0 1) 18700 NEXT X
+G(14100,15800) F(X) (0 1) 18700 NEXT X
+      WARNING: Multiple GOSUB entry points
   Origs: 18300:fornext, 18600:auto
   Dests: 18800:auto
-G(11400) (0 2) 18800 PRINT "    VERY GOOD, YOU WIN!"
-      WARNING: Inconsistent GOSUB target (11400, 14100)
+G(11400,14100,15800) (0 2) 18800 PRINT "    VERY GOOD, YOU WIN!"
+      WARNING: Multiple GOSUB entry points
   Origs: 11400:ifthen, 18700:auto
   Dests: 18900:auto
-G(11400) (0 2) 18900 PRINT
+G(11400,14100,15800) (0 2) 18900 PRINT
+      WARNING: Multiple GOSUB entry points
   Origs: 18800:auto
   Dests: 19000:auto
-G(11400) (0 2) 19000 PRINT
+G(11400,14100,15800) (0 2) 19000 PRINT
+      WARNING: Multiple GOSUB entry points
   Origs: 18900:auto
   Dests: 19100:auto
-G(11400) (0 2) 19100 PRINT "                       -CHUCK OUT"
+G(11400,14100,15800) (0 2) 19100 PRINT "                       -CHUCK OUT"
+      WARNING: Multiple GOSUB entry points
   Origs: 19000:auto
   Dests: 19200:auto
-G(11400) (0 1) 19200 END
+G(11400,14100,15800) (0 1) 19200 END
+      WARNING: Multiple GOSUB entry points
       WARNING: Terminating statement in GOSUB
   Origs: 19100:auto
   Dests: :stop

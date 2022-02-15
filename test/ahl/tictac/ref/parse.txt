@@ -490,15 +490,17 @@
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 1340 PRINT " ... TIE GAME ... "
- WARNING: Inconsistent GOSUB target (1100, 1340)
  WARNING: Inconsistent GOSUB origins
+ WARNING: Multiple GOSUB entry points
  TextConstant:" ... TIE GAME ... "
  CarriageControl:NL
 1350 LET Z=3
+ WARNING: Multiple GOSUB entry points
  Variable:Z -> _
  NumericConstant:3
  AssignmentOperator:= =_ -> _
 1360 RETURN
+ WARNING: Multiple GOSUB entry points
  
 1370 IF I>3 THEN 1440
  Variable:I -> _
@@ -767,14 +769,17 @@
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:1990
 1850 FOR J=1 TO 3
+ WARNING: Multiple GOSUB entry points
  control: Variable:J -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 1860 FOR I=1 TO 3
+ WARNING: Multiple GOSUB entry points
  control: Variable:I -> _
  start:   ["NumericConstant:1"]
  end:     ["NumericConstant:3"]
 1870 LET B(J)=B(J)+A(J,I)
+ WARNING: Multiple GOSUB entry points
  Variable:J -> _
  Variable:B(_) -> _
  Variable:J -> _
@@ -785,6 +790,7 @@
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 1880 LET B(J+3)=B(J+3)+A(I,J)
+ WARNING: Multiple GOSUB entry points
  Variable:J -> _
  NumericConstant:3
  BinaryOperatorPlus:+(_,_) -> _
@@ -799,22 +805,27 @@
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 1890 NEXT I
+ WARNING: Multiple GOSUB entry points
  Variable:I -> _
 1891 LET I=I-1
+ WARNING: Multiple GOSUB entry points
  Variable:I -> _
  Variable:I -> _
  NumericConstant:1
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 1900 NEXT J
+ WARNING: Multiple GOSUB entry points
  Variable:J -> _
 1901 LET J=J-1
+ WARNING: Multiple GOSUB entry points
  Variable:J -> _
  Variable:J -> _
  NumericConstant:1
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 1910 LET B(7)=A(1,1)+A(2,2)+A(3,3)
+ WARNING: Multiple GOSUB entry points
  NumericConstant:7
  Variable:B(_) -> _
  NumericConstant:1
@@ -830,6 +841,7 @@
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 1920 RETURN
+ WARNING: Multiple GOSUB entry points
  
 1930 IF A(2,2)=A(3,3) THEN 1950
  NumericConstant:2
@@ -867,15 +879,17 @@
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:2030
 2000 PRINT " ...YOU WIN THIS TIME..."
- WARNING: Inconsistent GOSUB target (1660, 2000)
  WARNING: Inconsistent GOSUB origins
+ WARNING: Multiple GOSUB entry points
  TextConstant:" ...YOU WIN THIS TIME..."
  CarriageControl:NL
 2010 LET Z=1
+ WARNING: Multiple GOSUB entry points
  Variable:Z -> _
  NumericConstant:1
  AssignmentOperator:= =_ -> _
 2020 GO TO 1850
+ WARNING: Multiple GOSUB entry points
  LineNumber:1850
 2030 PRINT " ... THE PDP-8 WINS THIS TIME ..."
  TextConstant:" ... THE PDP-8 WINS THIS TIME ..."

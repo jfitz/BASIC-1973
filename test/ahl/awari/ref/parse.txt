@@ -171,13 +171,14 @@
 150 GOTO500
  LineNumber:500
 200 LETK=M:GOSUB600
- WARNING: Inconsistent GOSUB target (800, 200)
  WARNING: Inconsistent GOSUB origins
+ WARNING: Multiple GOSUB entry points
  Variable:K -> _
  Variable:M -> _
  AssignmentOperator:= _ -> _
  LineNumber:600
 205 LETB=0:IFK>6THENLETK=K-7
+ WARNING: Multiple GOSUB entry points
  Variable:B -> _
  NumericConstant:0
  AssignmentOperator:= =_ -> _
@@ -190,6 +191,7 @@
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 210 LETC=C+1:IFC<9THENLETF(N)=F(N)*6+K
+ WARNING: Multiple GOSUB entry points
  Variable:C -> _
  Variable:C -> _
  NumericConstant:1
@@ -208,6 +210,7 @@
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 215 FORI=0TO5:IFB(I)<>0THEN230
+ WARNING: Multiple GOSUB entry points
  control: Variable:I -> _
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:5"]
@@ -217,10 +220,13 @@
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:230
 220 NEXTI
+ WARNING: Multiple GOSUB entry points
  Variable:I -> _
 225 RETURN
+ WARNING: Multiple GOSUB entry points
  
 230 FORI=7TO12:IFB(I)<>0THENLETB=1:RETURN
+ WARNING: Multiple GOSUB entry points
  control: Variable:I -> _
  start:   ["NumericConstant:7"]
  end:     ["NumericConstant:12"]
@@ -233,30 +239,33 @@
  AssignmentOperator:= =_ -> _
  
 235 GOTO 220
- WARNING: Branch to line before GOSUB start
+ WARNING: Multiple GOSUB entry points
  LineNumber:220
 500 PRINT:PRINT"   ";
- WARNING: Inconsistent GOSUB target (500, 110)
  WARNING: Inconsistent GOSUB origins
+ WARNING: Multiple GOSUB entry points
  CarriageControl:NL
  TextConstant:"   "
  CarriageControl:;
 505 FORI=12TO7STEP-1:GOSUB580
+ WARNING: Multiple GOSUB entry points
  control: Variable:I -> _
  start:   ["NumericConstant:12"]
  end:     ["NumericConstant:7"]
  step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
  LineNumber:580
 510 NEXTI
- WARNING: Inconsistent GOSUB target (500, 800)
+ WARNING: Multiple GOSUB entry points
  Variable:I -> _
 515 PRINT:LETI=13:GOSUB580
+ WARNING: Multiple GOSUB entry points
  CarriageControl:NL
  Variable:I -> _
  NumericConstant:13
  AssignmentOperator:= =_ -> _
  LineNumber:580
 520 PRINT "","                ",B(6):PRINT "   ";
+ WARNING: Multiple GOSUB entry points
  TextConstant:""
  CarriageControl:,
  TextConstant:"                "
@@ -267,13 +276,16 @@
  TextConstant:"   "
  CarriageControl:;
 525 FORI=0TO5:GOSUB580
+ WARNING: Multiple GOSUB entry points
  control: Variable:I -> _
  start:   ["NumericConstant:0"]
  end:     ["NumericConstant:5"]
  LineNumber:580
 530 NEXTI
+ WARNING: Multiple GOSUB entry points
  Variable:I -> _
 535 PRINT:PRINT:RETURN
+ WARNING: Multiple GOSUB entry points
  CarriageControl:NL
  CarriageControl:NL
  

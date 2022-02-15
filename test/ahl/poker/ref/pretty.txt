@@ -175,18 +175,28 @@
 172 GOTO 167
 173 LET Z = Z + 1
 174 LET A(Z) = INT(1000 * RND(0))
- WARNING: Inconsistent GOSUB target (174, 173)
  WARNING: Inconsistent GOSUB origins
+ WARNING: Multiple GOSUB entry points
 175 IF INT(A(Z) / 100) > 3 THEN 174
+ WARNING: Multiple GOSUB entry points
 176 IF A(Z) - 100 * INT(A(Z) / 100) > 12 THEN 174
+ WARNING: Multiple GOSUB entry points
 177 FOR K = 1 TO Z - 1
+ WARNING: Multiple GOSUB entry points
 178 IF A(Z) = A(K) THEN 174
+ WARNING: Multiple GOSUB entry points
 179 NEXT K
+ WARNING: Multiple GOSUB entry points
 180 IF Z <= 10 THEN 184
+ WARNING: Multiple GOSUB entry points
 181 LET N = A(U)
+ WARNING: Multiple GOSUB entry points
 182 LET A(U) = A(Z)
+ WARNING: Multiple GOSUB entry points
 183 LET A(Z) = N
+ WARNING: Multiple GOSUB entry points
 184 RETURN
+ WARNING: Multiple GOSUB entry points
 185 FOR Z = N TO N + 4
 186 PRINT Z "-  ";
 187 GOSUB 195
@@ -199,30 +209,48 @@
 194 RETURN
 195 LET K = FNB(A(Z))
 196 IF K <> 9 THEN 198
- WARNING: Inconsistent GOSUB target (195, 196)
  WARNING: Inconsistent GOSUB origins
+ WARNING: Multiple GOSUB entry points
 197 PRINT "JACK";
+ WARNING: Multiple GOSUB entry points
 198 IF K <> 10 THEN 200
+ WARNING: Multiple GOSUB entry points
 199 PRINT "QUEEN";
+ WARNING: Multiple GOSUB entry points
 200 IF K <> 11 THEN 202
+ WARNING: Multiple GOSUB entry points
 201 PRINT "KING";
+ WARNING: Multiple GOSUB entry points
 202 IF K <> 12 THEN 204
+ WARNING: Multiple GOSUB entry points
 203 PRINT "ACE";
+ WARNING: Multiple GOSUB entry points
 204 IF K >= 9 THEN 206
+ WARNING: Multiple GOSUB entry points
 205 PRINT K + 2;
+ WARNING: Multiple GOSUB entry points
 206 RETURN
+ WARNING: Multiple GOSUB entry points
 207 LET K = INT(A(Z) / 100)
 208 IF K <> 0 THEN 210
- WARNING: Inconsistent GOSUB target (207, 208)
  WARNING: Inconsistent GOSUB origins
+ WARNING: Multiple GOSUB entry points
 209 PRINT " CLUBS",
+ WARNING: Multiple GOSUB entry points
 210 IF K <> 1 THEN 212
+ WARNING: Multiple GOSUB entry points
 211 PRINT " DIAMONDS",
+ WARNING: Multiple GOSUB entry points
 212 IF K <> 2 THEN 214
+ WARNING: Multiple GOSUB entry points
 213 PRINT " HEARTS",
+ WARNING: Multiple GOSUB entry points
 214 IF K <> 3 THEN 216
+ WARNING: Multiple GOSUB entry points
 215 PRINT " SPADES",
+ WARNING: Multiple GOSUB entry points
 216 RETURN
+ WARNING: Multiple GOSUB entry points
 217 LET U = 0
 218 FOR Z = N TO N + 4
 219 LET B(Z) = FNB(A(Z))
@@ -313,54 +341,90 @@
 304 RETURN
 305 LET G = 0
 306 PRINT "WHAT IS YOUR BET";
- WARNING: Inconsistent GOSUB target (305, 306)
  WARNING: Inconsistent GOSUB origins
+ WARNING: Multiple GOSUB entry points
 307 INPUT T
+ WARNING: Multiple GOSUB entry points
 308 IF T - INT(T) = 0 THEN 314
+ WARNING: Multiple GOSUB entry points
 309 IF K <> 0 THEN 312
+ WARNING: Multiple GOSUB entry points
 310 IF G <> 0 THEN 312
+ WARNING: Multiple GOSUB entry points
 311 IF T = .5 THEN 341
+ WARNING: Multiple GOSUB entry points
 312 PRINT "NO SMALL CHANGE, PLEASE"
+ WARNING: Multiple GOSUB entry points
 313 GOTO 306
+ WARNING: Multiple GOSUB entry points
 314 IF S - G - T > 0 THEN 317
+ WARNING: Multiple GOSUB entry points
 315 GOSUB 383
+ WARNING: Multiple GOSUB entry points
 316 GOTO 306
+ WARNING: Multiple GOSUB entry points
 317 IF T <> 0 THEN 320
+ WARNING: Multiple GOSUB entry points
 318 LET I = 3
+ WARNING: Multiple GOSUB entry points
 319 GOTO 338
+ WARNING: Multiple GOSUB entry points
 320 IF G + T >= K THEN 323
+ WARNING: Multiple GOSUB entry points
 321 PRINT "IF YOU CAN'T SEE MY BET, THEN FOLD"
+ WARNING: Multiple GOSUB entry points
 322 GOTO 306
+ WARNING: Multiple GOSUB entry points
 323 LET G = G + T
+ WARNING: Multiple GOSUB entry points
 324 IF G = K THEN 338
+ WARNING: Multiple GOSUB entry points
 325 IF Z <> 1 THEN 342
+ WARNING: Multiple GOSUB entry points
 326 IF G > 5 THEN 330
+ WARNING: Multiple GOSUB entry points
 327 IF Z >= 2 THEN 335
+ WARNING: Multiple GOSUB entry points
 328 LET V = 5
+ WARNING: Multiple GOSUB entry points
 329 GOTO 342
+ WARNING: Multiple GOSUB entry points
 330 IF Z = 1 THEN 332
+ WARNING: Multiple GOSUB entry points
 331 IF T <= 25 THEN 335
+ WARNING: Multiple GOSUB entry points
 332 LET I = 4
+ WARNING: Multiple GOSUB entry points
 333 PRINT "I FOLD"
+ WARNING: Multiple GOSUB entry points
 334 RETURN
+ WARNING: Multiple GOSUB entry points
 335 IF Z = 2 THEN 343
+ WARNING: Multiple GOSUB entry points
 336 PRINT "I'LL SEE YOU"
- WARNING: Inconsistent GOSUB target (348, 305)
- WARNING: Inconsistent GOSUB target (348, 305)
+ WARNING: Multiple GOSUB entry points
 337 LET K = G
+ WARNING: Multiple GOSUB entry points
 338 LET S = S - G
- WARNING: Inconsistent GOSUB target (348, 305)
- WARNING: Inconsistent GOSUB target (348, 305)
+ WARNING: Multiple GOSUB entry points
 339 LET C = C - K
+ WARNING: Multiple GOSUB entry points
 340 LET P = P + G + K
+ WARNING: Multiple GOSUB entry points
 341 RETURN
- WARNING: Inconsistent GOSUB target (348, 305)
+ WARNING: Multiple GOSUB entry points
 342 IF G > 3 * Z THEN 335
+ WARNING: Multiple GOSUB entry points
 343 LET V = G - K + FNA(0)
+ WARNING: Multiple GOSUB entry points
 344 GOSUB 348
+ WARNING: Multiple GOSUB entry points
 345 PRINT "I'LL SEE YOU, AND RAISE Y0U"; V
+ WARNING: Multiple GOSUB entry points
 346 LET K = G + V
+ WARNING: Multiple GOSUB entry points
 347 GOTO 306
+ WARNING: Multiple GOSUB entry points
 348 IF C - G - V > 0 THEN 366
 349 IF G <> 0 THEN 352
 350 LET V = C
@@ -382,8 +446,9 @@
 365 LET O = O / 3
 366 RETURN
 367 PRINT "I'M BUSTED. CONGRATULATIONS"
- WARNING: Inconsistent GOSUB target (348, 65)
+ WARNING: Multiple GOSUB entry points
 368 STOP
+ WARNING: Multiple GOSUB entry points
  WARNING: Terminating statement in GOSUB
 369 PRINT H$; I$;
 370 IF H$ = "A FLUS" THEN 375
@@ -427,6 +492,6 @@
 408 RETURN
 409 PRINT "YOUR WAD IS SHOT, SO LONG, SUCKER"
 410 END
- WARNING: Inconsistent GOSUB target (383, 65)
+ WARNING: Multiple GOSUB entry points
  WARNING: Terminating statement in GOSUB
 

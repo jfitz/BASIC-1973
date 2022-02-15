@@ -1544,12 +1544,13 @@ G(5620) (0 3) 5640 PRINT MID(D$, S8, 11),
 G(5620) (0 2)      GOTO 5670
   Origs: 5620:auto
   Dests: 5670:goto
-G(5620) (0 3) 5660 PRINT MID(E$, S8 - 72, 11),
-     WARNING: Inconsistent GOSUB target (5620, 5660)
+G(5620,5660) (0 3) 5660 PRINT MID(E$, S8 - 72, 11),
      WARNING: Inconsistent GOSUB origins
+     WARNING: Multiple GOSUB entry points
   Origs: 3320:gosub, 5620:ifthen
   Dests: 5670:auto
-G(5620) (0 1) 5670 RETURN
+G(5620,5660) (0 1) 5670 RETURN
+     WARNING: Multiple GOSUB entry points
   Origs: 5640:goto, 5660:auto
   Dests: 
 (0 1) 5680 REM ***STRING COMPARISON IN QUADRANT ARRAY*** 

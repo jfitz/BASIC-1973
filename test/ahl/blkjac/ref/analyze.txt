@@ -609,33 +609,41 @@ G(900) (0 3) 980 LET R = 0
 G(900) (0 3) 985 LET D(X) = K
   Origs: 980:auto
   Dests: 990:auto
-G(990) (1 4) 990 IF Q(X) <> 1 THEN 1010
-    WARNING: Inconsistent GOSUB target (990, 900)
+G(990,900) (1 4) 990 IF Q(X) <> 1 THEN 1010
     WARNING: Inconsistent GOSUB origins
+    WARNING: Multiple GOSUB entry points
   Origs: 750:gosub, 985:auto
   Dests: 995:auto, 1010:ifthen
-G(990) (0 3) 995 LET C = 11
+G(990,900) (0 3) 995 LET C = 11
+    WARNING: Multiple GOSUB entry points
   Origs: 990:auto
   Dests: 1000:auto
-G(990) (0 4) 1000 LET E(P) = E(P) + 1
+G(990,900) (0 4) 1000 LET E(P) = E(P) + 1
+     WARNING: Multiple GOSUB entry points
   Origs: 995:auto
   Dests: 1005:auto
-G(990) (0 1) 1005 RETURN
+G(990,900) (0 1) 1005 RETURN
+     WARNING: Multiple GOSUB entry points
   Origs: 1000:auto
   Dests: 
-G(990) (1 4) 1010 IF Q(X) > 10 THEN 1025
+G(990,900) (1 4) 1010 IF Q(X) > 10 THEN 1025
+     WARNING: Multiple GOSUB entry points
   Origs: 990:ifthen
   Dests: 1015:auto, 1025:ifthen
-G(990) (0 3) 1015 LET C = Q(X)
+G(990,900) (0 3) 1015 LET C = Q(X)
+     WARNING: Multiple GOSUB entry points
   Origs: 1010:auto
   Dests: 1020:auto
-G(990) (0 1) 1020 RETURN
+G(990,900) (0 1) 1020 RETURN
+     WARNING: Multiple GOSUB entry points
   Origs: 1015:auto
   Dests: 
-G(990) (0 3) 1025 LET C = 10
+G(990,900) (0 3) 1025 LET C = 10
+     WARNING: Multiple GOSUB entry points
   Origs: 1010:ifthen
   Dests: 1030:auto
-G(990) (0 1) 1030 RETURN
+G(990,900) (0 1) 1030 RETURN
+     WARNING: Multiple GOSUB entry points
   Origs: 1025:auto
   Dests: 
 G(1035) (0 2) 1035 GOSUB 1050

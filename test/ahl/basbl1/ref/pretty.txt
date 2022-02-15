@@ -50,23 +50,29 @@
 550 IF A > 2 THEN 560 \ PRINT " POPPED OUT IN SHALLOW LEFT." \ GOTO 840
 560 IF A > 3 THEN 580
 570 PRINT " GROUNDED TO THE PITCHER"; \ GOTO 590
- WARNING: Inconsistent GOSUB target (570, 520)
- WARNING: Inconsistent GOSUB target (570, 520)
  WARNING: Inconsistent GOSUB origins
+ WARNING: Multiple GOSUB entry points
 580 IF A > 4 THEN 680 \ PRINT "GROUNDED TO SHORTSTOP";
 590 PRINT " WHO THREW OUT THE MAN"; \ IF C3 = 2 THEN 670
- WARNING: Inconsistent GOSUB target (570, 520)
- WARNING: Inconsistent GOSUB target (570, 520)
+ WARNING: Multiple GOSUB entry points
 600 IF B1 = 0 THEN 670 \ IF B2 = 0 THEN 630 \ IF B3 = 0 THEN 620 \ PRINT " FORCED HOME,"
  WARNING: Line exceeds PRETTY width limit 72
+ WARNING: Multiple GOSUB entry points
 610 GOTO 850
+ WARNING: Multiple GOSUB entry points
 620 PRINT " FORCED TO THIRD." \ GOTO 850
+ WARNING: Multiple GOSUB entry points
 630 LET A1 = INT(3 * RND(0)) \ PRINT " FORCED TO SECOND"; \ IF A1 <> 1 THEN 650
  WARNING: Line exceeds PRETTY width limit 72
+ WARNING: Multiple GOSUB entry points
 640 PRINT "." \ GOTO 850
+ WARNING: Multiple GOSUB entry points
 650 PRINT \ PRINT "AND THEN TO FIRST FOR A DOUBLE PLAY!"
+ WARNING: Multiple GOSUB entry points
 660 LET C3 = C3 + 1 \ LET B1 = 0 \ GOTO 840
+ WARNING: Multiple GOSUB entry points
 670 PRINT " AT FIRST." \ GOTO 840
+ WARNING: Multiple GOSUB entry points
 680 IF A > 5 THEN 700 \ PRINT " HIT A FLY INTO DEEP CENTER WHERE IT WAS";
 690 PRINT " CAUGHT." \ GOTO 710
 700 IF A > 6 THEN 880 \ PRINT " HIT TO LEFT FIELD FOR AN OUT."
@@ -87,17 +93,13 @@
  WARNING: Line exceeds PRETTY width limit 72
 830 LET B2 = 0
 840 LET Z(Y) = Z(Y) - (Z(Y) / 100) \ GOTO 860
- WARNING: Inconsistent GOSUB target (570, 520)
- WARNING: Inconsistent GOSUB target (570, 520)
- WARNING: Inconsistent GOSUB target (570, 520)
- WARNING: Inconsistent GOSUB target (570, 520)
- WARNING: Inconsistent GOSUB target (570, 520)
- WARNING: Inconsistent GOSUB target (570, 520)
- WARNING: Inconsistent GOSUB target (570, 520)
- WARNING: Inconsistent GOSUB target (570, 520)
+ WARNING: Multiple GOSUB entry points
 850 LET Z(Y) = Z(Y) + (Z(Y) / 100)
+ WARNING: Multiple GOSUB entry points
 860 LET C3 = C3 + 1 \ PRINT "THAT WAS OUT NUMBER"; C3
+ WARNING: Multiple GOSUB entry points
 870 GOTO 1260
+ WARNING: Multiple GOSUB entry points
 880 IF A > 7 THEN 890 \ PRINT " HIT OVER THE PITCHER'S HEAD FOR A"; \ GOTO 910
  WARNING: Line exceeds PRETTY width limit 72
 890 IF A > 8 THEN 900 \ PRINT " HIT THROUGH THE HOLE INTO RIGHT FOR A"; \ GOTO 910
@@ -106,34 +108,32 @@
 910 IF Z > 4 * D THEN 1210 \ IF Z > 3 * D THEN 1130 \ IF Z > 2 * D THEN 1040 \ PRINT " SINGLE,"
  WARNING: Line exceeds PRETTY width limit 72
 920 IF B3 = 0 THEN 970 \ GOSUB 930 \ LET B3 = 0 \ GOTO 960
- WARNING: Inconsistent GOSUB target (920, 520)
- WARNING: Inconsistent GOSUB target (920, 520)
- WARNING: Inconsistent GOSUB target (920, 520)
- WARNING: Inconsistent GOSUB target (920, 520)
  WARNING: Inconsistent GOSUB origins
+ WARNING: Multiple GOSUB entry points
 930 IF S1 = 1 THEN 940 \ LET S3 = S3 + 1 \ GOTO 950
- WARNING: Inconsistent GOSUB target (920, 930)
- WARNING: Inconsistent GOSUB target (920, 930)
- WARNING: Inconsistent GOSUB target (920, 930)
- WARNING: Inconsistent GOSUB target (920, 930)
- WARNING: Inconsistent GOSUB target (920, 930)
- WARNING: Inconsistent GOSUB target (920, 930)
- WARNING: Inconsistent GOSUB target (920, 930)
- WARNING: Inconsistent GOSUB target (920, 930)
- WARNING: Inconsistent GOSUB target (920, 930)
- WARNING: Inconsistent GOSUB target (920, 930)
  WARNING: Inconsistent GOSUB origins
+ WARNING: Multiple GOSUB entry points
 940 LET S2 = S2 + 1
+ WARNING: Multiple GOSUB entry points
 950 LET I2 = I2 + 1 \ RETURN
+ WARNING: Multiple GOSUB entry points
 960 PRINT "THE MAN ON THIRD SCORED."
+ WARNING: Multiple GOSUB entry points
 970 IF B2 = 0 THEN 1000 \ PRINT "THE MAN ON SECOND"; \ IF A > 8 THEN 990 \ PRINT " SCORED."
  WARNING: Line exceeds PRETTY width limit 72
+ WARNING: Multiple GOSUB entry points
 980 GOSUB 930 \ LET B2 = 0 \ GOTO 1000
+ WARNING: Multiple GOSUB entry points
 990 PRINT " WENT TO THIRD." \ LET B2 = 0 \ LET B3 = 1
+ WARNING: Multiple GOSUB entry points
 1000 IF B1 = 0 THEN 1030 \ PRINT "THE MAN ON FIRST"; \ IF A > 8 THEN 1020
+ WARNING: Multiple GOSUB entry points
 1010 IF C2 = 4 THEN 1020 \ LET B1 = 0 \ GOTO 990
+ WARNING: Multiple GOSUB entry points
 1020 PRINT " TO SECOND." \ LET B2 = 1
+ WARNING: Multiple GOSUB entry points
 1030 LET B1 = 1 \ GOTO 1240
+ WARNING: Multiple GOSUB entry points
 1040 LET W = 3 * RND(0) \ IF W > 1 THEN 1050 \ PRINT "N OFF THE WALL";
 1050 IF A2 = 1 THEN 1060 \ PRINT " STAND UP";
 1060 PRINT " DOUBLE." \ IF B3 = 0 THEN 1080 \ PRINT "THE MAN ON THIRD SCORED."
@@ -160,12 +160,11 @@
  WARNING: Line exceeds PRETTY width limit 72
 1230 LET B1 = 0 \ LET B2 = 0 \ LET B3 = 0
 1240 IF C2 = 4 THEN 1260 \ LET Z(Y) = Z(Y) + (Z(Y) / 100)
- WARNING: Inconsistent GOSUB target (920, 520)
- WARNING: Inconsistent GOSUB target (920, 520)
- WARNING: Inconsistent GOSUB target (920, 520)
+ WARNING: Multiple GOSUB entry points
 1250 LET I1 = I1 + 1
+ WARNING: Multiple GOSUB entry points
 1260 RETURN
- WARNING: Inconsistent GOSUB target (920, 570)
+ WARNING: Multiple GOSUB entry points
 1270 PRINT "PITCHER THROWN OUT FOR THROWING ILLEGAL PITCH, " \ GOTO 270
 1280 LET A = 5 * RND(0) \ IF A < 3 THEN 1320
 1290 IF A > 4 THEN 1300 \ PRINT "INSIDE - "; \ GOTO 1310
