@@ -331,24 +331,24 @@ G(9200) F(C) (1 5) 10300 FOR C = -1 TO 1 STEP 2
   Dests: 10400:fornext, 11000:fornext
 G(9200) F(C) (1 4) 10400 IF S(U + C, V + G) < 1 THEN 10800
   Origs: 10300:fornext
-  Dests: 10500:auto, 10900:ifthen
+  Dests: 10500:auto, 11000:ifthen
 G(9200) F(C) (0 4) 10500 LET Q = Q - 1
   Origs: 10400:auto
   Dests: 10600:auto
 G(9200) F(C) (1 4) 10600 IF S(U - C, V - G) <> 0 THEN 10800
   Origs: 10500:auto
-  Dests: 10700:auto, 10900:ifthen
+  Dests: 10700:auto, 11000:ifthen
 G(9200) F(C) (0 4) 10700 LET Q = Q - 1
   Origs: 10600:auto
   Dests: 11000:auto
 (0 1) 10800 REM THIS WAS THE EVALUATION SECTION
   Origs: 
   Dests: 
-G(9200) F(C) (0 1) 10900 REM
-  Origs: 10400:ifthen, 10600:ifthen
-  Dests: 11000:auto
+(0 1) 10900 REM
+  Origs: 
+  Dests: 
 G(9200) F(C) (0 1) 11000 NEXT C
-  Origs: 10300:fornext, 10700:auto, 10900:auto
+  Origs: 10300:fornext, 10400:ifthen, 10600:ifthen, 10700:auto
   Dests: 11100:auto
 G(9200) (0 3) 11100 LET R(P) = Q
   Origs: 11000:auto

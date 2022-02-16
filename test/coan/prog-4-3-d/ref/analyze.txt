@@ -27,18 +27,18 @@ FNH(_) (0 4) 2 DEF FNH(X) = INT(X * 100 + .5) / 100
   Dests: 20:auto
 F(Y) (1 3) 20 FOR Y = 1 TO 10
   Origs: 10:auto
-  Dests: 22:fornext, 110:fornext
-F(Y) (0 1) 22 REM  FOR TEN YEARS
-  Origs: 20:fornext
-  Dests: 30:auto
+  Dests: 30:fornext, 110:fornext
+(0 1) 22 REM  FOR TEN YEARS
+  Origs: 
+  Dests: 
 F(Y,M) (1 3) 30 FOR M = 1 TO 12
-  Origs: 22:auto
-  Dests: 32:fornext, 60:fornext
-F(Y,M) (0 1) 32 REM  COMPOUNDED MONTHLY AND COMPUTE INTEREST
-  Origs: 30:fornext
-  Dests: 40:auto
+  Origs: 20:fornext
+  Dests: 40:fornext, 60:fornext
+(0 1) 32 REM  COMPOUNDED MONTHLY AND COMPUTE INTEREST
+  Origs: 
+  Dests: 
 F(Y,M) (0 6) 40 LET I = P * 4.5 / 100 / 12
-  Origs: 32:auto
+  Origs: 30:fornext
   Dests: 50:auto
 F(Y,M) (0 4) 50 LET P = P + I
   Origs: 40:auto
@@ -51,12 +51,12 @@ F(Y,M) (0 1) 60 NEXT M
   Dests: 
 F(Y,Q) (1 3) 70 FOR Q = 1 TO 4
   Origs: 60:auto
-  Dests: 72:fornext, 100:fornext
-F(Y,Q) (0 1) 72 REM  COMPOUNDED QUARTERLY
-  Origs: 70:fornext
-  Dests: 80:auto
+  Dests: 80:fornext, 100:fornext
+(0 1) 72 REM  COMPOUNDED QUARTERLY
+  Origs: 
+  Dests: 
 F(Y,Q) (0 6) 80 LET I1 = P1 * 4.75 / 100 / 4
-  Origs: 72:auto
+  Origs: 70:fornext
   Dests: 90:auto
 F(Y,Q) (0 4) 90 LET P1 = P1 + I1
   Origs: 80:auto
