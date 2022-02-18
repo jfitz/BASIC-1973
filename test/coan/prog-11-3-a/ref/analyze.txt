@@ -66,12 +66,12 @@ F(X) (1 6) 80 FOR X = -P[1] TO P[1] STEP SGN(P[1])
   Dests: 
 F(X) (1 4) 90 IF X = 0 THEN 140
   Origs: 80:fornext
-  Dests: 98:auto, 100:auto, 140:ifthen
-F(X) (0 1) 98 REM IS X A FACTOR OF P[1]?
-  Origs: 90:auto
-  Dests: 100:auto
+  Dests: 100:auto, 140:ifthen
+(0 1) 98 REM IS X A FACTOR OF P[1]?
+  Origs: 
+  Dests: 
 F(X) (1 6) 100 IF P[1] / X <> INT(P[1] / X) THEN 140
-  Origs: 90:auto, 98:auto
+  Origs: 90:auto
   Dests: 105:auto, 140:ifthen
 F(X) (0 2) 105 GOSUB 500
   Origs: 100:auto
@@ -81,15 +81,15 @@ F(X) (0 2) 105 GOSUB 500
   Dests: 
 F(X) (1 4) 110 IF P <> 0 THEN 140
   Origs: 105:auto
-  Dests: 118:auto, 120:auto, 140:ifthen
-F(X) (0 1) 118 REM IF THE COMPUTER GETS THROUGH HERE, THE
-  Origs: 110:auto
-  Dests: 120:auto
+  Dests: 120:auto, 140:ifthen
+(0 1) 118 REM IF THE COMPUTER GETS THROUGH HERE, THE
+  Origs: 
+  Dests: 
 (0 1) 119 REM VALUE OF X IS A ZERO OF THE FUNCTION
   Origs: 
   Dests: 
 F(X) (0 2) 120 PRINT X;
-  Origs: 110:auto, 118:auto
+  Origs: 110:auto
   Dests: 130:auto
 (0 1) 128 REM TURN THE SWITCH ON - WE HAVE A ZERO
   Origs: 
