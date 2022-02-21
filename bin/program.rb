@@ -2401,10 +2401,10 @@ class Program
     line_numbers.each do |line_number|
       line = @lines[line_number]
 
-      line.warnings.each { |warning| texts << (" WARNING: #{warning}") }
-
       # print the line
       texts << (line_number.to_s + line.list)
+
+      line.warnings.each { |warning| texts << (" WARNING: #{warning}") }
 
       statements = line.statements
 
