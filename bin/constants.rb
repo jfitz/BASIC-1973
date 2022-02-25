@@ -482,10 +482,12 @@ class AbstractValueElement < AbstractElement
     raise(BASICExpressionError, 'Invalid operator power')
   end
 
+  # MAX and MIN operators
   def max(_)
     raise(BASICExpressionError, 'Invalid operator MAX')
   end
 
+  # MAX and MIN operators
   def min(_)
     raise(BASICExpressionError, 'Invalid operator MIN')
   end
@@ -521,20 +523,21 @@ class NumericConstant < AbstractValueElement
   end
 
   def self.numeric(text)
+    case test
     # nnn(E+nn)
-    if /\A\s*[+-]?\d+(E+?\d+)?\z/ =~ text
+    when /\A\s*[+-]?\d+(E+?\d+)?\z/
       text.to_f.to_i
     # nnn(E-nn)
-    elsif /\A\s*[+-]?\d+(E-\d+)?\z/ =~ text
+    when /\A\s*[+-]?\d+(E-\d+)?\z/
       text.to_f
     # nnn.(nnn)(E+-nn)
-    elsif /\A\s*[+-]?\d+\.(\d*)?(E[+-]?\d+)?\z/ =~ text
+    when /\A\s*[+-]?\d+\.(\d*)?(E[+-]?\d+)?\z/
       text.to_f
     # (nnn).nnn(E+-nn)
-    elsif /\A\s*[+-]?(\d+)?\.\d*(E[+-]?\d+)?\z/ =~ text
+    when /\A\s*[+-]?(\d+)?\.\d*(E[+-]?\d+)?\z/
       text.to_f
     # #c constant
-    elsif text.size == 2 && text[0] == '#'
+    when /\A#.\z/
       text[1].ord
     end
   end
@@ -752,6 +755,7 @@ class NumericConstant < AbstractValueElement
     NumericConstant.new(value)
   end
 
+  # MAX and MIN operators
   def maximum(other)
     message =
       "Type mismatch (#{content_type}/#{other.content_type}) in maximum()"
@@ -762,6 +766,7 @@ class NumericConstant < AbstractValueElement
     NumericConstant.new(value)
   end
 
+  # MAX and MIN operators
   def minimum(other)
     message =
       "Type mismatch (#{content_type}/#{other.content_type}) in minimum()"
@@ -803,7 +808,7 @@ class NumericConstant < AbstractValueElement
   end
 
   def mod(other)
-    value = other.to_v.zero? ? 0 : @value % other.to_v
+    value = other.to_numeric.to_v.zero? ? 0 : @value % other.to_numeric.to_v
     NumericConstant.new(value)
   end
 
@@ -880,6 +885,7 @@ class NumericConstant < AbstractValueElement
     NumericConstant.new(csc)
   end
 
+  # MAX and MIN operators
   def max(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in max()"
     raise(BASICExpressionError, message) unless compatible?(other)
@@ -887,6 +893,7 @@ class NumericConstant < AbstractValueElement
     @value = [to_v, other.to_v].max
   end
 
+  # MAX and MIN operators
   def min(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in min()"
     raise(BASICExpressionError, message) unless compatible?(other)
@@ -1077,7 +1084,7 @@ class IntegerConstant < AbstractValueElement
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
-    value = @value + other.to_v
+    value = @value + other.to_numeric.to_v
     IntegerConstant.new(value)
   end
 
@@ -1086,7 +1093,7 @@ class IntegerConstant < AbstractValueElement
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
-    value = @value - other.to_v
+    value = @value - other.to_numeric.to_v
     IntegerConstant.new(value)
   end
 
@@ -1095,7 +1102,7 @@ class IntegerConstant < AbstractValueElement
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
-    value = @value * other.to_v
+    value = @value * other.to_numeric.to_v
     IntegerConstant.new(value)
   end
 
@@ -1104,7 +1111,7 @@ class IntegerConstant < AbstractValueElement
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
-    value = @value + other.to_v
+    value = @value + other.to_numeric.to_v
     IntegerConstant.new(value)
   end
 
@@ -1114,7 +1121,7 @@ class IntegerConstant < AbstractValueElement
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
-    value = @value - other.to_v
+    value = @value - other.to_numeric.to_v
     IntegerConstant.new(value)
   end
 
@@ -1124,7 +1131,7 @@ class IntegerConstant < AbstractValueElement
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
-    value = @value * other.to_v
+    value = @value * other.to_numeric.to_v
     IntegerConstant.new(value)
   end
 
@@ -1135,7 +1142,7 @@ class IntegerConstant < AbstractValueElement
     raise(BASICExpressionError, message) unless compatible?(other)
     raise BASICRuntimeError, :te_div_zero if other.zero?
 
-    value = @value.to_f / other.to_v.to_f
+    value = @value.to_f / other.to_numeric.to_f
     IntegerConstant.new(value)
   end
 
@@ -1149,6 +1156,7 @@ class IntegerConstant < AbstractValueElement
     IntegerConstant.new(value)
   end
 
+  # MAX and MIN operators
   def maximum(other)
     message =
       "Type mismatch (#{content_type}/#{other.content_type}) in maximum()"
@@ -1159,6 +1167,7 @@ class IntegerConstant < AbstractValueElement
     IntegerConstant.new(value)
   end
 
+  # MAX and MIN operators
   def minimum(other)
     message =
       "Type mismatch (#{content_type}/#{other.content_type}) in minimum()"
@@ -1233,6 +1242,7 @@ class IntegerConstant < AbstractValueElement
     IntegerConstant.new(value)
   end
 
+  # MAX and MIN operators
   def max(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in max()"
     raise(BASICExpressionError, message) unless compatible?(other)
@@ -1240,6 +1250,7 @@ class IntegerConstant < AbstractValueElement
     @value = [to_v, other.to_v].max
   end
 
+  # MAX and MIN operators
   def min(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in =="
     raise(BASICExpressionError, message) unless compatible?(other)
@@ -1351,8 +1362,7 @@ class TextConstant < AbstractValueElement
     @content_type = :string
     @shape = :scalar
     @constant = true
-    @operand = true
-    @precedence = 0
+
     @text_constant = true
   end
 
@@ -1437,6 +1447,7 @@ class TextConstant < AbstractValueElement
     TextConstant.new(@value * other.to_v)
   end
 
+  # MAX and MIN operators
   def maximum(other)
     message =
       "Type mismatch (#{content_type}/#{other.content_type}) in maximum()"
@@ -1446,6 +1457,7 @@ class TextConstant < AbstractValueElement
     TextConstant.new([@value, other.to_v].max)
   end
 
+  # MAX and MIN operators
   def minimum(other)
     message =
       "Type mismatch (#{content_type}/#{other.content_type}) in minimum()"
@@ -1473,8 +1485,28 @@ class TextConstant < AbstractValueElement
   end
 
   def na_unpack
+    base = $options['base'].value
+
+    length = NumericConstant.new(@value.size + base)
+    dims = [length]
+
+    values = {}
+
+    index = base
+
+    @value.each_char do |char|
+      key = [NumericConstant.new(index)]
+      values[key] = NumericConstant.new(char.ord)
+      index += 1
+    end
+
+    BASICArray.new(dims, values)
+  end
+
+   def na_unpack_1
     length = NumericConstant.new(@value.size)
     dims = [length]
+
     values = {}
     values[[NumericConstant.new(0)]] = length
     index = 1
@@ -1489,8 +1521,28 @@ class TextConstant < AbstractValueElement
   end
 
   def ia_unpack
+    base = $options['base'].value
+
+    length = IntegerConstant.new(@value.size + base)
+    dims = [length]
+
+    values = {}
+
+    index = base
+
+    @value.each_char do |char|
+      key = [NumericConstant.new(index)]
+      values[key] = IntegerConstant.new(char.ord)
+      index += 1
+    end
+
+    BASICArray.new(dims, values)
+  end
+
+   def ia_unpack_1
     length = IntegerConstant.new(@value.size)
     dims = [length]
+
     values = {}
     values[[IntegerConstant.new(0)]] = length
     index = 1
@@ -1539,8 +1591,6 @@ class BooleanConstant < AbstractValueElement
     @content_type = :boolean
     @shape = :scalar
     @constant = true
-    @operand = true
-    @precedence = 0
     @boolean_constant = true
   end
 
@@ -2042,12 +2092,6 @@ class Variable < AbstractElement
     constant_stack.push(@constant)
   end
 
-  def signature
-    sig = make_signature(@arg_types, @arg_shapes)
-    sig += make_shape_sigil(@shape) if sig.empty?
-    sig
-  end
-
   def eql?(other)
     @variable_name == other.name && @subscripts == other.subscripts
   end
@@ -2058,6 +2102,12 @@ class Variable < AbstractElement
 
   def hash
     @variable_name.hash && @subscripts.hash
+  end
+
+  def signature
+    sig = make_signature(@arg_types, @arg_shapes)
+    sig += make_shape_sigil(@shape) if sig.empty?
+    sig
   end
 
   def dump
@@ -2285,6 +2335,7 @@ class Variable < AbstractElement
       interpreter.check_subscripts(@variable_name, @subscripts,
                                    @wrapped_subscripts)
     end
+
     self
   end
 
