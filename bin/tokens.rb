@@ -32,7 +32,7 @@ class AbstractToken
         prev.whitespace? ||
         prev.null?
 
-      pretty_tokens << token
+      pretty_tokens << token.pretty
 
       prev2 = prev
       prev = token
@@ -67,7 +67,7 @@ class AbstractToken
         prev.group_start? ||
         (prev.operator? && prev.to_s != 'NOT' && !prev2_is_operand)
 
-      pretty_tokens << token
+      pretty_tokens << token.pretty
 
       if token.statement_separator?
         pretty_line = pretty_tokens.map(&:to_s).join
@@ -120,6 +120,10 @@ class AbstractToken
   end
 
   def to_s
+    @text
+  end
+
+  def pretty
     @text
   end
 
@@ -345,12 +349,12 @@ class TextConstantToken < AbstractToken
     @is_text_constant = true
   end
 
-  def value
-    @text[1..-2]
-  end
-
   def <=>(other)
     value <=> other.value
+  end
+
+  def value
+    @text[1..-2]
   end
 end
 
@@ -360,6 +364,10 @@ class NumericConstantToken < AbstractToken
     super
 
     @is_numeric_constant = true
+  end
+
+  def <=>(other)
+    @text.to_f <=> other.to_f
   end
 
   def negate
@@ -374,8 +382,25 @@ class NumericConstantToken < AbstractToken
     @text.to_f.to_i
   end
 
-  def <=>(other)
-    @text.to_f <=> other.to_f
+  def pretty
+    float_to_possible_int(@text)
+  end
+
+  private
+
+  def float_to_possible_int(s)
+    f = s.to_f
+    i = f.to_i
+    frac = f - i
+    if frac.zero? || (!i.zero? && frac.abs < 1e-7)
+      s1 = '%G' % i.to_f
+      s2 = i.to_s
+      s1.size < s2.size ? s1 : s2
+    else
+      s1 = '%G' % f
+      s2 = f.to_s
+      s1.size < s2.size ? s1 : s2
+    end
   end
 end
 

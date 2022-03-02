@@ -121,7 +121,7 @@
 1130 PRINT O$(A); "YOUR DRIVING NUMBER IS"; F2 * (A + 1) + A     'ADHESION FACTOR IS HOW WELL YOUR CAR GRIPS THE ROAD
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
-1140 LET A(R) = RND * .05 + .05
+1140 LET A(R) = RND * 0.05 + 0.05
 1150 PRINT O$(A); "ADHESION FACTOR"; A(A) * 100 - 5; ".  (THE LOWER THE BETTER)"
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
@@ -192,13 +192,13 @@
 1620 LET Y = FNA(M$(1), 200, 1, 1 / 4, 69)     'STRAIGHT E, 200 MAX., 1/4 MILE LONG 
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
-1630 LET Y = FNA(M$(2), 100, .75, 3 / 20, 53)     'HAIRPIN 5, 100 MAX., 3/20 MILE LONG 
+1630 LET Y = FNA(M$(2), 100, 0.75, 3 / 20, 53)     'HAIRPIN 5, 100 MAX., 3/20 MILE LONG 
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
 1640 LET Y = FNA(M$(1), 200, 1.5, 9 / 20, 70)     'STRAIGHT F, 200 MAX., 9/20 MILE LONG 
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
-1650 LET Y = FNA(M$(2), 100, .75, 3 / 20, 54)     'HAIRPIN 5, 100 MAX., 3/20 MILE LONG 
+1650 LET Y = FNA(M$(2), 100, 0.75, 3 / 20, 54)     'HAIRPIN 5, 100 MAX., 3/20 MILE LONG 
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
 1660 LET Y = FNA(M$(1), 200, 2, 1, 71)     'STRAIGHT G, 200 MAX., 1 MILE LONG 
@@ -291,7 +291,7 @@
 2350 GOSUB 3220                            'GET EVERYONE'S SPEED
 2360 FOR G = 0 TO O9                       'CHECK FOR SAFE SPEEDS
 2370 IF D(G) = 1 THEN 2780
-2380 IF (B + A(G) + E) * S(G) / B <= R * (1 + RND * .1) THEN 2500
+2380 IF (B + A(G) + E) * S(G) / B <= R * (1 + RND * 0.1) THEN 2500
 2390 PRINT O$(G); X$                       'PRINT DEAD MESSAGE
 2400 LET F5 = F5 + 1                       'INCREMENT OIL COUNTER
 2410 LET E(F5) = D                         'AND THE 635 SAID "LET THERE BE OIL." AND THERE IT WAS.
@@ -370,21 +370,21 @@
 2940 PRINT "YIKES! OIL ON THE TRACK!"         'IF SO, NOTIFY SURVIVORS AND OTHERS
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
-2950 LET E = .2
+2950 LET E = 0.2
 2960 GOTO 3130
 2970 IF F3 = 1 THEN 3130                      'HAVE WE HAD RAIN?
-2980 IF RND > .025 + G8 THEN 3130             'SEE IF IT SHOULD BE STOPPED OR STARTED 
+2980 IF RND > 0.025 + G8 THEN 3130            'SEE IF IT SHOULD BE STOPPED OR STARTED 
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
-2990 IF RND < .1 THEN 3080                    'IS IT RAINING?
-3000 IF RND > .5 THEN 3130                    'STOP IT?
+2990 IF RND < 0.1 THEN 3080                   'IS IT RAINING?
+3000 IF RND > 0.5 THEN 3130                   'STOP IT?
 3010 PRINT "GLORY BE, THE RAIN HAS STOPPED! BUT REMEMBER IT IS STILL WET"
 3020 LET F3 = 1                               'RAIN, RAIN, GO AWAY, WON'T COME BACK ANOTHER DAY 
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
 3030 FOR A = 0 TO O9
-3040 LET A(A) = A(A) - .075                   'DELETE MOST OF THE EFFECTS
-3050 LET G8 = .025                            'MAKE IT LESS LIKELY TO RAIN IN LATER RACES 
+3040 LET A(A) = A(A) - 0.075                  'DELETE MOST OF THE EFFECTS
+3050 LET G8 = 0.025                           'MAKE IT LESS LIKELY TO RAIN IN LATER RACES 
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
 3060 NEXT A
@@ -393,13 +393,13 @@
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
 3090 FOR A = 0 TO O9                          'MAKE TRACK SLIPPERY
-3100 LET A(A) = A(A) + .1
-3110 LET G8 = .1
+3100 LET A(A) = A(A) + 0.1
+3110 LET G8 = 0.1
 3120 NEXT A
 3130 IF C <> 9 / 20 THEN 3210                 'PIT STOPS?
-3140 IF RND < .125 THEN 3210
+3140 IF RND < 0.125 THEN 3210
 3150 FOR X = 0 TO O9
-3160 IF RND * SGN(O9) < .75 THEN 3200
+3160 IF RND * SGN(O9) < 0.75 THEN 3200
 3170 IF D(X) = 1 THEN 3200
 3180 LET L(X) = RND * 3 + 5
 3190 PRINT O$(X); "Y0U ARE IN THE PITS FOR"; L(X); "SECONDS."
@@ -459,7 +459,7 @@
 3550 GOTO 3640
 3560 IF R4 > O9 THEN 3540
 3570 IF E(R4) > 0 THEN 3540
-3580 IF ABS(T(N) - T(R4) - .5) => .5 THEN 3540
+3580 IF ABS(T(N) - T(R4) - 0.5) => 0.5 THEN 3540
 3590 GOTO 3700                                'HE DID!!!
 3600 PRINT O$(N); "MAYBE A LITTLE HARD ON THE PEDDLE? BE REALISTIC."     'OPTIMIST
  WARNING: Line exceeds LIST width limit 72
@@ -490,8 +490,8 @@
 3760 IF O9 > 0 THEN 3890                      'SET SPEEDS FOR AUTO-PILOTS
 3770 FOR F0 = 1 TO 3
 3780 IF D(F0) = 1 THEN 3870
-3790 LET S = R * B / (B + .1 + E + G8) + (RND * 3 + Q(F0))
-3800 IF (B + .1 + G8 + E) * S / B <= R THEN 3850
+3790 LET S = R * B / (B + 0.1 + E + G8) + (RND * 3 + Q(F0))
+3800 IF (B + 0.1 + G8 + E) * S / B <= R THEN 3850
 3810 LET D(F0) = 1
 3820 PRINT O$(10); Q$(F3); " JUST WIPED"          'AND INFORM US IF THEY WIPE
  WARNING: Line exceeds LIST width limit 72

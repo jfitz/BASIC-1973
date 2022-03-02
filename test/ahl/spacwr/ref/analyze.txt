@@ -121,13 +121,13 @@ G(3790) F(I,J) (1 3) 510 FOR J = 1 TO 8
 G(3790) F(I,J) (0 4) 520 R1 = RND(1)
   Origs: 510:fornext
   Dests: 530:auto
-G(3790) F(I,J) (1 4) 530 IF R1 > .98 THEN 580
+G(3790) F(I,J) (1 4) 530 IF R1 > 0.98 THEN 580
   Origs: 520:auto
   Dests: 540:auto, 580:ifthen
-G(3790) F(I,J) (1 4) 540 IF R1 > .95 THEN 610
+G(3790) F(I,J) (1 4) 540 IF R1 > 0.95 THEN 610
   Origs: 530:auto
   Dests: 550:auto, 610:ifthen
-G(3790) F(I,J) (1 4) 550 IF R1 > .8 THEN 640
+G(3790) F(I,J) (1 4) 550 IF R1 > 0.8 THEN 640
   Origs: 540:auto
   Dests: 560:auto, 640:ifthen
 G(3790) F(I,J) (0 3) 560 K3 = 0
@@ -151,7 +151,7 @@ G(3790) F(I,J) (0 4)     K9 = K9 + 1
 G(3790) F(I,J) (0 4) 660 R1 = RND(1)
   Origs: 560:goto, 580:goto, 610:goto, 640:auto
   Dests: 670:auto
-G(3790) F(I,J) (1 4) 670 IF R1 > .96 THEN 700
+G(3790) F(I,J) (1 4) 670 IF R1 > 0.96 THEN 700
   Origs: 660:auto
   Dests: 680:auto, 700:ifthen
 G(3790) F(I,J) (0 3) 680 B3 = 0
@@ -199,7 +199,7 @@ G(3790) F(I) (0 3) 810 K3, B3, S3 = 0
 G(3790) F(I) (1 13) 820 IF Q1 < 1 OR Q1 > 8 OR Q2 < 1 OR Q2 > 8 THEN 990
   Origs: 810:auto
   Dests: 830:auto, 990:ifthen
-G(3790) F(I) (0 4) 830 X = G(Q1, Q2) * .01
+G(3790) F(I) (0 4) 830 X = G(Q1, Q2) * 0.01
   Origs: 820:auto
   Dests: 840:auto
 G(3790) F(I) (0 4) 840 K3 = INT(X)
@@ -208,7 +208,7 @@ G(3790) F(I) (0 4) 840 K3 = INT(X)
 G(3790) F(I) (0 4) 850 B3 = INT((X - K3) * 10)
   Origs: 840:auto
   Dests: 860:auto
-G(3790) F(I) (0 6) 860 S3 = G(Q1, Q2) - INT(G(Q1, Q2) * .1) + 10
+G(3790) F(I) (0 6) 860 S3 = G(Q1, Q2) - INT(G(Q1, Q2) * 0.1) + 10
   Origs: 850:auto
   Dests: 870:auto
 G(3790) F(I) (1 4) 870 IF K3 = 0 THEN 910
@@ -414,7 +414,7 @@ G(3790) F(I) (1 8) 1470 IF W1 < 1 OR W1 > 8 THEN 1410
      WARNING: Branch to line before GOSUB start
   Origs: 1450:auto
   Dests: 1410:ifthen, 1480:auto
-G(3790) F(I) (1 7) 1480 IF D(1) > 0 OR W1 <= .2 THEN 1810
+G(3790) F(I) (1 7) 1480 IF D(1) > 0 OR W1 <= 0.2 THEN 1810
   Origs: 1470:auto
   Dests: 1490:auto, 1810:ifthen
 G(3790) F(I) (0 2) 1490 PRINT "WARP ENGINES ARE DAMAGEO. MAXIMUM SPEED = WARP .2"
@@ -467,13 +467,13 @@ F(I) (0 3) 1630 D(I) = 1
 F(I) (0 1) 1640 NEXT I
   Origs: 1610:fornext, 1610:ifthen, 1630:auto
   Dests: 1650:auto
-(1 5) 1650 IF RND(1) > .2 THEN 1810
+(1 5) 1650 IF RND(1) > 0.2 THEN 1810
   Origs: 1640:auto
   Dests: 1660:auto, 1810:ifthen
 (0 4) 1660 B1 = INT(RND(1) * 8 + 1)
   Origs: 1650:auto
   Dests: 1670:auto
-(1 5) 1670 IF RND(1) >= .5 THEN 1750
+(1 5) 1670 IF RND(1) >= 0.5 THEN 1750
   Origs: 1660:auto
   Dests: 1680:auto, 1750:ifthen
 (0 8) 1680 D(B1) = D(B1) - (RND(1) * 5 + 1)
@@ -709,7 +709,7 @@ G(3790) F(I) (0 3) 2590 PRINT "PHASERS LOCKED ON TARGET, ENERGY AVAILABLE=" E
 G(3790) F(I) (1 2) 2600 INPUT "NUMBER OF UNITS TO FIRE:"; X
   Origs: 2590:auto
   Dests: 2620:auto
-G(3790) F(I) (1 3) 2620 IF X < 01270
+G(3790) F(I) (1 3) 2620 IF X < 1270
   Origs: 2600:auto
   Dests: 2630:auto
 G(3790) F(I) (1 6) 2630 IF E - X < 0 THEN 2570
@@ -1186,7 +1186,7 @@ G(4120) F(I,J) (0 2)      GOTO 4380
 G(4120) (1 4) 4310 IF K3 > 0 THEN 4350
   Origs: 4220:goto
   Dests: 4320:auto, 4350:ifthen
-G(4120) (1 6) 4320 IF E < E0 * .1 THEN 4370
+G(4120) (1 6) 4320 IF E < E0 * 0.1 THEN 4370
   Origs: 4310:auto
   Dests: 4330:auto, 4370:ifthen
 G(4120) (0 3) 4330 C$ = "GREEN"
@@ -1810,9 +1810,9 @@ Unreachable code:
 1610.1: IF D(I) > 0 THEN 1640
 1630: D(I) = 1
 1640: NEXT I
-1650: IF RND(1) > .2 THEN 1810
+1650: IF RND(1) > 0.2 THEN 1810
 1660: B1 = INT(RND(1) * 8 + 1)
-1670: IF RND(1) >= .5 THEN 1750
+1670: IF RND(1) >= 0.5 THEN 1750
 1680: D(B1) = D(B1) - (RND(1) * 5 + 1)
 1690: PRINT
 1690.1: PRINT "DAMAGE CONTROL REPORT:";

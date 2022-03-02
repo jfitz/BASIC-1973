@@ -173,7 +173,7 @@ STOP in line 180
 52 F(K,I) (8) FOR I = 8 TO 1 STEP -1
 54 F(K,I,J) (64) FOR J = 2 TO I
 56 F(K,I,J) (224) ON SGN(H(B(J - 1)) - H(B(J))) + 2 GOTO 60, 58, 62
-58 F(K,I,J) (0) IF RND(0) > .5 THEN 62
+58 F(K,I,J) (0) IF RND(0) > 0.5 THEN 62
 60 F(K,I,J) (37) Z = B(J - 1)
    F(K,I,J) (37) B(J - 1) = B(J)
    F(K,I,J) (37) B(J) = Z
@@ -209,7 +209,7 @@ STOP in line 180
 104 F(I) (3) GOSUB 215
 106 F(I,J) (3) FOR J = 1 TO 3
 108 F(I,J) (9) L = 2 * I + J - 3
-    F(I,J) (9) P(L) = 1.5 + .1 * INT(.1 * INT((4 * O(B(I)) / (J * (J + 1)) + RND(0)) * 100 + 5))
+    F(I,J) (9) P(L) = 1.5 + 0.1 * INT(0.1 * INT((4 * O(B(I)) / (J * (J + 1)) + RND(0)) * 100 + 5))
 110 F(I,J) (9) PRINT TAB(3 + 10 * J);
     F(I,J) (9) B = -16
 112 F(I,J,M) (9) FOR M = 3 TO -1 STEP -1
@@ -234,7 +234,7 @@ STOP in line 180
     F(J,I) (12) H(B(I)) = I
     F(J,I) (12) NEXT I
 160 F(J) (2) IF U(J) < H(T(J)) THEN 166
-162 F(J) (1) P = .01 * INT((V(J) * 50) * P(U(J) * H(T(J)) * 2 - 3))
+162 F(J) (1) P = 0.01 * INT((V(J) * 50) * P(U(J) * H(T(J)) * 2 - 3))
 164 F(J) (1) PRINT "YOU COLLECT" P "ON ";
     F(J) (1) GOTO 172
 166 F(J) (1) IF H(T(J)) > 3 THEN 168
@@ -276,7 +276,7 @@ STOP in line 180
 245 G(210,200,215) F(I) (64) IF I > 1 THEN 250
     G(210,200,215) F(I) (8) PRINT
     G(210,200,215) F(I) (8) GOTO 255
-250 G(210,200,215) F(I) (56) PRINT .1 * INT(H(B(1)) - H(B(I)))
+250 G(210,200,215) F(I) (56) PRINT 0.1 * INT(H(B(1)) - H(B(I)))
 255 G(210,200,215) F(I) (64) NEXT I
 260 G(210,200,215) F(I) (21) RETURN
 301 (0) DATA 3, 4, 5, 8, 9, 11, 20, 30

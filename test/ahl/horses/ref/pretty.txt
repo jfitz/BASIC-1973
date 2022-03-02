@@ -38,7 +38,7 @@
 52 FOR I = 8 TO 1 STEP -1
 54 FOR J = 2 TO I
 56 ON SGN(H(B(J - 1)) - H(B(J))) + 2 GOTO 60, 58, 62
-58 IF RND(0) > .5 THEN 62
+58 IF RND(0) > 0.5 THEN 62
 60 Z = B(J - 1) \ B(J - 1) = B(J) \ B(J) = Z
 62 NEXT J
 64 NEXT I
@@ -61,7 +61,7 @@
 102 FOR I = 1 TO 3
 104 GOSUB 215
 106 FOR J = 1 TO 3
-108 L = 2 * I + J - 3 \ P(L) = 1.5 + .1 * INT(.1 * INT((4 * O(B(I)) / (J * (J + 1)) + RND(0)) * 100 + 5))
+108 L = 2 * I + J - 3 \ P(L) = 1.5 + 0.1 * INT(0.1 * INT((4 * O(B(I)) / (J * (J + 1)) + RND(0)) * 100 + 5))
  WARNING: Line exceeds PRETTY width limit 72
 110 PRINT TAB(3 + 10 * J); \ B = -16
 112 FOR M = 3 TO -1 STEP -1
@@ -81,7 +81,7 @@
 156 P = 0
 158 FOR I = 1 TO 6 \ H(B(I)) = I \ NEXT I
 160 IF U(J) < H(T(J)) THEN 166
-162 P = .01 * INT((V(J) * 50) * P(U(J) * H(T(J)) * 2 - 3))
+162 P = 0.01 * INT((V(J) * 50) * P(U(J) * H(T(J)) * 2 - 3))
 164 PRINT "YOU COLLECT" P "ON "; \ GOTO 172
 166 IF H(T(J)) > 3 THEN 168 \ PRINT "NEXT TIME, BUY A SHOW"; \ GOTO 170
 168 PRINT "TEAR UP YOUR";
@@ -120,7 +120,7 @@
  WARNING: Multiple GOSUB entry points
 245 IF I > 1 THEN 250 \ PRINT \ GOTO 255
  WARNING: Multiple GOSUB entry points
-250 PRINT .1 * INT(H(B(1)) - H(B(I)))
+250 PRINT 0.1 * INT(H(B(1)) - H(B(I)))
  WARNING: Multiple GOSUB entry points
 255 NEXT I
  WARNING: Multiple GOSUB entry points
