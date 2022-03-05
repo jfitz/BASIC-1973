@@ -19,156 +19,156 @@ Halstead complexity:
  intelligence: 77.338
  time: 14.083
 
-(0 1) 10 REM *** BULLSEY. BY DAVE AHL
+10 (0 1) REM *** BULLSEY. BY DAVE AHL
   Origs: 
   Dests: 
-(0 2) 20 PRINT "GAME OF BULLSEVE"
-(0 2)    PRINT
-(0 1)    RANDOMIZE
+20 (0 2) PRINT "GAME OF BULLSEVE"
+   (0 2) PRINT
+   (0 1) RANDOMIZE
   Origs: :start
   Dests: 30:auto
-(0 2) 30 PRINT "IN THIS GAME, UP TO 20 PLAYERS THROW DARTS AT A TARGET"
+30 (0 2) PRINT "IN THIS GAME, UP TO 20 PLAYERS THROW DARTS AT A TARGET"
   Origs: 20:auto
   Dests: 40:auto
-(0 2) 40 PRINT "WITH 10, 26, 30, AND 40 POINT ZONES. THE OBJECTIVE IS"
+40 (0 2) PRINT "WITH 10, 26, 30, AND 40 POINT ZONES. THE OBJECTIVE IS"
   Origs: 30:auto
   Dests: 50:auto
-(0 2) 50 PRINT "TO GET 200 POINTS."
-(0 2)    PRINT
+50 (0 2) PRINT "TO GET 200 POINTS."
+   (0 2) PRINT
   Origs: 40:auto
   Dests: 60:auto
-(0 5) 60 PRINT "THROW", "DESCRIPTION",, "PROBABLE SCORE"
+60 (0 5) PRINT "THROW", "DESCRIPTION",, "PROBABLE SCORE"
   Origs: 50:auto
   Dests: 70:auto
-(0 5) 70 PRINT " 1", "FAST OVERARM",, "BULLSEYE OR COMPLETE MISS"
+70 (0 5) PRINT " 1", "FAST OVERARM",, "BULLSEYE OR COMPLETE MISS"
   Origs: 60:auto
   Dests: 80:auto
-(0 4) 80 PRINT " 2", "CONTROLLED OVERARM", "10, 20, OR 30 POINTS"
+80 (0 4) PRINT " 2", "CONTROLLED OVERARM", "10, 20, OR 30 POINTS"
   Origs: 70:auto
   Dests: 90:auto
-(0 5) 90 PRINT " 3", "UNDERARM",, " ANYTHING"
-(0 2)    PRINT
+90 (0 5) PRINT " 3", "UNDERARM",, " ANYTHING"
+   (0 2) PRINT
   Origs: 80:auto
   Dests: 100:auto
-(0 4) 100 DIM A$(20), S(20), W(10)
-(0 3)     R, M = 0
-(0 3)     S(I) = 0
+100 (0 4) DIM A$(20), S(20), W(10)
+    (0 3) R, M = 0
+    (0 3) S(I) = 0
 (1 1)       FOR I = 1 TO 20
 (0 1)       NEXT I
   Origs: 90:auto
   Dests: 110:auto
-(1 2) 110 INPUT "HOW MANY PLAYERS"; N
-(0 2)     PRINT
+110 (1 2) INPUT "HOW MANY PLAYERS"; N
+    (0 2) PRINT
   Origs: 100:auto
   Dests: 120:auto
-F(I) (1 3) 120 FOR I = 1 TO N
+120 F(I) (1 3) FOR I = 1 TO N
   Origs: 110:auto
   Dests: 130:fornext, 140:fornext
-F(I) (0 3) 130 PRINT "NAME OF PLAYER" I;
-F(I) (1 2)     INPUT A$(I)
+130 F(I) (0 3) PRINT "NAME OF PLAYER" I;
+    F(I) (1 2) INPUT A$(I)
   Origs: 120:fornext
   Dests: 140:auto
-F(I) (0 1) 140 NEXT I
+140 F(I) (0 1) NEXT I
   Origs: 120:fornext, 130:auto
   Dests: 150:auto
-(0 4) 150 R = R + 1
-(0 2)     PRINT
-(0 3)     PRINT "ROUND" R
+150 (0 4) R = R + 1
+    (0 2) PRINT
+    (0 3) PRINT "ROUND" R
   Origs: 140:auto, 330:ifthen
   Dests: 160:auto
-F(I) (1 3) 160 FOR I = 1 TO N
+160 F(I) (1 3) FOR I = 1 TO N
   Origs: 150:auto
   Dests: 170:fornext, 290:fornext
-F(I) (0 2) 170 PRINT
-F(I) (0 3)     PRINT A$(I) "' S THROW";
-F(I) (1 2)     INPUT T
+170 F(I) (0 2) PRINT
+    F(I) (0 3) PRINT A$(I) "' S THROW";
+    F(I) (1 2) INPUT T
   Origs: 160:fornext, 180:goto
   Dests: 180:auto
-F(I) (1 8) 180 IF T < 0 OR T > 3 THEN PRINT "INPUT 1, 2, OR 3"
-F(I) (0 3)     GOTO 170
+180 F(I) (1 8) IF T < 0 OR T > 3 THEN PRINT "INPUT 1, 2, OR 3"
+    F(I) (0 3) GOTO 170
   Origs: 170:auto
   Dests: 170:goto, 190:auto
-F(I) (3 5) 190 ON T GOTO 200, 210, 220
+190 F(I) (3 5) ON T GOTO 200, 210, 220
   Origs: 180:auto
   Dests: 200:auto, 200:goto, 210:goto, 220:goto
-F(I) (0 3) 200 P1 = 0.65
-F(I) (0 3)     P2 = 0.55
-F(I) (0 3)     P3 = 0.5
-F(I) (0 3)     P4 = 0.5
-F(I) (0 2)     GOTO 230
+200 F(I) (0 3) P1 = 0.65
+    F(I) (0 3) P2 = 0.55
+    F(I) (0 3) P3 = 0.5
+    F(I) (0 3) P4 = 0.5
+    F(I) (0 2) GOTO 230
   Origs: 190:auto, 190:goto
   Dests: 230:goto
-F(I) (0 3) 210 P1 = 0.99
-F(I) (0 3)     P2 = 0.77
-F(I) (0 3)     P3 = 0.43
-F(I) (0 3)     P4 = 0.01
-F(I) (0 2)     GOTO 230
+210 F(I) (0 3) P1 = 0.99
+    F(I) (0 3) P2 = 0.77
+    F(I) (0 3) P3 = 0.43
+    F(I) (0 3) P4 = 0.01
+    F(I) (0 2) GOTO 230
   Origs: 190:goto
   Dests: 230:goto
-F(I) (0 3) 220 P1 = 0.95
-F(I) (0 3)     P2 = 0.75
-F(I) (0 3)     P3 = 0.45
-F(I) (0 3)     P4 = 0.05
+220 F(I) (0 3) P1 = 0.95
+    F(I) (0 3) P2 = 0.75
+    F(I) (0 3) P3 = 0.45
+    F(I) (0 3) P4 = 0.05
   Origs: 190:goto
   Dests: 230:auto
-F(I) (0 4) 230 U = RND
+230 F(I) (0 4) U = RND
   Origs: 200:goto, 210:goto, 220:auto
   Dests: 240:auto
-F(I) (1 5) 240 IF U >= P1 THEN PRINT "BULLSEYE!! 40 POINTS!"
-F(I) (0 3)     B = 40
-F(I) (0 2)     GOTO 290
+240 F(I) (1 5) IF U >= P1 THEN PRINT "BULLSEYE!! 40 POINTS!"
+    F(I) (0 3) B = 40
+    F(I) (0 2) GOTO 290
   Origs: 230:auto
   Dests: 250:auto, 290:goto
-F(I) (1 5) 250 IF U >= P2 THEN PRINT "30-POINT ZONE! "
-F(I) (0 3)     B = 30
-F(I) (0 2)     GOTO 290
+250 F(I) (1 5) IF U >= P2 THEN PRINT "30-POINT ZONE! "
+    F(I) (0 3) B = 30
+    F(I) (0 2) GOTO 290
   Origs: 240:auto
   Dests: 260:auto, 290:goto
-F(I) (1 5) 260 IF U >= P3 THEN PRINT "20-POINT ZONE"
-F(I) (0 3)     B = 20
-F(I) (0 2)     GOTO 290
+260 F(I) (1 5) IF U >= P3 THEN PRINT "20-POINT ZONE"
+    F(I) (0 3) B = 20
+    F(I) (0 2) GOTO 290
   Origs: 250:auto
   Dests: 270:auto, 290:goto
-F(I) (1 5) 270 IF U >= P4 THEN PRINT "WHEW! 10 POINTS."
-F(I) (0 3)     B = 10
-F(I) (0 2)     GOTO 290
+270 F(I) (1 5) IF U >= P4 THEN PRINT "WHEW! 10 POINTS."
+    F(I) (0 3) B = 10
+    F(I) (0 2) GOTO 290
   Origs: 260:auto
   Dests: 280:auto, 290:goto
-F(I) (0 2) 280 PRINT "MISSED THE TARGET. TOO BAD!"
-F(I) (0 3)     B = 0
+280 F(I) (0 2) PRINT "MISSED THE TARGET. TOO BAD!"
+    F(I) (0 3) B = 0
   Origs: 270:auto
   Dests: 290:auto
-F(I) (0 4) 290 S(I) = S(I) + B
-F(I) (0 3)     PRINT "TOTAL SCORE =" S(I)
-F(I) (0 1)     NEXT I
+290 F(I) (0 4) S(I) = S(I) + B
+    F(I) (0 3) PRINT "TOTAL SCORE =" S(I)
+    F(I) (0 1) NEXT I
   Origs: 160:fornext, 240:goto, 250:goto, 260:goto, 270:goto, 280:auto
   Dests: 300:auto
-F(I) (1 3) 300 FOR I = 1 TO N
+300 F(I) (1 3) FOR I = 1 TO N
   Origs: 290:auto
   Dests: 310:fornext, 320:fornext
-F(I) (1 7) 310 IF S(I) >= 200 THEN M = M + 1
-F(I) (0 3)     W(M) = I
+310 F(I) (1 7) IF S(I) >= 200 THEN M = M + 1
+    F(I) (0 3) W(M) = I
   Origs: 300:fornext
   Dests: 320:auto
-F(I) (0 1) 320 NEXT I
+320 F(I) (0 1) NEXT I
   Origs: 300:fornext, 310:auto
   Dests: 330:auto
-(1 5) 330 IF M = 0 THEN 150
+330 (1 5) IF M = 0 THEN 150
   Origs: 320:auto
   Dests: 150:ifthen, 340:auto
-(0 2) 340 PRINT
-(0 2)     PRINT "WE HAVE A WINNER !! "
-(0 2)     PRINT
+340 (0 2) PRINT
+    (0 2) PRINT "WE HAVE A WINNER !! "
+    (0 2) PRINT
   Origs: 330:auto
   Dests: 350:auto
-(0 5) 350 PRINT A$(W(M)) " SCORED " S(W(M)) " POINTS."
+350 (0 5) PRINT A$(W(M)) " SCORED " S(W(M)) " POINTS."
 (1 1)       FOR I = 1 TO M
 (0 1)       NEXT I
   Origs: 340:auto
   Dests: 360:auto
-(0 2) 360 PRINT
-(0 2)     PRINT "THANKS FOR THE GAME!"
-(0 1)     END
+360 (0 2) PRINT
+    (0 2) PRINT "THANKS FOR THE GAME!"
+    (0 1) END
   Origs: 350:auto
   Dests: :stop
 

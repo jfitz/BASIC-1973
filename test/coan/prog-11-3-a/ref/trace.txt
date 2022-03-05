@@ -1,4564 +1,4564 @@
-170: DATA 4, 1, -2, -11, 12
-180: DATA 4, 1, 1, -5, -2
-190: DATA 4, 1, -2, 3, -4
-200: DATA 5, 2, -1, -11, 11, -2
-210: DATA 7, 2, -5, -6, 9, 9, -39, 36
-10: PRINT
+170 DATA 4, 1, -2, -11, 12
+180 DATA 4, 1, 1, -5, -2
+190 DATA 4, 1, -2, 3, -4
+200 DATA 5, 2, -1, -11, 11, -2
+210 DATA 7, 2, -5, -6, 9, 9, -39, 36
+10 PRINT
 
-20: PRINT
+20 PRINT
 
-23: READ N
+23 READ N
  N = 4
-F(S) 25: FOR S = N TO 1 STEP -1
+25 F(S) FOR S = N TO 1 STEP -1
  N: 4
  S = 4
  N = 4
  -1 = -1
  terminated:false
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 4
  P(4) = 1
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 4
  P(4): 1
  1 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 4
  terminated:false
  S = 3
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 3
  P(3) = -2
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 3
  P(3): -2
 -2 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 3
  terminated:false
  S = 2
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 2
  P(2) = -11
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 2
  P(2): -11
 -11 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 2
  terminated:false
  S = 1
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 1
  P(1) = 12
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 1
  P(1): 12
  12 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 1
  terminated:true
-55: PRINT
+55 PRINT
 
-60: PRINT "INTEGRAL ZERO(S):  ";
+60 PRINT "INTEGRAL ZERO(S):  ";
 INTEGRAL ZERO(S):  
-70: LET K = 0
+70 LET K = 0
  K = 0
-F(X) 80: FOR X = -P[1] TO P[1] STEP SGN(P[1])
+80 F(X) FOR X = -P[1] TO P[1] STEP SGN(P[1])
  P(1): 12
  X = -12
  -P[1] = -12
  P[1] = 12
  SGN(P[1]) = 1
  terminated:false
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -12
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: -12
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: -12
  P = -1728
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -1728
  I: 3
  P(3): -2
  X: -12
  P = -2016
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -2016
  I: 2
  P(2): -11
  X: -12
  P = -1884
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -1884
  I: 1
  P(1): 12
  X: -12
  P = -1872
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: -1872
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -12
  terminated:false
  X = -11
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -11
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: -11
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -11
  terminated:false
  X = -10
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -10
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: -10
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -10
  terminated:false
  X = -9
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -9
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: -9
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -9
  terminated:false
  X = -8
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -8
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: -8
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -8
  terminated:false
  X = -7
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -7
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: -7
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -7
  terminated:false
  X = -6
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -6
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: -6
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: -6
  P = -216
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -216
  I: 3
  P(3): -2
  X: -6
  P = -288
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -288
  I: 2
  P(2): -11
  X: -6
  P = -222
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -222
  I: 1
  P(1): 12
  X: -6
  P = -210
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: -210
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -6
  terminated:false
  X = -5
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -5
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: -5
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -5
  terminated:false
  X = -4
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -4
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: -4
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: -4
  P = -64
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -64
  I: 3
  P(3): -2
  X: -4
  P = -96
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -96
  I: 2
  P(2): -11
  X: -4
  P = -52
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -52
  I: 1
  P(1): 12
  X: -4
  P = -40
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: -40
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -4
  terminated:false
  X = -3
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -3
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: -3
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: -3
  P = -27
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -27
  I: 3
  P(3): -2
  X: -3
  P = -45
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -45
  I: 2
  P(2): -11
  X: -3
  P = -12
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -12
  I: 1
  P(1): 12
  X: -3
  P = 0
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 0
  P <> 0: false
-F(X) 120: PRINT X;
+120 F(X) PRINT X;
  X: -3
 -3 
-F(X) 130: LET K = 1
+130 F(X) LET K = 1
  K = 1
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -3
  terminated:false
  X = -2
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -2
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: -2
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: -2
  P = -8
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -8
  I: 3
  P(3): -2
  X: -2
  P = -16
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -16
  I: 2
  P(2): -11
  X: -2
  P = 6
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 6
  I: 1
  P(1): 12
  X: -2
  P = 18
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 18
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -2
  terminated:false
  X = -1
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -1
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: -1
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: -1
  P = -1
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -1
  I: 3
  P(3): -2
  X: -1
  P = -3
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -3
  I: 2
  P(2): -11
  X: -1
  P = 8
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 8
  I: 1
  P(1): 12
  X: -1
  P = 20
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 20
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -1
  terminated:false
  X = 0
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 0
  X = 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 0
  terminated:false
  X = 1
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 1
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: 1
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: 1
  P = 1
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1
  I: 3
  P(3): -2
  X: 1
  P = -1
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -1
  I: 2
  P(2): -11
  X: 1
  P = -12
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -12
  I: 1
  P(1): 12
  X: 1
  P = 0
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 0
  P <> 0: false
-F(X) 120: PRINT X;
+120 F(X) PRINT X;
  X: 1
  1 
-F(X) 130: LET K = 1
+130 F(X) LET K = 1
  K = 1
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 1
  terminated:false
  X = 2
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 2
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: 2
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: 2
  P = 8
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 8
  I: 3
  P(3): -2
  X: 2
  P = 0
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 2
  P(2): -11
  X: 2
  P = -22
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -22
  I: 1
  P(1): 12
  X: 2
  P = -10
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: -10
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 2
  terminated:false
  X = 3
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 3
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: 3
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: 3
  P = 27
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 27
  I: 3
  P(3): -2
  X: 3
  P = 9
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 9
  I: 2
  P(2): -11
  X: 3
  P = -24
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -24
  I: 1
  P(1): 12
  X: 3
  P = -12
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: -12
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 3
  terminated:false
  X = 4
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 4
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: 4
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: 4
  P = 64
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 64
  I: 3
  P(3): -2
  X: 4
  P = 32
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 32
  I: 2
  P(2): -11
  X: 4
  P = -12
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -12
  I: 1
  P(1): 12
  X: 4
  P = 0
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 0
  P <> 0: false
-F(X) 120: PRINT X;
+120 F(X) PRINT X;
  X: 4
  4 
-F(X) 130: LET K = 1
+130 F(X) LET K = 1
  K = 1
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 4
  terminated:false
  X = 5
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 5
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: 5
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 5
  terminated:false
  X = 6
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 6
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: 6
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: 6
  P = 216
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 216
  I: 3
  P(3): -2
  X: 6
  P = 144
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 144
  I: 2
  P(2): -11
  X: 6
  P = 78
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 78
  I: 1
  P(1): 12
  X: 6
  P = 90
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 90
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 6
  terminated:false
  X = 7
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 7
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: 7
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 7
  terminated:false
  X = 8
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 8
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: 8
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 8
  terminated:false
  X = 9
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 9
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: 9
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 9
  terminated:false
  X = 10
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 10
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: 10
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 10
  terminated:false
  X = 11
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 11
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: 11
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 11
  terminated:false
  X = 12
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 12
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 12
  X: 12
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: 12
  P = 1728
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1728
  I: 3
  P(3): -2
  X: 12
  P = 1440
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1440
  I: 2
  P(2): -11
  X: 12
  P = 1308
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1308
  I: 1
  P(1): 12
  X: 12
  P = 1320
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 1320
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 12
  terminated:true
-150: IF K = 1 THEN 20
+150 IF K = 1 THEN 20
  K: 1
  K = 1: true
-20: PRINT
+20 PRINT
 
-23: READ N
+23 READ N
  N = 4
-F(S) 25: FOR S = N TO 1 STEP -1
+25 F(S) FOR S = N TO 1 STEP -1
  N: 4
  S = 4
  N = 4
  -1 = -1
  terminated:false
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 4
  P(4) = 1
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 4
  P(4): 1
  1 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 4
  terminated:false
  S = 3
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 3
  P(3) = 1
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 3
  P(3): 1
  1 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 3
  terminated:false
  S = 2
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 2
  P(2) = -5
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 2
  P(2): -5
 -5 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 2
  terminated:false
  S = 1
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 1
  P(1) = -2
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 1
  P(1): -2
 -2 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 1
  terminated:true
-55: PRINT
+55 PRINT
 
-60: PRINT "INTEGRAL ZERO(S):  ";
+60 PRINT "INTEGRAL ZERO(S):  ";
 INTEGRAL ZERO(S):  
-70: LET K = 0
+70 LET K = 0
  K = 0
-F(X) 80: FOR X = -P[1] TO P[1] STEP SGN(P[1])
+80 F(X) FOR X = -P[1] TO P[1] STEP SGN(P[1])
  P(1): -2
  X = 2
  -P[1] = 2
  P[1] = -2
  SGN(P[1]) = -1
  terminated:false
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 2
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): -2
  X: 2
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: 2
  P = 8
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 8
  I: 3
  P(3): 1
  X: 2
  P = 12
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 12
  I: 2
  P(2): -5
  X: 2
  P = 2
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 2
  I: 1
  P(1): -2
  X: 2
  P = 0
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 0
  P <> 0: false
-F(X) 120: PRINT X;
+120 F(X) PRINT X;
  X: 2
  2 
-F(X) 130: LET K = 1
+130 F(X) LET K = 1
  K = 1
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 2
  terminated:false
  X = 1
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 1
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): -2
  X: 1
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: 1
  P = 1
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1
  I: 3
  P(3): 1
  X: 1
  P = 2
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 2
  I: 2
  P(2): -5
  X: 1
  P = -3
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -3
  I: 1
  P(1): -2
  X: 1
  P = -5
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: -5
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 1
  terminated:false
  X = 0
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 0
  X = 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 0
  terminated:false
  X = -1
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -1
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): -2
  X: -1
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: -1
  P = -1
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -1
  I: 3
  P(3): 1
  X: -1
  P = 0
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 2
  P(2): -5
  X: -1
  P = 5
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 5
  I: 1
  P(1): -2
  X: -1
  P = 3
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 3
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -1
  terminated:false
  X = -2
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -2
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): -2
  X: -2
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: -2
  P = -8
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -8
  I: 3
  P(3): 1
  X: -2
  P = -4
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -4
  I: 2
  P(2): -5
  X: -2
  P = 6
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 6
  I: 1
  P(1): -2
  X: -2
  P = 4
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 4
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -2
  terminated:true
-150: IF K = 1 THEN 20
+150 IF K = 1 THEN 20
  K: 1
  K = 1: true
-20: PRINT
+20 PRINT
 
-23: READ N
+23 READ N
  N = 4
-F(S) 25: FOR S = N TO 1 STEP -1
+25 F(S) FOR S = N TO 1 STEP -1
  N: 4
  S = 4
  N = 4
  -1 = -1
  terminated:false
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 4
  P(4) = 1
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 4
  P(4): 1
  1 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 4
  terminated:false
  S = 3
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 3
  P(3) = -2
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 3
  P(3): -2
 -2 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 3
  terminated:false
  S = 2
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 2
  P(2) = 3
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 2
  P(2): 3
  3 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 2
  terminated:false
  S = 1
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 1
  P(1) = -4
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 1
  P(1): -4
 -4 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 1
  terminated:true
-55: PRINT
+55 PRINT
 
-60: PRINT "INTEGRAL ZERO(S):  ";
+60 PRINT "INTEGRAL ZERO(S):  ";
 INTEGRAL ZERO(S):  
-70: LET K = 0
+70 LET K = 0
  K = 0
-F(X) 80: FOR X = -P[1] TO P[1] STEP SGN(P[1])
+80 F(X) FOR X = -P[1] TO P[1] STEP SGN(P[1])
  P(1): -4
  X = 4
  -P[1] = 4
  P[1] = -4
  SGN(P[1]) = -1
  terminated:false
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 4
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): -4
  X: 4
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: 4
  P = 64
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 64
  I: 3
  P(3): -2
  X: 4
  P = 32
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 32
  I: 2
  P(2): 3
  X: 4
  P = 44
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 44
  I: 1
  P(1): -4
  X: 4
  P = 40
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 40
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 4
  terminated:false
  X = 3
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 3
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): -4
  X: 3
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 3
  terminated:false
  X = 2
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 2
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): -4
  X: 2
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: 2
  P = 8
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 8
  I: 3
  P(3): -2
  X: 2
  P = 0
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 2
  P(2): 3
  X: 2
  P = 6
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 6
  I: 1
  P(1): -4
  X: 2
  P = 2
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 2
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 2
  terminated:false
  X = 1
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 1
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): -4
  X: 1
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: 1
  P = 1
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1
  I: 3
  P(3): -2
  X: 1
  P = -1
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -1
  I: 2
  P(2): 3
  X: 1
  P = 2
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 2
  I: 1
  P(1): -4
  X: 1
  P = -2
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: -2
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 1
  terminated:false
  X = 0
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 0
  X = 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 0
  terminated:false
  X = -1
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -1
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): -4
  X: -1
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: -1
  P = -1
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -1
  I: 3
  P(3): -2
  X: -1
  P = -3
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -3
  I: 2
  P(2): 3
  X: -1
  P = -6
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -6
  I: 1
  P(1): -4
  X: -1
  P = -10
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: -10
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -1
  terminated:false
  X = -2
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -2
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): -4
  X: -2
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: -2
  P = -8
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -8
  I: 3
  P(3): -2
  X: -2
  P = -16
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -16
  I: 2
  P(2): 3
  X: -2
  P = -22
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -22
  I: 1
  P(1): -4
  X: -2
  P = -26
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: -26
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -2
  terminated:false
  X = -3
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -3
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): -4
  X: -3
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -3
  terminated:false
  X = -4
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -4
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): -4
  X: -4
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 4
  I = 4
  N = 4
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 4
  P(4): 1
  X: -4
  P = -64
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -64
  I: 3
  P(3): -2
  X: -4
  P = -96
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -96
  I: 2
  P(2): 3
  X: -4
  P = -108
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -108
  I: 1
  P(1): -4
  X: -4
  P = -112
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: -112
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -4
  terminated:true
-150: IF K = 1 THEN 20
+150 IF K = 1 THEN 20
  K: 0
  K = 1: false
-160: PRINT "NONE FOUND";
+160 PRINT "NONE FOUND";
 NONE FOUND
-165: GOTO 20
-20: PRINT
+165 GOTO 20
+20 PRINT
 
-23: READ N
+23 READ N
  N = 5
-F(S) 25: FOR S = N TO 1 STEP -1
+25 F(S) FOR S = N TO 1 STEP -1
  N: 5
  S = 5
  N = 5
  -1 = -1
  terminated:false
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 5
  P(5) = 2
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 5
  P(5): 2
  2 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 5
  terminated:false
  S = 4
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 4
  P(4) = -1
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 4
  P(4): -1
 -1 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 4
  terminated:false
  S = 3
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 3
  P(3) = -11
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 3
  P(3): -11
 -11 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 3
  terminated:false
  S = 2
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 2
  P(2) = 11
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 2
  P(2): 11
  11 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 2
  terminated:false
  S = 1
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 1
  P(1) = -2
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 1
  P(1): -2
 -2 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 1
  terminated:true
-55: PRINT
+55 PRINT
 
-60: PRINT "INTEGRAL ZERO(S):  ";
+60 PRINT "INTEGRAL ZERO(S):  ";
 INTEGRAL ZERO(S):  
-70: LET K = 0
+70 LET K = 0
  K = 0
-F(X) 80: FOR X = -P[1] TO P[1] STEP SGN(P[1])
+80 F(X) FOR X = -P[1] TO P[1] STEP SGN(P[1])
  P(1): -2
  X = 2
  -P[1] = 2
  P[1] = -2
  SGN(P[1]) = -1
  terminated:false
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 2
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): -2
  X: 2
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 5
  I = 5
  N = 5
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 5
  P(5): 2
  X: 2
  P = 32
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 32
  I: 4
  P(4): -1
  X: 2
  P = 24
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 24
  I: 3
  P(3): -11
  X: 2
  P = -20
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -20
  I: 2
  P(2): 11
  X: 2
  P = 2
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 2
  I: 1
  P(1): -2
  X: 2
  P = 0
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 0
  P <> 0: false
-F(X) 120: PRINT X;
+120 F(X) PRINT X;
  X: 2
  2 
-F(X) 130: LET K = 1
+130 F(X) LET K = 1
  K = 1
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 2
  terminated:false
  X = 1
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 1
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): -2
  X: 1
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 5
  I = 5
  N = 5
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 5
  P(5): 2
  X: 1
  P = 2
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 2
  I: 4
  P(4): -1
  X: 1
  P = 1
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1
  I: 3
  P(3): -11
  X: 1
  P = -10
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -10
  I: 2
  P(2): 11
  X: 1
  P = 1
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1
  I: 1
  P(1): -2
  X: 1
  P = -1
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: -1
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 1
  terminated:false
  X = 0
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 0
  X = 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 0
  terminated:false
  X = -1
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -1
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): -2
  X: -1
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 5
  I = 5
  N = 5
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 5
  P(5): 2
  X: -1
  P = 2
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 2
  I: 4
  P(4): -1
  X: -1
  P = 3
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 3
  I: 3
  P(3): -11
  X: -1
  P = -8
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -8
  I: 2
  P(2): 11
  X: -1
  P = -19
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -19
  I: 1
  P(1): -2
  X: -1
  P = -21
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: -21
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -1
  terminated:false
  X = -2
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -2
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): -2
  X: -2
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 5
  I = 5
  N = 5
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 5
  P(5): 2
  X: -2
  P = 32
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 32
  I: 4
  P(4): -1
  X: -2
  P = 40
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 40
  I: 3
  P(3): -11
  X: -2
  P = -4
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -4
  I: 2
  P(2): 11
  X: -2
  P = -26
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -26
  I: 1
  P(1): -2
  X: -2
  P = -28
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: -28
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -2
  terminated:true
-150: IF K = 1 THEN 20
+150 IF K = 1 THEN 20
  K: 1
  K = 1: true
-20: PRINT
+20 PRINT
 
-23: READ N
+23 READ N
  N = 7
-F(S) 25: FOR S = N TO 1 STEP -1
+25 F(S) FOR S = N TO 1 STEP -1
  N: 7
  S = 7
  N = 7
  -1 = -1
  terminated:false
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 7
  P(7) = 2
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 7
  P(7): 2
  2 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 7
  terminated:false
  S = 6
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 6
  P(6) = -5
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 6
  P(6): -5
 -5 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 6
  terminated:false
  S = 5
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 5
  P(5) = -6
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 5
  P(5): -6
 -6 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 5
  terminated:false
  S = 4
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 4
  P(4) = 9
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 4
  P(4): 9
  9 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 4
  terminated:false
  S = 3
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 3
  P(3) = 9
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 3
  P(3): 9
  9 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 3
  terminated:false
  S = 2
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 2
  P(2) = -39
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 2
  P(2): -39
 -39 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 2
  terminated:false
  S = 1
-F(S) 30: READ P[S]
+30 F(S) READ P[S]
  S: 1
  P(1) = 36
-F(S) 40: PRINT P[S];
+40 F(S) PRINT P[S];
  S: 1
  P(1): 36
  36 
-F(S) 50: NEXT S
+50 F(S) NEXT S
  S: 1
  terminated:true
-55: PRINT
+55 PRINT
 
-60: PRINT "INTEGRAL ZERO(S):  ";
+60 PRINT "INTEGRAL ZERO(S):  ";
 INTEGRAL ZERO(S):  
-70: LET K = 0
+70 LET K = 0
  K = 0
-F(X) 80: FOR X = -P[1] TO P[1] STEP SGN(P[1])
+80 F(X) FOR X = -P[1] TO P[1] STEP SGN(P[1])
  P(1): 36
  X = -36
  -P[1] = -36
  P[1] = 36
  SGN(P[1]) = 1
  terminated:false
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -36
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -36
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 7
  I = 7
  N = 7
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 7
  P(7): 2
  X: -36
  P = 4353564680
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 7
  terminated:false
  I = 6
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 4353564680
  I: 6
  P(6): -5
  X: -36
  P = 4655895560
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 6
  terminated:false
  I = 5
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 4655895560
  I: 5
  P(5): -6
  X: -36
  P = 4645817860
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 4645817860
  I: 4
  P(4): 9
  X: -36
  P = 4645397960
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 4645397960
  I: 3
  P(3): 9
  X: -36
  P = 4645409620
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 4645409620
  I: 2
  P(2): -39
  X: -36
  P = 4645411020
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 4645411020
  I: 1
  P(1): 36
  X: -36
  P = 4645411060
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 4645411060
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -36
  terminated:false
  X = -35
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -35
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -35
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -35
  terminated:false
  X = -34
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -34
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -34
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -34
  terminated:false
  X = -33
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -33
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -33
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -33
  terminated:false
  X = -32
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -32
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -32
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -32
  terminated:false
  X = -31
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -31
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -31
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -31
  terminated:false
  X = -30
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -30
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -30
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -30
  terminated:false
  X = -29
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -29
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -29
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -29
  terminated:false
  X = -28
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -28
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -28
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -28
  terminated:false
  X = -27
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -27
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -27
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -27
  terminated:false
  X = -26
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -26
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -26
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -26
  terminated:false
  X = -25
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -25
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -25
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -25
  terminated:false
  X = -24
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -24
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -24
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -24
  terminated:false
  X = -23
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -23
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -23
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -23
  terminated:false
  X = -22
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -22
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -22
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -22
  terminated:false
  X = -21
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -21
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -21
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -21
  terminated:false
  X = -20
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -20
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -20
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -20
  terminated:false
  X = -19
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -19
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -19
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -19
  terminated:false
  X = -18
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -18
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -18
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 7
  I = 7
  N = 7
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 7
  P(7): 2
  X: -18
  P = 68024448
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 7
  terminated:false
  I = 6
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 68024448
  I: 6
  P(6): -5
  X: -18
  P = 77472288
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 6
  terminated:false
  I = 5
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 77472288
  I: 5
  P(5): -6
  X: -18
  P = 76842432
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 76842432
  I: 4
  P(4): 9
  X: -18
  P = 76789944
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 76789944
  I: 3
  P(3): 9
  X: -18
  P = 76792860
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 76792860
  I: 2
  P(2): -39
  X: -18
  P = 76793562
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 76793562
  I: 1
  P(1): 36
  X: -18
  P = 76793598
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 76793598
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -18
  terminated:false
  X = -17
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -17
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -17
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -17
  terminated:false
  X = -16
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -16
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -16
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -16
  terminated:false
  X = -15
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -15
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -15
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -15
  terminated:false
  X = -14
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -14
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -14
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -14
  terminated:false
  X = -13
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -13
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -13
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -13
  terminated:false
  X = -12
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -12
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -12
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 7
  I = 7
  N = 7
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 7
  P(7): 2
  X: -12
  P = 5971968
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 7
  terminated:false
  I = 6
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 5971968
  I: 6
  P(6): -5
  X: -12
  P = 7216128
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 6
  terminated:false
  I = 5
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 7216128
  I: 5
  P(5): -6
  X: -12
  P = 7091712
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 7091712
  I: 4
  P(4): 9
  X: -12
  P = 7076160
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 7076160
  I: 3
  P(3): 9
  X: -12
  P = 7077456
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 7077456
  I: 2
  P(2): -39
  X: -12
  P = 7077924
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 7077924
  I: 1
  P(1): 36
  X: -12
  P = 7077960
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 7077960
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -12
  terminated:false
  X = -11
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -11
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -11
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -11
  terminated:false
  X = -10
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -10
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -10
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -10
  terminated:false
  X = -9
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -9
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -9
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 7
  I = 7
  N = 7
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 7
  P(7): 2
  X: -9
  P = 1062882
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 7
  terminated:false
  I = 6
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1062882
  I: 6
  P(6): -5
  X: -9
  P = 1358127
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 6
  terminated:false
  I = 5
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1358127
  I: 5
  P(5): -6
  X: -9
  P = 1318761
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1318761
  I: 4
  P(4): 9
  X: -9
  P = 1312200
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1312200
  I: 3
  P(3): 9
  X: -9
  P = 1312929
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1312929
  I: 2
  P(2): -39
  X: -9
  P = 1313280
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1313280
  I: 1
  P(1): 36
  X: -9
  P = 1313316
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 1313316
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -9
  terminated:false
  X = -8
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -8
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -8
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -8
  terminated:false
  X = -7
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -7
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -7
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -7
  terminated:false
  X = -6
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -6
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -6
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 7
  I = 7
  N = 7
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 7
  P(7): 2
  X: -6
  P = 93312
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 7
  terminated:false
  I = 6
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 93312
  I: 6
  P(6): -5
  X: -6
  P = 132192
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 6
  terminated:false
  I = 5
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 132192
  I: 5
  P(5): -6
  X: -6
  P = 124416
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 124416
  I: 4
  P(4): 9
  X: -6
  P = 122472
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 122472
  I: 3
  P(3): 9
  X: -6
  P = 122796
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 122796
  I: 2
  P(2): -39
  X: -6
  P = 123030
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 123030
  I: 1
  P(1): 36
  X: -6
  P = 123066
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 123066
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -6
  terminated:false
  X = -5
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -5
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -5
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -5
  terminated:false
  X = -4
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -4
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -4
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 7
  I = 7
  N = 7
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 7
  P(7): 2
  X: -4
  P = 8192
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 7
  terminated:false
  I = 6
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 8192
  I: 6
  P(6): -5
  X: -4
  P = 13312
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 6
  terminated:false
  I = 5
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 13312
  I: 5
  P(5): -6
  X: -4
  P = 11776
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 11776
  I: 4
  P(4): 9
  X: -4
  P = 11200
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 11200
  I: 3
  P(3): 9
  X: -4
  P = 11344
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 11344
  I: 2
  P(2): -39
  X: -4
  P = 11500
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 11500
  I: 1
  P(1): 36
  X: -4
  P = 11536
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 11536
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -4
  terminated:false
  X = -3
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -3
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -3
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 7
  I = 7
  N = 7
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 7
  P(7): 2
  X: -3
  P = 1458
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 7
  terminated:false
  I = 6
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1458
  I: 6
  P(6): -5
  X: -3
  P = 2673
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 6
  terminated:false
  I = 5
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 2673
  I: 5
  P(5): -6
  X: -3
  P = 2187
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 2187
  I: 4
  P(4): 9
  X: -3
  P = 1944
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1944
  I: 3
  P(3): 9
  X: -3
  P = 2025
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 2025
  I: 2
  P(2): -39
  X: -3
  P = 2142
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 2142
  I: 1
  P(1): 36
  X: -3
  P = 2178
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 2178
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -3
  terminated:false
  X = -2
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -2
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -2
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 7
  I = 7
  N = 7
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 7
  P(7): 2
  X: -2
  P = 128
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 7
  terminated:false
  I = 6
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 128
  I: 6
  P(6): -5
  X: -2
  P = 288
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 6
  terminated:false
  I = 5
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 288
  I: 5
  P(5): -6
  X: -2
  P = 192
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 192
  I: 4
  P(4): 9
  X: -2
  P = 120
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 120
  I: 3
  P(3): 9
  X: -2
  P = 156
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 156
  I: 2
  P(2): -39
  X: -2
  P = 234
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 234
  I: 1
  P(1): 36
  X: -2
  P = 270
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 270
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -2
  terminated:false
  X = -1
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: -1
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: -1
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 7
  I = 7
  N = 7
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 7
  P(7): 2
  X: -1
  P = 2
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 7
  terminated:false
  I = 6
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 2
  I: 6
  P(6): -5
  X: -1
  P = 7
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 6
  terminated:false
  I = 5
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 7
  I: 5
  P(5): -6
  X: -1
  P = 1
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1
  I: 4
  P(4): 9
  X: -1
  P = -8
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -8
  I: 3
  P(3): 9
  X: -1
  P = 1
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1
  I: 2
  P(2): -39
  X: -1
  P = 40
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 40
  I: 1
  P(1): 36
  X: -1
  P = 76
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 76
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: -1
  terminated:false
  X = 0
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 0
  X = 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 0
  terminated:false
  X = 1
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 1
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 1
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 7
  I = 7
  N = 7
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 7
  P(7): 2
  X: 1
  P = 2
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 7
  terminated:false
  I = 6
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 2
  I: 6
  P(6): -5
  X: 1
  P = -3
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 6
  terminated:false
  I = 5
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -3
  I: 5
  P(5): -6
  X: 1
  P = -9
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -9
  I: 4
  P(4): 9
  X: 1
  P = 0
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 3
  P(3): 9
  X: 1
  P = 9
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 9
  I: 2
  P(2): -39
  X: 1
  P = -30
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -30
  I: 1
  P(1): 36
  X: 1
  P = 6
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 6
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 1
  terminated:false
  X = 2
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 2
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 2
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 7
  I = 7
  N = 7
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 7
  P(7): 2
  X: 2
  P = 128
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 7
  terminated:false
  I = 6
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 128
  I: 6
  P(6): -5
  X: 2
  P = -32
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 6
  terminated:false
  I = 5
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -32
  I: 5
  P(5): -6
  X: 2
  P = -128
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -128
  I: 4
  P(4): 9
  X: 2
  P = -56
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -56
  I: 3
  P(3): 9
  X: 2
  P = -20
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -20
  I: 2
  P(2): -39
  X: 2
  P = -98
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -98
  I: 1
  P(1): 36
  X: 2
  P = -62
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: -62
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 2
  terminated:false
  X = 3
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 3
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 3
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 7
  I = 7
  N = 7
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 7
  P(7): 2
  X: 3
  P = 1458
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 7
  terminated:false
  I = 6
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1458
  I: 6
  P(6): -5
  X: 3
  P = 243
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 6
  terminated:false
  I = 5
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 243
  I: 5
  P(5): -6
  X: 3
  P = -243
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -243
  I: 4
  P(4): 9
  X: 3
  P = 0
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 3
  P(3): 9
  X: 3
  P = 81
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 81
  I: 2
  P(2): -39
  X: 3
  P = -36
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: -36
  I: 1
  P(1): 36
  X: 3
  P = 0
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 0
  P <> 0: false
-F(X) 120: PRINT X;
+120 F(X) PRINT X;
  X: 3
  3 
-F(X) 130: LET K = 1
+130 F(X) LET K = 1
  K = 1
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 3
  terminated:false
  X = 4
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 4
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 4
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 7
  I = 7
  N = 7
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 7
  P(7): 2
  X: 4
  P = 8192
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 7
  terminated:false
  I = 6
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 8192
  I: 6
  P(6): -5
  X: 4
  P = 3072
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 6
  terminated:false
  I = 5
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 3072
  I: 5
  P(5): -6
  X: 4
  P = 1536
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1536
  I: 4
  P(4): 9
  X: 4
  P = 2112
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 2112
  I: 3
  P(3): 9
  X: 4
  P = 2256
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 2256
  I: 2
  P(2): -39
  X: 4
  P = 2100
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 2100
  I: 1
  P(1): 36
  X: 4
  P = 2136
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 2136
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 4
  terminated:false
  X = 5
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 5
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 5
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 5
  terminated:false
  X = 6
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 6
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 6
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 7
  I = 7
  N = 7
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 7
  P(7): 2
  X: 6
  P = 93312
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 7
  terminated:false
  I = 6
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 93312
  I: 6
  P(6): -5
  X: 6
  P = 54432
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 6
  terminated:false
  I = 5
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 54432
  I: 5
  P(5): -6
  X: 6
  P = 46656
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 46656
  I: 4
  P(4): 9
  X: 6
  P = 48600
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 48600
  I: 3
  P(3): 9
  X: 6
  P = 48924
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 48924
  I: 2
  P(2): -39
  X: 6
  P = 48690
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 48690
  I: 1
  P(1): 36
  X: 6
  P = 48726
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 48726
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 6
  terminated:false
  X = 7
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 7
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 7
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 7
  terminated:false
  X = 8
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 8
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 8
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 8
  terminated:false
  X = 9
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 9
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 9
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 7
  I = 7
  N = 7
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 7
  P(7): 2
  X: 9
  P = 1062882
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 7
  terminated:false
  I = 6
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 1062882
  I: 6
  P(6): -5
  X: 9
  P = 767637
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 6
  terminated:false
  I = 5
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 767637
  I: 5
  P(5): -6
  X: 9
  P = 728271
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 728271
  I: 4
  P(4): 9
  X: 9
  P = 734832
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 734832
  I: 3
  P(3): 9
  X: 9
  P = 735561
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 735561
  I: 2
  P(2): -39
  X: 9
  P = 735210
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 735210
  I: 1
  P(1): 36
  X: 9
  P = 735246
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 735246
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 9
  terminated:false
  X = 10
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 10
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 10
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 10
  terminated:false
  X = 11
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 11
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 11
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 11
  terminated:false
  X = 12
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 12
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 12
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 7
  I = 7
  N = 7
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 7
  P(7): 2
  X: 12
  P = 5971968
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 7
  terminated:false
  I = 6
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 5971968
  I: 6
  P(6): -5
  X: 12
  P = 4727808
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 6
  terminated:false
  I = 5
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 4727808
  I: 5
  P(5): -6
  X: 12
  P = 4603392
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 4603392
  I: 4
  P(4): 9
  X: 12
  P = 4618944
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 4618944
  I: 3
  P(3): 9
  X: 12
  P = 4620240
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 4620240
  I: 2
  P(2): -39
  X: 12
  P = 4619772
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 4619772
  I: 1
  P(1): 36
  X: 12
  P = 4619808
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 4619808
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 12
  terminated:false
  X = 13
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 13
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 13
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 13
  terminated:false
  X = 14
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 14
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 14
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 14
  terminated:false
  X = 15
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 15
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 15
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 15
  terminated:false
  X = 16
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 16
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 16
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 16
  terminated:false
  X = 17
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 17
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 17
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 17
  terminated:false
  X = 18
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 18
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 18
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 7
  I = 7
  N = 7
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 7
  P(7): 2
  X: 18
  P = 68024448
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 7
  terminated:false
  I = 6
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 68024448
  I: 6
  P(6): -5
  X: 18
  P = 58576608
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 6
  terminated:false
  I = 5
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 58576608
  I: 5
  P(5): -6
  X: 18
  P = 57946752
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 57946752
  I: 4
  P(4): 9
  X: 18
  P = 57999240
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 57999240
  I: 3
  P(3): 9
  X: 18
  P = 58002156
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 58002156
  I: 2
  P(2): -39
  X: 18
  P = 58001454
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 58001454
  I: 1
  P(1): 36
  X: 18
  P = 58001490
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 58001490
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 18
  terminated:false
  X = 19
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 19
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 19
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 19
  terminated:false
  X = 20
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 20
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 20
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 20
  terminated:false
  X = 21
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 21
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 21
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 21
  terminated:false
  X = 22
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 22
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 22
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 22
  terminated:false
  X = 23
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 23
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 23
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 23
  terminated:false
  X = 24
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 24
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 24
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 24
  terminated:false
  X = 25
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 25
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 25
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 25
  terminated:false
  X = 26
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 26
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 26
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 26
  terminated:false
  X = 27
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 27
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 27
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 27
  terminated:false
  X = 28
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 28
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 28
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 28
  terminated:false
  X = 29
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 29
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 29
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 29
  terminated:false
  X = 30
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 30
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 30
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 30
  terminated:false
  X = 31
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 31
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 31
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 31
  terminated:false
  X = 32
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 32
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 32
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 32
  terminated:false
  X = 33
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 33
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 33
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 33
  terminated:false
  X = 34
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 34
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 34
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 34
  terminated:false
  X = 35
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 35
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 35
  P[1] / X <> INT(P[1] / X): true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 35
  terminated:false
  X = 36
-F(X) 90: IF X = 0 THEN 140
+90 F(X) IF X = 0 THEN 140
  X: 36
  X = 0: false
-F(X) 100: IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) IF P[1] / X <> INT(P[1] / X) THEN 140
  P(1): 36
  X: 36
  P[1] / X <> INT(P[1] / X): false
-F(X) 105: GOSUB 500
-G(500) 500: LET P = 0
+105 F(X) GOSUB 500
+500 G(500) LET P = 0
  P = 0
-G(500) F(I) 510: FOR I = N TO 1 STEP -1
+510 G(500) F(I) FOR I = N TO 1 STEP -1
  N: 7
  I = 7
  N = 7
  -1 = -1
  terminated:false
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 0
  I: 7
  P(7): 2
  X: 36
  P = 4353564680
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 7
  terminated:false
  I = 6
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 4353564680
  I: 6
  P(6): -5
  X: 36
  P = 4051233800
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 6
  terminated:false
  I = 5
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 4051233800
  I: 5
  P(5): -6
  X: 36
  P = 4041156100
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 5
  terminated:false
  I = 4
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 4041156100
  I: 4
  P(4): 9
  X: 36
  P = 4041576000
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 4
  terminated:false
  I = 3
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 4041576000
  I: 3
  P(3): 9
  X: 36
  P = 4041587660
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 3
  terminated:false
  I = 2
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 4041587660
  I: 2
  P(2): -39
  X: 36
  P = 4041586260
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 2
  terminated:false
  I = 1
-G(500) F(I) 520: LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I) LET P = P + P[I] * X ^ (I - 1)
  P: 4041586260
  I: 1
  P(1): 36
  X: 36
  P = 4041586300
-G(500) F(I) 530: NEXT I
+530 G(500) F(I) NEXT I
  I: 1
  terminated:true
-G(500) 540: RETURN
-F(X) 110: IF P <> 0 THEN 140
+540 G(500) RETURN
+110 F(X) IF P <> 0 THEN 140
  P: 4041586300
  P <> 0: true
-F(X) 140: NEXT X
+140 F(X) NEXT X
  X: 36
  terminated:true
-150: IF K = 1 THEN 20
+150 IF K = 1 THEN 20
  K: 1
  K = 1: true
-20: PRINT
+20 PRINT
 
-23: READ N
+23 READ N
 Error 103 Out of data in line 23
 

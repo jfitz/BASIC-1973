@@ -19,76 +19,76 @@ Halstead complexity:
  intelligence: 31.306
  time: 2.294
 
-FNH(_) (0 4) 2 DEF FNH(X) = INT(X * 100 + 0.5) / 100
+2 FNH(_) (0 4) DEF FNH(X) = INT(X * 100 + 0.5) / 100
   Origs: 
   Dests: 
-(0 3) 10 LET P, P1 = 56.31
+10 (0 3) LET P, P1 = 56.31
   Origs: :start
   Dests: 20:auto
-F(Y) (1 3) 20 FOR Y = 1 TO 10
+20 F(Y) (1 3) FOR Y = 1 TO 10
   Origs: 10:auto
   Dests: 30:fornext, 110:fornext
-(0 1) 22 REM  FOR TEN YEARS
+22 (0 1) REM  FOR TEN YEARS
   Origs: 
   Dests: 
-F(Y,M) (1 3) 30 FOR M = 1 TO 12
+30 F(Y,M) (1 3) FOR M = 1 TO 12
   Origs: 20:fornext
   Dests: 40:fornext, 60:fornext
-(0 1) 32 REM  COMPOUNDED MONTHLY AND COMPUTE INTEREST
+32 (0 1) REM  COMPOUNDED MONTHLY AND COMPUTE INTEREST
   Origs: 
   Dests: 
-F(Y,M) (0 6) 40 LET I = P * 4.5 / 100 / 12
+40 F(Y,M) (0 6) LET I = P * 4.5 / 100 / 12
   Origs: 30:fornext
   Dests: 50:auto
-F(Y,M) (0 4) 50 LET P = P + I
+50 F(Y,M) (0 4) LET P = P + I
   Origs: 40:auto
   Dests: 60:auto
-F(Y,M) (0 1) 60 NEXT M
+60 F(Y,M) (0 1) NEXT M
   Origs: 30:fornext, 50:auto
   Dests: 70:auto
-(0 1) 62 REM THAT FIGURES THE INTEREST FOR THIS YEAR COMPOUNDED MONTHLY
+62 (0 1) REM THAT FIGURES THE INTEREST FOR THIS YEAR COMPOUNDED MONTHLY
   Origs: 
   Dests: 
-F(Y,Q) (1 3) 70 FOR Q = 1 TO 4
+70 F(Y,Q) (1 3) FOR Q = 1 TO 4
   Origs: 60:auto
   Dests: 80:fornext, 100:fornext
-(0 1) 72 REM  COMPOUNDED QUARTERLY
+72 (0 1) REM  COMPOUNDED QUARTERLY
   Origs: 
   Dests: 
-F(Y,Q) (0 6) 80 LET I1 = P1 * 4.75 / 100 / 4
+80 F(Y,Q) (0 6) LET I1 = P1 * 4.75 / 100 / 4
   Origs: 70:fornext
   Dests: 90:auto
-F(Y,Q) (0 4) 90 LET P1 = P1 + I1
+90 F(Y,Q) (0 4) LET P1 = P1 + I1
   Origs: 80:auto
   Dests: 100:auto
-F(Y,Q) (0 1) 100 NEXT Q
+100 F(Y,Q) (0 1) NEXT Q
   Origs: 70:fornext, 90:auto
   Dests: 110:auto
-(0 1) 102 REM  THAT TAKES CARE OF THE QUARTERLY INVESTMENT FOR THIS YEAR
+102 (0 1) REM  THAT TAKES CARE OF THE QUARTERLY INVESTMENT FOR THIS YEAR
   Origs: 
   Dests: 
-(0 1) 108 REM  NOW COMPUTE THE NEXT YEAR
+108 (0 1) REM  NOW COMPUTE THE NEXT YEAR
   Origs: 
   Dests: 
-F(Y) (0 1) 110 NEXT Y
+110 F(Y) (0 1) NEXT Y
   Origs: 20:fornext, 100:auto
   Dests: 120:auto
-(0 2) 120 PRINT "FOR TEN YEARS"
+120 (0 2) PRINT "FOR TEN YEARS"
   Origs: 110:auto
   Dests: 130:auto
-(0 2) 130 PRINT "@4.5% COMPOUNDED MONTHLY...";
+130 (0 2) PRINT "@4.5% COMPOUNDED MONTHLY...";
   Origs: 120:auto
   Dests: 140:auto
-(0 5) 140 PRINT "$" FNH(P)
+140 (0 5) PRINT "$" FNH(P)
   Origs: 130:auto
   Dests: 150:auto
-(0 2) 150 PRINT "@4.75% COMPOUNDED QUARTERLY...";
+150 (0 2) PRINT "@4.75% COMPOUNDED QUARTERLY...";
   Origs: 140:auto
   Dests: 160:auto
-(0 5) 160 PRINT "$" FNH(P1)
+160 (0 5) PRINT "$" FNH(P1)
   Origs: 150:auto
   Dests: 9999:auto
-(0 1) 9999 END
+9999 (0 1) END
   Origs: 160:auto
   Dests: :stop
 

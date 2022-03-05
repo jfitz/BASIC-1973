@@ -19,134 +19,134 @@ Halstead complexity:
  intelligence: 48.998
  time: 48.767
 
-(0 2) 100 & "PLAY 'GUESS THE ANIMAL' WITH RSTS"
+100 (0 2) & "PLAY 'GUESS THE ANIMAL' WITH RSTS"
   Origs: :start
   Dests: 150:auto
-(0 2) 150 & "THINK OF AN ANIMAL AND THE COMPUTER WILL TRY TO GUESS IT..."
-(0 2)     &
+150 (0 2) & "THINK OF AN ANIMAL AND THE COMPUTER WILL TRY TO GUESS IT..."
+    (0 2) &
   Origs: 100:auto
   Dests: 500:auto
-(0 2) 500 DIM A$(200%)
+500 (0 2) DIM A$(200%)
   Origs: 150:auto
   Dests: 525:auto
-(0 3) 525 F$ = "ANIMAL.GME"
-(1 2)     ON ERROR GOTO 700
+525 (0 3) F$ = "ANIMAL.GME"
+    (1 2) ON ERROR GOTO 700
   Origs: 500:auto
   Dests: 550:auto, 700:onerror
-(0 3) 550 OPEN F$ FOR INPUT AS FILE 1%
-(1 2)     INPUT #1%, N%
-(1 2)     INPUT #1%, A$(I%)
-(1 1)       FOR I% = 1% TO N%
-(0 1)       NEXT I%
-(0 2)     CLOSE 1%
-(0 4)     A$(0%) = NUM$(N%)
-(1 1)     ON ERROR GOTO 0
-(0 2)     GOTO 1300
+550 (0 3) OPEN F$ FOR INPUT AS FILE 1%
+    (1 2) INPUT #1%, N%
+    (1 2) INPUT #1%, A$(I%)
+      (1 1) FOR I% = 1% TO N%
+      (0 1) NEXT I%
+    (0 2) CLOSE 1%
+    (0 4) A$(0%) = NUM$(N%)
+    (1 1) ON ERROR GOTO 0
+    (0 2) GOTO 1300
   Origs: 525:auto, 700:resume
   Dests: 1300:goto
-E(700) (1 2) 700 ON ERROR GOTO 1050
-E(700) (0 4)     F$ = "$" + F$
-E(700) (0 1)     RESUME 550
+700 E(700) (1 2) ON ERROR GOTO 1050
+    E(700) (0 4) F$ = "$" + F$
+    E(700) (0 1) RESUME 550
   Origs: 525:onerror
   Dests: 550:resume, 1050:onerror
-E(1050) (1 2) 1050 READ A$(I%)
-(1 1)        FOR I% = 0% TO 3%
-(0 1)        NEXT I%
+1050 E(1050) (1 2) READ A$(I%)
+       (1 1) FOR I% = 0% TO 3%
+       (0 1) NEXT I%
   Origs: 700:onerror
   Dests: 1300:auto
-(0 2) 1100 DATA "4", "\QDOES IT SWIM\Y2\N3\", "\AFISH", "\ABIRD"
+1100 (0 2) DATA "4", "\QDOES IT SWIM\Y2\N3\", "\AFISH", "\ABIRD"
   Origs: 
   Dests: 
-E(1050) (1 2) 1300 INPUT "ARE YOU THINKING OF AN ANIMAL", Z9$
-E(1050) (0 2)      GOTO 1350
-(1 3)        IF LEFT(Z9$, 1%) = "Y"
-(0 1)        ENDIF
-E(1050) (0 3)      GOTO 1300
-(1 3)        IF LEFT(Z9$, 1%) = "N"
-(0 1)        ENDIF
+1300 E(1050) (1 2) INPUT "ARE YOU THINKING OF AN ANIMAL", Z9$
+     E(1050) (0 2) GOTO 1350
+       (1 3) IF LEFT(Z9$, 1%) = "Y"
+       (0 1) ENDIF
+     E(1050) (0 3) GOTO 1300
+       (1 3) IF LEFT(Z9$, 1%) = "N"
+       (0 1) ENDIF
   Origs: 550:goto, 1050:auto, 1310:goto, 1320:goto, 1450:goto, 2300:goto
   Dests: 1310:auto, 1350:goto
-E(1050) (1 6) 1310 IF Z9$ = "SAVE" THEN OPEN "ANIMAL.GME" FOR OUTPUT AS FILE 1%
-E(1050) (0 2)      PRINT #1%, A$(I%)
-(1 2)        FOR I% = 0% TO VAL(A$(0%))
-(0 1)        NEXT I%
-E(1050) (0 3)      PRINT #1, CHR$(26%)
-E(1050) (0 2)      CLOSE 1%
-E(1050) (0 3)      GOTO 1300
+1310 E(1050) (1 6) IF Z9$ = "SAVE" THEN OPEN "ANIMAL.GME" FOR OUTPUT AS FILE 1%
+     E(1050) (0 2) PRINT #1%, A$(I%)
+       (1 2) FOR I% = 0% TO VAL(A$(0%))
+       (0 1) NEXT I%
+     E(1050) (0 3) PRINT #1, CHR$(26%)
+     E(1050) (0 2) CLOSE 1%
+     E(1050) (0 3) GOTO 1300
   Origs: 1300:auto
   Dests: 1300:goto, 1320:auto
-E(1050) (1 5) 1320 IF Z9$ = "LIST" THEN PRINT "ANIMALS I ALREADY KNOW ARE:"
-E(1050) (0 3)      PRINT RIGHT(A$(I%), 3%),
-(1 2)        IF INSTR(1%, A$(I%), "\A")
-(0 1)        ENDIF
-(1 1)        FOR I% = 1% TO 200%
-(0 1)        NEXT I%
-E(1050) (0 2)      PRINT
-E(1050) (0 3)      GOTO 1300
+1320 E(1050) (1 5) IF Z9$ = "LIST" THEN PRINT "ANIMALS I ALREADY KNOW ARE:"
+     E(1050) (0 3) PRINT RIGHT(A$(I%), 3%),
+       (1 2) IF INSTR(1%, A$(I%), "\A")
+       (0 1) ENDIF
+       (1 1) FOR I% = 1% TO 200%
+       (0 1) NEXT I%
+     E(1050) (0 2) PRINT
+     E(1050) (0 3) GOTO 1300
   Origs: 1310:auto
   Dests: 1300:goto, 1350:auto
-E(1050) (0 3) 1350 K% = 1%
+1350 E(1050) (0 3) K% = 1%
   Origs: 1300:goto, 1320:auto
   Dests: 1400:auto
-E(1050) (0 5) 1400 K% = FNA%(A$(K%))
-E(1050) (0 2)      GOTO 3000
-(1 3)        IF LEN(A$(K%)) = 0%
-(0 1)        ENDIF
-E(1050) (0 3)      GOTO 1400
-(1 3)        IF LEFT(A$(K%), 2%) = "\Q"
-(0 1)        ENDIF
-E(1050) (0 4)      PRINT "IS IT A " RIGHT(A$(K%), 3%);
-E(1050) (1 2)      INPUT Z7$
-E(1050) (0 4)      Z7$ = LEFT(Z7$, 1%)
+1400 E(1050) (0 5) K% = FNA%(A$(K%))
+     E(1050) (0 2) GOTO 3000
+       (1 3) IF LEN(A$(K%)) = 0%
+       (0 1) ENDIF
+     E(1050) (0 3) GOTO 1400
+       (1 3) IF LEFT(A$(K%), 2%) = "\Q"
+       (0 1) ENDIF
+     E(1050) (0 4) PRINT "IS IT A " RIGHT(A$(K%), 3%);
+     E(1050) (1 2) INPUT Z7$
+     E(1050) (0 4) Z7$ = LEFT(Z7$, 1%)
   Origs: 1350:auto
   Dests: 1450:auto, 3000:function, 3000:goto
-E(1050) (1 5) 1450 IF Z7$ = "Y" THEN PRINT "WHY NOT TRY ANOTHER ANIMAL"
-E(1050) (0 3)      GOTO 1300
+1450 E(1050) (1 5) IF Z7$ = "Y" THEN PRINT "WHY NOT TRY ANOTHER ANIMAL"
+     E(1050) (0 3) GOTO 1300
   Origs: 1400:auto
   Dests: 1300:goto, 2000:auto
-E(1050) (1 2) 2000 INPUT "THE ANIMAL YOU WERE THINKING OF WAS A "; Z9$
+2000 E(1050) (1 2) INPUT "THE ANIMAL YOU WERE THINKING OF WAS A "; Z9$
   Origs: 1450:auto
   Dests: 2050:auto
-E(1050) (0 6) 2050 PRINT "PLEASE TYPE IN A QUESTION THAT WOULD DISTINGUISH A " Z9$ " FROM A " RIGHT(A$(K%), 3%)
-E(1050) (1 2)      INPUT Z8$
+2050 E(1050) (0 6) PRINT "PLEASE TYPE IN A QUESTION THAT WOULD DISTINGUISH A " Z9$ " FROM A " RIGHT(A$(K%), 3%)
+     E(1050) (1 2) INPUT Z8$
   Origs: 2000:auto
   Dests: 2100:auto
-E(1050) (0 4) 2100 PRINT "FOR A " Z9$ " THE ANSWER WOULD BE";
-E(1050) (1 2)      INPUT Z7$
-E(1050) (0 4)      Z7$ = LEFT(Z7$, 1%)
-E(1050) (2 14)      IF Z7$ = "Y" THEN Z6$ = "N" ELSE IF Z7$ = "N" THEN Z6$ = "Y" ELSE PRINT "PLEASE ANSWER 'YES' OR 'NO'"
-E(1050) (0 3)      GOTO 2100
+2100 E(1050) (0 4) PRINT "FOR A " Z9$ " THE ANSWER WOULD BE";
+     E(1050) (1 2) INPUT Z7$
+     E(1050) (0 4) Z7$ = LEFT(Z7$, 1%)
+     E(1050) (2 14) IF Z7$ = "Y" THEN Z6$ = "N" ELSE IF Z7$ = "N" THEN Z6$ = "Y" ELSE PRINT "PLEASE ANSWER 'YES' OR 'NO'"
+     E(1050) (0 3) GOTO 2100
   Origs: 2050:auto
   Dests: 
-(0 4) 2200 Z1% = VAL(A$(0%))
-(0 4)      A$(0%) = NUM$(Z1% + 2%)
-(0 3)      A$(Z1%) = A$(K%)
-(0 4)      A$(Z1% + 1%) = '\A' + Z9$
-(0 13)      A$(K%) = "\Q" + Z8$ + "\" + Z7$ + NUM$(Z1% + 1%) + "\" + Z6$ + NUM$(Z1%) + "\"
+2200 (0 4) Z1% = VAL(A$(0%))
+     (0 4) A$(0%) = NUM$(Z1% + 2%)
+     (0 3) A$(Z1%) = A$(K%)
+     (0 4) A$(Z1% + 1%) = '\A' + Z9$
+     (0 13) A$(K%) = "\Q" + Z8$ + "\" + Z7$ + NUM$(Z1% + 1%) + "\" + Z6$ + NUM$(Z1%) + "\"
      WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 
   Dests: 2300:auto
-(0 3) 2300 GOTO 1300
+2300 (0 3) GOTO 1300
   Origs: 2200:auto
   Dests: 1300:goto
-FNA%($) E(1050) (0 1) 3000 DEF FNA%(Q$)
-FNA%($) E(1050) (0 3)      PRINT MID(Q$, 3%, INSTR(3%, Q$, "\") - 3%);
-FNA%($) E(1050) (1 2)      INPUT Z9$
-FNA%($) E(1050) (0 4)      Z9$ = LEFT(Z9$, 1%)
-FNA%($) E(1050) (0 3)      Z9$ = "N"
-(1 2)        IF Z9$ <> "Y"
-(0 1)        ENDIF
-FNA%($) E(1050) (0 5)      Z1% = INSTR(3%, Q$, "\" + Z9$) + 2%
-FNA%($) E(1050) (0 4)      Z2% = INSTR(Z1%, Q$, "\")
-FNA%($) E(1050) (0 6)      FNA% = VAL(MID(Q$, Z1%, Z2% - Z1%))
-FNA%($) E(1050) (0 1)      FNEND
+3000 FNA%($) E(1050) (0 1) DEF FNA%(Q$)
+     FNA%($) E(1050) (0 3) PRINT MID(Q$, 3%, INSTR(3%, Q$, "\") - 3%);
+     FNA%($) E(1050) (1 2) INPUT Z9$
+     FNA%($) E(1050) (0 4) Z9$ = LEFT(Z9$, 1%)
+     FNA%($) E(1050) (0 3) Z9$ = "N"
+       (1 2) IF Z9$ <> "Y"
+       (0 1) ENDIF
+     FNA%($) E(1050) (0 5) Z1% = INSTR(3%, Q$, "\" + Z9$) + 2%
+     FNA%($) E(1050) (0 4) Z2% = INSTR(Z1%, Q$, "\")
+     FNA%($) E(1050) (0 6) FNA% = VAL(MID(Q$, Z1%, Z2% - Z1%))
+     FNA%($) E(1050) (0 1) FNEND
      WARNING: Type mismatch numeric + integer
      WARNING: Target type (integer) does not match expression type (numeric).
      WARNING: Target type (integer) does not match expression type (numeric).
      WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 1400:function, 1400:goto
   Dests: 
-(0 1) 9999 END
+9999 (0 1) END
   Origs: 
   Dests: :stop
 

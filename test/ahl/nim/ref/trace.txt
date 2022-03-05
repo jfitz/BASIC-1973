@@ -1,6096 +1,6096 @@
-115: PRINT "THIS PROGRAM PLAYS NIM."
+115 PRINT "THIS PROGRAM PLAYS NIM."
 THIS PROGRAM PLAYS NIM.
-120: PRINT "DO YOU WANT INSTRUCTIONS";
+120 PRINT "DO YOU WANT INSTRUCTIONS";
 DO YOU WANT INSTRUCTIONS
-120.1: INPUT Q$
+120.1 INPUT Q$
 ? YES
  Q$ = "YES"
-125: IF Q$ = "YES" THEN 135
+125 IF Q$ = "YES" THEN 135
  Q$: "YES"
  Q$ = "YES": true
-135: PRINT
+135 PRINT
 
-140: PRINT "    NIM IS PLAYED BY TWO PEOPLE PLAYING ALTERNATELY, BEFORE"
+140 PRINT "    NIM IS PLAYED BY TWO PEOPLE PLAYING ALTERNATELY, BEFORE"
     NIM IS PLAYED BY TWO PEOPLE PLAYING ALTERNATELY, BEFORE
-145: PRINT "THE PLAY STARTS, AN ARBITRARY NUMBER OF STICKS OR OBJECTS IS"
+145 PRINT "THE PLAY STARTS, AN ARBITRARY NUMBER OF STICKS OR OBJECTS IS"
 THE PLAY STARTS, AN ARBITRARY NUMBER OF STICKS OR OBJECTS IS
-150: PRINT "PUT INTO AN ARBITRARY NUMBER OF PILES, IN ANY DISTRIBUTION"
+150 PRINT "PUT INTO AN ARBITRARY NUMBER OF PILES, IN ANY DISTRIBUTION"
 PUT INTO AN ARBITRARY NUMBER OF PILES, IN ANY DISTRIBUTION
-155: PRINT "WHATEVER, THEN EACH PLAYER IN HIS TURN REMOVES AS MANY"
+155 PRINT "WHATEVER, THEN EACH PLAYER IN HIS TURN REMOVES AS MANY"
 WHATEVER, THEN EACH PLAYER IN HIS TURN REMOVES AS MANY
-160: PRINT "STICKS AS HE WISHES FROM ANY PILEBUT FROM ONLY ONE PILE,"
+160 PRINT "STICKS AS HE WISHES FROM ANY PILEBUT FROM ONLY ONE PILE,"
 STICKS AS HE WISHES FROM ANY PILEBUT FROM ONLY ONE PILE,
-165: PRINT "AND AT LEAST ONE STICK, THE PLAYER WHO TAKES THE LAST STICK"
+165 PRINT "AND AT LEAST ONE STICK, THE PLAYER WHO TAKES THE LAST STICK"
 AND AT LEAST ONE STICK, THE PLAYER WHO TAKES THE LAST STICK
-170: PRINT "IS THE WINNER."
+170 PRINT "IS THE WINNER."
 IS THE WINNER.
-175: PRINT "    THIS PROGRAM ALLOWS YOU TO SET UP THE INITIAL ARRANGEMENT"
+175 PRINT "    THIS PROGRAM ALLOWS YOU TO SET UP THE INITIAL ARRANGEMENT"
     THIS PROGRAM ALLOWS YOU TO SET UP THE INITIAL ARRANGEMENT
-180: PRINT "OF PILES AND STICKS. IT WILL NOT ACCEPT MORE THAN TWENTY"
+180 PRINT "OF PILES AND STICKS. IT WILL NOT ACCEPT MORE THAN TWENTY"
 OF PILES AND STICKS. IT WILL NOT ACCEPT MORE THAN TWENTY
-185: PRINT "PILES OR STICKS IN EACH PILE."
+185 PRINT "PILES OR STICKS IN EACH PILE."
 PILES OR STICKS IN EACH PILE.
-190: RANDOM
-200: DIM X(20, 4), S(20), L(20), S2(20), N2(4), C(20), S3(20), V(20)
-205: PRINT
+190 RANDOM
+200 DIM X(20, 4), S(20), L(20), S2(20), N2(4), C(20), S3(20), V(20)
+205 PRINT
 
-205.1: PRINT "HOW MANY PILES";
+205.1 PRINT "HOW MANY PILES";
 HOW MANY PILES
-205.2: INPUT P
+205.2 INPUT P
 ? 3
  P = 3
-205.3: IF P > 20 THEN 215
+205.3 IF P > 20 THEN 215
  P: 3
  P > 20: false
-210: IF P > INT(P) THEN 215
+210 IF P > INT(P) THEN 215
  P: 3
  P > INT(P): false
-210.1: IF P <= 0 THEN 215
+210.1 IF P <= 0 THEN 215
  P: 3
  P <= 0: false
-210.2: GOTO 220
-220: PRINT
+210.2 GOTO 220
+220 PRINT
 
-F(I) 220.1: FOR I = 1 TO P
+220.1 F(I) FOR I = 1 TO P
  P: 3
  I = 1
  P = 3
  terminated:false
-F(I) 225: PRINT "HOW MANY STICKS IN PILE" I;
+225 F(I) PRINT "HOW MANY STICKS IN PILE" I;
 HOW MANY STICKS IN PILE
  I: 1
  1 
-F(I) 225.1: INPUT L(I)
+225.1 F(I) INPUT L(I)
  I: 1
 ? 5
  L(1) = 5
-F(I) 225.2: IF L(I) > 20 THEN 235
+225.2 F(I) IF L(I) > 20 THEN 235
  I: 1
  L(1): 5
  L(I) > 20: false
-F(I) 230: IF L(I) > INT(L(I)) THEN 235
+230 F(I) IF L(I) > INT(L(I)) THEN 235
  I: 1
  L(1): 5
  L(I) > INT(L(I)): false
-F(I) 230.1: IF L(I) <= 0 THEN 235
+230.1 F(I) IF L(I) <= 0 THEN 235
  I: 1
  L(1): 5
  L(I) <= 0: false
-F(I) 230.2: GOTO 240
-F(I) 240: NEXT I
+230.2 F(I) GOTO 240
+240 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 225: PRINT "HOW MANY STICKS IN PILE" I;
+225 F(I) PRINT "HOW MANY STICKS IN PILE" I;
 HOW MANY STICKS IN PILE
  I: 2
  2 
-F(I) 225.1: INPUT L(I)
+225.1 F(I) INPUT L(I)
  I: 2
 ? 4
  L(2) = 4
-F(I) 225.2: IF L(I) > 20 THEN 235
+225.2 F(I) IF L(I) > 20 THEN 235
  I: 2
  L(2): 4
  L(I) > 20: false
-F(I) 230: IF L(I) > INT(L(I)) THEN 235
+230 F(I) IF L(I) > INT(L(I)) THEN 235
  I: 2
  L(2): 4
  L(I) > INT(L(I)): false
-F(I) 230.1: IF L(I) <= 0 THEN 235
+230.1 F(I) IF L(I) <= 0 THEN 235
  I: 2
  L(2): 4
  L(I) <= 0: false
-F(I) 230.2: GOTO 240
-F(I) 240: NEXT I
+230.2 F(I) GOTO 240
+240 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 225: PRINT "HOW MANY STICKS IN PILE" I;
+225 F(I) PRINT "HOW MANY STICKS IN PILE" I;
 HOW MANY STICKS IN PILE
  I: 3
  3 
-F(I) 225.1: INPUT L(I)
+225.1 F(I) INPUT L(I)
  I: 3
 ? 3
  L(3) = 3
-F(I) 225.2: IF L(I) > 20 THEN 235
+225.2 F(I) IF L(I) > 20 THEN 235
  I: 3
  L(3): 3
  L(I) > 20: false
-F(I) 230: IF L(I) > INT(L(I)) THEN 235
+230 F(I) IF L(I) > INT(L(I)) THEN 235
  I: 3
  L(3): 3
  L(I) > INT(L(I)): false
-F(I) 230.1: IF L(I) <= 0 THEN 235
+230.1 F(I) IF L(I) <= 0 THEN 235
  I: 3
  L(3): 3
  L(I) <= 0: false
-F(I) 230.2: GOTO 240
-F(I) 240: NEXT I
+230.2 F(I) GOTO 240
+240 F(I) NEXT I
  I: 3
  terminated:true
-F(I) 245: FOR I = 1 TO P
+245 F(I) FOR I = 1 TO P
  P: 3
  I = 1
  P = 3
  terminated:false
-F(I) 245.1: S(I) = L(I)
+245.1 F(I) S(I) = L(I)
  I: 1
  L(1): 5
  S(1) = 5
-F(I) 245.2: G = G + L(I)
+245.2 F(I) G = G + L(I)
  G: 0
  I: 1
  L(1): 5
  G = 5
-F(I) 245.3: NEXT I
+245.3 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 245.1: S(I) = L(I)
+245.1 F(I) S(I) = L(I)
  I: 2
  L(2): 4
  S(2) = 4
-F(I) 245.2: G = G + L(I)
+245.2 F(I) G = G + L(I)
  G: 5
  I: 2
  L(2): 4
  G = 9
-F(I) 245.3: NEXT I
+245.3 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 245.1: S(I) = L(I)
+245.1 F(I) S(I) = L(I)
  I: 3
  L(3): 3
  S(3) = 3
-F(I) 245.2: G = G + L(I)
+245.2 F(I) G = G + L(I)
  G: 9
  I: 3
  L(3): 3
  G = 12
-F(I) 245.3: NEXT I
+245.3 F(I) NEXT I
  I: 3
  terminated:true
-250: PRINT
+250 PRINT
 
-250.1: PRINT "DO YOU WANT TO GO FIRST";
+250.1 PRINT "DO YOU WANT TO GO FIRST";
 DO YOU WANT TO GO FIRST
-255: INPUT Q$
+255 INPUT Q$
 ? YES
  Q$ = "YES"
-255.1: IF Q$ = "YES" THEN 340
+255.1 IF Q$ = "YES" THEN 340
  Q$: "YES"
  Q$ = "YES": true
-340: PRINT
+340 PRINT
 
-340.1: PRINT "WHICH PILE DO YOU WANT STICKS FROM";
+340.1 PRINT "WHICH PILE DO YOU WANT STICKS FROM";
 WHICH PILE DO YOU WANT STICKS FROM
-340.2: INPUT N
+340.2 INPUT N
 ? 1
  N = 1
-345: IF N > P THEN 355
+345 IF N > P THEN 355
  N: 1
  P: 3
  N > P: false
-345.1: IF N > INT(N) THEN 355
+345.1 IF N > INT(N) THEN 355
  N: 1
  N > INT(N): false
-345.2: IF N <= 0 THEN 355
+345.2 IF N <= 0 THEN 355
  N: 1
  N <= 0: false
-350: IF S(N) = 0 THEN 355
+350 IF S(N) = 0 THEN 355
  N: 1
  S(1): 5
  S(N) = 0: false
-350.1: GOTO 360
-360: PRINT
+350.1 GOTO 360
+360 PRINT
 
-360.1: PRINT "HOW MANY STICKS";
+360.1 PRINT "HOW MANY STICKS";
 HOW MANY STICKS
-360.2: INPUT T
+360.2 INPUT T
 ? 1
  T = 1
-365: IF T > S(N) THEN 370
+365 IF T > S(N) THEN 370
  T: 1
  N: 1
  S(1): 5
  T > S(N): false
-365.1: IF T > INT(T) THEN 370
+365.1 IF T > INT(T) THEN 370
  T: 1
  T > INT(T): false
-365.2: IF T <= 0 THEN 370
+365.2 IF T <= 0 THEN 370
  T: 1
  T <= 0: false
-365.3: GOTO 375
-375: S(N) = S(N) - T
+365.3 GOTO 375
+375 S(N) = S(N) - T
  N: 1
  S(1): 5
  T: 1
  S(1) = 4
-375.1: G = G - T
+375.1 G = G - T
  G: 12
  T: 1
  G = 11
-380: F = 1
+380 F = 1
  F = 1
-380.1: GOTO 270
-270: IF G = 0 THEN 275
+380.1 GOTO 270
+270 IF G = 0 THEN 275
  G: 11
  G = 0: false
-270.1: IF F = 1 THEN 390
+270.1 IF F = 1 THEN 390
  F: 1
  F = 1: true
-F(I) 390: FOR I = 0 TO 4
+390 F(I) FOR I = 0 TO 4
  I = 0
  terminated:false
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 0
  V(0) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 0
  terminated:false
  I = 1
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 1
  V(1) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 2
  V(2) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 3
  V(3) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 3
  terminated:false
  I = 4
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 4
  V(4) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 4
  terminated:true
-F(I) 395: FOR I = 1 TO P
+395 F(I) FOR I = 1 TO P
  P: 3
  I = 1
  P = 3
  terminated:false
-F(I) 400: C(I) = S(I)
+400 F(I) C(I) = S(I)
  I: 1
  S(1): 4
  C(1) = 4
-F(I,E) 405: FOR E = 4 TO 0 STEP -1
+405 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 4
  E: 4
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 4
  E: 3
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 4
  E: 2
  S(I) < 2 ^ E: false
-F(I,E) 410.1: S2(I) = S2(I) + 10 ^ E
+410.1 F(I,E) S2(I) = S2(I) + 10 ^ E
  I: 1
  S2(1): 0
  E: 2
  S2(1) = 100
-F(I,E) 410.2: S(I) = S(I) - 2 ^ E
+410.2 F(I,E) S(I) = S(I) - 2 ^ E
  I: 1
  S(1): 4
  E: 2
  S(1) = 0
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 0
  E: 1
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 0
  E: 0
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I,Y) 420: FOR Y = 4 TO 0 STEP -1
+420 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 4
  S2(1): 100
  X(1,4) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 100
  Y: 4
  X(1,4): 0
  S2(1) = 100
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 4
  V(4): 0
  I: 1
  X(1,4): 0
  V(4) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 3
  S2(1): 100
  X(1,3) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 100
  Y: 3
  X(1,3): 0
  S2(1) = 100
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 3
  V(3): 0
  I: 1
  X(1,3): 0
  V(3) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 2
  S2(1): 100
  X(1,2) = 1
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 100
  Y: 2
  X(1,2): 1
  S2(1) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 2
  V(2): 0
  I: 1
  X(1,2): 1
  V(2) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 1
  S2(1): 0
  X(1,1) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 0
  Y: 1
  X(1,1): 0
  S2(1) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 1
  V(1): 0
  I: 1
  X(1,1): 0
  V(1) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 0
  S2(1): 0
  X(1,0) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 0
  Y: 0
  X(1,0): 0
  S2(1) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 0
  V(0): 0
  I: 1
  X(1,0): 0
  V(0) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 440: NEXT I
+440 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 400: C(I) = S(I)
+400 F(I) C(I) = S(I)
  I: 2
  S(2): 4
  C(2) = 4
-F(I,E) 405: FOR E = 4 TO 0 STEP -1
+405 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 4
  E: 4
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 4
  E: 3
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 4
  E: 2
  S(I) < 2 ^ E: false
-F(I,E) 410.1: S2(I) = S2(I) + 10 ^ E
+410.1 F(I,E) S2(I) = S2(I) + 10 ^ E
  I: 2
  S2(2): 0
  E: 2
  S2(2) = 100
-F(I,E) 410.2: S(I) = S(I) - 2 ^ E
+410.2 F(I,E) S(I) = S(I) - 2 ^ E
  I: 2
  S(2): 4
  E: 2
  S(2) = 0
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 0
  E: 1
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 0
  E: 0
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I,Y) 420: FOR Y = 4 TO 0 STEP -1
+420 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 4
  S2(2): 100
  X(2,4) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 100
  Y: 4
  X(2,4): 0
  S2(2) = 100
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 4
  V(4): 0
  I: 2
  X(2,4): 0
  V(4) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 3
  S2(2): 100
  X(2,3) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 100
  Y: 3
  X(2,3): 0
  S2(2) = 100
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 3
  V(3): 0
  I: 2
  X(2,3): 0
  V(3) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 2
  S2(2): 100
  X(2,2) = 1
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 100
  Y: 2
  X(2,2): 1
  S2(2) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 2
  V(2): 1
  I: 2
  X(2,2): 1
  V(2) = 2
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 1
  S2(2): 0
  X(2,1) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 0
  Y: 1
  X(2,1): 0
  S2(2) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 1
  V(1): 0
  I: 2
  X(2,1): 0
  V(1) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 0
  S2(2): 0
  X(2,0) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 0
  Y: 0
  X(2,0): 0
  S2(2) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 0
  V(0): 0
  I: 2
  X(2,0): 0
  V(0) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 440: NEXT I
+440 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 400: C(I) = S(I)
+400 F(I) C(I) = S(I)
  I: 3
  S(3): 3
  C(3) = 3
-F(I,E) 405: FOR E = 4 TO 0 STEP -1
+405 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 3
  E: 4
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 3
  E: 3
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 3
  E: 2
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 3
  E: 1
  S(I) < 2 ^ E: false
-F(I,E) 410.1: S2(I) = S2(I) + 10 ^ E
+410.1 F(I,E) S2(I) = S2(I) + 10 ^ E
  I: 3
  S2(3): 0
  E: 1
  S2(3) = 10
-F(I,E) 410.2: S(I) = S(I) - 2 ^ E
+410.2 F(I,E) S(I) = S(I) - 2 ^ E
  I: 3
  S(3): 3
  E: 1
  S(3) = 1
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 1
  E: 0
  S(I) < 2 ^ E: false
-F(I,E) 410.1: S2(I) = S2(I) + 10 ^ E
+410.1 F(I,E) S2(I) = S2(I) + 10 ^ E
  I: 3
  S2(3): 10
  E: 0
  S2(3) = 11
-F(I,E) 410.2: S(I) = S(I) - 2 ^ E
+410.2 F(I,E) S(I) = S(I) - 2 ^ E
  I: 3
  S(3): 1
  E: 0
  S(3) = 0
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I,Y) 420: FOR Y = 4 TO 0 STEP -1
+420 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 4
  S2(3): 11
  X(3,4) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 11
  Y: 4
  X(3,4): 0
  S2(3) = 11
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 4
  V(4): 0
  I: 3
  X(3,4): 0
  V(4) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 3
  S2(3): 11
  X(3,3) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 11
  Y: 3
  X(3,3): 0
  S2(3) = 11
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 3
  V(3): 0
  I: 3
  X(3,3): 0
  V(3) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 2
  S2(3): 11
  X(3,2) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 11
  Y: 2
  X(3,2): 0
  S2(3) = 11
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 2
  V(2): 2
  I: 3
  X(3,2): 0
  V(2) = 2
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 1
  S2(3): 11
  X(3,1) = 1
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 11
  Y: 1
  X(3,1): 1
  S2(3) = 1
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 1
  V(1): 0
  I: 3
  X(3,1): 1
  V(1) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 0
  S2(3): 1
  X(3,0) = 1
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 1
  Y: 0
  X(3,0): 1
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 0
  V(0): 0
  I: 3
  X(3,0): 1
  V(0) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 440: NEXT I
+440 F(I) NEXT I
  I: 3
  terminated:true
-445: R = 0
+445 R = 0
  R = 0
-F(Y) 450: FOR Y = 4 TO 0 STEP -1
+450 F(Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 4
  V(4): 0
  V(Y) / 2 - INT(V(Y) / 2) = 0: true
-F(Y) 480: NEXT Y
+480 F(Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 3
  V(3): 0
  V(Y) / 2 - INT(V(Y) / 2) = 0: true
-F(Y) 480: NEXT Y
+480 F(Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 2
  V(2): 2
  V(Y) / 2 - INT(V(Y) / 2) = 0: true
-F(Y) 480: NEXT Y
+480 F(Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 1
  V(1): 1
  V(Y) / 2 - INT(V(Y) / 2) = 0: false
-F(Y) 460: IF R = 1 THEN 470
+460 F(Y) IF R = 1 THEN 470
  R: 0
  R = 1: false
-F(Y) 460.1: Q = INT(P * RND(X)) + 1
+460.1 F(Y) Q = INT(P * RND(X)) + 1
  P: 3
  X: 0
  Q = 2
-F(Y) 465: IF X(Q, Y) <> 1 THEN 460
+465 F(Y) IF X(Q, Y) <> 1 THEN 460
  Q: 2
  Y: 1
  X(2,1): 0
  X(Q, Y) <> 1: true
-F(Y) 460: IF R = 1 THEN 470
+460 F(Y) IF R = 1 THEN 470
  R: 0
  R = 1: false
-F(Y) 460.1: Q = INT(P * RND(X)) + 1
+460.1 F(Y) Q = INT(P * RND(X)) + 1
  P: 3
  X: 0
  Q = 3
-F(Y) 465: IF X(Q, Y) <> 1 THEN 460
+465 F(Y) IF X(Q, Y) <> 1 THEN 460
  Q: 3
  Y: 1
  X(3,1): 1
  X(Q, Y) <> 1: false
-F(Y) 465.1: X(Q, Y) = 0
+465.1 F(Y) X(Q, Y) = 0
  Q: 3
  Y: 1
  X(3,1) = 0
-F(Y) 465.2: R = 1
+465.2 F(Y) R = 1
  R = 1
-F(Y) 465.3: GOTO 480
-F(Y) 480: NEXT Y
+465.3 F(Y) GOTO 480
+480 F(Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 0
  V(0): 1
  V(Y) / 2 - INT(V(Y) / 2) = 0: false
-F(Y) 460: IF R = 1 THEN 470
+460 F(Y) IF R = 1 THEN 470
  R: 1
  R = 1: true
-F(Y) 470: IF X(Q, Y) = 1 THEN 475
+470 F(Y) IF X(Q, Y) = 1 THEN 475
  Q: 3
  Y: 0
  X(3,0): 1
  X(Q, Y) = 1: true
-F(Y) 475: X(Q, Y) = 0
+475 F(Y) X(Q, Y) = 0
  Q: 3
  Y: 0
  X(3,0) = 0
-F(Y) 480: NEXT Y
+480 F(Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 485: FOR I = 1 TO P
+485 F(I) FOR I = 1 TO P
  P: 3
  I = 1
  P = 3
  terminated:false
-F(I) 490: S2(I) = 0
+490 F(I) S2(I) = 0
  I: 1
  S2(1) = 0
-F(I,Y) 495: FOR Y = 4 TO 0 STEP -1
+495 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 4
  X(1,4): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 0
  S2(1) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 3
  X(1,3): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 0
  S2(1) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 2
  X(1,2): 1
  S3(1) = 100
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 100
  S2(1) = 100
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 1
  X(1,1): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 100
  S3(1): 0
  S2(1) = 100
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 0
  X(1,0): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 100
  S3(1): 0
  S2(1) = 100
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I,E) 510: FOR E = 4 TO 0 STEP -1
+510 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 100
  E: 4
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 100
  E: 3
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 100
  E: 2
  S2(I) < 10 ^ E: false
-F(I,E) 515.1: S(I) = S(I) + 2 ^ E
+515.1 F(I,E) S(I) = S(I) + 2 ^ E
  I: 1
  S(1): 0
  E: 2
  S(1) = 4
-F(I,E) 515.2: S2(I) = S2(I) - 10 ^ E
+515.2 F(I,E) S2(I) = S2(I) - 10 ^ E
  I: 1
  S2(1): 100
  E: 2
  S2(1) = 0
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 0
  E: 1
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 0
  E: 0
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I) 525: NEXT I
+525 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 490: S2(I) = 0
+490 F(I) S2(I) = 0
  I: 2
  S2(2) = 0
-F(I,Y) 495: FOR Y = 4 TO 0 STEP -1
+495 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 4
  X(2,4): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 0
  S2(2) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 3
  X(2,3): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 0
  S2(2) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 2
  X(2,2): 1
  S3(2) = 100
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 100
  S2(2) = 100
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 1
  X(2,1): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 100
  S3(2): 0
  S2(2) = 100
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 0
  X(2,0): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 100
  S3(2): 0
  S2(2) = 100
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I,E) 510: FOR E = 4 TO 0 STEP -1
+510 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 100
  E: 4
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 100
  E: 3
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 100
  E: 2
  S2(I) < 10 ^ E: false
-F(I,E) 515.1: S(I) = S(I) + 2 ^ E
+515.1 F(I,E) S(I) = S(I) + 2 ^ E
  I: 2
  S(2): 0
  E: 2
  S(2) = 4
-F(I,E) 515.2: S2(I) = S2(I) - 10 ^ E
+515.2 F(I,E) S2(I) = S2(I) - 10 ^ E
  I: 2
  S2(2): 100
  E: 2
  S2(2) = 0
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 0
  E: 1
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 0
  E: 0
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I) 525: NEXT I
+525 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 490: S2(I) = 0
+490 F(I) S2(I) = 0
  I: 3
  S2(3) = 0
-F(I,Y) 495: FOR Y = 4 TO 0 STEP -1
+495 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 4
  X(3,4): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 3
  X(3,3): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 2
  X(3,2): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 1
  X(3,1): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 0
  X(3,0): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I,E) 510: FOR E = 4 TO 0 STEP -1
+510 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 4
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 3
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 2
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 1
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 0
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I) 525: NEXT I
+525 F(I) NEXT I
  I: 3
  terminated:true
-530: IF R = 1 THEN 535
+530 IF R = 1 THEN 535
  R: 1
  R = 1: true
-535: D = C(Q) - S(Q)
+535 D = C(Q) - S(Q)
  Q: 3
  C(3): 3
  S(3): 0
  D = 3
-535.1: G = G - D
+535.1 G = G - D
  G: 11
  D: 3
  G = 8
-540: IF D = 1 THEN 550
+540 IF D = 1 THEN 550
  D: 3
  D = 1: false
-545: PRINT
+545 PRINT
 
-545.1: PRINT "I'LL TAKE"; D; "STICKS FROM PILE"; Q; "."
+545.1 PRINT "I'LL TAKE"; D; "STICKS FROM PILE"; Q; "."
 I'LL TAKE
  D: 3
  3 STICKS FROM PILE
  Q: 3
  3 .
-545.2: GOTO 555
-555: F = 0
+545.2 GOTO 555
+555 F = 0
  F = 0
-555.1: GOTO 270
-270: IF G = 0 THEN 275
+555.1 GOTO 270
+270 IF G = 0 THEN 275
  G: 8
  G = 0: false
-270.1: IF F = 1 THEN 390
+270.1 IF F = 1 THEN 390
  F: 0
  F = 1: false
-270.2: GOTO 320
-320: PRINT
+270.2 GOTO 320
+320 PRINT
 
-320.1: PRINT "PlLE NUMBER", "STICKS LEFT"
+320.1 PRINT "PlLE NUMBER", "STICKS LEFT"
 PlLE NUMBER     STICKS LEFT
-F(I) 325: FOR I = 1 TO P
+325 F(I) FOR I = 1 TO P
  P: 3
  I = 1
  P = 3
  terminated:false
-F(I) 325.1: IF S(I) = 0 THEN 330
+325.1 F(I) IF S(I) = 0 THEN 330
  I: 1
  S(1): 4
  S(I) = 0: false
-F(I) 325.2: PRINT I, S(I)
+325.2 F(I) PRINT I, S(I)
  I: 1
  1              
  S(1): 4
  4
-F(I) 330: NEXT I
+330 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 325.1: IF S(I) = 0 THEN 330
+325.1 F(I) IF S(I) = 0 THEN 330
  I: 2
  S(2): 4
  S(I) = 0: false
-F(I) 325.2: PRINT I, S(I)
+325.2 F(I) PRINT I, S(I)
  I: 2
  2              
  S(2): 4
  4
-F(I) 330: NEXT I
+330 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 325.1: IF S(I) = 0 THEN 330
+325.1 F(I) IF S(I) = 0 THEN 330
  I: 3
  S(3): 0
  S(I) = 0: true
-F(I) 330: NEXT I
+330 F(I) NEXT I
  I: 3
  terminated:true
-340: PRINT
+340 PRINT
 
-340.1: PRINT "WHICH PILE DO YOU WANT STICKS FROM";
+340.1 PRINT "WHICH PILE DO YOU WANT STICKS FROM";
 WHICH PILE DO YOU WANT STICKS FROM
-340.2: INPUT N
+340.2 INPUT N
 ? 1
  N = 1
-345: IF N > P THEN 355
+345 IF N > P THEN 355
  N: 1
  P: 3
  N > P: false
-345.1: IF N > INT(N) THEN 355
+345.1 IF N > INT(N) THEN 355
  N: 1
  N > INT(N): false
-345.2: IF N <= 0 THEN 355
+345.2 IF N <= 0 THEN 355
  N: 1
  N <= 0: false
-350: IF S(N) = 0 THEN 355
+350 IF S(N) = 0 THEN 355
  N: 1
  S(1): 4
  S(N) = 0: false
-350.1: GOTO 360
-360: PRINT
+350.1 GOTO 360
+360 PRINT
 
-360.1: PRINT "HOW MANY STICKS";
+360.1 PRINT "HOW MANY STICKS";
 HOW MANY STICKS
-360.2: INPUT T
+360.2 INPUT T
 ? 1
  T = 1
-365: IF T > S(N) THEN 370
+365 IF T > S(N) THEN 370
  T: 1
  N: 1
  S(1): 4
  T > S(N): false
-365.1: IF T > INT(T) THEN 370
+365.1 IF T > INT(T) THEN 370
  T: 1
  T > INT(T): false
-365.2: IF T <= 0 THEN 370
+365.2 IF T <= 0 THEN 370
  T: 1
  T <= 0: false
-365.3: GOTO 375
-375: S(N) = S(N) - T
+365.3 GOTO 375
+375 S(N) = S(N) - T
  N: 1
  S(1): 4
  T: 1
  S(1) = 3
-375.1: G = G - T
+375.1 G = G - T
  G: 8
  T: 1
  G = 7
-380: F = 1
+380 F = 1
  F = 1
-380.1: GOTO 270
-270: IF G = 0 THEN 275
+380.1 GOTO 270
+270 IF G = 0 THEN 275
  G: 7
  G = 0: false
-270.1: IF F = 1 THEN 390
+270.1 IF F = 1 THEN 390
  F: 1
  F = 1: true
-F(I) 390: FOR I = 0 TO 4
+390 F(I) FOR I = 0 TO 4
  I = 0
  terminated:false
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 0
  V(0) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 0
  terminated:false
  I = 1
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 1
  V(1) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 2
  V(2) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 3
  V(3) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 3
  terminated:false
  I = 4
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 4
  V(4) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 4
  terminated:true
-F(I) 395: FOR I = 1 TO P
+395 F(I) FOR I = 1 TO P
  P: 3
  I = 1
  P = 3
  terminated:false
-F(I) 400: C(I) = S(I)
+400 F(I) C(I) = S(I)
  I: 1
  S(1): 3
  C(1) = 3
-F(I,E) 405: FOR E = 4 TO 0 STEP -1
+405 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 3
  E: 4
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 3
  E: 3
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 3
  E: 2
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 3
  E: 1
  S(I) < 2 ^ E: false
-F(I,E) 410.1: S2(I) = S2(I) + 10 ^ E
+410.1 F(I,E) S2(I) = S2(I) + 10 ^ E
  I: 1
  S2(1): 0
  E: 1
  S2(1) = 10
-F(I,E) 410.2: S(I) = S(I) - 2 ^ E
+410.2 F(I,E) S(I) = S(I) - 2 ^ E
  I: 1
  S(1): 3
  E: 1
  S(1) = 1
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 1
  E: 0
  S(I) < 2 ^ E: false
-F(I,E) 410.1: S2(I) = S2(I) + 10 ^ E
+410.1 F(I,E) S2(I) = S2(I) + 10 ^ E
  I: 1
  S2(1): 10
  E: 0
  S2(1) = 11
-F(I,E) 410.2: S(I) = S(I) - 2 ^ E
+410.2 F(I,E) S(I) = S(I) - 2 ^ E
  I: 1
  S(1): 1
  E: 0
  S(1) = 0
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I,Y) 420: FOR Y = 4 TO 0 STEP -1
+420 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 4
  S2(1): 11
  X(1,4) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 11
  Y: 4
  X(1,4): 0
  S2(1) = 11
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 4
  V(4): 0
  I: 1
  X(1,4): 0
  V(4) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 3
  S2(1): 11
  X(1,3) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 11
  Y: 3
  X(1,3): 0
  S2(1) = 11
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 3
  V(3): 0
  I: 1
  X(1,3): 0
  V(3) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 2
  S2(1): 11
  X(1,2) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 11
  Y: 2
  X(1,2): 0
  S2(1) = 11
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 2
  V(2): 0
  I: 1
  X(1,2): 0
  V(2) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 1
  S2(1): 11
  X(1,1) = 1
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 11
  Y: 1
  X(1,1): 1
  S2(1) = 1
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 1
  V(1): 0
  I: 1
  X(1,1): 1
  V(1) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 0
  S2(1): 1
  X(1,0) = 1
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 1
  Y: 0
  X(1,0): 1
  S2(1) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 0
  V(0): 0
  I: 1
  X(1,0): 1
  V(0) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 440: NEXT I
+440 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 400: C(I) = S(I)
+400 F(I) C(I) = S(I)
  I: 2
  S(2): 4
  C(2) = 4
-F(I,E) 405: FOR E = 4 TO 0 STEP -1
+405 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 4
  E: 4
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 4
  E: 3
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 4
  E: 2
  S(I) < 2 ^ E: false
-F(I,E) 410.1: S2(I) = S2(I) + 10 ^ E
+410.1 F(I,E) S2(I) = S2(I) + 10 ^ E
  I: 2
  S2(2): 0
  E: 2
  S2(2) = 100
-F(I,E) 410.2: S(I) = S(I) - 2 ^ E
+410.2 F(I,E) S(I) = S(I) - 2 ^ E
  I: 2
  S(2): 4
  E: 2
  S(2) = 0
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 0
  E: 1
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 0
  E: 0
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I,Y) 420: FOR Y = 4 TO 0 STEP -1
+420 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 4
  S2(2): 100
  X(2,4) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 100
  Y: 4
  X(2,4): 0
  S2(2) = 100
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 4
  V(4): 0
  I: 2
  X(2,4): 0
  V(4) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 3
  S2(2): 100
  X(2,3) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 100
  Y: 3
  X(2,3): 0
  S2(2) = 100
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 3
  V(3): 0
  I: 2
  X(2,3): 0
  V(3) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 2
  S2(2): 100
  X(2,2) = 1
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 100
  Y: 2
  X(2,2): 1
  S2(2) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 2
  V(2): 0
  I: 2
  X(2,2): 1
  V(2) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 1
  S2(2): 0
  X(2,1) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 0
  Y: 1
  X(2,1): 0
  S2(2) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 1
  V(1): 1
  I: 2
  X(2,1): 0
  V(1) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 0
  S2(2): 0
  X(2,0) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 0
  Y: 0
  X(2,0): 0
  S2(2) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 0
  V(0): 1
  I: 2
  X(2,0): 0
  V(0) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 440: NEXT I
+440 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 400: C(I) = S(I)
+400 F(I) C(I) = S(I)
  I: 3
  S(3): 0
  C(3) = 0
-F(I,E) 405: FOR E = 4 TO 0 STEP -1
+405 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 4
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 3
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 2
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 1
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 0
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I,Y) 420: FOR Y = 4 TO 0 STEP -1
+420 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 4
  S2(3): 0
  X(3,4) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 4
  X(3,4): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 4
  V(4): 0
  I: 3
  X(3,4): 0
  V(4) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 3
  S2(3): 0
  X(3,3) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 3
  X(3,3): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 3
  V(3): 0
  I: 3
  X(3,3): 0
  V(3) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 2
  S2(3): 0
  X(3,2) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 2
  X(3,2): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 2
  V(2): 1
  I: 3
  X(3,2): 0
  V(2) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 1
  S2(3): 0
  X(3,1) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 1
  X(3,1): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 1
  V(1): 1
  I: 3
  X(3,1): 0
  V(1) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 0
  S2(3): 0
  X(3,0) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 0
  X(3,0): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 0
  V(0): 1
  I: 3
  X(3,0): 0
  V(0) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 440: NEXT I
+440 F(I) NEXT I
  I: 3
  terminated:true
-445: R = 0
+445 R = 0
  R = 0
-F(Y) 450: FOR Y = 4 TO 0 STEP -1
+450 F(Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 4
  V(4): 0
  V(Y) / 2 - INT(V(Y) / 2) = 0: true
-F(Y) 480: NEXT Y
+480 F(Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 3
  V(3): 0
  V(Y) / 2 - INT(V(Y) / 2) = 0: true
-F(Y) 480: NEXT Y
+480 F(Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 2
  V(2): 1
  V(Y) / 2 - INT(V(Y) / 2) = 0: false
-F(Y) 460: IF R = 1 THEN 470
+460 F(Y) IF R = 1 THEN 470
  R: 0
  R = 1: false
-F(Y) 460.1: Q = INT(P * RND(X)) + 1
+460.1 F(Y) Q = INT(P * RND(X)) + 1
  P: 3
  X: 0
  Q = 1
-F(Y) 465: IF X(Q, Y) <> 1 THEN 460
+465 F(Y) IF X(Q, Y) <> 1 THEN 460
  Q: 1
  Y: 2
  X(1,2): 0
  X(Q, Y) <> 1: true
-F(Y) 460: IF R = 1 THEN 470
+460 F(Y) IF R = 1 THEN 470
  R: 0
  R = 1: false
-F(Y) 460.1: Q = INT(P * RND(X)) + 1
+460.1 F(Y) Q = INT(P * RND(X)) + 1
  P: 3
  X: 0
  Q = 1
-F(Y) 465: IF X(Q, Y) <> 1 THEN 460
+465 F(Y) IF X(Q, Y) <> 1 THEN 460
  Q: 1
  Y: 2
  X(1,2): 0
  X(Q, Y) <> 1: true
-F(Y) 460: IF R = 1 THEN 470
+460 F(Y) IF R = 1 THEN 470
  R: 0
  R = 1: false
-F(Y) 460.1: Q = INT(P * RND(X)) + 1
+460.1 F(Y) Q = INT(P * RND(X)) + 1
  P: 3
  X: 0
  Q = 1
-F(Y) 465: IF X(Q, Y) <> 1 THEN 460
+465 F(Y) IF X(Q, Y) <> 1 THEN 460
  Q: 1
  Y: 2
  X(1,2): 0
  X(Q, Y) <> 1: true
-F(Y) 460: IF R = 1 THEN 470
+460 F(Y) IF R = 1 THEN 470
  R: 0
  R = 1: false
-F(Y) 460.1: Q = INT(P * RND(X)) + 1
+460.1 F(Y) Q = INT(P * RND(X)) + 1
  P: 3
  X: 0
  Q = 1
-F(Y) 465: IF X(Q, Y) <> 1 THEN 460
+465 F(Y) IF X(Q, Y) <> 1 THEN 460
  Q: 1
  Y: 2
  X(1,2): 0
  X(Q, Y) <> 1: true
-F(Y) 460: IF R = 1 THEN 470
+460 F(Y) IF R = 1 THEN 470
  R: 0
  R = 1: false
-F(Y) 460.1: Q = INT(P * RND(X)) + 1
+460.1 F(Y) Q = INT(P * RND(X)) + 1
  P: 3
  X: 0
  Q = 1
-F(Y) 465: IF X(Q, Y) <> 1 THEN 460
+465 F(Y) IF X(Q, Y) <> 1 THEN 460
  Q: 1
  Y: 2
  X(1,2): 0
  X(Q, Y) <> 1: true
-F(Y) 460: IF R = 1 THEN 470
+460 F(Y) IF R = 1 THEN 470
  R: 0
  R = 1: false
-F(Y) 460.1: Q = INT(P * RND(X)) + 1
+460.1 F(Y) Q = INT(P * RND(X)) + 1
  P: 3
  X: 0
  Q = 2
-F(Y) 465: IF X(Q, Y) <> 1 THEN 460
+465 F(Y) IF X(Q, Y) <> 1 THEN 460
  Q: 2
  Y: 2
  X(2,2): 1
  X(Q, Y) <> 1: false
-F(Y) 465.1: X(Q, Y) = 0
+465.1 F(Y) X(Q, Y) = 0
  Q: 2
  Y: 2
  X(2,2) = 0
-F(Y) 465.2: R = 1
+465.2 F(Y) R = 1
  R = 1
-F(Y) 465.3: GOTO 480
-F(Y) 480: NEXT Y
+465.3 F(Y) GOTO 480
+480 F(Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 1
  V(1): 1
  V(Y) / 2 - INT(V(Y) / 2) = 0: false
-F(Y) 460: IF R = 1 THEN 470
+460 F(Y) IF R = 1 THEN 470
  R: 1
  R = 1: true
-F(Y) 470: IF X(Q, Y) = 1 THEN 475
+470 F(Y) IF X(Q, Y) = 1 THEN 475
  Q: 2
  Y: 1
  X(2,1): 0
  X(Q, Y) = 1: false
-F(Y) 470.1: X(Q, Y) = 1
+470.1 F(Y) X(Q, Y) = 1
  Q: 2
  Y: 1
  X(2,1) = 1
-F(Y) 470.2: GOTO 480
-F(Y) 480: NEXT Y
+470.2 F(Y) GOTO 480
+480 F(Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 0
  V(0): 1
  V(Y) / 2 - INT(V(Y) / 2) = 0: false
-F(Y) 460: IF R = 1 THEN 470
+460 F(Y) IF R = 1 THEN 470
  R: 1
  R = 1: true
-F(Y) 470: IF X(Q, Y) = 1 THEN 475
+470 F(Y) IF X(Q, Y) = 1 THEN 475
  Q: 2
  Y: 0
  X(2,0): 0
  X(Q, Y) = 1: false
-F(Y) 470.1: X(Q, Y) = 1
+470.1 F(Y) X(Q, Y) = 1
  Q: 2
  Y: 0
  X(2,0) = 1
-F(Y) 470.2: GOTO 480
-F(Y) 480: NEXT Y
+470.2 F(Y) GOTO 480
+480 F(Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 485: FOR I = 1 TO P
+485 F(I) FOR I = 1 TO P
  P: 3
  I = 1
  P = 3
  terminated:false
-F(I) 490: S2(I) = 0
+490 F(I) S2(I) = 0
  I: 1
  S2(1) = 0
-F(I,Y) 495: FOR Y = 4 TO 0 STEP -1
+495 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 4
  X(1,4): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 0
  S2(1) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 3
  X(1,3): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 0
  S2(1) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 2
  X(1,2): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 0
  S2(1) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 1
  X(1,1): 1
  S3(1) = 10
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 10
  S2(1) = 10
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 0
  X(1,0): 1
  S3(1) = 1
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 10
  S3(1): 1
  S2(1) = 11
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I,E) 510: FOR E = 4 TO 0 STEP -1
+510 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 11
  E: 4
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 11
  E: 3
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 11
  E: 2
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 11
  E: 1
  S2(I) < 10 ^ E: false
-F(I,E) 515.1: S(I) = S(I) + 2 ^ E
+515.1 F(I,E) S(I) = S(I) + 2 ^ E
  I: 1
  S(1): 0
  E: 1
  S(1) = 2
-F(I,E) 515.2: S2(I) = S2(I) - 10 ^ E
+515.2 F(I,E) S2(I) = S2(I) - 10 ^ E
  I: 1
  S2(1): 11
  E: 1
  S2(1) = 1
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 1
  E: 0
  S2(I) < 10 ^ E: false
-F(I,E) 515.1: S(I) = S(I) + 2 ^ E
+515.1 F(I,E) S(I) = S(I) + 2 ^ E
  I: 1
  S(1): 2
  E: 0
  S(1) = 3
-F(I,E) 515.2: S2(I) = S2(I) - 10 ^ E
+515.2 F(I,E) S2(I) = S2(I) - 10 ^ E
  I: 1
  S2(1): 1
  E: 0
  S2(1) = 0
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I) 525: NEXT I
+525 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 490: S2(I) = 0
+490 F(I) S2(I) = 0
  I: 2
  S2(2) = 0
-F(I,Y) 495: FOR Y = 4 TO 0 STEP -1
+495 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 4
  X(2,4): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 0
  S2(2) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 3
  X(2,3): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 0
  S2(2) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 2
  X(2,2): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 0
  S2(2) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 1
  X(2,1): 1
  S3(2) = 10
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 10
  S2(2) = 10
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 0
  X(2,0): 1
  S3(2) = 1
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 10
  S3(2): 1
  S2(2) = 11
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I,E) 510: FOR E = 4 TO 0 STEP -1
+510 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 11
  E: 4
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 11
  E: 3
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 11
  E: 2
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 11
  E: 1
  S2(I) < 10 ^ E: false
-F(I,E) 515.1: S(I) = S(I) + 2 ^ E
+515.1 F(I,E) S(I) = S(I) + 2 ^ E
  I: 2
  S(2): 0
  E: 1
  S(2) = 2
-F(I,E) 515.2: S2(I) = S2(I) - 10 ^ E
+515.2 F(I,E) S2(I) = S2(I) - 10 ^ E
  I: 2
  S2(2): 11
  E: 1
  S2(2) = 1
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 1
  E: 0
  S2(I) < 10 ^ E: false
-F(I,E) 515.1: S(I) = S(I) + 2 ^ E
+515.1 F(I,E) S(I) = S(I) + 2 ^ E
  I: 2
  S(2): 2
  E: 0
  S(2) = 3
-F(I,E) 515.2: S2(I) = S2(I) - 10 ^ E
+515.2 F(I,E) S2(I) = S2(I) - 10 ^ E
  I: 2
  S2(2): 1
  E: 0
  S2(2) = 0
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I) 525: NEXT I
+525 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 490: S2(I) = 0
+490 F(I) S2(I) = 0
  I: 3
  S2(3) = 0
-F(I,Y) 495: FOR Y = 4 TO 0 STEP -1
+495 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 4
  X(3,4): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 3
  X(3,3): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 2
  X(3,2): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 1
  X(3,1): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 0
  X(3,0): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I,E) 510: FOR E = 4 TO 0 STEP -1
+510 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 4
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 3
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 2
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 1
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 0
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I) 525: NEXT I
+525 F(I) NEXT I
  I: 3
  terminated:true
-530: IF R = 1 THEN 535
+530 IF R = 1 THEN 535
  R: 1
  R = 1: true
-535: D = C(Q) - S(Q)
+535 D = C(Q) - S(Q)
  Q: 2
  C(2): 4
  S(2): 3
  D = 1
-535.1: G = G - D
+535.1 G = G - D
  G: 7
  D: 1
  G = 6
-540: IF D = 1 THEN 550
+540 IF D = 1 THEN 550
  D: 1
  D = 1: true
-550: PRINT
+550 PRINT
 
-550.1: PRINT "I'LL TAKE 1 STICK FROM PILE"; Q; "."
+550.1 PRINT "I'LL TAKE 1 STICK FROM PILE"; Q; "."
 I'LL TAKE 1 STICK FROM PILE
  Q: 2
  2 .
-555: F = 0
+555 F = 0
  F = 0
-555.1: GOTO 270
-270: IF G = 0 THEN 275
+555.1 GOTO 270
+270 IF G = 0 THEN 275
  G: 6
  G = 0: false
-270.1: IF F = 1 THEN 390
+270.1 IF F = 1 THEN 390
  F: 0
  F = 1: false
-270.2: GOTO 320
-320: PRINT
+270.2 GOTO 320
+320 PRINT
 
-320.1: PRINT "PlLE NUMBER", "STICKS LEFT"
+320.1 PRINT "PlLE NUMBER", "STICKS LEFT"
 PlLE NUMBER     STICKS LEFT
-F(I) 325: FOR I = 1 TO P
+325 F(I) FOR I = 1 TO P
  P: 3
  I = 1
  P = 3
  terminated:false
-F(I) 325.1: IF S(I) = 0 THEN 330
+325.1 F(I) IF S(I) = 0 THEN 330
  I: 1
  S(1): 3
  S(I) = 0: false
-F(I) 325.2: PRINT I, S(I)
+325.2 F(I) PRINT I, S(I)
  I: 1
  1              
  S(1): 3
  3
-F(I) 330: NEXT I
+330 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 325.1: IF S(I) = 0 THEN 330
+325.1 F(I) IF S(I) = 0 THEN 330
  I: 2
  S(2): 3
  S(I) = 0: false
-F(I) 325.2: PRINT I, S(I)
+325.2 F(I) PRINT I, S(I)
  I: 2
  2              
  S(2): 3
  3
-F(I) 330: NEXT I
+330 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 325.1: IF S(I) = 0 THEN 330
+325.1 F(I) IF S(I) = 0 THEN 330
  I: 3
  S(3): 0
  S(I) = 0: true
-F(I) 330: NEXT I
+330 F(I) NEXT I
  I: 3
  terminated:true
-340: PRINT
+340 PRINT
 
-340.1: PRINT "WHICH PILE DO YOU WANT STICKS FROM";
+340.1 PRINT "WHICH PILE DO YOU WANT STICKS FROM";
 WHICH PILE DO YOU WANT STICKS FROM
-340.2: INPUT N
+340.2 INPUT N
 ? 1
  N = 1
-345: IF N > P THEN 355
+345 IF N > P THEN 355
  N: 1
  P: 3
  N > P: false
-345.1: IF N > INT(N) THEN 355
+345.1 IF N > INT(N) THEN 355
  N: 1
  N > INT(N): false
-345.2: IF N <= 0 THEN 355
+345.2 IF N <= 0 THEN 355
  N: 1
  N <= 0: false
-350: IF S(N) = 0 THEN 355
+350 IF S(N) = 0 THEN 355
  N: 1
  S(1): 3
  S(N) = 0: false
-350.1: GOTO 360
-360: PRINT
+350.1 GOTO 360
+360 PRINT
 
-360.1: PRINT "HOW MANY STICKS";
+360.1 PRINT "HOW MANY STICKS";
 HOW MANY STICKS
-360.2: INPUT T
+360.2 INPUT T
 ? 1
  T = 1
-365: IF T > S(N) THEN 370
+365 IF T > S(N) THEN 370
  T: 1
  N: 1
  S(1): 3
  T > S(N): false
-365.1: IF T > INT(T) THEN 370
+365.1 IF T > INT(T) THEN 370
  T: 1
  T > INT(T): false
-365.2: IF T <= 0 THEN 370
+365.2 IF T <= 0 THEN 370
  T: 1
  T <= 0: false
-365.3: GOTO 375
-375: S(N) = S(N) - T
+365.3 GOTO 375
+375 S(N) = S(N) - T
  N: 1
  S(1): 3
  T: 1
  S(1) = 2
-375.1: G = G - T
+375.1 G = G - T
  G: 6
  T: 1
  G = 5
-380: F = 1
+380 F = 1
  F = 1
-380.1: GOTO 270
-270: IF G = 0 THEN 275
+380.1 GOTO 270
+270 IF G = 0 THEN 275
  G: 5
  G = 0: false
-270.1: IF F = 1 THEN 390
+270.1 IF F = 1 THEN 390
  F: 1
  F = 1: true
-F(I) 390: FOR I = 0 TO 4
+390 F(I) FOR I = 0 TO 4
  I = 0
  terminated:false
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 0
  V(0) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 0
  terminated:false
  I = 1
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 1
  V(1) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 2
  V(2) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 3
  V(3) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 3
  terminated:false
  I = 4
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 4
  V(4) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 4
  terminated:true
-F(I) 395: FOR I = 1 TO P
+395 F(I) FOR I = 1 TO P
  P: 3
  I = 1
  P = 3
  terminated:false
-F(I) 400: C(I) = S(I)
+400 F(I) C(I) = S(I)
  I: 1
  S(1): 2
  C(1) = 2
-F(I,E) 405: FOR E = 4 TO 0 STEP -1
+405 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 2
  E: 4
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 2
  E: 3
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 2
  E: 2
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 2
  E: 1
  S(I) < 2 ^ E: false
-F(I,E) 410.1: S2(I) = S2(I) + 10 ^ E
+410.1 F(I,E) S2(I) = S2(I) + 10 ^ E
  I: 1
  S2(1): 0
  E: 1
  S2(1) = 10
-F(I,E) 410.2: S(I) = S(I) - 2 ^ E
+410.2 F(I,E) S(I) = S(I) - 2 ^ E
  I: 1
  S(1): 2
  E: 1
  S(1) = 0
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 0
  E: 0
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I,Y) 420: FOR Y = 4 TO 0 STEP -1
+420 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 4
  S2(1): 10
  X(1,4) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 10
  Y: 4
  X(1,4): 0
  S2(1) = 10
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 4
  V(4): 0
  I: 1
  X(1,4): 0
  V(4) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 3
  S2(1): 10
  X(1,3) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 10
  Y: 3
  X(1,3): 0
  S2(1) = 10
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 3
  V(3): 0
  I: 1
  X(1,3): 0
  V(3) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 2
  S2(1): 10
  X(1,2) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 10
  Y: 2
  X(1,2): 0
  S2(1) = 10
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 2
  V(2): 0
  I: 1
  X(1,2): 0
  V(2) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 1
  S2(1): 10
  X(1,1) = 1
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 10
  Y: 1
  X(1,1): 1
  S2(1) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 1
  V(1): 0
  I: 1
  X(1,1): 1
  V(1) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 0
  S2(1): 0
  X(1,0) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 0
  Y: 0
  X(1,0): 0
  S2(1) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 0
  V(0): 0
  I: 1
  X(1,0): 0
  V(0) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 440: NEXT I
+440 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 400: C(I) = S(I)
+400 F(I) C(I) = S(I)
  I: 2
  S(2): 3
  C(2) = 3
-F(I,E) 405: FOR E = 4 TO 0 STEP -1
+405 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 3
  E: 4
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 3
  E: 3
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 3
  E: 2
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 3
  E: 1
  S(I) < 2 ^ E: false
-F(I,E) 410.1: S2(I) = S2(I) + 10 ^ E
+410.1 F(I,E) S2(I) = S2(I) + 10 ^ E
  I: 2
  S2(2): 0
  E: 1
  S2(2) = 10
-F(I,E) 410.2: S(I) = S(I) - 2 ^ E
+410.2 F(I,E) S(I) = S(I) - 2 ^ E
  I: 2
  S(2): 3
  E: 1
  S(2) = 1
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 1
  E: 0
  S(I) < 2 ^ E: false
-F(I,E) 410.1: S2(I) = S2(I) + 10 ^ E
+410.1 F(I,E) S2(I) = S2(I) + 10 ^ E
  I: 2
  S2(2): 10
  E: 0
  S2(2) = 11
-F(I,E) 410.2: S(I) = S(I) - 2 ^ E
+410.2 F(I,E) S(I) = S(I) - 2 ^ E
  I: 2
  S(2): 1
  E: 0
  S(2) = 0
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I,Y) 420: FOR Y = 4 TO 0 STEP -1
+420 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 4
  S2(2): 11
  X(2,4) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 11
  Y: 4
  X(2,4): 0
  S2(2) = 11
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 4
  V(4): 0
  I: 2
  X(2,4): 0
  V(4) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 3
  S2(2): 11
  X(2,3) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 11
  Y: 3
  X(2,3): 0
  S2(2) = 11
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 3
  V(3): 0
  I: 2
  X(2,3): 0
  V(3) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 2
  S2(2): 11
  X(2,2) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 11
  Y: 2
  X(2,2): 0
  S2(2) = 11
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 2
  V(2): 0
  I: 2
  X(2,2): 0
  V(2) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 1
  S2(2): 11
  X(2,1) = 1
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 11
  Y: 1
  X(2,1): 1
  S2(2) = 1
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 1
  V(1): 1
  I: 2
  X(2,1): 1
  V(1) = 2
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 0
  S2(2): 1
  X(2,0) = 1
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 1
  Y: 0
  X(2,0): 1
  S2(2) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 0
  V(0): 0
  I: 2
  X(2,0): 1
  V(0) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 440: NEXT I
+440 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 400: C(I) = S(I)
+400 F(I) C(I) = S(I)
  I: 3
  S(3): 0
  C(3) = 0
-F(I,E) 405: FOR E = 4 TO 0 STEP -1
+405 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 4
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 3
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 2
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 1
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 0
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I,Y) 420: FOR Y = 4 TO 0 STEP -1
+420 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 4
  S2(3): 0
  X(3,4) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 4
  X(3,4): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 4
  V(4): 0
  I: 3
  X(3,4): 0
  V(4) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 3
  S2(3): 0
  X(3,3) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 3
  X(3,3): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 3
  V(3): 0
  I: 3
  X(3,3): 0
  V(3) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 2
  S2(3): 0
  X(3,2) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 2
  X(3,2): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 2
  V(2): 0
  I: 3
  X(3,2): 0
  V(2) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 1
  S2(3): 0
  X(3,1) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 1
  X(3,1): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 1
  V(1): 2
  I: 3
  X(3,1): 0
  V(1) = 2
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 0
  S2(3): 0
  X(3,0) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 0
  X(3,0): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 0
  V(0): 1
  I: 3
  X(3,0): 0
  V(0) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 440: NEXT I
+440 F(I) NEXT I
  I: 3
  terminated:true
-445: R = 0
+445 R = 0
  R = 0
-F(Y) 450: FOR Y = 4 TO 0 STEP -1
+450 F(Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 4
  V(4): 0
  V(Y) / 2 - INT(V(Y) / 2) = 0: true
-F(Y) 480: NEXT Y
+480 F(Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 3
  V(3): 0
  V(Y) / 2 - INT(V(Y) / 2) = 0: true
-F(Y) 480: NEXT Y
+480 F(Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 2
  V(2): 0
  V(Y) / 2 - INT(V(Y) / 2) = 0: true
-F(Y) 480: NEXT Y
+480 F(Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 1
  V(1): 2
  V(Y) / 2 - INT(V(Y) / 2) = 0: true
-F(Y) 480: NEXT Y
+480 F(Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 0
  V(0): 1
  V(Y) / 2 - INT(V(Y) / 2) = 0: false
-F(Y) 460: IF R = 1 THEN 470
+460 F(Y) IF R = 1 THEN 470
  R: 0
  R = 1: false
-F(Y) 460.1: Q = INT(P * RND(X)) + 1
+460.1 F(Y) Q = INT(P * RND(X)) + 1
  P: 3
  X: 0
  Q = 2
-F(Y) 465: IF X(Q, Y) <> 1 THEN 460
+465 F(Y) IF X(Q, Y) <> 1 THEN 460
  Q: 2
  Y: 0
  X(2,0): 1
  X(Q, Y) <> 1: false
-F(Y) 465.1: X(Q, Y) = 0
+465.1 F(Y) X(Q, Y) = 0
  Q: 2
  Y: 0
  X(2,0) = 0
-F(Y) 465.2: R = 1
+465.2 F(Y) R = 1
  R = 1
-F(Y) 465.3: GOTO 480
-F(Y) 480: NEXT Y
+465.3 F(Y) GOTO 480
+480 F(Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 485: FOR I = 1 TO P
+485 F(I) FOR I = 1 TO P
  P: 3
  I = 1
  P = 3
  terminated:false
-F(I) 490: S2(I) = 0
+490 F(I) S2(I) = 0
  I: 1
  S2(1) = 0
-F(I,Y) 495: FOR Y = 4 TO 0 STEP -1
+495 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 4
  X(1,4): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 0
  S2(1) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 3
  X(1,3): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 0
  S2(1) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 2
  X(1,2): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 0
  S2(1) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 1
  X(1,1): 1
  S3(1) = 10
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 10
  S2(1) = 10
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 0
  X(1,0): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 10
  S3(1): 0
  S2(1) = 10
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I,E) 510: FOR E = 4 TO 0 STEP -1
+510 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 10
  E: 4
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 10
  E: 3
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 10
  E: 2
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 10
  E: 1
  S2(I) < 10 ^ E: false
-F(I,E) 515.1: S(I) = S(I) + 2 ^ E
+515.1 F(I,E) S(I) = S(I) + 2 ^ E
  I: 1
  S(1): 0
  E: 1
  S(1) = 2
-F(I,E) 515.2: S2(I) = S2(I) - 10 ^ E
+515.2 F(I,E) S2(I) = S2(I) - 10 ^ E
  I: 1
  S2(1): 10
  E: 1
  S2(1) = 0
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 0
  E: 0
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I) 525: NEXT I
+525 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 490: S2(I) = 0
+490 F(I) S2(I) = 0
  I: 2
  S2(2) = 0
-F(I,Y) 495: FOR Y = 4 TO 0 STEP -1
+495 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 4
  X(2,4): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 0
  S2(2) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 3
  X(2,3): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 0
  S2(2) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 2
  X(2,2): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 0
  S2(2) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 1
  X(2,1): 1
  S3(2) = 10
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 10
  S2(2) = 10
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 0
  X(2,0): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 10
  S3(2): 0
  S2(2) = 10
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I,E) 510: FOR E = 4 TO 0 STEP -1
+510 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 10
  E: 4
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 10
  E: 3
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 10
  E: 2
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 10
  E: 1
  S2(I) < 10 ^ E: false
-F(I,E) 515.1: S(I) = S(I) + 2 ^ E
+515.1 F(I,E) S(I) = S(I) + 2 ^ E
  I: 2
  S(2): 0
  E: 1
  S(2) = 2
-F(I,E) 515.2: S2(I) = S2(I) - 10 ^ E
+515.2 F(I,E) S2(I) = S2(I) - 10 ^ E
  I: 2
  S2(2): 10
  E: 1
  S2(2) = 0
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 0
  E: 0
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I) 525: NEXT I
+525 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 490: S2(I) = 0
+490 F(I) S2(I) = 0
  I: 3
  S2(3) = 0
-F(I,Y) 495: FOR Y = 4 TO 0 STEP -1
+495 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 4
  X(3,4): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 3
  X(3,3): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 2
  X(3,2): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 1
  X(3,1): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 0
  X(3,0): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I,E) 510: FOR E = 4 TO 0 STEP -1
+510 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 4
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 3
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 2
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 1
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 0
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I) 525: NEXT I
+525 F(I) NEXT I
  I: 3
  terminated:true
-530: IF R = 1 THEN 535
+530 IF R = 1 THEN 535
  R: 1
  R = 1: true
-535: D = C(Q) - S(Q)
+535 D = C(Q) - S(Q)
  Q: 2
  C(2): 3
  S(2): 2
  D = 1
-535.1: G = G - D
+535.1 G = G - D
  G: 5
  D: 1
  G = 4
-540: IF D = 1 THEN 550
+540 IF D = 1 THEN 550
  D: 1
  D = 1: true
-550: PRINT
+550 PRINT
 
-550.1: PRINT "I'LL TAKE 1 STICK FROM PILE"; Q; "."
+550.1 PRINT "I'LL TAKE 1 STICK FROM PILE"; Q; "."
 I'LL TAKE 1 STICK FROM PILE
  Q: 2
  2 .
-555: F = 0
+555 F = 0
  F = 0
-555.1: GOTO 270
-270: IF G = 0 THEN 275
+555.1 GOTO 270
+270 IF G = 0 THEN 275
  G: 4
  G = 0: false
-270.1: IF F = 1 THEN 390
+270.1 IF F = 1 THEN 390
  F: 0
  F = 1: false
-270.2: GOTO 320
-320: PRINT
+270.2 GOTO 320
+320 PRINT
 
-320.1: PRINT "PlLE NUMBER", "STICKS LEFT"
+320.1 PRINT "PlLE NUMBER", "STICKS LEFT"
 PlLE NUMBER     STICKS LEFT
-F(I) 325: FOR I = 1 TO P
+325 F(I) FOR I = 1 TO P
  P: 3
  I = 1
  P = 3
  terminated:false
-F(I) 325.1: IF S(I) = 0 THEN 330
+325.1 F(I) IF S(I) = 0 THEN 330
  I: 1
  S(1): 2
  S(I) = 0: false
-F(I) 325.2: PRINT I, S(I)
+325.2 F(I) PRINT I, S(I)
  I: 1
  1              
  S(1): 2
  2
-F(I) 330: NEXT I
+330 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 325.1: IF S(I) = 0 THEN 330
+325.1 F(I) IF S(I) = 0 THEN 330
  I: 2
  S(2): 2
  S(I) = 0: false
-F(I) 325.2: PRINT I, S(I)
+325.2 F(I) PRINT I, S(I)
  I: 2
  2              
  S(2): 2
  2
-F(I) 330: NEXT I
+330 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 325.1: IF S(I) = 0 THEN 330
+325.1 F(I) IF S(I) = 0 THEN 330
  I: 3
  S(3): 0
  S(I) = 0: true
-F(I) 330: NEXT I
+330 F(I) NEXT I
  I: 3
  terminated:true
-340: PRINT
+340 PRINT
 
-340.1: PRINT "WHICH PILE DO YOU WANT STICKS FROM";
+340.1 PRINT "WHICH PILE DO YOU WANT STICKS FROM";
 WHICH PILE DO YOU WANT STICKS FROM
-340.2: INPUT N
+340.2 INPUT N
 ? 1
  N = 1
-345: IF N > P THEN 355
+345 IF N > P THEN 355
  N: 1
  P: 3
  N > P: false
-345.1: IF N > INT(N) THEN 355
+345.1 IF N > INT(N) THEN 355
  N: 1
  N > INT(N): false
-345.2: IF N <= 0 THEN 355
+345.2 IF N <= 0 THEN 355
  N: 1
  N <= 0: false
-350: IF S(N) = 0 THEN 355
+350 IF S(N) = 0 THEN 355
  N: 1
  S(1): 2
  S(N) = 0: false
-350.1: GOTO 360
-360: PRINT
+350.1 GOTO 360
+360 PRINT
 
-360.1: PRINT "HOW MANY STICKS";
+360.1 PRINT "HOW MANY STICKS";
 HOW MANY STICKS
-360.2: INPUT T
+360.2 INPUT T
 ? 1
  T = 1
-365: IF T > S(N) THEN 370
+365 IF T > S(N) THEN 370
  T: 1
  N: 1
  S(1): 2
  T > S(N): false
-365.1: IF T > INT(T) THEN 370
+365.1 IF T > INT(T) THEN 370
  T: 1
  T > INT(T): false
-365.2: IF T <= 0 THEN 370
+365.2 IF T <= 0 THEN 370
  T: 1
  T <= 0: false
-365.3: GOTO 375
-375: S(N) = S(N) - T
+365.3 GOTO 375
+375 S(N) = S(N) - T
  N: 1
  S(1): 2
  T: 1
  S(1) = 1
-375.1: G = G - T
+375.1 G = G - T
  G: 4
  T: 1
  G = 3
-380: F = 1
+380 F = 1
  F = 1
-380.1: GOTO 270
-270: IF G = 0 THEN 275
+380.1 GOTO 270
+270 IF G = 0 THEN 275
  G: 3
  G = 0: false
-270.1: IF F = 1 THEN 390
+270.1 IF F = 1 THEN 390
  F: 1
  F = 1: true
-F(I) 390: FOR I = 0 TO 4
+390 F(I) FOR I = 0 TO 4
  I = 0
  terminated:false
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 0
  V(0) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 0
  terminated:false
  I = 1
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 1
  V(1) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 2
  V(2) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 3
  V(3) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 3
  terminated:false
  I = 4
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 4
  V(4) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 4
  terminated:true
-F(I) 395: FOR I = 1 TO P
+395 F(I) FOR I = 1 TO P
  P: 3
  I = 1
  P = 3
  terminated:false
-F(I) 400: C(I) = S(I)
+400 F(I) C(I) = S(I)
  I: 1
  S(1): 1
  C(1) = 1
-F(I,E) 405: FOR E = 4 TO 0 STEP -1
+405 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 1
  E: 4
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 1
  E: 3
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 1
  E: 2
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 1
  E: 1
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 1
  E: 0
  S(I) < 2 ^ E: false
-F(I,E) 410.1: S2(I) = S2(I) + 10 ^ E
+410.1 F(I,E) S2(I) = S2(I) + 10 ^ E
  I: 1
  S2(1): 0
  E: 0
  S2(1) = 1
-F(I,E) 410.2: S(I) = S(I) - 2 ^ E
+410.2 F(I,E) S(I) = S(I) - 2 ^ E
  I: 1
  S(1): 1
  E: 0
  S(1) = 0
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I,Y) 420: FOR Y = 4 TO 0 STEP -1
+420 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 4
  S2(1): 1
  X(1,4) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 1
  Y: 4
  X(1,4): 0
  S2(1) = 1
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 4
  V(4): 0
  I: 1
  X(1,4): 0
  V(4) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 3
  S2(1): 1
  X(1,3) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 1
  Y: 3
  X(1,3): 0
  S2(1) = 1
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 3
  V(3): 0
  I: 1
  X(1,3): 0
  V(3) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 2
  S2(1): 1
  X(1,2) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 1
  Y: 2
  X(1,2): 0
  S2(1) = 1
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 2
  V(2): 0
  I: 1
  X(1,2): 0
  V(2) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 1
  S2(1): 1
  X(1,1) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 1
  Y: 1
  X(1,1): 0
  S2(1) = 1
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 1
  V(1): 0
  I: 1
  X(1,1): 0
  V(1) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 0
  S2(1): 1
  X(1,0) = 1
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 1
  Y: 0
  X(1,0): 1
  S2(1) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 0
  V(0): 0
  I: 1
  X(1,0): 1
  V(0) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 440: NEXT I
+440 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 400: C(I) = S(I)
+400 F(I) C(I) = S(I)
  I: 2
  S(2): 2
  C(2) = 2
-F(I,E) 405: FOR E = 4 TO 0 STEP -1
+405 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 2
  E: 4
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 2
  E: 3
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 2
  E: 2
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 2
  E: 1
  S(I) < 2 ^ E: false
-F(I,E) 410.1: S2(I) = S2(I) + 10 ^ E
+410.1 F(I,E) S2(I) = S2(I) + 10 ^ E
  I: 2
  S2(2): 0
  E: 1
  S2(2) = 10
-F(I,E) 410.2: S(I) = S(I) - 2 ^ E
+410.2 F(I,E) S(I) = S(I) - 2 ^ E
  I: 2
  S(2): 2
  E: 1
  S(2) = 0
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 0
  E: 0
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I,Y) 420: FOR Y = 4 TO 0 STEP -1
+420 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 4
  S2(2): 10
  X(2,4) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 10
  Y: 4
  X(2,4): 0
  S2(2) = 10
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 4
  V(4): 0
  I: 2
  X(2,4): 0
  V(4) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 3
  S2(2): 10
  X(2,3) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 10
  Y: 3
  X(2,3): 0
  S2(2) = 10
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 3
  V(3): 0
  I: 2
  X(2,3): 0
  V(3) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 2
  S2(2): 10
  X(2,2) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 10
  Y: 2
  X(2,2): 0
  S2(2) = 10
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 2
  V(2): 0
  I: 2
  X(2,2): 0
  V(2) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 1
  S2(2): 10
  X(2,1) = 1
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 10
  Y: 1
  X(2,1): 1
  S2(2) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 1
  V(1): 0
  I: 2
  X(2,1): 1
  V(1) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 0
  S2(2): 0
  X(2,0) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 0
  Y: 0
  X(2,0): 0
  S2(2) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 0
  V(0): 1
  I: 2
  X(2,0): 0
  V(0) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 440: NEXT I
+440 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 400: C(I) = S(I)
+400 F(I) C(I) = S(I)
  I: 3
  S(3): 0
  C(3) = 0
-F(I,E) 405: FOR E = 4 TO 0 STEP -1
+405 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 4
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 3
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 2
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 1
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 0
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I,Y) 420: FOR Y = 4 TO 0 STEP -1
+420 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 4
  S2(3): 0
  X(3,4) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 4
  X(3,4): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 4
  V(4): 0
  I: 3
  X(3,4): 0
  V(4) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 3
  S2(3): 0
  X(3,3) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 3
  X(3,3): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 3
  V(3): 0
  I: 3
  X(3,3): 0
  V(3) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 2
  S2(3): 0
  X(3,2) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 2
  X(3,2): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 2
  V(2): 0
  I: 3
  X(3,2): 0
  V(2) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 1
  S2(3): 0
  X(3,1) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 1
  X(3,1): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 1
  V(1): 1
  I: 3
  X(3,1): 0
  V(1) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 0
  S2(3): 0
  X(3,0) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 0
  X(3,0): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 0
  V(0): 1
  I: 3
  X(3,0): 0
  V(0) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 440: NEXT I
+440 F(I) NEXT I
  I: 3
  terminated:true
-445: R = 0
+445 R = 0
  R = 0
-F(Y) 450: FOR Y = 4 TO 0 STEP -1
+450 F(Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 4
  V(4): 0
  V(Y) / 2 - INT(V(Y) / 2) = 0: true
-F(Y) 480: NEXT Y
+480 F(Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 3
  V(3): 0
  V(Y) / 2 - INT(V(Y) / 2) = 0: true
-F(Y) 480: NEXT Y
+480 F(Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 2
  V(2): 0
  V(Y) / 2 - INT(V(Y) / 2) = 0: true
-F(Y) 480: NEXT Y
+480 F(Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 1
  V(1): 1
  V(Y) / 2 - INT(V(Y) / 2) = 0: false
-F(Y) 460: IF R = 1 THEN 470
+460 F(Y) IF R = 1 THEN 470
  R: 0
  R = 1: false
-F(Y) 460.1: Q = INT(P * RND(X)) + 1
+460.1 F(Y) Q = INT(P * RND(X)) + 1
  P: 3
  X: 0
  Q = 2
-F(Y) 465: IF X(Q, Y) <> 1 THEN 460
+465 F(Y) IF X(Q, Y) <> 1 THEN 460
  Q: 2
  Y: 1
  X(2,1): 1
  X(Q, Y) <> 1: false
-F(Y) 465.1: X(Q, Y) = 0
+465.1 F(Y) X(Q, Y) = 0
  Q: 2
  Y: 1
  X(2,1) = 0
-F(Y) 465.2: R = 1
+465.2 F(Y) R = 1
  R = 1
-F(Y) 465.3: GOTO 480
-F(Y) 480: NEXT Y
+465.3 F(Y) GOTO 480
+480 F(Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 0
  V(0): 1
  V(Y) / 2 - INT(V(Y) / 2) = 0: false
-F(Y) 460: IF R = 1 THEN 470
+460 F(Y) IF R = 1 THEN 470
  R: 1
  R = 1: true
-F(Y) 470: IF X(Q, Y) = 1 THEN 475
+470 F(Y) IF X(Q, Y) = 1 THEN 475
  Q: 2
  Y: 0
  X(2,0): 0
  X(Q, Y) = 1: false
-F(Y) 470.1: X(Q, Y) = 1
+470.1 F(Y) X(Q, Y) = 1
  Q: 2
  Y: 0
  X(2,0) = 1
-F(Y) 470.2: GOTO 480
-F(Y) 480: NEXT Y
+470.2 F(Y) GOTO 480
+480 F(Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 485: FOR I = 1 TO P
+485 F(I) FOR I = 1 TO P
  P: 3
  I = 1
  P = 3
  terminated:false
-F(I) 490: S2(I) = 0
+490 F(I) S2(I) = 0
  I: 1
  S2(1) = 0
-F(I,Y) 495: FOR Y = 4 TO 0 STEP -1
+495 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 4
  X(1,4): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 0
  S2(1) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 3
  X(1,3): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 0
  S2(1) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 2
  X(1,2): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 0
  S2(1) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 1
  X(1,1): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 0
  S2(1) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 0
  X(1,0): 1
  S3(1) = 1
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 1
  S2(1) = 1
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I,E) 510: FOR E = 4 TO 0 STEP -1
+510 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 1
  E: 4
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 1
  E: 3
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 1
  E: 2
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 1
  E: 1
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 1
  E: 0
  S2(I) < 10 ^ E: false
-F(I,E) 515.1: S(I) = S(I) + 2 ^ E
+515.1 F(I,E) S(I) = S(I) + 2 ^ E
  I: 1
  S(1): 0
  E: 0
  S(1) = 1
-F(I,E) 515.2: S2(I) = S2(I) - 10 ^ E
+515.2 F(I,E) S2(I) = S2(I) - 10 ^ E
  I: 1
  S2(1): 1
  E: 0
  S2(1) = 0
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I) 525: NEXT I
+525 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 490: S2(I) = 0
+490 F(I) S2(I) = 0
  I: 2
  S2(2) = 0
-F(I,Y) 495: FOR Y = 4 TO 0 STEP -1
+495 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 4
  X(2,4): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 0
  S2(2) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 3
  X(2,3): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 0
  S2(2) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 2
  X(2,2): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 0
  S2(2) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 1
  X(2,1): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 0
  S2(2) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 0
  X(2,0): 1
  S3(2) = 1
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 1
  S2(2) = 1
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I,E) 510: FOR E = 4 TO 0 STEP -1
+510 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 1
  E: 4
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 1
  E: 3
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 1
  E: 2
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 1
  E: 1
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 1
  E: 0
  S2(I) < 10 ^ E: false
-F(I,E) 515.1: S(I) = S(I) + 2 ^ E
+515.1 F(I,E) S(I) = S(I) + 2 ^ E
  I: 2
  S(2): 0
  E: 0
  S(2) = 1
-F(I,E) 515.2: S2(I) = S2(I) - 10 ^ E
+515.2 F(I,E) S2(I) = S2(I) - 10 ^ E
  I: 2
  S2(2): 1
  E: 0
  S2(2) = 0
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I) 525: NEXT I
+525 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 490: S2(I) = 0
+490 F(I) S2(I) = 0
  I: 3
  S2(3) = 0
-F(I,Y) 495: FOR Y = 4 TO 0 STEP -1
+495 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 4
  X(3,4): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 3
  X(3,3): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 2
  X(3,2): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 1
  X(3,1): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 0
  X(3,0): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I,E) 510: FOR E = 4 TO 0 STEP -1
+510 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 4
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 3
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 2
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 1
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 0
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I) 525: NEXT I
+525 F(I) NEXT I
  I: 3
  terminated:true
-530: IF R = 1 THEN 535
+530 IF R = 1 THEN 535
  R: 1
  R = 1: true
-535: D = C(Q) - S(Q)
+535 D = C(Q) - S(Q)
  Q: 2
  C(2): 2
  S(2): 1
  D = 1
-535.1: G = G - D
+535.1 G = G - D
  G: 3
  D: 1
  G = 2
-540: IF D = 1 THEN 550
+540 IF D = 1 THEN 550
  D: 1
  D = 1: true
-550: PRINT
+550 PRINT
 
-550.1: PRINT "I'LL TAKE 1 STICK FROM PILE"; Q; "."
+550.1 PRINT "I'LL TAKE 1 STICK FROM PILE"; Q; "."
 I'LL TAKE 1 STICK FROM PILE
  Q: 2
  2 .
-555: F = 0
+555 F = 0
  F = 0
-555.1: GOTO 270
-270: IF G = 0 THEN 275
+555.1 GOTO 270
+270 IF G = 0 THEN 275
  G: 2
  G = 0: false
-270.1: IF F = 1 THEN 390
+270.1 IF F = 1 THEN 390
  F: 0
  F = 1: false
-270.2: GOTO 320
-320: PRINT
+270.2 GOTO 320
+320 PRINT
 
-320.1: PRINT "PlLE NUMBER", "STICKS LEFT"
+320.1 PRINT "PlLE NUMBER", "STICKS LEFT"
 PlLE NUMBER     STICKS LEFT
-F(I) 325: FOR I = 1 TO P
+325 F(I) FOR I = 1 TO P
  P: 3
  I = 1
  P = 3
  terminated:false
-F(I) 325.1: IF S(I) = 0 THEN 330
+325.1 F(I) IF S(I) = 0 THEN 330
  I: 1
  S(1): 1
  S(I) = 0: false
-F(I) 325.2: PRINT I, S(I)
+325.2 F(I) PRINT I, S(I)
  I: 1
  1              
  S(1): 1
  1
-F(I) 330: NEXT I
+330 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 325.1: IF S(I) = 0 THEN 330
+325.1 F(I) IF S(I) = 0 THEN 330
  I: 2
  S(2): 1
  S(I) = 0: false
-F(I) 325.2: PRINT I, S(I)
+325.2 F(I) PRINT I, S(I)
  I: 2
  2              
  S(2): 1
  1
-F(I) 330: NEXT I
+330 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 325.1: IF S(I) = 0 THEN 330
+325.1 F(I) IF S(I) = 0 THEN 330
  I: 3
  S(3): 0
  S(I) = 0: true
-F(I) 330: NEXT I
+330 F(I) NEXT I
  I: 3
  terminated:true
-340: PRINT
+340 PRINT
 
-340.1: PRINT "WHICH PILE DO YOU WANT STICKS FROM";
+340.1 PRINT "WHICH PILE DO YOU WANT STICKS FROM";
 WHICH PILE DO YOU WANT STICKS FROM
-340.2: INPUT N
+340.2 INPUT N
 ? 1
  N = 1
-345: IF N > P THEN 355
+345 IF N > P THEN 355
  N: 1
  P: 3
  N > P: false
-345.1: IF N > INT(N) THEN 355
+345.1 IF N > INT(N) THEN 355
  N: 1
  N > INT(N): false
-345.2: IF N <= 0 THEN 355
+345.2 IF N <= 0 THEN 355
  N: 1
  N <= 0: false
-350: IF S(N) = 0 THEN 355
+350 IF S(N) = 0 THEN 355
  N: 1
  S(1): 1
  S(N) = 0: false
-350.1: GOTO 360
-360: PRINT
+350.1 GOTO 360
+360 PRINT
 
-360.1: PRINT "HOW MANY STICKS";
+360.1 PRINT "HOW MANY STICKS";
 HOW MANY STICKS
-360.2: INPUT T
+360.2 INPUT T
 ? 1
  T = 1
-365: IF T > S(N) THEN 370
+365 IF T > S(N) THEN 370
  T: 1
  N: 1
  S(1): 1
  T > S(N): false
-365.1: IF T > INT(T) THEN 370
+365.1 IF T > INT(T) THEN 370
  T: 1
  T > INT(T): false
-365.2: IF T <= 0 THEN 370
+365.2 IF T <= 0 THEN 370
  T: 1
  T <= 0: false
-365.3: GOTO 375
-375: S(N) = S(N) - T
+365.3 GOTO 375
+375 S(N) = S(N) - T
  N: 1
  S(1): 1
  T: 1
  S(1) = 0
-375.1: G = G - T
+375.1 G = G - T
  G: 2
  T: 1
  G = 1
-380: F = 1
+380 F = 1
  F = 1
-380.1: GOTO 270
-270: IF G = 0 THEN 275
+380.1 GOTO 270
+270 IF G = 0 THEN 275
  G: 1
  G = 0: false
-270.1: IF F = 1 THEN 390
+270.1 IF F = 1 THEN 390
  F: 1
  F = 1: true
-F(I) 390: FOR I = 0 TO 4
+390 F(I) FOR I = 0 TO 4
  I = 0
  terminated:false
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 0
  V(0) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 0
  terminated:false
  I = 1
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 1
  V(1) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 2
  V(2) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 3
  V(3) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 3
  terminated:false
  I = 4
-F(I) 390.1: V(I) = 0
+390.1 F(I) V(I) = 0
  I: 4
  V(4) = 0
-F(I) 390.2: NEXT I
+390.2 F(I) NEXT I
  I: 4
  terminated:true
-F(I) 395: FOR I = 1 TO P
+395 F(I) FOR I = 1 TO P
  P: 3
  I = 1
  P = 3
  terminated:false
-F(I) 400: C(I) = S(I)
+400 F(I) C(I) = S(I)
  I: 1
  S(1): 0
  C(1) = 0
-F(I,E) 405: FOR E = 4 TO 0 STEP -1
+405 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 0
  E: 4
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 0
  E: 3
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 0
  E: 2
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 0
  E: 1
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 1
  S(1): 0
  E: 0
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I,Y) 420: FOR Y = 4 TO 0 STEP -1
+420 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 4
  S2(1): 0
  X(1,4) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 0
  Y: 4
  X(1,4): 0
  S2(1) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 4
  V(4): 0
  I: 1
  X(1,4): 0
  V(4) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 3
  S2(1): 0
  X(1,3) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 0
  Y: 3
  X(1,3): 0
  S2(1) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 3
  V(3): 0
  I: 1
  X(1,3): 0
  V(3) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 2
  S2(1): 0
  X(1,2) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 0
  Y: 2
  X(1,2): 0
  S2(1) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 2
  V(2): 0
  I: 1
  X(1,2): 0
  V(2) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 1
  S2(1): 0
  X(1,1) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 0
  Y: 1
  X(1,1): 0
  S2(1) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 1
  V(1): 0
  I: 1
  X(1,1): 0
  V(1) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 1
  Y: 0
  S2(1): 0
  X(1,0) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 1
  S2(1): 0
  Y: 0
  X(1,0): 0
  S2(1) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 0
  V(0): 0
  I: 1
  X(1,0): 0
  V(0) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 440: NEXT I
+440 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 400: C(I) = S(I)
+400 F(I) C(I) = S(I)
  I: 2
  S(2): 1
  C(2) = 1
-F(I,E) 405: FOR E = 4 TO 0 STEP -1
+405 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 1
  E: 4
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 1
  E: 3
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 1
  E: 2
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 1
  E: 1
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 2
  S(2): 1
  E: 0
  S(I) < 2 ^ E: false
-F(I,E) 410.1: S2(I) = S2(I) + 10 ^ E
+410.1 F(I,E) S2(I) = S2(I) + 10 ^ E
  I: 2
  S2(2): 0
  E: 0
  S2(2) = 1
-F(I,E) 410.2: S(I) = S(I) - 2 ^ E
+410.2 F(I,E) S(I) = S(I) - 2 ^ E
  I: 2
  S(2): 1
  E: 0
  S(2) = 0
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I,Y) 420: FOR Y = 4 TO 0 STEP -1
+420 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 4
  S2(2): 1
  X(2,4) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 1
  Y: 4
  X(2,4): 0
  S2(2) = 1
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 4
  V(4): 0
  I: 2
  X(2,4): 0
  V(4) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 3
  S2(2): 1
  X(2,3) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 1
  Y: 3
  X(2,3): 0
  S2(2) = 1
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 3
  V(3): 0
  I: 2
  X(2,3): 0
  V(3) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 2
  S2(2): 1
  X(2,2) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 1
  Y: 2
  X(2,2): 0
  S2(2) = 1
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 2
  V(2): 0
  I: 2
  X(2,2): 0
  V(2) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 1
  S2(2): 1
  X(2,1) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 1
  Y: 1
  X(2,1): 0
  S2(2) = 1
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 1
  V(1): 0
  I: 2
  X(2,1): 0
  V(1) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 2
  Y: 0
  S2(2): 1
  X(2,0) = 1
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 2
  S2(2): 1
  Y: 0
  X(2,0): 1
  S2(2) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 0
  V(0): 0
  I: 2
  X(2,0): 1
  V(0) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 440: NEXT I
+440 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 400: C(I) = S(I)
+400 F(I) C(I) = S(I)
  I: 3
  S(3): 0
  C(3) = 0
-F(I,E) 405: FOR E = 4 TO 0 STEP -1
+405 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 4
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 3
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 2
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 1
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 410: IF S(I) < 2 ^ E THEN 415
+410 F(I,E) IF S(I) < 2 ^ E THEN 415
  I: 3
  S(3): 0
  E: 0
  S(I) < 2 ^ E: true
-F(I,E) 415: NEXT E
+415 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I,Y) 420: FOR Y = 4 TO 0 STEP -1
+420 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 4
  S2(3): 0
  X(3,4) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 4
  X(3,4): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 4
  V(4): 0
  I: 3
  X(3,4): 0
  V(4) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 3
  S2(3): 0
  X(3,3) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 3
  X(3,3): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 3
  V(3): 0
  I: 3
  X(3,3): 0
  V(3) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 2
  S2(3): 0
  X(3,2) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 2
  X(3,2): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 2
  V(2): 0
  I: 3
  X(3,2): 0
  V(2) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 1
  S2(3): 0
  X(3,1) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 1
  X(3,1): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 1
  V(1): 0
  I: 3
  X(3,1): 0
  V(1) = 0
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 425: X(I, Y) = INT(S2(I) / 10 ^ Y)
+425 F(I,Y) X(I, Y) = INT(S2(I) / 10 ^ Y)
  I: 3
  Y: 0
  S2(3): 0
  X(3,0) = 0
-F(I,Y) 425.1: S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+425.1 F(I,Y) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
  I: 3
  S2(3): 0
  Y: 0
  X(3,0): 0
  S2(3) = 0
-F(I,Y) 430: V(Y) = V(Y) + X(I, Y)
+430 F(I,Y) V(Y) = V(Y) + X(I, Y)
  Y: 0
  V(0): 1
  I: 3
  X(3,0): 0
  V(0) = 1
-F(I,Y) 435: NEXT Y
+435 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 440: NEXT I
+440 F(I) NEXT I
  I: 3
  terminated:true
-445: R = 0
+445 R = 0
  R = 0
-F(Y) 450: FOR Y = 4 TO 0 STEP -1
+450 F(Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 4
  V(4): 0
  V(Y) / 2 - INT(V(Y) / 2) = 0: true
-F(Y) 480: NEXT Y
+480 F(Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 3
  V(3): 0
  V(Y) / 2 - INT(V(Y) / 2) = 0: true
-F(Y) 480: NEXT Y
+480 F(Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 2
  V(2): 0
  V(Y) / 2 - INT(V(Y) / 2) = 0: true
-F(Y) 480: NEXT Y
+480 F(Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 1
  V(1): 0
  V(Y) / 2 - INT(V(Y) / 2) = 0: true
-F(Y) 480: NEXT Y
+480 F(Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(Y) 455: IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+455 F(Y) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
  Y: 0
  V(0): 1
  V(Y) / 2 - INT(V(Y) / 2) = 0: false
-F(Y) 460: IF R = 1 THEN 470
+460 F(Y) IF R = 1 THEN 470
  R: 0
  R = 1: false
-F(Y) 460.1: Q = INT(P * RND(X)) + 1
+460.1 F(Y) Q = INT(P * RND(X)) + 1
  P: 3
  X: 0
  Q = 2
-F(Y) 465: IF X(Q, Y) <> 1 THEN 460
+465 F(Y) IF X(Q, Y) <> 1 THEN 460
  Q: 2
  Y: 0
  X(2,0): 1
  X(Q, Y) <> 1: false
-F(Y) 465.1: X(Q, Y) = 0
+465.1 F(Y) X(Q, Y) = 0
  Q: 2
  Y: 0
  X(2,0) = 0
-F(Y) 465.2: R = 1
+465.2 F(Y) R = 1
  R = 1
-F(Y) 465.3: GOTO 480
-F(Y) 480: NEXT Y
+465.3 F(Y) GOTO 480
+480 F(Y) NEXT Y
  Y: 0
  terminated:true
-F(I) 485: FOR I = 1 TO P
+485 F(I) FOR I = 1 TO P
  P: 3
  I = 1
  P = 3
  terminated:false
-F(I) 490: S2(I) = 0
+490 F(I) S2(I) = 0
  I: 1
  S2(1) = 0
-F(I,Y) 495: FOR Y = 4 TO 0 STEP -1
+495 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 4
  X(1,4): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 0
  S2(1) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 3
  X(1,3): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 0
  S2(1) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 2
  X(1,2): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 0
  S2(1) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 1
  X(1,1): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 0
  S2(1) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 1
  Y: 0
  X(1,0): 0
  S3(1) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 1
  S2(1): 0
  S3(1): 0
  S2(1) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I,E) 510: FOR E = 4 TO 0 STEP -1
+510 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 0
  E: 4
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 0
  E: 3
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 0
  E: 2
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 0
  E: 1
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 1
  S2(1): 0
  E: 0
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I) 525: NEXT I
+525 F(I) NEXT I
  I: 1
  terminated:false
  I = 2
-F(I) 490: S2(I) = 0
+490 F(I) S2(I) = 0
  I: 2
  S2(2) = 0
-F(I,Y) 495: FOR Y = 4 TO 0 STEP -1
+495 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 4
  X(2,4): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 0
  S2(2) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 3
  X(2,3): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 0
  S2(2) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 2
  X(2,2): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 0
  S2(2) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 1
  X(2,1): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 0
  S2(2) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 2
  Y: 0
  X(2,0): 0
  S3(2) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 2
  S2(2): 0
  S3(2): 0
  S2(2) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I,E) 510: FOR E = 4 TO 0 STEP -1
+510 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 0
  E: 4
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 0
  E: 3
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 0
  E: 2
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 0
  E: 1
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 2
  S2(2): 0
  E: 0
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I) 525: NEXT I
+525 F(I) NEXT I
  I: 2
  terminated:false
  I = 3
-F(I) 490: S2(I) = 0
+490 F(I) S2(I) = 0
  I: 3
  S2(3) = 0
-F(I,Y) 495: FOR Y = 4 TO 0 STEP -1
+495 F(I,Y) FOR Y = 4 TO 0 STEP -1
  Y = 4
  -1 = -1
  terminated:false
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 4
  X(3,4): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 4
  terminated:false
  Y = 3
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 3
  X(3,3): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 3
  terminated:false
  Y = 2
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 2
  X(3,2): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 2
  terminated:false
  Y = 1
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 1
  X(3,1): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 1
  terminated:false
  Y = 0
-F(I,Y) 500: S3(I) = X(I, Y) * 10 ^ Y
+500 F(I,Y) S3(I) = X(I, Y) * 10 ^ Y
  I: 3
  Y: 0
  X(3,0): 0
  S3(3) = 0
-F(I,Y) 500.1: S2(I) = S2(I) + S3(I)
+500.1 F(I,Y) S2(I) = S2(I) + S3(I)
  I: 3
  S2(3): 0
  S3(3): 0
  S2(3) = 0
-F(I,Y) 505: NEXT Y
+505 F(I,Y) NEXT Y
  Y: 0
  terminated:true
-F(I,E) 510: FOR E = 4 TO 0 STEP -1
+510 F(I,E) FOR E = 4 TO 0 STEP -1
  E = 4
  -1 = -1
  terminated:false
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 4
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 4
  terminated:false
  E = 3
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 3
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 3
  terminated:false
  E = 2
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 2
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 2
  terminated:false
  E = 1
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 1
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 1
  terminated:false
  E = 0
-F(I,E) 515: IF S2(I) < 10 ^ E THEN 520
+515 F(I,E) IF S2(I) < 10 ^ E THEN 520
  I: 3
  S2(3): 0
  E: 0
  S2(I) < 10 ^ E: true
-F(I,E) 520: NEXT E
+520 F(I,E) NEXT E
  E: 0
  terminated:true
-F(I) 525: NEXT I
+525 F(I) NEXT I
  I: 3
  terminated:true
-530: IF R = 1 THEN 535
+530 IF R = 1 THEN 535
  R: 1
  R = 1: true
-535: D = C(Q) - S(Q)
+535 D = C(Q) - S(Q)
  Q: 2
  C(2): 1
  S(2): 0
  D = 1
-535.1: G = G - D
+535.1 G = G - D
  G: 1
  D: 1
  G = 0
-540: IF D = 1 THEN 550
+540 IF D = 1 THEN 550
  D: 1
  D = 1: true
-550: PRINT
+550 PRINT
 
-550.1: PRINT "I'LL TAKE 1 STICK FROM PILE"; Q; "."
+550.1 PRINT "I'LL TAKE 1 STICK FROM PILE"; Q; "."
 I'LL TAKE 1 STICK FROM PILE
  Q: 2
  2 .
-555: F = 0
+555 F = 0
  F = 0
-555.1: GOTO 270
-270: IF G = 0 THEN 275
+555.1 GOTO 270
+270 IF G = 0 THEN 275
  G: 0
  G = 0: true
-275: IF F = 1 THEN 315
+275 IF F = 1 THEN 315
  F: 0
  F = 1: false
-280: PRINT
+280 PRINT
 
-280.1: PRINT "I WON. DO YOU WANT TO PLAY AGAIN";
+280.1 PRINT "I WON. DO YOU WANT TO PLAY AGAIN";
 I WON. DO YOU WANT TO PLAY AGAIN
-285: INPUT Q$
+285 INPUT Q$
 ? NO
  Q$ = "NO"
-285.1: IF Q$ = "NO" THEN 290
+285.1 IF Q$ = "NO" THEN 290
  Q$: "NO"
  Q$ = "NO": true
-290: STOP
+290 STOP
 STOP in line 290
 

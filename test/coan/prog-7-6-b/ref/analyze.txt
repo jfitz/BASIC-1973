@@ -19,58 +19,58 @@ Halstead complexity:
  intelligence: 23.249
  time: 1.694
 
-(0 1) 94 REM * CALCULATE AVERAGES FROM A FILE
+94 (0 1) REM * CALCULATE AVERAGES FROM A FILE
   Origs: 
   Dests: 
-(0 2) 100 FILES "score.txt"
+100 (0 2) FILES "score.txt"
   Origs: 
   Dests: 
-(0 3) 110 PRINT "NAME", "TEST1 TEST2 TEST3 TEST4 TEST5 TEST6 AVERAGE"
+110 (0 3) PRINT "NAME", "TEST1 TEST2 TEST3 TEST4 TEST5 TEST6 AVERAGE"
   Origs: :start
   Dests: 120:auto
-(0 3) 120 LET T1 = 0
+120 (0 3) LET T1 = 0
   Origs: 110:auto
   Dests: 130:auto
-(1 2) 130 READ #1, N$
+130 (1 2) READ #1, N$
   Origs: 120:auto, 230:ifthen
   Dests: 140:auto
-(0 3) 140 LET T2 = 0
+140 (0 3) LET T2 = 0
   Origs: 130:auto
   Dests: 150:auto
-(0 4) 150 PRINT N$; TAB(15);
+150 (0 4) PRINT N$; TAB(15);
   Origs: 140:auto
   Dests: 160:auto
-F(I) (1 3) 160 FOR I = 1 TO 6
+160 F(I) (1 3) FOR I = 1 TO 6
   Origs: 150:auto
   Dests: 170:fornext, 200:fornext
-F(I) (1 2) 170 READ #1, X
+170 F(I) (1 2) READ #1, X
   Origs: 160:fornext
   Dests: 180:auto
-F(I) (0 4) 180 LET T2 = T2 + X
+180 F(I) (0 4) LET T2 = T2 + X
   Origs: 170:auto
   Dests: 190:auto
-F(I) (0 3) 190 PRINT X; " ";
+190 F(I) (0 3) PRINT X; " ";
   Origs: 180:auto
   Dests: 200:auto
-F(I) (0 1) 200 NEXT I
+200 F(I) (0 1) NEXT I
   Origs: 160:fornext, 190:auto
   Dests: 210:auto
-(0 3) 210 PRINT T2 / 6
+210 (0 3) PRINT T2 / 6
   Origs: 200:auto
   Dests: 220:auto
-(0 4) 220 LET T1 = T1 + T2
+220 (0 4) LET T1 = T1 + T2
   Origs: 210:auto
   Dests: 230:auto
-(1 5) 230 IF M OR E(#1) THEN 130
+230 (1 5) IF M OR E(#1) THEN 130
   Origs: 220:auto
   Dests: 130:ifthen, 240:auto
-(0 2) 240 PRINT
+240 (0 2) PRINT
   Origs: 230:auto
   Dests: 250:auto
-(0 4) 250 PRINT "CLASS AVERAGE = "; T1 / 30
+250 (0 4) PRINT "CLASS AVERAGE = "; T1 / 30
   Origs: 240:auto
   Dests: 260:auto
-(0 1) 260 END
+260 (0 1) END
   Origs: 250:auto
   Dests: :stop
 

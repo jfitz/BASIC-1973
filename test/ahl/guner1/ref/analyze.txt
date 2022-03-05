@@ -19,265 +19,265 @@ Halstead complexity:
  intelligence: 60.947
  time: 23.296
 
-(0 1) 100 REM ARTILLERY FIRING GAME
+100 (0 1) REM ARTILLERY FIRING GAME
   Origs: 
   Dests: 
-(0 2) 110 DIM A$(3)
+110 (0 2) DIM A$(3)
   Origs: :start
   Dests: 120:auto
-(0 1) 120 RANDOMIZE
+120 (0 1) RANDOMIZE
   Origs: 110:auto
   Dests: 130:auto
-(0 2) 130 PRINT "DO YOU WANT INSTRUCTIONS";
+130 (0 2) PRINT "DO YOU WANT INSTRUCTIONS";
   Origs: 120:auto
   Dests: 140:auto
-(1 2) 140 INPUT A$
+140 (1 2) INPUT A$
   Origs: 130:auto
   Dests: 150:auto
-(0 2) 150 PRINT
+150 (0 2) PRINT
   Origs: 140:auto
   Dests: 160:auto
-(1 4) 160 IF A$ = "NO" THEN 330
+160 (1 4) IF A$ = "NO" THEN 330
   Origs: 150:auto
   Dests: 170:auto, 330:ifthen
-(0 2) 170 PRINT "    THIS GAME TESTS YOUR ABILITY TO HIT A MOVING TARGET,"
+170 (0 2) PRINT "    THIS GAME TESTS YOUR ABILITY TO HIT A MOVING TARGET,"
   Origs: 160:auto
   Dests: 180:auto
-(0 2) 180 PRINT "YOU MUST DESTROY IT BEFORE IT DESTROYS YOU OR MOVES OUT"
+180 (0 2) PRINT "YOU MUST DESTROY IT BEFORE IT DESTROYS YOU OR MOVES OUT"
   Origs: 170:auto
   Dests: 190:auto
-(0 2) 190 PRINT "OF RANGE. THE TARGET WILL MOVE RAMDOMLY."
+190 (0 2) PRINT "OF RANGE. THE TARGET WILL MOVE RAMDOMLY."
   Origs: 180:auto
   Dests: 200:auto
-(0 2) 200 PRINT
+200 (0 2) PRINT
   Origs: 190:auto
   Dests: 210:auto
-(0 2) 210 PRINT "    TYPE CTRL/C TO TERMINATE THE PROGRAM. TO THE QUESTION"
+210 (0 2) PRINT "    TYPE CTRL/C TO TERMINATE THE PROGRAM. TO THE QUESTION"
   Origs: 200:auto
   Dests: 220:auto
-(0 2) 220 PRINT "'ENTER SPEED' TYPE A NUMBER BETWEEN 1 AND 100. THIS IS THE "
+220 (0 2) PRINT "'ENTER SPEED' TYPE A NUMBER BETWEEN 1 AND 100. THIS IS THE "
   Origs: 210:auto
   Dests: 230:auto
-(0 2) 230 PRINT "RELATIVE SPEED OF THE TARGET WHERE 1 IS THE SLOWEST AND 100"
+230 (0 2) PRINT "RELATIVE SPEED OF THE TARGET WHERE 1 IS THE SLOWEST AND 100"
   Origs: 220:auto
   Dests: 240:auto
-(0 2) 240 PRINT "IS THE FASTEST."
+240 (0 2) PRINT "IS THE FASTEST."
   Origs: 230:auto
   Dests: 250:auto
-(0 2) 250 PRINT
+250 (0 2) PRINT
   Origs: 240:auto
   Dests: 260:auto
-(0 2) 260 PRINT "TO THE QUESTION 'ENTER DISTANCE' ENTER THE MAXIMUM DISTANCE"
+260 (0 2) PRINT "TO THE QUESTION 'ENTER DISTANCE' ENTER THE MAXIMUM DISTANCE"
   Origs: 250:auto
   Dests: 270:auto
-(0 2) 270 PRINT "YOU CAN HIT FROM THE TARGET AND STILL DESTROY IT. THIS IS"
+270 (0 2) PRINT "YOU CAN HIT FROM THE TARGET AND STILL DESTROY IT. THIS IS"
   Origs: 260:auto
   Dests: 280:auto
-(0 2) 280 PRINT "THE KILL RADIUS AND 5000 IS SUGGESTED FOR STARTERS."
+280 (0 2) PRINT "THE KILL RADIUS AND 5000 IS SUGGESTED FOR STARTERS."
   Origs: 270:auto
   Dests: 290:auto
-(0 2) 290 PRINT
+290 (0 2) PRINT
   Origs: 280:auto
   Dests: 300:auto
-(0 2) 300 PRINT "ELEVATION IS THE ELEVATION OF YOUR GUN IN DEGREES WHEN YOU"
+300 (0 2) PRINT "ELEVATION IS THE ELEVATION OF YOUR GUN IN DEGREES WHEN YOU"
   Origs: 290:auto
   Dests: 310:auto
-(0 2) 310 PRINT "FIRE AT THE TARGET. THE MAXIMUN RANGE IS AT 45 DEGREES"
+310 (0 2) PRINT "FIRE AT THE TARGET. THE MAXIMUN RANGE IS AT 45 DEGREES"
   Origs: 300:auto
   Dests: 320:auto
-(0 2) 320 PRINT
+320 (0 2) PRINT
   Origs: 310:auto
   Dests: 330:auto
-(0 2) 330 PRINT "ENTER SPEED";
+330 (0 2) PRINT "ENTER SPEED";
   Origs: 160:ifthen, 320:auto, 350:ifthen, 360:ifthen
   Dests: 340:auto
-(1 2) 340 INPUT S
+340 (1 2) INPUT S
   Origs: 330:auto
   Dests: 350:auto
-(1 5) 350 IF S < 1 THEN 330
+350 (1 5) IF S < 1 THEN 330
   Origs: 340:auto
   Dests: 330:ifthen, 360:auto
-(1 5) 360 IF S > 100 THEN 330
+360 (1 5) IF S > 100 THEN 330
   Origs: 350:auto
   Dests: 330:ifthen, 370:auto
-(0 2) 370 PRINT "ENTER DISTANCE";
+370 (0 2) PRINT "ENTER DISTANCE";
   Origs: 360:auto, 390:ifthen, 400:ifthen
   Dests: 380:auto
-(1 2) 380 INPUT D
+380 (1 2) INPUT D
   Origs: 370:auto
   Dests: 390:auto
-(1 5) 390 IF D < 0 THEN 370
+390 (1 5) IF D < 0 THEN 370
   Origs: 380:auto
   Dests: 370:ifthen, 400:auto
-(1 5) 400 IF D > 10000 THEN 370
+400 (1 5) IF D > 10000 THEN 370
   Origs: 390:auto
   Dests: 370:ifthen, 410:auto
-(0 7) 410 M = 100000 - 75000 * RND(0)
+410 (0 7) M = 100000 - 75000 * RND(0)
   Origs: 400:auto, 710:goto
   Dests: 420:auto
-(0 2) 420 PRINT
+420 (0 2) PRINT
   Origs: 410:auto
   Dests: 430:auto
-(0 4) 430 PRINT "THE MAXIMUM RANGE OF YOUR GUN IS " M " YARDS"
+430 (0 4) PRINT "THE MAXIMUM RANGE OF YOUR GUN IS " M " YARDS"
   Origs: 420:auto
   Dests: 440:auto
-F(K) (1 4) 440 FOR K = 1 TO M / 10000
+440 F(K) (1 4) FOR K = 1 TO M / 10000
   Origs: 430:auto
   Dests: 450:fornext, 460:fornext
-F(K) (0 4) 450 LET K1 = RND(0)
+450 F(K) (0 4) LET K1 = RND(0)
   Origs: 440:fornext
   Dests: 460:auto
-F(K) (0 1) 460 NEXT K
+460 F(K) (0 1) NEXT K
   Origs: 440:fornext, 450:auto
   Dests: 470:auto
-(0 9) 470 R = 0.95 * M - 0.6 * M * RND(0)
+470 (0 9) R = 0.95 * M - 0.6 * M * RND(0)
   Origs: 460:auto
   Dests: 480:auto
-(0 3) 480 LET N = 0
+480 (0 3) LET N = 0
   Origs: 470:auto
   Dests: 490:auto
-(0 2) 490 GOTO 520
+490 (0 2) GOTO 520
   Origs: 480:auto
   Dests: 520:goto
-(1 4) 500 IF R > M THEN 840
+500 (1 4) IF R > M THEN 840
   Origs: 790:goto
   Dests: 510:auto, 840:ifthen
-(1 6) 510 IF R < (M / 2.5) THEN 860
+510 (1 6) IF R < (M / 2.5) THEN 860
   Origs: 500:auto
   Dests: 520:auto, 860:ifthen
-(0 4) 520 PRINT "TARGET RANGE IS" R " YARDS"
+520 (0 4) PRINT "TARGET RANGE IS" R " YARDS"
   Origs: 490:goto, 510:auto
   Dests: 530:auto
-(0 2) 530 PRINT "ELEVATION"
+530 (0 2) PRINT "ELEVATION"
   Origs: 520:auto, 810:goto, 830:goto
   Dests: 540:auto
-(1 2) 540 INPUT E
+540 (1 2) INPUT E
   Origs: 530:auto
   Dests: 550:auto
-(1 4) 550 IF E < 0 THEN 840
+550 (1 4) IF E < 0 THEN 840
   Origs: 540:auto
   Dests: 560:auto, 840:ifthen
-(1 4) 560 IF E > 89 THEN 800
+560 (1 4) IF E > 89 THEN 800
   Origs: 550:auto
   Dests: 570:auto, 800:ifthen
-(1 4) 570 IF E < 1 THEN 820
+570 (1 4) IF E < 1 THEN 820
   Origs: 560:auto
   Dests: 580:auto, 820:ifthen
-(0 4) 580 N = N + 1
+580 (0 4) N = N + 1
   Origs: 570:auto
   Dests: 590:auto
-(0 4) 590 K = INT(R - M * SIN(2 * E / 57.3))
+590 (0 4) K = INT(R - M * SIN(2 * E / 57.3))
   Origs: 580:auto
   Dests: 600:auto
-(0 4) 600 K = ABS(K)
+600 (0 4) K = ABS(K)
   Origs: 590:auto
   Dests: 610:auto
-(0 4) 610 K1 = ABS(K - D)
+610 (0 4) K1 = ABS(K - D)
   Origs: 600:auto
   Dests: 620:auto
-(1 4) 620 IF K1 > D THEN 720
+620 (1 4) IF K1 > D THEN 720
   Origs: 610:auto
   Dests: 630:auto, 720:ifthen
-(1 4) 630 IF K1 < D THEN 740
+630 (1 4) IF K1 < D THEN 740
   Origs: 620:auto
   Dests: 650:auto, 740:ifthen
-(0 2) 650 PRINT "*** TARGET DESTROYED ***"
+650 (0 2) PRINT "*** TARGET DESTROYED ***"
   Origs: 630:auto
   Dests: 660:auto
-(0 2) 660 GOSUB 940
+660 (0 2) GOSUB 940
   Origs: 650:auto
   Dests: 670:auto, 940:gosub
-(0 3) 670 D = K
+670 (0 3) D = K
   Origs: 660:auto, 850:goto, 870:goto
   Dests: 680:auto
-F(K) (1 6) 680 FOR K = 1 TO N + D / 100
+680 F(K) (1 6) FOR K = 1 TO N + D / 100
   Origs: 670:auto
   Dests: 690:fornext, 700:fornext
-F(K) (0 4) 690 K1 = RND(0)
+690 F(K) (0 4) K1 = RND(0)
   Origs: 680:fornext
   Dests: 700:auto
-F(K) (0 1) 700 NEXT K
+700 F(K) (0 1) NEXT K
   Origs: 680:fornext, 690:auto
   Dests: 710:auto
-(0 3) 710 GOTO 410
+710 (0 3) GOTO 410
   Origs: 700:auto
   Dests: 410:goto
-(0 4) 720 PRINT "SHORT OF TARGET BY " K1 " YARDS"
+720 (0 4) PRINT "SHORT OF TARGET BY " K1 " YARDS"
   Origs: 620:ifthen
   Dests: 730:auto
-(0 2) 730 GOTO 745
+730 (0 2) GOTO 745
   Origs: 720:auto
   Dests: 745:goto
-(0 4) 740 PRINT "OVER TARGET BY " K1 "YARDS"
+740 (0 4) PRINT "OVER TARGET BY " K1 "YARDS"
   Origs: 630:ifthen
   Dests: 745:auto
-(0 4) 745 LET C = INT(2 * RND(0) + 1)
+745 (0 4) LET C = INT(2 * RND(0) + 1)
   Origs: 730:goto, 740:auto
   Dests: 746:auto
-(1 4) 746 IF C = 1 THEN 750
+746 (1 4) IF C = 1 THEN 750
   Origs: 745:auto
   Dests: 748:auto, 750:ifthen
-(0 4) 748 LET C = -1
+748 (0 4) LET C = -1
   Origs: 746:auto
   Dests: 749:auto
-(0 2) 749 GOTO 760
+749 (0 2) GOTO 760
   Origs: 748:auto
   Dests: 760:goto
-(0 3) 750 LET C = 1
+750 (0 3) LET C = 1
   Origs: 746:ifthen
   Dests: 760:auto
-(0 7) 760 C1 = M * S / 100 * RND(0)
+760 (0 7) C1 = M * S / 100 * RND(0)
   Origs: 749:goto, 750:auto
   Dests: 770:auto
-(0 4) 770 C1 = C * C1
+770 (0 4) C1 = C * C1
   Origs: 760:auto
   Dests: 780:auto
-(0 4) 780 R = R + C1
+780 (0 4) R = R + C1
   Origs: 770:auto
   Dests: 790:auto
-(0 3) 790 GOTO 500
+790 (0 3) GOTO 500
   Origs: 780:auto
   Dests: 500:goto
-(0 2) 800 PRINT "MAXIMUM ELEVATION IS 89 DEGREES"
+800 (0 2) PRINT "MAXIMUM ELEVATION IS 89 DEGREES"
   Origs: 560:ifthen
   Dests: 810:auto
-(0 3) 810 GOTO 530
+810 (0 3) GOTO 530
   Origs: 800:auto
   Dests: 530:goto
-(0 2) 820 PRINT "MINIMUM ELEVATION IS 1 DEGREE"
+820 (0 2) PRINT "MINIMUM ELEVATION IS 1 DEGREE"
   Origs: 570:ifthen
   Dests: 830:auto
-(0 3) 830 GOTO 530
+830 (0 3) GOTO 530
   Origs: 820:auto
   Dests: 530:goto
-(0 2) 840 PRINT "* TARGET OUT OF RANGE *"
+840 (0 2) PRINT "* TARGET OUT OF RANGE *"
   Origs: 500:ifthen, 550:ifthen
   Dests: 850:auto
-(0 3) 850 GOTO 670
+850 (0 3) GOTO 670
   Origs: 840:auto
   Dests: 670:goto
-(0 2) 860 PRINT "THE TARGET HAS DESTROYED YOU!"
+860 (0 2) PRINT "THE TARGET HAS DESTROYED YOU!"
   Origs: 510:ifthen
   Dests: 870:auto
-(0 3) 870 GOTO 670
+870 (0 3) GOTO 670
   Origs: 860:auto
   Dests: 670:goto
-G(940) (1 4) 940 IF N = 1 THEN 970
+940 G(940) (1 4) IF N = 1 THEN 970
   Origs: 660:gosub
   Dests: 950:auto, 970:ifthen
-G(940) (0 3) 950 PRINT N " ROUNDS EXPENDED"
+950 G(940) (0 3) PRINT N " ROUNDS EXPENDED"
   Origs: 940:auto
   Dests: 960:auto
-G(940) (0 1) 960 RETURN
+960 G(940) (0 1) RETURN
   Origs: 950:auto
   Dests: 
-G(940) (0 2) 970 PRINT "***** DIRECT HIT *****"
+970 G(940) (0 2) PRINT "***** DIRECT HIT *****"
   Origs: 940:ifthen
   Dests: 980:auto
-G(940) (0 1) 980 RETURN
+980 G(940) (0 1) RETURN
   Origs: 970:auto
   Dests: 
-(0 1) 990 END
+990 (0 1) END
   Origs: 
   Dests: :stop
 

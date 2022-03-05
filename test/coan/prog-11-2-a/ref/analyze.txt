@@ -19,100 +19,100 @@ Halstead complexity:
  intelligence: 19.772
  time: 16.280
 
-FNP(_) (0 14) 10 DEF FNP(X) = P[4] * X ^ 3 + P[3] * X ^ 2 + P[2] * X + P[1]
+10 FNP(_) (0 14) DEF FNP(X) = P[4] * X ^ 3 + P[3] * X ^ 2 + P[2] * X + P[1]
   Origs: 
   Dests: 
-(0 2) 20 PRINT
+20 (0 2) PRINT
   Origs: :start, 150:ifthen, 165:goto
   Dests: 22:auto
-(0 2) 22 PRINT
+22 (0 2) PRINT
   Origs: 20:auto
   Dests: 25:auto
-F(S) (1 5) 25 FOR S = 4 TO 1 STEP -1
+25 F(S) (1 5) FOR S = 4 TO 1 STEP -1
   Origs: 22:auto
   Dests: 30:fornext, 50:fornext
-F(S) (1 2) 30 READ P[S]
+30 F(S) (1 2) READ P[S]
   Origs: 25:fornext
   Dests: 40:auto
-F(S) (0 2) 40 PRINT P[S];
+40 F(S) (0 2) PRINT P[S];
   Origs: 30:auto
   Dests: 50:auto
-F(S) (0 1) 50 NEXT S
+50 F(S) (0 1) NEXT S
   Origs: 25:fornext, 40:auto
   Dests: 60:auto
-(0 2) 60 PRINT "INTEGRAL ZERO(S):  ";
+60 (0 2) PRINT "INTEGRAL ZERO(S):  ";
   Origs: 50:auto
   Dests: 70:auto
-(0 1) 68 REM  TURN SWITCH OFF
+68 (0 1) REM  TURN SWITCH OFF
   Origs: 
   Dests: 
-(0 3) 70 LET K = 0
+70 (0 3) LET K = 0
   Origs: 60:auto
   Dests: 80:auto
-(0 1) 78 REM  STUDY LINE 80 CAREFULLY!
+78 (0 1) REM  STUDY LINE 80 CAREFULLY!
   Origs: 
   Dests: 
-F(X) (1 6) 80 FOR X = -P[1] TO P[1] STEP SGN(P[1])
+80 F(X) (1 6) FOR X = -P[1] TO P[1] STEP SGN(P[1])
   Origs: 70:auto
   Dests: 90:fornext, 140:fornext
-(0 1) 88 REM LINE 90 PREVENTS AN ERROR MESSAGE CAUSED BY
+88 (0 1) REM LINE 90 PREVENTS AN ERROR MESSAGE CAUSED BY
   Origs: 
   Dests: 
-(0 1) 89 REM DIVIDING BY ZERO
+89 (0 1) REM DIVIDING BY ZERO
   Origs: 
   Dests: 
-F(X) (1 4) 90 IF X = 0 THEN 140
+90 F(X) (1 4) IF X = 0 THEN 140
   Origs: 80:fornext
   Dests: 100:auto, 140:ifthen
-F(X) (1 6) 100 IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X) (1 6) IF P[1] / X <> INT(P[1] / X) THEN 140
   Origs: 90:auto
   Dests: 110:auto, 140:ifthen
-(0 1) 108 REM IS THE REMAINDER ZERO?
+108 (0 1) REM IS THE REMAINDER ZERO?
   Origs: 
   Dests: 
-F(X) (1 6) 110 IF FNP(X) <> 0 THEN 140
+110 F(X) (1 6) IF FNP(X) <> 0 THEN 140
   Origs: 100:auto
   Dests: 120:auto, 140:ifthen
-(0 1) 118 REM IF THE COMPUTER GETS THROUGH HERE, THE
+118 (0 1) REM IF THE COMPUTER GETS THROUGH HERE, THE
   Origs: 
   Dests: 
-(0 1) 119 REM VALUE OF X IS A ZERO OF THE FUNCTION
+119 (0 1) REM VALUE OF X IS A ZERO OF THE FUNCTION
   Origs: 
   Dests: 
-F(X) (0 2) 120 PRINT X;
+120 F(X) (0 2) PRINT X;
   Origs: 110:auto
   Dests: 130:auto
-(0 1) 128 REM TURN THE SWITCH ON - WE HAVE A ZERO
+128 (0 1) REM TURN THE SWITCH ON - WE HAVE A ZERO
   Origs: 
   Dests: 
-F(X) (0 3) 130 LET K = 1
+130 F(X) (0 3) LET K = 1
   Origs: 120:auto
   Dests: 140:auto
-F(X) (0 1) 140 NEXT X
+140 F(X) (0 1) NEXT X
   Origs: 80:fornext, 90:ifthen, 100:ifthen, 110:ifthen, 130:auto
   Dests: 150:auto
-(1 5) 150 IF K = 1 THEN 20
+150 (1 5) IF K = 1 THEN 20
   Origs: 140:auto
   Dests: 20:ifthen, 160:auto
-(0 2) 160 PRINT "NONE FOUND";
+160 (0 2) PRINT "NONE FOUND";
   Origs: 150:auto
   Dests: 165:auto
-(0 3) 165 GOTO 20
+165 (0 3) GOTO 20
   Origs: 160:auto
   Dests: 20:goto
-(0 4) 170 DATA 1, -2, -11, 12
+170 (0 4) DATA 1, -2, -11, 12
   Origs: 
   Dests: 
-(0 4) 180 DATA 1, 1, -5, -2
+180 (0 4) DATA 1, 1, -5, -2
   Origs: 
   Dests: 
-(0 4) 190 DATA 1, -2, 3, -4
+190 (0 4) DATA 1, -2, 3, -4
   Origs: 
   Dests: 
-(0 4) 200 DATA 2, -3, -10, 3
+200 (0 4) DATA 2, -3, -10, 3
   Origs: 
   Dests: 
-(0 1) 210 END
+210 (0 1) END
   Origs: 
   Dests: :stop
 

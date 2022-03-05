@@ -19,73 +19,73 @@ Halstead complexity:
  intelligence: 22.120
  time: 1.691
 
-(2 3) 10 READ N, R
+10 (2 3) READ N, R
   Origs: :start
   Dests: 20:auto
-(0 2) 20 GOSUB 500
+20 (0 2) GOSUB 500
   Origs: 10:auto
   Dests: 30:auto, 500:gosub
-(0 3) 30 LET C1 = C
+30 (0 3) LET C1 = C
   Origs: 20:auto
   Dests: 40:auto
-(0 1) 32 REM  C1 STORES THE NUMBER OF COMMITTEES IN WHICH
+32 (0 1) REM  C1 STORES THE NUMBER OF COMMITTEES IN WHICH
   Origs: 
   Dests: 
-(0 1) 33 REM  YOU ARE A MEMBER
+33 (0 1) REM  YOU ARE A MEMBER
   Origs: 
   Dests: 
-(2 3) 40 READ N, R
+40 (2 3) READ N, R
   Origs: 30:auto
   Dests: 50:auto
-(0 2) 50 GOSUB 500
+50 (0 2) GOSUB 500
   Origs: 40:auto
   Dests: 60:auto, 500:gosub
-(0 4) 60 LET P = C1 / C
+60 (0 4) LET P = C1 / C
   Origs: 50:auto
   Dests: 70:auto
-(0 2) 70 PRINT "THE PROBABILITY THAT YOU GET ON A 4 MEMBER"
+70 (0 2) PRINT "THE PROBABILITY THAT YOU GET ON A 4 MEMBER"
   Origs: 60:auto
   Dests: 75:auto
-(0 3) 75 PRINT "COMITTEE FROM A CLASS OF 29 IS"; P
+75 (0 3) PRINT "COMITTEE FROM A CLASS OF 29 IS"; P
   Origs: 70:auto
   Dests: 80:auto
-(0 1) 80 STOP
+80 (0 1) STOP
   Origs: 75:auto
   Dests: :stop
-(0 1) 490 REM  FIND COMBINATIONS OF N THINGS TAKEN M AT A TIME
+490 (0 1) REM  FIND COMBINATIONS OF N THINGS TAKEN M AT A TIME
   Origs: 
   Dests: 
-G(500) (0 3) 500 LET C = 1
+500 G(500) (0 3) LET C = 1
   Origs: 20:gosub, 50:gosub
   Dests: 510:auto
-G(500) F(X) (1 7) 510 FOR X = N TO N - R + 1 STEP -1
+510 G(500) F(X) (1 7) FOR X = N TO N - R + 1 STEP -1
   Origs: 500:auto
   Dests: 520:fornext, 530:fornext
-G(500) F(X) (0 4) 520 LET C = C * X
+520 G(500) F(X) (0 4) LET C = C * X
   Origs: 510:fornext
   Dests: 530:auto
-G(500) F(X) (0 1) 530 NEXT X
+530 G(500) F(X) (0 1) NEXT X
   Origs: 510:fornext, 520:auto
   Dests: 540:auto
-G(500) F(Y) (1 5) 540 FOR Y = R TO 1 STEP -1
+540 G(500) F(Y) (1 5) FOR Y = R TO 1 STEP -1
   Origs: 530:auto
   Dests: 550:fornext, 560:fornext
-G(500) F(Y) (0 4) 550 LET C = C / Y
+550 G(500) F(Y) (0 4) LET C = C / Y
   Origs: 540:fornext
   Dests: 560:auto
-G(500) F(Y) (0 1) 560 NEXT Y
+560 G(500) F(Y) (0 1) NEXT Y
   Origs: 540:fornext, 550:auto
   Dests: 570:auto
-G(500) (0 1) 570 RETURN
+570 G(500) (0 1) RETURN
   Origs: 560:auto
   Dests: 
-(0 2) 600 DATA 28, 3
+600 (0 2) DATA 28, 3
   Origs: 
   Dests: 
-(0 2) 610 DATA 29, 4
+610 (0 2) DATA 29, 4
   Origs: 
   Dests: 
-(0 1) 999 END
+999 (0 1) END
   Origs: 
   Dests: :stop
 

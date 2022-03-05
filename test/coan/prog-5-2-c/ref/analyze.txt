@@ -19,97 +19,97 @@ Halstead complexity:
  intelligence: 19.915
  time: 5.379
 
-(0 3) 10 LET A = 1
+10 (0 3) LET A = 1
   Origs: :start
   Dests: 20:auto
-F(R) (1 3) 20 FOR R = 1 TO 3
+20 F(R) (1 3) FOR R = 1 TO 3
   Origs: 10:auto
   Dests: 30:fornext, 70:fornext
-F(R,C) (1 3) 30 FOR C = 1 TO 5
+30 F(R,C) (1 3) FOR C = 1 TO 5
   Origs: 20:fornext
   Dests: 40:fornext, 60:fornext
-F(R,C) (0 3) 40 LET A[R, C] = A
+40 F(R,C) (0 3) LET A[R, C] = A
   Origs: 30:fornext
   Dests: 50:auto
-F(R,C) (0 4) 50 LET A = A + 1
+50 F(R,C) (0 4) LET A = A + 1
   Origs: 40:auto
   Dests: 60:auto
-F(R,C) (0 1) 60 NEXT C
+60 F(R,C) (0 1) NEXT C
   Origs: 30:fornext, 50:auto
   Dests: 70:auto
-F(R) (0 1) 70 NEXT R
+70 F(R) (0 1) NEXT R
   Origs: 20:fornext, 60:auto
   Dests: 90:auto
-(0 2) 90 PRINT "WE PRINT THE ORIGINAL ARRAY"
+90 (0 2) PRINT "WE PRINT THE ORIGINAL ARRAY"
   Origs: 70:auto
   Dests: 100:auto
-(0 2) 100 GOSUB 900
+100 (0 2) GOSUB 900
   Origs: 90:auto
   Dests: 110:auto, 900:gosub
-(0 2) 110 PRINT "WE CAN MULTIPLY EVERY ELEMENT IN THE 4TH COLUMN BY 6"
+110 (0 2) PRINT "WE CAN MULTIPLY EVERY ELEMENT IN THE 4TH COLUMN BY 6"
   Origs: 100:auto
   Dests: 120:auto
-F(R) (1 3) 120 FOR R = 1 TO 3
+120 F(R) (1 3) FOR R = 1 TO 3
   Origs: 110:auto
   Dests: 130:fornext, 140:fornext
-F(R) (0 4) 130 LET A[R, 4] = A[R, 4] * 6
+130 F(R) (0 4) LET A[R, 4] = A[R, 4] * 6
   Origs: 120:fornext
   Dests: 140:auto
-F(R) (0 1) 140 NEXT R
+140 F(R) (0 1) NEXT R
   Origs: 120:fornext, 130:auto
   Dests: 150:auto
-(0 2) 150 GOSUB 900
+150 (0 2) GOSUB 900
   Origs: 140:auto
   Dests: 160:auto, 900:gosub
-(0 2) 160 PRINT "WE CAN SUBTRACT THE 3RD ROW FROM THE 2ND ROW"
+160 (0 2) PRINT "WE CAN SUBTRACT THE 3RD ROW FROM THE 2ND ROW"
   Origs: 150:auto
   Dests: 170:auto
-(0 2) 170 PRINT "AND PUT THE RESULT IN THE 3RD ROW"
+170 (0 2) PRINT "AND PUT THE RESULT IN THE 3RD ROW"
   Origs: 160:auto
   Dests: 180:auto
-F(C) (1 3) 180 FOR C = 1 TO 5
+180 F(C) (1 3) FOR C = 1 TO 5
   Origs: 170:auto
   Dests: 190:fornext, 200:fornext
-F(C) (0 4) 190 LET A[3, C] = A[2, C] - A[3, C]
+190 F(C) (0 4) LET A[3, C] = A[2, C] - A[3, C]
   Origs: 180:fornext
   Dests: 200:auto
-F(C) (0 1) 200 NEXT C
+200 F(C) (0 1) NEXT C
   Origs: 180:fornext, 190:auto
   Dests: 210:auto
-(0 2) 210 GOSUB 900
+210 (0 2) GOSUB 900
   Origs: 200:auto
   Dests: 880:auto, 900:gosub
-(0 1) 880 STOP
+880 (0 1) STOP
   Origs: 210:auto
   Dests: :stop
-(0 1) 890 REM ****PRINTING SUBROUTINE IS HERE****
+890 (0 1) REM ****PRINTING SUBROUTINE IS HERE****
   Origs: 
   Dests: 
-G(900) F(R) (1 3) 900 FOR R = 1 TO 3
+900 G(900) F(R) (1 3) FOR R = 1 TO 3
   Origs: 100:gosub, 150:gosub, 210:gosub
   Dests: 910:fornext, 960:fornext
-G(900) F(R,C) (1 3) 910 FOR C = 1 TO 5
+910 G(900) F(R,C) (1 3) FOR C = 1 TO 5
   Origs: 900:fornext
   Dests: 920:fornext, 930:fornext
-G(900) F(R,C) (0 2) 920 PRINT A[R, C];
+920 G(900) F(R,C) (0 2) PRINT A[R, C];
   Origs: 910:fornext
   Dests: 930:auto
-G(900) F(R,C) (0 1) 930 NEXT C
+930 G(900) F(R,C) (0 1) NEXT C
   Origs: 910:fornext, 920:auto
   Dests: 940:auto
-G(900) F(R) (0 2) 940 PRINT
+940 G(900) F(R) (0 2) PRINT
   Origs: 930:auto
   Dests: 950:auto
-G(900) F(R) (0 2) 950 PRINT
+950 G(900) F(R) (0 2) PRINT
   Origs: 940:auto
   Dests: 960:auto
-G(900) F(R) (0 1) 960 NEXT R
+960 G(900) F(R) (0 1) NEXT R
   Origs: 900:fornext, 950:auto
   Dests: 970:auto
-G(900) (0 1) 970 RETURN
+970 G(900) (0 1) RETURN
   Origs: 960:auto
   Dests: 
-(0 1) 999 END
+999 (0 1) END
   Origs: 
   Dests: :stop
 

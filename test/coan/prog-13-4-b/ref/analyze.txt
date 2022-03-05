@@ -19,49 +19,49 @@ Halstead complexity:
  intelligence: 19.139
  time: 1.104
 
-F(Y) (1 3) 2 FOR Y = 1 TO 10
+2 F(Y) (1 3) FOR Y = 1 TO 10
   Origs: :start
   Dests: 5:fornext, 125:fornext
-F(Y) (0 3) 5 LET C = 0
+5 F(Y) (0 3) LET C = 0
   Origs: 2:fornext
   Dests: 10:auto
-F(Y,X) (1 3) 10 FOR X = 1 TO 50
+10 F(Y,X) (1 3) FOR X = 1 TO 50
   Origs: 5:auto
   Dests: 20:fornext, 100:fornext
-F(Y,X) (0 4) 20 LET F = INT(2 * RND(1))
+20 F(Y,X) (0 4) LET F = INT(2 * RND(1))
   Origs: 10:fornext
   Dests: 30:auto
-F(Y,X) (1 4) 30 IF F = 1 THEN 60
+30 F(Y,X) (1 4) IF F = 1 THEN 60
   Origs: 20:auto
   Dests: 40:auto, 60:ifthen
-F(Y,X) (0 2) 40 PRINT "T";
+40 F(Y,X) (0 2) PRINT "T";
   Origs: 30:auto
   Dests: 50:auto
-F(Y,X) (0 2) 50 GOTO 100
+50 F(Y,X) (0 2) GOTO 100
   Origs: 40:auto
   Dests: 100:goto
-(0 1) 58 REM C COUNTS THE NUMBER OF HEADS
+58 (0 1) REM C COUNTS THE NUMBER OF HEADS
   Origs: 
   Dests: 
-F(Y,X) (0 4) 60 LET C = C + 1
+60 F(Y,X) (0 4) LET C = C + 1
   Origs: 30:ifthen
   Dests: 70:auto
-F(Y,X) (0 2) 70 PRINT "H";
+70 F(Y,X) (0 2) PRINT "H";
   Origs: 60:auto
   Dests: 100:auto
-F(Y,X) (0 1) 100 NEXT X
+100 F(Y,X) (0 1) NEXT X
   Origs: 10:fornext, 50:goto, 70:auto
   Dests: 110:auto
-F(Y) (0 2) 110 PRINT
+110 F(Y) (0 2) PRINT
   Origs: 100:auto
   Dests: 120:auto
-F(Y) (0 4) 120 PRINT "HEADS  "; C; "OUT OF 50 FLIPS"
+120 F(Y) (0 4) PRINT "HEADS  "; C; "OUT OF 50 FLIPS"
   Origs: 110:auto
   Dests: 125:auto
-F(Y) (0 1) 125 NEXT Y
+125 F(Y) (0 1) NEXT Y
   Origs: 2:fornext, 120:auto
   Dests: 130:auto
-(0 1) 130 END
+130 (0 1) END
   Origs: 125:auto
   Dests: :stop
 

@@ -19,37 +19,37 @@ Halstead complexity:
  intelligence: 17.061
  time: 1.388
 
-F(D) (1 2) 10 READ N
+10 F(D) (1 2) READ N
   Origs: :start, 60:goto, 80:goto
   Dests: 20:auto
-F(D) (1 4) 20 FOR D = 2 TO SQR(N)
+20 F(D) (1 4) FOR D = 2 TO SQR(N)
   Origs: 10:auto
   Dests: 30:fornext, 40:fornext
-F(D) (1 6) 30 IF N / D = INT(N / D) THEN 70
+30 F(D) (1 6) IF N / D = INT(N / D) THEN 70
   Origs: 20:fornext
   Dests: 40:auto, 70:ifthen
-F(D) (0 1) 40 NEXT D
+40 F(D) (0 1) NEXT D
   Origs: 20:fornext, 30:auto
   Dests: 50:auto
-(0 3) 50 PRINT N; "IS PRIME"
+50 (0 3) PRINT N; "IS PRIME"
   Origs: 40:auto
   Dests: 60:auto
-(0 3) 60 GOTO 10
+60 (0 3) GOTO 10
   Origs: 50:auto
   Dests: 10:goto
-F(D) (0 5) 70 PRINT N / D; "IS THE GREATEST FACTOR OF"; N
+70 F(D) (0 5) PRINT N / D; "IS THE GREATEST FACTOR OF"; N
   Origs: 30:ifthen
   Dests: 80:auto
-F(D) (0 3) 80 GOTO 10
+80 F(D) (0 3) GOTO 10
   Origs: 70:auto
   Dests: 10:goto
-(0 2) 90 DATA 1946, 1949, 1009, 1003
+90 (0 2) DATA 1946, 1949, 1009, 1003
   Origs: 
   Dests: 
-(0 2) 100 DATA 11001, 240, 11
+100 (0 2) DATA 11001, 240, 11
   Origs: 
   Dests: 
-(0 1) 110 END
+110 (0 1) END
   Origs: 
   Dests: :stop
 

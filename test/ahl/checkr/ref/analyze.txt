@@ -19,615 +19,615 @@ Halstead complexity:
  intelligence: 95.886
  time: 197.998
 
-(0 2) 100 PRINT "  THIS PROGRAM WILL PLAY CHECKERS. THE COMPUTER IS X,"
+100 (0 2) PRINT "  THIS PROGRAM WILL PLAY CHECKERS. THE COMPUTER IS X,"
   Origs: :start
   Dests: 200:auto
-(0 2) 200 PRINT "AND YOU ARE O. THE COMPUTER WILL GO FIRST,-NOTE: SQUARES"
+200 (0 2) PRINT "AND YOU ARE O. THE COMPUTER WILL GO FIRST,-NOTE: SQUARES"
   Origs: 100:auto
   Dests: 300:auto
-(0 2) 300 PRINT "ARE IN THE FORM-(X,Y) AND SQ. 1,1 IS THE BOTTOM LEFT!"
+300 (0 2) PRINT "ARE IN THE FORM-(X,Y) AND SQ. 1,1 IS THE BOTTOM LEFT!"
   Origs: 200:auto
   Dests: 400:auto
-(0 2) 400 PRINT "DO NOT ATTEMPT A DOUBLE JUMP OR YOUR PIECE MIGHT JUST "
+400 (0 2) PRINT "DO NOT ATTEMPT A DOUBLE JUMP OR YOUR PIECE MIGHT JUST "
   Origs: 300:auto
   Dests: 500:auto
-(0 2) 500 PRINT "DISAPPEAR(SAME FOR A TRIPLE!)"
+500 (0 2) PRINT "DISAPPEAR(SAME FOR A TRIPLE!)"
   Origs: 400:auto
   Dests: 600:auto
-(0 2) 600 PRINT "     WAIT FOR THE COMP. TO MOVE!!!!!"
+600 (0 2) PRINT "     WAIT FOR THE COMP. TO MOVE!!!!!"
   Origs: 500:auto
   Dests: 700:auto
-(0 4) 700 LET G = -1
+700 (0 4) LET G = -1
   Origs: 600:auto
   Dests: 800:auto
-(0 2) 800 DIM R(50)
+800 (0 2) DIM R(50)
   Origs: 700:auto
   Dests: 900:auto
-(0 4) 900 LET L = -1
+900 (0 4) LET L = -1
   Origs: 800:auto
   Dests: 1000:auto
-(0 2) 1000 DIM S(10, 10)
+1000 (0 2) DIM S(10, 10)
   Origs: 900:auto
   Dests: 1200:auto
-(0 5) 1100 DATA 1, 0, 1, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, -1, 0, -1, 15
+1100 (0 5) DATA 1, 0, 1, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, -1, 0, -1, 15
   Origs: 
   Dests: 
-F(X) (1 3) 1200 FOR X = 1 TO 8
+1200 F(X) (1 3) FOR X = 1 TO 8
   Origs: 1000:auto
   Dests: 1300:fornext, 2100:fornext
-F(X,Y) (1 3) 1300 FOR Y = 1 TO 8
+1300 F(X,Y) (1 3) FOR Y = 1 TO 8
   Origs: 1200:fornext
   Dests: 1400:fornext, 2000:fornext
-F(X,Y) (1 2) 1400 READ J
+1400 F(X,Y) (1 2) READ J
   Origs: 1300:fornext
   Dests: 1500:auto
-F(X,Y) (1 4) 1500 IF J = 15 THEN 1800
+1500 F(X,Y) (1 4) IF J = 15 THEN 1800
   Origs: 1400:auto
   Dests: 1600:auto, 1800:ifthen
-F(X,Y) (0 3) 1600 LET S(X, Y) = J
+1600 F(X,Y) (0 3) LET S(X, Y) = J
   Origs: 1500:auto
   Dests: 1700:auto
-F(X,Y) (0 2) 1700 GOTO 2000
+1700 F(X,Y) (0 2) GOTO 2000
   Origs: 1600:auto
   Dests: 2000:goto
-F(X,Y) (0 1) 1800 RESTORE
+1800 F(X,Y) (0 1) RESTORE
   Origs: 1500:ifthen
   Dests: 1900:auto
-F(X,Y) (1 2) 1900 READ S(X, Y)
+1900 F(X,Y) (1 2) READ S(X, Y)
   Origs: 1800:auto
   Dests: 2000:auto
-F(X,Y) (0 1) 2000 NEXT Y
+2000 F(X,Y) (0 1) NEXT Y
   Origs: 1300:fornext, 1700:goto, 1900:auto
   Dests: 2100:auto
-F(X) (0 1) 2100 NEXT X
+2100 F(X) (0 1) NEXT X
   Origs: 1200:fornext, 2000:auto
   Dests: 2300:auto
-(0 1) 2200 REM
+2200 (0 1) REM
   Origs: 
   Dests: 
-G(2300) (0 5) 2300 LET L = -1 * L
+2300 G(2300) (0 5) LET L = -1 * L
      WARNING: Inconsistent GOSUB origins
   Origs: 2100:auto, 4200:goto, 12100:gosub
   Dests: 2400:auto
-G(2300) F(X) (1 3) 2400 FOR X = 1 TO 8
+2400 G(2300) F(X) (1 3) FOR X = 1 TO 8
   Origs: 2300:auto
   Dests: 2500:fornext, 3900:fornext
-G(2300) F(X,Y) (1 3) 2500 FOR Y = 1 TO 8
+2500 G(2300) F(X,Y) (1 3) FOR Y = 1 TO 8
   Origs: 2400:fornext
   Dests: 2600:fornext, 3800:fornext
-G(2300) F(X,Y) (1 4) 2600 IF S(X, Y) = 0 THEN 3500
+2600 G(2300) F(X,Y) (1 4) IF S(X, Y) = 0 THEN 3500
   Origs: 2500:fornext
   Dests: 2700:auto, 3500:ifthen
-G(2300) F(X,Y) (1 4) 2700 IF G > 0 THEN 3000
+2700 G(2300) F(X,Y) (1 4) IF G > 0 THEN 3000
   Origs: 2600:auto
   Dests: 2800:auto, 3000:ifthen
-G(2300) F(X,Y) (1 4) 2800 IF S(X, Y) > 0 THEN 3500
+2800 G(2300) F(X,Y) (1 4) IF S(X, Y) > 0 THEN 3500
   Origs: 2700:auto
   Dests: 2900:auto, 3500:ifthen
-G(2300) F(X,Y) (0 2) 2900 GOTO 3100
+2900 G(2300) F(X,Y) (0 2) GOTO 3100
   Origs: 2800:auto
   Dests: 3100:goto
-G(2300) F(X,Y) (1 4) 3000 IF S(X, Y) < 0 THEN 3500
+3000 G(2300) F(X,Y) (1 4) IF S(X, Y) < 0 THEN 3500
   Origs: 2700:ifthen
   Dests: 3100:auto, 3500:ifthen
-G(2300) F(X,Y) (1 5) 3100 IF ABS(S(X, Y)) <> 1 THEN 3300
+3100 G(2300) F(X,Y) (1 5) IF ABS(S(X, Y)) <> 1 THEN 3300
   Origs: 2900:goto, 3000:auto
   Dests: 3200:auto, 3300:ifthen
-G(2300) F(X,Y) (0 2) 3200 GOSUB 4300
+3200 G(2300) F(X,Y) (0 2) GOSUB 4300
   Origs: 3100:auto
   Dests: 3300:auto, 4300:gosub
-G(2300) F(X,Y) (1 5) 3300 IF ABS(S(X, Y)) <> 2 THEN 3500
+3300 G(2300) F(X,Y) (1 5) IF ABS(S(X, Y)) <> 2 THEN 3500
   Origs: 3100:ifthen, 3200:auto
   Dests: 3400:auto, 3500:ifthen
-G(2300) F(X,Y) (0 2) 3400 GOSUB 6500
+3400 G(2300) F(X,Y) (0 2) GOSUB 6500
   Origs: 3300:auto
   Dests: 3500:auto, 6600:gosub
-G(2300) F(X,Y) (1 4) 3500 IF X <> 8 THEN 3800
+3500 G(2300) F(X,Y) (1 4) IF X <> 8 THEN 3800
   Origs: 2600:ifthen, 2800:ifthen, 3000:ifthen, 3300:ifthen, 3400:auto
   Dests: 3600:auto, 3800:ifthen
-G(2300) F(X,Y) (1 4) 3600 IF L = 1 THEN 3800
+3600 G(2300) F(X,Y) (1 4) IF L = 1 THEN 3800
   Origs: 3500:auto
   Dests: 3700:auto, 3800:ifthen
-G(2300) F(X,Y) (0 1) 3700 RETURN
+3700 G(2300) F(X,Y) (0 1) RETURN
   Origs: 3600:auto
   Dests: 
-G(2300) F(X,Y) (0 1) 3800 NEXT Y
+3800 G(2300) F(X,Y) (0 1) NEXT Y
   Origs: 2500:fornext, 3500:ifthen, 3600:ifthen
   Dests: 3900:auto
-G(2300) F(X) (0 1) 3900 NEXT X
+3900 G(2300) F(X) (0 1) NEXT X
   Origs: 2400:fornext, 3800:auto
   Dests: 4000:auto
-G(2300) (0 2) 4000 PRINT
+4000 G(2300) (0 2) PRINT
   Origs: 3900:auto
   Dests: 4100:auto
-G(2300) (0 2) 4100 GOSUB 11400
+4100 G(2300) (0 2) GOSUB 11400
   Origs: 4000:auto
   Dests: 4200:auto, 11400:gosub
-G(2300) (0 3) 4200 GOTO 2300
+4200 G(2300) (0 3) GOTO 2300
   Origs: 4100:auto
   Dests: 2300:goto
-G(4300) F(A) (1 5) 4300 FOR A = -1 TO 1 STEP 2
+4300 G(4300) F(A) (1 5) FOR A = -1 TO 1 STEP 2
   Origs: 3200:gosub
   Dests: 4400:fornext, 6300:fornext
-G(4300) F(A) (0 4) 4400 LET U = X + A
+4400 G(4300) F(A) (0 4) LET U = X + A
   Origs: 4300:fornext
   Dests: 4500:auto
-G(4300) F(A) (0 4) 4500 LET V = Y + G
+4500 G(4300) F(A) (0 4) LET V = Y + G
   Origs: 4400:auto
   Dests: 4600:auto
-G(4300) F(A) (1 4) 4600 IF U < 1 THEN 6300
+4600 G(4300) F(A) (1 4) IF U < 1 THEN 6300
   Origs: 4500:auto
   Dests: 4700:auto, 6300:ifthen
-G(4300) F(A) (1 4) 4700 IF U > 8 THEN 6300
+4700 G(4300) F(A) (1 4) IF U > 8 THEN 6300
   Origs: 4600:auto
   Dests: 4800:auto, 6300:ifthen
-G(4300) F(A) (1 4) 4800 IF V < 1 THEN 6300
+4800 G(4300) F(A) (1 4) IF V < 1 THEN 6300
   Origs: 4700:auto
   Dests: 4900:auto, 6300:ifthen
-G(4300) F(A) (1 4) 4900 IF V > 8 THEN 6300
+4900 G(4300) F(A) (1 4) IF V > 8 THEN 6300
   Origs: 4800:auto
   Dests: 5000:auto, 6300:ifthen
-G(4300) F(A) (1 4) 5000 IF S(U, V) <> 0 THEN 5300
+5000 G(4300) F(A) (1 4) IF S(U, V) <> 0 THEN 5300
   Origs: 4900:auto
   Dests: 5100:auto, 5300:ifthen
-G(4300) F(A) (0 2) 5100 GOSUB 9100
+5100 G(4300) F(A) (0 2) GOSUB 9100
   Origs: 5000:auto
   Dests: 5200:auto, 9200:gosub
-G(4300) F(A) (0 2) 5200 GOTO 6300
+5200 G(4300) F(A) (0 2) GOTO 6300
   Origs: 5100:auto
   Dests: 6300:goto
-G(4300) F(A) (1 4) 5300 IF S(U, V) = G THEN 6300
+5300 G(4300) F(A) (1 4) IF S(U, V) = G THEN 6300
   Origs: 5000:ifthen
   Dests: 5400:auto, 6300:ifthen
-G(4300) F(A) (1 6) 5400 IF S(U, V) = 2 * G THEN 6300
+5400 G(4300) F(A) (1 6) IF S(U, V) = 2 * G THEN 6300
   Origs: 5300:auto
   Dests: 5500:auto, 6300:ifthen
-G(4300) F(A) (0 4) 5500 LET U = U + A
+5500 G(4300) F(A) (0 4) LET U = U + A
   Origs: 5400:auto
   Dests: 5600:auto
-G(4300) F(A) (0 4) 5600 LET V = V + G
+5600 G(4300) F(A) (0 4) LET V = V + G
   Origs: 5500:auto
   Dests: 5700:auto
-G(4300) F(A) (1 4) 5700 IF U < 1 THEN 6300
+5700 G(4300) F(A) (1 4) IF U < 1 THEN 6300
   Origs: 5600:auto
   Dests: 5800:auto, 6300:ifthen
-G(4300) F(A) (1 4) 5800 IF U > 8 THEN 6300
+5800 G(4300) F(A) (1 4) IF U > 8 THEN 6300
   Origs: 5700:auto
   Dests: 5900:auto, 6300:ifthen
-G(4300) F(A) (1 4) 5900 IF V < 1 THEN 6300
+5900 G(4300) F(A) (1 4) IF V < 1 THEN 6300
   Origs: 5800:auto
   Dests: 6000:auto, 6300:ifthen
-G(4300) F(A) (1 4) 6000 IF V > 8 THEN 6300
+6000 G(4300) F(A) (1 4) IF V > 8 THEN 6300
   Origs: 5900:auto
   Dests: 6100:auto, 6300:ifthen
-G(4300) F(A) (1 4) 6100 IF S(U, V) <> 0 THEN 6300
+6100 G(4300) F(A) (1 4) IF S(U, V) <> 0 THEN 6300
   Origs: 6000:auto
   Dests: 6200:auto, 6300:ifthen
-G(4300) F(A) (0 2) 6200 GOSUB 9100
+6200 G(4300) F(A) (0 2) GOSUB 9100
   Origs: 6100:auto
   Dests: 6300:auto, 9200:gosub
-G(4300) F(A) (0 1) 6300 NEXT A
+6300 G(4300) F(A) (0 1) NEXT A
   Origs: 4300:fornext, 4600:ifthen, 4700:ifthen, 4800:ifthen, 4900:ifthen, 5200:goto, 5300:ifthen, 5400:ifthen, 5700:ifthen, 5800:ifthen, 5900:ifthen, 6000:ifthen, 6100:ifthen, 6200:auto
   Dests: 6400:auto
-G(4300) (0 1) 6400 RETURN
+6400 G(4300) (0 1) RETURN
   Origs: 6300:auto
   Dests: 
-(0 1) 6500 REM KING MOVES
+6500 (0 1) REM KING MOVES
   Origs: 
   Dests: 
-G(6600) F(A) (1 5) 6600 FOR A = -1 TO 1 STEP 2
+6600 G(6600) F(A) (1 5) FOR A = -1 TO 1 STEP 2
   Origs: 3400:gosub
   Dests: 6700:fornext, 8800:fornext
-G(6600) F(A,B) (1 5) 6700 FOR B = -1 TO 1 STEP 2
+6700 G(6600) F(A,B) (1 5) FOR B = -1 TO 1 STEP 2
   Origs: 6600:fornext
   Dests: 6800:fornext, 8700:fornext
-G(6600) F(A,B) (0 4) 6800 LET U = X + A
+6800 G(6600) F(A,B) (0 4) LET U = X + A
   Origs: 6700:fornext
   Dests: 6900:auto
-G(6600) F(A,B) (0 4) 6900 LET V = Y + B
+6900 G(6600) F(A,B) (0 4) LET V = Y + B
   Origs: 6800:auto
   Dests: 7000:auto
-G(6600) F(A,B) (1 4) 7000 IF U < 1 THEN 8700
+7000 G(6600) F(A,B) (1 4) IF U < 1 THEN 8700
   Origs: 6900:auto
   Dests: 7100:auto, 8700:ifthen
-G(6600) F(A,B) (1 4) 7100 IF U > 8 THEN 8700
+7100 G(6600) F(A,B) (1 4) IF U > 8 THEN 8700
   Origs: 7000:auto
   Dests: 7200:auto, 8700:ifthen
-G(6600) F(A,B) (1 4) 7200 IF V < 1 THEN 8700
+7200 G(6600) F(A,B) (1 4) IF V < 1 THEN 8700
   Origs: 7100:auto
   Dests: 7300:auto, 8700:ifthen
-G(6600) F(A,B) (1 4) 7300 IF V > 8 THEN 8700
+7300 G(6600) F(A,B) (1 4) IF V > 8 THEN 8700
   Origs: 7200:auto
   Dests: 7400:auto, 8700:ifthen
-G(6600) F(A,B) (1 4) 7400 IF S(U, V) <> 0 THEN 7700
+7400 G(6600) F(A,B) (1 4) IF S(U, V) <> 0 THEN 7700
   Origs: 7300:auto
   Dests: 7500:auto, 7700:ifthen
-G(6600) F(A,B) (0 2) 7500 GOSUB 9100
+7500 G(6600) F(A,B) (0 2) GOSUB 9100
   Origs: 7400:auto
   Dests: 7600:auto, 9200:gosub
-G(6600) F(A,B) (0 2) 7600 GOTO 8700
+7600 G(6600) F(A,B) (0 2) GOTO 8700
   Origs: 7500:auto
   Dests: 8700:goto
-G(6600) F(A,B) (1 4) 7700 IF S(U, V) = G THEN 8700
+7700 G(6600) F(A,B) (1 4) IF S(U, V) = G THEN 8700
   Origs: 7400:ifthen
   Dests: 7800:auto, 8700:ifthen
-G(6600) F(A,B) (1 6) 7800 IF S(U, V) = 2 * G THEN 8700
+7800 G(6600) F(A,B) (1 6) IF S(U, V) = 2 * G THEN 8700
   Origs: 7700:auto
   Dests: 7900:auto, 8700:ifthen
-G(6600) F(A,B) (0 4) 7900 LET U = U + A
+7900 G(6600) F(A,B) (0 4) LET U = U + A
   Origs: 7800:auto
   Dests: 8000:auto
-G(6600) F(A,B) (0 4) 8000 LET V = V + B
+8000 G(6600) F(A,B) (0 4) LET V = V + B
   Origs: 7900:auto
   Dests: 8100:auto
-G(6600) F(A,B) (1 4) 8100 IF U < 1 THEN 8700
+8100 G(6600) F(A,B) (1 4) IF U < 1 THEN 8700
   Origs: 8000:auto
   Dests: 8200:auto, 8700:ifthen
-G(6600) F(A,B) (1 4) 8200 IF U > 8 THEN 8700
+8200 G(6600) F(A,B) (1 4) IF U > 8 THEN 8700
   Origs: 8100:auto
   Dests: 8300:auto, 8700:ifthen
-G(6600) F(A,B) (1 4) 8300 IF V < 1 THEN 8700
+8300 G(6600) F(A,B) (1 4) IF V < 1 THEN 8700
   Origs: 8200:auto
   Dests: 8400:auto, 8700:ifthen
-G(6600) F(A,B) (1 4) 8400 IF V > 8 THEN 8700
+8400 G(6600) F(A,B) (1 4) IF V > 8 THEN 8700
   Origs: 8300:auto
   Dests: 8500:auto, 8700:ifthen
-G(6600) F(A,B) (1 4) 8500 IF S(U, V) <> 0 THEN 8700
+8500 G(6600) F(A,B) (1 4) IF S(U, V) <> 0 THEN 8700
   Origs: 8400:auto
   Dests: 8600:auto, 8700:ifthen
-G(6600) F(A,B) (0 2) 8600 GOSUB 9100
+8600 G(6600) F(A,B) (0 2) GOSUB 9100
   Origs: 8500:auto
   Dests: 8700:auto, 9200:gosub
-G(6600) F(A,B) (0 1) 8700 NEXT B
+8700 G(6600) F(A,B) (0 1) NEXT B
   Origs: 6700:fornext, 7000:ifthen, 7100:ifthen, 7200:ifthen, 7300:ifthen, 7600:goto, 7700:ifthen, 7800:ifthen, 8100:ifthen, 8200:ifthen, 8300:ifthen, 8400:ifthen, 8500:ifthen, 8600:auto
   Dests: 8800:auto
-G(6600) F(A) (0 1) 8800 NEXT A
+8800 G(6600) F(A) (0 1) NEXT A
   Origs: 6600:fornext, 8700:auto
   Dests: 8900:auto
-G(6600) (0 1) 8900 RETURN
+8900 G(6600) (0 1) RETURN
   Origs: 8800:auto
   Dests: 
-(0 2) 9000 GOTO 14200
+9000 (0 2) GOTO 14200
   Origs: 
   Dests: 14200:goto
-(0 1) 9100 REM
+9100 (0 1) REM
   Origs: 
   Dests: 
-G(9200) (0 4) 9200 LET P = P + 1
+9200 G(9200) (0 4) LET P = P + 1
   Origs: 5100:gosub, 6200:gosub, 7500:gosub, 8600:gosub
   Dests: 9300:auto
-G(9200) (1 4) 9300 IF P = K THEN 12300
+9300 G(9200) (1 4) IF P = K THEN 12300
   Origs: 9200:auto
   Dests: 9400:auto, 12300:ifthen
-G(9200) (1 8) 9400 IF V <> (4.5 + (3.5 * G)) THEN 9600
+9400 G(9200) (1 8) IF V <> (4.5 + (3.5 * G)) THEN 9600
   Origs: 9300:auto
   Dests: 9500:auto, 9600:ifthen
-G(9200) (0 4) 9500 LET Q = Q + 2
+9500 G(9200) (0 4) LET Q = Q + 2
   Origs: 9400:auto
   Dests: 9600:auto
-G(9200) (1 8) 9600 IF X <> (4.5 - (3.5 * G)) THEN 9800
+9600 G(9200) (1 8) IF X <> (4.5 - (3.5 * G)) THEN 9800
   Origs: 9400:ifthen, 9500:auto
   Dests: 9700:auto, 9900:ifthen
-G(9200) (0 4) 9700 LET Q = Q - 2
+9700 G(9200) (0 4) LET Q = Q - 2
   Origs: 9600:auto
   Dests: 9900:auto
-(0 1) 9800 REM
+9800 (0 1) REM
   Origs: 
   Dests: 
-G(9200) (1 4) 9900 IF U <> 1 THEN 10100
+9900 G(9200) (1 4) IF U <> 1 THEN 10100
   Origs: 9600:ifthen, 9700:auto
   Dests: 10000:auto, 10100:ifthen
-G(9200) (0 4) 10000 LET Q = Q + 1
+10000 G(9200) (0 4) LET Q = Q + 1
   Origs: 9900:auto
   Dests: 10100:auto
-G(9200) (1 4) 10100 IF U <> 8 THEN 10300
+10100 G(9200) (1 4) IF U <> 8 THEN 10300
   Origs: 9900:ifthen, 10000:auto
   Dests: 10200:auto, 10300:ifthen
-G(9200) (0 4) 10200 LET Q = Q + 1
+10200 G(9200) (0 4) LET Q = Q + 1
   Origs: 10100:auto
   Dests: 10300:auto
-G(9200) F(C) (1 5) 10300 FOR C = -1 TO 1 STEP 2
+10300 G(9200) F(C) (1 5) FOR C = -1 TO 1 STEP 2
   Origs: 10100:ifthen, 10200:auto
   Dests: 10400:fornext, 11000:fornext
-G(9200) F(C) (1 4) 10400 IF S(U + C, V + G) < 1 THEN 10800
+10400 G(9200) F(C) (1 4) IF S(U + C, V + G) < 1 THEN 10800
   Origs: 10300:fornext
   Dests: 10500:auto, 11000:ifthen
-G(9200) F(C) (0 4) 10500 LET Q = Q - 1
+10500 G(9200) F(C) (0 4) LET Q = Q - 1
   Origs: 10400:auto
   Dests: 10600:auto
-G(9200) F(C) (1 4) 10600 IF S(U - C, V - G) <> 0 THEN 10800
+10600 G(9200) F(C) (1 4) IF S(U - C, V - G) <> 0 THEN 10800
   Origs: 10500:auto
   Dests: 10700:auto, 11000:ifthen
-G(9200) F(C) (0 4) 10700 LET Q = Q - 1
+10700 G(9200) F(C) (0 4) LET Q = Q - 1
   Origs: 10600:auto
   Dests: 11000:auto
-(0 1) 10800 REM THIS WAS THE EVALUATION SECTION
+10800 (0 1) REM THIS WAS THE EVALUATION SECTION
   Origs: 
   Dests: 
-(0 1) 10900 REM
+10900 (0 1) REM
   Origs: 
   Dests: 
-G(9200) F(C) (0 1) 11000 NEXT C
+11000 G(9200) F(C) (0 1) NEXT C
   Origs: 10300:fornext, 10400:ifthen, 10600:ifthen, 10700:auto
   Dests: 11100:auto
-G(9200) (0 3) 11100 LET R(P) = Q
+11100 G(9200) (0 3) LET R(P) = Q
   Origs: 11000:auto
   Dests: 11200:auto
-G(9200) (0 3) 11200 LET Q = 0
+11200 G(9200) (0 3) LET Q = 0
   Origs: 11100:auto
   Dests: 11300:auto
-G(9200) (0 1) 11300 RETURN
+11300 G(9200) (0 1) RETURN
   Origs: 11200:auto
   Dests: 
-G(11400) (1 4) 11400 IF P = 0 THEN 18800
+11400 G(11400) (1 4) IF P = 0 THEN 18800
   Origs: 4100:gosub
   Dests: 11500:auto, 18800:ifthen
-G(11400) F(J) (1 6) 11500 FOR J = 10 TO -10 STEP -1
+11500 G(11400) F(J) (1 6) FOR J = 10 TO -10 STEP -1
   Origs: 11400:auto
   Dests: 11600:fornext, 11900:fornext
-G(11400) F(J,F) (1 3) 11600 FOR F = 1 TO P
+11600 G(11400) F(J,F) (1 3) FOR F = 1 TO P
   Origs: 11500:fornext
   Dests: 11700:fornext, 11800:fornext
-G(11400) F(J,F) (1 4) 11700 IF R(F) = J THEN 12000
+11700 G(11400) F(J,F) (1 4) IF R(F) = J THEN 12000
   Origs: 11600:fornext
   Dests: 11800:auto, 12000:ifthen
-G(11400) F(J,F) (0 1) 11800 NEXT F
+11800 G(11400) F(J,F) (0 1) NEXT F
   Origs: 11600:fornext, 11700:auto
   Dests: 11900:auto
-G(11400) F(J) (0 1) 11900 NEXT J
+11900 G(11400) F(J) (0 1) NEXT J
   Origs: 11500:fornext, 11800:auto
   Dests: 12000:auto
-G(11400) F(J,F) (0 4) 12000 LET K = F + P
+12000 G(11400) F(J,F) (0 4) LET K = F + P
   Origs: 11700:ifthen, 11900:auto
   Dests: 12100:auto
-G(11400) F(J,F) (0 3) 12100 GOSUB 2300
+12100 G(11400) F(J,F) (0 3) GOSUB 2300
   Origs: 12000:auto
   Dests: 2300:gosub, 12200:auto
-G(11400) F(J,F) (0 1) 12200 RETURN
+12200 G(11400) F(J,F) (0 1) RETURN
   Origs: 12100:auto
   Dests: 
-G(9200) (0 8) 12300 PRINT " I MOVE FROM (" X; Y ") TO (" U; V ")"
+12300 G(9200) (0 8) PRINT " I MOVE FROM (" X; Y ") TO (" U; V ")"
   Origs: 9300:ifthen
   Dests: 12400:auto
-G(9200) (0 3) 12400 LET F = 0
+12400 G(9200) (0 3) LET F = 0
   Origs: 12300:auto
   Dests: 12500:auto
-G(9200) (0 3) 12500 LET P = 0
+12500 G(9200) (0 3) LET P = 0
   Origs: 12400:auto
   Dests: 12600:auto
-G(9200) (0 3) 12600 LET K = 0
+12600 G(9200) (0 3) LET K = 0
   Origs: 12500:auto
   Dests: 12700:auto
-G(9200) (1 8) 12700 IF V <> (4.5 + (3.5 * G)) THEN 13000
+12700 G(9200) (1 8) IF V <> (4.5 + (3.5 * G)) THEN 13000
   Origs: 12600:auto
   Dests: 12800:auto, 13000:ifthen
-G(9200) (0 4) 12800 LET S(U, V) = 2 * G
+12800 G(9200) (0 4) LET S(U, V) = 2 * G
   Origs: 12700:auto
   Dests: 12900:auto
-G(9200) (0 2) 12900 GOTO 13100
+12900 G(9200) (0 2) GOTO 13100
   Origs: 12800:auto
   Dests: 13100:goto
-G(9200) (0 3) 13000 LET S(U, V) = S(X, Y)
+13000 G(9200) (0 3) LET S(U, V) = S(X, Y)
   Origs: 12700:ifthen
   Dests: 13100:auto
-G(9200) (0 3) 13100 LET S(X, Y) = 0
+13100 G(9200) (0 3) LET S(X, Y) = 0
   Origs: 12900:goto, 13000:auto
   Dests: 13200:auto
-G(9200) (1 5) 13200 IF ABS(X - U) <> 2 THEN 13400
+13200 G(9200) (1 5) IF ABS(X - U) <> 2 THEN 13400
   Origs: 13100:auto
   Dests: 13300:auto, 13400:ifthen
-G(9200) (0 3) 13300 LET S((X + U) / 2, (Y + V) / 2) = 0
+13300 G(9200) (0 3) LET S((X + U) / 2, (Y + V) / 2) = 0
   Origs: 13200:auto
   Dests: 13400:auto
-G(9200) (0 2) 13400 PRINT "BOARD";
+13400 G(9200) (0 2) PRINT "BOARD";
   Origs: 13200:ifthen, 13300:auto
   Dests: 13500:auto
-G(9200) (1 2) 13500 INPUT D$
+13500 G(9200) (1 2) INPUT D$
   Origs: 13400:auto
   Dests: 13600:auto
-G(9200) (1 4) 13600 IF D$ <> "YES" THEN 13900
+13600 G(9200) (1 4) IF D$ <> "YES" THEN 13900
   Origs: 13500:auto
   Dests: 13700:auto, 13900:ifthen
-G(9200) (0 2) 13700 GOSUB 14100
+13700 G(9200) (0 2) GOSUB 14100
   Origs: 13600:auto
   Dests: 13800:auto, 14100:gosub
-G(9200) (0 1) 13800 RETURN
+13800 G(9200) (0 1) RETURN
   Origs: 13700:auto
   Dests: 
-G(9200) (0 2) 13900 GOSUB 15800
+13900 G(9200) (0 2) GOSUB 15800
   Origs: 13600:ifthen
   Dests: 14000:auto, 15800:gosub
-G(9200) (0 1) 14000 RETURN
+14000 G(9200) (0 1) RETURN
   Origs: 13900:auto
   Dests: 
-G(14100) (0 2) 14100 PRINT
+14100 G(14100) (0 2) PRINT
   Origs: 13700:gosub
   Dests: 14200:auto
-G(14100) F(Y) (1 5) 14200 FOR Y = 8 TO 1 STEP -1
+14200 G(14100) F(Y) (1 5) FOR Y = 8 TO 1 STEP -1
   Origs: 9000:goto, 14100:auto
   Dests: 14300:fornext, 15700:fornext
-G(14100) F(Y,X) (1 3) 14300 FOR X = 1 TO 8
+14300 G(14100) F(Y,X) (1 3) FOR X = 1 TO 8
   Origs: 14200:fornext
   Dests: 14400:fornext, 15500:fornext
-G(14100) F(Y,X) (0 4) 14400 LET I = 2 * X
+14400 G(14100) F(Y,X) (0 4) LET I = 2 * X
   Origs: 14300:fornext
   Dests: 14500:auto
-G(14100) F(Y,X) (1 4) 14500 IF S(X, Y) <> 0 THEN 14700
+14500 G(14100) F(Y,X) (1 4) IF S(X, Y) <> 0 THEN 14700
   Origs: 14400:auto
   Dests: 14600:auto, 14700:ifthen
-G(14100) F(Y,X) (0 4) 14600 PRINT TAB(I) ".";
+14600 G(14100) F(Y,X) (0 4) PRINT TAB(I) ".";
   Origs: 14500:auto
   Dests: 14700:auto
-G(14100) F(Y,X) (1 4) 14700 IF S(X, Y) <> 1 THEN 14900
+14700 G(14100) F(Y,X) (1 4) IF S(X, Y) <> 1 THEN 14900
   Origs: 14500:ifthen, 14600:auto
   Dests: 14800:auto, 14900:ifthen
-G(14100) F(Y,X) (0 4) 14800 PRINT TAB(I) "O";
+14800 G(14100) F(Y,X) (0 4) PRINT TAB(I) "O";
   Origs: 14700:auto
   Dests: 14900:auto
-G(14100) F(Y,X) (1 6) 14900 IF S(X, Y) <> -1 THEN 15100
+14900 G(14100) F(Y,X) (1 6) IF S(X, Y) <> -1 THEN 15100
   Origs: 14700:ifthen, 14800:auto
   Dests: 15000:auto, 15100:ifthen
-G(14100) F(Y,X) (0 4) 15000 PRINT TAB(I) "X";
+15000 G(14100) F(Y,X) (0 4) PRINT TAB(I) "X";
   Origs: 14900:auto
   Dests: 15100:auto
-G(14100) F(Y,X) (1 6) 15100 IF S(X, Y) <> -2 THEN 15300
+15100 G(14100) F(Y,X) (1 6) IF S(X, Y) <> -2 THEN 15300
   Origs: 14900:ifthen, 15000:auto
   Dests: 15200:auto, 15300:ifthen
-G(14100) F(Y,X) (0 7) 15200 PRINT TAB(I) "X"; TAB(I) "*";
+15200 G(14100) F(Y,X) (0 7) PRINT TAB(I) "X"; TAB(I) "*";
   Origs: 15100:auto
   Dests: 15300:auto
-G(14100) F(Y,X) (1 4) 15300 IF S(X, Y) <> 2 THEN 15500
+15300 G(14100) F(Y,X) (1 4) IF S(X, Y) <> 2 THEN 15500
   Origs: 15100:ifthen, 15200:auto
   Dests: 15400:auto, 15500:ifthen
-G(14100) F(Y,X) (0 7) 15400 PRINT TAB(I) "O"; TAB(I) "*";
+15400 G(14100) F(Y,X) (0 7) PRINT TAB(I) "O"; TAB(I) "*";
   Origs: 15300:auto
   Dests: 15500:auto
-G(14100) F(Y,X) (0 1) 15500 NEXT X
+15500 G(14100) F(Y,X) (0 1) NEXT X
   Origs: 14300:fornext, 15300:ifthen, 15400:auto
   Dests: 15600:auto
-G(14100) F(Y) (0 2) 15600 PRINT
+15600 G(14100) F(Y) (0 2) PRINT
   Origs: 15500:auto
   Dests: 15700:auto
-G(14100) F(Y) (0 1) 15700 NEXT Y
+15700 G(14100) F(Y) (0 1) NEXT Y
   Origs: 14200:fornext, 15600:auto
   Dests: 15800:auto
-G(14100,15800) (0 2) 15800 PRINT
+15800 G(14100,15800) (0 2) PRINT
       WARNING: Inconsistent GOSUB origins
       WARNING: Multiple GOSUB entry points
   Origs: 13900:gosub, 15700:auto
   Dests: 15900:auto
-G(14100,15800) (0 2) 15900 PRINT "FROM";
+15900 G(14100,15800) (0 2) PRINT "FROM";
       WARNING: Multiple GOSUB entry points
   Origs: 15800:auto, 16600:goto
   Dests: 16000:auto
-G(14100,15800) (2 3) 16000 INPUT E, H
+16000 G(14100,15800) (2 3) INPUT E, H
       WARNING: Multiple GOSUB entry points
   Origs: 15900:auto
   Dests: 16100:auto
-G(14100,15800) (0 3) 16100 LET X = E
+16100 G(14100,15800) (0 3) LET X = E
       WARNING: Multiple GOSUB entry points
   Origs: 16000:auto
   Dests: 16200:auto
-G(14100,15800) (0 3) 16200 LET Y = H
+16200 G(14100,15800) (0 3) LET Y = H
       WARNING: Multiple GOSUB entry points
   Origs: 16100:auto
   Dests: 16300:auto
-G(14100,15800) (1 4) 16300 IF S(X, Y) <> 0 THEN 16700
+16300 G(14100,15800) (1 4) IF S(X, Y) <> 0 THEN 16700
       WARNING: Multiple GOSUB entry points
   Origs: 16200:auto
   Dests: 16400:auto, 16700:ifthen
-G(14100,15800) (0 2) 16400 PRINT "THERE IS NO ONE OCCUPING THAT SPACE"
+16400 G(14100,15800) (0 2) PRINT "THERE IS NO ONE OCCUPING THAT SPACE"
       WARNING: Multiple GOSUB entry points
   Origs: 16300:auto
   Dests: 16500:auto
-G(14100,15800) (0 2) 16500 PRINT
+16500 G(14100,15800) (0 2) PRINT
       WARNING: Multiple GOSUB entry points
   Origs: 16400:auto
   Dests: 16600:auto
-G(14100,15800) (0 3) 16600 GOTO 15900
+16600 G(14100,15800) (0 3) GOTO 15900
       WARNING: Multiple GOSUB entry points
   Origs: 16500:auto
   Dests: 15900:goto
-G(14100,15800) (0 2) 16700 PRINT "TO";
+16700 G(14100,15800) (0 2) PRINT "TO";
       WARNING: Multiple GOSUB entry points
   Origs: 16300:ifthen, 17400:goto
   Dests: 16800:auto
-G(14100,15800) (2 3) 16800 INPUT A, B
+16800 G(14100,15800) (2 3) INPUT A, B
       WARNING: Multiple GOSUB entry points
   Origs: 16700:auto
   Dests: 16900:auto
-G(14100,15800) (0 3) 16900 LET X = A
+16900 G(14100,15800) (0 3) LET X = A
       WARNING: Multiple GOSUB entry points
   Origs: 16800:auto
   Dests: 17000:auto
-G(14100,15800) (0 3) 17000 LET Y = B
+17000 G(14100,15800) (0 3) LET Y = B
       WARNING: Multiple GOSUB entry points
   Origs: 16900:auto
   Dests: 17100:auto
-G(14100,15800) (1 4) 17100 IF S(X, Y) = 0 THEN 17500
+17100 G(14100,15800) (1 4) IF S(X, Y) = 0 THEN 17500
       WARNING: Multiple GOSUB entry points
   Origs: 17000:auto
   Dests: 17200:auto, 17600:ifthen
-G(14100,15800) (0 2) 17200 PRINT "THAT SPACE IS ALREADY OCCUPIED"
+17200 G(14100,15800) (0 2) PRINT "THAT SPACE IS ALREADY OCCUPIED"
       WARNING: Multiple GOSUB entry points
   Origs: 17100:auto
   Dests: 17300:auto
-G(14100,15800) (0 2) 17300 PRINT
+17300 G(14100,15800) (0 2) PRINT
       WARNING: Multiple GOSUB entry points
   Origs: 17200:auto
   Dests: 17400:auto
-G(14100,15800) (0 3) 17400 GOTO 16700
+17400 G(14100,15800) (0 3) GOTO 16700
       WARNING: Multiple GOSUB entry points
   Origs: 17300:auto
   Dests: 16700:goto
-(0 1) 17500 REM LET S(A$B)=S(E,H)
+17500 (0 1) REM LET S(A$B)=S(E,H)
   Origs: 
   Dests: 
-G(14100,15800) (0 3) 17600 LET S(A, B) = S(E, H)
+17600 G(14100,15800) (0 3) LET S(A, B) = S(E, H)
       WARNING: Multiple GOSUB entry points
   Origs: 17100:ifthen
   Dests: 17700:auto
-G(14100,15800) (0 3) 17700 LET S(E, H) = 0
+17700 G(14100,15800) (0 3) LET S(E, H) = 0
       WARNING: Multiple GOSUB entry points
   Origs: 17600:auto
   Dests: 17800:auto
-G(14100,15800) (0 6) 17800 LET T = (4.5 - (3.5 * G))
+17800 G(14100,15800) (0 6) LET T = (4.5 - (3.5 * G))
       WARNING: Multiple GOSUB entry points
   Origs: 17700:auto
   Dests: 17900:auto
-G(14100,15800) (1 5) 17900 IF ABS(E - A) <> 2 THEN 18100
+17900 G(14100,15800) (1 5) IF ABS(E - A) <> 2 THEN 18100
       WARNING: Multiple GOSUB entry points
   Origs: 17800:auto
   Dests: 18000:auto, 18100:ifthen
-G(14100,15800) (0 3) 18000 LET S((E + A) / 2, (H + B) / 2) = 0
+18000 G(14100,15800) (0 3) LET S((E + A) / 2, (H + B) / 2) = 0
       WARNING: Multiple GOSUB entry points
   Origs: 17900:auto
   Dests: 18100:auto
-G(14100,15800) (1 4) 18100 IF B <> T THEN 18300
+18100 G(14100,15800) (1 4) IF B <> T THEN 18300
       WARNING: Multiple GOSUB entry points
   Origs: 17900:ifthen, 18000:auto
   Dests: 18200:auto, 18300:ifthen
-G(14100,15800) (0 5) 18200 LET S(A, B) = -2 * G
+18200 G(14100,15800) (0 5) LET S(A, B) = -2 * G
       WARNING: Multiple GOSUB entry points
   Origs: 18100:auto
   Dests: 18300:auto
-G(14100,15800) F(X) (1 3) 18300 FOR X = 8 TO 8
+18300 G(14100,15800) F(X) (1 3) FOR X = 8 TO 8
       WARNING: Multiple GOSUB entry points
   Origs: 18100:ifthen, 18200:auto
   Dests: 18400:fornext, 18700:fornext
-G(14100,15800) F(X,Y) (1 3) 18400 FOR Y = 8 TO 8
+18400 G(14100,15800) F(X,Y) (1 3) FOR Y = 8 TO 8
       WARNING: Multiple GOSUB entry points
   Origs: 18300:fornext
   Dests: 18500:fornext, 18600:fornext
-G(14100,15800) F(X,Y) (0 1) 18500 RETURN
+18500 G(14100,15800) F(X,Y) (0 1) RETURN
       WARNING: Multiple GOSUB entry points
   Origs: 18400:fornext
   Dests: 
-G(14100,15800) F(X) (0 1) 18600 NEXT Y
+18600 G(14100,15800) F(X) (0 1) NEXT Y
       WARNING: Multiple GOSUB entry points
   Origs: 18400:fornext
   Dests: 18700:auto
-G(14100,15800) F(X) (0 1) 18700 NEXT X
+18700 G(14100,15800) F(X) (0 1) NEXT X
       WARNING: Multiple GOSUB entry points
   Origs: 18300:fornext, 18600:auto
   Dests: 18800:auto
-G(11400,14100,15800) (0 2) 18800 PRINT "    VERY GOOD, YOU WIN!"
+18800 G(11400,14100,15800) (0 2) PRINT "    VERY GOOD, YOU WIN!"
       WARNING: Multiple GOSUB entry points
   Origs: 11400:ifthen, 18700:auto
   Dests: 18900:auto
-G(11400,14100,15800) (0 2) 18900 PRINT
+18900 G(11400,14100,15800) (0 2) PRINT
       WARNING: Multiple GOSUB entry points
   Origs: 18800:auto
   Dests: 19000:auto
-G(11400,14100,15800) (0 2) 19000 PRINT
+19000 G(11400,14100,15800) (0 2) PRINT
       WARNING: Multiple GOSUB entry points
   Origs: 18900:auto
   Dests: 19100:auto
-G(11400,14100,15800) (0 2) 19100 PRINT "                       -CHUCK OUT"
+19100 G(11400,14100,15800) (0 2) PRINT "                       -CHUCK OUT"
       WARNING: Multiple GOSUB entry points
   Origs: 19000:auto
   Dests: 19200:auto
-G(11400,14100,15800) (0 1) 19200 END
+19200 G(11400,14100,15800) (0 1) END
       WARNING: Multiple GOSUB entry points
       WARNING: Terminating statement in GOSUB
   Origs: 19100:auto

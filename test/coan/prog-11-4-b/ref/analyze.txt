@@ -19,160 +19,160 @@ Halstead complexity:
  intelligence: 31.460
  time: 53.752
 
-(0 1) 8 REM  INTZER BEGINS HERE  (WE HAVE REMOVED THE REM STATEMENTS)
+8 (0 1) REM  INTZER BEGINS HERE  (WE HAVE REMOVED THE REM STATEMENTS)
   Origs: 
   Dests: 
-(0 1) 9 REM  SEE THE PROGRAM FOR REM STATEMENTS
+9 (0 1) REM  SEE THE PROGRAM FOR REM STATEMENTS
   Origs: 
   Dests: 
-FNP(_) (0 14) 10 DEF FNP(X) = P[4] * X ^ 3 + P[3] * X ^ 2 + P[2] * X + P[1]
+10 FNP(_) (0 14) DEF FNP(X) = P[4] * X ^ 3 + P[3] * X ^ 2 + P[2] * X + P[1]
   Origs: 
   Dests: 
-F(X) (0 2) 20 PRINT
+20 F(X) (0 2) PRINT
   Origs: :start, 370:goto, 400:goto
   Dests: 30:auto
-F(X) (0 2) 30 PRINT
+30 F(X) (0 2) PRINT
   Origs: 20:auto
   Dests: 40:auto
-F(S,X) (1 5) 40 FOR S = 4 TO 1 STEP -1
+40 F(S,X) (1 5) FOR S = 4 TO 1 STEP -1
   Origs: 30:auto
   Dests: 50:fornext, 80:fornext
-F(S,X) (1 2) 50 READ P[S]
+50 F(S,X) (1 2) READ P[S]
   Origs: 40:fornext
   Dests: 60:auto
-F(S,X) (1 4) 60 IF P[S] = 0.0101 THEN 430
+60 F(S,X) (1 4) IF P[S] = 0.0101 THEN 430
   Origs: 50:auto
   Dests: 70:auto, 430:ifthen
-F(S,X) (0 2) 70 PRINT P[S];
+70 F(S,X) (0 2) PRINT P[S];
   Origs: 60:auto
   Dests: 80:auto
-F(S,X) (0 1) 80 NEXT S
+80 F(S,X) (0 1) NEXT S
   Origs: 40:fornext, 70:auto
   Dests: 90:auto
-F(X) (0 2) 90 PRINT "INTEGRAL ZERO:"
+90 F(X) (0 2) PRINT "INTEGRAL ZERO:"
   Origs: 80:auto
   Dests: 100:auto
-F(X) (1 6) 100 FOR X = -P[1] TO P[1] STEP SGN(P[1])
+100 F(X) (1 6) FOR X = -P[1] TO P[1] STEP SGN(P[1])
   Origs: 90:auto
   Dests: 110:fornext, 160:fornext
-F(X) (1 4) 110 IF X = 0 THEN 160
+110 F(X) (1 4) IF X = 0 THEN 160
   Origs: 100:fornext
   Dests: 120:auto, 160:ifthen
-F(X) (1 6) 120 IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) (1 6) IF P[1] / X <> INT(P[1] / X) THEN 160
   Origs: 110:auto
   Dests: 130:auto, 160:ifthen
-F(X) (1 6) 130 IF FNP(X) <> 0 THEN 160
+130 F(X) (1 6) IF FNP(X) <> 0 THEN 160
   Origs: 120:auto
   Dests: 140:auto, 160:ifthen
-F(X) (0 2) 140 PRINT X
+140 F(X) (0 2) PRINT X
   Origs: 130:auto
   Dests: 150:auto
-F(X) (0 2) 150 GOTO 170
+150 F(X) (0 2) GOTO 170
   Origs: 140:auto
   Dests: 170:goto
-F(X) (0 1) 160 NEXT X
+160 F(X) (0 1) NEXT X
   Origs: 100:fornext, 110:ifthen, 120:ifthen, 130:ifthen
   Dests: 170:auto
-(0 1) 164 REM  INTZER ENDS HERE ***  SYNDIV BEGINS HERE
+164 (0 1) REM  INTZER ENDS HERE ***  SYNDIV BEGINS HERE
   Origs: 
   Dests: 
-F(X) (0 3) 170 LET R = X
+170 F(X) (0 3) LET R = X
   Origs: 150:goto, 160:auto
   Dests: 180:auto
-F(X) (0 4) 180 PRINT "SYNTHETIC DIVISION BY   X -"; R; "YIELDS:"
+180 F(X) (0 4) PRINT "SYNTHETIC DIVISION BY   X -"; R; "YIELDS:"
   Origs: 170:auto
   Dests: 190:auto
-F(X) (0 2) 190 PRINT P[4];
+190 F(X) (0 2) PRINT P[4];
   Origs: 180:auto
   Dests: 200:auto
-F(X,X) (1 5) 200 FOR X = 3 TO 1 STEP -1
+200 F(X,X) (1 5) FOR X = 3 TO 1 STEP -1
   Origs: 190:auto
   Dests: 210:fornext, 250:fornext
-F(X,X) (0 6) 210 LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) (0 6) LET P[X] = P[X] + P[X + 1] * R
   Origs: 200:fornext
   Dests: 220:auto
-F(X) (1 4) 220 IF X > 1 THEN 240
+220 F(X) (1 4) IF X > 1 THEN 240
   Origs: 210:auto
   Dests: 230:auto, 240:ifthen
-F(X) (0 2) 230 PRINT "REMAINDER =";
+230 F(X) (0 2) PRINT "REMAINDER =";
   Origs: 220:auto
   Dests: 240:auto
-F(X) (0 2) 240 PRINT P[X];
+240 F(X) (0 2) PRINT P[X];
   Origs: 220:ifthen, 230:auto
   Dests: 250:auto
-F(X) (0 1) 250 NEXT X
+250 F(X) (0 1) NEXT X
   Origs: 200:fornext, 240:auto
   Dests: 260:auto
-(0 1) 252 REM SYNDIV ENDS HERE
+252 (0 1) REM SYNDIV ENDS HERE
   Origs: 
   Dests: 
-(0 1) 258 REM  HERE WE MOVE EACH ENTRY IN THE P LIST
+258 (0 1) REM  HERE WE MOVE EACH ENTRY IN THE P LIST
   Origs: 
   Dests: 
-(0 1) 259 REM   TO THE LOCATION ONE SUBSCRIPT LOWER
+259 (0 1) REM   TO THE LOCATION ONE SUBSCRIPT LOWER
   Origs: 
   Dests: 
-F(X,X) (1 3) 260 FOR X = 1 TO 3
+260 F(X,X) (1 3) FOR X = 1 TO 3
   Origs: 250:auto
   Dests: 270:fornext, 280:fornext
-F(X,X) (0 3) 270 LET P[X] = P[X + 1]
+270 F(X,X) (0 3) LET P[X] = P[X + 1]
   Origs: 260:fornext
   Dests: 280:auto
-F(X) (0 1) 280 NEXT X
+280 F(X) (0 1) NEXT X
   Origs: 260:fornext, 270:auto
   Dests: 290:auto
-F(X) (0 2) 290 PRINT
+290 F(X) (0 2) PRINT
   Origs: 280:auto
   Dests: 300:auto
-(0 1) 298 REM COMP-1 BEGINS HERE
+298 (0 1) REM COMP-1 BEGINS HERE
   Origs: 
   Dests: 
-F(X) (0 8) 300 LET D = P[2] ^ 2 - 4 * P[3] * P[1]
+300 F(X) (0 8) LET D = P[2] ^ 2 - 4 * P[3] * P[1]
   Origs: 290:auto
   Dests: 310:auto
-F(X) (0 4) 310 LET F = 2 * P[3]
+310 F(X) (0 4) LET F = 2 * P[3]
   Origs: 300:auto
   Dests: 320:auto
-F(X) (0 5) 320 LET A = -P[2] / F
+320 F(X) (0 5) LET A = -P[2] / F
   Origs: 310:auto
   Dests: 330:auto
-F(X) (0 5) 330 LET B = SQR(ABS(D)) / F
+330 F(X) (0 5) LET B = SQR(ABS(D)) / F
   Origs: 320:auto
   Dests: 340:auto
-F(X) (1 4) 340 IF D < 0 THEN 380
+340 F(X) (1 4) IF D < 0 THEN 380
   Origs: 330:auto
   Dests: 350:auto, 380:ifthen
-F(X) (0 2) 350 PRINT "REAL ZEROS:"
+350 F(X) (0 2) PRINT "REAL ZEROS:"
   Origs: 340:auto
   Dests: 360:auto
-F(X) (0 6) 360 PRINT A + B; "AND   "; A - B
+360 F(X) (0 6) PRINT A + B; "AND   "; A - B
   Origs: 350:auto
   Dests: 370:auto
-F(X) (0 3) 370 GOTO 20
+370 F(X) (0 3) GOTO 20
   Origs: 360:auto
   Dests: 20:goto
-F(X) (0 2) 380 PRINT "NON-REAL ZEROS:"
+380 F(X) (0 2) PRINT "NON-REAL ZEROS:"
   Origs: 340:ifthen
   Dests: 390:auto
-F(X) (0 11) 390 PRINT "("; A; ","; B; ") AND ("; A; ","; -B; ")"
+390 F(X) (0 11) PRINT "("; A; ","; B; ") AND ("; A; ","; -B; ")"
   Origs: 380:auto
   Dests: 400:auto
-F(X) (0 3) 400 GOTO 20
+400 F(X) (0 3) GOTO 20
   Origs: 390:auto
   Dests: 20:goto
-(0 4) 405 DATA 1, 2, -1, -2
+405 (0 4) DATA 1, 2, -1, -2
   Origs: 
   Dests: 
-(0 7) 410 DATA 1, -1, 0, -48, 1, 0, 0, -1, 1, 0, 0, 1, 1, -1, 1, -1
+410 (0 7) DATA 1, -1, 0, -48, 1, 0, 0, -1, 1, 0, 0, 1, 1, -1, 1, -1
   Origs: 
   Dests: 
-(0 5) 415 DATA 6, -77, -189, -90
+415 (0 5) DATA 6, -77, -189, -90
   Origs: 
   Dests: 
-(0 2) 420 DATA 0.0101
+420 (0 2) DATA 0.0101
   Origs: 
   Dests: 
-F(S,X) (0 1) 430 END
+430 F(S,X) (0 1) END
     WARNING: Terminating statement in FOR/NEXT
   Origs: 60:ifthen
   Dests: :stop

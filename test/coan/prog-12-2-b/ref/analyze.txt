@@ -19,85 +19,85 @@ Halstead complexity:
  intelligence: 39.510
  time: 5.208
 
-(0 3) 20 DIM A[4, 3], B[5, 4]
+20 (0 3) DIM A[4, 3], B[5, 4]
   Origs: :start
   Dests: 25:auto
-(0 2) 25 DIM C[5, 3]
+25 (0 2) DIM C[5, 3]
   Origs: 20:auto
   Dests: 40:auto
-(1 2) 40 MAT READ A
+40 (1 2) MAT READ A
   Origs: 25:auto
   Dests: 140:auto
-(0 2) 60 DATA 6, 3, 2, 5, 3, 2, 4, 3, 2, 3, 2, 1
+60 (0 2) DATA 6, 3, 2, 5, 3, 2, 4, 3, 2, 3, 2, 1
   Origs: 
   Dests: 
-(1 2) 140 MAT READ B
+140 (1 2) MAT READ B
   Origs: 40:auto
   Dests: 240:auto
-(0 2) 160 DATA 1, 3, 4, 2, 1, 5, 3, 6, 2, 4, 2, 5, 1, 6, 3, 2, 3, 1, 0, 2
+160 (0 2) DATA 1, 3, 4, 2, 1, 5, 3, 6, 2, 4, 2, 5, 1, 6, 3, 2, 3, 1, 0, 2
   Origs: 
   Dests: 
-(0 1) 235 REM  WE STEP THROUGH ROWS OF B  THE CARAVANS
+235 (0 1) REM  WE STEP THROUGH ROWS OF B  THE CARAVANS
   Origs: 
   Dests: 
-F(R) (1 3) 240 FOR R = 1 TO 5
+240 F(R) (1 3) FOR R = 1 TO 5
   Origs: 140:auto
   Dests: 260:fornext, 380:fornext
-(0 1) 255 REM WE STEP THROUGH COLUMNS OF MAT A
+255 (0 1) REM WE STEP THROUGH COLUMNS OF MAT A
   Origs: 
   Dests: 
-(0 1) 256 REM   THE TOLL BOOTH IDENTIFICATION
+256 (0 1) REM   THE TOLL BOOTH IDENTIFICATION
   Origs: 
   Dests: 
-F(R,C) (1 3) 260 FOR C = 1 TO 3
+260 F(R,C) (1 3) FOR C = 1 TO 3
   Origs: 240:fornext
   Dests: 280:fornext, 360:fornext
-(0 1) 275 REM INITIALIZE C[R,C] HERE
+275 (0 1) REM INITIALIZE C[R,C] HERE
   Origs: 
   Dests: 
-F(R,C) (0 3) 280 LET C[R, C] = 0
+280 F(R,C) (0 3) LET C[R, C] = 0
   Origs: 260:fornext
   Dests: 300:auto
-(0 1) 295 REM X  STEPS THROUGH THE ROWS OF A AND THE COLUMNS OF B
+295 (0 1) REM X  STEPS THROUGH THE ROWS OF A AND THE COLUMNS OF B
   Origs: 
   Dests: 
-(0 1) 296 REM  THERE WE FIND 'TRUCKS BUSES CARS MOTORCYCLES'
+296 (0 1) REM  THERE WE FIND 'TRUCKS BUSES CARS MOTORCYCLES'
   Origs: 
   Dests: 
-(0 1) 297 REM  IN EACH ARRAY
+297 (0 1) REM  IN EACH ARRAY
   Origs: 
   Dests: 
-F(R,C,X) (1 3) 300 FOR X = 1 TO 4
+300 F(R,C,X) (1 3) FOR X = 1 TO 4
   Origs: 280:auto
   Dests: 320:fornext, 340:fornext
-F(R,C,X) (0 6) 320 LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R,C,X) (0 6) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
   Origs: 300:fornext
   Dests: 340:auto
-(0 1) 335 REM  GO TO THE NEXT COLUMN OF B AND THE NEXT ROW OF A
+335 (0 1) REM  GO TO THE NEXT COLUMN OF B AND THE NEXT ROW OF A
   Origs: 
   Dests: 
-F(R,C,X) (0 1) 340 NEXT X
+340 F(R,C,X) (0 1) NEXT X
   Origs: 300:fornext, 320:auto
   Dests: 360:auto
-(0 1) 355 REM GO TO THE NEXT COLUMN OF  MAT A
+355 (0 1) REM GO TO THE NEXT COLUMN OF  MAT A
   Origs: 
   Dests: 
-F(R,C) (0 1) 360 NEXT C
+360 F(R,C) (0 1) NEXT C
   Origs: 260:fornext, 340:auto
   Dests: 380:auto
-(0 1) 375 REM  GO TO THE NEXT ROW OF MAT B
+375 (0 1) REM  GO TO THE NEXT ROW OF MAT B
   Origs: 
   Dests: 
-F(R) (0 1) 380 NEXT R
+380 F(R) (0 1) NEXT R
   Origs: 240:fornext, 360:auto
   Dests: 500:auto
-(0 4) 500 PRINT "ROAD", "TUNNEL", "BRIDGE"
+500 (0 4) PRINT "ROAD", "TUNNEL", "BRIDGE"
   Origs: 380:auto
   Dests: 520:auto
-(0 2) 520 MAT PRINT C
+520 (0 2) MAT PRINT C
   Origs: 500:auto
   Dests: 999:auto
-(0 1) 999 END
+999 (0 1) END
   Origs: 520:auto
   Dests: :stop
 

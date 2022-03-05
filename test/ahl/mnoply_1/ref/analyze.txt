@@ -22,680 +22,680 @@ Halstead complexity:
  intelligence: 124.047
  time: 1391.999
 
-(0 0) 1 
+1 (0 0) 
   Origs: 
   Dests: 
-(0 0) 2 
+2 (0 0) 
   Origs: 
   Dests: 
-(0 3) 3 M(1), M(2) = 1500%
-(0 3)   I(1), I(2) = 0
-(0 4)   DIM A$(25), B$(25), H%(40)
+3 (0 3) M(1), M(2) = 1500%
+  (0 3) I(1), I(2) = 0
+  (0 4) DIM A$(25), B$(25), H%(40)
   WARNING: Target type (numeric) does not match expression type (integer).
   WARNING: Target type (numeric) does not match expression type (integer).
   Origs: :start
   Dests: 8:auto
-F(I) (1 3) 8 FOR I = 1 TO 39
-F(I) (0 3)   L%(I), H%(I) = 0
-F(I) (0 1)   NEXT I
-F(I) (1 3)   FOR I = 1 TO 8
-F(I) (0 3)   U(I) = 0
-F(I) (0 1)   NEXT I
+8 F(I) (1 3) FOR I = 1 TO 39
+  F(I) (0 3) L%(I), H%(I) = 0
+  F(I) (0 1) NEXT I
+  F(I) (1 3) FOR I = 1 TO 8
+  F(I) (0 3) U(I) = 0
+  F(I) (0 1) NEXT I
   WARNING: Target type (integer) does not match expression type (numeric).
   WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3:auto
   Dests: 15:auto
-(0 2) 15 & M$(1)
-(0 2)    &
-(0 2)    &
-(0 2)    & "**RULES**"
-(0 2)    & M$(2)
-(0 2)    & M$(3)
-(0 2)    & M$(4)
-(0 2)    & M$(5)
+15 (0 2) & M$(1)
+   (0 2) &
+   (0 2) &
+   (0 2) & "**RULES**"
+   (0 2) & M$(2)
+   (0 2) & M$(3)
+   (0 2) & M$(4)
+   (0 2) & M$(5)
   Origs: 8:auto
   Dests: 30:auto
-(1 2) 30 INPUT "WHO IS PLAYER #1"; N$(1)
-(1 2)    INPUT "WHO IS PLAYER #2"; N$(2)
+30 (1 2) INPUT "WHO IS PLAYER #1"; N$(1)
+   (1 2) INPUT "WHO IS PLAYER #2"; N$(2)
   Origs: 15:auto
   Dests: 100:auto
-(0 2) 100 PRINT
-(0 4)     PRINT "**" N$(1) "'S TURN**********"
-(0 3)     F = 0
+100 (0 2) PRINT
+    (0 4) PRINT "**" N$(1) "'S TURN**********"
+    (0 3) F = 0
   Origs: 30:auto, 225:ifthen
   Dests: 102:auto
-(0 3) 102 Z = 1%
-(0 2)     GOSUB 1000
-(0 2)     GOSUB 2000
+102 (0 3) Z = 1%
+    (0 2) GOSUB 1000
+    (0 2) GOSUB 2000
     WARNING: Target type (numeric) does not match expression type (integer).
   Origs: 100:auto, 115:goto
   Dests: 115:auto, 1000:gosub, 2000:gosub
-(1 7) 115 IF D = D1 THEN F = F + 1
-(1 5)     IF F < 3 THEN PRINT M$(9)
-(0 3)     GOTO 102
+115 (1 7) IF D = D1 THEN F = F + 1
+    (1 5) IF F < 3 THEN PRINT M$(9)
+    (0 3) GOTO 102
   Origs: 102:auto
   Dests: 102:goto, 117:auto
-(1 5) 117 IF F = 3 THEN PRINT M$(10)
-(0 3)     I(Z) = 10
-(0 4)     M(Z) = M(Z) - 50%
+117 (1 5) IF F = 3 THEN PRINT M$(10)
+    (0 3) I(Z) = 10
+    (0 4) M(Z) = M(Z) - 50%
     WARNING: Type mismatch numeric - integer
   Origs: 115:auto
   Dests: 200:auto
-(0 2) 200 PRINT
-(0 4)     PRINT "**" N$(2) "'S TURN**********"
-(0 3)     F = 0
+200 (0 2) PRINT
+    (0 4) PRINT "**" N$(2) "'S TURN**********"
+    (0 3) F = 0
   Origs: 117:auto
   Dests: 202:auto
-(0 3) 202 Z = 2%
-(0 2)     GOSUB 1000
-(0 2)     GOSUB 2000
+202 (0 3) Z = 2%
+    (0 2) GOSUB 1000
+    (0 2) GOSUB 2000
     WARNING: Target type (numeric) does not match expression type (integer).
   Origs: 200:auto, 215:goto
   Dests: 215:auto, 1000:gosub, 2000:gosub
-(1 7) 215 IF D = D1 THEN F = F + 1
-(1 5)     IF F < 3 THEN PRINT M$(9)
-(0 3)     GOTO 202
+215 (1 7) IF D = D1 THEN F = F + 1
+    (1 5) IF F < 3 THEN PRINT M$(9)
+    (0 3) GOTO 202
   Origs: 202:auto
   Dests: 202:goto, 217:auto
-(1 5) 217 IF F = 3 THEN PRINT M$(10)
-(0 3)     I(Z) = 10
-(0 4)     M(Z) = M(Z) - 50%
+217 (1 5) IF F = 3 THEN PRINT M$(10)
+    (0 3) I(Z) = 10
+    (0 4) M(Z) = M(Z) - 50%
     WARNING: Type mismatch numeric - integer
   Origs: 215:auto
   Dests: 225:auto
-(0 2) 225 PRINT M$(11);
-(1 2)     INPUT F$
-(1 6)     IF F$ = "QUIT" THEN 30000 ELSE 100
+225 (0 2) PRINT M$(11);
+    (1 2) INPUT F$
+    (1 6) IF F$ = "QUIT" THEN 30000 ELSE 100
   Origs: 217:auto
   Dests: 100:ifthen, 30000:ifthen
-G(1000) (0 2) 1000 PRINT M$(6);
-G(1000) (1 2)      INPUT F$
-G(1000) (0 1)      RANDOMIZE
-G(1000) (0 4)      X = RND(0)
-G(1000) (0 4)      Y = RND(0)
+1000 G(1000) (0 2) PRINT M$(6);
+     G(1000) (1 2) INPUT F$
+     G(1000) (0 1) RANDOMIZE
+     G(1000) (0 4) X = RND(0)
+     G(1000) (0 4) Y = RND(0)
   Origs: 102:gosub, 202:gosub
   Dests: 1002:auto
-G(1000) (1 9) 1002 IF X >= 0 AND X <= 0.16 THEN D = 1
+1002 G(1000) (1 9) IF X >= 0 AND X <= 0.16 THEN D = 1
   Origs: 1000:auto
   Dests: 1003:auto
-G(1000) (1 9) 1003 IF X > 0.16 AND X <= 0.32 THEN D = 2
+1003 G(1000) (1 9) IF X > 0.16 AND X <= 0.32 THEN D = 2
   Origs: 1002:auto
   Dests: 1004:auto
-G(1000) (1 9) 1004 IF X > 0.32 AND X <= 0.48 THEN D = 3
+1004 G(1000) (1 9) IF X > 0.32 AND X <= 0.48 THEN D = 3
   Origs: 1003:auto
   Dests: 1005:auto
-G(1000) (1 9) 1005 IF X > 0.48 AND X <= 0.64 THEN D = 4
+1005 G(1000) (1 9) IF X > 0.48 AND X <= 0.64 THEN D = 4
   Origs: 1004:auto
   Dests: 1006:auto
-G(1000) (1 9) 1006 IF X > 0.64 AND X <= 0.81 THEN D = 5
+1006 G(1000) (1 9) IF X > 0.64 AND X <= 0.81 THEN D = 5
   Origs: 1005:auto
   Dests: 1007:auto
-G(1000) (1 9) 1007 IF X > 0.81 AND X <= 1 THEN D = 6
+1007 G(1000) (1 9) IF X > 0.81 AND X <= 1 THEN D = 6
   Origs: 1006:auto
   Dests: 1009:auto
-G(1000) (1 9) 1009 IF Y >= 0 AND Y <= 0.16 THEN D1 = 1
+1009 G(1000) (1 9) IF Y >= 0 AND Y <= 0.16 THEN D1 = 1
   Origs: 1007:auto
   Dests: 1010:auto
-G(1000) (1 9) 1010 IF Y > 0.16 AND Y <= 0.32 THEN D1 = 2
+1010 G(1000) (1 9) IF Y > 0.16 AND Y <= 0.32 THEN D1 = 2
   Origs: 1009:auto
   Dests: 1011:auto
-G(1000) (1 9) 1011 IF Y > 0.32 AND Y <= 0.48 THEN D1 = 3
+1011 G(1000) (1 9) IF Y > 0.32 AND Y <= 0.48 THEN D1 = 3
   Origs: 1010:auto
   Dests: 1012:auto
-G(1000) (1 9) 1012 IF Y > 0.48 AND Y <= 0.64 THEN D1 = 4
+1012 G(1000) (1 9) IF Y > 0.48 AND Y <= 0.64 THEN D1 = 4
   Origs: 1011:auto
   Dests: 1013:auto
-G(1000) (1 9) 1013 IF Y > 0.64 AND Y <= 0.81 THEN D1 = 5
+1013 G(1000) (1 9) IF Y > 0.64 AND Y <= 0.81 THEN D1 = 5
   Origs: 1012:auto
   Dests: 1014:auto
-G(1000) (1 9) 1014 IF Y > 0.81 AND Y <= 1 THEN D1 = 6
+1014 G(1000) (1 9) IF Y > 0.81 AND Y <= 1 THEN D1 = 6
   Origs: 1013:auto
   Dests: 1015:auto
-G(1000) (0 5) 1015 PRINT "YOU ROLLED A" D "AND A" D1
-G(1000) (0 6)      I(Z) = I(Z) + (D + D1)
+1015 G(1000) (0 5) PRINT "YOU ROLLED A" D "AND A" D1
+     G(1000) (0 6) I(Z) = I(Z) + (D + D1)
   Origs: 1014:auto
   Dests: 1016:auto
-G(1000) (1 7) 1016 IF I(Z) > 40% THEN I(Z) = I(Z) - 40%
-G(1000) (0 4)      M(Z) = M(Z) + 200%
+1016 G(1000) (1 7) IF I(Z) > 40% THEN I(Z) = I(Z) - 40%
+     G(1000) (0 4) M(Z) = M(Z) + 200%
      WARNING: Type mismatch numeric - integer
      WARNING: Type mismatch numeric + integer
   Origs: 1015:auto
   Dests: 1017:auto
-G(1000) (0 1) 1017 RETURN
+1017 G(1000) (0 1) RETURN
   Origs: 1016:auto
   Dests: 
-G(2000) (0 3) 2000 PRINT "YOU ARE ON "; G$(I(Z))
+2000 G(2000) (0 3) PRINT "YOU ARE ON "; G$(I(Z))
   Origs: 102:gosub, 202:gosub, 4404:gosub, 4406:gosub, 4412:gosub, 4418:gosub, 4420:gosub
   Dests: 2002:auto
-G(2000) (1 10) 2002 IF I(Z) = 2 OR I(Z) = 17 OR I(Z) = 33 THEN 4100
+2002 G(2000) (1 10) IF I(Z) = 2 OR I(Z) = 17 OR I(Z) = 33 THEN 4100
   Origs: 2000:auto
   Dests: 2004:auto, 4100:ifthen
-G(2000) (1 7) 2004 IF I(Z) = 4 THEN M(Z) = M(Z) - 200%
-G(2000) (0 1)      RETURN
+2004 G(2000) (1 7) IF I(Z) = 4 THEN M(Z) = M(Z) - 200%
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric - integer
   Origs: 2002:auto
   Dests: 2006:auto
-G(2000) (1 10) 2006 IF I(Z) = 7 OR I(Z) = 22 OR I(Z) = 36 THEN 4400
+2006 G(2000) (1 10) IF I(Z) = 7 OR I(Z) = 22 OR I(Z) = 36 THEN 4400
   Origs: 2004:auto
   Dests: 2008:auto, 4400:ifthen
-G(2000) (1 7) 2008 IF I(Z) = 10 OR I(Z) = 20 THEN RETURN
+2008 G(2000) (1 7) IF I(Z) = 10 OR I(Z) = 20 THEN RETURN
   Origs: 2006:auto
   Dests: 2010:auto
-G(2000) (1 7) 2010 IF I(Z) = 30 THEN M(Z) = M(Z) - 50%
-G(2000) (0 3)      I(Z) = 10
-G(2000) (0 1)      RETURN
+2010 G(2000) (1 7) IF I(Z) = 30 THEN M(Z) = M(Z) - 50%
+     G(2000) (0 3) I(Z) = 10
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric - integer
   Origs: 2008:auto
   Dests: 2011:auto
-G(2000) (1 7) 2011 IF I(Z) = 38 THEN M(Z) = M(Z) - 75%
-G(2000) (0 1)      RETURN
+2011 G(2000) (1 7) IF I(Z) = 38 THEN M(Z) = M(Z) - 75%
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric - integer
   Origs: 2010:auto
   Dests: 2012:auto
-G(2000) (1 7) 2012 IF I(Z) = 40 THEN M(Z) = M(Z) + 200%
-G(2000) (0 3)      I(Z) = 1
-G(2000) (0 1)      RETURN
+2012 G(2000) (1 7) IF I(Z) = 40 THEN M(Z) = M(Z) + 200%
+     G(2000) (0 3) I(Z) = 1
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric + integer
   Origs: 2011:auto
   Dests: 2018:auto
-G(2000) (1 5) 2018 IF L%(I(Z)) = Z THEN PRINT M$(12)
-G(2000) (0 2)      GOTO 3100
+2018 G(2000) (1 5) IF L%(I(Z)) = Z THEN PRINT M$(12)
+     G(2000) (0 2) GOTO 3100
   Origs: 2012:auto
   Dests: 2019:auto, 3100:goto
-G(2000) (1 10) 2019 IF (H%(I(Z)) = 0 AND L%(I(Z)) > 0 AND L%(I(Z)) <> Z) THEN 2128
+2019 G(2000) (1 10) IF (H%(I(Z)) = 0 AND L%(I(Z)) > 0 AND L%(I(Z)) <> Z) THEN 2128
   Origs: 2018:auto
   Dests: 2020:auto, 2128:ifthen
-G(2000) (1 10) 2020 IF (H%(I(Z)) > 0 AND L%(I(Z)) > 0 AND L%(I(Z)) <> Z) THEN 2100
+2020 G(2000) (1 10) IF (H%(I(Z)) > 0 AND L%(I(Z)) > 0 AND L%(I(Z)) <> Z) THEN 2100
   Origs: 2019:auto
   Dests: 2022:auto, 2100:ifthen
-G(2000) (0 4) 2022 PRINT M$(7); P(I(Z)); "DOLLARS"
+2022 G(2000) (0 4) PRINT M$(7); P(I(Z)); "DOLLARS"
   Origs: 2020:auto
   Dests: 2024:auto
-G(2000) (0 2) 2024 PRINT M$(8)
-G(2000) (1 2)      INPUT F$
-G(2000) (1 4)      IF F$ <> "BUY" THEN 3100
+2024 G(2000) (0 2) PRINT M$(8)
+     G(2000) (1 2) INPUT F$
+     G(2000) (1 4) IF F$ <> "BUY" THEN 3100
   Origs: 2022:auto
   Dests: 2026:auto, 3100:ifthen
-G(2000) (0 4) 2026 M(Z) = M(Z) - P(I(Z))
-G(2000) (0 4)      PRINT "YOU NOW HAVE" M(Z) "DOLLARS"
+2026 G(2000) (0 4) M(Z) = M(Z) - P(I(Z))
+     G(2000) (0 4) PRINT "YOU NOW HAVE" M(Z) "DOLLARS"
   Origs: 2024:auto
   Dests: 2027:auto
-G(2000) (0 3) 2027 L%(I(Z)) = Z
-G(2000) (0 2)      GOTO 3100
+2027 G(2000) (0 3) L%(I(Z)) = Z
+     G(2000) (0 2) GOTO 3100
      WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 2026:auto
   Dests: 3100:goto
-G(2000) (1 9) 2100 IF Z = 1 THEN M(Z) = M(Z) - FNR
-G(2000) (0 6)      M(2) = M(2) + FNR
+2100 G(2000) (1 9) IF Z = 1 THEN M(Z) = M(Z) - FNR
+     G(2000) (0 6) M(2) = M(2) + FNR
   Origs: 2020:ifthen
   Dests: 2101:auto
-G(2000) (0 6) 2101 PRINT "YOU OWE" FNR "DOLLARS RENT"
-G(2000) (0 1)      RETURN
+2101 G(2000) (0 6) PRINT "YOU OWE" FNR "DOLLARS RENT"
+     G(2000) (0 1) RETURN
   Origs: 2100:auto
   Dests: 
-(1 9) 2102 IF Z = 2 THEN M(Z) = M(Z) - FNR
-(0 6)      M(1) = M(1) + FNR
+2102 (1 9) IF Z = 2 THEN M(Z) = M(Z) - FNR
+     (0 6) M(1) = M(1) + FNR
   Origs: 
   Dests: 2103:auto
-(0 6) 2103 PRINT "YOU OWE" FNR "DOLLARS RENT"
-(0 1)      RETURN
+2103 (0 6) PRINT "YOU OWE" FNR "DOLLARS RENT"
+     (0 1) RETURN
   Origs: 2102:auto
   Dests: 
-(1 7) 2125 IF Z = 1 THEN M(Z) = M(Z) - R(I(Z))
-(0 4)      M(2) = M(2) + R(I(Z))
+2125 (1 7) IF Z = 1 THEN M(Z) = M(Z) - R(I(Z))
+     (0 4) M(2) = M(2) + R(I(Z))
   Origs: 
   Dests: 2126:auto
-(0 4) 2126 PRINT "YOU OWE" R(I(Z)) "DOLLARS RENT"
-(0 1)      RETURN
+2126 (0 4) PRINT "YOU OWE" R(I(Z)) "DOLLARS RENT"
+     (0 1) RETURN
   Origs: 2125:auto
   Dests: 
-(1 7) 2127 IF Z = 2 THEN M(Z) = M(Z) - R(I(Z))
-(0 4)      M(1) = M(1) + R(I(Z))
+2127 (1 7) IF Z = 2 THEN M(Z) = M(Z) - R(I(Z))
+     (0 4) M(1) = M(1) + R(I(Z))
   Origs: 
   Dests: 2128:auto
-G(2000) (0 4) 2128 PRINT "YOU OWE" R(I(Z)) "DOLLARS RENT"
-G(2000) (0 1)      RETURN
+2128 G(2000) (0 4) PRINT "YOU OWE" R(I(Z)) "DOLLARS RENT"
+     G(2000) (0 1) RETURN
   Origs: 2019:ifthen, 2127:auto
   Dests: 
-G(2000) (0 2) 3100 PRINT M$(13)
-G(2000) (0 2)      PRINT M$(14)
-G(2000) (1 2)      INPUT F$
-G(2000) (1 5)      IF F$ = "SELL" THEN GOSUB 3150
+3100 G(2000) (0 2) PRINT M$(13)
+     G(2000) (0 2) PRINT M$(14)
+     G(2000) (1 2) INPUT F$
+     G(2000) (1 5) IF F$ = "SELL" THEN GOSUB 3150
   Origs: 2018:goto, 2024:ifthen, 2027:goto
   Dests: 3105:auto, 3150:gosub
-G(2000) (0 2) 3105 PRINT M$(19)
-G(2000) (1 2)      INPUT H$
-G(2000) (1 5)      IF H$ = "HOUSE" THEN 3200 ELSE RETURN
+3105 G(2000) (0 2) PRINT M$(19)
+     G(2000) (1 2) INPUT H$
+     G(2000) (1 5) IF H$ = "HOUSE" THEN 3200 ELSE RETURN
   Origs: 3100:auto
   Dests: 3150:auto, 3200:ifthen
-G(2000) (0 2) 3150 PRINT M$(15)
-G(2000) (1 2)      INPUT F$
-G(2000) (1 5)      IF F$ = "LIST" THEN GOSUB 3170
+3150 G(2000) (0 2) PRINT M$(15)
+     G(2000) (1 2) INPUT F$
+     G(2000) (1 5) IF F$ = "LIST" THEN GOSUB 3170
      WARNING: Inconsistent GOSUB origins
   Origs: 3100:gosub, 3105:auto
   Dests: 3152:auto, 3170:gosub
-G(2000) F(I) (0 2) 3152 PRINT M$(17)
-G(2000) F(I) (1 2)      INPUT V$
-G(2000) F(I) (1 2)      INPUT "HOW MUCH DO YOU WANT FOR IT"; V
+3152 G(2000) F(I) (0 2) PRINT M$(17)
+     G(2000) F(I) (1 2) INPUT V$
+     G(2000) F(I) (1 2) INPUT "HOW MUCH DO YOU WANT FOR IT"; V
   Origs: 3150:auto, 3165:ifthen
   Dests: 3154:auto
-G(2000) F(I) (1 3) 3154 FOR I = 1 TO 39
+3154 G(2000) F(I) (1 3) FOR I = 1 TO 39
   Origs: 3152:auto
   Dests: 3156:fornext, 3162:fornext
-G(2000) F(I) (2 8) 3156 IF V$ = G$(I) THEN IF L%(I) = 0 THEN PRINT M$(16)
-G(2000) F(I) (0 1)      RETURN
+3156 G(2000) F(I) (2 8) IF V$ = G$(I) THEN IF L%(I) = 0 THEN PRINT M$(16)
+     G(2000) F(I) (0 1) RETURN
   Origs: 3154:fornext
   Dests: 3158:auto
-G(2000) F(I) (2 10) 3158 IF V$ = G$(I) THEN IF L%(I) = 1 THEN M(1) = M(1) + V
-G(2000) F(I) (0 4)      M(2) = M(2) - V
-G(2000) F(I) (0 3)      L%(I) = 2
-G(2000) F(I) (0 2)      GOTO 3165
+3158 G(2000) F(I) (2 10) IF V$ = G$(I) THEN IF L%(I) = 1 THEN M(1) = M(1) + V
+     G(2000) F(I) (0 4) M(2) = M(2) - V
+     G(2000) F(I) (0 3) L%(I) = 2
+     G(2000) F(I) (0 2) GOTO 3165
      WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3156:auto
   Dests: 3160:auto, 3165:goto
-G(2000) F(I) (2 10) 3160 IF V$ = G$(I) THEN IF L%(I) = 2 THEN M(2) = M(2) + V
-G(2000) F(I) (0 4)      M(1) = M(1) - V
-G(2000) F(I) (0 3)      L%(I) = 1
-G(2000) F(I) (0 2)      GOTO 3165
+3160 G(2000) F(I) (2 10) IF V$ = G$(I) THEN IF L%(I) = 2 THEN M(2) = M(2) + V
+     G(2000) F(I) (0 4) M(1) = M(1) - V
+     G(2000) F(I) (0 3) L%(I) = 1
+     G(2000) F(I) (0 2) GOTO 3165
      WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3158:auto
   Dests: 3162:auto, 3165:goto
-G(2000) F(I) (0 1) 3162 NEXT I
+3162 G(2000) F(I) (0 1) NEXT I
   Origs: 3154:fornext, 3160:auto
   Dests: 3165:auto
-G(2000) F(I) (0 2) 3165 PRINT M$(18);
-G(2000) F(I) (1 2)      INPUT F$
-G(2000) F(I) (1 6)      IF F$ = "YES" THEN 3152 ELSE RETURN
+3165 G(2000) F(I) (0 2) PRINT M$(18);
+     G(2000) F(I) (1 2) INPUT F$
+     G(2000) F(I) (1 6) IF F$ = "YES" THEN 3152 ELSE RETURN
   Origs: 3158:goto, 3160:goto, 3162:auto
   Dests: 3152:ifthen, 3170:auto
-G(2000) F(I) (0 3) 3170 C, D = 0
-G(2000) F(I,I) (1 3)      FOR I = 1 TO 39
+3170 G(2000) F(I) (0 3) C, D = 0
+     G(2000) F(I,I) (1 3) FOR I = 1 TO 39
      WARNING: Inconsistent GOSUB origins
   Origs: 3150:gosub, 3165:auto
   Dests: 3172:fornext, 3175:fornext
-G(2000) F(I,I) (1 7) 3172 IF L%(I) = 1 THEN C = C + 1
-G(2000) F(I) (0 3)      A$(C) = G$(I)
+3172 G(2000) F(I,I) (1 7) IF L%(I) = 1 THEN C = C + 1
+     G(2000) F(I) (0 3) A$(C) = G$(I)
   Origs: 3170:fornext
   Dests: 3174:auto
-G(2000) F(I) (1 7) 3174 IF L%(I) = 2 THEN D = D + 1
-G(2000) F(I) (0 3)      B$(D) = G$(I)
+3174 G(2000) F(I) (1 7) IF L%(I) = 2 THEN D = D + 1
+     G(2000) F(I) (0 3) B$(D) = G$(I)
   Origs: 3172:auto
   Dests: 3175:auto
-G(2000) F(I) (0 1) 3175 NEXT I
+3175 G(2000) F(I) (0 1) NEXT I
   Origs: 3170:fornext, 3174:auto
   Dests: 3176:auto
-G(2000) F(I) (0 3) 3176 PRINT N$(1) "'S PROPERTY"
-G(2000) F(I,I) (1 3)      FOR I = 1 TO C
-G(2000) F(I,I) (0 2)      PRINT A$(I)
-G(2000) F(I) (0 1)      NEXT I
+3176 G(2000) F(I) (0 3) PRINT N$(1) "'S PROPERTY"
+     G(2000) F(I,I) (1 3) FOR I = 1 TO C
+     G(2000) F(I,I) (0 2) PRINT A$(I)
+     G(2000) F(I) (0 1) NEXT I
   Origs: 3175:auto
   Dests: 3178:auto
-G(2000) F(I) (0 3) 3178 PRINT N$(2) "'S PROPERTY"
-G(2000) F(I,I) (1 3)      FOR I = 1 TO D
-G(2000) F(I,I) (0 2)      PRINT B$(I)
-G(2000) F(I) (0 1)      NEXT I
-G(2000) F(I) (0 1)      RETURN
+3178 G(2000) F(I) (0 3) PRINT N$(2) "'S PROPERTY"
+     G(2000) F(I,I) (1 3) FOR I = 1 TO D
+     G(2000) F(I,I) (0 2) PRINT B$(I)
+     G(2000) F(I) (0 1) NEXT I
+     G(2000) F(I) (0 1) RETURN
   Origs: 3176:auto
   Dests: 
-G(2000) (1 8) 3200 IF L%(1) = Z AND L%(3) = Z THEN & "HOW MANY HOUSES AT $50 EACH DO YOU WANT ON"
-G(2000) (0 4)      PRINT G$(1) " " G$(3);
-G(2000) (1 2)      INPUT U
-G(2000) (0 2)      GOSUB 3250
+3200 G(2000) (1 8) IF L%(1) = Z AND L%(3) = Z THEN & "HOW MANY HOUSES AT $50 EACH DO YOU WANT ON"
+     G(2000) (0 4) PRINT G$(1) " " G$(3);
+     G(2000) (1 2) INPUT U
+     G(2000) (0 2) GOSUB 3250
   Origs: 3105:ifthen
   Dests: 3202:auto, 3250:gosub
-G(2000) (1 11) 3202 IF L%(6) = Z AND L%(8) = Z AND L%(9) = Z THEN PRINT "HOW MANY HOUSES AT $50 EACH DO YOU WANT ON"
-G(2000) (0 6)      PRINT G$(6) " " G$(8) " " G$(9);
-G(2000) (1 2)      INPUT U
-G(2000) (0 2)      GOSUB 3252
+3202 G(2000) (1 11) IF L%(6) = Z AND L%(8) = Z AND L%(9) = Z THEN PRINT "HOW MANY HOUSES AT $50 EACH DO YOU WANT ON"
+     G(2000) (0 6) PRINT G$(6) " " G$(8) " " G$(9);
+     G(2000) (1 2) INPUT U
+     G(2000) (0 2) GOSUB 3252
   Origs: 3200:auto
   Dests: 3204:auto, 3252:gosub
-G(2000) (1 11) 3204 IF L%(11) = Z AND L%(13) = Z AND L%(14) = Z THEN PRINT "HOW MANY HOUSES AT $100 EACH DO YOOU WANT ON"
-G(2000) (0 6)      PRINT G$(11) " " G$(13) " " G$(14);
-G(2000) (1 2)      INPUT U
-G(2000) (0 2)      GOSUB 3254
+3204 G(2000) (1 11) IF L%(11) = Z AND L%(13) = Z AND L%(14) = Z THEN PRINT "HOW MANY HOUSES AT $100 EACH DO YOOU WANT ON"
+     G(2000) (0 6) PRINT G$(11) " " G$(13) " " G$(14);
+     G(2000) (1 2) INPUT U
+     G(2000) (0 2) GOSUB 3254
   Origs: 3202:auto
   Dests: 3206:auto, 3254:gosub
-G(2000) (1 11) 3206 IF L%(16) = Z AND L%(18) = Z AND L%(19) = Z THEN PRINT "HOW MANY HOUSES AT $100 EACH DO YOU WANT ON"
-G(2000) (0 6)      PRINT G$(16) " " G$(18) " " G$(19);
-G(2000) (1 2)      INPUT U
-G(2000) (0 2)      GOSUB 3256
+3206 G(2000) (1 11) IF L%(16) = Z AND L%(18) = Z AND L%(19) = Z THEN PRINT "HOW MANY HOUSES AT $100 EACH DO YOU WANT ON"
+     G(2000) (0 6) PRINT G$(16) " " G$(18) " " G$(19);
+     G(2000) (1 2) INPUT U
+     G(2000) (0 2) GOSUB 3256
   Origs: 3204:auto
   Dests: 3208:auto, 3256:gosub
-G(2000) (1 11) 3208 IF L%(21) = Z AND L%(23) = Z AND L%(24) = Z THEN PRINT "HOW MANY HOUSES AT $150 EACH DO YOU WANT ON"
-G(2000) (0 6)      PRINT G$(21) " " G$(23) " " G$(24);
-G(2000) (1 2)      INPUT U
-G(2000) (0 2)      GOSUB 3258
+3208 G(2000) (1 11) IF L%(21) = Z AND L%(23) = Z AND L%(24) = Z THEN PRINT "HOW MANY HOUSES AT $150 EACH DO YOU WANT ON"
+     G(2000) (0 6) PRINT G$(21) " " G$(23) " " G$(24);
+     G(2000) (1 2) INPUT U
+     G(2000) (0 2) GOSUB 3258
   Origs: 3206:auto
   Dests: 3210:auto, 3258:gosub
-G(2000) (1 11) 3210 IF L%(26) = Z AND L%(27) = Z AND L%(29) = Z THEN PRINT "HOW MANY HOUSES AT $150 EACH DO YOU WANT ON"
-G(2000) (0 6)      PRINT G$(26) " " G$(27) " " G$(29);
-G(2000) (1 2)      INPUT U
-G(2000) (0 2)      GOSUB 3260
+3210 G(2000) (1 11) IF L%(26) = Z AND L%(27) = Z AND L%(29) = Z THEN PRINT "HOW MANY HOUSES AT $150 EACH DO YOU WANT ON"
+     G(2000) (0 6) PRINT G$(26) " " G$(27) " " G$(29);
+     G(2000) (1 2) INPUT U
+     G(2000) (0 2) GOSUB 3260
   Origs: 3208:auto
   Dests: 3212:auto, 3260:gosub
-G(2000) (1 11) 3212 IF L%(31) = Z AND L%(32) = Z AND L%(34) = Z THEN PRINT "HOW MANY HOUSES AT $200 EACH DO YOU WANT ON"
-G(2000) (0 6)      PRINT G$(31) " " G$(32) " " G$(34);
-G(2000) (1 2)      INPUT U
-G(2000) (0 2)      GOSUB 3262
+3212 G(2000) (1 11) IF L%(31) = Z AND L%(32) = Z AND L%(34) = Z THEN PRINT "HOW MANY HOUSES AT $200 EACH DO YOU WANT ON"
+     G(2000) (0 6) PRINT G$(31) " " G$(32) " " G$(34);
+     G(2000) (1 2) INPUT U
+     G(2000) (0 2) GOSUB 3262
   Origs: 3210:auto
   Dests: 3214:auto, 3262:gosub
-G(2000) (1 8) 3214 IF L%(37) = Z AND L%(39) = Z THEN PRINT "HOW MANY HOUSES AT $200 EACH DO YOU WANT ON"
-G(2000) (0 4)      PRINT G$(37) " " G$(39)
-G(2000) (1 2)      INPUT U
-G(2000) (0 2)      GOSUB 3264
+3214 G(2000) (1 8) IF L%(37) = Z AND L%(39) = Z THEN PRINT "HOW MANY HOUSES AT $200 EACH DO YOU WANT ON"
+     G(2000) (0 4) PRINT G$(37) " " G$(39)
+     G(2000) (1 2) INPUT U
+     G(2000) (0 2) GOSUB 3264
   Origs: 3212:auto
   Dests: 3220:auto, 3264:gosub
-G(2000) (0 1) 3220 RETURN
+3220 G(2000) (0 1) RETURN
   Origs: 3214:auto
   Dests: 
-G(3250) (0 4) 3250 U(1) = U(1) + U
-G(3250) (0 6)      M(Z) = M(Z) - (U * 100%)
-G(3250) (1 5)      IF M(Z) = 0 THEN PRINT M$(20)
-G(3250) (0 6)      M(Z) = M(Z) + (U * 100%)
-G(3250) (0 3)      U(1) = U
-G(3250) (0 1)      RETURN
+3250 G(3250) (0 4) U(1) = U(1) + U
+     G(3250) (0 6) M(Z) = M(Z) - (U * 100%)
+     G(3250) (1 5) IF M(Z) = 0 THEN PRINT M$(20)
+     G(3250) (0 6) M(Z) = M(Z) + (U * 100%)
+     G(3250) (0 3) U(1) = U
+     G(3250) (0 1) RETURN
      WARNING: Type mismatch numeric * integer
      WARNING: Type mismatch numeric * integer
   Origs: 3200:gosub
   Dests: 3251:auto
-G(3250) (0 3) 3251 H%(1), H%(3) = U(1)
-G(3250) (0 1)      RETURN
+3251 G(3250) (0 3) H%(1), H%(3) = U(1)
+     G(3250) (0 1) RETURN
      WARNING: Target type (integer) does not match expression type (numeric).
      WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3250:auto
   Dests: 
-G(3252) (0 4) 3252 U(2) = U(2) + U
-G(3252) (0 6)      M(Z) = M(Z) - (U * 150%)
-G(3252) (1 5)      IF M(Z) < 0 THEN PRINT M$(20)
-G(3252) (0 6)      M(Z) = M(Z) + (U * 150%)
-G(3252) (0 4)      U(2) = U(2) - U
-G(3252) (0 1)      RETURN
+3252 G(3252) (0 4) U(2) = U(2) + U
+     G(3252) (0 6) M(Z) = M(Z) - (U * 150%)
+     G(3252) (1 5) IF M(Z) < 0 THEN PRINT M$(20)
+     G(3252) (0 6) M(Z) = M(Z) + (U * 150%)
+     G(3252) (0 4) U(2) = U(2) - U
+     G(3252) (0 1) RETURN
      WARNING: Type mismatch numeric * integer
      WARNING: Type mismatch numeric * integer
   Origs: 3202:gosub
   Dests: 3253:auto
-G(3252) (0 3) 3253 H%(6), H%(8), H%(9) = U(2)
-G(3252) (0 1)      RETURN
+3253 G(3252) (0 3) H%(6), H%(8), H%(9) = U(2)
+     G(3252) (0 1) RETURN
      WARNING: Target type (integer) does not match expression type (numeric).
      WARNING: Target type (integer) does not match expression type (numeric).
      WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3252:auto
   Dests: 
-G(3254) (0 4) 3254 U(3) = U(3) + U
-G(3254) (0 6)      M(Z) = M(Z) - (U * 150%)
-G(3254) (1 5)      IF M(Z) < 0 THEN PRINT M$(20)
-G(3254) (0 6)      M(Z) = M(Z) + (U * 150%)
-G(3254) (0 4)      U(3) = U(3) - U
-G(3254) (0 1)      RETURN
+3254 G(3254) (0 4) U(3) = U(3) + U
+     G(3254) (0 6) M(Z) = M(Z) - (U * 150%)
+     G(3254) (1 5) IF M(Z) < 0 THEN PRINT M$(20)
+     G(3254) (0 6) M(Z) = M(Z) + (U * 150%)
+     G(3254) (0 4) U(3) = U(3) - U
+     G(3254) (0 1) RETURN
      WARNING: Type mismatch numeric * integer
      WARNING: Type mismatch numeric * integer
   Origs: 3204:gosub
   Dests: 3255:auto
-G(3254) (0 3) 3255 H%(11), H%(13), H%(14) = U(3)
-G(3254) (0 1)      RETURN
+3255 G(3254) (0 3) H%(11), H%(13), H%(14) = U(3)
+     G(3254) (0 1) RETURN
      WARNING: Target type (integer) does not match expression type (numeric).
      WARNING: Target type (integer) does not match expression type (numeric).
      WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3254:auto
   Dests: 
-G(3256) (0 4) 3256 U(4) = U(4) + U
-G(3256) (0 6)      M(Z) = M(Z) - (U * 300%)
-G(3256) (1 5)      IF M(Z) < 0 THEN PRINT M$(20)
-G(3256) (0 6)      M(Z) = M(Z) + (U * 300%)
-G(3256) (0 4)      U(4) = U(4) - U
-G(3256) (0 1)      RETURN
+3256 G(3256) (0 4) U(4) = U(4) + U
+     G(3256) (0 6) M(Z) = M(Z) - (U * 300%)
+     G(3256) (1 5) IF M(Z) < 0 THEN PRINT M$(20)
+     G(3256) (0 6) M(Z) = M(Z) + (U * 300%)
+     G(3256) (0 4) U(4) = U(4) - U
+     G(3256) (0 1) RETURN
      WARNING: Type mismatch numeric * integer
      WARNING: Type mismatch numeric * integer
   Origs: 3206:gosub
   Dests: 3257:auto
-G(3256) (0 3) 3257 H%(16), H%(18), H%(19) = U(4)
-G(3256) (0 1)      RETURN
+3257 G(3256) (0 3) H%(16), H%(18), H%(19) = U(4)
+     G(3256) (0 1) RETURN
      WARNING: Target type (integer) does not match expression type (numeric).
      WARNING: Target type (integer) does not match expression type (numeric).
      WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3256:auto
   Dests: 
-G(3258) (0 4) 3258 U(6) = U(5) + U
-G(3258) (0 6)      M(Z) = M(Z) - (U * 450%)
-G(3258) (1 5)      IF M(Z) < 0 THEN PRINT M$(20)
-G(3258) (0 6)      M(Z) = M(Z) + (U * 450%)
-G(3258) (0 4)      U(5) = U(5) - U
-G(3258) (0 1)      RETURN
+3258 G(3258) (0 4) U(6) = U(5) + U
+     G(3258) (0 6) M(Z) = M(Z) - (U * 450%)
+     G(3258) (1 5) IF M(Z) < 0 THEN PRINT M$(20)
+     G(3258) (0 6) M(Z) = M(Z) + (U * 450%)
+     G(3258) (0 4) U(5) = U(5) - U
+     G(3258) (0 1) RETURN
      WARNING: Type mismatch numeric * integer
      WARNING: Type mismatch numeric * integer
   Origs: 3208:gosub
   Dests: 3259:auto
-G(3258) (0 3) 3259 H%(21), H%(23), H%(24) = U(5)
-G(3258) (0 1)      RETURN
+3259 G(3258) (0 3) H%(21), H%(23), H%(24) = U(5)
+     G(3258) (0 1) RETURN
      WARNING: Target type (integer) does not match expression type (numeric).
      WARNING: Target type (integer) does not match expression type (numeric).
      WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3258:auto
   Dests: 
-G(3260) (0 4) 3260 U(6) = U(6) + U
-G(3260) (0 6)      M(Z) = M(Z) - (U * 450%)
-G(3260) (1 5)      IF M(Z) < 0 THEN PRINT M$(20)
-G(3260) (0 6)      M(Z) = M(Z) + (U * 450%)
-G(3260) (0 4)      U(6) = U(6) - U
-G(3260) (0 1)      RETURN
+3260 G(3260) (0 4) U(6) = U(6) + U
+     G(3260) (0 6) M(Z) = M(Z) - (U * 450%)
+     G(3260) (1 5) IF M(Z) < 0 THEN PRINT M$(20)
+     G(3260) (0 6) M(Z) = M(Z) + (U * 450%)
+     G(3260) (0 4) U(6) = U(6) - U
+     G(3260) (0 1) RETURN
      WARNING: Type mismatch numeric * integer
      WARNING: Type mismatch numeric * integer
   Origs: 3210:gosub
   Dests: 3261:auto
-G(3260) (0 3) 3261 H%(26), H%(27), H%(29) = U(6)
-G(3260) (0 1)      RETURN
+3261 G(3260) (0 3) H%(26), H%(27), H%(29) = U(6)
+     G(3260) (0 1) RETURN
      WARNING: Target type (integer) does not match expression type (numeric).
      WARNING: Target type (integer) does not match expression type (numeric).
      WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3260:auto
   Dests: 
-G(3262) (0 4) 3262 U(7) = U(7) + U
-G(3262) (0 6)      M(Z) = M(Z) - (U * 600%)
-G(3262) (1 5)      IF M(Z) < 0 THEN PRINT M$(20)
-G(3262) (0 6)      M(Z) = M(Z) + (U * 600%)
-G(3262) (0 4)      U(7) = U(7) - U
-G(3262) (0 1)      RETURN
+3262 G(3262) (0 4) U(7) = U(7) + U
+     G(3262) (0 6) M(Z) = M(Z) - (U * 600%)
+     G(3262) (1 5) IF M(Z) < 0 THEN PRINT M$(20)
+     G(3262) (0 6) M(Z) = M(Z) + (U * 600%)
+     G(3262) (0 4) U(7) = U(7) - U
+     G(3262) (0 1) RETURN
      WARNING: Type mismatch numeric * integer
      WARNING: Type mismatch numeric * integer
   Origs: 3212:gosub
   Dests: 3263:auto
-G(3262) (0 3) 3263 H%(31), H%(32), H%(34) = U(7)
-G(3262) (0 1)      RETURN
+3263 G(3262) (0 3) H%(31), H%(32), H%(34) = U(7)
+     G(3262) (0 1) RETURN
      WARNING: Target type (integer) does not match expression type (numeric).
      WARNING: Target type (integer) does not match expression type (numeric).
      WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3262:auto
   Dests: 
-G(3264) (0 4) 3264 U(8) = U(8) + U
-G(3264) (0 6)      M(Z) = M(Z) - (U * 400%)
-G(3264) (1 5)      IF M(Z) < 0 THEN PRINT M$(20)
-G(3264) (0 6)      M(Z) = M(Z) + (U * 400%)
-G(3264) (0 4)      U(8) = U(8) - U
-G(3264) (0 1)      RETURN
+3264 G(3264) (0 4) U(8) = U(8) + U
+     G(3264) (0 6) M(Z) = M(Z) - (U * 400%)
+     G(3264) (1 5) IF M(Z) < 0 THEN PRINT M$(20)
+     G(3264) (0 6) M(Z) = M(Z) + (U * 400%)
+     G(3264) (0 4) U(8) = U(8) - U
+     G(3264) (0 1) RETURN
      WARNING: Type mismatch numeric * integer
      WARNING: Type mismatch numeric * integer
   Origs: 3214:gosub
   Dests: 3265:auto
-G(3264) (0 3) 3265 H%(37), H%(39) = U(8)
-G(3264) (0 1)      RETURN
+3265 G(3264) (0 3) H%(37), H%(39) = U(8)
+     G(3264) (0 1) RETURN
      WARNING: Target type (integer) does not match expression type (numeric).
      WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 3264:auto
   Dests: 
-G(2000) (0 1) 4100 RANDOMIZE
-G(2000) (0 4)      L = RND(0)
+4100 G(2000) (0 1) RANDOMIZE
+     G(2000) (0 4) L = RND(0)
   Origs: 2002:ifthen
   Dests: 4102:auto
-G(2000) (1 8) 4102 IF L >= 0 AND L <= 0.1 THEN PRINT Z$(1)
-G(2000) (0 4)      M(Z) = M(Z) + 100%
-G(2000) (0 1)      RETURN
+4102 G(2000) (1 8) IF L >= 0 AND L <= 0.1 THEN PRINT Z$(1)
+     G(2000) (0 4) M(Z) = M(Z) + 100%
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric + integer
   Origs: 4100:auto
   Dests: 4104:auto
-G(2000) (1 8) 4104 IF L > 0.1 AND L <= 0.2 THEN PRINT Z$(2)
-G(2000) (0 4)      M(Z) = M(Z) + 100%
-G(2000) (0 1)      RETURN
+4104 G(2000) (1 8) IF L > 0.1 AND L <= 0.2 THEN PRINT Z$(2)
+     G(2000) (0 4) M(Z) = M(Z) + 100%
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric + integer
   Origs: 4102:auto
   Dests: 4106:auto
-G(2000) (1 8) 4106 IF L > 0.2 AND L <= 0.3 THEN PRINT Z$(3)
-G(2000) (0 4)      M(Z) = M(Z) + 20%
-G(2000) (0 1)      RETURN
+4106 G(2000) (1 8) IF L > 0.2 AND L <= 0.3 THEN PRINT Z$(3)
+     G(2000) (0 4) M(Z) = M(Z) + 20%
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric + integer
   Origs: 4104:auto
   Dests: 4108:auto
-G(2000) (1 8) 4108 IF L > 0.3 AND L <= 0.4 THEN PRINT Z$(4)
-G(2000) (0 4)      M(Z) = M(Z) - 50%
-G(2000) (0 1)      RETURN
+4108 G(2000) (1 8) IF L > 0.3 AND L <= 0.4 THEN PRINT Z$(4)
+     G(2000) (0 4) M(Z) = M(Z) - 50%
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric - integer
   Origs: 4106:auto
   Dests: 4110:auto
-G(2000) (1 8) 4110 IF L > 0.4 AND L <= 0.5 THEN PRINT Z$(5)
-G(2000) (0 4)      M(Z) = M(Z) + 100%
-G(2000) (0 1)      RETURN
+4110 G(2000) (1 8) IF L > 0.4 AND L <= 0.5 THEN PRINT Z$(5)
+     G(2000) (0 4) M(Z) = M(Z) + 100%
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric + integer
   Origs: 4108:auto
   Dests: 4112:auto
-G(2000) (1 8) 4112 IF L > 0.5 AND L <= 0.6 THEN PRINT Z$(6)
-G(2000) (0 4)      M(Z) = M(Z) + 200%
-G(2000) (0 3)      I(Z) = 0
-G(2000) (0 1)      RETURN
+4112 G(2000) (1 8) IF L > 0.5 AND L <= 0.6 THEN PRINT Z$(6)
+     G(2000) (0 4) M(Z) = M(Z) + 200%
+     G(2000) (0 3) I(Z) = 0
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric + integer
   Origs: 4110:auto
   Dests: 4114:auto
-G(2000) (1 8) 4114 IF L > 0.6 AND L <= 0.7 THEN PRINT Z$(7)
-G(2000) (0 4)      M(Z) = M(Z) - 100%
-G(2000) (0 1)      RETURN
+4114 G(2000) (1 8) IF L > 0.6 AND L <= 0.7 THEN PRINT Z$(7)
+     G(2000) (0 4) M(Z) = M(Z) - 100%
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric - integer
   Origs: 4112:auto
   Dests: 4116:auto
-G(2000) (1 8) 4116 IF L > 0.7 AND L <= 0.8 THEN PRINT Z$(8)
-G(2000) (0 4)      M(Z) = M(Z) - 50%
-G(2000) (0 3)      I(Z) = 10
-G(2000) (0 1)      RETURN
+4116 G(2000) (1 8) IF L > 0.7 AND L <= 0.8 THEN PRINT Z$(8)
+     G(2000) (0 4) M(Z) = M(Z) - 50%
+     G(2000) (0 3) I(Z) = 10
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric - integer
   Origs: 4114:auto
   Dests: 4118:auto
-G(2000) (1 8) 4118 IF L > 0.8 AND L <= 0.9 THEN PRINT Z$(9)
-G(2000) (0 4)      M(Z) = M(Z) - 50%
-G(2000) (0 1)      RETURN
+4118 G(2000) (1 8) IF L > 0.8 AND L <= 0.9 THEN PRINT Z$(9)
+     G(2000) (0 4) M(Z) = M(Z) - 50%
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric - integer
   Origs: 4116:auto
   Dests: 4120:auto
-G(2000) (1 8) 4120 IF L > 0.9 AND L <= 1 THEN PRINT Z$(10)
-G(2000) (0 4)      M(Z) = M(Z) + 200%
-G(2000) (0 1)      RETURN
+4120 G(2000) (1 8) IF L > 0.9 AND L <= 1 THEN PRINT Z$(10)
+     G(2000) (0 4) M(Z) = M(Z) + 200%
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric + integer
   Origs: 4118:auto
   Dests: 4400:auto
-G(2000) (0 1) 4400 RANDOMIZE
-G(2000) (0 4)      L = RND(0)
+4400 G(2000) (0 1) RANDOMIZE
+     G(2000) (0 4) L = RND(0)
   Origs: 2006:ifthen, 4120:auto
   Dests: 4402:auto
-G(2000) (1 8) 4402 IF L >= 0 AND L <= 0.1 THEN PRINT C$(1)
-G(2000) (0 4)      M(Z) = M(Z) - 15%
-G(2000) (0 1)      RETURN
+4402 G(2000) (1 8) IF L >= 0 AND L <= 0.1 THEN PRINT C$(1)
+     G(2000) (0 4) M(Z) = M(Z) - 15%
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric - integer
   Origs: 4400:auto
   Dests: 4404:auto
-G(2000) (1 8) 4404 IF L > 0.1 AND L <= 0.2 THEN PRINT C$(2)
-G(2000) (0 3)      I(Z) = 24
-G(2000) (0 3)      GOSUB 2000
-G(2000) (0 1)      RETURN
+4404 G(2000) (1 8) IF L > 0.1 AND L <= 0.2 THEN PRINT C$(2)
+     G(2000) (0 3) I(Z) = 24
+     G(2000) (0 3) GOSUB 2000
+     G(2000) (0 1) RETURN
   Origs: 4402:auto
   Dests: 2000:gosub, 4406:auto
-G(2000) (1 8) 4406 IF L > 0.2 AND L <= 0.3 THEN PRINT C$(3)
-G(2000) (0 4)      I(Z) = I(Z) + 3
-G(2000) (0 3)      GOSUB 2000
-G(2000) (0 1)      RETURN
+4406 G(2000) (1 8) IF L > 0.2 AND L <= 0.3 THEN PRINT C$(3)
+     G(2000) (0 4) I(Z) = I(Z) + 3
+     G(2000) (0 3) GOSUB 2000
+     G(2000) (0 1) RETURN
   Origs: 4404:auto
   Dests: 2000:gosub, 4408:auto
-G(2000) (1 8) 4408 IF L > 0.3 AND L <= 0.4 THEN PRINT C$(4)
-G(2000) (0 3)      I(Z) = 0
-G(2000) (0 4)      M(Z) = M(Z) + 200%
-G(2000) (0 1)      RETURN
+4408 G(2000) (1 8) IF L > 0.3 AND L <= 0.4 THEN PRINT C$(4)
+     G(2000) (0 3) I(Z) = 0
+     G(2000) (0 4) M(Z) = M(Z) + 200%
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric + integer
   Origs: 4406:auto
   Dests: 4410:auto
-G(2000) (1 8) 4410 IF L > 0.4 AND L <= 0.5 THEN PRINT C$(S)
-G(2000) (0 4)      M(Z) = M(Z) + 50%
-G(2000) (0 1)      RETURN
+4410 G(2000) (1 8) IF L > 0.4 AND L <= 0.5 THEN PRINT C$(S)
+     G(2000) (0 4) M(Z) = M(Z) + 50%
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric + integer
   Origs: 4408:auto
   Dests: 4412:auto
-G(2000) (1 8) 4412 IF L > 0.5 AND L <= 0.6 THEN PRINT C$(6)
-G(2000) (0 3)      I(Z) = 5
-G(2000) (0 4)      M(Z) = M(Z) + 200%
-G(2000) (0 3)      GOSUB 2000
-G(2000) (0 1)      RETURN
+4412 G(2000) (1 8) IF L > 0.5 AND L <= 0.6 THEN PRINT C$(6)
+     G(2000) (0 3) I(Z) = 5
+     G(2000) (0 4) M(Z) = M(Z) + 200%
+     G(2000) (0 3) GOSUB 2000
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric + integer
   Origs: 4410:auto
   Dests: 2000:gosub, 4414:auto
-G(2000) (1 8) 4414 IF L > 0.6 AND L <= 0.7 THEN PRINT C$(7)
-G(2000) (0 3)      I(Z) = 10
-G(2000) (0 4)      M(Z) = M(Z) - 50%
-G(2000) (0 1)      RETURN
+4414 G(2000) (1 8) IF L > 0.6 AND L <= 0.7 THEN PRINT C$(7)
+     G(2000) (0 3) I(Z) = 10
+     G(2000) (0 4) M(Z) = M(Z) - 50%
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric - integer
   Origs: 4412:auto
   Dests: 4416:auto
-G(2000) (1 8) 4416 IF L > 0.7 AND L <= 0.8 THEN PRINT C$(8)
-G(2000) (0 4)      M(Z) = M(Z) + 150%
-G(2000) (0 1)      RETURN
+4416 G(2000) (1 8) IF L > 0.7 AND L <= 0.8 THEN PRINT C$(8)
+     G(2000) (0 4) M(Z) = M(Z) + 150%
+     G(2000) (0 1) RETURN
      WARNING: Type mismatch numeric + integer
   Origs: 4414:auto
   Dests: 4418:auto
-G(2000) (1 8) 4418 IF L > 0.8 AND L <= 0.9 THEN PRINT C$(9)
-G(2000) (0 3)      I(Z) = 39
-G(2000) (0 3)      GOSUB 2000
-G(2000) (0 1)      RETURN
+4418 G(2000) (1 8) IF L > 0.8 AND L <= 0.9 THEN PRINT C$(9)
+     G(2000) (0 3) I(Z) = 39
+     G(2000) (0 3) GOSUB 2000
+     G(2000) (0 1) RETURN
   Origs: 4416:auto
   Dests: 2000:gosub, 4420:auto
-G(2000) (1 8) 4420 IF L > 0.9 AND L <= 1 THEN PRINT C$(10)
-G(2000) (0 3)      I(Z) = 11
-G(2000) (0 3)      GOSUB 2000
-G(2000) (0 1)      RETURN
+4420 G(2000) (1 8) IF L > 0.9 AND L <= 1 THEN PRINT C$(10)
+     G(2000) (0 3) I(Z) = 11
+     G(2000) (0 3) GOSUB 2000
+     G(2000) (0 1) RETURN
   Origs: 4418:auto
   Dests: 2000:gosub, 30000:auto
-G(2000) (0 3) 30000 C, D = 0
+30000 G(2000) (0 3) C, D = 0
   Origs: 225:ifthen, 4420:auto
   Dests: 30002:auto
-G(2000) F(I) (1 3) 30002 FOR I = I TO 39
+30002 G(2000) F(I) (1 3) FOR I = I TO 39
   Origs: 30000:auto
   Dests: 30004:fornext, 30008:fornext
-G(2000) F(I) (1 7) 30004 IF L%(I) = 1 THEN C = C + 1
-G(2000) F(I) (0 3)       A$(C) = G$(I)
+30004 G(2000) F(I) (1 7) IF L%(I) = 1 THEN C = C + 1
+      G(2000) F(I) (0 3) A$(C) = G$(I)
   Origs: 30002:fornext
   Dests: 30006:auto
-G(2000) F(I) (1 7) 30006 IF L%(I) = 2 THEN D = D + 1
-G(2000) F(I) (0 3)       B$(D) = G$(I)
+30006 G(2000) F(I) (1 7) IF L%(I) = 2 THEN D = D + 1
+      G(2000) F(I) (0 3) B$(D) = G$(I)
   Origs: 30004:auto
   Dests: 30008:auto
-G(2000) F(I) (0 1) 30008 NEXT I
-G(2000) (0 2)       PRINT
-G(2000) (0 2)       PRINT
+30008 G(2000) F(I) (0 1) NEXT I
+      G(2000) (0 2) PRINT
+      G(2000) (0 2) PRINT
   Origs: 30002:fornext, 30006:auto
   Dests: 30009:auto
-G(2000) (0 3) 30009 PRINT N$(1); " OWNED THE FOLLOWING PROPERTY"
-G(2000) F(I) (1 3)       FOR I = 1 TO C
-G(2000) F(I) (0 2)       PRINT A$(I)
-G(2000) F(I) (0 1)       NEXT I
+30009 G(2000) (0 3) PRINT N$(1); " OWNED THE FOLLOWING PROPERTY"
+      G(2000) F(I) (1 3) FOR I = 1 TO C
+      G(2000) F(I) (0 2) PRINT A$(I)
+      G(2000) F(I) (0 1) NEXT I
   Origs: 30008:auto
   Dests: 30010:auto
-G(2000) (0 4) 30010 PRINT "AND HAD"; M(1); "DOLLARS AT THE END OF THE GAME"
+30010 G(2000) (0 4) PRINT "AND HAD"; M(1); "DOLLARS AT THE END OF THE GAME"
   Origs: 30009:auto
   Dests: 30011:auto
-G(2000) (0 3) 30011 PRINT N$(2); " OWNED THE FOLLOWING PROPERTY";
+30011 G(2000) (0 3) PRINT N$(2); " OWNED THE FOLLOWING PROPERTY";
 (1 1)         FOR I = 1 TO D
 (0 1)         NEXT I
-G(2000) (0 2)       PRINT B$(I)
-G(2000) (0 1)       NEXT I
+      G(2000) (0 2) PRINT B$(I)
+      G(2000) (0 1) NEXT I
   Origs: 30010:auto
   Dests: 30012:auto
-G(2000) (0 4) 30012 PRINT "AND HAD"; M(2); "DOLLARS AT THE END OF THE GAME"
+30012 G(2000) (0 4) PRINT "AND HAD"; M(2); "DOLLARS AT THE END OF THE GAME"
   Origs: 30011:auto
   Dests: 30013:auto
-G(2000) (0 2) 30013 CLOSE 1, 3
-G(2000) (0 1)       END
+30013 G(2000) (0 2) CLOSE 1, 3
+      G(2000) (0 1) END
       WARNING: Terminating statement in GOSUB
   Origs: 30012:auto
   Dests: :stop

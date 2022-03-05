@@ -19,52 +19,52 @@ Halstead complexity:
  intelligence: 22.901
  time: 0.219
 
-(0 1) 8 REM   START THE PRINCIPAL P AT $2000
+8 (0 1) REM   START THE PRINCIPAL P AT $2000
   Origs: 
   Dests: 
-(0 3) 10 LET P = 2000
+10 (0 3) LET P = 2000
   Origs: :start
   Dests: 20:auto
-(0 1) 18 REM GO FOR 9 YEARS
+18 (0 1) REM GO FOR 9 YEARS
   Origs: 
   Dests: 
-F(Y) (1 3) 20 FOR Y = 1 TO 9
+20 F(Y) (1 3) FOR Y = 1 TO 9
   Origs: 10:auto
   Dests: 30:fornext, 70:fornext
-(0 1) 28 REM GO FOUR QUARTERS EACH YEAR
+28 (0 1) REM GO FOUR QUARTERS EACH YEAR
   Origs: 
   Dests: 
-F(Y,Q) (1 3) 30 FOR Q = 1 TO 4
+30 F(Y,Q) (1 3) FOR Q = 1 TO 4
   Origs: 20:fornext
   Dests: 40:fornext, 60:fornext
-(0 1) 38 REM COMPUTE THE INTEREST FOR THIS QUARTER
+38 (0 1) REM COMPUTE THE INTEREST FOR THIS QUARTER
   Origs: 
   Dests: 
-F(Y,Q) (0 4) 40 LET I = 0.01 * P
+40 F(Y,Q) (0 4) LET I = 0.01 * P
   Origs: 30:fornext
   Dests: 50:auto
-(0 1) 48 REM  ADD THE INTEREST TO THE PRINCIPAL
+48 (0 1) REM  ADD THE INTEREST TO THE PRINCIPAL
   Origs: 
   Dests: 
-F(Y,Q) (0 4) 50 LET P = P + I
+50 F(Y,Q) (0 4) LET P = P + I
   Origs: 40:auto
   Dests: 60:auto
-(0 1) 52 REM *** WE COULD HAVE USED LETP=P+.01*P HERE
+52 (0 1) REM *** WE COULD HAVE USED LETP=P+.01*P HERE
   Origs: 
   Dests: 
-F(Y,Q) (0 1) 60 NEXT Q
+60 F(Y,Q) (0 1) NEXT Q
   Origs: 30:fornext, 50:auto
   Dests: 70:auto
-(0 1) 62 REM AFTER FOUR QUARTERS THE COMPUTER GETS TO NEXT Y
+62 (0 1) REM AFTER FOUR QUARTERS THE COMPUTER GETS TO NEXT Y
   Origs: 
   Dests: 
-F(Y) (0 1) 70 NEXT Y
+70 F(Y) (0 1) NEXT Y
   Origs: 20:fornext, 60:auto
   Dests: 80:auto
-(0 3) 80 PRINT "AFTER 9 YEARS THE AMOUNT IS $"; P
+80 (0 3) PRINT "AFTER 9 YEARS THE AMOUNT IS $"; P
   Origs: 70:auto
   Dests: 90:auto
-(0 1) 90 END
+90 (0 1) END
   Origs: 80:auto
   Dests: :stop
 

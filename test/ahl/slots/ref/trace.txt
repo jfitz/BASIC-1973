@@ -1,811 +1,811 @@
-100: RANDOMIZE
-110: DIM D(3)
-120: PRINT "THIS IS A SIMULATION OF A SLOT MACHINE USING A COMPUTER."
+100 RANDOMIZE
+110 DIM D(3)
+120 PRINT "THIS IS A SIMULATION OF A SLOT MACHINE USING A COMPUTER."
 THIS IS A SIMULATION OF A SLOT MACHINE USING A COMPUTER.
-130: PRINT "EACH TIME YOU 'PULL' I WILL ASK YOU IF YOU WISH TO PLAY AGAIN."
+130 PRINT "EACH TIME YOU 'PULL' I WILL ASK YOU IF YOU WISH TO PLAY AGAIN."
 EACH TIME YOU 'PULL' I WILL ASK YOU IF YOU WISH TO PLAY AGAIN.
-140: PRINT "JUST ANSWER WITH A 'Y' FOR YES OR AN 'N' FOR NO."
+140 PRINT "JUST ANSWER WITH A 'Y' FOR YES OR AN 'N' FOR NO."
 JUST ANSWER WITH A 'Y' FOR YES OR AN 'N' FOR NO.
-150: PRINT "PLEASE PLACE 4 QUARTERS ON MY CPU FOR EACH PLAY."
+150 PRINT "PLEASE PLACE 4 QUARTERS ON MY CPU FOR EACH PLAY."
 PLEASE PLACE 4 QUARTERS ON MY CPU FOR EACH PLAY.
-160: PRINT
+160 PRINT
 
-F(B1) 170: FOR B1 = 1 TO 3
+170 F(B1) FOR B1 = 1 TO 3
  B1 = 1
  terminated:false
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 1
  D(1) = 3
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 1
  terminated:false
  B1 = 2
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 2
  D(2) = 5
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 2
  terminated:false
  B1 = 3
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 3
  D(3) = 1
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 3
  terminated:true
-F(G1) 200: FOR G1 = 1 TO 3
+200 F(G1) FOR G1 = 1 TO 3
  G1 = 1
  terminated:false
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 1
  D(1): 3
  D(G1) = 1: false
-F(G1) 220: IF D(G1) = 2 THEN 300
+220 F(G1) IF D(G1) = 2 THEN 300
  G1: 1
  D(1): 3
  D(G1) = 2: false
-F(G1) 230: IF D(G1) = 3 THEN 320
+230 F(G1) IF D(G1) = 3 THEN 320
  G1: 1
  D(1): 3
  D(G1) = 3: true
-F(G1) 320: PRINT TAB(G1 * 7); "CHERRY";
+320 F(G1) PRINT TAB(G1 * 7); "CHERRY";
  G1: 1
        CHERRY
-F(G1) 330: GOTO 390
-F(G1) 390: NEXT G1
+330 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 1
  terminated:false
  G1 = 2
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 2
  D(2): 5
  D(G1) = 1: false
-F(G1) 220: IF D(G1) = 2 THEN 300
+220 F(G1) IF D(G1) = 2 THEN 300
  G1: 2
  D(2): 5
  D(G1) = 2: false
-F(G1) 230: IF D(G1) = 3 THEN 320
+230 F(G1) IF D(G1) = 3 THEN 320
  G1: 2
  D(2): 5
  D(G1) = 3: false
-F(G1) 240: IF D(G1) = 4 THEN 340
+240 F(G1) IF D(G1) = 4 THEN 340
  G1: 2
  D(2): 5
  D(G1) = 4: false
-F(G1) 250: IF D(G1) = 5 THEN 360
+250 F(G1) IF D(G1) = 5 THEN 360
  G1: 2
  D(2): 5
  D(G1) = 5: true
-F(G1) 360: PRINT TAB(G1 * 7); "LEMON";
+360 F(G1) PRINT TAB(G1 * 7); "LEMON";
  G1: 2
               LEMON
-F(G1) 370: GOTO 390
-F(G1) 390: NEXT G1
+370 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 2
  terminated:false
  G1 = 3
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 3
  D(3): 1
  D(G1) = 1: true
-F(G1) 280: PRINT TAB(G1 * 7); " BELL";
+280 F(G1) PRINT TAB(G1 * 7); " BELL";
  G1: 3
                       BELL
-F(G1) 290: GOTO 390
-F(G1) 390: NEXT G1
+290 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 3
  terminated:true
-400: PRINT TAB(28);
+400 PRINT TAB(28);
                             
-410: IF D(1) <> D(2) THEN 440
+410 IF D(1) <> D(2) THEN 440
  D(1): 3
  D(2): 5
  D(1) <> D(2): true
-440: IF D(1) <> D(3) THEN 490
+440 IF D(1) <> D(3) THEN 490
  D(1): 3
  D(3): 1
  D(1) <> D(3): true
-490: LET B = B - 1
+490 LET B = B - 1
  B: 0
  B = -1
-490.1: PRINT "YOU HAVE LOST $1  TOTAL=$"; B;
+490.1 PRINT "YOU HAVE LOST $1  TOTAL=$"; B;
 YOU HAVE LOST $1  TOTAL=$
  B: -1
 -1 
-508: GOTO 550
-550: PRINT "AGAIN?";
+508 GOTO 550
+550 PRINT "AGAIN?";
 AGAIN?
-560: INPUT$ A
+560 INPUT$ A
 Y A = 89
-560.1: PRINT
+560.1 PRINT
 
-560.2: IF A = 0 THEN 160
+560.2 IF A = 0 THEN 160
  A: 89
  A = 0: true
-160: PRINT
+160 PRINT
 
-F(B1) 170: FOR B1 = 1 TO 3
+170 F(B1) FOR B1 = 1 TO 3
  B1 = 1
  terminated:false
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 1
  D(1) = 2
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 1
  terminated:false
  B1 = 2
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 2
  D(2) = 1
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 2
  terminated:false
  B1 = 3
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 3
  D(3) = 1
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 3
  terminated:true
-F(G1) 200: FOR G1 = 1 TO 3
+200 F(G1) FOR G1 = 1 TO 3
  G1 = 1
  terminated:false
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 1
  D(1): 2
  D(G1) = 1: false
-F(G1) 220: IF D(G1) = 2 THEN 300
+220 F(G1) IF D(G1) = 2 THEN 300
  G1: 1
  D(1): 2
  D(G1) = 2: true
-F(G1) 300: PRINT TAB(G1 * 7); " BAR";
+300 F(G1) PRINT TAB(G1 * 7); " BAR";
  G1: 1
         BAR
-F(G1) 310: GOTO 390
-F(G1) 390: NEXT G1
+310 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 1
  terminated:false
  G1 = 2
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 2
  D(2): 1
  D(G1) = 1: true
-F(G1) 280: PRINT TAB(G1 * 7); " BELL";
+280 F(G1) PRINT TAB(G1 * 7); " BELL";
  G1: 2
                BELL
-F(G1) 290: GOTO 390
-F(G1) 390: NEXT G1
+290 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 2
  terminated:false
  G1 = 3
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 3
  D(3): 1
  D(G1) = 1: true
-F(G1) 280: PRINT TAB(G1 * 7); " BELL";
+280 F(G1) PRINT TAB(G1 * 7); " BELL";
  G1: 3
                       BELL
-F(G1) 290: GOTO 390
-F(G1) 390: NEXT G1
+290 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 3
  terminated:true
-400: PRINT TAB(28);
+400 PRINT TAB(28);
                             
-410: IF D(1) <> D(2) THEN 440
+410 IF D(1) <> D(2) THEN 440
  D(1): 2
  D(2): 1
  D(1) <> D(2): true
-440: IF D(1) <> D(3) THEN 490
+440 IF D(1) <> D(3) THEN 490
  D(1): 2
  D(3): 1
  D(1) <> D(3): true
-490: LET B = B - 1
+490 LET B = B - 1
  B: -1
  B = -2
-490.1: PRINT "YOU HAVE LOST $1  TOTAL=$"; B;
+490.1 PRINT "YOU HAVE LOST $1  TOTAL=$"; B;
 YOU HAVE LOST $1  TOTAL=$
  B: -2
 -2 
-508: GOTO 550
-550: PRINT "AGAIN?";
+508 GOTO 550
+550 PRINT "AGAIN?";
 AGAIN?
-560: INPUT$ A
+560 INPUT$ A
 Y A = 89
-560.1: PRINT
+560.1 PRINT
 
-560.2: IF A = 0 THEN 160
+560.2 IF A = 0 THEN 160
  A: 89
  A = 0: true
-160: PRINT
+160 PRINT
 
-F(B1) 170: FOR B1 = 1 TO 3
+170 F(B1) FOR B1 = 1 TO 3
  B1 = 1
  terminated:false
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 1
  D(1) = 2
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 1
  terminated:false
  B1 = 2
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 2
  D(2) = 3
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 2
  terminated:false
  B1 = 3
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 3
  D(3) = 3
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 3
  terminated:true
-F(G1) 200: FOR G1 = 1 TO 3
+200 F(G1) FOR G1 = 1 TO 3
  G1 = 1
  terminated:false
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 1
  D(1): 2
  D(G1) = 1: false
-F(G1) 220: IF D(G1) = 2 THEN 300
+220 F(G1) IF D(G1) = 2 THEN 300
  G1: 1
  D(1): 2
  D(G1) = 2: true
-F(G1) 300: PRINT TAB(G1 * 7); " BAR";
+300 F(G1) PRINT TAB(G1 * 7); " BAR";
  G1: 1
         BAR
-F(G1) 310: GOTO 390
-F(G1) 390: NEXT G1
+310 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 1
  terminated:false
  G1 = 2
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 2
  D(2): 3
  D(G1) = 1: false
-F(G1) 220: IF D(G1) = 2 THEN 300
+220 F(G1) IF D(G1) = 2 THEN 300
  G1: 2
  D(2): 3
  D(G1) = 2: false
-F(G1) 230: IF D(G1) = 3 THEN 320
+230 F(G1) IF D(G1) = 3 THEN 320
  G1: 2
  D(2): 3
  D(G1) = 3: true
-F(G1) 320: PRINT TAB(G1 * 7); "CHERRY";
+320 F(G1) PRINT TAB(G1 * 7); "CHERRY";
  G1: 2
               CHERRY
-F(G1) 330: GOTO 390
-F(G1) 390: NEXT G1
+330 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 2
  terminated:false
  G1 = 3
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 3
  D(3): 3
  D(G1) = 1: false
-F(G1) 220: IF D(G1) = 2 THEN 300
+220 F(G1) IF D(G1) = 2 THEN 300
  G1: 3
  D(3): 3
  D(G1) = 2: false
-F(G1) 230: IF D(G1) = 3 THEN 320
+230 F(G1) IF D(G1) = 3 THEN 320
  G1: 3
  D(3): 3
  D(G1) = 3: true
-F(G1) 320: PRINT TAB(G1 * 7); "CHERRY";
+320 F(G1) PRINT TAB(G1 * 7); "CHERRY";
  G1: 3
                      CHERRY
-F(G1) 330: GOTO 390
-F(G1) 390: NEXT G1
+330 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 3
  terminated:true
-400: PRINT TAB(28);
+400 PRINT TAB(28);
                             
-410: IF D(1) <> D(2) THEN 440
+410 IF D(1) <> D(2) THEN 440
  D(1): 2
  D(2): 3
  D(1) <> D(2): true
-440: IF D(1) <> D(3) THEN 490
+440 IF D(1) <> D(3) THEN 490
  D(1): 2
  D(3): 3
  D(1) <> D(3): true
-490: LET B = B - 1
+490 LET B = B - 1
  B: -2
  B = -3
-490.1: PRINT "YOU HAVE LOST $1  TOTAL=$"; B;
+490.1 PRINT "YOU HAVE LOST $1  TOTAL=$"; B;
 YOU HAVE LOST $1  TOTAL=$
  B: -3
 -3 
-508: GOTO 550
-550: PRINT "AGAIN?";
+508 GOTO 550
+550 PRINT "AGAIN?";
 AGAIN?
-560: INPUT$ A
+560 INPUT$ A
 Y A = 89
-560.1: PRINT
+560.1 PRINT
 
-560.2: IF A = 0 THEN 160
+560.2 IF A = 0 THEN 160
  A: 89
  A = 0: true
-160: PRINT
+160 PRINT
 
-F(B1) 170: FOR B1 = 1 TO 3
+170 F(B1) FOR B1 = 1 TO 3
  B1 = 1
  terminated:false
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 1
  D(1) = 4
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 1
  terminated:false
  B1 = 2
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 2
  D(2) = 3
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 2
  terminated:false
  B1 = 3
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 3
  D(3) = 5
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 3
  terminated:true
-F(G1) 200: FOR G1 = 1 TO 3
+200 F(G1) FOR G1 = 1 TO 3
  G1 = 1
  terminated:false
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 1
  D(1): 4
  D(G1) = 1: false
-F(G1) 220: IF D(G1) = 2 THEN 300
+220 F(G1) IF D(G1) = 2 THEN 300
  G1: 1
  D(1): 4
  D(G1) = 2: false
-F(G1) 230: IF D(G1) = 3 THEN 320
+230 F(G1) IF D(G1) = 3 THEN 320
  G1: 1
  D(1): 4
  D(G1) = 3: false
-F(G1) 240: IF D(G1) = 4 THEN 340
+240 F(G1) IF D(G1) = 4 THEN 340
  G1: 1
  D(1): 4
  D(G1) = 4: true
-F(G1) 340: PRINT TAB(G1 * 7); "APPLE";
+340 F(G1) PRINT TAB(G1 * 7); "APPLE";
  G1: 1
        APPLE
-F(G1) 350: GOTO 390
-F(G1) 390: NEXT G1
+350 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 1
  terminated:false
  G1 = 2
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 2
  D(2): 3
  D(G1) = 1: false
-F(G1) 220: IF D(G1) = 2 THEN 300
+220 F(G1) IF D(G1) = 2 THEN 300
  G1: 2
  D(2): 3
  D(G1) = 2: false
-F(G1) 230: IF D(G1) = 3 THEN 320
+230 F(G1) IF D(G1) = 3 THEN 320
  G1: 2
  D(2): 3
  D(G1) = 3: true
-F(G1) 320: PRINT TAB(G1 * 7); "CHERRY";
+320 F(G1) PRINT TAB(G1 * 7); "CHERRY";
  G1: 2
               CHERRY
-F(G1) 330: GOTO 390
-F(G1) 390: NEXT G1
+330 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 2
  terminated:false
  G1 = 3
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 3
  D(3): 5
  D(G1) = 1: false
-F(G1) 220: IF D(G1) = 2 THEN 300
+220 F(G1) IF D(G1) = 2 THEN 300
  G1: 3
  D(3): 5
  D(G1) = 2: false
-F(G1) 230: IF D(G1) = 3 THEN 320
+230 F(G1) IF D(G1) = 3 THEN 320
  G1: 3
  D(3): 5
  D(G1) = 3: false
-F(G1) 240: IF D(G1) = 4 THEN 340
+240 F(G1) IF D(G1) = 4 THEN 340
  G1: 3
  D(3): 5
  D(G1) = 4: false
-F(G1) 250: IF D(G1) = 5 THEN 360
+250 F(G1) IF D(G1) = 5 THEN 360
  G1: 3
  D(3): 5
  D(G1) = 5: true
-F(G1) 360: PRINT TAB(G1 * 7); "LEMON";
+360 F(G1) PRINT TAB(G1 * 7); "LEMON";
  G1: 3
                      LEMON
-F(G1) 370: GOTO 390
-F(G1) 390: NEXT G1
+370 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 3
  terminated:true
-400: PRINT TAB(28);
+400 PRINT TAB(28);
                             
-410: IF D(1) <> D(2) THEN 440
+410 IF D(1) <> D(2) THEN 440
  D(1): 4
  D(2): 3
  D(1) <> D(2): true
-440: IF D(1) <> D(3) THEN 490
+440 IF D(1) <> D(3) THEN 490
  D(1): 4
  D(3): 5
  D(1) <> D(3): true
-490: LET B = B - 1
+490 LET B = B - 1
  B: -3
  B = -4
-490.1: PRINT "YOU HAVE LOST $1  TOTAL=$"; B;
+490.1 PRINT "YOU HAVE LOST $1  TOTAL=$"; B;
 YOU HAVE LOST $1  TOTAL=$
  B: -4
 -4 
-508: GOTO 550
-550: PRINT "AGAIN?";
+508 GOTO 550
+550 PRINT "AGAIN?";
 AGAIN?
-560: INPUT$ A
+560 INPUT$ A
 Y A = 89
-560.1: PRINT
+560.1 PRINT
 
-560.2: IF A = 0 THEN 160
+560.2 IF A = 0 THEN 160
  A: 89
  A = 0: true
-160: PRINT
+160 PRINT
 
-F(B1) 170: FOR B1 = 1 TO 3
+170 F(B1) FOR B1 = 1 TO 3
  B1 = 1
  terminated:false
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 1
  D(1) = 2
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 1
  terminated:false
  B1 = 2
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 2
  D(2) = 6
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 2
  terminated:false
  B1 = 3
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 3
  D(3) = 1
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 3
  terminated:true
-F(G1) 200: FOR G1 = 1 TO 3
+200 F(G1) FOR G1 = 1 TO 3
  G1 = 1
  terminated:false
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 1
  D(1): 2
  D(G1) = 1: false
-F(G1) 220: IF D(G1) = 2 THEN 300
+220 F(G1) IF D(G1) = 2 THEN 300
  G1: 1
  D(1): 2
  D(G1) = 2: true
-F(G1) 300: PRINT TAB(G1 * 7); " BAR";
+300 F(G1) PRINT TAB(G1 * 7); " BAR";
  G1: 1
         BAR
-F(G1) 310: GOTO 390
-F(G1) 390: NEXT G1
+310 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 1
  terminated:false
  G1 = 2
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 2
  D(2): 6
  D(G1) = 1: false
-F(G1) 220: IF D(G1) = 2 THEN 300
+220 F(G1) IF D(G1) = 2 THEN 300
  G1: 2
  D(2): 6
  D(G1) = 2: false
-F(G1) 230: IF D(G1) = 3 THEN 320
+230 F(G1) IF D(G1) = 3 THEN 320
  G1: 2
  D(2): 6
  D(G1) = 3: false
-F(G1) 240: IF D(G1) = 4 THEN 340
+240 F(G1) IF D(G1) = 4 THEN 340
  G1: 2
  D(2): 6
  D(G1) = 4: false
-F(G1) 250: IF D(G1) = 5 THEN 360
+250 F(G1) IF D(G1) = 5 THEN 360
  G1: 2
  D(2): 6
  D(G1) = 5: false
-F(G1) 260: IF D(G1) = 6 THEN 380
+260 F(G1) IF D(G1) = 6 THEN 380
  G1: 2
  D(2): 6
  D(G1) = 6: true
-F(G1) 380: PRINT TAB(G1 * 7); " *";
+380 F(G1) PRINT TAB(G1 * 7); " *";
  G1: 2
                *
-F(G1) 390: NEXT G1
+390 F(G1) NEXT G1
  G1: 2
  terminated:false
  G1 = 3
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 3
  D(3): 1
  D(G1) = 1: true
-F(G1) 280: PRINT TAB(G1 * 7); " BELL";
+280 F(G1) PRINT TAB(G1 * 7); " BELL";
  G1: 3
                       BELL
-F(G1) 290: GOTO 390
-F(G1) 390: NEXT G1
+290 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 3
  terminated:true
-400: PRINT TAB(28);
+400 PRINT TAB(28);
                             
-410: IF D(1) <> D(2) THEN 440
+410 IF D(1) <> D(2) THEN 440
  D(1): 2
  D(2): 6
  D(1) <> D(2): true
-440: IF D(1) <> D(3) THEN 490
+440 IF D(1) <> D(3) THEN 490
  D(1): 2
  D(3): 1
  D(1) <> D(3): true
-490: LET B = B - 1
+490 LET B = B - 1
  B: -4
  B = -5
-490.1: PRINT "YOU HAVE LOST $1  TOTAL=$"; B;
+490.1 PRINT "YOU HAVE LOST $1  TOTAL=$"; B;
 YOU HAVE LOST $1  TOTAL=$
  B: -5
 -5 
-508: GOTO 550
-550: PRINT "AGAIN?";
+508 GOTO 550
+550 PRINT "AGAIN?";
 AGAIN?
-560: INPUT$ A
+560 INPUT$ A
 Y A = 89
-560.1: PRINT
+560.1 PRINT
 
-560.2: IF A = 0 THEN 160
+560.2 IF A = 0 THEN 160
  A: 89
  A = 0: true
-160: PRINT
+160 PRINT
 
-F(B1) 170: FOR B1 = 1 TO 3
+170 F(B1) FOR B1 = 1 TO 3
  B1 = 1
  terminated:false
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 1
  D(1) = 5
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 1
  terminated:false
  B1 = 2
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 2
  D(2) = 3
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 2
  terminated:false
  B1 = 3
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 3
  D(3) = 4
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 3
  terminated:true
-F(G1) 200: FOR G1 = 1 TO 3
+200 F(G1) FOR G1 = 1 TO 3
  G1 = 1
  terminated:false
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 1
  D(1): 5
  D(G1) = 1: false
-F(G1) 220: IF D(G1) = 2 THEN 300
+220 F(G1) IF D(G1) = 2 THEN 300
  G1: 1
  D(1): 5
  D(G1) = 2: false
-F(G1) 230: IF D(G1) = 3 THEN 320
+230 F(G1) IF D(G1) = 3 THEN 320
  G1: 1
  D(1): 5
  D(G1) = 3: false
-F(G1) 240: IF D(G1) = 4 THEN 340
+240 F(G1) IF D(G1) = 4 THEN 340
  G1: 1
  D(1): 5
  D(G1) = 4: false
-F(G1) 250: IF D(G1) = 5 THEN 360
+250 F(G1) IF D(G1) = 5 THEN 360
  G1: 1
  D(1): 5
  D(G1) = 5: true
-F(G1) 360: PRINT TAB(G1 * 7); "LEMON";
+360 F(G1) PRINT TAB(G1 * 7); "LEMON";
  G1: 1
        LEMON
-F(G1) 370: GOTO 390
-F(G1) 390: NEXT G1
+370 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 1
  terminated:false
  G1 = 2
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 2
  D(2): 3
  D(G1) = 1: false
-F(G1) 220: IF D(G1) = 2 THEN 300
+220 F(G1) IF D(G1) = 2 THEN 300
  G1: 2
  D(2): 3
  D(G1) = 2: false
-F(G1) 230: IF D(G1) = 3 THEN 320
+230 F(G1) IF D(G1) = 3 THEN 320
  G1: 2
  D(2): 3
  D(G1) = 3: true
-F(G1) 320: PRINT TAB(G1 * 7); "CHERRY";
+320 F(G1) PRINT TAB(G1 * 7); "CHERRY";
  G1: 2
               CHERRY
-F(G1) 330: GOTO 390
-F(G1) 390: NEXT G1
+330 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 2
  terminated:false
  G1 = 3
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 3
  D(3): 4
  D(G1) = 1: false
-F(G1) 220: IF D(G1) = 2 THEN 300
+220 F(G1) IF D(G1) = 2 THEN 300
  G1: 3
  D(3): 4
  D(G1) = 2: false
-F(G1) 230: IF D(G1) = 3 THEN 320
+230 F(G1) IF D(G1) = 3 THEN 320
  G1: 3
  D(3): 4
  D(G1) = 3: false
-F(G1) 240: IF D(G1) = 4 THEN 340
+240 F(G1) IF D(G1) = 4 THEN 340
  G1: 3
  D(3): 4
  D(G1) = 4: true
-F(G1) 340: PRINT TAB(G1 * 7); "APPLE";
+340 F(G1) PRINT TAB(G1 * 7); "APPLE";
  G1: 3
                      APPLE
-F(G1) 350: GOTO 390
-F(G1) 390: NEXT G1
+350 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 3
  terminated:true
-400: PRINT TAB(28);
+400 PRINT TAB(28);
                             
-410: IF D(1) <> D(2) THEN 440
+410 IF D(1) <> D(2) THEN 440
  D(1): 5
  D(2): 3
  D(1) <> D(2): true
-440: IF D(1) <> D(3) THEN 490
+440 IF D(1) <> D(3) THEN 490
  D(1): 5
  D(3): 4
  D(1) <> D(3): true
-490: LET B = B - 1
+490 LET B = B - 1
  B: -5
  B = -6
-490.1: PRINT "YOU HAVE LOST $1  TOTAL=$"; B;
+490.1 PRINT "YOU HAVE LOST $1  TOTAL=$"; B;
 YOU HAVE LOST $1  TOTAL=$
  B: -6
 -6 
-508: GOTO 550
-550: PRINT "AGAIN?";
+508 GOTO 550
+550 PRINT "AGAIN?";
 AGAIN?
-560: INPUT$ A
+560 INPUT$ A
 Y A = 89
-560.1: PRINT
+560.1 PRINT
 
-560.2: IF A = 0 THEN 160
+560.2 IF A = 0 THEN 160
  A: 89
  A = 0: true
-160: PRINT
+160 PRINT
 
-F(B1) 170: FOR B1 = 1 TO 3
+170 F(B1) FOR B1 = 1 TO 3
  B1 = 1
  terminated:false
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 1
  D(1) = 1
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 1
  terminated:false
  B1 = 2
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 2
  D(2) = 2
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 2
  terminated:false
  B1 = 3
-F(B1) 180: LET D(B1) = INT(RND(0) * 6) + 1
+180 F(B1) LET D(B1) = INT(RND(0) * 6) + 1
  B1: 3
  D(3) = 5
-F(B1) 190: NEXT B1
+190 F(B1) NEXT B1
  B1: 3
  terminated:true
-F(G1) 200: FOR G1 = 1 TO 3
+200 F(G1) FOR G1 = 1 TO 3
  G1 = 1
  terminated:false
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 1
  D(1): 1
  D(G1) = 1: true
-F(G1) 280: PRINT TAB(G1 * 7); " BELL";
+280 F(G1) PRINT TAB(G1 * 7); " BELL";
  G1: 1
         BELL
-F(G1) 290: GOTO 390
-F(G1) 390: NEXT G1
+290 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 1
  terminated:false
  G1 = 2
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 2
  D(2): 2
  D(G1) = 1: false
-F(G1) 220: IF D(G1) = 2 THEN 300
+220 F(G1) IF D(G1) = 2 THEN 300
  G1: 2
  D(2): 2
  D(G1) = 2: true
-F(G1) 300: PRINT TAB(G1 * 7); " BAR";
+300 F(G1) PRINT TAB(G1 * 7); " BAR";
  G1: 2
                BAR
-F(G1) 310: GOTO 390
-F(G1) 390: NEXT G1
+310 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 2
  terminated:false
  G1 = 3
-F(G1) 210: IF D(G1) = 1 THEN 280
+210 F(G1) IF D(G1) = 1 THEN 280
  G1: 3
  D(3): 5
  D(G1) = 1: false
-F(G1) 220: IF D(G1) = 2 THEN 300
+220 F(G1) IF D(G1) = 2 THEN 300
  G1: 3
  D(3): 5
  D(G1) = 2: false
-F(G1) 230: IF D(G1) = 3 THEN 320
+230 F(G1) IF D(G1) = 3 THEN 320
  G1: 3
  D(3): 5
  D(G1) = 3: false
-F(G1) 240: IF D(G1) = 4 THEN 340
+240 F(G1) IF D(G1) = 4 THEN 340
  G1: 3
  D(3): 5
  D(G1) = 4: false
-F(G1) 250: IF D(G1) = 5 THEN 360
+250 F(G1) IF D(G1) = 5 THEN 360
  G1: 3
  D(3): 5
  D(G1) = 5: true
-F(G1) 360: PRINT TAB(G1 * 7); "LEMON";
+360 F(G1) PRINT TAB(G1 * 7); "LEMON";
  G1: 3
                      LEMON
-F(G1) 370: GOTO 390
-F(G1) 390: NEXT G1
+370 F(G1) GOTO 390
+390 F(G1) NEXT G1
  G1: 3
  terminated:true
-400: PRINT TAB(28);
+400 PRINT TAB(28);
                             
-410: IF D(1) <> D(2) THEN 440
+410 IF D(1) <> D(2) THEN 440
  D(1): 1
  D(2): 2
  D(1) <> D(2): true
-440: IF D(1) <> D(3) THEN 490
+440 IF D(1) <> D(3) THEN 490
  D(1): 1
  D(3): 5
  D(1) <> D(3): true
-490: LET B = B - 1
+490 LET B = B - 1
  B: -6
  B = -7
-490.1: PRINT "YOU HAVE LOST $1  TOTAL=$"; B;
+490.1 PRINT "YOU HAVE LOST $1  TOTAL=$"; B;
 YOU HAVE LOST $1  TOTAL=$
  B: -7
 -7 
-508: GOTO 550
-550: PRINT "AGAIN?";
+508 GOTO 550
+550 PRINT "AGAIN?";
 AGAIN?
-560: INPUT$ A
+560 INPUT$ A
 N A = 78
-560.1: PRINT
+560.1 PRINT
 
-560.2: IF A = 0 THEN 160
+560.2 IF A = 0 THEN 160
  A: 78
  A = 0: false
-560.3: IF A <> 0 THEN 560
+560.3 IF A <> 0 THEN 560
  A: 78
  A <> 0: false
-570: PRINT " IT'S BEEN NICE OPERATING FOR YOU COME BACK SOON!"
+570 PRINT " IT'S BEEN NICE OPERATING FOR YOU COME BACK SOON!"
  IT'S BEEN NICE OPERATING FOR YOU COME BACK SOON!
-F(G1) 580: END
+580 F(G1) END
 STOP in line 580
 

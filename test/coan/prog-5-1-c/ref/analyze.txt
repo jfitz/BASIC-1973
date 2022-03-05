@@ -19,64 +19,64 @@ Halstead complexity:
  intelligence: 24.078
  time: 13.353
 
-F(I) (1 3) 10 FOR I = 1 TO 5
+10 F(I) (1 3) FOR I = 1 TO 5
   Origs: :start
   Dests: 20:fornext, 30:fornext
-F(I) (0 3) 20 LET C[I] = 0
+20 F(I) (0 3) LET C[I] = 0
   Origs: 10:fornext
   Dests: 30:auto
-F(I) (0 1) 30 NEXT I
+30 F(I) (0 1) NEXT I
   Origs: 10:fornext, 20:auto
   Dests: 40:auto
-F(R) (1 3) 40 FOR R = 1 TO 5
+40 F(R) (1 3) FOR R = 1 TO 5
   Origs: 30:auto, 90:goto
   Dests: 50:fornext, 80:fornext
-F(R) (1 2) 50 READ K
+50 F(R) (1 2) READ K
   Origs: 40:fornext
   Dests: 60:auto
-F(R) (1 6) 60 IF K = -1 THEN 100
+60 F(R) (1 6) IF K = -1 THEN 100
   Origs: 50:auto
   Dests: 70:auto, 100:ifthen
-F(R) (0 4) 70 LET C[R] = C[R] + K
+70 F(R) (0 4) LET C[R] = C[R] + K
   Origs: 60:auto
   Dests: 80:auto
-F(R) (0 1) 80 NEXT R
+80 F(R) (0 1) NEXT R
   Origs: 40:fornext, 70:auto
   Dests: 90:auto
-(0 3) 90 GOTO 40
+90 (0 3) GOTO 40
   Origs: 80:auto
   Dests: 40:goto
-F(R) (0 6) 100 PRINT "CHEMISTRY", "PHYSICS", "FRENCH", "SPANISH", "CALCULUS"
+100 F(R) (0 6) PRINT "CHEMISTRY", "PHYSICS", "FRENCH", "SPANISH", "CALCULUS"
   Origs: 60:ifthen
   Dests: 110:auto
-F(R,I) (1 3) 110 FOR I = 1 TO 5
+110 F(R,I) (1 3) FOR I = 1 TO 5
   Origs: 100:auto
   Dests: 120:fornext, 130:fornext
-F(R,I) (0 2) 120 PRINT C[I],
+120 F(R,I) (0 2) PRINT C[I],
   Origs: 110:fornext
   Dests: 130:auto
-F(R,I) (0 1) 130 NEXT I
+130 F(R,I) (0 1) NEXT I
   Origs: 110:fornext, 120:auto
   Dests: 9999:auto
-(0 1) 990 REM DATA IS IN ORDER CHEMISTRY PHYSICS FRENCH SPANISH CALCULUS
+990 (0 1) REM DATA IS IN ORDER CHEMISTRY PHYSICS FRENCH SPANISH CALCULUS
   Origs: 
   Dests: 
-(0 1) 995 REM    '1' MEANS YES   '0' MEANS NO
+995 (0 1) REM    '1' MEANS YES   '0' MEANS NO
   Origs: 
   Dests: 
-(0 2) 1000 DATA 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1
+1000 (0 2) DATA 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1
   Origs: 
   Dests: 
-(0 2) 1010 DATA 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1
+1010 (0 2) DATA 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1
   Origs: 
   Dests: 
-(0 2) 1020 DATA 0, 0, 1, 0, 1, 1, 0, 1, 0, 0
+1020 (0 2) DATA 0, 0, 1, 0, 1, 1, 0, 1, 0, 0
   Origs: 
   Dests: 
-(0 3) 1100 DATA -1
+1100 (0 3) DATA -1
   Origs: 
   Dests: 
-F(R) (0 1) 9999 END
+9999 F(R) (0 1) END
      WARNING: Terminating statement in FOR/NEXT
   Origs: 130:auto
   Dests: :stop

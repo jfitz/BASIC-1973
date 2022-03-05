@@ -19,88 +19,88 @@ Halstead complexity:
  intelligence: 45.911
  time: 6.479
 
-(0 1) 8 REM  WE COMPUTE THE CONVERSION FACTOR
+8 (0 1) REM  WE COMPUTE THE CONVERSION FACTOR
   Origs: 
   Dests: 
-(0 4) 10 LET R = 3.14159 / 180
+10 (0 4) LET R = 3.14159 / 180
   Origs: :start
   Dests: 40:auto
-(0 1) 18 REM   DEFINE THE TRIG FUNCTION FOR DEGREES
+18 (0 1) REM   DEFINE THE TRIG FUNCTION FOR DEGREES
   Origs: 
   Dests: 
-FNT(_) (0 3) 20 DEF FNT(G) = SIN(G * R)
+20 FNT(_) (0 3) DEF FNT(G) = SIN(G * R)
   Origs: 70:function, 80:function, 90:function
   Dests: 
-(0 1) 28 REM   DEFINE A ROUNDING FUNCTION
+28 (0 1) REM   DEFINE A ROUNDING FUNCTION
   Origs: 
   Dests: 
-FNR(_) (0 4) 30 DEF FNR(X) = INT(X * 100 + 0.5) / 100
+30 FNR(_) (0 4) DEF FNR(X) = INT(X * 100 + 0.5) / 100
   Origs: 
   Dests: 
-(0 1) 38 REM   A1 AND B1 ARE ANGLES AND A IS A SIDE
+38 (0 1) REM   A1 AND B1 ARE ANGLES AND A IS A SIDE
   Origs: 
   Dests: 
-(3 4) 40 READ A1, B1, A
+40 (3 4) READ A1, B1, A
   Origs: 10:auto, 150:goto
   Dests: 50:auto
-(1 4) 50 IF A1 = 0 THEN 999
+50 (1 4) IF A1 = 0 THEN 999
   Origs: 40:auto
   Dests: 60:auto, 999:ifthen
-(0 1) 58 REM   FIND THE THIRD ANGLE
+58 (0 1) REM   FIND THE THIRD ANGLE
   Origs: 
   Dests: 
-(0 6) 60 LET C1 = 180 - (A1 + B1)
+60 (0 6) LET C1 = 180 - (A1 + B1)
   Origs: 50:auto
   Dests: 70:auto
-(0 1) 68 REM   70 AND 80 COMPUTE THE OTHER TWO SIDES
+68 (0 1) REM   70 AND 80 COMPUTE THE OTHER TWO SIDES
   Origs: 
   Dests: 
-(0 9) 70 LET B = A * FNT(B1) / FNT(A1)
+70 (0 9) LET B = A * FNT(B1) / FNT(A1)
   Origs: 60:auto
   Dests: 20:function, 80:auto
-(0 9) 80 LET C = B * FNT(C1) / FNT(B1)
+80 (0 9) LET C = B * FNT(C1) / FNT(B1)
   Origs: 70:auto
   Dests: 20:function, 90:auto
-(0 1) 88 REM COMPUTE AREA
+88 (0 1) REM COMPUTE AREA
   Origs: 
   Dests: 
-(0 8) 90 LET A2 = 0.5 * A * B * FNT(C1)
+90 (0 8) LET A2 = 0.5 * A * B * FNT(C1)
   Origs: 80:auto
   Dests: 20:function, 100:auto
-(0 1) 98 REM NOW PRINT THE RESULTS
+98 (0 1) REM NOW PRINT THE RESULTS
   Origs: 
   Dests: 
-(0 5) 100 PRINT " ", " A", " B", " C"
+100 (0 5) PRINT " ", " A", " B", " C"
   Origs: 90:auto
   Dests: 110:auto
-(0 5) 110 PRINT "THE ANGLES ARE", A1, B1, C1
+110 (0 5) PRINT "THE ANGLES ARE", A1, B1, C1
   Origs: 100:auto
   Dests: 120:auto
-(0 11) 120 PRINT "THE SIDES ARE", FNR(A), FNR(B), FNR(C)
+120 (0 11) PRINT "THE SIDES ARE", FNR(A), FNR(B), FNR(C)
   Origs: 110:auto
   Dests: 130:auto
-(0 5) 130 PRINT "AND THE AREA IS "; FNR(A2)
+130 (0 5) PRINT "AND THE AREA IS "; FNR(A2)
   Origs: 120:auto
   Dests: 140:auto
-(0 2) 140 PRINT
+140 (0 2) PRINT
   Origs: 130:auto
   Dests: 150:auto
-(0 3) 150 GOTO 40
+150 (0 3) GOTO 40
   Origs: 140:auto
   Dests: 40:goto
-(0 2) 500 DATA 24, 51, 10
+500 (0 2) DATA 24, 51, 10
   Origs: 
   Dests: 
-(0 2) 510 DATA 30, 60, 15
+510 (0 2) DATA 30, 60, 15
   Origs: 
   Dests: 
-(0 2) 520 DATA 45, 45, 20
+520 (0 2) DATA 45, 45, 20
   Origs: 
   Dests: 
-(0 2) 530 DATA 0, 0, 0
+530 (0 2) DATA 0, 0, 0
   Origs: 
   Dests: 
-(0 1) 999 END
+999 (0 1) END
   Origs: 50:ifthen
   Dests: :stop
 

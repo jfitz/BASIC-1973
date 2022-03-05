@@ -19,34 +19,34 @@ Halstead complexity:
  intelligence: 19.583
  time: 1.367
 
-(2 3) 10 READ N, R
+10 (2 3) READ N, R
   Origs: :start, 80:goto
   Dests: 20:auto
-(1 4) 20 IF N = 0 THEN 100
+20 (1 4) IF N = 0 THEN 100
   Origs: 10:auto
   Dests: 30:auto, 100:ifthen
-(0 3) 30 LET P = 1
+30 (0 3) LET P = 1
   Origs: 20:auto
   Dests: 40:auto
-F(X) (1 7) 40 FOR X = N TO N - R + 1 STEP -1
+40 F(X) (1 7) FOR X = N TO N - R + 1 STEP -1
   Origs: 30:auto
   Dests: 50:fornext, 60:fornext
-F(X) (0 4) 50 LET P = P * X
+50 F(X) (0 4) LET P = P * X
   Origs: 40:fornext
   Dests: 60:auto
-F(X) (0 1) 60 NEXT X
+60 F(X) (0 1) NEXT X
   Origs: 40:fornext, 50:auto
   Dests: 70:auto
-(0 7) 70 PRINT N; "THINGS"; R; "AT A TIME HAVE"; P; "PERMUTATIONS"
+70 (0 7) PRINT N; "THINGS"; R; "AT A TIME HAVE"; P; "PERMUTATIONS"
   Origs: 60:auto
   Dests: 80:auto
-(0 3) 80 GOTO 10
+80 (0 3) GOTO 10
   Origs: 70:auto
   Dests: 10:goto
-(0 2) 90 DATA 8, 3, 4, 4, 0, 0
+90 (0 2) DATA 8, 3, 4, 4, 0, 0
   Origs: 
   Dests: 
-(0 1) 100 END
+100 (0 1) END
   Origs: 20:ifthen
   Dests: :stop
 

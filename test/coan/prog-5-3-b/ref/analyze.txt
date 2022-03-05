@@ -19,157 +19,157 @@ Halstead complexity:
  intelligence: 38.824
  time: 92.040
 
-(0 2) 10 DIM S[15, 10]
+10 (0 2) DIM S[15, 10]
   Origs: :start
   Dests: 20:auto
-F(R) (1 3) 20 FOR R = 1 TO 15
+20 F(R) (1 3) FOR R = 1 TO 15
   Origs: 10:auto
   Dests: 30:fornext, 70:fornext
-(0 1) 28 REM LINE 30 ENTERS THE ROW NUMBER IN THE FIRST COLUMN
+28 (0 1) REM LINE 30 ENTERS THE ROW NUMBER IN THE FIRST COLUMN
   Origs: 
   Dests: 
-F(R) (0 3) 30 LET S[R, 1] = R
+30 F(R) (0 3) LET S[R, 1] = R
   Origs: 20:fornext
   Dests: 40:auto
-F(R,C) (1 3) 40 FOR C = 2 TO 5
+40 F(R,C) (1 3) FOR C = 2 TO 5
   Origs: 30:auto
   Dests: 50:fornext, 60:fornext
-(0 1) 48 REM LINE 50 SETS THE LAST 4 COLUMNS AT ZERO
+48 (0 1) REM LINE 50 SETS THE LAST 4 COLUMNS AT ZERO
   Origs: 
   Dests: 
-F(R,C) (0 3) 50 LET S[R, C] = 0
+50 F(R,C) (0 3) LET S[R, C] = 0
   Origs: 40:fornext
   Dests: 60:auto
-F(R,C) (0 1) 60 NEXT C
+60 F(R,C) (0 1) NEXT C
   Origs: 40:fornext, 50:auto
   Dests: 70:auto
-F(R) (0 1) 70 NEXT R
+70 F(R) (0 1) NEXT R
   Origs: 20:fornext, 60:auto
   Dests: 80:auto
-(0 1) 78 REM 80 READS THE CATEGORY FOR THE NEXT PERSON IN THE SURVEY
+78 (0 1) REM 80 READS THE CATEGORY FOR THE NEXT PERSON IN THE SURVEY
   Origs: 
   Dests: 
-(1 2) 80 READ P
+80 (1 2) READ P
   Origs: 70:auto, 140:goto
   Dests: 90:auto
-(1 6) 90 IF P = -1 THEN 145
+90 (1 6) IF P = -1 THEN 145
   Origs: 80:auto
   Dests: 100:auto, 145:ifthen
-(0 1) 98 REM Q GOES THROUGH THE 15 QUESTIONS
+98 (0 1) REM Q GOES THROUGH THE 15 QUESTIONS
   Origs: 
   Dests: 
-F(Q) (1 3) 100 FOR Q = 1 TO 15
+100 F(Q) (1 3) FOR Q = 1 TO 15
   Origs: 90:auto
   Dests: 110:fornext, 130:fornext
-F(Q) (1 2) 110 READ A
+110 F(Q) (1 2) READ A
   Origs: 100:fornext
   Dests: 120:auto
-F(Q) (0 4) 120 LET S[Q, P] = S[Q, P] + A
+120 F(Q) (0 4) LET S[Q, P] = S[Q, P] + A
   Origs: 110:auto
   Dests: 130:auto
-F(Q) (0 1) 130 NEXT Q
+130 F(Q) (0 1) NEXT Q
   Origs: 100:fornext, 120:auto
   Dests: 140:auto
-(0 1) 138 REM LINE 140 SENSE THE COMPUTER BACK TO READ ANOTHER LINE OF DATA
+138 (0 1) REM LINE 140 SENSE THE COMPUTER BACK TO READ ANOTHER LINE OF DATA
   Origs: 
   Dests: 
-(0 3) 140 GOTO 80
+140 (0 3) GOTO 80
   Origs: 130:auto
   Dests: 80:goto
-F(R) (1 3) 145 FOR R = 1 TO 15
+145 F(R) (1 3) FOR R = 1 TO 15
   Origs: 90:ifthen
   Dests: 150:fornext, 190:fornext
-F(R) (0 4) 150 LET S[R, 6] = S[R, 2] + S[R, 3]
+150 F(R) (0 4) LET S[R, 6] = S[R, 2] + S[R, 3]
   Origs: 145:fornext
   Dests: 160:auto
-F(R) (0 4) 160 LET S[R, 7] = S[R, 4] + S[R, 5]
+160 F(R) (0 4) LET S[R, 7] = S[R, 4] + S[R, 5]
   Origs: 150:auto
   Dests: 170:auto
-F(R) (0 4) 170 LET S[R, 8] = S[R, 3] + S[R, 5]
+170 F(R) (0 4) LET S[R, 8] = S[R, 3] + S[R, 5]
   Origs: 160:auto
   Dests: 180:auto
-F(R) (0 4) 180 LET S[R, 9] = S[R, 2] + S[R, 4]
+180 F(R) (0 4) LET S[R, 9] = S[R, 2] + S[R, 4]
   Origs: 170:auto
   Dests: 185:auto
-F(R) (0 4) 185 LET S[R, 10] = S[R, 6] + S[R, 7]
+185 F(R) (0 4) LET S[R, 10] = S[R, 6] + S[R, 7]
   Origs: 180:auto
   Dests: 190:auto
-F(R) (0 1) 190 NEXT R
+190 F(R) (0 1) NEXT R
   Origs: 145:fornext, 185:auto
   Dests: 200:auto
-(0 1) 198 REM THE PRINTING BEGINS HERE
+198 (0 1) REM THE PRINTING BEGINS HERE
   Origs: 
   Dests: 
-(0 2) 200 PRINT "QUEST MALE  MALE FEMALEFEMALE"
+200 (0 2) PRINT "QUEST MALE  MALE FEMALEFEMALE"
   Origs: 190:auto
   Dests: 210:auto
-(0 2) 210 PRINT "NUMBER 21+  UNDER 21+  UNDER MALE  FEMALE UNDER  21+";
+210 (0 2) PRINT "NUMBER 21+  UNDER 21+  UNDER MALE  FEMALE UNDER  21+";
   Origs: 200:auto
   Dests: 211:auto
-(0 2) 211 PRINT "  TOTAL"
+211 (0 2) PRINT "  TOTAL"
   Origs: 210:auto
   Dests: 220:auto
-F(R) (1 3) 220 FOR R = 1 TO 15
+220 F(R) (1 3) FOR R = 1 TO 15
   Origs: 211:auto
   Dests: 230:fornext, 280:fornext
-F(R,C) (1 3) 230 FOR C = 1 TO 10
+230 F(R,C) (1 3) FOR C = 1 TO 10
   Origs: 220:fornext
   Dests: 250:fornext, 260:fornext
-F(R,C) (0 2) 250 PRINT S[R, C];
+250 F(R,C) (0 2) PRINT S[R, C];
   Origs: 230:fornext
   Dests: 260:auto
-F(R,C) (0 1) 260 NEXT C
+260 F(R,C) (0 1) NEXT C
   Origs: 230:fornext, 250:auto
   Dests: 270:auto
-F(R) (0 2) 270 PRINT
+270 F(R) (0 2) PRINT
   Origs: 260:auto
   Dests: 280:auto
-F(R) (0 1) 280 NEXT R
+280 F(R) (0 1) NEXT R
   Origs: 220:fornext, 270:auto
   Dests: 999:auto
-(0 1) 498 REM  ***A LINE LIKE 500 MAY HELP TO LINEUP THE DATA LINES
+498 (0 1) REM  ***A LINE LIKE 500 MAY HELP TO LINEUP THE DATA LINES
   Origs: 
   Dests: 
-(0 1) 499 REM  IN TYPING***
+499 (0 1) REM  IN TYPING***
   Origs: 
   Dests: 
-(0 2) 500 DATA 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+500 (0 2) DATA 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
   Origs: 
   Dests: 
-(0 2) 501 DATA 4, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1
+501 (0 2) DATA 4, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1
   Origs: 
   Dests: 
-(0 2) 502 DATA 4, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1
+502 (0 2) DATA 4, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1
   Origs: 
   Dests: 
-(0 2) 503 DATA 3, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0
+503 (0 2) DATA 3, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0
   Origs: 
   Dests: 
-(0 2) 504 DATA 5, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0
+504 (0 2) DATA 5, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0
   Origs: 
   Dests: 
-(0 2) 505 DATA 2, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0
+505 (0 2) DATA 2, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0
   Origs: 
   Dests: 
-(0 2) 506 DATA 5, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1
+506 (0 2) DATA 5, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1
   Origs: 
   Dests: 
-(0 2) 507 DATA 5, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1
+507 (0 2) DATA 5, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1
   Origs: 
   Dests: 
-(0 2) 508 DATA 2, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1
+508 (0 2) DATA 2, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1
   Origs: 
   Dests: 
-(0 2) 509 DATA 4, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0
+509 (0 2) DATA 4, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0
   Origs: 
   Dests: 
-(0 2) 510 DATA 2, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1
+510 (0 2) DATA 2, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1
   Origs: 
   Dests: 
-(0 3) 900 DATA -1
+900 (0 3) DATA -1
   Origs: 
   Dests: 
-(0 1) 999 END
+999 (0 1) END
   Origs: 280:auto
   Dests: :stop
 

@@ -1,2712 +1,2712 @@
-FNP(_) 10: DEF FNP(X) = P[4] * X ^ 3 + P[3] * X ^ 2 + P[2] * X + P[1]
-405: DATA 1, 2, -1, -2
-410: DATA 1, -1, 0, -48, 1, 0, 0, -1, 1, 0, 0, 1, 1, -1, 1, -1
-415: DATA 6, -77, -189, -90
-420: DATA 0.0101
-F(X) 20: PRINT
+10 FNP(_) DEF FNP(X) = P[4] * X ^ 3 + P[3] * X ^ 2 + P[2] * X + P[1]
+405 DATA 1, 2, -1, -2
+410 DATA 1, -1, 0, -48, 1, 0, 0, -1, 1, 0, 0, 1, 1, -1, 1, -1
+415 DATA 6, -77, -189, -90
+420 DATA 0.0101
+20 F(X) PRINT
 
-F(X) 30: PRINT
+30 F(X) PRINT
 
-F(S,X) 40: FOR S = 4 TO 1 STEP -1
+40 F(S,X) FOR S = 4 TO 1 STEP -1
  S = 4
  -1 = -1
  terminated:false
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 4
  P(4) = 1
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 4
  P(4): 1
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 4
  P(4): 1
  1 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 4
  terminated:false
  S = 3
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 3
  P(3) = 2
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 3
  P(3): 2
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 3
  P(3): 2
  2 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 3
  terminated:false
  S = 2
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 2
  P(2) = -1
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 2
  P(2): -1
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 2
  P(2): -1
 -1 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 2
  terminated:false
  S = 1
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 1
  P(1) = -2
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 1
  P(1): -2
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 1
  P(1): -2
 -2 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 1
  terminated:true
-F(X) 90: PRINT "INTEGRAL ZERO:"
+90 F(X) PRINT "INTEGRAL ZERO:"
 INTEGRAL ZERO:
-F(X) 100: FOR X = -P[1] TO P[1] STEP SGN(P[1])
+100 F(X) FOR X = -P[1] TO P[1] STEP SGN(P[1])
  P(1): -2
  X = 2
  -P[1] = 2
  P[1] = -2
  SGN(P[1]) = -1
  terminated:false
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 2
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -2
  X: 2
  P[1] / X <> INT(P[1] / X): false
-F(X) 130: IF FNP(X) <> 0 THEN 160
+130 F(X) IF FNP(X) <> 0 THEN 160
  X: 2
  P(4): 1
  P(3): 2
  P(2): -1
  P(1): -2
  FNP(X) <> 0: true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 2
  terminated:false
  X = 1
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 1
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -2
  X: 1
  P[1] / X <> INT(P[1] / X): false
-F(X) 130: IF FNP(X) <> 0 THEN 160
+130 F(X) IF FNP(X) <> 0 THEN 160
  X: 1
  P(4): 1
  P(3): 2
  P(2): -1
  P(1): -2
  FNP(X) <> 0: false
-F(X) 140: PRINT X
+140 F(X) PRINT X
  X: 1
  1
-F(X) 150: GOTO 170
-F(X) 170: LET R = X
+150 F(X) GOTO 170
+170 F(X) LET R = X
  X: 1
  R = 1
-F(X) 180: PRINT "SYNTHETIC DIVISION BY   X -"; R; "YIELDS:"
+180 F(X) PRINT "SYNTHETIC DIVISION BY   X -"; R; "YIELDS:"
 SYNTHETIC DIVISION BY   X -
  R: 1
  1 YIELDS:
-F(X) 190: PRINT P[4];
+190 F(X) PRINT P[4];
  P(4): 1
  1 
-F(X,X) 200: FOR X = 3 TO 1 STEP -1
+200 F(X,X) FOR X = 3 TO 1 STEP -1
  X = 3
  -1 = -1
  terminated:false
-F(X,X) 210: LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) LET P[X] = P[X] + P[X + 1] * R
  X: 3
  P(3): 2
  P(4): 1
  R: 1
  P(3) = 3
-F(X) 220: IF X > 1 THEN 240
+220 F(X) IF X > 1 THEN 240
  X: 3
  X > 1: true
-F(X) 240: PRINT P[X];
+240 F(X) PRINT P[X];
  X: 3
  P(3): 3
  3 
-F(X) 250: NEXT X
+250 F(X) NEXT X
  X: 3
  terminated:false
  X = 2
-F(X,X) 210: LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) LET P[X] = P[X] + P[X + 1] * R
  X: 2
  P(2): -1
  P(3): 3
  R: 1
  P(2) = 2
-F(X) 220: IF X > 1 THEN 240
+220 F(X) IF X > 1 THEN 240
  X: 2
  X > 1: true
-F(X) 240: PRINT P[X];
+240 F(X) PRINT P[X];
  X: 2
  P(2): 2
  2 
-F(X) 250: NEXT X
+250 F(X) NEXT X
  X: 2
  terminated:false
  X = 1
-F(X,X) 210: LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) LET P[X] = P[X] + P[X + 1] * R
  X: 1
  P(1): -2
  P(2): 2
  R: 1
  P(1) = 0
-F(X) 220: IF X > 1 THEN 240
+220 F(X) IF X > 1 THEN 240
  X: 1
  X > 1: false
-F(X) 230: PRINT "REMAINDER =";
+230 F(X) PRINT "REMAINDER =";
 REMAINDER =
-F(X) 240: PRINT P[X];
+240 F(X) PRINT P[X];
  X: 1
  P(1): 0
  0 
-F(X) 250: NEXT X
+250 F(X) NEXT X
  X: 1
  terminated:true
-F(X,X) 260: FOR X = 1 TO 3
+260 F(X,X) FOR X = 1 TO 3
  X = 1
  terminated:false
-F(X,X) 270: LET P[X] = P[X + 1]
+270 F(X,X) LET P[X] = P[X + 1]
  X: 1
  P(2): 2
  P(1) = 2
-F(X) 280: NEXT X
+280 F(X) NEXT X
  X: 1
  terminated:false
  X = 2
-F(X,X) 270: LET P[X] = P[X + 1]
+270 F(X,X) LET P[X] = P[X + 1]
  X: 2
  P(3): 3
  P(2) = 3
-F(X) 280: NEXT X
+280 F(X) NEXT X
  X: 2
  terminated:false
  X = 3
-F(X,X) 270: LET P[X] = P[X + 1]
+270 F(X,X) LET P[X] = P[X + 1]
  X: 3
  P(4): 1
  P(3) = 1
-F(X) 280: NEXT X
+280 F(X) NEXT X
  X: 3
  terminated:true
-F(X) 290: PRINT
+290 F(X) PRINT
 
-F(X) 300: LET D = P[2] ^ 2 - 4 * P[3] * P[1]
+300 F(X) LET D = P[2] ^ 2 - 4 * P[3] * P[1]
  P(2): 3
  P(3): 1
  P(1): 2
  D = 1
-F(X) 310: LET F = 2 * P[3]
+310 F(X) LET F = 2 * P[3]
  P(3): 1
  F = 2
-F(X) 320: LET A = -P[2] / F
+320 F(X) LET A = -P[2] / F
  P(2): 3
  F: 2
  A = -1.5
-F(X) 330: LET B = SQR(ABS(D)) / F
+330 F(X) LET B = SQR(ABS(D)) / F
  D: 1
  F: 2
  B = 0.5
-F(X) 340: IF D < 0 THEN 380
+340 F(X) IF D < 0 THEN 380
  D: 1
  D < 0: false
-F(X) 350: PRINT "REAL ZEROS:"
+350 F(X) PRINT "REAL ZEROS:"
 REAL ZEROS:
-F(X) 360: PRINT A + B; "AND   "; A - B
+360 F(X) PRINT A + B; "AND   "; A - B
  A: -1.5
  B: 0.5
 -1 AND   -2
-F(X) 370: GOTO 20
-F(X) 20: PRINT
+370 F(X) GOTO 20
+20 F(X) PRINT
 
-F(X) 30: PRINT
+30 F(X) PRINT
 
-F(S,X) 40: FOR S = 4 TO 1 STEP -1
+40 F(S,X) FOR S = 4 TO 1 STEP -1
  S = 4
  -1 = -1
  terminated:false
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 4
  P(4) = 1
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 4
  P(4): 1
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 4
  P(4): 1
  1 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 4
  terminated:false
  S = 3
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 3
  P(3) = -1
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 3
  P(3): -1
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 3
  P(3): -1
 -1 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 3
  terminated:false
  S = 2
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 2
  P(2) = 0
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 2
  P(2): 0
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 2
  P(2): 0
  0 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 2
  terminated:false
  S = 1
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 1
  P(1) = -48
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 1
  P(1): -48
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 1
  P(1): -48
 -48 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 1
  terminated:true
-F(X) 90: PRINT "INTEGRAL ZERO:"
+90 F(X) PRINT "INTEGRAL ZERO:"
 INTEGRAL ZERO:
-F(X) 100: FOR X = -P[1] TO P[1] STEP SGN(P[1])
+100 F(X) FOR X = -P[1] TO P[1] STEP SGN(P[1])
  P(1): -48
  X = 48
  -P[1] = 48
  P[1] = -48
  SGN(P[1]) = -1
  terminated:false
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 48
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 48
  P[1] / X <> INT(P[1] / X): false
-F(X) 130: IF FNP(X) <> 0 THEN 160
+130 F(X) IF FNP(X) <> 0 THEN 160
  X: 48
  P(4): 1
  P(3): -1
  P(2): 0
  P(1): -48
  FNP(X) <> 0: true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 48
  terminated:false
  X = 47
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 47
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 47
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 47
  terminated:false
  X = 46
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 46
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 46
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 46
  terminated:false
  X = 45
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 45
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 45
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 45
  terminated:false
  X = 44
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 44
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 44
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 44
  terminated:false
  X = 43
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 43
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 43
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 43
  terminated:false
  X = 42
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 42
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 42
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 42
  terminated:false
  X = 41
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 41
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 41
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 41
  terminated:false
  X = 40
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 40
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 40
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 40
  terminated:false
  X = 39
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 39
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 39
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 39
  terminated:false
  X = 38
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 38
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 38
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 38
  terminated:false
  X = 37
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 37
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 37
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 37
  terminated:false
  X = 36
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 36
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 36
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 36
  terminated:false
  X = 35
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 35
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 35
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 35
  terminated:false
  X = 34
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 34
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 34
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 34
  terminated:false
  X = 33
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 33
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 33
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 33
  terminated:false
  X = 32
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 32
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 32
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 32
  terminated:false
  X = 31
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 31
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 31
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 31
  terminated:false
  X = 30
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 30
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 30
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 30
  terminated:false
  X = 29
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 29
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 29
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 29
  terminated:false
  X = 28
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 28
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 28
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 28
  terminated:false
  X = 27
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 27
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 27
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 27
  terminated:false
  X = 26
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 26
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 26
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 26
  terminated:false
  X = 25
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 25
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 25
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 25
  terminated:false
  X = 24
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 24
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 24
  P[1] / X <> INT(P[1] / X): false
-F(X) 130: IF FNP(X) <> 0 THEN 160
+130 F(X) IF FNP(X) <> 0 THEN 160
  X: 24
  P(4): 1
  P(3): -1
  P(2): 0
  P(1): -48
  FNP(X) <> 0: true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 24
  terminated:false
  X = 23
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 23
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 23
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 23
  terminated:false
  X = 22
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 22
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 22
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 22
  terminated:false
  X = 21
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 21
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 21
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 21
  terminated:false
  X = 20
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 20
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 20
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 20
  terminated:false
  X = 19
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 19
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 19
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 19
  terminated:false
  X = 18
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 18
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 18
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 18
  terminated:false
  X = 17
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 17
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 17
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 17
  terminated:false
  X = 16
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 16
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 16
  P[1] / X <> INT(P[1] / X): false
-F(X) 130: IF FNP(X) <> 0 THEN 160
+130 F(X) IF FNP(X) <> 0 THEN 160
  X: 16
  P(4): 1
  P(3): -1
  P(2): 0
  P(1): -48
  FNP(X) <> 0: true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 16
  terminated:false
  X = 15
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 15
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 15
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 15
  terminated:false
  X = 14
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 14
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 14
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 14
  terminated:false
  X = 13
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 13
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 13
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 13
  terminated:false
  X = 12
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 12
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 12
  P[1] / X <> INT(P[1] / X): false
-F(X) 130: IF FNP(X) <> 0 THEN 160
+130 F(X) IF FNP(X) <> 0 THEN 160
  X: 12
  P(4): 1
  P(3): -1
  P(2): 0
  P(1): -48
  FNP(X) <> 0: true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 12
  terminated:false
  X = 11
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 11
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 11
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 11
  terminated:false
  X = 10
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 10
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 10
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 10
  terminated:false
  X = 9
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 9
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 9
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 9
  terminated:false
  X = 8
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 8
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 8
  P[1] / X <> INT(P[1] / X): false
-F(X) 130: IF FNP(X) <> 0 THEN 160
+130 F(X) IF FNP(X) <> 0 THEN 160
  X: 8
  P(4): 1
  P(3): -1
  P(2): 0
  P(1): -48
  FNP(X) <> 0: true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 8
  terminated:false
  X = 7
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 7
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 7
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 7
  terminated:false
  X = 6
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 6
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 6
  P[1] / X <> INT(P[1] / X): false
-F(X) 130: IF FNP(X) <> 0 THEN 160
+130 F(X) IF FNP(X) <> 0 THEN 160
  X: 6
  P(4): 1
  P(3): -1
  P(2): 0
  P(1): -48
  FNP(X) <> 0: true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 6
  terminated:false
  X = 5
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 5
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 5
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 5
  terminated:false
  X = 4
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 4
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -48
  X: 4
  P[1] / X <> INT(P[1] / X): false
-F(X) 130: IF FNP(X) <> 0 THEN 160
+130 F(X) IF FNP(X) <> 0 THEN 160
  X: 4
  P(4): 1
  P(3): -1
  P(2): 0
  P(1): -48
  FNP(X) <> 0: false
-F(X) 140: PRINT X
+140 F(X) PRINT X
  X: 4
  4
-F(X) 150: GOTO 170
-F(X) 170: LET R = X
+150 F(X) GOTO 170
+170 F(X) LET R = X
  X: 4
  R = 4
-F(X) 180: PRINT "SYNTHETIC DIVISION BY   X -"; R; "YIELDS:"
+180 F(X) PRINT "SYNTHETIC DIVISION BY   X -"; R; "YIELDS:"
 SYNTHETIC DIVISION BY   X -
  R: 4
  4 YIELDS:
-F(X) 190: PRINT P[4];
+190 F(X) PRINT P[4];
  P(4): 1
  1 
-F(X,X) 200: FOR X = 3 TO 1 STEP -1
+200 F(X,X) FOR X = 3 TO 1 STEP -1
  X = 3
  -1 = -1
  terminated:false
-F(X,X) 210: LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) LET P[X] = P[X] + P[X + 1] * R
  X: 3
  P(3): -1
  P(4): 1
  R: 4
  P(3) = 3
-F(X) 220: IF X > 1 THEN 240
+220 F(X) IF X > 1 THEN 240
  X: 3
  X > 1: true
-F(X) 240: PRINT P[X];
+240 F(X) PRINT P[X];
  X: 3
  P(3): 3
  3 
-F(X) 250: NEXT X
+250 F(X) NEXT X
  X: 3
  terminated:false
  X = 2
-F(X,X) 210: LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) LET P[X] = P[X] + P[X + 1] * R
  X: 2
  P(2): 0
  P(3): 3
  R: 4
  P(2) = 12
-F(X) 220: IF X > 1 THEN 240
+220 F(X) IF X > 1 THEN 240
  X: 2
  X > 1: true
-F(X) 240: PRINT P[X];
+240 F(X) PRINT P[X];
  X: 2
  P(2): 12
  12 
-F(X) 250: NEXT X
+250 F(X) NEXT X
  X: 2
  terminated:false
  X = 1
-F(X,X) 210: LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) LET P[X] = P[X] + P[X + 1] * R
  X: 1
  P(1): -48
  P(2): 12
  R: 4
  P(1) = 0
-F(X) 220: IF X > 1 THEN 240
+220 F(X) IF X > 1 THEN 240
  X: 1
  X > 1: false
-F(X) 230: PRINT "REMAINDER =";
+230 F(X) PRINT "REMAINDER =";
 REMAINDER =
-F(X) 240: PRINT P[X];
+240 F(X) PRINT P[X];
  X: 1
  P(1): 0
  0 
-F(X) 250: NEXT X
+250 F(X) NEXT X
  X: 1
  terminated:true
-F(X,X) 260: FOR X = 1 TO 3
+260 F(X,X) FOR X = 1 TO 3
  X = 1
  terminated:false
-F(X,X) 270: LET P[X] = P[X + 1]
+270 F(X,X) LET P[X] = P[X + 1]
  X: 1
  P(2): 12
  P(1) = 12
-F(X) 280: NEXT X
+280 F(X) NEXT X
  X: 1
  terminated:false
  X = 2
-F(X,X) 270: LET P[X] = P[X + 1]
+270 F(X,X) LET P[X] = P[X + 1]
  X: 2
  P(3): 3
  P(2) = 3
-F(X) 280: NEXT X
+280 F(X) NEXT X
  X: 2
  terminated:false
  X = 3
-F(X,X) 270: LET P[X] = P[X + 1]
+270 F(X,X) LET P[X] = P[X + 1]
  X: 3
  P(4): 1
  P(3) = 1
-F(X) 280: NEXT X
+280 F(X) NEXT X
  X: 3
  terminated:true
-F(X) 290: PRINT
+290 F(X) PRINT
 
-F(X) 300: LET D = P[2] ^ 2 - 4 * P[3] * P[1]
+300 F(X) LET D = P[2] ^ 2 - 4 * P[3] * P[1]
  P(2): 3
  P(3): 1
  P(1): 12
  D = -39
-F(X) 310: LET F = 2 * P[3]
+310 F(X) LET F = 2 * P[3]
  P(3): 1
  F = 2
-F(X) 320: LET A = -P[2] / F
+320 F(X) LET A = -P[2] / F
  P(2): 3
  F: 2
  A = -1.5
-F(X) 330: LET B = SQR(ABS(D)) / F
+330 F(X) LET B = SQR(ABS(D)) / F
  D: -39
  F: 2
  B = 3.122499
-F(X) 340: IF D < 0 THEN 380
+340 F(X) IF D < 0 THEN 380
  D: -39
  D < 0: true
-F(X) 380: PRINT "NON-REAL ZEROS:"
+380 F(X) PRINT "NON-REAL ZEROS:"
 NON-REAL ZEROS:
-F(X) 390: PRINT "("; A; ","; B; ") AND ("; A; ","; -B; ")"
+390 F(X) PRINT "("; A; ","; B; ") AND ("; A; ","; -B; ")"
 (
  A: -1.5
 -1.5 ,
  B: 3.122499
  3.122499 ) AND (-1.5 ,-3.122499 )
-F(X) 400: GOTO 20
-F(X) 20: PRINT
+400 F(X) GOTO 20
+20 F(X) PRINT
 
-F(X) 30: PRINT
+30 F(X) PRINT
 
-F(S,X) 40: FOR S = 4 TO 1 STEP -1
+40 F(S,X) FOR S = 4 TO 1 STEP -1
  S = 4
  -1 = -1
  terminated:false
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 4
  P(4) = 1
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 4
  P(4): 1
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 4
  P(4): 1
  1 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 4
  terminated:false
  S = 3
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 3
  P(3) = 0
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 3
  P(3): 0
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 3
  P(3): 0
  0 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 3
  terminated:false
  S = 2
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 2
  P(2) = 0
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 2
  P(2): 0
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 2
  P(2): 0
  0 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 2
  terminated:false
  S = 1
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 1
  P(1) = -1
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 1
  P(1): -1
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 1
  P(1): -1
 -1 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 1
  terminated:true
-F(X) 90: PRINT "INTEGRAL ZERO:"
+90 F(X) PRINT "INTEGRAL ZERO:"
 INTEGRAL ZERO:
-F(X) 100: FOR X = -P[1] TO P[1] STEP SGN(P[1])
+100 F(X) FOR X = -P[1] TO P[1] STEP SGN(P[1])
  P(1): -1
  X = 1
  -P[1] = 1
  P[1] = -1
  SGN(P[1]) = -1
  terminated:false
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 1
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -1
  X: 1
  P[1] / X <> INT(P[1] / X): false
-F(X) 130: IF FNP(X) <> 0 THEN 160
+130 F(X) IF FNP(X) <> 0 THEN 160
  X: 1
  P(4): 1
  P(3): 0
  P(2): 0
  P(1): -1
  FNP(X) <> 0: false
-F(X) 140: PRINT X
+140 F(X) PRINT X
  X: 1
  1
-F(X) 150: GOTO 170
-F(X) 170: LET R = X
+150 F(X) GOTO 170
+170 F(X) LET R = X
  X: 1
  R = 1
-F(X) 180: PRINT "SYNTHETIC DIVISION BY   X -"; R; "YIELDS:"
+180 F(X) PRINT "SYNTHETIC DIVISION BY   X -"; R; "YIELDS:"
 SYNTHETIC DIVISION BY   X -
  R: 1
  1 YIELDS:
-F(X) 190: PRINT P[4];
+190 F(X) PRINT P[4];
  P(4): 1
  1 
-F(X,X) 200: FOR X = 3 TO 1 STEP -1
+200 F(X,X) FOR X = 3 TO 1 STEP -1
  X = 3
  -1 = -1
  terminated:false
-F(X,X) 210: LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) LET P[X] = P[X] + P[X + 1] * R
  X: 3
  P(3): 0
  P(4): 1
  R: 1
  P(3) = 1
-F(X) 220: IF X > 1 THEN 240
+220 F(X) IF X > 1 THEN 240
  X: 3
  X > 1: true
-F(X) 240: PRINT P[X];
+240 F(X) PRINT P[X];
  X: 3
  P(3): 1
  1 
-F(X) 250: NEXT X
+250 F(X) NEXT X
  X: 3
  terminated:false
  X = 2
-F(X,X) 210: LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) LET P[X] = P[X] + P[X + 1] * R
  X: 2
  P(2): 0
  P(3): 1
  R: 1
  P(2) = 1
-F(X) 220: IF X > 1 THEN 240
+220 F(X) IF X > 1 THEN 240
  X: 2
  X > 1: true
-F(X) 240: PRINT P[X];
+240 F(X) PRINT P[X];
  X: 2
  P(2): 1
  1 
-F(X) 250: NEXT X
+250 F(X) NEXT X
  X: 2
  terminated:false
  X = 1
-F(X,X) 210: LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) LET P[X] = P[X] + P[X + 1] * R
  X: 1
  P(1): -1
  P(2): 1
  R: 1
  P(1) = 0
-F(X) 220: IF X > 1 THEN 240
+220 F(X) IF X > 1 THEN 240
  X: 1
  X > 1: false
-F(X) 230: PRINT "REMAINDER =";
+230 F(X) PRINT "REMAINDER =";
 REMAINDER =
-F(X) 240: PRINT P[X];
+240 F(X) PRINT P[X];
  X: 1
  P(1): 0
  0 
-F(X) 250: NEXT X
+250 F(X) NEXT X
  X: 1
  terminated:true
-F(X,X) 260: FOR X = 1 TO 3
+260 F(X,X) FOR X = 1 TO 3
  X = 1
  terminated:false
-F(X,X) 270: LET P[X] = P[X + 1]
+270 F(X,X) LET P[X] = P[X + 1]
  X: 1
  P(2): 1
  P(1) = 1
-F(X) 280: NEXT X
+280 F(X) NEXT X
  X: 1
  terminated:false
  X = 2
-F(X,X) 270: LET P[X] = P[X + 1]
+270 F(X,X) LET P[X] = P[X + 1]
  X: 2
  P(3): 1
  P(2) = 1
-F(X) 280: NEXT X
+280 F(X) NEXT X
  X: 2
  terminated:false
  X = 3
-F(X,X) 270: LET P[X] = P[X + 1]
+270 F(X,X) LET P[X] = P[X + 1]
  X: 3
  P(4): 1
  P(3) = 1
-F(X) 280: NEXT X
+280 F(X) NEXT X
  X: 3
  terminated:true
-F(X) 290: PRINT
+290 F(X) PRINT
 
-F(X) 300: LET D = P[2] ^ 2 - 4 * P[3] * P[1]
+300 F(X) LET D = P[2] ^ 2 - 4 * P[3] * P[1]
  P(2): 1
  P(3): 1
  P(1): 1
  D = -3
-F(X) 310: LET F = 2 * P[3]
+310 F(X) LET F = 2 * P[3]
  P(3): 1
  F = 2
-F(X) 320: LET A = -P[2] / F
+320 F(X) LET A = -P[2] / F
  P(2): 1
  F: 2
  A = -0.5
-F(X) 330: LET B = SQR(ABS(D)) / F
+330 F(X) LET B = SQR(ABS(D)) / F
  D: -3
  F: 2
  B = 0.866025405
-F(X) 340: IF D < 0 THEN 380
+340 F(X) IF D < 0 THEN 380
  D: -3
  D < 0: true
-F(X) 380: PRINT "NON-REAL ZEROS:"
+380 F(X) PRINT "NON-REAL ZEROS:"
 NON-REAL ZEROS:
-F(X) 390: PRINT "("; A; ","; B; ") AND ("; A; ","; -B; ")"
+390 F(X) PRINT "("; A; ","; B; ") AND ("; A; ","; -B; ")"
 (
  A: -0.5
 -0.5 ,
  B: 0.866025405
  0.866025405 ) AND (-0.5 ,-0.866025405 )
-F(X) 400: GOTO 20
-F(X) 20: PRINT
+400 F(X) GOTO 20
+20 F(X) PRINT
 
-F(X) 30: PRINT
+30 F(X) PRINT
 
-F(S,X) 40: FOR S = 4 TO 1 STEP -1
+40 F(S,X) FOR S = 4 TO 1 STEP -1
  S = 4
  -1 = -1
  terminated:false
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 4
  P(4) = 1
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 4
  P(4): 1
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 4
  P(4): 1
  1 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 4
  terminated:false
  S = 3
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 3
  P(3) = 0
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 3
  P(3): 0
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 3
  P(3): 0
  0 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 3
  terminated:false
  S = 2
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 2
  P(2) = 0
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 2
  P(2): 0
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 2
  P(2): 0
  0 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 2
  terminated:false
  S = 1
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 1
  P(1) = 1
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 1
  P(1): 1
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 1
  P(1): 1
  1 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 1
  terminated:true
-F(X) 90: PRINT "INTEGRAL ZERO:"
+90 F(X) PRINT "INTEGRAL ZERO:"
 INTEGRAL ZERO:
-F(X) 100: FOR X = -P[1] TO P[1] STEP SGN(P[1])
+100 F(X) FOR X = -P[1] TO P[1] STEP SGN(P[1])
  P(1): 1
  X = -1
  -P[1] = -1
  P[1] = 1
  SGN(P[1]) = 1
  terminated:false
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: -1
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): 1
  X: -1
  P[1] / X <> INT(P[1] / X): false
-F(X) 130: IF FNP(X) <> 0 THEN 160
+130 F(X) IF FNP(X) <> 0 THEN 160
  X: -1
  P(4): 1
  P(3): 0
  P(2): 0
  P(1): 1
  FNP(X) <> 0: false
-F(X) 140: PRINT X
+140 F(X) PRINT X
  X: -1
 -1
-F(X) 150: GOTO 170
-F(X) 170: LET R = X
+150 F(X) GOTO 170
+170 F(X) LET R = X
  X: -1
  R = -1
-F(X) 180: PRINT "SYNTHETIC DIVISION BY   X -"; R; "YIELDS:"
+180 F(X) PRINT "SYNTHETIC DIVISION BY   X -"; R; "YIELDS:"
 SYNTHETIC DIVISION BY   X -
  R: -1
 -1 YIELDS:
-F(X) 190: PRINT P[4];
+190 F(X) PRINT P[4];
  P(4): 1
  1 
-F(X,X) 200: FOR X = 3 TO 1 STEP -1
+200 F(X,X) FOR X = 3 TO 1 STEP -1
  X = 3
  -1 = -1
  terminated:false
-F(X,X) 210: LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) LET P[X] = P[X] + P[X + 1] * R
  X: 3
  P(3): 0
  P(4): 1
  R: -1
  P(3) = -1
-F(X) 220: IF X > 1 THEN 240
+220 F(X) IF X > 1 THEN 240
  X: 3
  X > 1: true
-F(X) 240: PRINT P[X];
+240 F(X) PRINT P[X];
  X: 3
  P(3): -1
 -1 
-F(X) 250: NEXT X
+250 F(X) NEXT X
  X: 3
  terminated:false
  X = 2
-F(X,X) 210: LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) LET P[X] = P[X] + P[X + 1] * R
  X: 2
  P(2): 0
  P(3): -1
  R: -1
  P(2) = 1
-F(X) 220: IF X > 1 THEN 240
+220 F(X) IF X > 1 THEN 240
  X: 2
  X > 1: true
-F(X) 240: PRINT P[X];
+240 F(X) PRINT P[X];
  X: 2
  P(2): 1
  1 
-F(X) 250: NEXT X
+250 F(X) NEXT X
  X: 2
  terminated:false
  X = 1
-F(X,X) 210: LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) LET P[X] = P[X] + P[X + 1] * R
  X: 1
  P(1): 1
  P(2): 1
  R: -1
  P(1) = 0
-F(X) 220: IF X > 1 THEN 240
+220 F(X) IF X > 1 THEN 240
  X: 1
  X > 1: false
-F(X) 230: PRINT "REMAINDER =";
+230 F(X) PRINT "REMAINDER =";
 REMAINDER =
-F(X) 240: PRINT P[X];
+240 F(X) PRINT P[X];
  X: 1
  P(1): 0
  0 
-F(X) 250: NEXT X
+250 F(X) NEXT X
  X: 1
  terminated:true
-F(X,X) 260: FOR X = 1 TO 3
+260 F(X,X) FOR X = 1 TO 3
  X = 1
  terminated:false
-F(X,X) 270: LET P[X] = P[X + 1]
+270 F(X,X) LET P[X] = P[X + 1]
  X: 1
  P(2): 1
  P(1) = 1
-F(X) 280: NEXT X
+280 F(X) NEXT X
  X: 1
  terminated:false
  X = 2
-F(X,X) 270: LET P[X] = P[X + 1]
+270 F(X,X) LET P[X] = P[X + 1]
  X: 2
  P(3): -1
  P(2) = -1
-F(X) 280: NEXT X
+280 F(X) NEXT X
  X: 2
  terminated:false
  X = 3
-F(X,X) 270: LET P[X] = P[X + 1]
+270 F(X,X) LET P[X] = P[X + 1]
  X: 3
  P(4): 1
  P(3) = 1
-F(X) 280: NEXT X
+280 F(X) NEXT X
  X: 3
  terminated:true
-F(X) 290: PRINT
+290 F(X) PRINT
 
-F(X) 300: LET D = P[2] ^ 2 - 4 * P[3] * P[1]
+300 F(X) LET D = P[2] ^ 2 - 4 * P[3] * P[1]
  P(2): -1
  P(3): 1
  P(1): 1
  D = -3
-F(X) 310: LET F = 2 * P[3]
+310 F(X) LET F = 2 * P[3]
  P(3): 1
  F = 2
-F(X) 320: LET A = -P[2] / F
+320 F(X) LET A = -P[2] / F
  P(2): -1
  F: 2
  A = 0.5
-F(X) 330: LET B = SQR(ABS(D)) / F
+330 F(X) LET B = SQR(ABS(D)) / F
  D: -3
  F: 2
  B = 0.866025405
-F(X) 340: IF D < 0 THEN 380
+340 F(X) IF D < 0 THEN 380
  D: -3
  D < 0: true
-F(X) 380: PRINT "NON-REAL ZEROS:"
+380 F(X) PRINT "NON-REAL ZEROS:"
 NON-REAL ZEROS:
-F(X) 390: PRINT "("; A; ","; B; ") AND ("; A; ","; -B; ")"
+390 F(X) PRINT "("; A; ","; B; ") AND ("; A; ","; -B; ")"
 (
  A: 0.5
  0.5 ,
  B: 0.866025405
  0.866025405 ) AND ( 0.5 ,-0.866025405 )
-F(X) 400: GOTO 20
-F(X) 20: PRINT
+400 F(X) GOTO 20
+20 F(X) PRINT
 
-F(X) 30: PRINT
+30 F(X) PRINT
 
-F(S,X) 40: FOR S = 4 TO 1 STEP -1
+40 F(S,X) FOR S = 4 TO 1 STEP -1
  S = 4
  -1 = -1
  terminated:false
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 4
  P(4) = 1
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 4
  P(4): 1
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 4
  P(4): 1
  1 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 4
  terminated:false
  S = 3
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 3
  P(3) = -1
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 3
  P(3): -1
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 3
  P(3): -1
 -1 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 3
  terminated:false
  S = 2
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 2
  P(2) = 1
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 2
  P(2): 1
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 2
  P(2): 1
  1 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 2
  terminated:false
  S = 1
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 1
  P(1) = -1
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 1
  P(1): -1
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 1
  P(1): -1
 -1 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 1
  terminated:true
-F(X) 90: PRINT "INTEGRAL ZERO:"
+90 F(X) PRINT "INTEGRAL ZERO:"
 INTEGRAL ZERO:
-F(X) 100: FOR X = -P[1] TO P[1] STEP SGN(P[1])
+100 F(X) FOR X = -P[1] TO P[1] STEP SGN(P[1])
  P(1): -1
  X = 1
  -P[1] = 1
  P[1] = -1
  SGN(P[1]) = -1
  terminated:false
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 1
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -1
  X: 1
  P[1] / X <> INT(P[1] / X): false
-F(X) 130: IF FNP(X) <> 0 THEN 160
+130 F(X) IF FNP(X) <> 0 THEN 160
  X: 1
  P(4): 1
  P(3): -1
  P(2): 1
  P(1): -1
  FNP(X) <> 0: false
-F(X) 140: PRINT X
+140 F(X) PRINT X
  X: 1
  1
-F(X) 150: GOTO 170
-F(X) 170: LET R = X
+150 F(X) GOTO 170
+170 F(X) LET R = X
  X: 1
  R = 1
-F(X) 180: PRINT "SYNTHETIC DIVISION BY   X -"; R; "YIELDS:"
+180 F(X) PRINT "SYNTHETIC DIVISION BY   X -"; R; "YIELDS:"
 SYNTHETIC DIVISION BY   X -
  R: 1
  1 YIELDS:
-F(X) 190: PRINT P[4];
+190 F(X) PRINT P[4];
  P(4): 1
  1 
-F(X,X) 200: FOR X = 3 TO 1 STEP -1
+200 F(X,X) FOR X = 3 TO 1 STEP -1
  X = 3
  -1 = -1
  terminated:false
-F(X,X) 210: LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) LET P[X] = P[X] + P[X + 1] * R
  X: 3
  P(3): -1
  P(4): 1
  R: 1
  P(3) = 0
-F(X) 220: IF X > 1 THEN 240
+220 F(X) IF X > 1 THEN 240
  X: 3
  X > 1: true
-F(X) 240: PRINT P[X];
+240 F(X) PRINT P[X];
  X: 3
  P(3): 0
  0 
-F(X) 250: NEXT X
+250 F(X) NEXT X
  X: 3
  terminated:false
  X = 2
-F(X,X) 210: LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) LET P[X] = P[X] + P[X + 1] * R
  X: 2
  P(2): 1
  P(3): 0
  R: 1
  P(2) = 1
-F(X) 220: IF X > 1 THEN 240
+220 F(X) IF X > 1 THEN 240
  X: 2
  X > 1: true
-F(X) 240: PRINT P[X];
+240 F(X) PRINT P[X];
  X: 2
  P(2): 1
  1 
-F(X) 250: NEXT X
+250 F(X) NEXT X
  X: 2
  terminated:false
  X = 1
-F(X,X) 210: LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) LET P[X] = P[X] + P[X + 1] * R
  X: 1
  P(1): -1
  P(2): 1
  R: 1
  P(1) = 0
-F(X) 220: IF X > 1 THEN 240
+220 F(X) IF X > 1 THEN 240
  X: 1
  X > 1: false
-F(X) 230: PRINT "REMAINDER =";
+230 F(X) PRINT "REMAINDER =";
 REMAINDER =
-F(X) 240: PRINT P[X];
+240 F(X) PRINT P[X];
  X: 1
  P(1): 0
  0 
-F(X) 250: NEXT X
+250 F(X) NEXT X
  X: 1
  terminated:true
-F(X,X) 260: FOR X = 1 TO 3
+260 F(X,X) FOR X = 1 TO 3
  X = 1
  terminated:false
-F(X,X) 270: LET P[X] = P[X + 1]
+270 F(X,X) LET P[X] = P[X + 1]
  X: 1
  P(2): 1
  P(1) = 1
-F(X) 280: NEXT X
+280 F(X) NEXT X
  X: 1
  terminated:false
  X = 2
-F(X,X) 270: LET P[X] = P[X + 1]
+270 F(X,X) LET P[X] = P[X + 1]
  X: 2
  P(3): 0
  P(2) = 0
-F(X) 280: NEXT X
+280 F(X) NEXT X
  X: 2
  terminated:false
  X = 3
-F(X,X) 270: LET P[X] = P[X + 1]
+270 F(X,X) LET P[X] = P[X + 1]
  X: 3
  P(4): 1
  P(3) = 1
-F(X) 280: NEXT X
+280 F(X) NEXT X
  X: 3
  terminated:true
-F(X) 290: PRINT
+290 F(X) PRINT
 
-F(X) 300: LET D = P[2] ^ 2 - 4 * P[3] * P[1]
+300 F(X) LET D = P[2] ^ 2 - 4 * P[3] * P[1]
  P(2): 0
  P(3): 1
  P(1): 1
  D = -4
-F(X) 310: LET F = 2 * P[3]
+310 F(X) LET F = 2 * P[3]
  P(3): 1
  F = 2
-F(X) 320: LET A = -P[2] / F
+320 F(X) LET A = -P[2] / F
  P(2): 0
  F: 2
  A = 0
-F(X) 330: LET B = SQR(ABS(D)) / F
+330 F(X) LET B = SQR(ABS(D)) / F
  D: -4
  F: 2
  B = 1
-F(X) 340: IF D < 0 THEN 380
+340 F(X) IF D < 0 THEN 380
  D: -4
  D < 0: true
-F(X) 380: PRINT "NON-REAL ZEROS:"
+380 F(X) PRINT "NON-REAL ZEROS:"
 NON-REAL ZEROS:
-F(X) 390: PRINT "("; A; ","; B; ") AND ("; A; ","; -B; ")"
+390 F(X) PRINT "("; A; ","; B; ") AND ("; A; ","; -B; ")"
 (
  A: 0
  0 ,
  B: 1
  1 ) AND ( 0 ,-1 )
-F(X) 400: GOTO 20
-F(X) 20: PRINT
+400 F(X) GOTO 20
+20 F(X) PRINT
 
-F(X) 30: PRINT
+30 F(X) PRINT
 
-F(S,X) 40: FOR S = 4 TO 1 STEP -1
+40 F(S,X) FOR S = 4 TO 1 STEP -1
  S = 4
  -1 = -1
  terminated:false
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 4
  P(4) = 6
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 4
  P(4): 6
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 4
  P(4): 6
  6 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 4
  terminated:false
  S = 3
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 3
  P(3) = -77
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 3
  P(3): -77
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 3
  P(3): -77
 -77 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 3
  terminated:false
  S = 2
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 2
  P(2) = -189
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 2
  P(2): -189
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 2
  P(2): -189
 -189 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 2
  terminated:false
  S = 1
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 1
  P(1) = -90
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 1
  P(1): -90
  P[S] = 0.0101: false
-F(S,X) 70: PRINT P[S];
+70 F(S,X) PRINT P[S];
  S: 1
  P(1): -90
 -90 
-F(S,X) 80: NEXT S
+80 F(S,X) NEXT S
  S: 1
  terminated:true
-F(X) 90: PRINT "INTEGRAL ZERO:"
+90 F(X) PRINT "INTEGRAL ZERO:"
 INTEGRAL ZERO:
-F(X) 100: FOR X = -P[1] TO P[1] STEP SGN(P[1])
+100 F(X) FOR X = -P[1] TO P[1] STEP SGN(P[1])
  P(1): -90
  X = 90
  -P[1] = 90
  P[1] = -90
  SGN(P[1]) = -1
  terminated:false
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 90
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 90
  P[1] / X <> INT(P[1] / X): false
-F(X) 130: IF FNP(X) <> 0 THEN 160
+130 F(X) IF FNP(X) <> 0 THEN 160
  X: 90
  P(4): 6
  P(3): -77
  P(2): -189
  P(1): -90
  FNP(X) <> 0: true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 90
  terminated:false
  X = 89
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 89
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 89
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 89
  terminated:false
  X = 88
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 88
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 88
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 88
  terminated:false
  X = 87
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 87
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 87
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 87
  terminated:false
  X = 86
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 86
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 86
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 86
  terminated:false
  X = 85
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 85
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 85
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 85
  terminated:false
  X = 84
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 84
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 84
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 84
  terminated:false
  X = 83
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 83
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 83
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 83
  terminated:false
  X = 82
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 82
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 82
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 82
  terminated:false
  X = 81
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 81
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 81
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 81
  terminated:false
  X = 80
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 80
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 80
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 80
  terminated:false
  X = 79
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 79
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 79
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 79
  terminated:false
  X = 78
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 78
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 78
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 78
  terminated:false
  X = 77
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 77
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 77
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 77
  terminated:false
  X = 76
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 76
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 76
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 76
  terminated:false
  X = 75
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 75
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 75
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 75
  terminated:false
  X = 74
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 74
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 74
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 74
  terminated:false
  X = 73
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 73
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 73
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 73
  terminated:false
  X = 72
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 72
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 72
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 72
  terminated:false
  X = 71
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 71
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 71
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 71
  terminated:false
  X = 70
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 70
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 70
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 70
  terminated:false
  X = 69
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 69
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 69
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 69
  terminated:false
  X = 68
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 68
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 68
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 68
  terminated:false
  X = 67
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 67
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 67
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 67
  terminated:false
  X = 66
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 66
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 66
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 66
  terminated:false
  X = 65
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 65
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 65
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 65
  terminated:false
  X = 64
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 64
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 64
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 64
  terminated:false
  X = 63
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 63
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 63
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 63
  terminated:false
  X = 62
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 62
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 62
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 62
  terminated:false
  X = 61
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 61
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 61
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 61
  terminated:false
  X = 60
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 60
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 60
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 60
  terminated:false
  X = 59
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 59
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 59
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 59
  terminated:false
  X = 58
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 58
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 58
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 58
  terminated:false
  X = 57
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 57
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 57
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 57
  terminated:false
  X = 56
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 56
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 56
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 56
  terminated:false
  X = 55
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 55
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 55
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 55
  terminated:false
  X = 54
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 54
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 54
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 54
  terminated:false
  X = 53
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 53
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 53
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 53
  terminated:false
  X = 52
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 52
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 52
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 52
  terminated:false
  X = 51
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 51
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 51
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 51
  terminated:false
  X = 50
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 50
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 50
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 50
  terminated:false
  X = 49
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 49
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 49
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 49
  terminated:false
  X = 48
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 48
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 48
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 48
  terminated:false
  X = 47
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 47
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 47
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 47
  terminated:false
  X = 46
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 46
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 46
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 46
  terminated:false
  X = 45
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 45
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 45
  P[1] / X <> INT(P[1] / X): false
-F(X) 130: IF FNP(X) <> 0 THEN 160
+130 F(X) IF FNP(X) <> 0 THEN 160
  X: 45
  P(4): 6
  P(3): -77
  P(2): -189
  P(1): -90
  FNP(X) <> 0: true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 45
  terminated:false
  X = 44
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 44
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 44
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 44
  terminated:false
  X = 43
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 43
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 43
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 43
  terminated:false
  X = 42
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 42
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 42
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 42
  terminated:false
  X = 41
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 41
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 41
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 41
  terminated:false
  X = 40
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 40
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 40
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 40
  terminated:false
  X = 39
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 39
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 39
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 39
  terminated:false
  X = 38
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 38
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 38
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 38
  terminated:false
  X = 37
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 37
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 37
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 37
  terminated:false
  X = 36
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 36
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 36
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 36
  terminated:false
  X = 35
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 35
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 35
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 35
  terminated:false
  X = 34
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 34
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 34
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 34
  terminated:false
  X = 33
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 33
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 33
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 33
  terminated:false
  X = 32
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 32
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 32
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 32
  terminated:false
  X = 31
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 31
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 31
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 31
  terminated:false
  X = 30
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 30
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 30
  P[1] / X <> INT(P[1] / X): false
-F(X) 130: IF FNP(X) <> 0 THEN 160
+130 F(X) IF FNP(X) <> 0 THEN 160
  X: 30
  P(4): 6
  P(3): -77
  P(2): -189
  P(1): -90
  FNP(X) <> 0: true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 30
  terminated:false
  X = 29
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 29
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 29
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 29
  terminated:false
  X = 28
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 28
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 28
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 28
  terminated:false
  X = 27
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 27
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 27
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 27
  terminated:false
  X = 26
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 26
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 26
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 26
  terminated:false
  X = 25
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 25
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 25
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 25
  terminated:false
  X = 24
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 24
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 24
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 24
  terminated:false
  X = 23
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 23
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 23
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 23
  terminated:false
  X = 22
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 22
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 22
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 22
  terminated:false
  X = 21
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 21
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 21
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 21
  terminated:false
  X = 20
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 20
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 20
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 20
  terminated:false
  X = 19
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 19
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 19
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 19
  terminated:false
  X = 18
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 18
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 18
  P[1] / X <> INT(P[1] / X): false
-F(X) 130: IF FNP(X) <> 0 THEN 160
+130 F(X) IF FNP(X) <> 0 THEN 160
  X: 18
  P(4): 6
  P(3): -77
  P(2): -189
  P(1): -90
  FNP(X) <> 0: true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 18
  terminated:false
  X = 17
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 17
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 17
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 17
  terminated:false
  X = 16
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 16
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 16
  P[1] / X <> INT(P[1] / X): true
-F(X) 160: NEXT X
+160 F(X) NEXT X
  X: 16
  terminated:false
  X = 15
-F(X) 110: IF X = 0 THEN 160
+110 F(X) IF X = 0 THEN 160
  X: 15
  X = 0: false
-F(X) 120: IF P[1] / X <> INT(P[1] / X) THEN 160
+120 F(X) IF P[1] / X <> INT(P[1] / X) THEN 160
  P(1): -90
  X: 15
  P[1] / X <> INT(P[1] / X): false
-F(X) 130: IF FNP(X) <> 0 THEN 160
+130 F(X) IF FNP(X) <> 0 THEN 160
  X: 15
  P(4): 6
  P(3): -77
  P(2): -189
  P(1): -90
  FNP(X) <> 0: false
-F(X) 140: PRINT X
+140 F(X) PRINT X
  X: 15
  15
-F(X) 150: GOTO 170
-F(X) 170: LET R = X
+150 F(X) GOTO 170
+170 F(X) LET R = X
  X: 15
  R = 15
-F(X) 180: PRINT "SYNTHETIC DIVISION BY   X -"; R; "YIELDS:"
+180 F(X) PRINT "SYNTHETIC DIVISION BY   X -"; R; "YIELDS:"
 SYNTHETIC DIVISION BY   X -
  R: 15
  15 YIELDS:
-F(X) 190: PRINT P[4];
+190 F(X) PRINT P[4];
  P(4): 6
  6 
-F(X,X) 200: FOR X = 3 TO 1 STEP -1
+200 F(X,X) FOR X = 3 TO 1 STEP -1
  X = 3
  -1 = -1
  terminated:false
-F(X,X) 210: LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) LET P[X] = P[X] + P[X + 1] * R
  X: 3
  P(3): -77
  P(4): 6
  R: 15
  P(3) = 13
-F(X) 220: IF X > 1 THEN 240
+220 F(X) IF X > 1 THEN 240
  X: 3
  X > 1: true
-F(X) 240: PRINT P[X];
+240 F(X) PRINT P[X];
  X: 3
  P(3): 13
  13 
-F(X) 250: NEXT X
+250 F(X) NEXT X
  X: 3
  terminated:false
  X = 2
-F(X,X) 210: LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) LET P[X] = P[X] + P[X + 1] * R
  X: 2
  P(2): -189
  P(3): 13
  R: 15
  P(2) = 6
-F(X) 220: IF X > 1 THEN 240
+220 F(X) IF X > 1 THEN 240
  X: 2
  X > 1: true
-F(X) 240: PRINT P[X];
+240 F(X) PRINT P[X];
  X: 2
  P(2): 6
  6 
-F(X) 250: NEXT X
+250 F(X) NEXT X
  X: 2
  terminated:false
  X = 1
-F(X,X) 210: LET P[X] = P[X] + P[X + 1] * R
+210 F(X,X) LET P[X] = P[X] + P[X + 1] * R
  X: 1
  P(1): -90
  P(2): 6
  R: 15
  P(1) = 0
-F(X) 220: IF X > 1 THEN 240
+220 F(X) IF X > 1 THEN 240
  X: 1
  X > 1: false
-F(X) 230: PRINT "REMAINDER =";
+230 F(X) PRINT "REMAINDER =";
 REMAINDER =
-F(X) 240: PRINT P[X];
+240 F(X) PRINT P[X];
  X: 1
  P(1): 0
  0 
-F(X) 250: NEXT X
+250 F(X) NEXT X
  X: 1
  terminated:true
-F(X,X) 260: FOR X = 1 TO 3
+260 F(X,X) FOR X = 1 TO 3
  X = 1
  terminated:false
-F(X,X) 270: LET P[X] = P[X + 1]
+270 F(X,X) LET P[X] = P[X + 1]
  X: 1
  P(2): 6
  P(1) = 6
-F(X) 280: NEXT X
+280 F(X) NEXT X
  X: 1
  terminated:false
  X = 2
-F(X,X) 270: LET P[X] = P[X + 1]
+270 F(X,X) LET P[X] = P[X + 1]
  X: 2
  P(3): 13
  P(2) = 13
-F(X) 280: NEXT X
+280 F(X) NEXT X
  X: 2
  terminated:false
  X = 3
-F(X,X) 270: LET P[X] = P[X + 1]
+270 F(X,X) LET P[X] = P[X + 1]
  X: 3
  P(4): 6
  P(3) = 6
-F(X) 280: NEXT X
+280 F(X) NEXT X
  X: 3
  terminated:true
-F(X) 290: PRINT
+290 F(X) PRINT
 
-F(X) 300: LET D = P[2] ^ 2 - 4 * P[3] * P[1]
+300 F(X) LET D = P[2] ^ 2 - 4 * P[3] * P[1]
  P(2): 13
  P(3): 6
  P(1): 6
  D = 25
-F(X) 310: LET F = 2 * P[3]
+310 F(X) LET F = 2 * P[3]
  P(3): 6
  F = 12
-F(X) 320: LET A = -P[2] / F
+320 F(X) LET A = -P[2] / F
  P(2): 13
  F: 12
  A = -1.08333333
-F(X) 330: LET B = SQR(ABS(D)) / F
+330 F(X) LET B = SQR(ABS(D)) / F
  D: 25
  F: 12
  B = 0.416666667
-F(X) 340: IF D < 0 THEN 380
+340 F(X) IF D < 0 THEN 380
  D: 25
  D < 0: false
-F(X) 350: PRINT "REAL ZEROS:"
+350 F(X) PRINT "REAL ZEROS:"
 REAL ZEROS:
-F(X) 360: PRINT A + B; "AND   "; A - B
+360 F(X) PRINT A + B; "AND   "; A - B
  A: -1.08333333
  B: 0.416666667
 -0.666666663 AND   -1.5
-F(X) 370: GOTO 20
-F(X) 20: PRINT
+370 F(X) GOTO 20
+20 F(X) PRINT
 
-F(X) 30: PRINT
+30 F(X) PRINT
 
-F(S,X) 40: FOR S = 4 TO 1 STEP -1
+40 F(S,X) FOR S = 4 TO 1 STEP -1
  S = 4
  -1 = -1
  terminated:false
-F(S,X) 50: READ P[S]
+50 F(S,X) READ P[S]
  S: 4
  P(4) = 0.0101
-F(S,X) 60: IF P[S] = 0.0101 THEN 430
+60 F(S,X) IF P[S] = 0.0101 THEN 430
  S: 4
  P(4): 0.0101
  P[S] = 0.0101: true
-F(S,X) 430: END
+430 F(S,X) END
 STOP in line 430
 

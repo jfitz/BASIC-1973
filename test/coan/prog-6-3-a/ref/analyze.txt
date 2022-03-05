@@ -19,40 +19,40 @@ Halstead complexity:
  intelligence: 11.921
  time: 1.272
 
-(0 2) 10 PRINT "INPUT ANY INTEGER";
+10 (0 2) PRINT "INPUT ANY INTEGER";
   Origs: :start, 110:goto
   Dests: 20:auto
-(1 2) 20 INPUT N
+20 (1 2) INPUT N
   Origs: 10:auto
   Dests: 30:auto
-(1 4) 30 IF N = 0 THEN 999
+30 (1 4) IF N = 0 THEN 999
   Origs: 20:auto
   Dests: 40:auto, 999:ifthen
-F(E) (1 5) 40 FOR E = 5 TO 0 STEP -1
+40 F(E) (1 5) FOR E = 5 TO 0 STEP -1
   Origs: 30:auto
   Dests: 50:fornext, 90:fornext
-F(E) (0 4) 50 LET I = INT(N / 10 ^ E)
+50 F(E) (0 4) LET I = INT(N / 10 ^ E)
   Origs: 40:fornext
   Dests: 60:auto
-F(E) (0 2) 60 PRINT I
+60 F(E) (0 2) PRINT I
   Origs: 50:auto
   Dests: 70:auto
-F(E) (0 8) 70 LET R = N - I * 10 ^ E
+70 F(E) (0 8) LET R = N - I * 10 ^ E
   Origs: 60:auto
   Dests: 80:auto
-F(E) (0 3) 80 LET N = R
+80 F(E) (0 3) LET N = R
   Origs: 70:auto
   Dests: 90:auto
-F(E) (0 1) 90 NEXT E
+90 F(E) (0 1) NEXT E
   Origs: 40:fornext, 80:auto
   Dests: 100:auto
-(0 2) 100 PRINT
+100 (0 2) PRINT
   Origs: 90:auto
   Dests: 110:auto
-(0 3) 110 GOTO 10
+110 (0 3) GOTO 10
   Origs: 100:auto
   Dests: 10:goto
-(0 1) 999 END
+999 (0 1) END
   Origs: 30:ifthen
   Dests: :stop
 

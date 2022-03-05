@@ -19,34 +19,34 @@ Halstead complexity:
  intelligence: 19.452
  time: 7.943
 
-(0 4) 5 LET K = 3.14159 / 180
+5 (0 4) LET K = 3.14159 / 180
   Origs: :start
   Dests: 10:auto
-(0 5) 10 PRINT "ANGLE", "1-2COS(G)", "2+SIN(2G)", "1+2COS(G)-3SIN(G)^2"
+10 (0 5) PRINT "ANGLE", "1-2COS(G)", "2+SIN(2G)", "1+2COS(G)-3SIN(G)^2"
   Origs: 5:auto
   Dests: 60:auto
-FNR(_) (0 4) 20 DEF FNR(X) = INT(X * 100 + 0.5) / 100
+20 FNR(_) (0 4) DEF FNR(X) = INT(X * 100 + 0.5) / 100
   Origs: 
   Dests: 
-FNA(_) (0 6) 30 DEF FNA(X) = 1 - 2 * COS(K * X)
+30 FNA(_) (0 6) DEF FNA(X) = 1 - 2 * COS(K * X)
   Origs: 
   Dests: 
-FNB(_) (0 4) 40 DEF FNB(X) = 2 + SIN(2 * K * X)
+40 FNB(_) (0 4) DEF FNB(X) = 2 + SIN(2 * K * X)
   Origs: 
   Dests: 
-FNC(_) (0 12) 50 DEF FNC(X) = 1 + 2 * COS(K * X) - 3 * SIN(K * X) ^ 2
+50 FNC(_) (0 12) DEF FNC(X) = 1 + 2 * COS(K * X) - 3 * SIN(K * X) ^ 2
   Origs: 
   Dests: 
-F(G) (1 4) 60 FOR G = 0 TO 360 STEP 15
+60 F(G) (1 4) FOR G = 0 TO 360 STEP 15
   Origs: 10:auto
   Dests: 70:fornext, 80:fornext
-F(G) (0 11) 70 PRINT G, FNR(FNA(G)), FNR(FNB(G)), FNR(FNC(G))
+70 F(G) (0 11) PRINT G, FNR(FNA(G)), FNR(FNB(G)), FNR(FNC(G))
   Origs: 60:fornext
   Dests: 80:auto
-F(G) (0 1) 80 NEXT G
+80 F(G) (0 1) NEXT G
   Origs: 60:fornext, 70:auto
   Dests: 90:auto
-(0 1) 90 END
+90 (0 1) END
   Origs: 80:auto
   Dests: :stop
 
