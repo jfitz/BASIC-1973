@@ -1669,7 +1669,12 @@ class Program
         if statement.executable == :def_fn
           line_number_stmt = LineStmt.new(line_number, stmt)
           # add trace output
-          statement.print_trace_info(interpreter.trace_out, line_number_stmt)
+          interpreter.trace_out.newline_when_needed
+
+          lines = statement.trace_info(line_number_stmt)
+          lines.each { |line| interpreter.trace_out.print_out(line) }
+          interpreter.trace_out.newline
+
           statement.define_user_functions(interpreter)
         end
       end
@@ -1683,7 +1688,12 @@ class Program
         if statement.executable == :load_data
           line_number_stmt = LineStmt.new(line_number, stmt)
           # add trace output
-          statement.print_trace_info(interpreter.trace_out, line_number_stmt)
+          interpreter.trace_out.newline_when_needed
+
+          lines = statement.trace_info(line_number_stmt)
+          lines.each { |line| interpreter.trace_out.print_out(line) }
+          interpreter.trace_out.newline
+
           statement.load_data(interpreter)
         end
       end
@@ -1697,7 +1707,12 @@ class Program
         if statement.executable == :files
           line_number_stmt = LineStmt.new(line_number, stmt)
           # add trace output
-          statement.print_trace_info(interpreter.trace_out, line_number_stmt)
+          interpreter.trace_out.newline_when_needed
+
+          statement.trace_info(line_number_stmt)
+          lines.each { |line| interpreter.trace_out.print_out(line) }
+          interpreter.trace_out.newline
+
           statement.load_file_names(interpreter)
         end
       end
