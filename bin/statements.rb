@@ -505,10 +505,8 @@ class AbstractStatement
     AbstractToken.pretty_tokens(@keywords, @core_tokens)
   end
 
-  def analyze_pretty(number)
-    texts = []
-
-    text = "#{number}"
+  def markers
+    text = ''
 
     text += " #{@part_of_user_function}" unless @part_of_user_function.nil?
 
@@ -520,6 +518,14 @@ class AbstractStatement
 
     text += " F(#{@part_of_fornext.map(&:to_s).join(',')})" unless
       @part_of_fornext.empty?
+
+    text
+  end
+
+  def analyze_pretty(number)
+    texts = []
+
+    text = "#{number}#{markers}"
 
     spaces = ' ' * text.size
 
@@ -823,18 +829,7 @@ class AbstractStatement
     # core statement
     texts = []
 
-    text = ''
-
-    text += " #{@part_of_user_function}" unless @part_of_user_function.nil?
-
-    text += " E(#{@part_of_onerror.map(&:to_s).join(',')})" unless
-      @part_of_onerror.empty?
-
-    text += " G(#{@part_of_sub.map(&:to_s).join(',')})" unless
-      @part_of_sub.empty?
-
-    text += " F(#{@part_of_fornext.map(&:to_s).join(',')})" unless
-      @part_of_fornext.empty?
+    text = markers
 
     text += if show_timing
               " (#{@profile_time.round(4)}/#{@profile_count})"
@@ -875,18 +870,7 @@ class AbstractStatement
   def trace_info(current_line_stmt_mod)
     texts = []
 
-    text = "#{current_line_stmt_mod}"
-
-    text += " #{@part_of_user_function}" unless @part_of_user_function.nil?
-
-    text += " E(#{@part_of_onerror.map(&:to_s).join(',')})" unless
-      @part_of_onerror.empty?
-
-    text += " G(#{@part_of_sub.map(&:to_s).join(',')})" unless
-      @part_of_sub.empty?
-
-    text += " F(#{@part_of_fornext.map(&:to_s).join(',')})" unless
-      @part_of_fornext.empty?
+    text = "#{current_line_stmt_mod}#{markers}"
 
     mod = current_line_stmt_mod.index
 
