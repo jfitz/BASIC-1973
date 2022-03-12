@@ -42,14 +42,14 @@ Halstead complexity:
   Origs: 30:auto
   Dests: 50:auto
 50 F(I) (0 3) D$(I) = "-"
-(1 1)      FOR I = 1 TO 20
-(0 1)      NEXT I
+        (1 1)   FOR I = 1 TO 20
+        (0 1)   NEXT I
    F(I) (0 3) M = 0
   Origs: 40:auto, 370:ifthen
   Dests: 60:auto
 60 F(I) (0 3) N$(I) = ""
-(1 1)      FOR I = 1 TO 26
-(0 1)      NEXT I
+        (1 1)   FOR I = 1 TO 26
+        (0 1)   NEXT I
   Origs: 50:auto
   Dests: 70:auto
 70 F(I) (1 3) FOR I = 1 TO 12
@@ -60,13 +60,13 @@ Halstead complexity:
   Origs: 60:auto
   Dests: 80:auto
 80 (0 3) P$(I, 1) = "X"
-(1 1)      FOR I = 1 TO 12
-(0 1)      NEXT I
+   (1 1)   FOR I = 1 TO 12
+   (0 1)   NEXT I
   Origs: 70:auto
   Dests: 90:auto
 90 (0 3) P$(1, I) = "X"
-(1 1)      FOR I = 1 TO 7
-(0 1)      NEXT I
+   (1 1)   FOR I = 1 TO 7
+   (0 1)   NEXT I
    (0 3) P$(2, 7) = "X"
   Origs: 80:auto
   Dests: 95:auto
@@ -84,14 +84,14 @@ Halstead complexity:
   Origs: 100:auto
   Dests: 100:ifthen, 150:auto
 150 (1 2) READ A$
-(1 1)       FOR I = 1 TO Q
-(0 1)       NEXT I
+    (1 1)   FOR I = 1 TO Q
+    (0 1)   NEXT I
   Origs: 110:auto
   Dests: 160:auto
 160 (0 4) L = LEN(A$)
     (0 4) L$(I) = MID(A$, I, I)
-(1 1)       FOR I = 1 TO L
-(0 1)       NEXT I
+    (1 1)   FOR I = 1 TO L
+    (0 1)   NEXT I
   Origs: 150:auto
   Dests: 170:auto
 170 F(I) (0 2) & "HERE ARE THE LETTERS YOU USED."
@@ -109,7 +109,7 @@ Halstead complexity:
 200 F(I) (0 2) &
     F(I) (0 2) &
     F(I,I) (1 3) FOR I = 1 TO L
-    F(I,I) (0 2) & D$(I);
+    F(I) (0 2) & D$(I);
     F(I) (0 1) NEXT I
     F(I) (0 2) &
     F(I) (0 2) &
@@ -120,7 +120,7 @@ Halstead complexity:
   Origs: 200:auto
   Dests: 220:auto
 220 F(I,I) (1 3) FOR I = 1 TO 26
-    F(I,I) (1 4) IF N$(I) = "" THEN 250
+    F(I) (1 4) IF N$(I) = "" THEN 250
   Origs: 210:auto
   Dests: 230:auto, 240:fornext, 250:ifthen
 230 F(I) (1 5) IF G$ = N$(I) THEN & "YOU GUESSED THAT LETTER BEFORE"
@@ -138,7 +138,7 @@ Halstead complexity:
   Origs: 220:ifthen
   Dests: 260:auto
 260 F(I,I) (1 3) FOR I = 1 TO L
-    F(I,I) (1 4) IF L$(I) = G$ THEN 280
+    F(I) (1 4) IF L$(I) = G$ THEN 280
   Origs: 250:auto
   Dests: 270:auto, 270:fornext, 280:ifthen
 270 F(I) (0 1) NEXT I
@@ -155,7 +155,7 @@ Halstead complexity:
   Origs: 270:ifthen, 310:goto
   Dests: 400:goto
 300 F(I,I) (1 3) FOR I = 1 TO L
-    F(I,I) (1 4) IF D$(I) = "-" THEN 320
+    F(I) (1 4) IF D$(I) = "-" THEN 320
   Origs: 270:goto
   Dests: 310:auto, 310:fornext, 320:ifthen
 310 F(I) (0 1) NEXT I
@@ -164,7 +164,7 @@ Halstead complexity:
   Dests: 290:goto
 320 F(I) (0 2) &
     F(I,I) (1 3) FOR I = 1 TO L
-    F(I,I) (0 2) & D$(I);
+    F(I) (0 2) & D$(I);
     F(I) (0 1) NEXT I
     F(I) (0 2) &
     F(I) (0 2) &
@@ -264,14 +264,14 @@ Halstead complexity:
   Origs: 480:auto
   Dests: 580:goto
 490 F(I) (0 3) P$(I, 7) = "X"
-(1 1)       FOR I = 6 TO 9
-(0 1)       NEXT I
+         (1 1)   FOR I = 6 TO 9
+         (0 1)   NEXT I
     F(I) (0 2) GOTO 580
   Origs: 470:goto
   Dests: 580:goto
 500 F(I) (0 3) P$(I, I - 1) = "\"
-(1 1)       FOR I = 4 TO 7
-(0 1)       NEXT I
+         (1 1)   FOR I = 4 TO 7
+         (0 1)   NEXT I
     F(I) (0 2) GOTO 580
   Origs: 470:goto
   Dests: 580:goto
@@ -310,7 +310,7 @@ Halstead complexity:
   Origs: 470:goto
   Dests: 580:auto
 580 F(I,I) (1 3) FOR I = 1 TO 12
-    F(I,I,J) (1 3) FOR J = 1 TO 12
+    F(I,J) (1 3) FOR J = 1 TO 12
     F(I,J) (0 2) & P$(I, J);
     F(I,J) (0 1) NEXT J
   Origs: 481:goto, 490:goto, 500:goto, 510:goto, 520:goto, 530:goto, 540:goto, 550:goto, 560:goto, 570:auto

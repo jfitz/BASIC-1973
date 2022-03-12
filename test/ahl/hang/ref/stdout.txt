@@ -148,14 +148,14 @@ STOP in line 380
 200 F(I) (5) &
     F(I) (5) &
     F(I,I) (5) FOR I = 1 TO L
-    F(I,I) (25) & D$(I);
+    F(I) (25) & D$(I);
     F(I) (25) NEXT I
     F(I) (5) &
     F(I) (5) &
 210 F(I) (5) INPUT "WHAT IS YOUR GUESS"; G$
     F(I) (5) R = 0
 220 F(I,I) (5) FOR I = 1 TO 26
-    F(I,I) (11) IF N$(I) = "" THEN 250
+    F(I) (11) IF N$(I) = "" THEN 250
 230 F(I) (7) IF G$ = N$(I) THEN & "YOU GUESSED THAT LETTER BEFORE"
     F(I) (1) GOTO 170
 240 F(I) (6) NEXT I
@@ -164,7 +164,7 @@ STOP in line 380
 250 F(I) (4) T1 = T1 + 1
     F(I) (4) N$(T1) = G$
 260 F(I,I) (4) FOR I = 1 TO L
-    F(I,I) (20) IF L$(I) = G$ THEN 280
+    F(I) (20) IF L$(I) = G$ THEN 280
 270 F(I) (20) NEXT I
     F(I) (4) IF R = 0 THEN 290 ELSE GOTO 300
 280 F(I) (1) D$(I) = G$
@@ -173,12 +173,12 @@ STOP in line 380
 290 F(I) (3) M = M + 1
     F(I) (3) GOTO 400
 300 F(I,I) (1) FOR I = 1 TO L
-    F(I,I) (2) IF D$(I) = "-" THEN 320
+    F(I) (2) IF D$(I) = "-" THEN 320
 310 F(I) (1) NEXT I
     F(I) (0) GOTO 290
 320 F(I) (1) &
     F(I,I) (1) FOR I = 1 TO L
-    F(I,I) (5) & D$(I);
+    F(I) (5) & D$(I);
     F(I) (5) NEXT I
     F(I) (1) &
     F(I) (1) &
@@ -259,7 +259,7 @@ STOP in line 380
 570 F(I) (0) P$(12, 3) = "-"
     F(I) (0) P$(12, 4) = "/"
 580 F(I,I) (3) FOR I = 1 TO 12
-    F(I,I,J) (36) FOR J = 1 TO 12
+    F(I,J) (36) FOR J = 1 TO 12
     F(I,J) (432) & P$(I, J);
     F(I,J) (432) NEXT J
 590 F(I) (36) &
