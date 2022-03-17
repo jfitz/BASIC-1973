@@ -23,7 +23,7 @@ CHOMP IS FOR 1 OR MORE PLAYERS (HUMANS ONLY)
 210 PRINT "HERE'S HOW A BOARD LOOKS (THIS ONE IS 5 BY 7):"
 HERE'S HOW A BOARD LOOKS (THIS ONE IS 5 BY 7):
 220 GOSUB 540
-540 G(540) F(I) FOR I = 1 TO R
+540 G(540) F(I,J) FOR I = 1 TO R
  R: 5
  I = 1
  R = 5
@@ -88,7 +88,7 @@ HERE'S HOW A BOARD LOOKS (THIS ONE IS 5 BY 7):
 570 G(540) F(I,J) NEXT J
  J: 7
  terminated:true
-580 G(540) F(I) NEXT I
+580 G(540) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -152,7 +152,7 @@ HERE'S HOW A BOARD LOOKS (THIS ONE IS 5 BY 7):
 570 G(540) F(I,J) NEXT J
  J: 7
  terminated:true
-580 G(540) F(I) NEXT I
+580 G(540) F(I,J) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -216,7 +216,7 @@ HERE'S HOW A BOARD LOOKS (THIS ONE IS 5 BY 7):
 570 G(540) F(I,J) NEXT J
  J: 7
  terminated:true
-580 G(540) F(I) NEXT I
+580 G(540) F(I,J) NEXT I
  I: 3
  terminated:false
  I = 4
@@ -280,7 +280,7 @@ HERE'S HOW A BOARD LOOKS (THIS ONE IS 5 BY 7):
 570 G(540) F(I,J) NEXT J
  J: 7
  terminated:true
-580 G(540) F(I) NEXT I
+580 G(540) F(I,J) NEXT I
  I: 4
  terminated:false
  I = 5
@@ -344,21 +344,21 @@ HERE'S HOW A BOARD LOOKS (THIS ONE IS 5 BY 7):
 570 G(540) F(I,J) NEXT J
  J: 7
  terminated:true
-580 G(540) F(I) NEXT I
+580 G(540) F(I,J) NEXT I
  I: 5
  terminated:true
-590 G(540) A(1, 1) = -1
+590 G(540) F(J) A(1, 1) = -1
  A(1,1) = -1
-610 G(540) PRINT
+610 G(540) F(J) PRINT
 
-620 G(540) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
+620 G(540) F(J) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
        1 2 3 4 5 6 7 8 9
-630 G(540) F(I) FOR I = 1 TO R
+630 G(540) F(I,J) FOR I = 1 TO R
  R: 5
  I = 1
  R = 5
  terminated:false
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 1
  1     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -484,7 +484,7 @@ P
  I: 1
  terminated:false
  I = 2
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 2
  2     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -616,7 +616,7 @@ P
  I: 2
  terminated:false
  I = 3
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 3
  3     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -748,7 +748,7 @@ P
  I: 3
  terminated:false
  I = 4
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 4
  4     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -880,7 +880,7 @@ P
  I: 4
  terminated:false
  I = 5
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 5
  5     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -1011,12 +1011,12 @@ P
 730 G(540) F(I,J) NEXT I
  I: 5
  terminated:true
-740 G(540) PRINT
+740 G(540) F(J) PRINT
 
-750 G(540) IF F = 0 THEN 770
+750 G(540) F(J) IF F = 0 THEN 770
  F: 1
  F = 0: false
-760 G(540) RETURN
+760 G(540) F(J) RETURN
 230 PRINT
 
 240 PRINT "THE BOARD IS A BIG COOKIE -- R ROWS HIGH AND C COLUMNS"
@@ -1039,12 +1039,12 @@ NO FAIR CHOMPING SQUARES THAT HAVE ALREADY BEEN CHOMPED.
 OR THAT ARE OUTSIDE OF THE ORIGINAL DIMENSIONS OF THE COOKIE.
 330 PRINT
 
-340 G(540) PRINT "HERE WE GO..."
+340 G(540) F(J) PRINT "HERE WE GO..."
 HERE WE GO...
-350 G(540) DIM A(10, 10)
-360 G(540) F = 0
+350 G(540) F(J) DIM A(10, 10)
+360 G(540) F(J) F = 0
  F = 0
-370 G(540) F(I) FOR I = 1 TO 10
+370 G(540) F(I,J) FOR I = 1 TO 10
  I = 1
  terminated:false
 372 G(540) F(I,J) FOR J = 1 TO 10
@@ -1129,7 +1129,7 @@ HERE WE GO...
 377 G(540) F(I,J) NEXT J
  J: 10
  terminated:true
-379 G(540) F(I) NEXT I
+379 G(540) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -1215,7 +1215,7 @@ HERE WE GO...
 377 G(540) F(I,J) NEXT J
  J: 10
  terminated:true
-379 G(540) F(I) NEXT I
+379 G(540) F(I,J) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -1301,7 +1301,7 @@ HERE WE GO...
 377 G(540) F(I,J) NEXT J
  J: 10
  terminated:true
-379 G(540) F(I) NEXT I
+379 G(540) F(I,J) NEXT I
  I: 3
  terminated:false
  I = 4
@@ -1387,7 +1387,7 @@ HERE WE GO...
 377 G(540) F(I,J) NEXT J
  J: 10
  terminated:true
-379 G(540) F(I) NEXT I
+379 G(540) F(I,J) NEXT I
  I: 4
  terminated:false
  I = 5
@@ -1473,7 +1473,7 @@ HERE WE GO...
 377 G(540) F(I,J) NEXT J
  J: 10
  terminated:true
-379 G(540) F(I) NEXT I
+379 G(540) F(I,J) NEXT I
  I: 5
  terminated:false
  I = 6
@@ -1559,7 +1559,7 @@ HERE WE GO...
 377 G(540) F(I,J) NEXT J
  J: 10
  terminated:true
-379 G(540) F(I) NEXT I
+379 G(540) F(I,J) NEXT I
  I: 6
  terminated:false
  I = 7
@@ -1645,7 +1645,7 @@ HERE WE GO...
 377 G(540) F(I,J) NEXT J
  J: 10
  terminated:true
-379 G(540) F(I) NEXT I
+379 G(540) F(I,J) NEXT I
  I: 7
  terminated:false
  I = 8
@@ -1731,7 +1731,7 @@ HERE WE GO...
 377 G(540) F(I,J) NEXT J
  J: 10
  terminated:true
-379 G(540) F(I) NEXT I
+379 G(540) F(I,J) NEXT I
  I: 8
  terminated:false
  I = 9
@@ -1817,7 +1817,7 @@ HERE WE GO...
 377 G(540) F(I,J) NEXT J
  J: 10
  terminated:true
-379 G(540) F(I) NEXT I
+379 G(540) F(I,J) NEXT I
  I: 9
  terminated:false
  I = 10
@@ -1903,37 +1903,37 @@ HERE WE GO...
 377 G(540) F(I,J) NEXT J
  J: 10
  terminated:true
-379 G(540) F(I) NEXT I
+379 G(540) F(I,J) NEXT I
  I: 10
  terminated:true
-380 G(540) PRINT
+380 G(540) F(J) PRINT
 
-390 G(540) PRINT "HOW MANY PLAYERS";
+390 G(540) F(J) PRINT "HOW MANY PLAYERS";
 HOW MANY PLAYERS
-400 G(540) INPUT P
+400 G(540) F(J) INPUT P
 ? 2
  P = 2
-410 G(540) I1 = 0
+410 G(540) F(J) I1 = 0
  I1 = 0
-420 G(540) PRINT "HOW MANY ROWS";
+420 G(540) F(J) PRINT "HOW MANY ROWS";
 HOW MANY ROWS
-430 G(540) INPUT R
+430 G(540) F(J) INPUT R
 ? 4
  R = 4
-440 G(540) IF R <= 9 THEN 470
+440 G(540) F(J) IF R <= 9 THEN 470
  R: 4
  R <= 9: true
-470 G(540) PRINT "HOW MANY COLUMNS";
+470 G(540) F(J) PRINT "HOW MANY COLUMNS";
 HOW MANY COLUMNS
-480 G(540) INPUT C
+480 G(540) F(J) INPUT C
 ? 7
  C = 7
-490 G(540) IF C <= 9 THEN 530
+490 G(540) F(J) IF C <= 9 THEN 530
  C: 7
  C <= 9: true
-530 G(540) PRINT
+530 G(540) F(J) PRINT
 
-540 G(540) F(I) FOR I = 1 TO R
+540 G(540) F(I,J) FOR I = 1 TO R
  R: 4
  I = 1
  R = 4
@@ -1998,7 +1998,7 @@ HOW MANY COLUMNS
 570 G(540) F(I,J) NEXT J
  J: 7
  terminated:true
-580 G(540) F(I) NEXT I
+580 G(540) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -2062,7 +2062,7 @@ HOW MANY COLUMNS
 570 G(540) F(I,J) NEXT J
  J: 7
  terminated:true
-580 G(540) F(I) NEXT I
+580 G(540) F(I,J) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -2126,7 +2126,7 @@ HOW MANY COLUMNS
 570 G(540) F(I,J) NEXT J
  J: 7
  terminated:true
-580 G(540) F(I) NEXT I
+580 G(540) F(I,J) NEXT I
  I: 3
  terminated:false
  I = 4
@@ -2190,21 +2190,21 @@ HOW MANY COLUMNS
 570 G(540) F(I,J) NEXT J
  J: 7
  terminated:true
-580 G(540) F(I) NEXT I
+580 G(540) F(I,J) NEXT I
  I: 4
  terminated:true
-590 G(540) A(1, 1) = -1
+590 G(540) F(J) A(1, 1) = -1
  A(1,1) = -1
-610 G(540) PRINT
+610 G(540) F(J) PRINT
 
-620 G(540) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
+620 G(540) F(J) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
        1 2 3 4 5 6 7 8 9
-630 G(540) F(I) FOR I = 1 TO R
+630 G(540) F(I,J) FOR I = 1 TO R
  R: 4
  I = 1
  R = 4
  terminated:false
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 1
  1     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -2330,7 +2330,7 @@ P
  I: 1
  terminated:false
  I = 2
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 2
  2     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -2462,7 +2462,7 @@ P
  I: 2
  terminated:false
  I = 3
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 3
  3     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -2594,7 +2594,7 @@ P
  I: 3
  terminated:false
  I = 4
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 4
  4     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -2725,57 +2725,57 @@ P
 730 G(540) F(I,J) NEXT I
  I: 4
  terminated:true
-740 G(540) PRINT
+740 G(540) F(J) PRINT
 
-750 G(540) IF F = 0 THEN 770
+750 G(540) F(J) IF F = 0 THEN 770
  F: 0
  F = 0: true
-780 G(540) LET I1 = I1 + 1
+780 G(540) F(J) LET I1 = I1 + 1
  I1: 0
  I1 = 1
-790 G(540) LET P1 = I1 - INT(I1 / P) * P
+790 G(540) F(J) LET P1 = I1 - INT(I1 / P) * P
  I1: 1
  P: 2
  P1 = 1
-800 G(540) IF P1 <> 0 THEN 820
+800 G(540) F(J) IF P1 <> 0 THEN 820
  P1: 1
  P1 <> 0: true
-820 G(540) PRINT "PLAYER "; P1
+820 G(540) F(J) PRINT "PLAYER "; P1
 PLAYER 
  P1: 1
  1
-830 G(540) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
+830 G(540) F(J) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
 COORDINATES OF CHOMP (ROW, COLUMN)
-840 G(540) INPUT R1, C1
+840 G(540) F(J) INPUT R1, C1
 ? 4,6
  R1 = 4
  C1 = 6
-850 G(540) IF R1 < 1 THEN 920
+850 G(540) F(J) IF R1 < 1 THEN 920
  R1: 4
  R1 < 1: false
-860 G(540) IF R1 > R THEN 920
+860 G(540) F(J) IF R1 > R THEN 920
  R1: 4
  R: 4
  R1 > R: false
-870 G(540) IF C1 < 1 THEN 920
+870 G(540) F(J) IF C1 < 1 THEN 920
  C1: 6
  C1 < 1: false
-880 G(540) IF C1 > C THEN 920
+880 G(540) F(J) IF C1 > C THEN 920
  C1: 6
  C: 7
  C1 > C: false
-890 G(540) IF A(R1, C1) = 0 THEN 920
+890 G(540) F(J) IF A(R1, C1) = 0 THEN 920
  R1: 4
  C1: 6
  A(4,6): 1
  A(R1, C1) = 0: false
-900 G(540) IF A(R1, C1) = -1 THEN 1010
+900 G(540) F(J) IF A(R1, C1) = -1 THEN 1010
  R1: 4
  C1: 6
  A(4,6): 1
  A(R1, C1) = -1: false
-910 G(540) GOTO 940
-940 G(540) F(I) FOR I = R1 TO R
+910 G(540) F(J) GOTO 940
+940 G(540) F(J,I) FOR I = R1 TO R
  R1: 4
  R: 4
  I = 4
@@ -2793,7 +2793,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 6
  A(4,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -2801,23 +2801,23 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 7
  A(4,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 4
  terminated:true
 990 G(540) GOTO 610
-610 G(540) PRINT
+610 G(540) F(J) PRINT
 
-620 G(540) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
+620 G(540) F(J) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
        1 2 3 4 5 6 7 8 9
-630 G(540) F(I) FOR I = 1 TO R
+630 G(540) F(I,J) FOR I = 1 TO R
  R: 4
  I = 1
  R = 4
  terminated:false
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 1
  1     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -2943,7 +2943,7 @@ P
  I: 1
  terminated:false
  I = 2
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 2
  2     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -3075,7 +3075,7 @@ P
  I: 2
  terminated:false
  I = 3
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 3
  3     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -3207,7 +3207,7 @@ P
  I: 3
  terminated:false
  I = 4
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 4
  4     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -3315,60 +3315,60 @@ P
 730 G(540) F(I,J) NEXT I
  I: 4
  terminated:true
-740 G(540) PRINT
+740 G(540) F(J) PRINT
 
-750 G(540) IF F = 0 THEN 770
+750 G(540) F(J) IF F = 0 THEN 770
  F: 0
  F = 0: true
-780 G(540) LET I1 = I1 + 1
+780 G(540) F(J) LET I1 = I1 + 1
  I1: 1
  I1 = 2
-790 G(540) LET P1 = I1 - INT(I1 / P) * P
+790 G(540) F(J) LET P1 = I1 - INT(I1 / P) * P
  I1: 2
  P: 2
  P1 = 0
-800 G(540) IF P1 <> 0 THEN 820
+800 G(540) F(J) IF P1 <> 0 THEN 820
  P1: 0
  P1 <> 0: false
-810 G(540) P1 = P
+810 G(540) F(J) P1 = P
  P: 2
  P1 = 2
-820 G(540) PRINT "PLAYER "; P1
+820 G(540) F(J) PRINT "PLAYER "; P1
 PLAYER 
  P1: 2
  2
-830 G(540) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
+830 G(540) F(J) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
 COORDINATES OF CHOMP (ROW, COLUMN)
-840 G(540) INPUT R1, C1
+840 G(540) F(J) INPUT R1, C1
 ? 3,3
  R1 = 3
  C1 = 3
-850 G(540) IF R1 < 1 THEN 920
+850 G(540) F(J) IF R1 < 1 THEN 920
  R1: 3
  R1 < 1: false
-860 G(540) IF R1 > R THEN 920
+860 G(540) F(J) IF R1 > R THEN 920
  R1: 3
  R: 4
  R1 > R: false
-870 G(540) IF C1 < 1 THEN 920
+870 G(540) F(J) IF C1 < 1 THEN 920
  C1: 3
  C1 < 1: false
-880 G(540) IF C1 > C THEN 920
+880 G(540) F(J) IF C1 > C THEN 920
  C1: 3
  C: 7
  C1 > C: false
-890 G(540) IF A(R1, C1) = 0 THEN 920
+890 G(540) F(J) IF A(R1, C1) = 0 THEN 920
  R1: 3
  C1: 3
  A(3,3): 1
  A(R1, C1) = 0: false
-900 G(540) IF A(R1, C1) = -1 THEN 1010
+900 G(540) F(J) IF A(R1, C1) = -1 THEN 1010
  R1: 3
  C1: 3
  A(3,3): 1
  A(R1, C1) = -1: false
-910 G(540) GOTO 940
-940 G(540) F(I) FOR I = R1 TO R
+910 G(540) F(J) GOTO 940
+940 G(540) F(J,I) FOR I = R1 TO R
  R1: 3
  R: 4
  I = 3
@@ -3386,7 +3386,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 3
  A(3,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -3394,7 +3394,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 4
  A(3,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -3402,7 +3402,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 5
  A(3,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -3410,7 +3410,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 6
  A(3,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -3418,10 +3418,10 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 7
  A(3,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 3
  terminated:false
  I = 4
@@ -3436,7 +3436,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 3
  A(4,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -3444,7 +3444,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 4
  A(4,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -3452,7 +3452,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 5
  A(4,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -3460,7 +3460,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 6
  A(4,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -3468,23 +3468,23 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 7
  A(4,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 4
  terminated:true
 990 G(540) GOTO 610
-610 G(540) PRINT
+610 G(540) F(J) PRINT
 
-620 G(540) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
+620 G(540) F(J) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
        1 2 3 4 5 6 7 8 9
-630 G(540) F(I) FOR I = 1 TO R
+630 G(540) F(I,J) FOR I = 1 TO R
  R: 4
  I = 1
  R = 4
  terminated:false
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 1
  1     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -3610,7 +3610,7 @@ P
  I: 1
  terminated:false
  I = 2
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 2
  2     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -3742,7 +3742,7 @@ P
  I: 2
  terminated:false
  I = 3
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 3
  3     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -3800,7 +3800,7 @@ P
  I: 3
  terminated:false
  I = 4
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 4
  4     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -3857,57 +3857,57 @@ P
 730 G(540) F(I,J) NEXT I
  I: 4
  terminated:true
-740 G(540) PRINT
+740 G(540) F(J) PRINT
 
-750 G(540) IF F = 0 THEN 770
+750 G(540) F(J) IF F = 0 THEN 770
  F: 0
  F = 0: true
-780 G(540) LET I1 = I1 + 1
+780 G(540) F(J) LET I1 = I1 + 1
  I1: 2
  I1 = 3
-790 G(540) LET P1 = I1 - INT(I1 / P) * P
+790 G(540) F(J) LET P1 = I1 - INT(I1 / P) * P
  I1: 3
  P: 2
  P1 = 1
-800 G(540) IF P1 <> 0 THEN 820
+800 G(540) F(J) IF P1 <> 0 THEN 820
  P1: 1
  P1 <> 0: true
-820 G(540) PRINT "PLAYER "; P1
+820 G(540) F(J) PRINT "PLAYER "; P1
 PLAYER 
  P1: 1
  1
-830 G(540) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
+830 G(540) F(J) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
 COORDINATES OF CHOMP (ROW, COLUMN)
-840 G(540) INPUT R1, C1
+840 G(540) F(J) INPUT R1, C1
 ? 1,4
  R1 = 1
  C1 = 4
-850 G(540) IF R1 < 1 THEN 920
+850 G(540) F(J) IF R1 < 1 THEN 920
  R1: 1
  R1 < 1: false
-860 G(540) IF R1 > R THEN 920
+860 G(540) F(J) IF R1 > R THEN 920
  R1: 1
  R: 4
  R1 > R: false
-870 G(540) IF C1 < 1 THEN 920
+870 G(540) F(J) IF C1 < 1 THEN 920
  C1: 4
  C1 < 1: false
-880 G(540) IF C1 > C THEN 920
+880 G(540) F(J) IF C1 > C THEN 920
  C1: 4
  C: 7
  C1 > C: false
-890 G(540) IF A(R1, C1) = 0 THEN 920
+890 G(540) F(J) IF A(R1, C1) = 0 THEN 920
  R1: 1
  C1: 4
  A(1,4): 1
  A(R1, C1) = 0: false
-900 G(540) IF A(R1, C1) = -1 THEN 1010
+900 G(540) F(J) IF A(R1, C1) = -1 THEN 1010
  R1: 1
  C1: 4
  A(1,4): 1
  A(R1, C1) = -1: false
-910 G(540) GOTO 940
-940 G(540) F(I) FOR I = R1 TO R
+910 G(540) F(J) GOTO 940
+940 G(540) F(J,I) FOR I = R1 TO R
  R1: 1
  R: 4
  I = 1
@@ -3925,7 +3925,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 1
  J: 4
  A(1,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -3933,7 +3933,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 1
  J: 5
  A(1,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -3941,7 +3941,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 1
  J: 6
  A(1,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -3949,10 +3949,10 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 1
  J: 7
  A(1,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -3967,7 +3967,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 4
  A(2,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -3975,7 +3975,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 5
  A(2,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -3983,7 +3983,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 6
  A(2,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -3991,10 +3991,10 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 7
  A(2,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -4009,7 +4009,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 4
  A(3,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -4017,7 +4017,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 5
  A(3,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -4025,7 +4025,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 6
  A(3,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -4033,10 +4033,10 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 7
  A(3,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 3
  terminated:false
  I = 4
@@ -4051,7 +4051,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 4
  A(4,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -4059,7 +4059,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 5
  A(4,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -4067,7 +4067,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 6
  A(4,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -4075,23 +4075,23 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 7
  A(4,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 4
  terminated:true
 990 G(540) GOTO 610
-610 G(540) PRINT
+610 G(540) F(J) PRINT
 
-620 G(540) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
+620 G(540) F(J) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
        1 2 3 4 5 6 7 8 9
-630 G(540) F(I) FOR I = 1 TO R
+630 G(540) F(I,J) FOR I = 1 TO R
  R: 4
  I = 1
  R = 4
  terminated:false
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 1
  1     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -4160,7 +4160,7 @@ P
  I: 1
  terminated:false
  I = 2
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 2
  2     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -4235,7 +4235,7 @@ P
  I: 2
  terminated:false
  I = 3
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 3
  3     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -4293,7 +4293,7 @@ P
  I: 3
  terminated:false
  I = 4
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 4
  4     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -4350,60 +4350,60 @@ P
 730 G(540) F(I,J) NEXT I
  I: 4
  terminated:true
-740 G(540) PRINT
+740 G(540) F(J) PRINT
 
-750 G(540) IF F = 0 THEN 770
+750 G(540) F(J) IF F = 0 THEN 770
  F: 0
  F = 0: true
-780 G(540) LET I1 = I1 + 1
+780 G(540) F(J) LET I1 = I1 + 1
  I1: 3
  I1 = 4
-790 G(540) LET P1 = I1 - INT(I1 / P) * P
+790 G(540) F(J) LET P1 = I1 - INT(I1 / P) * P
  I1: 4
  P: 2
  P1 = 0
-800 G(540) IF P1 <> 0 THEN 820
+800 G(540) F(J) IF P1 <> 0 THEN 820
  P1: 0
  P1 <> 0: false
-810 G(540) P1 = P
+810 G(540) F(J) P1 = P
  P: 2
  P1 = 2
-820 G(540) PRINT "PLAYER "; P1
+820 G(540) F(J) PRINT "PLAYER "; P1
 PLAYER 
  P1: 2
  2
-830 G(540) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
+830 G(540) F(J) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
 COORDINATES OF CHOMP (ROW, COLUMN)
-840 G(540) INPUT R1, C1
+840 G(540) F(J) INPUT R1, C1
 ? 3,1
  R1 = 3
  C1 = 1
-850 G(540) IF R1 < 1 THEN 920
+850 G(540) F(J) IF R1 < 1 THEN 920
  R1: 3
  R1 < 1: false
-860 G(540) IF R1 > R THEN 920
+860 G(540) F(J) IF R1 > R THEN 920
  R1: 3
  R: 4
  R1 > R: false
-870 G(540) IF C1 < 1 THEN 920
+870 G(540) F(J) IF C1 < 1 THEN 920
  C1: 1
  C1 < 1: false
-880 G(540) IF C1 > C THEN 920
+880 G(540) F(J) IF C1 > C THEN 920
  C1: 1
  C: 7
  C1 > C: false
-890 G(540) IF A(R1, C1) = 0 THEN 920
+890 G(540) F(J) IF A(R1, C1) = 0 THEN 920
  R1: 3
  C1: 1
  A(3,1): 1
  A(R1, C1) = 0: false
-900 G(540) IF A(R1, C1) = -1 THEN 1010
+900 G(540) F(J) IF A(R1, C1) = -1 THEN 1010
  R1: 3
  C1: 1
  A(3,1): 1
  A(R1, C1) = -1: false
-910 G(540) GOTO 940
-940 G(540) F(I) FOR I = R1 TO R
+910 G(540) F(J) GOTO 940
+940 G(540) F(J,I) FOR I = R1 TO R
  R1: 3
  R: 4
  I = 3
@@ -4421,7 +4421,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 1
  A(3,1) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 1
  terminated:false
  J = 2
@@ -4429,7 +4429,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 2
  A(3,2) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -4437,7 +4437,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 3
  A(3,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -4445,7 +4445,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 4
  A(3,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -4453,7 +4453,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 5
  A(3,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -4461,7 +4461,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 6
  A(3,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -4469,10 +4469,10 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 7
  A(3,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 3
  terminated:false
  I = 4
@@ -4487,7 +4487,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 1
  A(4,1) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 1
  terminated:false
  J = 2
@@ -4495,7 +4495,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 2
  A(4,2) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -4503,7 +4503,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 3
  A(4,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -4511,7 +4511,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 4
  A(4,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -4519,7 +4519,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 5
  A(4,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -4527,7 +4527,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 6
  A(4,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -4535,23 +4535,23 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 7
  A(4,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 4
  terminated:true
 990 G(540) GOTO 610
-610 G(540) PRINT
+610 G(540) F(J) PRINT
 
-620 G(540) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
+620 G(540) F(J) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
        1 2 3 4 5 6 7 8 9
-630 G(540) F(I) FOR I = 1 TO R
+630 G(540) F(I,J) FOR I = 1 TO R
  R: 4
  I = 1
  R = 4
  terminated:false
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 1
  1     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -4620,7 +4620,7 @@ P
  I: 1
  terminated:false
  I = 2
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 2
  2     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -4695,7 +4695,7 @@ P
  I: 2
  terminated:false
  I = 3
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 3
  3     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -4719,7 +4719,7 @@ P
  I: 3
  terminated:false
  I = 4
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 4
  4     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -4742,57 +4742,57 @@ P
 730 G(540) F(I,J) NEXT I
  I: 4
  terminated:true
-740 G(540) PRINT
+740 G(540) F(J) PRINT
 
-750 G(540) IF F = 0 THEN 770
+750 G(540) F(J) IF F = 0 THEN 770
  F: 0
  F = 0: true
-780 G(540) LET I1 = I1 + 1
+780 G(540) F(J) LET I1 = I1 + 1
  I1: 4
  I1 = 5
-790 G(540) LET P1 = I1 - INT(I1 / P) * P
+790 G(540) F(J) LET P1 = I1 - INT(I1 / P) * P
  I1: 5
  P: 2
  P1 = 1
-800 G(540) IF P1 <> 0 THEN 820
+800 G(540) F(J) IF P1 <> 0 THEN 820
  P1: 1
  P1 <> 0: true
-820 G(540) PRINT "PLAYER "; P1
+820 G(540) F(J) PRINT "PLAYER "; P1
 PLAYER 
  P1: 1
  1
-830 G(540) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
+830 G(540) F(J) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
 COORDINATES OF CHOMP (ROW, COLUMN)
-840 G(540) INPUT R1, C1
+840 G(540) F(J) INPUT R1, C1
 ? 2,3
  R1 = 2
  C1 = 3
-850 G(540) IF R1 < 1 THEN 920
+850 G(540) F(J) IF R1 < 1 THEN 920
  R1: 2
  R1 < 1: false
-860 G(540) IF R1 > R THEN 920
+860 G(540) F(J) IF R1 > R THEN 920
  R1: 2
  R: 4
  R1 > R: false
-870 G(540) IF C1 < 1 THEN 920
+870 G(540) F(J) IF C1 < 1 THEN 920
  C1: 3
  C1 < 1: false
-880 G(540) IF C1 > C THEN 920
+880 G(540) F(J) IF C1 > C THEN 920
  C1: 3
  C: 7
  C1 > C: false
-890 G(540) IF A(R1, C1) = 0 THEN 920
+890 G(540) F(J) IF A(R1, C1) = 0 THEN 920
  R1: 2
  C1: 3
  A(2,3): 1
  A(R1, C1) = 0: false
-900 G(540) IF A(R1, C1) = -1 THEN 1010
+900 G(540) F(J) IF A(R1, C1) = -1 THEN 1010
  R1: 2
  C1: 3
  A(2,3): 1
  A(R1, C1) = -1: false
-910 G(540) GOTO 940
-940 G(540) F(I) FOR I = R1 TO R
+910 G(540) F(J) GOTO 940
+940 G(540) F(J,I) FOR I = R1 TO R
  R1: 2
  R: 4
  I = 2
@@ -4810,7 +4810,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 3
  A(2,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -4818,7 +4818,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 4
  A(2,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -4826,7 +4826,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 5
  A(2,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -4834,7 +4834,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 6
  A(2,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -4842,10 +4842,10 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 7
  A(2,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -4860,7 +4860,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 3
  A(3,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -4868,7 +4868,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 4
  A(3,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -4876,7 +4876,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 5
  A(3,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -4884,7 +4884,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 6
  A(3,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -4892,10 +4892,10 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 7
  A(3,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 3
  terminated:false
  I = 4
@@ -4910,7 +4910,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 3
  A(4,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -4918,7 +4918,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 4
  A(4,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -4926,7 +4926,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 5
  A(4,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -4934,7 +4934,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 6
  A(4,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -4942,23 +4942,23 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 7
  A(4,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 4
  terminated:true
 990 G(540) GOTO 610
-610 G(540) PRINT
+610 G(540) F(J) PRINT
 
-620 G(540) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
+620 G(540) F(J) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
        1 2 3 4 5 6 7 8 9
-630 G(540) F(I) FOR I = 1 TO R
+630 G(540) F(I,J) FOR I = 1 TO R
  R: 4
  I = 1
  R = 4
  terminated:false
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 1
  1     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -5027,7 +5027,7 @@ P
  I: 1
  terminated:false
  I = 2
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 2
  2     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -5085,7 +5085,7 @@ P
  I: 2
  terminated:false
  I = 3
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 3
  3     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -5109,7 +5109,7 @@ P
  I: 3
  terminated:false
  I = 4
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 4
  4     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -5132,60 +5132,60 @@ P
 730 G(540) F(I,J) NEXT I
  I: 4
  terminated:true
-740 G(540) PRINT
+740 G(540) F(J) PRINT
 
-750 G(540) IF F = 0 THEN 770
+750 G(540) F(J) IF F = 0 THEN 770
  F: 0
  F = 0: true
-780 G(540) LET I1 = I1 + 1
+780 G(540) F(J) LET I1 = I1 + 1
  I1: 5
  I1 = 6
-790 G(540) LET P1 = I1 - INT(I1 / P) * P
+790 G(540) F(J) LET P1 = I1 - INT(I1 / P) * P
  I1: 6
  P: 2
  P1 = 0
-800 G(540) IF P1 <> 0 THEN 820
+800 G(540) F(J) IF P1 <> 0 THEN 820
  P1: 0
  P1 <> 0: false
-810 G(540) P1 = P
+810 G(540) F(J) P1 = P
  P: 2
  P1 = 2
-820 G(540) PRINT "PLAYER "; P1
+820 G(540) F(J) PRINT "PLAYER "; P1
 PLAYER 
  P1: 2
  2
-830 G(540) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
+830 G(540) F(J) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
 COORDINATES OF CHOMP (ROW, COLUMN)
-840 G(540) INPUT R1, C1
+840 G(540) F(J) INPUT R1, C1
 ? 1,3
  R1 = 1
  C1 = 3
-850 G(540) IF R1 < 1 THEN 920
+850 G(540) F(J) IF R1 < 1 THEN 920
  R1: 1
  R1 < 1: false
-860 G(540) IF R1 > R THEN 920
+860 G(540) F(J) IF R1 > R THEN 920
  R1: 1
  R: 4
  R1 > R: false
-870 G(540) IF C1 < 1 THEN 920
+870 G(540) F(J) IF C1 < 1 THEN 920
  C1: 3
  C1 < 1: false
-880 G(540) IF C1 > C THEN 920
+880 G(540) F(J) IF C1 > C THEN 920
  C1: 3
  C: 7
  C1 > C: false
-890 G(540) IF A(R1, C1) = 0 THEN 920
+890 G(540) F(J) IF A(R1, C1) = 0 THEN 920
  R1: 1
  C1: 3
  A(1,3): 1
  A(R1, C1) = 0: false
-900 G(540) IF A(R1, C1) = -1 THEN 1010
+900 G(540) F(J) IF A(R1, C1) = -1 THEN 1010
  R1: 1
  C1: 3
  A(1,3): 1
  A(R1, C1) = -1: false
-910 G(540) GOTO 940
-940 G(540) F(I) FOR I = R1 TO R
+910 G(540) F(J) GOTO 940
+940 G(540) F(J,I) FOR I = R1 TO R
  R1: 1
  R: 4
  I = 1
@@ -5203,7 +5203,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 1
  J: 3
  A(1,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -5211,7 +5211,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 1
  J: 4
  A(1,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -5219,7 +5219,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 1
  J: 5
  A(1,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -5227,7 +5227,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 1
  J: 6
  A(1,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -5235,10 +5235,10 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 1
  J: 7
  A(1,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -5253,7 +5253,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 3
  A(2,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -5261,7 +5261,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 4
  A(2,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -5269,7 +5269,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 5
  A(2,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -5277,7 +5277,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 6
  A(2,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -5285,10 +5285,10 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 7
  A(2,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -5303,7 +5303,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 3
  A(3,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -5311,7 +5311,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 4
  A(3,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -5319,7 +5319,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 5
  A(3,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -5327,7 +5327,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 6
  A(3,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -5335,10 +5335,10 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 7
  A(3,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 3
  terminated:false
  I = 4
@@ -5353,7 +5353,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 3
  A(4,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -5361,7 +5361,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 4
  A(4,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -5369,7 +5369,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 5
  A(4,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -5377,7 +5377,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 6
  A(4,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -5385,23 +5385,23 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 7
  A(4,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 4
  terminated:true
 990 G(540) GOTO 610
-610 G(540) PRINT
+610 G(540) F(J) PRINT
 
-620 G(540) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
+620 G(540) F(J) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
        1 2 3 4 5 6 7 8 9
-630 G(540) F(I) FOR I = 1 TO R
+630 G(540) F(I,J) FOR I = 1 TO R
  R: 4
  I = 1
  R = 4
  terminated:false
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 1
  1     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -5453,7 +5453,7 @@ P
  I: 1
  terminated:false
  I = 2
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 2
  2     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -5511,7 +5511,7 @@ P
  I: 2
  terminated:false
  I = 3
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 3
  3     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -5535,7 +5535,7 @@ P
  I: 3
  terminated:false
  I = 4
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 4
  4     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -5558,57 +5558,57 @@ P
 730 G(540) F(I,J) NEXT I
  I: 4
  terminated:true
-740 G(540) PRINT
+740 G(540) F(J) PRINT
 
-750 G(540) IF F = 0 THEN 770
+750 G(540) F(J) IF F = 0 THEN 770
  F: 0
  F = 0: true
-780 G(540) LET I1 = I1 + 1
+780 G(540) F(J) LET I1 = I1 + 1
  I1: 6
  I1 = 7
-790 G(540) LET P1 = I1 - INT(I1 / P) * P
+790 G(540) F(J) LET P1 = I1 - INT(I1 / P) * P
  I1: 7
  P: 2
  P1 = 1
-800 G(540) IF P1 <> 0 THEN 820
+800 G(540) F(J) IF P1 <> 0 THEN 820
  P1: 1
  P1 <> 0: true
-820 G(540) PRINT "PLAYER "; P1
+820 G(540) F(J) PRINT "PLAYER "; P1
 PLAYER 
  P1: 1
  1
-830 G(540) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
+830 G(540) F(J) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
 COORDINATES OF CHOMP (ROW, COLUMN)
-840 G(540) INPUT R1, C1
+840 G(540) F(J) INPUT R1, C1
 ? 2,2
  R1 = 2
  C1 = 2
-850 G(540) IF R1 < 1 THEN 920
+850 G(540) F(J) IF R1 < 1 THEN 920
  R1: 2
  R1 < 1: false
-860 G(540) IF R1 > R THEN 920
+860 G(540) F(J) IF R1 > R THEN 920
  R1: 2
  R: 4
  R1 > R: false
-870 G(540) IF C1 < 1 THEN 920
+870 G(540) F(J) IF C1 < 1 THEN 920
  C1: 2
  C1 < 1: false
-880 G(540) IF C1 > C THEN 920
+880 G(540) F(J) IF C1 > C THEN 920
  C1: 2
  C: 7
  C1 > C: false
-890 G(540) IF A(R1, C1) = 0 THEN 920
+890 G(540) F(J) IF A(R1, C1) = 0 THEN 920
  R1: 2
  C1: 2
  A(2,2): 1
  A(R1, C1) = 0: false
-900 G(540) IF A(R1, C1) = -1 THEN 1010
+900 G(540) F(J) IF A(R1, C1) = -1 THEN 1010
  R1: 2
  C1: 2
  A(2,2): 1
  A(R1, C1) = -1: false
-910 G(540) GOTO 940
-940 G(540) F(I) FOR I = R1 TO R
+910 G(540) F(J) GOTO 940
+940 G(540) F(J,I) FOR I = R1 TO R
  R1: 2
  R: 4
  I = 2
@@ -5626,7 +5626,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 2
  A(2,2) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -5634,7 +5634,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 3
  A(2,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -5642,7 +5642,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 4
  A(2,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -5650,7 +5650,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 5
  A(2,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -5658,7 +5658,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 6
  A(2,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -5666,10 +5666,10 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 7
  A(2,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -5684,7 +5684,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 2
  A(3,2) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -5692,7 +5692,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 3
  A(3,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -5700,7 +5700,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 4
  A(3,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -5708,7 +5708,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 5
  A(3,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -5716,7 +5716,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 6
  A(3,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -5724,10 +5724,10 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 7
  A(3,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 3
  terminated:false
  I = 4
@@ -5742,7 +5742,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 2
  A(4,2) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -5750,7 +5750,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 3
  A(4,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -5758,7 +5758,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 4
  A(4,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -5766,7 +5766,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 5
  A(4,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -5774,7 +5774,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 6
  A(4,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -5782,23 +5782,23 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 7
  A(4,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 4
  terminated:true
 990 G(540) GOTO 610
-610 G(540) PRINT
+610 G(540) F(J) PRINT
 
-620 G(540) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
+620 G(540) F(J) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
        1 2 3 4 5 6 7 8 9
-630 G(540) F(I) FOR I = 1 TO R
+630 G(540) F(I,J) FOR I = 1 TO R
  R: 4
  I = 1
  R = 4
  terminated:false
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 1
  1     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -5850,7 +5850,7 @@ P
  I: 1
  terminated:false
  I = 2
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 2
  2     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -5891,7 +5891,7 @@ P
  I: 2
  terminated:false
  I = 3
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 3
  3     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -5915,7 +5915,7 @@ P
  I: 3
  terminated:false
  I = 4
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 4
  4     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -5938,60 +5938,60 @@ P
 730 G(540) F(I,J) NEXT I
  I: 4
  terminated:true
-740 G(540) PRINT
+740 G(540) F(J) PRINT
 
-750 G(540) IF F = 0 THEN 770
+750 G(540) F(J) IF F = 0 THEN 770
  F: 0
  F = 0: true
-780 G(540) LET I1 = I1 + 1
+780 G(540) F(J) LET I1 = I1 + 1
  I1: 7
  I1 = 8
-790 G(540) LET P1 = I1 - INT(I1 / P) * P
+790 G(540) F(J) LET P1 = I1 - INT(I1 / P) * P
  I1: 8
  P: 2
  P1 = 0
-800 G(540) IF P1 <> 0 THEN 820
+800 G(540) F(J) IF P1 <> 0 THEN 820
  P1: 0
  P1 <> 0: false
-810 G(540) P1 = P
+810 G(540) F(J) P1 = P
  P: 2
  P1 = 2
-820 G(540) PRINT "PLAYER "; P1
+820 G(540) F(J) PRINT "PLAYER "; P1
 PLAYER 
  P1: 2
  2
-830 G(540) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
+830 G(540) F(J) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
 COORDINATES OF CHOMP (ROW, COLUMN)
-840 G(540) INPUT R1, C1
+840 G(540) F(J) INPUT R1, C1
 ? 1,2
  R1 = 1
  C1 = 2
-850 G(540) IF R1 < 1 THEN 920
+850 G(540) F(J) IF R1 < 1 THEN 920
  R1: 1
  R1 < 1: false
-860 G(540) IF R1 > R THEN 920
+860 G(540) F(J) IF R1 > R THEN 920
  R1: 1
  R: 4
  R1 > R: false
-870 G(540) IF C1 < 1 THEN 920
+870 G(540) F(J) IF C1 < 1 THEN 920
  C1: 2
  C1 < 1: false
-880 G(540) IF C1 > C THEN 920
+880 G(540) F(J) IF C1 > C THEN 920
  C1: 2
  C: 7
  C1 > C: false
-890 G(540) IF A(R1, C1) = 0 THEN 920
+890 G(540) F(J) IF A(R1, C1) = 0 THEN 920
  R1: 1
  C1: 2
  A(1,2): 1
  A(R1, C1) = 0: false
-900 G(540) IF A(R1, C1) = -1 THEN 1010
+900 G(540) F(J) IF A(R1, C1) = -1 THEN 1010
  R1: 1
  C1: 2
  A(1,2): 1
  A(R1, C1) = -1: false
-910 G(540) GOTO 940
-940 G(540) F(I) FOR I = R1 TO R
+910 G(540) F(J) GOTO 940
+940 G(540) F(J,I) FOR I = R1 TO R
  R1: 1
  R: 4
  I = 1
@@ -6009,7 +6009,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 1
  J: 2
  A(1,2) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -6017,7 +6017,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 1
  J: 3
  A(1,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -6025,7 +6025,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 1
  J: 4
  A(1,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -6033,7 +6033,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 1
  J: 5
  A(1,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -6041,7 +6041,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 1
  J: 6
  A(1,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -6049,10 +6049,10 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 1
  J: 7
  A(1,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -6067,7 +6067,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 2
  A(2,2) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -6075,7 +6075,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 3
  A(2,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -6083,7 +6083,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 4
  A(2,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -6091,7 +6091,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 5
  A(2,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -6099,7 +6099,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 6
  A(2,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -6107,10 +6107,10 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 7
  A(2,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -6125,7 +6125,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 2
  A(3,2) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -6133,7 +6133,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 3
  A(3,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -6141,7 +6141,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 4
  A(3,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -6149,7 +6149,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 5
  A(3,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -6157,7 +6157,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 6
  A(3,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -6165,10 +6165,10 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 7
  A(3,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 3
  terminated:false
  I = 4
@@ -6183,7 +6183,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 2
  A(4,2) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -6191,7 +6191,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 3
  A(4,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -6199,7 +6199,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 4
  A(4,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -6207,7 +6207,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 5
  A(4,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -6215,7 +6215,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 6
  A(4,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -6223,23 +6223,23 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 7
  A(4,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 4
  terminated:true
 990 G(540) GOTO 610
-610 G(540) PRINT
+610 G(540) F(J) PRINT
 
-620 G(540) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
+620 G(540) F(J) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
        1 2 3 4 5 6 7 8 9
-630 G(540) F(I) FOR I = 1 TO R
+630 G(540) F(I,J) FOR I = 1 TO R
  R: 4
  I = 1
  R = 4
  terminated:false
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 1
  1     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -6274,7 +6274,7 @@ P
  I: 1
  terminated:false
  I = 2
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 2
  2     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -6315,7 +6315,7 @@ P
  I: 2
  terminated:false
  I = 3
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 3
  3     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -6339,7 +6339,7 @@ P
  I: 3
  terminated:false
  I = 4
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 4
  4     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -6362,57 +6362,57 @@ P
 730 G(540) F(I,J) NEXT I
  I: 4
  terminated:true
-740 G(540) PRINT
+740 G(540) F(J) PRINT
 
-750 G(540) IF F = 0 THEN 770
+750 G(540) F(J) IF F = 0 THEN 770
  F: 0
  F = 0: true
-780 G(540) LET I1 = I1 + 1
+780 G(540) F(J) LET I1 = I1 + 1
  I1: 8
  I1 = 9
-790 G(540) LET P1 = I1 - INT(I1 / P) * P
+790 G(540) F(J) LET P1 = I1 - INT(I1 / P) * P
  I1: 9
  P: 2
  P1 = 1
-800 G(540) IF P1 <> 0 THEN 820
+800 G(540) F(J) IF P1 <> 0 THEN 820
  P1: 1
  P1 <> 0: true
-820 G(540) PRINT "PLAYER "; P1
+820 G(540) F(J) PRINT "PLAYER "; P1
 PLAYER 
  P1: 1
  1
-830 G(540) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
+830 G(540) F(J) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
 COORDINATES OF CHOMP (ROW, COLUMN)
-840 G(540) INPUT R1, C1
+840 G(540) F(J) INPUT R1, C1
 ? 2,1
  R1 = 2
  C1 = 1
-850 G(540) IF R1 < 1 THEN 920
+850 G(540) F(J) IF R1 < 1 THEN 920
  R1: 2
  R1 < 1: false
-860 G(540) IF R1 > R THEN 920
+860 G(540) F(J) IF R1 > R THEN 920
  R1: 2
  R: 4
  R1 > R: false
-870 G(540) IF C1 < 1 THEN 920
+870 G(540) F(J) IF C1 < 1 THEN 920
  C1: 1
  C1 < 1: false
-880 G(540) IF C1 > C THEN 920
+880 G(540) F(J) IF C1 > C THEN 920
  C1: 1
  C: 7
  C1 > C: false
-890 G(540) IF A(R1, C1) = 0 THEN 920
+890 G(540) F(J) IF A(R1, C1) = 0 THEN 920
  R1: 2
  C1: 1
  A(2,1): 1
  A(R1, C1) = 0: false
-900 G(540) IF A(R1, C1) = -1 THEN 1010
+900 G(540) F(J) IF A(R1, C1) = -1 THEN 1010
  R1: 2
  C1: 1
  A(2,1): 1
  A(R1, C1) = -1: false
-910 G(540) GOTO 940
-940 G(540) F(I) FOR I = R1 TO R
+910 G(540) F(J) GOTO 940
+940 G(540) F(J,I) FOR I = R1 TO R
  R1: 2
  R: 4
  I = 2
@@ -6430,7 +6430,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 1
  A(2,1) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 1
  terminated:false
  J = 2
@@ -6438,7 +6438,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 2
  A(2,2) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -6446,7 +6446,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 3
  A(2,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -6454,7 +6454,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 4
  A(2,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -6462,7 +6462,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 5
  A(2,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -6470,7 +6470,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 6
  A(2,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -6478,10 +6478,10 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 2
  J: 7
  A(2,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -6496,7 +6496,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 1
  A(3,1) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 1
  terminated:false
  J = 2
@@ -6504,7 +6504,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 2
  A(3,2) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -6512,7 +6512,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 3
  A(3,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -6520,7 +6520,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 4
  A(3,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -6528,7 +6528,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 5
  A(3,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -6536,7 +6536,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 6
  A(3,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -6544,10 +6544,10 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 3
  J: 7
  A(3,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 3
  terminated:false
  I = 4
@@ -6562,7 +6562,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 1
  A(4,1) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 1
  terminated:false
  J = 2
@@ -6570,7 +6570,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 2
  A(4,2) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -6578,7 +6578,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 3
  A(4,3) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 3
  terminated:false
  J = 4
@@ -6586,7 +6586,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 4
  A(4,4) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 4
  terminated:false
  J = 5
@@ -6594,7 +6594,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 5
  A(4,5) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 5
  terminated:false
  J = 6
@@ -6602,7 +6602,7 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 6
  A(4,6) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 6
  terminated:false
  J = 7
@@ -6610,23 +6610,23 @@ COORDINATES OF CHOMP (ROW, COLUMN)
  I: 4
  J: 7
  A(4,7) = 0
-970 G(540) F(I,J) NEXT J
+970 G(540) F(J,I) NEXT J
  J: 7
  terminated:true
-980 G(540) F(I) NEXT I
+980 G(540) F(J,I) NEXT I
  I: 4
  terminated:true
 990 G(540) GOTO 610
-610 G(540) PRINT
+610 G(540) F(J) PRINT
 
-620 G(540) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
+620 G(540) F(J) PRINT TAB(7); "1 2 3 4 5 6 7 8 9"
        1 2 3 4 5 6 7 8 9
-630 G(540) F(I) FOR I = 1 TO R
+630 G(540) F(I,J) FOR I = 1 TO R
  R: 4
  I = 1
  R = 4
  terminated:false
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 1
  1     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -6661,7 +6661,7 @@ P
  I: 1
  terminated:false
  I = 2
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 2
  2     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -6685,7 +6685,7 @@ P
  I: 2
  terminated:false
  I = 3
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 3
  3     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -6709,7 +6709,7 @@ P
  I: 3
  terminated:false
  I = 4
-640 G(540) F(I) PRINT I; TAB(7);
+640 G(540) F(I,J) PRINT I; TAB(7);
  I: 4
  4     
 650 G(540) F(I,J) FOR J = 1 TO C
@@ -6732,104 +6732,104 @@ P
 730 G(540) F(I,J) NEXT I
  I: 4
  terminated:true
-740 G(540) PRINT
+740 G(540) F(J) PRINT
 
-750 G(540) IF F = 0 THEN 770
+750 G(540) F(J) IF F = 0 THEN 770
  F: 0
  F = 0: true
-780 G(540) LET I1 = I1 + 1
+780 G(540) F(J) LET I1 = I1 + 1
  I1: 9
  I1 = 10
-790 G(540) LET P1 = I1 - INT(I1 / P) * P
+790 G(540) F(J) LET P1 = I1 - INT(I1 / P) * P
  I1: 10
  P: 2
  P1 = 0
-800 G(540) IF P1 <> 0 THEN 820
+800 G(540) F(J) IF P1 <> 0 THEN 820
  P1: 0
  P1 <> 0: false
-810 G(540) P1 = P
+810 G(540) F(J) P1 = P
  P: 2
  P1 = 2
-820 G(540) PRINT "PLAYER "; P1
+820 G(540) F(J) PRINT "PLAYER "; P1
 PLAYER 
  P1: 2
  2
-830 G(540) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
+830 G(540) F(J) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
 COORDINATES OF CHOMP (ROW, COLUMN)
-840 G(540) INPUT R1, C1
+840 G(540) F(J) INPUT R1, C1
 ? 3,1
  R1 = 3
  C1 = 1
-850 G(540) IF R1 < 1 THEN 920
+850 G(540) F(J) IF R1 < 1 THEN 920
  R1: 3
  R1 < 1: false
-860 G(540) IF R1 > R THEN 920
+860 G(540) F(J) IF R1 > R THEN 920
  R1: 3
  R: 4
  R1 > R: false
-870 G(540) IF C1 < 1 THEN 920
+870 G(540) F(J) IF C1 < 1 THEN 920
  C1: 1
  C1 < 1: false
-880 G(540) IF C1 > C THEN 920
+880 G(540) F(J) IF C1 > C THEN 920
  C1: 1
  C: 7
  C1 > C: false
-890 G(540) IF A(R1, C1) = 0 THEN 920
+890 G(540) F(J) IF A(R1, C1) = 0 THEN 920
  R1: 3
  C1: 1
  A(3,1): 0
  A(R1, C1) = 0: true
-920 G(540) PRINT "NO FAIR. YOU'RE TRYING TO CHOMP ON EMPTY SPACE!"
+920 G(540) F(J) PRINT "NO FAIR. YOU'RE TRYING TO CHOMP ON EMPTY SPACE!"
 NO FAIR. YOU'RE TRYING TO CHOMP ON EMPTY SPACE!
-930 G(540) GOTO 820
-820 G(540) PRINT "PLAYER "; P1
+930 G(540) F(J) GOTO 820
+820 G(540) F(J) PRINT "PLAYER "; P1
 PLAYER 
  P1: 2
  2
-830 G(540) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
+830 G(540) F(J) PRINT "COORDINATES OF CHOMP (ROW, COLUMN)";
 COORDINATES OF CHOMP (ROW, COLUMN)
-840 G(540) INPUT R1, C1
+840 G(540) F(J) INPUT R1, C1
 ? 1,1
  R1 = 1
  C1 = 1
-850 G(540) IF R1 < 1 THEN 920
+850 G(540) F(J) IF R1 < 1 THEN 920
  R1: 1
  R1 < 1: false
-860 G(540) IF R1 > R THEN 920
+860 G(540) F(J) IF R1 > R THEN 920
  R1: 1
  R: 4
  R1 > R: false
-870 G(540) IF C1 < 1 THEN 920
+870 G(540) F(J) IF C1 < 1 THEN 920
  C1: 1
  C1 < 1: false
-880 G(540) IF C1 > C THEN 920
+880 G(540) F(J) IF C1 > C THEN 920
  C1: 1
  C: 7
  C1 > C: false
-890 G(540) IF A(R1, C1) = 0 THEN 920
+890 G(540) F(J) IF A(R1, C1) = 0 THEN 920
  R1: 1
  C1: 1
  A(1,1): -1
  A(R1, C1) = 0: false
-900 G(540) IF A(R1, C1) = -1 THEN 1010
+900 G(540) F(J) IF A(R1, C1) = -1 THEN 1010
  R1: 1
  C1: 1
  A(1,1): -1
  A(R1, C1) = -1: true
-1010 G(540) PRINT "YOU LOSE, PLAYER "; P1
+1010 G(540) F(J) PRINT "YOU LOSE, PLAYER "; P1
 YOU LOSE, PLAYER 
  P1: 2
  2
-1020 G(540) PRINT
+1020 G(540) F(J) PRINT
 
-1030 G(540) PRINT "AGAIN (1=YES; 0=NO!)";
+1030 G(540) F(J) PRINT "AGAIN (1=YES; 0=NO!)";
 AGAIN (1=YES; 0=NO!)
-1040 G(540) INPUT R
+1040 G(540) F(J) INPUT R
 ? 0
  R = 0
-1050 G(540) IF R = 1 THEN 340
+1050 G(540) F(J) IF R = 1 THEN 340
  R: 0
  R = 1: false
-1060 G(540) END
+1060 G(540) F(J) END
 STOP in line 1060
 

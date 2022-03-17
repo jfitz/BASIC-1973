@@ -1525,27 +1525,29 @@ class Program
   def assign_fornext_markers(line_numbers)
     line_numbers.each do |line_number|
       line = @lines[line_number]
-
-      line.reset_visited
-    end
-
-    line_numbers.each do |line_number|
-      line = @lines[line_number]
       statements = line.statements
 
       statements.each do |statement|
+        line_numbers.each do |x_line_number|
+          x_line = @lines[x_line_number]
+
+          x_line.reset_visited
+        end
+
         statement.assign_fornext_markers(self)
       end
     end
   end
 
-  def get_statement(line_number, stmt)
+  def get_statement(line_stmt)
     statement = nil
 
+    line_number = line_stmt.line_number
     line = @lines[line_number]
 
     unless line.nil?
       statements = line.statements
+      stmt = line_stmt.statement
       statement = statements[stmt]
     end
 

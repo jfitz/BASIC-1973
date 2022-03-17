@@ -350,10 +350,10 @@ YOUR MOVE
  I: 3
  terminated:true
  I = 4
-1731 G(1660) LET I = I - 1
+1731 G(1660) F(J) LET I = I - 1
  I: 4
  I = 3
-1740 G(1660) LET T1 = A(J, I)
+1740 G(1660) F(J) LET T1 = A(J, I)
  J: 1
  I: 3
  A(1,3): 0
@@ -416,10 +416,10 @@ YOUR MOVE
  I: 3
  terminated:true
  I = 4
-1731 G(1660) LET I = I - 1
+1731 G(1660) F(J) LET I = I - 1
  I: 4
  I = 3
-1740 G(1660) LET T1 = A(J, I)
+1740 G(1660) F(J) LET T1 = A(J, I)
  J: 3
  I: 3
  A(3,3): 0
@@ -428,10 +428,10 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1751 G(1660) F(J) LET J = J - 1
+1751 G(1660) F(I) LET J = J - 1
  J: 4
  J = 3
-1760 G(1660) F(J,J) FOR J = 1 TO 3
+1760 G(1660) F(I,J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1770 G(1660) F(J,I) FOR I = 1 TO 3
@@ -442,7 +442,7 @@ YOUR MOVE
  A(1,1): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -452,7 +452,7 @@ YOUR MOVE
  I: 2
  A(2,1): 0
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -462,19 +462,19 @@ YOUR MOVE
  I: 3
  A(3,1): 0
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 3
  terminated:true
  I = 4
-1791 G(1660) F(J) LET I = I - 1
+1791 G(1660) F(I,J) LET I = I - 1
  I: 4
  I = 3
-1800 G(1660) F(J) LET T1 = A(I, J)
+1800 G(1660) F(I,J) LET T1 = A(I, J)
  I: 3
  J: 1
  A(3,1): 0
  T1 = 0
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 1
  terminated:false
  J = 2
@@ -486,7 +486,7 @@ YOUR MOVE
  A(1,2): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -496,7 +496,7 @@ YOUR MOVE
  I: 2
  A(2,2): -1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -508,7 +508,7 @@ YOUR MOVE
  A(1,3): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -518,7 +518,7 @@ YOUR MOVE
  I: 2
  A(2,3): 0
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -528,47 +528,47 @@ YOUR MOVE
  I: 3
  A(3,3): 0
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 3
  terminated:true
  I = 4
-1791 G(1660) F(J) LET I = I - 1
+1791 G(1660) F(I,J) LET I = I - 1
  I: 4
  I = 3
-1800 G(1660) F(J) LET T1 = A(I, J)
+1800 G(1660) F(I,J) LET T1 = A(I, J)
  I: 3
  J: 3
  A(3,3): 0
  T1 = 0
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 3
  terminated:true
  J = 4
-1811 G(1660) F(J) LET J = J - 1
+1811 G(1660) LET J = J - 1
  J: 4
  J = 3
-1820 G(1660) F(J) IF A(1, 1) = A(3, 3) THEN 1930
+1820 G(1660) IF A(1, 1) = A(3, 3) THEN 1930
  A(1,1): 0
  A(3,3): 0
  A(1, 1) = A(3, 3): true
-1930 G(1660) F(J) IF A(2, 2) = A(3, 3) THEN 1950
+1930 G(1660) IF A(2, 2) = A(3, 3) THEN 1950
  A(2,2): -1
  A(3,3): 0
  A(2, 2) = A(3, 3): false
-1940 G(1660) F(J) GOTO 1830
-1830 G(1660) F(J) IF A(3, 1) = A(1, 3) THEN 1970
+1940 G(1660) GOTO 1830
+1830 G(1660) IF A(3, 1) = A(1, 3) THEN 1970
  A(3,1): 0
  A(1,3): 0
  A(3, 1) = A(1, 3): true
-1970 G(1660) F(J) IF A(2, 2) = A(1, 3) THEN 1950
+1970 G(1660) IF A(2, 2) = A(1, 3) THEN 1950
  A(2,2): -1
  A(1,3): 0
  A(2, 2) = A(1, 3): false
-1980 G(1660) F(J) GOTO 1840
-1840 G(1660) F(J) IF T1 <> 0 THEN 1990
+1980 G(1660) GOTO 1840
+1840 G(1660) IF T1 <> 0 THEN 1990
  T1: 0
  T1 <> 0: false
-1850 G(1660,2000) F(J,J) FOR J = 1 TO 3
+1850 G(1660,2000) F(J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1860 G(1660,2000) F(J,I) FOR I = 1 TO 3
@@ -745,15 +745,15 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1901 G(1660,2000) F(J) LET J = J - 1
+1901 G(1660,2000) LET J = J - 1
  J: 4
  J = 3
-1910 G(1660,2000) F(J) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
+1910 G(1660,2000) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
  A(1,1): 0
  A(2,2): -1
  A(3,3): 0
  B(7) = -1
-1920 G(1660,2000) F(J) RETURN
+1920 G(1660,2000) RETURN
 410 F(J) IF Z = 1 THEN 2070
  Z: 0
  Z = 1: false
@@ -1056,10 +1056,10 @@ YOUR MOVE
  I: 3
  terminated:true
  I = 4
-1731 G(1660) LET I = I - 1
+1731 G(1660) F(J) LET I = I - 1
  I: 4
  I = 3
-1740 G(1660) LET T1 = A(J, I)
+1740 G(1660) F(J) LET T1 = A(J, I)
  J: 1
  I: 3
  A(1,3): 0
@@ -1122,10 +1122,10 @@ YOUR MOVE
  I: 3
  terminated:true
  I = 4
-1731 G(1660) LET I = I - 1
+1731 G(1660) F(J) LET I = I - 1
  I: 4
  I = 3
-1740 G(1660) LET T1 = A(J, I)
+1740 G(1660) F(J) LET T1 = A(J, I)
  J: 3
  I: 3
  A(3,3): 0
@@ -1134,10 +1134,10 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1751 G(1660) F(J) LET J = J - 1
+1751 G(1660) F(I) LET J = J - 1
  J: 4
  J = 3
-1760 G(1660) F(J,J) FOR J = 1 TO 3
+1760 G(1660) F(I,J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1770 G(1660) F(J,I) FOR I = 1 TO 3
@@ -1148,7 +1148,7 @@ YOUR MOVE
  A(1,1): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -1158,7 +1158,7 @@ YOUR MOVE
  I: 2
  A(2,1): 0
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -1168,19 +1168,19 @@ YOUR MOVE
  I: 3
  A(3,1): 0
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 3
  terminated:true
  I = 4
-1791 G(1660) F(J) LET I = I - 1
+1791 G(1660) F(I,J) LET I = I - 1
  I: 4
  I = 3
-1800 G(1660) F(J) LET T1 = A(I, J)
+1800 G(1660) F(I,J) LET T1 = A(I, J)
  I: 3
  J: 1
  A(3,1): 0
  T1 = 0
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 1
  terminated:false
  J = 2
@@ -1192,7 +1192,7 @@ YOUR MOVE
  A(1,2): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -1202,7 +1202,7 @@ YOUR MOVE
  I: 2
  A(2,2): -1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -1214,7 +1214,7 @@ YOUR MOVE
  A(1,3): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -1224,35 +1224,35 @@ YOUR MOVE
  I: 2
  A(2,3): 1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 3
  terminated:true
  J = 4
-1811 G(1660) F(J) LET J = J - 1
+1811 G(1660) LET J = J - 1
  J: 4
  J = 3
-1820 G(1660) F(J) IF A(1, 1) = A(3, 3) THEN 1930
+1820 G(1660) IF A(1, 1) = A(3, 3) THEN 1930
  A(1,1): 0
  A(3,3): 0
  A(1, 1) = A(3, 3): true
-1930 G(1660) F(J) IF A(2, 2) = A(3, 3) THEN 1950
+1930 G(1660) IF A(2, 2) = A(3, 3) THEN 1950
  A(2,2): -1
  A(3,3): 0
  A(2, 2) = A(3, 3): false
-1940 G(1660) F(J) GOTO 1830
-1830 G(1660) F(J) IF A(3, 1) = A(1, 3) THEN 1970
+1940 G(1660) GOTO 1830
+1830 G(1660) IF A(3, 1) = A(1, 3) THEN 1970
  A(3,1): 0
  A(1,3): 0
  A(3, 1) = A(1, 3): true
-1970 G(1660) F(J) IF A(2, 2) = A(1, 3) THEN 1950
+1970 G(1660) IF A(2, 2) = A(1, 3) THEN 1950
  A(2,2): -1
  A(1,3): 0
  A(2, 2) = A(1, 3): false
-1980 G(1660) F(J) GOTO 1840
-1840 G(1660) F(J) IF T1 <> 0 THEN 1990
+1980 G(1660) GOTO 1840
+1840 G(1660) IF T1 <> 0 THEN 1990
  T1: 0
  T1 <> 0: false
-1850 G(1660,2000) F(J,J) FOR J = 1 TO 3
+1850 G(1660,2000) F(J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1860 G(1660,2000) F(J,I) FOR I = 1 TO 3
@@ -1429,15 +1429,15 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1901 G(1660,2000) F(J) LET J = J - 1
+1901 G(1660,2000) LET J = J - 1
  J: 4
  J = 3
-1910 G(1660,2000) F(J) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
+1910 G(1660,2000) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
  A(1,1): 0
  A(2,2): -1
  A(3,3): 0
  B(7) = -1
-1920 G(1660,2000) F(J) RETURN
+1920 G(1660,2000) RETURN
 460 F(J) IF Z = 0 THEN 650
  Z: 0
  Z = 0: true
@@ -1905,10 +1905,10 @@ YOUR MOVE
  I: 3
  terminated:true
  I = 4
-1731 G(1660) LET I = I - 1
+1731 G(1660) F(J) LET I = I - 1
  I: 4
  I = 3
-1740 G(1660) LET T1 = A(J, I)
+1740 G(1660) F(J) LET T1 = A(J, I)
  J: 3
  I: 3
  A(3,3): 0
@@ -1917,10 +1917,10 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1751 G(1660) F(J) LET J = J - 1
+1751 G(1660) F(I) LET J = J - 1
  J: 4
  J = 3
-1760 G(1660) F(J,J) FOR J = 1 TO 3
+1760 G(1660) F(I,J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1770 G(1660) F(J,I) FOR I = 1 TO 3
@@ -1931,7 +1931,7 @@ YOUR MOVE
  A(1,1): -1
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -1941,7 +1941,7 @@ YOUR MOVE
  I: 2
  A(2,1): 0
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 1
  terminated:false
  J = 2
@@ -1953,7 +1953,7 @@ YOUR MOVE
  A(1,2): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -1963,7 +1963,7 @@ YOUR MOVE
  I: 2
  A(2,2): -1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -1975,7 +1975,7 @@ YOUR MOVE
  A(1,3): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -1985,30 +1985,30 @@ YOUR MOVE
  I: 2
  A(2,3): 1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 3
  terminated:true
  J = 4
-1811 G(1660) F(J) LET J = J - 1
+1811 G(1660) LET J = J - 1
  J: 4
  J = 3
-1820 G(1660) F(J) IF A(1, 1) = A(3, 3) THEN 1930
+1820 G(1660) IF A(1, 1) = A(3, 3) THEN 1930
  A(1,1): -1
  A(3,3): 0
  A(1, 1) = A(3, 3): false
-1830 G(1660) F(J) IF A(3, 1) = A(1, 3) THEN 1970
+1830 G(1660) IF A(3, 1) = A(1, 3) THEN 1970
  A(3,1): 0
  A(1,3): 0
  A(3, 1) = A(1, 3): true
-1970 G(1660) F(J) IF A(2, 2) = A(1, 3) THEN 1950
+1970 G(1660) IF A(2, 2) = A(1, 3) THEN 1950
  A(2,2): -1
  A(1,3): 0
  A(2, 2) = A(1, 3): false
-1980 G(1660) F(J) GOTO 1840
-1840 G(1660) F(J) IF T1 <> 0 THEN 1990
+1980 G(1660) GOTO 1840
+1840 G(1660) IF T1 <> 0 THEN 1990
  T1: 0
  T1 <> 0: false
-1850 G(1660,2000) F(J,J) FOR J = 1 TO 3
+1850 G(1660,2000) F(J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1860 G(1660,2000) F(J,I) FOR I = 1 TO 3
@@ -2185,15 +2185,15 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1901 G(1660,2000) F(J) LET J = J - 1
+1901 G(1660,2000) LET J = J - 1
  J: 4
  J = 3
-1910 G(1660,2000) F(J) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
+1910 G(1660,2000) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
  A(1,1): -1
  A(2,2): -1
  A(3,3): 0
  B(7) = -2
-1920 G(1660,2000) F(J) RETURN
+1920 G(1660,2000) RETURN
 410 F(J) IF Z = 1 THEN 2070
  Z: 0
  Z = 1: false
@@ -2564,10 +2564,10 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1751 G(1660) F(J) LET J = J - 1
+1751 G(1660) F(I) LET J = J - 1
  J: 4
  J = 3
-1760 G(1660) F(J,J) FOR J = 1 TO 3
+1760 G(1660) F(I,J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1770 G(1660) F(J,I) FOR I = 1 TO 3
@@ -2578,7 +2578,7 @@ YOUR MOVE
  A(1,1): -1
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -2588,7 +2588,7 @@ YOUR MOVE
  I: 2
  A(2,1): 0
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 1
  terminated:false
  J = 2
@@ -2600,7 +2600,7 @@ YOUR MOVE
  A(1,2): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -2610,7 +2610,7 @@ YOUR MOVE
  I: 2
  A(2,2): -1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -2622,7 +2622,7 @@ YOUR MOVE
  A(1,3): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -2632,30 +2632,30 @@ YOUR MOVE
  I: 2
  A(2,3): 1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 3
  terminated:true
  J = 4
-1811 G(1660) F(J) LET J = J - 1
+1811 G(1660) LET J = J - 1
  J: 4
  J = 3
-1820 G(1660) F(J) IF A(1, 1) = A(3, 3) THEN 1930
+1820 G(1660) IF A(1, 1) = A(3, 3) THEN 1930
  A(1,1): -1
  A(3,3): 1
  A(1, 1) = A(3, 3): false
-1830 G(1660) F(J) IF A(3, 1) = A(1, 3) THEN 1970
+1830 G(1660) IF A(3, 1) = A(1, 3) THEN 1970
  A(3,1): 0
  A(1,3): 0
  A(3, 1) = A(1, 3): true
-1970 G(1660) F(J) IF A(2, 2) = A(1, 3) THEN 1950
+1970 G(1660) IF A(2, 2) = A(1, 3) THEN 1950
  A(2,2): -1
  A(1,3): 0
  A(2, 2) = A(1, 3): false
-1980 G(1660) F(J) GOTO 1840
-1840 G(1660) F(J) IF T1 <> 0 THEN 1990
+1980 G(1660) GOTO 1840
+1840 G(1660) IF T1 <> 0 THEN 1990
  T1: 0
  T1 <> 0: false
-1850 G(1660,2000) F(J,J) FOR J = 1 TO 3
+1850 G(1660,2000) F(J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1860 G(1660,2000) F(J,I) FOR I = 1 TO 3
@@ -2832,15 +2832,15 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1901 G(1660,2000) F(J) LET J = J - 1
+1901 G(1660,2000) LET J = J - 1
  J: 4
  J = 3
-1910 G(1660,2000) F(J) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
+1910 G(1660,2000) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
  A(1,1): -1
  A(2,2): -1
  A(3,3): 1
  B(7) = -1
-1920 G(1660,2000) F(J) RETURN
+1920 G(1660,2000) RETURN
 460 F(J) IF Z = 0 THEN 650
  Z: 0
  Z = 0: true
@@ -3320,10 +3320,10 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1751 G(1660) F(J) LET J = J - 1
+1751 G(1660) F(I) LET J = J - 1
  J: 4
  J = 3
-1760 G(1660) F(J,J) FOR J = 1 TO 3
+1760 G(1660) F(I,J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1770 G(1660) F(J,I) FOR I = 1 TO 3
@@ -3334,7 +3334,7 @@ YOUR MOVE
  A(1,1): -1
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -3344,7 +3344,7 @@ YOUR MOVE
  I: 2
  A(2,1): 0
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 1
  terminated:false
  J = 2
@@ -3356,7 +3356,7 @@ YOUR MOVE
  A(1,2): -1
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -3366,7 +3366,7 @@ YOUR MOVE
  I: 2
  A(2,2): -1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -3376,7 +3376,7 @@ YOUR MOVE
  I: 3
  A(3,2): 0
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -3388,7 +3388,7 @@ YOUR MOVE
  A(1,3): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -3398,30 +3398,30 @@ YOUR MOVE
  I: 2
  A(2,3): 1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 3
  terminated:true
  J = 4
-1811 G(1660) F(J) LET J = J - 1
+1811 G(1660) LET J = J - 1
  J: 4
  J = 3
-1820 G(1660) F(J) IF A(1, 1) = A(3, 3) THEN 1930
+1820 G(1660) IF A(1, 1) = A(3, 3) THEN 1930
  A(1,1): -1
  A(3,3): 1
  A(1, 1) = A(3, 3): false
-1830 G(1660) F(J) IF A(3, 1) = A(1, 3) THEN 1970
+1830 G(1660) IF A(3, 1) = A(1, 3) THEN 1970
  A(3,1): 0
  A(1,3): 0
  A(3, 1) = A(1, 3): true
-1970 G(1660) F(J) IF A(2, 2) = A(1, 3) THEN 1950
+1970 G(1660) IF A(2, 2) = A(1, 3) THEN 1950
  A(2,2): -1
  A(1,3): 0
  A(2, 2) = A(1, 3): false
-1980 G(1660) F(J) GOTO 1840
-1840 G(1660) F(J) IF T1 <> 0 THEN 1990
+1980 G(1660) GOTO 1840
+1840 G(1660) IF T1 <> 0 THEN 1990
  T1: 0
  T1 <> 0: false
-1850 G(1660,2000) F(J,J) FOR J = 1 TO 3
+1850 G(1660,2000) F(J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1860 G(1660,2000) F(J,I) FOR I = 1 TO 3
@@ -3598,15 +3598,15 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1901 G(1660,2000) F(J) LET J = J - 1
+1901 G(1660,2000) LET J = J - 1
  J: 4
  J = 3
-1910 G(1660,2000) F(J) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
+1910 G(1660,2000) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
  A(1,1): -1
  A(2,2): -1
  A(3,3): 1
  B(7) = -1
-1920 G(1660,2000) F(J) RETURN
+1920 G(1660,2000) RETURN
 410 F(J) IF Z = 1 THEN 2070
  Z: 0
  Z = 1: false
@@ -3868,10 +3868,10 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1751 G(1660) F(J) LET J = J - 1
+1751 G(1660) F(I) LET J = J - 1
  J: 4
  J = 3
-1760 G(1660) F(J,J) FOR J = 1 TO 3
+1760 G(1660) F(I,J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1770 G(1660) F(J,I) FOR I = 1 TO 3
@@ -3882,7 +3882,7 @@ YOUR MOVE
  A(1,1): -1
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -3892,7 +3892,7 @@ YOUR MOVE
  I: 2
  A(2,1): 0
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 1
  terminated:false
  J = 2
@@ -3904,7 +3904,7 @@ YOUR MOVE
  A(1,2): -1
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -3914,7 +3914,7 @@ YOUR MOVE
  I: 2
  A(2,2): -1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -3924,7 +3924,7 @@ YOUR MOVE
  I: 3
  A(3,2): 0
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -3936,7 +3936,7 @@ YOUR MOVE
  A(1,3): 1
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -3946,7 +3946,7 @@ YOUR MOVE
  I: 2
  A(2,3): 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -3956,45 +3956,45 @@ YOUR MOVE
  I: 3
  A(3,3): 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 3
  terminated:true
  I = 4
-1791 G(1660) F(J) LET I = I - 1
+1791 G(1660) F(I,J) LET I = I - 1
  I: 4
  I = 3
-1800 G(1660) F(J) LET T1 = A(I, J)
+1800 G(1660) F(I,J) LET T1 = A(I, J)
  I: 3
  J: 3
  A(3,3): 1
  T1 = 1
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 3
  terminated:true
  J = 4
-1811 G(1660) F(J) LET J = J - 1
+1811 G(1660) LET J = J - 1
  J: 4
  J = 3
-1820 G(1660) F(J) IF A(1, 1) = A(3, 3) THEN 1930
+1820 G(1660) IF A(1, 1) = A(3, 3) THEN 1930
  A(1,1): -1
  A(3,3): 1
  A(1, 1) = A(3, 3): false
-1830 G(1660) F(J) IF A(3, 1) = A(1, 3) THEN 1970
+1830 G(1660) IF A(3, 1) = A(1, 3) THEN 1970
  A(3,1): 0
  A(1,3): 1
  A(3, 1) = A(1, 3): false
-1840 G(1660) F(J) IF T1 <> 0 THEN 1990
+1840 G(1660) IF T1 <> 0 THEN 1990
  T1: 1
  T1 <> 0: true
-1990 G(1660) F(J) IF T1 > 0 THEN 2030
+1990 G(1660) IF T1 > 0 THEN 2030
  T1: 1
  T1 > 0: true
-2030 G(1660) F(J) PRINT " ... THE PDP-8 WINS THIS TIME ..."
+2030 G(1660) PRINT " ... THE PDP-8 WINS THIS TIME ..."
  ... THE PDP-8 WINS THIS TIME ...
-2040 G(1660) F(J) LET Z = 2
+2040 G(1660) LET Z = 2
  Z = 2
-2050 G(1660) F(J) GOTO 1850
-1850 G(1660,2000) F(J,J) FOR J = 1 TO 3
+2050 G(1660) GOTO 1850
+1850 G(1660,2000) F(J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1860 G(1660,2000) F(J,I) FOR I = 1 TO 3
@@ -4171,15 +4171,15 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1901 G(1660,2000) F(J) LET J = J - 1
+1901 G(1660,2000) LET J = J - 1
  J: 4
  J = 3
-1910 G(1660,2000) F(J) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
+1910 G(1660,2000) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
  A(1,1): -1
  A(2,2): -1
  A(3,3): 1
  B(7) = -1
-1920 G(1660,2000) F(J) RETURN
+1920 G(1660,2000) RETURN
 460 F(J) IF Z = 0 THEN 650
  Z: 2
  Z = 0: false
@@ -4594,10 +4594,10 @@ YOUR MOVE
  I: 3
  terminated:true
  I = 4
-1731 G(1660) LET I = I - 1
+1731 G(1660) F(J) LET I = I - 1
  I: 4
  I = 3
-1740 G(1660) LET T1 = A(J, I)
+1740 G(1660) F(J) LET T1 = A(J, I)
  J: 1
  I: 3
  A(1,3): 0
@@ -4660,10 +4660,10 @@ YOUR MOVE
  I: 3
  terminated:true
  I = 4
-1731 G(1660) LET I = I - 1
+1731 G(1660) F(J) LET I = I - 1
  I: 4
  I = 3
-1740 G(1660) LET T1 = A(J, I)
+1740 G(1660) F(J) LET T1 = A(J, I)
  J: 3
  I: 3
  A(3,3): 0
@@ -4672,10 +4672,10 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1751 G(1660) F(J) LET J = J - 1
+1751 G(1660) F(I) LET J = J - 1
  J: 4
  J = 3
-1760 G(1660) F(J,J) FOR J = 1 TO 3
+1760 G(1660) F(I,J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1770 G(1660) F(J,I) FOR I = 1 TO 3
@@ -4686,7 +4686,7 @@ YOUR MOVE
  A(1,1): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -4696,7 +4696,7 @@ YOUR MOVE
  I: 2
  A(2,1): 0
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -4706,19 +4706,19 @@ YOUR MOVE
  I: 3
  A(3,1): 0
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 3
  terminated:true
  I = 4
-1791 G(1660) F(J) LET I = I - 1
+1791 G(1660) F(I,J) LET I = I - 1
  I: 4
  I = 3
-1800 G(1660) F(J) LET T1 = A(I, J)
+1800 G(1660) F(I,J) LET T1 = A(I, J)
  I: 3
  J: 1
  A(3,1): 0
  T1 = 0
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 1
  terminated:false
  J = 2
@@ -4730,7 +4730,7 @@ YOUR MOVE
  A(1,2): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -4740,7 +4740,7 @@ YOUR MOVE
  I: 2
  A(2,2): -1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -4752,7 +4752,7 @@ YOUR MOVE
  A(1,3): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -4762,7 +4762,7 @@ YOUR MOVE
  I: 2
  A(2,3): 0
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -4772,47 +4772,47 @@ YOUR MOVE
  I: 3
  A(3,3): 0
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 3
  terminated:true
  I = 4
-1791 G(1660) F(J) LET I = I - 1
+1791 G(1660) F(I,J) LET I = I - 1
  I: 4
  I = 3
-1800 G(1660) F(J) LET T1 = A(I, J)
+1800 G(1660) F(I,J) LET T1 = A(I, J)
  I: 3
  J: 3
  A(3,3): 0
  T1 = 0
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 3
  terminated:true
  J = 4
-1811 G(1660) F(J) LET J = J - 1
+1811 G(1660) LET J = J - 1
  J: 4
  J = 3
-1820 G(1660) F(J) IF A(1, 1) = A(3, 3) THEN 1930
+1820 G(1660) IF A(1, 1) = A(3, 3) THEN 1930
  A(1,1): 0
  A(3,3): 0
  A(1, 1) = A(3, 3): true
-1930 G(1660) F(J) IF A(2, 2) = A(3, 3) THEN 1950
+1930 G(1660) IF A(2, 2) = A(3, 3) THEN 1950
  A(2,2): -1
  A(3,3): 0
  A(2, 2) = A(3, 3): false
-1940 G(1660) F(J) GOTO 1830
-1830 G(1660) F(J) IF A(3, 1) = A(1, 3) THEN 1970
+1940 G(1660) GOTO 1830
+1830 G(1660) IF A(3, 1) = A(1, 3) THEN 1970
  A(3,1): 0
  A(1,3): 0
  A(3, 1) = A(1, 3): true
-1970 G(1660) F(J) IF A(2, 2) = A(1, 3) THEN 1950
+1970 G(1660) IF A(2, 2) = A(1, 3) THEN 1950
  A(2,2): -1
  A(1,3): 0
  A(2, 2) = A(1, 3): false
-1980 G(1660) F(J) GOTO 1840
-1840 G(1660) F(J) IF T1 <> 0 THEN 1990
+1980 G(1660) GOTO 1840
+1840 G(1660) IF T1 <> 0 THEN 1990
  T1: 0
  T1 <> 0: false
-1850 G(1660,2000) F(J,J) FOR J = 1 TO 3
+1850 G(1660,2000) F(J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1860 G(1660,2000) F(J,I) FOR I = 1 TO 3
@@ -4989,15 +4989,15 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1901 G(1660,2000) F(J) LET J = J - 1
+1901 G(1660,2000) LET J = J - 1
  J: 4
  J = 3
-1910 G(1660,2000) F(J) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
+1910 G(1660,2000) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
  A(1,1): 0
  A(2,2): -1
  A(3,3): 0
  B(7) = -1
-1920 G(1660,2000) F(J) RETURN
+1920 G(1660,2000) RETURN
 410 F(J) IF Z = 1 THEN 2070
  Z: 0
  Z = 1: false
@@ -5316,10 +5316,10 @@ YOUR MOVE
  I: 3
  terminated:true
  I = 4
-1731 G(1660) LET I = I - 1
+1731 G(1660) F(J) LET I = I - 1
  I: 4
  I = 3
-1740 G(1660) LET T1 = A(J, I)
+1740 G(1660) F(J) LET T1 = A(J, I)
  J: 1
  I: 3
  A(1,3): 0
@@ -5382,10 +5382,10 @@ YOUR MOVE
  I: 3
  terminated:true
  I = 4
-1731 G(1660) LET I = I - 1
+1731 G(1660) F(J) LET I = I - 1
  I: 4
  I = 3
-1740 G(1660) LET T1 = A(J, I)
+1740 G(1660) F(J) LET T1 = A(J, I)
  J: 3
  I: 3
  A(3,3): 0
@@ -5394,10 +5394,10 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1751 G(1660) F(J) LET J = J - 1
+1751 G(1660) F(I) LET J = J - 1
  J: 4
  J = 3
-1760 G(1660) F(J,J) FOR J = 1 TO 3
+1760 G(1660) F(I,J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1770 G(1660) F(J,I) FOR I = 1 TO 3
@@ -5408,7 +5408,7 @@ YOUR MOVE
  A(1,1): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -5418,7 +5418,7 @@ YOUR MOVE
  I: 2
  A(2,1): 0
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -5428,19 +5428,19 @@ YOUR MOVE
  I: 3
  A(3,1): 0
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 3
  terminated:true
  I = 4
-1791 G(1660) F(J) LET I = I - 1
+1791 G(1660) F(I,J) LET I = I - 1
  I: 4
  I = 3
-1800 G(1660) F(J) LET T1 = A(I, J)
+1800 G(1660) F(I,J) LET T1 = A(I, J)
  I: 3
  J: 1
  A(3,1): 0
  T1 = 0
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 1
  terminated:false
  J = 2
@@ -5452,7 +5452,7 @@ YOUR MOVE
  A(1,2): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -5462,7 +5462,7 @@ YOUR MOVE
  I: 2
  A(2,2): -1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -5474,7 +5474,7 @@ YOUR MOVE
  A(1,3): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -5484,35 +5484,35 @@ YOUR MOVE
  I: 2
  A(2,3): 1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 3
  terminated:true
  J = 4
-1811 G(1660) F(J) LET J = J - 1
+1811 G(1660) LET J = J - 1
  J: 4
  J = 3
-1820 G(1660) F(J) IF A(1, 1) = A(3, 3) THEN 1930
+1820 G(1660) IF A(1, 1) = A(3, 3) THEN 1930
  A(1,1): 0
  A(3,3): 0
  A(1, 1) = A(3, 3): true
-1930 G(1660) F(J) IF A(2, 2) = A(3, 3) THEN 1950
+1930 G(1660) IF A(2, 2) = A(3, 3) THEN 1950
  A(2,2): -1
  A(3,3): 0
  A(2, 2) = A(3, 3): false
-1940 G(1660) F(J) GOTO 1830
-1830 G(1660) F(J) IF A(3, 1) = A(1, 3) THEN 1970
+1940 G(1660) GOTO 1830
+1830 G(1660) IF A(3, 1) = A(1, 3) THEN 1970
  A(3,1): 0
  A(1,3): 0
  A(3, 1) = A(1, 3): true
-1970 G(1660) F(J) IF A(2, 2) = A(1, 3) THEN 1950
+1970 G(1660) IF A(2, 2) = A(1, 3) THEN 1950
  A(2,2): -1
  A(1,3): 0
  A(2, 2) = A(1, 3): false
-1980 G(1660) F(J) GOTO 1840
-1840 G(1660) F(J) IF T1 <> 0 THEN 1990
+1980 G(1660) GOTO 1840
+1840 G(1660) IF T1 <> 0 THEN 1990
  T1: 0
  T1 <> 0: false
-1850 G(1660,2000) F(J,J) FOR J = 1 TO 3
+1850 G(1660,2000) F(J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1860 G(1660,2000) F(J,I) FOR I = 1 TO 3
@@ -5689,15 +5689,15 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1901 G(1660,2000) F(J) LET J = J - 1
+1901 G(1660,2000) LET J = J - 1
  J: 4
  J = 3
-1910 G(1660,2000) F(J) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
+1910 G(1660,2000) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
  A(1,1): 0
  A(2,2): -1
  A(3,3): 0
  B(7) = -1
-1920 G(1660,2000) F(J) RETURN
+1920 G(1660,2000) RETURN
 460 F(J) IF Z = 0 THEN 650
  Z: 0
  Z = 0: true
@@ -6121,10 +6121,10 @@ YOUR MOVE
  I: 3
  terminated:true
  I = 4
-1731 G(1660) LET I = I - 1
+1731 G(1660) F(J) LET I = I - 1
  I: 4
  I = 3
-1740 G(1660) LET T1 = A(J, I)
+1740 G(1660) F(J) LET T1 = A(J, I)
  J: 1
  I: 3
  A(1,3): 0
@@ -6187,10 +6187,10 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1751 G(1660) F(J) LET J = J - 1
+1751 G(1660) F(I) LET J = J - 1
  J: 4
  J = 3
-1760 G(1660) F(J,J) FOR J = 1 TO 3
+1760 G(1660) F(I,J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1770 G(1660) F(J,I) FOR I = 1 TO 3
@@ -6201,7 +6201,7 @@ YOUR MOVE
  A(1,1): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -6211,7 +6211,7 @@ YOUR MOVE
  I: 2
  A(2,1): 0
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -6221,19 +6221,19 @@ YOUR MOVE
  I: 3
  A(3,1): 0
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 3
  terminated:true
  I = 4
-1791 G(1660) F(J) LET I = I - 1
+1791 G(1660) F(I,J) LET I = I - 1
  I: 4
  I = 3
-1800 G(1660) F(J) LET T1 = A(I, J)
+1800 G(1660) F(I,J) LET T1 = A(I, J)
  I: 3
  J: 1
  A(3,1): 0
  T1 = 0
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 1
  terminated:false
  J = 2
@@ -6245,7 +6245,7 @@ YOUR MOVE
  A(1,2): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -6255,7 +6255,7 @@ YOUR MOVE
  I: 2
  A(2,2): -1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -6267,7 +6267,7 @@ YOUR MOVE
  A(1,3): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -6277,30 +6277,30 @@ YOUR MOVE
  I: 2
  A(2,3): 1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 3
  terminated:true
  J = 4
-1811 G(1660) F(J) LET J = J - 1
+1811 G(1660) LET J = J - 1
  J: 4
  J = 3
-1820 G(1660) F(J) IF A(1, 1) = A(3, 3) THEN 1930
+1820 G(1660) IF A(1, 1) = A(3, 3) THEN 1930
  A(1,1): 0
  A(3,3): -1
  A(1, 1) = A(3, 3): false
-1830 G(1660) F(J) IF A(3, 1) = A(1, 3) THEN 1970
+1830 G(1660) IF A(3, 1) = A(1, 3) THEN 1970
  A(3,1): 0
  A(1,3): 0
  A(3, 1) = A(1, 3): true
-1970 G(1660) F(J) IF A(2, 2) = A(1, 3) THEN 1950
+1970 G(1660) IF A(2, 2) = A(1, 3) THEN 1950
  A(2,2): -1
  A(1,3): 0
  A(2, 2) = A(1, 3): false
-1980 G(1660) F(J) GOTO 1840
-1840 G(1660) F(J) IF T1 <> 0 THEN 1990
+1980 G(1660) GOTO 1840
+1840 G(1660) IF T1 <> 0 THEN 1990
  T1: 0
  T1 <> 0: false
-1850 G(1660,2000) F(J,J) FOR J = 1 TO 3
+1850 G(1660,2000) F(J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1860 G(1660,2000) F(J,I) FOR I = 1 TO 3
@@ -6477,15 +6477,15 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1901 G(1660,2000) F(J) LET J = J - 1
+1901 G(1660,2000) LET J = J - 1
  J: 4
  J = 3
-1910 G(1660,2000) F(J) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
+1910 G(1660,2000) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
  A(1,1): 0
  A(2,2): -1
  A(3,3): -1
  B(7) = -2
-1920 G(1660,2000) F(J) RETURN
+1920 G(1660,2000) RETURN
 410 F(J) IF Z = 1 THEN 2070
  Z: 0
  Z = 1: false
@@ -6824,10 +6824,10 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1751 G(1660) F(J) LET J = J - 1
+1751 G(1660) F(I) LET J = J - 1
  J: 4
  J = 3
-1760 G(1660) F(J,J) FOR J = 1 TO 3
+1760 G(1660) F(I,J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1770 G(1660) F(J,I) FOR I = 1 TO 3
@@ -6838,7 +6838,7 @@ YOUR MOVE
  A(1,1): 1
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -6848,7 +6848,7 @@ YOUR MOVE
  I: 2
  A(2,1): 0
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 1
  terminated:false
  J = 2
@@ -6860,7 +6860,7 @@ YOUR MOVE
  A(1,2): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -6870,7 +6870,7 @@ YOUR MOVE
  I: 2
  A(2,2): -1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -6882,7 +6882,7 @@ YOUR MOVE
  A(1,3): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -6892,30 +6892,30 @@ YOUR MOVE
  I: 2
  A(2,3): 1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 3
  terminated:true
  J = 4
-1811 G(1660) F(J) LET J = J - 1
+1811 G(1660) LET J = J - 1
  J: 4
  J = 3
-1820 G(1660) F(J) IF A(1, 1) = A(3, 3) THEN 1930
+1820 G(1660) IF A(1, 1) = A(3, 3) THEN 1930
  A(1,1): 1
  A(3,3): -1
  A(1, 1) = A(3, 3): false
-1830 G(1660) F(J) IF A(3, 1) = A(1, 3) THEN 1970
+1830 G(1660) IF A(3, 1) = A(1, 3) THEN 1970
  A(3,1): 0
  A(1,3): 0
  A(3, 1) = A(1, 3): true
-1970 G(1660) F(J) IF A(2, 2) = A(1, 3) THEN 1950
+1970 G(1660) IF A(2, 2) = A(1, 3) THEN 1950
  A(2,2): -1
  A(1,3): 0
  A(2, 2) = A(1, 3): false
-1980 G(1660) F(J) GOTO 1840
-1840 G(1660) F(J) IF T1 <> 0 THEN 1990
+1980 G(1660) GOTO 1840
+1840 G(1660) IF T1 <> 0 THEN 1990
  T1: 0
  T1 <> 0: false
-1850 G(1660,2000) F(J,J) FOR J = 1 TO 3
+1850 G(1660,2000) F(J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1860 G(1660,2000) F(J,I) FOR I = 1 TO 3
@@ -7092,15 +7092,15 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1901 G(1660,2000) F(J) LET J = J - 1
+1901 G(1660,2000) LET J = J - 1
  J: 4
  J = 3
-1910 G(1660,2000) F(J) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
+1910 G(1660,2000) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
  A(1,1): 1
  A(2,2): -1
  A(3,3): -1
  B(7) = -1
-1920 G(1660,2000) F(J) RETURN
+1920 G(1660,2000) RETURN
 460 F(J) IF Z = 0 THEN 650
  Z: 0
  Z = 0: true
@@ -7560,10 +7560,10 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1751 G(1660) F(J) LET J = J - 1
+1751 G(1660) F(I) LET J = J - 1
  J: 4
  J = 3
-1760 G(1660) F(J,J) FOR J = 1 TO 3
+1760 G(1660) F(I,J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1770 G(1660) F(J,I) FOR I = 1 TO 3
@@ -7574,7 +7574,7 @@ YOUR MOVE
  A(1,1): 1
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -7584,7 +7584,7 @@ YOUR MOVE
  I: 2
  A(2,1): 0
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 1
  terminated:false
  J = 2
@@ -7596,7 +7596,7 @@ YOUR MOVE
  A(1,2): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -7606,7 +7606,7 @@ YOUR MOVE
  I: 2
  A(2,2): -1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -7618,7 +7618,7 @@ YOUR MOVE
  A(1,3): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -7628,30 +7628,30 @@ YOUR MOVE
  I: 2
  A(2,3): 1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 3
  terminated:true
  J = 4
-1811 G(1660) F(J) LET J = J - 1
+1811 G(1660) LET J = J - 1
  J: 4
  J = 3
-1820 G(1660) F(J) IF A(1, 1) = A(3, 3) THEN 1930
+1820 G(1660) IF A(1, 1) = A(3, 3) THEN 1930
  A(1,1): 1
  A(3,3): -1
  A(1, 1) = A(3, 3): false
-1830 G(1660) F(J) IF A(3, 1) = A(1, 3) THEN 1970
+1830 G(1660) IF A(3, 1) = A(1, 3) THEN 1970
  A(3,1): 0
  A(1,3): 0
  A(3, 1) = A(1, 3): true
-1970 G(1660) F(J) IF A(2, 2) = A(1, 3) THEN 1950
+1970 G(1660) IF A(2, 2) = A(1, 3) THEN 1950
  A(2,2): -1
  A(1,3): 0
  A(2, 2) = A(1, 3): false
-1980 G(1660) F(J) GOTO 1840
-1840 G(1660) F(J) IF T1 <> 0 THEN 1990
+1980 G(1660) GOTO 1840
+1840 G(1660) IF T1 <> 0 THEN 1990
  T1: 0
  T1 <> 0: false
-1850 G(1660,2000) F(J,J) FOR J = 1 TO 3
+1850 G(1660,2000) F(J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1860 G(1660,2000) F(J,I) FOR I = 1 TO 3
@@ -7828,15 +7828,15 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1901 G(1660,2000) F(J) LET J = J - 1
+1901 G(1660,2000) LET J = J - 1
  J: 4
  J = 3
-1910 G(1660,2000) F(J) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
+1910 G(1660,2000) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
  A(1,1): 1
  A(2,2): -1
  A(3,3): -1
  B(7) = -1
-1920 G(1660,2000) F(J) RETURN
+1920 G(1660,2000) RETURN
 410 F(J) IF Z = 1 THEN 2070
  Z: 0
  Z = 1: false
@@ -8121,10 +8121,10 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1751 G(1660) F(J) LET J = J - 1
+1751 G(1660) F(I) LET J = J - 1
  J: 4
  J = 3
-1760 G(1660) F(J,J) FOR J = 1 TO 3
+1760 G(1660) F(I,J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1770 G(1660) F(J,I) FOR I = 1 TO 3
@@ -8135,7 +8135,7 @@ YOUR MOVE
  A(1,1): 1
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -8145,7 +8145,7 @@ YOUR MOVE
  I: 2
  A(2,1): 0
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 1
  terminated:false
  J = 2
@@ -8157,7 +8157,7 @@ YOUR MOVE
  A(1,2): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -8167,7 +8167,7 @@ YOUR MOVE
  I: 2
  A(2,2): -1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -8179,7 +8179,7 @@ YOUR MOVE
  A(1,3): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -8189,25 +8189,25 @@ YOUR MOVE
  I: 2
  A(2,3): 1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 3
  terminated:true
  J = 4
-1811 G(1660) F(J) LET J = J - 1
+1811 G(1660) LET J = J - 1
  J: 4
  J = 3
-1820 G(1660) F(J) IF A(1, 1) = A(3, 3) THEN 1930
+1820 G(1660) IF A(1, 1) = A(3, 3) THEN 1930
  A(1,1): 1
  A(3,3): -1
  A(1, 1) = A(3, 3): false
-1830 G(1660) F(J) IF A(3, 1) = A(1, 3) THEN 1970
+1830 G(1660) IF A(3, 1) = A(1, 3) THEN 1970
  A(3,1): 1
  A(1,3): 0
  A(3, 1) = A(1, 3): false
-1840 G(1660) F(J) IF T1 <> 0 THEN 1990
+1840 G(1660) IF T1 <> 0 THEN 1990
  T1: 0
  T1 <> 0: false
-1850 G(1660,2000) F(J,J) FOR J = 1 TO 3
+1850 G(1660,2000) F(J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1860 G(1660,2000) F(J,I) FOR I = 1 TO 3
@@ -8384,15 +8384,15 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1901 G(1660,2000) F(J) LET J = J - 1
+1901 G(1660,2000) LET J = J - 1
  J: 4
  J = 3
-1910 G(1660,2000) F(J) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
+1910 G(1660,2000) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
  A(1,1): 1
  A(2,2): -1
  A(3,3): -1
  B(7) = -1
-1920 G(1660,2000) F(J) RETURN
+1920 G(1660,2000) RETURN
 460 F(J) IF Z = 0 THEN 650
  Z: 0
  Z = 0: true
@@ -8854,10 +8854,10 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1751 G(1660) F(J) LET J = J - 1
+1751 G(1660) F(I) LET J = J - 1
  J: 4
  J = 3
-1760 G(1660) F(J,J) FOR J = 1 TO 3
+1760 G(1660) F(I,J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1770 G(1660) F(J,I) FOR I = 1 TO 3
@@ -8868,7 +8868,7 @@ YOUR MOVE
  A(1,1): 1
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -8878,7 +8878,7 @@ YOUR MOVE
  I: 2
  A(2,1): 0
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 1
  terminated:false
  J = 2
@@ -8890,7 +8890,7 @@ YOUR MOVE
  A(1,2): -1
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -8900,7 +8900,7 @@ YOUR MOVE
  I: 2
  A(2,2): -1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 2
  terminated:false
  I = 3
@@ -8910,19 +8910,19 @@ YOUR MOVE
  I: 3
  A(3,2): -1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 3
  terminated:true
  I = 4
-1791 G(1660) F(J) LET I = I - 1
+1791 G(1660) F(I,J) LET I = I - 1
  I: 4
  I = 3
-1800 G(1660) F(J) LET T1 = A(I, J)
+1800 G(1660) F(I,J) LET T1 = A(I, J)
  I: 3
  J: 2
  A(3,2): -1
  T1 = -1
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 2
  terminated:false
  J = 3
@@ -8934,7 +8934,7 @@ YOUR MOVE
  A(1,3): 0
  I: 1
  A(1, J) <> A(I, J): false
-1790 G(1660) F(J,I) NEXT I
+1790 G(1660) F(I,J) NEXT I
  I: 1
  terminated:false
  I = 2
@@ -8944,33 +8944,33 @@ YOUR MOVE
  I: 2
  A(2,3): 1
  A(1, J) <> A(I, J): true
-1810 G(1660) F(J,I) NEXT J
+1810 G(1660) F(I,J) NEXT J
  J: 3
  terminated:true
  J = 4
-1811 G(1660) F(J) LET J = J - 1
+1811 G(1660) LET J = J - 1
  J: 4
  J = 3
-1820 G(1660) F(J) IF A(1, 1) = A(3, 3) THEN 1930
+1820 G(1660) IF A(1, 1) = A(3, 3) THEN 1930
  A(1,1): 1
  A(3,3): -1
  A(1, 1) = A(3, 3): false
-1830 G(1660) F(J) IF A(3, 1) = A(1, 3) THEN 1970
+1830 G(1660) IF A(3, 1) = A(1, 3) THEN 1970
  A(3,1): 1
  A(1,3): 0
  A(3, 1) = A(1, 3): false
-1840 G(1660) F(J) IF T1 <> 0 THEN 1990
+1840 G(1660) IF T1 <> 0 THEN 1990
  T1: -1
  T1 <> 0: true
-1990 G(1660) F(J) IF T1 > 0 THEN 2030
+1990 G(1660) IF T1 > 0 THEN 2030
  T1: -1
  T1 > 0: false
-2000 G(1660,2000) F(J) PRINT " ...YOU WIN THIS TIME..."
+2000 G(1660,2000) PRINT " ...YOU WIN THIS TIME..."
  ...YOU WIN THIS TIME...
-2010 G(1660,2000) F(J) LET Z = 1
+2010 G(1660,2000) LET Z = 1
  Z = 1
-2020 G(1660,2000) F(J) GOTO 1850
-1850 G(1660,2000) F(J,J) FOR J = 1 TO 3
+2020 G(1660,2000) GOTO 1850
+1850 G(1660,2000) F(J) FOR J = 1 TO 3
  J = 1
  terminated:false
 1860 G(1660,2000) F(J,I) FOR I = 1 TO 3
@@ -9147,15 +9147,15 @@ YOUR MOVE
  J: 3
  terminated:true
  J = 4
-1901 G(1660,2000) F(J) LET J = J - 1
+1901 G(1660,2000) LET J = J - 1
  J: 4
  J = 3
-1910 G(1660,2000) F(J) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
+1910 G(1660,2000) LET B(7) = A(1, 1) + A(2, 2) + A(3, 3)
  A(1,1): 1
  A(2,2): -1
  A(3,3): -1
  B(7) = -1
-1920 G(1660,2000) F(J) RETURN
+1920 G(1660,2000) RETURN
 410 F(J) IF Z = 1 THEN 2070
  Z: 1
  Z = 1: true

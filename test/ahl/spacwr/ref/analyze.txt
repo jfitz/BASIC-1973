@@ -644,7 +644,7 @@ Halstead complexity:
 2380 G(3790) F(I) (0 2) PRINT "-------------------"
   Origs: 2370:auto
   Dests: 2390:auto
-2390 G(3790) F(I,I) (1 5) FOR I = Q1 - 1 TO Q1 + 1
+2390 G(3790) F(I) (1 5) FOR I = Q1 - 1 TO Q1 + 1
   Origs: 2380:auto
   Dests: 2400:fornext, 2490:fornext
 2400 G(3790) F(I) (0 4) MAT N = ZER
@@ -680,7 +680,7 @@ Halstead complexity:
 2490 G(3790) F(I) (0 1) NEXT I
   Origs: 2390:fornext, 2480:auto
   Dests: 2500:auto
-2500 G(3790) F(I) (0 3) GOTO 1270
+2500 G(3790) (0 3) GOTO 1270
      WARNING: Branch to line before GOSUB start
   Origs: 2490:auto
   Dests: 1270:goto
@@ -728,7 +728,7 @@ Halstead complexity:
 2670 G(3790) F(I) (0 5) X = X * RND(1)
   Origs: 2660:auto
   Dests: 2680:auto
-2680 G(3790) F(I,I) (1 3) FOR I = 1 TO 3
+2680 G(3790) F(I) (1 3) FOR I = 1 TO 3
   Origs: 2660:ifthen, 2670:auto
   Dests: 2690:fornext, 2770:fornext
 2690 G(3790) F(I) (1 4) IF K(I, 3) <= 0 THEN 2770
@@ -758,10 +758,10 @@ Halstead complexity:
 2770 G(3790) F(I) (0 1) NEXT I
   Origs: 2680:fornext, 2690:ifthen, 2740:ifthen, 2760:auto
   Dests: 2780:auto
-2780 G(3790) F(I) (1 4) IF E < 0 THEN 4000
+2780 G(3790) (1 4) IF E < 0 THEN 4000
   Origs: 2770:auto
   Dests: 2790:auto, 4000:ifthen
-2790 G(3790) F(I) (0 3) GOTO 1270
+2790 G(3790) (0 3) GOTO 1270
      WARNING: Branch to line before GOSUB start
   Origs: 2780:auto
   Dests: 1270:goto
@@ -859,7 +859,7 @@ Halstead complexity:
 3150 G(3790) F(I) (1 4) IF K9 <= 8 THEN 4040
   Origs: 3130:auto, 5060:ifthen
   Dests: 3160:auto, 4040:ifthen
-3160 G(3790) F(I,I) (1 3) FOR I = 1 TO 3
+3160 G(3790) F(I) (1 3) FOR I = 1 TO 3
      G(3790) F(I) (1 5) IF INT(X) = K(I, 1) THEN 3190
   Origs: 3150:auto
   Dests: 3180:auto, 3190:fornext, 3190:ifthen
@@ -1323,7 +1323,7 @@ Halstead complexity:
 4770 G(3790) F(I) (0 2) PRINT "   ----- ----- ----- ----- ----- ----- ----- -----"
   Origs: 4760:auto
   Dests: 4780:auto
-4780 G(3790) F(I,I) (1 3) FOR I = 1 TO 8
+4780 G(3790) F(I) (1 3) FOR I = 1 TO 8
   Origs: 4770:auto
   Dests: 4790:fornext, 4810:fornext
 4790 G(3790) F(I) (0 3) N1$ = "#   ###   ###   ###   ###   ###   ###   ###   ###"
@@ -1338,7 +1338,7 @@ Halstead complexity:
 4810 G(3790) F(I) (0 1) NEXT I
   Origs: 4780:fornext, 4800:auto
   Dests: 4820:auto
-4820 G(3790) F(I) (0 3) GOTO 1270
+4820 G(3790) (0 3) GOTO 1270
      WARNING: Branch to line before GOSUB start
   Origs: 4810:auto
   Dests: 1270:goto
@@ -1371,7 +1371,7 @@ Halstead complexity:
 4881 (0 1) REM *** PHOTON TORPEDO DATA CODE BEGINS HERE
   Origs: 
   Dests: 
-4900 G(3790) F(I,I) (1 3) FOR I = 1 TO 3
+4900 G(3790) F(I) (1 3) FOR I = 1 TO 3
   Origs: 4880:auto
   Dests: 4910:fornext, 5260:fornext
 4910 G(3790) F(I) (1 4) IF K(I, 3) <= 0 THEN 5260
@@ -1386,10 +1386,10 @@ Halstead complexity:
 4960 G(3790) F(I) (0 2) GOTO 5010
   Origs: 4920:auto
   Dests: 5010:goto
-4970 G(3790) F(I) (0 10) PRINT "YOU ARE AT QUADRANT ( " Q1 "," Q2 " ) SECTOR ( " S1 "," S2 " )"
+4970 G(3790) (0 10) PRINT "YOU ARE AT QUADRANT ( " Q1 "," Q2 " ) SECTOR ( " S1 "," S2 " )"
   Origs: 5300:ifthen
   Dests: 4990:auto
-4990 G(3790) F(I) (4 5) INPUT "SHIP ANO TARGET COORDINATES ARE:"; C1, A, W1, X
+4990 G(3790) (4 5) INPUT "SHIP ANO TARGET COORDINATES ARE:"; C1, A, W1, X
   Origs: 4970:auto
   Dests: 5010:auto
 5010 G(3790) F(I) (0 4) X = X - A
@@ -1469,16 +1469,16 @@ Halstead complexity:
 5260 G(3790) F(I) (0 1) NEXT I
   Origs: 4900:fornext, 4910:ifthen, 5250:auto
   Dests: 5270:auto
-5270 G(3790) F(I) (0 3) H8 = 0
+5270 G(3790) (0 3) H8 = 0
   Origs: 5260:auto
   Dests: 5280:auto
-5280 G(3790) F(I) (1 2) INPUT "DO YOU WANT TO USE THE CALCULATOR"; A$
+5280 G(3790) (1 2) INPUT "DO YOU WANT TO USE THE CALCULATOR"; A$
   Origs: 5270:auto, 5310:ifthen
   Dests: 5300:auto
-5300 G(3790) F(I) (1 5) IF A$ = "YES" THEN 4970
+5300 G(3790) (1 5) IF A$ = "YES" THEN 4970
   Origs: 5280:auto
   Dests: 4970:ifthen, 5310:auto
-5310 G(3790) F(I) (1 5) IF A$ <> "NO" THEN 5280
+5310 G(3790) (1 5) IF A$ <> "NO" THEN 5280
   Origs: 5300:auto
   Dests: 5280:ifthen, 5320:auto
 5320 G(3790) F(I) (0 3) GOTO 1270
