@@ -1412,10 +1412,7 @@ class Program
 
     @lines.each do |_line_number, line|
       statements = line.statements
-
-      statements.each do |statement|
-        any_errors |= statement.errors?
-      end
+      statements.each { |statement| any_errors |= statement.errors? }
     end
 
     any_errors
@@ -1470,8 +1467,8 @@ class Program
       statements = line.statements
 
       statements.each_with_index do |statement, stmt|
-        line_number_stmt = LineStmt.new(line_number, stmt)
-        statement.optimize(interpreter, line_number_stmt, self)
+        line_stmt = LineStmt.new(line_number, stmt)
+        statement.optimize(interpreter, line_stmt, self)
       end
     end
   end
@@ -2107,9 +2104,7 @@ class Program
 
       rs = []
 
-      statements.each do |statement|
-        rs += statement.linenums
-      end
+      statements.each { |statement| rs += statement.linenums }
 
       refs[line_number] = rs
     end
@@ -2407,6 +2402,7 @@ class Program
 
       # print the line
       texts << (line_number.to_s + line.list)
+
       line.warnings.each { |warning| texts << (" WARNING: #{warning}") }
 
       statements = line.statements
