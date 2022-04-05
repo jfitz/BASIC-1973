@@ -160,6 +160,7 @@ Halstead complexity:
   Dests: 35:goto
 200 G(500,400) F(K,P,I,A) (1 3) FOR P = 0 TO 4
     WARNING: Multiple GOSUB entry points
+    WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 20:goto, 65:goto
   Dests: 210:fornext, 240:fornext
 210 G(500,400) F(K,P,I,A) (0 4) LET D(A, P) = INT(10 * RND(1))
@@ -169,6 +170,7 @@ Halstead complexity:
 220 G(500,400) F(K,P,I,A) (1 4) FOR I = 0 TO P - 1
     G(500,400) F(K,P,I,A) (1 5) IF D(A, I) = D(A, P) GOTO 210
     WARNING: Multiple GOSUB entry points
+    WARNING: FOR/NEXT nesting exceeds limit 3
     WARNING: Branch to line before GOSUB start
   Origs: 210:auto
   Dests: 210:ifthen, 230:auto, 230:fornext
