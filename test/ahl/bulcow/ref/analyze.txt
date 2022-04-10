@@ -60,6 +60,7 @@ Halstead complexity:
 41 G(500,400) F(I:40,K:41,A:420) (1 4) FOR K = 0 TO I - 1
    G(500,400) F(I:40,K:41,A:420) (1 4) IF G(I) = G(K) GOTO 170
    WARNING: Multiple GOSUB entry points
+   WARNING: FORNEXT length exceeds limit 40
   Origs: 40:auto
   Dests: 42:auto, 42:fornext, 170:ifthen
 42 G(500,400) F(I:40,K:41,A:420) (0 1) NEXT K
@@ -230,6 +231,7 @@ Halstead complexity:
   Dests: 420:auto
 420 G(400) F(A:420) (1 3) FOR A = 1 TO J
     G(400) F(A:420) (0 3) GOSUB 300
+    WARNING: FORNEXT length exceeds limit 40
   Origs: 415:auto
   Dests: 300:gosub, 425:auto, 448:fornext
 425 G(400) F(A:420) (4 19) IF V <= B(A) THEN IF W <= C(A) THEN IF 4 - P >= C(A) - W THEN IF 4 - P >= B(A) - V GOTO 440
