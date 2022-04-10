@@ -22,58 +22,58 @@ Halstead complexity:
 10 (0 3) LET A = 1
   Origs: :start
   Dests: 20:auto
-20 F(R) (1 3) FOR R = 1 TO 3
+20 F(R:20) (1 3) FOR R = 1 TO 3
   Origs: 10:auto
   Dests: 30:fornext, 70:fornext
-30 F(R,C) (1 3) FOR C = 1 TO 5
+30 F(R:20,C:30) (1 3) FOR C = 1 TO 5
   Origs: 20:fornext
   Dests: 40:fornext, 60:fornext
-40 F(R,C) (0 3) LET A[R, C] = A
+40 F(R:20,C:30) (0 3) LET A[R, C] = A
   Origs: 30:fornext
   Dests: 50:auto
-50 F(R,C) (0 4) LET A = A + 1
+50 F(R:20,C:30) (0 4) LET A = A + 1
   Origs: 40:auto
   Dests: 60:auto
-60 F(R,C) (0 1) NEXT C
+60 F(R:20,C:30) (0 1) NEXT C
   Origs: 30:fornext, 50:auto
   Dests: 70:auto
-70 F(R) (0 1) NEXT R
+70 F(R:20) (0 1) NEXT R
   Origs: 20:fornext, 60:auto
   Dests: 80:auto
 80 (0 2) PRINT "HERE IS THE ORIGINAL ARRAY"
   Origs: 70:auto
   Dests: 100:auto
-100 F(R) (1 3) FOR R = 1 TO 3
+100 F(R:100) (1 3) FOR R = 1 TO 3
   Origs: 80:auto
   Dests: 110:fornext, 160:fornext
-110 F(R,C) (1 3) FOR C = 1 TO 5
+110 F(R:100,C:110) (1 3) FOR C = 1 TO 5
   Origs: 100:fornext
   Dests: 120:fornext, 130:fornext
-120 F(R,C) (0 2) PRINT A[R, C];
+120 F(R:100,C:110) (0 2) PRINT A[R, C];
   Origs: 110:fornext
   Dests: 130:auto
-130 F(R,C) (0 1) NEXT C
+130 F(R:100,C:110) (0 1) NEXT C
   Origs: 110:fornext, 120:auto
   Dests: 140:auto
-140 F(R) (0 2) PRINT
+140 F(R:100) (0 2) PRINT
   Origs: 130:auto
   Dests: 150:auto
-150 F(R) (0 2) PRINT
+150 F(R:100) (0 2) PRINT
   Origs: 140:auto
   Dests: 160:auto
-160 F(R) (0 1) NEXT R
+160 F(R:100) (0 1) NEXT R
   Origs: 100:fornext, 150:auto
   Dests: 170:auto
 168 (0 1) REM SET ALL ELEMENTS IN THE 4TH ROW TO ZERO
   Origs: 
   Dests: 
-170 F(I) (1 3) FOR I = 1 TO 5
+170 F(I:170) (1 3) FOR I = 1 TO 5
   Origs: 160:auto
   Dests: 180:fornext, 190:fornext
-180 F(I) (0 3) LET A[4, I] = 0
+180 F(I:170) (0 3) LET A[4, I] = 0
   Origs: 170:fornext
   Dests: 190:auto
-190 F(I) (0 1) NEXT I
+190 F(I:170) (0 1) NEXT I
   Origs: 170:fornext, 180:auto
   Dests: 200:auto
 200 (0 2) PRINT "WE NOW HAVE THE 4 BY 5 ARRAY"
@@ -85,19 +85,19 @@ Halstead complexity:
 219 (0 1) REM THIS ROUTINE ADDS COLUMNS AND PUTS THE SUM IN THE 4TH ROW
   Origs: 
   Dests: 
-220 F(C) (1 3) FOR C = 1 TO 5
+220 F(C:220) (1 3) FOR C = 1 TO 5
   Origs: 210:auto
   Dests: 230:fornext, 260:fornext
-230 F(C,R) (1 3) FOR R = 1 TO 3
+230 F(C:220,R:230) (1 3) FOR R = 1 TO 3
   Origs: 220:fornext
   Dests: 240:fornext, 250:fornext
-240 F(C,R) (0 4) LET A[4, C] = A[4, C] + A[R, C]
+240 F(C:220,R:230) (0 4) LET A[4, C] = A[4, C] + A[R, C]
   Origs: 230:fornext
   Dests: 250:auto
-250 F(C,R) (0 1) NEXT R
+250 F(C:220,R:230) (0 1) NEXT R
   Origs: 230:fornext, 240:auto
   Dests: 260:auto
-260 F(C) (0 1) NEXT C
+260 F(C:220) (0 1) NEXT C
   Origs: 220:fornext, 250:auto
   Dests: 270:auto
 270 (0 2) PRINT "THE FOURTH ROW NOW CONTAINS THE SUMS OF THE FIRST 3 ROWS."
@@ -112,25 +112,25 @@ Halstead complexity:
 498 (0 1) REM **THIS IS THE PRINTING ROUTINE FOR THE 4 BY 5 ARRAY**
   Origs: 
   Dests: 
-500 G(500) F(R) (1 3) FOR R = 1 TO 4
+500 G(500) F(R:500) (1 3) FOR R = 1 TO 4
   Origs: 210:gosub, 280:gosub
   Dests: 510:fornext, 560:fornext
-510 G(500) F(R,C) (1 3) FOR C = 1 TO 5
+510 G(500) F(R:500,C:510) (1 3) FOR C = 1 TO 5
   Origs: 500:fornext
   Dests: 520:fornext, 530:fornext
-520 G(500) F(R,C) (0 2) PRINT A[R, C];
+520 G(500) F(R:500,C:510) (0 2) PRINT A[R, C];
   Origs: 510:fornext
   Dests: 530:auto
-530 G(500) F(R,C) (0 1) NEXT C
+530 G(500) F(R:500,C:510) (0 1) NEXT C
   Origs: 510:fornext, 520:auto
   Dests: 540:auto
-540 G(500) F(R) (0 2) PRINT
+540 G(500) F(R:500) (0 2) PRINT
   Origs: 530:auto
   Dests: 550:auto
-550 G(500) F(R) (0 2) PRINT
+550 G(500) F(R:500) (0 2) PRINT
   Origs: 540:auto
   Dests: 560:auto
-560 G(500) F(R) (0 1) NEXT R
+560 G(500) F(R:500) (0 1) NEXT R
   Origs: 500:fornext, 550:auto
   Dests: 570:auto
 570 G(500) (0 1) RETURN

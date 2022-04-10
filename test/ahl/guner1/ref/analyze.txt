@@ -121,13 +121,13 @@ Halstead complexity:
 430 (0 4) PRINT "THE MAXIMUM RANGE OF YOUR GUN IS " M " YARDS"
   Origs: 420:auto
   Dests: 440:auto
-440 F(K) (1 4) FOR K = 1 TO M / 10000
+440 F(K:440) (1 4) FOR K = 1 TO M / 10000
   Origs: 430:auto
   Dests: 450:fornext, 460:fornext
-450 F(K) (0 4) LET K1 = RND(0)
+450 F(K:440) (0 4) LET K1 = RND(0)
   Origs: 440:fornext
   Dests: 460:auto
-460 F(K) (0 1) NEXT K
+460 F(K:440) (0 1) NEXT K
   Origs: 440:fornext, 450:auto
   Dests: 470:auto
 470 (0 9) R = 0.95 * M - 0.6 * M * RND(0)
@@ -190,13 +190,13 @@ Halstead complexity:
 670 (0 3) D = K
   Origs: 660:auto, 850:goto, 870:goto
   Dests: 680:auto
-680 F(K) (1 6) FOR K = 1 TO N + D / 100
+680 F(K:680) (1 6) FOR K = 1 TO N + D / 100
   Origs: 670:auto
   Dests: 690:fornext, 700:fornext
-690 F(K) (0 4) K1 = RND(0)
+690 F(K:680) (0 4) K1 = RND(0)
   Origs: 680:fornext
   Dests: 700:auto
-700 F(K) (0 1) NEXT K
+700 F(K:680) (0 1) NEXT K
   Origs: 680:fornext, 690:auto
   Dests: 710:auto
 710 (0 3) GOTO 410

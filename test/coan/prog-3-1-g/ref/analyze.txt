@@ -31,25 +31,25 @@ Halstead complexity:
 25 (0 3) LET T = 0
   Origs: :start
   Dests: 27:auto
-27 F(X) (1 3) FOR X = 1 TO 50
+27 F(X:27) (1 3) FOR X = 1 TO 50
   Origs: 25:auto
   Dests: 30:fornext, 42:fornext
-30 F(X) (2 3) READ N, P
+30 F(X:27) (2 3) READ N, P
   Origs: 27:fornext
   Dests: 34:auto
-34 F(X) (1 4) IF N = 0 THEN 45
+34 F(X:27) (1 4) IF N = 0 THEN 45
   Origs: 30:auto
   Dests: 40:auto, 45:ifthen
-40 F(X) (0 6) LET T = T + N * P
+40 F(X:27) (0 6) LET T = T + N * P
   Origs: 34:auto
   Dests: 42:auto
-42 F(X) (0 1) NEXT X
+42 F(X:27) (0 1) NEXT X
   Origs: 27:fornext, 40:auto
   Dests: 45:auto
-45 F(X) (0 7) PRINT "TOTAL COST = $"; T; "THERE ARE"; X - 1; "DIFFERENT ITEMS"
+45 F(X:27) (0 7) PRINT "TOTAL COST = $"; T; "THERE ARE"; X - 1; "DIFFERENT ITEMS"
   Origs: 34:ifthen, 42:auto
   Dests: 70:auto
-70 F(X) (0 1) END
+70 F(X:27) (0 1) END
    WARNING: Terminating statement in FOR/NEXT
   Origs: 45:auto
   Dests: :stop

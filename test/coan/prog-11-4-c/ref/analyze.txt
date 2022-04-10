@@ -28,13 +28,13 @@ Halstead complexity:
 15 (1 4) IF N = 0 THEN 999
   Origs: 10:auto
   Dests: 20:auto, 999:ifthen
-20 F(X) (1 5) FOR X = N TO 1 STEP -1
+20 F(X:20) (1 5) FOR X = N TO 1 STEP -1
   Origs: 15:auto
   Dests: 30:fornext, 80:fornext
-30 F(X) (1 2) READ P[1, X]
+30 F(X:20) (1 2) READ P[1, X]
   Origs: 20:fornext
   Dests: 40:auto
-40 F(X) (0 2) PRINT P[1, X];
+40 F(X:20) (0 2) PRINT P[1, X];
   Origs: 30:auto
   Dests: 50:auto
 48 (0 1) REM ENTER THE SAME COEFFICIENT IN THE SAME COLUMN
@@ -43,19 +43,19 @@ Halstead complexity:
 49 (0 1) REM OF THE SECOND ROW
   Origs: 
   Dests: 
-50 F(X) (0 3) LET P[2, X] = P[1, X]
+50 F(X:20) (0 3) LET P[2, X] = P[1, X]
   Origs: 40:auto
   Dests: 60:auto
 58 (0 1) REM IF THE EXPONENT ON X IS ODD THEN CHANGE THE SIGN
   Origs: 
   Dests: 
-60 F(X) (1 7) IF (X + 1) / 2 = INT((X + 1) / 2) THEN 80
+60 F(X:20) (1 7) IF (X + 1) / 2 = INT((X + 1) / 2) THEN 80
   Origs: 50:auto
   Dests: 70:auto, 80:ifthen
-70 F(X) (0 4) LET P[2, X] = -P[2, X]
+70 F(X:20) (0 4) LET P[2, X] = -P[2, X]
   Origs: 60:auto
   Dests: 80:auto
-80 F(X) (0 1) NEXT X
+80 F(X:20) (0 1) NEXT X
   Origs: 20:fornext, 60:ifthen, 70:auto
   Dests: 90:auto
 90 (0 2) PRINT
@@ -67,28 +67,28 @@ Halstead complexity:
 200 (0 3) LET V1, V2 = 0
   Origs: 100:auto
   Dests: 210:auto
-210 F(X) (1 6) FOR X = N - 1 TO 1 STEP -1
+210 F(X:210) (1 6) FOR X = N - 1 TO 1 STEP -1
   Origs: 200:auto
   Dests: 220:fornext, 260:fornext
 218 (0 1) REM LOOK AT POSITIVE ZEROS
   Origs: 
   Dests: 
-220 F(X) (1 5) IF P[1, X] * P[1, X + 1] > 0 THEN 240
+220 F(X:210) (1 5) IF P[1, X] * P[1, X + 1] > 0 THEN 240
   Origs: 210:fornext
   Dests: 230:auto, 240:ifthen
-230 F(X) (0 4) LET V1 = V1 + 1
+230 F(X:210) (0 4) LET V1 = V1 + 1
   Origs: 220:auto
   Dests: 240:auto
 238 (0 1) REM LOOK AT NEGATIVE ZEROS
   Origs: 
   Dests: 
-240 F(X) (1 5) IF P[2, X] * P[2, X + 1] > 0 THEN 260
+240 F(X:210) (1 5) IF P[2, X] * P[2, X + 1] > 0 THEN 260
   Origs: 220:ifthen, 230:auto
   Dests: 250:auto, 260:ifthen
-250 F(X) (0 4) LET V2 = V2 + 1
+250 F(X:210) (0 4) LET V2 = V2 + 1
   Origs: 240:auto
   Dests: 260:auto
-260 F(X) (0 1) NEXT X
+260 F(X:210) (0 1) NEXT X
   Origs: 210:fornext, 240:ifthen, 250:auto
   Dests: 300:auto
 300 (0 3) PRINT V1; "MAX POSITIVE"

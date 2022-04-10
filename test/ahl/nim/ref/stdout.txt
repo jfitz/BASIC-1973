@@ -105,21 +105,21 @@ STOP in line 290
     (0) PRINT
     (0) GOTO 205
 220 (1) PRINT
-    F(I) (1) FOR I = 1 TO P
-225 F(I) (3) PRINT "HOW MANY STICKS IN PILE" I;
-    F(I) (3) INPUT L(I)
-    F(I) (3) IF L(I) > 20 THEN 235
-230 F(I) (3) IF L(I) > INT(L(I)) THEN 235
-    F(I) (3) IF L(I) <= 0 THEN 235
-    F(I) (3) GOTO 240
-235 F(I) (0) PRINT "ILLEGAL STICK NUMBER"
-    F(I) (0) PRINT
-    F(I) (0) GOTO 225
-240 F(I) (3) NEXT I
-245 F(I) (1) FOR I = 1 TO P
-    F(I) (3) S(I) = L(I)
-    F(I) (3) G = G + L(I)
-    F(I) (3) NEXT I
+    F(I:220.1) (1) FOR I = 1 TO P
+225 F(I:220.1) (3) PRINT "HOW MANY STICKS IN PILE" I;
+    F(I:220.1) (3) INPUT L(I)
+    F(I:220.1) (3) IF L(I) > 20 THEN 235
+230 F(I:220.1) (3) IF L(I) > INT(L(I)) THEN 235
+    F(I:220.1) (3) IF L(I) <= 0 THEN 235
+    F(I:220.1) (3) GOTO 240
+235 F(I:220.1) (0) PRINT "ILLEGAL STICK NUMBER"
+    F(I:220.1) (0) PRINT
+    F(I:220.1) (0) GOTO 225
+240 F(I:220.1) (3) NEXT I
+245 F(I:245) (1) FOR I = 1 TO P
+    F(I:245) (3) S(I) = L(I)
+    F(I:245) (3) G = G + L(I)
+    F(I:245) (3) NEXT I
 250 (1) PRINT
     (1) PRINT "DO YOU WANT TO GO FIRST";
 255 (1) INPUT Q$
@@ -153,10 +153,10 @@ STOP in line 290
     (0) GOTO 285
 320 (4) PRINT
     (4) PRINT "PlLE NUMBER", "STICKS LEFT"
-325 F(I) (4) FOR I = 1 TO P
-    F(I) (12) IF S(I) = 0 THEN 330
-    F(I) (8) PRINT I, S(I)
-330 F(I) (12) NEXT I
+325 F(I:325) (4) FOR I = 1 TO P
+    F(I:325) (12) IF S(I) = 0 THEN 330
+    F(I:325) (8) PRINT I, S(I)
+330 F(I:325) (12) NEXT I
 335 (0) REM -------------------PLAYER'S MOVE-------------------------
 340 (5) PRINT
     (5) PRINT "WHICH PILE DO YOU WANT STICKS FROM";
@@ -184,48 +184,48 @@ STOP in line 290
 380 (5) F = 1
     (5) GOTO 270
 385 (0) REM -------------------MACHINE'S MOVE-------------------------
-390 F(I) (5) FOR I = 0 TO 4
-    F(I) (25) V(I) = 0
-    F(I) (25) NEXT I
-395 F(I) (5) FOR I = 1 TO P
-400 F(I) (15) C(I) = S(I)
-405 F(I,E) (15) FOR E = 4 TO 0 STEP -1
-410 F(I,E) (75) IF S(I) < 2 ^ E THEN 415
-    F(I,E) (13) S2(I) = S2(I) + 10 ^ E
-    F(I,E) (13) S(I) = S(I) - 2 ^ E
-415 F(I,E) (75) NEXT E
-420 F(I,Y) (15) FOR Y = 4 TO 0 STEP -1
-425 F(I,Y) (75) X(I, Y) = INT(S2(I) / 10 ^ Y)
-    F(I,Y) (75) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
-430 F(I,Y) (75) V(Y) = V(Y) + X(I, Y)
-435 F(I,Y) (75) NEXT Y
-440 F(I) (15) NEXT I
+390 F(I:390) (5) FOR I = 0 TO 4
+    F(I:390) (25) V(I) = 0
+    F(I:390) (25) NEXT I
+395 F(I:395) (5) FOR I = 1 TO P
+400 F(I:395) (15) C(I) = S(I)
+405 F(I:395,E:405) (15) FOR E = 4 TO 0 STEP -1
+410 F(I:395,E:405) (75) IF S(I) < 2 ^ E THEN 415
+    F(I:395,E:405) (13) S2(I) = S2(I) + 10 ^ E
+    F(I:395,E:405) (13) S(I) = S(I) - 2 ^ E
+415 F(I:395,E:405) (75) NEXT E
+420 F(I:395,Y:420) (15) FOR Y = 4 TO 0 STEP -1
+425 F(I:395,Y:420) (75) X(I, Y) = INT(S2(I) / 10 ^ Y)
+    F(I:395,Y:420) (75) S2(I) = S2(I) - X(I, Y) * 10 ^ Y
+430 F(I:395,Y:420) (75) V(Y) = V(Y) + X(I, Y)
+435 F(I:395,Y:420) (75) NEXT Y
+440 F(I:395) (15) NEXT I
 445 (5) R = 0
-450 F(Y) (5) FOR Y = 4 TO 0 STEP -1
-455 F(Y) (25) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
-460 F(Y) (15) IF R = 1 THEN 470
-    F(Y) (11) Q = INT(P * RND(X)) + 1
-465 F(Y) (11) IF X(Q, Y) <> 1 THEN 460
-    F(Y) (5) X(Q, Y) = 0
-    F(Y) (5) R = 1
-    F(Y) (5) GOTO 480
-470 F(Y) (4) IF X(Q, Y) = 1 THEN 475
-    F(Y) (3) X(Q, Y) = 1
-    F(Y) (3) GOTO 480
-475 F(Y) (1) X(Q, Y) = 0
-480 F(Y) (25) NEXT Y
-485 F(I) (5) FOR I = 1 TO P
-490 F(I) (15) S2(I) = 0
-495 F(I,Y) (15) FOR Y = 4 TO 0 STEP -1
-500 F(I,Y) (75) S3(I) = X(I, Y) * 10 ^ Y
-    F(I,Y) (75) S2(I) = S2(I) + S3(I)
-505 F(I,Y) (75) NEXT Y
-510 F(I,E) (15) FOR E = 4 TO 0 STEP -1
-515 F(I,E) (75) IF S2(I) < 10 ^ E THEN 520
-    F(I,E) (10) S(I) = S(I) + 2 ^ E
-    F(I,E) (10) S2(I) = S2(I) - 10 ^ E
-520 F(I,E) (75) NEXT E
-525 F(I) (15) NEXT I
+450 F(Y:450) (5) FOR Y = 4 TO 0 STEP -1
+455 F(Y:450) (25) IF V(Y) / 2 - INT(V(Y) / 2) = 0 THEN 480
+460 F(Y:450) (15) IF R = 1 THEN 470
+    F(Y:450) (11) Q = INT(P * RND(X)) + 1
+465 F(Y:450) (11) IF X(Q, Y) <> 1 THEN 460
+    F(Y:450) (5) X(Q, Y) = 0
+    F(Y:450) (5) R = 1
+    F(Y:450) (5) GOTO 480
+470 F(Y:450) (4) IF X(Q, Y) = 1 THEN 475
+    F(Y:450) (3) X(Q, Y) = 1
+    F(Y:450) (3) GOTO 480
+475 F(Y:450) (1) X(Q, Y) = 0
+480 F(Y:450) (25) NEXT Y
+485 F(I:485) (5) FOR I = 1 TO P
+490 F(I:485) (15) S2(I) = 0
+495 F(I:485,Y:495) (15) FOR Y = 4 TO 0 STEP -1
+500 F(I:485,Y:495) (75) S3(I) = X(I, Y) * 10 ^ Y
+    F(I:485,Y:495) (75) S2(I) = S2(I) + S3(I)
+505 F(I:485,Y:495) (75) NEXT Y
+510 F(I:485,E:510) (15) FOR E = 4 TO 0 STEP -1
+515 F(I:485,E:510) (75) IF S2(I) < 10 ^ E THEN 520
+    F(I:485,E:510) (10) S(I) = S(I) + 2 ^ E
+    F(I:485,E:510) (10) S2(I) = S2(I) - 10 ^ E
+520 F(I:485,E:510) (75) NEXT E
+525 F(I:485) (15) NEXT I
 530 (5) IF R = 1 THEN 535
     (0) Q = INT(P * RND(X)) + 1
     (0) IF S(Q) = 0 THEN 530

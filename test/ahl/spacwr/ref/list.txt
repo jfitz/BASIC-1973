@@ -30,7 +30,9 @@
 490 B9,K9=0
 491 REM *** SETS UP WHAT EXISTS IN GALAXY
 500 FOR I=1TO8
+ WARNING: FOR/NEXT nesting exceeds limit 3
 510 FOR J=1TO8
+ WARNING: FOR/NEXT nesting exceeds limit 3
 520 R1=RND(1)
 530 IF R1>.98 THEN 580
 540 IF R1>.95 THEN 610
@@ -67,6 +69,7 @@
 900 PRINT"   SHIELDS DANGEROUSLY LOW"
 910 MAT K=ZER
 920 FOR I=1TO3
+ WARNING: FOR/NEXT nesting exceeds limit 3
 930 K(I,3)=0
 940 NEXT I
 950 Q$=Z$:R$=Z$
@@ -77,6 +80,7 @@
 1000 Z2=S2
 1010 GOSUB 5510
 1020 FOR I=1TOK3
+ WARNING: FOR/NEXT nesting exceeds limit 3
 1030 GOSUB 5380
 1031 REM *** PUT KLINGONS SOMEWHERE
 1040 A$="+++"
@@ -204,8 +208,10 @@
 2370 PRINT "LONG RANGE SENSOR SCAN FOR QUADRANT "Q1"."Q2
 2380 PRINT"-------------------"
 2390 FOR I=Q1-1 TO Q1+1
+ WARNING: FOR/NEXT nesting exceeds limit 3
 2400 MAT N=ZER
 2410 FOR J=Q2-1 TO Q2+1
+ WARNING: FOR/NEXT nesting exceeds limit 3
 2420 IF I<1 OR I>8 OR J<1 OR J>8 THEN 2460
 2430 N(J-Q2+2)=G(I,J)
 2440 IF D(7)<0 THEN 2460
@@ -234,6 +240,7 @@
 2660 IF D(7)>0 THEN 2680
 2670 X=X*RND(1)
 2680 FOR I=1TO3
+ WARNING: FOR/NEXT nesting exceeds limit 3
 2690 IF K(I,3)<=0 THEN 2770
 2700 H=INT((X/K/FND(0))*(2*RND(1)))
 2710 K(I,3)=K(I,3)-H
@@ -323,6 +330,7 @@
  WARNING: Branch to line before GOSUB start
 3590 PRINT\PRINT "DEVICE STATE OF REPAIR"
 3610 FOR R1=1TO8
+ WARNING: FOR/NEXT nesting exceeds limit 3
 3620 GOSUB 5610
 3630 PRINTD(R1)
 3640 NEXT R1:PRINT
@@ -452,6 +460,7 @@
 4760 PRINT"     1     2     3     4     5     6     7     8" 
 4770 PRINT"   ----- ----- ----- ----- ----- ----- ----- -----"
 4780 FOR I=1TO8
+ WARNING: FOR/NEXT nesting exceeds limit 3
 4790 N1$="#   ###   ###   ###   ###   ###   ###   ###   ###"
 4795 PRINT USING N1$,I,Z(I,1),Z(I,2),Z(I,3),Z(I,4),Z(I,5),Z(I,6),Z(I,7),Z(I,8)
  WARNING: Line exceeds LIST width limit 72

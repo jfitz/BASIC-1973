@@ -25,43 +25,43 @@ Halstead complexity:
 8 (0 1) REM   LINES 10 TO 50 ASSIGN VALUES
   Origs: 
   Dests: 
-10 F(R) (1 3) FOR R = 1 TO 3
+10 F(R:10) (1 3) FOR R = 1 TO 3
   Origs: 5:auto
   Dests: 20:fornext, 50:fornext
-20 F(R,C) (1 3) FOR C = 1 TO 4
+20 F(R:10,C:20) (1 3) FOR C = 1 TO 4
   Origs: 10:fornext
   Dests: 30:fornext, 40:fornext
-30 F(R,C) (0 4) LET A[R, C] = -1
+30 F(R:10,C:20) (0 4) LET A[R, C] = -1
   Origs: 20:fornext
   Dests: 40:auto
-40 F(R,C) (0 1) NEXT C
+40 F(R:10,C:20) (0 1) NEXT C
   Origs: 20:fornext, 30:auto
   Dests: 50:auto
-50 F(R) (0 1) NEXT R
+50 F(R:10) (0 1) NEXT R
   Origs: 10:fornext, 40:auto
   Dests: 100:auto
 98 (0 1) REM LINES 100 TO 160 PRINT THE ARRAY
   Origs: 
   Dests: 
-100 F(R) (1 3) FOR R = 1 TO 3
+100 F(R:100) (1 3) FOR R = 1 TO 3
   Origs: 50:auto
   Dests: 110:fornext, 160:fornext
-110 F(R,C) (1 3) FOR C = 1 TO 4
+110 F(R:100,C:110) (1 3) FOR C = 1 TO 4
   Origs: 100:fornext
   Dests: 120:fornext, 130:fornext
-120 F(R,C) (0 2) PRINT A[R, C];
+120 F(R:100,C:110) (0 2) PRINT A[R, C];
   Origs: 110:fornext
   Dests: 130:auto
-130 F(R,C) (0 1) NEXT C
+130 F(R:100,C:110) (0 1) NEXT C
   Origs: 110:fornext, 120:auto
   Dests: 140:auto
-140 F(R) (0 2) PRINT
+140 F(R:100) (0 2) PRINT
   Origs: 130:auto
   Dests: 150:auto
-150 F(R) (0 2) PRINT
+150 F(R:100) (0 2) PRINT
   Origs: 140:auto
   Dests: 160:auto
-160 F(R) (0 1) NEXT R
+160 F(R:100) (0 1) NEXT R
   Origs: 100:fornext, 150:auto
   Dests: 200:auto
 200 (0 1) END

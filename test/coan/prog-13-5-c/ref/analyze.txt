@@ -22,13 +22,13 @@ Halstead complexity:
 10 (0 3) LET C = 1
   Origs: :start
   Dests: 20:auto
-20 F(X) (1 7) FOR X = 100 TO 100 - 10 + 1 STEP -1
+20 F(X:20) (1 7) FOR X = 100 TO 100 - 10 + 1 STEP -1
   Origs: 10:auto
   Dests: 30:fornext, 40:fornext
-30 F(X) (0 8) LET C = C * X / (100 - X + 1)
+30 F(X:20) (0 8) LET C = C * X / (100 - X + 1)
   Origs: 20:fornext
   Dests: 40:auto
-40 F(X) (0 1) NEXT X
+40 F(X:20) (0 1) NEXT X
   Origs: 20:fornext, 30:auto
   Dests: 50:auto
 50 (0 9) LET P = C * (0.1) ^ 10 * (0.9) ^ 90

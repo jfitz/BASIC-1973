@@ -25,22 +25,22 @@ Halstead complexity:
 20 (0 3) PRINT N; "BASE TEN =";
   Origs: 10:auto
   Dests: 30:auto
-30 F(E) (1 5) FOR E = 20 TO 0 STEP -1
+30 F(E:30) (1 5) FOR E = 20 TO 0 STEP -1
   Origs: 20:auto
   Dests: 40:fornext, 80:fornext
-40 F(E) (0 4) LET I = INT(N / 2 ^ E)
+40 F(E:30) (0 4) LET I = INT(N / 2 ^ E)
   Origs: 30:fornext
   Dests: 50:auto
-50 F(E) (0 2) PRINT I;
+50 F(E:30) (0 2) PRINT I;
   Origs: 40:auto
   Dests: 60:auto
-60 F(E) (0 8) LET R = N - I * 2 ^ E
+60 F(E:30) (0 8) LET R = N - I * 2 ^ E
   Origs: 50:auto
   Dests: 70:auto
-70 F(E) (0 3) LET N = R
+70 F(E:30) (0 3) LET N = R
   Origs: 60:auto
   Dests: 80:auto
-80 F(E) (0 1) NEXT E
+80 F(E:30) (0 1) NEXT E
   Origs: 30:fornext, 70:auto
   Dests: 85:auto
 85 (0 2) PRINT "BASE TWO"

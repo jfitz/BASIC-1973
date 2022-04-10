@@ -19,31 +19,31 @@ Halstead complexity:
  intelligence: 17.378
  time: 1.571
 
-10 F(P) (1 3) FOR P = 1 TO 10
+10 F(P:10) (1 3) FOR P = 1 TO 10
   Origs: :start
   Dests: 20:fornext, 90:fornext
-20 F(P) (0 4) LET T = INT(12 * RND(1) + 1)
+20 F(P:10) (0 4) LET T = INT(12 * RND(1) + 1)
   Origs: 10:fornext
   Dests: 30:auto
-30 F(P) (0 4) LET H = INT(36 * RND(1) + 1)
+30 F(P:10) (0 4) LET H = INT(36 * RND(1) + 1)
   Origs: 20:auto
   Dests: 40:auto
-40 F(P) (0 4) LET S = T + H
+40 F(P:10) (0 4) LET S = T + H
   Origs: 30:auto
   Dests: 50:auto
-50 F(P) (1 4) IF S <= 12 THEN 80
+50 F(P:10) (1 4) IF S <= 12 THEN 80
   Origs: 40:auto, 70:goto
   Dests: 60:auto, 80:ifthen
-60 F(P) (0 4) LET S = S - 12
+60 F(P:10) (0 4) LET S = S - 12
   Origs: 50:auto
   Dests: 70:auto
-70 F(P) (0 3) GOTO 50
+70 F(P:10) (0 3) GOTO 50
   Origs: 60:auto
   Dests: 50:goto
-80 F(P) (0 7) PRINT H "HOURS FROM" T "O'CLOCK IT WILL BE" S "O'CLOCK"
+80 F(P:10) (0 7) PRINT H "HOURS FROM" T "O'CLOCK IT WILL BE" S "O'CLOCK"
   Origs: 50:ifthen
   Dests: 90:auto
-90 F(P) (0 1) NEXT P
+90 F(P:10) (0 1) NEXT P
   Origs: 10:fornext, 80:auto
   Dests: 100:auto
 100 (0 1) END

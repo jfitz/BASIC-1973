@@ -85,13 +85,13 @@ Halstead complexity:
 22 G(65) (0 4) LET C = C - 5
   Origs: 21:auto
   Dests: 23:auto
-23 G(65) F(Z) (1 3) FOR Z = 1 TO 10
+23 G(65) F(Z:23) (1 3) FOR Z = 1 TO 10
   Origs: 22:auto
   Dests: 24:fornext, 25:fornext
-24 G(65) F(Z) (0 2) GOSUB 174
+24 G(65) F(Z:23) (0 2) GOSUB 174
   Origs: 23:fornext
   Dests: 25:auto, 174:gosub
-25 G(65) F(Z) (0 1) NEXT Z
+25 G(65) F(Z:23) (0 1) NEXT Z
   Origs: 23:fornext, 24:auto
   Dests: 26:auto
 26 G(65) (0 2) PRINT "YOUR HAND:"
@@ -292,16 +292,16 @@ Halstead complexity:
 90 G(65) (0 2) PRINT "WHAT ARE THEIR NUMBERS"
   Origs: 87:ifthen
   Dests: 91:auto
-91 G(65) F(Q) (1 3) FOR Q = 1 TO T
+91 G(65) F(Q:91) (1 3) FOR Q = 1 TO T
   Origs: 90:auto
   Dests: 92:fornext, 94:fornext
-92 G(65) F(Q) (1 2) INPUT U
+92 G(65) F(Q:91) (1 2) INPUT U
   Origs: 91:fornext
   Dests: 93:auto
-93 G(65) F(Q) (0 2) GOSUB 173
+93 G(65) F(Q:91) (0 2) GOSUB 173
   Origs: 92:auto
   Dests: 94:auto, 173:gosub
-94 G(65) F(Q) (0 1) NEXT Q
+94 G(65) F(Q:91) (0 1) NEXT Q
   Origs: 91:fornext, 93:auto
   Dests: 95:auto
 95 G(65) (0 2) PRINT "YOUR NEW HAND: "
@@ -316,16 +316,16 @@ Halstead complexity:
 98 G(65) (0 4) LET Z = 10 + T
   Origs: 85:ifthen, 97:auto
   Dests: 99:auto
-99 G(65) F(U) (1 3) FOR U = 6 TO 10
+99 G(65) F(U:99) (1 3) FOR U = 6 TO 10
   Origs: 98:auto
   Dests: 100:fornext, 102:fornext
-100 G(65) F(U) (1 8) IF INT(X / 10 ^ (U - 6)) <> 10 * INT(X / 10 ^ (U - 5)) THEN 102
+100 G(65) F(U:99) (1 8) IF INT(X / 10 ^ (U - 6)) <> 10 * INT(X / 10 ^ (U - 5)) THEN 102
   Origs: 99:fornext
   Dests: 101:auto, 102:ifthen
-101 G(65) F(U) (0 2) GOSUB 173
+101 G(65) F(U:99) (0 2) GOSUB 173
   Origs: 100:auto
   Dests: 102:auto, 173:gosub
-102 G(65) F(U) (0 1) NEXT U
+102 G(65) F(U:99) (0 1) NEXT U
   Origs: 99:fornext, 100:ifthen, 101:auto
   Dests: 103:auto
 103 G(65) (0 2) PRINT
@@ -542,28 +542,28 @@ Halstead complexity:
 173 G(173) (0 4) LET Z = Z + 1
   Origs: 93:gosub, 101:gosub
   Dests: 174:auto
-174 G(174,173) F(K) (0 4) LET A(Z) = INT(1000 * RND(0))
+174 G(174,173) F(K:177) (0 4) LET A(Z) = INT(1000 * RND(0))
     WARNING: Inconsistent GOSUB origins
     WARNING: Multiple GOSUB entry points
   Origs: 24:gosub, 173:auto, 175:ifthen, 176:ifthen, 178:ifthen
   Dests: 175:auto
-175 G(174,173) F(K) (1 6) IF INT(A(Z) / 100) > 3 THEN 174
+175 G(174,173) F(K:177) (1 6) IF INT(A(Z) / 100) > 3 THEN 174
     WARNING: Multiple GOSUB entry points
   Origs: 174:auto
   Dests: 174:ifthen, 176:auto
-176 G(174,173) F(K) (1 9) IF A(Z) - 100 * INT(A(Z) / 100) > 12 THEN 174
+176 G(174,173) F(K:177) (1 9) IF A(Z) - 100 * INT(A(Z) / 100) > 12 THEN 174
     WARNING: Multiple GOSUB entry points
   Origs: 175:auto
   Dests: 174:ifthen, 177:auto
-177 G(174,173) F(K) (1 4) FOR K = 1 TO Z - 1
+177 G(174,173) F(K:177) (1 4) FOR K = 1 TO Z - 1
     WARNING: Multiple GOSUB entry points
   Origs: 176:auto
   Dests: 178:fornext, 179:fornext
-178 G(174,173) F(K) (1 5) IF A(Z) = A(K) THEN 174
+178 G(174,173) F(K:177) (1 5) IF A(Z) = A(K) THEN 174
     WARNING: Multiple GOSUB entry points
   Origs: 177:fornext
   Dests: 174:ifthen, 179:auto
-179 G(174,173) F(K) (0 1) NEXT K
+179 G(174,173) F(K:177) (0 1) NEXT K
     WARNING: Multiple GOSUB entry points
   Origs: 177:fornext, 178:auto
   Dests: 180:auto
@@ -587,28 +587,28 @@ Halstead complexity:
     WARNING: Multiple GOSUB entry points
   Origs: 180:ifthen, 183:auto
   Dests: 
-185 G(185) F(Z) (1 4) FOR Z = N TO N + 4
+185 G(185) F(Z:185) (1 4) FOR Z = N TO N + 4
   Origs: 28:gosub, 97:gosub, 152:gosub
   Dests: 186:fornext, 192:fornext
-186 G(185) F(Z) (0 3) PRINT Z "-  ";
+186 G(185) F(Z:185) (0 3) PRINT Z "-  ";
   Origs: 185:fornext
   Dests: 187:auto
-187 G(185) F(Z) (0 2) GOSUB 195
+187 G(185) F(Z:185) (0 2) GOSUB 195
   Origs: 186:auto
   Dests: 188:auto, 195:gosub
-188 G(185) F(Z) (0 2) PRINT " OF";
+188 G(185) F(Z:185) (0 2) PRINT " OF";
   Origs: 187:auto
   Dests: 189:auto
-189 G(185) F(Z) (0 2) GOSUB 207
+189 G(185) F(Z:185) (0 2) GOSUB 207
   Origs: 188:auto
   Dests: 190:auto, 207:gosub
-190 G(185) F(Z) (1 6) IF Z / 2 <> INT(Z / 2) THEN 192
+190 G(185) F(Z:185) (1 6) IF Z / 2 <> INT(Z / 2) THEN 192
   Origs: 189:auto
   Dests: 191:auto, 192:ifthen
-191 G(185) F(Z) (0 2) PRINT
+191 G(185) F(Z:185) (0 2) PRINT
   Origs: 190:auto
   Dests: 192:auto
-192 G(185) F(Z) (0 1) NEXT Z
+192 G(185) F(Z:185) (0 1) NEXT Z
   Origs: 185:fornext, 190:ifthen, 191:auto
   Dests: 193:auto
 193 G(185) (0 2) PRINT
@@ -709,22 +709,22 @@ Halstead complexity:
     WARNING: GOSUB length exceeds limit 40
   Origs: 31:gosub, 113:gosub, 154:gosub
   Dests: 218:auto
-218 G(217) F(Z) (1 4) FOR Z = N TO N + 4
+218 G(217) F(Z:218) (1 4) FOR Z = N TO N + 4
   Origs: 217:auto
   Dests: 219:fornext, 223:fornext
-219 G(217) F(Z) (0 5) LET B(Z) = FNB(A(Z))
+219 G(217) F(Z:218) (0 5) LET B(Z) = FNB(A(Z))
   Origs: 218:fornext
   Dests: 3:function, 220:auto
-220 G(217) F(Z) (1 6) IF Z = N + 4 THEN 223
+220 G(217) F(Z:218) (1 6) IF Z = N + 4 THEN 223
   Origs: 219:auto
   Dests: 221:auto, 223:ifthen
-221 G(217) F(Z) (1 6) IF INT(A(Z) / 100) <> INT(A(Z + 1) / 100) THEN 223
+221 G(217) F(Z:218) (1 6) IF INT(A(Z) / 100) <> INT(A(Z + 1) / 100) THEN 223
   Origs: 220:auto
   Dests: 222:auto, 223:ifthen
-222 G(217) F(Z) (0 4) LET U = U + 1
+222 G(217) F(Z:218) (0 4) LET U = U + 1
   Origs: 221:auto
   Dests: 223:auto
-223 G(217) F(Z) (0 1) NEXT Z
+223 G(217) F(Z:218) (0 1) NEXT Z
   Origs: 218:fornext, 220:ifthen, 221:ifthen, 222:auto
   Dests: 224:auto
 224 G(217) (1 4) IF U <> 4 THEN 231
@@ -748,55 +748,55 @@ Halstead complexity:
 230 G(217) (0 1) RETURN
   Origs: 229:auto
   Dests: 
-231 G(217) F(Z) (1 4) FOR Z = N TO N + 3
+231 G(217) F(Z:231) (1 4) FOR Z = N TO N + 3
   Origs: 224:ifthen
   Dests: 232:fornext, 240:fornext
-232 G(217) F(Z,K) (1 5) FOR K = Z + 1 TO N + 4
+232 G(217) F(Z:231,K:232) (1 5) FOR K = Z + 1 TO N + 4
   Origs: 231:fornext
   Dests: 233:fornext, 239:fornext
-233 G(217) F(Z,K) (1 4) IF B(Z) <= B(K) THEN 239
+233 G(217) F(Z:231,K:232) (1 4) IF B(Z) <= B(K) THEN 239
   Origs: 232:fornext
   Dests: 234:auto, 239:ifthen
-234 G(217) F(Z,K) (0 3) LET X = A(Z)
+234 G(217) F(Z:231,K:232) (0 3) LET X = A(Z)
   Origs: 233:auto
   Dests: 235:auto
-235 G(217) F(Z,K) (0 3) LET A(Z) = A(K)
+235 G(217) F(Z:231,K:232) (0 3) LET A(Z) = A(K)
   Origs: 234:auto
   Dests: 236:auto
-236 G(217) F(Z,K) (0 3) LET B(Z) = B(K)
+236 G(217) F(Z:231,K:232) (0 3) LET B(Z) = B(K)
   Origs: 235:auto
   Dests: 237:auto
-237 G(217) F(Z,K) (0 3) LET A(K) = X
+237 G(217) F(Z:231,K:232) (0 3) LET A(K) = X
   Origs: 236:auto
   Dests: 238:auto
-238 G(217) F(Z,K) (0 7) LET B(K) = A(K) - 100 * INT(A(K) / 100)
+238 G(217) F(Z:231,K:232) (0 7) LET B(K) = A(K) - 100 * INT(A(K) / 100)
   Origs: 237:auto
   Dests: 239:auto
-239 G(217) F(Z,K) (0 1) NEXT K
+239 G(217) F(Z:231,K:232) (0 1) NEXT K
   Origs: 232:fornext, 233:ifthen, 238:auto
   Dests: 240:auto
-240 G(217) F(Z) (0 1) NEXT Z
+240 G(217) F(Z:231) (0 1) NEXT Z
   Origs: 231:fornext, 239:auto
   Dests: 241:auto
 241 G(217) (0 3) LET X = 0
   Origs: 240:auto
   Dests: 242:auto
-242 G(217) F(Z) (1 4) FOR Z = N TO N + 3
+242 G(217) F(Z:242) (1 4) FOR Z = N TO N + 3
   Origs: 241:auto
   Dests: 243:fornext, 247:fornext
-243 G(217) F(Z) (1 4) IF B(Z) <> B(Z + 1) THEN 247
+243 G(217) F(Z:242) (1 4) IF B(Z) <> B(Z + 1) THEN 247
   Origs: 242:fornext
   Dests: 244:auto, 247:ifthen
-244 G(217) F(Z) (0 10) LET X = X + 11 * 10 ^ (Z - N)
+244 G(217) F(Z:242) (0 10) LET X = X + 11 * 10 ^ (Z - N)
   Origs: 243:auto
   Dests: 245:auto
-245 G(217) F(Z) (0 3) LET D = A(Z)
+245 G(217) F(Z:242) (0 3) LET D = A(Z)
   Origs: 244:auto
   Dests: 246:auto
-246 G(217) F(Z) (0 2) GOSUB 276
+246 G(217) F(Z:242) (0 2) GOSUB 276
   Origs: 245:auto
   Dests: 247:auto, 276:gosub
-247 G(217) F(Z) (0 1) NEXT Z
+247 G(217) F(Z:242) (0 1) NEXT Z
   Origs: 242:fornext, 243:ifthen, 246:auto
   Dests: 248:auto
 248 G(217) (1 4) IF X <> 0 THEN 262

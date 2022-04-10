@@ -34,28 +34,28 @@ Halstead complexity:
 10 (0 3) LET S = 0
   Origs: 7:auto
   Dests: 20:auto
-20 F(N) (1 4) FOR N = 5 TO 1191 STEP 2
+20 F(N:20) (1 4) FOR N = 5 TO 1191 STEP 2
   Origs: 10:auto
   Dests: 30:fornext, 100:fornext
 28 (0 1) REM LINE 30 ADDS THE NEW NUMBER TO THE SUMMING VARIABLE
   Origs: 
   Dests: 
-30 F(N) (0 4) LET S = S + N
+30 F(N:20) (0 4) LET S = S + N
   Origs: 20:fornext
   Dests: 40:auto
-40 F(N) (1 4) IF N < 9 THEN 90
+40 F(N:20) (1 4) IF N < 9 THEN 90
   Origs: 30:auto
   Dests: 50:auto, 90:ifthen
-50 F(N) (1 4) IF N = 731 THEN 90
+50 F(N:20) (1 4) IF N = 731 THEN 90
   Origs: 40:auto
   Dests: 60:auto, 90:ifthen
-60 F(N) (1 4) IF N < 1188 THEN 100
+60 F(N:20) (1 4) IF N < 1188 THEN 100
   Origs: 50:auto
   Dests: 90:auto, 100:ifthen
-90 F(N) (0 3) PRINT N, S
+90 F(N:20) (0 3) PRINT N, S
   Origs: 40:ifthen, 50:ifthen, 60:auto
   Dests: 100:auto
-100 F(N) (0 1) NEXT N
+100 F(N:20) (0 1) NEXT N
   Origs: 20:fornext, 60:ifthen, 90:auto
   Dests: 110:auto
 110 (0 1) END

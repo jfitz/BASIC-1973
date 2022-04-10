@@ -19,111 +19,111 @@ Halstead complexity:
  intelligence: 48.627
  time: 117.747
 
-5 G(400) F(I,A) (0 2) GOSUB 500
+5 G(400) F(I:410,A:420) (0 2) GOSUB 500
   Origs: :start, 150:goto
   Dests: 10:auto, 500:gosub
-10 G(500,400) F(I,A) (0 5) DIM D(10, 4), B(10), C(18), G(10)
+10 G(500,400) F(I:410,A:420) (0 5) DIM D(10, 4), B(10), C(18), G(10)
    WARNING: Multiple GOSUB entry points
   Origs: 5:auto, 510:goto
   Dests: 15:auto
-15 G(500,400) F(I,A) (0 1) RANDOMIZE
-   G(500,400) F(I,A) (0 2) PRINT
-   G(500,400) F(I,A) (0 2) PRINT
-   G(500,400) F(I,A) (0 2) PRINT
+15 G(500,400) F(I:410,A:420) (0 1) RANDOMIZE
+   G(500,400) F(I:410,A:420) (0 2) PRINT
+   G(500,400) F(I:410,A:420) (0 2) PRINT
+   G(500,400) F(I:410,A:420) (0 2) PRINT
    WARNING: Multiple GOSUB entry points
   Origs: 10:auto
   Dests: 20:auto
-20 G(500,400) F(K,I,A) (0 3) LET A = 0
-   G(500,400) F(K,I,A) (0 2) GOTO 200
+20 G(500,400) F(K:41,I:410,A:420) (0 3) LET A = 0
+   G(500,400) F(K:41,I:410,A:420) (0 2) GOTO 200
    WARNING: Multiple GOSUB entry points
   Origs: 15:auto, 55:goto, 110:goto
   Dests: 200:goto
-30 G(500,400) F(K,I,A) (0 2) PRINT
-   G(500,400) F(K,I,A) (0 2) PRINT
-   G(500,400) F(K,I,A) (0 2) PRINT
-   G(500,400) F(K,I,A) (0 3) LET J = 0
+30 G(500,400) F(K:41,A:420) (0 2) PRINT
+   G(500,400) F(K:41,A:420) (0 2) PRINT
+   G(500,400) F(K:41,A:420) (0 2) PRINT
+   G(500,400) F(K:41,A:420) (0 3) LET J = 0
    WARNING: Multiple GOSUB entry points
   Origs: 250:ifthen
   Dests: 35:auto
-35 G(500,400) F(I,K,A) (0 2) PRINT "YOUR GUESS";
-   G(500,400) F(I,K,A) (1 2) INPUT N
-   G(500,400) F(I,K,A) (0 5) LET N = (N + 0.1) / 100000
+35 G(500,400) F(I:40,K:41,A:420) (0 2) PRINT "YOUR GUESS";
+   G(500,400) F(I:40,K:41,A:420) (1 2) INPUT N
+   G(500,400) F(I:40,K:41,A:420) (0 5) LET N = (N + 0.1) / 100000
    WARNING: Multiple GOSUB entry points
   Origs: 30:auto, 98:goto, 170:goto
   Dests: 40:auto
-40 G(500,400) F(I,K,A) (1 3) FOR I = 0 TO 4
-   G(500,400) F(I,K,A) (0 4) LET G(I) = INT(10 * N)
-   G(500,400) F(I,K,A) (0 6) LET N = 10 * N - INT(10 * N)
+40 G(500,400) F(I:40,K:41,A:420) (1 3) FOR I = 0 TO 4
+   G(500,400) F(I:40,K:41,A:420) (0 4) LET G(I) = INT(10 * N)
+   G(500,400) F(I:40,K:41,A:420) (0 6) LET N = 10 * N - INT(10 * N)
    WARNING: Multiple GOSUB entry points
   Origs: 35:auto
   Dests: 41:auto, 43:fornext
-41 G(500,400) F(I,K,A) (1 4) FOR K = 0 TO I - 1
-   G(500,400) F(I,K,A) (1 4) IF G(I) = G(K) GOTO 170
+41 G(500,400) F(I:40,K:41,A:420) (1 4) FOR K = 0 TO I - 1
+   G(500,400) F(I:40,K:41,A:420) (1 4) IF G(I) = G(K) GOTO 170
    WARNING: Multiple GOSUB entry points
   Origs: 40:auto
   Dests: 42:auto, 42:fornext, 170:ifthen
-42 G(500,400) F(I,K,A) (0 1) NEXT K
+42 G(500,400) F(I:40,K:41,A:420) (0 1) NEXT K
    WARNING: Multiple GOSUB entry points
   Origs: 41:auto, 41:fornext
   Dests: 43:auto
-43 G(500,400) F(I,K,A) (0 1) NEXT I
+43 G(500,400) F(I:40,K:41,A:420) (0 1) NEXT I
    WARNING: Multiple GOSUB entry points
   Origs: 40:fornext, 42:auto
   Dests: 45:auto
-45 G(500,400) F(K,A) (0 3) LET P = 4
-   G(500,400) F(K,A) (0 3) LET A = 0
-   G(500,400) F(K,A) (0 2) GOSUB 300
+45 G(500,400) F(K:41,A:420) (0 3) LET P = 4
+   G(500,400) F(K:41,A:420) (0 3) LET A = 0
+   G(500,400) F(K:41,A:420) (0 2) GOSUB 300
    WARNING: Multiple GOSUB entry points
   Origs: 43:auto
   Dests: 50:auto, 300:gosub
-50 G(500,400) F(K,A) (0 3) PRINT V "BULL";
-   G(500,400) F(K,A) (1 5) IF V <> 1 THEN PRINT "S";
+50 G(500,400) F(K:41,A:420) (0 3) PRINT V "BULL";
+   G(500,400) F(K:41,A:420) (1 5) IF V <> 1 THEN PRINT "S";
    WARNING: Multiple GOSUB entry points
   Origs: 45:auto
   Dests: 55:auto
-55 G(500,400) F(K,A) (1 5) IF V = 5 THEN PRINT " - YOU WIN"
-   G(500,400) F(K,A) (0 3) GOTO 20
+55 G(500,400) F(K:41,A:420) (1 5) IF V = 5 THEN PRINT " - YOU WIN"
+   G(500,400) F(K:41,A:420) (0 3) GOTO 20
    WARNING: Multiple GOSUB entry points
    WARNING: Branch to line before GOSUB start
   Origs: 50:auto
   Dests: 20:goto, 60:auto
-60 G(500,400) F(K,A) (0 4) PRINT W - V "COW";
-   G(500,400) F(K,A) (1 7) IF W <> V + 1 THEN PRINT "S";
+60 G(500,400) F(K:41,A:420) (0 4) PRINT W - V "COW";
+   G(500,400) F(K:41,A:420) (1 7) IF W <> V + 1 THEN PRINT "S";
    WARNING: Multiple GOSUB entry points
   Origs: 55:auto
   Dests: 65:auto
-65 G(500,400) F(K,A) (1 6) IF J = 0 THEN LET A = 1
-   G(500,400) F(K,A) (0 2) GOTO 200
+65 G(500,400) F(K:41,A:420) (1 6) IF J = 0 THEN LET A = 1
+   G(500,400) F(K:41,A:420) (0 2) GOTO 200
    WARNING: Multiple GOSUB entry points
   Origs: 60:auto
   Dests: 68:auto, 200:goto
-68 G(500,400) F(K,A) (0 2) GOSUB 400
+68 G(500,400) F(K:41,A:420) (0 2) GOSUB 400
    WARNING: Multiple GOSUB entry points
   Origs: 65:auto
   Dests: 70:auto, 400:gosub
-70 G(500,400) F(K,I,A) (0 2) PRINT " - MY GUESS IS ";
+70 G(500,400) F(K:41,A:420) (0 2) PRINT " - MY GUESS IS ";
    WARNING: Multiple GOSUB entry points
   Origs: 68:auto, 82:goto, 260:goto
   Dests: 75:auto
-75 G(500,400) F(K,I,A) (1 3) FOR I = 0 TO 4
-   G(500,400) F(K,I,A) (0 3) PRINT CHR$(D(J, I) + 48);
-   G(500,400) F(K,I,A) (0 1) NEXT I
+75 G(500,400) F(K:41,I:75,A:420) (1 3) FOR I = 0 TO 4
+   G(500,400) F(K:41,I:75,A:420) (0 3) PRINT CHR$(D(J, I) + 48);
+   G(500,400) F(K:41,I:75,A:420) (0 1) NEXT I
    WARNING: Multiple GOSUB entry points
   Origs: 70:auto
   Dests: 80:auto
-80 G(500,400) F(K,A) (0 2) PRINT " MY SCORE ";
-   G(500,400) F(K,A) (2 3) INPUT B(J), C(J)
-   G(500,400) F(K,A) (0 4) LET C(J) = C(J) + B(J)
+80 G(500,400) F(K:41,A:420) (0 2) PRINT " MY SCORE ";
+   G(500,400) F(K:41,A:420) (2 3) INPUT B(J), C(J)
+   G(500,400) F(K:41,A:420) (0 4) LET C(J) = C(J) + B(J)
    WARNING: Multiple GOSUB entry points
   Origs: 75:auto, 81:ifthen
   Dests: 81:auto
-81 G(500,400) F(K,A) (4 19) IF B(J) > -1 THEN IF B(J) < 6 THEN IF C(J) < 6 THEN IF C(J) - B(J) > -1 GOTO 80
+81 G(500,400) F(K:41,A:420) (4 19) IF B(J) > -1 THEN IF B(J) < 6 THEN IF C(J) < 6 THEN IF C(J) - B(J) > -1 GOTO 80
    WARNING: Multiple GOSUB entry points
    WARNING: Branch to line before GOSUB start
   Origs: 80:auto
   Dests: 80:ifthen, 82:auto
-82 G(500,400) F(K,A) (0 2) PRINT " - RIDICULOUS! !";
-   G(500,400) F(K,A) (0 3) GOTO 70
+82 G(500,400) F(K:41,A:420) (0 2) PRINT " - RIDICULOUS! !";
+   G(500,400) F(K:41,A:420) (0 3) GOTO 70
    WARNING: Multiple GOSUB entry points
    WARNING: Branch to line before GOSUB start
   Origs: 81:auto, 83:ifthen
@@ -138,57 +138,57 @@ Halstead complexity:
 98 (0 3) GOTO 35
   Origs: 85:auto
   Dests: 35:goto
-100 F(I) (1 3) FOR I = 0 TO 4
-    F(I) (0 3) PRINT CHR$(D(0, I) + 48);
-    F(I) (0 1) NEXT I
+100 F(I:100) (1 3) FOR I = 0 TO 4
+    F(I:100) (0 3) PRINT CHR$(D(0, I) + 48);
+    F(I:100) (0 1) NEXT I
   Origs: 85:goto
   Dests: 110:auto
 110 (0 3) GOTO 20
   Origs: 100:auto
   Dests: 20:goto
-150 G(400) F(I,A) (0 2) PRINT
-    G(400) F(I,A) (0 2) PRINT "YOU HAVE GIVEN ME IMPOSSIBLE SCORES - GAME SPOILED"
-    G(400) F(I,A) (0 3) GOTO 5
+150 G(400) F(I:410,A:420) (0 2) PRINT
+    G(400) F(I:410,A:420) (0 2) PRINT "YOU HAVE GIVEN ME IMPOSSIBLE SCORES - GAME SPOILED"
+    G(400) F(I:410,A:420) (0 3) GOTO 5
     WARNING: Branch to line before GOSUB start
   Origs: 432:ifthen, 440:goto
   Dests: 5:goto
-170 G(500,400) F(I,K,A) (0 2) PRINT "REPEATED DIGITS NOT ALLOWED"
-    G(500,400) F(I,K,A) (0 3) GOTO 35
+170 G(500,400) F(I:40,K:41,A:420) (0 2) PRINT "REPEATED DIGITS NOT ALLOWED"
+    G(500,400) F(I:40,K:41,A:420) (0 3) GOTO 35
     WARNING: Multiple GOSUB entry points
     WARNING: Branch to line before GOSUB start
   Origs: 41:ifthen
   Dests: 35:goto
-200 G(500,400) F(K,P,I,A) (1 3) FOR P = 0 TO 4
+200 G(500,400) F(K:41,P:200,I:410,A:420) (1 3) FOR P = 0 TO 4
     WARNING: Multiple GOSUB entry points
     WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 20:goto, 65:goto
   Dests: 210:fornext, 240:fornext
-210 G(500,400) F(K,P,I,A) (0 4) LET D(A, P) = INT(10 * RND(1))
+210 G(500,400) F(K:41,P:200,I:220,I:410,A:420) (0 4) LET D(A, P) = INT(10 * RND(1))
     WARNING: Multiple GOSUB entry points
   Origs: 200:fornext, 220:ifthen
   Dests: 220:auto
-220 G(500,400) F(K,P,I,A) (1 4) FOR I = 0 TO P - 1
-    G(500,400) F(K,P,I,A) (1 5) IF D(A, I) = D(A, P) GOTO 210
+220 G(500,400) F(K:41,P:200,I:220,I:410,A:420) (1 4) FOR I = 0 TO P - 1
+    G(500,400) F(K:41,P:200,I:220,I:410,A:420) (1 5) IF D(A, I) = D(A, P) GOTO 210
     WARNING: Multiple GOSUB entry points
     WARNING: FOR/NEXT nesting exceeds limit 3
     WARNING: Branch to line before GOSUB start
   Origs: 210:auto
   Dests: 210:ifthen, 230:auto, 230:fornext
-230 G(500,400) F(K,P,I,A) (0 1) NEXT I
+230 G(500,400) F(K:41,P:200,I:220,I:410,A:420) (0 1) NEXT I
     WARNING: Multiple GOSUB entry points
   Origs: 220:auto, 220:fornext
   Dests: 240:auto
-240 G(500,400) F(K,P,I,A) (0 1) NEXT P
+240 G(500,400) F(K:41,P:200,I:410,A:420) (0 1) NEXT P
     WARNING: Multiple GOSUB entry points
   Origs: 200:fornext, 230:auto
   Dests: 250:auto
-250 G(500,400) F(K,I,A) (1 5) IF A = 0 GOTO 30
+250 G(500,400) F(K:41,A:420) (1 5) IF A = 0 GOTO 30
     WARNING: Multiple GOSUB entry points
     WARNING: Branch to line before GOSUB start
   Origs: 240:auto
   Dests: 30:ifthen, 260:auto
-260 G(500,400) F(K,I,A) (0 3) LET J = 1
-    G(500,400) F(K,I,A) (0 3) GOTO 70
+260 G(500,400) F(K:41,A:420) (0 3) LET J = 1
+    G(500,400) F(K:41,A:420) (0 3) GOTO 70
     WARNING: Multiple GOSUB entry points
     WARNING: Branch to line before GOSUB start
   Origs: 250:auto
@@ -197,18 +197,18 @@ Halstead complexity:
     G(300) (0 3) LET W = 0
   Origs: 45:gosub, 420:gosub
   Dests: 310:auto
-310 G(300) F(I) (1 3) FOR I = 0 TO P
-    G(300) F(I) (1 7) IF D(A, I) = G(I) THEN LET V = V + 1
+310 G(300) F(I:310) (1 3) FOR I = 0 TO P
+    G(300) F(I:310) (1 7) IF D(A, I) = G(I) THEN LET V = V + 1
   Origs: 300:auto
   Dests: 320:auto, 340:fornext
-320 G(300) F(I,K) (1 3) FOR K = 0 TO 4
-    G(300) F(I,K) (1 7) IF D(A, K) = G(I) THEN LET W = W + 1
+320 G(300) F(I:310,K:320) (1 3) FOR K = 0 TO 4
+    G(300) F(I:310,K:320) (1 7) IF D(A, K) = G(I) THEN LET W = W + 1
   Origs: 310:auto
   Dests: 330:auto, 330:fornext
-330 G(300) F(I,K) (0 1) NEXT K
+330 G(300) F(I:310,K:320) (0 1) NEXT K
   Origs: 320:auto, 320:fornext
   Dests: 340:auto
-340 G(300) F(I) (0 1) NEXT I
+340 G(300) F(I:310) (0 1) NEXT I
   Origs: 310:fornext, 330:auto
   Dests: 350:auto
 350 G(300) (0 1) RETURN
@@ -221,37 +221,37 @@ Halstead complexity:
 405 G(400) (0 3) LET G(P) = D(J, P)
   Origs: 400:auto, 450:ifthen
   Dests: 410:auto
-410 G(400) F(I,A) (1 4) FOR I = 0 TO P - 1
-    G(400) F(I,A) (1 4) IF G(I) = G(P) GOTO 430
+410 G(400) F(I:410,A:420) (1 4) FOR I = 0 TO P - 1
+    G(400) F(I:410,A:420) (1 4) IF G(I) = G(P) GOTO 430
   Origs: 405:auto, 435:ifthen
   Dests: 415:auto, 415:fornext, 430:ifthen
-415 G(400) F(I,A) (0 1) NEXT I
+415 G(400) F(I:410,A:420) (0 1) NEXT I
   Origs: 410:auto, 410:fornext
   Dests: 420:auto
-420 G(400) F(A) (1 3) FOR A = 1 TO J
-    G(400) F(A) (0 3) GOSUB 300
+420 G(400) F(A:420) (1 3) FOR A = 1 TO J
+    G(400) F(A:420) (0 3) GOSUB 300
   Origs: 415:auto
   Dests: 300:gosub, 425:auto, 448:fornext
-425 G(400) F(A) (4 19) IF V <= B(A) THEN IF W <= C(A) THEN IF 4 - P >= C(A) - W THEN IF 4 - P >= B(A) - V GOTO 440
+425 G(400) F(A:420) (4 19) IF V <= B(A) THEN IF W <= C(A) THEN IF 4 - P >= C(A) - W THEN IF 4 - P >= B(A) - V GOTO 440
   Origs: 420:auto
   Dests: 430:auto, 440:ifthen
-430 G(400) F(I,A) (0 4) LET G(P) = G(P) + 3
-    G(400) F(I,A) (1 7) IF G(P) > 9 THEN LET G(P) = G(P) - 10
+430 G(400) F(I:410,A:420) (0 4) LET G(P) = G(P) + 3
+    G(400) F(I:410,A:420) (1 7) IF G(P) > 9 THEN LET G(P) = G(P) - 10
   Origs: 410:ifthen, 425:auto, 445:goto
   Dests: 432:auto
-432 G(400) F(I,A) (2 8) IF P = 0 THEN IF G(P) = D(1, 0) GOTO 150
+432 G(400) F(I:410,A:420) (2 8) IF P = 0 THEN IF G(P) = D(1, 0) GOTO 150
     WARNING: Branch to line before GOSUB start
   Origs: 430:auto
   Dests: 150:ifthen, 435:auto
-435 G(400) F(I,A) (1 5) IF G(P) <> D(J, P) GOTO 410
+435 G(400) F(I:410,A:420) (1 5) IF G(P) <> D(J, P) GOTO 410
   Origs: 432:auto
   Dests: 410:ifthen, 440:auto
-440 G(400) F(I,A) (0 4) LET P = P - 1
-    G(400) F(I,A) (1 6) IF P < 0 THEN GOTO 150
+440 G(400) F(I:410,A:420) (0 4) LET P = P - 1
+    G(400) F(I:410,A:420) (1 6) IF P < 0 THEN GOTO 150
     WARNING: Branch to line before GOSUB start
   Origs: 425:ifthen, 435:auto
   Dests: 150:goto, 445:auto
-445 G(400) F(I,A) (0 3) GOTO 430
+445 G(400) F(I:410,A:420) (0 3) GOTO 430
   Origs: 440:auto
   Dests: 430:goto
 448 G(400) (0 1) NEXT A
@@ -264,9 +264,9 @@ Halstead complexity:
 455 G(400) (0 4) LET J = J + 1
   Origs: 450:auto
   Dests: 460:auto
-460 G(400) F(I) (1 3) FOR I = 0 TO 4
-    G(400) F(I) (0 3) LET D(J, I) = G(I)
-    G(400) F(I) (0 1) NEXT I
+460 G(400) F(I:460) (1 3) FOR I = 0 TO 4
+    G(400) F(I:460) (0 3) LET D(J, I) = G(I)
+    G(400) F(I:460) (0 1) NEXT I
   Origs: 455:auto
   Dests: 465:auto
 465 G(400) (0 1) RETURN

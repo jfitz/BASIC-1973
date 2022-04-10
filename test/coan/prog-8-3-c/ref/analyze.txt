@@ -31,19 +31,19 @@ Halstead complexity:
 30 FNQ(_) (0 3) DEF FNQ(X) = X ^ 2
   Origs: 
   Dests: 
-60 F(X) (1 4) FOR X = -7 TO 7
+60 F(X:60) (1 4) FOR X = -7 TO 7
   Origs: 6:auto
   Dests: 62:fornext, 240:fornext
-62 F(X) (0 2) PRINT
+62 F(X:60) (0 2) PRINT
   Origs: 60:fornext
   Dests: 90:auto
-90 F(X,Y) (1 5) FOR Y = -M TO 70 - M
+90 F(X:60,Y:90) (1 5) FOR Y = -M TO 70 - M
   Origs: 62:auto
   Dests: 92:fornext, 180:fornext
-92 F(X,Y) (1 4) IF Y <> 0 THEN 120
+92 F(X:60,Y:90) (1 4) IF Y <> 0 THEN 120
   Origs: 90:fornext
   Dests: 94:auto, 120:ifthen
-94 F(X,Y) (1 4) IF X <> 0 THEN 120
+94 F(X:60,Y:90) (1 4) IF X <> 0 THEN 120
   Origs: 92:auto
   Dests: 98:auto, 120:ifthen
 95 (0 1) REM   IF THE COMPUTER GETS THROUGH HERE THE
@@ -52,10 +52,10 @@ Halstead complexity:
 96 (0 1) REM PRINTING HEAD IS AT THE ORIGIN
   Origs: 
   Dests: 
-98 F(X,Y) (0 2) PRINT "0";
+98 F(X:60,Y:90) (0 2) PRINT "0";
   Origs: 94:auto
   Dests: 100:auto
-100 F(X,Y) (1 6) IF FNQ(X) > 0 THEN 180
+100 F(X:60,Y:90) (1 6) IF FNQ(X) > 0 THEN 180
   Origs: 98:auto
   Dests: 106:auto, 180:ifthen
 102 (0 1) REM IF  FNQ(X) > 0 GO FIND WHERE IT IS
@@ -64,31 +64,31 @@ Halstead complexity:
 103 (0 1) REM OTHERWISE GET THE NEXT VALUE OF X
   Origs: 
   Dests: 
-106 F(X,Y) (0 2) GOTO 240
+106 F(X:60,Y:90) (0 2) GOTO 240
   Origs: 100:auto
   Dests: 240:goto
-120 F(X,Y) (1 6) IF Y = FNQ(X) THEN 210
+120 F(X:60,Y:90) (1 6) IF Y = FNQ(X) THEN 210
   Origs: 92:ifthen, 94:ifthen
   Dests: 150:auto, 210:ifthen
 148 (0 1) REM   IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
   Origs: 
   Dests: 
-150 F(X,Y) (0 2) PRINT " ";
+150 F(X:60,Y:90) (0 2) PRINT " ";
   Origs: 120:auto
   Dests: 180:auto
-180 F(X,Y) (0 1) NEXT Y
+180 F(X:60,Y:90) (0 1) NEXT Y
   Origs: 90:fornext, 100:ifthen, 150:auto
   Dests: 210:auto
-210 F(X,Y) (0 2) PRINT "*";
+210 F(X:60,Y:90) (0 2) PRINT "*";
   Origs: 120:ifthen, 180:auto
   Dests: 240:auto
 212 (0 1) REM   PLOT THE POINT AND GO TO NEXT X
   Origs: 
   Dests: 
-240 F(X,Y) (0 1) NEXT X
+240 F(X:60,Y:90) (0 1) NEXT X
   Origs: 60:fornext, 106:goto, 210:auto
   Dests: 270:auto
-270 F(X) (0 1) END
+270 F(X:60,Y:90) (0 1) END
     WARNING: Terminating statement in FOR/NEXT
   Origs: 240:auto
   Dests: :stop

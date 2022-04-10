@@ -58,22 +58,22 @@ Halstead complexity:
 500 G(500) (0 3) LET C = 1
   Origs: 20:gosub, 50:gosub
   Dests: 510:auto
-510 G(500) F(X) (1 7) FOR X = N TO N - R + 1 STEP -1
+510 G(500) F(X:510) (1 7) FOR X = N TO N - R + 1 STEP -1
   Origs: 500:auto
   Dests: 520:fornext, 530:fornext
-520 G(500) F(X) (0 4) LET C = C * X
+520 G(500) F(X:510) (0 4) LET C = C * X
   Origs: 510:fornext
   Dests: 530:auto
-530 G(500) F(X) (0 1) NEXT X
+530 G(500) F(X:510) (0 1) NEXT X
   Origs: 510:fornext, 520:auto
   Dests: 540:auto
-540 G(500) F(Y) (1 5) FOR Y = R TO 1 STEP -1
+540 G(500) F(Y:540) (1 5) FOR Y = R TO 1 STEP -1
   Origs: 530:auto
   Dests: 550:fornext, 560:fornext
-550 G(500) F(Y) (0 4) LET C = C / Y
+550 G(500) F(Y:540) (0 4) LET C = C / Y
   Origs: 540:fornext
   Dests: 560:auto
-560 G(500) F(Y) (0 1) NEXT Y
+560 G(500) F(Y:540) (0 1) NEXT Y
   Origs: 540:fornext, 550:auto
   Dests: 570:auto
 570 G(500) (0 1) RETURN

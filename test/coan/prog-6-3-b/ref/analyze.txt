@@ -28,22 +28,22 @@ Halstead complexity:
 30 (1 4) IF N = 0 THEN 999
   Origs: 20:auto
   Dests: 40:auto, 999:ifthen
-40 F(E) (1 5) FOR E = 5 TO 0 STEP -1
+40 F(E:40) (1 5) FOR E = 5 TO 0 STEP -1
   Origs: 30:auto
   Dests: 50:fornext, 90:fornext
-50 F(E) (0 4) LET I = INT(N / 10 ^ E)
+50 F(E:40) (0 4) LET I = INT(N / 10 ^ E)
   Origs: 40:fornext
   Dests: 60:auto
-60 F(E) (0 2) PRINT I;
+60 F(E:40) (0 2) PRINT I;
   Origs: 50:auto
   Dests: 70:auto
-70 F(E) (0 8) LET R = N - I * 10 ^ E
+70 F(E:40) (0 8) LET R = N - I * 10 ^ E
   Origs: 60:auto
   Dests: 80:auto
-80 F(E) (0 3) LET N = R
+80 F(E:40) (0 3) LET N = R
   Origs: 70:auto
   Dests: 90:auto
-90 F(E) (0 1) NEXT E
+90 F(E:40) (0 1) NEXT E
   Origs: 40:fornext, 80:auto
   Dests: 100:auto
 100 (0 2) PRINT

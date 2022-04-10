@@ -28,16 +28,16 @@ Halstead complexity:
 23 (1 2) READ N
   Origs: 20:auto
   Dests: 25:auto
-25 F(S) (1 5) FOR S = N TO 1 STEP -1
+25 F(S:25) (1 5) FOR S = N TO 1 STEP -1
   Origs: 23:auto
   Dests: 30:fornext, 50:fornext
-30 F(S) (1 2) READ P[S]
+30 F(S:25) (1 2) READ P[S]
   Origs: 25:fornext
   Dests: 40:auto
-40 F(S) (0 2) PRINT P[S];
+40 F(S:25) (0 2) PRINT P[S];
   Origs: 30:auto
   Dests: 50:auto
-50 F(S) (0 1) NEXT S
+50 F(S:25) (0 1) NEXT S
   Origs: 25:fornext, 40:auto
   Dests: 55:auto
 55 (0 2) PRINT
@@ -55,7 +55,7 @@ Halstead complexity:
 78 (0 1) REM STUDY LINE 80 CAREFULLY!
   Origs: 
   Dests: 
-80 F(X) (1 6) FOR X = -P[1] TO P[1] STEP SGN(P[1])
+80 F(X:80) (1 6) FOR X = -P[1] TO P[1] STEP SGN(P[1])
   Origs: 70:auto
   Dests: 90:fornext, 140:fornext
 88 (0 1) REM LINE 90 PREVENTS AN ERROR MESSAGE CAUSED BY
@@ -64,22 +64,22 @@ Halstead complexity:
 89 (0 1) REM DIVIDING BY ZERO
   Origs: 
   Dests: 
-90 F(X) (1 4) IF X = 0 THEN 140
+90 F(X:80) (1 4) IF X = 0 THEN 140
   Origs: 80:fornext
   Dests: 100:auto, 140:ifthen
 98 (0 1) REM IS X A FACTOR OF P[1]?
   Origs: 
   Dests: 
-100 F(X) (1 6) IF P[1] / X <> INT(P[1] / X) THEN 140
+100 F(X:80) (1 6) IF P[1] / X <> INT(P[1] / X) THEN 140
   Origs: 90:auto
   Dests: 105:auto, 140:ifthen
-105 F(X) (0 2) GOSUB 500
+105 F(X:80) (0 2) GOSUB 500
   Origs: 100:auto
   Dests: 110:auto, 500:gosub
 108 (0 1) REM IS THE REMAINDER ZERO?
   Origs: 
   Dests: 
-110 F(X) (1 4) IF P <> 0 THEN 140
+110 F(X:80) (1 4) IF P <> 0 THEN 140
   Origs: 105:auto
   Dests: 120:auto, 140:ifthen
 118 (0 1) REM IF THE COMPUTER GETS THROUGH HERE, THE
@@ -88,16 +88,16 @@ Halstead complexity:
 119 (0 1) REM VALUE OF X IS A ZERO OF THE FUNCTION
   Origs: 
   Dests: 
-120 F(X) (0 2) PRINT X;
+120 F(X:80) (0 2) PRINT X;
   Origs: 110:auto
   Dests: 130:auto
 128 (0 1) REM TURN THE SWITCH ON - WE HAVE A ZERO
   Origs: 
   Dests: 
-130 F(X) (0 3) LET K = 1
+130 F(X:80) (0 3) LET K = 1
   Origs: 120:auto
   Dests: 140:auto
-140 F(X) (0 1) NEXT X
+140 F(X:80) (0 1) NEXT X
   Origs: 80:fornext, 90:ifthen, 100:ifthen, 110:ifthen, 130:auto
   Dests: 150:auto
 150 (1 5) IF K = 1 THEN 20
@@ -136,13 +136,13 @@ Halstead complexity:
 500 G(500) (0 3) LET P = 0
   Origs: 105:gosub
   Dests: 510:auto
-510 G(500) F(I) (1 5) FOR I = N TO 1 STEP -1
+510 G(500) F(I:510) (1 5) FOR I = N TO 1 STEP -1
   Origs: 500:auto
   Dests: 520:fornext, 530:fornext
-520 G(500) F(I) (0 10) LET P = P + P[I] * X ^ (I - 1)
+520 G(500) F(I:510) (0 10) LET P = P + P[I] * X ^ (I - 1)
   Origs: 510:fornext
   Dests: 530:auto
-530 G(500) F(I) (0 1) NEXT I
+530 G(500) F(I:510) (0 1) NEXT I
   Origs: 510:fornext, 520:auto
   Dests: 540:auto
 540 G(500) (0 1) RETURN

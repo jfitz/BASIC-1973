@@ -112,14 +112,14 @@ Halstead complexity:
 390 (0 2) DIM P(18)
   Origs: 380:auto
   Dests: 400:auto
-400 F(R) (1 3) FOR R = 1 TO 18
+400 F(R:400) (1 3) FOR R = 1 TO 18
   Origs: 390:auto
   Dests: 410:fornext, 420:fornext
-410 F(R) (1 2) READ A(R)
-    F(R) (1 2) READ P(R)
+410 F(R:400) (1 2) READ A(R)
+    F(R:400) (1 2) READ P(R)
   Origs: 400:fornext
   Dests: 420:auto
-420 F(R) (0 1) NEXT R
+420 F(R:400) (0 1) NEXT R
   Origs: 400:fornext, 410:auto
   Dests: 430:auto
 430 (0 2) DIM M(4, 10)
@@ -135,113 +135,113 @@ Halstead complexity:
 460 (0 2) PRINT
   Origs: 450:auto
   Dests: 470:auto
-470 F(J) (1 3) FOR J = 1 TO V
+470 F(J:470) (1 3) FOR J = 1 TO V
   Origs: 460:auto
   Dests: 480:fornext, 1020:fornext
-480 F(J,Q) (1 3) FOR Q = 1 TO U
+480 F(J:470,Q:480) (1 3) FOR Q = 1 TO U
   Origs: 470:fornext
   Dests: 490:fornext, 1010:fornext
-490 F(J,Q) (0 3) LET H = A(J)
+490 F(J:470,Q:480) (0 3) LET H = A(J)
   Origs: 480:fornext
   Dests: 500:auto
-500 F(J,Q) (0 7) PRINT "HOLE NUMBER "; J; "IS"; H; "YARDS PAR"; P(J)
+500 F(J:470,Q:480) (0 7) PRINT "HOLE NUMBER "; J; "IS"; H; "YARDS PAR"; P(J)
   Origs: 490:auto
   Dests: 510:auto
-510 F(J,Q) (0 3) LET K = 0
+510 F(J:470,Q:480) (0 3) LET K = 0
   Origs: 500:auto
   Dests: 520:auto
-520 F(J,Q) (0 3) LET T = 0
+520 F(J:470,Q:480) (0 3) LET T = 0
   Origs: 510:auto
   Dests: 530:auto
-530 F(J,Q) (0 3) LET T2 = 0
+530 F(J:470,Q:480) (0 3) LET T2 = 0
   Origs: 520:auto
   Dests: 540:auto
-540 F(J,Q) (0 4) PRINT "PLAYER NUMBER"; Q; "CHOSE YOUR CLUB"
+540 F(J:470,Q:480) (0 4) PRINT "PLAYER NUMBER"; Q; "CHOSE YOUR CLUB"
   Origs: 530:auto, 870:goto
   Dests: 550:auto
-550 F(J,Q) (1 2) INPUT X
+550 F(J:470,Q:480) (1 2) INPUT X
   Origs: 540:auto, 920:goto
   Dests: 560:auto
-560 F(J,Q) (1 4) IF X = 9 THEN 880
+560 F(J:470,Q:480) (1 4) IF X = 9 THEN 880
   Origs: 550:auto
   Dests: 570:auto, 880:ifthen
-570 F(J,Q) (0 4) LET K = K + 1
+570 F(J:470,Q:480) (0 4) LET K = K + 1
   Origs: 560:auto
   Dests: 580:auto
-580 F(J,Q) (1 4) IF X = 9 THEN 930
+580 F(J:470,Q:480) (1 4) IF X = 9 THEN 930
   Origs: 570:auto
   Dests: 590:auto, 930:ifthen
-590 F(J,Q) (0 2) GOTO 1340
+590 F(J:470,Q:480) (0 2) GOTO 1340
   Origs: 580:auto, 960:goto
   Dests: 1340:goto
-600 F(J,Q) (1 4) IF X = 9 THEN 970
+600 F(J:470,Q:480) (1 4) IF X = 9 THEN 970
   Origs: 1150:goto, 1170:goto, 1190:goto, 1210:goto, 1230:goto, 1250:goto, 1270:goto, 1300:goto, 1320:goto
   Dests: 610:auto, 970:ifthen
-610 F(J,Q) (0 3) LET D = X
+610 F(J:470,Q:480) (0 3) LET D = X
   Origs: 600:auto
   Dests: 620:auto
-620 F(J,Q) (1 4) IF H <> X(D) THEN 630
-    F(J,Q) (1 4) IF K <> 1 THEN 990
-    F(J,Q) (0 2) PRINT "HOLE IN ONE!!!"
-    F(J,Q) (0 2) GOTO 990
+620 F(J:470,Q:480) (1 4) IF H <> X(D) THEN 630
+    F(J:470,Q:480) (1 4) IF K <> 1 THEN 990
+    F(J:470,Q:480) (0 2) PRINT "HOLE IN ONE!!!"
+    F(J:470,Q:480) (0 2) GOTO 990
   Origs: 610:auto
   Dests: 630:auto, 630:ifthen, 990:goto, 990:ifthen
-630 F(J,Q) (0 4) PRINT "DISTANCE OF SHOT IS"; X(D); "YARDS"
+630 F(J:470,Q:480) (0 4) PRINT "DISTANCE OF SHOT IS"; X(D); "YARDS"
   Origs: 620:auto, 620:ifthen
   Dests: 640:auto
-640 F(J,Q) (0 4) LET L = INT(RND(X) * 100)
+640 F(J:470,Q:480) (0 4) LET L = INT(RND(X) * 100)
   Origs: 630:auto
   Dests: 650:auto
-650 F(J,Q) (1 4) IF L = 99 THEN 670
-    F(J,Q) (1 4) IF L = 43 THEN 670
-    F(J,Q) (1 4) IF L = 88 THEN 670
+650 F(J:470,Q:480) (1 4) IF L = 99 THEN 670
+    F(J:470,Q:480) (1 4) IF L = 43 THEN 670
+    F(J:470,Q:480) (1 4) IF L = 88 THEN 670
   Origs: 640:auto
   Dests: 660:auto, 670:ifthen
-660 F(J,Q) (1 4) IF L <> 25 THEN 760
+660 F(J:470,Q:480) (1 4) IF L <> 25 THEN 760
   Origs: 650:auto
   Dests: 670:auto, 760:ifthen
-670 F(J,Q) (0 2) PRINT "IN TRAP"
-    F(J,Q) (0 4) LET C = ABS(H - X(D))
-    F(J,Q) (0 2) GOTO 680
+670 F(J:470,Q:480) (0 2) PRINT "IN TRAP"
+    F(J:470,Q:480) (0 4) LET C = ABS(H - X(D))
+    F(J:470,Q:480) (0 2) GOTO 680
   Origs: 650:ifthen, 660:auto
   Dests: 680:goto
-680 F(J,Q) (0 4) LET L8 = INT(RND(X) * 10)
+680 F(J:470,Q:480) (0 4) LET L8 = INT(RND(X) * 10)
   Origs: 670:goto, 690:ifthen, 1430:goto
   Dests: 690:auto
-690 F(J,Q) (1 5) IF L8 > 3 THEN 680
-    F(J,Q) (1 4) IF L8 = 1 THEN 850
+690 F(J:470,Q:480) (1 5) IF L8 > 3 THEN 680
+    F(J:470,Q:480) (1 4) IF L8 = 1 THEN 850
   Origs: 680:auto
   Dests: 680:ifthen, 700:auto, 850:ifthen
-700 F(J,Q) (0 3) LET T2 = 0
+700 F(J:470,Q:480) (0 3) LET T2 = 0
   Origs: 690:auto
   Dests: 710:auto
-710 F(J,Q,Z) (1 3) FOR Z = 1 TO L8
+710 F(J:470,Q:480,Z:710) (1 3) FOR Z = 1 TO L8
   Origs: 700:auto
   Dests: 720:fornext, 740:fornext
-720 F(J,Q,Z) (0 4) LET T2 = T2 + 1
+720 F(J:470,Q:480,Z:710) (0 4) LET T2 = T2 + 1
   Origs: 710:fornext
   Dests: 730:auto
-730 F(J,Q,Z) (0 2) PRINT "CHOSE YOUR CLUB"
-    F(J,Q,Z) (1 2) INPUT X
+730 F(J:470,Q:480,Z:710) (0 2) PRINT "CHOSE YOUR CLUB"
+    F(J:470,Q:480,Z:710) (1 2) INPUT X
   Origs: 720:auto
   Dests: 740:auto
-740 F(J,Q,Z) (0 2) PRINT "STILL IN TRAP"
-    F(J,Q,Z) (0 1) NEXT Z
+740 F(J:470,Q:480,Z:710) (0 2) PRINT "STILL IN TRAP"
+    F(J:470,Q:480,Z:710) (0 1) NEXT Z
   Origs: 710:fornext, 730:auto
   Dests: 750:auto
-750 F(J,Q) (0 2) GOTO 850
+750 F(J:470,Q:480) (0 2) GOTO 850
   Origs: 740:auto
   Dests: 850:goto
-760 F(J,Q) (1 4) IF L = 13 THEN 780
-    F(J,Q) (1 4) IF L = 88 THEN 780
+760 F(J:470,Q:480) (1 4) IF L = 13 THEN 780
+    F(J:470,Q:480) (1 4) IF L = 88 THEN 780
   Origs: 660:ifthen
   Dests: 770:auto, 780:ifthen
-770 F(J,Q) (1 4) IF L <> 25 THEN 800
+770 F(J:470,Q:480) (1 4) IF L <> 25 THEN 800
   Origs: 760:auto
   Dests: 780:auto, 800:ifthen
-780 F(J,Q) (0 2) PRINT "IN ROUGH"
-    F(J,Q) (0 4) LET C = ABS(H - X(D))
-    F(J,Q) (0 2) GOTO 850
+780 F(J:470,Q:480) (0 2) PRINT "IN ROUGH"
+    F(J:470,Q:480) (0 4) LET C = ABS(H - X(D))
+    F(J:470,Q:480) (0 2) GOTO 850
   Origs: 760:ifthen, 770:auto
   Dests: 850:goto
 790 (1 4) IF L = 69 THEN 810
@@ -249,203 +249,203 @@ Halstead complexity:
     (1 4) IF L = 41 THEN 810
   Origs: 
   Dests: 800:auto, 810:ifthen
-800 F(J,Q) (1 4) IF L <> 75 THEN 830
+800 F(J:470,Q:480) (1 4) IF L <> 75 THEN 830
   Origs: 770:ifthen, 790:auto
   Dests: 810:auto, 830:ifthen
-810 F(J,Q) (0 2) PRINT "IN WATER"
-    F(J,Q) (0 4) LET T = T + 1
-    F(J,Q) (0 2) PRINT "YOU LOSE 1 STROKE"
-    F(J,Q) (0 4) LET C = ABS(H - X(D))
+810 F(J:470,Q:480) (0 2) PRINT "IN WATER"
+    F(J:470,Q:480) (0 4) LET T = T + 1
+    F(J:470,Q:480) (0 2) PRINT "YOU LOSE 1 STROKE"
+    F(J:470,Q:480) (0 4) LET C = ABS(H - X(D))
   Origs: 790:ifthen, 800:auto
   Dests: 820:auto
-820 F(J,Q) (0 2) GOTO 850
+820 F(J:470,Q:480) (0 2) GOTO 850
   Origs: 810:auto
   Dests: 850:goto
-830 F(J,Q) (0 4) LET C = ABS(H - X(D))
+830 F(J:470,Q:480) (0 4) LET C = ABS(H - X(D))
   Origs: 800:ifthen
   Dests: 840:auto
-840 F(J,Q) (1 4) IF C < 30 THEN 930
+840 F(J:470,Q:480) (1 4) IF C < 30 THEN 930
   Origs: 830:auto
   Dests: 850:auto, 930:ifthen
-850 F(J,Q) (0 4) PRINT "DISTANCE REMAINING TO PIN IS"; C; "YARDS"
+850 F(J:470,Q:480) (0 4) PRINT "DISTANCE REMAINING TO PIN IS"; C; "YARDS"
   Origs: 690:ifthen, 750:goto, 780:goto, 820:goto, 840:auto
   Dests: 860:auto
-860 F(J,Q) (0 3) LET H = C
+860 F(J:470,Q:480) (0 3) LET H = C
   Origs: 850:auto
   Dests: 870:auto
-870 F(J,Q) (0 3) GOTO 540
+870 F(J:470,Q:480) (0 3) GOTO 540
   Origs: 860:auto
   Dests: 540:goto
-880 F(J,Q) (0 3) LET C = A(J)
+880 F(J:470,Q:480) (0 3) LET C = A(J)
   Origs: 560:ifthen
   Dests: 890:auto
-890 F(J,Q) (1 4) IF C > 30 THEN 910
+890 F(J:470,Q:480) (1 4) IF C > 30 THEN 910
   Origs: 880:auto
   Dests: 900:auto, 910:ifthen
-900 F(J,Q) (0 2) GOTO 970
+900 F(J:470,Q:480) (0 2) GOTO 970
   Origs: 890:auto
   Dests: 970:goto
-910 F(J,Q) (0 2) PRINT "YOU ARE NOT ON THE GREEN CHOSE ANOTHER CLUB"
+910 F(J:470,Q:480) (0 2) PRINT "YOU ARE NOT ON THE GREEN CHOSE ANOTHER CLUB"
   Origs: 890:ifthen
   Dests: 920:auto
-920 F(J,Q) (0 3) GOTO 550
+920 F(J:470,Q:480) (0 3) GOTO 550
   Origs: 910:auto
   Dests: 550:goto
-930 F(J,Q) (0 4) PRINT "PLAYER NUMBER"; Q; " IS ON THE GREEN CHOSE YOUR CLUB"
+930 F(J:470,Q:480) (0 4) PRINT "PLAYER NUMBER"; Q; " IS ON THE GREEN CHOSE YOUR CLUB"
   Origs: 580:ifthen, 840:ifthen
   Dests: 940:auto
-940 F(J,Q) (1 2) INPUT X
+940 F(J:470,Q:480) (1 2) INPUT X
   Origs: 930:auto
   Dests: 950:auto
-950 F(J,Q) (0 3) LET D = X
+950 F(J:470,Q:480) (0 3) LET D = X
   Origs: 940:auto
   Dests: 960:auto
-960 F(J,Q) (0 3) GOTO 590
+960 F(J:470,Q:480) (0 3) GOTO 590
   Origs: 950:auto
   Dests: 590:goto
-970 F(J,Q) (0 3) PRINT X(D) "PUTTS"
+970 F(J:470,Q:480) (0 3) PRINT X(D) "PUTTS"
   Origs: 600:ifthen, 900:goto
   Dests: 980:auto
-980 F(J,Q) (0 6) LET M(Q, J) = K + X(9) + T + T2
-    F(J,Q) (0 2) GOTO 1000
+980 F(J:470,Q:480) (0 6) LET M(Q, J) = K + X(9) + T + T2
+    F(J:470,Q:480) (0 2) GOTO 1000
   Origs: 970:auto
   Dests: 1000:goto
-990 F(J,Q) (0 3) LET M(Q, J) = K
-    F(J,Q) (0 2) PRINT "YOU SUNK THE SHOT"
+990 F(J:470,Q:480) (0 3) LET M(Q, J) = K
+    F(J:470,Q:480) (0 2) PRINT "YOU SUNK THE SHOT"
   Origs: 620:goto, 620:ifthen
   Dests: 1000:auto
-1000 F(J,Q) (0 6) PRINT M(Q, J) "STROKES FOR HOLE NUMBER"; J; "FOR PLAYER"; Q
+1000 F(J:470,Q:480) (0 6) PRINT M(Q, J) "STROKES FOR HOLE NUMBER"; J; "FOR PLAYER"; Q
   Origs: 980:goto, 990:auto
   Dests: 1010:auto
-1010 F(J,Q) (0 1) NEXT Q
-     F(J) (0 2) PRINT
-     F(J) (0 2) PRINT
+1010 F(J:470,Q:480) (0 1) NEXT Q
+     F(J:470) (0 2) PRINT
+     F(J:470) (0 2) PRINT
   Origs: 480:fornext, 1000:auto
   Dests: 1020:auto
-1020 F(J) (0 1) NEXT J
+1020 F(J:470) (0 1) NEXT J
   Origs: 470:fornext, 1010:auto
   Dests: 1030:auto
-1030 F(W) (1 3) FOR W = 1 TO V
+1030 F(W:1030) (1 3) FOR W = 1 TO V
   Origs: 1020:auto
   Dests: 1040:fornext, 1090:fornext
-1040 F(W) (0 4) LET N(1) = M(1, W) + N(1)
+1040 F(W:1030) (0 4) LET N(1) = M(1, W) + N(1)
   Origs: 1030:fornext
   Dests: 1050:auto
-1050 F(W) (0 4) LET N(2) = M(2, W) + N(2)
+1050 F(W:1030) (0 4) LET N(2) = M(2, W) + N(2)
   Origs: 1040:auto
   Dests: 1060:auto
-1060 F(W) (0 4) LET N(3) = M(3, W) + N(3)
+1060 F(W:1030) (0 4) LET N(3) = M(3, W) + N(3)
   Origs: 1050:auto
   Dests: 1070:auto
-1070 F(W) (0 4) LET N(4) = M(4, W) + N(4)
+1070 F(W:1030) (0 4) LET N(4) = M(4, W) + N(4)
   Origs: 1060:auto
   Dests: 1080:auto
-1080 F(W) (0 4) LET E = P(W) + E
+1080 F(W:1030) (0 4) LET E = P(W) + E
   Origs: 1070:auto
   Dests: 1090:auto
-1090 F(W) (0 1) NEXT W
+1090 F(W:1030) (0 1) NEXT W
   Origs: 1030:fornext, 1080:auto
   Dests: 1100:auto
-1100 F(S) (1 3) FOR S = 1 TO V
+1100 F(S:1100) (1 3) FOR S = 1 TO V
   Origs: 1090:auto
   Dests: 1110:fornext, 1120:fornext
-1110 F(S) (0 9) PRINT "PLAYER NUMBER"; S; "SHOT"; N(S); "FOR"; V; "HOLES  PAR IS"; E
+1110 F(S:1100) (0 9) PRINT "PLAYER NUMBER"; S; "SHOT"; N(S); "FOR"; V; "HOLES  PAR IS"; E
   Origs: 1100:fornext
   Dests: 1120:auto
-1120 F(S) (0 1) NEXT S
+1120 F(S:1100) (0 1) NEXT S
   Origs: 1100:fornext, 1110:auto
   Dests: 1130:auto
 1130 (0 2) GOTO 1440
   Origs: 1120:auto
   Dests: 1440:goto
-1140 F(J,Q) (0 4) LET X(2) = INT(130 * RND(X) + 150)
+1140 F(J:470,Q:480) (0 4) LET X(2) = INT(130 * RND(X) + 150)
   Origs: 1350:ifthen
   Dests: 1150:auto
-1150 F(J,Q) (0 3) GOTO 600
+1150 F(J:470,Q:480) (0 3) GOTO 600
   Origs: 1140:auto
   Dests: 600:goto
-1160 F(J,Q) (0 4) LET X(1) = INT(90 * RND(X) + 180)
+1160 F(J:470,Q:480) (0 4) LET X(1) = INT(90 * RND(X) + 180)
   Origs: 1340:ifthen
   Dests: 1170:auto
-1170 F(J,Q) (0 3) GOTO 600
+1170 F(J:470,Q:480) (0 3) GOTO 600
   Origs: 1160:auto
   Dests: 600:goto
-1180 F(J,Q) (0 4) LET X(3) = INT(40 * RND(X) + 140)
+1180 F(J:470,Q:480) (0 4) LET X(3) = INT(40 * RND(X) + 140)
   Origs: 1360:ifthen
   Dests: 1190:auto
-1190 F(J,Q) (0 3) GOTO 600
+1190 F(J:470,Q:480) (0 3) GOTO 600
   Origs: 1180:auto
   Dests: 600:goto
-1200 F(J,Q) (0 4) LET X(4) = INT(60 * RND(X) + 120)
+1200 F(J:470,Q:480) (0 4) LET X(4) = INT(60 * RND(X) + 120)
   Origs: 1370:ifthen
   Dests: 1210:auto
-1210 F(J,Q) (0 3) GOTO 600
+1210 F(J:470,Q:480) (0 3) GOTO 600
   Origs: 1200:auto
   Dests: 600:goto
-1220 F(J,Q) (0 4) LET X(5) = INT(30 * RND(X) + 100)
+1220 F(J:470,Q:480) (0 4) LET X(5) = INT(30 * RND(X) + 100)
   Origs: 1380:ifthen
   Dests: 1230:auto
-1230 F(J,Q) (0 3) GOTO 600
+1230 F(J:470,Q:480) (0 3) GOTO 600
   Origs: 1220:auto
   Dests: 600:goto
-1240 F(J,Q) (0 4) LET X(6) = INT(30 * RND(X) + 70)
+1240 F(J:470,Q:480) (0 4) LET X(6) = INT(30 * RND(X) + 70)
   Origs: 1390:ifthen
   Dests: 1250:auto
-1250 F(J,Q) (0 3) GOTO 600
+1250 F(J:470,Q:480) (0 3) GOTO 600
   Origs: 1240:auto
   Dests: 600:goto
-1260 F(J,Q) (0 4) LET X(7) = INT(40 * RND(X) + 30)
+1260 F(J:470,Q:480) (0 4) LET X(7) = INT(40 * RND(X) + 30)
   Origs: 1400:ifthen
   Dests: 1270:auto
-1270 F(J,Q) (0 3) GOTO 600
+1270 F(J:470,Q:480) (0 3) GOTO 600
   Origs: 1260:auto
   Dests: 600:goto
-1280 F(J,Q) (0 4) LET X(8) = INT(30 * RND(X) + 1)
+1280 F(J:470,Q:480) (0 4) LET X(8) = INT(30 * RND(X) + 1)
   Origs: 1290:ifthen, 1410:ifthen
   Dests: 1290:auto
-1290 F(J,Q) (1 5) IF X(8) < 1 THEN 1280
+1290 F(J:470,Q:480) (1 5) IF X(8) < 1 THEN 1280
   Origs: 1280:auto
   Dests: 1280:ifthen, 1300:auto
-1300 F(J,Q) (0 3) GOTO 600
+1300 F(J:470,Q:480) (0 3) GOTO 600
   Origs: 1290:auto
   Dests: 600:goto
-1310 F(J,Q) (0 4) LET X(9) = INT(3 * RND(X) + 1)
+1310 F(J:470,Q:480) (0 4) LET X(9) = INT(3 * RND(X) + 1)
   Origs: 1420:ifthen
   Dests: 1320:auto
-1320 F(J,Q) (0 3) GOTO 600
+1320 F(J:470,Q:480) (0 3) GOTO 600
   Origs: 1310:auto
   Dests: 600:goto
 1330 (0 1) STOP
   Origs: 
   Dests: :stop
-1340 F(J,Q) (1 5) IF X = 1 THEN 1160
+1340 F(J:470,Q:480) (1 5) IF X = 1 THEN 1160
   Origs: 590:goto
   Dests: 1160:ifthen, 1350:auto
-1350 F(J,Q) (1 5) IF X = 2 THEN 1140
+1350 F(J:470,Q:480) (1 5) IF X = 2 THEN 1140
   Origs: 1340:auto
   Dests: 1140:ifthen, 1360:auto
-1360 F(J,Q) (1 5) IF X = 3 THEN 1180
+1360 F(J:470,Q:480) (1 5) IF X = 3 THEN 1180
   Origs: 1350:auto
   Dests: 1180:ifthen, 1370:auto
-1370 F(J,Q) (1 5) IF X = 4 THEN 1200
+1370 F(J:470,Q:480) (1 5) IF X = 4 THEN 1200
   Origs: 1360:auto
   Dests: 1200:ifthen, 1380:auto
-1380 F(J,Q) (1 5) IF X = 5 THEN 1220
+1380 F(J:470,Q:480) (1 5) IF X = 5 THEN 1220
   Origs: 1370:auto
   Dests: 1220:ifthen, 1390:auto
-1390 F(J,Q) (1 5) IF X = 6 THEN 1240
+1390 F(J:470,Q:480) (1 5) IF X = 6 THEN 1240
   Origs: 1380:auto
   Dests: 1240:ifthen, 1400:auto
-1400 F(J,Q) (1 5) IF X = 7 THEN 1260
+1400 F(J:470,Q:480) (1 5) IF X = 7 THEN 1260
   Origs: 1390:auto
   Dests: 1260:ifthen, 1410:auto
-1410 F(J,Q) (1 5) IF X = 8 THEN 1280
+1410 F(J:470,Q:480) (1 5) IF X = 8 THEN 1280
   Origs: 1400:auto
   Dests: 1280:ifthen, 1420:auto
-1420 F(J,Q) (1 5) IF X = 9 THEN 1310
+1420 F(J:470,Q:480) (1 5) IF X = 9 THEN 1310
   Origs: 1410:auto
   Dests: 1310:ifthen, 1430:auto
-1430 F(J,Q) (0 3) GOTO 680
+1430 F(J:470,Q:480) (0 3) GOTO 680
   Origs: 1420:auto
   Dests: 680:goto
 1440 (0 1) END

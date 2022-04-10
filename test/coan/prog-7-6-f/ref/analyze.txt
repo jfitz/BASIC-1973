@@ -25,68 +25,68 @@ Halstead complexity:
 104 (0 1) REM * WRITE DATA INTO BINARY FILE
   Origs: 
   Dests: 
-110 F(I) (1 3) FOR I = 1 TO 5
+110 F(I:110) (1 3) FOR I = 1 TO 5
   Origs: :start
   Dests: 120:fornext, 150:fornext
-120 F(I) (2 3) READ #1, N$, A1
+120 F(I:110) (2 3) READ #1, N$, A1
   Origs: 110:fornext
   Dests: 130:auto
-130 F(I) (0 1) S E T W2 TO 6 * (I - 1) + 1
+130 F(I:110) (0 1) S E T W2 TO 6 * (I - 1) + 1
     ERROR: Syntax error
   Origs: 120:auto
   Dests: 140:auto
-140 F(I) (0 5) WRITE :2, N$, A1
+140 F(I:110) (0 5) WRITE :2, N$, A1
   Origs: 130:auto
   Dests: 150:auto
-150 F(I) (0 1) NEXT I
+150 F(I:110) (0 1) NEXT I
   Origs: 110:fornext, 140:auto
   Dests: 160:auto
 154 (0 1) REM * NOW ARRANGE THE DATA ACCORDING TO AVERAGES
   Origs: 
   Dests: 
-160 F(I) (1 3) FOR I = 1 TO 4
+160 F(I:160) (1 3) FOR I = 1 TO 4
   Origs: 150:auto
   Dests: 170:fornext, 280:fornext
-170 F(I,J) (1 4) FOR J = I + 1 TO 5
+170 F(I:160,J:170) (1 4) FOR J = I + 1 TO 5
   Origs: 160:fornext
   Dests: 180:fornext, 270:fornext
-180 F(I,J) (0 1) S E T W2 TO 6 * (I - 1) + 1
+180 F(I:160,J:170) (0 1) S E T W2 TO 6 * (I - 1) + 1
     ERROR: Syntax error
   Origs: 170:fornext
   Dests: 190:auto
-190 F(I,J) (2 3) READ :2, N$, A1
+190 F(I:160,J:170) (2 3) READ :2, N$, A1
     ERROR: Syntax error: ":2" Value is not assignable (type UnaryOperatorColon)
   Origs: 180:auto
   Dests: 200:auto
-200 F(I,J) (0 1) S E T W2 TO 6 * (J - 1) + 1
+200 F(I:160,J:170) (0 1) S E T W2 TO 6 * (J - 1) + 1
     ERROR: Syntax error
   Origs: 190:auto
   Dests: 210:auto
-210 F(I,J) (2 3) READ :2, M$, B1
+210 F(I:160,J:170) (2 3) READ :2, M$, B1
     ERROR: Syntax error: ":2" Value is not assignable (type UnaryOperatorColon)
   Origs: 200:auto
   Dests: 220:auto
-220 F(I,J) (1 4) IF A1 <= B1 THEN 270
+220 F(I:160,J:170) (1 4) IF A1 <= B1 THEN 270
   Origs: 210:auto
   Dests: 230:auto, 270:ifthen
-230 F(I,J) (0 1) S E T W2 TO 6 * (I - 1) + 1
+230 F(I:160,J:170) (0 1) S E T W2 TO 6 * (I - 1) + 1
     ERROR: Syntax error
   Origs: 220:auto
   Dests: 240:auto
-240 F(I,J) (0 5) WRITE :2, M$, B1
+240 F(I:160,J:170) (0 5) WRITE :2, M$, B1
   Origs: 230:auto
   Dests: 250:auto
-250 F(I,J) (0 1) S E T W2 TO 6 * (J - 1) + 1
+250 F(I:160,J:170) (0 1) S E T W2 TO 6 * (J - 1) + 1
     ERROR: Syntax error
   Origs: 240:auto
   Dests: 260:auto
-260 F(I,J) (0 5) WRITE :2, N$, A1
+260 F(I:160,J:170) (0 5) WRITE :2, N$, A1
   Origs: 250:auto
   Dests: 270:auto
-270 F(I,J) (0 1) NEXT J
+270 F(I:160,J:170) (0 1) NEXT J
   Origs: 170:fornext, 220:ifthen, 260:auto
   Dests: 280:auto
-280 F(I) (0 1) NEXT I
+280 F(I:160) (0 1) NEXT I
   Origs: 160:fornext, 270:auto
   Dests: 290:auto
 284 (0 1) REM * AND NOW PRINT THE RESULTS
@@ -98,21 +98,21 @@ Halstead complexity:
 300 (0 2) PRINT
   Origs: 290:auto
   Dests: 310:auto
-310 F(I) (1 3) FOR I = 1 TO 5
+310 F(I:310) (1 3) FOR I = 1 TO 5
   Origs: 300:auto
   Dests: 320:fornext, 350:fornext
-320 F(I) (0 1) S E T W : 2 TO 6 * (I - 1) + 1
+320 F(I:310) (0 1) S E T W : 2 TO 6 * (I - 1) + 1
     ERROR: Syntax error
   Origs: 310:fornext
   Dests: 330:auto
-330 F(I) (2 3) READ :2, N$, A1
+330 F(I:310) (2 3) READ :2, N$, A1
     ERROR: Syntax error: ":2" Value is not assignable (type UnaryOperatorColon)
   Origs: 320:auto
   Dests: 340:auto
-340 F(I) (0 3) PRINT N$, A1
+340 F(I:310) (0 3) PRINT N$, A1
   Origs: 330:auto
   Dests: 350:auto
-350 F(I) (0 1) NEXT I
+350 F(I:310) (0 1) NEXT I
   Origs: 310:fornext, 340:auto
   Dests: 360:auto
 360 (0 1) END

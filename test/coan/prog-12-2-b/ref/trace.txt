@@ -36,20 +36,20 @@
  B(5,2) = 1
  B(5,3) = 0
  B(5,4) = 2
-240 F(R) FOR R = 1 TO 5
+240 F(R:240) FOR R = 1 TO 5
  R = 1
  terminated:false
-260 F(R,C) FOR C = 1 TO 3
+260 F(R:240,C:260) FOR C = 1 TO 3
  C = 1
  terminated:false
-280 F(R,C) LET C[R, C] = 0
+280 F(R:240,C:260) LET C[R, C] = 0
  R: 1
  C: 1
  C(1,1) = 0
-300 F(R,C,X) FOR X = 1 TO 4
+300 F(R:240,C:260,X:300) FOR X = 1 TO 4
  X = 1
  terminated:false
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 1
  C: 1
  C(1,1): 0
@@ -57,11 +57,11 @@
  B(1,1): 1
  A(1,1): 6
  C(1,1) = 6
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 1
  terminated:false
  X = 2
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 1
  C: 1
  C(1,1): 6
@@ -69,11 +69,11 @@
  B(1,2): 3
  A(2,1): 5
  C(1,1) = 21
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 2
  terminated:false
  X = 3
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 1
  C: 1
  C(1,1): 21
@@ -81,11 +81,11 @@
  B(1,3): 4
  A(3,1): 4
  C(1,1) = 37
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 3
  terminated:false
  X = 4
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 1
  C: 1
  C(1,1): 37
@@ -93,21 +93,21 @@
  B(1,4): 2
  A(4,1): 3
  C(1,1) = 43
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 4
  terminated:true
-360 F(R,C) NEXT C
+360 F(R:240,C:260) NEXT C
  C: 1
  terminated:false
  C = 2
-280 F(R,C) LET C[R, C] = 0
+280 F(R:240,C:260) LET C[R, C] = 0
  R: 1
  C: 2
  C(1,2) = 0
-300 F(R,C,X) FOR X = 1 TO 4
+300 F(R:240,C:260,X:300) FOR X = 1 TO 4
  X = 1
  terminated:false
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 1
  C: 2
  C(1,2): 0
@@ -115,11 +115,11 @@
  B(1,1): 1
  A(1,2): 3
  C(1,2) = 3
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 1
  terminated:false
  X = 2
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 1
  C: 2
  C(1,2): 3
@@ -127,11 +127,11 @@
  B(1,2): 3
  A(2,2): 3
  C(1,2) = 12
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 2
  terminated:false
  X = 3
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 1
  C: 2
  C(1,2): 12
@@ -139,11 +139,11 @@
  B(1,3): 4
  A(3,2): 3
  C(1,2) = 24
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 3
  terminated:false
  X = 4
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 1
  C: 2
  C(1,2): 24
@@ -151,21 +151,21 @@
  B(1,4): 2
  A(4,2): 2
  C(1,2) = 28
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 4
  terminated:true
-360 F(R,C) NEXT C
+360 F(R:240,C:260) NEXT C
  C: 2
  terminated:false
  C = 3
-280 F(R,C) LET C[R, C] = 0
+280 F(R:240,C:260) LET C[R, C] = 0
  R: 1
  C: 3
  C(1,3) = 0
-300 F(R,C,X) FOR X = 1 TO 4
+300 F(R:240,C:260,X:300) FOR X = 1 TO 4
  X = 1
  terminated:false
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 1
  C: 3
  C(1,3): 0
@@ -173,11 +173,11 @@
  B(1,1): 1
  A(1,3): 2
  C(1,3) = 2
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 1
  terminated:false
  X = 2
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 1
  C: 3
  C(1,3): 2
@@ -185,11 +185,11 @@
  B(1,2): 3
  A(2,3): 2
  C(1,3) = 8
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 2
  terminated:false
  X = 3
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 1
  C: 3
  C(1,3): 8
@@ -197,11 +197,11 @@
  B(1,3): 4
  A(3,3): 2
  C(1,3) = 16
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 3
  terminated:false
  X = 4
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 1
  C: 3
  C(1,3): 16
@@ -209,27 +209,27 @@
  B(1,4): 2
  A(4,3): 1
  C(1,3) = 18
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 4
  terminated:true
-360 F(R,C) NEXT C
+360 F(R:240,C:260) NEXT C
  C: 3
  terminated:true
-380 F(R) NEXT R
+380 F(R:240) NEXT R
  R: 1
  terminated:false
  R = 2
-260 F(R,C) FOR C = 1 TO 3
+260 F(R:240,C:260) FOR C = 1 TO 3
  C = 1
  terminated:false
-280 F(R,C) LET C[R, C] = 0
+280 F(R:240,C:260) LET C[R, C] = 0
  R: 2
  C: 1
  C(2,1) = 0
-300 F(R,C,X) FOR X = 1 TO 4
+300 F(R:240,C:260,X:300) FOR X = 1 TO 4
  X = 1
  terminated:false
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 2
  C: 1
  C(2,1): 0
@@ -237,11 +237,11 @@
  B(2,1): 1
  A(1,1): 6
  C(2,1) = 6
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 1
  terminated:false
  X = 2
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 2
  C: 1
  C(2,1): 6
@@ -249,11 +249,11 @@
  B(2,2): 5
  A(2,1): 5
  C(2,1) = 31
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 2
  terminated:false
  X = 3
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 2
  C: 1
  C(2,1): 31
@@ -261,11 +261,11 @@
  B(2,3): 3
  A(3,1): 4
  C(2,1) = 43
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 3
  terminated:false
  X = 4
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 2
  C: 1
  C(2,1): 43
@@ -273,21 +273,21 @@
  B(2,4): 6
  A(4,1): 3
  C(2,1) = 61
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 4
  terminated:true
-360 F(R,C) NEXT C
+360 F(R:240,C:260) NEXT C
  C: 1
  terminated:false
  C = 2
-280 F(R,C) LET C[R, C] = 0
+280 F(R:240,C:260) LET C[R, C] = 0
  R: 2
  C: 2
  C(2,2) = 0
-300 F(R,C,X) FOR X = 1 TO 4
+300 F(R:240,C:260,X:300) FOR X = 1 TO 4
  X = 1
  terminated:false
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 2
  C: 2
  C(2,2): 0
@@ -295,11 +295,11 @@
  B(2,1): 1
  A(1,2): 3
  C(2,2) = 3
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 1
  terminated:false
  X = 2
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 2
  C: 2
  C(2,2): 3
@@ -307,11 +307,11 @@
  B(2,2): 5
  A(2,2): 3
  C(2,2) = 18
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 2
  terminated:false
  X = 3
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 2
  C: 2
  C(2,2): 18
@@ -319,11 +319,11 @@
  B(2,3): 3
  A(3,2): 3
  C(2,2) = 27
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 3
  terminated:false
  X = 4
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 2
  C: 2
  C(2,2): 27
@@ -331,21 +331,21 @@
  B(2,4): 6
  A(4,2): 2
  C(2,2) = 39
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 4
  terminated:true
-360 F(R,C) NEXT C
+360 F(R:240,C:260) NEXT C
  C: 2
  terminated:false
  C = 3
-280 F(R,C) LET C[R, C] = 0
+280 F(R:240,C:260) LET C[R, C] = 0
  R: 2
  C: 3
  C(2,3) = 0
-300 F(R,C,X) FOR X = 1 TO 4
+300 F(R:240,C:260,X:300) FOR X = 1 TO 4
  X = 1
  terminated:false
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 2
  C: 3
  C(2,3): 0
@@ -353,11 +353,11 @@
  B(2,1): 1
  A(1,3): 2
  C(2,3) = 2
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 1
  terminated:false
  X = 2
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 2
  C: 3
  C(2,3): 2
@@ -365,11 +365,11 @@
  B(2,2): 5
  A(2,3): 2
  C(2,3) = 12
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 2
  terminated:false
  X = 3
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 2
  C: 3
  C(2,3): 12
@@ -377,11 +377,11 @@
  B(2,3): 3
  A(3,3): 2
  C(2,3) = 18
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 3
  terminated:false
  X = 4
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 2
  C: 3
  C(2,3): 18
@@ -389,27 +389,27 @@
  B(2,4): 6
  A(4,3): 1
  C(2,3) = 24
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 4
  terminated:true
-360 F(R,C) NEXT C
+360 F(R:240,C:260) NEXT C
  C: 3
  terminated:true
-380 F(R) NEXT R
+380 F(R:240) NEXT R
  R: 2
  terminated:false
  R = 3
-260 F(R,C) FOR C = 1 TO 3
+260 F(R:240,C:260) FOR C = 1 TO 3
  C = 1
  terminated:false
-280 F(R,C) LET C[R, C] = 0
+280 F(R:240,C:260) LET C[R, C] = 0
  R: 3
  C: 1
  C(3,1) = 0
-300 F(R,C,X) FOR X = 1 TO 4
+300 F(R:240,C:260,X:300) FOR X = 1 TO 4
  X = 1
  terminated:false
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 3
  C: 1
  C(3,1): 0
@@ -417,11 +417,11 @@
  B(3,1): 2
  A(1,1): 6
  C(3,1) = 12
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 1
  terminated:false
  X = 2
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 3
  C: 1
  C(3,1): 12
@@ -429,11 +429,11 @@
  B(3,2): 4
  A(2,1): 5
  C(3,1) = 32
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 2
  terminated:false
  X = 3
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 3
  C: 1
  C(3,1): 32
@@ -441,11 +441,11 @@
  B(3,3): 2
  A(3,1): 4
  C(3,1) = 40
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 3
  terminated:false
  X = 4
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 3
  C: 1
  C(3,1): 40
@@ -453,21 +453,21 @@
  B(3,4): 5
  A(4,1): 3
  C(3,1) = 55
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 4
  terminated:true
-360 F(R,C) NEXT C
+360 F(R:240,C:260) NEXT C
  C: 1
  terminated:false
  C = 2
-280 F(R,C) LET C[R, C] = 0
+280 F(R:240,C:260) LET C[R, C] = 0
  R: 3
  C: 2
  C(3,2) = 0
-300 F(R,C,X) FOR X = 1 TO 4
+300 F(R:240,C:260,X:300) FOR X = 1 TO 4
  X = 1
  terminated:false
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 3
  C: 2
  C(3,2): 0
@@ -475,11 +475,11 @@
  B(3,1): 2
  A(1,2): 3
  C(3,2) = 6
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 1
  terminated:false
  X = 2
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 3
  C: 2
  C(3,2): 6
@@ -487,11 +487,11 @@
  B(3,2): 4
  A(2,2): 3
  C(3,2) = 18
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 2
  terminated:false
  X = 3
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 3
  C: 2
  C(3,2): 18
@@ -499,11 +499,11 @@
  B(3,3): 2
  A(3,2): 3
  C(3,2) = 24
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 3
  terminated:false
  X = 4
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 3
  C: 2
  C(3,2): 24
@@ -511,21 +511,21 @@
  B(3,4): 5
  A(4,2): 2
  C(3,2) = 34
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 4
  terminated:true
-360 F(R,C) NEXT C
+360 F(R:240,C:260) NEXT C
  C: 2
  terminated:false
  C = 3
-280 F(R,C) LET C[R, C] = 0
+280 F(R:240,C:260) LET C[R, C] = 0
  R: 3
  C: 3
  C(3,3) = 0
-300 F(R,C,X) FOR X = 1 TO 4
+300 F(R:240,C:260,X:300) FOR X = 1 TO 4
  X = 1
  terminated:false
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 3
  C: 3
  C(3,3): 0
@@ -533,11 +533,11 @@
  B(3,1): 2
  A(1,3): 2
  C(3,3) = 4
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 1
  terminated:false
  X = 2
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 3
  C: 3
  C(3,3): 4
@@ -545,11 +545,11 @@
  B(3,2): 4
  A(2,3): 2
  C(3,3) = 12
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 2
  terminated:false
  X = 3
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 3
  C: 3
  C(3,3): 12
@@ -557,11 +557,11 @@
  B(3,3): 2
  A(3,3): 2
  C(3,3) = 16
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 3
  terminated:false
  X = 4
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 3
  C: 3
  C(3,3): 16
@@ -569,27 +569,27 @@
  B(3,4): 5
  A(4,3): 1
  C(3,3) = 21
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 4
  terminated:true
-360 F(R,C) NEXT C
+360 F(R:240,C:260) NEXT C
  C: 3
  terminated:true
-380 F(R) NEXT R
+380 F(R:240) NEXT R
  R: 3
  terminated:false
  R = 4
-260 F(R,C) FOR C = 1 TO 3
+260 F(R:240,C:260) FOR C = 1 TO 3
  C = 1
  terminated:false
-280 F(R,C) LET C[R, C] = 0
+280 F(R:240,C:260) LET C[R, C] = 0
  R: 4
  C: 1
  C(4,1) = 0
-300 F(R,C,X) FOR X = 1 TO 4
+300 F(R:240,C:260,X:300) FOR X = 1 TO 4
  X = 1
  terminated:false
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 4
  C: 1
  C(4,1): 0
@@ -597,11 +597,11 @@
  B(4,1): 1
  A(1,1): 6
  C(4,1) = 6
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 1
  terminated:false
  X = 2
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 4
  C: 1
  C(4,1): 6
@@ -609,11 +609,11 @@
  B(4,2): 6
  A(2,1): 5
  C(4,1) = 36
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 2
  terminated:false
  X = 3
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 4
  C: 1
  C(4,1): 36
@@ -621,11 +621,11 @@
  B(4,3): 3
  A(3,1): 4
  C(4,1) = 48
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 3
  terminated:false
  X = 4
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 4
  C: 1
  C(4,1): 48
@@ -633,21 +633,21 @@
  B(4,4): 2
  A(4,1): 3
  C(4,1) = 54
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 4
  terminated:true
-360 F(R,C) NEXT C
+360 F(R:240,C:260) NEXT C
  C: 1
  terminated:false
  C = 2
-280 F(R,C) LET C[R, C] = 0
+280 F(R:240,C:260) LET C[R, C] = 0
  R: 4
  C: 2
  C(4,2) = 0
-300 F(R,C,X) FOR X = 1 TO 4
+300 F(R:240,C:260,X:300) FOR X = 1 TO 4
  X = 1
  terminated:false
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 4
  C: 2
  C(4,2): 0
@@ -655,11 +655,11 @@
  B(4,1): 1
  A(1,2): 3
  C(4,2) = 3
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 1
  terminated:false
  X = 2
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 4
  C: 2
  C(4,2): 3
@@ -667,11 +667,11 @@
  B(4,2): 6
  A(2,2): 3
  C(4,2) = 21
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 2
  terminated:false
  X = 3
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 4
  C: 2
  C(4,2): 21
@@ -679,11 +679,11 @@
  B(4,3): 3
  A(3,2): 3
  C(4,2) = 30
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 3
  terminated:false
  X = 4
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 4
  C: 2
  C(4,2): 30
@@ -691,21 +691,21 @@
  B(4,4): 2
  A(4,2): 2
  C(4,2) = 34
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 4
  terminated:true
-360 F(R,C) NEXT C
+360 F(R:240,C:260) NEXT C
  C: 2
  terminated:false
  C = 3
-280 F(R,C) LET C[R, C] = 0
+280 F(R:240,C:260) LET C[R, C] = 0
  R: 4
  C: 3
  C(4,3) = 0
-300 F(R,C,X) FOR X = 1 TO 4
+300 F(R:240,C:260,X:300) FOR X = 1 TO 4
  X = 1
  terminated:false
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 4
  C: 3
  C(4,3): 0
@@ -713,11 +713,11 @@
  B(4,1): 1
  A(1,3): 2
  C(4,3) = 2
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 1
  terminated:false
  X = 2
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 4
  C: 3
  C(4,3): 2
@@ -725,11 +725,11 @@
  B(4,2): 6
  A(2,3): 2
  C(4,3) = 14
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 2
  terminated:false
  X = 3
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 4
  C: 3
  C(4,3): 14
@@ -737,11 +737,11 @@
  B(4,3): 3
  A(3,3): 2
  C(4,3) = 20
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 3
  terminated:false
  X = 4
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 4
  C: 3
  C(4,3): 20
@@ -749,27 +749,27 @@
  B(4,4): 2
  A(4,3): 1
  C(4,3) = 22
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 4
  terminated:true
-360 F(R,C) NEXT C
+360 F(R:240,C:260) NEXT C
  C: 3
  terminated:true
-380 F(R) NEXT R
+380 F(R:240) NEXT R
  R: 4
  terminated:false
  R = 5
-260 F(R,C) FOR C = 1 TO 3
+260 F(R:240,C:260) FOR C = 1 TO 3
  C = 1
  terminated:false
-280 F(R,C) LET C[R, C] = 0
+280 F(R:240,C:260) LET C[R, C] = 0
  R: 5
  C: 1
  C(5,1) = 0
-300 F(R,C,X) FOR X = 1 TO 4
+300 F(R:240,C:260,X:300) FOR X = 1 TO 4
  X = 1
  terminated:false
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 5
  C: 1
  C(5,1): 0
@@ -777,11 +777,11 @@
  B(5,1): 3
  A(1,1): 6
  C(5,1) = 18
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 1
  terminated:false
  X = 2
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 5
  C: 1
  C(5,1): 18
@@ -789,11 +789,11 @@
  B(5,2): 1
  A(2,1): 5
  C(5,1) = 23
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 2
  terminated:false
  X = 3
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 5
  C: 1
  C(5,1): 23
@@ -801,11 +801,11 @@
  B(5,3): 0
  A(3,1): 4
  C(5,1) = 23
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 3
  terminated:false
  X = 4
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 5
  C: 1
  C(5,1): 23
@@ -813,21 +813,21 @@
  B(5,4): 2
  A(4,1): 3
  C(5,1) = 29
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 4
  terminated:true
-360 F(R,C) NEXT C
+360 F(R:240,C:260) NEXT C
  C: 1
  terminated:false
  C = 2
-280 F(R,C) LET C[R, C] = 0
+280 F(R:240,C:260) LET C[R, C] = 0
  R: 5
  C: 2
  C(5,2) = 0
-300 F(R,C,X) FOR X = 1 TO 4
+300 F(R:240,C:260,X:300) FOR X = 1 TO 4
  X = 1
  terminated:false
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 5
  C: 2
  C(5,2): 0
@@ -835,11 +835,11 @@
  B(5,1): 3
  A(1,2): 3
  C(5,2) = 9
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 1
  terminated:false
  X = 2
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 5
  C: 2
  C(5,2): 9
@@ -847,11 +847,11 @@
  B(5,2): 1
  A(2,2): 3
  C(5,2) = 12
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 2
  terminated:false
  X = 3
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 5
  C: 2
  C(5,2): 12
@@ -859,11 +859,11 @@
  B(5,3): 0
  A(3,2): 3
  C(5,2) = 12
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 3
  terminated:false
  X = 4
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 5
  C: 2
  C(5,2): 12
@@ -871,21 +871,21 @@
  B(5,4): 2
  A(4,2): 2
  C(5,2) = 16
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 4
  terminated:true
-360 F(R,C) NEXT C
+360 F(R:240,C:260) NEXT C
  C: 2
  terminated:false
  C = 3
-280 F(R,C) LET C[R, C] = 0
+280 F(R:240,C:260) LET C[R, C] = 0
  R: 5
  C: 3
  C(5,3) = 0
-300 F(R,C,X) FOR X = 1 TO 4
+300 F(R:240,C:260,X:300) FOR X = 1 TO 4
  X = 1
  terminated:false
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 5
  C: 3
  C(5,3): 0
@@ -893,11 +893,11 @@
  B(5,1): 3
  A(1,3): 2
  C(5,3) = 6
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 1
  terminated:false
  X = 2
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 5
  C: 3
  C(5,3): 6
@@ -905,11 +905,11 @@
  B(5,2): 1
  A(2,3): 2
  C(5,3) = 8
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 2
  terminated:false
  X = 3
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 5
  C: 3
  C(5,3): 8
@@ -917,11 +917,11 @@
  B(5,3): 0
  A(3,3): 2
  C(5,3) = 8
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 3
  terminated:false
  X = 4
-320 F(R,C,X) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
+320 F(R:240,C:260,X:300) LET C[R, C] = C[R, C] + B[R, X] * A[X, C]
  R: 5
  C: 3
  C(5,3): 8
@@ -929,13 +929,13 @@
  B(5,4): 2
  A(4,3): 1
  C(5,3) = 10
-340 F(R,C,X) NEXT X
+340 F(R:240,C:260,X:300) NEXT X
  X: 4
  terminated:true
-360 F(R,C) NEXT C
+360 F(R:240,C:260) NEXT C
  C: 3
  terminated:true
-380 F(R) NEXT R
+380 F(R:240) NEXT R
  R: 5
  terminated:true
 500 PRINT "ROAD", "TUNNEL", "BRIDGE"

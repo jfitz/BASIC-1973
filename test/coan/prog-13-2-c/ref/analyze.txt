@@ -31,25 +31,25 @@ Halstead complexity:
 40 (0 1) REM 30 TO 50 FIND NPR
   Origs: 
   Dests: 
-50 F(X) (1 7) FOR X = N TO N - R + 1 STEP -1
+50 F(X:50) (1 7) FOR X = N TO N - R + 1 STEP -1
   Origs: 30:auto
   Dests: 60:fornext, 70:fornext
-60 F(X) (0 4) LET C = C * X
+60 F(X:50) (0 4) LET C = C * X
   Origs: 50:fornext
   Dests: 70:auto
-70 F(X) (0 1) NEXT X
+70 F(X:50) (0 1) NEXT X
   Origs: 50:fornext, 60:auto
   Dests: 90:auto
 80 (0 1) REM 60 TO 80 DIVIDE BY R!
   Origs: 
   Dests: 
-90 F(X) (1 5) FOR X = R TO 1 STEP -1
+90 F(X:90) (1 5) FOR X = R TO 1 STEP -1
   Origs: 70:auto
   Dests: 100:fornext, 110:fornext
-100 F(X) (0 4) LET C = C / X
+100 F(X:90) (0 4) LET C = C / X
   Origs: 90:fornext
   Dests: 110:auto
-110 F(X) (0 1) NEXT X
+110 F(X:90) (0 1) NEXT X
   Origs: 90:fornext, 100:auto
   Dests: 120:auto
 120 (0 7) PRINT N; "THINGS"; R; "AT A TIME HAVE"; C; "COMBINATIONS"

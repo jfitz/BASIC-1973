@@ -73,9 +73,9 @@ Halstead complexity:
 250 (0 3) CHANGE B$ TO A
   Origs: 240:auto
   Dests: 260:auto
-260 F(X) (1 3) FOR X = 1 TO 6
-    F(X) (1 2) READ H$(X)
-    F(X) (0 1) NEXT X
+260 F(X:260) (1 3) FOR X = 1 TO 6
+    F(X:260) (1 2) READ H$(X)
+    F(X:260) (0 1) NEXT X
     (0 3) H$ = H$(L)
     (0 2) GOSUB 940
   Origs: 250:auto
@@ -83,21 +83,21 @@ Halstead complexity:
 270 G(610) (0 4) F = F + 1
     G(610) (1 4) IF F > A(0) THEN 990
     G(610) (0 3) G(0) = L
-    G(610) F(X) (1 3) FOR X = 1 TO 6
-    G(610) F(X) (0 3) G(X) = A(F)
-    G(610) F(X) (0 1) NEXT X
+    G(610) F(X:270.3) (1 3) FOR X = 1 TO 6
+    G(610) F(X:270.3) (0 3) G(X) = A(F)
+    G(610) F(X:270.3) (0 1) NEXT X
     G(610) (0 3) CHANGE G TO G$
   Origs: 260:auto, 300:ifthen, 310:ifthen, 330:ifthen, 340:goto, 345:goto, 350:goto, 360:goto, 370:goto, 380:goto, 390:goto, 400:goto, 420:goto, 430:goto, 440:goto, 450:goto, 460:goto, 470:goto, 480:goto, 490:goto, 500:goto, 510:goto, 530:goto, 540:goto, 550:goto, 560:goto, 570:goto, 580:goto, 585:goto, 590:goto, 595:goto, 600:goto, 605:goto, 610:goto, 615:goto, 620:goto, 625:goto, 630:goto, 635:goto
   Dests: 280:auto, 990:ifthen
-280 G(610) F(X) (1 3) FOR X = 1 TO 6
-    G(610) F(X) (0 3) G(0) = X
-    G(610) F(X) (0 3) CHANGE G TO G$(X)
-    G(610) F(X) (0 1) NEXT X
+280 G(610) F(X:280) (1 3) FOR X = 1 TO 6
+    G(610) F(X:280) (0 3) G(0) = X
+    G(610) F(X:280) (0 3) CHANGE G TO G$(X)
+    G(610) F(X:280) (0 1) NEXT X
   Origs: 270:auto
   Dests: 290:auto
-290 G(610) F(X) (1 4) FOR X = 1 TO A / 2
-    G(610) F(X) (0 2) PRINT
-    G(610) F(X) (0 1) NEXT X
+290 G(610) F(X:290) (1 4) FOR X = 1 TO A / 2
+    G(610) F(X:290) (0 2) PRINT
+    G(610) F(X:290) (0 1) NEXT X
   Origs: 280:auto
   Dests: 300:auto
 300 G(610) (1 4) IF A(F) = 46 THEN 345
@@ -128,9 +128,9 @@ Halstead complexity:
     WARNING: Branch to line before GOSUB start
   Origs: 330:auto
   Dests: 270:goto
-345 G(610) F(X) (1 3) FOR X = 1 TO A
-    G(610) F(X) (0 5) PRINT TAB(S); G$; G$
-    G(610) F(X) (0 1) NEXT X
+345 G(610) F(X:345) (1 3) FOR X = 1 TO A
+    G(610) F(X:345) (0 5) PRINT TAB(S); G$; G$
+    G(610) F(X:345) (0 1) NEXT X
     G(610) (0 3) GOTO 270
     WARNING: Branch to line before GOSUB start
   Origs: 300:ifthen
@@ -390,13 +390,13 @@ Halstead complexity:
     WARNING: Branch to line before GOSUB start
   Origs: 309:goto
   Dests: 270:goto, 640:gosub, 710:gosub, 790:gosub
-640 G(640) F(Y) (1 3) FOR Y = 1 TO A
-    G(640) F(Y) (0 3) PRINT TAB(S);
-    G(640) F(Y,X) (1 3) FOR X = 1 TO 10
-    G(640) F(Y,X) (0 2) PRINT G$;
-    G(640) F(Y,X) (0 1) NEXT X
-    G(640) F(Y) (0 2) PRINT
-    G(640) F(Y) (0 1) NEXT Y
+640 G(640) F(Y:640) (1 3) FOR Y = 1 TO A
+    G(640) F(Y:640) (0 3) PRINT TAB(S);
+    G(640) F(Y:640,X:640.2) (1 3) FOR X = 1 TO 10
+    G(640) F(Y:640,X:640.2) (0 2) PRINT G$;
+    G(640) F(Y:640,X:640.2) (0 1) NEXT X
+    G(640) F(Y:640) (0 2) PRINT
+    G(640) F(Y:640) (0 1) NEXT Y
     G(640) (0 1) RETURN
   Origs: 350:gosub, 360:gosub, 370:gosub, 380:gosub, 390:gosub, 400:gosub, 410:gosub, 430:gosub, 440:gosub, 450:gosub, 460:gosub, 470:gosub, 480:gosub, 490:gosub, 500:gosub, 510:gosub, 520:gosub, 540:gosub, 560:gosub, 570:gosub, 585:gosub, 590:gosub, 595:gosub, 605:gosub, 615:gosub, 625:gosub, 635:gosub
   Dests: 
@@ -407,26 +407,26 @@ Halstead complexity:
 660 G(650) (0 3) LET A = 1
   Origs: 650:auto, 650:ifthen
   Dests: 670:auto
-670 G(650) F(X) (1 3) FOR X = 1 TO A
-    G(650) F(X) (0 13) PRINT TAB(S); G$; G$; H$; H$; G$; G$; H$; H$; G$; G$
-    G(650) F(X) (0 1) NEXT X
+670 G(650) F(X:670) (1 3) FOR X = 1 TO A
+    G(650) F(X:670) (0 13) PRINT TAB(S); G$; G$; H$; H$; G$; G$; H$; H$; G$; G$
+    G(650) F(X:670) (0 1) NEXT X
     G(650) (0 1) RETURN
   Origs: 650:goto, 660:auto
   Dests: 
 680 (0 3) PRINT TAB(S);
   Origs: 
   Dests: 690:auto
-690 G(690) F(X) (1 3) FOR X = 1 TO A
-    G(690) F(X) (0 9) PRINT TAB(4 * L + S); G$; G$; H$; H$; G$; G$
-    G(690) F(X) (0 1) NEXT X
+690 G(690) F(X:690) (1 3) FOR X = 1 TO A
+    G(690) F(X:690) (0 9) PRINT TAB(4 * L + S); G$; G$; H$; H$; G$; G$
+    G(690) F(X:690) (0 1) NEXT X
     G(690) (0 1) RETURN
     WARNING: Inconsistent GOSUB origins
   Origs: 350:gosub, 400:gosub, 510:gosub, 540:gosub, 585:gosub, 680:auto
   Dests: 
-700 G(700) F(X) (1 3) FOR X = 1 TO A
-    G(700) F(X) (0 5) PRINT TAB(S); G$; G$;
-    G(700) F(X) (0 5) PRINT TAB(8 * L + S); G$; G$
-    G(700) F(X) (0 1) NEXT X
+700 G(700) F(X:700) (1 3) FOR X = 1 TO A
+    G(700) F(X:700) (0 5) PRINT TAB(S); G$; G$;
+    G(700) F(X:700) (0 5) PRINT TAB(8 * L + S); G$; G$
+    G(700) F(X:700) (0 1) NEXT X
     G(700) (0 1) RETURN
   Origs: 370:gosub, 380:gosub, 410:gosub, 500:gosub, 520:gosub, 625:gosub
   Dests: 
@@ -437,155 +437,155 @@ Halstead complexity:
 720 G(710) (0 3) LET A = 1
   Origs: 710:auto, 710:ifthen
   Dests: 730:auto
-730 G(710) F(X) (1 3) FOR X = 1 TO A
-    G(710) F(X) (0 5) PRINT TAB(4 * L + S); G$; G$
-    G(710) F(X) (0 1) NEXT X
+730 G(710) F(X:730) (1 3) FOR X = 1 TO A
+    G(710) F(X:730) (0 5) PRINT TAB(4 * L + S); G$; G$
+    G(710) F(X:730) (0 1) NEXT X
     G(710) (0 1) RETURN
   Origs: 710:goto, 720:auto
   Dests: 
-740 G(740) F(X) (1 3) FOR X = 1 TO A
-    G(740) F(X) (0 5) PRINT TAB(S); G$; G$
-    G(740) F(X) (0 1) NEXT X
+740 G(740) F(X:740) (1 3) FOR X = 1 TO A
+    G(740) F(X:740) (0 5) PRINT TAB(S); G$; G$
+    G(740) F(X:740) (0 1) NEXT X
     G(740) (0 1) RETURN
   Origs: 450:gosub, 470:gosub, 570:gosub
   Dests: 
-750 G(750) F(X) (1 3) FOR X = 1 TO A
-    G(750) F(X) (0 7) PRINT TAB(S); G$; G$; G$; G$
-    G(750) F(X) (0 1) NEXT X
+750 G(750) F(X:750) (1 3) FOR X = 1 TO A
+    G(750) F(X:750) (0 7) PRINT TAB(S); G$; G$; G$; G$
+    G(750) F(X:750) (0 1) NEXT X
     G(750) (0 1) RETURN
   Origs: 450:gosub
   Dests: 
-760 G(760) F(Y) (1 3) FOR Y = 1 TO A
-    G(760) F(Y) (0 13) PRINT TAB(S); G$; G$; G$; G$; G$; G$; H$; H$; G$; G$
-    G(760) F(Y) (0 1) NEXT Y
+760 G(760) F(Y:760) (1 3) FOR Y = 1 TO A
+    G(760) F(Y:760) (0 13) PRINT TAB(S); G$; G$; G$; G$; G$; G$; H$; H$; G$; G$
+    G(760) F(Y:760) (0 1) NEXT Y
     G(760) (0 1) RETURN
   Origs: 410:gosub, 550:gosub, 615:gosub
   Dests: 
-770 G(770) F(X) (1 3) FOR X = 1 TO A
-    G(770) F(X) (0 13) PRINT TAB(S); G$; G$; H$; H$; G$; G$; G$; G$; G$; G$
-    G(770) F(X) (0 1) NEXT X
+770 G(770) F(X:770) (1 3) FOR X = 1 TO A
+    G(770) F(X:770) (0 13) PRINT TAB(S); G$; G$; H$; H$; G$; G$; G$; G$; G$; G$
+    G(770) F(X:770) (0 1) NEXT X
     G(770) (0 1) RETURN
   Origs: 550:gosub
   Dests: 
-780 G(780) F(X) (1 3) FOR X = 1 TO A
-    G(780) F(X) (0 5) PRINT TAB(8 * L + S); G$; G$
-    G(780) F(X) (0 1) NEXT X
+780 G(780) F(X:780) (1 3) FOR X = 1 TO A
+    G(780) F(X:780) (0 5) PRINT TAB(8 * L + S); G$; G$
+    G(780) F(X:780) (0 1) NEXT X
     G(780) (0 1) RETURN
   Origs: 560:gosub, 605:gosub
   Dests: 
-790 G(790) F(X) (1 3) FOR X = 1 TO A
-    G(790) F(X) (0 9) PRINT TAB(4 * L + S); G$; G$; G$; G$; G$; G$
-    G(790) F(X) (0 1) NEXT X
+790 G(790) F(X:790) (1 3) FOR X = 1 TO A
+    G(790) F(X:790) (0 9) PRINT TAB(4 * L + S); G$; G$; G$; G$; G$; G$
+    G(790) F(X:790) (0 1) NEXT X
     G(790) (0 1) RETURN
   Origs: 510:gosub, 585:gosub, 635:gosub
   Dests: 
-800 G(800) F(X) (1 3) FOR X = 1 TO A
-    G(800) F(X) (0 9) PRINT TAB(S); G$; G$; G$; G$; G$; G$
-    G(800) F(X) (0 1) NEXT X
+800 G(800) F(X:800) (1 3) FOR X = 1 TO A
+    G(800) F(X:800) (0 9) PRINT TAB(S); G$; G$; G$; G$; G$; G$
+    G(800) F(X:800) (0 1) NEXT X
     G(800) (0 1) RETURN
   Origs: 610:gosub
   Dests: 
-810 G(810) F(X) (1 4) FOR X = 1 TO C / 2
-    G(810) F(X) (0 3) PRINT TAB(S);
-    G(810) F(X,Y) (1 3) FOR Y = 1 TO 2
-    G(810) F(X,Y,Z) (1 5) FOR Z = 1 TO (5 + L) - X
-    G(810) F(X,Y,Z) (0 2) PRINT G$(1);
-    G(810) F(X,Y,Z) (0 1) NEXT Z
+810 G(810) F(X:810) (1 4) FOR X = 1 TO C / 2
+    G(810) F(X:810) (0 3) PRINT TAB(S);
+    G(810) F(X:810,Y:810.2) (1 3) FOR Y = 1 TO 2
+    G(810) F(X:810,Y:810.2,Z:810.3) (1 5) FOR Z = 1 TO (5 + L) - X
+    G(810) F(X:810,Y:810.2,Z:810.3) (0 2) PRINT G$(1);
+    G(810) F(X:810,Y:810.2,Z:810.3) (0 1) NEXT Z
   Origs: 540:gosub, 625:gosub
   Dests: 820:auto, 830:fornext
-820 G(810) F(X,Y) (1 4) IF X > 3 THEN 950
-    G(810) F(X,Y) (0 3) V = X
+820 G(810) F(X:810,Y:810.2) (1 4) IF X > 3 THEN 950
+    G(810) F(X:810,Y:810.2) (0 3) V = X
   Origs: 810:auto
   Dests: 830:auto, 950:ifthen
-830 G(810) F(X,Y) (0 2) PRINT H$(2 * V);
-    G(810) F(X,Y) (0 1) NEXT Y
-    G(810) F(X) (0 2) PRINT
-    G(810) F(X) (0 1) NEXT X
+830 G(810) F(X:810,Y:810.2) (0 2) PRINT H$(2 * V);
+    G(810) F(X:810,Y:810.2) (0 1) NEXT Y
+    G(810) F(X:810) (0 2) PRINT
+    G(810) F(X:810) (0 1) NEXT X
     G(810) (0 1) RETURN
   Origs: 810:fornext, 820:auto, 950:goto
   Dests: 
-840 F(X) (1 4) FOR X = 1 TO C / 2
-    F(X) (0 4) PRINT TAB(S); H$(X);
-    F(X,Y) (1 7) FOR Y = 1 TO 10 * L - (2 + X)
-    F(X,Y) (0 2) PRINT G$(1);
-    F(X,Y) (0 1) NEXT Y
-    F(X) (0 2) PRINT
+840 F(X:840) (1 4) FOR X = 1 TO C / 2
+    F(X:840) (0 4) PRINT TAB(S); H$(X);
+    F(X:840,Y:840.2) (1 7) FOR Y = 1 TO 10 * L - (2 + X)
+    F(X:840,Y:840.2) (0 2) PRINT G$(1);
+    F(X:840,Y:840.2) (0 1) NEXT Y
+    F(X:840) (0 2) PRINT
   Origs: 
   Dests: 850:auto, 850:fornext
-850 F(X) (0 1) NEXT X
+850 F(X:840) (0 1) NEXT X
     (0 1) RETURN
   Origs: 840:auto, 840:fornext
   Dests: 
-860 G(860) F(X) (1 10) FOR X = 4 * L TO 7 * L STEP 14 * L / (C * 6)
-    G(860) F(X) (0 6) PRINT TAB(X + S); G$; G$; G$;
+860 G(860) F(X:860) (1 10) FOR X = 4 * L TO 7 * L STEP 14 * L / (C * 6)
+    G(860) F(X:860) (0 6) PRINT TAB(X + S); G$; G$; G$;
   Origs: 460:gosub
   Dests: 870:auto, 870:fornext
-870 G(860) F(X) (0 6) PRINT TAB(7 * L - X + S); G$; G$; G$
-    G(860) F(X) (0 1) NEXT X
+870 G(860) F(X:860) (0 6) PRINT TAB(7 * L - X + S); G$; G$; G$
+    G(860) F(X:860) (0 1) NEXT X
     G(860) (0 1) RETURN
   Origs: 860:auto, 860:fornext
   Dests: 
-880 G(880) F(X) (1 7) FOR X = 0 TO 6 * L STEP 6 * L / C
-    G(880) F(X) (0 7) PRINT TAB(X + S); G$; G$; G$; G$
-    G(880) F(X) (0 1) NEXT X
+880 G(880) F(X:880) (1 7) FOR X = 0 TO 6 * L STEP 6 * L / C
+    G(880) F(X:880) (0 7) PRINT TAB(X + S); G$; G$; G$; G$
+    G(880) F(X:880) (0 1) NEXT X
     G(880) (0 1) RETURN
   Origs: 480:gosub, 580:gosub, 590:gosub
   Dests: 
-890 G(890) F(X) (1 8) FOR X = 6 * L TO 0 STEP -6 * L / C
-    G(890) F(X) (0 7) PRINT TAB(X + S); G$; G$; G$; G$
-    G(890) F(X) (0 1) NEXT X
+890 G(890) F(X:890) (1 8) FOR X = 6 * L TO 0 STEP -6 * L / C
+    G(890) F(X:890) (0 7) PRINT TAB(X + S); G$; G$; G$; G$
+    G(890) F(X:890) (0 1) NEXT X
     G(890) (0 1) RETURN
   Origs: 480:gosub, 490:gosub, 580:gosub, 590:gosub
   Dests: 
-900 G(900) F(X) (1 9) FOR X = 0 TO 7 * L STEP (14 * L) / (C * 6)
-    G(900) F(X) (0 6) PRINT TAB(X + S); G$; G$; G$;
+900 G(900) F(X:900) (1 9) FOR X = 0 TO 7 * L STEP (14 * L) / (C * 6)
+    G(900) F(X:900) (0 6) PRINT TAB(X + S); G$; G$; G$;
   Origs: 600:gosub
   Dests: 910:auto, 910:fornext
-910 G(900) F(X) (0 6) PRINT TAB(7 * L - X + S); G$; G$; G$
-    G(900) F(X) (0 1) NEXT X
+910 G(900) F(X:900) (0 6) PRINT TAB(7 * L - X + S); G$; G$; G$
+    G(900) F(X:900) (0 1) NEXT X
     G(900) (0 1) RETURN
   Origs: 900:auto, 900:fornext
   Dests: 
-920 G(920) F(X) (1 9) FOR X = 0 TO 7 * L STEP (7 * L) / (C * 3)
-    G(920) F(X) (0 10) PRINT TAB(S); G$; G$; TAB(X + S); G$; G$; G$;
+920 G(920) F(X:920) (1 9) FOR X = 0 TO 7 * L STEP (7 * L) / (C * 3)
+    G(920) F(X:920) (0 10) PRINT TAB(S); G$; G$; TAB(X + S); G$; G$; G$;
   Origs: 620:gosub
   Dests: 930:auto, 930:fornext
-930 G(920) F(X) (0 5) PRINT TAB(8 * L + S); G$; G$
-    G(920) F(X) (0 1) NEXT X
+930 G(920) F(X:920) (0 5) PRINT TAB(8 * L + S); G$; G$
+    G(920) F(X:920) (0 1) NEXT X
     G(920) (0 1) RETURN
   Origs: 920:auto, 920:fornext
   Dests: 
-940 G(940) F(X) (1 4) FOR X = 1 TO A * 3
-    G(940) F(X) (0 2) PRINT
-    G(940) F(X) (0 1) NEXT X
+940 G(940) F(X:940) (1 4) FOR X = 1 TO A * 3
+    G(940) F(X:940) (0 2) PRINT
+    G(940) F(X:940) (0 1) NEXT X
     G(940) (0 1) RETURN
   Origs: 260:gosub, 630:gosub
   Dests: 
-950 G(810) F(X,Y,W) (1 4) FOR W = 1 TO X - 3
-    G(810) F(X,Y,W) (0 2) PRINT " ";
-    G(810) F(X,Y,W) (0 1) NEXT W
-    G(810) F(X,Y) (0 3) V = 3
-    G(810) F(X,Y) (0 3) GOTO 830
+950 G(810) F(X:810,Y:810.2,W:950) (1 4) FOR W = 1 TO X - 3
+    G(810) F(X:810,Y:810.2,W:950) (0 2) PRINT " ";
+    G(810) F(X:810,Y:810.2,W:950) (0 1) NEXT W
+    G(810) F(X:810,Y:810.2) (0 3) V = 3
+    G(810) F(X:810,Y:810.2) (0 3) GOTO 830
   Origs: 820:ifthen
   Dests: 830:goto
-960 G(960) F(X) (1 8) FOR X = 4 * L TO 7 * L STEP L * 4 / C
-    G(960) F(X) (0 6) PRINT TAB(X + S); G$; G$; G$
-    G(960) F(X) (0 1) NEXT X
+960 G(960) F(X:960) (1 8) FOR X = 4 * L TO 7 * L STEP L * 4 / C
+    G(960) F(X:960) (0 6) PRINT TAB(X + S); G$; G$; G$
+    G(960) F(X:960) (0 1) NEXT X
     G(960) (0 1) RETURN
   Origs: 610:gosub
   Dests: 
-970 G(970) F(X) (1 9) FOR X = 7 * L TO 4 * L STEP -4 * L / C
-    G(970) F(X) (0 6) PRINT TAB(X + S); G$; G$; G$
-    G(970) F(X) (0 1) NEXT X
+970 G(970) F(X:970) (1 9) FOR X = 7 * L TO 4 * L STEP -4 * L / C
+    G(970) F(X:970) (0 6) PRINT TAB(X + S); G$; G$; G$
+    G(970) F(X:970) (0 1) NEXT X
     G(970) (0 1) RETURN
   Origs: 610:gosub
   Dests: 
 980 (0 2) DATA " ", "  ", "   ", "    ", "     ", "      ", ""
   Origs: 
   Dests: 
-990 G(610) F(X) (1 4) FOR X = 1 TO C * 3
-    G(610) F(X) (0 2) PRINT
-    G(610) F(X) (0 1) NEXT X
+990 G(610) F(X:990) (1 4) FOR X = 1 TO C * 3
+    G(610) F(X:990) (0 2) PRINT
+    G(610) F(X:990) (0 1) NEXT X
   Origs: 270:ifthen, 300:ifthen
   Dests: 1000:auto
 1000 G(610) (0 1) END

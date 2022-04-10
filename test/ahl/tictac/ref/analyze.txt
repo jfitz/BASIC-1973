@@ -34,13 +34,13 @@ Halstead complexity:
 160 (0 2) DIM D(11)
   Origs: 150:auto
   Dests: 170:auto
-170 F(K) (1 3) FOR K = 1 TO 11
+170 F(K:170) (1 3) FOR K = 1 TO 11
   Origs: 160:auto
   Dests: 180:fornext, 190:fornext
-180 F(K) (2 3) READ C(K), D(K)
+180 F(K:170) (2 3) READ C(K), D(K)
   Origs: 170:fornext
   Dests: 190:auto
-190 F(K) (0 1) NEXT K
+190 F(K:170) (0 1) NEXT K
   Origs: 170:fornext, 180:auto
   Dests: 200:auto
 200 (0 2) PRINT
@@ -58,28 +58,28 @@ Halstead complexity:
 240 (0 2) DIM A(3, 3)
   Origs: 230:auto
   Dests: 250:auto
-250 F(J) (0 2) PRINT
+250 F(J:760) (0 2) PRINT
   Origs: 240:auto, 2090:ifthen
   Dests: 260:auto
-260 F(J) (0 2) PRINT "NEW GAME STARTED NOW............................."
+260 F(J:760) (0 2) PRINT "NEW GAME STARTED NOW............................."
   Origs: 250:auto
   Dests: 270:auto
-270 F(J) (1 3) FOR J = 1 TO 3
+270 F(J:270,J:760) (1 3) FOR J = 1 TO 3
   Origs: 260:auto
   Dests: 280:fornext, 310:fornext
-280 F(J,I) (1 3) FOR I = 1 TO 3
+280 F(J:270,I:280,J:760) (1 3) FOR I = 1 TO 3
   Origs: 270:fornext
   Dests: 290:fornext, 300:fornext
-290 F(J,I) (0 3) LET A(I, J) = 0
+290 F(J:270,I:280,J:760) (0 3) LET A(I, J) = 0
   Origs: 280:fornext
   Dests: 300:auto
-300 F(J,I) (0 1) NEXT I
+300 F(J:270,I:280,J:760) (0 1) NEXT I
   Origs: 280:fornext, 290:auto
   Dests: 301:auto
-301 F(J) (0 4) LET I = I - 1
+301 F(J:270,J:760) (0 4) LET I = I - 1
   Origs: 300:auto
   Dests: 310:auto
-310 F(J) (0 1) NEXT J
+310 F(J:270,J:760) (0 1) NEXT J
   Origs: 270:fornext, 301:auto
   Dests: 311:auto
 311 (0 4) LET J = J - 1
@@ -88,127 +88,127 @@ Halstead complexity:
 320 (0 3) LET Z = 0
   Origs: 311:auto
   Dests: 330:auto
-330 F(J) (0 2) PRINT "YOUR MOVE",
+330 F(J:760) (0 2) PRINT "YOUR MOVE",
   Origs: 320:auto, 600:goto, 640:goto
   Dests: 340:auto
-340 F(J) (2 3) INPUT R, C
+340 F(J:760) (2 3) INPUT R, C
   Origs: 330:auto
   Dests: 350:auto
-350 F(J) (0 2) PRINT
+350 F(J:760) (0 2) PRINT
   Origs: 340:auto
   Dests: 360:auto
-360 F(J) (1 4) IF R > 3 THEN 620
+360 F(J:760) (1 4) IF R > 3 THEN 620
   Origs: 350:auto
   Dests: 370:auto, 620:ifthen
-370 F(J) (1 4) IF C > 3 THEN 620
+370 F(J:760) (1 4) IF C > 3 THEN 620
   Origs: 360:auto
   Dests: 380:auto, 620:ifthen
-380 F(J) (1 4) IF A(R, C) <> 0 THEN 620
+380 F(J:760) (1 4) IF A(R, C) <> 0 THEN 620
   Origs: 370:auto
   Dests: 390:auto, 620:ifthen
-390 F(J) (0 4) LET A(R, C) = -1
+390 F(J:760) (0 4) LET A(R, C) = -1
   Origs: 380:auto
   Dests: 400:auto
-400 F(J) (0 2) GOSUB 1660
+400 F(J:760) (0 2) GOSUB 1660
   Origs: 390:auto
   Dests: 410:auto, 1660:gosub
-410 F(J) (1 4) IF Z = 1 THEN 2070
+410 F(J:760) (1 4) IF Z = 1 THEN 2070
   Origs: 400:auto
   Dests: 430:auto, 2070:ifthen
 420 (0 1) REM MACHINE MOVE...
   Origs: 
   Dests: 
-430 F(J) (0 2) GOSUB 1100
+430 F(J:760) (0 2) GOSUB 1100
   Origs: 410:auto
   Dests: 450:auto, 1100:gosub
 440 (0 1) REM TEST FOR GAME WIN...
   Origs: 
   Dests: 
-450 F(J) (0 2) GOSUB 1660
+450 F(J:760) (0 2) GOSUB 1660
   Origs: 430:auto
   Dests: 460:auto, 1660:gosub
-460 F(J) (1 4) IF Z = 0 THEN 650
+460 F(J:760) (1 4) IF Z = 0 THEN 650
   Origs: 450:auto
   Dests: 480:auto, 650:ifthen
 470 (0 1) REM PRINT GAME BOARD...
   Origs: 
   Dests: 
-480 F(J) (0 2) GOTO 490
+480 F(J:760) (0 2) GOTO 490
   Origs: 460:auto, 740:goto, 750:ifthen, 810:goto
   Dests: 490:goto
-490 F(J) (0 2) PRINT
+490 F(J:760) (0 2) PRINT
   Origs: 480:goto
   Dests: 500:auto
-500 F(K,J) (1 3) FOR K = 1 TO 3
+500 F(K:500,J:760) (1 3) FOR K = 1 TO 3
   Origs: 490:auto
   Dests: 510:fornext, 570:fornext
-510 F(K,J) (0 3) LET B = A(K, 1)
+510 F(K:500,J:760) (0 3) LET B = A(K, 1)
   Origs: 500:fornext
   Dests: 520:auto
-520 F(K,J) (0 3) LET D = A(K, 2)
+520 F(K:500,J:760) (0 3) LET D = A(K, 2)
   Origs: 510:auto
   Dests: 530:auto
-530 F(K,J) (0 3) LET F = A(K, 3)
+530 F(K:500,J:760) (0 3) LET F = A(K, 3)
   Origs: 520:auto
   Dests: 540:auto
-540 F(K,J) (0 2) GOSUB 840
+540 F(K:500,J:760) (0 2) GOSUB 840
   Origs: 530:auto
   Dests: 550:auto, 840:gosub
-550 F(K,J) (1 4) IF K > 2 THEN 570
+550 F(K:500,J:760) (1 4) IF K > 2 THEN 570
   Origs: 540:auto
   Dests: 560:auto, 570:ifthen
-560 F(K,J) (0 2) PRINT "***************"
+560 F(K:500,J:760) (0 2) PRINT "***************"
   Origs: 550:auto
   Dests: 570:auto
-570 F(K,J) (0 1) NEXT K
+570 F(K:500,J:760) (0 1) NEXT K
   Origs: 500:fornext, 550:ifthen, 560:auto
   Dests: 571:auto
-571 F(J) (0 4) LET K = K - 1
+571 F(J:760) (0 4) LET K = K - 1
   Origs: 570:auto
   Dests: 580:auto
-580 F(J) (0 2) PRINT
+580 F(J:760) (0 2) PRINT
   Origs: 571:auto
   Dests: 590:auto
-590 F(J) (1 4) IF Z <> 0 THEN 2070
+590 F(J:760) (1 4) IF Z <> 0 THEN 2070
   Origs: 580:auto
   Dests: 600:auto, 2070:ifthen
-600 F(J) (0 3) GOTO 330
+600 F(J:760) (0 3) GOTO 330
   Origs: 590:auto
   Dests: 330:goto
 610 (0 1) STOP
   Origs: 
   Dests: :stop
-620 F(J) (0 2) PRINT "---- ILLEGAL MOVE  TRY AGAIN ---"
+620 F(J:760) (0 2) PRINT "---- ILLEGAL MOVE  TRY AGAIN ---"
   Origs: 360:ifthen, 370:ifthen, 380:ifthen
   Dests: 630:auto
-630 F(J) (0 2) PRINT
+630 F(J:760) (0 2) PRINT
   Origs: 620:auto
   Dests: 640:auto
-640 F(J) (0 3) GOTO 330
+640 F(J:760) (0 3) GOTO 330
   Origs: 630:auto
   Dests: 330:goto
-650 F(J) (0 3) LET T2 = 0
+650 F(J:760) (0 3) LET T2 = 0
   Origs: 460:ifthen
   Dests: 660:auto
-660 F(J) (1 3) FOR J = 1 TO 3
+660 F(J:660,J:760) (1 3) FOR J = 1 TO 3
   Origs: 650:auto
   Dests: 670:fornext, 710:fornext
-670 F(J,I) (1 3) FOR I = 1 TO 3
+670 F(J:660,I:670,J:760) (1 3) FOR I = 1 TO 3
   Origs: 660:fornext
   Dests: 680:fornext, 700:fornext
-680 F(J,I) (1 4) IF A(I, J) <> 0 THEN 700
+680 F(J:660,I:670,J:760) (1 4) IF A(I, J) <> 0 THEN 700
   Origs: 670:fornext
   Dests: 690:auto, 700:ifthen
-690 F(J,I) (0 4) LET T2 = T2 + 1
+690 F(J:660,I:670,J:760) (0 4) LET T2 = T2 + 1
   Origs: 680:auto
   Dests: 700:auto
-700 F(J,I) (0 1) NEXT I
+700 F(J:660,I:670,J:760) (0 1) NEXT I
   Origs: 670:fornext, 680:ifthen, 690:auto
   Dests: 701:auto
-701 F(J) (0 4) LET I = I - 1
+701 F(J:660,J:760) (0 4) LET I = I - 1
   Origs: 700:auto
   Dests: 710:auto
-710 F(J) (0 1) NEXT J
+710 F(J:660,J:760) (0 1) NEXT J
   Origs: 660:fornext, 701:auto
   Dests: 711:auto
 711 (0 4) LET J = J - 1
@@ -226,13 +226,13 @@ Halstead complexity:
 750 (1 5) IF T2 > 1 THEN 480
   Origs: 720:ifthen
   Dests: 480:ifthen, 760:auto
-760 F(J) (1 3) FOR J = 1 TO 8
+760 F(J:760) (1 3) FOR J = 1 TO 8
   Origs: 750:auto
   Dests: 770:fornext, 780:fornext
-770 F(J) (1 6) IF B(J) = -2 THEN 800
+770 F(J:760) (1 6) IF B(J) = -2 THEN 800
   Origs: 760:fornext
   Dests: 780:auto, 800:ifthen
-780 F(J) (0 1) NEXT J
+780 F(J:760) (0 1) NEXT J
   Origs: 760:fornext, 770:auto
   Dests: 781:auto
 781 (0 4) LET J = J - 1
@@ -241,10 +241,10 @@ Halstead complexity:
 790 (0 3) GOTO 730
   Origs: 781:auto
   Dests: 730:goto
-800 F(J) (0 2) GOSUB 2000
+800 F(J:760) (0 2) GOSUB 2000
   Origs: 770:ifthen
   Dests: 810:auto, 2000:gosub
-810 F(J) (0 3) GOTO 480
+810 F(J:760) (0 3) GOTO 480
   Origs: 800:auto
   Dests: 480:goto
 820 (0 1) REM PRINT TIC-TAC-TOE BOARD ROW
@@ -363,25 +363,25 @@ Halstead complexity:
 1190 G(1100) (0 3) LET D(3) = M
   Origs: 1180:auto
   Dests: 1200:auto
-1200 G(1100) F(I) (1 3) FOR I = 1 TO 8
+1200 G(1100) F(I:1200) (1 3) FOR I = 1 TO 8
   Origs: 1190:auto
   Dests: 1210:fornext, 1220:fornext
-1210 G(1100) F(I) (1 4) IF B(I) > 1 THEN 1370
+1210 G(1100) F(I:1200) (1 4) IF B(I) > 1 THEN 1370
   Origs: 1200:fornext
   Dests: 1220:auto, 1370:ifthen
-1220 G(1100) F(I) (0 1) NEXT I
+1220 G(1100) F(I:1200) (0 1) NEXT I
   Origs: 1200:fornext, 1210:auto
   Dests: 1221:auto
 1221 G(1100) (0 4) LET I = I - 1
   Origs: 1220:auto
   Dests: 1230:auto
-1230 G(1100) F(I) (1 3) FOR I = 1 TO 8
+1230 G(1100) F(I:1230) (1 3) FOR I = 1 TO 8
   Origs: 1221:auto
   Dests: 1240:fornext, 1250:fornext
-1240 G(1100) F(I) (1 6) IF B(I) < -1 THEN 1370
+1240 G(1100) F(I:1230) (1 6) IF B(I) < -1 THEN 1370
   Origs: 1230:fornext
   Dests: 1250:auto, 1370:ifthen
-1250 G(1100) F(I) (0 1) NEXT I
+1250 G(1100) F(I:1230) (0 1) NEXT I
   Origs: 1230:fornext, 1240:auto
   Dests: 1251:auto
 1251 G(1100) (0 4) LET I = I - 1
@@ -390,22 +390,22 @@ Halstead complexity:
 1260 G(1100) (1 5) IF R + C = 0 THEN 1550
   Origs: 1251:auto
   Dests: 1270:auto, 1550:ifthen
-1270 G(1100) F(K) (1 3) FOR K = 1 TO 11
+1270 G(1100) F(K:1270) (1 3) FOR K = 1 TO 11
   Origs: 1260:auto
   Dests: 1280:fornext, 1330:fornext
-1280 G(1100) F(K) (0 3) LET I = C(K)
+1280 G(1100) F(K:1270) (0 3) LET I = C(K)
   Origs: 1270:fornext
   Dests: 1300:auto
-1300 G(1100) F(K) (1 4) IF A(I, J) <> 0 THEN 1330
+1300 G(1100) F(K:1270) (1 4) IF A(I, J) <> 0 THEN 1330
   Origs: 1280:auto
   Dests: 1310:auto, 1330:ifthen
-1310 G(1100) F(K) (0 3) LET A(I, J) = 1
+1310 G(1100) F(K:1270) (0 3) LET A(I, J) = 1
   Origs: 1300:auto
   Dests: 1320:auto
-1320 G(1100) F(K) (0 2) GOTO 1360
+1320 G(1100) F(K:1270) (0 2) GOTO 1360
   Origs: 1310:auto
   Dests: 1360:goto
-1330 G(1100) F(K) (0 1) NEXT K
+1330 G(1100) F(K:1270) (0 1) NEXT K
   Origs: 1270:fornext, 1300:ifthen
   Dests: 1331:auto
 1331 G(1100) (0 4) LET K = K - 1
@@ -420,101 +420,101 @@ Halstead complexity:
      WARNING: Multiple GOSUB entry points
   Origs: 1340:auto
   Dests: 1360:auto
-1360 G(1100,1340) F(I,K,J) (0 1) RETURN
+1360 G(1100,1340) F(I:1200,I:1230,K:1270,J:1380,J:1450,J:1520) (0 1) RETURN
      WARNING: Multiple GOSUB entry points
   Origs: 1320:goto, 1350:auto, 1410:goto, 1430:goto, 1480:goto, 1500:goto, 1580:goto, 1600:goto, 1620:goto, 1640:goto
   Dests: 
-1370 G(1100) F(I) (1 4) IF I > 3 THEN 1440
+1370 G(1100) F(I:1200,I:1230) (1 4) IF I > 3 THEN 1440
   Origs: 1210:ifthen, 1240:ifthen
   Dests: 1380:auto, 1440:ifthen
-1380 G(1100) F(I,J) (1 3) FOR J = 1 TO 3
+1380 G(1100) F(I:1200,I:1230,J:1380) (1 3) FOR J = 1 TO 3
   Origs: 1370:auto
   Dests: 1390:fornext, 1400:fornext
-1390 G(1100) F(I,J) (1 4) IF A(I, J) = 0 THEN 1420
+1390 G(1100) F(I:1200,I:1230,J:1380) (1 4) IF A(I, J) = 0 THEN 1420
   Origs: 1380:fornext
   Dests: 1400:auto, 1420:ifthen
-1400 G(1100) F(I,J) (0 1) NEXT J
+1400 G(1100) F(I:1200,I:1230,J:1380) (0 1) NEXT J
   Origs: 1380:fornext, 1390:auto
   Dests: 1401:auto
-1401 G(1100) F(I) (0 4) LET J = J - 1
+1401 G(1100) F(I:1200,I:1230) (0 4) LET J = J - 1
   Origs: 1400:auto
   Dests: 1410:auto
-1410 G(1100) F(I) (0 3) GOTO 1360
+1410 G(1100) F(I:1200,I:1230) (0 3) GOTO 1360
   Origs: 1401:auto
   Dests: 1360:goto
-1420 G(1100) F(I,J) (0 3) LET A(I, J) = 1
+1420 G(1100) F(I:1200,I:1230,J:1380) (0 3) LET A(I, J) = 1
   Origs: 1390:ifthen
   Dests: 1430:auto
-1430 G(1100) F(I,J) (0 3) GOTO 1360
+1430 G(1100) F(I:1200,I:1230,J:1380) (0 3) GOTO 1360
   Origs: 1420:auto
   Dests: 1360:goto
-1440 G(1100) F(I) (1 4) IF I > 6 THEN 1510
+1440 G(1100) F(I:1200,I:1230) (1 4) IF I > 6 THEN 1510
   Origs: 1370:ifthen
   Dests: 1450:auto, 1510:ifthen
-1450 G(1100) F(I,J) (1 3) FOR J = 1 TO 3
+1450 G(1100) F(I:1200,I:1230,J:1450) (1 3) FOR J = 1 TO 3
   Origs: 1440:auto
   Dests: 1460:fornext, 1470:fornext
-1460 G(1100) F(I,J) (1 4) IF A(J, I - 3) = 0 THEN 1490
+1460 G(1100) F(I:1200,I:1230,J:1450) (1 4) IF A(J, I - 3) = 0 THEN 1490
   Origs: 1450:fornext
   Dests: 1470:auto, 1490:ifthen
-1470 G(1100) F(I,J) (0 1) NEXT J
+1470 G(1100) F(I:1200,I:1230,J:1450) (0 1) NEXT J
   Origs: 1450:fornext, 1460:auto
   Dests: 1471:auto
-1471 G(1100) F(I) (0 4) LET J = J - 1
+1471 G(1100) F(I:1200,I:1230) (0 4) LET J = J - 1
   Origs: 1470:auto
   Dests: 1480:auto
-1480 G(1100) F(I) (0 3) GOTO 1360
+1480 G(1100) F(I:1200,I:1230) (0 3) GOTO 1360
   Origs: 1471:auto
   Dests: 1360:goto
-1490 G(1100) F(I,J) (0 3) LET A(J, I - 3) = 1
+1490 G(1100) F(I:1200,I:1230,J:1450) (0 3) LET A(J, I - 3) = 1
   Origs: 1460:ifthen
   Dests: 1500:auto
-1500 G(1100) F(I,J) (0 3) GOTO 1360
+1500 G(1100) F(I:1200,I:1230,J:1450) (0 3) GOTO 1360
   Origs: 1490:auto
   Dests: 1360:goto
-1510 G(1100) F(I) (1 4) IF I > 7 THEN 1550
+1510 G(1100) F(I:1200,I:1230) (1 4) IF I > 7 THEN 1550
   Origs: 1440:ifthen
   Dests: 1520:auto, 1550:ifthen
-1520 G(1100) F(I,J) (1 3) FOR J = 1 TO 3
+1520 G(1100) F(I:1200,I:1230,J:1520) (1 3) FOR J = 1 TO 3
   Origs: 1510:auto
   Dests: 1530:fornext, 1540:fornext
-1530 G(1100) F(I,J) (1 4) IF A(J, J) = 0 THEN 1590
+1530 G(1100) F(I:1200,I:1230,J:1520) (1 4) IF A(J, J) = 0 THEN 1590
   Origs: 1520:fornext
   Dests: 1540:auto, 1590:ifthen
-1540 G(1100) F(I,J) (0 1) NEXT J
+1540 G(1100) F(I:1200,I:1230,J:1520) (0 1) NEXT J
   Origs: 1520:fornext, 1530:auto
   Dests: 1541:auto
-1541 G(1100) F(I) (0 4) LET J = J - 1
+1541 G(1100) F(I:1200,I:1230) (0 4) LET J = J - 1
   Origs: 1540:auto
   Dests: 1550:auto
-1550 G(1100) F(I) (1 4) IF A(1, 3) = 0 THEN 1610
+1550 G(1100) F(I:1200,I:1230) (1 4) IF A(1, 3) = 0 THEN 1610
   Origs: 1260:ifthen, 1510:ifthen, 1541:auto
   Dests: 1560:auto, 1610:ifthen
-1560 G(1100) F(I) (1 4) IF A(3, 1) = 0 THEN 1630
+1560 G(1100) F(I:1200,I:1230) (1 4) IF A(3, 1) = 0 THEN 1630
   Origs: 1550:auto
   Dests: 1570:auto, 1630:ifthen
-1570 G(1100) F(I) (0 3) LET A(2, 2) = 1
+1570 G(1100) F(I:1200,I:1230) (0 3) LET A(2, 2) = 1
   Origs: 1560:auto
   Dests: 1580:auto
-1580 G(1100) F(I) (0 3) GOTO 1360
+1580 G(1100) F(I:1200,I:1230) (0 3) GOTO 1360
   Origs: 1570:auto
   Dests: 1360:goto
-1590 G(1100) F(I,J) (0 3) LET A(J, J) = 1
+1590 G(1100) F(I:1200,I:1230,J:1520) (0 3) LET A(J, J) = 1
   Origs: 1530:ifthen
   Dests: 1600:auto
-1600 G(1100) F(I,J) (0 3) GOTO 1360
+1600 G(1100) F(I:1200,I:1230,J:1520) (0 3) GOTO 1360
   Origs: 1590:auto
   Dests: 1360:goto
-1610 G(1100) F(I) (0 3) LET A(1, 3) = 1
+1610 G(1100) F(I:1200,I:1230) (0 3) LET A(1, 3) = 1
   Origs: 1550:ifthen
   Dests: 1620:auto
-1620 G(1100) F(I) (0 3) GOTO 1360
+1620 G(1100) F(I:1200,I:1230) (0 3) GOTO 1360
   Origs: 1610:auto
   Dests: 1360:goto
-1630 G(1100) F(I) (0 3) LET A(3, 1) = 1
+1630 G(1100) F(I:1200,I:1230) (0 3) LET A(3, 1) = 1
   Origs: 1560:ifthen
   Dests: 1640:auto
-1640 G(1100) F(I) (0 3) GOTO 1360
+1640 G(1100) F(I:1200,I:1230) (0 3) GOTO 1360
   Origs: 1630:auto
   Dests: 1360:goto
 1650 (0 1) REM PROGRAM TO TEST FOR GAME WINNER....
@@ -524,100 +524,100 @@ Halstead complexity:
      WARNING: GOSUB length exceeds limit 40
   Origs: 400:gosub, 450:gosub
   Dests: 1670:auto
-1670 G(1660) F(J) (1 3) FOR J = 1 TO 9
+1670 G(1660) F(J:1670) (1 3) FOR J = 1 TO 9
   Origs: 1660:auto
   Dests: 1680:fornext, 1690:fornext
-1680 G(1660) F(J) (0 3) LET B(J) = 0
+1680 G(1660) F(J:1670) (0 3) LET B(J) = 0
   Origs: 1670:fornext
   Dests: 1690:auto
-1690 G(1660) F(J) (0 1) NEXT J
+1690 G(1660) F(J:1670) (0 1) NEXT J
   Origs: 1670:fornext, 1680:auto
   Dests: 1691:auto
 1691 G(1660) (0 4) LET J = J - 1
   Origs: 1690:auto
   Dests: 1700:auto
-1700 G(1660) F(J) (1 3) FOR J = 1 TO 3
+1700 G(1660) F(J:1700) (1 3) FOR J = 1 TO 3
   Origs: 1691:auto
   Dests: 1710:fornext, 1750:fornext
-1710 G(1660) F(J,I) (1 3) FOR I = 1 TO 3
+1710 G(1660) F(J:1700,I:1710) (1 3) FOR I = 1 TO 3
   Origs: 1700:fornext
   Dests: 1720:fornext, 1730:fornext
-1720 G(1660) F(J,I) (1 4) IF A(J, 1) <> A(J, I) THEN 1750
+1720 G(1660) F(J:1700,I:1710) (1 4) IF A(J, 1) <> A(J, I) THEN 1750
   Origs: 1710:fornext
   Dests: 1730:auto, 1750:ifthen
-1730 G(1660) F(J,I) (0 1) NEXT I
+1730 G(1660) F(J:1700,I:1710) (0 1) NEXT I
   Origs: 1710:fornext, 1720:auto
   Dests: 1731:auto
-1731 G(1660) F(J) (0 4) LET I = I - 1
+1731 G(1660) F(J:1700) (0 4) LET I = I - 1
   Origs: 1730:auto
   Dests: 1740:auto
-1740 G(1660) F(J) (0 3) LET T1 = A(J, I)
+1740 G(1660) F(J:1700) (0 3) LET T1 = A(J, I)
   Origs: 1731:auto
   Dests: 1750:auto
-1750 G(1660) F(J,I) (0 1) NEXT J
+1750 G(1660) F(J:1700,I:1710) (0 1) NEXT J
   Origs: 1700:fornext, 1720:ifthen, 1740:auto
   Dests: 1751:auto
-1751 G(1660) F(I) (0 4) LET J = J - 1
+1751 G(1660) F(I:1710) (0 4) LET J = J - 1
   Origs: 1750:auto
   Dests: 1760:auto
-1760 G(1660) F(I,J) (1 3) FOR J = 1 TO 3
+1760 G(1660) F(I:1710,J:1760) (1 3) FOR J = 1 TO 3
   Origs: 1751:auto
   Dests: 1770:fornext, 1810:fornext
-1770 G(1660) F(J,I) (1 3) FOR I = 1 TO 3
+1770 G(1660) F(I:1710,J:1760,I:1770) (1 3) FOR I = 1 TO 3
   Origs: 1760:fornext
   Dests: 1780:fornext, 1790:fornext
-1780 G(1660) F(J,I) (1 4) IF A(1, J) <> A(I, J) THEN 1810
+1780 G(1660) F(I:1710,J:1760,I:1770) (1 4) IF A(1, J) <> A(I, J) THEN 1810
   Origs: 1770:fornext
   Dests: 1790:auto, 1810:ifthen
-1790 G(1660) F(I,J) (0 1) NEXT I
+1790 G(1660) F(I:1710,J:1760,I:1770) (0 1) NEXT I
   Origs: 1770:fornext, 1780:auto
   Dests: 1791:auto
-1791 G(1660) F(I,J) (0 4) LET I = I - 1
+1791 G(1660) F(I:1710,J:1760) (0 4) LET I = I - 1
   Origs: 1790:auto
   Dests: 1800:auto
-1800 G(1660) F(I,J) (0 3) LET T1 = A(I, J)
+1800 G(1660) F(I:1710,J:1760) (0 3) LET T1 = A(I, J)
   Origs: 1791:auto
   Dests: 1810:auto
-1810 G(1660) F(I,J) (0 1) NEXT J
+1810 G(1660) F(I:1710,J:1760,I:1770) (0 1) NEXT J
   Origs: 1760:fornext, 1780:ifthen, 1800:auto
   Dests: 1811:auto
-1811 G(1660) (0 4) LET J = J - 1
+1811 G(1660) F(I:1770) (0 4) LET J = J - 1
   Origs: 1810:auto
   Dests: 1820:auto
-1820 G(1660) (1 4) IF A(1, 1) = A(3, 3) THEN 1930
+1820 G(1660) F(I:1770) (1 4) IF A(1, 1) = A(3, 3) THEN 1930
   Origs: 1811:auto
   Dests: 1830:auto, 1930:ifthen
-1830 G(1660) (1 4) IF A(3, 1) = A(1, 3) THEN 1970
+1830 G(1660) F(I:1770) (1 4) IF A(3, 1) = A(1, 3) THEN 1970
   Origs: 1820:auto, 1940:goto
   Dests: 1840:auto, 1970:ifthen
-1840 G(1660) (1 4) IF T1 <> 0 THEN 1990
+1840 G(1660) F(I:1770) (1 4) IF T1 <> 0 THEN 1990
   Origs: 1830:auto, 1960:goto, 1980:goto
   Dests: 1850:auto, 1990:ifthen
-1850 G(1660,2000) F(J) (1 3) FOR J = 1 TO 3
+1850 G(1660,2000) F(I:1770,J:1850) (1 3) FOR J = 1 TO 3
      WARNING: Multiple GOSUB entry points
   Origs: 1840:auto, 2020:goto, 2050:goto
   Dests: 1860:fornext, 1900:fornext
-1860 G(1660,2000) F(J,I) (1 3) FOR I = 1 TO 3
+1860 G(1660,2000) F(I:1770,J:1850,I:1860) (1 3) FOR I = 1 TO 3
      WARNING: Multiple GOSUB entry points
   Origs: 1850:fornext
   Dests: 1870:fornext, 1890:fornext
-1870 G(1660,2000) F(J,I) (0 4) LET B(J) = B(J) + A(J, I)
+1870 G(1660,2000) F(I:1770,J:1850,I:1860) (0 4) LET B(J) = B(J) + A(J, I)
      WARNING: Multiple GOSUB entry points
   Origs: 1860:fornext
   Dests: 1880:auto
-1880 G(1660,2000) F(J,I) (0 4) LET B(J + 3) = B(J + 3) + A(I, J)
+1880 G(1660,2000) F(I:1770,J:1850,I:1860) (0 4) LET B(J + 3) = B(J + 3) + A(I, J)
      WARNING: Multiple GOSUB entry points
   Origs: 1870:auto
   Dests: 1890:auto
-1890 G(1660,2000) F(J,I) (0 1) NEXT I
+1890 G(1660,2000) F(I:1770,J:1850,I:1860) (0 1) NEXT I
      WARNING: Multiple GOSUB entry points
   Origs: 1860:fornext, 1880:auto
   Dests: 1891:auto
-1891 G(1660,2000) F(J) (0 4) LET I = I - 1
+1891 G(1660,2000) F(I:1770,J:1850) (0 4) LET I = I - 1
      WARNING: Multiple GOSUB entry points
   Origs: 1890:auto
   Dests: 1900:auto
-1900 G(1660,2000) F(J) (0 1) NEXT J
+1900 G(1660,2000) F(I:1770,J:1850) (0 1) NEXT J
      WARNING: Multiple GOSUB entry points
   Origs: 1850:fornext, 1891:auto
   Dests: 1901:auto
@@ -633,74 +633,74 @@ Halstead complexity:
      WARNING: Multiple GOSUB entry points
   Origs: 1910:auto
   Dests: 
-1930 G(1660) (1 4) IF A(2, 2) = A(3, 3) THEN 1950
+1930 G(1660) F(I:1770) (1 4) IF A(2, 2) = A(3, 3) THEN 1950
   Origs: 1820:ifthen
   Dests: 1940:auto, 1950:ifthen
-1940 G(1660) (0 3) GOTO 1830
+1940 G(1660) F(I:1770) (0 3) GOTO 1830
   Origs: 1930:auto
   Dests: 1830:goto
-1950 G(1660) (0 3) LET T1 = A(2, 2)
+1950 G(1660) F(I:1770) (0 3) LET T1 = A(2, 2)
   Origs: 1930:ifthen, 1970:ifthen
   Dests: 1960:auto
-1960 G(1660) (0 3) GOTO 1840
+1960 G(1660) F(I:1770) (0 3) GOTO 1840
   Origs: 1950:auto
   Dests: 1840:goto
-1970 G(1660) (1 5) IF A(2, 2) = A(1, 3) THEN 1950
+1970 G(1660) F(I:1770) (1 5) IF A(2, 2) = A(1, 3) THEN 1950
   Origs: 1830:ifthen
   Dests: 1950:ifthen, 1980:auto
-1980 G(1660) (0 3) GOTO 1840
+1980 G(1660) F(I:1770) (0 3) GOTO 1840
   Origs: 1970:auto
   Dests: 1840:goto
-1990 G(1660) (1 4) IF T1 > 0 THEN 2030
+1990 G(1660) F(I:1770) (1 4) IF T1 > 0 THEN 2030
   Origs: 1840:ifthen
   Dests: 2000:auto, 2030:ifthen
-2000 G(1660,2000) (0 2) PRINT " ...YOU WIN THIS TIME..."
+2000 G(1660,2000) F(I:1770) (0 2) PRINT " ...YOU WIN THIS TIME..."
      WARNING: Inconsistent GOSUB origins
      WARNING: Multiple GOSUB entry points
   Origs: 800:gosub, 1990:auto
   Dests: 2010:auto
-2010 G(1660,2000) (0 3) LET Z = 1
+2010 G(1660,2000) F(I:1770) (0 3) LET Z = 1
      WARNING: Multiple GOSUB entry points
   Origs: 2000:auto
   Dests: 2020:auto
-2020 G(1660,2000) (0 3) GOTO 1850
+2020 G(1660,2000) F(I:1770) (0 3) GOTO 1850
      WARNING: Multiple GOSUB entry points
   Origs: 2010:auto
   Dests: 1850:goto
-2030 G(1660) (0 2) PRINT " ... THE PDP-8 WINS THIS TIME ..."
+2030 G(1660) F(I:1770) (0 2) PRINT " ... THE PDP-8 WINS THIS TIME ..."
   Origs: 1990:ifthen
   Dests: 2040:auto
-2040 G(1660) (0 3) LET Z = 2
+2040 G(1660) F(I:1770) (0 3) LET Z = 2
   Origs: 2030:auto
   Dests: 2050:auto
-2050 G(1660) (0 3) GOTO 1850
+2050 G(1660) F(I:1770) (0 3) GOTO 1850
   Origs: 2040:auto
   Dests: 1850:goto
 2060 (0 1) REM END OF TEST WINNER PROGRAM......
   Origs: 
   Dests: 
-2070 F(J) (0 2) PRINT "DO YOU WANT TO PLAY ANOTHER GAME: YES(1) NO(0)";
+2070 F(J:760) (0 2) PRINT "DO YOU WANT TO PLAY ANOTHER GAME: YES(1) NO(0)";
   Origs: 410:ifthen, 590:ifthen
   Dests: 2080:auto
-2080 F(J) (1 2) INPUT X1
+2080 F(J:760) (1 2) INPUT X1
   Origs: 2070:auto, 2120:goto
   Dests: 2090:auto
-2090 F(J) (1 5) IF X1 = 1 THEN 250
+2090 F(J:760) (1 5) IF X1 = 1 THEN 250
   Origs: 2080:auto
   Dests: 250:ifthen, 2100:auto
-2100 F(J) (1 4) IF X1 = 0 THEN 2130
+2100 F(J:760) (1 4) IF X1 = 0 THEN 2130
   Origs: 2090:auto
   Dests: 2110:auto, 2130:ifthen
-2110 F(J) (0 2) PRINT "I SAID ONE OR ZERO, TRY AGAIN"
+2110 F(J:760) (0 2) PRINT "I SAID ONE OR ZERO, TRY AGAIN"
   Origs: 2100:auto
   Dests: 2120:auto
-2120 F(J) (0 3) GOTO 2080
+2120 F(J:760) (0 3) GOTO 2080
   Origs: 2110:auto
   Dests: 2080:goto
-2130 F(J) (0 2) PRINT "IT'S BEEN FUN, COME AGAIN SOMETIME"
+2130 F(J:760) (0 2) PRINT "IT'S BEEN FUN, COME AGAIN SOMETIME"
   Origs: 2100:ifthen
   Dests: 2140:auto
-2140 F(J) (0 2) GOTO 2160
+2140 F(J:760) (0 2) GOTO 2160
   Origs: 2130:auto
   Dests: 2170:goto
 2150 (0 2) DATA 2, 2, 0, 0, 0, 0, 1, 1, 3, 3, 1, 3, 3, 1, 1, 2, 3, 2, 2, 3, 2, 1
@@ -709,7 +709,7 @@ Halstead complexity:
 2160 (0 1) REM CHAIN "DEMON "
   Origs: 
   Dests: 
-2170 F(J) (0 1) END
+2170 F(J:760) (0 1) END
      WARNING: Terminating statement in FOR/NEXT
   Origs: 2140:goto
   Dests: :stop

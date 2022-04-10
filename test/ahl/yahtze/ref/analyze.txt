@@ -22,13 +22,13 @@ Halstead complexity:
 1000 (0 3) A(0) = 5
   Origs: :start
   Dests: 1010:auto
-1010 F(U) (1 3) FOR U = 1 TO 5
+1010 F(U:1010) (1 3) FOR U = 1 TO 5
   Origs: 1000:auto
   Dests: 1020:fornext, 1030:fornext
-1020 F(U) (0 3) A(U) = 7
+1020 F(U:1010) (0 3) A(U) = 7
   Origs: 1010:fornext
   Dests: 1030:auto
-1030 F(U) (0 1) NEXT U
+1030 F(U:1010) (0 1) NEXT U
   Origs: 1010:fornext, 1020:auto
   Dests: 1040:auto
 1040 (0 3) CHANGE A TO C$
@@ -37,19 +37,19 @@ Halstead complexity:
 1060 (0 8) DIM A(15, 15), T(15, 15), F(15, 15), S(15, 15), L(15, 15), K(15, 15), H(15, 15)
   Origs: 1040:auto
   Dests: 1070:auto
-1070 F(I) (1 3) FOR I = 1 TO 5
+1070 F(I:1070) (1 3) FOR I = 1 TO 5
   Origs: 1060:auto, 5570:goto
   Dests: 1080:fornext, 1110:fornext
-1080 F(I) (0 3) B(I) = 0
+1080 F(I:1070) (0 3) B(I) = 0
   Origs: 1070:fornext
   Dests: 1090:auto
-1090 F(I) (0 3) Q(I) = 0
+1090 F(I:1070) (0 3) Q(I) = 0
   Origs: 1080:auto
   Dests: 1100:auto
-1100 F(I) (0 3) A(I) = 0
+1100 F(I:1070) (0 3) A(I) = 0
   Origs: 1090:auto
   Dests: 1110:auto
-1110 F(I) (0 1) NEXT I
+1110 F(I:1070) (0 1) NEXT I
   Origs: 1070:fornext, 1100:auto
   Dests: 1120:auto
 1120 (0 1) RANDOM
@@ -88,150 +88,150 @@ Halstead complexity:
 1230 (0 3) GOTO 1140
   Origs: 1220:auto
   Dests: 1140:goto
-1240 F(I) (1 3) FOR I = 1 TO P
+1240 F(I:1240) (1 3) FOR I = 1 TO P
   Origs: 1210:goto
   Dests: 1250:fornext, 1470:fornext
-1250 F(I) (0 4) A(1, I) = -5
+1250 F(I:1240) (0 4) A(1, I) = -5
   Origs: 1240:fornext
   Dests: 1260:auto
-1260 F(I) (0 4) T(1, I) = -5
+1260 F(I:1240) (0 4) T(1, I) = -5
   Origs: 1250:auto
   Dests: 1270:auto
-1270 F(I) (0 4) T(2, I) = -5
+1270 F(I:1240) (0 4) T(2, I) = -5
   Origs: 1260:auto
   Dests: 1280:auto
-1280 F(I) (0 4) F(1, I) = -5
+1280 F(I:1240) (0 4) F(1, I) = -5
   Origs: 1270:auto
   Dests: 1290:auto
-1290 F(I) (0 4) F(2, I) = -5
+1290 F(I:1240) (0 4) F(2, I) = -5
   Origs: 1280:auto
   Dests: 1300:auto
-1300 F(I) (0 4) S(1, I) = -5
+1300 F(I:1240) (0 4) S(1, I) = -5
   Origs: 1290:auto
   Dests: 1310:auto
-1310 F(I) (0 4) T(3, I) = -5
+1310 F(I:1240) (0 4) T(3, I) = -5
   Origs: 1300:auto
   Dests: 1320:auto
-1320 F(I) (0 4) F(3, I) = -5
+1320 F(I:1240) (0 4) F(3, I) = -5
   Origs: 1310:auto
   Dests: 1330:auto
-1330 F(I) (0 4) F(4, I) = -5
+1330 F(I:1240) (0 4) F(4, I) = -5
   Origs: 1320:auto
   Dests: 1340:auto
-1340 F(I) (0 4) S(2, I) = -5
+1340 F(I:1240) (0 4) S(2, I) = -5
   Origs: 1330:auto
   Dests: 1350:auto
-1350 F(I) (0 4) L(1, I) = -5
+1350 F(I:1240) (0 4) L(1, I) = -5
   Origs: 1340:auto
   Dests: 1360:auto
-1360 F(I) (0 4) Y(I) = -5
+1360 F(I:1240) (0 4) Y(I) = -5
   Origs: 1350:auto
   Dests: 1370:auto
-1370 F(I) (0 4) C(I) = -5
+1370 F(I:1240) (0 4) C(I) = -5
   Origs: 1360:auto
   Dests: 1380:auto
-1380 F(I) (0 3) K(1, I) = 0
+1380 F(I:1240) (0 3) K(1, I) = 0
   Origs: 1370:auto
   Dests: 1390:auto
-1390 F(I) (0 3) K(I) = 0
+1390 F(I:1240) (0 3) K(I) = 0
   Origs: 1380:auto
   Dests: 1400:auto
-1400 F(I) (0 3) M(I) = 0
+1400 F(I:1240) (0 3) M(I) = 0
   Origs: 1390:auto
   Dests: 1410:auto
-1410 F(I) (0 2) PRINT "NAME";
+1410 F(I:1240) (0 2) PRINT "NAME";
   Origs: 1400:auto, 1460:goto
   Dests: 1420:auto
-1420 F(I) (1 2) INPUT N$(I)
+1420 F(I:1240) (1 2) INPUT N$(I)
   Origs: 1410:auto
   Dests: 1430:auto
-1430 F(I) (1 4) IF N$(I) = "WHAT?" THEN 1450
+1430 F(I:1240) (1 4) IF N$(I) = "WHAT?" THEN 1450
   Origs: 1420:auto
   Dests: 1440:auto, 1450:ifthen
-1440 F(I) (0 2) GOTO 1470
+1440 F(I:1240) (0 2) GOTO 1470
   Origs: 1430:auto
   Dests: 1470:goto
-1450 F(I) (0 2) GOSUB 5580
+1450 F(I:1240) (0 2) GOSUB 5580
   Origs: 1430:ifthen
   Dests: 1460:auto, 5580:gosub
-1460 F(I) (0 3) GOTO 1410
+1460 F(I:1240) (0 3) GOTO 1410
   Origs: 1450:auto
   Dests: 1410:goto
-1470 F(I) (0 1) NEXT I
+1470 F(I:1240) (0 1) NEXT I
   Origs: 1240:fornext, 1440:goto
   Dests: 1480:auto
 1480 (0 3) R = 0
   Origs: 1470:auto
   Dests: 1490:auto
-1490 F(O,O1) (0 4) R = R + 1
+1490 F(O:3740,O1:3750) (0 4) R = R + 1
   Origs: 1480:auto, 4950:goto
   Dests: 1495:auto
-1495 F(O,O1) (1 4) IF R > 13 THEN 6470
+1495 F(O:3740,O1:3750) (1 4) IF R > 13 THEN 6470
   Origs: 1490:auto
   Dests: 1500:auto, 6470:ifthen
-1500 F(O,O1) (0 2) PRINT
+1500 F(O:3740,O1:3750) (0 2) PRINT
   Origs: 1495:auto
   Dests: 1510:auto
-1510 F(O,O1) (0 2) PRINT
+1510 F(O:3740,O1:3750) (0 2) PRINT
   Origs: 1500:auto
   Dests: 1520:auto
-1520 F(O,O1) (0 3) PRINT "ROUND"; R
+1520 F(O:3740,O1:3750) (0 3) PRINT "ROUND"; R
   Origs: 1510:auto
   Dests: 1530:auto
-1530 F(O,O1) (0 2) PRINT
+1530 F(O:3740,O1:3750) (0 2) PRINT
   Origs: 1520:auto
   Dests: 1540:auto
-1540 F(I,O,O1) (1 3) FOR I = 1 TO P
+1540 F(I:1540,O:3740,O1:3750) (1 3) FOR I = 1 TO P
   Origs: 1530:auto
   Dests: 1550:fornext, 4710:fornext
-1550 F(I,O,O1) (0 2) PRINT
+1550 F(I:1540,O:3740,O1:3750) (0 2) PRINT
   Origs: 1540:fornext
   Dests: 1560:auto
-1560 F(I,O,O1) (0 2) PRINT
+1560 F(I:1540,O:3740,O1:3750) (0 2) PRINT
   Origs: 1550:auto
   Dests: 1570:auto
-1570 F(I,O,O1) (0 3) PRINT N$(I); "'S TURN"
+1570 F(I:1540,O:3740,O1:3750) (0 3) PRINT N$(I); "'S TURN"
   Origs: 1560:auto
   Dests: 1580:auto
-1580 F(I,L,O,O1) (1 3) FOR L = 1 TO 5
+1580 F(I:1540,L:1580,O:3740,O1:3750) (1 3) FOR L = 1 TO 5
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 1570:auto
   Dests: 1590:fornext, 1600:fornext
-1590 F(I,L,O,O1) (0 4) A(L) = INT(6 * RND(-1) + 1)
+1590 F(I:1540,L:1580,O:3740,O1:3750) (0 4) A(L) = INT(6 * RND(-1) + 1)
   Origs: 1580:fornext
   Dests: 1600:auto
-1600 F(I,L,O,O1) (0 1) NEXT L
+1600 F(I:1540,L:1580,O:3740,O1:3750) (0 1) NEXT L
   Origs: 1580:fornext, 1590:auto
   Dests: 1605:auto
-1605 F(I,O,O1) (0 2) GOSUB 1610
+1605 F(I:1540,O:3740,O1:3750) (0 2) GOSUB 1610
   Origs: 1600:auto
   Dests: 1607:auto, 1610:gosub
-1607 F(I,O,O1) (0 2) GOTO 1700
+1607 F(I:1540,O:3740,O1:3750) (0 2) GOTO 1700
   Origs: 1605:auto
   Dests: 1700:goto
 1610 G(1610) (0 3) G = 0
      WARNING: Inconsistent GOSUB origins
   Origs: 1605:gosub, 1685:ifthen, 2050:gosub, 2520:gosub
   Dests: 1620:auto
-1620 G(1610) F(X) (1 3) FOR X = 1 TO 5
+1620 G(1610) F(X:1620) (1 3) FOR X = 1 TO 5
   Origs: 1610:auto
   Dests: 1630:fornext, 1680:fornext
-1630 G(1610) F(X) (1 4) IF A(X) >= A(X + 1) THEN 1680
+1630 G(1610) F(X:1620) (1 4) IF A(X) >= A(X + 1) THEN 1680
   Origs: 1620:fornext
   Dests: 1640:auto, 1680:ifthen
-1640 G(1610) F(X) (0 3) H = A(X)
+1640 G(1610) F(X:1620) (0 3) H = A(X)
   Origs: 1630:auto
   Dests: 1650:auto
-1650 G(1610) F(X) (0 3) A(X) = A(X + 1)
+1650 G(1610) F(X:1620) (0 3) A(X) = A(X + 1)
   Origs: 1640:auto
   Dests: 1660:auto
-1660 G(1610) F(X) (0 3) A(X + 1) = H
+1660 G(1610) F(X:1620) (0 3) A(X + 1) = H
   Origs: 1650:auto
   Dests: 1670:auto
-1670 G(1610) F(X) (0 3) G = 1
+1670 G(1610) F(X:1620) (0 3) G = 1
   Origs: 1660:auto
   Dests: 1680:auto
-1680 G(1610) F(X) (0 1) NEXT X
+1680 G(1610) F(X:1620) (0 1) NEXT X
   Origs: 1620:fornext, 1630:ifthen, 1670:auto
   Dests: 1685:auto
 1685 G(1610) (1 5) IF G = 1 THEN 1610
@@ -240,651 +240,651 @@ Halstead complexity:
 1690 G(1610) (0 1) RETURN
   Origs: 1685:auto
   Dests: 
-1700 F(I,O,O1) (0 7) PRINT "YOU HAVE A "; A(1); A(2); A(3); A(4); A(5)
+1700 F(I:1540,O:3740,O1:3750) (0 7) PRINT "YOU HAVE A "; A(1); A(2); A(3); A(4); A(5)
   Origs: 1607:goto
   Dests: 1710:auto
-1710 F(I,O,O1) (0 2) PRINT "THIS IS YOUR 2ND OF 3 ROLLS,"
+1710 F(I:1540,O:3740,O1:3750) (0 2) PRINT "THIS IS YOUR 2ND OF 3 ROLLS,"
   Origs: 1700:auto
   Dests: 1720:auto
-1720 F(I,O,O1) (0 2) PRINT "HOW MANY DO YOU WANT TO CHANGE";
+1720 F(I:1540,O:3740,O1:3750) (0 2) PRINT "HOW MANY DO YOU WANT TO CHANGE";
   Origs: 1710:auto
   Dests: 1730:auto
-1730 F(I,O,O1) (1 2) INPUT Z
+1730 F(I:1540,O:3740,O1:3750) (1 2) INPUT Z
   Origs: 1720:auto, 1770:goto
   Dests: 1740:auto
-1740 F(I,O,O1) (1 4) IF Z = 0.01 THEN 1760
+1740 F(I:1540,O:3740,O1:3750) (1 4) IF Z = 0.01 THEN 1760
   Origs: 1730:auto
   Dests: 1750:auto, 1760:ifthen
-1750 F(I,O,O1) (0 2) GOTO 1780
+1750 F(I:1540,O:3740,O1:3750) (0 2) GOTO 1780
   Origs: 1740:auto
   Dests: 1780:goto
-1760 F(I,O,O1) (0 2) GOSUB 5600
+1760 F(I:1540,O:3740,O1:3750) (0 2) GOSUB 5600
   Origs: 1740:ifthen
   Dests: 1770:auto, 5600:gosub
-1770 F(I,O,O1) (0 3) GOTO 1730
+1770 F(I:1540,O:3740,O1:3750) (0 3) GOTO 1730
   Origs: 1760:auto
   Dests: 1730:goto
-1780 F(I,O,O1) (1 4) IF Z = 0 THEN 2620
+1780 F(I:1540,O:3740,O1:3750) (1 4) IF Z = 0 THEN 2620
   Origs: 1750:goto
   Dests: 1790:auto, 2620:ifthen
-1790 F(I,O,O1) (1 4) IF Z = 5 THEN 1890
+1790 F(I:1540,O:3740,O1:3750) (1 4) IF Z = 5 THEN 1890
   Origs: 1780:auto
   Dests: 1800:auto, 1890:ifthen
-1800 F(I,S,O,O1) (1 3) FOR S = 1 TO Z
+1800 F(I:1540,S:1800,O:3740,O1:3750) (1 3) FOR S = 1 TO Z
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 1790:auto
   Dests: 1810:fornext, 1870:fornext
-1810 F(I,S,O,O1) (0 2) PRINT "WHICH";
+1810 F(I:1540,S:1800,O:3740,O1:3750) (0 2) PRINT "WHICH";
   Origs: 1800:fornext, 1860:goto
   Dests: 1820:auto
-1820 F(I,S,O,O1) (1 2) INPUT B(S)
+1820 F(I:1540,S:1800,O:3740,O1:3750) (1 2) INPUT B(S)
   Origs: 1810:auto
   Dests: 1830:auto
-1830 F(I,S,O,O1) (1 4) IF B(S) = 0.01 THEN 1850
+1830 F(I:1540,S:1800,O:3740,O1:3750) (1 4) IF B(S) = 0.01 THEN 1850
   Origs: 1820:auto
   Dests: 1840:auto, 1850:ifthen
-1840 F(I,S,O,O1) (0 2) GOTO 1870
+1840 F(I:1540,S:1800,O:3740,O1:3750) (0 2) GOTO 1870
   Origs: 1830:auto
   Dests: 1870:goto
-1850 F(I,S,O,O1) (0 2) GOSUB 5620
+1850 F(I:1540,S:1800,O:3740,O1:3750) (0 2) GOSUB 5620
   Origs: 1830:ifthen
   Dests: 1860:auto, 5620:gosub
-1860 F(I,S,O,O1) (0 3) GOTO 1810
+1860 F(I:1540,S:1800,O:3740,O1:3750) (0 3) GOTO 1810
   Origs: 1850:auto
   Dests: 1810:goto
-1870 F(I,S,O,O1) (0 1) NEXT S
+1870 F(I:1540,S:1800,O:3740,O1:3750) (0 1) NEXT S
   Origs: 1800:fornext, 1840:goto
   Dests: 1880:auto
-1880 F(I,O,O1) (0 2) GOTO 1930
+1880 F(I:1540,O:3740,O1:3750) (0 2) GOTO 1930
   Origs: 1870:auto
   Dests: 1930:goto
-1890 F(I,S,O,O1) (1 3) FOR S = 1 TO 5
+1890 F(I:1540,S:1890,O:3740,O1:3750) (1 3) FOR S = 1 TO 5
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 1790:ifthen
   Dests: 1900:fornext, 1910:fornext
-1900 F(I,S,O,O1) (0 4) A(S) = INT(6 * RND(-1) + 1)
+1900 F(I:1540,S:1890,O:3740,O1:3750) (0 4) A(S) = INT(6 * RND(-1) + 1)
   Origs: 1890:fornext
   Dests: 1910:auto
-1910 F(I,S,O,O1) (0 1) NEXT S
+1910 F(I:1540,S:1890,O:3740,O1:3750) (0 1) NEXT S
   Origs: 1890:fornext, 1900:auto
   Dests: 1920:auto
-1920 F(I,O,O1) (0 2) GOTO 2050
+1920 F(I:1540,O:3740,O1:3750) (0 2) GOTO 2050
   Origs: 1910:auto
   Dests: 2050:goto
-1930 F(I,L,O,O1) (1 3) FOR L = 1 TO S
+1930 F(I:1540,L:1930,O:3740,O1:3750) (1 3) FOR L = 1 TO S
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 1880:goto
   Dests: 1940:fornext, 1990:fornext
-1940 F(I,L,L1,O,O1) (1 3) FOR L1 = 1 TO 5
+1940 F(I:1540,L:1930,L1:1940,O:3740,O1:3750) (1 3) FOR L1 = 1 TO 5
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 1930:fornext
   Dests: 1950:fornext, 1980:fornext
-1950 F(I,L,L1,O,O1) (1 4) IF B(L) = L1 THEN 1970
+1950 F(I:1540,L:1930,L1:1940,O:3740,O1:3750) (1 4) IF B(L) = L1 THEN 1970
   Origs: 1940:fornext
   Dests: 1960:auto, 1970:ifthen
-1960 F(I,L,L1,O,O1) (0 2) GOTO 1980
+1960 F(I:1540,L:1930,L1:1940,O:3740,O1:3750) (0 2) GOTO 1980
   Origs: 1950:auto
   Dests: 1980:goto
-1970 F(I,L,L1,O,O1) (0 3) A(L1) = Q(L1)
+1970 F(I:1540,L:1930,L1:1940,O:3740,O1:3750) (0 3) A(L1) = Q(L1)
   Origs: 1950:ifthen
   Dests: 1980:auto
-1980 F(I,L,L1,O,O1) (0 1) NEXT L1
+1980 F(I:1540,L:1930,L1:1940,O:3740,O1:3750) (0 1) NEXT L1
   Origs: 1940:fornext, 1960:goto, 1970:auto
   Dests: 1990:auto
-1990 F(I,L,O,O1) (0 1) NEXT L
+1990 F(I:1540,L:1930,O:3740,O1:3750) (0 1) NEXT L
   Origs: 1930:fornext, 1980:auto
   Dests: 2000:auto
-2000 F(I,S,O,O1) (1 3) FOR S = 1 TO 5
+2000 F(I:1540,S:2000,O:3740,O1:3750) (1 3) FOR S = 1 TO 5
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 1990:auto
   Dests: 2010:fornext, 2040:fornext
-2010 F(I,S,O,O1) (1 4) IF A(S) = 0 THEN 2030
+2010 F(I:1540,S:2000,O:3740,O1:3750) (1 4) IF A(S) = 0 THEN 2030
   Origs: 2000:fornext
   Dests: 2020:auto, 2030:ifthen
-2020 F(I,S,O,O1) (0 2) GOTO 2040
+2020 F(I:1540,S:2000,O:3740,O1:3750) (0 2) GOTO 2040
   Origs: 2010:auto
   Dests: 2040:goto
-2030 F(I,S,O,O1) (0 4) A(S) = INT(6 * RND(-1) + 1)
+2030 F(I:1540,S:2000,O:3740,O1:3750) (0 4) A(S) = INT(6 * RND(-1) + 1)
   Origs: 2010:ifthen
   Dests: 2040:auto
-2040 F(I,S,O,O1) (0 1) NEXT S
+2040 F(I:1540,S:2000,O:3740,O1:3750) (0 1) NEXT S
   Origs: 2000:fornext, 2020:goto, 2030:auto
   Dests: 2050:auto
-2050 F(I,O,O1) (0 3) GOSUB 1610
+2050 F(I:1540,O:3740,O1:3750) (0 3) GOSUB 1610
   Origs: 1920:goto, 2040:auto
   Dests: 1610:gosub, 2140:auto
-2140 F(I,O,O1) (0 7) PRINT "YOU HAVE A "; A(1); A(2); A(3); A(4); A(5)
+2140 F(I:1540,O:3740,O1:3750) (0 7) PRINT "YOU HAVE A "; A(1); A(2); A(3); A(4); A(5)
   Origs: 2050:auto
   Dests: 2150:auto
-2150 F(I,O,O1) (0 2) PRINT "THIS IS YOUR LAST ROLL,"
+2150 F(I:1540,O:3740,O1:3750) (0 2) PRINT "THIS IS YOUR LAST ROLL,"
   Origs: 2140:auto
   Dests: 2160:auto
-2160 F(I,O,O1) (0 2) PRINT "HOW MANY DO YOU WANT TO CHANGE";
+2160 F(I:1540,O:3740,O1:3750) (0 2) PRINT "HOW MANY DO YOU WANT TO CHANGE";
   Origs: 2150:auto
   Dests: 2170:auto
-2170 F(I,O,O1) (1 2) INPUT Z
+2170 F(I:1540,O:3740,O1:3750) (1 2) INPUT Z
   Origs: 2160:auto, 2210:goto
   Dests: 2180:auto
-2180 F(I,O,O1) (1 4) IF Z = 0.01 THEN 2200
+2180 F(I:1540,O:3740,O1:3750) (1 4) IF Z = 0.01 THEN 2200
   Origs: 2170:auto
   Dests: 2190:auto, 2200:ifthen
-2190 F(I,O,O1) (0 2) GOTO 2220
+2190 F(I:1540,O:3740,O1:3750) (0 2) GOTO 2220
   Origs: 2180:auto
   Dests: 2220:goto
-2200 F(I,O,O1) (0 2) GOSUB 5600
+2200 F(I:1540,O:3740,O1:3750) (0 2) GOSUB 5600
   Origs: 2180:ifthen
   Dests: 2210:auto, 5600:gosub
-2210 F(I,O,O1) (0 3) GOTO 2170
+2210 F(I:1540,O:3740,O1:3750) (0 3) GOTO 2170
   Origs: 2200:auto
   Dests: 2170:goto
-2220 F(I,O,O1) (1 4) IF Z = 0 THEN 2620
+2220 F(I:1540,O:3740,O1:3750) (1 4) IF Z = 0 THEN 2620
   Origs: 2190:goto
   Dests: 2230:auto, 2620:ifthen
-2230 F(I,O,O1) (1 4) IF Z = 5 THEN 2360
+2230 F(I:1540,O:3740,O1:3750) (1 4) IF Z = 5 THEN 2360
   Origs: 2220:auto
   Dests: 2240:auto, 2360:ifthen
-2240 F(I,E,O,O1) (1 3) FOR E = 1 TO 5
+2240 F(I:1540,E:2240,O:3740,O1:3750) (1 3) FOR E = 1 TO 5
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 2230:auto
   Dests: 2250:fornext, 2260:fornext
-2250 F(I,E,O,O1) (0 3) B(E) = 0
+2250 F(I:1540,E:2240,O:3740,O1:3750) (0 3) B(E) = 0
   Origs: 2240:fornext
   Dests: 2260:auto
-2260 F(I,E,O,O1) (0 1) NEXT E
+2260 F(I:1540,E:2240,O:3740,O1:3750) (0 1) NEXT E
   Origs: 2240:fornext, 2250:auto
   Dests: 2270:auto
-2270 F(I,S,O,O1) (1 3) FOR S = 1 TO Z
+2270 F(I:1540,S:2270,O:3740,O1:3750) (1 3) FOR S = 1 TO Z
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 2260:auto
   Dests: 2280:fornext, 2340:fornext
-2280 F(I,S,O,O1) (0 2) PRINT "WHICH";
+2280 F(I:1540,S:2270,O:3740,O1:3750) (0 2) PRINT "WHICH";
   Origs: 2270:fornext, 2330:goto
   Dests: 2290:auto
-2290 F(I,S,O,O1) (1 2) INPUT B(S)
+2290 F(I:1540,S:2270,O:3740,O1:3750) (1 2) INPUT B(S)
   Origs: 2280:auto
   Dests: 2300:auto
-2300 F(I,S,O,O1) (1 4) IF B(S) = 0.01 THEN 2320
+2300 F(I:1540,S:2270,O:3740,O1:3750) (1 4) IF B(S) = 0.01 THEN 2320
   Origs: 2290:auto
   Dests: 2310:auto, 2320:ifthen
-2310 F(I,S,O,O1) (0 2) GOTO 2340
+2310 F(I:1540,S:2270,O:3740,O1:3750) (0 2) GOTO 2340
   Origs: 2300:auto
   Dests: 2340:goto
-2320 F(I,S,O,O1) (0 2) GOSUB 5620
+2320 F(I:1540,S:2270,O:3740,O1:3750) (0 2) GOSUB 5620
   Origs: 2300:ifthen
   Dests: 2330:auto, 5620:gosub
-2330 F(I,S,O,O1) (0 3) GOTO 2280
+2330 F(I:1540,S:2270,O:3740,O1:3750) (0 3) GOTO 2280
   Origs: 2320:auto
   Dests: 2280:goto
-2340 F(I,S,O,O1) (0 1) NEXT S
+2340 F(I:1540,S:2270,O:3740,O1:3750) (0 1) NEXT S
   Origs: 2270:fornext, 2310:goto
   Dests: 2350:auto
-2350 F(I,O,O1) (0 2) GOTO 2400
+2350 F(I:1540,O:3740,O1:3750) (0 2) GOTO 2400
   Origs: 2340:auto
   Dests: 2400:goto
-2360 F(I,S,O,O1) (1 3) FOR S = 1 TO 5
+2360 F(I:1540,S:2360,O:3740,O1:3750) (1 3) FOR S = 1 TO 5
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 2230:ifthen
   Dests: 2370:fornext, 2380:fornext
-2370 F(I,S,O,O1) (0 4) A(S) = INT(6 * RND(-1) + 1)
+2370 F(I:1540,S:2360,O:3740,O1:3750) (0 4) A(S) = INT(6 * RND(-1) + 1)
   Origs: 2360:fornext
   Dests: 2380:auto
-2380 F(I,S,O,O1) (0 1) NEXT S
+2380 F(I:1540,S:2360,O:3740,O1:3750) (0 1) NEXT S
   Origs: 2360:fornext, 2370:auto
   Dests: 2390:auto
-2390 F(I,O,O1) (0 2) GOTO 2520
+2390 F(I:1540,O:3740,O1:3750) (0 2) GOTO 2520
   Origs: 2380:auto
   Dests: 2520:goto
-2400 F(I,L,O,O1) (1 3) FOR L = 1 TO 5
+2400 F(I:1540,L:2400,O:3740,O1:3750) (1 3) FOR L = 1 TO 5
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 2350:goto
   Dests: 2410:fornext, 2460:fornext
-2410 F(I,L,L1,O,O1) (1 3) FOR L1 = 1 TO 5
+2410 F(I:1540,L:2400,L1:2410,O:3740,O1:3750) (1 3) FOR L1 = 1 TO 5
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 2400:fornext
   Dests: 2420:fornext, 2450:fornext
-2420 F(I,L,L1,O,O1) (1 4) IF B(L) = L1 THEN 2440
+2420 F(I:1540,L:2400,L1:2410,O:3740,O1:3750) (1 4) IF B(L) = L1 THEN 2440
   Origs: 2410:fornext
   Dests: 2430:auto, 2440:ifthen
-2430 F(I,L,L1,O,O1) (0 2) GOTO 2450
+2430 F(I:1540,L:2400,L1:2410,O:3740,O1:3750) (0 2) GOTO 2450
   Origs: 2420:auto
   Dests: 2450:goto
-2440 F(I,L,L1,O,O1) (0 3) A(L1) = Q(L)
+2440 F(I:1540,L:2400,L1:2410,O:3740,O1:3750) (0 3) A(L1) = Q(L)
   Origs: 2420:ifthen
   Dests: 2450:auto
-2450 F(I,L,L1,O,O1) (0 1) NEXT L1
+2450 F(I:1540,L:2400,L1:2410,O:3740,O1:3750) (0 1) NEXT L1
   Origs: 2410:fornext, 2430:goto, 2440:auto
   Dests: 2460:auto
-2460 F(I,L,O,O1) (0 1) NEXT L
+2460 F(I:1540,L:2400,O:3740,O1:3750) (0 1) NEXT L
   Origs: 2400:fornext, 2450:auto
   Dests: 2470:auto
-2470 F(I,S,O,O1) (1 3) FOR S = 1 TO 5
+2470 F(I:1540,S:2470,O:3740,O1:3750) (1 3) FOR S = 1 TO 5
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 2460:auto
   Dests: 2480:fornext, 2510:fornext
-2480 F(I,S,O,O1) (1 4) IF A(S) = 0 THEN 2500
+2480 F(I:1540,S:2470,O:3740,O1:3750) (1 4) IF A(S) = 0 THEN 2500
   Origs: 2470:fornext
   Dests: 2490:auto, 2500:ifthen
-2490 F(I,S,O,O1) (0 2) GOTO 2510
+2490 F(I:1540,S:2470,O:3740,O1:3750) (0 2) GOTO 2510
   Origs: 2480:auto
   Dests: 2510:goto
-2500 F(I,S,O,O1) (0 4) A(S) = INT(6 * RND(-1) + 1)
+2500 F(I:1540,S:2470,O:3740,O1:3750) (0 4) A(S) = INT(6 * RND(-1) + 1)
   Origs: 2480:ifthen
   Dests: 2510:auto
-2510 F(I,S,O,O1) (0 1) NEXT S
+2510 F(I:1540,S:2470,O:3740,O1:3750) (0 1) NEXT S
   Origs: 2470:fornext, 2490:goto, 2500:auto
   Dests: 2520:auto
-2520 F(I,O,O1) (0 3) GOSUB 1610
+2520 F(I:1540,O:3740,O1:3750) (0 3) GOSUB 1610
   Origs: 2390:goto, 2510:auto
   Dests: 1610:gosub, 2610:auto
-2610 F(I,O,O1) (0 7) PRINT "YOU HAVE A "; A(1); A(2); A(3); A(4); A(5)
+2610 F(I:1540,O:3740,O1:3750) (0 7) PRINT "YOU HAVE A "; A(1); A(2); A(3); A(4); A(5)
   Origs: 2520:auto
   Dests: 2620:auto
-2620 F(I,O,O1) (0 2) PRINT "HOW DO YOU WANT THIS ROUND SCORED";
+2620 F(I:1540,O:3740,O1:3750) (0 2) PRINT "HOW DO YOU WANT THIS ROUND SCORED";
   Origs: 1780:ifthen, 2220:ifthen, 2610:auto, 2675:goto, 2840:goto, 3880:goto, 3945:goto, 4640:goto, 4680:goto, 4970:goto
   Dests: 2630:auto
-2630 F(I,O,O1) (1 2) INPUT Z$
+2630 F(I:1540,O:3740,O1:3750) (1 2) INPUT Z$
   Origs: 2620:auto, 2690:goto
   Dests: 2640:auto
-2640 F(I,O,O1) (1 4) IF Z$ = "WHAT?" THEN 2680
+2640 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "WHAT?" THEN 2680
   Origs: 2630:auto
   Dests: 2650:auto, 2680:ifthen
-2650 F(I,O,O1) (1 4) IF Z$ = "SUMMARY" THEN 2670
+2650 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "SUMMARY" THEN 2670
   Origs: 2640:auto
   Dests: 2660:auto, 2670:ifthen
-2660 F(I,O,O1) (0 2) GOTO 2700
+2660 F(I:1540,O:3740,O1:3750) (0 2) GOTO 2700
   Origs: 2650:auto
   Dests: 2700:goto
-2670 F(I,O,O1) (0 2) GOSUB 6140
+2670 F(I:1540,O:3740,O1:3750) (0 2) GOSUB 6140
   Origs: 2650:ifthen
   Dests: 2675:auto, 6140:gosub
-2675 F(I,O,O1) (0 3) GOTO 2620
+2675 F(I:1540,O:3740,O1:3750) (0 3) GOTO 2620
   Origs: 2670:auto
   Dests: 2620:goto
-2680 F(I,O,O1) (0 2) GOSUB 5650
+2680 F(I:1540,O:3740,O1:3750) (0 2) GOSUB 5650
   Origs: 2640:ifthen
   Dests: 2690:auto, 5650:gosub
-2690 F(I,O,O1) (0 3) GOTO 2630
+2690 F(I:1540,O:3740,O1:3750) (0 3) GOTO 2630
   Origs: 2680:auto
   Dests: 2630:goto
-2700 F(I,O,O1) (1 4) IF Z$ = "ACES" THEN 2850
+2700 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "ACES" THEN 2850
   Origs: 2660:goto
   Dests: 2710:auto, 2850:ifthen
-2710 F(I,O,O1) (1 4) IF Z$ = "TWOS" THEN 2940
+2710 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "TWOS" THEN 2940
   Origs: 2700:auto
   Dests: 2720:auto, 2940:ifthen
-2720 F(I,O,O1) (1 4) IF Z$ = "THREES" THEN 3030
+2720 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "THREES" THEN 3030
   Origs: 2710:auto
   Dests: 2730:auto, 3030:ifthen
-2730 F(I,O,O1) (1 4) IF Z$ = "FOURS" THEN 3120
+2730 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "FOURS" THEN 3120
   Origs: 2720:auto
   Dests: 2740:auto, 3120:ifthen
-2740 F(I,O,O1) (1 4) IF Z$ = "FIVES" THEN 3210
+2740 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "FIVES" THEN 3210
   Origs: 2730:auto
   Dests: 2750:auto, 3210:ifthen
-2750 F(I,O,O1) (1 4) IF Z$ = "SIXES" THEN 3300
+2750 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "SIXES" THEN 3300
   Origs: 2740:auto
   Dests: 2760:auto, 3300:ifthen
-2760 F(I,O,O1) (1 4) IF Z$ = "THREE OF A KIND" THEN 3390
+2760 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "THREE OF A KIND" THEN 3390
   Origs: 2750:auto
   Dests: 2770:auto, 3390:ifthen
-2770 F(I,O,O1) (1 4) IF Z$ = "FOUR OF A KIND" THEN 3440
+2770 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "FOUR OF A KIND" THEN 3440
   Origs: 2760:auto
   Dests: 2780:auto, 3440:ifthen
-2780 F(I,O,O1) (1 4) IF Z$ = "FULL HOUSE" THEN 3520
+2780 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "FULL HOUSE" THEN 3520
   Origs: 2770:auto
   Dests: 2790:auto, 3520:ifthen
-2790 F(I,O,O1) (1 4) IF Z$ = "SM. STRAIGHT" THEN 3620
+2790 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "SM. STRAIGHT" THEN 3620
   Origs: 2780:auto
   Dests: 2800:auto, 3620:ifthen
-2800 F(I,O,O1) (1 4) IF Z$ = "LG. STRAIGHT" THEN 3660
+2800 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "LG. STRAIGHT" THEN 3660
   Origs: 2790:auto
   Dests: 2810:auto, 3660:ifthen
-2810 F(I,O,O1) (1 4) IF Z$ = "YAHTZEE" THEN 3730
+2810 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "YAHTZEE" THEN 3730
   Origs: 2800:auto
   Dests: 2820:auto, 3730:ifthen
-2820 F(I,O,O1) (1 4) IF Z$ = "CHANCE" THEN 3820
+2820 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "CHANCE" THEN 3820
   Origs: 2810:auto
   Dests: 2830:auto, 3820:ifthen
-2830 F(I,O,O1) (1 4) IF Z$ = "ZERO" THEN 3890
+2830 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "ZERO" THEN 3890
   Origs: 2820:auto
   Dests: 2840:auto, 3890:ifthen
-2840 F(I,O,O1) (0 3) GOTO 2620
+2840 F(I:1540,O:3740,O1:3750) (0 3) GOTO 2620
   Origs: 2830:auto
   Dests: 2620:goto
-2850 F(I,O,O1) (1 6) IF A(1, I) <> -5 THEN 3870
+2850 F(I:1540,O:3740,O1:3750) (1 6) IF A(1, I) <> -5 THEN 3870
   Origs: 2700:ifthen
   Dests: 2860:auto, 3870:ifthen
-2860 F(I,O,O1) (0 3) A(1, I) = 0
+2860 F(I:1540,O:3740,O1:3750) (0 3) A(1, I) = 0
   Origs: 2850:auto
   Dests: 2870:auto
-2870 F(I,S,O,O1) (1 3) FOR S = 1 TO 5
+2870 F(I:1540,S:2870,O:3740,O1:3750) (1 3) FOR S = 1 TO 5
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 2860:auto
   Dests: 2880:fornext, 2910:fornext
-2880 F(I,S,O,O1) (1 4) IF A(S) = 1 THEN 2900
+2880 F(I:1540,S:2870,O:3740,O1:3750) (1 4) IF A(S) = 1 THEN 2900
   Origs: 2870:fornext
   Dests: 2890:auto, 2900:ifthen
-2890 F(I,S,O,O1) (0 2) GOTO 2910
+2890 F(I:1540,S:2870,O:3740,O1:3750) (0 2) GOTO 2910
   Origs: 2880:auto
   Dests: 2910:goto
-2900 F(I,S,O,O1) (0 4) A(1, I) = A(1, I) + 1
+2900 F(I:1540,S:2870,O:3740,O1:3750) (0 4) A(1, I) = A(1, I) + 1
   Origs: 2880:ifthen
   Dests: 2910:auto
-2910 F(I,S,O,O1) (0 1) NEXT S
+2910 F(I:1540,S:2870,O:3740,O1:3750) (0 1) NEXT S
   Origs: 2870:fornext, 2890:goto, 2900:auto
   Dests: 2920:auto
-2920 F(I,O,O1) (0 3) M(I) = A(1, I)
+2920 F(I:1540,O:3740,O1:3750) (0 3) M(I) = A(1, I)
   Origs: 2910:auto
   Dests: 2930:auto
-2930 F(I,O,O1) (0 2) GOTO 4690
+2930 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 2920:auto
   Dests: 4690:goto
-2940 F(I,O,O1) (1 6) IF T(1, I) <> -5 THEN 3870
+2940 F(I:1540,O:3740,O1:3750) (1 6) IF T(1, I) <> -5 THEN 3870
   Origs: 2710:ifthen
   Dests: 2950:auto, 3870:ifthen
-2950 F(I,O,O1) (0 3) T(1, I) = 0
+2950 F(I:1540,O:3740,O1:3750) (0 3) T(1, I) = 0
   Origs: 2940:auto
   Dests: 2960:auto
-2960 F(I,S,O,O1) (1 3) FOR S = 1 TO 5
+2960 F(I:1540,S:2960,O:3740,O1:3750) (1 3) FOR S = 1 TO 5
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 2950:auto
   Dests: 2970:fornext, 3000:fornext
-2970 F(I,S,O,O1) (1 4) IF A(S) = 2 THEN 2990
+2970 F(I:1540,S:2960,O:3740,O1:3750) (1 4) IF A(S) = 2 THEN 2990
   Origs: 2960:fornext
   Dests: 2980:auto, 2990:ifthen
-2980 F(I,S,O,O1) (0 2) GOTO 3000
+2980 F(I:1540,S:2960,O:3740,O1:3750) (0 2) GOTO 3000
   Origs: 2970:auto
   Dests: 3000:goto
-2990 F(I,S,O,O1) (0 4) T(1, I) = T(1, I) + 2
+2990 F(I:1540,S:2960,O:3740,O1:3750) (0 4) T(1, I) = T(1, I) + 2
   Origs: 2970:ifthen
   Dests: 3000:auto
-3000 F(I,S,O,O1) (0 1) NEXT S
+3000 F(I:1540,S:2960,O:3740,O1:3750) (0 1) NEXT S
   Origs: 2960:fornext, 2980:goto, 2990:auto
   Dests: 3010:auto
-3010 F(I,O,O1) (0 3) M(I) = T(1, I)
+3010 F(I:1540,O:3740,O1:3750) (0 3) M(I) = T(1, I)
   Origs: 3000:auto
   Dests: 3020:auto
-3020 F(I,O,O1) (0 2) GOTO 4690
+3020 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 3010:auto
   Dests: 4690:goto
-3030 F(I,O,O1) (1 6) IF T(2, I) <> -5 THEN 3870
+3030 F(I:1540,O:3740,O1:3750) (1 6) IF T(2, I) <> -5 THEN 3870
   Origs: 2720:ifthen
   Dests: 3040:auto, 3870:ifthen
-3040 F(I,O,O1) (0 3) T(2, I) = 0
+3040 F(I:1540,O:3740,O1:3750) (0 3) T(2, I) = 0
   Origs: 3030:auto
   Dests: 3050:auto
-3050 F(I,S,O,O1) (1 3) FOR S = 1 TO 5
+3050 F(I:1540,S:3050,O:3740,O1:3750) (1 3) FOR S = 1 TO 5
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 3040:auto
   Dests: 3060:fornext, 3090:fornext
-3060 F(I,S,O,O1) (1 4) IF A(S) = 3 THEN 3080
+3060 F(I:1540,S:3050,O:3740,O1:3750) (1 4) IF A(S) = 3 THEN 3080
   Origs: 3050:fornext
   Dests: 3070:auto, 3080:ifthen
-3070 F(I,S,O,O1) (0 2) GOTO 3090
+3070 F(I:1540,S:3050,O:3740,O1:3750) (0 2) GOTO 3090
   Origs: 3060:auto
   Dests: 3090:goto
-3080 F(I,S,O,O1) (0 4) T(2, I) = T(2, I) + 3
+3080 F(I:1540,S:3050,O:3740,O1:3750) (0 4) T(2, I) = T(2, I) + 3
   Origs: 3060:ifthen
   Dests: 3090:auto
-3090 F(I,S,O,O1) (0 1) NEXT S
+3090 F(I:1540,S:3050,O:3740,O1:3750) (0 1) NEXT S
   Origs: 3050:fornext, 3070:goto, 3080:auto
   Dests: 3100:auto
-3100 F(I,O,O1) (0 3) M(I) = T(2, I)
+3100 F(I:1540,O:3740,O1:3750) (0 3) M(I) = T(2, I)
   Origs: 3090:auto
   Dests: 3110:auto
-3110 F(I,O,O1) (0 2) GOTO 4690
+3110 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 3100:auto
   Dests: 4690:goto
-3120 F(I,O,O1) (1 6) IF F(1, I) <> -5 THEN 3870
+3120 F(I:1540,O:3740,O1:3750) (1 6) IF F(1, I) <> -5 THEN 3870
   Origs: 2730:ifthen
   Dests: 3130:auto, 3870:ifthen
-3130 F(I,O,O1) (0 3) F(1, I) = 0
+3130 F(I:1540,O:3740,O1:3750) (0 3) F(1, I) = 0
   Origs: 3120:auto
   Dests: 3140:auto
-3140 F(I,S,O,O1) (1 3) FOR S = 1 TO 5
+3140 F(I:1540,S:3140,O:3740,O1:3750) (1 3) FOR S = 1 TO 5
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 3130:auto
   Dests: 3150:fornext, 3180:fornext
-3150 F(I,S,O,O1) (1 4) IF A(S) = 4 THEN 3170
+3150 F(I:1540,S:3140,O:3740,O1:3750) (1 4) IF A(S) = 4 THEN 3170
   Origs: 3140:fornext
   Dests: 3160:auto, 3170:ifthen
-3160 F(I,S,O,O1) (0 2) GOTO 3180
+3160 F(I:1540,S:3140,O:3740,O1:3750) (0 2) GOTO 3180
   Origs: 3150:auto
   Dests: 3180:goto
-3170 F(I,S,O,O1) (0 4) F(1, I) = F(1, I) + 4
+3170 F(I:1540,S:3140,O:3740,O1:3750) (0 4) F(1, I) = F(1, I) + 4
   Origs: 3150:ifthen
   Dests: 3180:auto
-3180 F(I,S,O,O1) (0 1) NEXT S
+3180 F(I:1540,S:3140,O:3740,O1:3750) (0 1) NEXT S
   Origs: 3140:fornext, 3160:goto, 3170:auto
   Dests: 3185:auto
-3185 F(I,O,O1) (0 3) M(I) = F(1, I)
+3185 F(I:1540,O:3740,O1:3750) (0 3) M(I) = F(1, I)
   Origs: 3180:auto
   Dests: 3190:auto
-3190 F(I,O,O1) (0 2) GOTO 4690
+3190 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 3185:auto
   Dests: 4690:goto
-3210 F(I,O,O1) (1 6) IF F(2, I) <> -5 THEN 3870
+3210 F(I:1540,O:3740,O1:3750) (1 6) IF F(2, I) <> -5 THEN 3870
   Origs: 2740:ifthen
   Dests: 3220:auto, 3870:ifthen
-3220 F(I,O,O1) (0 3) F(2, I) = 0
+3220 F(I:1540,O:3740,O1:3750) (0 3) F(2, I) = 0
   Origs: 3210:auto
   Dests: 3230:auto
-3230 F(I,S,O,O1) (1 3) FOR S = 1 TO 5
+3230 F(I:1540,S:3230,O:3740,O1:3750) (1 3) FOR S = 1 TO 5
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 3220:auto
   Dests: 3240:fornext, 3270:fornext
-3240 F(I,S,O,O1) (1 4) IF A(S) = 5 THEN 3260
+3240 F(I:1540,S:3230,O:3740,O1:3750) (1 4) IF A(S) = 5 THEN 3260
   Origs: 3230:fornext
   Dests: 3250:auto, 3260:ifthen
-3250 F(I,S,O,O1) (0 2) GOTO 3270
+3250 F(I:1540,S:3230,O:3740,O1:3750) (0 2) GOTO 3270
   Origs: 3240:auto
   Dests: 3270:goto
-3260 F(I,S,O,O1) (0 4) F(2, I) = F(2, I) + 5
+3260 F(I:1540,S:3230,O:3740,O1:3750) (0 4) F(2, I) = F(2, I) + 5
   Origs: 3240:ifthen
   Dests: 3270:auto
-3270 F(I,S,O,O1) (0 1) NEXT S
+3270 F(I:1540,S:3230,O:3740,O1:3750) (0 1) NEXT S
   Origs: 3230:fornext, 3250:goto, 3260:auto
   Dests: 3280:auto
-3280 F(I,O,O1) (0 3) M(I) = F(2, I)
+3280 F(I:1540,O:3740,O1:3750) (0 3) M(I) = F(2, I)
   Origs: 3270:auto
   Dests: 3290:auto
-3290 F(I,O,O1) (0 2) GOTO 4690
+3290 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 3280:auto
   Dests: 4690:goto
-3300 F(I,O,O1) (1 6) IF S(1, I) <> -5 THEN 3870
+3300 F(I:1540,O:3740,O1:3750) (1 6) IF S(1, I) <> -5 THEN 3870
   Origs: 2750:ifthen
   Dests: 3310:auto, 3870:ifthen
-3310 F(I,O,O1) (0 3) S(1, I) = 0
+3310 F(I:1540,O:3740,O1:3750) (0 3) S(1, I) = 0
   Origs: 3300:auto
   Dests: 3320:auto
-3320 F(I,S,O,O1) (1 3) FOR S = 1 TO 5
+3320 F(I:1540,S:3320,O:3740,O1:3750) (1 3) FOR S = 1 TO 5
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 3310:auto
   Dests: 3330:fornext, 3360:fornext
-3330 F(I,S,O,O1) (1 4) IF A(S) = 6 THEN 3350
+3330 F(I:1540,S:3320,O:3740,O1:3750) (1 4) IF A(S) = 6 THEN 3350
   Origs: 3320:fornext
   Dests: 3340:auto, 3350:ifthen
-3340 F(I,S,O,O1) (0 2) GOTO 3360
+3340 F(I:1540,S:3320,O:3740,O1:3750) (0 2) GOTO 3360
   Origs: 3330:auto
   Dests: 3360:goto
-3350 F(I,S,O,O1) (0 4) S(1, I) = S(1, I) + 6
+3350 F(I:1540,S:3320,O:3740,O1:3750) (0 4) S(1, I) = S(1, I) + 6
   Origs: 3330:ifthen
   Dests: 3360:auto
-3360 F(I,S,O,O1) (0 1) NEXT S
+3360 F(I:1540,S:3320,O:3740,O1:3750) (0 1) NEXT S
   Origs: 3320:fornext, 3340:goto, 3350:auto
   Dests: 3370:auto
-3370 F(I,O,O1) (0 3) M(I) = S(1, I)
+3370 F(I:1540,O:3740,O1:3750) (0 3) M(I) = S(1, I)
   Origs: 3360:auto
   Dests: 3380:auto
-3380 F(I,O,O1) (0 2) GOTO 4690
+3380 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 3370:auto
   Dests: 4690:goto
-3390 F(I,O,O1) (1 6) IF T(3, I) <> -5 THEN 3870
+3390 F(I:1540,O:3740,O1:3750) (1 6) IF T(3, I) <> -5 THEN 3870
   Origs: 2760:ifthen
   Dests: 3400:auto, 3870:ifthen
-3400 F(I,O,O1) (0 3) T(3, I) = 0
+3400 F(I:1540,O:3740,O1:3750) (0 3) T(3, I) = 0
   Origs: 3390:auto
   Dests: 3410:auto
-3410 F(I,O,O1) (0 7) T(3, I) = A(1) + A(2) + A(3) + A(4) + A(5)
+3410 F(I:1540,O:3740,O1:3750) (0 7) T(3, I) = A(1) + A(2) + A(3) + A(4) + A(5)
   Origs: 3400:auto
   Dests: 3420:auto
-3420 F(I,O,O1) (0 3) M(I) = T(3, I)
+3420 F(I:1540,O:3740,O1:3750) (0 3) M(I) = T(3, I)
   Origs: 3410:auto
   Dests: 3430:auto
-3430 F(I,O,O1) (0 2) GOTO 4690
+3430 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 3420:auto
   Dests: 4690:goto
-3440 F(I,O,O1) (1 6) IF F(3, I) <> -5 THEN 3870
+3440 F(I:1540,O:3740,O1:3750) (1 6) IF F(3, I) <> -5 THEN 3870
   Origs: 2770:ifthen
   Dests: 3450:auto, 3870:ifthen
-3450 F(I,O,O1) (1 4) IF A(1) <> A(4) THEN 4960
+3450 F(I:1540,O:3740,O1:3750) (1 4) IF A(1) <> A(4) THEN 4960
   Origs: 3440:auto
   Dests: 3460:auto, 4960:ifthen
-3460 F(I,O,O1) (1 4) IF A(2) <> A(3) THEN 4960
+3460 F(I:1540,O:3740,O1:3750) (1 4) IF A(2) <> A(3) THEN 4960
   Origs: 3450:auto
   Dests: 3470:auto, 4960:ifthen
-3470 F(I,O,O1) (0 3) F(3, I) = 0
+3470 F(I:1540,O:3740,O1:3750) (0 3) F(3, I) = 0
   Origs: 3460:auto
   Dests: 3480:auto
-3480 F(I,O,O1) (0 7) F(3, I) = A(1) + A(2) + A(3) + A(4) + A(5)
+3480 F(I:1540,O:3740,O1:3750) (0 7) F(3, I) = A(1) + A(2) + A(3) + A(4) + A(5)
   Origs: 3470:auto
   Dests: 3490:auto
-3490 F(I,O,O1) (0 3) M(I) = F(3, I)
+3490 F(I:1540,O:3740,O1:3750) (0 3) M(I) = F(3, I)
   Origs: 3480:auto
   Dests: 3500:auto
-3500 F(I,O,O1) (0 3) F(3, I) = 0
+3500 F(I:1540,O:3740,O1:3750) (0 3) F(3, I) = 0
   Origs: 3490:auto
   Dests: 3510:auto
-3510 F(I,O,O1) (0 2) GOTO 4690
+3510 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 3500:auto
   Dests: 4690:goto
-3520 F(I,O,O1) (1 6) IF F(4, I) <> -5 THEN 3870
+3520 F(I:1540,O:3740,O1:3750) (1 6) IF F(4, I) <> -5 THEN 3870
   Origs: 2780:ifthen
   Dests: 3530:auto, 3870:ifthen
-3530 F(I,O,O1) (1 4) IF A(1) <> A(2) THEN 4960
+3530 F(I:1540,O:3740,O1:3750) (1 4) IF A(1) <> A(2) THEN 4960
   Origs: 3520:auto
   Dests: 3540:auto, 4960:ifthen
-3540 F(I,O,O1) (1 4) IF A(4) <> A(S) THEN 4960
+3540 F(I:1540,O:3740,O1:3750) (1 4) IF A(4) <> A(S) THEN 4960
   Origs: 3530:auto
   Dests: 3550:auto, 4960:ifthen
-3550 F(I,O,O1) (1 4) IF A(3) <> A(2) THEN 3570
+3550 F(I:1540,O:3740,O1:3750) (1 4) IF A(3) <> A(2) THEN 3570
   Origs: 3540:auto
   Dests: 3560:auto, 3570:ifthen
-3560 F(I,O,O1) (0 2) GOTO 3590
+3560 F(I:1540,O:3740,O1:3750) (0 2) GOTO 3590
   Origs: 3550:auto
   Dests: 3590:goto
-3570 F(I,O,O1) (1 4) IF A(3) <> A(4) THEN 4960
+3570 F(I:1540,O:3740,O1:3750) (1 4) IF A(3) <> A(4) THEN 4960
   Origs: 3550:ifthen
   Dests: 3580:auto, 4960:ifthen
-3580 F(I,O,O1) (0 2) GOTO 3590
+3580 F(I:1540,O:3740,O1:3750) (0 2) GOTO 3590
   Origs: 3570:auto
   Dests: 3590:goto
-3590 F(I,O,O1) (0 3) F(4, I) = 25
+3590 F(I:1540,O:3740,O1:3750) (0 3) F(4, I) = 25
   Origs: 3560:goto, 3580:goto
   Dests: 3600:auto
-3600 F(I,O,O1) (0 3) M(I) = F(4, I)
+3600 F(I:1540,O:3740,O1:3750) (0 3) M(I) = F(4, I)
   Origs: 3590:auto
   Dests: 3610:auto
-3610 F(I,O,O1) (0 2) GOTO 4690
+3610 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 3600:auto
   Dests: 4690:goto
-3620 F(I,O,O1) (1 6) IF S(2, I) <> -5 THEN 3870
+3620 F(I:1540,O:3740,O1:3750) (1 6) IF S(2, I) <> -5 THEN 3870
   Origs: 2790:ifthen
   Dests: 3630:auto, 3870:ifthen
-3630 F(I,O,O1) (0 3) S(2, I) = 30
+3630 F(I:1540,O:3740,O1:3750) (0 3) S(2, I) = 30
   Origs: 3620:auto
   Dests: 3640:auto
-3640 F(I,O,O1) (0 3) M(I) = S(2, I)
+3640 F(I:1540,O:3740,O1:3750) (0 3) M(I) = S(2, I)
   Origs: 3630:auto
   Dests: 3650:auto
-3650 F(I,O,O1) (0 2) GOTO 4690
+3650 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 3640:auto
   Dests: 4690:goto
-3660 F(I,O,O1) (1 6) IF L(1, I) <> -5 THEN 3870
+3660 F(I:1540,O:3740,O1:3750) (1 6) IF L(1, I) <> -5 THEN 3870
   Origs: 2800:ifthen
   Dests: 3670:auto, 3870:ifthen
-3670 F(I,O,O1) (1 6) IF A(1) <> A(5) + 4 THEN 4960
+3670 F(I:1540,O:3740,O1:3750) (1 6) IF A(1) <> A(5) + 4 THEN 4960
   Origs: 3660:auto
   Dests: 3680:auto, 4960:ifthen
-3680 F(I,O,O1) (1 6) IF A(2) <> A(4) + 2 THEN 4960
+3680 F(I:1540,O:3740,O1:3750) (1 6) IF A(2) <> A(4) + 2 THEN 4960
   Origs: 3670:auto
   Dests: 3690:auto, 4960:ifthen
-3690 F(I,O,O1) (1 6) IF A(3) <> A(5) + 2 THEN 4960
+3690 F(I:1540,O:3740,O1:3750) (1 6) IF A(3) <> A(5) + 2 THEN 4960
   Origs: 3680:auto
   Dests: 3700:auto, 4960:ifthen
-3700 F(I,O,O1) (0 3) L(1, I) = 40
+3700 F(I:1540,O:3740,O1:3750) (0 3) L(1, I) = 40
   Origs: 3690:auto
   Dests: 3710:auto
-3710 F(I,O,O1) (0 3) M(I) = L(1, I)
+3710 F(I:1540,O:3740,O1:3750) (0 3) M(I) = L(1, I)
   Origs: 3700:auto
   Dests: 3720:auto
-3720 F(I,O,O1) (0 2) GOTO 4690
+3720 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 3710:auto
   Dests: 4690:goto
-3730 F(I,O,O1) (1 6) IF Y(I) <> -5 THEN 3870
+3730 F(I:1540,O:3740,O1:3750) (1 6) IF Y(I) <> -5 THEN 3870
   Origs: 2810:ifthen
   Dests: 3740:auto, 3870:ifthen
-3740 F(I,O,O1) (1 3) FOR O = 1 TO 5
+3740 F(I:1540,O:3740,O1:3750) (1 3) FOR O = 1 TO 5
   Origs: 3730:auto
   Dests: 3750:fornext, 3780:fornext
-3750 F(I,O,O1) (1 3) FOR O1 = 1 TO 5
+3750 F(I:1540,O:3740,O1:3750) (1 3) FOR O1 = 1 TO 5
   Origs: 3740:fornext
   Dests: 3760:fornext, 3770:fornext
-3760 F(I,O,O1) (1 4) IF A(O) <> A(O1) THEN 4960
+3760 F(I:1540,O:3740,O1:3750) (1 4) IF A(O) <> A(O1) THEN 4960
   Origs: 3750:fornext
   Dests: 3770:auto, 4960:ifthen
-3770 F(I,O,O1) (0 1) NEXT O1
+3770 F(I:1540,O:3740,O1:3750) (0 1) NEXT O1
   Origs: 3750:fornext, 3760:auto
   Dests: 3780:auto
-3780 F(I,O,O1) (0 1) NEXT O
+3780 F(I:1540,O:3740,O1:3750) (0 1) NEXT O
   Origs: 3740:fornext, 3770:auto
   Dests: 3790:auto
-3790 F(I,O1) (0 3) Y(I) = 50
+3790 F(I:1540,O1:3750) (0 3) Y(I) = 50
   Origs: 3780:auto
   Dests: 3800:auto
-3800 F(I,O1) (0 3) M(I) = Y(I)
+3800 F(I:1540,O1:3750) (0 3) M(I) = Y(I)
   Origs: 3790:auto
   Dests: 3810:auto
-3810 F(I,O1) (0 2) GOTO 4690
+3810 F(I:1540,O1:3750) (0 2) GOTO 4690
   Origs: 3800:auto
   Dests: 4690:goto
-3820 F(I,O,O1) (1 6) IF C(I) <> -5 THEN 3870
+3820 F(I:1540,O:3740,O1:3750) (1 6) IF C(I) <> -5 THEN 3870
   Origs: 2820:ifthen
   Dests: 3830:auto, 3870:ifthen
-3830 F(I,O,O1) (0 7) C(I) = A(1) + A(2) + A(3) + A(4) + A(5)
+3830 F(I:1540,O:3740,O1:3750) (0 7) C(I) = A(1) + A(2) + A(3) + A(4) + A(5)
   Origs: 3820:auto
   Dests: 3850:auto
 3840 (0 0) 
   Origs: 
   Dests: 
-3850 F(I,O,O1) (0 3) M(I) = C(I)
+3850 F(I:1540,O:3740,O1:3750) (0 3) M(I) = C(I)
   Origs: 3830:auto
   Dests: 3860:auto
-3860 F(I,O,O1) (0 2) GOTO 4690
+3860 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 3850:auto
   Dests: 4690:goto
-3870 F(I,O,O1) (0 2) GOSUB 4650
+3870 F(I:1540,O:3740,O1:3750) (0 2) GOSUB 4650
   Origs: 2850:ifthen, 2940:ifthen, 3030:ifthen, 3120:ifthen, 3210:ifthen, 3300:ifthen, 3390:ifthen, 3440:ifthen, 3520:ifthen, 3620:ifthen, 3660:ifthen, 3730:ifthen, 3820:ifthen
   Dests: 3880:auto, 4650:gosub
-3880 F(I,O,O1) (0 3) GOTO 2620
+3880 F(I:1540,O:3740,O1:3750) (0 3) GOTO 2620
   Origs: 3870:auto
   Dests: 2620:goto
-3890 F(I,O,O1) (0 2) PRINT "WHAT DO YOU WANT TO ZERO";
+3890 F(I:1540,O:3740,O1:3750) (0 2) PRINT "WHAT DO YOU WANT TO ZERO";
   Origs: 2830:ifthen, 4100:goto
   Dests: 3900:auto
-3900 F(I,O,O1) (1 2) INPUT Z$
+3900 F(I:1540,O:3740,O1:3750) (1 2) INPUT Z$
   Origs: 3890:auto, 3960:goto
   Dests: 3920:auto
-3920 F(I,O,O1) (1 4) IF Z$ = "SUMMARY" THEN 3940
+3920 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "SUMMARY" THEN 3940
   Origs: 3900:auto
   Dests: 3930:auto, 3940:ifthen
-3930 F(I,O,O1) (0 2) GOTO 3970
+3930 F(I:1540,O:3740,O1:3750) (0 2) GOTO 3970
   Origs: 3920:auto
   Dests: 3970:goto
-3940 F(I,O,O1) (0 2) GOSUB 6140
+3940 F(I:1540,O:3740,O1:3750) (0 2) GOSUB 6140
   Origs: 3920:ifthen
   Dests: 3945:auto, 6140:gosub
-3945 F(I,O,O1) (0 3) GOTO 2620
+3945 F(I:1540,O:3740,O1:3750) (0 3) GOTO 2620
   Origs: 3940:auto
   Dests: 2620:goto
 3950 (0 2) GOSUB 5680
@@ -893,208 +893,208 @@ Halstead complexity:
 3960 (0 3) GOTO 3900
   Origs: 3950:auto
   Dests: 3900:goto
-3970 F(I,O,O1) (1 4) IF Z$ = "ACES" THEN 4110
+3970 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "ACES" THEN 4110
   Origs: 3930:goto
   Dests: 3980:auto, 4110:ifthen
-3980 F(I,O,O1) (1 4) IF Z$ = "TWOS" THEN 4150
+3980 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "TWOS" THEN 4150
   Origs: 3970:auto
   Dests: 3990:auto, 4150:ifthen
-3990 F(I,O,O1) (1 4) IF Z$ = "THREES" THEN 4190
+3990 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "THREES" THEN 4190
   Origs: 3980:auto
   Dests: 4000:auto, 4190:ifthen
-4000 F(I,O,O1) (1 4) IF Z$ = "FOURS" THEN 4230
+4000 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "FOURS" THEN 4230
   Origs: 3990:auto
   Dests: 4010:auto, 4230:ifthen
-4010 F(I,O,O1) (1 4) IF Z$ = "FIVES" THEN 4270
+4010 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "FIVES" THEN 4270
   Origs: 4000:auto
   Dests: 4020:auto, 4270:ifthen
-4020 F(I,O,O1) (1 4) IF Z$ = "SIXES" THEN 4310
+4020 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "SIXES" THEN 4310
   Origs: 4010:auto
   Dests: 4030:auto, 4310:ifthen
-4030 F(I,O,O1) (1 4) IF Z$ = "THREE OF A KIND" THEN 4350
+4030 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "THREE OF A KIND" THEN 4350
   Origs: 4020:auto
   Dests: 4040:auto, 4350:ifthen
-4040 F(I,O,O1) (1 4) IF Z$ = "FOUR OF A KIND" THEN 4390
+4040 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "FOUR OF A KIND" THEN 4390
   Origs: 4030:auto
   Dests: 4050:auto, 4390:ifthen
-4050 F(I,O,O1) (1 4) IF Z$ = "FULL HOUSE" THEN 4430
+4050 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "FULL HOUSE" THEN 4430
   Origs: 4040:auto
   Dests: 4060:auto, 4430:ifthen
-4060 F(I,O,O1) (1 4) IF Z$ = "SM. STRAIGHT" THEN 4470
+4060 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "SM. STRAIGHT" THEN 4470
   Origs: 4050:auto
   Dests: 4070:auto, 4470:ifthen
-4070 F(I,O,O1) (1 4) IF Z$ = "LG. STRAIGHT" THEN 4510
+4070 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "LG. STRAIGHT" THEN 4510
   Origs: 4060:auto
   Dests: 4080:auto, 4510:ifthen
-4080 F(I,O,O1) (1 4) IF Z$ = "YAHTZEE" THEN 4550
+4080 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "YAHTZEE" THEN 4550
   Origs: 4070:auto
   Dests: 4090:auto, 4550:ifthen
-4090 F(I,O,O1) (1 4) IF Z$ = "CHANCE" THEN 4590
+4090 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "CHANCE" THEN 4590
   Origs: 4080:auto
   Dests: 4100:auto, 4590:ifthen
-4100 F(I,O,O1) (0 3) GOTO 3890
+4100 F(I:1540,O:3740,O1:3750) (0 3) GOTO 3890
   Origs: 4090:auto
   Dests: 3890:goto
-4110 F(I,O,O1) (1 6) IF A(1, I) <> -5 THEN 4630
+4110 F(I:1540,O:3740,O1:3750) (1 6) IF A(1, I) <> -5 THEN 4630
   Origs: 3970:ifthen
   Dests: 4120:auto, 4630:ifthen
-4120 F(I,O,O1) (0 3) A(1, I) = 0
+4120 F(I:1540,O:3740,O1:3750) (0 3) A(1, I) = 0
   Origs: 4110:auto
   Dests: 4130:auto
-4130 F(I,O,O1) (0 3) M(I) = A(1, I)
+4130 F(I:1540,O:3740,O1:3750) (0 3) M(I) = A(1, I)
   Origs: 4120:auto
   Dests: 4140:auto
-4140 F(I,O,O1) (0 2) GOTO 4690
+4140 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 4130:auto
   Dests: 4690:goto
-4150 F(I,O,O1) (1 6) IF T(1, I) <> -5 THEN 4630
+4150 F(I:1540,O:3740,O1:3750) (1 6) IF T(1, I) <> -5 THEN 4630
   Origs: 3980:ifthen
   Dests: 4160:auto, 4630:ifthen
-4160 F(I,O,O1) (0 3) T(1, I) = 0
+4160 F(I:1540,O:3740,O1:3750) (0 3) T(1, I) = 0
   Origs: 4150:auto
   Dests: 4170:auto
-4170 F(I,O,O1) (0 3) M(I) = T(1, I)
+4170 F(I:1540,O:3740,O1:3750) (0 3) M(I) = T(1, I)
   Origs: 4160:auto
   Dests: 4180:auto
-4180 F(I,O,O1) (0 2) GOTO 4690
+4180 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 4170:auto
   Dests: 4690:goto
-4190 F(I,O,O1) (1 6) IF T(2, I) <> -5 THEN 4630
+4190 F(I:1540,O:3740,O1:3750) (1 6) IF T(2, I) <> -5 THEN 4630
   Origs: 3990:ifthen
   Dests: 4200:auto, 4630:ifthen
-4200 F(I,O,O1) (0 3) T(2, I) = 0
+4200 F(I:1540,O:3740,O1:3750) (0 3) T(2, I) = 0
   Origs: 4190:auto
   Dests: 4210:auto
-4210 F(I,O,O1) (0 3) M(I) = T(2, I)
+4210 F(I:1540,O:3740,O1:3750) (0 3) M(I) = T(2, I)
   Origs: 4200:auto
   Dests: 4220:auto
-4220 F(I,O,O1) (0 2) GOTO 4690
+4220 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 4210:auto
   Dests: 4690:goto
-4230 F(I,O,O1) (1 6) IF F(1, I) <> -5 THEN 4630
+4230 F(I:1540,O:3740,O1:3750) (1 6) IF F(1, I) <> -5 THEN 4630
   Origs: 4000:ifthen
   Dests: 4240:auto, 4630:ifthen
-4240 F(I,O,O1) (0 3) F(1, I) = 0
+4240 F(I:1540,O:3740,O1:3750) (0 3) F(1, I) = 0
   Origs: 4230:auto
   Dests: 4250:auto
-4250 F(I,O,O1) (0 3) M(I) = F(1, I)
+4250 F(I:1540,O:3740,O1:3750) (0 3) M(I) = F(1, I)
   Origs: 4240:auto
   Dests: 4260:auto
-4260 F(I,O,O1) (0 2) GOTO 4690
+4260 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 4250:auto
   Dests: 4690:goto
-4270 F(I,O,O1) (1 6) IF F(2, I) <> -5 THEN 4630
+4270 F(I:1540,O:3740,O1:3750) (1 6) IF F(2, I) <> -5 THEN 4630
   Origs: 4010:ifthen
   Dests: 4280:auto, 4630:ifthen
-4280 F(I,O,O1) (0 3) F(2, I) = 0
+4280 F(I:1540,O:3740,O1:3750) (0 3) F(2, I) = 0
   Origs: 4270:auto
   Dests: 4290:auto
-4290 F(I,O,O1) (0 3) M(I) = F(2, I)
+4290 F(I:1540,O:3740,O1:3750) (0 3) M(I) = F(2, I)
   Origs: 4280:auto
   Dests: 4300:auto
-4300 F(I,O,O1) (0 2) GOTO 4690
+4300 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 4290:auto
   Dests: 4690:goto
-4310 F(I,O,O1) (1 6) IF S(1, I) <> -5 THEN 4630
+4310 F(I:1540,O:3740,O1:3750) (1 6) IF S(1, I) <> -5 THEN 4630
   Origs: 4020:ifthen
   Dests: 4320:auto, 4630:ifthen
-4320 F(I,O,O1) (0 3) S(1, I) = 0
+4320 F(I:1540,O:3740,O1:3750) (0 3) S(1, I) = 0
   Origs: 4310:auto
   Dests: 4330:auto
-4330 F(I,O,O1) (0 3) M(1) = S(1, I)
+4330 F(I:1540,O:3740,O1:3750) (0 3) M(1) = S(1, I)
   Origs: 4320:auto
   Dests: 4340:auto
-4340 F(I,O,O1) (0 2) GOTO 4690
+4340 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 4330:auto
   Dests: 4690:goto
-4350 F(I,O,O1) (1 6) IF T(3, I) <> -5 THEN 4630
+4350 F(I:1540,O:3740,O1:3750) (1 6) IF T(3, I) <> -5 THEN 4630
   Origs: 4030:ifthen
   Dests: 4360:auto, 4630:ifthen
-4360 F(I,O,O1) (0 3) T(3, I) = 0
+4360 F(I:1540,O:3740,O1:3750) (0 3) T(3, I) = 0
   Origs: 4350:auto
   Dests: 4370:auto
-4370 F(I,O,O1) (0 3) M(I) = T(3, I)
+4370 F(I:1540,O:3740,O1:3750) (0 3) M(I) = T(3, I)
   Origs: 4360:auto
   Dests: 4380:auto
-4380 F(I,O,O1) (0 2) GOTO 4690
+4380 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 4370:auto
   Dests: 4690:goto
-4390 F(I,O,O1) (1 6) IF F(3, I) <> -5 THEN 4630
+4390 F(I:1540,O:3740,O1:3750) (1 6) IF F(3, I) <> -5 THEN 4630
   Origs: 4040:ifthen
   Dests: 4400:auto, 4630:ifthen
-4400 F(I,O,O1) (0 3) F(3, I) = 0
+4400 F(I:1540,O:3740,O1:3750) (0 3) F(3, I) = 0
   Origs: 4390:auto
   Dests: 4410:auto
-4410 F(I,O,O1) (0 3) M(I) = F(3, I)
+4410 F(I:1540,O:3740,O1:3750) (0 3) M(I) = F(3, I)
   Origs: 4400:auto
   Dests: 4420:auto
-4420 F(I,O,O1) (0 2) GOTO 4690
+4420 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 4410:auto
   Dests: 4690:goto
-4430 F(I,O,O1) (1 6) IF F(4, I) <> -5 THEN 4630
+4430 F(I:1540,O:3740,O1:3750) (1 6) IF F(4, I) <> -5 THEN 4630
   Origs: 4050:ifthen
   Dests: 4440:auto, 4630:ifthen
-4440 F(I,O,O1) (0 3) F(4, I) = 0
+4440 F(I:1540,O:3740,O1:3750) (0 3) F(4, I) = 0
   Origs: 4430:auto
   Dests: 4450:auto
-4450 F(I,O,O1) (0 3) M(I) = F(4, I)
+4450 F(I:1540,O:3740,O1:3750) (0 3) M(I) = F(4, I)
   Origs: 4440:auto
   Dests: 4460:auto
-4460 F(I,O,O1) (0 2) GOTO 4690
+4460 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 4450:auto
   Dests: 4690:goto
-4470 F(I,O,O1) (1 6) IF S(2, I) <> -5 THEN 4630
+4470 F(I:1540,O:3740,O1:3750) (1 6) IF S(2, I) <> -5 THEN 4630
   Origs: 4060:ifthen
   Dests: 4480:auto, 4630:ifthen
-4480 F(I,O,O1) (0 3) S(2, I) = 0
+4480 F(I:1540,O:3740,O1:3750) (0 3) S(2, I) = 0
   Origs: 4470:auto
   Dests: 4490:auto
-4490 F(I,O,O1) (0 3) M(I) = S(2, I)
+4490 F(I:1540,O:3740,O1:3750) (0 3) M(I) = S(2, I)
   Origs: 4480:auto
   Dests: 4500:auto
-4500 F(I,O,O1) (0 2) GOTO 4690
+4500 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 4490:auto
   Dests: 4690:goto
-4510 F(I,O,O1) (1 6) IF L(1, I) <> -5 THEN 4630
+4510 F(I:1540,O:3740,O1:3750) (1 6) IF L(1, I) <> -5 THEN 4630
   Origs: 4070:ifthen
   Dests: 4520:auto, 4630:ifthen
-4520 F(I,O,O1) (0 3) L(1, I) = 0
+4520 F(I:1540,O:3740,O1:3750) (0 3) L(1, I) = 0
   Origs: 4510:auto
   Dests: 4530:auto
-4530 F(I,O,O1) (0 3) M(I) = L(1, I)
+4530 F(I:1540,O:3740,O1:3750) (0 3) M(I) = L(1, I)
   Origs: 4520:auto
   Dests: 4540:auto
-4540 F(I,O,O1) (0 2) GOTO 4690
+4540 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 4530:auto
   Dests: 4690:goto
-4550 F(I,O,O1) (1 6) IF Y(I) <> -5 THEN 4630
+4550 F(I:1540,O:3740,O1:3750) (1 6) IF Y(I) <> -5 THEN 4630
   Origs: 4080:ifthen
   Dests: 4560:auto, 4630:ifthen
-4560 F(I,O,O1) (0 3) Y(I) = 0
+4560 F(I:1540,O:3740,O1:3750) (0 3) Y(I) = 0
   Origs: 4550:auto
   Dests: 4570:auto
-4570 F(I,O,O1) (0 3) M(I) = Y(I)
+4570 F(I:1540,O:3740,O1:3750) (0 3) M(I) = Y(I)
   Origs: 4560:auto
   Dests: 4580:auto
-4580 F(I,O,O1) (0 2) GOTO 4690
+4580 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 4570:auto
   Dests: 4690:goto
-4590 F(I,O,O1) (1 6) IF C(I) <> -5 THEN 4630
+4590 F(I:1540,O:3740,O1:3750) (1 6) IF C(I) <> -5 THEN 4630
   Origs: 4090:ifthen
   Dests: 4600:auto, 4630:ifthen
-4600 F(I,O,O1) (0 3) C(I) = 0
+4600 F(I:1540,O:3740,O1:3750) (0 3) C(I) = 0
   Origs: 4590:auto
   Dests: 4610:auto
-4610 F(I,O,O1) (0 3) M(I) = C(I)
+4610 F(I:1540,O:3740,O1:3750) (0 3) M(I) = C(I)
   Origs: 4600:auto
   Dests: 4620:auto
-4620 F(I,O,O1) (0 2) GOTO 4690
+4620 F(I:1540,O:3740,O1:3750) (0 2) GOTO 4690
   Origs: 4610:auto
   Dests: 4690:goto
-4630 F(I,O,O1) (0 2) GOSUB 4650
+4630 F(I:1540,O:3740,O1:3750) (0 2) GOSUB 4650
   Origs: 4110:ifthen, 4150:ifthen, 4190:ifthen, 4230:ifthen, 4270:ifthen, 4310:ifthen, 4350:ifthen, 4390:ifthen, 4430:ifthen, 4470:ifthen, 4510:ifthen, 4550:ifthen, 4590:ifthen
   Dests: 4640:auto, 4650:gosub
-4640 F(I,O,O1) (0 3) GOTO 2620
+4640 F(I:1540,O:3740,O1:3750) (0 3) GOTO 2620
   Origs: 4630:auto
   Dests: 2620:goto
 4650 G(4650) (0 5) PRINT "YOU HAVE ALREADY USED "; Z$; " AS A CATEGORY"; C$
@@ -1109,91 +1109,91 @@ Halstead complexity:
 4680 (0 3) GOTO 2620
   Origs: 
   Dests: 2620:goto
-4690 F(I,O,O1) (0 5) PRINT N$(I); " YOU GET A SCORE OF "; M(I); " FOR THIS ROUND"
+4690 F(I:1540,O:3740,O1:3750) (0 5) PRINT N$(I); " YOU GET A SCORE OF "; M(I); " FOR THIS ROUND"
   Origs: 2930:goto, 3020:goto, 3110:goto, 3190:goto, 3290:goto, 3380:goto, 3430:goto, 3510:goto, 3610:goto, 3650:goto, 3720:goto, 3810:goto, 3860:goto, 4140:goto, 4180:goto, 4220:goto, 4260:goto, 4300:goto, 4340:goto, 4380:goto, 4420:goto, 4460:goto, 4500:goto, 4540:goto, 4580:goto, 4620:goto
   Dests: 4700:auto
-4700 F(I,O,O1) (0 2) GOTO 5750
+4700 F(I:1540,O:3740,O1:3750) (0 2) GOTO 5750
   Origs: 4690:auto
   Dests: 5750:goto
-4710 F(I,O,O1) (0 1) NEXT I
+4710 F(I:1540,O:3740,O1:3750) (0 1) NEXT I
   Origs: 1540:fornext, 5890:goto, 5910:goto, 5930:goto, 5950:goto, 5970:goto, 5990:goto, 6010:goto, 6030:goto, 6050:goto, 6070:goto, 6090:goto, 6110:goto, 6130:goto
   Dests: 4720:auto
-4720 F(O,O1) (0 2) PRINT
+4720 F(O:3740,O1:3750) (0 2) PRINT
   Origs: 4710:auto
   Dests: 4730:auto
-4730 F(O,O1,J) (1 3) FOR J = 1 TO P
+4730 F(O:3740,O1:3750,J:4730) (1 3) FOR J = 1 TO P
   Origs: 4720:auto
   Dests: 4740:fornext, 4940:fornext
-4740 F(O,O1,J) (1 4) IF M(J) = A(1, J) THEN 4810
+4740 F(O:3740,O1:3750,J:4730) (1 4) IF M(J) = A(1, J) THEN 4810
   Origs: 4730:fornext
   Dests: 4750:auto, 4810:ifthen
-4750 F(O,O1,J) (1 4) IF M(J) = T(1, J) THEN 4810
+4750 F(O:3740,O1:3750,J:4730) (1 4) IF M(J) = T(1, J) THEN 4810
   Origs: 4740:auto
   Dests: 4760:auto, 4810:ifthen
-4760 F(O,O1,J) (1 4) IF M(J) = T(2, J) THEN 4810
+4760 F(O:3740,O1:3750,J:4730) (1 4) IF M(J) = T(2, J) THEN 4810
   Origs: 4750:auto
   Dests: 4770:auto, 4810:ifthen
-4770 F(O,O1,J) (1 4) IF M(J) = F(1, J) THEN 4810
+4770 F(O:3740,O1:3750,J:4730) (1 4) IF M(J) = F(1, J) THEN 4810
   Origs: 4760:auto
   Dests: 4780:auto, 4810:ifthen
-4780 F(O,O1,J) (1 4) IF M(J) = F(2, J) THEN 4810
+4780 F(O:3740,O1:3750,J:4730) (1 4) IF M(J) = F(2, J) THEN 4810
   Origs: 4770:auto
   Dests: 4790:auto, 4810:ifthen
-4790 F(O,O1,J) (1 4) IF M(J) = S(1, J) THEN 4810
+4790 F(O:3740,O1:3750,J:4730) (1 4) IF M(J) = S(1, J) THEN 4810
   Origs: 4780:auto
   Dests: 4800:auto, 4810:ifthen
-4800 F(O,O1,J) (0 2) GOTO 4920
+4800 F(O:3740,O1:3750,J:4730) (0 2) GOTO 4920
   Origs: 4790:auto
   Dests: 4920:goto
-4810 F(O,O1,J) (0 4) K(1, J) = K(1, J) + M(J)
+4810 F(O:3740,O1:3750,J:4730) (0 4) K(1, J) = K(1, J) + M(J)
   Origs: 4740:ifthen, 4750:ifthen, 4760:ifthen, 4770:ifthen, 4780:ifthen, 4790:ifthen
   Dests: 4820:auto
-4820 F(O,O1,J) (0 2) GOTO 4830
+4820 F(O:3740,O1:3750,J:4730) (0 2) GOTO 4830
   Origs: 4810:auto
   Dests: 4830:goto
-4830 F(O,O1,J) (1 4) IF K(1, J) >= 63 THEN 4860
+4830 F(O:3740,O1:3750,J:4730) (1 4) IF K(1, J) >= 63 THEN 4860
   Origs: 4820:goto
   Dests: 4840:auto, 4860:ifthen
-4840 F(O,O1,J) (0 4) K(J) = K(J) + M(J)
+4840 F(O:3740,O1:3750,J:4730) (0 4) K(J) = K(J) + M(J)
   Origs: 4830:auto
   Dests: 4850:auto
-4850 F(O,O1,J) (0 2) GOTO 4930
+4850 F(O:3740,O1:3750,J:4730) (0 2) GOTO 4930
   Origs: 4840:auto
   Dests: 4930:goto
-4860 F(O,O1,J) (0 4) K(1, J) = K(1, J) + 35
+4860 F(O:3740,O1:3750,J:4730) (0 4) K(1, J) = K(1, J) + 35
   Origs: 4830:ifthen
   Dests: 4870:auto
-4870 F(O,O1,J) (0 4) PRINT C$; N$(J); " HAS ACCUMULATED AT LEAST 63 POINTS"
+4870 F(O:3740,O1:3750,J:4730) (0 4) PRINT C$; N$(J); " HAS ACCUMULATED AT LEAST 63 POINTS"
   Origs: 4860:auto
   Dests: 4880:auto
-4880 F(O,O1,J) (0 2) PRINT "IN THE FIRST SIX CATEGORIES,"
+4880 F(O:3740,O1:3750,J:4730) (0 2) PRINT "IN THE FIRST SIX CATEGORIES,"
   Origs: 4870:auto
   Dests: 4890:auto
-4890 F(O,O1,J) (0 3) PRINT "HE SCORES A BONUS OF 35 POINTS!"; C$
+4890 F(O:3740,O1:3750,J:4730) (0 3) PRINT "HE SCORES A BONUS OF 35 POINTS!"; C$
   Origs: 4880:auto
   Dests: 4900:auto
-4900 F(O,O1,J) (0 4) K(J) = K(J) + M(J)
+4900 F(O:3740,O1:3750,J:4730) (0 4) K(J) = K(J) + M(J)
   Origs: 4890:auto
   Dests: 4910:auto
-4910 F(O,O1,J) (0 2) GOTO 4930
+4910 F(O:3740,O1:3750,J:4730) (0 2) GOTO 4930
   Origs: 4900:auto
   Dests: 4930:goto
-4920 F(O,O1,J) (0 4) K(J) = K(J) + M(J)
+4920 F(O:3740,O1:3750,J:4730) (0 4) K(J) = K(J) + M(J)
   Origs: 4800:goto
   Dests: 4930:auto
-4930 F(O,O1,J) (0 5) PRINT N$(J); " HAS "; K(J); " POINTS"
+4930 F(O:3740,O1:3750,J:4730) (0 5) PRINT N$(J); " HAS "; K(J); " POINTS"
   Origs: 4850:goto, 4910:goto, 4920:auto
   Dests: 4940:auto
-4940 F(O,O1,J) (0 1) NEXT J
+4940 F(O:3740,O1:3750,J:4730) (0 1) NEXT J
   Origs: 4730:fornext, 4930:auto
   Dests: 4950:auto
-4950 F(O,O1) (0 3) GOTO 1490
+4950 F(O:3740,O1:3750) (0 3) GOTO 1490
   Origs: 4940:auto
   Dests: 1490:goto
-4960 F(I,O,O1) (0 5) PRINT "IT IS ILLEGAL TO USE "; Z$; " THIS ROUND"; C$
+4960 F(I:1540,O:3740,O1:3750) (0 5) PRINT "IT IS ILLEGAL TO USE "; Z$; " THIS ROUND"; C$
   Origs: 3450:ifthen, 3460:ifthen, 3530:ifthen, 3540:ifthen, 3570:ifthen, 3670:ifthen, 3680:ifthen, 3690:ifthen, 3760:ifthen
   Dests: 4970:auto
-4970 F(I,O,O1) (0 3) GOTO 2620
+4970 F(I:1540,O:3740,O1:3750) (0 3) GOTO 2620
   Origs: 4960:auto
   Dests: 2620:goto
 4980 (0 2) PRINT
@@ -1427,97 +1427,97 @@ Halstead complexity:
 5740 G(5730) (0 1) RETURN
   Origs: 5730:auto
   Dests: 
-5750 F(I,O,O1) (1 4) IF Z$ = "ACES" THEN 5880
+5750 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "ACES" THEN 5880
   Origs: 4700:goto
   Dests: 5760:auto, 5880:ifthen
-5760 F(I,O,O1) (1 4) IF Z$ = "TWOS" THEN 5900
+5760 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "TWOS" THEN 5900
   Origs: 5750:auto
   Dests: 5770:auto, 5900:ifthen
-5770 F(I,O,O1) (1 4) IF Z$ = "THREES" THEN 5920
+5770 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "THREES" THEN 5920
   Origs: 5760:auto
   Dests: 5780:auto, 5920:ifthen
-5780 F(I,O,O1) (1 4) IF Z$ = "FOURS" THEN 5940
+5780 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "FOURS" THEN 5940
   Origs: 5770:auto
   Dests: 5790:auto, 5940:ifthen
-5790 F(I,O,O1) (1 4) IF Z$ = "FIVES" THEN 5960
+5790 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "FIVES" THEN 5960
   Origs: 5780:auto
   Dests: 5800:auto, 5960:ifthen
-5800 F(I,O,O1) (1 4) IF Z$ = "SIXES" THEN 5980
+5800 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "SIXES" THEN 5980
   Origs: 5790:auto
   Dests: 5810:auto, 5980:ifthen
-5810 F(I,O,O1) (1 4) IF Z$ = "THREE OF A KIND" THEN 6000
+5810 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "THREE OF A KIND" THEN 6000
   Origs: 5800:auto
   Dests: 5820:auto, 6000:ifthen
-5820 F(I,O,O1) (1 4) IF Z$ = "FOUR OF A KIND" THEN 6020
+5820 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "FOUR OF A KIND" THEN 6020
   Origs: 5810:auto
   Dests: 5830:auto, 6020:ifthen
-5830 F(I,O,O1) (1 4) IF Z$ = "FULL HOUSE" THEN 6040
+5830 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "FULL HOUSE" THEN 6040
   Origs: 5820:auto
   Dests: 5840:auto, 6040:ifthen
-5840 F(I,O,O1) (1 4) IF Z$ = "SM. STRAIGHT" THEN 6000
+5840 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "SM. STRAIGHT" THEN 6000
   Origs: 5830:auto
   Dests: 5850:auto, 6000:ifthen
-5850 F(I,O,O1) (1 4) IF Z$ = "LG. STRAIGHT" THEN 6080
+5850 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "LG. STRAIGHT" THEN 6080
   Origs: 5840:auto
   Dests: 5860:auto, 6080:ifthen
-5860 F(I,O,O1) (1 4) IF Z$ = "YAHTZEE" THEN 6100
+5860 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "YAHTZEE" THEN 6100
   Origs: 5850:auto
   Dests: 5870:auto, 6100:ifthen
-5870 F(I,O,O1) (1 4) IF Z$ = "CHANCE" THEN 6120
+5870 F(I:1540,O:3740,O1:3750) (1 4) IF Z$ = "CHANCE" THEN 6120
   Origs: 5860:auto
   Dests: 5880:auto, 6120:ifthen
-5880 F(I,O,O1) (0 3) H(I, R) = 1
+5880 F(I:1540,O:3740,O1:3750) (0 3) H(I, R) = 1
   Origs: 5750:ifthen, 5870:auto
   Dests: 5890:auto
-5890 F(I,O,O1) (0 3) GOTO 4710
+5890 F(I:1540,O:3740,O1:3750) (0 3) GOTO 4710
   Origs: 5880:auto
   Dests: 4710:goto
-5900 F(I,O,O1) (0 3) H(I, R) = 2
+5900 F(I:1540,O:3740,O1:3750) (0 3) H(I, R) = 2
   Origs: 5760:ifthen
   Dests: 5910:auto
-5910 F(I,O,O1) (0 3) GOTO 4710
+5910 F(I:1540,O:3740,O1:3750) (0 3) GOTO 4710
   Origs: 5900:auto
   Dests: 4710:goto
-5920 F(I,O,O1) (0 3) H(I, R) = 3
+5920 F(I:1540,O:3740,O1:3750) (0 3) H(I, R) = 3
   Origs: 5770:ifthen
   Dests: 5930:auto
-5930 F(I,O,O1) (0 3) GOTO 4710
+5930 F(I:1540,O:3740,O1:3750) (0 3) GOTO 4710
   Origs: 5920:auto
   Dests: 4710:goto
-5940 F(I,O,O1) (0 3) H(I, R) = 4
+5940 F(I:1540,O:3740,O1:3750) (0 3) H(I, R) = 4
   Origs: 5780:ifthen
   Dests: 5950:auto
-5950 F(I,O,O1) (0 3) GOTO 4710
+5950 F(I:1540,O:3740,O1:3750) (0 3) GOTO 4710
   Origs: 5940:auto
   Dests: 4710:goto
-5960 F(I,O,O1) (0 3) H(I, R) = 5
+5960 F(I:1540,O:3740,O1:3750) (0 3) H(I, R) = 5
   Origs: 5790:ifthen
   Dests: 5970:auto
-5970 F(I,O,O1) (0 3) GOTO 4710
+5970 F(I:1540,O:3740,O1:3750) (0 3) GOTO 4710
   Origs: 5960:auto
   Dests: 4710:goto
-5980 F(I,O,O1) (0 3) H(I, R) = 6
+5980 F(I:1540,O:3740,O1:3750) (0 3) H(I, R) = 6
   Origs: 5800:ifthen
   Dests: 5990:auto
-5990 F(I,O,O1) (0 3) GOTO 4710
+5990 F(I:1540,O:3740,O1:3750) (0 3) GOTO 4710
   Origs: 5980:auto
   Dests: 4710:goto
-6000 F(I,O,O1) (0 3) H(I, R) = 7
+6000 F(I:1540,O:3740,O1:3750) (0 3) H(I, R) = 7
   Origs: 5810:ifthen, 5840:ifthen
   Dests: 6010:auto
-6010 F(I,O,O1) (0 3) GOTO 4710
+6010 F(I:1540,O:3740,O1:3750) (0 3) GOTO 4710
   Origs: 6000:auto
   Dests: 4710:goto
-6020 F(I,O,O1) (0 3) H(I, R) = 8
+6020 F(I:1540,O:3740,O1:3750) (0 3) H(I, R) = 8
   Origs: 5820:ifthen
   Dests: 6030:auto
-6030 F(I,O,O1) (0 3) GOTO 4710
+6030 F(I:1540,O:3740,O1:3750) (0 3) GOTO 4710
   Origs: 6020:auto
   Dests: 4710:goto
-6040 F(I,O,O1) (0 3) H(I, R) = 9
+6040 F(I:1540,O:3740,O1:3750) (0 3) H(I, R) = 9
   Origs: 5830:ifthen
   Dests: 6050:auto
-6050 F(I,O,O1) (0 3) GOTO 4710
+6050 F(I:1540,O:3740,O1:3750) (0 3) GOTO 4710
   Origs: 6040:auto
   Dests: 4710:goto
 6060 (0 3) H(I, R) = 10
@@ -1526,115 +1526,115 @@ Halstead complexity:
 6070 (0 3) GOTO 4710
   Origs: 6060:auto
   Dests: 4710:goto
-6080 F(I,O,O1) (0 3) H(I, R) = 11
+6080 F(I:1540,O:3740,O1:3750) (0 3) H(I, R) = 11
   Origs: 5850:ifthen
   Dests: 6090:auto
-6090 F(I,O,O1) (0 3) GOTO 4710
+6090 F(I:1540,O:3740,O1:3750) (0 3) GOTO 4710
   Origs: 6080:auto
   Dests: 4710:goto
-6100 F(I,O,O1) (0 3) H(I, R) = 12
+6100 F(I:1540,O:3740,O1:3750) (0 3) H(I, R) = 12
   Origs: 5860:ifthen
   Dests: 6110:auto
-6110 F(I,O,O1) (0 3) GOTO 4710
+6110 F(I:1540,O:3740,O1:3750) (0 3) GOTO 4710
   Origs: 6100:auto
   Dests: 4710:goto
-6120 F(I,O,O1) (0 3) H(I, R) = 13
+6120 F(I:1540,O:3740,O1:3750) (0 3) H(I, R) = 13
   Origs: 5870:ifthen
   Dests: 6130:auto
-6130 F(I,O,O1) (0 3) GOTO 4710
+6130 F(I:1540,O:3740,O1:3750) (0 3) GOTO 4710
   Origs: 6120:auto
   Dests: 4710:goto
 6140 G(6140) (0 3) PRINT N$(I); " HAS USED THE FOLLOWING CATEGORIES:"
   Origs: 2670:gosub, 3940:gosub
   Dests: 6150:auto
-6150 G(6140) F(S) (1 4) FOR S = 1 TO (R - 1)
+6150 G(6140) F(S:6150) (1 4) FOR S = 1 TO (R - 1)
   Origs: 6140:auto
   Dests: 6160:fornext, 6440:fornext
-6160 G(6140) F(S) (1 4) IF H(I, S) > 7 THEN 6180
+6160 G(6140) F(S:6150) (1 4) IF H(I, S) > 7 THEN 6180
   Origs: 6150:fornext
   Dests: 6170:auto, 6180:ifthen
-6170 G(6140) F(S) (7 9) ON H(I, S) GOTO 6190, 6210, 6230, 6250, 6270, 6290, 6310
+6170 G(6140) F(S:6150) (7 9) ON H(I, S) GOTO 6190, 6210, 6230, 6250, 6270, 6290, 6310
   Origs: 6160:auto
   Dests: 6180:auto, 6190:goto, 6210:goto, 6230:goto, 6250:goto, 6270:goto, 6290:goto, 6310:goto
-6180 G(6140) F(S) (6 9) ON H(I, S) - 7 GOTO 6330, 6350, 6370, 6390, 6410, 6430
+6180 G(6140) F(S:6150) (6 9) ON H(I, S) - 7 GOTO 6330, 6350, 6370, 6390, 6410, 6430
   Origs: 6160:ifthen, 6170:auto
   Dests: 6190:auto, 6330:goto, 6350:goto, 6370:goto, 6390:goto, 6410:goto, 6430:goto
-6190 G(6140) F(S) (0 2) PRINT "ACES, ";
+6190 G(6140) F(S:6150) (0 2) PRINT "ACES, ";
   Origs: 6170:goto, 6180:auto
   Dests: 6200:auto
-6200 G(6140) F(S) (0 2) GOTO 6440
+6200 G(6140) F(S:6150) (0 2) GOTO 6440
   Origs: 6190:auto
   Dests: 6440:goto
-6210 G(6140) F(S) (0 2) PRINT "TWOS, ";
+6210 G(6140) F(S:6150) (0 2) PRINT "TWOS, ";
   Origs: 6170:goto
   Dests: 6220:auto
-6220 G(6140) F(S) (0 2) GOTO 6440
+6220 G(6140) F(S:6150) (0 2) GOTO 6440
   Origs: 6210:auto
   Dests: 6440:goto
-6230 G(6140) F(S) (0 2) PRINT "THREES, ";
+6230 G(6140) F(S:6150) (0 2) PRINT "THREES, ";
   Origs: 6170:goto
   Dests: 6240:auto
-6240 G(6140) F(S) (0 2) GOTO 6440
+6240 G(6140) F(S:6150) (0 2) GOTO 6440
   Origs: 6230:auto
   Dests: 6440:goto
-6250 G(6140) F(S) (0 2) PRINT "FOURS, ";
+6250 G(6140) F(S:6150) (0 2) PRINT "FOURS, ";
   Origs: 6170:goto
   Dests: 6260:auto
-6260 G(6140) F(S) (0 2) GOTO 6440
+6260 G(6140) F(S:6150) (0 2) GOTO 6440
   Origs: 6250:auto
   Dests: 6440:goto
-6270 G(6140) F(S) (0 2) PRINT "FIVES, ";
+6270 G(6140) F(S:6150) (0 2) PRINT "FIVES, ";
   Origs: 6170:goto
   Dests: 6280:auto
-6280 G(6140) F(S) (0 2) GOTO 6440
+6280 G(6140) F(S:6150) (0 2) GOTO 6440
   Origs: 6270:auto
   Dests: 6440:goto
-6290 G(6140) F(S) (0 2) PRINT "SIXES, ";
+6290 G(6140) F(S:6150) (0 2) PRINT "SIXES, ";
   Origs: 6170:goto
   Dests: 6300:auto
-6300 G(6140) F(S) (0 2) GOTO 6440
+6300 G(6140) F(S:6150) (0 2) GOTO 6440
   Origs: 6290:auto
   Dests: 6440:goto
-6310 G(6140) F(S) (0 2) PRINT "THREE OF A KIND ";
+6310 G(6140) F(S:6150) (0 2) PRINT "THREE OF A KIND ";
   Origs: 6170:goto
   Dests: 6320:auto
-6320 G(6140) F(S) (0 2) GOTO 6440
+6320 G(6140) F(S:6150) (0 2) GOTO 6440
   Origs: 6310:auto
   Dests: 6440:goto
-6330 G(6140) F(S) (0 2) PRINT "FOUR OF A KIND, ";
+6330 G(6140) F(S:6150) (0 2) PRINT "FOUR OF A KIND, ";
   Origs: 6180:goto
   Dests: 6340:auto
-6340 G(6140) F(S) (0 2) GOTO 6440
+6340 G(6140) F(S:6150) (0 2) GOTO 6440
   Origs: 6330:auto
   Dests: 6440:goto
-6350 G(6140) F(S) (0 2) PRINT "FULL HOUSE, ";
+6350 G(6140) F(S:6150) (0 2) PRINT "FULL HOUSE, ";
   Origs: 6180:goto
   Dests: 6360:auto
-6360 G(6140) F(S) (0 2) GOTO 6440
+6360 G(6140) F(S:6150) (0 2) GOTO 6440
   Origs: 6350:auto
   Dests: 6440:goto
-6370 G(6140) F(S) (0 2) PRINT "SM. STRAIGHT, ";
+6370 G(6140) F(S:6150) (0 2) PRINT "SM. STRAIGHT, ";
   Origs: 6180:goto
   Dests: 6380:auto
-6380 G(6140) F(S) (0 2) GOTO 6440
+6380 G(6140) F(S:6150) (0 2) GOTO 6440
   Origs: 6370:auto
   Dests: 6440:goto
-6390 G(6140) F(S) (0 2) PRINT "LG. STRAIGHT, ";
+6390 G(6140) F(S:6150) (0 2) PRINT "LG. STRAIGHT, ";
   Origs: 6180:goto
   Dests: 6400:auto
-6400 G(6140) F(S) (0 2) GOTO 6440
+6400 G(6140) F(S:6150) (0 2) GOTO 6440
   Origs: 6390:auto
   Dests: 6440:goto
-6410 G(6140) F(S) (0 2) PRINT "YAHTZEE, ";
+6410 G(6140) F(S:6150) (0 2) PRINT "YAHTZEE, ";
   Origs: 6180:goto
   Dests: 6420:auto
-6420 G(6140) F(S) (0 2) GOTO 6440
+6420 G(6140) F(S:6150) (0 2) GOTO 6440
   Origs: 6410:auto
   Dests: 6440:goto
-6430 G(6140) F(S) (0 2) PRINT "CHANCE, ";
+6430 G(6140) F(S:6150) (0 2) PRINT "CHANCE, ";
   Origs: 6180:goto
   Dests: 6440:auto
-6440 G(6140) F(S) (0 1) NEXT S
+6440 G(6140) F(S:6150) (0 1) NEXT S
   Origs: 6150:fornext, 6200:goto, 6220:goto, 6240:goto, 6260:goto, 6280:goto, 6300:goto, 6320:goto, 6340:goto, 6360:goto, 6380:goto, 6400:goto, 6420:goto, 6430:auto
   Dests: 6445:auto
 6445 G(6140) (0 2) PRINT
@@ -1652,71 +1652,71 @@ Halstead complexity:
 6460 G(6140) (0 1) RETURN
   Origs: 6450:auto
   Dests: 
-6470 F(O,O1) (0 3) G = 0
+6470 F(O:3740,O1:3750) (0 3) G = 0
   Origs: 1495:ifthen, 6550:ifthen
   Dests: 6480:auto
-6480 F(O,O1,X) (1 3) FOR X = 1 TO P
+6480 F(O:3740,O1:3750,X:6480) (1 3) FOR X = 1 TO P
   Origs: 6470:auto
   Dests: 6490:fornext, 6540:fornext
-6490 F(O,O1,X) (1 4) IF S(X) >= S(X + 1) THEN 6540
+6490 F(O:3740,O1:3750,X:6480) (1 4) IF S(X) >= S(X + 1) THEN 6540
   Origs: 6480:fornext
   Dests: 6500:auto, 6540:ifthen
-6500 F(O,O1,X) (0 3) H = S(X)
+6500 F(O:3740,O1:3750,X:6480) (0 3) H = S(X)
   Origs: 6490:auto
   Dests: 6510:auto
-6510 F(O,O1,X) (0 3) S(X) = S(X + 1)
+6510 F(O:3740,O1:3750,X:6480) (0 3) S(X) = S(X + 1)
   Origs: 6500:auto
   Dests: 6520:auto
-6520 F(O,O1,X) (0 3) S(X + 1) = H
+6520 F(O:3740,O1:3750,X:6480) (0 3) S(X + 1) = H
   Origs: 6510:auto
   Dests: 6530:auto
-6530 F(O,O1,X) (0 3) G = 1
+6530 F(O:3740,O1:3750,X:6480) (0 3) G = 1
   Origs: 6520:auto
   Dests: 6540:auto
-6540 F(O,O1,X) (0 1) NEXT X
+6540 F(O:3740,O1:3750,X:6480) (0 1) NEXT X
   Origs: 6480:fornext, 6490:ifthen, 6530:auto
   Dests: 6550:auto
-6550 F(O,O1) (1 5) IF G = 1 THEN 6470
+6550 F(O:3740,O1:3750) (1 5) IF G = 1 THEN 6470
   Origs: 6540:auto
   Dests: 6470:ifthen, 6560:auto
-6560 F(O,O1) (0 2) PRINT "THE GAME IS OVER."
+6560 F(O:3740,O1:3750) (0 2) PRINT "THE GAME IS OVER."
   Origs: 6550:auto
   Dests: 6570:auto
-6570 F(O,O1) (0 2) PRINT
+6570 F(O:3740,O1:3750) (0 2) PRINT
   Origs: 6560:auto
   Dests: 6571:auto
-6571 F(O,O1,X) (1 3) FOR X = 1 TO P
+6571 F(O:3740,O1:3750,X:6571) (1 3) FOR X = 1 TO P
   Origs: 6570:auto
   Dests: 6572:fornext, 6573:fornext
-6572 F(O,O1,X) (1 4) IF K(X) = S(X) THEN 6580
+6572 F(O:3740,O1:3750,X:6571) (1 4) IF K(X) = S(X) THEN 6580
   Origs: 6571:fornext
   Dests: 6573:auto, 6580:ifthen
-6573 F(O,O1,X) (0 1) NEXT X
+6573 F(O:3740,O1:3750,X:6571) (0 1) NEXT X
   Origs: 6571:fornext, 6572:auto
   Dests: 6580:auto
-6580 F(O,O1,X) (0 6) PRINT "THE WINNER IS "; N$(1); " WITH"; K(1); " POINTS."
+6580 F(O:3740,O1:3750,X:6571) (0 6) PRINT "THE WINNER IS "; N$(1); " WITH"; K(1); " POINTS."
   Origs: 6572:ifthen, 6573:auto
   Dests: 6585:auto
-6585 F(O,O1,X) (1 4) IF P = 1 THEN 9999
+6585 F(O:3740,O1:3750,X:6571) (1 4) IF P = 1 THEN 9999
   Origs: 6580:auto
   Dests: 6586:auto, 9999:ifthen
-6586 F(O,O1,X) (0 2) PRINT "OTHER FINAL SCORES ARE:"
+6586 F(O:3740,O1:3750,X:6571) (0 2) PRINT "OTHER FINAL SCORES ARE:"
   Origs: 6585:auto
   Dests: 6590:auto
-6590 F(O,O1,X,Y) (1 3) FOR Y = 1 TO P
+6590 F(O:3740,O1:3750,X:6571,Y:6590) (1 3) FOR Y = 1 TO P
      WARNING: FOR/NEXT nesting exceeds limit 3
   Origs: 6586:auto
   Dests: 6600:fornext, 6620:fornext
-6600 F(O,O1,X,Y) (1 4) IF K(Y) = S(X) THEN 6620
+6600 F(O:3740,O1:3750,X:6571,Y:6590) (1 4) IF K(Y) = S(X) THEN 6620
   Origs: 6590:fornext
   Dests: 6610:auto, 6620:ifthen
-6610 F(O,O1,X,Y) (0 5) PRINT N$(Y); " FINISHES WITH "; K(Y); " POINTS."
+6610 F(O:3740,O1:3750,X:6571,Y:6590) (0 5) PRINT N$(Y); " FINISHES WITH "; K(Y); " POINTS."
   Origs: 6600:auto
   Dests: 6620:auto
-6620 F(O,O1,X,Y) (0 1) NEXT Y
+6620 F(O:3740,O1:3750,X:6571,Y:6590) (0 1) NEXT Y
   Origs: 6590:fornext, 6600:ifthen, 6610:auto
   Dests: 9999:auto
-9999 F(O,O1,X) (0 1) END
+9999 F(O:3740,O1:3750,X:6571) (0 1) END
      WARNING: Terminating statement in FOR/NEXT
   Origs: 6585:ifthen, 6620:auto
   Dests: :stop

@@ -22,28 +22,28 @@ Halstead complexity:
 5 (0 2) PRINT "ONES PROBABILITY"
   Origs: :start
   Dests: 10:auto
-10 F(R) (1 3) FOR R = 0 TO 10
+10 F(R:10) (1 3) FOR R = 0 TO 10
   Origs: 5:auto
   Dests: 15:fornext, 65:fornext
-15 F(R) (0 3) LET C = 1
+15 F(R:10) (0 3) LET C = 1
   Origs: 10:fornext
   Dests: 20:auto
-20 F(R,X) (1 7) FOR X = 10 TO 10 - R + 1 STEP -1
+20 F(R:10,X:20) (1 7) FOR X = 10 TO 10 - R + 1 STEP -1
   Origs: 15:auto
   Dests: 30:fornext, 40:fornext
-30 F(R,X) (0 8) LET C = C * X / (10 - X + 1)
+30 F(R:10,X:20) (0 8) LET C = C * X / (10 - X + 1)
   Origs: 20:fornext
   Dests: 40:auto
-40 F(R,X) (0 1) NEXT X
+40 F(R:10,X:20) (0 1) NEXT X
   Origs: 20:fornext, 30:auto
   Dests: 50:auto
-50 F(R) (0 13) LET P = C * (1 / 6) ^ R * (5 / 6) ^ (10 - R)
+50 F(R:10) (0 13) LET P = C * (1 / 6) ^ R * (5 / 6) ^ (10 - R)
   Origs: 40:auto
   Dests: 60:auto
-60 F(R) (0 3) PRINT R; P
+60 F(R:10) (0 3) PRINT R; P
   Origs: 50:auto
   Dests: 65:auto
-65 F(R) (0 1) NEXT R
+65 F(R:10) (0 1) NEXT R
   Origs: 10:fornext, 60:auto
   Dests: 70:auto
 70 (0 1) END
