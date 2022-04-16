@@ -604,6 +604,7 @@ class NumericConstant < AbstractValueElement
     @symbol_text = text.to_s
     @value = float_to_possible_int(f)
     @numeric_constant = true
+    @units = {}
   end
 
   def dump
@@ -962,8 +963,14 @@ class NumericConstant < AbstractValueElement
     digits = @value.to_s
     units = ''
 
-    unless @units.nil?
-      units = "{#{@units.map(&:to_s).join(' ')}}"
+    unless @units.empty?
+      units_s = []
+
+      @units.each do |name, power|
+        units_s << "#{name}#{power.to_s}"
+      end
+
+      units = "{#{units_s.join(' ')}}"
     end
 
     lead_space + digits + units
@@ -1007,6 +1014,7 @@ class IntegerConstant < AbstractValueElement
     @operand = true
     @precedence = 0
     @numeric_constant = true
+    @units = {}
   end
 
   def zero?
@@ -1321,8 +1329,14 @@ class IntegerConstant < AbstractValueElement
     digits = @value.to_s
     units = ''
 
-    unless @units.nil?
-      units = "{#{@units.map(&:to_s).join(' ')}}"
+    unless @units.empty?
+      units_s = []
+
+      @units.each do |name, power|
+        units_s << "#{name}#{power.to_s}"
+      end
+
+      units = "{#{units_s.join(' ')}}"
     end
 
     lead_space + digits + units
@@ -1792,6 +1806,10 @@ class UnitsConstant < AbstractValueElement
 
   def to_formatted_s
     "{#{@value.map(&:to_s).join(' ')}}"
+  end
+
+  def to_dict
+    @value
   end
 
   def compatible?(other)
