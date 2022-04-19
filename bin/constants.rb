@@ -528,7 +528,7 @@ class NumericConstant < AbstractValueElement
   end
 
   def self.numeric(text)
-    case test
+    case text
     # nnn(E+nn)
     when /\A\s*[+-]?\d+(E+?\d+)?\z/
       text.to_f.to_i
@@ -587,7 +587,7 @@ class NumericConstant < AbstractValueElement
       @symbol = true
     end
 
-    raise BASICSyntaxError, "'#{text}' is not a number" if f.nil?
+    raise(BASICSyntaxError, "'#{text}' is not a number") if f.nil?
 
     precision = $options['precision'].value
     if precision != 'INFINITE' && f != 0 && f != Float::INFINITY

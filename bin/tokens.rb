@@ -417,6 +417,10 @@ class IntegerConstantToken < AbstractToken
     @is_numeric_constant = true
   end
 
+  def <=>(other)
+    @text.to_f <=> other.to_f
+  end
+
   def negate
     @text = @text[0] == '-' ? @text[1..-1] : "-#{@text}"
   end
@@ -427,10 +431,6 @@ class IntegerConstantToken < AbstractToken
 
   def to_i
     @text.to_f.to_i
-  end
-
-  def <=>(other)
-    @text.to_f <=> other.to_f
   end
 end
 
@@ -511,16 +511,16 @@ class BooleanConstantToken < AbstractToken
     @is_boolean_constant = true
   end
 
+  def <=>(other)
+    @text.to_f <=> other.to_f
+  end
+
   def to_f
     @text.to_f.to_i
   end
 
   def to_i
     @text.to_f.to_i
-  end
-
-  def <=>(other)
-    @text.to_f <=> other.to_f
   end
 end
 

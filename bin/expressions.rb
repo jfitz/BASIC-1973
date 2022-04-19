@@ -160,6 +160,18 @@ class AbstractCompound
     @values = values
   end
 
+  def scalar?
+    false
+  end
+
+  def array?
+    false
+  end
+
+  def matrix?
+    false
+  end
+
   def numeric_constant?
     base = $options['base'].value
 
@@ -192,18 +204,6 @@ class AbstractCompound
     end
 
     value.text_constant?
-  end
-
-  def scalar?
-    false
-  end
-
-  def array?
-    false
-  end
-
-  def matrix?
-    false
   end
 
   def get_value_1(col)
@@ -254,7 +254,9 @@ class AbstractCompound
 
   def posate_1
     n_cols = @dimensions[0].to_i
+
     values = {}
+
     base = $options['base'].value
 
     (base..n_cols).each do |col|
@@ -269,7 +271,9 @@ class AbstractCompound
   def posate_2
     n_rows = @dimensions[0].to_i
     n_cols = @dimensions[1].to_i
+
     values = {}
+
     base = $options['base'].value
 
     (base..n_rows).each do |row|
@@ -285,7 +289,9 @@ class AbstractCompound
 
   def negate_1
     n_cols = @dimensions[0].to_i
+
     values = {}
+
     base = $options['base'].value
 
     (base..n_cols).each do |col|
@@ -300,7 +306,9 @@ class AbstractCompound
   def negate_2
     n_rows = @dimensions[0].to_i
     n_cols = @dimensions[1].to_i
+
     values = {}
+
     base = $options['base'].value
 
     (base..n_rows).each do |row|
@@ -316,7 +324,9 @@ class AbstractCompound
 
   def not_1
     n_cols = @dimensions[0].to_i
+
     values = {}
+
     base = $options['base'].value
 
     (base..n_cols).each do |col|
@@ -331,7 +341,9 @@ class AbstractCompound
   def not_2
     n_rows = @dimensions[0].to_i
     n_cols = @dimensions[1].to_i
+
     values = {}
+
     base = $options['base'].value
 
     (base..n_rows).each do |row|
@@ -347,6 +359,7 @@ class AbstractCompound
 
   def max_1
     n_cols = @dimensions[0].to_i
+
     base = $options['base'].value
 
     max_value = get_value_1(base).to_v
@@ -362,6 +375,7 @@ class AbstractCompound
   def max_2
     n_rows = @dimensions[0].to_i
     n_cols = @dimensions[1].to_i
+
     base = $options['base'].value
 
     max_value = get_value_2(base, base).to_v
@@ -378,6 +392,7 @@ class AbstractCompound
 
   def min_1
     n_cols = @dimensions[0].to_i
+
     base = $options['base'].value
 
     min_value = get_value_1(base).to_v
@@ -393,6 +408,7 @@ class AbstractCompound
   def min_2
     n_rows = @dimensions[0].to_i
     n_cols = @dimensions[1].to_i
+
     base = $options['base'].value
 
     min_value = get_value_2(base, base).to_v
@@ -552,6 +568,7 @@ class AbstractCompound
 
   def plot_2(printer)
     base = $options['base'].value
+
     upper_r = @dimensions[0].to_i
     upper_c = @dimensions[1].to_i
 
@@ -852,6 +869,7 @@ class BASICArray < AbstractCompound
 
   def sum_1
     n_cols = @dimensions[0].to_i
+
     base = $options['base'].value
 
     sum = 0
@@ -866,6 +884,7 @@ class BASICArray < AbstractCompound
 
   def prod_1
     n_cols = @dimensions[0].to_i
+
     base = $options['base'].value
 
     prod = 1
@@ -1164,8 +1183,8 @@ class Matrix < AbstractCompound
     n_cols = @dimensions[0].to_i
 
     base = $options['base'].value
+
     fs_carriage = CarriageControl.new($options['field_sep'].value)
-    # gs_carriage = CarriageControl.new('NL')
     rs_carriage = CarriageControl.new('NL')
 
     (base..n_cols).each do |col|
@@ -1194,6 +1213,7 @@ class Matrix < AbstractCompound
     n_cols = @dimensions[1].to_i
 
     base = $options['base'].value
+
     fs_carriage = CarriageControl.new($options['field_sep'].value)
     gs_carriage = CarriageControl.new('NL')
     rs_carriage = CarriageControl.new('NL')
@@ -1226,8 +1246,8 @@ class Matrix < AbstractCompound
     n_cols = @dimensions[0].to_i
 
     base = $options['base'].value
+
     fs_carriage = CarriageControl.new(',')
-    # gs_carriage = CarriageControl.new(';')
     rs_carriage = CarriageControl.new('NL')
 
     (base..n_cols).each do |col|
@@ -1244,6 +1264,7 @@ class Matrix < AbstractCompound
     n_cols = @dimensions[1].to_i
 
     base = $options['base'].value
+
     fs_carriage = CarriageControl.new(',')
     gs_carriage = CarriageControl.new(';')
     rs_carriage = CarriageControl.new('NL')
@@ -1799,6 +1820,14 @@ class Expression
     end
   end
 
+  def set_constant
+    stack = []
+
+    @elements.each do |element|
+      element.set_constant(stack)
+    end
+  end
+
   def empty?
     @elements.empty?
   end
@@ -1812,14 +1841,6 @@ class Expression
     end
 
     content_type
-  end
-
-  def set_constant
-    stack = []
-
-    @elements.each do |element|
-      element.set_constant(stack)
-    end
   end
 
   def shape
@@ -2072,7 +2093,8 @@ class Expression
       elsif element.operator?
         is_ref = false
 
-        opers << XrefEntry.new(element.to_s, element.sigils, is_ref)
+        sigils = element.sigils
+        opers << XrefEntry.new(element.to_s, sigils, is_ref)
       end
     end
 
@@ -2091,7 +2113,8 @@ class Expression
       elsif element.function? && !element.user_function?
         is_ref = element.reference?
 
-        vars << XrefEntry.new(element.to_s, element.sigils, is_ref)
+        sigils = element.sigils
+        vars << XrefEntry.new(element.to_s, sigils, is_ref)
       end
 
       previous = element
@@ -2113,7 +2136,8 @@ class Expression
       elsif element.user_function?
         is_ref = element.reference?
 
-        vars << XrefEntry.new(element.to_s, element.sigils, is_ref)
+        sigils = element.sigils
+        vars << XrefEntry.new(element.to_s, sigils, is_ref)
       end
 
       previous = element
@@ -2479,12 +2503,12 @@ class ValueExpressionSet < AbstractExpressionSet
   end
 
   def compound_print(printer, interpreter, formats)
-    values = evaluate(interpreter)
+    compounds = evaluate(interpreter)
 
-    return if values.empty?
+    return if compounds.empty?
 
-    value = values[0]
-    value.print(printer, formats)
+    compound = compounds[0]
+    compound.print(printer, formats)
   end
 end
 
