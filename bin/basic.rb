@@ -532,13 +532,16 @@ def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads)
     ListTokenBuilder.new(FunctionFactory.user_function_names, UserFunctionToken)
 
   tokenbuilders << TextTokenBuilder.new(quotes)
+
   allow_hash_constant = $options['allow_hash_constant'].value
   tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
+
   tokenbuilders << IntegerTokenBuilder.new
-  tokenbuilders << UnitsTokenBuilder.new
   tokenbuilders << NumericSymbolTokenBuilder.new
+
   allow_ascii = $options['allow_ascii'].value
   tokenbuilders << TextSymbolTokenBuilder.new if allow_ascii
+
   tokenbuilders << VariableTokenBuilder.new
   tokenbuilders << ListTokenBuilder.new(%w[TRUE FALSE], BooleanConstantToken)
   tokenbuilders << WhitespaceTokenBuilder.new

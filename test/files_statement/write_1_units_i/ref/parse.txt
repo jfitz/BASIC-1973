@@ -1,0 +1,26 @@
+10 REM This is a test
+ Remark:This is a test
+20 DATA 10%{FT},20%{M1S-1},30%{GAL}
+ IntegerConstant:10{FT}
+ IntegerConstant:20{M S-1}
+ IntegerConstant:30{GAL}
+25 FILES "output.txt"
+ TextConstant:"output.txt"
+30 READ A%,B%,C%
+ Variable:A% -> %
+ Variable:B% -> %
+ Variable:C% -> %
+40 WRITE #1;A%,B%,C%
+ NumericConstant:1
+ UnaryOperatorHash:#(_) -> =FH
+ Variable:A% -> %
+ CarriageControl:,
+ Variable:B% -> %
+ CarriageControl:,
+ Variable:C% -> %
+ CarriageControl:NL
+90 STOP
+ 
+99 END
+ 
+
