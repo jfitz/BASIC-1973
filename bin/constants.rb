@@ -454,14 +454,6 @@ class AbstractValueElement < AbstractElement
     raise(BASICExpressionError, 'Invalid operator NOT')
   end
 
-  def +(_other)
-    raise(BASICExpressionError, 'Invalid operator +')
-  end
-
-  def -(_other)
-    raise(BASICExpressionError, 'Invalid operator -')
-  end
-
   def add(_)
     raise(BASICExpressionError, 'Invalid operator add')
   end
@@ -679,33 +671,6 @@ class NumericConstant < AbstractValueElement
   def not
     b = to_b
     BooleanConstant.new(!b)
-  end
-
-  def +(other)
-    message = "Type mismatch (#{content_type}/#{other.content_type}) in +()"
-
-    raise(BASICExpressionError, message) unless compatible?(other)
-
-    value = @value + other.to_numeric.to_v
-    NumericConstant.new(value)
-  end
-
-  def -(other)
-    message = "Type mismatch (#{content_type}/#{other.content_type}) in -()"
-
-    raise(BASICExpressionError, message) unless compatible?(other)
-
-    value = @value - other.to_numeric.to_v
-    NumericConstant.new(value)
-  end
-
-  def *(other)
-    message = "Type mismatch (#{content_type}/#{other.content_type}) in *()"
-
-    raise(BASICExpressionError, message) unless compatible?(other)
-
-    value = @value * other.to_numeric.to_v
-    NumericConstant.new(value)
   end
 
   def add(other)
@@ -1091,33 +1056,6 @@ class IntegerConstant < AbstractValueElement
     IntegerConstant.new(b)
   end
 
-  def +(other)
-    message = "Type mismatch (#{content_type}/#{other.content_type}) in +()"
-
-    raise(BASICExpressionError, message) unless compatible?(other)
-
-    value = @value + other.to_numeric.to_v
-    IntegerConstant.new(value)
-  end
-
-  def -(other)
-    message = "Type mismatch (#{content_type}/#{other.content_type}) in -()"
-
-    raise(BASICExpressionError, message) unless compatible?(other)
-
-    value = @value - other.to_numeric.to_v
-    IntegerConstant.new(value)
-  end
-
-  def *(other)
-    message = "Type mismatch (#{content_type}/#{other.content_type}) in *()"
-
-    raise(BASICExpressionError, message) unless compatible?(other)
-
-    value = @value * other.to_numeric.to_v
-    IntegerConstant.new(value)
-  end
-
   def add(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in add()"
 
@@ -1438,14 +1376,6 @@ class TextConstant < AbstractValueElement
 
   def b_or(other)
     BooleanConstant.new(to_b || other.to_b)
-  end
-
-  def +(other)
-    message = "Type mismatch (#{content_type}/#{other.content_type}) in +()"
-
-    raise(BASICExpressionError, message) unless compatible?(other)
-
-    TextConstant.new(@value + other.to_v)
   end
 
   def add(other)
