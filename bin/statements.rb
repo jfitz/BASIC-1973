@@ -17,7 +17,7 @@ class StatementFactory
     m = /\A\d+/.match(text)
 
     unless m.nil?
-      token = NumericConstantToken.new(m[0])
+      token = NumericLiteralToken.new(m[0])
       number = IntegerConstant.new(token)
       line_number = LineNumber.new(number)
       line_text = m.post_match
@@ -3250,7 +3250,7 @@ class GotoStatement < AbstractStatement
 
     new_dest_lines.each do |dest_line|
       @tokens[index + 1] =
-        NumericConstantToken.new(dest_line.line_number)
+        NumericLiteralToken.new(dest_line.line_number)
 
       index += 2
     end
@@ -3490,7 +3490,7 @@ class AbstractIfStatement < AbstractStatement
 
     unless @else_dest_line.nil?
       @else_dest_line = renumber_map[@else_dest_line]
-      new_token = NumericConstantToken.new(@else_dest_line.line_number)
+      new_token = NumericLiteralToken.new(@else_dest_line.line_number)
       @tokens[-1] = new_token
       @core_tokens[-1] = new_token
     end
@@ -5461,7 +5461,7 @@ class SleepStatement < AbstractStatement
     template_1 = [[1, '>=']]
 
     if check_template(tokens_lists, template_0)
-      token_list = [NumericConstantToken.new('5')]
+      token_list = [NumericLiteralToken.new('5')]
       @expression = ValueExpressionSet.new(token_list, :scalar)
       @errors << 'TAB() not allowed' if @expression.has_tab
     elsif check_template(tokens_lists, template_1)

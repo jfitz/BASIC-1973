@@ -215,7 +215,7 @@ class TextTokenBuilder
   end
 
   def token
-    TextConstantToken.new(@token)
+    TextLiteralToken.new(@token)
   end
 end
 
@@ -243,7 +243,7 @@ class InputNumberTokenBuilder
   end
 
   def token
-    NumericConstantToken.new(@token)
+    NumericLiteralToken.new(@token)
   end
 end
 
@@ -316,7 +316,7 @@ class NumberTokenBuilder
   end
 
   def token
-    NumericConstantToken.new(@token)
+    NumericLiteralToken.new(@token)
   end
 
   private
@@ -399,7 +399,7 @@ class IntegerTokenBuilder
   end
 
   def token
-    IntegerConstantToken.new(@token)
+    IntegerLiteralToken.new(@token)
   end
 
   private
@@ -510,7 +510,7 @@ class UnitsTokenBuilder
   end
 
   def token
-    UnitsConstantToken.new(@token)
+    UnitsLiteralToken.new(@token)
   end
 end
 
@@ -599,7 +599,7 @@ class InputTextTokenBuilder
   end
 
   def token
-    TextConstantToken.new(@token)
+    TextLiteralToken.new(@token)
   end
 end
 
@@ -616,7 +616,7 @@ class InputBareTextTokenBuilder
 
   def token
     quoted = "\"#{@token}\""
-    TextConstantToken.new(quoted)
+    TextLiteralToken.new(quoted)
   end
 end
 

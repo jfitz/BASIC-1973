@@ -709,7 +709,7 @@ class NumericConstant < AbstractValueElement
 
   def self.accept?(token)
     classes =
-      %w[Fixnum Integer Bignum Float NumericConstantToken NumericSymbolToken]
+      %w[Fixnum Integer Bignum Float NumericLiteralToken NumericSymbolToken]
 
     classes.include?(token.class.to_s)
   end
@@ -759,13 +759,13 @@ class NumericConstant < AbstractValueElement
     super()
 
     numeric_classes = %w[Fixnum Integer Bignum Float]
-    float_classes = %w[Rational NumericConstantToken]
+    float_classes = %w[Rational NumericLiteralToken]
 
     f = nil
     f = obj.to_f if float_classes.include?(obj.class.to_s)
     f = obj if numeric_classes.include?(obj.class.to_s)
 
-    if obj.class.to_s == 'NumericConstantToken'
+    if obj.class.to_s == 'NumericLiteralToken'
       t = obj.to_s
       f = t[1].ord if !t.empty? && t[0] == '#'
     end
@@ -794,7 +794,7 @@ class NumericConstant < AbstractValueElement
     @numeric_constant = true
     @units = Units.new({}, '{}')
 
-    @units = obj.units if obj.class.to_s == 'NumericConstantToken'
+    @units = obj.units if obj.class.to_s == 'NumericLiteralToken'
   end
 
   def set_content_type(type_stack)
@@ -1157,7 +1157,7 @@ class IntegerConstant < AbstractValueElement
   end
 
   def self.accept?(token)
-    classes = %w[Fixnum Integer Bignum Float IntegerConstantToken]
+    classes = %w[Fixnum Integer Bignum Float IntegerLiteralToken]
     classes.include?(token.class.to_s)
   end
 
@@ -1178,11 +1178,11 @@ class IntegerConstant < AbstractValueElement
   def initialize(obj)
     super()
 
-    numeric_classes = %w[Fixnum Integer Bignum Float IntegerConstantToken]
+    numeric_classes = %w[Fixnum Integer Bignum Float IntegerLiteralToken]
 
     f = nil
     f = obj.to_i if numeric_classes.include?(obj.class.to_s)
-    f = obj.to_f.to_i if obj.class.to_s == 'NumericConstantToken'
+    f = obj.to_f.to_i if obj.class.to_s == 'NumericLiteralToken'
 
     raise BASICSyntaxError, "'#{obj}' is not an integer" if f.nil?
 
@@ -1196,7 +1196,7 @@ class IntegerConstant < AbstractValueElement
     @numeric_constant = true
     @units = Units.new({}, '{}')
 
-    @units = obj.units if obj.class.to_s == 'IntegerConstantToken'
+    @units = obj.units if obj.class.to_s == 'IntegerLiteralToken'
   end
 
   def set_content_type(type_stack)
@@ -1508,7 +1508,7 @@ end
 # Text constants
 class TextConstant < AbstractValueElement
   def self.accept?(token)
-    classes = %w[TextConstantToken TextSymbolToken String]
+    classes = %w[TextLiteralToken TextSymbolToken String]
     classes.include?(token.class.to_s)
   end
 
@@ -1542,7 +1542,7 @@ class TextConstant < AbstractValueElement
 
     @value = nil
     @value = text if text.class.to_s == 'String'
-    @value = text.value if text.class.to_s == 'TextConstantToken'
+    @value = text.value if text.class.to_s == 'TextLiteralToken'
 
     if text.class.to_s == 'TextSymbolToken'
       @value = text.value
@@ -1756,7 +1756,7 @@ end
 # Boolean constants
 class BooleanConstant < AbstractValueElement
   def self.accept?(token)
-    classes = %w[BooleanConstantToken]
+    classes = %w[BooleanLiteralToken]
     classes.include?(token.class.to_s)
   end
 
@@ -1769,7 +1769,7 @@ class BooleanConstant < AbstractValueElement
     @symbol_text = obj.to_s
 
     @value =
-      (obj_class == 'BooleanConstantToken' && obj.to_s == 'TRUE') ||
+      (obj_class == 'BooleanLiteralToken' && obj.to_s == 'TRUE') ||
       (obj_class == 'String' && obj.casecmp('TRUE').zero?) ||
       (obj_class == 'NumericConstant' && !obj.to_f.zero?) ||
       (obj_class == 'IntegerConstant' && !obj.to_i.zero?) ||

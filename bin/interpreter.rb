@@ -222,7 +222,7 @@ class Interpreter
     tokenbuilders << IntegerTokenBuilder.new
 
     tokenbuilders << VariableTokenBuilder.new
-    tokenbuilders << ListTokenBuilder.new(%w[TRUE FALSE], BooleanConstantToken)
+    tokenbuilders << ListTokenBuilder.new(%w[TRUE FALSE], BooleanLiteralToken)
 
     tokenbuilders << WhitespaceTokenBuilder.new
   end
@@ -1241,21 +1241,21 @@ class Interpreter
     # convert an integer to a numeric
     if value.content_type == :numeric &&
        variable.content_type == :integer
-      token = IntegerConstantToken.new(value.to_s)
+      token = IntegerLiteralToken.new(value.to_s)
       value = IntegerConstant.new(token)
     end
 
     # convert a numeric to an integer
     if value.content_type == :integer &&
        variable.content_type == :numeric
-      token = NumericConstantToken.new(value.to_s)
+      token = NumericLiteralToken.new(value.to_s)
       value = NumericConstant.new(token)
     end
 
     # convert a boolean to an integer
     if value.content_type == :boolean &&
        variable.content_type == :numeric
-      token = NumericConstantToken.new(value.to_i)
+      token = NumericLiteralToken.new(value.to_i)
       value = NumericConstant.new(token)
     end
 
@@ -1373,7 +1373,7 @@ class Interpreter
         vtoken1 = VariableToken.new(vname1_s)
         vname1 = VariableName.new(vtoken1)
         # convert subscript to numeric
-        sub1_token = NumericConstantToken.new(subs_s)
+        sub1_token = NumericLiteralToken.new(subs_s)
         sub1 = NumericConstant.new(sub1_token)
         subscripts = [sub1]
         # don't wrap subscripts for FORGET
@@ -1404,9 +1404,9 @@ class Interpreter
         # split [1] on comma e4 12 65
         sub1_s, sub2_s = subs_s.split(',')
         # convert subscripts to numerics
-        sub1_token = NumericConstantToken.new(sub1_s)
+        sub1_token = NumericLiteralToken.new(sub1_s)
         sub1 = NumericConstant.new(sub1_token)
-        sub2_token = NumericConstantToken.new(sub2_s)
+        sub2_token = NumericLiteralToken.new(sub2_s)
         sub2 = NumericConstant.new(sub2_token)
         subscripts = [sub1, sub2]
         # don't wrap subscripts for FORGET

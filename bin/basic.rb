@@ -543,7 +543,7 @@ def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads)
   tokenbuilders << TextSymbolTokenBuilder.new if allow_ascii
 
   tokenbuilders << VariableTokenBuilder.new
-  tokenbuilders << ListTokenBuilder.new(%w[TRUE FALSE], BooleanConstantToken)
+  tokenbuilders << ListTokenBuilder.new(%w[TRUE FALSE], BooleanLiteralToken)
   tokenbuilders << WhitespaceTokenBuilder.new
 end
 
@@ -601,7 +601,7 @@ def make_command_tokenbuilders(quotes)
   allow_hash_constant = $options['allow_hash_constant'].value
   tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
   tokenbuilders << VariableTokenBuilder.new
-  tokenbuilders << ListTokenBuilder.new(%w[TRUE FALSE], BooleanConstantToken)
+  tokenbuilders << ListTokenBuilder.new(%w[TRUE FALSE], BooleanLiteralToken)
   tokenbuilders << WhitespaceTokenBuilder.new
 end
 
