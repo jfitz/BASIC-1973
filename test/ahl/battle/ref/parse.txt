@@ -5,19 +5,19 @@
 30 REM PRODUCED AT THE LAWRENCE HALL OF SCIENCE, BERKELEY
  Remark:PRODUCED AT THE LAWRENCE HALL OF SCIENCE, BERKELEY
 40 DIM F[6,6],H[6,6],A[4],B[4],C[6],L[3]
- NumericConstant:6
- NumericConstant:6
+ NumericValue:6
+ NumericValue:6
  Declaration:F(,) -> _(,)
- NumericConstant:6
- NumericConstant:6
+ NumericValue:6
+ NumericValue:6
  Declaration:H(,) -> _(,)
- NumericConstant:4
+ NumericValue:4
  Declaration:A() -> _()
- NumericConstant:4
+ NumericValue:4
  Declaration:B() -> _()
- NumericConstant:6
+ NumericValue:6
  Declaration:C() -> _()
- NumericConstant:3
+ NumericValue:3
  Declaration:L() -> _()
 50 MAT F=ZER
  Variable:F(,) -> _(,)
@@ -26,59 +26,59 @@
 60 FOR I=1 TO 3
  WARNING: FORNEXT length exceeds limit 40
  control: Variable:I -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:3"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:3"]
 70 N=4-I
  Variable:N -> _
- NumericConstant:4
+ NumericValue:4
  Variable:I -> _
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 80 FOR J=1 TO 2
  WARNING: FORNEXT length exceeds limit 40
  control: Variable:J -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:2"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:2"]
 90 A=INT(6*RND(0))+1
  Variable:A -> _
- NumericConstant:6
- NumericConstant:0
+ NumericValue:6
+ NumericValue:0
  FunctionRnd:RND(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  FunctionInt:INT(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 100 B=INT(6*RND(0))+1
  Variable:B -> _
- NumericConstant:6
- NumericConstant:0
+ NumericValue:6
+ NumericValue:0
  FunctionRnd:RND(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  FunctionInt:INT(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 110 D=INT(4*RND(0))+1
  Variable:D -> _
- NumericConstant:4
- NumericConstant:0
+ NumericValue:4
+ NumericValue:0
  FunctionRnd:RND(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  FunctionInt:INT(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 120 IF F[A,B]>0 THEN 90
  Variable:A -> _
  Variable:B -> _
  Variable:F(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:90
 130 M=0
  Variable:M -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 140 GOTO D OF 150,340,550,740
  Variable:D -> _
@@ -87,93 +87,93 @@
  LineNumber:550
  LineNumber:740
 150 B[1]=B
- NumericConstant:1
+ NumericValue:1
  Variable:B(_) -> _
  Variable:B -> _
  AssignmentOperator:= _ -> _
 160 B[2]=B[3]*7
- NumericConstant:2
+ NumericValue:2
  Variable:B(_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:B(_) -> _
- NumericConstant:7
+ NumericValue:7
  BinaryOperatorMultiply:*(_,_) -> _
  AssignmentOperator:= _ -> _
 170 FOR K=1 TO N
  WARNING: FORNEXT length exceeds limit 40
  WARNING: FOR/NEXT nesting exceeds limit 3
  control: Variable:K -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:N -> _"]
 180 IF M>1 THEN 240
  Variable:M -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:240
 190 IF B[K]=6 THEN 230
  Variable:K -> _
  Variable:B(_) -> _
- NumericConstant:6
+ NumericValue:6
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:230
 200 IF F[A,B[K]+1]>0 THEN 230
  Variable:A -> _
  Variable:K -> _
  Variable:B(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:F(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:230
 210 B[K+1]=B[K]+1
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:B(_) -> _
  Variable:K -> _
  Variable:B(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 220 GOTO 280
  LineNumber:280
 230 M=2
  Variable:M -> _
- NumericConstant:2
+ NumericValue:2
  AssignmentOperator:= =_ -> _
 240 Z=((B[1] MIN _ B[2]) MIN _ B[3])
  Variable:Z -> _
- NumericConstant:1
+ NumericValue:1
  Variable:B(_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:B(_) -> _
  BinaryOperatorMin:MIN(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:B(_) -> _
  BinaryOperatorMin:MIN(_,_) -> _
  AssignmentOperator:= _ -> _
 250 IF Z<1 THEN 90
  Variable:Z -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:90
 260 IF F[A,Z-1]>0 THEN 90
  Variable:A -> _
  Variable:Z -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  Variable:F(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:90
 270 B[K+1]=Z-1
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:B(_) -> _
  Variable:Z -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 280 NEXT K
@@ -182,8 +182,8 @@
  Variable:A -> _
  Variable:B -> _
  Variable:F(_,_) -> _
- NumericConstant:9
- NumericConstant:2
+ NumericValue:9
+ NumericValue:2
  Variable:I -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
@@ -192,12 +192,12 @@
  AssignmentOperator:= _ -> _
 300 FOR K=1 TO N
  control: Variable:K -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:N -> _"]
 310 F[A,B[K+1]]=F[A,B]
  Variable:A -> _
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:B(_) -> _
  Variable:F(_,_) -> _
@@ -210,75 +210,75 @@
 330 GOTO 990
  LineNumber:990
 340 A[1]=A
- NumericConstant:1
+ NumericValue:1
  Variable:A(_) -> _
  Variable:A -> _
  AssignmentOperator:= _ -> _
 350 B[1]=B
- NumericConstant:1
+ NumericValue:1
  Variable:B(_) -> _
  Variable:B -> _
  AssignmentOperator:= _ -> _
 360 A[2],A[3],B[2],B[3]=0
- NumericConstant:2
+ NumericValue:2
  Variable:A(_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:A(_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:B(_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:B(_) -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _,_,_,_
 370 FOR K=1 TO N
  WARNING: FORNEXT length exceeds limit 40
  WARNING: FOR/NEXT nesting exceeds limit 3
  control: Variable:K -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:N -> _"]
 380 IF M>1 THEN 460
  Variable:M -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:460
 390 IF A[K]=1 OR B[K]=1 THEN 450
  Variable:K -> _
  Variable:A(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  Variable:K -> _
  Variable:B(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  BinaryOperatorOr:OR(?,?) -> ?
  LineNumber:450
 400 IF F[A[K]-1,B[K]-1]>0 THEN 450
  Variable:K -> _
  Variable:A(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  Variable:K -> _
  Variable:B(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  Variable:F(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:450
 410 IF F[A[K]-1,B[K]]>0 AND F[A[K]-1,B[K]]=F[A[K],B[K]-1] THEN 450
  WARNING: Line exceeds PRETTY width limit 72
  Variable:K -> _
  Variable:A(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  Variable:K -> _
  Variable:B(_) -> _
  Variable:F(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  Variable:K -> _
  Variable:A(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  Variable:K -> _
  Variable:B(_) -> _
@@ -287,7 +287,7 @@
  Variable:A(_) -> _
  Variable:K -> _
  Variable:B(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  Variable:F(_,_) -> _
  BinaryOperatorEqual:=(_,_) -> ?
@@ -295,87 +295,87 @@
  LineNumber:450
 420 A[K+1]=A[K]-1
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:A(_) -> _
  Variable:K -> _
  Variable:A(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 430 B[K+1]=B[K]-1
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:B(_) -> _
  Variable:K -> _
  Variable:B(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 440 GOTO 530
  LineNumber:530
 450 M=2
  Variable:M -> _
- NumericConstant:2
+ NumericValue:2
  AssignmentOperator:= =_ -> _
 460 Z1=((A[1] MAX _ A[2]) MAX _ A[3])
  Variable:Z1 -> _
- NumericConstant:1
+ NumericValue:1
  Variable:A(_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:A(_) -> _
  BinaryOperatorMax:MAX(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:A(_) -> _
  BinaryOperatorMax:MAX(_,_) -> _
  AssignmentOperator:= _ -> _
 470 Z2=((B[1] MAX _ B[2]) MAX _ B[3])
  Variable:Z2 -> _
- NumericConstant:1
+ NumericValue:1
  Variable:B(_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:B(_) -> _
  BinaryOperatorMax:MAX(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:B(_) -> _
  BinaryOperatorMax:MAX(_,_) -> _
  AssignmentOperator:= _ -> _
 480 IF Z1=6 OR Z2=6 THEN 90
  Variable:Z1 -> _
- NumericConstant:6
+ NumericValue:6
  BinaryOperatorEqual:=(_,_) -> ?
  Variable:Z2 -> _
- NumericConstant:6
+ NumericValue:6
  BinaryOperatorEqual:=(_,_) -> ?
  BinaryOperatorOr:OR(?,?) -> ?
  LineNumber:90
 490 IF F[Z1+1,Z2+1]>0 THEN 90
  Variable:Z1 -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:Z2 -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:F(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:90
 500 IF F[Z1,Z2+1]>0 AND F[Z1,Z2+1]=F[Z1+1,Z2] THEN 90
  Variable:Z1 -> _
  Variable:Z2 -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:F(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  Variable:Z1 -> _
  Variable:Z2 -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:F(_,_) -> _
  Variable:Z1 -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:Z2 -> _
  Variable:F(_,_) -> _
@@ -384,20 +384,20 @@
  LineNumber:90
 510 A[K+1]=Z1+1
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:A(_) -> _
  Variable:Z1 -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 520 B[K+1]=Z2+1
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:B(_) -> _
  Variable:Z2 -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 530 NEXT K
@@ -405,92 +405,92 @@
 540 GOTO 950
  LineNumber:950
 550 A[1]=A
- NumericConstant:1
+ NumericValue:1
  Variable:A(_) -> _
  Variable:A -> _
  AssignmentOperator:= _ -> _
 560 A[2],A[3]=7
- NumericConstant:2
+ NumericValue:2
  Variable:A(_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:A(_) -> _
- NumericConstant:7
+ NumericValue:7
  AssignmentOperator:= =_ -> _,_
 570 FOR K=1 TO N
  WARNING: FORNEXT length exceeds limit 40
  WARNING: FOR/NEXT nesting exceeds limit 3
  control: Variable:K -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:N -> _"]
 580 IF M>1 THEN 640
  Variable:M -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:640
 590 IF A[K]=6 THEN 630
  Variable:K -> _
  Variable:A(_) -> _
- NumericConstant:6
+ NumericValue:6
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:630
 600 IF F[A[K]+1,B]>0 THEN 630
  Variable:K -> _
  Variable:A(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:B -> _
  Variable:F(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:630
 610 A[K+1]=A[K]+1
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:A(_) -> _
  Variable:K -> _
  Variable:A(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 620 GOTO 680
  LineNumber:680
 630 M=2
  Variable:M -> _
- NumericConstant:2
+ NumericValue:2
  AssignmentOperator:= =_ -> _
 640 Z=((A[1] MIN _ A[2]) MIN _ A[3])
  Variable:Z -> _
- NumericConstant:1
+ NumericValue:1
  Variable:A(_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:A(_) -> _
  BinaryOperatorMin:MIN(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:A(_) -> _
  BinaryOperatorMin:MIN(_,_) -> _
  AssignmentOperator:= _ -> _
 650 IF Z=1 THEN 90
  Variable:Z -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:90
 660 IF F[Z-1,B]>0 THEN 90
  Variable:Z -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  Variable:B -> _
  Variable:F(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:90
 670 A[K+1]=Z-1
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:A(_) -> _
  Variable:Z -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 680 NEXT K
@@ -499,8 +499,8 @@
  Variable:A -> _
  Variable:B -> _
  Variable:F(_,_) -> _
- NumericConstant:9
- NumericConstant:2
+ NumericValue:9
+ NumericValue:2
  Variable:I -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
@@ -509,11 +509,11 @@
  AssignmentOperator:= _ -> _
 700 FOR K=1 TO N
  control: Variable:K -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:N -> _"]
 710 F[A[K+1],B]=F[A,B]
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:A(_) -> _
  Variable:B -> _
@@ -527,78 +527,78 @@
 730 GOTO 990
  LineNumber:990
 740 A[1]=A
- NumericConstant:1
+ NumericValue:1
  Variable:A(_) -> _
  Variable:A -> _
  AssignmentOperator:= _ -> _
 750 B[1]=B
- NumericConstant:1
+ NumericValue:1
  Variable:B(_) -> _
  Variable:B -> _
  AssignmentOperator:= _ -> _
 760 A[2],A[3]=7
- NumericConstant:2
+ NumericValue:2
  Variable:A(_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:A(_) -> _
- NumericConstant:7
+ NumericValue:7
  AssignmentOperator:= =_ -> _,_
 770 B[2],B[3]=0
- NumericConstant:2
+ NumericValue:2
  Variable:B(_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:B(_) -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _,_
 780 FOR K=1 TO N
  WARNING: FORNEXT length exceeds limit 40
  WARNING: FOR/NEXT nesting exceeds limit 3
  control: Variable:K -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:N -> _"]
 790 IF M>1 THEN 870
  Variable:M -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:870
 800 IF A[K]=6 OR B[K]=1 THEN 860
  Variable:K -> _
  Variable:A(_) -> _
- NumericConstant:6
+ NumericValue:6
  BinaryOperatorEqual:=(_,_) -> ?
  Variable:K -> _
  Variable:B(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  BinaryOperatorOr:OR(?,?) -> ?
  LineNumber:860
 810 IF F[A[K]+1,B[K]-1]>0 THEN 860
  Variable:K -> _
  Variable:A(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:K -> _
  Variable:B(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  Variable:F(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:860
 820 IF F[A[K]+1,B[K]]>0 AND F[A[K]+1,B[K]]=F[A[K],B[K]-1] THEN 860
  WARNING: Line exceeds PRETTY width limit 72
  Variable:K -> _
  Variable:A(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:K -> _
  Variable:B(_) -> _
  Variable:F(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  Variable:K -> _
  Variable:A(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:K -> _
  Variable:B(_) -> _
@@ -607,7 +607,7 @@
  Variable:A(_) -> _
  Variable:K -> _
  Variable:B(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  Variable:F(_,_) -> _
  BinaryOperatorEqual:=(_,_) -> ?
@@ -615,87 +615,87 @@
  LineNumber:860
 830 A[K+1]=A[K]+1
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:A(_) -> _
  Variable:K -> _
  Variable:A(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 840 B[K+1]=B[K]-1
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:B(_) -> _
  Variable:K -> _
  Variable:B(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 850 GOTO 940
  LineNumber:940
 860 M=2
  Variable:M -> _
- NumericConstant:2
+ NumericValue:2
  AssignmentOperator:= =_ -> _
 870 Z1=((A[1] MIN _ A[2]) MIN _ A[3])
  Variable:Z1 -> _
- NumericConstant:1
+ NumericValue:1
  Variable:A(_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:A(_) -> _
  BinaryOperatorMin:MIN(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:A(_) -> _
  BinaryOperatorMin:MIN(_,_) -> _
  AssignmentOperator:= _ -> _
 880 Z2=((B[1] MAX _ B[2]) MAX _ B[3])
  Variable:Z2 -> _
- NumericConstant:1
+ NumericValue:1
  Variable:B(_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:B(_) -> _
  BinaryOperatorMax:MAX(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:B(_) -> _
  BinaryOperatorMax:MAX(_,_) -> _
  AssignmentOperator:= _ -> _
 890 IF Z1=1 OR Z2=6 THEN 90
  Variable:Z1 -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  Variable:Z2 -> _
- NumericConstant:6
+ NumericValue:6
  BinaryOperatorEqual:=(_,_) -> ?
  BinaryOperatorOr:OR(?,?) -> ?
  LineNumber:90
 900 IF F[Z1-1,Z2+1]>0 THEN 90
  Variable:Z1 -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  Variable:Z2 -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:F(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:90
 910 IF F[Z1,Z2+1]>0 AND F[Z1,Z2+1]=F[Z1-1,Z2] THEN 90
  Variable:Z1 -> _
  Variable:Z2 -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:F(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  Variable:Z1 -> _
  Variable:Z2 -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:F(_,_) -> _
  Variable:Z1 -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  Variable:Z2 -> _
  Variable:F(_,_) -> _
@@ -704,20 +704,20 @@
  LineNumber:90
 920 A[K+1]=Z1-1
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:A(_) -> _
  Variable:Z1 -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 930 B[K+1]=Z2+1
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:B(_) -> _
  Variable:Z2 -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 940 NEXT K
@@ -726,8 +726,8 @@
  Variable:A -> _
  Variable:B -> _
  Variable:F(_,_) -> _
- NumericConstant:9
- NumericConstant:2
+ NumericValue:9
+ NumericValue:2
  Variable:I -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
@@ -736,15 +736,15 @@
  AssignmentOperator:= _ -> _
 960 FOR K=1 TO N
  control: Variable:K -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:N -> _"]
 970 F[A[K+1],B[K+1]]=F[A,B]
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:A(_) -> _
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:B(_) -> _
  Variable:F(_,_) -> _
@@ -761,10 +761,10 @@
 1010 PRINT
  CarriageControl:NL
 1020 PRINT "THE FOLLOWING CODE OF THE BAD GUYS' FLEET DISPOSITION"
- TextConstant:"THE FOLLOWING CODE OF THE BAD GUYS' FLEET DISPOSITION"
+ TextValue:"THE FOLLOWING CODE OF THE BAD GUYS' FLEET DISPOSITION"
  CarriageControl:NL
 1030 PRINT "HAS BEEN CAPTURED BUT NOT DE-CODED."
- TextConstant:"HAS BEEN CAPTURED BUT NOT DE-CODED."
+ TextValue:"HAS BEEN CAPTURED BUT NOT DE-CODED."
  CarriageControl:NL
 1040 PRINT
  CarriageControl:NL
@@ -779,10 +779,10 @@
 1070 PRINT
  CarriageControl:NL
 1080 PRINT "DE-CODE IT AND USE IT IF YOU CAN" 
- TextConstant:"DE-CODE IT AND USE IT IF YOU CAN"
+ TextValue:"DE-CODE IT AND USE IT IF YOU CAN"
  CarriageControl:NL
 1090 PRINT "BUT KEEP THE DE-CODING METHOD A SECRET."
- TextConstant:"BUT KEEP THE DE-CODING METHOD A SECRET."
+ TextValue:"BUT KEEP THE DE-CODING METHOD A SECRET."
  CarriageControl:NL
 1100 PRINT 
  CarriageControl:NL
@@ -795,43 +795,43 @@
  FunctionZer2:ZER -> _(,)
  AssignmentOperator:= _(,) -> _(,)
 1130 C[1],C[2]=2
- NumericConstant:1
+ NumericValue:1
  Variable:C(_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:C(_) -> _
- NumericConstant:2
+ NumericValue:2
  AssignmentOperator:= =_ -> _,_
 1140 C[3],C[4]=1 
- NumericConstant:3
+ NumericValue:3
  Variable:C(_) -> _
- NumericConstant:4
+ NumericValue:4
  Variable:C(_) -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _,_
 1150 C[5],C[6]=0
- NumericConstant:5
+ NumericValue:5
  Variable:C(_) -> _
- NumericConstant:6
+ NumericValue:6
  Variable:C(_) -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _,_
 1160 S,H=0
  Variable:S -> _
  Variable:H -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _,_
 1170 PRINT "START GAME"
- TextConstant:"START GAME"
+ TextValue:"START GAME"
  CarriageControl:NL
 1180 INPUT X,Y
  Variable:X -> _
  Variable:Y -> _
 1190 IF X<1 OR X>6 OR INT(X)#ABS(X) THEN 1210
  Variable:X -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorLess:<(_,_) -> ?
  Variable:X -> _
- NumericConstant:6
+ NumericValue:6
  BinaryOperatorGreater:>(_,_) -> ?
  BinaryOperatorOr:OR(?,?) -> ?
  Variable:X -> _
@@ -843,10 +843,10 @@
  LineNumber:1210
 1200 IF Y>0 AND Y<7 AND INT(Y)=ABS(Y) THEN 1230
  Variable:Y -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  Variable:Y -> _
- NumericConstant:7
+ NumericValue:7
  BinaryOperatorLess:<(_,_) -> ?
  BinaryOperatorAnd:AND(?,?) -> ?
  Variable:Y -> _
@@ -857,13 +857,13 @@
  BinaryOperatorAnd:AND(?,?) -> ?
  LineNumber:1230
 1210 PRINT "INVALID INPUT, TRY AGAIN."
- TextConstant:"INVALID INPUT, TRY AGAIN."
+ TextValue:"INVALID INPUT, TRY AGAIN."
  CarriageControl:NL
 1220 GOTO 1180
  LineNumber:1180
 1230 R=7-Y
  Variable:R -> _
- NumericConstant:7
+ NumericValue:7
  Variable:Y -> _
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
@@ -875,17 +875,17 @@
  Variable:R -> _
  Variable:C -> _
  Variable:F(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:1290
 1260 S=S+1
  Variable:S -> _
  Variable:S -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 1270 PRINT "SPLASH! TRY AGAIN."
- TextConstant:"SPLASH! TRY AGAIN."
+ TextValue:"SPLASH! TRY AGAIN."
  CarriageControl:NL
 1280 GOTO 1180
  LineNumber:1180
@@ -894,19 +894,19 @@
  Variable:C -> _
  Variable:F(_,_) -> _
  Variable:C(_) -> _
- NumericConstant:4
+ NumericValue:4
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:1340
 1300 PRINT "THERE USED TO BE A SHIP AT THAT POINT, BUT YOU SUNK IT."
- TextConstant:"THERE USED TO BE A SHIP AT THAT POINT, BUT YOU SUNK IT."
+ TextValue:"THERE USED TO BE A SHIP AT THAT POINT, BUT YOU SUNK IT."
  CarriageControl:NL
 1310 PRINT "SPLASH! TRY AGAIN."
- TextConstant:"SPLASH! TRY AGAIN."
+ TextValue:"SPLASH! TRY AGAIN."
  CarriageControl:NL
 1320 S=S+1
  Variable:S -> _
  Variable:S -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 1330 GOTO 1180
@@ -915,13 +915,13 @@
  Variable:R -> _
  Variable:C -> _
  Variable:H(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:1420
 1350 H=H+1
  Variable:H -> _
  Variable:H -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 1360 H[R,C]=F[R,C]
@@ -933,7 +933,7 @@
  Variable:F(_,_) -> _
  AssignmentOperator:= _ -> _
 1370 PRINT "A DIRECT HIT ON SHIP NUMBER"; F[R,C]
- TextConstant:"A DIRECT HIT ON SHIP NUMBER"
+ TextValue:"A DIRECT HIT ON SHIP NUMBER"
  CarriageControl:;
  Variable:R -> _
  Variable:C -> _
@@ -948,7 +948,7 @@
  Variable:C -> _
  Variable:F(_,_) -> _
  Variable:C(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 1390 IF C[F[R,C]]>=4 THEN 1470
@@ -956,31 +956,31 @@
  Variable:C -> _
  Variable:F(_,_) -> _
  Variable:C(_) -> _
- NumericConstant:4
+ NumericValue:4
  BinaryOperatorGreaterEqual:>=(_,_) -> ?
  LineNumber:1470
 1400 PRINT "TRY AGAIN."
- TextConstant:"TRY AGAIN."
+ TextValue:"TRY AGAIN."
  CarriageControl:NL
 1410 GOTO 1180
  LineNumber:1180
 1420 PRINT "YOU HAVE ALREADY PUT A HOLE IN SHIP NUMBER";F[R,C];
- TextConstant:"YOU HAVE ALREADY PUT A HOLE IN SHIP NUMBER"
+ TextValue:"YOU HAVE ALREADY PUT A HOLE IN SHIP NUMBER"
  CarriageControl:;
  Variable:R -> _
  Variable:C -> _
  Variable:F(_,_) -> _
  CarriageControl:;
 1430 PRINT "AT THAT POINT."
- TextConstant:"AT THAT POINT."
+ TextValue:"AT THAT POINT."
  CarriageControl:NL
 1440 PRINT "SPLASH! TRY AGAIN."
- TextConstant:"SPLASH! TRY AGAIN."
+ TextValue:"SPLASH! TRY AGAIN."
  CarriageControl:NL
 1450 S=S+1
  Variable:S -> _
  Variable:S -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 1460 GOTO 1180
@@ -989,77 +989,77 @@
  Variable:R -> _
  Variable:C -> _
  Variable:F(_,_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:L(_) -> _
  Variable:R -> _
  Variable:C -> _
  Variable:F(_,_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:L(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 1480 PRINT "AND YOU SUNK IT, HURRAH FOR THE GOOD GUYS."
- TextConstant:"AND YOU SUNK IT, HURRAH FOR THE GOOD GUYS."
+ TextValue:"AND YOU SUNK IT, HURRAH FOR THE GOOD GUYS."
  CarriageControl:NL
 1490 PRINT "SO FAR THE BAD GUYS HAVE LOST"
- TextConstant:"SO FAR THE BAD GUYS HAVE LOST"
+ TextValue:"SO FAR THE BAD GUYS HAVE LOST"
  CarriageControl:NL
 1500 PRINT L[1];"DESTROYER(S), "; L[2];"CRUISER (S) , AND ";
- NumericConstant:1
+ NumericValue:1
  Variable:L(_) -> _
  CarriageControl:;
- TextConstant:"DESTROYER(S), "
+ TextValue:"DESTROYER(S), "
  CarriageControl:;
- NumericConstant:2
+ NumericValue:2
  Variable:L(_) -> _
  CarriageControl:;
- TextConstant:"CRUISER (S) , AND "
+ TextValue:"CRUISER (S) , AND "
  CarriageControl:;
 1510 PRINT L[3];"AIRCRAFT CARRIER(S)."
- NumericConstant:3
+ NumericValue:3
  Variable:L(_) -> _
  CarriageControl:;
- TextConstant:"AIRCRAFT CARRIER(S)."
+ TextValue:"AIRCRAFT CARRIER(S)."
  CarriageControl:NL
 1520 PRINT "YOUR CURRENT SPLASH/HIT RATIO IS";S/H
- TextConstant:"YOUR CURRENT SPLASH/HIT RATIO IS"
+ TextValue:"YOUR CURRENT SPLASH/HIT RATIO IS"
  CarriageControl:;
  Variable:S -> _
  Variable:H -> _
  BinaryOperatorDivide:/(_,_) -> _
  CarriageControl:NL
 1530 IF (L[1]+L[2]+L[3])<6 THEN 1180
- NumericConstant:1
+ NumericValue:1
  Variable:L(_) -> _
- NumericConstant:2
- Variable:L(_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:3
+ NumericValue:2
  Variable:L(_) -> _
  BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:6
+ NumericValue:3
+ Variable:L(_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ NumericValue:6
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:1180
 1540 PRINT
  CarriageControl:NL
 1550 PRINT "YOU HAVE TOTALLY WIPED OUT THE BAD GUYS' FLEET"
- TextConstant:"YOU HAVE TOTALLY WIPED OUT THE BAD GUYS' FLEET"
+ TextValue:"YOU HAVE TOTALLY WIPED OUT THE BAD GUYS' FLEET"
  CarriageControl:NL
 1560 PRINT "WITH A FINAL SPLASH/HIT RATIO OF";S/H
- TextConstant:"WITH A FINAL SPLASH/HIT RATIO OF"
+ TextValue:"WITH A FINAL SPLASH/HIT RATIO OF"
  CarriageControl:;
  Variable:S -> _
  Variable:H -> _
@@ -1069,16 +1069,16 @@
  Variable:S -> _
  Variable:H -> _
  BinaryOperatorDivide:/(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:1590
 1580 PRINT "CONGRATULATIONS  A DIRECT HIT EVERY TIME."
- TextConstant:"CONGRATULATIONS  A DIRECT HIT EVERY TIME."
+ TextValue:"CONGRATULATIONS  A DIRECT HIT EVERY TIME."
  CarriageControl:NL
 1590 PRINT
  CarriageControl:NL
 1600 PRINT "*******************"
- TextConstant:"*******************"
+ TextValue:"*******************"
  CarriageControl:NL
 1610 PRINT
  CarriageControl:NL

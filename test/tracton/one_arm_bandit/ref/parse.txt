@@ -3,52 +3,52 @@
 20 REM THREE WHEEL ONE-ARM BANDIT
  Remark:THREE WHEEL ONE-ARM BANDIT
 30 PRINT "ARE INSTRUCTIONS REQUIRED"
- TextConstant:"ARE INSTRUCTIONS REQUIRED"
+ TextValue:"ARE INSTRUCTIONS REQUIRED"
  CarriageControl:NL
 40 PRINT "TYPE EITHER YES OR NO"
- TextConstant:"TYPE EITHER YES OR NO"
+ TextValue:"TYPE EITHER YES OR NO"
  CarriageControl:NL
 50 INPUT L$
  Variable:L$ -> $
 60 IF L$ = "YES" THEN 100
  Variable:L$ -> $
- TextConstant:"YES"
+ TextValue:"YES"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:100
 70 IF L$ = "NO" THEN 170
  Variable:L$ -> $
- TextConstant:"NO"
+ TextValue:"NO"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:170
 80 PRINT "INVALID COMMAND"
- TextConstant:"INVALID COMMAND"
+ TextValue:"INVALID COMMAND"
  CarriageControl:NL
 90 GOTO 30
  LineNumber:30
 100 PRINT "SCORING IS SIMPLE; 3 ORANGES, LEMONS OR"
- TextConstant:"SCORING IS SIMPLE; 3 ORANGES, LEMONS OR"
+ TextValue:"SCORING IS SIMPLE; 3 ORANGES, LEMONS OR"
  CarriageControl:NL
 110 PRINT "BANANAS EARN $10. 3 CHERRIES EARN $90."
- TextConstant:"BANANAS EARN $10. 3 CHERRIES EARN $90."
+ TextValue:"BANANAS EARN $10. 3 CHERRIES EARN $90."
  CarriageControl:NL
 120 PRINT "IF THE FIRST FRUIT IS AN APPLE YOU EARN #$2"
- TextConstant:"IF THE FIRST FRUIT IS AN APPLE YOU EARN #$2"
+ TextValue:"IF THE FIRST FRUIT IS AN APPLE YOU EARN #$2"
  CarriageControl:NL
 130 PRINT "IF THE 1ST AND 2ND ARE APPLES YOU EARN $3"
- TextConstant:"IF THE 1ST AND 2ND ARE APPLES YOU EARN $3"
+ TextValue:"IF THE 1ST AND 2ND ARE APPLES YOU EARN $3"
  CarriageControl:NL
 140 PRINT "IF THE LAST FRUIT IS A CHERRY AND THE"
- TextConstant:"IF THE LAST FRUIT IS A CHERRY AND THE"
+ TextValue:"IF THE LAST FRUIT IS A CHERRY AND THE"
  CarriageControl:NL
 150 PRINT "OTHER TWO ARE THE SAME BUT NOT APPLES YOU"
- TextConstant:"OTHER TWO ARE THE SAME BUT NOT APPLES YOU"
+ TextValue:"OTHER TWO ARE THE SAME BUT NOT APPLES YOU"
  CarriageControl:NL
 160 PRINT "EARN $10. EACH TURN COSTS $1. GOOD-LUCK"
- TextConstant:"EARN $10. EACH TURN COSTS $1. GOOD-LUCK"
+ TextValue:"EARN $10. EACH TURN COSTS $1. GOOD-LUCK"
  CarriageControl:NL
 170 LET J = 0
  Variable:J -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 180 PRINT
  CarriageControl:NL
@@ -102,12 +102,12 @@
  AssignmentOperator:= $ -> $
 340 IF S1$ = "CHERRY" THEN 380
  Variable:S1$ -> $
- TextConstant:"CHERRY"
+ TextValue:"CHERRY"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:380
 350 IF S1$ = "APPLE" THEN 420
  Variable:S1$ -> $
- TextConstant:"APPLE"
+ TextValue:"APPLE"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:420
 360 IF S1$ = S2$ THEN 440
@@ -145,13 +145,13 @@
  LineNumber:540
 450 IF S3$ = "CHERRY" THEN 540
  Variable:S3$ -> $
- TextConstant:"CHERRY"
+ TextValue:"CHERRY"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:540
 460 LET J = J - 1
  Variable:J -> _
  Variable:J -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 470 GOTO 550
@@ -159,7 +159,7 @@
 480 LET J = J + 89
  Variable:J -> _
  Variable:J -> _
- NumericConstant:89
+ NumericValue:89
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 490 GOTO 550
@@ -167,7 +167,7 @@
 500 LET J = J + 2
  Variable:J -> _
  Variable:J -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 510 GOTO 550
@@ -175,7 +175,7 @@
 520 LET J = J + 1
  Variable:J -> _
  Variable:J -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 530 GOTO 550
@@ -183,7 +183,7 @@
 540 LET J = J + 9
  Variable:J -> _
  Variable:J -> _
- NumericConstant:9
+ NumericValue:9
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 550 PRINT
@@ -191,16 +191,16 @@
 560 PRINT S1$;" ";S2$;" ";S3$
  Variable:S1$ -> $
  CarriageControl:;
- TextConstant:" "
+ TextValue:" "
  CarriageControl:;
  Variable:S2$ -> $
  CarriageControl:;
- TextConstant:" "
+ TextValue:" "
  CarriageControl:;
  Variable:S3$ -> $
  CarriageControl:NL
 570 PRINT "YOUR EARNINGS ARE NOW $";J
- TextConstant:"YOUR EARNINGS ARE NOW $"
+ TextValue:"YOUR EARNINGS ARE NOW $"
  CarriageControl:;
  Variable:J -> _
  CarriageControl:NL
@@ -208,8 +208,8 @@
  LineNumber:720
 590 LET S = 1 + INT(5*RND)
  Variable:S -> _
- NumericConstant:1
- NumericConstant:5
+ NumericValue:1
+ NumericValue:5
  FunctionRnd:RND -> _
  BinaryOperatorMultiply:*(_,_) -> _
  FunctionInt:INT(_) -> _
@@ -226,48 +226,48 @@
  LineNumber:700
 620 LET S$ = "CHERRY"
  Variable:S$ -> $
- TextConstant:"CHERRY"
+ TextValue:"CHERRY"
  AssignmentOperator:= =$ -> $
 630 GOTO 710
  LineNumber:710
 640 LET S$ = "APPLE"
  Variable:S$ -> $
- TextConstant:"APPLE"
+ TextValue:"APPLE"
  AssignmentOperator:= =$ -> $
 650 GOTO 710
  LineNumber:710
 660 LET S$ = "LEMON"
  Variable:S$ -> $
- TextConstant:"LEMON"
+ TextValue:"LEMON"
  AssignmentOperator:= =$ -> $
 670 GOTO 710
  LineNumber:710
 680 LET S$ = "ORANGE"
  Variable:S$ -> $
- TextConstant:"ORANGE"
+ TextValue:"ORANGE"
  AssignmentOperator:= =$ -> $
 690 GOTO 710
  LineNumber:710
 700 LET S$ = "BANANA"
  Variable:S$ -> $
- TextConstant:"BANANA"
+ TextValue:"BANANA"
  AssignmentOperator:= =$ -> $
 710 RETURN
  
 720 PRINT
  CarriageControl:NL
 730 PRINT "TO CONTINUE TYPE Y, IF NOT TYPE N"
- TextConstant:"TO CONTINUE TYPE Y, IF NOT TYPE N"
+ TextValue:"TO CONTINUE TYPE Y, IF NOT TYPE N"
  CarriageControl:NL
 740 INPUT Z$
  Variable:Z$ -> $
 750 IF Z$ = "Y" THEN 780
  Variable:Z$ -> $
- TextConstant:"Y"
+ TextValue:"Y"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:780
 760 PRINT "ONE-ARM BANDIT SAYS GOOD-BYE"
- TextConstant:"ONE-ARM BANDIT SAYS GOOD-BYE"
+ TextValue:"ONE-ARM BANDIT SAYS GOOD-BYE"
  CarriageControl:NL
 770 STOP
  

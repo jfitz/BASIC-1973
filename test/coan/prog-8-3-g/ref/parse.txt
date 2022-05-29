@@ -1,20 +1,20 @@
 10 PRINT "INPUT THE NUMBER OF SPACES DESIRED TO THE LEFT OF ZERO";
- TextConstant:"INPUT THE NUMBER OF SPACES DESIRED TO THE LEFT OF ZERO"
+ TextValue:"INPUT THE NUMBER OF SPACES DESIRED TO THE LEFT OF ZERO"
  CarriageControl:;
 20 INPUT M
  Variable:M -> _
 30 PRINT
  CarriageControl:NL
 40 PRINT "    ";
- TextConstant:"    "
+ TextValue:"    "
  CarriageControl:;
 50 FOR X=0 TO 50 STEP 10
  control: Variable:X -> _
- start:   ["NumericConstant:0"]
- end:     ["NumericConstant:50"]
- step:    ["NumericConstant:10"]
+ start:   ["NumericValue:0"]
+ end:     ["NumericValue:50"]
+ step:    ["NumericValue:10"]
 60 PRINT "    ";X;
- TextConstant:"    "
+ TextValue:"    "
  CarriageControl:;
  Variable:X -> _
  CarriageControl:;
@@ -24,25 +24,25 @@
  CarriageControl:NL
 90 FOR X=1 TO 70
  control: Variable:X -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:70"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:70"]
 100 IF X/10=INT(X/10) THEN 130
  Variable:X -> _
- NumericConstant:10
+ NumericValue:10
  BinaryOperatorDivide:/(_,_) -> _
  Variable:X -> _
- NumericConstant:10
+ NumericValue:10
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:130
 110 PRINT "-";
- TextConstant:"-"
+ TextValue:"-"
  CarriageControl:;
 120 GOTO 140
  LineNumber:140
 130 PRINT "^";
- TextConstant:"^"
+ TextValue:"^"
  CarriageControl:;
 140 NEXT X
  Variable:X -> _
@@ -50,44 +50,44 @@
  UserFunctionName:FNQ -> _
  VariableName:X -> _
  Variable:X -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorMinus:-(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorPower:^(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorPlus:+(_,_) -> _
 160 FOR X=-5 TO 8
  control: Variable:X -> _
- start:   ["NumericConstant:5", "UnaryOperatorMinus:-(_) -> =_"]
- end:     ["NumericConstant:8"]
+ start:   ["NumericValue:5", "UnaryOperatorMinus:-(_) -> =_"]
+ end:     ["NumericValue:8"]
 170 PRINT
  CarriageControl:NL
 180 FOR Y = -M TO 70-M
  control: Variable:Y -> _
  start:   ["Variable:M -> _", "UnaryOperatorMinus:-(_) -> _"]
- end:     ["NumericConstant:70", "Variable:M -> _", "BinaryOperatorMinus:-(_,_) -> _"]
+ end:     ["NumericValue:70", "Variable:M -> _", "BinaryOperatorMinus:-(_,_) -> _"]
 190 IF Y <> 0 THEN 280
  Variable:Y -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:280
 200 IF X=0 THEN 230
  Variable:X -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:230
 210 PRINT "'";
- TextConstant:"'"
+ TextValue:"'"
  CarriageControl:;
 220 GOTO 240
  LineNumber:240
 230 PRINT "0";
- TextConstant:"0"
+ TextValue:"0"
  CarriageControl:;
 240 IF FNQ(X)>0 THEN 310
  Variable:X -> _
  UserFunction:FNQ(_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:310
 250 REM IF  FNQ(X) > 0 GO FIND WHERE IT IS
@@ -105,12 +105,12 @@
 290 REM   IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
  Remark:  IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
 300 PRINT " ";
- TextConstant:" "
+ TextValue:" "
  CarriageControl:;
 310 NEXT Y
  Variable:Y -> _
 320 PRINT "*";
- TextConstant:"*"
+ TextValue:"*"
  CarriageControl:;
 330 REM   PLOT THE POINT AND GO TO NEXT X
  Remark:  PLOT THE POINT AND GO TO NEXT X

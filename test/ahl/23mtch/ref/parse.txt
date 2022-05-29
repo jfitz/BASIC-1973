@@ -1,44 +1,44 @@
 100 REM ***23 MATCHES
  Remark:***23 MATCHES
 110 PRINT "LET'S PLAY 23 MATCHES. WE START WITH 23 MATCHES."
- TextConstant:"LET'S PLAY 23 MATCHES. WE START WITH 23 MATCHES."
+ TextValue:"LET'S PLAY 23 MATCHES. WE START WITH 23 MATCHES."
  CarriageControl:NL
 115 PRINT "YOU MOVE FIRST. YOU MAY TAKE 1, 2 OR 3 MATCHES."
- TextConstant:"YOU MOVE FIRST. YOU MAY TAKE 1, 2 OR 3 MATCHES."
+ TextValue:"YOU MOVE FIRST. YOU MAY TAKE 1, 2 OR 3 MATCHES."
  CarriageControl:NL
 120 PRINT "THEN I MOVE... I MAY TAKE 1, 2 OR 3 MATCHES."
- TextConstant:"THEN I MOVE... I MAY TAKE 1, 2 OR 3 MATCHES."
+ TextValue:"THEN I MOVE... I MAY TAKE 1, 2 OR 3 MATCHES."
  CarriageControl:NL
 125 PRINT "YOU MOVE, I MOVE AND SO ON. THE ONE WHO HAS TO"
- TextConstant:"YOU MOVE, I MOVE AND SO ON. THE ONE WHO HAS TO"
+ TextValue:"YOU MOVE, I MOVE AND SO ON. THE ONE WHO HAS TO"
  CarriageControl:NL
 130 PRINT "TAKE THE LAST MATCH LOSES."
- TextConstant:"TAKE THE LAST MATCH LOSES."
+ TextValue:"TAKE THE LAST MATCH LOSES."
  CarriageControl:NL
 135 PRINT "GOOD LUCK AND MAY THE BEST COMPUTER (HA HA) WIN."
- TextConstant:"GOOD LUCK AND MAY THE BEST COMPUTER (HA HA) WIN."
+ TextValue:"GOOD LUCK AND MAY THE BEST COMPUTER (HA HA) WIN."
  CarriageControl:NL
 140 PRINT 
  CarriageControl:NL
 150 LET M=23
  Variable:M -> _
- NumericConstant:23
+ NumericValue:23
  AssignmentOperator:= =_ -> _
 200 REM ***THE HUMAN MOVES
  Remark:***THE HUMAN MOVES
 205 PRINT
  CarriageControl:NL
 210 PRINT "THERE ARE NOW";M;"MATCHES."
- TextConstant:"THERE ARE NOW"
+ TextValue:"THERE ARE NOW"
  CarriageControl:;
  Variable:M -> _
  CarriageControl:;
- TextConstant:"MATCHES."
+ TextValue:"MATCHES."
  CarriageControl:NL
 215 PRINT
  CarriageControl:NL
 220 PRINT "HOW MANY DO YOU TAKE";
- TextConstant:"HOW MANY DO YOU TAKE"
+ TextValue:"HOW MANY DO YOU TAKE"
  CarriageControl:;
 230 INPUT H
  Variable:H -> _
@@ -55,12 +55,12 @@
  LineNumber:510
 260 IF H<=0 THEN 510
  Variable:H -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorLessEqual:<=(_,_) -> ?
  LineNumber:510
 270 IF H>=4 THEN 510
  Variable:H -> _
- NumericConstant:4
+ NumericValue:4
  BinaryOperatorGreaterEqual:>=(_,_) -> ?
  LineNumber:510
 280 LET M=M-H
@@ -71,22 +71,22 @@
  AssignmentOperator:= _ -> _
 290 IF M=0 THEN 410
  Variable:M -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:410
 300 REM ***THE COMPUTER MOVES
  Remark:***THE COMPUTER MOVES
 305 IF M=1 THEN 440
  Variable:M -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:440
 310 LET R= M-4*INT(M/4)
  Variable:R -> _
  Variable:M -> _
- NumericConstant:4
+ NumericValue:4
  Variable:M -> _
- NumericConstant:4
+ NumericValue:4
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
@@ -94,17 +94,17 @@
  AssignmentOperator:= _ -> _
 320 IF R<>1 THEN 350
  Variable:R -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:350
 330 LET C=INT(3+RND(0))+1
  Variable:C -> _
- NumericConstant:3
- NumericConstant:0
+ NumericValue:3
+ NumericValue:0
  FunctionRnd:RND(_) -> _
  BinaryOperatorPlus:+(_,_) -> _
  FunctionInt:INT(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 340 GO TO 360
@@ -112,13 +112,13 @@
 350 LET C=(R+3)-4*INT((R+3)/4)
  Variable:C -> _
  Variable:R -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:4
+ NumericValue:4
  Variable:R -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:4
+ NumericValue:4
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
@@ -132,17 +132,17 @@
  AssignmentOperator:= _ -> _
 370 IF M=0 THEN 440
  Variable:M -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:440
 375 PRINT
  CarriageControl:NL
 380 PRINT "I TOOK";C;"...";
- TextConstant:"I TOOK"
+ TextValue:"I TOOK"
  CarriageControl:;
  Variable:C -> _
  CarriageControl:;
- TextConstant:"..."
+ TextValue:"..."
  CarriageControl:;
 390 GO TO 210
  LineNumber:210
@@ -151,21 +151,21 @@
 410 PRINT
  CarriageControl:NL
 420 PRINT "I WON!!! BETTER LUCK NEXT TIME."
- TextConstant:"I WON!!! BETTER LUCK NEXT TIME."
+ TextValue:"I WON!!! BETTER LUCK NEXT TIME."
  CarriageControl:NL
 430 GO TO 140
  LineNumber:140
 440 PRINT
  CarriageControl:NL
 450 PRINT "O.K. SO YOU WON. LET'S PLAY AGAIN."
- TextConstant:"O.K. SO YOU WON. LET'S PLAY AGAIN."
+ TextValue:"O.K. SO YOU WON. LET'S PLAY AGAIN."
  CarriageControl:NL
 460 GO TO 140
  LineNumber:140
 500 REM ***THE HUMAN CHEATED! (SEE LINES 240 THRU 270)
  Remark:***THE HUMAN CHEATED! (SEE LINES 240 THRU 270)
 510 PRINT "YOU CHEATED! BUT I'LL GIVE YOU ANOTHER CHANCE."
- TextConstant:"YOU CHEATED! BUT I'LL GIVE YOU ANOTHER CHANCE."
+ TextValue:"YOU CHEATED! BUT I'LL GIVE YOU ANOTHER CHANCE."
  CarriageControl:NL
 520 GO TO 215
  LineNumber:215

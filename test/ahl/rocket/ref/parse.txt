@@ -1,71 +1,71 @@
 2 PRINT "THIS IS A COMPUTER SIMULATION OF AN APOLLO LUNAR"
- TextConstant:"THIS IS A COMPUTER SIMULATION OF AN APOLLO LUNAR"
+ TextValue:"THIS IS A COMPUTER SIMULATION OF AN APOLLO LUNAR"
  CarriageControl:NL
 3 PRINT "LANDING CAPSULE, "\PRINT\PRINT
- TextConstant:"LANDING CAPSULE, "
+ TextValue:"LANDING CAPSULE, "
  CarriageControl:NL
  CarriageControl:NL
  CarriageControl:NL
 4 PRINT "THE ON-BOARD COMPUTER HAS FAILED (IT WASN'T MADE BY"
- TextConstant:"THE ON-BOARD COMPUTER HAS FAILED (IT WASN'T MADE BY"
+ TextValue:"THE ON-BOARD COMPUTER HAS FAILED (IT WASN'T MADE BY"
  CarriageControl:NL
 5 PRINT "DIGITAL) SO YOU HAVE TO LAND THE CAPSULE MANUALLY"
- TextConstant:"DIGITAL) SO YOU HAVE TO LAND THE CAPSULE MANUALLY"
+ TextValue:"DIGITAL) SO YOU HAVE TO LAND THE CAPSULE MANUALLY"
  CarriageControl:NL
 6 PRINT\PRINT "SET BURN RATE OF RETRO ROCKETS TO ANY VALUE BETWEEN"
  CarriageControl:NL
- TextConstant:"SET BURN RATE OF RETRO ROCKETS TO ANY VALUE BETWEEN"
+ TextValue:"SET BURN RATE OF RETRO ROCKETS TO ANY VALUE BETWEEN"
  CarriageControl:NL
 7 PRINT "0 (FREE FALL) AND 200 (MAXIMUM BURN) POUNDS PER SECOND"
- TextConstant:"0 (FREE FALL) AND 200 (MAXIMUM BURN) POUNDS PER SECOND"
+ TextValue:"0 (FREE FALL) AND 200 (MAXIMUM BURN) POUNDS PER SECOND"
  CarriageControl:NL
 8 PRINT "SET NEW BURN RATE EVERY 10 SECONDS. "\PRINT
- TextConstant:"SET NEW BURN RATE EVERY 10 SECONDS. "
+ TextValue:"SET NEW BURN RATE EVERY 10 SECONDS. "
  CarriageControl:NL
  CarriageControl:NL
 9 PRINT "CAPSULE WEIGHT 32,500 LBS; FUEL WEIGHT 16,500 LBS"
- TextConstant:"CAPSULE WEIGHT 32,500 LBS; FUEL WEIGHT 16,500 LBS"
+ TextValue:"CAPSULE WEIGHT 32,500 LBS; FUEL WEIGHT 16,500 LBS"
  CarriageControl:NL
 10 PRINT\PRINT\PRINT "GOOD LUCK!!!"
  CarriageControl:NL
  CarriageControl:NL
- TextConstant:"GOOD LUCK!!!"
+ TextValue:"GOOD LUCK!!!"
  CarriageControl:NL
 11 L=0
  Variable:L -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 13 PRINT\PRINT "SEC","MI + FT","MPH","LB FUEL", "BURN RATE"\PRINT
  CarriageControl:NL
- TextConstant:"SEC"
+ TextValue:"SEC"
  CarriageControl:,
- TextConstant:"MI + FT"
+ TextValue:"MI + FT"
  CarriageControl:,
- TextConstant:"MPH"
+ TextValue:"MPH"
  CarriageControl:,
- TextConstant:"LB FUEL"
+ TextValue:"LB FUEL"
  CarriageControl:,
- TextConstant:"BURN RATE"
+ TextValue:"BURN RATE"
  CarriageControl:NL
  CarriageControl:NL
 15 A=120\V=1\M=33000\N=16500\G=1E-3\Z=1.8
  Variable:A -> _
- NumericConstant:120
+ NumericValue:120
  AssignmentOperator:= =_ -> _
  Variable:V -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
  Variable:M -> _
- NumericConstant:33000
+ NumericValue:33000
  AssignmentOperator:= =_ -> _
  Variable:N -> _
- NumericConstant:16500
+ NumericValue:16500
  AssignmentOperator:= =_ -> _
  Variable:G -> _
- NumericConstant:1E-3
+ NumericValue:1E-3
  AssignmentOperator:= =_ -> _
  Variable:Z -> _
- NumericConstant:1.8
+ NumericValue:1.8
  AssignmentOperator:= =_ -> _
 21 PRINT L,INT(A);INT(5280*(A-INT(A))),3600*V,M-N,\INPUT K\T=10
  WARNING: Line exceeds PRETTY width limit 72
@@ -74,7 +74,7 @@
  Variable:A -> _
  FunctionInt:INT(_) -> _
  CarriageControl:;
- NumericConstant:5280
+ NumericValue:5280
  Variable:A -> _
  Variable:A -> _
  FunctionInt:INT(_) -> _
@@ -82,7 +82,7 @@
  BinaryOperatorMultiply:*(_,_) -> _
  FunctionInt:INT(_) -> _
  CarriageControl:,
- NumericConstant:3600
+ NumericValue:3600
  Variable:V -> _
  BinaryOperatorMultiply:*(_,_) -> _
  CarriageControl:,
@@ -92,18 +92,18 @@
  CarriageControl:,
  Variable:K -> _
  Variable:T -> _
- NumericConstant:10
+ NumericValue:10
  AssignmentOperator:= =_ -> _
 31 IF M-N<.001 THEN 41\IF T<.001 THEN 21\S=T\IF M>=N+S*K THEN 35
  WARNING: Line exceeds PRETTY width limit 72
  Variable:M -> _
  Variable:N -> _
  BinaryOperatorMinus:-(_,_) -> _
- NumericConstant:.001
+ NumericValue:.001
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:41
  Variable:T -> _
- NumericConstant:.001
+ NumericValue:.001
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:21
  Variable:S -> _
@@ -128,15 +128,15 @@
 35 GOSUB 91\IF I<=0 THEN 71\IF V<=0 THEN 38\IF J<0 THEN 81
  LineNumber:91
  Variable:I -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorLessEqual:<=(_,_) -> ?
  LineNumber:71
  Variable:V -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorLessEqual:<=(_,_) -> ?
  LineNumber:38
  Variable:J -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:81
 38 GOSUB 61\GOTO 31
@@ -144,11 +144,11 @@
  LineNumber:31
 41 PRINT "FUEL OUT AT"L"SEC"\S=(-V+SQR(V*V+2*A*G))/G\V=V+G*S\L=L+S
  WARNING: Line exceeds PRETTY width limit 72
- TextConstant:"FUEL OUT AT"
+ TextValue:"FUEL OUT AT"
  CarriageControl:
  Variable:L -> _
  CarriageControl:
- TextConstant:"SEC"
+ TextValue:"SEC"
  CarriageControl:NL
  Variable:S -> _
  Variable:V -> _
@@ -156,7 +156,7 @@
  Variable:V -> _
  Variable:V -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:A -> _
  BinaryOperatorMultiply:*(_,_) -> _
  Variable:G -> _
@@ -181,58 +181,58 @@
  AssignmentOperator:= _ -> _
 51 W=3600*V\PRINT"ON MOON AT"L"SEC - IMPACT VELOCITY" W "MPH"
  Variable:W -> _
- NumericConstant:3600
+ NumericValue:3600
  Variable:V -> _
  BinaryOperatorMultiply:*(_,_) -> _
  AssignmentOperator:= _ -> _
- TextConstant:"ON MOON AT"
+ TextValue:"ON MOON AT"
  CarriageControl:
  Variable:L -> _
  CarriageControl:
- TextConstant:"SEC - IMPACT VELOCITY"
+ TextValue:"SEC - IMPACT VELOCITY"
  CarriageControl:
  Variable:W -> _
  CarriageControl:
- TextConstant:"MPH"
+ TextValue:"MPH"
  CarriageControl:NL
 52 IF W>1.2 THEN 53\PRINT "PERFECT LANDING! (LUCKY) "\GOTO 95
  Variable:W -> _
- NumericConstant:1.2
+ NumericValue:1.2
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:53
- TextConstant:"PERFECT LANDING! (LUCKY) "
+ TextValue:"PERFECT LANDING! (LUCKY) "
  CarriageControl:NL
  LineNumber:95
 53 IF W>10 THEN 56\PRINT "GOOD LANDING (COULD BE BETTER) "\GOTO 95
  Variable:W -> _
- NumericConstant:10
+ NumericValue:10
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:56
- TextConstant:"GOOD LANDING (COULD BE BETTER) "
+ TextValue:"GOOD LANDING (COULD BE BETTER) "
  CarriageControl:NL
  LineNumber:95
 56 IF W>60 THEN 58 \PRINT "CRAFT DAMAGE YOU'RE STRANDED HERE UNTIL"
  Variable:W -> _
- NumericConstant:60
+ NumericValue:60
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:58
- TextConstant:"CRAFT DAMAGE YOU'RE STRANDED HERE UNTIL"
+ TextValue:"CRAFT DAMAGE YOU'RE STRANDED HERE UNTIL"
  CarriageControl:NL
 57 PRINT "A RESCUE PARTY ARRIVES, HOPE YOU HAVE ENOUGH OXYGEN!"\GOTO 95
- TextConstant:"A RESCUE PARTY ARRIVES, HOPE YOU HAVE ENOUGH OXYGEN!"
+ TextValue:"A RESCUE PARTY ARRIVES, HOPE YOU HAVE ENOUGH OXYGEN!"
  CarriageControl:NL
  LineNumber:95
 58 PRINT "SORRY, BUT THERE WERE NO SURVIVORS...YOU BLEW IT!"
- TextConstant:"SORRY, BUT THERE WERE NO SURVIVORS...YOU BLEW IT!"
+ TextValue:"SORRY, BUT THERE WERE NO SURVIVORS...YOU BLEW IT!"
  CarriageControl:NL
 59 PRINT "IN FACT, YOU BLASTED A NEW LUNAR CRATER "W*.2777"FT DEEP"
- TextConstant:"IN FACT, YOU BLASTED A NEW LUNAR CRATER "
+ TextValue:"IN FACT, YOU BLASTED A NEW LUNAR CRATER "
  CarriageControl:
  Variable:W -> _
- NumericConstant:.2777
+ NumericValue:.2777
  BinaryOperatorMultiply:*(_,_) -> _
  CarriageControl:
- TextConstant:"FT DEEP"
+ TextValue:"FT DEEP"
  CarriageControl:NL
 60 GOTO 95
  LineNumber:95
@@ -264,7 +264,7 @@
 71 IF S<5E-3 THEN 51\D=V+SQR(V*V+2*A*(G-Z*K/M))\S=2*A/D
  WARNING: Line exceeds PRETTY width limit 72
  Variable:S -> _
- NumericConstant:5E-3
+ NumericValue:5E-3
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:51
  Variable:D -> _
@@ -272,7 +272,7 @@
  Variable:V -> _
  Variable:V -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:A -> _
  BinaryOperatorMultiply:*(_,_) -> _
  Variable:G -> _
@@ -288,7 +288,7 @@
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
  Variable:S -> _
- NumericConstant:2
+ NumericValue:2
  Variable:A -> _
  BinaryOperatorMultiply:*(_,_) -> _
  Variable:D -> _
@@ -301,7 +301,7 @@
 81 W=(1-M*G/(Z*K))/2\S=M*V/(Z*K*(W+SQR(W*W+Y/Z)))+.05\GOSUB 91
  WARNING: Line exceeds PRETTY width limit 72
  Variable:W -> _
- NumericConstant:1
+ NumericValue:1
  Variable:M -> _
  Variable:G -> _
  BinaryOperatorMultiply:*(_,_) -> _
@@ -310,7 +310,7 @@
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  AssignmentOperator:= _ -> _
  Variable:S -> _
@@ -332,23 +332,23 @@
  BinaryOperatorPlus:+(_,_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorDivide:/(_,_) -> _
- NumericConstant:.05
+ NumericValue:.05
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
  LineNumber:91
 83 IF I<=0 THEN 71\GOSUB 61\IF J>0 THEN 31\IF Y>0 THEN 81\GOTO 31
  WARNING: Line exceeds PRETTY width limit 72
  Variable:I -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorLessEqual:<=(_,_) -> ?
  LineNumber:71
  LineNumber:61
  Variable:J -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:31
  Variable:Y -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:81
  LineNumber:31
@@ -374,25 +374,25 @@
  Variable:Q -> _
  Variable:Q -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
  Variable:Q -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorPower:^(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
  Variable:Q -> _
- NumericConstant:4
+ NumericValue:4
  BinaryOperatorPower:^(_,_) -> _
- NumericConstant:4
+ NumericValue:4
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
  Variable:Q -> _
- NumericConstant:5
+ NumericValue:5
  BinaryOperatorPower:^(_,_) -> _
- NumericConstant:5
+ NumericValue:5
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
@@ -407,7 +407,7 @@
  BinaryOperatorMultiply:*(_,_) -> _
  Variable:S -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
  Variable:V -> _
@@ -418,30 +418,30 @@
  Variable:S -> _
  BinaryOperatorMultiply:*(_,_) -> _
  Variable:Q -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  Variable:Q -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorPower:^(_,_) -> _
- NumericConstant:6
- BinaryOperatorDivide:/(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- Variable:Q -> _
- NumericConstant:3
- BinaryOperatorPower:^(_,_) -> _
- NumericConstant:12
+ NumericValue:6
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
  Variable:Q -> _
- NumericConstant:4
+ NumericValue:3
  BinaryOperatorPower:^(_,_) -> _
- NumericConstant:20
+ NumericValue:12
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
  Variable:Q -> _
- NumericConstant:5
+ NumericValue:4
  BinaryOperatorPower:^(_,_) -> _
- NumericConstant:30
+ NumericValue:20
+ BinaryOperatorDivide:/(_,_) -> _
+ BinaryOperatorPlus:+(_,_) -> _
+ Variable:Q -> _
+ NumericValue:5
+ BinaryOperatorPower:^(_,_) -> _
+ NumericValue:30
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
@@ -452,7 +452,7 @@
  CarriageControl:NL
  CarriageControl:NL
  CarriageControl:NL
- TextConstant:"TRY AGAIN??"
+ TextValue:"TRY AGAIN??"
  CarriageControl:NL
  LineNumber:6
 99 END

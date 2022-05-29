@@ -1,5 +1,5 @@
 4 PRINT "INPUT THE NUMBER OF SPACES DESIRED TO THE LEFT OF ZERO";
- TextConstant:"INPUT THE NUMBER OF SPACES DESIRED TO THE LEFT OF ZERO"
+ TextValue:"INPUT THE NUMBER OF SPACES DESIRED TO THE LEFT OF ZERO"
  CarriageControl:;
 5 INPUT M
  Variable:M -> _
@@ -9,18 +9,18 @@
  UserFunctionName:FNQ -> _
  VariableName:X -> _
  Variable:X -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorPower:^(_,_) -> _
 60 FOR X=-7 TO 7
  control: Variable:X -> _
- start:   ["NumericConstant:7", "UnaryOperatorMinus:-(_) -> =_"]
- end:     ["NumericConstant:7"]
+ start:   ["NumericValue:7", "UnaryOperatorMinus:-(_) -> =_"]
+ end:     ["NumericValue:7"]
 62 PRINT
  CarriageControl:NL
 90 FOR Y = -M TO 70-M
  control: Variable:Y -> _
  start:   ["Variable:M -> _", "UnaryOperatorMinus:-(_) -> _"]
- end:     ["NumericConstant:70", "Variable:M -> _", "BinaryOperatorMinus:-(_,_) -> _"]
+ end:     ["NumericValue:70", "Variable:M -> _", "BinaryOperatorMinus:-(_,_) -> _"]
 120 IF Y=FNQ(X) THEN 210
  Variable:Y -> _
  Variable:X -> _
@@ -30,12 +30,12 @@
 148 REM   IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
  Remark:  IF Y DOES NOT EQUAL FNQ(X) THEN PRINT A BLANK SPACE
 150 PRINT " ";
- TextConstant:" "
+ TextValue:" "
  CarriageControl:;
 180 NEXT Y
  Variable:Y -> _
 210 PRINT "*";
- TextConstant:"*"
+ TextValue:"*"
  CarriageControl:;
 212 REM   PLOT THE POINT AND GO TO NEXT X
  Remark:  PLOT THE POINT AND GO TO NEXT X

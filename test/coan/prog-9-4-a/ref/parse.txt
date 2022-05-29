@@ -1,34 +1,34 @@
 5 LET K=3.14159/180
  Variable:K -> _
- NumericConstant:3.14159
- NumericConstant:180
+ NumericValue:3.14159
+ NumericValue:180
  BinaryOperatorDivide:/(_,_) -> =_
  AssignmentOperator:= =_ -> _
 10 PRINT "ANGLE","1-2COS(G)","2+SIN(2G)","1+2COS(G)-3SIN(G)^2"
- TextConstant:"ANGLE"
+ TextValue:"ANGLE"
  CarriageControl:,
- TextConstant:"1-2COS(G)"
+ TextValue:"1-2COS(G)"
  CarriageControl:,
- TextConstant:"2+SIN(2G)"
+ TextValue:"2+SIN(2G)"
  CarriageControl:,
- TextConstant:"1+2COS(G)-3SIN(G)^2"
+ TextValue:"1+2COS(G)-3SIN(G)^2"
  CarriageControl:NL
 20 DEF FNR(X)=INT(X*100+.5)/100
  UserFunctionName:FNR -> _
  VariableName:X -> _
  Variable:X -> _
- NumericConstant:100
+ NumericValue:100
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:.5
+ NumericValue:.5
  BinaryOperatorPlus:+(_,_) -> _
  FunctionInt:INT(_) -> _
- NumericConstant:100
+ NumericValue:100
  BinaryOperatorDivide:/(_,_) -> _
 30 DEF FNA(X)=1-2*COS(K*X)
  UserFunctionName:FNA -> _
  VariableName:X -> _
- NumericConstant:1
- NumericConstant:2
+ NumericValue:1
+ NumericValue:2
  Variable:K -> _
  Variable:X -> _
  BinaryOperatorMultiply:*(_,_) -> _
@@ -38,8 +38,8 @@
 40 DEF FNB(X)=2+SIN(2*K*X)
  UserFunctionName:FNB -> _
  VariableName:X -> _
- NumericConstant:2
- NumericConstant:2
+ NumericValue:2
+ NumericValue:2
  Variable:K -> _
  BinaryOperatorMultiply:*(_,_) -> _
  Variable:X -> _
@@ -49,28 +49,28 @@
 50 DEF FNC(X)=1+2*COS(K*X)-3*SIN(K*X)^2
  UserFunctionName:FNC -> _
  VariableName:X -> _
- NumericConstant:1
- NumericConstant:2
+ NumericValue:1
+ NumericValue:2
  Variable:K -> _
  Variable:X -> _
  BinaryOperatorMultiply:*(_,_) -> _
  FunctionCos:COS(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:K -> _
  Variable:X -> _
  BinaryOperatorMultiply:*(_,_) -> _
  FunctionSin:SIN(_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorPower:^(_,_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
 60 FOR G=0 TO 360 STEP 15
  control: Variable:G -> _
- start:   ["NumericConstant:0"]
- end:     ["NumericConstant:360"]
- step:    ["NumericConstant:15"]
+ start:   ["NumericValue:0"]
+ end:     ["NumericValue:360"]
+ step:    ["NumericValue:15"]
 70 PRINT G,FNR(FNA(G)),FNR(FNB(G)),FNR(FNC(G))
  Variable:G -> _
  CarriageControl:,

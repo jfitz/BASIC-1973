@@ -1,35 +1,35 @@
 5 PRINT "WELCOME TO DIGITAL EDUSYSTEM COMPUTER BLACKJACK!!"
- TextConstant:"WELCOME TO DIGITAL EDUSYSTEM COMPUTER BLACKJACK!!"
+ TextValue:"WELCOME TO DIGITAL EDUSYSTEM COMPUTER BLACKJACK!!"
  CarriageControl:NL
 6 PRINT\PRINT "YOUR DEALER TONIGHT IS PETEY P. EIGHT."
  CarriageControl:NL
- TextConstant:"YOUR DEALER TONIGHT IS PETEY P. EIGHT."
+ TextValue:"YOUR DEALER TONIGHT IS PETEY P. EIGHT."
  CarriageControl:NL
 7 PRINT "WATCH HIM CLOSELY. ... HE HAS A REPUTATION FOR"
- TextConstant:"WATCH HIM CLOSELY. ... HE HAS A REPUTATION FOR"
+ TextValue:"WATCH HIM CLOSELY. ... HE HAS A REPUTATION FOR"
  CarriageControl:NL
 8 PRINT "DEALING OFF THE BOTTOM OF THE DECK. "\PRINT
- TextConstant:"DEALING OFF THE BOTTOM OF THE DECK. "
+ TextValue:"DEALING OFF THE BOTTOM OF THE DECK. "
  CarriageControl:NL
  CarriageControl:NL
 9 RANDOMIZE
  
 19 DIM A(13)
- NumericConstant:13
+ NumericValue:13
  Declaration:A() -> _()
 20 PRINT "QUESTIONS REQUIRING A YES OR NO ANSWER"
- TextConstant:"QUESTIONS REQUIRING A YES OR NO ANSWER"
+ TextValue:"QUESTIONS REQUIRING A YES OR NO ANSWER"
  CarriageControl:NL
 25 PRINT "SHOULD BE ANSWERED WITH A 'Y' FOR YES, 'N' FOR NO. "\PRINT
- TextConstant:"SHOULD BE ANSWERED WITH A 'Y' FOR YES, 'N' FOR NO. "
+ TextValue:"SHOULD BE ANSWERED WITH A 'Y' FOR YES, 'N' FOR NO. "
  CarriageControl:NL
  CarriageControl:NL
 30 PRINT "DON'T START PLAYING WITH LESS THAN $180. HAVE FUN! "\PRINT
- TextConstant:"DON'T START PLAYING WITH LESS THAN $180. HAVE FUN! "
+ TextValue:"DON'T START PLAYING WITH LESS THAN $180. HAVE FUN! "
  CarriageControl:NL
  CarriageControl:NL
 40 PRINT "HOW MANY DOLLARS ARE YOU STARTING WITH";
- TextConstant:"HOW MANY DOLLARS ARE YOU STARTING WITH"
+ TextValue:"HOW MANY DOLLARS ARE YOU STARTING WITH"
  CarriageControl:;
 41 INPUT F
  Variable:F -> _
@@ -40,7 +40,7 @@
  Variable:F -> _
  AssignmentOperator:= _ -> _
 50 PRINT "WHAT IS YOUR WAGER THIS TIME";
- TextConstant:"WHAT IS YOUR WAGER THIS TIME"
+ TextValue:"WHAT IS YOUR WAGER THIS TIME"
  CarriageControl:;
 51 INPUT W
  Variable:W -> _
@@ -53,19 +53,19 @@
  LineNumber:56
 54 IF W<10 GOTO 58
  Variable:W -> _
- NumericConstant:10
+ NumericValue:10
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:58
 55 GOTO 100
  LineNumber:100
 56 PRINT "YOUR BET EXCEEDS YOUR REMAINING DOLLARS. "
- TextConstant:"YOUR BET EXCEEDS YOUR REMAINING DOLLARS. "
+ TextValue:"YOUR BET EXCEEDS YOUR REMAINING DOLLARS. "
  CarriageControl:NL
 57 GOTO 50
  WARNING: Branch to line before GOSUB start
  LineNumber:50
 58 PRINT "MINIMUM WAGER IS $10."
- TextConstant:"MINIMUM WAGER IS $10."
+ TextValue:"MINIMUM WAGER IS $10."
  CarriageControl:NL
 59 GOTO 50
  WARNING: Branch to line before GOSUB start
@@ -77,7 +77,7 @@
  Variable:I -> _
  AssignmentOperator:= _ -> _
 104 PRINT "YOUR FIRST CARD IS "CHR$(L)
- TextConstant:"YOUR FIRST CARD IS "
+ TextValue:"YOUR FIRST CARD IS "
  CarriageControl:
  Variable:L -> _
  FunctionChr:CHR$(_) -> $
@@ -89,7 +89,7 @@
  Variable:I -> _
  AssignmentOperator:= _ -> _
 112 PRINT "YOUR SECOND CARD IS "CHR$(L)
- TextConstant:"YOUR SECOND CARD IS "
+ TextValue:"YOUR SECOND CARD IS "
  CarriageControl:
  Variable:L -> _
  FunctionChr:CHR$(_) -> $
@@ -97,11 +97,11 @@
 115 GOTO 200
  LineNumber:200
 117 PRINT "YOU HAVE "P3" SHOWING."
- TextConstant:"YOU HAVE "
+ TextValue:"YOU HAVE "
  CarriageControl:
  Variable:P3 -> _
  CarriageControl:
- TextConstant:" SHOWING."
+ TextValue:" SHOWING."
  CarriageControl:NL
 119 GOSUB 760
  LineNumber:760
@@ -112,14 +112,14 @@
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 122 PRINT "YOU GOT A "CHR$(L)
- TextConstant:"YOU GOT A "
+ TextValue:"YOU GOT A "
  CarriageControl:
  Variable:L -> _
  FunctionChr:CHR$(_) -> $
  CarriageControl:NL
 123 IF P3>21 GOTO 820
  Variable:P3 -> _
- NumericConstant:21
+ NumericValue:21
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:820
 124 GOTO 117
@@ -144,7 +144,7 @@
  Variable:I -> _
  AssignmentOperator:= _ -> _
 208 PRINT "DEALER SHOWS A "CHR$(L)
- TextConstant:"DEALER SHOWS A "
+ TextValue:"DEALER SHOWS A "
  CarriageControl:
  Variable:L -> _
  FunctionChr:CHR$(_) -> $
@@ -159,19 +159,19 @@
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 214 PRINT "DEALER HAS "D3
- TextConstant:"DEALER HAS "
+ TextValue:"DEALER HAS "
  CarriageControl:
  Variable:D3 -> _
  CarriageControl:NL
 216 IF D3>16 GOTO 222
  Variable:D3 -> _
- NumericConstant:16
+ NumericValue:16
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:222
 217 GOSUB 780
  LineNumber:780
 218 PRINT "DEALER GETS A "CHR$(L)
- TextConstant:"DEALER GETS A "
+ TextValue:"DEALER GETS A "
  CarriageControl:
  Variable:L -> _
  FunctionChr:CHR$(_) -> $
@@ -187,17 +187,17 @@
  LineNumber:214
 222 IF D3<22 GOTO 800
  Variable:D3 -> _
- NumericConstant:22
+ NumericValue:22
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:800
 224 PRINT "DEALER BUSTED."
- TextConstant:"DEALER BUSTED."
+ TextValue:"DEALER BUSTED."
  CarriageControl:NL
 226 GOTO 802
  LineNumber:802
 760 PRINT "DO YOU WANT A HIT?";
  WARNING: GOSUB length exceeds limit 40
- TextConstant:"DO YOU WANT A HIT?"
+ TextValue:"DO YOU WANT A HIT?"
  CarriageControl:;
 762 INPUT $K
  Variable:K -> _
@@ -206,7 +206,7 @@
 766 IF K = #N GOTO 212
  WARNING: Branch to line before GOSUB start
  Variable:K -> _
- NumericConstant:#N
+ NumericValue:#N
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:212
 768 GOSUB 780
@@ -216,11 +216,11 @@
 780 I=INT(13*RND(0)+1)
  WARNING: Inconsistent GOSUB origins
  Variable:I -> _
- NumericConstant:13
- NumericConstant:0
+ NumericValue:13
+ NumericValue:0
  FunctionRnd:RND(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  FunctionInt:INT(_) -> _
  AssignmentOperator:= _ -> _
@@ -229,13 +229,13 @@
  Variable:A(_) -> _
  Variable:I -> _
  Variable:A(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 784 IF A(I)>4 GOTO 780
  Variable:I -> _
  Variable:A(_) -> _
- NumericConstant:4
+ NumericValue:4
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:780
 786 GOSUB 900
@@ -254,7 +254,7 @@
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 806 PRINT "YOU WIN. YOU NOW HAVE $"F
- TextConstant:"YOU WIN. YOU NOW HAVE $"
+ TextValue:"YOU WIN. YOU NOW HAVE $"
  CarriageControl:
  Variable:F -> _
  CarriageControl:NL
@@ -267,7 +267,7 @@
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 822 PRINT "YOU LOSE. YOU NOW HAVE $"F
- TextConstant:"YOU LOSE. YOU NOW HAVE $"
+ TextValue:"YOU LOSE. YOU NOW HAVE $"
  CarriageControl:
  Variable:F -> _
  CarriageControl:NL
@@ -275,85 +275,85 @@
  LineNumber:980
 900 IF I<>1 GOTO 910
  Variable:I -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:910
 904 I=11
  Variable:I -> _
- NumericConstant:11
+ NumericValue:11
  AssignmentOperator:= =_ -> _
 906 L = #A
  Variable:L -> _
- NumericConstant:#A
+ NumericValue:#A
  AssignmentOperator:= =_ -> _
 908 GOTO 942
  LineNumber:942
 910 IF 1<>13 GOTO 920
  WARNING: Constant expression
- NumericConstant:1
- NumericConstant:13
+ NumericValue:1
+ NumericValue:13
  BinaryOperatorNotEqual:<>(_,_) -> =?
  LineNumber:920
 912 I=16
  Variable:I -> _
- NumericConstant:16
+ NumericValue:16
  AssignmentOperator:= =_ -> _
 914 L = #K
  Variable:L -> _
- NumericConstant:#K
+ NumericValue:#K
  AssignmentOperator:= =_ -> _
 916 GOTO 942
  LineNumber:942
 920 IF 1012 GOTO 930
  WARNING: Constant expression
- NumericConstant:1012
+ NumericValue:1012
  LineNumber:930
 922 I=10
  Variable:I -> _
- NumericConstant:10
+ NumericValue:10
  AssignmentOperator:= =_ -> _
 924 L=#Q
  Variable:L -> _
- NumericConstant:#Q
+ NumericValue:#Q
  AssignmentOperator:= =_ -> _
 926 GOTO 942
  LineNumber:942
 930 IF I<>11 GOTO 937
  Variable:I -> _
- NumericConstant:11
+ NumericValue:11
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:937
 932 I=10
  Variable:I -> _
- NumericConstant:10
+ NumericValue:10
  AssignmentOperator:= =_ -> _
 934 L = #J
  Variable:L -> _
- NumericConstant:#J
+ NumericValue:#J
  AssignmentOperator:= =_ -> _
 936 GOTO 942
  LineNumber:942
 937 IF I<>10 GOTO 940
  Variable:I -> _
- NumericConstant:10
+ NumericValue:10
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:940
 938 L=#T
  Variable:L -> _
- NumericConstant:#T
+ NumericValue:#T
  AssignmentOperator:= =_ -> _
 939 GOTO 942
  LineNumber:942
 940 L=I+48
  Variable:L -> _
  Variable:I -> _
- NumericConstant:48
+ NumericValue:48
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 942 RETURN
  
 980 PRINT "DO YOU WISH TO PLAY AGAIN?";
- TextConstant:"DO YOU WISH TO PLAY AGAIN?"
+ TextValue:"DO YOU WISH TO PLAY AGAIN?"
  CarriageControl:;
 982 INPUT $K
  Variable:K -> _
@@ -363,7 +363,7 @@
 986 IF K=#Y GOTO 50
  WARNING: Branch to line before GOSUB start
  Variable:K -> _
- NumericConstant:#Y
+ NumericValue:#Y
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:50
 987 PRINT\PRINT\PRINT\IF F>F1 THEN 995
@@ -375,28 +375,28 @@
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:995
 988 PRINT "TOO BAD! YOU LOST " F1-F "DOLLARS AT THE EDUSYSTEM CASINO."
- TextConstant:"TOO BAD! YOU LOST "
+ TextValue:"TOO BAD! YOU LOST "
  CarriageControl:
  Variable:F1 -> _
  Variable:F -> _
  BinaryOperatorMinus:-(_,_) -> _
  CarriageControl:
- TextConstant:"DOLLARS AT THE EDUSYSTEM CASINO."
+ TextValue:"DOLLARS AT THE EDUSYSTEM CASINO."
  CarriageControl:NL
 990 GOTO 998
  LineNumber:998
 995 PRINT "NOT BAD! YOU WON"F-F1"DOLLARS AT THE EDUSYSTEM CASINO."
- TextConstant:"NOT BAD! YOU WON"
+ TextValue:"NOT BAD! YOU WON"
  CarriageControl:
  Variable:F -> _
  Variable:F1 -> _
  BinaryOperatorMinus:-(_,_) -> _
  CarriageControl:
- TextConstant:"DOLLARS AT THE EDUSYSTEM CASINO."
+ TextValue:"DOLLARS AT THE EDUSYSTEM CASINO."
  CarriageControl:NL
 998 PRINT\PRINT "HOPE YOU ENJOYED YOURSELF. THANKS FOR PLAYING."
  CarriageControl:NL
- TextConstant:"HOPE YOU ENJOYED YOURSELF. THANKS FOR PLAYING."
+ TextValue:"HOPE YOU ENJOYED YOURSELF. THANKS FOR PLAYING."
  CarriageControl:NL
 999 END
  WARNING: Terminating statement in GOSUB

@@ -2,37 +2,37 @@
  
 90 FOR I = 1 TO 10\PRINT\NEXT I
  control: Variable:I -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:10"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:10"]
  CarriageControl:NL
  Variable:I -> _
 100 PRINT"THIS DEMONSTRATION SIMULATES A CRAP GAME WITH THE COMPUTER"
- TextConstant:"THIS DEMONSTRATION SIMULATES A CRAP GAME WITH THE COMPUTER"
+ TextValue:"THIS DEMONSTRATION SIMULATES A CRAP GAME WITH THE COMPUTER"
  CarriageControl:NL
 110 PRINT"AS YOUR OPPONENT.  THE RULES ARE SIMPLE:"
- TextConstant:"AS YOUR OPPONENT.  THE RULES ARE SIMPLE:"
+ TextValue:"AS YOUR OPPONENT.  THE RULES ARE SIMPLE:"
  CarriageControl:NL
 120 PRINT
  CarriageControl:NL
 130 PRINT"  *A 7 OR 11 ON THE FIRST ROLL WINS"
- TextConstant:"  *A 7 OR 11 ON THE FIRST ROLL WINS"
+ TextValue:"  *A 7 OR 11 ON THE FIRST ROLL WINS"
  CarriageControl:NL
 140 PRINT"  *A 2, 3 OR 12 ON THE FIRST ROLL LOSES"
- TextConstant:"  *A 2, 3 OR 12 ON THE FIRST ROLL LOSES"
+ TextValue:"  *A 2, 3 OR 12 ON THE FIRST ROLL LOSES"
  CarriageControl:NL
 150 PRINT
  CarriageControl:NL
 160 PRINT"ANY OTHER NUMBER ROLLED BECOMES YOUR 'POINT'* YOU CONTINUE"
- TextConstant:"ANY OTHER NUMBER ROLLED BECOMES YOUR 'POINT'* YOU CONTINUE"
+ TextValue:"ANY OTHER NUMBER ROLLED BECOMES YOUR 'POINT'* YOU CONTINUE"
  CarriageControl:NL
 170 PRINT"TO ROLL.  IF YOU GET YOUR POINT, YOU WIN. IF YOU ROLL A 7,"
- TextConstant:"TO ROLL.  IF YOU GET YOUR POINT, YOU WIN. IF YOU ROLL A 7,"
+ TextValue:"TO ROLL.  IF YOU GET YOUR POINT, YOU WIN. IF YOU ROLL A 7,"
  CarriageControl:NL
 180 PRINT"YOU LOSE. THE CHANGE HANDS WHEN THIS HAPPENS."
- TextConstant:"YOU LOSE. THE CHANGE HANDS WHEN THIS HAPPENS."
+ TextValue:"YOU LOSE. THE CHANGE HANDS WHEN THIS HAPPENS."
  CarriageControl:NL
 185 PRINT "JUST BET $0 TO QUIT."
- TextConstant:"JUST BET $0 TO QUIT."
+ TextValue:"JUST BET $0 TO QUIT."
  CarriageControl:NL
 190 PRINT
  CarriageControl:NL
@@ -40,10 +40,10 @@
  CarriageControl:NL
 210 LET Z=5*INT(10+11*RND(0))
  Variable:Z -> _
- NumericConstant:5
- NumericConstant:10
- NumericConstant:11
- NumericConstant:0
+ NumericValue:5
+ NumericValue:10
+ NumericValue:11
+ NumericValue:0
  FunctionRnd:RND(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
@@ -51,28 +51,28 @@
  BinaryOperatorMultiply:*(_,_) -> _
  AssignmentOperator:= _ -> _
 215 PRINT"ARE YOU READY";\INPUT B$
- TextConstant:"ARE YOU READY"
+ TextValue:"ARE YOU READY"
  CarriageControl:;
  Variable:B$ -> $
 216 IF B$="YES" THEN 220\IF B$="NO" THEN PRINT "I'LL REPEAT MYSELF THEN"
  WARNING: Line exceeds PRETTY width limit 72
  Variable:B$ -> $
- TextConstant:"YES"
+ TextValue:"YES"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:220
  Variable:B$ -> $
- TextConstant:"NO"
+ TextValue:"NO"
  BinaryOperatorEqual:=($,$) -> ?
- TextConstant:"I'LL REPEAT MYSELF THEN"
+ TextValue:"I'LL REPEAT MYSELF THEN"
  CarriageControl:NL
 217 GOTO 90
  LineNumber:90
 220 PRINT "SPLENDID... YOU ARE GIVEN ";Z;"DOLLARS TO PLAY WITH."
- TextConstant:"SPLENDID... YOU ARE GIVEN "
+ TextValue:"SPLENDID... YOU ARE GIVEN "
  CarriageControl:;
  Variable:Z -> _
  CarriageControl:;
- TextConstant:"DOLLARS TO PLAY WITH."
+ TextValue:"DOLLARS TO PLAY WITH."
  CarriageControl:NL
 230 PRINT
  CarriageControl:NL
@@ -80,23 +80,23 @@
  CarriageControl:NL
 250 IF N-2*INT(N/2)=0 THEN 310
  Variable:N -> _
- NumericConstant:2
+ NumericValue:2
  Variable:N -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:310
 260 LET W=-1
  Variable:W -> _
- NumericConstant:1
+ NumericValue:1
  UnaryOperatorMinus:-(_) -> =_
  AssignmentOperator:= =_ -> _
 270 PRINT "I'LL ROLL FIRST..."
- TextConstant:"I'LL ROLL FIRST..."
+ TextValue:"I'LL ROLL FIRST..."
  CarriageControl:NL
 280 PRINT
  CarriageControl:NL
@@ -106,10 +106,10 @@
  LineNumber:350
 310 LET W=1
  Variable:W -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
 320 PRINT "YOU ROLL FIRST..."
- TextConstant:"YOU ROLL FIRST..."
+ TextValue:"YOU ROLL FIRST..."
  CarriageControl:NL
 330 PRINT
  CarriageControl:NL
@@ -117,10 +117,10 @@
  CarriageControl:NL
 350 LET Q=0
  Variable:Q -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 360 PRINT "HOW MUCH DO YOU WANT TO BET";
- TextConstant:"HOW MUCH DO YOU WANT TO BET"
+ TextValue:"HOW MUCH DO YOU WANT TO BET"
  CarriageControl:;
 370 INPUT B
  Variable:B -> _
@@ -134,51 +134,51 @@
  LineNumber:430
 400
 410 PRINT "NO COINS PERMITTED... JUST BILLS, PLEASE."
- TextConstant:"NO COINS PERMITTED... JUST BILLS, PLEASE."
+ TextValue:"NO COINS PERMITTED... JUST BILLS, PLEASE."
  CarriageControl:NL
 420 GOTO 360
  LineNumber:360
 430 IF B=0 THEN 1090
  Variable:B -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:1090
 440 IF B<Z+1 THEN 470
  Variable:B -> _
  Variable:Z -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:470
 450 PRINT "DON'T TRY MORE THAN YOU HAVE, PLEASE."
- TextConstant:"DON'T TRY MORE THAN YOU HAVE, PLEASE."
+ TextValue:"DON'T TRY MORE THAN YOU HAVE, PLEASE."
  CarriageControl:NL
 460 GOTO 360
  LineNumber:360
 470 LET D1=INT(6*RND(0)+1)
  Variable:D1 -> _
- NumericConstant:6
- NumericConstant:0
+ NumericValue:6
+ NumericValue:0
  FunctionRnd:RND(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  FunctionInt:INT(_) -> _
  AssignmentOperator:= _ -> _
 480 LET D2=INT(6*RND(0)+1)
  Variable:D2 -> _
- NumericConstant:6
- NumericConstant:0
+ NumericValue:6
+ NumericValue:0
  FunctionRnd:RND(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  FunctionInt:INT(_) -> _
  AssignmentOperator:= _ -> _
 490 LET Q=Q+1
  Variable:Q -> _
  Variable:Q -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 500 S=D1+D2
@@ -189,74 +189,74 @@
  AssignmentOperator:= _ -> _
 510 IF W>0 THEN 540
  Variable:W -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:540
 520 PRINT "  I ROLL  ";D1;"AND  ";D2;
- TextConstant:"  I ROLL  "
+ TextValue:"  I ROLL  "
  CarriageControl:;
  Variable:D1 -> _
  CarriageControl:;
- TextConstant:"AND  "
+ TextValue:"AND  "
  CarriageControl:;
  Variable:D2 -> _
  CarriageControl:;
 530 GOTO 550
  LineNumber:550
 540 PRINT "YOU ROLL  ";D1;"AND  ";D2;
- TextConstant:"YOU ROLL  "
+ TextValue:"YOU ROLL  "
  CarriageControl:;
  Variable:D1 -> _
  CarriageControl:;
- TextConstant:"AND  "
+ TextValue:"AND  "
  CarriageControl:;
  Variable:D2 -> _
  CarriageControl:;
 550 IF Q<>1 THEN 860
  Variable:Q -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:860
 560 IF (S-2)*(S-3)*(S-12)=0 THEN 640
  Variable:S -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorMinus:-(_,_) -> _
  Variable:S -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorMinus:-(_,_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  Variable:S -> _
- NumericConstant:12
+ NumericValue:12
  BinaryOperatorMinus:-(_,_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:640
 570 IF (S-7)*(S-11)=0 THEN 710
  Variable:S -> _
- NumericConstant:7
+ NumericValue:7
  BinaryOperatorMinus:-(_,_) -> _
  Variable:S -> _
- NumericConstant:11
+ NumericValue:11
  BinaryOperatorMinus:-(_,_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:710
 580 IF W>0 THEN 610
  Variable:W -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:610
 590 PRINT "SO MY POINT IS";S
- TextConstant:"SO MY POINT IS"
+ TextValue:"SO MY POINT IS"
  CarriageControl:;
  Variable:S -> _
  CarriageControl:NL
 600 GOTO 620
  LineNumber:620
 610 PRINT "SO YOUR POINT IS";S
- TextConstant:"SO YOUR POINT IS"
+ TextValue:"SO YOUR POINT IS"
  CarriageControl:;
  Variable:S -> _
  CarriageControl:NL
@@ -267,15 +267,15 @@
 630 GOTO 470
  LineNumber:470
 640 PRINT "AND CRAP OUT..."
- TextConstant:"AND CRAP OUT..."
+ TextValue:"AND CRAP OUT..."
  CarriageControl:NL
 650 LET C=1
  Variable:C -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
 660 IF W>0 THEN 690
  Variable:W -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:690
 670 LET Z=Z+B
@@ -295,15 +295,15 @@
 700 GOTO 770
  LineNumber:770
 710 PRINT "AND PASS..."
- TextConstant:"AND PASS..."
+ TextValue:"AND PASS..."
  CarriageControl:NL
 720 LET C=1
  Variable:C -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
 730 IF W>0 THEN 760
  Variable:W -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:760
 740 LET Z=Z-B
@@ -324,23 +324,23 @@
  CarriageControl:NL
 780 IF Z<1 THEN 1060
  Variable:Z -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:1060
 790 PRINT "YOU NOW HAVE";Z;"DOLLARS"
- TextConstant:"YOU NOW HAVE"
+ TextValue:"YOU NOW HAVE"
  CarriageControl:;
  Variable:Z -> _
  CarriageControl:;
- TextConstant:"DOLLARS"
+ TextValue:"DOLLARS"
  CarriageControl:NL
 800 IF C>0 THEN 830
  Variable:C -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:830
 810 PRINT "CHANGE DICE NOW..."
- TextConstant:"CHANGE DICE NOW..."
+ TextValue:"CHANGE DICE NOW..."
  CarriageControl:NL
 820 PRINT
  CarriageControl:NL
@@ -352,26 +352,26 @@
  AssignmentOperator:= _ -> _
 840 LET Q=0
  Variable:Q -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 850 GOTO 360
  LineNumber:360
 860 IF S<>7 THEN 940
  Variable:S -> _
- NumericConstant:7
+ NumericValue:7
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:940
 870 PRINT "AND LOSE..."
- TextConstant:"AND LOSE..."
+ TextValue:"AND LOSE..."
  CarriageControl:NL
 880 LET C=-1
  Variable:C -> _
- NumericConstant:1
+ NumericValue:1
  UnaryOperatorMinus:-(_) -> =_
  AssignmentOperator:= =_ -> _
 890 IF W>0 THEN 920
  Variable:W -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:920
 900 LET Z=Z+B
@@ -396,21 +396,21 @@
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:970
 950 PRINT "   ROLL AGAIN."
- TextConstant:"   ROLL AGAIN."
+ TextValue:"   ROLL AGAIN."
  CarriageControl:NL
 960 GOTO 470
  LineNumber:470
 970 IF W>0 THEN 1020
  Variable:W -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:1020
 980 PRINT "AND MAKE MY POINT"
- TextConstant:"AND MAKE MY POINT"
+ TextValue:"AND MAKE MY POINT"
  CarriageControl:NL
 990 LET C=1
  Variable:C -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
 1000 LET Z=Z-B
  Variable:Z -> _
@@ -421,11 +421,11 @@
 1010 GOTO 770
  LineNumber:770
 1020 PRINT "AND MAKE YOUR POINT"
- TextConstant:"AND MAKE YOUR POINT"
+ TextValue:"AND MAKE YOUR POINT"
  CarriageControl:NL
 1030 LET C=1
  Variable:C -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
 1040 LET Z=Z+B
  Variable:Z -> _
@@ -438,15 +438,15 @@
 1060 PRINT
  CarriageControl:NL
 1070 PRINT "YOU HAVE RUN OUT OF MONEY... SORRY ABOUT THAT."
- TextConstant:"YOU HAVE RUN OUT OF MONEY... SORRY ABOUT THAT."
+ TextValue:"YOU HAVE RUN OUT OF MONEY... SORRY ABOUT THAT."
  CarriageControl:NL
 1080 GOTO 1110
  LineNumber:1110
 1090 PRINT "THANKS FOR THE GAME... AND CONGRATULATIONS"
- TextConstant:"THANKS FOR THE GAME... AND CONGRATULATIONS"
+ TextValue:"THANKS FOR THE GAME... AND CONGRATULATIONS"
  CarriageControl:NL
 1100 PRINT "FOR BEING ABLE TO QUIT WHILE YOU WERE AHEAD."
- TextConstant:"FOR BEING ABLE TO QUIT WHILE YOU WERE AHEAD."
+ TextValue:"FOR BEING ABLE TO QUIT WHILE YOU WERE AHEAD."
  CarriageControl:NL
 1110 PRINT\PRINT\PRINT
  CarriageControl:NL
@@ -454,7 +454,7 @@
  CarriageControl:NL
 1120 CHAIN "DEMOES"
  
- TextConstant:"DEMOES"
+ TextValue:"DEMOES"
 1130 END
  
 

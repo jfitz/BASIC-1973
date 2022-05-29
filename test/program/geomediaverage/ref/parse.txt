@@ -1,31 +1,31 @@
 10 REM GEOMEDIAVERAGE CALCULATION
  Remark:GEOMEDIAVERAGE CALCULATION
 11 OPTION REQUIRE_INITIALIZED TRUE
- BooleanConstant:true
+ BooleanValue:true
 12 OPTION BASE 1
- NumericConstant:1
+ NumericValue:1
 13 OPTION PRECISION 6
- NumericConstant:6
+ NumericValue:6
 20 REM START WITH SOME NUMBERS
  Remark:START WITH SOME NUMBERS
 21 RANDOMIZE
  
 22 ARR LET N0 = RND1(3, 100)
  Variable:N0() -> _()
- NumericConstant:3
- NumericConstant:100
+ NumericValue:3
+ NumericValue:100
  FunctionRnd1:RND1(_,_) -> _()
  AssignmentOperator:= _() -> _()
 23 DIM N(3)
- NumericConstant:3
+ NumericValue:3
  Declaration:N() -> _()
 24 DIM M(3,100)
- NumericConstant:3
- NumericConstant:100
+ NumericValue:3
+ NumericValue:100
  Declaration:M(,) -> _(,)
 30 LET I = 1
  Variable:I -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
 40 GOSUB 500
  LineNumber:500
@@ -36,24 +36,24 @@
 110 REM CALCULATE AVERAGE, GEOMETRIC MEAN, MEDIAN
  Remark:CALCULATE AVERAGE, GEOMETRIC MEAN, MEDIAN
 111 LET N(1) = AVG(N0)
- NumericConstant:1
+ NumericValue:1
  Variable:N(_) -> _
  Variable:N0() -> _()
  FunctionAvg:AVG(_()) -> _
  AssignmentOperator:= _ -> _
 112 LET N(2) = PROD(N0)^(1/NELEM(N0))
- NumericConstant:2
+ NumericValue:2
  Variable:N(_) -> _
  Variable:N0() -> _()
  FunctionProd:PROD(_()) -> _
- NumericConstant:1
+ NumericValue:1
  Variable:N0() -> _()
  FunctionNelem:NELEM(_()) -> _
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorPower:^(_,_) -> _
  AssignmentOperator:= _ -> _
 113 LET N(3) = MEDIAN(N0)
- NumericConstant:3
+ NumericValue:3
  Variable:N(_) -> _
  Variable:N0() -> _()
  FunctionMedian:MEDIAN(_()) -> _
@@ -64,26 +64,26 @@
  Variable:N() -> _()
  FunctionUniq1:UNIQ1(_()) -> _()
  FunctionNelem:NELEM(_()) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:300
 130 REM CHECK FOR STUCK LOOP
  Remark:CHECK FOR STUCK LOOP
 131 IF N(1) = N0(1) AND N(2) = N0(2) AND N(3) = N0(3) THEN 310
- NumericConstant:1
+ NumericValue:1
  Variable:N(_) -> _
- NumericConstant:1
+ NumericValue:1
  Variable:N0(_) -> _
  BinaryOperatorEqual:=(_,_) -> ?
- NumericConstant:2
+ NumericValue:2
  Variable:N(_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:N0(_) -> _
  BinaryOperatorEqual:=(_,_) -> ?
  BinaryOperatorAnd:AND(?,?) -> ?
- NumericConstant:3
+ NumericValue:3
  Variable:N(_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:N0(_) -> _
  BinaryOperatorEqual:=(_,_) -> ?
  BinaryOperatorAnd:AND(?,?) -> ?
@@ -94,7 +94,7 @@
  Remark:CHECK ITERATION LIMIT
 141 IF I > 99 THEN 320
  Variable:I -> _
- NumericConstant:99
+ NumericValue:99
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:320
 150 REM PERFORM ANOTHER LOOP
@@ -102,7 +102,7 @@
 151 LET I = I + 1
  Variable:I -> _
  Variable:I -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 152 ARR LET N0 = N
@@ -118,7 +118,7 @@
 301 GOSUB 410
  LineNumber:410
 302 PRINT "CONVERGENCE"
- TextConstant:"CONVERGENCE"
+ TextValue:"CONVERGENCE"
  CarriageControl:NL
 303 GOSUB 510
  LineNumber:510
@@ -129,7 +129,7 @@
 311 GOSUB 400
  LineNumber:400
 312 PRINT "STUCK IN LOOP"
- TextConstant:"STUCK IN LOOP"
+ TextValue:"STUCK IN LOOP"
  CarriageControl:NL
 313 GOSUB 510
  LineNumber:510
@@ -138,7 +138,7 @@
 320 REM RESULT - TOO MANY ITERATIONS
  Remark:RESULT - TOO MANY ITERATIONS
 321 PRINT "TOO MANY ITERATIONS"
- TextConstant:"TOO MANY ITERATIONS"
+ TextValue:"TOO MANY ITERATIONS"
  CarriageControl:NL
 329 STOP
  
@@ -165,24 +165,24 @@
 500 REM STORE NUMBERS TO HISTORY
  Remark:STORE NUMBERS TO HISTORY
 501 LET M(1,I) = N0(1)
- NumericConstant:1
+ NumericValue:1
  Variable:I -> _
  Variable:M(_,_) -> _
- NumericConstant:1
+ NumericValue:1
  Variable:N0(_) -> _
  AssignmentOperator:= _ -> _
 502 LET M(2,I) = N0(2)
- NumericConstant:2
+ NumericValue:2
  Variable:I -> _
  Variable:M(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:N0(_) -> _
  AssignmentOperator:= _ -> _
 503 LET M(3,I) = N0(3)
- NumericConstant:3
+ NumericValue:3
  Variable:I -> _
  Variable:M(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:N0(_) -> _
  AssignmentOperator:= _ -> _
 509 RETURN
@@ -190,7 +190,7 @@
 510 REM PLOT HISTORY
  Remark:PLOT HISTORY
 511 DIM M(3,I)
- NumericConstant:3
+ NumericValue:3
  Variable:I -> _
  Declaration:M(,) -> _(,)
 512 MAT PLOT M

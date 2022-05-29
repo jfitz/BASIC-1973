@@ -3,38 +3,38 @@
 10 REM *** CREATED BY MICHAEL KASS   HERRICKS HS, NV
  Remark:*** CREATED BY MICHAEL KASS   HERRICKS HS, NV
 20 PRINT "THE OBJECT OF THIS PUZZLE IS TO CHANGE THIS:"
- TextConstant:"THE OBJECT OF THIS PUZZLE IS TO CHANGE THIS:"
+ TextValue:"THE OBJECT OF THIS PUZZLE IS TO CHANGE THIS:"
  CarriageControl:NL
 30 PRINT
  CarriageControl:NL
 40 PRINT "X X X X X X X X X X"
- TextConstant:"X X X X X X X X X X"
+ TextValue:"X X X X X X X X X X"
  CarriageControl:NL
 50 PRINT
  CarriageControl:NL
 60 PRINT "TO THIS:"
- TextConstant:"TO THIS:"
+ TextValue:"TO THIS:"
  CarriageControl:NL
 70 PRINT
  CarriageControl:NL
 80 PRINT "O O O O O O O O O O"
- TextConstant:"O O O O O O O O O O"
+ TextValue:"O O O O O O O O O O"
  CarriageControl:NL
 90 PRINT
  CarriageControl:NL
 100 &"BY TYPING IN THE NUMBER CORRESPONDING TO THE POSITION OF THE LETTER"
- TextConstant:"BY TYPING IN THE NUMBER CORRESPONDING TO THE POSITION OF THE LETTER"
+ TextValue:"BY TYPING IN THE NUMBER CORRESPONDING TO THE POSITION OF THE LETTER"
  CarriageControl:NL
 120 &"ON SOME NUMBERS, ONE POSITION WILL CHANGE, ON OTHERS, TWO WILL CHANGE"
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
- TextConstant:"ON SOME NUMBERS, ONE POSITION WILL CHANGE, ON OTHERS, TWO WILL CHANGE"
+ TextValue:"ON SOME NUMBERS, ONE POSITION WILL CHANGE, ON OTHERS, TWO WILL CHANGE"
  CarriageControl:NL
 140 &"TO RESET THE LINE TO ALL X' S, TYPE A 0 (ZERO) AND TO START A NEW"
- TextConstant:"TO RESET THE LINE TO ALL X' S, TYPE A 0 (ZERO) AND TO START A NEW"
+ TextValue:"TO RESET THE LINE TO ALL X' S, TYPE A 0 (ZERO) AND TO START A NEW"
  CarriageControl:NL
 160 &"IN THE MIDDLE OF A GAME, TYPE 11 (ELEVEN)"
- TextConstant:"IN THE MIDDLE OF A GAME, TYPE 11 (ELEVEN)"
+ TextValue:"IN THE MIDDLE OF A GAME, TYPE 11 (ELEVEN)"
  CarriageControl:NL
 170 PRINT
  CarriageControl:NL
@@ -46,43 +46,43 @@
  FunctionRnd:RND(_) -> _
  AssignmentOperator:= _ -> _
 200 PRINT "HERE IS THE STARTING LINE OF X'S:"
- TextConstant:"HERE IS THE STARTING LINE OF X'S:"
+ TextValue:"HERE IS THE STARTING LINE OF X'S:"
  CarriageControl:NL
 210 PRINT
  CarriageControl:NL
 220 LET C=0 
  Variable:C -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 230 PRINT "1 2 3 4 5 6 7 8 9 10"
- TextConstant:"1 2 3 4 5 6 7 8 9 10"
+ TextValue:"1 2 3 4 5 6 7 8 9 10"
  CarriageControl:NL
 240 PRINT "X X X X X X X X X X"
- TextConstant:"X X X X X X X X X X"
+ TextValue:"X X X X X X X X X X"
  CarriageControl:NL
 250 PRINT
  CarriageControl:NL
 260 DIM A$(20)
- NumericConstant:20
+ NumericValue:20
  Declaration:A$() -> $()
 270 FOR X=1 TO 10
  control: Variable:X -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:10"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:10"]
 280 LET A$(X)="X"
  Variable:X -> _
  Variable:A$(_) -> $
- TextConstant:"X"
+ TextValue:"X"
  AssignmentOperator:= =$ -> $
 290 NEXT X
  Variable:X -> _
 300 GO TO 320
  LineNumber:320
 310 PRINT "ILLEGAL ENTRY TRY AGAIN"
- TextConstant:"ILLEGAL ENTRY TRY AGAIN"
+ TextValue:"ILLEGAL ENTRY TRY AGAIN"
  CarriageControl:NL
 320 PRINT "INPUT THE NUMBER";
- TextConstant:"INPUT THE NUMBER"
+ TextValue:"INPUT THE NUMBER"
  CarriageControl:;
 330 INPUT N
  Variable:N -> _
@@ -94,17 +94,17 @@
  LineNumber:310
 350 IF N=22 THEN 180
  Variable:N -> _
- NumericConstant:22
+ NumericValue:22
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:180
 360 IF N>11 THEN 310
  Variable:N -> _
- NumericConstant:11
+ NumericValue:11
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:310
 370 IF N=0 THEN 230
  Variable:N -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:230
 380 IF M=N THEN 510
@@ -119,13 +119,13 @@
 400 IF A$(N)="O" THEN 480
  Variable:N -> _
  Variable:A$(_) -> $
- TextConstant:"O"
+ TextValue:"O"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:480
 410 LET A$(N)="O"
  Variable:N -> _
  Variable:A$(_) -> $
- TextConstant:"O"
+ TextValue:"O"
  AssignmentOperator:= =$ -> $
 420 LET R=TAN(Q+N/Q-N)-SIN(Q/N)+336*SIN(.8*N)
  Variable:R -> _
@@ -142,8 +142,8 @@
  BinaryOperatorDivide:/(_,_) -> _
  FunctionSin:SIN(_) -> _
  BinaryOperatorMinus:-(_,_) -> _
- NumericConstant:336
- NumericConstant:.8
+ NumericValue:336
+ NumericValue:.8
  Variable:N -> _
  BinaryOperatorMultiply:*(_,_) -> _
  FunctionSin:SIN(_) -> _
@@ -160,7 +160,7 @@
  AssignmentOperator:= _ -> _
 440 LET N=INT(10*N)
  Variable:N -> _
- NumericConstant:10
+ NumericValue:10
  Variable:N -> _
  BinaryOperatorMultiply:*(_,_) -> _
  FunctionInt:INT(_) -> _
@@ -168,20 +168,20 @@
 450 IF A$(N)="O" THEN 480
  Variable:N -> _
  Variable:A$(_) -> $
- TextConstant:"O"
+ TextValue:"O"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:480
 460 LET A$(N) = "O"
  Variable:N -> _
  Variable:A$(_) -> $
- TextConstant:"O"
+ TextValue:"O"
  AssignmentOperator:= =$ -> $
 470 GO TO 610 
  LineNumber:610
 480 LET A$(N) = "X"
  Variable:N -> _
  Variable:A$(_) -> $
- TextConstant:"X"
+ TextValue:"X"
  AssignmentOperator:= =$ -> $
 490 IF M=N THEN 420
  Variable:M -> _
@@ -193,17 +193,17 @@
 510 IF A$(N)="O" THEN 590
  Variable:N -> _
  Variable:A$(_) -> $
- TextConstant:"O"
+ TextValue:"O"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:590
 520 LET A$(N)="O"
  Variable:N -> _
  Variable:A$(_) -> $
- TextConstant:"O"
+ TextValue:"O"
  AssignmentOperator:= =$ -> $
 530 LET R=.592*COT(Q/N+Q)/SIN(N*2+Q)-COS(N)
  Variable:R -> _
- NumericConstant:.592
+ NumericValue:.592
  Variable:Q -> _
  Variable:N -> _
  BinaryOperatorDivide:/(_,_) -> _
@@ -212,7 +212,7 @@
  FunctionCot:COT(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  Variable:N -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorMultiply:*(_,_) -> _
  Variable:Q -> _
  BinaryOperatorPlus:+(_,_) -> _
@@ -231,7 +231,7 @@
  AssignmentOperator:= _ -> _
 550 LET N=INT(10*N)
  Variable:N -> _
- NumericConstant:10
+ NumericValue:10
  Variable:N -> _
  BinaryOperatorMultiply:*(_,_) -> _
  FunctionInt:INT(_) -> _
@@ -239,20 +239,20 @@
 560 IF A$(N)="O" THEN 590
  Variable:N -> _
  Variable:A$(_) -> $
- TextConstant:"O"
+ TextValue:"O"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:590
 570 LET A$(N)="O"
  Variable:N -> _
  Variable:A$(_) -> $
- TextConstant:"O"
+ TextValue:"O"
  AssignmentOperator:= =$ -> $
 580 GO TO 610
  LineNumber:610
 590 LET A$(N)="X"
  Variable:N -> _
  Variable:A$(_) -> $
- TextConstant:"X"
+ TextValue:"X"
  AssignmentOperator:= =$ -> $
 600 IF M=N THEN 520
  Variable:M -> _
@@ -260,21 +260,21 @@
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:520
 610 PRINT"1 2 3 4 5 6 7 8 9 10"
- TextConstant:"1 2 3 4 5 6 7 8 9 10"
+ TextValue:"1 2 3 4 5 6 7 8 9 10"
  CarriageControl:NL
 620 PRINT A$(Z);" ";FOR Z=1 TO 10
  Variable:Z -> _
  Variable:A$(_) -> $
  CarriageControl:;
- TextConstant:" "
+ TextValue:" "
  CarriageControl:;
  control: Variable:Z -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:10"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:10"]
 630 LET C=C+1
  Variable:C -> _
  Variable:C -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 640 PRINT
@@ -282,45 +282,45 @@
 650 FOR Z=1 TO 10
  WARNING: FORNEXT length exceeds limit 40
  control: Variable:Z -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:10"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:10"]
 660 IF A$(Z)<>"O" THEN 320
  Variable:Z -> _
  Variable:A$(_) -> $
- TextConstant:"O"
+ TextValue:"O"
  BinaryOperatorNotEqual:<>($,$) -> ?
  LineNumber:320
 670 NEXT Z
  Variable:Z -> _
 680 IF C>12 THEN 710
  Variable:C -> _
- NumericConstant:12
+ NumericValue:12
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:710
 690 PRINT"VERY GOOD. YOU GUESSED IT IN ONLY "C"GUESSES!!!!"
- TextConstant:"VERY GOOD. YOU GUESSED IT IN ONLY "
+ TextValue:"VERY GOOD. YOU GUESSED IT IN ONLY "
  CarriageControl:
  Variable:C -> _
  CarriageControl:
- TextConstant:"GUESSES!!!!"
+ TextValue:"GUESSES!!!!"
  CarriageControl:NL
 700 GO TO 720
  LineNumber:720
 710 PRINT "TRY HARDER NEXT TIME, IT TOOK YOU "C"GUESSES"
- TextConstant:"TRY HARDER NEXT TIME, IT TOOK YOU "
+ TextValue:"TRY HARDER NEXT TIME, IT TOOK YOU "
  CarriageControl:
  Variable:C -> _
  CarriageControl:
- TextConstant:"GUESSES"
+ TextValue:"GUESSES"
  CarriageControl:NL
 720 PRINT "DO YOU WANT TO DO ANOTHER PUZZLE";
- TextConstant:"DO YOU WANT TO DO ANOTHER PUZZLE"
+ TextValue:"DO YOU WANT TO DO ANOTHER PUZZLE"
  CarriageControl:;
 730 INPUT X$
  Variable:X$ -> $
 740 IF X$="NO" THEN 780
  Variable:X$ -> $
- TextConstant:"NO"
+ TextValue:"NO"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:780
 760 PRINT

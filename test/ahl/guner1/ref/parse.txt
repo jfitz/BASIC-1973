@@ -1,12 +1,12 @@
 100 REM ARTILLERY FIRING GAME
  Remark:ARTILLERY FIRING GAME
 110 DIM A$(3)
- NumericConstant:3
+ NumericValue:3
  Declaration:A$() -> $()
 120 RANDOMIZE
  
 130 PRINT "DO YOU WANT INSTRUCTIONS";
- TextConstant:"DO YOU WANT INSTRUCTIONS"
+ TextValue:"DO YOU WANT INSTRUCTIONS"
  CarriageControl:;
 140 INPUT A$
  Variable:A$ -> $
@@ -14,88 +14,88 @@
  CarriageControl:NL
 160 IF A$="NO" THEN 330
  Variable:A$ -> $
- TextConstant:"NO"
+ TextValue:"NO"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:330
 170 PRINT "    THIS GAME TESTS YOUR ABILITY TO HIT A MOVING TARGET,"
- TextConstant:"    THIS GAME TESTS YOUR ABILITY TO HIT A MOVING TARGET,"
+ TextValue:"    THIS GAME TESTS YOUR ABILITY TO HIT A MOVING TARGET,"
  CarriageControl:NL
 180 PRINT "YOU MUST DESTROY IT BEFORE IT DESTROYS YOU OR MOVES OUT"
- TextConstant:"YOU MUST DESTROY IT BEFORE IT DESTROYS YOU OR MOVES OUT"
+ TextValue:"YOU MUST DESTROY IT BEFORE IT DESTROYS YOU OR MOVES OUT"
  CarriageControl:NL
 190 PRINT "OF RANGE. THE TARGET WILL MOVE RAMDOMLY."
- TextConstant:"OF RANGE. THE TARGET WILL MOVE RAMDOMLY."
+ TextValue:"OF RANGE. THE TARGET WILL MOVE RAMDOMLY."
  CarriageControl:NL
 200 PRINT
  CarriageControl:NL
 210 PRINT "    TYPE CTRL/C TO TERMINATE THE PROGRAM. TO THE QUESTION"
- TextConstant:"    TYPE CTRL/C TO TERMINATE THE PROGRAM. TO THE QUESTION"
+ TextValue:"    TYPE CTRL/C TO TERMINATE THE PROGRAM. TO THE QUESTION"
  CarriageControl:NL
 220 PRINT "'ENTER SPEED' TYPE A NUMBER BETWEEN 1 AND 100. THIS IS THE "
- TextConstant:"'ENTER SPEED' TYPE A NUMBER BETWEEN 1 AND 100. THIS IS THE "
+ TextValue:"'ENTER SPEED' TYPE A NUMBER BETWEEN 1 AND 100. THIS IS THE "
  CarriageControl:NL
 230 PRINT "RELATIVE SPEED OF THE TARGET WHERE 1 IS THE SLOWEST AND 100"
- TextConstant:"RELATIVE SPEED OF THE TARGET WHERE 1 IS THE SLOWEST AND 100"
+ TextValue:"RELATIVE SPEED OF THE TARGET WHERE 1 IS THE SLOWEST AND 100"
  CarriageControl:NL
 240 PRINT "IS THE FASTEST."
- TextConstant:"IS THE FASTEST."
+ TextValue:"IS THE FASTEST."
  CarriageControl:NL
 250 PRINT
  CarriageControl:NL
 260 PRINT "TO THE QUESTION 'ENTER DISTANCE' ENTER THE MAXIMUM DISTANCE"
- TextConstant:"TO THE QUESTION 'ENTER DISTANCE' ENTER THE MAXIMUM DISTANCE"
+ TextValue:"TO THE QUESTION 'ENTER DISTANCE' ENTER THE MAXIMUM DISTANCE"
  CarriageControl:NL
 270 PRINT "YOU CAN HIT FROM THE TARGET AND STILL DESTROY IT. THIS IS"
- TextConstant:"YOU CAN HIT FROM THE TARGET AND STILL DESTROY IT. THIS IS"
+ TextValue:"YOU CAN HIT FROM THE TARGET AND STILL DESTROY IT. THIS IS"
  CarriageControl:NL
 280 PRINT "THE KILL RADIUS AND 5000 IS SUGGESTED FOR STARTERS."
- TextConstant:"THE KILL RADIUS AND 5000 IS SUGGESTED FOR STARTERS."
+ TextValue:"THE KILL RADIUS AND 5000 IS SUGGESTED FOR STARTERS."
  CarriageControl:NL
 290 PRINT
  CarriageControl:NL
 300 PRINT "ELEVATION IS THE ELEVATION OF YOUR GUN IN DEGREES WHEN YOU"
- TextConstant:"ELEVATION IS THE ELEVATION OF YOUR GUN IN DEGREES WHEN YOU"
+ TextValue:"ELEVATION IS THE ELEVATION OF YOUR GUN IN DEGREES WHEN YOU"
  CarriageControl:NL
 310 PRINT "FIRE AT THE TARGET. THE MAXIMUN RANGE IS AT 45 DEGREES"
- TextConstant:"FIRE AT THE TARGET. THE MAXIMUN RANGE IS AT 45 DEGREES"
+ TextValue:"FIRE AT THE TARGET. THE MAXIMUN RANGE IS AT 45 DEGREES"
  CarriageControl:NL
 320 PRINT
  CarriageControl:NL
 330 PRINT "ENTER SPEED";
- TextConstant:"ENTER SPEED"
+ TextValue:"ENTER SPEED"
  CarriageControl:;
 340 INPUT S
  Variable:S -> _
 350 IF S<1 THEN 330
  Variable:S -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:330
 360 IF S>100 THEN 330
  Variable:S -> _
- NumericConstant:100
+ NumericValue:100
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:330
 370 PRINT "ENTER DISTANCE";
- TextConstant:"ENTER DISTANCE"
+ TextValue:"ENTER DISTANCE"
  CarriageControl:;
 380 INPUT D
  Variable:D -> _
 390 IF D<0 THEN 370
  Variable:D -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:370
 400 IF D>10000 THEN 370
  Variable:D -> _
- NumericConstant:10000
+ NumericValue:10000
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:370
 410 M=100000-75000*RND(0)
  Variable:M -> _
- NumericConstant:100000
- NumericConstant:75000
- NumericConstant:0
+ NumericValue:100000
+ NumericValue:75000
+ NumericValue:0
  FunctionRnd:RND(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
@@ -103,39 +103,39 @@
 420 PRINT
  CarriageControl:NL
 430 PRINT "THE MAXIMUM RANGE OF YOUR GUN IS "M" YARDS"
- TextConstant:"THE MAXIMUM RANGE OF YOUR GUN IS "
+ TextValue:"THE MAXIMUM RANGE OF YOUR GUN IS "
  CarriageControl:
  Variable:M -> _
  CarriageControl:
- TextConstant:" YARDS"
+ TextValue:" YARDS"
  CarriageControl:NL
 440 FOR K=1 TO M/10000
  control: Variable:K -> _
- start:   ["NumericConstant:1"]
- end:     ["Variable:M -> _", "NumericConstant:10000", "BinaryOperatorDivide:/(_,_) -> _"]
+ start:   ["NumericValue:1"]
+ end:     ["Variable:M -> _", "NumericValue:10000", "BinaryOperatorDivide:/(_,_) -> _"]
 450 LET K1=RND(0)
  Variable:K1 -> _
- NumericConstant:0
+ NumericValue:0
  FunctionRnd:RND(_) -> _
  AssignmentOperator:= _ -> _
 460 NEXT K
  Variable:K -> _
 470 R=.95*M-.6*M*RND(0)
  Variable:R -> _
- NumericConstant:.95
+ NumericValue:.95
  Variable:M -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:.6
+ NumericValue:.6
  Variable:M -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  FunctionRnd:RND(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 480 LET N=0
  Variable:N -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 490 GOTO 520
  LineNumber:520
@@ -147,51 +147,51 @@
 510 IF R<(M/2.5) THEN 860
  Variable:R -> _
  Variable:M -> _
- NumericConstant:2.5
+ NumericValue:2.5
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:860
 520 PRINT "TARGET RANGE IS"R" YARDS"
- TextConstant:"TARGET RANGE IS"
+ TextValue:"TARGET RANGE IS"
  CarriageControl:
  Variable:R -> _
  CarriageControl:
- TextConstant:" YARDS"
+ TextValue:" YARDS"
  CarriageControl:NL
 530 PRINT "ELEVATION":
- TextConstant:"ELEVATION"
+ TextValue:"ELEVATION"
  CarriageControl:NL
 540 INPUT E
  Variable:E -> _
 550 IF E<0 THEN 840
  Variable:E -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:840
 560 IF E> 89 THEN 800
  Variable:E -> _
- NumericConstant:89
+ NumericValue:89
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:800
 570 IF E <1 THEN 820
  Variable:E -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:820
 580 N=N+1
  Variable:N -> _
  Variable:N -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 590 K=INT(R-M*SIN(2*E/57.3))
  Variable:K -> _
  Variable:R -> _
  Variable:M -> _
- NumericConstant:2
+ NumericValue:2
  Variable:E -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:57.3
+ NumericValue:57.3
  BinaryOperatorDivide:/(_,_) -> _
  FunctionSin:SIN(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
@@ -221,7 +221,7 @@
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:740
 650 PRINT "*** TARGET DESTROYED ***"
- TextConstant:"*** TARGET DESTROYED ***"
+ TextValue:"*** TARGET DESTROYED ***"
  CarriageControl:NL
 660 GOSUB 940
  LineNumber:940
@@ -231,11 +231,11 @@
  AssignmentOperator:= _ -> _
 680 FOR K=1 TO N+D/100
  control: Variable:K -> _
- start:   ["NumericConstant:1"]
- end:     ["Variable:N -> _", "Variable:D -> _", "NumericConstant:100", "BinaryOperatorDivide:/(_,_) -> _", "BinaryOperatorPlus:+(_,_) -> _"]
+ start:   ["NumericValue:1"]
+ end:     ["Variable:N -> _", "Variable:D -> _", "NumericValue:100", "BinaryOperatorDivide:/(_,_) -> _", "BinaryOperatorPlus:+(_,_) -> _"]
 690 K1=RND(0)
  Variable:K1 -> _
- NumericConstant:0
+ NumericValue:0
  FunctionRnd:RND(_) -> _
  AssignmentOperator:= _ -> _
 700 NEXT K
@@ -243,55 +243,55 @@
 710 GOTO 410
  LineNumber:410
 720 PRINT "SHORT OF TARGET BY "K1" YARDS"
- TextConstant:"SHORT OF TARGET BY "
+ TextValue:"SHORT OF TARGET BY "
  CarriageControl:
  Variable:K1 -> _
  CarriageControl:
- TextConstant:" YARDS"
+ TextValue:" YARDS"
  CarriageControl:NL
 730 GOTO 745
  LineNumber:745
 740 PRINT "OVER TARGET BY "K1"YARDS"
- TextConstant:"OVER TARGET BY "
+ TextValue:"OVER TARGET BY "
  CarriageControl:
  Variable:K1 -> _
  CarriageControl:
- TextConstant:"YARDS"
+ TextValue:"YARDS"
  CarriageControl:NL
 745 LET C=INT(2*RND(0)+1)
  Variable:C -> _
- NumericConstant:2
- NumericConstant:0
+ NumericValue:2
+ NumericValue:0
  FunctionRnd:RND(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  FunctionInt:INT(_) -> _
  AssignmentOperator:= _ -> _
 746 IF C=1 THEN 750
  Variable:C -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:750
 748 LET C=-1
  Variable:C -> _
- NumericConstant:1
+ NumericValue:1
  UnaryOperatorMinus:-(_) -> =_
  AssignmentOperator:= =_ -> _
 749 GOTO 760
  LineNumber:760
 750 LET C=1
  Variable:C -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
 760 C1=M*S/100*RND(0)
  Variable:C1 -> _
  Variable:M -> _
  Variable:S -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:100
+ NumericValue:100
  BinaryOperatorDivide:/(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  FunctionRnd:RND(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  AssignmentOperator:= _ -> _
@@ -310,39 +310,39 @@
 790 GOTO 500
  LineNumber:500
 800 PRINT "MAXIMUM ELEVATION IS 89 DEGREES"
- TextConstant:"MAXIMUM ELEVATION IS 89 DEGREES"
+ TextValue:"MAXIMUM ELEVATION IS 89 DEGREES"
  CarriageControl:NL
 810 GOTO 530
  LineNumber:530
 820 PRINT "MINIMUM ELEVATION IS 1 DEGREE"
- TextConstant:"MINIMUM ELEVATION IS 1 DEGREE"
+ TextValue:"MINIMUM ELEVATION IS 1 DEGREE"
  CarriageControl:NL
 830 GOTO 530
  LineNumber:530
 840 PRINT "* TARGET OUT OF RANGE *"
- TextConstant:"* TARGET OUT OF RANGE *"
+ TextValue:"* TARGET OUT OF RANGE *"
  CarriageControl:NL
 850 GOTO 670
  LineNumber:670
 860 PRINT "THE TARGET HAS DESTROYED YOU!"
- TextConstant:"THE TARGET HAS DESTROYED YOU!"
+ TextValue:"THE TARGET HAS DESTROYED YOU!"
  CarriageControl:NL
 870 GOTO 670
  LineNumber:670
 940 IF N=1 THEN 970
  Variable:N -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:970
 950 PRINT N" ROUNDS EXPENDED"
  Variable:N -> _
  CarriageControl:
- TextConstant:" ROUNDS EXPENDED"
+ TextValue:" ROUNDS EXPENDED"
  CarriageControl:NL
 960 RETURN
  
 970 PRINT "***** DIRECT HIT *****"
- TextConstant:"***** DIRECT HIT *****"
+ TextValue:"***** DIRECT HIT *****"
  CarriageControl:NL
 980 RETURN
  

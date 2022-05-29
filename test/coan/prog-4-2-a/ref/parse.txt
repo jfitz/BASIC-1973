@@ -4,8 +4,8 @@
 20 FOR P=N TO 2 STEP -1
  control: Variable:P -> _
  start:   ["Variable:N -> _"]
- end:     ["NumericConstant:2"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
+ end:     ["NumericValue:2"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
 30 IF N/P=INT(N/P) THEN 70
  Variable:N -> _
  Variable:P -> _
@@ -21,7 +21,7 @@
 50 PRINT N"/"D
  Variable:N -> _
  CarriageControl:
- TextConstant:"/"
+ TextValue:"/"
  CarriageControl:
  Variable:D -> _
  CarriageControl:NL
@@ -42,17 +42,17 @@
 90 PRINT N"/"D"="N/P"/"D/P
  Variable:N -> _
  CarriageControl:
- TextConstant:"/"
+ TextValue:"/"
  CarriageControl:
  Variable:D -> _
  CarriageControl:
- TextConstant:"="
+ TextValue:"="
  CarriageControl:
  Variable:N -> _
  Variable:P -> _
  BinaryOperatorDivide:/(_,_) -> _
  CarriageControl:
- TextConstant:"/"
+ TextValue:"/"
  CarriageControl:
  Variable:D -> _
  Variable:P -> _
@@ -61,17 +61,17 @@
 100 GOTO 10
  LineNumber:10
 110 DATA 5,6
- NumericConstant:5
- NumericConstant:6
+ NumericValue:5
+ NumericValue:6
 120 DATA 82,48
- NumericConstant:82
- NumericConstant:48
+ NumericValue:82
+ NumericValue:48
 130 DATA 3,4
- NumericConstant:3
- NumericConstant:4
+ NumericValue:3
+ NumericValue:4
 140 DATA 36,48
- NumericConstant:36
- NumericConstant:48
+ NumericValue:36
+ NumericValue:48
 150 END
  
 

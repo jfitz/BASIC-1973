@@ -1,8 +1,8 @@
 100 DIM A(100)
- NumericConstant:100
+ NumericValue:100
  Declaration:A() -> _()
 110 PRINT "A$";
- TextConstant:"A$"
+ TextValue:"A$"
  CarriageControl:;
 120 INPUT A$
  Variable:A$ -> $
@@ -13,12 +13,12 @@
  Variable:A() -> _()
 150 FOR I = 1 TO A(0) - 1
  control: Variable:I -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:0", "Variable:A(_) -> _", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) -> _"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:0", "Variable:A(_) -> _", "NumericValue:1", "BinaryOperatorMinus:-(_,_) -> _"]
 160    FOR J = I + 1 TO A(0)
  control: Variable:J -> _
- start:   ["Variable:I -> _", "NumericConstant:1", "BinaryOperatorPlus:+(_,_) -> _"]
- end:     ["NumericConstant:0", "Variable:A(_) -> _"]
+ start:   ["Variable:I -> _", "NumericValue:1", "BinaryOperatorPlus:+(_,_) -> _"]
+ end:     ["NumericValue:0", "Variable:A(_) -> _"]
 170       IF A(I) <= A(J) THEN 210
  Variable:I -> _
  Variable:A(_) -> _

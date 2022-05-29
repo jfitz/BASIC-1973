@@ -1,32 +1,32 @@
 3 PRINT "FOR A PRETTY DIAMOND PATTERN,"
- TextConstant:"FOR A PRETTY DIAMOND PATTERN,"
+ TextValue:"FOR A PRETTY DIAMOND PATTERN,"
  CarriageControl:NL
 4 PRINT "TYPE IN AN ODD NUMBER BETWEEN 5 AND 31."
- TextConstant:"TYPE IN AN ODD NUMBER BETWEEN 5 AND 31."
+ TextValue:"TYPE IN AN ODD NUMBER BETWEEN 5 AND 31."
  CarriageControl:NL
 5 INPUT R\PRINT
  Variable:R -> _
  CarriageControl:NL
 6 Q=INT(60/R)
  Variable:Q -> _
- NumericConstant:60
+ NumericValue:60
  Variable:R -> _
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  AssignmentOperator:= _ -> _
 8 FOR L=1 TO Q
  control: Variable:L -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:Q -> _"]
 10 X=1\Y=R\Z=2
  Variable:X -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
  Variable:Y -> _
  Variable:R -> _
  AssignmentOperator:= _ -> _
  Variable:Z -> _
- NumericConstant:2
+ NumericValue:2
  AssignmentOperator:= =_ -> _
 20 FOR N = X TO Y STEP Z
  control: Variable:N -> _
@@ -37,57 +37,57 @@
  Variable:R -> _
  Variable:N -> _
  BinaryOperatorMinus:-(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  FunctionTab:TAB(_) -> $
  CarriageControl:;
 28 FOR M = 1 TO Q
  control: Variable:M -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:Q -> _"]
 29 C = 1
  Variable:C -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
 30 FOR A = 1 TO N
  WARNING: FOR/NEXT nesting exceeds limit 3
  control: Variable:A -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:N -> _"]
 31 IF C=1 THEN 40
  Variable:C -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:40
 32 IF C=2 THEN 42
  Variable:C -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:42
 33 IF C=3 THEN 44
  Variable:C -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:44
 35 PRINT "!";\GOTO 50
- TextConstant:"!"
+ TextValue:"!"
  CarriageControl:;
  LineNumber:50
 40 PRINT "D";\GOTO 47
- TextConstant:"D"
+ TextValue:"D"
  CarriageControl:;
  LineNumber:47
 42 PRINT "E";\GOTO 47
- TextConstant:"E"
+ TextValue:"E"
  CarriageControl:;
  LineNumber:47
 44 PRINT "C";
- TextConstant:"C"
+ TextValue:"C"
  CarriageControl:;
 47 C=C+1
  Variable:C -> _
  Variable:C -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 50 NEXT A
@@ -104,7 +104,7 @@
  Variable:R -> _
  Variable:N -> _
  BinaryOperatorMinus:-(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
  FunctionTab:TAB(_) -> $
@@ -117,20 +117,20 @@
  Variable:N -> _
 83 IF X<>1 THEN 95
  Variable:X -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:95
 85 X=R-2\Y=1\Z=-2
  Variable:X -> _
  Variable:R -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
  Variable:Y -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
  Variable:Z -> _
- NumericConstant:2
+ NumericValue:2
  UnaryOperatorMinus:-(_) -> =_
  AssignmentOperator:= =_ -> _
 90 GOTO 20

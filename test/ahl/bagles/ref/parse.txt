@@ -9,59 +9,59 @@
 25 REM *** RSTS/E BY DAVE AHL OF DIGITAL 11/45 GROUP
  Remark:*** RSTS/E BY DAVE AHL OF DIGITAL 11/45 GROUP
 30 DIM A1(6), A(3), B(3)
- NumericConstant:6
+ NumericValue:6
  Declaration:A1() -> _()
- NumericConstant:3
+ NumericValue:3
  Declaration:A() -> _()
- NumericConstant:3
+ NumericValue:3
  Declaration:B() -> _()
 40 RANDOMIZE:V=0:T=255
  
  Variable:V -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
  Variable:T -> _
- NumericConstant:255
+ NumericValue:255
  AssignmentOperator:= =_ -> _
 70 INPUT "GAME OF BAGLES. WOULD YOU LIKE THE RULES (YES OR NO)",A$
  Variable:A$ -> $
 90 IF A$="NO" THEN 150
  Variable:A$ -> $
- TextConstant:"NO"
+ TextValue:"NO"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:150
 100 PRINT:PRINT "I AM THINKING OF A THREE-DIGIT NUMBER. TRY TO GUESS"
  CarriageControl:NL
- TextConstant:"I AM THINKING OF A THREE-DIGIT NUMBER. TRY TO GUESS"
+ TextValue:"I AM THINKING OF A THREE-DIGIT NUMBER. TRY TO GUESS"
  CarriageControl:NL
 110 PRINT "MY NUMBER AND I WILL GIVE YOU CLUES AS FOLLOWS:"
- TextConstant:"MY NUMBER AND I WILL GIVE YOU CLUES AS FOLLOWS:"
+ TextValue:"MY NUMBER AND I WILL GIVE YOU CLUES AS FOLLOWS:"
  CarriageControl:NL
 120 PRINT " PICO - ONE DIGIT CORRECT BUT IN THE WRONG POSITION"
- TextConstant:" PICO - ONE DIGIT CORRECT BUT IN THE WRONG POSITION"
+ TextValue:" PICO - ONE DIGIT CORRECT BUT IN THE WRONG POSITION"
  CarriageControl:NL
 138 PRINT " FERMI - ONE DIGIT CORRECT AND IN THE RIGHT POSITION"
- TextConstant:" FERMI - ONE DIGIT CORRECT AND IN THE RIGHT POSITION"
+ TextValue:" FERMI - ONE DIGIT CORRECT AND IN THE RIGHT POSITION"
  CarriageControl:NL
 140 PRINT " BAGLES - NO DIGITS CORRECT"
- TextConstant:" BAGLES - NO DIGITS CORRECT"
+ TextValue:" BAGLES - NO DIGITS CORRECT"
  CarriageControl:NL
 150 FOR I=1 TO 3
  control: Variable:I -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:3"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:3"]
 160 A(I) = INT(10*RND)
  Variable:I -> _
  Variable:A(_) -> _
- NumericConstant:10
+ NumericValue:10
  FunctionRnd:RND -> _
  BinaryOperatorMultiply:*(_,_) -> _
  FunctionInt:INT(_) -> _
  AssignmentOperator:= _ -> _
 170 FOR J=1 TO I-1
  control: Variable:J -> _
- start:   ["NumericConstant:1"]
- end:     ["Variable:I -> _", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) -> _"]
+ start:   ["NumericValue:1"]
+ end:     ["Variable:I -> _", "NumericValue:1", "BinaryOperatorMinus:-(_,_) -> _"]
 180 IF A(I)=A(J) THEN 160
  Variable:I -> _
  Variable:A(_) -> _
@@ -75,15 +75,15 @@
  Variable:I -> _
 210 PRINT: PRINT "O.K. I HAVE A NUMBER IN MIND."
  CarriageControl:NL
- TextConstant:"O.K. I HAVE A NUMBER IN MIND."
+ TextValue:"O.K. I HAVE A NUMBER IN MIND."
  CarriageControl:NL
 220 FOR I=1 TO 20
  WARNING: FORNEXT length exceeds limit 40
  control: Variable:I -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:20"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:20"]
 230 PRINT "GUESS #"I;
- TextConstant:"GUESS #"
+ TextValue:"GUESS #"
  CarriageControl:
  Variable:I -> _
  CarriageControl:;
@@ -93,25 +93,25 @@
  Variable:A$ -> $
  Variable:A1() -> _()
 255 IF A1(0)<>3 THEN 630
- NumericConstant:0
+ NumericValue:0
  Variable:A1(_) -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:630
 260 FOR J=1 TO 3
  control: Variable:J -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:3"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:3"]
 270 IF A1(J)<48 THEN 300
  Variable:J -> _
  Variable:A1(_) -> _
- NumericConstant:48
+ NumericValue:48
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:300
 280 IF A1(J)>57 THEN 300
  Variable:J -> _
  Variable:A1(_) -> _
- NumericConstant:57
+ NumericValue:57
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:300
 285 B(J)=A1(J)-48
@@ -119,7 +119,7 @@
  Variable:B(_) -> _
  Variable:J -> _
  Variable:A1(_) -> _
- NumericConstant:48
+ NumericValue:48
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 290 NEXT J 
@@ -127,47 +127,47 @@
 295 GOTO 320 
  LineNumber:320
 300 PRINT "WHAT?"
- TextConstant:"WHAT?"
+ TextValue:"WHAT?"
  CarriageControl:NL
 310 GOTO 230
  LineNumber:230
 320 IF B(1)=B(2) THEN 650
- NumericConstant:1
+ NumericValue:1
  Variable:B(_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:B(_) -> _
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:650
 330 IF B(2)=B(3) THEN 650
- NumericConstant:2
+ NumericValue:2
  Variable:B(_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:B(_) -> _
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:650
 340 IF B(2)=B(1) THEN 650
- NumericConstant:2
+ NumericValue:2
  Variable:B(_) -> _
- NumericConstant:1
+ NumericValue:1
  Variable:B(_) -> _
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:650
 350 C=0:D=0
  Variable:C -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
  Variable:D -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 360 FOR J=1 TO 2
  control: Variable:J -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:2"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:2"]
 370 IF A(J)<>B(J+1) THEN 390
  Variable:J -> _
  Variable:A(_) -> _
  Variable:J -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:B(_) -> _
  BinaryOperatorNotEqual:<>(_,_) -> ?
@@ -175,12 +175,12 @@
 380 C=C+1
  Variable:C -> _
  Variable:C -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 390 IF A(J+1)<>B(J) THEN 410
  Variable:J -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:A(_) -> _
  Variable:J -> _
@@ -190,41 +190,41 @@
 400 C=C+1
  Variable:C -> _
  Variable:C -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 410 NEXT J
  Variable:J -> _
 420 IF A(1)<>B(3) THEN 440
- NumericConstant:1
+ NumericValue:1
  Variable:A(_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:B(_) -> _
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:440
 430 C=C+1
  Variable:C -> _
  Variable:C -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 440 IF A(3)<>B(1) THEN 460
- NumericConstant:3
+ NumericValue:3
  Variable:A(_) -> _
- NumericConstant:1
+ NumericValue:1
  Variable:B(_) -> _
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:460
 450 C=C+1
  Variable:C -> _
  Variable:C -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 460 FOR J=1 TO 3
  control: Variable:J -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:3"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:3"]
 470 IF A(J)<>B(J) THEN 490
  Variable:J -> _
  Variable:A(_) -> _
@@ -235,31 +235,31 @@
 480 D=D+1
  Variable:D -> _
  Variable:D -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 490 NEXT J
  Variable:J -> _
 500 IF D=3 THEN 680
  Variable:D -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:680
 520 FOR J=1 TO C
  control: Variable:J -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:C -> _"]
 530 PRINT "PICO ";
- TextConstant:"PICO "
+ TextValue:"PICO "
  CarriageControl:;
 540 NEXT J
  Variable:J -> _
 550 FOR J=1 TO D
  control: Variable:J -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:D -> _"]
 560 PRINT "FERMI ";
- TextConstant:"FERMI "
+ TextValue:"FERMI "
  CarriageControl:;
 570 NEXT J
  Variable:J -> _
@@ -267,81 +267,81 @@
  Variable:C -> _
  Variable:D -> _
  BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:600
 590 PRINT "BAGLES";
- TextConstant:"BAGLES"
+ TextValue:"BAGLES"
  CarriageControl:;
 600 PRINT 
  CarriageControl:NL
 605 NEXT I
  Variable:I -> _
 610 PRINT "OH WELL"
- TextConstant:"OH WELL"
+ TextValue:"OH WELL"
  CarriageControl:NL
 615 PRINT "THAT'S 20 GUESSES. MY NUMBER WAS "100*A1(1)+10*A1(2)+A1(3)
  WARNING: Line exceeds PRETTY width limit 72
- TextConstant:"THAT'S 20 GUESSES. MY NUMBER WAS "
+ TextValue:"THAT'S 20 GUESSES. MY NUMBER WAS "
  CarriageControl:
- NumericConstant:100
- NumericConstant:1
+ NumericValue:100
+ NumericValue:1
  Variable:A1(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:10
- NumericConstant:2
+ NumericValue:10
+ NumericValue:2
  Variable:A1(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:A1(_) -> _
  BinaryOperatorPlus:+(_,_) -> _
  CarriageControl:NL
 620 GOTO 700
  LineNumber:700
 630 PRINT "TRY GUESSING A THREE-DIGIT NUMBER. ":GOTO 230
- TextConstant:"TRY GUESSING A THREE-DIGIT NUMBER. "
+ TextValue:"TRY GUESSING A THREE-DIGIT NUMBER. "
  CarriageControl:NL
  LineNumber:230
 650 PRINT "OH, I FORGOT TO TELL YOU THAT THE NUMBER I HAVE IN"
- TextConstant:"OH, I FORGOT TO TELL YOU THAT THE NUMBER I HAVE IN"
+ TextValue:"OH, I FORGOT TO TELL YOU THAT THE NUMBER I HAVE IN"
  CarriageControl:NL
 660 PRINT "MIND HAS NO TWO DIGITS THE SAME. ":GOTO 230
- TextConstant:"MIND HAS NO TWO DIGITS THE SAME. "
+ TextValue:"MIND HAS NO TWO DIGITS THE SAME. "
  CarriageControl:NL
  LineNumber:230
 680 PRINT "YOU GOT IT!!! ":PRINT
- TextConstant:"YOU GOT IT!!! "
+ TextValue:"YOU GOT IT!!! "
  CarriageControl:NL
  CarriageControl:NL
 690 V=V+1
  Variable:V -> _
  Variable:V -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 700 INPUT "PLAY AGAIN (YES OR NO)",A$
  Variable:A$ -> $
 720 IF A$="YES" THEN 150
  Variable:A$ -> $
- TextConstant:"YES"
+ TextValue:"YES"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:150
 730 IF V=0 THEN 750
  Variable:V -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:750
 740 PRINT:PRINT "A"V"- POINT BAGLES BUFF!!"
  CarriageControl:NL
- TextConstant:"A"
+ TextValue:"A"
  CarriageControl:
  Variable:V -> _
  CarriageControl:
- TextConstant:"- POINT BAGLES BUFF!!"
+ TextValue:"- POINT BAGLES BUFF!!"
  CarriageControl:NL
 750 PRINT "HOPE YOU HAD FUN. BYE. "
- TextConstant:"HOPE YOU HAD FUN. BYE. "
+ TextValue:"HOPE YOU HAD FUN. BYE. "
  CarriageControl:NL
 999 END
  WARNING: Terminating statement in FOR/NEXT

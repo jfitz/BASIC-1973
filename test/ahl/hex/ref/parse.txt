@@ -14,9 +14,9 @@
 10 INPUT "INSTRUCTIONS"; C$: IF LEFT(C$, 1%)<> "Y" THEN 110
  Variable:C$ -> $
  Variable:C$ -> $
- IntegerConstant:1
+ IntegerValue:1
  FunctionLeft:LEFT($,%) -> $
- TextConstant:"Y"
+ TextValue:"Y"
  BinaryOperatorNotEqual:<>($,$) -> ?
  LineNumber:110
 20 &: &, "THIS PROGRAM PLAYS THE GAME OF HEXAPAWN.":& "HEXAPAWN IS PLAYED WITH CHESS PAWNS ON A 3 BY 3 BOARD. THE PAWNS ARE": & "MOVED AS IN CHESS - ONE SPACE FORWARD TO AN EMPTY SPACE OR ONE SPACE"
@@ -24,50 +24,50 @@
  WARNING: Line exceeds PRETTY width limit 72
  CarriageControl:NL
  CarriageControl:,
- TextConstant:"THIS PROGRAM PLAYS THE GAME OF HEXAPAWN."
+ TextValue:"THIS PROGRAM PLAYS THE GAME OF HEXAPAWN."
  CarriageControl:NL
- TextConstant:"HEXAPAWN IS PLAYED WITH CHESS PAWNS ON A 3 BY 3 BOARD. THE PAWNS ARE"
+ TextValue:"HEXAPAWN IS PLAYED WITH CHESS PAWNS ON A 3 BY 3 BOARD. THE PAWNS ARE"
  CarriageControl:NL
- TextConstant:"MOVED AS IN CHESS - ONE SPACE FORWARD TO AN EMPTY SPACE OR ONE SPACE"
+ TextValue:"MOVED AS IN CHESS - ONE SPACE FORWARD TO AN EMPTY SPACE OR ONE SPACE"
  CarriageControl:NL
 30 &"FORWARD AND DIAGONALLY TO CAPTURE AN OPPOSING MAN. ":&:&CHR$(9%);"O THE BOARD. YOUR PAWNS ARE 'O', THE COMPUTER'S PAWNS ARE '*'":& "AND EMPTY SQUARES ARE '-'. TO ENTER A MOVE, TYPE THE NUMBER OF THE"
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
- TextConstant:"FORWARD AND DIAGONALLY TO CAPTURE AN OPPOSING MAN. "
+ TextValue:"FORWARD AND DIAGONALLY TO CAPTURE AN OPPOSING MAN. "
  CarriageControl:NL
  CarriageControl:NL
- IntegerConstant:9
+ IntegerValue:9
  FunctionChr:CHR$(%) -> =$
  CarriageControl:;
- TextConstant:"O THE BOARD. YOUR PAWNS ARE 'O', THE COMPUTER'S PAWNS ARE '*'"
+ TextValue:"O THE BOARD. YOUR PAWNS ARE 'O', THE COMPUTER'S PAWNS ARE '*'"
  CarriageControl:NL
- TextConstant:"AND EMPTY SQUARES ARE '-'. TO ENTER A MOVE, TYPE THE NUMBER OF THE"
+ TextValue:"AND EMPTY SQUARES ARE '-'. TO ENTER A MOVE, TYPE THE NUMBER OF THE"
  CarriageControl:NL
 40 &"SQUARE YOU WILL MOVE FROM FOLLOWED BY THE NUMBER OF THE SQUARE":&"YOU WILL MOVE TO. (THE NUMBERS ARE SEPARATED BY A COMMA.)":&
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
- TextConstant:"SQUARE YOU WILL MOVE FROM FOLLOWED BY THE NUMBER OF THE SQUARE"
+ TextValue:"SQUARE YOU WILL MOVE FROM FOLLOWED BY THE NUMBER OF THE SQUARE"
  CarriageControl:NL
- TextConstant:"YOU WILL MOVE TO. (THE NUMBERS ARE SEPARATED BY A COMMA.)"
+ TextValue:"YOU WILL MOVE TO. (THE NUMBERS ARE SEPARATED BY A COMMA.)"
  CarriageControl:NL
  CarriageControl:NL
 50 &"    THE PROGRAM STARTS A SERIES OF GAMES KNOWING ONLY WHEN THE":&"GAME IS WON (A DRAW IS IMPOSSIBLE) AND HOW TO MOVE. IT HAS NO":&"STRATEGY AT FIRST AND JUST MOVES RANDOMLY. HOWEVER, IT LEARNS"
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
- TextConstant:"    THE PROGRAM STARTS A SERIES OF GAMES KNOWING ONLY WHEN THE"
+ TextValue:"    THE PROGRAM STARTS A SERIES OF GAMES KNOWING ONLY WHEN THE"
  CarriageControl:NL
- TextConstant:"GAME IS WON (A DRAW IS IMPOSSIBLE) AND HOW TO MOVE. IT HAS NO"
+ TextValue:"GAME IS WON (A DRAW IS IMPOSSIBLE) AND HOW TO MOVE. IT HAS NO"
  CarriageControl:NL
- TextConstant:"STRATEGY AT FIRST AND JUST MOVES RANDOMLY. HOWEVER, IT LEARNS"
+ TextValue:"STRATEGY AT FIRST AND JUST MOVES RANDOMLY. HOWEVER, IT LEARNS"
  CarriageControl:NL
 60 &"FROM EACH GAME. THUS, DEFEATING IT BECOMES MORE AND MORE":&"DIFFICULT. ALSO, TO HELP OFFSET YOUR INITIAL ADVANTAGE, YOU WILL":&"NOT BE TOLD HOW TO WIN THE GAME BUT MUST LEARN THIS BY PLAYING":&
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
- TextConstant:"FROM EACH GAME. THUS, DEFEATING IT BECOMES MORE AND MORE"
+ TextValue:"FROM EACH GAME. THUS, DEFEATING IT BECOMES MORE AND MORE"
  CarriageControl:NL
- TextConstant:"DIFFICULT. ALSO, TO HELP OFFSET YOUR INITIAL ADVANTAGE, YOU WILL"
+ TextValue:"DIFFICULT. ALSO, TO HELP OFFSET YOUR INITIAL ADVANTAGE, YOU WILL"
  CarriageControl:NL
- TextConstant:"NOT BE TOLD HOW TO WIN THE GAME BUT MUST LEARN THIS BY PLAYING"
+ TextValue:"NOT BE TOLD HOW TO WIN THE GAME BUT MUST LEARN THIS BY PLAYING"
  CarriageControl:NL
  CarriageControl:NL
 100 DEF FNC$(X$,X%,Y$)=LEFT(X$,X%,1%)+Y$+RIGHT(X$,X%+LEN(Y$))
@@ -77,7 +77,7 @@
  VariableName:Y$ -> $
  Variable:X$ -> $
  Variable:X% -> %
- IntegerConstant:1
+ IntegerValue:1
  FunctionLeft:LEFT($,%,%) -> $
  Variable:Y$ -> $
  BinaryOperatorPlus:+($,$) -> $
@@ -98,11 +98,11 @@
  AssignmentOperator:= $ -> $
  UserFunction:FNN$ -> $
  Variable:X$ -> $
- IntegerConstant:2
+ IntegerValue:2
  Variable:X$ -> $
  FunctionLen:LEN($) -> _
  BinaryOperatorMultiply:*(%,_) -> _
- IntegerConstant:2
+ IntegerValue:2
  BinaryOperatorMinus:-(_,%) -> _
  FunctionMid:MID($,_) -> $
  AssignmentOperator:= $ -> $
@@ -110,65 +110,65 @@
 110 DIM P$(50%):RANDOMIZE:Q%=0%:PRINT "SINCE I'M A GOOD SPORT, YOU'LL ALWAYS GO FIRST"
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
- IntegerConstant:50
+ IntegerValue:50
  Declaration:P$() -> $()
  
  Variable:Q% -> %
- IntegerConstant:0
+ IntegerValue:0
  AssignmentOperator:= =% -> %
- TextConstant:"SINCE I'M A GOOD SPORT, YOU'LL ALWAYS GO FIRST"
+ TextValue:"SINCE I'M A GOOD SPORT, YOU'LL ALWAYS GO FIRST"
  CarriageControl:NL
 120 P%=8%: P$="XXX--OOO":&:&"NUMBERING: ": &"123": &"456": &"789": &
  WARNING: Line exceeds PRETTY width limit 72
  Variable:P% -> %
- IntegerConstant:8
+ IntegerValue:8
  AssignmentOperator:= =% -> %
  Variable:P$ -> $
- TextConstant:"XXX--OOO"
+ TextValue:"XXX--OOO"
  AssignmentOperator:= =$ -> $
  CarriageControl:NL
- TextConstant:"NUMBERING: "
+ TextValue:"NUMBERING: "
  CarriageControl:NL
- TextConstant:"123"
+ TextValue:"123"
  CarriageControl:NL
- TextConstant:"456"
+ TextValue:"456"
  CarriageControl:NL
- TextConstant:"789"
+ TextValue:"789"
  CarriageControl:NL
  CarriageControl:NL
 190 D%=-1%: Q$="O": GOSUB 2000: IF M$="" THEN PRINT "YOU CAN'T MOVE. I WIN.": GOTO 510
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
  Variable:D% -> %
- IntegerConstant:1
+ IntegerValue:1
  UnaryOperatorMinus:-(%) -> =%
  AssignmentOperator:= =% -> %
  Variable:Q$ -> $
- TextConstant:"O"
+ TextValue:"O"
  AssignmentOperator:= =$ -> $
  LineNumber:2000
  Variable:M$ -> $
- TextConstant:""
+ TextValue:""
  BinaryOperatorEqual:=($,$) -> ?
- TextConstant:"YOU CAN'T MOVE. I WIN."
+ TextValue:"YOU CAN'T MOVE. I WIN."
  CarriageControl:NL
  LineNumber:510
 200 &: &"BOARD:": &LEFT(P$, 3%): &MID(P$,4%,3%): &RIGHT(P$,7%): &
  WARNING: Line exceeds PRETTY width limit 72
  CarriageControl:NL
- TextConstant:"BOARD:"
+ TextValue:"BOARD:"
  CarriageControl:NL
  Variable:P$ -> $
- IntegerConstant:3
+ IntegerValue:3
  FunctionLeft:LEFT($,%) -> $
  CarriageControl:NL
  Variable:P$ -> $
- IntegerConstant:4
- IntegerConstant:3
+ IntegerValue:4
+ IntegerValue:3
  FunctionMid:MID($,%,%) -> $
  CarriageControl:NL
  Variable:P$ -> $
- IntegerConstant:7
+ IntegerValue:7
  FunctionRight:RIGHT($,%) -> $
  CarriageControl:NL
  CarriageControl:NL
@@ -177,7 +177,7 @@
  WARNING: Line exceeds PRETTY width limit 72
  Variable:A% -> %
  Variable:B% -> %
- IntegerConstant:1
+ IntegerValue:1
  Variable:M$ -> $
  Variable:A% -> %
  UserFunction:FNN$(%) -> $
@@ -185,9 +185,9 @@
  UserFunction:FNN$(%) -> $
  BinaryOperatorPlus:+($,$) -> $
  FunctionInstr:INSTR(%,$,$) -> _
- IntegerConstant:0
+ IntegerValue:0
  BinaryOperatorEqual:=(_,%) -> ?
- TextConstant:"ILLEGAL MOVE."
+ TextValue:"ILLEGAL MOVE."
  CarriageControl:NL
  LineNumber:210
 230 P$=FNC$(FNC$(P$,A%,"-"),B%,"O"): IF INSTR(1%,P$,"*")=0% OR INSTR(1%,P$,"O")=4% THEN PRINT "YOU WIN.": GOTO 500
@@ -196,32 +196,32 @@
  Variable:P$ -> $
  Variable:P$ -> $
  Variable:A% -> %
- TextConstant:"-"
+ TextValue:"-"
  UserFunction:FNC$($,%,$) -> $
  Variable:B% -> %
- TextConstant:"O"
+ TextValue:"O"
  UserFunction:FNC$($,%,$) -> $
  AssignmentOperator:= $ -> $
- IntegerConstant:1
+ IntegerValue:1
  Variable:P$ -> $
- TextConstant:"*"
+ TextValue:"*"
  FunctionInstr:INSTR(%,$,$) -> _
- IntegerConstant:0
+ IntegerValue:0
  BinaryOperatorEqual:=(_,%) -> ?
- IntegerConstant:1
+ IntegerValue:1
  Variable:P$ -> $
- TextConstant:"O"
+ TextValue:"O"
  FunctionInstr:INSTR(%,$,$) -> _
- IntegerConstant:4
+ IntegerValue:4
  BinaryOperatorEqual:=(_,%) -> ?
  BinaryOperatorOr:OR(?,?) -> ?
- TextConstant:"YOU WIN."
+ TextValue:"YOU WIN."
  CarriageControl:NL
  LineNumber:500
 300 P%=P%+2% ! COMPUTER'S MOVE
  Variable:P% -> %
  Variable:P% -> %
- IntegerConstant:2
+ IntegerValue:2
  BinaryOperatorPlus:+(%,%) -> %
  AssignmentOperator:= % -> %
 310 FOR C%=1% TO Q%: C$=P$(C%): IF VAL(LEFT(C$,1%))=P% AND MID(C$,2%,9%)=P$ THEN M$=RIGHT(C$,11%) : GOTO 400
@@ -229,28 +229,28 @@
  WARNING: Line exceeds PRETTY width limit 72
  WARNING: FORNEXT length exceeds limit 40
  control: Variable:C% -> %
- start:   ["IntegerConstant:1"]
+ start:   ["IntegerValue:1"]
  end:     ["Variable:Q% -> %"]
  Variable:C$ -> $
  Variable:C% -> %
  Variable:P$(%) -> $
  AssignmentOperator:= $ -> $
  Variable:C$ -> $
- IntegerConstant:1
+ IntegerValue:1
  FunctionLeft:LEFT($,%) -> $
  FunctionVal:VAL($) -> _
  Variable:P% -> %
  BinaryOperatorEqual:=(_,%) -> ?
  Variable:C$ -> $
- IntegerConstant:2
- IntegerConstant:9
+ IntegerValue:2
+ IntegerValue:9
  FunctionMid:MID($,%,%) -> $
  Variable:P$ -> $
  BinaryOperatorEqual:=($,$) -> ?
  BinaryOperatorAnd:AND(?,?) -> ?
  Variable:M$ -> $
  Variable:C$ -> $
- IntegerConstant:11
+ IntegerValue:11
  FunctionRight:RIGHT($,%) -> $
  AssignmentOperator:= $ -> $
  LineNumber:400
@@ -259,45 +259,45 @@
  WARNING: Line exceeds PRETTY width limit 72
  Variable:C% -> %
  Variable:Q$ -> $
- TextConstant:"*"
+ TextValue:"*"
  AssignmentOperator:= =$ -> $
  Variable:D% -> %
- IntegerConstant:1
+ IntegerValue:1
  AssignmentOperator:= =% -> %
  LineNumber:2000
  Variable:C% -> %
  Variable:Q% -> %
  AssignmentOperator:= % -> %
  Variable:M$ -> $
- TextConstant:""
+ TextValue:""
  BinaryOperatorEqual:=($,$) -> ?
- TextConstant:"I CAN'T MOVE, YOU WIN."
+ TextValue:"I CAN'T MOVE, YOU WIN."
  CarriageControl:NL
  LineNumber:500
 400 IF M$="" THEN PRINT "I RESIGN.": GOTO 500
  Variable:M$ -> $
- TextConstant:""
+ TextValue:""
  BinaryOperatorEqual:=($,$) -> ?
- TextConstant:"I RESIGN."
+ TextValue:"I RESIGN."
  CarriageControl:NL
  LineNumber:500
 410 K$=LEFT(M$,2%): M$=RIGHT(M$,3%): IF RND>.33333333 AND M$<>"" THEN 410
  WARNING: Line exceeds PRETTY width limit 72
  Variable:K$ -> $
  Variable:M$ -> $
- IntegerConstant:2
+ IntegerValue:2
  FunctionLeft:LEFT($,%) -> $
  AssignmentOperator:= $ -> $
  Variable:M$ -> $
  Variable:M$ -> $
- IntegerConstant:3
+ IntegerValue:3
  FunctionRight:RIGHT($,%) -> $
  AssignmentOperator:= $ -> $
  FunctionRnd:RND -> _
- NumericConstant:.33333333
+ NumericValue:.33333333
  BinaryOperatorGreater:>(_,_) -> ?
  Variable:M$ -> $
- TextConstant:""
+ TextValue:""
  BinaryOperatorNotEqual:<>($,$) -> ?
  BinaryOperatorAnd:AND(?,?) -> ?
  LineNumber:410
@@ -311,48 +311,48 @@
  AssignmentOperator:= % -> %
  Variable:A% -> %
  Variable:K$ -> $
- IntegerConstant:1
+ IntegerValue:1
  FunctionLeft:LEFT($,%) -> $
  FunctionVal:VAL($) -> _
  AssignmentOperator:= _ -> %
  Variable:B% -> %
  Variable:K$ -> $
- IntegerConstant:2
+ IntegerValue:2
  FunctionRight:RIGHT($,%) -> $
  FunctionVal:VAL($) -> _
  AssignmentOperator:= _ -> %
  Variable:P$ -> $
  Variable:P$ -> $
  Variable:A% -> %
- TextConstant:"-"
+ TextValue:"-"
  UserFunction:FNC$($,%,$) -> $
  Variable:B% -> %
- TextConstant:"*"
+ TextValue:"*"
  UserFunction:FNC$($,%,$) -> $
  AssignmentOperator:= $ -> $
 430 IF INSTR(1%,P$,"O")=0% OR INSTR(7%,P$,"*") THEN PRINT "I WIN!": GOTO 510
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
- IntegerConstant:1
+ IntegerValue:1
  Variable:P$ -> $
- TextConstant:"O"
+ TextValue:"O"
  FunctionInstr:INSTR(%,$,$) -> _
- IntegerConstant:0
+ IntegerValue:0
  BinaryOperatorEqual:=(_,%) -> ?
- IntegerConstant:7
+ IntegerValue:7
  Variable:P$ -> $
- TextConstant:"*"
+ TextValue:"*"
  FunctionInstr:INSTR(%,$,$) -> _
  BinaryOperatorOr:OR(?,_) -> ?
- TextConstant:"I WIN!"
+ TextValue:"I WIN!"
  CarriageControl:NL
  LineNumber:510
 440 PRINT "I MOVE FROM" A% "TO" B%: GOTO 190
- TextConstant:"I MOVE FROM"
+ TextValue:"I MOVE FROM"
  CarriageControl:
  Variable:A% -> %
  CarriageControl:
- TextConstant:"TO"
+ TextValue:"TO"
  CarriageControl:
  Variable:B% -> %
  CarriageControl:NL
@@ -363,11 +363,11 @@
  WARNING: Target type (integer) does not match expression type (numeric).
  Variable:W2% -> %
  Variable:W2% -> %
- IntegerConstant:1
+ IntegerValue:1
  BinaryOperatorPlus:+(%,%) -> %
  AssignmentOperator:= % -> %
  Variable:I% -> %
- IntegerConstant:11
+ IntegerValue:11
  Variable:K% -> %
  Variable:P$(%) -> $
  Variable:K$ -> $
@@ -378,13 +378,13 @@
  Variable:K% -> %
  Variable:P$(%) -> $
  Variable:I% -> %
- IntegerConstant:1
+ IntegerValue:1
  BinaryOperatorMinus:-(%,%) -> %
  FunctionLeft:LEFT($,%) -> $
  Variable:K% -> %
  Variable:P$(%) -> $
  Variable:I% -> %
- IntegerConstant:2
+ IntegerValue:2
  BinaryOperatorPlus:+(%,%) -> %
  FunctionRight:RIGHT($,%) -> $
  BinaryOperatorPlus:+($,$) -> $
@@ -394,49 +394,49 @@
 510 W1%=W1%+1%
  Variable:W1% -> %
  Variable:W1% -> %
- IntegerConstant:1
+ IntegerValue:1
  BinaryOperatorPlus:+(%,%) -> %
  AssignmentOperator:= % -> %
 520 &: &"BOARD:": &LEFT(P$,3%): &MID(P$,4%,3%): &RIGHT(P$,7%): &: & "I HAVE WON" W1% "AND YOU HAVE WON" W2% "OF" W1%+W2% "GAMES"
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
  CarriageControl:NL
- TextConstant:"BOARD:"
+ TextValue:"BOARD:"
  CarriageControl:NL
  Variable:P$ -> $
- IntegerConstant:3
+ IntegerValue:3
  FunctionLeft:LEFT($,%) -> $
  CarriageControl:NL
  Variable:P$ -> $
- IntegerConstant:4
- IntegerConstant:3
+ IntegerValue:4
+ IntegerValue:3
  FunctionMid:MID($,%,%) -> $
  CarriageControl:NL
  Variable:P$ -> $
- IntegerConstant:7
+ IntegerValue:7
  FunctionRight:RIGHT($,%) -> $
  CarriageControl:NL
  CarriageControl:NL
- TextConstant:"I HAVE WON"
+ TextValue:"I HAVE WON"
  CarriageControl:
  Variable:W1% -> %
  CarriageControl:
- TextConstant:"AND YOU HAVE WON"
+ TextValue:"AND YOU HAVE WON"
  CarriageControl:
  Variable:W2% -> %
  CarriageControl:
- TextConstant:"OF"
+ TextValue:"OF"
  CarriageControl:
  Variable:W1% -> %
  Variable:W2% -> %
  BinaryOperatorPlus:+(%,%) -> %
  CarriageControl:
- TextConstant:"GAMES"
+ TextValue:"GAMES"
  CarriageControl:NL
 530 INPUT "ANOTHER GAME"; C$: IF C$="NO" THEN 9999 ELSE 120
  Variable:C$ -> $
  Variable:C$ -> $
- TextConstant:"NO"
+ TextValue:"NO"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:9999
  LineNumber:120
@@ -445,15 +445,15 @@
  WARNING: Line exceeds PRETTY width limit 72
 2000 M$=""
  Variable:M$ -> $
- TextConstant:""
+ TextValue:""
  AssignmentOperator:= =$ -> $
 2010 FOR J%=1% TO 9%: IF MID(P$,J%,1%)<>Q$ THEN 2050
  control: Variable:J% -> %
- start:   ["IntegerConstant:1"]
- end:     ["IntegerConstant:9"]
+ start:   ["IntegerValue:1"]
+ end:     ["IntegerValue:9"]
  Variable:P$ -> $
  Variable:J% -> %
- IntegerConstant:1
+ IntegerValue:1
  FunctionMid:MID($,%,%) -> $
  Variable:Q$ -> $
  BinaryOperatorNotEqual:<>($,$) -> ?
@@ -462,24 +462,24 @@
  Variable:T% -> %
  Variable:J% -> %
  Variable:D% -> %
- IntegerConstant:3
+ IntegerValue:3
  BinaryOperatorMultiply:*(%,%) -> %
  BinaryOperatorPlus:+(%,%) -> %
  AssignmentOperator:= % -> %
  Variable:T% -> %
- IntegerConstant:1
+ IntegerValue:1
  BinaryOperatorLess:<(%,%) -> ?
  Variable:T% -> %
- IntegerConstant:9
+ IntegerValue:9
  BinaryOperatorGreater:>(%,%) -> ?
  BinaryOperatorOr:OR(?,?) -> ?
  LineNumber:2025
 2020 IF MID(P$,T%,1%)="-" THEN M$=M$+FNN$(J%)+FNN$(T%)
  Variable:P$ -> $
  Variable:T% -> %
- IntegerConstant:1
+ IntegerValue:1
  FunctionMid:MID($,%,%) -> $
- TextConstant:"-"
+ TextValue:"-"
  BinaryOperatorEqual:=($,$) -> ?
  Variable:M$ -> $
  Variable:M$ -> $
@@ -496,45 +496,45 @@
  Variable:T% -> %
  Variable:J% -> %
  Variable:D% -> %
- IntegerConstant:2
+ IntegerValue:2
  BinaryOperatorMultiply:*(%,%) -> %
  BinaryOperatorPlus:+(%,%) -> %
  AssignmentOperator:= % -> %
  Variable:T% -> %
- IntegerConstant:1
+ IntegerValue:1
  BinaryOperatorLess:<(%,%) -> ?
  Variable:T% -> %
- IntegerConstant:9
+ IntegerValue:9
  BinaryOperatorGreater:>(%,%) -> ?
  BinaryOperatorOr:OR(?,?) -> ?
  Variable:D% -> %
- IntegerConstant:1
+ IntegerValue:1
  BinaryOperatorEqual:=(%,%) -> ?
  Variable:J% -> %
- IntegerConstant:1
+ IntegerValue:1
  BinaryOperatorEqual:=(%,%) -> ?
  Variable:J% -> %
- IntegerConstant:4
+ IntegerValue:4
  BinaryOperatorEqual:=(%,%) -> ?
  BinaryOperatorOr:OR(?,?) -> ?
  Variable:J% -> %
- IntegerConstant:7
+ IntegerValue:7
  BinaryOperatorEqual:=(%,%) -> ?
  BinaryOperatorOr:OR(?,?) -> ?
  BinaryOperatorAnd:AND(?,?) -> ?
  BinaryOperatorOr:OR(?,?) -> ?
  Variable:D% -> %
- IntegerConstant:1
+ IntegerValue:1
  BinaryOperatorEqual:=(%,%) -> ?
  Variable:J% -> %
- IntegerConstant:3
+ IntegerValue:3
  BinaryOperatorEqual:=(%,%) -> ?
  Variable:J% -> %
- IntegerConstant:6
+ IntegerValue:6
  BinaryOperatorEqual:=(%,%) -> ?
  BinaryOperatorOr:OR(?,?) -> ?
  Variable:J% -> %
- IntegerConstant:9
+ IntegerValue:9
  BinaryOperatorMinus:-(%,%) -> %
  BinaryOperatorOr:OR(?,%) -> ?
  BinaryOperatorAnd:AND(?,?) -> ?
@@ -542,16 +542,16 @@
  LineNumber:2035
 2030 IF INSTR(1%,Q$+"-",MID(P$,T%,1%))=0% THEN M$=M$+FNN$(J%)+FNN$(T%)
  WARNING: Line exceeds PRETTY width limit 72
- IntegerConstant:1
+ IntegerValue:1
  Variable:Q$ -> $
- TextConstant:"-"
+ TextValue:"-"
  BinaryOperatorPlus:+($,$) -> $
  Variable:P$ -> $
  Variable:T% -> %
- IntegerConstant:1
+ IntegerValue:1
  FunctionMid:MID($,%,%) -> $
  FunctionInstr:INSTR(%,$,$) -> _
- IntegerConstant:0
+ IntegerValue:0
  BinaryOperatorEqual:=(_,%) -> ?
  Variable:M$ -> $
  Variable:M$ -> $
@@ -567,38 +567,38 @@
  Variable:T% -> %
  Variable:J% -> %
  Variable:D% -> %
- IntegerConstant:4
+ IntegerValue:4
  BinaryOperatorMultiply:*(%,%) -> %
  BinaryOperatorPlus:+(%,%) -> %
  AssignmentOperator:= % -> %
  Variable:T% -> %
- IntegerConstant:1
+ IntegerValue:1
  BinaryOperatorLess:<(%,%) -> ?
  Variable:T% -> %
- IntegerConstant:9
+ IntegerValue:9
  BinaryOperatorGreater:>(%,%) -> ?
  BinaryOperatorOr:OR(?,?) -> ?
  Variable:J% -> %
- IntegerConstant:3
+ IntegerValue:3
  BinaryOperatorEqual:=(%,%) -> ?
  BinaryOperatorOr:OR(?,?) -> ?
  Variable:J% -> %
- IntegerConstant:7
+ IntegerValue:7
  BinaryOperatorEqual:=(%,%) -> ?
  BinaryOperatorOr:OR(?,?) -> ?
  LineNumber:2050
 2040 IF INSTR(1%,Q$+"-",MID(P$,T%,1%))=0% THEN M$=M$+FNN$(J%)+FNN$(T%)
  WARNING: Line exceeds PRETTY width limit 72
- IntegerConstant:1
+ IntegerValue:1
  Variable:Q$ -> $
- TextConstant:"-"
+ TextValue:"-"
  BinaryOperatorPlus:+($,$) -> $
  Variable:P$ -> $
  Variable:T% -> %
- IntegerConstant:1
+ IntegerValue:1
  FunctionMid:MID($,%,%) -> $
  FunctionInstr:INSTR(%,$,$) -> _
- IntegerConstant:0
+ IntegerValue:0
  BinaryOperatorEqual:=(_,%) -> ?
  Variable:M$ -> $
  Variable:M$ -> $
@@ -613,15 +613,15 @@
  WARNING: Line exceeds PRETTY width limit 72
  Variable:J% -> %
  Variable:D% -> %
- IntegerConstant:1
+ IntegerValue:1
  BinaryOperatorEqual:=(%,%) -> ?
  Variable:M$ -> $
- TextConstant:""
+ TextValue:""
  BinaryOperatorNotEqual:<>($,$) -> ?
  BinaryOperatorAnd:AND(?,?) -> ?
  Variable:Q% -> %
  Variable:Q% -> %
- IntegerConstant:1
+ IntegerValue:1
  BinaryOperatorPlus:+(%,%) -> %
  AssignmentOperator:= % -> %
  Variable:Q% -> %

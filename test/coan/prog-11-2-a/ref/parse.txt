@@ -1,25 +1,25 @@
 10 DEF FNP(X)=P[4]*X^3+P[3]*X^2+P[2]*X+P[1]
  UserFunctionName:FNP -> _
  VariableName:X -> _
- NumericConstant:4
+ NumericValue:4
  Variable:P(_) -> _
  Variable:X -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorPower:^(_,_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:P(_) -> _
  Variable:X -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorPower:^(_,_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:P(_) -> _
  Variable:X -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:1
+ NumericValue:1
  Variable:P(_) -> _
  BinaryOperatorPlus:+(_,_) -> _
 20 PRINT
@@ -28,9 +28,9 @@
  CarriageControl:NL
 25 FOR S=4 TO 1 STEP -1
  control: Variable:S -> _
- start:   ["NumericConstant:4"]
- end:     ["NumericConstant:1"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
+ start:   ["NumericValue:4"]
+ end:     ["NumericValue:1"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
 30 READ P[S]
  Variable:S -> _
  Variable:P(_) -> _
@@ -41,36 +41,36 @@
 50 NEXT S
  Variable:S -> _
 60 PRINT "INTEGRAL ZERO(S):  ";
- TextConstant:"INTEGRAL ZERO(S):  "
+ TextValue:"INTEGRAL ZERO(S):  "
  CarriageControl:;
 68 REM  TURN SWITCH OFF
  Remark: TURN SWITCH OFF
 70 LET K=0
  Variable:K -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 78 REM  STUDY LINE 80 CAREFULLY!
  Remark: STUDY LINE 80 CAREFULLY!
 80 FOR X=-P[1] TO P[1] STEP SGN(P[1])
  control: Variable:X -> _
- start:   ["NumericConstant:1", "Variable:P(_) -> _", "UnaryOperatorMinus:-(_) -> _"]
- end:     ["NumericConstant:1", "Variable:P(_) -> _"]
- step:    ["NumericConstant:1", "Variable:P(_) -> _", "FunctionSgn:SGN(_) -> _"]
+ start:   ["NumericValue:1", "Variable:P(_) -> _", "UnaryOperatorMinus:-(_) -> _"]
+ end:     ["NumericValue:1", "Variable:P(_) -> _"]
+ step:    ["NumericValue:1", "Variable:P(_) -> _", "FunctionSgn:SGN(_) -> _"]
 88 REM LINE 90 PREVENTS AN ERROR MESSAGE CAUSED BY
  Remark:LINE 90 PREVENTS AN ERROR MESSAGE CAUSED BY
 89 REM DIVIDING BY ZERO
  Remark:DIVIDING BY ZERO
 90 IF X=0 THEN 140
  Variable:X -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:140
 100 IF P[1]/X <> INT(P[1]/X) THEN 140
- NumericConstant:1
+ NumericValue:1
  Variable:P(_) -> _
  Variable:X -> _
  BinaryOperatorDivide:/(_,_) -> _
- NumericConstant:1
+ NumericValue:1
  Variable:P(_) -> _
  Variable:X -> _
  BinaryOperatorDivide:/(_,_) -> _
@@ -82,7 +82,7 @@
 110 IF FNP(X) <> 0 THEN 140
  Variable:X -> _
  UserFunction:FNP(_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:140
 118 REM IF THE COMPUTER GETS THROUGH HERE, THE
@@ -96,48 +96,48 @@
  Remark:TURN THE SWITCH ON - WE HAVE A ZERO
 130 LET K=1
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
 140 NEXT X
  Variable:X -> _
 150 IF K=1 THEN 20
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:20
 160 PRINT "NONE FOUND";
- TextConstant:"NONE FOUND"
+ TextValue:"NONE FOUND"
  CarriageControl:;
 165 GOTO 20
  LineNumber:20
 170 DATA 1,-2,-11,12
- NumericConstant:1
- NumericConstant:2
+ NumericValue:1
+ NumericValue:2
  UnaryOperatorMinus:-(_) -> =_
- NumericConstant:11
+ NumericValue:11
  UnaryOperatorMinus:-(_) -> =_
- NumericConstant:12
+ NumericValue:12
 180 DATA 1,1,-5,-2
- NumericConstant:1
- NumericConstant:1
- NumericConstant:5
+ NumericValue:1
+ NumericValue:1
+ NumericValue:5
  UnaryOperatorMinus:-(_) -> =_
- NumericConstant:2
+ NumericValue:2
  UnaryOperatorMinus:-(_) -> =_
 190 DATA 1,-2,3,-4
- NumericConstant:1
- NumericConstant:2
+ NumericValue:1
+ NumericValue:2
  UnaryOperatorMinus:-(_) -> =_
- NumericConstant:3
- NumericConstant:4
+ NumericValue:3
+ NumericValue:4
  UnaryOperatorMinus:-(_) -> =_
 200 DATA 2,-3,-10,3
- NumericConstant:2
- NumericConstant:3
+ NumericValue:2
+ NumericValue:3
  UnaryOperatorMinus:-(_) -> =_
- NumericConstant:10
+ NumericValue:10
  UnaryOperatorMinus:-(_) -> =_
- NumericConstant:3
+ NumericValue:3
 210 END
  
 

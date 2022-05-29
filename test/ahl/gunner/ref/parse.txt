@@ -3,46 +3,46 @@
 90 RANDOMIZE
  
 100 PRINT"THIS COMPUTER DEMONSTRATION SIMULATES THE"
- TextConstant:"THIS COMPUTER DEMONSTRATION SIMULATES THE"
+ TextValue:"THIS COMPUTER DEMONSTRATION SIMULATES THE"
  CarriageControl:NL
 110 PRINT"RESULTS OF FIRING A FIELD ARTILLERY WEAPON."
- TextConstant:"RESULTS OF FIRING A FIELD ARTILLERY WEAPON."
+ TextValue:"RESULTS OF FIRING A FIELD ARTILLERY WEAPON."
  CarriageControl:NL
 120 PRINT
  CarriageControl:NL
 130 PRINT"YOU ARE THE OFFICER-IN-CHARGE, GIVING ORDERS TO THE GUN"
- TextConstant:"YOU ARE THE OFFICER-IN-CHARGE, GIVING ORDERS TO THE GUN"
+ TextValue:"YOU ARE THE OFFICER-IN-CHARGE, GIVING ORDERS TO THE GUN"
  CarriageControl:NL
 140 PRINT"CREW, TELLING THEM THE DEGREES OF ELEVATION YOU ESTIMATE"
- TextConstant:"CREW, TELLING THEM THE DEGREES OF ELEVATION YOU ESTIMATE"
+ TextValue:"CREW, TELLING THEM THE DEGREES OF ELEVATION YOU ESTIMATE"
  CarriageControl:NL
 150 PRINT"WILL PLACE THE PROJECTILE ON TARGET. A HIT WITHIN 100 YARDS"
- TextConstant:"WILL PLACE THE PROJECTILE ON TARGET. A HIT WITHIN 100 YARDS"
+ TextValue:"WILL PLACE THE PROJECTILE ON TARGET. A HIT WITHIN 100 YARDS"
  CarriageControl:NL
 160 PRINT "OF THE TARGET WILL DESTROY IT. TAKE MORE THAN 5 SHOTS,"
- TextConstant:"OF THE TARGET WILL DESTROY IT. TAKE MORE THAN 5 SHOTS,"
+ TextValue:"OF THE TARGET WILL DESTROY IT. TAKE MORE THAN 5 SHOTS,"
  CarriageControl:NL
 170 PRINT "AND THE ENEMY WILL DESTROY YOU! "\PRINT
- TextConstant:"AND THE ENEMY WILL DESTROY YOU! "
+ TextValue:"AND THE ENEMY WILL DESTROY YOU! "
  CarriageControl:NL
  CarriageControl:NL
 180 PRINT "MAXIMUM RANGE OF YOUR GUN IS 46500 YARDS."
- TextConstant:"MAXIMUM RANGE OF YOUR GUN IS 46500 YARDS."
+ TextValue:"MAXIMUM RANGE OF YOUR GUN IS 46500 YARDS."
  CarriageControl:NL
 185 Z=0
  Variable:Z -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 190 PRINT
  CarriageControl:NL
 195 S1=0
  Variable:S1 -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 200 LET T=43000-30000*RND(X)
  Variable:T -> _
- NumericConstant:43000
- NumericConstant:30000
+ NumericValue:43000
+ NumericValue:30000
  Variable:X -> _
  FunctionRnd:RND(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
@@ -50,48 +50,48 @@
  AssignmentOperator:= _ -> _
 210 LET S=0
  Variable:S -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 220 GO TO 370
  LineNumber:370
 230 PRINT"MINIMUM ELEVATION OF GUN IS ONE DEGREE."
- TextConstant:"MINIMUM ELEVATION OF GUN IS ONE DEGREE."
+ TextValue:"MINIMUM ELEVATION OF GUN IS ONE DEGREE."
  CarriageControl:NL
 240 GO TO 390
  LineNumber:390
 250 PRINT"MAXIMUM ELEVATION OF GUN IS 89 DEGREES."
- TextConstant:"MAXIMUM ELEVATION OF GUN IS 89 DEGREES."
+ TextValue:"MAXIMUM ELEVATION OF GUN IS 89 DEGREES."
  CarriageControl:NL
 260 GO TO 390
  LineNumber:390
 270 PRINT"OVER TARGET BY";ABS(E);"YARDS."
- TextConstant:"OVER TARGET BY"
+ TextValue:"OVER TARGET BY"
  CarriageControl:;
  Variable:E -> _
  FunctionAbs:ABS(_) -> _
  CarriageControl:;
- TextConstant:"YARDS."
+ TextValue:"YARDS."
  CarriageControl:NL
 280 GO TO 390
  LineNumber:390
 290 PRINT "SHORT OF TARGET BY";ABS(E);"YARDS."
- TextConstant:"SHORT OF TARGET BY"
+ TextValue:"SHORT OF TARGET BY"
  CarriageControl:;
  Variable:E -> _
  FunctionAbs:ABS(_) -> _
  CarriageControl:;
- TextConstant:"YARDS."
+ TextValue:"YARDS."
  CarriageControl:NL
 300 GO TO 390
  LineNumber:390
 310 GO TO 320
  LineNumber:320
 320 PRINT"***TARGET DESTROYED***";S;"ROUNDS OF AMMUNITION EXPENDED"
- TextConstant:"***TARGET DESTROYED***"
+ TextValue:"***TARGET DESTROYED***"
  CarriageControl:;
  Variable:S -> _
  CarriageControl:;
- TextConstant:"ROUNDS OF AMMUNITION EXPENDED"
+ TextValue:"ROUNDS OF AMMUNITION EXPENDED"
  CarriageControl:NL
 322 GOSUB 600
  LineNumber:600
@@ -103,68 +103,68 @@
  AssignmentOperator:= _ -> _
 330 IF Z=4 THEN 490
  Variable:Z -> _
- NumericConstant:4
+ NumericValue:4
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:490
 340 Z=Z+1
  Variable:Z -> _
  Variable:Z -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 345 PRINT
  CarriageControl:NL
 350 PRINT"THE FORWARD OBSERVER HAS SIGHTED MORE ENEMY ACTIVITY."
- TextConstant:"THE FORWARD OBSERVER HAS SIGHTED MORE ENEMY ACTIVITY."
+ TextValue:"THE FORWARD OBSERVER HAS SIGHTED MORE ENEMY ACTIVITY."
  CarriageControl:NL
 360 GO TO 200
  LineNumber:200
 370 PRINT"DISTANCE TO THE TARGET IS";INT(T);"YARDS"
- TextConstant:"DISTANCE TO THE TARGET IS"
+ TextValue:"DISTANCE TO THE TARGET IS"
  CarriageControl:;
  Variable:T -> _
  FunctionInt:INT(_) -> _
  CarriageControl:;
- TextConstant:"YARDS"
+ TextValue:"YARDS"
  CarriageControl:NL
 380 PRINT
  CarriageControl:NL
 390 PRINT
  CarriageControl:NL
 400 PRINT "ELEVATION:";
- TextConstant:"ELEVATION:"
+ TextValue:"ELEVATION:"
  CarriageControl:;
 410 INPUT B
  Variable:B -> _
 420 IF B>89 THEN 250
  Variable:B -> _
- NumericConstant:89
+ NumericValue:89
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:250
 430 IF B<1 THEN 230
  Variable:B -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:230
 440 LET S=S+1
  Variable:S -> _
  Variable:S -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 442 IF S<6 THEN 450
  Variable:S -> _
- NumericConstant:6
+ NumericValue:6
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:450
 444 PRINT\PRINT "BOOM!!! YOU HAVE JUST BEEN DESTROYED ";
  CarriageControl:NL
- TextConstant:"BOOM!!! YOU HAVE JUST BEEN DESTROYED "
+ TextValue:"BOOM!!! YOU HAVE JUST BEEN DESTROYED "
  CarriageControl:;
 445 GOSUB 600
  LineNumber:600
 446 PRINT "BY THE ENEMY"\PRINT\PRINT\GOTO 495
- TextConstant:"BY THE ENEMY"
+ TextValue:"BY THE ENEMY"
  CarriageControl:NL
  CarriageControl:NL
  CarriageControl:NL
@@ -172,14 +172,14 @@
 450 LET B2=2*B/57.3\LET I=46500*SIN(B2)\LET X=T-I\LET E=INT(X)
  WARNING: Line exceeds PRETTY width limit 72
  Variable:B2 -> _
- NumericConstant:2
+ NumericValue:2
  Variable:B -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:57.3
+ NumericValue:57.3
  BinaryOperatorDivide:/(_,_) -> _
  AssignmentOperator:= _ -> _
  Variable:I -> _
- NumericConstant:46500
+ NumericValue:46500
  Variable:B2 -> _
  FunctionSin:SIN(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
@@ -196,54 +196,54 @@
 460 IF ABS(E)<100 THEN 210
  Variable:E -> _
  FunctionAbs:ABS(_) -> _
- NumericConstant:100
+ NumericValue:100
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:210
 470 IF E>100 THEN 290
  Variable:E -> _
- NumericConstant:100
+ NumericValue:100
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:290
 480 IF E<-100 THEN 270
  Variable:E -> _
- NumericConstant:100
+ NumericValue:100
  UnaryOperatorMinus:-(_) -> =_
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:270
 490 PRINT\PRINT\PRINT "TOTAL ROUNDS EXPENDED WERE";S1
  CarriageControl:NL
  CarriageControl:NL
- TextConstant:"TOTAL ROUNDS EXPENDED WERE"
+ TextValue:"TOTAL ROUNDS EXPENDED WERE"
  CarriageControl:;
  Variable:S1 -> _
  CarriageControl:NL
 491 IF S1<15 THEN 495\PRINT "NICE SHOOTING!! "\GOSUB 600\GOTO 500
  Variable:S1 -> _
- NumericConstant:15
+ NumericValue:15
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:495
- TextConstant:"NICE SHOOTING!! "
+ TextValue:"NICE SHOOTING!! "
  CarriageControl:NL
  LineNumber:600
  LineNumber:500
 495 PRINT "BETTER GO BACK TO FORT SILL FOR REFRESHER TRAINING!"
- TextConstant:"BETTER GO BACK TO FORT SILL FOR REFRESHER TRAINING!"
+ TextValue:"BETTER GO BACK TO FORT SILL FOR REFRESHER TRAINING!"
  CarriageControl:NL
 500 PRINT\PRINT "THANK YOU FOR PLAYING!"
  CarriageControl:NL
- TextConstant:"THANK YOU FOR PLAYING!"
+ TextValue:"THANK YOU FOR PLAYING!"
  CarriageControl:NL
 505 PRINT\PRINT "TRY AGAIN"\PRINT\GOTO 180
  CarriageControl:NL
- TextConstant:"TRY AGAIN"
+ TextValue:"TRY AGAIN"
  CarriageControl:NL
  CarriageControl:NL
  LineNumber:180
 600 FOR N=1 TO 10\PRINT CHR$(7);\NEXT N
  control: Variable:N -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:10"]
- NumericConstant:7
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:10"]
+ NumericValue:7
  FunctionChr:CHR$(_) -> =$
  CarriageControl:;
  Variable:N -> _

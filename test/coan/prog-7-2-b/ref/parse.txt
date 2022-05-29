@@ -3,53 +3,53 @@
 96 REM  USING STRING OUTPUT
  Remark: USING STRING OUTPUT
 100 DIM A$[8],D$[9]
- NumericConstant:8
+ NumericValue:8
  Declaration:A$() -> $()
- NumericConstant:9
+ NumericValue:9
  Declaration:D$() -> $()
 110 LET D$="123456789"
  Variable:D$ -> $
- TextConstant:"123456789"
+ TextValue:"123456789"
  AssignmentOperator:= =$ -> $
 120 READ A$
  Variable:A$ -> $
 130 IF A$="STOP" THEN 210
  Variable:A$ -> $
- TextConstant:"STOP"
+ TextValue:"STOP"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:210
 140 PRINT "A$=";A$
- TextConstant:"A$="
+ TextValue:"A$="
  CarriageControl:;
  Variable:A$ -> $
  CarriageControl:NL
 150 FOR I=1 TO LEN(A$) STEP 2
  control: Variable:I -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:A$ -> $", "FunctionLen:LEN($) -> _"]
- step:    ["NumericConstant:2"]
+ step:    ["NumericValue:2"]
 160 PRINT "A$(";D$[I,I];",";D$[I+1,I+1];")=";A$[I,I+1]
- TextConstant:"A$("
+ TextValue:"A$("
  CarriageControl:;
  Variable:I -> _
  Variable:I -> _
  Variable:D$(_,_) -> $
  CarriageControl:;
- TextConstant:","
+ TextValue:","
  CarriageControl:;
  Variable:I -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:I -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:D$(_,_) -> $
  CarriageControl:;
- TextConstant:")="
+ TextValue:")="
  CarriageControl:;
  Variable:I -> _
  Variable:I -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  Variable:A$(_,_) -> $
  CarriageControl:NL
@@ -62,9 +62,9 @@
 195 REM
  Remark:
 200 DATA "ABCDEF","BASIC","STOP"
- TextConstant:"ABCDEF"
- TextConstant:"BASIC"
- TextConstant:"STOP"
+ TextValue:"ABCDEF"
+ TextValue:"BASIC"
+ TextValue:"STOP"
 210 END
  
 

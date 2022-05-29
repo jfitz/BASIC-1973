@@ -1,11 +1,11 @@
 10 FOR I=1 TO 5
  control: Variable:I -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:5"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:5"]
 20 LET C[I]=0
  Variable:I -> _
  Variable:C(_) -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 30 NEXT I
  Variable:I -> _
@@ -13,27 +13,27 @@
  Remark:THIS LOOP SIMULATES 500 PEOPLE
 35 FOR X=1 TO 500
  control: Variable:X -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:500"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:500"]
 40 FOR R=1 TO 5
  control: Variable:R -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:5"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:5"]
 42 REM  THIS LOOP LOOKS AT FIVE COURSES FOR EACH PERSON
  Remark: THIS LOOP LOOKS AT FIVE COURSES FOR EACH PERSON
 48 REM   PICK A RANDOM NUMBER ZERO OR ONE
  Remark:  PICK A RANDOM NUMBER ZERO OR ONE
 50 LET K=INT(2*RND(1))
  Variable:K -> _
- NumericConstant:2
- NumericConstant:1
+ NumericValue:2
+ NumericValue:1
  FunctionRnd:RND(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  FunctionInt:INT(_) -> _
  AssignmentOperator:= _ -> _
 60 IF K=-1 THEN 100
  Variable:K -> _
- NumericConstant:1
+ NumericValue:1
  UnaryOperatorMinus:-(_) -> =_
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:100
@@ -54,20 +54,20 @@
 90 NEXT X
  Variable:X -> _
 100 PRINT "CHEMISTRY","PHYSICS","FRENCH","SPANISH","CALCULUS"
- TextConstant:"CHEMISTRY"
+ TextValue:"CHEMISTRY"
  CarriageControl:,
- TextConstant:"PHYSICS"
+ TextValue:"PHYSICS"
  CarriageControl:,
- TextConstant:"FRENCH"
+ TextValue:"FRENCH"
  CarriageControl:,
- TextConstant:"SPANISH"
+ TextValue:"SPANISH"
  CarriageControl:,
- TextConstant:"CALCULUS"
+ TextValue:"CALCULUS"
  CarriageControl:NL
 110 FOR I=1 TO 5
  control: Variable:I -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:5"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:5"]
 120 PRINT C[I],
  Variable:I -> _
  Variable:C(_) -> _

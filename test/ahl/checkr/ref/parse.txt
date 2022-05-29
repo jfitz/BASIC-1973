@@ -1,72 +1,72 @@
 100 PRINT"  THIS PROGRAM WILL PLAY CHECKERS. THE COMPUTER IS X,"
- TextConstant:"  THIS PROGRAM WILL PLAY CHECKERS. THE COMPUTER IS X,"
+ TextValue:"  THIS PROGRAM WILL PLAY CHECKERS. THE COMPUTER IS X,"
  CarriageControl:NL
 200 PRINT"AND YOU ARE O. THE COMPUTER WILL GO FIRST,-NOTE: SQUARES"
- TextConstant:"AND YOU ARE O. THE COMPUTER WILL GO FIRST,-NOTE: SQUARES"
+ TextValue:"AND YOU ARE O. THE COMPUTER WILL GO FIRST,-NOTE: SQUARES"
  CarriageControl:NL
 300 PRINT"ARE IN THE FORM-(X,Y) AND SQ. 1,1 IS THE BOTTOM LEFT!"
- TextConstant:"ARE IN THE FORM-(X,Y) AND SQ. 1,1 IS THE BOTTOM LEFT!"
+ TextValue:"ARE IN THE FORM-(X,Y) AND SQ. 1,1 IS THE BOTTOM LEFT!"
  CarriageControl:NL
 400 PRINT"DO NOT ATTEMPT A DOUBLE JUMP OR YOUR PIECE MIGHT JUST "
- TextConstant:"DO NOT ATTEMPT A DOUBLE JUMP OR YOUR PIECE MIGHT JUST "
+ TextValue:"DO NOT ATTEMPT A DOUBLE JUMP OR YOUR PIECE MIGHT JUST "
  CarriageControl:NL
 500 PRINT"DISAPPEAR(SAME FOR A TRIPLE!)"
- TextConstant:"DISAPPEAR(SAME FOR A TRIPLE!)"
+ TextValue:"DISAPPEAR(SAME FOR A TRIPLE!)"
  CarriageControl:NL
 600 PRINT"     WAIT FOR THE COMP. TO MOVE!!!!!"
- TextConstant:"     WAIT FOR THE COMP. TO MOVE!!!!!"
+ TextValue:"     WAIT FOR THE COMP. TO MOVE!!!!!"
  CarriageControl:NL
 700 LET G=-1
  Variable:G -> _
- NumericConstant:1
+ NumericValue:1
  UnaryOperatorMinus:-(_) -> =_
  AssignmentOperator:= =_ -> _
 800 DIM R(50) 
- NumericConstant:50
+ NumericValue:50
  Declaration:R() -> _()
 900 LET L=-1
  Variable:L -> _
- NumericConstant:1
+ NumericValue:1
  UnaryOperatorMinus:-(_) -> =_
  AssignmentOperator:= =_ -> _
 1000 DIM S(10,10)
- NumericConstant:10
- NumericConstant:10
+ NumericValue:10
+ NumericValue:10
  Declaration:S(,) -> _(,)
 1100 DATA 1,0,1,0,0,0,-1,0,0,1,0,0,0,-1,0,-1,15
- NumericConstant:1
- NumericConstant:0
- NumericConstant:1
- NumericConstant:0
- NumericConstant:0
- NumericConstant:0
- NumericConstant:1
+ NumericValue:1
+ NumericValue:0
+ NumericValue:1
+ NumericValue:0
+ NumericValue:0
+ NumericValue:0
+ NumericValue:1
  UnaryOperatorMinus:-(_) -> =_
- NumericConstant:0
- NumericConstant:0
- NumericConstant:1
- NumericConstant:0
- NumericConstant:0
- NumericConstant:0
- NumericConstant:1
+ NumericValue:0
+ NumericValue:0
+ NumericValue:1
+ NumericValue:0
+ NumericValue:0
+ NumericValue:0
+ NumericValue:1
  UnaryOperatorMinus:-(_) -> =_
- NumericConstant:0
- NumericConstant:1
+ NumericValue:0
+ NumericValue:1
  UnaryOperatorMinus:-(_) -> =_
- NumericConstant:15
+ NumericValue:15
 1200 FOR X=1TO8
  control: Variable:X -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:8"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:8"]
 1300 FOR Y=1TO8
  control: Variable:Y -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:8"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:8"]
 1400 READ J
  Variable:J -> _
 1500 IF J=15 THEN 1800
  Variable:J -> _
- NumericConstant:15
+ NumericValue:15
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:1800
 1600 LET S(X,Y)=J
@@ -92,36 +92,36 @@
 2300LETL=-1*L
  WARNING: Inconsistent GOSUB origins
  Variable:L -> _
- NumericConstant:1
+ NumericValue:1
  UnaryOperatorMinus:-(_) -> =_
  Variable:L -> _
  BinaryOperatorMultiply:*(_,_) -> _
  AssignmentOperator:= _ -> _
 2400 FOR X=1TO8
  control: Variable:X -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:8"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:8"]
 2500 FOR Y=1TO8
  control: Variable:Y -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:8"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:8"]
 2600 IF S(X,Y)=0 THEN 3500
  Variable:X -> _
  Variable:Y -> _
  Variable:S(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:3500
 2700 IF G>0 THEN 3000
  Variable:G -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:3000
 2800 IF S(X,Y)>0 THEN 3500
  Variable:X -> _
  Variable:Y -> _
  Variable:S(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:3500
 2900 GOTO 3100
@@ -130,7 +130,7 @@
  Variable:X -> _
  Variable:Y -> _
  Variable:S(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:3500
 3100 IF ABS(S(X,Y))<>1 THEN 3300
@@ -138,7 +138,7 @@
  Variable:Y -> _
  Variable:S(_,_) -> _
  FunctionAbs:ABS(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:3300
 3200 GOSUB 4300
@@ -148,19 +148,19 @@
  Variable:Y -> _
  Variable:S(_,_) -> _
  FunctionAbs:ABS(_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:3500
 3400 GOSUB 6500
  LineNumber:6500
 3500IFX<>8 THEN 3800
  Variable:X -> _
- NumericConstant:8
+ NumericValue:8
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:3800
 3600IFL=1 THEN 3800
  Variable:L -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:3800
 3700RETURN
@@ -177,9 +177,9 @@
  LineNumber:2300
 4300 FOR A=-1TO1 STEP 2
  control: Variable:A -> _
- start:   ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
- end:     ["NumericConstant:1"]
- step:    ["NumericConstant:2"]
+ start:   ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ end:     ["NumericValue:1"]
+ step:    ["NumericValue:2"]
 4400 LET U=X+A
  Variable:U -> _
  Variable:X -> _
@@ -194,29 +194,29 @@
  AssignmentOperator:= _ -> _
 4600 IF U<1 THEN 6300
  Variable:U -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:6300
 4700 IF U>8 THEN 6300
  Variable:U -> _
- NumericConstant:8
+ NumericValue:8
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:6300
 4800 IF V<1 THEN 6300
  Variable:V -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:6300
 4900 IF V>8 THEN 6300
  Variable:V -> _
- NumericConstant:8
+ NumericValue:8
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:6300
 5000 IF S(U,V)<>0 THEN 5300
  Variable:U -> _
  Variable:V -> _
  Variable:S(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:5300
 5100 GOSUB 9100
@@ -234,7 +234,7 @@
  Variable:U -> _
  Variable:V -> _
  Variable:S(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:G -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorEqual:=(_,_) -> ?
@@ -253,29 +253,29 @@
  AssignmentOperator:= _ -> _
 5700 IF U<1 THEN 6300
  Variable:U -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:6300
 5800 IF U>8 THEN 6300
  Variable:U -> _
- NumericConstant:8
+ NumericValue:8
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:6300
 5900 IF V<1 THEN 6300
  Variable:V -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:6300
 6000 IF V>8 THEN 6300
  Variable:V -> _
- NumericConstant:8
+ NumericValue:8
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:6300
 6100 IF S(U,V)<>0 THEN 6300
  Variable:U -> _
  Variable:V -> _
  Variable:S(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:6300
 6200 GOSUB 9100
@@ -288,14 +288,14 @@
  Remark:KING MOVES
 6600 FOR A=-1TO1 STEP 2
  control: Variable:A -> _
- start:   ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
- end:     ["NumericConstant:1"]
- step:    ["NumericConstant:2"]
+ start:   ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ end:     ["NumericValue:1"]
+ step:    ["NumericValue:2"]
 6700 FOR B=-1TO1 STEP 2
  control: Variable:B -> _
- start:   ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
- end:     ["NumericConstant:1"]
- step:    ["NumericConstant:2"]
+ start:   ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ end:     ["NumericValue:1"]
+ step:    ["NumericValue:2"]
 6800 LET U=X+A
  Variable:U -> _
  Variable:X -> _
@@ -310,29 +310,29 @@
  AssignmentOperator:= _ -> _
 7000 IF U<1 THEN 8700
  Variable:U -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:8700
 7100 IF U>8 THEN 8700
  Variable:U -> _
- NumericConstant:8
+ NumericValue:8
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:8700
 7200 IF V<1 THEN 8700
  Variable:V -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:8700
 7300 IF V>8 THEN8700
  Variable:V -> _
- NumericConstant:8
+ NumericValue:8
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:8700
 7400 IF S(U,V)<>0 THEN 7700
  Variable:U -> _
  Variable:V -> _
  Variable:S(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:7700
 7500 GOSUB 9100
@@ -350,7 +350,7 @@
  Variable:U -> _
  Variable:V -> _
  Variable:S(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:G -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorEqual:=(_,_) -> ?
@@ -369,29 +369,29 @@
  AssignmentOperator:= _ -> _
 8100 IF U<1 THEN 8700
  Variable:U -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:8700
 8200 IF U>8 THEN 8700
  Variable:U -> _
- NumericConstant:8
+ NumericValue:8
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:8700
 8300 IF V<1 THEN 8700
  Variable:V -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:8700
 8400 IF V>8 THEN 8700
  Variable:V -> _
- NumericConstant:8
+ NumericValue:8
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:8700
 8500 IF S(U,V)<>0 THEN 8700
  Variable:U -> _
  Variable:V -> _
  Variable:S(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:8700
 8600 GOSUB 9100
@@ -409,7 +409,7 @@
 9200 LET P=P+1
  Variable:P -> _
  Variable:P -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 9300 IF P=K THEN 12300
@@ -419,8 +419,8 @@
  LineNumber:12300
 9400IF V<>(4.5+(3.5*G)) THEN 9600
  Variable:V -> _
- NumericConstant:4.5
- NumericConstant:3.5
+ NumericValue:4.5
+ NumericValue:3.5
  Variable:G -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
@@ -429,13 +429,13 @@
 9500 LET Q=Q+2
  Variable:Q -> _
  Variable:Q -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 9600 IF X<>(4.5-(3.5*G)) THEN 9800
  Variable:X -> _
- NumericConstant:4.5
- NumericConstant:3.5
+ NumericValue:4.5
+ NumericValue:3.5
  Variable:G -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
@@ -444,38 +444,38 @@
 9700LET Q=Q-2
  Variable:Q -> _
  Variable:Q -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 9800 REM
  Remark:
 9900 IF U<>1 THEN 10100
  Variable:U -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:10100
 10000 LET Q=Q+1
  Variable:Q -> _
  Variable:Q -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 10100 IF U<>8 THEN 10300
  Variable:U -> _
- NumericConstant:8
+ NumericValue:8
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:10300
 10200 LET Q=Q+1
  Variable:Q -> _
  Variable:Q -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 10300 FOR C=-1TO1 STEP 2
  control: Variable:C -> _
- start:   ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
- end:     ["NumericConstant:1"]
- step:    ["NumericConstant:2"]
+ start:   ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ end:     ["NumericValue:1"]
+ step:    ["NumericValue:2"]
 10400 IF S(U+C,V+G)<1 THEN10800
  Variable:U -> _
  Variable:C -> _
@@ -484,13 +484,13 @@
  Variable:G -> _
  BinaryOperatorPlus:+(_,_) -> _
  Variable:S(_,_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:10800
 10500 LET Q=Q-1
  Variable:Q -> _
  Variable:Q -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 10600 IF S(U-C,V-G)<>0 THEN 10800
@@ -501,13 +501,13 @@
  Variable:G -> _
  BinaryOperatorMinus:-(_,_) -> _
  Variable:S(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:10800
 10700 LET Q=Q-1
  Variable:Q -> _
  Variable:Q -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 10800 REM THIS WAS THE EVALUATION SECTION
@@ -523,23 +523,23 @@
  AssignmentOperator:= _ -> _
 11200 LETQ=0
  Variable:Q -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 11300 RETURN
  
 11400 IF P=0 THEN 18800
  Variable:P -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:18800
 11500 FOR J=10TO-10 STEP -1
  control: Variable:J -> _
- start:   ["NumericConstant:10"]
- end:     ["NumericConstant:10", "UnaryOperatorMinus:-(_) -> =_"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
+ start:   ["NumericValue:10"]
+ end:     ["NumericValue:10", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
 11600 FOR F=1TOP
  control: Variable:F -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:P -> _"]
 11700 IF R(F)=J THEN 12000
  Variable:F -> _
@@ -562,36 +562,36 @@
 12200 RETURN
  
 12300 PRINT" I MOVE FROM ("X;Y") TO ("U;V")"
- TextConstant:" I MOVE FROM ("
+ TextValue:" I MOVE FROM ("
  CarriageControl:
  Variable:X -> _
  CarriageControl:;
  Variable:Y -> _
  CarriageControl:
- TextConstant:") TO ("
+ TextValue:") TO ("
  CarriageControl:
  Variable:U -> _
  CarriageControl:;
  Variable:V -> _
  CarriageControl:
- TextConstant:")"
+ TextValue:")"
  CarriageControl:NL
 12400 LET F=0
  Variable:F -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 12500 LET P=0
  Variable:P -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 12600 LET K=0
  Variable:K -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 12700 IF V<>(4.5+(3.5*G)) THEN 13000
  Variable:V -> _
- NumericConstant:4.5
- NumericConstant:3.5
+ NumericValue:4.5
+ NumericValue:3.5
  Variable:G -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
@@ -601,7 +601,7 @@
  Variable:U -> _
  Variable:V -> _
  Variable:S(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:G -> _
  BinaryOperatorMultiply:*(_,_) -> _
  AssignmentOperator:= _ -> _
@@ -619,38 +619,38 @@
  Variable:X -> _
  Variable:Y -> _
  Variable:S(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 13200 IF ABS(X-U)<>2 THEN 13400
  Variable:X -> _
  Variable:U -> _
  BinaryOperatorMinus:-(_,_) -> _
  FunctionAbs:ABS(_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:13400
 13300 LET S((X+U)/2,(Y+V)/2)=0
  Variable:X -> _
  Variable:U -> _
  BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  Variable:Y -> _
  Variable:V -> _
  BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  Variable:S(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 13400 PRINT"BOARD";
- TextConstant:"BOARD"
+ TextValue:"BOARD"
  CarriageControl:;
 13500 INPUT D$
  Variable:D$ -> $
 13600 IF D$<>"YES" THEN13900
  Variable:D$ -> $
- TextConstant:"YES"
+ TextValue:"YES"
  BinaryOperatorNotEqual:<>($,$) -> ?
  LineNumber:13900
 13700 GOSUB 14100
@@ -666,16 +666,16 @@
  CarriageControl:NL
 14200 FOR Y=8TO1 STEP -1
  control: Variable:Y -> _
- start:   ["NumericConstant:8"]
- end:     ["NumericConstant:1"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
+ start:   ["NumericValue:8"]
+ end:     ["NumericValue:1"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
 14300 FOR X=1TO8
  control: Variable:X -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:8"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:8"]
 14400 LET I=2*X
  Variable:I -> _
- NumericConstant:2
+ NumericValue:2
  Variable:X -> _
  BinaryOperatorMultiply:*(_,_) -> _
  AssignmentOperator:= _ -> _
@@ -683,33 +683,33 @@
  Variable:X -> _
  Variable:Y -> _
  Variable:S(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:14700
 14600 PRINT TAB(I)".";
  Variable:I -> _
  FunctionTab:TAB(_) -> $
  CarriageControl:
- TextConstant:"."
+ TextValue:"."
  CarriageControl:;
 14700 IF S(X,Y)<>1 THEN 14900
  Variable:X -> _
  Variable:Y -> _
  Variable:S(_,_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:14900
 14800 PRINT TAB(I)"O";
  Variable:I -> _
  FunctionTab:TAB(_) -> $
  CarriageControl:
- TextConstant:"O"
+ TextValue:"O"
  CarriageControl:;
 14900 IF S(X,Y)<>-1 THEN 15100
  Variable:X -> _
  Variable:Y -> _
  Variable:S(_,_) -> _
- NumericConstant:1
+ NumericValue:1
  UnaryOperatorMinus:-(_) -> =_
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:15100
@@ -717,13 +717,13 @@
  Variable:I -> _
  FunctionTab:TAB(_) -> $
  CarriageControl:
- TextConstant:"X"
+ TextValue:"X"
  CarriageControl:;
 15100 IF S(X,Y)<>-2 THEN 15300
  Variable:X -> _
  Variable:Y -> _
  Variable:S(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  UnaryOperatorMinus:-(_) -> =_
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:15300
@@ -731,30 +731,30 @@
  Variable:I -> _
  FunctionTab:TAB(_) -> $
  CarriageControl:
- TextConstant:"X"
+ TextValue:"X"
  CarriageControl:;
  Variable:I -> _
  FunctionTab:TAB(_) -> $
  CarriageControl:
- TextConstant:"*"
+ TextValue:"*"
  CarriageControl:;
 15300 IF S(X,Y)<>2 THEN 15500
  Variable:X -> _
  Variable:Y -> _
  Variable:S(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:15500
 15400 PRINT TAB(I)"O";TAB(I)"*";
  Variable:I -> _
  FunctionTab:TAB(_) -> $
  CarriageControl:
- TextConstant:"O"
+ TextValue:"O"
  CarriageControl:;
  Variable:I -> _
  FunctionTab:TAB(_) -> $
  CarriageControl:
- TextConstant:"*"
+ TextValue:"*"
  CarriageControl:;
 15500 NEXT X
  Variable:X -> _
@@ -768,7 +768,7 @@
  CarriageControl:NL
 15900 PRINT"FROM";
  WARNING: Multiple GOSUB entry points
- TextConstant:"FROM"
+ TextValue:"FROM"
  CarriageControl:;
 16000 INPUT E,H
  WARNING: Multiple GOSUB entry points
@@ -789,12 +789,12 @@
  Variable:X -> _
  Variable:Y -> _
  Variable:S(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:16700
 16400 PRINT "THERE IS NO ONE OCCUPING THAT SPACE"
  WARNING: Multiple GOSUB entry points
- TextConstant:"THERE IS NO ONE OCCUPING THAT SPACE"
+ TextValue:"THERE IS NO ONE OCCUPING THAT SPACE"
  CarriageControl:NL
 16500 PRINT
  WARNING: Multiple GOSUB entry points
@@ -804,7 +804,7 @@
  LineNumber:15900
 16700 PRINT"TO";
  WARNING: Multiple GOSUB entry points
- TextConstant:"TO"
+ TextValue:"TO"
  CarriageControl:;
 16800 INPUT A,B
  WARNING: Multiple GOSUB entry points
@@ -825,12 +825,12 @@
  Variable:X -> _
  Variable:Y -> _
  Variable:S(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:17500
 17200 PRINT"THAT SPACE IS ALREADY OCCUPIED"
  WARNING: Multiple GOSUB entry points
- TextConstant:"THAT SPACE IS ALREADY OCCUPIED"
+ TextValue:"THAT SPACE IS ALREADY OCCUPIED"
  CarriageControl:NL
 17300 PRINT
  WARNING: Multiple GOSUB entry points
@@ -854,13 +854,13 @@
  Variable:E -> _
  Variable:H -> _
  Variable:S(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 17800 LET T=(4.5-(3.5*G))
  WARNING: Multiple GOSUB entry points
  Variable:T -> _
- NumericConstant:4.5
- NumericConstant:3.5
+ NumericValue:4.5
+ NumericValue:3.5
  Variable:G -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
@@ -871,7 +871,7 @@
  Variable:A -> _
  BinaryOperatorMinus:-(_,_) -> _
  FunctionAbs:ABS(_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:18100
 18000 LET S((E+A)/2,(H+B)/2)=0
@@ -879,15 +879,15 @@
  Variable:E -> _
  Variable:A -> _
  BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  Variable:H -> _
  Variable:B -> _
  BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  Variable:S(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 18100 IF B<>T THEN 18300
  WARNING: Multiple GOSUB entry points
@@ -900,7 +900,7 @@
  Variable:A -> _
  Variable:B -> _
  Variable:S(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  UnaryOperatorMinus:-(_) -> =_
  Variable:G -> _
  BinaryOperatorMultiply:*(_,_) -> _
@@ -908,13 +908,13 @@
 18300 FOR X=8TO8 
  WARNING: Multiple GOSUB entry points
  control: Variable:X -> _
- start:   ["NumericConstant:8"]
- end:     ["NumericConstant:8"]
+ start:   ["NumericValue:8"]
+ end:     ["NumericValue:8"]
 18400 FOR Y=8TO8
  WARNING: Multiple GOSUB entry points
  control: Variable:Y -> _
- start:   ["NumericConstant:8"]
- end:     ["NumericConstant:8"]
+ start:   ["NumericValue:8"]
+ end:     ["NumericValue:8"]
 18500 RETURN
  WARNING: Multiple GOSUB entry points
  
@@ -926,7 +926,7 @@
  Variable:X -> _
 18800 PRINT"    VERY GOOD, YOU WIN!"
  WARNING: Multiple GOSUB entry points
- TextConstant:"    VERY GOOD, YOU WIN!"
+ TextValue:"    VERY GOOD, YOU WIN!"
  CarriageControl:NL
 18900 PRINT
  WARNING: Multiple GOSUB entry points
@@ -936,7 +936,7 @@
  CarriageControl:NL
 19100 PRINT"                       -CHUCK OUT"
  WARNING: Multiple GOSUB entry points
- TextConstant:"                       -CHUCK OUT"
+ TextValue:"                       -CHUCK OUT"
  CarriageControl:NL
 19200 END
  WARNING: Multiple GOSUB entry points

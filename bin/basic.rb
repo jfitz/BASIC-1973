@@ -265,13 +265,13 @@ class Shell
       end
 
       if args[1].boolean_constant?
-        boolean = BooleanConstant.new(args[1])
+        boolean = BooleanValue.new(args[1])
         $options[kwd_d].set(boolean.to_v)
       elsif args[1].numeric_constant?
-        numeric = NumericConstant.new(args[1])
+        numeric = NumericValue.new(args[1])
         $options[kwd_d].set(numeric.to_v)
       elsif args[1].text_constant?
-        text = TextConstant.new(args[1])
+        text = TextValue.new(args[1])
         $options[kwd_d].set(text.to_v)
       else
         raise BASICCommandError, 'Incorrect value type'
@@ -950,9 +950,9 @@ tokenbuilders =
   make_interpreter_tokenbuilders(quotes, statement_seps, comment_leads)
 
 interpreter = Interpreter.new(console_io)
-interpreter.set_default_args('RND', NumericConstant.new(1))
-interpreter.set_default_args('RND%', IntegerConstant.new(100))
-interpreter.set_default_args('RND$', NumericConstant.new(6))
+interpreter.set_default_args('RND', NumericValue.new(1))
+interpreter.set_default_args('RND%', IntegerValue.new(100))
+interpreter.set_default_args('RND$', NumericValue.new(6))
 program = Program.new(console_io, tokenbuilders)
 interpreter.program = program
 
@@ -963,7 +963,7 @@ end
 
 # list the source
 unless list_filename.nil?
-  args = [TextConstant.new(list_filename)]
+  args = [TextValue.new(list_filename)]
 
   filename, _keywords = parse_args(args)
 
@@ -985,7 +985,7 @@ end
 
 # show parse dump
 unless parse_filename.nil?
-  args = [TextConstant.new(parse_filename)]
+  args = [TextValue.new(parse_filename)]
 
   filename, _keywords = parse_args(args)
 
@@ -1007,7 +1007,7 @@ end
 
 # show analysis
 unless analyze_filename.nil?
-  args = [TextConstant.new(analyze_filename)]
+  args = [TextValue.new(analyze_filename)]
 
   filename, _keywords = parse_args(args)
 
@@ -1026,7 +1026,7 @@ end
 
 # pretty-print the source
 unless pretty_filename.nil?
-  args = [TextConstant.new(pretty_filename)]
+  args = [TextValue.new(pretty_filename)]
 
   filename, _keywords = parse_args(args)
 
@@ -1047,7 +1047,7 @@ end
 
 # cross-reference the source
 unless cref_filename.nil?
-  args = [TextConstant.new(cref_filename)]
+  args = [TextValue.new(cref_filename)]
 
   filename, _keywords = parse_args(args)
 
@@ -1066,7 +1066,7 @@ end
 
 # run the source
 unless run_filename.nil?
-  args = [TextConstant.new(run_filename)]
+  args = [TextValue.new(run_filename)]
 
   filename, _keywords = parse_args(args)
 

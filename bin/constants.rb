@@ -3,11 +3,11 @@
 # token class
 class AbstractElement
   def self.make_coord(c)
-    [NumericConstant.new(c)]
+    [NumericValue.new(c)]
   end
 
   def self.make_coords(r, c)
-    [NumericConstant.new(r), NumericConstant.new(c)]
+    [NumericValue.new(r), NumericValue.new(c)]
   end
 
   attr_reader :precedence
@@ -501,7 +501,7 @@ class Units
 end
 
 # class that holds a value
-class AbstractValueElement < AbstractElement
+class AbstractValue < AbstractElement
   attr_reader :content_type, :shape, :constant, :symbol, :warnings
 
   def initialize
@@ -580,7 +580,7 @@ class AbstractValueElement < AbstractElement
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
-    BooleanConstant.new(@value == other.to_v)
+    BooleanValue.new(@value == other.to_v)
   end
 
   def b_ne(other)
@@ -588,7 +588,7 @@ class AbstractValueElement < AbstractElement
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
-    BooleanConstant.new(@value != other.to_v)
+    BooleanValue.new(@value != other.to_v)
   end
 
   def b_gt(other)
@@ -596,7 +596,7 @@ class AbstractValueElement < AbstractElement
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
-    BooleanConstant.new(@value > other.to_v)
+    BooleanValue.new(@value > other.to_v)
   end
 
   def b_ge(other)
@@ -604,7 +604,7 @@ class AbstractValueElement < AbstractElement
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
-    BooleanConstant.new(@value >= other.to_v)
+    BooleanValue.new(@value >= other.to_v)
   end
 
   def b_lt(other)
@@ -612,7 +612,7 @@ class AbstractValueElement < AbstractElement
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
-    BooleanConstant.new(@value < other.to_v)
+    BooleanValue.new(@value < other.to_v)
   end
 
   def b_le(other)
@@ -620,7 +620,7 @@ class AbstractValueElement < AbstractElement
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
-    BooleanConstant.new(@value <= other.to_v)
+    BooleanValue.new(@value <= other.to_v)
   end
 
   def b_and(_)
@@ -699,9 +699,9 @@ class AbstractValueElement < AbstractElement
 end
 
 # Numeric constants
-class NumericConstant < AbstractValueElement
+class NumericValue < AbstractValue
   def self.new_2(token, units)
-    n = NumericConstant.new(token)
+    n = NumericValue.new(token)
     n.set_units(units)
 
     return n
@@ -736,7 +736,7 @@ class NumericConstant < AbstractValueElement
 
   def self.new_rand(interpreter, upper_bound)
     v = interpreter.rand(upper_bound)
-    NumericConstant.new(v)
+    NumericValue.new(v)
   end
 
   private
@@ -844,11 +844,11 @@ class NumericConstant < AbstractValueElement
   end
 
   def b_and(other)
-    BooleanConstant.new(to_b && other.to_b)
+    BooleanValue.new(to_b && other.to_b)
   end
 
   def b_or(other)
-    BooleanConstant.new(to_b || other.to_b)
+    BooleanValue.new(to_b || other.to_b)
   end
 
   def dump
@@ -864,11 +864,11 @@ class NumericConstant < AbstractValueElement
   end
 
   def posate
-    NumericConstant.new(@value)
+    NumericValue.new(@value)
   end
 
   def negate
-    NumericConstant.new(-@value)
+    NumericValue.new(-@value)
   end
 
   def filehandle
@@ -878,7 +878,7 @@ class NumericConstant < AbstractValueElement
 
   def not
     b = to_b
-    BooleanConstant.new(!b)
+    BooleanValue.new(!b)
   end
 
   def add(other)
@@ -890,7 +890,7 @@ class NumericConstant < AbstractValueElement
     value = @value + other.to_numeric.to_v
     units = @units.add(other.units)
     
-    NumericConstant.new_2(value, units)
+    NumericValue.new_2(value, units)
   end
 
   def subtract(other)
@@ -902,7 +902,7 @@ class NumericConstant < AbstractValueElement
     value = @value - other.to_numeric.to_v
     units = @units.subtract(other.units)
     
-    NumericConstant.new_2(value, units)
+    NumericValue.new_2(value, units)
   end
 
   def multiply(other)
@@ -914,7 +914,7 @@ class NumericConstant < AbstractValueElement
     value = @value * other.to_numeric.to_v
     units = @units.multiply(other.units)
     
-    NumericConstant.new_2(value, units)
+    NumericValue.new_2(value, units)
   end
 
   def divide(other)
@@ -927,7 +927,7 @@ class NumericConstant < AbstractValueElement
     value = @value.to_f / other.to_numeric.to_f
     units = @units.divide(other.units)
     
-    NumericConstant.new_2(value, units)
+    NumericValue.new_2(value, units)
   end
 
   def power(other)
@@ -941,7 +941,7 @@ class NumericConstant < AbstractValueElement
     value = @value**other.to_numeric.to_v
     units = @units.power(other.to_numeric.to_v)
 
-    NumericConstant.new_2(value, units)
+    NumericValue.new_2(value, units)
   end
 
   # MAX and MIN operators
@@ -952,7 +952,7 @@ class NumericConstant < AbstractValueElement
     raise(BASICExpressionError, message) unless compatible?(other)
 
     value = [@value, other.to_v].max
-    NumericConstant.new(value)
+    NumericValue.new(value)
   end
 
   # MAX and MIN operators
@@ -963,83 +963,83 @@ class NumericConstant < AbstractValueElement
     raise(BASICExpressionError, message) unless compatible?(other)
 
     value = [@value, other.to_v].min
-    NumericConstant.new(value)
+    NumericValue.new(value)
   end
 
   def truncate
     value = @value.to_i
-    NumericConstant.new(value)
+    NumericValue.new(value)
   end
 
   def floor
     value = @value.floor
-    NumericConstant.new(value)
+    NumericValue.new(value)
   end
 
   def to_int
-    IntegerConstant.new(to_i)
+    IntegerValue.new(to_i)
   end
 
   def exp
     value = Math.exp(@value)
-    NumericConstant.new(value)
+    NumericValue.new(value)
   end
 
   def log
     value = @value.positive? ? Math.log(@value) : 0
-    NumericConstant.new(value)
+    NumericValue.new(value)
   end
 
   def logb(lbase)
     lbase_v = lbase.to_v
     value = @value.positive? ? Math.log(@value, lbase_v) : 0
-    NumericConstant.new(value)
+    NumericValue.new(value)
   end
 
   def mod(other)
     value = other.to_numeric.to_v.zero? ? 0 : @value % other.to_numeric.to_v
-    NumericConstant.new(value)
+    NumericValue.new(value)
   end
 
   def abs
     value = @value >= 0 ? @value : -@value
-    NumericConstant.new(value)
+    NumericValue.new(value)
   end
 
   def round(places)
-    NumericConstant.new(@value.round(places.to_i))
+    NumericValue.new(@value.round(places.to_i))
   end
 
   def sqrt
     value = @value.positive? ? Math.sqrt(@value) : 0
-    NumericConstant.new(value)
+    NumericValue.new(value)
   end
 
   def sin
     value = Math.sin(@value)
-    NumericConstant.new(value)
+    NumericValue.new(value)
   end
 
   def arcsin
     return 0 if @value < -1.0 || @value > 1.0
 
-    NumericConstant.new(Math.asin(@value))
+    NumericValue.new(Math.asin(@value))
   end
 
   def cos
     value = Math.cos(@value)
-    NumericConstant.new(value)
+    NumericValue.new(value)
   end
 
   def arccos
     return 0 if @value < -1.0 || @value > 1.0
 
-    NumericConstant.new(Math.acos(@value))
+    NumericValue.new(Math.acos(@value))
   end
 
   def tan
     value = @value >= 0 ? Math.tan(@value) : 0
-    NumericConstant.new(value)
+    NumericValue.new(value)
   end
 
   def cot
@@ -1047,31 +1047,31 @@ class NumericConstant < AbstractValueElement
     sin = Math.sin(@value)
     cot = Float::INFINITY
     cot = cos / sin if sin.nonzero?
-    NumericConstant.new(cot)
+    NumericValue.new(cot)
   end
 
   def atn
     value = Math.atan(@value)
-    NumericConstant.new(value)
+    NumericValue.new(value)
   end
 
   def atn2(a2)
     value = Math.atan2(@value, a2.to_f)
-    NumericConstant.new(value)
+    NumericValue.new(value)
   end
 
   def sec
     cos = Math.cos(@value)
     sec = Float::INFINITY
     sec = 1 / cos if cos.nonzero?
-    NumericConstant.new(sec)
+    NumericValue.new(sec)
   end
 
   def csc
     sin = Math.sin(@value)
     csc = Float::INFINITY
     csc = 1 / sin if sin.nonzero?
-    NumericConstant.new(csc)
+    NumericValue.new(csc)
   end
 
   # MAX and MIN operators
@@ -1094,7 +1094,7 @@ class NumericConstant < AbstractValueElement
     result = 0
     result = 1 if @value.positive?
     result = -1 if @value.negative?
-    NumericConstant.new(result)
+    NumericValue.new(result)
   end
 
   def to_i
@@ -1118,7 +1118,7 @@ class NumericConstant < AbstractValueElement
   end
 
   def to_numeric
-    NumericConstant.new(@value)
+    NumericValue.new(@value)
   end
 
   def print(printer)
@@ -1148,9 +1148,9 @@ class NumericConstant < AbstractValueElement
 end
 
 # Integer constants
-class IntegerConstant < AbstractValueElement
+class IntegerValue < AbstractValue
   def self.new_2(token, units)
-    n = IntegerConstant.new(token)
+    n = IntegerValue.new(token)
     n.set_units(units)
 
     return n
@@ -1168,7 +1168,7 @@ class IntegerConstant < AbstractValueElement
 
   def self.new_rand(interpreter, upper_bound)
     v = interpreter.rand(upper_bound)
-    IntegerConstant.new(v.to_i)
+    IntegerValue.new(v.to_i)
   end
 
   attr_reader :value
@@ -1247,17 +1247,17 @@ class IntegerConstant < AbstractValueElement
 
   def b_and(other)
     if other.content_type == :integer && $options['int_bitwise'].value
-      IntegerConstant.new(to_i & other.to_i)
+      IntegerValue.new(to_i & other.to_i)
     else
-      BooleanConstant.new(to_b && other.to_b)
+      BooleanValue.new(to_b && other.to_b)
     end
   end
 
   def b_or(other)
     if other.content_type == :integer && $options['int_bitwise'].value
-      IntegerConstant.new(to_i | other.to_i)
+      IntegerValue.new(to_i | other.to_i)
     else
-      BooleanConstant.new(to_b || other.to_b)
+      BooleanValue.new(to_b || other.to_b)
     end
   end
 
@@ -1270,11 +1270,11 @@ class IntegerConstant < AbstractValueElement
   end
 
   def posate
-    NumericConstant.new(@value)
+    NumericValue.new(@value)
   end
 
   def negate
-    IntegerConstant.new(-@value)
+    IntegerValue.new(-@value)
   end
 
   def filehandle
@@ -1284,7 +1284,7 @@ class IntegerConstant < AbstractValueElement
 
   def not
     b = ~to_i
-    IntegerConstant.new(b)
+    IntegerValue.new(b)
   end
 
   def add(other)
@@ -1296,7 +1296,7 @@ class IntegerConstant < AbstractValueElement
     value = @value + other.to_numeric.to_v
     units = @units.add(other.units)
 
-    IntegerConstant.new_2(value, units)
+    IntegerValue.new_2(value, units)
   end
 
   def subtract(other)
@@ -1308,7 +1308,7 @@ class IntegerConstant < AbstractValueElement
     value = @value - other.to_numeric.to_v
     units = @units.subtract(other.units)
     
-    IntegerConstant.new_2(value, units)
+    IntegerValue.new_2(value, units)
   end
 
   def multiply(other)
@@ -1320,7 +1320,7 @@ class IntegerConstant < AbstractValueElement
     value = @value * other.to_numeric.to_v
     units = @units.multiply(other.units)
     
-    IntegerConstant.new_2(value, units)
+    IntegerValue.new_2(value, units)
   end
 
   def divide(other)
@@ -1333,7 +1333,7 @@ class IntegerConstant < AbstractValueElement
     value = @value.to_f / other.to_numeric.to_f
     units = @units.divide(other.units)
     
-    IntegerConstant.new_2(value, units)
+    IntegerValue.new_2(value, units)
   end
 
   def power(other)
@@ -1347,7 +1347,7 @@ class IntegerConstant < AbstractValueElement
     value = @value**other.to_v
     units = @units.power(other.to_numeric.to_v)
 
-    IntegerConstant.new_2(value, units)
+    IntegerValue.new_2(value, units)
   end
 
   # MAX and MIN operators
@@ -1358,7 +1358,7 @@ class IntegerConstant < AbstractValueElement
     raise(BASICExpressionError, message) unless compatible?(other)
 
     value = [@value, other.to_v].max
-    IntegerConstant.new(value)
+    IntegerValue.new(value)
   end
 
   # MAX and MIN operators
@@ -1369,71 +1369,71 @@ class IntegerConstant < AbstractValueElement
     raise(BASICExpressionError, message) unless compatible?(other)
 
     value = [@value, other.to_v].min
-    IntegerConstant.new(value)
+    IntegerValue.new(value)
   end
 
   def truncate
     value = @value.to_i
-    IntegerConstant.new(value)
+    IntegerValue.new(value)
   end
 
   def floor
-    IntegerConstant.new(@value)
+    IntegerValue.new(@value)
   end
 
   def exp
     value = Math.exp(@value)
-    IntegerConstant.new(value)
+    IntegerValue.new(value)
   end
 
   def log
     value = @value.positive? ? Math.log(@value) : 0
-    IntegerConstant.new(value)
+    IntegerValue.new(value)
   end
 
   def log10
     value = @value.positive? ? Math.log10(@value) : 0
-    IntegerConstant.new(value)
+    IntegerValue.new(value)
   end
 
   def log2
     value = @value.positive? ? Math.log2(@value) : 0
-    IntegerConstant.new(value)
+    IntegerValue.new(value)
   end
 
   def mod(other)
     value = other.to_numeric.zero? ? 0 : @value % other.to_numeric.to_v
-    IntegerConstant.new(value)
+    IntegerValue.new(value)
   end
 
   def abs
     value = @value >= 0 ? @value : -@value
-    IntegerConstant.new(value)
+    IntegerValue.new(value)
   end
 
   def sqrt
     value = @value.positive? ? Math.sqrt(@value) : 0
-    IntegerConstant.new(value)
+    IntegerValue.new(value)
   end
 
   def sin
     value = Math.sin(@value)
-    IntegerConstant.new(value)
+    IntegerValue.new(value)
   end
 
   def cos
     value = Math.cos(@value)
-    IntegerConstant.new(value)
+    IntegerValue.new(value)
   end
 
   def tan
     value = @value >= 0 ? Math.tan(@value) : 0
-    IntegerConstant.new(value)
+    IntegerValue.new(value)
   end
 
   def atn
     value = Math.atan(@value)
-    IntegerConstant.new(value)
+    IntegerValue.new(value)
   end
 
   # MAX and MIN operators
@@ -1456,7 +1456,7 @@ class IntegerConstant < AbstractValueElement
     result = 0
     result = 1 if @value.positive?
     result = -1 if @value.negative?
-    IntegerConstant.new(result)
+    IntegerValue.new(result)
   end
 
   def to_i
@@ -1476,7 +1476,7 @@ class IntegerConstant < AbstractValueElement
   end
 
   def to_numeric
-    IntegerConstant.new(@value)
+    IntegerValue.new(@value)
   end
 
   def print(printer)
@@ -1506,7 +1506,7 @@ class IntegerConstant < AbstractValueElement
 end
 
 # Text constants
-class TextConstant < AbstractValueElement
+class TextValue < AbstractValue
   def self.accept?(token)
     classes = %w[TextLiteralToken TextSymbolToken String]
     classes.include?(token.class.to_s)
@@ -1515,7 +1515,7 @@ class TextConstant < AbstractValueElement
   def self.new_rand(interpreter, length, set)
     # negative length means random length up to positive value
     if length.negative?
-      v1 = interpreter.rand(NumericConstant.new(-length))
+      v1 = interpreter.rand(NumericValue.new(-length))
       v2 = v1 + 1
       length = v2.to_i
     end
@@ -1524,7 +1524,7 @@ class TextConstant < AbstractValueElement
     s = ''
 
     (1..length).each do
-      v1 = interpreter.rand(NumericConstant.new(set.size))
+      v1 = interpreter.rand(NumericValue.new(set.size))
       v2 = v1.to_i
       raise StandardError, 'RND$ out of range' if v2 >= set.size
 
@@ -1532,7 +1532,7 @@ class TextConstant < AbstractValueElement
       s += c
     end
 
-    TextConstant.new(s)
+    TextValue.new(s)
   end
 
   attr_reader :value, :symbol_text
@@ -1606,15 +1606,15 @@ class TextConstant < AbstractValueElement
 
   def not
     b = to_b
-    BooleanConstant.new(!b)
+    BooleanValue.new(!b)
   end
 
   def b_and(other)
-    BooleanConstant.new(to_b && other.to_b)
+    BooleanValue.new(to_b && other.to_b)
   end
 
   def b_or(other)
-    BooleanConstant.new(to_b || other.to_b)
+    BooleanValue.new(to_b || other.to_b)
   end
 
   def add(other)
@@ -1623,7 +1623,7 @@ class TextConstant < AbstractValueElement
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
-    TextConstant.new(@value + other.to_v)
+    TextValue.new(@value + other.to_v)
   end
 
   def multiply(other)
@@ -1632,7 +1632,7 @@ class TextConstant < AbstractValueElement
 
     raise(BASICExpressionError, message) unless other.numeric_constant?
 
-    TextConstant.new(@value * other.to_v)
+    TextValue.new(@value * other.to_v)
   end
 
   # MAX and MIN operators
@@ -1642,7 +1642,7 @@ class TextConstant < AbstractValueElement
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
-    TextConstant.new([@value, other.to_v].max)
+    TextValue.new([@value, other.to_v].max)
   end
 
   # MAX and MIN operators
@@ -1652,7 +1652,7 @@ class TextConstant < AbstractValueElement
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
-    TextConstant.new([@value, other.to_v].min)
+    TextValue.new([@value, other.to_v].min)
   end
 
   def to_s
@@ -1675,7 +1675,7 @@ class TextConstant < AbstractValueElement
   def na_unpack
     base = $options['base'].value
 
-    length = NumericConstant.new(@value.size + base)
+    length = NumericValue.new(@value.size + base)
     dims = [length]
 
     values = {}
@@ -1683,8 +1683,8 @@ class TextConstant < AbstractValueElement
     index = base
 
     @value.each_char do |char|
-      key = [NumericConstant.new(index)]
-      values[key] = NumericConstant.new(char.ord)
+      key = [NumericValue.new(index)]
+      values[key] = NumericValue.new(char.ord)
       index += 1
     end
 
@@ -1692,16 +1692,16 @@ class TextConstant < AbstractValueElement
   end
 
    def na_unpack_1
-    length = NumericConstant.new(@value.size)
+    length = NumericValue.new(@value.size)
     dims = [length]
 
     values = {}
-    values[[NumericConstant.new(0)]] = length
+    values[[NumericValue.new(0)]] = length
     index = 1
 
     @value.each_char do |char|
-      key = [NumericConstant.new(index)]
-      values[key] = NumericConstant.new(char.ord)
+      key = [NumericValue.new(index)]
+      values[key] = NumericValue.new(char.ord)
       index += 1
     end
 
@@ -1711,7 +1711,7 @@ class TextConstant < AbstractValueElement
   def ia_unpack
     base = $options['base'].value
 
-    length = IntegerConstant.new(@value.size + base)
+    length = IntegerValue.new(@value.size + base)
     dims = [length]
 
     values = {}
@@ -1719,8 +1719,8 @@ class TextConstant < AbstractValueElement
     index = base
 
     @value.each_char do |char|
-      key = [NumericConstant.new(index)]
-      values[key] = IntegerConstant.new(char.ord)
+      key = [NumericValue.new(index)]
+      values[key] = IntegerValue.new(char.ord)
       index += 1
     end
 
@@ -1728,16 +1728,16 @@ class TextConstant < AbstractValueElement
   end
 
    def ia_unpack_1
-    length = IntegerConstant.new(@value.size)
+    length = IntegerValue.new(@value.size)
     dims = [length]
 
     values = {}
-    values[[IntegerConstant.new(0)]] = length
+    values[[IntegerValue.new(0)]] = length
     index = 1
 
     @value.each_char do |char|
-      key = [NumericConstant.new(index)]
-      values[key] = IntegerConstant.new(char.ord)
+      key = [NumericValue.new(index)]
+      values[key] = IntegerValue.new(char.ord)
       index += 1
     end
 
@@ -1745,16 +1745,16 @@ class TextConstant < AbstractValueElement
   end
 
   def lower
-    TextConstant.new(@value.downcase)
+    TextValue.new(@value.downcase)
   end
 
   def upper
-    TextConstant.new(@value.upcase)
+    TextValue.new(@value.upcase)
   end
 end
 
 # Boolean constants
-class BooleanConstant < AbstractValueElement
+class BooleanValue < AbstractValue
   def self.accept?(token)
     classes = %w[BooleanLiteralToken]
     classes.include?(token.class.to_s)
@@ -1771,9 +1771,9 @@ class BooleanConstant < AbstractValueElement
     @value =
       (obj_class == 'BooleanLiteralToken' && obj.to_s == 'TRUE') ||
       (obj_class == 'String' && obj.casecmp('TRUE').zero?) ||
-      (obj_class == 'NumericConstant' && !obj.to_f.zero?) ||
-      (obj_class == 'IntegerConstant' && !obj.to_i.zero?) ||
-      (obj_class == 'TextConstant' && !obj.value.strip.size.zero?) ||
+      (obj_class == 'NumericValue' && !obj.to_f.zero?) ||
+      (obj_class == 'IntegerValue' && !obj.to_i.zero?) ||
+      (obj_class == 'TextValue' && !obj.value.strip.size.zero?) ||
       obj_class == 'TrueClass'
 
     @content_type = :boolean
@@ -1827,15 +1827,15 @@ class BooleanConstant < AbstractValueElement
   end
 
   def not
-    BooleanConstant.new(!@value)
+    BooleanValue.new(!@value)
   end
 
   def b_and(other)
-    BooleanConstant.new(@value && other.to_b)
+    BooleanValue.new(@value && other.to_b)
   end
 
   def b_or(other)
-    BooleanConstant.new(@value || other.to_b)
+    BooleanValue.new(@value || other.to_b)
   end
 
   def to_i
@@ -1863,7 +1863,7 @@ class BooleanConstant < AbstractValueElement
   end
 
   def to_numeric
-    @value ? NumericConstant.new(-1) : NumericConstant.new(0)
+    @value ? NumericValue.new(-1) : NumericValue.new(0)
   end
 
   def print(printer)
@@ -1897,7 +1897,7 @@ class FileHandle < AbstractElement
   def initialize(num)
     super()
 
-    legals = %w[Fixnum Integer NumericConstant IntegerConstant FileHandle]
+    legals = %w[Fixnum Integer NumericValue IntegerValue FileHandle]
 
     raise BASICRuntimeError, :te_fh_inv unless
       legals.include?(num.class.to_s)

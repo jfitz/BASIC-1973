@@ -1,38 +1,38 @@
 1 REM BOB DORES/WAR
  Remark:BOB DORES/WAR
 2 PRI "I AM AT WAR WITH YOU."
- TextConstant:"I AM AT WAR WITH YOU."
+ TextValue:"I AM AT WAR WITH YOU."
  CarriageControl:NL
 4 PRI "WE HAVE 72000 SOLDIERS A PIECE."
- TextConstant:"WE HAVE 72000 SOLDIERS A PIECE."
+ TextValue:"WE HAVE 72000 SOLDIERS A PIECE."
  CarriageControl:NL
 5 PRI "DISTRIBUTE YOUR FORCES."
- TextConstant:"DISTRIBUTE YOUR FORCES."
+ TextValue:"DISTRIBUTE YOUR FORCES."
  CarriageControl:NL
 6 PRI ,"ME","YOU"
  CarriageControl:,
- TextConstant:"ME"
+ TextValue:"ME"
  CarriageControl:,
- TextConstant:"YOU"
+ TextValue:"YOU"
  CarriageControl:NL
 7 PRI"ARMY","30000",
- TextConstant:"ARMY"
+ TextValue:"ARMY"
  CarriageControl:,
- TextConstant:"30000"
+ TextValue:"30000"
  CarriageControl:,
 8 INPUT A
  Variable:A -> _
 9 PRI "NAVY","20000",
- TextConstant:"NAVY"
+ TextValue:"NAVY"
  CarriageControl:,
- TextConstant:"20000"
+ TextValue:"20000"
  CarriageControl:,
 10 INPUT B
  Variable:B -> _
 11 PRI"A.F.","22000",
- TextConstant:"A.F."
+ TextValue:"A.F."
  CarriageControl:,
- TextConstant:"22000"
+ TextValue:"22000"
  CarriageControl:,
 12 INPUT C
  Variable:C -> _
@@ -42,37 +42,37 @@
  BinaryOperatorPlus:+(_,_) -> _
  Variable:C -> _
  BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:72000
+ NumericValue:72000
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:5
 14 D=30000 
  Variable:D -> _
- NumericConstant:30000
+ NumericValue:30000
  AssignmentOperator:= =_ -> _
 15 E=20000 
  Variable:E -> _
- NumericConstant:20000
+ NumericValue:20000
  AssignmentOperator:= =_ -> _
 16 F=22000
  Variable:F -> _
- NumericConstant:22000
+ NumericValue:22000
  AssignmentOperator:= =_ -> _
 17 PRI "YOU ATTACK FIRST. TYPE 1 FOR ARMY 2 FOR NAVY"
- TextConstant:"YOU ATTACK FIRST. TYPE 1 FOR ARMY 2 FOR NAVY"
+ TextValue:"YOU ATTACK FIRST. TYPE 1 FOR ARMY 2 FOR NAVY"
  CarriageControl:NL
 18 PRI "AND 3 FOR AIR FORCE."
- TextConstant:"AND 3 FOR AIR FORCE."
+ TextValue:"AND 3 FOR AIR FORCE."
  CarriageControl:NL
 19 INPUT Y
  Variable:Y -> _
 20 PRI "HOW MANY MEN"
- TextConstant:"HOW MANY MEN"
+ TextValue:"HOW MANY MEN"
  CarriageControl:NL
 21 INPUT X
  Variable:X -> _
 22 IF X<0 THEN 20
  Variable:X -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:20
 23 ON Y GOTO 100,200,300
@@ -88,27 +88,27 @@
 105 IF X<A/3 THEN 120
  Variable:X -> _
  Variable:A -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:120
 110 IF X<2*A/3 THEN 150
  Variable:X -> _
- NumericConstant:2
+ NumericValue:2
  Variable:A -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:150
 115 GOT 270
  LineNumber:270
 120 PRI "YOU LOST "X" MEN FROM YOUR ARMY."
- TextConstant:"YOU LOST "
+ TextValue:"YOU LOST "
  CarriageControl:
  Variable:X -> _
  CarriageControl:
- TextConstant:" MEN FROM YOUR ARMY."
+ TextValue:" MEN FROM YOUR ARMY."
  CarriageControl:NL
 125 A=INT(A-X)
  Variable:A -> _
@@ -120,19 +120,19 @@
 130 GOTO 500
  LineNumber:500
 150 PRI"YOU LOST "INT(X/3)" MEN, BUT I LOST "INT(2*D/3)
- TextConstant:"YOU LOST "
+ TextValue:"YOU LOST "
  CarriageControl:
  Variable:X -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  CarriageControl:
- TextConstant:" MEN, BUT I LOST "
+ TextValue:" MEN, BUT I LOST "
  CarriageControl:
- NumericConstant:2
+ NumericValue:2
  Variable:D -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  CarriageControl:NL
@@ -140,14 +140,14 @@
  Variable:A -> _
  Variable:A -> _
  Variable:X -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
  FunctionInt:INT(_) -> _
  AssignmentOperator:= _ -> _
 160 D=0
  Variable:D -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 165 GOTO 500
  LineNumber:500
@@ -159,23 +159,23 @@
 210 IF X<E/3 THEN 230
  Variable:X -> _
  Variable:E -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:230
 215 IF X<2*E/3 THEN 250
  Variable:X -> _
- NumericConstant:2
+ NumericValue:2
  Variable:E -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:250
 220 GOT 270
  LineNumber:270
 230 PRI "YOUR ATTACK WAS STOPPED!"
- TextConstant:"YOUR ATTACK WAS STOPPED!"
+ TextValue:"YOUR ATTACK WAS STOPPED!"
  CarriageControl:NL
 232 B=INT(B-X)
  Variable:B -> _
@@ -187,52 +187,52 @@
 235 GOTO 500
  LineNumber:500
 250 PRI "YOU DESTROYED "INT(2*E/3)" OF MY ARMY."
- TextConstant:"YOU DESTROYED "
+ TextValue:"YOU DESTROYED "
  CarriageControl:
- NumericConstant:2
+ NumericValue:2
  Variable:E -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  CarriageControl:
- TextConstant:" OF MY ARMY."
+ TextValue:" OF MY ARMY."
  CarriageControl:NL
 255 E=INT(E/3)
  Variable:E -> _
  Variable:E -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  AssignmentOperator:= _ -> _
 260 GOTO 500
  LineNumber:500
 270 PRI"YOU SUNK 1 OF MY PATROL BOATS, BUT I WIPED OUT 2"
- TextConstant:"YOU SUNK 1 OF MY PATROL BOATS, BUT I WIPED OUT 2"
+ TextValue:"YOU SUNK 1 OF MY PATROL BOATS, BUT I WIPED OUT 2"
  CarriageControl:NL
 275 PRI "OF YOUR A.F. BASES, AND 3 ARMY BASES."
- TextConstant:"OF YOUR A.F. BASES, AND 3 ARMY BASES."
+ TextValue:"OF YOUR A.F. BASES, AND 3 ARMY BASES."
  CarriageControl:NL
 280 A=INT(A/3)
  Variable:A -> _
  Variable:A -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  AssignmentOperator:= _ -> _
 285 C=INT(C/3)
  Variable:C -> _
  Variable:C -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  AssignmentOperator:= _ -> _
 290 E=INT(2*E/3)
  Variable:E -> _
- NumericConstant:2
+ NumericValue:2
  Variable:E -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  AssignmentOperator:= _ -> _
@@ -246,23 +246,23 @@
 310 IF X<C/3 THEN 350
  Variable:X -> _
  Variable:C -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:350
 320 IF X<2*C/3 THEN 370
  Variable:X -> _
- NumericConstant:2
+ NumericValue:2
  Variable:C -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:370
 330 GOT 380
  LineNumber:380
 350 PRI "YOUR ATTACK WAS WIPED OUT."
- TextConstant:"YOUR ATTACK WAS WIPED OUT."
+ TextValue:"YOUR ATTACK WAS WIPED OUT."
  CarriageControl:NL
 355 C=INT(C-X)
  Variable:C -> _
@@ -274,59 +274,59 @@
 360 GOTO 500
  LineNumber:500
 370 PRI "WE HAD A DOGFIGHT- YOU WON - AND FINISHED YOUR MISSION."
- TextConstant:"WE HAD A DOGFIGHT- YOU WON - AND FINISHED YOUR MISSION."
+ TextValue:"WE HAD A DOGFIGHT- YOU WON - AND FINISHED YOUR MISSION."
  CarriageControl:NL
 375 D=INT(2*D/3)
  Variable:D -> _
- NumericConstant:2
+ NumericValue:2
  Variable:D -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  AssignmentOperator:= _ -> _
 377 E=INT(E/3)
  Variable:E -> _
  Variable:E -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  AssignmentOperator:= _ -> _
 378 F=INT(F/3)
  Variable:F -> _
  Variable:F -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  AssignmentOperator:= _ -> _
 379 GOT500
  LineNumber:500
 380 PRI "YOU WIPED OUT ONE OF MY ARMY PATROLS, BUT I"
- TextConstant:"YOU WIPED OUT ONE OF MY ARMY PATROLS, BUT I"
+ TextValue:"YOU WIPED OUT ONE OF MY ARMY PATROLS, BUT I"
  CarriageControl:NL
 381 PRI "DESTROYED 2 NAVY BASES, AND BOMBED 3 ARMY BASES."
- TextConstant:"DESTROYED 2 NAVY BASES, AND BOMBED 3 ARMY BASES."
+ TextValue:"DESTROYED 2 NAVY BASES, AND BOMBED 3 ARMY BASES."
  CarriageControl:NL
 385 A=INT(A/4)
  Variable:A -> _
  Variable:A -> _
- NumericConstant:4
+ NumericValue:4
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  AssignmentOperator:= _ -> _
 387 B=INT(B/3)
  Variable:B -> _
  Variable:B -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  AssignmentOperator:= _ -> _
 390 D=INT(2*D/3)
  Variable:D -> _
- NumericConstant:2
+ NumericValue:2
  Variable:D -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  AssignmentOperator:= _ -> _
@@ -334,47 +334,47 @@
  CarriageControl:NL
 501 PRI,"YOU","ME"
  CarriageControl:,
- TextConstant:"YOU"
+ TextValue:"YOU"
  CarriageControl:,
- TextConstant:"ME"
+ TextValue:"ME"
  CarriageControl:NL
 510 PRI"ARMY",A,D
- TextConstant:"ARMY"
+ TextValue:"ARMY"
  CarriageControl:,
  Variable:A -> _
  CarriageControl:,
  Variable:D -> _
  CarriageControl:NL
 520 PRI"NAVY",B,E
- TextConstant:"NAVY"
+ TextValue:"NAVY"
  CarriageControl:,
  Variable:B -> _
  CarriageControl:,
  Variable:E -> _
  CarriageControl:NL
 530 PRI"A.F.",C,F
- TextConstant:"A.F."
+ TextValue:"A.F."
  CarriageControl:,
  Variable:C -> _
  CarriageControl:,
  Variable:F -> _
  CarriageControl:NL
 1000 PRI "WHAT IS YOUR NEXT MOVE?"
- TextConstant:"WHAT IS YOUR NEXT MOVE?"
+ TextValue:"WHAT IS YOUR NEXT MOVE?"
  CarriageControl:NL
 1010 PRI "ARMY=1 NAVY=2 AIR F0RCE=3"
- TextConstant:"ARMY=1 NAVY=2 AIR F0RCE=3"
+ TextValue:"ARMY=1 NAVY=2 AIR F0RCE=3"
  CarriageControl:NL
 1020 INPUT G
  Variable:G -> _
 1030 PRI "HOW MANY MEN"
- TextConstant:"HOW MANY MEN"
+ TextValue:"HOW MANY MEN"
  CarriageControl:NL
 1040 INPUT T
  Variable:T -> _
 1045 IF T<0 THEN 1030
  Variable:T -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:1030
 1050 ON G GOTO 1600,1700,1800
@@ -390,21 +390,21 @@
 1610 IF T<D/2 THEN 1630
  Variable:T -> _
  Variable:D -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:1630
 1615 PRI"YOU DESTROYED MY ARMY!"
- TextConstant:"YOU DESTROYED MY ARMY!"
+ TextValue:"YOU DESTROYED MY ARMY!"
  CarriageControl:NL
 1616 D=0
  Variable:D -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 1617 GOTO 2000
  LineNumber:2000
 1630 PRI "I WIPED OUT YOUR ATTACK"
- TextConstant:"I WIPED OUT YOUR ATTACK"
+ TextValue:"I WIPED OUT YOUR ATTACK"
  CarriageControl:NL
 1635 A=A-T
  Variable:A -> _
@@ -422,50 +422,50 @@
 1710 IF T<E/2 THEN 1750
  Variable:T -> _
  Variable:E -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:1750
 1720 GOT 1770
  LineNumber:1770
 1750 PRI "I SUNK 2 OF YOUR BATTLESHIPS, AND MY. AIR FORCE"
- TextConstant:"I SUNK 2 OF YOUR BATTLESHIPS, AND MY. AIR FORCE"
+ TextValue:"I SUNK 2 OF YOUR BATTLESHIPS, AND MY. AIR FORCE"
  CarriageControl:NL
 1751 PRI "WIPED OUT YOUR UNGUARDED CAPITOL."
- TextConstant:"WIPED OUT YOUR UNGUARDED CAPITOL."
+ TextValue:"WIPED OUT YOUR UNGUARDED CAPITOL."
  CarriageControl:NL
 1755 A=A/4
  Variable:A -> _
  Variable:A -> _
- NumericConstant:4
+ NumericValue:4
  BinaryOperatorDivide:/(_,_) -> _
  AssignmentOperator:= _ -> _
 1760 B=B/2
  Variable:B -> _
  Variable:B -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  AssignmentOperator:= _ -> _
 1765 GOTO 2000
  LineNumber:2000
 1770 PRI "YOUR NAVY SHOT DOWN 3 OF MY XIII PLANES,"
- TextConstant:"YOUR NAVY SHOT DOWN 3 OF MY XIII PLANES,"
+ TextValue:"YOUR NAVY SHOT DOWN 3 OF MY XIII PLANES,"
  CarriageControl:NL
 1771 PRI "AND SUNK 3 BATTLESHIPS."
- TextConstant:"AND SUNK 3 BATTLESHIPS."
+ TextValue:"AND SUNK 3 BATTLESHIPS."
  CarriageControl:NL
 1775 F=2*F/3
  Variable:F -> _
- NumericConstant:2
+ NumericValue:2
  Variable:F -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  AssignmentOperator:= _ -> _
 1780 E=(E/2)
  Variable:E -> _
  Variable:E -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  AssignmentOperator:= _ -> _
 1790 GOTO2000
@@ -478,50 +478,50 @@
 1810 IF T>F/2 THEN 1830
  Variable:T -> _
  Variable:F -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:1830
 1820 GOT 1850
  LineNumber:1850
 1830 PRI "MY NAVY AND AIR FORCE IN A COMBINED ATTACK LEFT"
- TextConstant:"MY NAVY AND AIR FORCE IN A COMBINED ATTACK LEFT"
+ TextValue:"MY NAVY AND AIR FORCE IN A COMBINED ATTACK LEFT"
  CarriageControl:NL
 1831 PRI "YOUR COUNTRY IN SHAMBLES."
- TextConstant:"YOUR COUNTRY IN SHAMBLES."
+ TextValue:"YOUR COUNTRY IN SHAMBLES."
  CarriageControl:NL
 1835 A=A/3
  Variable:A -> _
  Variable:A -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  AssignmentOperator:= _ -> _
 1837 B=B/3
  Variable:B -> _
  Variable:B -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  AssignmentOperator:= _ -> _
 1840 C=C/3
  Variable:C -> _
  Variable:C -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> _
  AssignmentOperator:= _ -> _
 1845 GOTO 2000
  LineNumber:2000
 1850 PRI "ONE OF YOUR PLANES CRASHED INTO MY HOUSE. I AM DEAD."
- TextConstant:"ONE OF YOUR PLANES CRASHED INTO MY HOUSE. I AM DEAD."
+ TextValue:"ONE OF YOUR PLANES CRASHED INTO MY HOUSE. I AM DEAD."
  CarriageControl:NL
 1851 PRI "MY COUNTRY FELL APART."
- TextConstant:"MY COUNTRY FELL APART."
+ TextValue:"MY COUNTRY FELL APART."
  CarriageControl:NL
 1860 GOTO 2010
  LineNumber:2010
 2000 PRI
  CarriageControl:NL
 2001 PRI "FROM THE RESULTS OF BOTH OF YOUR ATTACKS,"
- TextConstant:"FROM THE RESULTS OF BOTH OF YOUR ATTACKS,"
+ TextValue:"FROM THE RESULTS OF BOTH OF YOUR ATTACKS,"
  CarriageControl:NL
 2002 IF A+B+C>3/2*(D+E+F) THEN 2010
  Variable:A -> _
@@ -529,8 +529,8 @@
  BinaryOperatorPlus:+(_,_) -> _
  Variable:C -> _
  BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:3
- NumericConstant:2
+ NumericValue:3
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> =_
  Variable:D -> _
  Variable:E -> _
@@ -546,8 +546,8 @@
  BinaryOperatorPlus:+(_,_) -> _
  Variable:C -> _
  BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:2
- NumericConstant:3
+ NumericValue:2
+ NumericValue:3
  BinaryOperatorDivide:/(_,_) -> =_
  Variable:D -> _
  Variable:E -> _
@@ -558,23 +558,23 @@
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:2015
 2006 PRI"THE TREATY OF PARIS CONCLUDED THAT WE TAKE OUR"
- TextConstant:"THE TREATY OF PARIS CONCLUDED THAT WE TAKE OUR"
+ TextValue:"THE TREATY OF PARIS CONCLUDED THAT WE TAKE OUR"
  CarriageControl:NL
 2007 PRI"'RESPECTIVE COUNTRIES, AND LIVE IN PEACE."
- TextConstant:"'RESPECTIVE COUNTRIES, AND LIVE IN PEACE."
+ TextValue:"'RESPECTIVE COUNTRIES, AND LIVE IN PEACE."
  CarriageControl:NL
 2008 GOT2020
  LineNumber:2020
 2010 PRI "YOU WON, OH! SHUCKS!!!!!"
- TextConstant:"YOU WON, OH! SHUCKS!!!!!"
+ TextValue:"YOU WON, OH! SHUCKS!!!!!"
  CarriageControl:NL
 2012 GOTO 2020
  LineNumber:2020
 2015 PRI "YOU LOST- I CONQUERED YOUR COUNTRY. IT SERVES YOU"
- TextConstant:"YOU LOST- I CONQUERED YOUR COUNTRY. IT SERVES YOU"
+ TextValue:"YOU LOST- I CONQUERED YOUR COUNTRY. IT SERVES YOU"
  CarriageControl:NL
 2016 PRI "RIGHT FOR PLAYING THIS STUPID GAME!!!"
- TextConstant:"RIGHT FOR PLAYING THIS STUPID GAME!!!"
+ TextValue:"RIGHT FOR PLAYING THIS STUPID GAME!!!"
  CarriageControl:NL
 2020 END
  

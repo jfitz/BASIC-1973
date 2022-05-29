@@ -1,8 +1,8 @@
 10 PRINT "SEARCH FOR REAL ZEROS OF A POLYNOMIAL"
- TextConstant:"SEARCH FOR REAL ZEROS OF A POLYNOMIAL"
+ TextValue:"SEARCH FOR REAL ZEROS OF A POLYNOMIAL"
  CarriageControl:NL
 20 PRINT "START, END, INCREMENT";
- TextConstant:"START, END, INCREMENT"
+ TextValue:"START, END, INCREMENT"
  CarriageControl:;
 30 INPUT F,L,S
  Variable:F -> _
@@ -10,30 +10,30 @@
  Variable:S -> _
 40 IF S=0 THEN 270
  Variable:S -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:270
 50 DEF FNT(X)=X^3+49.1809*X^2+2.67761*X-15223.8
  UserFunctionName:FNT -> _
  VariableName:X -> _
  Variable:X -> _
- NumericConstant:3
+ NumericValue:3
  BinaryOperatorPower:^(_,_) -> _
- NumericConstant:49.1809
+ NumericValue:49.1809
  Variable:X -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorPower:^(_,_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:2.67761
+ NumericValue:2.67761
  Variable:X -> _
  BinaryOperatorMultiply:*(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:15223.8
+ NumericValue:15223.8
  BinaryOperatorMinus:-(_,_) -> _
 60 LET A=0
  Variable:A -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 70 FOR X=F TO L STEP S
  control: Variable:X -> _
@@ -56,13 +56,13 @@
  Variable:S1 -> _
  Variable:S2 -> _
  BinaryOperatorMultiply:*(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:130
 110 LET A=A+1
  Variable:A -> _
  Variable:A -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 120 LET S[A]=X
@@ -74,25 +74,25 @@
  Variable:X -> _
 140 IF A>0 THEN 190
  Variable:A -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:190
 150 PRINT "NO INTERVALS FOUND **** TRY AGAIN "
- TextConstant:"NO INTERVALS FOUND **** TRY AGAIN "
+ TextValue:"NO INTERVALS FOUND **** TRY AGAIN "
  CarriageControl:NL
 160 PRINT "WITH EITHER GREATER LIMITS OR SMALLER INCREMENT"
- TextConstant:"WITH EITHER GREATER LIMITS OR SMALLER INCREMENT"
+ TextValue:"WITH EITHER GREATER LIMITS OR SMALLER INCREMENT"
  CarriageControl:NL
 170 PRINT
  CarriageControl:NL
 180 GOTO 20
  LineNumber:20
 190 PRINT "INTERVAL(S) BEGIN AT:"
- TextConstant:"INTERVAL(S) BEGIN AT:"
+ TextValue:"INTERVAL(S) BEGIN AT:"
  CarriageControl:NL
 200 FOR I=1 TO A
  control: Variable:I -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:A -> _"]
 210 PRINT S[I];
  Variable:I -> _
@@ -105,7 +105,7 @@
 240 PRINT
  CarriageControl:NL
 250 PRINT "NOW ";
- TextConstant:"NOW "
+ TextValue:"NOW "
  CarriageControl:;
 260 GOTO 20
  LineNumber:20

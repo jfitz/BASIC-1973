@@ -1,16 +1,16 @@
 1 PRI "THIS IS A NUMBER GUESSING GAME.  I'LL THINK"
- TextConstant:"THIS IS A NUMBER GUESSING GAME.  I'LL THINK"
+ TextValue:"THIS IS A NUMBER GUESSING GAME.  I'LL THINK"
  CarriageControl:NL
 2 PRI "OF A NUMBER BETWEEN 1 AND ANY LIMIT YOU WANT."
- TextConstant:"OF A NUMBER BETWEEN 1 AND ANY LIMIT YOU WANT."
+ TextValue:"OF A NUMBER BETWEEN 1 AND ANY LIMIT YOU WANT."
  CarriageControl:NL
 3 PRI "THEN YOU HAVE TO GUESS WHAT IT IS."
- TextConstant:"THEN YOU HAVE TO GUESS WHAT IT IS."
+ TextValue:"THEN YOU HAVE TO GUESS WHAT IT IS."
  CarriageControl:NL
 4 PRI
  CarriageControl:NL
 5 PRI "WHAT LIMIT DO YOU WANT";
- TextConstant:"WHAT LIMIT DO YOU WANT"
+ TextValue:"WHAT LIMIT DO YOU WANT"
  CarriageControl:;
 6 INPL
  Variable:L -> _
@@ -20,40 +20,40 @@
  Variable:L1 -> _
  Variable:L -> _
  FunctionLog:LOG(_) -> _
- NumericConstant:2
+ NumericValue:2
  FunctionLog:LOG(_) -> =_
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 10 PRI"I'M THINKING OF A NUMBER BETWEEN 1 AND"L
- TextConstant:"I'M THINKING OF A NUMBER BETWEEN 1 AND"
+ TextValue:"I'M THINKING OF A NUMBER BETWEEN 1 AND"
  CarriageControl:
  Variable:L -> _
  CarriageControl:NL
 11 G=1
  Variable:G -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
 14 PRI "NOW YOU TRY TO GUESS WHAT IT IS"
- TextConstant:"NOW YOU TRY TO GUESS WHAT IT IS"
+ TextValue:"NOW YOU TRY TO GUESS WHAT IT IS"
  CarriageControl:NL
 15 M=INT(L*RND(0))+1
  Variable:M -> _
  Variable:L -> _
- NumericConstant:0
+ NumericValue:0
  FunctionRnd:RND(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  FunctionInt:INT(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 20 INP N
  Variable:N -> _
 21 IF N>0 THEN 25
  Variable:N -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:25
 22 GOSUB70
@@ -68,7 +68,7 @@
 30 G=G+1
  Variable:G -> _
  Variable:G -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 31 IF N>M THEN 40
@@ -77,21 +77,21 @@
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:40
 32 PRI "TOO LOW. GUESS AGAIN."
- TextConstant:"TOO LOW. GUESS AGAIN."
+ TextValue:"TOO LOW. GUESS AGAIN."
  CarriageControl:NL
 33 GOTO 20
  LineNumber:20
 40 PRI "TOO HIGH. GUESS AGAIN."
- TextConstant:"TOO HIGH. GUESS AGAIN."
+ TextValue:"TOO HIGH. GUESS AGAIN."
  CarriageControl:NL
 42 GOTO 20
  LineNumber:20
 50 PRI "THAT'S IT! YOU GOT IT IN "G"TRIES."
- TextConstant:"THAT'S IT! YOU GOT IT IN "
+ TextValue:"THAT'S IT! YOU GOT IT IN "
  CarriageControl:
  Variable:G -> _
  CarriageControl:
- TextConstant:"TRIES."
+ TextValue:"TRIES."
  CarriageControl:NL
 52 IF G<L1 THEN 58
  Variable:G -> _
@@ -104,19 +104,19 @@
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:60
 56 PRI "YOU SHOULD HAVE BEEN ABLE TO GET IT IN ONLY"L1"."
- TextConstant:"YOU SHOULD HAVE BEEN ABLE TO GET IT IN ONLY"
+ TextValue:"YOU SHOULD HAVE BEEN ABLE TO GET IT IN ONLY"
  CarriageControl:
  Variable:L1 -> _
  CarriageControl:
- TextConstant:"."
+ TextValue:"."
  CarriageControl:NL
 57 GOT 65
  LineNumber:65
 58 PRI"VERY ";
- TextConstant:"VERY "
+ TextValue:"VERY "
  CarriageControl:;
 60 PRI"GOOD!"
- TextConstant:"GOOD!"
+ TextValue:"GOOD!"
  CarriageControl:NL
 65 GOSUB70
  LineNumber:70
@@ -124,8 +124,8 @@
  LineNumber:10
 70 FOR H=1 TO 5
  control: Variable:H -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:5"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:5"]
 71 PRI
  CarriageControl:NL
 72 NEXT H

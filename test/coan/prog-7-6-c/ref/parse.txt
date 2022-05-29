@@ -1,12 +1,12 @@
 94 REM * READ SCORE - WRITE SCORE1
  Remark:* READ SCORE - WRITE SCORE1
 100 FILES "score.txt"; "score1.txt"
- TextConstant:"score.txt"
- TextConstant:"score1.txt"
+ TextValue:"score.txt"
+ TextValue:"score1.txt"
 110 SCRATCH #2
  ERROR: 'SCRATCH#2' is not a valid assignment
 120 READ #1, N$,X1,X2,X3,X4,X5,X6
- NumericConstant:1
+ NumericValue:1
  UnaryOperatorHash:#(_) -> =FH
  Variable:N$ -> $
  Variable:X1 -> _
@@ -19,7 +19,7 @@
  Variable:N$ -> $
  CarriageControl:NL
 140 WRITE #2, N$; (X1+X2+X3+X4+X5+X6)/6
- NumericConstant:2
+ NumericValue:2
  UnaryOperatorHash:#(_) -> =FH
  Variable:N$ -> $
  CarriageControl:;
@@ -34,12 +34,12 @@
  BinaryOperatorPlus:+(_,_) -> _
  Variable:X6 -> _
  BinaryOperatorPlus:+(_,_) -> _
- NumericConstant:6
+ NumericValue:6
  BinaryOperatorDivide:/(_,_) -> _
  CarriageControl:NL
 150    IF MORE(#1) THEN 120
  Variable:M -> _
- NumericConstant:1
+ NumericValue:1
  UnaryOperatorHash:#(_) -> =FH
  Variable:E() -> _
  BinaryOperatorOr:OR(_,_) -> ?

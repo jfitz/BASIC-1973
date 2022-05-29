@@ -1,15 +1,15 @@
 10 LET A=1
  Variable:A -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
 20 FOR R=1 TO 3
  control: Variable:R -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:3"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:3"]
 30 FOR C=1 TO 5
  control: Variable:C -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:5"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:5"]
 40 LET A[R,C]=A
  Variable:R -> _
  Variable:C -> _
@@ -19,7 +19,7 @@
 50 LET A=A+1
  Variable:A -> _
  Variable:A -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 60 NEXT C
@@ -27,25 +27,25 @@
 70 NEXT R
  Variable:R -> _
 90 PRINT "WE PRINT THE ORIGINAL ARRAY"
- TextConstant:"WE PRINT THE ORIGINAL ARRAY"
+ TextValue:"WE PRINT THE ORIGINAL ARRAY"
  CarriageControl:NL
 100 GOSUB 900
  LineNumber:900
 110 PRINT "WE CAN MULTIPLY EVERY ELEMENT IN THE 4TH COLUMN BY 6"
- TextConstant:"WE CAN MULTIPLY EVERY ELEMENT IN THE 4TH COLUMN BY 6"
+ TextValue:"WE CAN MULTIPLY EVERY ELEMENT IN THE 4TH COLUMN BY 6"
  CarriageControl:NL
 120 FOR R=1 TO 3
  control: Variable:R -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:3"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:3"]
 130 LET A[R,4]=A[R,4]*6
  Variable:R -> _
- NumericConstant:4
+ NumericValue:4
  Variable:A(_,_) -> _
  Variable:R -> _
- NumericConstant:4
+ NumericValue:4
  Variable:A(_,_) -> _
- NumericConstant:6
+ NumericValue:6
  BinaryOperatorMultiply:*(_,_) -> _
  AssignmentOperator:= _ -> _
 140 NEXT R
@@ -53,23 +53,23 @@
 150 GOSUB 900
  LineNumber:900
 160 PRINT "WE CAN SUBTRACT THE 3RD ROW FROM THE 2ND ROW"
- TextConstant:"WE CAN SUBTRACT THE 3RD ROW FROM THE 2ND ROW"
+ TextValue:"WE CAN SUBTRACT THE 3RD ROW FROM THE 2ND ROW"
  CarriageControl:NL
 170 PRINT "AND PUT THE RESULT IN THE 3RD ROW"
- TextConstant:"AND PUT THE RESULT IN THE 3RD ROW"
+ TextValue:"AND PUT THE RESULT IN THE 3RD ROW"
  CarriageControl:NL
 180 FOR C=1 TO 5
  control: Variable:C -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:5"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:5"]
 190 LET A[3,C]=A[2,C]-A[3,C]
- NumericConstant:3
+ NumericValue:3
  Variable:C -> _
  Variable:A(_,_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:C -> _
  Variable:A(_,_) -> _
- NumericConstant:3
+ NumericValue:3
  Variable:C -> _
  Variable:A(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
@@ -84,12 +84,12 @@
  Remark:****PRINTING SUBROUTINE IS HERE****
 900 FOR R=1 TO 3
  control: Variable:R -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:3"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:3"]
 910 FOR C=1 TO 5
  control: Variable:C -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:5"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:5"]
 920 PRINT A[R,C];
  Variable:R -> _
  Variable:C -> _

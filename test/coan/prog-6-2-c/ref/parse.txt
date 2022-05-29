@@ -3,17 +3,17 @@
 20 PRINT N;"BASE TEN =";
  Variable:N -> _
  CarriageControl:;
- TextConstant:"BASE TEN ="
+ TextValue:"BASE TEN ="
  CarriageControl:;
 30 FOR E=20 TO 0 STEP -1
  control: Variable:E -> _
- start:   ["NumericConstant:20"]
- end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
+ start:   ["NumericValue:20"]
+ end:     ["NumericValue:0"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
 40 LET I=INT(N/2^E)
  Variable:I -> _
  Variable:N -> _
- NumericConstant:2
+ NumericValue:2
  Variable:E -> _
  BinaryOperatorPower:^(_,_) -> _
  BinaryOperatorDivide:/(_,_) -> _
@@ -21,22 +21,22 @@
  AssignmentOperator:= _ -> _
 45 IF I=1 THEN 55
  Variable:I -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:55
 50 PRINT "0";
- TextConstant:"0"
+ TextValue:"0"
  CarriageControl:;
 52 GOTO 60
  LineNumber:60
 55 PRINT "1";
- TextConstant:"1"
+ TextValue:"1"
  CarriageControl:;
 60 LET R=N-I*2^E
  Variable:R -> _
  Variable:N -> _
  Variable:I -> _
- NumericConstant:2
+ NumericValue:2
  Variable:E -> _
  BinaryOperatorPower:^(_,_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
@@ -49,16 +49,16 @@
 80 NEXT E
  Variable:E -> _
 85 PRINT " BASE TWO"
- TextConstant:" BASE TWO"
+ TextValue:" BASE TWO"
  CarriageControl:NL
 86 PRINT
  CarriageControl:NL
 90 GOTO 10
  LineNumber:10
 100 DATA 45,9875,123456
- NumericConstant:45
- NumericConstant:9875
- NumericConstant:123456
+ NumericValue:45
+ NumericValue:9875
+ NumericValue:123456
 110 END
  
 

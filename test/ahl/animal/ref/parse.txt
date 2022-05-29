@@ -1,35 +1,35 @@
 100 &"PLAY 'GUESS THE ANIMAL' WITH RSTS"
- TextConstant:"PLAY 'GUESS THE ANIMAL' WITH RSTS"
+ TextValue:"PLAY 'GUESS THE ANIMAL' WITH RSTS"
  CarriageControl:NL
 150 &"THINK OF AN ANIMAL AND THE COMPUTER WILL TRY TO GUESS IT...":&
- TextConstant:"THINK OF AN ANIMAL AND THE COMPUTER WILL TRY TO GUESS IT..."
+ TextValue:"THINK OF AN ANIMAL AND THE COMPUTER WILL TRY TO GUESS IT..."
  CarriageControl:NL
  CarriageControl:NL
 500 DIM A$(200%)
- IntegerConstant:200
+ IntegerValue:200
  Declaration:A$() -> $()
 525 F$="ANIMAL.GME":ON ERROR GOTO 700
  Variable:F$ -> $
- TextConstant:"ANIMAL.GME"
+ TextValue:"ANIMAL.GME"
  AssignmentOperator:= =$ -> $
  LineNumber:700
 550 OPEN F$ FOR INPUT AS FILE 1%:INPUT #1%,N%:INPUT #1%,A$(I%) FOR I%=1%TO N%:CLOSE 1%:A$(0%)=NUM$(N%):ON ERROR GOTO 0:GOTO 1300
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
  Variable:F$ -> $
- IntegerConstant:1
- IntegerConstant:1
+ IntegerValue:1
+ IntegerValue:1
  UnaryOperatorHash:#(%) -> =FH
  Variable:N% -> %
- IntegerConstant:1
+ IntegerValue:1
  UnaryOperatorHash:#(%) -> =FH
  Variable:I% -> %
  Variable:A$(%) -> $
  control: Variable:I% -> %
- start:   ["IntegerConstant:1"]
+ start:   ["IntegerValue:1"]
  end:     ["Variable:N% -> %"]
- IntegerConstant:1
- IntegerConstant:0
+ IntegerValue:1
+ IntegerValue:0
  Variable:A$(%) -> $
  Variable:N% -> %
  FunctionStr:NUM$(%) -> $
@@ -38,7 +38,7 @@
 700 ON ERROR GOTO 1050:F$="$"+F$:RESUME 550
  LineNumber:1050
  Variable:F$ -> $
- TextConstant:"$"
+ TextValue:"$"
  Variable:F$ -> $
  BinaryOperatorPlus:+($,$) -> $
  AssignmentOperator:= $ -> $
@@ -47,78 +47,78 @@
  Variable:I% -> %
  Variable:A$(%) -> $
  control: Variable:I% -> %
- start:   ["IntegerConstant:0"]
- end:     ["IntegerConstant:3"]
+ start:   ["IntegerValue:0"]
+ end:     ["IntegerValue:3"]
 1100 DATA "4","\QDOES IT SWIM\Y2\N3\","\AFISH","\ABIRD"
- TextConstant:"4"
- TextConstant:"\QDOES IT SWIM\Y2\N3\"
- TextConstant:"\AFISH"
- TextConstant:"\ABIRD"
+ TextValue:"4"
+ TextValue:"\QDOES IT SWIM\Y2\N3\"
+ TextValue:"\AFISH"
+ TextValue:"\ABIRD"
 1300 INPUT "ARE YOU THINKING OF AN ANIMAL",Z9$:GOTO 1350 IF LEFT(Z9$,1%)="Y":GOTO 1300 IF LEFT(Z9$,1%)="N"
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
  Variable:Z9$ -> $
  LineNumber:1350
  Variable:Z9$ -> $
- IntegerConstant:1
+ IntegerValue:1
  FunctionLeft:LEFT($,%) -> $
- TextConstant:"Y"
+ TextValue:"Y"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:1300
  Variable:Z9$ -> $
- IntegerConstant:1
+ IntegerValue:1
  FunctionLeft:LEFT($,%) -> $
- TextConstant:"N"
+ TextValue:"N"
  BinaryOperatorEqual:=($,$) -> ?
 1310 IF Z9$="SAVE" THEN OPEN "ANIMAL.GME" FOR OUTPUT AS FILE 1%:PRINT #1%,A$(I%) FOR I%=0% TO VAL(A$(0%)):PRINT #1,CHR$(26%):CLOSE 1%:GOTO 1300
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
  Variable:Z9$ -> $
- TextConstant:"SAVE"
+ TextValue:"SAVE"
  BinaryOperatorEqual:=($,$) -> ?
- TextConstant:"ANIMAL.GME"
- IntegerConstant:1
- IntegerConstant:1
+ TextValue:"ANIMAL.GME"
+ IntegerValue:1
+ IntegerValue:1
  UnaryOperatorHash:#(%) -> =FH
  Variable:I% -> %
  Variable:A$(%) -> $
  CarriageControl:NL
  control: Variable:I% -> %
- start:   ["IntegerConstant:0"]
- end:     ["IntegerConstant:0", "Variable:A$(%) -> $", "FunctionVal:VAL($) -> _"]
- NumericConstant:1
+ start:   ["IntegerValue:0"]
+ end:     ["IntegerValue:0", "Variable:A$(%) -> $", "FunctionVal:VAL($) -> _"]
+ NumericValue:1
  UnaryOperatorHash:#(_) -> =FH
- IntegerConstant:26
+ IntegerValue:26
  FunctionChr:CHR$(%) -> =$
  CarriageControl:NL
- IntegerConstant:1
+ IntegerValue:1
  LineNumber:1300
 1320 IF Z9$="LIST" THEN PRINT "ANIMALS I ALREADY KNOW ARE:":PRINT RIGHT(A$(I%),3%), IF INSTR(1%, A$(I%), "\A") FOR I%=1% TO 200%:PRINT:GOTO 1300
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
  Variable:Z9$ -> $
- TextConstant:"LIST"
+ TextValue:"LIST"
  BinaryOperatorEqual:=($,$) -> ?
- TextConstant:"ANIMALS I ALREADY KNOW ARE:"
+ TextValue:"ANIMALS I ALREADY KNOW ARE:"
  CarriageControl:NL
  Variable:I% -> %
  Variable:A$(%) -> $
- IntegerConstant:3
+ IntegerValue:3
  FunctionRight:RIGHT($,%) -> $
  CarriageControl:,
- IntegerConstant:1
+ IntegerValue:1
  Variable:I% -> %
  Variable:A$(%) -> $
- TextConstant:"\A"
+ TextValue:"\A"
  FunctionInstr:INSTR(%,$,$) -> _
  control: Variable:I% -> %
- start:   ["IntegerConstant:1"]
- end:     ["IntegerConstant:200"]
+ start:   ["IntegerValue:1"]
+ end:     ["IntegerValue:200"]
  CarriageControl:NL
  LineNumber:1300
 1350 K%=1%
  Variable:K% -> %
- IntegerConstant:1
+ IntegerValue:1
  AssignmentOperator:= =% -> %
 1400 K%=FNA%(A$(K%)):GOTO 3000 IF LEN(A$(K%))=0%:GOTO 1400 IF LEFT(A$(K%),2%)="\Q":PRINT "IS IT A "RIGHT(A$(K%),3%);:INPUT Z7$:Z7$=LEFT(Z7$,1%)
  WARNING: Line exceeds LIST width limit 72
@@ -132,33 +132,33 @@
  Variable:K% -> %
  Variable:A$(%) -> $
  FunctionLen:LEN($) -> _
- IntegerConstant:0
+ IntegerValue:0
  BinaryOperatorEqual:=(_,%) -> ?
  LineNumber:1400
  Variable:K% -> %
  Variable:A$(%) -> $
- IntegerConstant:2
+ IntegerValue:2
  FunctionLeft:LEFT($,%) -> $
- TextConstant:"\Q"
+ TextValue:"\Q"
  BinaryOperatorEqual:=($,$) -> ?
- TextConstant:"IS IT A "
+ TextValue:"IS IT A "
  CarriageControl:
  Variable:K% -> %
  Variable:A$(%) -> $
- IntegerConstant:3
+ IntegerValue:3
  FunctionRight:RIGHT($,%) -> $
  CarriageControl:;
  Variable:Z7$ -> $
  Variable:Z7$ -> $
  Variable:Z7$ -> $
- IntegerConstant:1
+ IntegerValue:1
  FunctionLeft:LEFT($,%) -> $
  AssignmentOperator:= $ -> $
 1450 IF Z7$="Y" THEN PRINT "WHY NOT TRY ANOTHER ANIMAL":GOTO 1300
  Variable:Z7$ -> $
- TextConstant:"Y"
+ TextValue:"Y"
  BinaryOperatorEqual:=($,$) -> ?
- TextConstant:"WHY NOT TRY ANOTHER ANIMAL"
+ TextValue:"WHY NOT TRY ANOTHER ANIMAL"
  CarriageControl:NL
  LineNumber:1300
 2000 INPUT "THE ANIMAL YOU WERE THINKING OF WAS A ";Z9$
@@ -166,46 +166,46 @@
 2050 PRINT "PLEASE TYPE IN A QUESTION THAT WOULD DISTINGUISH A " Z9$ " FROM A "RIGHT(A$(K%),3%):INPUT Z8$
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
- TextConstant:"PLEASE TYPE IN A QUESTION THAT WOULD DISTINGUISH A "
+ TextValue:"PLEASE TYPE IN A QUESTION THAT WOULD DISTINGUISH A "
  CarriageControl:
  Variable:Z9$ -> $
  CarriageControl:
- TextConstant:" FROM A "
+ TextValue:" FROM A "
  CarriageControl:
  Variable:K% -> %
  Variable:A$(%) -> $
- IntegerConstant:3
+ IntegerValue:3
  FunctionRight:RIGHT($,%) -> $
  CarriageControl:NL
  Variable:Z8$ -> $
 2100 PRINT "FOR A "Z9$" THE ANSWER WOULD BE";:INPUT Z7$:Z7$=LEFT(Z7$,1%):IF Z7$="Y" THEN Z6$="N" ELSE IF Z7$="N" THEN Z6$="Y" ELSE PRINT "PLEASE ANSWER 'YES' OR 'NO'":GOTO 2100
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
- TextConstant:"FOR A "
+ TextValue:"FOR A "
  CarriageControl:
  Variable:Z9$ -> $
  CarriageControl:
- TextConstant:" THE ANSWER WOULD BE"
+ TextValue:" THE ANSWER WOULD BE"
  CarriageControl:;
  Variable:Z7$ -> $
  Variable:Z7$ -> $
  Variable:Z7$ -> $
- IntegerConstant:1
+ IntegerValue:1
  FunctionLeft:LEFT($,%) -> $
  AssignmentOperator:= $ -> $
  Variable:Z7$ -> $
- TextConstant:"Y"
+ TextValue:"Y"
  BinaryOperatorEqual:=($,$) -> ?
  Variable:Z6$ -> $
- TextConstant:"N"
+ TextValue:"N"
  AssignmentOperator:= =$ -> $
  Variable:Z7$ -> $
- TextConstant:"N"
+ TextValue:"N"
  BinaryOperatorEqual:=($,$) -> ?
  Variable:Z6$ -> $
- TextConstant:"Y"
+ TextValue:"Y"
  AssignmentOperator:= =$ -> $
- TextConstant:"PLEASE ANSWER 'YES' OR 'NO'"
+ TextValue:"PLEASE ANSWER 'YES' OR 'NO'"
  CarriageControl:NL
  LineNumber:2100
 2200 Z1%=VAL(A$(0%)):A$(0%)=NUM$(Z1% + 2%):A$(Z1%)=A$(K%):A$(Z1%+1%)='\A'+Z9$:A$(K%)="\Q"+Z8$+"\"+Z7$+NUM$(Z1%+1%)+"\"+Z6$+NUM$(Z1%)+"\"
@@ -213,14 +213,14 @@
  WARNING: Line exceeds PRETTY width limit 72
  WARNING: Target type (integer) does not match expression type (numeric).
  Variable:Z1% -> %
- IntegerConstant:0
+ IntegerValue:0
  Variable:A$(%) -> $
  FunctionVal:VAL($) -> _
  AssignmentOperator:= _ -> %
- IntegerConstant:0
+ IntegerValue:0
  Variable:A$(%) -> $
  Variable:Z1% -> %
- IntegerConstant:2
+ IntegerValue:2
  BinaryOperatorPlus:+(%,%) -> %
  FunctionStr:NUM$(%) -> $
  AssignmentOperator:= $ -> $
@@ -230,35 +230,35 @@
  Variable:A$(%) -> $
  AssignmentOperator:= $ -> $
  Variable:Z1% -> %
- IntegerConstant:1
+ IntegerValue:1
  BinaryOperatorPlus:+(%,%) -> %
  Variable:A$(%) -> $
- TextConstant:"\A"
+ TextValue:"\A"
  Variable:Z9$ -> $
  BinaryOperatorPlus:+($,$) -> $
  AssignmentOperator:= $ -> $
  Variable:K% -> %
  Variable:A$(%) -> $
- TextConstant:"\Q"
+ TextValue:"\Q"
  Variable:Z8$ -> $
  BinaryOperatorPlus:+($,$) -> $
- TextConstant:"\"
+ TextValue:"\"
  BinaryOperatorPlus:+($,$) -> $
  Variable:Z7$ -> $
  BinaryOperatorPlus:+($,$) -> $
  Variable:Z1% -> %
- IntegerConstant:1
+ IntegerValue:1
  BinaryOperatorPlus:+(%,%) -> %
  FunctionStr:NUM$(%) -> $
  BinaryOperatorPlus:+($,$) -> $
- TextConstant:"\"
+ TextValue:"\"
  BinaryOperatorPlus:+($,$) -> $
  Variable:Z6$ -> $
  BinaryOperatorPlus:+($,$) -> $
  Variable:Z1% -> %
  FunctionStr:NUM$(%) -> $
  BinaryOperatorPlus:+($,$) -> $
- TextConstant:"\"
+ TextValue:"\"
  BinaryOperatorPlus:+($,$) -> $
  AssignmentOperator:= $ -> $
 2300 GOTO 1300
@@ -273,41 +273,41 @@
  UserFunctionName:FNA% -> %
  VariableName:Q$ -> $
  Variable:Q$ -> $
- IntegerConstant:3
- IntegerConstant:3
+ IntegerValue:3
+ IntegerValue:3
  Variable:Q$ -> $
- TextConstant:"\"
+ TextValue:"\"
  FunctionInstr:INSTR(%,$,$) -> _
- IntegerConstant:3
+ IntegerValue:3
  BinaryOperatorMinus:-(_,%) -> _
  FunctionMid:MID($,%,_) -> $
  CarriageControl:;
  Variable:Z9$ -> $
  Variable:Z9$ -> $
  Variable:Z9$ -> $
- IntegerConstant:1
+ IntegerValue:1
  FunctionLeft:LEFT($,%) -> $
  AssignmentOperator:= $ -> $
  Variable:Z9$ -> $
- TextConstant:"N"
+ TextValue:"N"
  AssignmentOperator:= =$ -> $
  Variable:Z9$ -> $
- TextConstant:"Y"
+ TextValue:"Y"
  BinaryOperatorNotEqual:<>($,$) -> ?
  Variable:Z1% -> %
- IntegerConstant:3
+ IntegerValue:3
  Variable:Q$ -> $
- TextConstant:"\"
+ TextValue:"\"
  Variable:Z9$ -> $
  BinaryOperatorPlus:+($,$) -> $
  FunctionInstr:INSTR(%,$,$) -> _
- IntegerConstant:2
+ IntegerValue:2
  BinaryOperatorPlus:+(_,%) -> _
  AssignmentOperator:= _ -> %
  Variable:Z2% -> %
  Variable:Z1% -> %
  Variable:Q$ -> $
- TextConstant:"\"
+ TextValue:"\"
  FunctionInstr:INSTR(%,$,$) -> _
  AssignmentOperator:= _ -> %
  UserFunction:FNA% -> %

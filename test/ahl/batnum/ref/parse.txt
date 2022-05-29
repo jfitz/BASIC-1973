@@ -1,25 +1,25 @@
 110 PRINT "THIS PROGRAM IS A 'BATTLE OF NUMBERS'"
- TextConstant:"THIS PROGRAM IS A 'BATTLE OF NUMBERS'"
+ TextValue:"THIS PROGRAM IS A 'BATTLE OF NUMBERS'"
  CarriageControl:NL
 120 PRINT"GAME, WHERE THE COMPUTER IS YOUR OPPONENT."
- TextConstant:"GAME, WHERE THE COMPUTER IS YOUR OPPONENT."
+ TextValue:"GAME, WHERE THE COMPUTER IS YOUR OPPONENT."
  CarriageControl:NL
 130 PRINT
  CarriageControl:NL
 140 PRINT"THE GAME STARTS WITH AN ASSUMED PILE OF OBJECTS. YOU AND"
- TextConstant:"THE GAME STARTS WITH AN ASSUMED PILE OF OBJECTS. YOU AND"
+ TextValue:"THE GAME STARTS WITH AN ASSUMED PILE OF OBJECTS. YOU AND"
  CarriageControl:NL
 150 PRINT"YOUR OPPONENT ALTERNATLY REMOVE OBJECTS FROM THE PILE."
- TextConstant:"YOUR OPPONENT ALTERNATLY REMOVE OBJECTS FROM THE PILE."
+ TextValue:"YOUR OPPONENT ALTERNATLY REMOVE OBJECTS FROM THE PILE."
  CarriageControl:NL
 160 PRINT"WINNING IS DEFINED IN ADVANCE AS TAKING THE LAST OBJECT"
- TextConstant:"WINNING IS DEFINED IN ADVANCE AS TAKING THE LAST OBJECT"
+ TextValue:"WINNING IS DEFINED IN ADVANCE AS TAKING THE LAST OBJECT"
  CarriageControl:NL
 176 PRINT"OR NOT. YOU CAN ALSO SPECIFY SOME OTHER BEGINNING"
- TextConstant:"OR NOT. YOU CAN ALSO SPECIFY SOME OTHER BEGINNING"
+ TextValue:"OR NOT. YOU CAN ALSO SPECIFY SOME OTHER BEGINNING"
  CarriageControl:NL
 180 PRINT"CONDITIONS. DON'T USE ZERO, HOWEVER, IN PLAYING THE GAME."
- TextConstant:"CONDITIONS. DON'T USE ZERO, HOWEVER, IN PLAYING THE GAME."
+ TextValue:"CONDITIONS. DON'T USE ZERO, HOWEVER, IN PLAYING THE GAME."
  CarriageControl:NL
 200 PRINT 
  CarriageControl:NL
@@ -27,20 +27,20 @@
  LineNumber:330
 220 FOR I=1 TO 10
  control: Variable:I -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:10"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:10"]
 230 PRINT
  CarriageControl:NL
 240 NEXT I
  Variable:I -> _
 330 PRINT "ENTER PILE SIZE:";
- TextConstant:"ENTER PILE SIZE:"
+ TextValue:"ENTER PILE SIZE:"
  CarriageControl:;
 340 INPUT N
  Variable:N -> _
 350 IF N<>0 THEN 370
  Variable:N -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:370
 360 GOTO 330
@@ -53,26 +53,26 @@
  LineNumber:220
 380 IF N<1 THEN 220
  Variable:N -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:220
 390 PRINT "ENTER WIN OPTION - 1 TO TAKE LAST, 2 TO AVOID LAST:";
- TextConstant:"ENTER WIN OPTION - 1 TO TAKE LAST, 2 TO AVOID LAST:"
+ TextValue:"ENTER WIN OPTION - 1 TO TAKE LAST, 2 TO AVOID LAST:"
  CarriageControl:;
 400 INPUT M
  Variable:M -> _
 410 IF M=1 THEN 430
  Variable:M -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:430
 420 IF M<>2 THEN 390
  Variable:M -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:390
 430 PRINT "ENTER MIN AND MAX:";
- TextConstant:"ENTER MIN AND MAX:"
+ TextValue:"ENTER MIN AND MAX:"
  CarriageControl:;
 440 INPUT A, B
  Variable:A -> _
@@ -84,7 +84,7 @@
  LineNumber:430
 460 IF A<1 THEN 430
  Variable:A -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorLess:<(_,_) -> ?
  LineNumber:430
 470 IF A<>INT(A) THEN 430
@@ -100,18 +100,18 @@
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:430
 490 PRINT"ENTER START OPTION - 1 COMPUTER FIRST, 2 YOU FIRST:";
- TextConstant:"ENTER START OPTION - 1 COMPUTER FIRST, 2 YOU FIRST:"
+ TextValue:"ENTER START OPTION - 1 COMPUTER FIRST, 2 YOU FIRST:"
  CarriageControl:;
 500 INPUT S
  Variable:S -> _
 510 IF S=1 THEN 530
  Variable:S -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:530
 520 IF S<>2 THEN 490
  Variable:S -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:490
 530 LET C=A+B
@@ -122,21 +122,21 @@
  AssignmentOperator:= _ -> _
 540 IF S=2 THEN 570
  Variable:S -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:570
 550 GOSUB 600
  LineNumber:600
 560 IF W=1 THEN 220
  Variable:W -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:220
 570 GOSUB 810
  LineNumber:810
 580 IF W=1 THEN 220
  Variable:W -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:220
 590 GO TO 550
@@ -147,18 +147,18 @@
  AssignmentOperator:= _ -> _
 610 IF M=1 THEN 630
  Variable:M -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:630
 620 LET Q=Q-1
  Variable:Q -> _
  Variable:Q -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 630 IF M=1 THEN 680
  Variable:M -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:680
 640 IF N>A THEN 720
@@ -168,14 +168,14 @@
  LineNumber:720
 650 LET W=1
  Variable:W -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
 669 PRINT"COMPUTER TAKES"; N; "AND LOSES."
- TextConstant:"COMPUTER TAKES"
+ TextValue:"COMPUTER TAKES"
  CarriageControl:;
  Variable:N -> _
  CarriageControl:;
- TextConstant:"AND LOSES."
+ TextValue:"AND LOSES."
  CarriageControl:NL
 670 RETURN
  
@@ -186,14 +186,14 @@
  LineNumber:720
 690 LET W=1
  Variable:W -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
 700 PRINT"COMPUTER TAKES"; N; "AND WINS."
- TextConstant:"COMPUTER TAKES"
+ TextValue:"COMPUTER TAKES"
  CarriageControl:;
  Variable:N -> _
  CarriageControl:;
- TextConstant:"AND WINS."
+ TextValue:"AND WINS."
  CarriageControl:NL
 710 RETURN 
  
@@ -233,36 +233,36 @@
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 780 PRINT"COMPUTER TAKES"; P; "AND LEAVES"; N
- TextConstant:"COMPUTER TAKES"
+ TextValue:"COMPUTER TAKES"
  CarriageControl:;
  Variable:P -> _
  CarriageControl:;
- TextConstant:"AND LEAVES"
+ TextValue:"AND LEAVES"
  CarriageControl:;
  Variable:N -> _
  CarriageControl:NL
 790 LET W=0
  Variable:W -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 800 RETURN
  
 810 PRINT "YOUR MOVE:";
- TextConstant:"YOUR MOVE:"
+ TextValue:"YOUR MOVE:"
  CarriageControl:;
 820 INPUT P
  Variable:P -> _
 830 IF P<>0 THEN 870
  Variable:P -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:870
 840 PRINT"I TOLD YOU NOT TO USE ZERO. .. COMPUTER WINS BY FORFEIT."
- TextConstant:"I TOLD YOU NOT TO USE ZERO. .. COMPUTER WINS BY FORFEIT."
+ TextValue:"I TOLD YOU NOT TO USE ZERO. .. COMPUTER WINS BY FORFEIT."
  CarriageControl:NL
 850 LET W=1
  Variable:W -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
 860 RETURN 
  
@@ -290,7 +290,7 @@
  BinaryOperatorLessEqual:<=(_,_) -> ?
  LineNumber:940
 920 PRINT "ILLEGAL MOVE, REENTER IT:";
- TextConstant:"ILLEGAL MOVE, REENTER IT:"
+ TextValue:"ILLEGAL MOVE, REENTER IT:"
  CarriageControl:;
 930 GO TO 820
  LineNumber:820
@@ -302,35 +302,35 @@
  AssignmentOperator:= _ -> _
 950 IF N<>0 THEN 1030
  Variable:N -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:1030
 960 IF M=1 THEN 1060
  Variable:M -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:1060
 970 PRINT "TOUGH LUCK, YOU LOSE."
- TextConstant:"TOUGH LUCK, YOU LOSE."
+ TextValue:"TOUGH LUCK, YOU LOSE."
  CarriageControl:NL
 980 LET W=1
  Variable:W -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
 990 RETURN
  
 1000 PRINT"CONGRATULATIONS, YOU WIN."
- TextConstant:"CONGRATULATIONS, YOU WIN."
+ TextValue:"CONGRATULATIONS, YOU WIN."
  CarriageControl:NL
 1010 LET W=1
  Variable:W -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
 1020 RETURN
  
 1030 IF N>=0 THEN 1060
  Variable:N -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorGreaterEqual:>=(_,_) -> ?
  LineNumber:1060
 1040 LET N=N+P
@@ -343,7 +343,7 @@
  LineNumber:920
 1060 LET W=0
  Variable:W -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 1078 RETURN
  

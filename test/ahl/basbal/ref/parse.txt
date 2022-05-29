@@ -1,16 +1,16 @@
 100 DIMT(50),C(19),F(19),Z(19)
- NumericConstant:50
+ NumericValue:50
  Declaration:T() -> _()
- NumericConstant:19
+ NumericValue:19
  Declaration:C() -> _()
- NumericConstant:19
+ NumericValue:19
  Declaration:F() -> _()
- NumericConstant:19
+ NumericValue:19
  Declaration:Z() -> _()
 110 FORX=1TO19\READC(X),Z(X),F(X)\NEXTX\LETX=1
  control: Variable:X -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:19"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:19"]
  Variable:X -> _
  Variable:C(_) -> _
  Variable:X -> _
@@ -19,23 +19,23 @@
  Variable:F(_) -> _
  Variable:X -> _
  Variable:X -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
 120 PRINT"WELCOME TO HUISMAN STADIUM FOR TODAY'S GREAT GAME BETWEEN"
- TextConstant:"WELCOME TO HUISMAN STADIUM FOR TODAY'S GREAT GAME BETWEEN"
+ TextValue:"WELCOME TO HUISMAN STADIUM FOR TODAY'S GREAT GAME BETWEEN"
  CarriageControl:NL
 130 PRINT"THE PDP-8 PANTHERS AND (YOUR NAME PLEASE) THE ";
- TextConstant:"THE PDP-8 PANTHERS AND (YOUR NAME PLEASE) THE "
+ TextValue:"THE PDP-8 PANTHERS AND (YOUR NAME PLEASE) THE "
  CarriageControl:;
 140 FOR A=1 TO 99\INPUT $T(A)\IF T(A)=141 THEN 150\NEXT A
  control: Variable:A -> _
- start:   ["NumericConstant:1"]
- end:     ["NumericConstant:99"]
+ start:   ["NumericValue:1"]
+ end:     ["NumericValue:99"]
  Variable:A -> _
  Variable:T(_) -> _
  Variable:A -> _
  Variable:T(_) -> _
- NumericConstant:141
+ NumericValue:141
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:150
  Variable:A -> _
@@ -44,23 +44,23 @@
  Variable:A -> _
  AssignmentOperator:= _ -> _
  CarriageControl:NL
- TextConstant:"A HIGHLY PARTISAN CROWD OF"
+ TextValue:"A HIGHLY PARTISAN CROWD OF"
  CarriageControl:;
 160 FORA=1TOT\LETB=2*RND(0)\NEXTA
  control: Variable:A -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:T -> _"]
  Variable:B -> _
- NumericConstant:2
- NumericConstant:0
+ NumericValue:2
+ NumericValue:0
  FunctionRnd:RND(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  AssignmentOperator:= _ -> _
  Variable:A -> _
 170 LET A=INT(70000*RND(1))\PRINTA;
  Variable:A -> _
- NumericConstant:70000
- NumericConstant:1
+ NumericValue:70000
+ NumericValue:1
  FunctionRnd:RND(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  FunctionInt:INT(_) -> _
@@ -68,32 +68,32 @@
  Variable:A -> _
  CarriageControl:;
 180 PRINT"FANS IS ANXIOUSLY AWAITING THE"\PRINT"START OF THE GAME."
- TextConstant:"FANS IS ANXIOUSLY AWAITING THE"
+ TextValue:"FANS IS ANXIOUSLY AWAITING THE"
  CarriageControl:NL
- TextConstant:"START OF THE GAME."
+ TextValue:"START OF THE GAME."
  CarriageControl:NL
 190 PRINT"HERE IS MY TEAM!", "AND HERE IS YOURS!"
- TextConstant:"HERE IS MY TEAM!"
+ TextValue:"HERE IS MY TEAM!"
  CarriageControl:,
- TextConstant:"AND HERE IS YOURS!"
+ TextValue:"AND HERE IS YOURS!"
  CarriageControl:NL
 200 PRINT"NAME", "AVERAGE", "NAME", "AVERAGE"
- TextConstant:"NAME"
+ TextValue:"NAME"
  CarriageControl:,
- TextConstant:"AVERAGE"
+ TextValue:"AVERAGE"
  CarriageControl:,
- TextConstant:"NAME"
+ TextValue:"NAME"
  CarriageControl:,
- TextConstant:"AVERAGE"
+ TextValue:"AVERAGE"
  CarriageControl:NL
 210 PRINT"----", "-------", "----", "-------"
- TextConstant:"----"
+ TextValue:"----"
  CarriageControl:,
- TextConstant:"-------"
+ TextValue:"-------"
  CarriageControl:,
- TextConstant:"----"
+ TextValue:"----"
  CarriageControl:,
- TextConstant:"-------"
+ TextValue:"-------"
  CarriageControl:NL
 220 GOSUB 400
  LineNumber:400
@@ -101,268 +101,268 @@
  CarriageControl:NL
  CarriageControl:NL
 240 PRINT"THE PANTHERS ARE TAKING THE FIELD NOW AS ANDREWS OF THE"
- TextConstant:"THE PANTHERS ARE TAKING THE FIELD NOW AS ANDREWS OF THE"
+ TextValue:"THE PANTHERS ARE TAKING THE FIELD NOW AS ANDREWS OF THE"
  CarriageControl:NL
 250 FOR A=1 TO T-1\PRINT CHR$(T(A));\NEXT A
  control: Variable:A -> _
- start:   ["NumericConstant:1"]
- end:     ["Variable:T -> _", "NumericConstant:1", "BinaryOperatorMinus:-(_,_) -> _"]
+ start:   ["NumericValue:1"]
+ end:     ["Variable:T -> _", "NumericValue:1", "BinaryOperatorMinus:-(_,_) -> _"]
  Variable:A -> _
  Variable:T(_) -> _
  FunctionChr:CHR$(_) -> $
  CarriageControl:;
  Variable:A -> _
 260 PRINT"ADVANCES TO THE PLATE. PLEASE WAIT AS THE COMPUTER SINGS"
- TextConstant:"ADVANCES TO THE PLATE. PLEASE WAIT AS THE COMPUTER SINGS"
+ TextValue:"ADVANCES TO THE PLATE. PLEASE WAIT AS THE COMPUTER SINGS"
  CarriageControl:NL
 270 PRINT"OUR NATIONAL ANTHEM TO ITSELF - 2 OR 3 TIMES! JUST SING"
- TextConstant:"OUR NATIONAL ANTHEM TO ITSELF - 2 OR 3 TIMES! JUST SING"
+ TextValue:"OUR NATIONAL ANTHEM TO ITSELF - 2 OR 3 TIMES! JUST SING"
  CarriageControl:NL
 280 PRINT"ALONG UNTIL ASKED FOR YOUR PLAY."\PRINT
- TextConstant:"ALONG UNTIL ASKED FOR YOUR PLAY."
+ TextValue:"ALONG UNTIL ASKED FOR YOUR PLAY."
  CarriageControl:NL
  CarriageControl:NL
 290 GOTO580 
  LineNumber:580
 300 DATA.03,.412001,.05,.02,.263001,.03
- NumericConstant:.03
- NumericConstant:.412001
- NumericConstant:.05
- NumericConstant:.02
- NumericConstant:.263001
- NumericConstant:.03
+ NumericValue:.03
+ NumericValue:.412001
+ NumericValue:.05
+ NumericValue:.02
+ NumericValue:.263001
+ NumericValue:.03
 310 DATA-.02,.236001,.02,.03,.316001,-.01
- NumericConstant:.02
+ NumericValue:.02
  UnaryOperatorMinus:-(_) -> =_
- NumericConstant:.236001
- NumericConstant:.02
- NumericConstant:.03
- NumericConstant:.316001
- NumericConstant:.01
+ NumericValue:.236001
+ NumericValue:.02
+ NumericValue:.03
+ NumericValue:.316001
+ NumericValue:.01
  UnaryOperatorMinus:-(_) -> =_
 320 DATA.01,.241001,.03,.02,.321001,.02
- NumericConstant:.01
- NumericConstant:.241001
- NumericConstant:.03
- NumericConstant:.02
- NumericConstant:.321001
- NumericConstant:.02
+ NumericValue:.01
+ NumericValue:.241001
+ NumericValue:.03
+ NumericValue:.02
+ NumericValue:.321001
+ NumericValue:.02
 330 DATA-.02,.367001,.02,-.02,.386001,-.01
- NumericConstant:.02
+ NumericValue:.02
  UnaryOperatorMinus:-(_) -> =_
- NumericConstant:.367001
- NumericConstant:.02
- NumericConstant:.02
+ NumericValue:.367001
+ NumericValue:.02
+ NumericValue:.02
  UnaryOperatorMinus:-(_) -> =_
- NumericConstant:.386001
- NumericConstant:.01
+ NumericValue:.386001
+ NumericValue:.01
  UnaryOperatorMinus:-(_) -> =_
 340 DATA.01,.295001,.03,-.01,.296001,.02
- NumericConstant:.01
- NumericConstant:.295001
- NumericConstant:.03
- NumericConstant:.01
+ NumericValue:.01
+ NumericValue:.295001
+ NumericValue:.03
+ NumericValue:.01
  UnaryOperatorMinus:-(_) -> =_
- NumericConstant:.296001
- NumericConstant:.02
+ NumericValue:.296001
+ NumericValue:.02
 350 DATA-.02,.319001,.02,-.02,.285001,.02
- NumericConstant:.02
+ NumericValue:.02
  UnaryOperatorMinus:-(_) -> =_
- NumericConstant:.319001
- NumericConstant:.02
- NumericConstant:.02
+ NumericValue:.319001
+ NumericValue:.02
+ NumericValue:.02
  UnaryOperatorMinus:-(_) -> =_
- NumericConstant:.285001
- NumericConstant:.02
+ NumericValue:.285001
+ NumericValue:.02
 360 DATA-.03,.295001,.01,.02,.295001,.03
- NumericConstant:.03
+ NumericValue:.03
  UnaryOperatorMinus:-(_) -> =_
- NumericConstant:.295001
- NumericConstant:.01
- NumericConstant:.02
- NumericConstant:.295001
- NumericConstant:.03
+ NumericValue:.295001
+ NumericValue:.01
+ NumericValue:.02
+ NumericValue:.295001
+ NumericValue:.03
 370 DATA.02,.218001,.02,.02,.139001,-.02
- NumericConstant:.02
- NumericConstant:.218001
- NumericConstant:.02
- NumericConstant:.02
- NumericConstant:.139001
- NumericConstant:.02
+ NumericValue:.02
+ NumericValue:.218001
+ NumericValue:.02
+ NumericValue:.02
+ NumericValue:.139001
+ NumericValue:.02
  UnaryOperatorMinus:-(_) -> =_
 380 DATA.03,.238001,.01,.03,.231001,-.02
- NumericConstant:.03
- NumericConstant:.238001
- NumericConstant:.01
- NumericConstant:.03
- NumericConstant:.231001
- NumericConstant:.02
+ NumericValue:.03
+ NumericValue:.238001
+ NumericValue:.01
+ NumericValue:.03
+ NumericValue:.231001
+ NumericValue:.02
  UnaryOperatorMinus:-(_) -> =_
 390 DATA 0,0,0
- NumericConstant:0
- NumericConstant:0
- NumericConstant:0
+ NumericValue:0
+ NumericValue:0
+ NumericValue:0
 400 PRINT"HUISMAN",Z(1),"KLOOS",Z(2)
- TextConstant:"HUISMAN"
+ TextValue:"HUISMAN"
  CarriageControl:,
- NumericConstant:1
+ NumericValue:1
  Variable:Z(_) -> _
  CarriageControl:,
- TextConstant:"KLOOS"
+ TextValue:"KLOOS"
  CarriageControl:,
- NumericConstant:2
+ NumericValue:2
  Variable:Z(_) -> _
  CarriageControl:NL
 410 PRINT"HOEREN",Z(3),"ANDREWS",Z(4)
- TextConstant:"HOEREN"
+ TextValue:"HOEREN"
  CarriageControl:,
- NumericConstant:3
+ NumericValue:3
  Variable:Z(_) -> _
  CarriageControl:,
- TextConstant:"ANDREWS"
+ TextValue:"ANDREWS"
  CarriageControl:,
- NumericConstant:4
+ NumericValue:4
  Variable:Z(_) -> _
  CarriageControl:NL
 420 PRINT"BACCUS",Z(5),"MAYER",Z(6)
- TextConstant:"BACCUS"
+ TextValue:"BACCUS"
  CarriageControl:,
- NumericConstant:5
+ NumericValue:5
  Variable:Z(_) -> _
  CarriageControl:,
- TextConstant:"MAYER"
+ TextValue:"MAYER"
  CarriageControl:,
- NumericConstant:6
+ NumericValue:6
  Variable:Z(_) -> _
  CarriageControl:NL
 430 PRINT"SMITH",Z(7),"HANSEN",Z(8)
- TextConstant:"SMITH"
+ TextValue:"SMITH"
  CarriageControl:,
- NumericConstant:7
+ NumericValue:7
  Variable:Z(_) -> _
  CarriageControl:,
- TextConstant:"HANSEN"
+ TextValue:"HANSEN"
  CarriageControl:,
- NumericConstant:8
+ NumericValue:8
  Variable:Z(_) -> _
  CarriageControl:NL
 440 PRINT"SCHNEIDER",Z(9),"MICHEL",Z(10)
- TextConstant:"SCHNEIDER"
+ TextValue:"SCHNEIDER"
  CarriageControl:,
- NumericConstant:9
+ NumericValue:9
  Variable:Z(_) -> _
  CarriageControl:,
- TextConstant:"MICHEL"
+ TextValue:"MICHEL"
  CarriageControl:,
- NumericConstant:10
+ NumericValue:10
  Variable:Z(_) -> _
  CarriageControl:NL
 450 PRINT"ROSEN8AUM",Z(11),"P. D. PEATE",Z(12)
- TextConstant:"ROSEN8AUM"
+ TextValue:"ROSEN8AUM"
  CarriageControl:,
- NumericConstant:11
+ NumericValue:11
  Variable:Z(_) -> _
  CarriageControl:,
- TextConstant:"P. D. PEATE"
+ TextValue:"P. D. PEATE"
  CarriageControl:,
- NumericConstant:12
+ NumericValue:12
  Variable:Z(_) -> _
  CarriageControl:NL
 460 PRINT"POULSEN",Z(13),"WILLIAMS",Z(14)
- TextConstant:"POULSEN"
+ TextValue:"POULSEN"
  CarriageControl:,
- NumericConstant:13
+ NumericValue:13
  Variable:Z(_) -> _
  CarriageControl:,
- TextConstant:"WILLIAMS"
+ TextValue:"WILLIAMS"
  CarriageControl:,
- NumericConstant:14
+ NumericValue:14
  Variable:Z(_) -> _
  CarriageControl:NL
 470 PRINT"KILGOUR",Z(15),"NELSON",Z(16)
- TextConstant:"KILGOUR"
+ TextValue:"KILGOUR"
  CarriageControl:,
- NumericConstant:15
+ NumericValue:15
  Variable:Z(_) -> _
  CarriageControl:,
- TextConstant:"NELSON"
+ TextValue:"NELSON"
  CarriageControl:,
- NumericConstant:16
+ NumericValue:16
  Variable:Z(_) -> _
  CarriageControl:NL
 480 PRINT"JOHNSON",Z(17),"ANKCORN",Z(18)
- TextConstant:"JOHNSON"
+ TextValue:"JOHNSON"
  CarriageControl:,
- NumericConstant:17
+ NumericValue:17
  Variable:Z(_) -> _
  CarriageControl:,
- TextConstant:"ANKCORN"
+ TextValue:"ANKCORN"
  CarriageControl:,
- NumericConstant:18
+ NumericValue:18
  Variable:Z(_) -> _
  CarriageControl:NL
 490 PRINT"WHITNEY","MANAGER","IVEY","MANAGER"\PRINT
- TextConstant:"WHITNEY"
+ TextValue:"WHITNEY"
  CarriageControl:,
- TextConstant:"MANAGER"
+ TextValue:"MANAGER"
  CarriageControl:,
- TextConstant:"IVEY"
+ TextValue:"IVEY"
  CarriageControl:,
- TextConstant:"MANAGER"
+ TextValue:"MANAGER"
  CarriageControl:NL
  CarriageControl:NL
 500 PRINT"PITCHER'S OPTIONS ARE:"\PRINT"FAST8ALL"
- TextConstant:"PITCHER'S OPTIONS ARE:"
+ TextValue:"PITCHER'S OPTIONS ARE:"
  CarriageControl:NL
- TextConstant:"FAST8ALL"
+ TextValue:"FAST8ALL"
  CarriageControl:NL
 510 PRINT"BEANBALL"\PRINT "BRUSHBACK"\PRINT"BALL"\PRINT"CURVE"
- TextConstant:"BEANBALL"
+ TextValue:"BEANBALL"
  CarriageControl:NL
- TextConstant:"BRUSHBACK"
+ TextValue:"BRUSHBACK"
  CarriageControl:NL
- TextConstant:"BALL"
+ TextValue:"BALL"
  CarriageControl:NL
- TextConstant:"CURVE"
+ TextValue:"CURVE"
  CarriageControl:NL
 520 PRINT"SLIDER"\PRINT"KNUCKLE"\PRINT"GREASEBALL (ILLEGAL)"
- TextConstant:"SLIDER"
+ TextValue:"SLIDER"
  CarriageControl:NL
- TextConstant:"KNUCKLE"
+ TextValue:"KNUCKLE"
  CarriageControl:NL
- TextConstant:"GREASEBALL (ILLEGAL)"
+ TextValue:"GREASEBALL (ILLEGAL)"
  CarriageControl:NL
 530 PRINT"SPITBALL (ILLEGAL)"\PRINT"CHECK"\PRINT
- TextConstant:"SPITBALL (ILLEGAL)"
+ TextValue:"SPITBALL (ILLEGAL)"
  CarriageControl:NL
- TextConstant:"CHECK"
+ TextValue:"CHECK"
  CarriageControl:NL
  CarriageControl:NL
 540 PRINT"BATTER'S OPTIONS ARE:"\PRINT"BUNT"\PRINT"SWING"
- TextConstant:"BATTER'S OPTIONS ARE:"
+ TextValue:"BATTER'S OPTIONS ARE:"
  CarriageControl:NL
- TextConstant:"BUNT"
+ TextValue:"BUNT"
  CarriageControl:NL
- TextConstant:"SWING"
+ TextValue:"SWING"
  CarriageControl:NL
 550 PRINT"HIT-AWAY"\PRINT"SACRIFICE"\PRINT"GROUNDER"\PRINT"FLY"
- TextConstant:"HIT-AWAY"
+ TextValue:"HIT-AWAY"
  CarriageControl:NL
- TextConstant:"SACRIFICE"
+ TextValue:"SACRIFICE"
  CarriageControl:NL
- TextConstant:"GROUNDER"
+ TextValue:"GROUNDER"
  CarriageControl:NL
- TextConstant:"FLY"
+ TextValue:"FLY"
  CarriageControl:NL
 560 PRINT"KILL"\PRINT
- TextConstant:"KILL"
+ TextValue:"KILL"
  CarriageControl:NL
  CarriageControl:NL
 570 RETURN
  
 580 CHAIN"BASBL1"
  
- TextConstant:"BASBL1"
+ TextValue:"BASBL1"
 590 END
  
 

@@ -5,87 +5,87 @@
 110 REM MENT OF COMPUTER CONTROL CO., INC.
  Remark:MENT OF COMPUTER CONTROL CO., INC.
 115 PRINT "THIS PROGRAM PLAYS NIM."
- TextConstant:"THIS PROGRAM PLAYS NIM."
+ TextValue:"THIS PROGRAM PLAYS NIM."
  CarriageControl:NL
 120 PRINT "DO YOU WANT INSTRUCTIONS";\INPUT Q$
- TextConstant:"DO YOU WANT INSTRUCTIONS"
+ TextValue:"DO YOU WANT INSTRUCTIONS"
  CarriageControl:;
  Variable:Q$ -> $
 125 IF Q$="YES" THEN 135\IF Q$="NO" THEN 190
  Variable:Q$ -> $
- TextConstant:"YES"
+ TextValue:"YES"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:135
  Variable:Q$ -> $
- TextConstant:"NO"
+ TextValue:"NO"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:190
 130 PRINT "TYPE YES OR NO."\INPUT Q$\GOTO 125
- TextConstant:"TYPE YES OR NO."
+ TextValue:"TYPE YES OR NO."
  CarriageControl:NL
  Variable:Q$ -> $
  LineNumber:125
 135 PRINT
  CarriageControl:NL
 140 PRINT "    NIM IS PLAYED BY TWO PEOPLE PLAYING ALTERNATELY, BEFORE"
- TextConstant:"    NIM IS PLAYED BY TWO PEOPLE PLAYING ALTERNATELY, BEFORE"
+ TextValue:"    NIM IS PLAYED BY TWO PEOPLE PLAYING ALTERNATELY, BEFORE"
  CarriageControl:NL
 145 PRINT "THE PLAY STARTS, AN ARBITRARY NUMBER OF STICKS OR OBJECTS IS"
- TextConstant:"THE PLAY STARTS, AN ARBITRARY NUMBER OF STICKS OR OBJECTS IS"
+ TextValue:"THE PLAY STARTS, AN ARBITRARY NUMBER OF STICKS OR OBJECTS IS"
  CarriageControl:NL
 150 PRINT "PUT INTO AN ARBITRARY NUMBER OF PILES, IN ANY DISTRIBUTION"
- TextConstant:"PUT INTO AN ARBITRARY NUMBER OF PILES, IN ANY DISTRIBUTION"
+ TextValue:"PUT INTO AN ARBITRARY NUMBER OF PILES, IN ANY DISTRIBUTION"
  CarriageControl:NL
 155 PRINT "WHATEVER, THEN EACH PLAYER IN HIS TURN REMOVES AS MANY"
- TextConstant:"WHATEVER, THEN EACH PLAYER IN HIS TURN REMOVES AS MANY"
+ TextValue:"WHATEVER, THEN EACH PLAYER IN HIS TURN REMOVES AS MANY"
  CarriageControl:NL
 160 PRINT "STICKS AS HE WISHES FROM ANY PILEBUT FROM ONLY ONE PILE,"
- TextConstant:"STICKS AS HE WISHES FROM ANY PILEBUT FROM ONLY ONE PILE,"
+ TextValue:"STICKS AS HE WISHES FROM ANY PILEBUT FROM ONLY ONE PILE,"
  CarriageControl:NL
 165 PRINT "AND AT LEAST ONE STICK, THE PLAYER WHO TAKES THE LAST STICK"
- TextConstant:"AND AT LEAST ONE STICK, THE PLAYER WHO TAKES THE LAST STICK"
+ TextValue:"AND AT LEAST ONE STICK, THE PLAYER WHO TAKES THE LAST STICK"
  CarriageControl:NL
 170 PRINT "IS THE WINNER."
- TextConstant:"IS THE WINNER."
+ TextValue:"IS THE WINNER."
  CarriageControl:NL
 175 PRINT "    THIS PROGRAM ALLOWS YOU TO SET UP THE INITIAL ARRANGEMENT"
- TextConstant:"    THIS PROGRAM ALLOWS YOU TO SET UP THE INITIAL ARRANGEMENT"
+ TextValue:"    THIS PROGRAM ALLOWS YOU TO SET UP THE INITIAL ARRANGEMENT"
  CarriageControl:NL
 180 PRINT "OF PILES AND STICKS. IT WILL NOT ACCEPT MORE THAN TWENTY"
- TextConstant:"OF PILES AND STICKS. IT WILL NOT ACCEPT MORE THAN TWENTY"
+ TextValue:"OF PILES AND STICKS. IT WILL NOT ACCEPT MORE THAN TWENTY"
  CarriageControl:NL
 185 PRINT "PILES OR STICKS IN EACH PILE."
- TextConstant:"PILES OR STICKS IN EACH PILE."
+ TextValue:"PILES OR STICKS IN EACH PILE."
  CarriageControl:NL
 190 RANDOM
  
 195 REM-------------------CONFIGURATION INPUT----------------------------
  Remark:-------------------CONFIGURATION INPUT----------------------------
 200 DIM X(20,4),S(20),L(20),S2(20),N2(4),C(20),S3(20),V(20)
- NumericConstant:20
- NumericConstant:4
+ NumericValue:20
+ NumericValue:4
  Declaration:X(,) -> _(,)
- NumericConstant:20
+ NumericValue:20
  Declaration:S() -> _()
- NumericConstant:20
+ NumericValue:20
  Declaration:L() -> _()
- NumericConstant:20
+ NumericValue:20
  Declaration:S2() -> _()
- NumericConstant:4
+ NumericValue:4
  Declaration:N2() -> _()
- NumericConstant:20
+ NumericValue:20
  Declaration:C() -> _()
- NumericConstant:20
+ NumericValue:20
  Declaration:S3() -> _()
- NumericConstant:20
+ NumericValue:20
  Declaration:V() -> _()
 205 PRINT\PRINT "HOW MANY PILES";\INPUT P\IF P>20 THEN 215
  CarriageControl:NL
- TextConstant:"HOW MANY PILES"
+ TextValue:"HOW MANY PILES"
  CarriageControl:;
  Variable:P -> _
  Variable:P -> _
- NumericConstant:20
+ NumericValue:20
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:215
 210 IF P>INT(P) THEN 215\IF P<=0 THEN 215\GO TO 220
@@ -95,22 +95,22 @@
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:215
  Variable:P -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorLessEqual:<=(_,_) -> ?
  LineNumber:215
  LineNumber:220
 215 PRINT "ILLEGAL PILE NUMBER. "\PRINT\GO TO 205
- TextConstant:"ILLEGAL PILE NUMBER. "
+ TextValue:"ILLEGAL PILE NUMBER. "
  CarriageControl:NL
  CarriageControl:NL
  LineNumber:205
 220 PRINT\FOR I=1 TO P
  CarriageControl:NL
  control: Variable:I -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:P -> _"]
 225 PRINT "HOW MANY STICKS IN PILE"I;\INPUT L(I)\IF L(I)>20 THEN 235
- TextConstant:"HOW MANY STICKS IN PILE"
+ TextValue:"HOW MANY STICKS IN PILE"
  CarriageControl:
  Variable:I -> _
  CarriageControl:;
@@ -118,7 +118,7 @@
  Variable:L(_) -> _
  Variable:I -> _
  Variable:L(_) -> _
- NumericConstant:20
+ NumericValue:20
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:235
 230 IF L(I)>INT(L(I)) THEN 235\IF L(I)<=0 THEN 235\GO TO 240
@@ -131,12 +131,12 @@
  LineNumber:235
  Variable:I -> _
  Variable:L(_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorLessEqual:<=(_,_) -> ?
  LineNumber:235
  LineNumber:240
 235 PRINT "ILLEGAL STICK NUMBER"\PRINT\GO TO 225
- TextConstant:"ILLEGAL STICK NUMBER"
+ TextValue:"ILLEGAL STICK NUMBER"
  CarriageControl:NL
  CarriageControl:NL
  LineNumber:225
@@ -144,7 +144,7 @@
  Variable:I -> _
 245 FOR I=1 TO P\S(I)=L(I)\G=G+L(I)\NEXT I
  control: Variable:I -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:P -> _"]
  Variable:I -> _
  Variable:S(_) -> _
@@ -160,96 +160,96 @@
  Variable:I -> _
 250 PRINT\PRINT "DO YOU WANT TO GO FIRST";
  CarriageControl:NL
- TextConstant:"DO YOU WANT TO GO FIRST"
+ TextValue:"DO YOU WANT TO GO FIRST"
  CarriageControl:;
 255 INPUT Q$\IF Q$="YES" THEN 340\IF Q$="NO" THEN 390
  Variable:Q$ -> $
  Variable:Q$ -> $
- TextConstant:"YES"
+ TextValue:"YES"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:340
  Variable:Q$ -> $
- TextConstant:"NO"
+ TextValue:"NO"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:390
 260 PRINT "TYPE YES OR NO."\GO TO 255
- TextConstant:"TYPE YES OR NO."
+ TextValue:"TYPE YES OR NO."
  CarriageControl:NL
  LineNumber:255
 265 REM  CONTROL OF GAME REPEATS AND TESTS FOR END OF GAME- 
  Remark: CONTROL OF GAME REPEATS AND TESTS FOR END OF GAME- 
 270 IF G=0 THEN 275\IF F=1 THEN 390\GO TO 320
  Variable:G -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:275
  Variable:F -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:390
  LineNumber:320
 275 IF F=1 THEN 315
  Variable:F -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:315
 280 PRINT\PRINT "I WON. DO YOU WANT TO PLAY AGAIN";
  CarriageControl:NL
- TextConstant:"I WON. DO YOU WANT TO PLAY AGAIN"
+ TextValue:"I WON. DO YOU WANT TO PLAY AGAIN"
  CarriageControl:;
 285 INPUT Q$\IF Q$="NO" THEN 290\IF Q$="YES" THEN 300\GO TO 295
  Variable:Q$ -> $
  Variable:Q$ -> $
- TextConstant:"NO"
+ TextValue:"NO"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:290
  Variable:Q$ -> $
- TextConstant:"YES"
+ TextValue:"YES"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:300
  LineNumber:295
 290 STOP
  
 295 PRINT "TYPE YES OR NO."\GO TO 285
- TextConstant:"TYPE YES OR NO."
+ TextValue:"TYPE YES OR NO."
  CarriageControl:NL
  LineNumber:285
 300 PRINT\PRINT "SAME ARRANGEMENT";
  CarriageControl:NL
- TextConstant:"SAME ARRANGEMENT"
+ TextValue:"SAME ARRANGEMENT"
  CarriageControl:;
 305 INPUT Q$\IF Q$="NO" THEN 205\IF Q$="YES" THEN 345
  Variable:Q$ -> $
  Variable:Q$ -> $
- TextConstant:"NO"
+ TextValue:"NO"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:205
  Variable:Q$ -> $
- TextConstant:"YES"
+ TextValue:"YES"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:345
 310 PRINT "TYPE YES OR NO."\GO TO 305
- TextConstant:"TYPE YES OR NO."
+ TextValue:"TYPE YES OR NO."
  CarriageControl:NL
  LineNumber:305
 315 PRINT\PRINT "YOU WON, DO YOU WANT TO PLAY AGAIN";\GO TO 285
  CarriageControl:NL
- TextConstant:"YOU WON, DO YOU WANT TO PLAY AGAIN"
+ TextValue:"YOU WON, DO YOU WANT TO PLAY AGAIN"
  CarriageControl:;
  LineNumber:285
 320 PRINT\PRINT "PlLE NUMBER","STICKS LEFT"
  CarriageControl:NL
- TextConstant:"PlLE NUMBER"
+ TextValue:"PlLE NUMBER"
  CarriageControl:,
- TextConstant:"STICKS LEFT"
+ TextValue:"STICKS LEFT"
  CarriageControl:NL
 325 FOR I=1 TO P\IF S(I)=0 THEN 330\PRINT I,S(I)
  control: Variable:I -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:P -> _"]
  Variable:I -> _
  Variable:S(_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:330
  Variable:I -> _
@@ -263,7 +263,7 @@
  Remark:-------------------PLAYER'S MOVE-------------------------
 340 PRINT\PRINT "WHICH PILE DO YOU WANT STICKS FROM";\INPUT N
  CarriageControl:NL
- TextConstant:"WHICH PILE DO YOU WANT STICKS FROM"
+ TextValue:"WHICH PILE DO YOU WANT STICKS FROM"
  CarriageControl:;
  Variable:N -> _
 345 IF N>P THEN 355\IF N>INT(N) THEN 355\IF N<=0 THEN 355
@@ -277,24 +277,24 @@
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:355
  Variable:N -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorLessEqual:<=(_,_) -> ?
  LineNumber:355
 350 IF S(N)=0 THEN 355\GO TO 360
  Variable:N -> _
  Variable:S(_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:355
  LineNumber:360
 355 PRINT "ILLEGAL PILE NUMBER."\PRINT\GO TO 340
- TextConstant:"ILLEGAL PILE NUMBER."
+ TextValue:"ILLEGAL PILE NUMBER."
  CarriageControl:NL
  CarriageControl:NL
  LineNumber:340
 360 PRINT\PRINT "HOW MANY STICKS";\INPUT T
  CarriageControl:NL
- TextConstant:"HOW MANY STICKS"
+ TextValue:"HOW MANY STICKS"
  CarriageControl:;
  Variable:T -> _
 365 IF T>S(N) THEN 370\IF T>INT(T) THEN 370\IF T<=0 THEN 370\GO TO 375
@@ -310,12 +310,12 @@
  BinaryOperatorGreater:>(_,_) -> ?
  LineNumber:370
  Variable:T -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorLessEqual:<=(_,_) -> ?
  LineNumber:370
  LineNumber:375
 370 PRINT "ILLEGAL STICK NUMBER."\PRINT\GO TO 360
- TextConstant:"ILLEGAL STICK NUMBER."
+ TextValue:"ILLEGAL STICK NUMBER."
  CarriageControl:NL
  CarriageControl:NL
  LineNumber:360
@@ -334,23 +334,23 @@
  AssignmentOperator:= _ -> _
 380 F=1\GO TO 270
  Variable:F -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
  LineNumber:270
 385 REM -------------------MACHINE'S MOVE-------------------------
  Remark:-------------------MACHINE'S MOVE-------------------------
 390 FOR I=0 TO 4\V(I)=0\NEXT I
  control: Variable:I -> _
- start:   ["NumericConstant:0"]
- end:     ["NumericConstant:4"]
+ start:   ["NumericValue:0"]
+ end:     ["NumericValue:4"]
  Variable:I -> _
  Variable:V(_) -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
  Variable:I -> _
 395 FOR I=1 TO P
  control: Variable:I -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:P -> _"]
 400    C(I)=S(I)
  Variable:I -> _
@@ -360,13 +360,13 @@
  AssignmentOperator:= _ -> _
 405    FOR E=4 TO 0 STEP -1
  control: Variable:E -> _
- start:   ["NumericConstant:4"]
- end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
+ start:   ["NumericValue:4"]
+ end:     ["NumericValue:0"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
 410       IF S(I)<2^E THEN 415\S2(I)=S2(I)+10^E\S(I)=S(I)-2^E
  Variable:I -> _
  Variable:S(_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:E -> _
  BinaryOperatorPower:^(_,_) -> _
  BinaryOperatorLess:<(_,_) -> ?
@@ -375,7 +375,7 @@
  Variable:S2(_) -> _
  Variable:I -> _
  Variable:S2(_) -> _
- NumericConstant:10
+ NumericValue:10
  Variable:E -> _
  BinaryOperatorPower:^(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
@@ -384,7 +384,7 @@
  Variable:S(_) -> _
  Variable:I -> _
  Variable:S(_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:E -> _
  BinaryOperatorPower:^(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
@@ -393,16 +393,16 @@
  Variable:E -> _
 420    FOR Y=4 TO 0 STEP -1
  control: Variable:Y -> _
- start:   ["NumericConstant:4"]
- end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
+ start:   ["NumericValue:4"]
+ end:     ["NumericValue:0"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
 425       X(I,Y)=INT(S2(I)/10^Y)\S2(I)=S2(I)-X(I,Y)*10^Y
  Variable:I -> _
  Variable:Y -> _
  Variable:X(_,_) -> _
  Variable:I -> _
  Variable:S2(_) -> _
- NumericConstant:10
+ NumericValue:10
  Variable:Y -> _
  BinaryOperatorPower:^(_,_) -> _
  BinaryOperatorDivide:/(_,_) -> _
@@ -415,7 +415,7 @@
  Variable:I -> _
  Variable:Y -> _
  Variable:X(_,_) -> _
- NumericConstant:10
+ NumericValue:10
  Variable:Y -> _
  BinaryOperatorPower:^(_,_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
@@ -437,30 +437,30 @@
  Variable:I -> _
 445 R=0
  Variable:R -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 450 FOR Y=4 TO 0 STEP -1
  control: Variable:Y -> _
- start:   ["NumericConstant:4"]
- end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
+ start:   ["NumericValue:4"]
+ end:     ["NumericValue:0"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
 455    IF V(Y)/2-INT(V(Y)/2)=0 THEN 480
  Variable:Y -> _
  Variable:V(_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  Variable:Y -> _
  Variable:V(_) -> _
- NumericConstant:2
+ NumericValue:2
  BinaryOperatorDivide:/(_,_) -> _
  FunctionInt:INT(_) -> _
  BinaryOperatorMinus:-(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:480
 460    IF R=1 THEN 470\Q=INT(P*RND(X))+1
  Variable:R -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:470
  Variable:Q -> _
@@ -469,67 +469,67 @@
  FunctionRnd:RND(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  FunctionInt:INT(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
 465    IF X(Q,Y)<>1 THEN 460\X(Q,Y)=0\R=1\GO TO 480
  Variable:Q -> _
  Variable:Y -> _
  Variable:X(_,_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorNotEqual:<>(_,_) -> ?
  LineNumber:460
  Variable:Q -> _
  Variable:Y -> _
  Variable:X(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
  Variable:R -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
  LineNumber:480
 470    IF X(Q,Y)=1 THEN 475\X(Q,Y)=1\GO TO 480
  Variable:Q -> _
  Variable:Y -> _
  Variable:X(_,_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:475
  Variable:Q -> _
  Variable:Y -> _
  Variable:X(_,_) -> _
- NumericConstant:1
+ NumericValue:1
  AssignmentOperator:= =_ -> _
  LineNumber:480
 475    X(Q,Y)=0
  Variable:Q -> _
  Variable:Y -> _
  Variable:X(_,_) -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 480 NEXT Y
  Variable:Y -> _
 485 FOR I=1 TO P
  control: Variable:I -> _
- start:   ["NumericConstant:1"]
+ start:   ["NumericValue:1"]
  end:     ["Variable:P -> _"]
 490    S2(I)=0
  Variable:I -> _
  Variable:S2(_) -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
 495    FOR Y=4 TO 0 STEP -1
  control: Variable:Y -> _
- start:   ["NumericConstant:4"]
- end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
+ start:   ["NumericValue:4"]
+ end:     ["NumericValue:0"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
 500       S3(I)=X(I,Y)*10^Y\S2(I)=S2(I)+S3(I)
  Variable:I -> _
  Variable:S3(_) -> _
  Variable:I -> _
  Variable:Y -> _
  Variable:X(_,_) -> _
- NumericConstant:10
+ NumericValue:10
  Variable:Y -> _
  BinaryOperatorPower:^(_,_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
@@ -546,14 +546,14 @@
  Variable:Y -> _
 510    FOR E=4 TO 0 STEP -1
  control: Variable:E -> _
- start:   ["NumericConstant:4"]
- end:     ["NumericConstant:0"]
- step:    ["NumericConstant:1", "UnaryOperatorMinus:-(_) -> =_"]
+ start:   ["NumericValue:4"]
+ end:     ["NumericValue:0"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
 515       IF S2(I)<10^E THEN 520\S(I)=S(I)+2^E\S2(I)=S2(I)-10^E
  WARNING: Line exceeds PRETTY width limit 72
  Variable:I -> _
  Variable:S2(_) -> _
- NumericConstant:10
+ NumericValue:10
  Variable:E -> _
  BinaryOperatorPower:^(_,_) -> _
  BinaryOperatorLess:<(_,_) -> ?
@@ -562,7 +562,7 @@
  Variable:S(_) -> _
  Variable:I -> _
  Variable:S(_) -> _
- NumericConstant:2
+ NumericValue:2
  Variable:E -> _
  BinaryOperatorPower:^(_,_) -> _
  BinaryOperatorPlus:+(_,_) -> _
@@ -571,7 +571,7 @@
  Variable:S2(_) -> _
  Variable:I -> _
  Variable:S2(_) -> _
- NumericConstant:10
+ NumericValue:10
  Variable:E -> _
  BinaryOperatorPower:^(_,_) -> _
  BinaryOperatorMinus:-(_,_) -> _
@@ -583,7 +583,7 @@
 530 IF R=1 THEN 535\Q=INT(P*RND(X))+1\IF S(Q)=0 THEN 530\S(Q)=S(Q)-1
  WARNING: Line exceeds PRETTY width limit 72
  Variable:R -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:535
  Variable:Q -> _
@@ -592,19 +592,19 @@
  FunctionRnd:RND(_) -> _
  BinaryOperatorMultiply:*(_,_) -> _
  FunctionInt:INT(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorPlus:+(_,_) -> _
  AssignmentOperator:= _ -> _
  Variable:Q -> _
  Variable:S(_) -> _
- NumericConstant:0
+ NumericValue:0
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:530
  Variable:Q -> _
  Variable:S(_) -> _
  Variable:Q -> _
  Variable:S(_) -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorMinus:-(_,_) -> _
  AssignmentOperator:= _ -> _
 535 D=C(Q)-S(Q)\G=G-D
@@ -622,33 +622,33 @@
  AssignmentOperator:= _ -> _
 540 IF D=1 THEN 550
  Variable:D -> _
- NumericConstant:1
+ NumericValue:1
  BinaryOperatorEqual:=(_,_) -> ?
  LineNumber:550
 545 PRINT\PRINT "I'LL TAKE";D;"STICKS FROM PILE";Q;"."\GO TO 555
  CarriageControl:NL
- TextConstant:"I'LL TAKE"
+ TextValue:"I'LL TAKE"
  CarriageControl:;
  Variable:D -> _
  CarriageControl:;
- TextConstant:"STICKS FROM PILE"
+ TextValue:"STICKS FROM PILE"
  CarriageControl:;
  Variable:Q -> _
  CarriageControl:;
- TextConstant:"."
+ TextValue:"."
  CarriageControl:NL
  LineNumber:555
 550 PRINT\PRINT "I'LL TAKE 1 STICK FROM PILE";Q;"."
  CarriageControl:NL
- TextConstant:"I'LL TAKE 1 STICK FROM PILE"
+ TextValue:"I'LL TAKE 1 STICK FROM PILE"
  CarriageControl:;
  Variable:Q -> _
  CarriageControl:;
- TextConstant:"."
+ TextValue:"."
  CarriageControl:NL
 555 F=0\GO TO 270
  Variable:F -> _
- NumericConstant:0
+ NumericValue:0
  AssignmentOperator:= =_ -> _
  LineNumber:270
 560 END
