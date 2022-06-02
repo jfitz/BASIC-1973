@@ -814,9 +814,9 @@ Exponents may be signed or unsigned.
 
 Numeric literals may contain units.
 Units are specified after the value, in braces.
-Each unit is a text followed by an optional number.
-The text of units is defined by the programmer.
-Any arbitrary text may be used.
+Each unit is a name followed by an optional number.
+The name a unit is defined by the programmer.
+Any alphabetic text may be used.
 BASIC does not care about the text value, only that the values match during operations.
 
 |==========
@@ -2835,6 +2835,7 @@ ABS(x)
 numeric
 
 Computes the absolute value of x.
+Keeps units assigned to n.
 
 ASCII(t$)
 ~~~~~~~~~
@@ -2895,6 +2896,7 @@ numeric
 Computes the arctangent of y and x, providing the answer in radians.
 
 ATN(x)
+~~~~~~
 
 numeric
 
@@ -3007,6 +3009,7 @@ COS(r)
 numeric
 
 Computes the cosine of r, where r is in radians.
+The returned value is a pure number, with no units.
 
 COT(r)
 ~~~~~~
@@ -3014,6 +3017,7 @@ COT(r)
 numeric
 
 Computes the cotangent of r, where r is in radians.
+The returned value is a pure number, with no units.
 
 CSC(r)
 ~~~~~~
@@ -3021,6 +3025,7 @@ CSC(r)
 numeric
 
 Computes the cosecant of r, where r is in radians.
+The returned value is a pure number, with no units.
 
 DEG(r)
 ~~~~~~
@@ -3078,6 +3083,7 @@ EXP(x)
 numeric
 
 Computes e to the x power.
+The returned value is a pure number, with no units.
 
 EXT$(t$,i,j)
 ~~~~~~~~~~~~
@@ -3094,6 +3100,7 @@ numeric
 
 Returns the integer part of a number.
 Truncates towards negative infinity.
+Keeps units assigned to x.
 
 FIX%(x%)
 ~~~~~~~~
@@ -3102,6 +3109,7 @@ numeric
 
 Returns the integer part of a number.
 Truncates towards negative infinity.
+Keeps units assigned to x.
 
 FRAC(x)
 ~~~~~~~
@@ -3110,6 +3118,7 @@ numeric
 
 Return the fraction part of a numeric value.
 Retains the sign of the original value.
+Keeps units assigned to x.
 
 IDN(n)
 ~~~~~~
@@ -3136,6 +3145,8 @@ Creates an identity matrix with dimensions based on the assignment target.
 IDN
 ~~~
 
+special form of IDN()
+
 INSTR(t$,s$)
 ~~~~~~~~~~~~
 
@@ -3149,6 +3160,7 @@ numeric
 
 Find string s in string t and report position.
 Start search as position i (first position is 1, not 0).
+The returned value is a pure number, with no units.
 
 INSTR%(t$,s$)
 ~~~~~~~~~~~~~
@@ -3156,6 +3168,7 @@ INSTR%(t$,s$)
 integer
 
 Find string s in string t and report position.
+The returned value is a pure number, with no units.
 
 INSTR%(i,t$,s$)
 ~~~~~~~~~~~~~~~
@@ -3164,6 +3177,7 @@ integer
 
 Find string s in string t and report position.
 Start search as position i (first position is 1, not 0).
+The returned value is a pure number, with no units.
 
 INT(x)
 ~~~~~~
@@ -3172,6 +3186,7 @@ numeric
 
 Return the integer part of a numeric value.
 Truncates towards zero.
+Keeps units assigned to x.
 
 INT%(x)
 ~~~~~~~
@@ -3180,6 +3195,7 @@ integer
 
 Return the integer part of a numeric value.
 Truncates towards zero.
+Keeps units assigned to x.
 
 LEFT(t$,n)
 ~~~~~~~~~~
@@ -3194,6 +3210,7 @@ LEN(t$)
 numeric
 
 Returns the length of the string value.
+The returned value is a pure number, with no units.
 
 LOG(x)
 ~~~~~~
@@ -3210,6 +3227,7 @@ numeric
 
 Computes the base-b log of x.
 A value of zero or a negative value will cause an error.
+The returned value is a pure number, with no units.
 
 LOWER$(t$)
 ~~~~~~~~~~
@@ -3300,6 +3318,7 @@ numeric
 
 Number of columns in matrix m.
 Matrix may be of any type.
+The returned value is a pure number, with no units.
 
 NCOL%(m)
 ~~~~~~~~
@@ -3308,6 +3327,7 @@ integer
 
 Number of columns in matrix m.
 Matrix may be of any type.
+The returned value is a pure number, with no units.
 
 NELEM(a)
 ~~~~~~~~
@@ -3316,6 +3336,7 @@ numeric
 
 Number of elements in array a.
 Array may be of any type.
+The returned value is a pure number, with no units.
 
 NELEM%(a)
 ~~~~~~~~~
@@ -3324,6 +3345,7 @@ integer
 
 Number of elements in array a.
 Array may be of any type.
+The returned value is a pure number, with no units.
 
 NROW(m)
 ~~~~~~~
@@ -3332,6 +3354,7 @@ numeric
 
 Number of rows in matrix m.
 Matrix may be of any type.
+The returned value is a pure number, with no units.
 
 NROW%(m)
 ~~~~~~~~
@@ -3340,6 +3363,7 @@ integer
 
 Number of rows in matrix m.
 Matrix may be of any type.
+The returned value is a pure number, with no units.
 
 NUM
 ~~~
@@ -3348,6 +3372,7 @@ numeric
 
 Returns the number of users.
 Always returns 1.
+The returned value is a pure number, with no units.
 
 NUM(x)
 ~~~~~~
@@ -3384,6 +3409,7 @@ string
 Advances the print-point to the specified column.
 
 Available only in PRINT statements.
+The returned value is a pure number, with no units.
 
 PROD(a)
 ~~~~~~~
@@ -3691,6 +3717,7 @@ SEC(r)
 numeric
 
 Computes the secant of r, where r is in radians.
+The returned value is a pure number, with no units.
 
 SGN(x)
 ~~~~~~
@@ -3698,6 +3725,7 @@ SGN(x)
 numeric
 
 Returns 1, 0, or -1, for positive, zero, or negative values of x.
+The returned value is a pure number, with no units.
 
 SIN(r)
 ~~~~~~
@@ -3705,6 +3733,7 @@ SIN(r)
 numeric
 
 Computes the sine of r, where r is in radians.
+The returned value is a pure number, with no units.
 
 SORT1(a)
 ~~~~~~~~

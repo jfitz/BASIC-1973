@@ -882,11 +882,11 @@ class NumericValue < AbstractValue
   end
 
   def posate
-    NumericValue.new(@value)
+    NumericValue.new_2(@value, @units)
   end
 
   def negate
-    NumericValue.new(-@value)
+    NumericValue.new_2(-@value, @units)
   end
 
   def filehandle
@@ -986,31 +986,42 @@ class NumericValue < AbstractValue
 
   def truncate
     value = @value.to_i
-    NumericValue.new(value)
+
+    NumericValue.new_2(value, @units)
   end
 
   def floor
     value = @value.floor
-    NumericValue.new(value)
+
+    NumericValue.new_2(value, @units)
   end
 
   def to_int
-    IntegerValue.new(to_i)
+    IntegerValue.new_2(to_i, @units)
   end
 
   def exp
+    raise BASICRuntimeError, :te_power_not_pure unless @units.empty?
+
     value = Math.exp(@value)
+
     NumericValue.new(value)
   end
 
   def log
+    raise BASICRuntimeError, :te_power_not_pure unless @units.empty?
+
     value = @value.positive? ? Math.log(@value) : 0
+
     NumericValue.new(value)
   end
 
   def logb(lbase)
+    raise BASICRuntimeError, :te_power_not_pure unless @units.empty?
+
     lbase_v = lbase.to_v
     value = @value.positive? ? Math.log(@value, lbase_v) : 0
+
     NumericValue.new(value)
   end
 
@@ -1021,16 +1032,18 @@ class NumericValue < AbstractValue
 
   def abs
     value = @value >= 0 ? @value : -@value
-    NumericValue.new(value)
+
+    NumericValue.new_2(value, @units)
   end
 
   def round(places)
-    NumericValue.new(@value.round(places.to_i))
+    value = @value.round(places.to_i)
+
+    NumericValue.new_2(value, @units)
   end
 
   def sqrt
-    raise BASICRuntimeError, :te_power_not_even unless
-      @units.even?
+    raise BASICRuntimeError, :te_power_not_even unless @units.even?
 
     value = @value.positive? ? Math.sqrt(@value) : 0
     units = @units.sqrt
@@ -1117,6 +1130,7 @@ class NumericValue < AbstractValue
     result = 0
     result = 1 if @value.positive?
     result = -1 if @value.negative?
+
     NumericValue.new(result)
   end
 
@@ -1293,11 +1307,11 @@ class IntegerValue < AbstractValue
   end
 
   def posate
-    NumericValue.new(@value)
+    NumericValue.new_2(@value, @units)
   end
 
   def negate
-    IntegerValue.new(-@value)
+    IntegerValue.new_2(-@value, @units)
   end
 
   def filehandle
@@ -1397,30 +1411,43 @@ class IntegerValue < AbstractValue
 
   def truncate
     value = @value.to_i
-    IntegerValue.new(value)
+
+    IntegerValue.new_2(value, @units)
   end
 
   def floor
-    IntegerValue.new(@value)
+    IntegerValue.new_2(@value, @units)
   end
 
   def exp
+    raise BASICRuntimeError, :te_power_not_pure unless @units.empty?
+
     value = Math.exp(@value)
+
     IntegerValue.new(value)
   end
 
   def log
+    raise BASICRuntimeError, :te_power_not_pure unless @units.empty?
+
     value = @value.positive? ? Math.log(@value) : 0
+
     IntegerValue.new(value)
   end
 
   def log10
+    raise BASICRuntimeError, :te_power_not_pure unless @units.empty?
+
     value = @value.positive? ? Math.log10(@value) : 0
+
     IntegerValue.new(value)
   end
 
   def log2
+    raise BASICRuntimeError, :te_power_not_pure unless @units.empty?
+
     value = @value.positive? ? Math.log2(@value) : 0
+
     IntegerValue.new(value)
   end
 
@@ -1431,7 +1458,8 @@ class IntegerValue < AbstractValue
 
   def abs
     value = @value >= 0 ? @value : -@value
-    IntegerValue.new(value)
+
+    IntegerValue.new_2(value, @units)
   end
 
   def sqrt
@@ -1484,6 +1512,7 @@ class IntegerValue < AbstractValue
     result = 0
     result = 1 if @value.positive?
     result = -1 if @value.negative?
+
     IntegerValue.new(result)
   end
 
