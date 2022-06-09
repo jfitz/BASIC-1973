@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# token class
+# class for all element classes
 class AbstractElement
   def self.make_coord(c)
     [NumericValue.new(c)]
@@ -361,11 +361,7 @@ class Units
     @values.hash
   end
 
-  def ==(other)
-    @values == other.values
-  end
-
-  def eq(other)
+  def eql?(other)
     @values == other.values
   end
 
@@ -392,6 +388,10 @@ class Units
     0
   end
 
+  def ==(other)
+    @values == other.values
+  end
+
   def empty?
     @values.empty?
   end
@@ -415,7 +415,7 @@ class Units
   def to_s
     units_t = ''
 
-   unless @values.empty?
+    unless @values.empty?
       units_s = []
 
       @values.each do |name, power|
@@ -587,16 +587,12 @@ class AbstractValue < AbstractElement
     @warnings = []
   end
 
-  def dump
-    "#{self.class}:#{self}"
+  def hash
+    @value.hash
   end
 
   def eql?(other)
     @value == other.to_v
-  end
-
-  def hash
-    @value.hash
   end
 
   def <=>(other)
@@ -647,7 +643,8 @@ class AbstractValue < AbstractElement
   end
 
   def b_eq(other)
-    message = "Type mismatch (#{content_type}/#{other.content_type}) in b_eq()"
+    message =
+      "Type mismatch (#{content_type}/#{other.content_type}) in b_eq()"
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
@@ -655,7 +652,8 @@ class AbstractValue < AbstractElement
   end
 
   def b_ne(other)
-    message = "Type mismatch (#{content_type}/#{other.content_type}) in b_ne()"
+    message =
+      "Type mismatch (#{content_type}/#{other.content_type}) in b_ne()"
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
@@ -663,7 +661,8 @@ class AbstractValue < AbstractElement
   end
 
   def b_gt(other)
-    message = "Type mismatch (#{content_type}/#{other.content_type}) in b_gt()"
+    message =
+      "Type mismatch (#{content_type}/#{other.content_type}) in b_gt()"
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
@@ -671,7 +670,8 @@ class AbstractValue < AbstractElement
   end
 
   def b_ge(other)
-    message = "Type mismatch (#{content_type}/#{other.content_type}) in b_ge()"
+    message =
+      "Type mismatch (#{content_type}/#{other.content_type}) in b_ge()"
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
@@ -679,7 +679,8 @@ class AbstractValue < AbstractElement
   end
 
   def b_lt(other)
-    message = "Type mismatch (#{content_type}/#{other.content_type}) in b_lt()"
+    message =
+      "Type mismatch (#{content_type}/#{other.content_type}) in b_lt()"
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
@@ -687,7 +688,8 @@ class AbstractValue < AbstractElement
   end
 
   def b_le(other)
-    message = "Type mismatch (#{content_type}/#{other.content_type}) in b_le()"
+    message =
+      "Type mismatch (#{content_type}/#{other.content_type}) in b_le()"
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
@@ -746,6 +748,10 @@ class AbstractValue < AbstractElement
   # MAX and MIN operators
   def min(_)
     raise(BASICExpressionError, 'Invalid operator MIN')
+  end
+
+  def dump
+    "#{self.class}:#{self}"
   end
 
   def keyword?
@@ -884,18 +890,22 @@ class NumericValue < AbstractValue
     @units = units
   end
 
-  def ==(other)
-    @value == other.to_v
-  end
-
   def hash
     @value.hash + @symbol_text.hash
+  end
+
+  def eql?(other)
+    @value == other.to_v
   end
 
   def <=>(other)
     return @value <=> other.value if @value != other.value
 
     @units <=> other.units
+  end
+
+  def ==(other)
+    @value == other.to_v
   end
 
   def >(other)
@@ -920,18 +930,6 @@ class NumericValue < AbstractValue
 
   def b_or(other)
     BooleanValue.new(to_b || other.to_b)
-  end
-
-  def dump
-    "#{self.class}:#{@symbol_text}"
-  end
-
-  def zero?
-    @value.zero?
-  end
-
-  def eql?(other)
-    @value == other.to_v
   end
 
   def posate
@@ -1060,7 +1058,7 @@ class NumericValue < AbstractValue
 
   def log
     value = @value.positive? ? Math.log(@value) : 0
-    units = @units.exp
+    units = @units.log
 
     NumericValue.new_2(value, units)
   end
@@ -1068,7 +1066,7 @@ class NumericValue < AbstractValue
   def logb(lbase)
     lbase_v = lbase.to_v
     value = @value.positive? ? Math.log(@value, lbase_v) : 0
-    units = @units.exp
+    units = @units.log
 
     NumericValue.new_2(value, units)
   end
@@ -1343,6 +1341,7 @@ class NumericValue < AbstractValue
   # MAX and MIN operators
   def max(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in max()"
+
     raise(BASICExpressionError, message) unless compatible?(other)
 
     @value = [to_v, other.to_v].max
@@ -1351,6 +1350,7 @@ class NumericValue < AbstractValue
   # MAX and MIN operators
   def min(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in min()"
+
     raise(BASICExpressionError, message) unless compatible?(other)
 
     @value = [to_v, other.to_v].min
@@ -1362,6 +1362,14 @@ class NumericValue < AbstractValue
     result = -1 if @value.negative?
 
     NumericValue.new(result)
+  end
+
+  def dump
+    "#{self.class}:#{@symbol_text}"
+  end
+
+  def zero?
+    @value.zero?
   end
 
   def to_i
@@ -1482,18 +1490,22 @@ class IntegerValue < AbstractValue
     @units = units
   end
 
-  def ==(other)
-    @value == other.to_v
-  end
-
   def hash
     @value.hash + @symbol_text.hash
+  end
+
+  def eql?(other)
+    @value == other.to_v
   end
 
   def <=>(other)
     return @value <=> other.value if @value != other.value
 
     @units <=> other.units
+  end
+
+  def ==(other)
+    @value == other.to_v
   end
 
   def >(other)
@@ -1526,14 +1538,6 @@ class IntegerValue < AbstractValue
     else
       BooleanValue.new(to_b || other.to_b)
     end
-  end
-
-  def zero?
-    @value.zero?
-  end
-
-  def eql?(other)
-    @value == other.to_v
   end
 
   def posate
@@ -1609,7 +1613,7 @@ class IntegerValue < AbstractValue
 
     raise(BASICExpressionError, message) unless compatible?(other)
 
-    value = @value**other.to_v
+    value = @value**other.to_numeric.to_v
     units = @units.power(other)
 
     IntegerValue.new_2(value, units)
@@ -1718,6 +1722,7 @@ class IntegerValue < AbstractValue
   # MAX and MIN operators
   def max(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in max()"
+
     raise(BASICExpressionError, message) unless compatible?(other)
 
     @value = [to_v, other.to_v].max
@@ -1726,6 +1731,7 @@ class IntegerValue < AbstractValue
   # MAX and MIN operators
   def min(other)
     message = "Type mismatch (#{content_type}/#{other.content_type}) in =="
+
     raise(BASICExpressionError, message) unless compatible?(other)
 
     @value = [to_v, other.to_v].min
@@ -1737,6 +1743,10 @@ class IntegerValue < AbstractValue
     result = -1 if @value.negative?
 
     IntegerValue.new(result)
+  end
+
+  def zero?
+    @value.zero?
   end
 
   def to_i
@@ -1815,7 +1825,8 @@ class TextValue < AbstractValue
     TextValue.new(s)
   end
 
-  attr_reader :value, :symbol_text
+  attr_reader :value
+  attr_reader :symbol_text
 
   def initialize(text)
     super()
@@ -1830,8 +1841,7 @@ class TextValue < AbstractValue
       @symbol = true
     end
 
-    raise BASICSyntaxError, "'#{text}' is not a text constant" if
-      @value.nil?
+    raise BASICSyntaxError, "'#{text}' is not a text constant" if @value.nil?
 
     @content_type = :string
     @shape = :scalar
@@ -1852,20 +1862,20 @@ class TextValue < AbstractValue
     constant_stack.push(@constant)
   end
 
-  def eql?(other)
-    @value == other.to_v
-  end
-
-  def ==(other)
-    @value == other.to_v
-  end
-
   def hash
     @value.hash
   end
 
+  def eql?(other)
+    @value == other.to_v
+  end
+
   def <=>(other)
     @value <=> other.to_v
+  end
+
+  def ==(other)
+    @value == other.to_v
   end
 
   def >(other)
@@ -2074,36 +2084,36 @@ class BooleanValue < AbstractValue
     constant_stack.push(@constant)
   end
 
-  def eql?(other)
-    @value == other.to_v
-  end
-
-  def ==(other)
-    @value == other.to_v
-  end
-
   def hash
     @value.hash
+  end
+
+  def eql?(other)
+    @value == other.to_v
   end
 
   def <=>(other)
     to_i <=> other.to_i
   end
 
+  def ==(other)
+    to_i == other.to_i
+  end
+
   def >(other)
-    @value > other.to_v
+    to_i > other.to_i
   end
 
   def >=(other)
-    @value >= other.to_v
+    to_i >= other.to_i
   end
 
   def <(other)
-    @value < other.to_v
+    to_i < other.to_i
   end
 
   def <=(other)
-    @value <= other.to_v
+    to_i <= other.to_i
   end
 
   def not
@@ -2366,16 +2376,16 @@ class VariableName < AbstractElement
     constant_stack.push(@constant)
   end
 
+  def hash
+    @name.hash
+  end
+
   def eql?(other)
     to_s == other.to_s
   end
 
   def ==(other)
     to_s == other.to_s
-  end
-
-  def hash
-    @name.hash
   end
 
   def scalar?
@@ -2449,16 +2459,16 @@ class UserFunctionName < AbstractElement
     constant_stack.push(@constant)
   end
 
+  def hash
+    @name.hash
+  end
+
   def eql?(other)
     to_s == other.to_s
   end
 
   def ==(other)
     to_s == other.to_s
-  end
-
-  def hash
-    @name.hash
   end
 
   def scalar?
@@ -2564,16 +2574,16 @@ class Variable < AbstractElement
     constant_stack.push(@constant)
   end
 
+  def hash
+    @variable_name.hash && @subscripts.hash
+  end
+
   def eql?(other)
     @variable_name == other.name && @subscripts == other.subscripts
   end
 
   def ==(other)
     @variable_name == other.name && @subscripts == other.subscripts
-  end
-
-  def hash
-    @variable_name.hash && @subscripts.hash
   end
 
   def signature
