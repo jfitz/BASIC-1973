@@ -314,7 +314,7 @@ class Units
 
     unless text.nil?
       units_s = text[0..-1]
-      
+
       name = ''
       power_s = ''
       last_c = ''
@@ -341,11 +341,11 @@ class Units
           last_c = c
         end
 
-        if '+-'.include?(c) && power_s.empty?
-          power_s += c
+        next unless '+-'.include?(c) && power_s.empty?
 
-          last_c = c
-        end
+        power_s += c
+
+        last_c = c
       end
 
       unless name.empty?
@@ -403,8 +403,8 @@ class Units
   def even?
     even = true
 
-    @values.each { |name, power| even &&= power.even? }
-    
+    @values.each { |_name, power| even &&= power.even? }
+
     even
   end
 
@@ -419,13 +419,13 @@ class Units
       units_s = []
 
       @values.each do |name, power|
-        if power == 1
-          # don't print power when it is 1
-          units_s << "#{name}"
-        else
-          # print all other powers
-          units_s << "#{name}#{power.to_s}"
-        end
+        units_s << if power == 1
+                     # don't print power when it is 1
+                     name.to_s
+                   else
+                     # print all other powers
+                     "#{name}#{power}"
+                   end
       end
 
       units_t = "{#{units_s.join(' ')}}"
@@ -450,11 +450,11 @@ class Units
     new_values = @values.clone
 
     other.values.each do |name, power|
-      if new_values.key?(name)
-        new_power = new_values[name] + power
-      else
-        new_power = power
-      end
+      new_power = if new_values.key?(name)
+                    new_values[name] + power
+                  else
+                    power
+                  end
 
       if new_power == 0
         new_values.delete(name)
@@ -470,11 +470,11 @@ class Units
     new_values = @values.clone
 
     other.values.each do |name, power|
-      if new_values.key?(name)
-        new_power = new_values[name] - power
-      else
-        new_power = -power
-      end
+      new_power = if new_values.key?(name)
+                    new_values[name] - power
+                  else
+                    -power
+                  end
 
       if new_power == 0
         new_values.delete(name)
@@ -540,7 +540,7 @@ class Units
     Units.new({}, nil)
   end
 
-  def logb(other)
+  def logb(_other)
     raise BASICRuntimeError, :te_not_pure unless
       @values.empty?
 
@@ -563,17 +563,17 @@ class Units
   end
 
   def is_alpha(c)
-    'A' <= c && c <= 'Z' || 'a' <= c && c <= 'z'
+    ('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z')
   end
 
   def is_alnum(c)
-    'A' <= c && c <= 'Z' || 'a' <= c && c <= 'z' || '0' <= c && c <= '9'
+    ('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z') || ('0' <= c && c <= '9')
   end
 end
 
 # class that holds a value
 class AbstractValue < AbstractElement
-  attr_reader :content_type, :shape, :constant, :symbol, :warnings
+  attr_reader :content_type, :shape, :constant, :warnings, :symbol
 
   def initialize
     super
@@ -781,7 +781,7 @@ class NumericValue < AbstractValue
     n = NumericValue.new(token)
     n.set_units(units)
 
-    return n
+    n
   end
 
   def self.accept?(token)
@@ -828,9 +828,7 @@ class NumericValue < AbstractValue
 
   public
 
-  attr_reader :value
-  attr_reader :symbol_text
-  attr_reader :units
+  attr_reader :value, :symbol_text, :units
 
   def initialize(obj)
     super()
@@ -958,7 +956,7 @@ class NumericValue < AbstractValue
 
     value = @value + other.to_numeric.to_v
     units = @units.add(other.units)
-    
+
     NumericValue.new_2(value, units)
   end
 
@@ -970,7 +968,7 @@ class NumericValue < AbstractValue
 
     value = @value - other.to_numeric.to_v
     units = @units.subtract(other.units)
-    
+
     NumericValue.new_2(value, units)
   end
 
@@ -982,7 +980,7 @@ class NumericValue < AbstractValue
 
     value = @value * other.to_numeric.to_v
     units = @units.multiply(other.units)
-    
+
     NumericValue.new_2(value, units)
   end
 
@@ -995,7 +993,7 @@ class NumericValue < AbstractValue
 
     value = @value.to_f / other.to_numeric.to_f
     units = @units.divide(other.units)
-    
+
     NumericValue.new_2(value, units)
   end
 
@@ -1117,9 +1115,9 @@ class NumericValue < AbstractValue
 
   def to_radians
     new_units = Units.new({}, '')
-    
+
     if $options['trig_require_units'].value
-      unit = {'RAD' => 1}
+      unit = { 'RAD' => 1 }
       new_units = Units.new(unit, '')
     end
 
@@ -1128,14 +1126,14 @@ class NumericValue < AbstractValue
   end
 
   def to_deg(r)
-     r * 180 / 3.14156926
+    r * 180 / 3.14156926
   end
 
   def to_degrees
     new_units = Units.new({}, '')
-    
+
     if $options['trig_require_units'].value
-      unit = {'DEG' => 1}
+      unit = { 'DEG' => 1 }
       new_units = Units.new(unit, '')
     end
 
@@ -1154,9 +1152,7 @@ class NumericValue < AbstractValue
 
     angle_in_radians = @value
 
-    if @units.key?('DEG')
-      angle_in_radians = to_rad(@value)
-    end
+    angle_in_radians = to_rad(@value) if @units.key?('DEG')
 
     new_value = Math.sin(angle_in_radians)
 
@@ -1167,17 +1163,15 @@ class NumericValue < AbstractValue
     raise BASICRuntimeError.new(:te_not_pure, @name) unless @units.empty?
 
     new_units = Units.new({}, '')
-    
+
     if $options['trig_require_units'].value
-      unit = {'RAD' => 1}
+      unit = { 'RAD' => 1 }
       new_units = Units.new(unit, '')
     end
 
     new_value = 0
 
-    if @value >= -1.0 && @value <= 1.0
-      new_value = Math.asin(@value)
-    end
+    new_value = Math.asin(@value) if @value >= -1.0 && @value <= 1.0
 
     NumericValue.new_2(new_value, new_units)
   end
@@ -1193,9 +1187,7 @@ class NumericValue < AbstractValue
 
     angle_in_radians = @value
 
-    if @units.key?('DEG')
-      angle_in_radians = to_rad(@value)
-    end
+    angle_in_radians = to_rad(@value) if @units.key?('DEG')
 
     new_value = Math.cos(angle_in_radians)
 
@@ -1206,17 +1198,15 @@ class NumericValue < AbstractValue
     raise BASICRuntimeError.new(:te_not_pure, @name) unless @units.empty?
 
     new_units = Units.new({}, '')
-    
+
     if $options['trig_require_units'].value
-      unit = {'RAD' => 1}
+      unit = { 'RAD' => 1 }
       new_units = Units.new(unit, '')
     end
 
     new_value = 0
 
-    if @value >= -1.0 && @value <= 1.0
-      new_value = Math.acos(@value)
-    end
+    new_value = Math.acos(@value) if @value >= -1.0 && @value <= 1.0
 
     NumericValue.new_2(new_value, new_units)
   end
@@ -1232,9 +1222,7 @@ class NumericValue < AbstractValue
 
     angle_in_radians = @value
 
-    if @units.key?('DEG')
-      angle_in_radians = to_rad(@value)
-    end
+    angle_in_radians = to_rad(@value) if @units.key?('DEG')
 
     new_value = angle_in_radians >= 0 ? Math.tan(angle_in_radians) : 0
 
@@ -1245,9 +1233,9 @@ class NumericValue < AbstractValue
     raise BASICRuntimeError.new(:te_not_pure, @name) unless @units.empty?
 
     new_units = Units.new({}, '')
-    
+
     if $options['trig_require_units'].value
-      unit = {'RAD' => 1}
+      unit = { 'RAD' => 1 }
       new_units = Units.new(unit, '')
     end
 
@@ -1262,9 +1250,9 @@ class NumericValue < AbstractValue
     raise BASICRuntimeError.new(:te_not_pure, @name) unless a2.units.empty?
 
     new_units = Units.new({}, '')
-    
+
     if $options['trig_require_units'].value
-      unit = {'RAD' => 1}
+      unit = { 'RAD' => 1 }
       new_units = Units.new(unit, '')
     end
 
@@ -1284,9 +1272,7 @@ class NumericValue < AbstractValue
 
     angle_in_radians = @value
 
-    if @units.key?('DEG')
-      angle_in_radians = to_rad(@value)
-    end
+    angle_in_radians = to_rad(@value) if @units.key?('DEG')
 
     cos = Math.cos(angle_in_radians)
     sin = Math.sin(angle_in_radians)
@@ -1307,9 +1293,7 @@ class NumericValue < AbstractValue
 
     angle_in_radians = @value
 
-    if @units.key?('DEG')
-      angle_in_radians = to_rad(@value)
-    end
+    angle_in_radians = to_rad(@value) if @units.key?('DEG')
 
     cos = Math.cos(angle_in_radians)
     sec = Float::INFINITY
@@ -1328,9 +1312,7 @@ class NumericValue < AbstractValue
 
     angle_in_radians = @value
 
-    if @units.key?('DEG')
-      angle_in_radians = to_rad(@value)
-    end
+    angle_in_radians = to_rad(@value) if @units.key?('DEG')
 
     sin = Math.sin(angle_in_radians)
     csc = Float::INFINITY
@@ -1428,7 +1410,7 @@ class IntegerValue < AbstractValue
     n = IntegerValue.new(token)
     n.set_units(units)
 
-    return n
+    n
   end
 
   def self.accept?(token)
@@ -1446,9 +1428,7 @@ class IntegerValue < AbstractValue
     IntegerValue.new(v.to_i)
   end
 
-  attr_reader :value
-  attr_reader :symbol_text
-  attr_reader :units
+  attr_reader :value, :symbol_text, :units
 
   def initialize(obj)
     super()
@@ -1578,7 +1558,7 @@ class IntegerValue < AbstractValue
 
     value = @value - other.to_numeric.to_v
     units = @units.subtract(other.units)
-    
+
     IntegerValue.new_2(value, units)
   end
 
@@ -1590,7 +1570,7 @@ class IntegerValue < AbstractValue
 
     value = @value * other.to_numeric.to_v
     units = @units.multiply(other.units)
-    
+
     IntegerValue.new_2(value, units)
   end
 
@@ -1603,7 +1583,7 @@ class IntegerValue < AbstractValue
 
     value = @value.to_f / other.to_numeric.to_f
     units = @units.divide(other.units)
-    
+
     IntegerValue.new_2(value, units)
   end
 
@@ -1825,8 +1805,7 @@ class TextValue < AbstractValue
     TextValue.new(s)
   end
 
-  attr_reader :value
-  attr_reader :symbol_text
+  attr_reader :value, :symbol_text
 
   def initialize(text)
     super()
@@ -1894,17 +1873,17 @@ class TextValue < AbstractValue
     @value <= other.to_v
   end
 
-  def not
-    b = to_b
-    BooleanValue.new(!b)
-  end
-
   def b_and(other)
     BooleanValue.new(to_b && other.to_b)
   end
 
   def b_or(other)
     BooleanValue.new(to_b || other.to_b)
+  end
+
+  def not
+    b = to_b
+    BooleanValue.new(!b)
   end
 
   def add(other)
@@ -1981,7 +1960,7 @@ class TextValue < AbstractValue
     BASICArray.new(dims, values)
   end
 
-   def na_unpack_1
+  def na_unpack_1
     length = NumericValue.new(@value.size)
     dims = [length]
 
@@ -2017,7 +1996,7 @@ class TextValue < AbstractValue
     BASICArray.new(dims, values)
   end
 
-   def ia_unpack_1
+  def ia_unpack_1
     length = IntegerValue.new(@value.size)
     dims = [length]
 
@@ -2089,7 +2068,7 @@ class BooleanValue < AbstractValue
   end
 
   def eql?(other)
-    @value == other.to_v
+    to_i == other.to_i
   end
 
   def <=>(other)
@@ -2333,9 +2312,7 @@ class CarriageControl
 
   def write(printer)
     case @operator
-    when ','
-      printer.print_item(@operator)
-    when ';'
+    when ',', ';'
       printer.print_item(@operator)
     when 'NL'
       printer.newline
@@ -2402,12 +2379,10 @@ class VariableName < AbstractElement
     strings = %i[string]
 
     case content_type
-    when :numeric
+    when :numeric, :integer
       numerics.include?(value.content_type)
     when :string
       strings.include?(value.content_type)
-    when :integer
-      numerics.include?(value.content_type)
     else
       false
     end
@@ -2489,12 +2464,10 @@ class UserFunctionName < AbstractElement
     strings = %i[string]
 
     case content_type
-    when :numeric
+    when :numeric, :integer
       numerics.include?(value.content_type)
     when :string
       strings.include?(value.content_type)
-    when :integer
-      numerics.include?(value.content_type)
     else
       false
     end
@@ -2614,12 +2587,10 @@ class Variable < AbstractElement
     strings = %i[string]
 
     case content_type
-    when :numeric
+    when :numeric, :integer
       numerics.include?(value.content_type)
     when :string
       strings.include?(value.content_type)
-    when :integer
-      numerics.include?(value.content_type)
     else
       false
     end
