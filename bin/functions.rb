@@ -4739,13 +4739,10 @@ class FunctionFactory
     'ZER2$' => FunctionZer2T
   }
 
-  def self.valid?(text)
-    @functions.key?(text)
-  end
-
   def self.make(token)
     text = token.to_s
-    cls = @functions[text]
+    cls = nil
+    cls = @functions[text] if @functions.key?(text)
     cls.new(text) unless cls.nil?
   end
 
