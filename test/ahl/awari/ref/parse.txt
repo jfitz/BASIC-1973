@@ -2,51 +2,51 @@
  NumericValue:0
 10 DIMB(13),G(13),F(50):READN
  NumericValue:13
- Declaration:B() -> _()
+ Declaration:B() -> .()
  NumericValue:13
- Declaration:G() -> _()
+ Declaration:G() -> .()
  NumericValue:50
- Declaration:F() -> _()
- Variable:N -> _
+ Declaration:F() -> .()
+ Variable:N -> .
 15 FORI=0TON-1:READF(I):NEXTI
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:0"]
- end:     ["Variable:N -> _", "NumericValue:1", "BinaryOperatorMinus:-(_,_) -> _"]
- Variable:I -> _
- Variable:F(_) -> _
- Variable:I -> _
+ end:     ["Variable:N -> .", "NumericValue:1", "BinaryOperatorMinus:-(.,.) -> ."]
+ Variable:I -> .
+ Variable:F(.) -> .
+ Variable:I -> .
 20 PRINT\PRINT "GAME OF *** AWARI ***"\B=0
  CarriageControl:NL
  TextValue:"GAME OF *** AWARI ***"
  CarriageControl:NL
- Variable:B -> _
+ Variable:B -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 25 FORI=0TO12:LETB(I)=3:NEXTI
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:0"]
  end:     ["NumericValue:12"]
- Variable:I -> _
- Variable:B(_) -> _
+ Variable:I -> .
+ Variable:B(.) -> .
  NumericValue:3
- AssignmentOperator:= =_ -> _
- Variable:I -> _
+ AssignmentOperator:= =. -> .
+ Variable:I -> .
 30 LETC=0:LETF(N)=0:LETB(13)=0:LETB(6)=0
- Variable:C -> _
+ Variable:C -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
- Variable:N -> _
- Variable:F(_) -> _
+ AssignmentOperator:= =. -> .
+ Variable:N -> .
+ Variable:F(.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
  NumericValue:13
- Variable:B(_) -> _
+ Variable:B(.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
  NumericValue:6
- Variable:B(_) -> _
+ Variable:B(.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 35 GOSUB500 
  LineNumber:500
 40 PRINT"YOUR MOVE";:GOSUB110
@@ -54,40 +54,40 @@
  CarriageControl:;
  LineNumber:110
 45 IFB=0GOTO80
- Variable:B -> _
+ Variable:B -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:80
 50 IFM=HTHENGOSUB100
- Variable:M -> _
- Variable:H -> _
- BinaryOperatorEqual:=(_,_) -> ?
+ Variable:M -> .
+ Variable:H -> .
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:100
 55 IFB=0GOTO80
- Variable:B -> _
+ Variable:B -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:80
 60 PRINT"MY MOVE IS";:GOSUB800
  TextValue:"MY MOVE IS"
  CarriageControl:;
  LineNumber:800
 65 IFB=0GOTO80
- Variable:B -> _
+ Variable:B -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:80
 70 IFM=HTHENPRINT",";:GOSUB800
- Variable:M -> _
- Variable:H -> _
- BinaryOperatorEqual:=(_,_) -> ?
+ Variable:M -> .
+ Variable:H -> .
+ BinaryOperatorEqual:=(.,.) -> ?
  TextValue:","
  CarriageControl:;
  LineNumber:800
 75 IFB>0GOTO35
- Variable:B -> _
+ Variable:B -> .
  NumericValue:0
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:35
 80 PRINT:PRINT"GAME OVER"
  CarriageControl:NL
@@ -95,40 +95,40 @@
  CarriageControl:NL
 85 LET D=B(6)-B(13):IF D<0 THEN PRINT "I WIN BY";-D"P0INTS":GOTO 20
  WARNING: Line exceeds PRETTY width limit 72
- Variable:D -> _
+ Variable:D -> .
  NumericValue:6
- Variable:B(_) -> _
+ Variable:B(.) -> .
  NumericValue:13
- Variable:B(_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:D -> _
+ Variable:B(.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:D -> .
  NumericValue:0
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorLess:<(.,.) -> ?
  TextValue:"I WIN BY"
  CarriageControl:;
- Variable:D -> _
- UnaryOperatorMinus:-(_) -> _
+ Variable:D -> .
+ UnaryOperatorMinus:-(.) -> .
  CarriageControl:
  TextValue:"P0INTS"
  CarriageControl:NL
  LineNumber:20
 90 LETN=N+1:IFD=0THENPRINT"DRAWN GAME":GOTO 20
- Variable:N -> _
- Variable:N -> _
+ Variable:N -> .
+ Variable:N -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:D -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:D -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  TextValue:"DRAWN GAME"
  CarriageControl:NL
  LineNumber:20
 95 PRINT"YOU WIN BY "D"POINTS": GOTO20
  TextValue:"YOU WIN BY "
  CarriageControl:
- Variable:D -> _
+ Variable:D -> .
  CarriageControl:
  TextValue:"POINTS"
  CarriageControl:NL
@@ -139,18 +139,18 @@
  CarriageControl:;
 110 INPUTM:IFM<7THENIFM>0THENLETM=M-1:GOTO130
  WARNING: Inconsistent GOSUB origins
- Variable:M -> _
- Variable:M -> _
+ Variable:M -> .
+ Variable:M -> .
  NumericValue:7
- BinaryOperatorLess:<(_,_) -> ?
- Variable:M -> _
+ BinaryOperatorLess:<(.,.) -> ?
+ Variable:M -> .
  NumericValue:0
- BinaryOperatorGreater:>(_,_) -> ?
- Variable:M -> _
- Variable:M -> _
+ BinaryOperatorGreater:>(.,.) -> ?
+ Variable:M -> .
+ Variable:M -> .
  NumericValue:1
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
  LineNumber:130
 120 PRINT"ILLEGAL MOVE":GOTO100
  WARNING: Branch to line before GOSUB start
@@ -158,85 +158,85 @@
  CarriageControl:NL
  LineNumber:100
 130 IFB(M)=0GOTO120
- Variable:M -> _
- Variable:B(_) -> _
+ Variable:M -> .
+ Variable:B(.) -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:120
 140 LETM=B:GOSUB200
- Variable:M -> _
- Variable:B -> _
- AssignmentOperator:= _ -> _
+ Variable:M -> .
+ Variable:B -> .
+ AssignmentOperator:= . -> .
  LineNumber:200
 150 GOTO500
  LineNumber:500
 200 LETK=M:GOSUB600
  WARNING: Inconsistent GOSUB origins
  WARNING: Multiple GOSUB entry points
- Variable:K -> _
- Variable:M -> _
- AssignmentOperator:= _ -> _
+ Variable:K -> .
+ Variable:M -> .
+ AssignmentOperator:= . -> .
  LineNumber:600
 205 LETB=0:IFK>6THENLETK=K-7
  WARNING: Multiple GOSUB entry points
- Variable:B -> _
+ Variable:B -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
- Variable:K -> _
+ AssignmentOperator:= =. -> .
+ Variable:K -> .
  NumericValue:6
- BinaryOperatorGreater:>(_,_) -> ?
- Variable:K -> _
- Variable:K -> _
+ BinaryOperatorGreater:>(.,.) -> ?
+ Variable:K -> .
+ Variable:K -> .
  NumericValue:7
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 210 LETC=C+1:IFC<9THENLETF(N)=F(N)*6+K
  WARNING: Multiple GOSUB entry points
- Variable:C -> _
- Variable:C -> _
+ Variable:C -> .
+ Variable:C -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:C -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:C -> .
  NumericValue:9
- BinaryOperatorLess:<(_,_) -> ?
- Variable:N -> _
- Variable:F(_) -> _
- Variable:N -> _
- Variable:F(_) -> _
+ BinaryOperatorLess:<(.,.) -> ?
+ Variable:N -> .
+ Variable:F(.) -> .
+ Variable:N -> .
+ Variable:F(.) -> .
  NumericValue:6
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:K -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:K -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 215 FORI=0TO5:IFB(I)<>0THEN230
  WARNING: Multiple GOSUB entry points
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:0"]
  end:     ["NumericValue:5"]
- Variable:I -> _
- Variable:B(_) -> _
+ Variable:I -> .
+ Variable:B(.) -> .
  NumericValue:0
- BinaryOperatorNotEqual:<>(_,_) -> ?
+ BinaryOperatorNotEqual:<>(.,.) -> ?
  LineNumber:230
 220 NEXTI
  WARNING: Multiple GOSUB entry points
- Variable:I -> _
+ Variable:I -> .
 225 RETURN
  WARNING: Multiple GOSUB entry points
  
 230 FORI=7TO12:IFB(I)<>0THENLETB=1:RETURN
  WARNING: Multiple GOSUB entry points
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:7"]
  end:     ["NumericValue:12"]
- Variable:I -> _
- Variable:B(_) -> _
+ Variable:I -> .
+ Variable:B(.) -> .
  NumericValue:0
- BinaryOperatorNotEqual:<>(_,_) -> ?
- Variable:B -> _
+ BinaryOperatorNotEqual:<>(.,.) -> ?
+ Variable:B -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
  
 235 GOTO 220
  WARNING: Multiple GOSUB entry points
@@ -249,20 +249,20 @@
  CarriageControl:;
 505 FORI=12TO7STEP-1:GOSUB580
  WARNING: Multiple GOSUB entry points
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:12"]
  end:     ["NumericValue:7"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
  LineNumber:580
 510 NEXTI
  WARNING: Multiple GOSUB entry points
- Variable:I -> _
+ Variable:I -> .
 515 PRINT:LETI=13:GOSUB580
  WARNING: Multiple GOSUB entry points
  CarriageControl:NL
- Variable:I -> _
+ Variable:I -> .
  NumericValue:13
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
  LineNumber:580
 520 PRINT "","                ",B(6):PRINT "   ";
  WARNING: Multiple GOSUB entry points
@@ -271,311 +271,311 @@
  TextValue:"                "
  CarriageControl:,
  NumericValue:6
- Variable:B(_) -> _
+ Variable:B(.) -> .
  CarriageControl:NL
  TextValue:"   "
  CarriageControl:;
 525 FORI=0TO5:GOSUB580
  WARNING: Multiple GOSUB entry points
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:0"]
  end:     ["NumericValue:5"]
  LineNumber:580
 530 NEXTI
  WARNING: Multiple GOSUB entry points
- Variable:I -> _
+ Variable:I -> .
 535 PRINT:PRINT:RETURN
  WARNING: Multiple GOSUB entry points
  CarriageControl:NL
  CarriageControl:NL
  
 580 IFB(I)<10THENPRINT" ";
- Variable:I -> _
- Variable:B(_) -> _
+ Variable:I -> .
+ Variable:B(.) -> .
  NumericValue:10
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorLess:<(.,.) -> ?
  TextValue:" "
  CarriageControl:;
 585 PRINTB(I);:RETURN
- Variable:I -> _
- Variable:B(_) -> _
+ Variable:I -> .
+ Variable:B(.) -> .
  CarriageControl:;
  
 600 LETP=B(M):LETB(M)=0
- Variable:P -> _
- Variable:M -> _
- Variable:B(_) -> _
- AssignmentOperator:= _ -> _
- Variable:M -> _
- Variable:B(_) -> _
+ Variable:P -> .
+ Variable:M -> .
+ Variable:B(.) -> .
+ AssignmentOperator:= . -> .
+ Variable:M -> .
+ Variable:B(.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 605 FORP=PTO1STEP-1:LETM=M+1:IFM>13THENLETM=M-14
- control: Variable:P -> _
- start:   ["Variable:P -> _"]
+ control: Variable:P -> .
+ start:   ["Variable:P -> ."]
  end:     ["NumericValue:1"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
- Variable:M -> _
- Variable:M -> _
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
+ Variable:M -> .
+ Variable:M -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:M -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:M -> .
  NumericValue:13
- BinaryOperatorGreater:>(_,_) -> ?
- Variable:M -> _
- Variable:M -> _
+ BinaryOperatorGreater:>(.,.) -> ?
+ Variable:M -> .
+ Variable:M -> .
  NumericValue:14
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 610 LETB(M)=B(M)+1:NEXTP
- Variable:M -> _
- Variable:B(_) -> _
- Variable:M -> _
- Variable:B(_) -> _
+ Variable:M -> .
+ Variable:B(.) -> .
+ Variable:M -> .
+ Variable:B(.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:P -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:P -> .
 615 IFB(M)=1THENIFM<>6THENIFM<>13THENIFB(12-M)<>0GOTO625
  WARNING: Line exceeds PRETTY width limit 72
- Variable:M -> _
- Variable:B(_) -> _
+ Variable:M -> .
+ Variable:B(.) -> .
  NumericValue:1
- BinaryOperatorEqual:=(_,_) -> ?
- Variable:M -> _
+ BinaryOperatorEqual:=(.,.) -> ?
+ Variable:M -> .
  NumericValue:6
- BinaryOperatorNotEqual:<>(_,_) -> ?
- Variable:M -> _
+ BinaryOperatorNotEqual:<>(.,.) -> ?
+ Variable:M -> .
  NumericValue:13
- BinaryOperatorNotEqual:<>(_,_) -> ?
+ BinaryOperatorNotEqual:<>(.,.) -> ?
  NumericValue:12
- Variable:M -> _
- BinaryOperatorMinus:-(_,_) -> _
- Variable:B(_) -> _
+ Variable:M -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ Variable:B(.) -> .
  NumericValue:0
- BinaryOperatorNotEqual:<>(_,_) -> ?
+ BinaryOperatorNotEqual:<>(.,.) -> ?
  LineNumber:625
 620 RETURN
  
 625 LETB(H)=B(H)+B(12-M)+1:LETB(M)=0:LETB(12-M)=0:RETURN
  WARNING: Line exceeds PRETTY width limit 72
- Variable:H -> _
- Variable:B(_) -> _
- Variable:H -> _
- Variable:B(_) -> _
+ Variable:H -> .
+ Variable:B(.) -> .
+ Variable:H -> .
+ Variable:B(.) -> .
  NumericValue:12
- Variable:M -> _
- BinaryOperatorMinus:-(_,_) -> _
- Variable:B(_) -> _
- BinaryOperatorPlus:+(_,_) -> _
+ Variable:M -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ Variable:B(.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:M -> _
- Variable:B(_) -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:M -> .
+ Variable:B(.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
  NumericValue:12
- Variable:M -> _
- BinaryOperatorMinus:-(_,_) -> _
- Variable:B(_) -> _
+ Variable:M -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ Variable:B(.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
  
 800 LETD=-99:LETH=13
  WARNING: GOSUB length exceeds limit 40
- Variable:D -> _
+ Variable:D -> .
  NumericValue:99
- UnaryOperatorMinus:-(_) -> =_
- AssignmentOperator:= =_ -> _
- Variable:H -> _
+ UnaryOperatorMinus:-(.) -> =.
+ AssignmentOperator:= =. -> .
+ Variable:H -> .
  NumericValue:13
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 805 FORI=0TO13:LETG(I)=B(I):NEXTI
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:0"]
  end:     ["NumericValue:13"]
- Variable:I -> _
- Variable:G(_) -> _
- Variable:I -> _
- Variable:B(_) -> _
- AssignmentOperator:= _ -> _
- Variable:I -> _
+ Variable:I -> .
+ Variable:G(.) -> .
+ Variable:I -> .
+ Variable:B(.) -> .
+ AssignmentOperator:= . -> .
+ Variable:I -> .
 810 FORJ=7TO12:IFB(J)=0THEN885
- control: Variable:J -> _
+ control: Variable:J -> .
  start:   ["NumericValue:7"]
  end:     ["NumericValue:12"]
- Variable:J -> _
- Variable:B(_) -> _
+ Variable:J -> .
+ Variable:B(.) -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:885
 815 LETQ=0:LETM=J:GOSUB600
- Variable:Q -> _
+ Variable:Q -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
- Variable:M -> _
- Variable:J -> _
- AssignmentOperator:= _ -> _
+ AssignmentOperator:= =. -> .
+ Variable:M -> .
+ Variable:J -> .
+ AssignmentOperator:= . -> .
  LineNumber:600
 820 FORI=0TO5:IFB(I)=0GOTO845
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:0"]
  end:     ["NumericValue:5"]
- Variable:I -> _
- Variable:B(_) -> _
+ Variable:I -> .
+ Variable:B(.) -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:845
 825 LETL=B(I)+1:LETR=0
- Variable:L -> _
- Variable:I -> _
- Variable:B(_) -> _
+ Variable:L -> .
+ Variable:I -> .
+ Variable:B(.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:R -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:R -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 830 IFL>13THENLETL=L-14:LETR=1:GOTO830
- Variable:L -> _
+ Variable:L -> .
  NumericValue:13
- BinaryOperatorGreater:>(_,_) -> ?
- Variable:L -> _
- Variable:L -> _
+ BinaryOperatorGreater:>(.,.) -> ?
+ Variable:L -> .
+ Variable:L -> .
  NumericValue:14
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:R -> _
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:R -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
  LineNumber:830
 835 IFB(L)=0THENIFL<>6THENIFL<>13THENLETR=B(12-L)+R
- Variable:L -> _
- Variable:B(_) -> _
+ Variable:L -> .
+ Variable:B(.) -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
- Variable:L -> _
+ BinaryOperatorEqual:=(.,.) -> ?
+ Variable:L -> .
  NumericValue:6
- BinaryOperatorNotEqual:<>(_,_) -> ?
- Variable:L -> _
+ BinaryOperatorNotEqual:<>(.,.) -> ?
+ Variable:L -> .
  NumericValue:13
- BinaryOperatorNotEqual:<>(_,_) -> ?
- Variable:R -> _
+ BinaryOperatorNotEqual:<>(.,.) -> ?
+ Variable:R -> .
  NumericValue:12
- Variable:L -> _
- BinaryOperatorMinus:-(_,_) -> _
- Variable:B(_) -> _
- Variable:R -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:L -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ Variable:B(.) -> .
+ Variable:R -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 840 IFR<>QTHENLETQ=R 
- Variable:R -> _
- Variable:Q -> _
- BinaryOperatorNotEqual:<>(_,_) -> ?
- Variable:Q -> _
- Variable:R -> _
- AssignmentOperator:= _ -> _
+ Variable:R -> .
+ Variable:Q -> .
+ BinaryOperatorNotEqual:<>(.,.) -> ?
+ Variable:Q -> .
+ Variable:R -> .
+ AssignmentOperator:= . -> .
 845 NEXTI 
- Variable:I -> _
+ Variable:I -> .
 850 LETQ=B(13)-B(6)-Q:IFC>BGOTO875
- Variable:Q -> _
+ Variable:Q -> .
  NumericValue:13
- Variable:B(_) -> _
+ Variable:B(.) -> .
  NumericValue:6
- Variable:B(_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- Variable:Q -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:C -> _
- Variable:B -> _
- BinaryOperatorGreater:>(_,_) -> ?
+ Variable:B(.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ Variable:Q -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:C -> .
+ Variable:B -> .
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:875
 855 LETK=J:IFK>6THENLETK=K-7
- Variable:K -> _
- Variable:J -> _
- AssignmentOperator:= _ -> _
- Variable:K -> _
+ Variable:K -> .
+ Variable:J -> .
+ AssignmentOperator:= . -> .
+ Variable:K -> .
  NumericValue:6
- BinaryOperatorGreater:>(_,_) -> ?
- Variable:K -> _
- Variable:K -> _
+ BinaryOperatorGreater:>(.,.) -> ?
+ Variable:K -> .
+ Variable:K -> .
  NumericValue:7
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 860 FORI=0TON-1:IFF(N)*6+K=INT(F(I)/6^(7-C)+.1)THENLETQ=Q-2
  WARNING: Line exceeds PRETTY width limit 72
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:0"]
- end:     ["Variable:N -> _", "NumericValue:1", "BinaryOperatorMinus:-(_,_) -> _"]
- Variable:N -> _
- Variable:F(_) -> _
+ end:     ["Variable:N -> .", "NumericValue:1", "BinaryOperatorMinus:-(.,.) -> ."]
+ Variable:N -> .
+ Variable:F(.) -> .
  NumericValue:6
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:K -> _
- BinaryOperatorPlus:+(_,_) -> _
- Variable:I -> _
- Variable:F(_) -> _
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:K -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:I -> .
+ Variable:F(.) -> .
  NumericValue:6
  NumericValue:7
- Variable:C -> _
- BinaryOperatorMinus:-(_,_) -> _
- BinaryOperatorPower:^(_,_) -> _
- BinaryOperatorDivide:/(_,_) -> _
+ Variable:C -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ BinaryOperatorPower:^(.,.) -> .
+ BinaryOperatorDivide:/(.,.) -> .
  NumericValue:.1
- BinaryOperatorPlus:+(_,_) -> _
- FunctionInt:INT(_) -> _
- BinaryOperatorEqual:=(_,_) -> ?
- Variable:Q -> _
- Variable:Q -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ FunctionInt:INT(.) -> .
+ BinaryOperatorEqual:=(.,.) -> ?
+ Variable:Q -> .
+ Variable:Q -> .
  NumericValue:2
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 870 NEXTI
- Variable:I -> _
+ Variable:I -> .
 875 FOR I=0TO13:LETB(I)=G(I):NEXTI
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:0"]
  end:     ["NumericValue:13"]
- Variable:I -> _
- Variable:B(_) -> _
- Variable:I -> _
- Variable:G(_) -> _
- AssignmentOperator:= _ -> _
- Variable:I -> _
+ Variable:I -> .
+ Variable:B(.) -> .
+ Variable:I -> .
+ Variable:G(.) -> .
+ AssignmentOperator:= . -> .
+ Variable:I -> .
 880 IFQ>=DTHENLETA=J:LETD=Q
- Variable:Q -> _
- Variable:D -> _
- BinaryOperatorGreaterEqual:>=(_,_) -> ?
- Variable:A -> _
- Variable:J -> _
- AssignmentOperator:= _ -> _
- Variable:D -> _
- Variable:Q -> _
- AssignmentOperator:= _ -> _
+ Variable:Q -> .
+ Variable:D -> .
+ BinaryOperatorGreaterEqual:>=(.,.) -> ?
+ Variable:A -> .
+ Variable:J -> .
+ AssignmentOperator:= . -> .
+ Variable:D -> .
+ Variable:Q -> .
+ AssignmentOperator:= . -> .
 885 NEXTJ
- Variable:J -> _
+ Variable:J -> .
 890 LETM=A:PRINTCHR$(42+M);:GOTO200
  WARNING: Branch to line before GOSUB start
- Variable:M -> _
- Variable:A -> _
- AssignmentOperator:= _ -> _
+ Variable:M -> .
+ Variable:A -> .
+ AssignmentOperator:= . -> .
  NumericValue:42
- Variable:M -> _
- BinaryOperatorPlus:+(_,_) -> _
- FunctionChr:CHR$(_) -> $
+ Variable:M -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ FunctionChr:CHR$(.) -> $
  CarriageControl:;
  LineNumber:200
 900 FORI=0TON-1:PRINTB(I):NEXTI
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:0"]
- end:     ["Variable:N -> _", "NumericValue:1", "BinaryOperatorMinus:-(_,_) -> _"]
- Variable:I -> _
- Variable:B(_) -> _
+ end:     ["Variable:N -> .", "NumericValue:1", "BinaryOperatorMinus:-(.,.) -> ."]
+ Variable:I -> .
+ Variable:B(.) -> .
  CarriageControl:NL
- Variable:I -> _
+ Variable:I -> .
 999 END
  
 

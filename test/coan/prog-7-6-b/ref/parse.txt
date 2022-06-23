@@ -8,70 +8,70 @@
  TextValue:"TEST1 TEST2 TEST3 TEST4 TEST5 TEST6 AVERAGE"
  CarriageControl:NL
 120 LET T1=0
- Variable:T1 -> _
+ Variable:T1 -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 130 READ #1, N$
  NumericValue:1
- UnaryOperatorHash:#(_) -> =FH
+ UnaryOperatorHash:#(.) -> =FH
  Variable:N$ -> $
 140 LET T2 = 0
- Variable:T2 -> _
+ Variable:T2 -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 150 PRINT N$; TAB(15);
  Variable:N$ -> $
  CarriageControl:;
  NumericValue:15
- FunctionTab:TAB(_) -> $
+ FunctionTab:TAB(.) -> $
  CarriageControl:;
 160 FOR I = 1 TO 6
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:6"]
 170    READ #1, X
  NumericValue:1
- UnaryOperatorHash:#(_) -> =FH
- Variable:X -> _
+ UnaryOperatorHash:#(.) -> =FH
+ Variable:X -> .
 180    LET T2 = T2 + X
- Variable:T2 -> _
- Variable:T2 -> _
- Variable:X -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:T2 -> .
+ Variable:T2 -> .
+ Variable:X -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 190    PRINT X; " ";
- Variable:X -> _
+ Variable:X -> .
  CarriageControl:;
  TextValue:" "
  CarriageControl:;
 200 NEXT I
- Variable:I -> _
+ Variable:I -> .
 210 PRINT T2/6
- Variable:T2 -> _
+ Variable:T2 -> .
  NumericValue:6
- BinaryOperatorDivide:/(_,_) -> _
+ BinaryOperatorDivide:/(.,.) -> .
  CarriageControl:NL
 220 LET T1 = T1 + T2
- Variable:T1 -> _
- Variable:T1 -> _
- Variable:T2 -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:T1 -> .
+ Variable:T1 -> .
+ Variable:T2 -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 230    IF MORE(#1) THEN 130
- Variable:M -> _
+ Variable:M -> .
  NumericValue:1
- UnaryOperatorHash:#(_) -> =FH
- Variable:E() -> _
- BinaryOperatorOr:OR(_,_) -> ?
+ UnaryOperatorHash:#(.) -> =FH
+ Variable:E() -> .
+ BinaryOperatorOr:OR(.,.) -> ?
  LineNumber:130
 240 PRINT
  CarriageControl:NL
 250 PRINT "CLASS AVERAGE = ";T1/30
  TextValue:"CLASS AVERAGE = "
  CarriageControl:;
- Variable:T1 -> _
+ Variable:T1 -> .
  NumericValue:30
- BinaryOperatorDivide:/(_,_) -> _
+ BinaryOperatorDivide:/(.,.) -> .
  CarriageControl:NL
 260 END
  

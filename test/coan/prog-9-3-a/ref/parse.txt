@@ -1,89 +1,89 @@
 8 REM  WE COMPUTE THE CONVERSION FACTOR
  Remark: WE COMPUTE THE CONVERSION FACTOR
 10 LET R=3.14159/180
- Variable:R -> _
+ Variable:R -> .
  NumericValue:3.14159
  NumericValue:180
- BinaryOperatorDivide:/(_,_) -> =_
- AssignmentOperator:= =_ -> _
+ BinaryOperatorDivide:/(.,.) -> =.
+ AssignmentOperator:= =. -> .
 18 REM   DEFINE THE TRIG FUNCTION FOR DEGREES
  Remark:  DEFINE THE TRIG FUNCTION FOR DEGREES
 20 DEF FNT(G)=SIN(G*R)
- UserFunctionName:FNT -> _
- VariableName:G -> _
- Variable:G -> _
- Variable:R -> _
- BinaryOperatorMultiply:*(_,_) -> _
- FunctionSin:SIN(_) -> _
+ UserFunctionName:FNT -> .
+ VariableName:G -> .
+ Variable:G -> .
+ Variable:R -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ FunctionSin:SIN(.) -> .
 28 REM   DEFINE A ROUNDING FUNCTION
  Remark:  DEFINE A ROUNDING FUNCTION
 30 DEF FNR(X)=INT(X*100+.5)/100
- UserFunctionName:FNR -> _
- VariableName:X -> _
- Variable:X -> _
+ UserFunctionName:FNR -> .
+ VariableName:X -> .
+ Variable:X -> .
  NumericValue:100
- BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:.5
- BinaryOperatorPlus:+(_,_) -> _
- FunctionInt:INT(_) -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ FunctionInt:INT(.) -> .
  NumericValue:100
- BinaryOperatorDivide:/(_,_) -> _
+ BinaryOperatorDivide:/(.,.) -> .
 38 REM   A1 AND B1 ARE ANGLES AND A IS A SIDE
  Remark:  A1 AND B1 ARE ANGLES AND A IS A SIDE
 40 READ A1,B1,A
- Variable:A1 -> _
- Variable:B1 -> _
- Variable:A -> _
+ Variable:A1 -> .
+ Variable:B1 -> .
+ Variable:A -> .
 50 IF A1=0 THEN 999
- Variable:A1 -> _
+ Variable:A1 -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:999
 58 REM   FIND THE THIRD ANGLE
  Remark:  FIND THE THIRD ANGLE
 60 LET C1=180-(A1+B1)
- Variable:C1 -> _
+ Variable:C1 -> .
  NumericValue:180
- Variable:A1 -> _
- Variable:B1 -> _
- BinaryOperatorPlus:+(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:A1 -> .
+ Variable:B1 -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 68 REM   70 AND 80 COMPUTE THE OTHER TWO SIDES
  Remark:  70 AND 80 COMPUTE THE OTHER TWO SIDES
 70 LET B=A*FNT(B1)/FNT(A1)
- Variable:B -> _
- Variable:A -> _
- Variable:B1 -> _
- UserFunction:FNT(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:A1 -> _
- UserFunction:FNT(_) -> _
- BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:B -> .
+ Variable:A -> .
+ Variable:B1 -> .
+ UserFunction:FNT(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:A1 -> .
+ UserFunction:FNT(.) -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ AssignmentOperator:= . -> .
 80 LET C=B*FNT(C1)/FNT(B1)
- Variable:C -> _
- Variable:B -> _
- Variable:C1 -> _
- UserFunction:FNT(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:B1 -> _
- UserFunction:FNT(_) -> _
- BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:C -> .
+ Variable:B -> .
+ Variable:C1 -> .
+ UserFunction:FNT(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:B1 -> .
+ UserFunction:FNT(.) -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ AssignmentOperator:= . -> .
 88 REM COMPUTE AREA
  Remark:COMPUTE AREA
 90 LET A2=.5*A*B*FNT(C1)
- Variable:A2 -> _
+ Variable:A2 -> .
  NumericValue:.5
- Variable:A -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:B -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:C1 -> _
- UserFunction:FNT(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:A -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:B -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:C1 -> .
+ UserFunction:FNT(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ AssignmentOperator:= . -> .
 98 REM NOW PRINT THE RESULTS
  Remark:NOW PRINT THE RESULTS
 100 PRINT " "," A"," B"," C"
@@ -98,29 +98,29 @@
 110 PRINT "THE ANGLES ARE",A1,B1,C1
  TextValue:"THE ANGLES ARE"
  CarriageControl:,
- Variable:A1 -> _
+ Variable:A1 -> .
  CarriageControl:,
- Variable:B1 -> _
+ Variable:B1 -> .
  CarriageControl:,
- Variable:C1 -> _
+ Variable:C1 -> .
  CarriageControl:NL
 120 PRINT "THE SIDES ARE",FNR(A),FNR(B),FNR(C)
  TextValue:"THE SIDES ARE"
  CarriageControl:,
- Variable:A -> _
- UserFunction:FNR(_) -> _
+ Variable:A -> .
+ UserFunction:FNR(.) -> .
  CarriageControl:,
- Variable:B -> _
- UserFunction:FNR(_) -> _
+ Variable:B -> .
+ UserFunction:FNR(.) -> .
  CarriageControl:,
- Variable:C -> _
- UserFunction:FNR(_) -> _
+ Variable:C -> .
+ UserFunction:FNR(.) -> .
  CarriageControl:NL
 130 PRINT "AND THE AREA IS ";FNR(A2)
  TextValue:"AND THE AREA IS "
  CarriageControl:;
- Variable:A2 -> _
- UserFunction:FNR(_) -> _
+ Variable:A2 -> .
+ UserFunction:FNR(.) -> .
  CarriageControl:NL
 140 PRINT
  CarriageControl:NL

@@ -1,14 +1,14 @@
 8 REM   WE ARE READING FOUR ITEMS OF DATA WITH A LOOP
  Remark:  WE ARE READING FOUR ITEMS OF DATA WITH A LOOP
 10 FOR S=1 TO 4
- control: Variable:S -> _
+ control: Variable:S -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:4"]
 20 READ L[S]
- Variable:S -> _
- Variable:L(_) -> _
+ Variable:S -> .
+ Variable:L(.) -> .
 30 NEXT S
- Variable:S -> _
+ Variable:S -> .
 38 PRINT "WE CAN PRINT THE ITEMS OF THE LIST EXPLICITLY"
  TextValue:"WE CAN PRINT THE ITEMS OF THE LIST EXPLICITLY"
  CarriageControl:NL
@@ -17,16 +17,16 @@
  CarriageControl:NL
 50 PRINT L[1];L[2];L[3];L[4]
  NumericValue:1
- Variable:L(_) -> _
+ Variable:L(.) -> .
  CarriageControl:;
  NumericValue:2
- Variable:L(_) -> _
+ Variable:L(.) -> .
  CarriageControl:;
  NumericValue:3
- Variable:L(_) -> _
+ Variable:L(.) -> .
  CarriageControl:;
  NumericValue:4
- Variable:L(_) -> _
+ Variable:L(.) -> .
  CarriageControl:NL
 60 PRINT
  CarriageControl:NL
@@ -37,15 +37,15 @@
  TextValue:"BEING ABLE TO USE A LOOP IS"
  CarriageControl:NL
 90 FOR X=1 TO 4
- control: Variable:X -> _
+ control: Variable:X -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:4"]
 100 PRINT L[X];
- Variable:X -> _
- Variable:L(_) -> _
+ Variable:X -> .
+ Variable:L(.) -> .
  CarriageControl:;
 110 NEXT X
- Variable:X -> _
+ Variable:X -> .
 130 PRINT
  CarriageControl:NL
 135 PRINT
@@ -57,38 +57,38 @@
  TextValue:"  B   L[B]  B*L[B]"
  CarriageControl:NL
 150 FOR B=1 TO 4
- control: Variable:B -> _
+ control: Variable:B -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:4"]
 155 PRINT B;L[B];B*L[B]
- Variable:B -> _
+ Variable:B -> .
  CarriageControl:;
- Variable:B -> _
- Variable:L(_) -> _
+ Variable:B -> .
+ Variable:L(.) -> .
  CarriageControl:;
- Variable:B -> _
- Variable:B -> _
- Variable:L(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ Variable:B -> .
+ Variable:B -> .
+ Variable:L(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  CarriageControl:NL
 160 NEXT B
- Variable:B -> _
+ Variable:B -> .
 170 PRINT
  CarriageControl:NL
 180 PRINT "WE CAN PRINT THE LIST BACKWARDS WITH FOR X=4 TO 1 STEP -1"
  TextValue:"WE CAN PRINT THE LIST BACKWARDS WITH FOR X=4 TO 1 STEP -1"
  CarriageControl:NL
 190 FOR X=4 TO 1 STEP -1
- control: Variable:X -> _
+ control: Variable:X -> .
  start:   ["NumericValue:4"]
  end:     ["NumericValue:1"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 200 PRINT L[X];
- Variable:X -> _
- Variable:L(_) -> _
+ Variable:X -> .
+ Variable:L(.) -> .
  CarriageControl:;
 210 NEXT X
- Variable:X -> _
+ Variable:X -> .
 220 PRINT
  CarriageControl:NL
 225 PRINT
@@ -103,38 +103,38 @@
  TextValue:"GIVE THE FOLLOWING RESULT"
  CarriageControl:NL
 250 LET Z=L[1]
- Variable:Z -> _
+ Variable:Z -> .
  NumericValue:1
- Variable:L(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:L(.) -> .
+ AssignmentOperator:= . -> .
 252 REM **HERE WE ARE STORING THE VALUE OF L[1] IN Z
  Remark:**HERE WE ARE STORING THE VALUE OF L[1] IN Z
 260 LET L[1]=L[2]
  NumericValue:1
- Variable:L(_) -> _
+ Variable:L(.) -> .
  NumericValue:2
- Variable:L(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:L(.) -> .
+ AssignmentOperator:= . -> .
 262 REM   WE HAVE PUT THE VALUE OF L[2] INTO L[1]
  Remark:  WE HAVE PUT THE VALUE OF L[2] INTO L[1]
 270 LET L[2]=Z
  NumericValue:2
- Variable:L(_) -> _
- Variable:Z -> _
- AssignmentOperator:= _ -> _
+ Variable:L(.) -> .
+ Variable:Z -> .
+ AssignmentOperator:= . -> .
 272 REM   HERE THE OLD VALUE OF L[1] IS PUT INTO L[2] FROM Z
  Remark:  HERE THE OLD VALUE OF L[1] IS PUT INTO L[2] FROM Z
 280 PRINT "L[1] =";L[1]
  TextValue:"L[1] ="
  CarriageControl:;
  NumericValue:1
- Variable:L(_) -> _
+ Variable:L(.) -> .
  CarriageControl:NL
 290 PRINT "L[2] =";L[2]
  TextValue:"L[2] ="
  CarriageControl:;
  NumericValue:2
- Variable:L(_) -> _
+ Variable:L(.) -> .
  CarriageControl:NL
 300 PRINT "LOOK CAREFULLY AT THE ORIGINAL LIST"
  TextValue:"LOOK CAREFULLY AT THE ORIGINAL LIST"
@@ -148,34 +148,34 @@
  TextValue:"WE CAN PUSH EVERY NUMBER UP FOUR LOCATIONS IN THE LIST"
  CarriageControl:NL
 340 FOR P=1 TO 4
- control: Variable:P -> _
+ control: Variable:P -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:4"]
 350 LET L[P+4]=L[P]
- Variable:P -> _
+ Variable:P -> .
  NumericValue:4
- BinaryOperatorPlus:+(_,_) -> _
- Variable:L(_) -> _
- Variable:P -> _
- Variable:L(_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:L(.) -> .
+ Variable:P -> .
+ Variable:L(.) -> .
+ AssignmentOperator:= . -> .
 360 NEXT P
- Variable:P -> _
+ Variable:P -> .
 370 FOR N=1 TO 8
- control: Variable:N -> _
+ control: Variable:N -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:8"]
 380 PRINT L[N];
- Variable:N -> _
- Variable:L(_) -> _
+ Variable:N -> .
+ Variable:L(.) -> .
  CarriageControl:;
 390 NEXT N
- Variable:N -> _
+ Variable:N -> .
 500 DATA 4,9,-92,8
  NumericValue:4
  NumericValue:9
  NumericValue:92
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
  NumericValue:8
 9999 END
  

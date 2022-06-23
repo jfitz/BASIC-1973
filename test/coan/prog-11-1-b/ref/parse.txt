@@ -4,27 +4,27 @@
 8 REM  READ THE DIVISOR
  Remark: READ THE DIVISOR
 10 READ R
- Variable:R -> _
+ Variable:R -> .
 18 REM  READ PRINT PRINT ORIGINAL POLYNOMIAL IN LINES 20 THRU 50
  Remark: READ PRINT PRINT ORIGINAL POLYNOMIAL IN LINES 20 THRU 50
 20 FOR N=4 TO 1 STEP -1
- control: Variable:N -> _
+ control: Variable:N -> .
  start:   ["NumericValue:4"]
  end:     ["NumericValue:1"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 30 READ P[N]
- Variable:N -> _
- Variable:P(_) -> _
+ Variable:N -> .
+ Variable:P(.) -> .
 40 PRINT P[N];
- Variable:N -> _
- Variable:P(_) -> _
+ Variable:N -> .
+ Variable:P(.) -> .
  CarriageControl:;
 50 NEXT N
- Variable:N -> _
+ Variable:N -> .
 60 PRINT "DIVIDED BY X - ";R;"YIELDS"
  TextValue:"DIVIDED BY X - "
  CarriageControl:;
- Variable:R -> _
+ Variable:R -> .
  CarriageControl:;
  TextValue:"YIELDS"
  CarriageControl:NL
@@ -34,47 +34,47 @@
  Remark:COEFFICIENT OF ORIGINAL POLYNOMIAL
 70 LET Q[4]=P[4]
  NumericValue:4
- Variable:Q(_) -> _
+ Variable:Q(.) -> .
  NumericValue:4
- Variable:P(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:P(.) -> .
+ AssignmentOperator:= . -> .
 80 PRINT Q[4];
  NumericValue:4
- Variable:Q(_) -> _
+ Variable:Q(.) -> .
  CarriageControl:;
 90 FOR X=3 TO 1 STEP -1
- control: Variable:X -> _
+ control: Variable:X -> .
  start:   ["NumericValue:3"]
  end:     ["NumericValue:1"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 98 REM  "MULTIPLY AND ADD"
  Remark: "MULTIPLY AND ADD"
 100 LET Q[X]=P[X]+Q[X+1]*R
- Variable:X -> _
- Variable:Q(_) -> _
- Variable:X -> _
- Variable:P(_) -> _
- Variable:X -> _
+ Variable:X -> .
+ Variable:Q(.) -> .
+ Variable:X -> .
+ Variable:P(.) -> .
+ Variable:X -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- Variable:Q(_) -> _
- Variable:R -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:Q(.) -> .
+ Variable:R -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 110 PRINT Q[X];
- Variable:X -> _
- Variable:Q(_) -> _
+ Variable:X -> .
+ Variable:Q(.) -> .
  CarriageControl:;
 120 NEXT X
- Variable:X -> _
+ Variable:X -> .
 130 DATA 3,2,-3,-10,3
  NumericValue:3
  NumericValue:2
  NumericValue:3
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
  NumericValue:10
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
  NumericValue:3
 140 END
  

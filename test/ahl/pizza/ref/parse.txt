@@ -1,12 +1,12 @@
 10 DIM A(26),S$(16),N$(4),A(10),M$(4)
  NumericValue:26
- Declaration:A() -> _()
+ Declaration:A() -> .()
  NumericValue:16
  Declaration:S$() -> $()
  NumericValue:4
  Declaration:N$() -> $()
  NumericValue:10
- Declaration:A() -> _()
+ Declaration:A() -> .()
  NumericValue:4
  Declaration:M$() -> $()
 26 RANDOMIZE
@@ -34,23 +34,23 @@
  CarriageControl:NL
  CarriageControl:NL
 140 FOR I=1 TO 16
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:16"]
 150 READ S$(I)
- Variable:I -> _
- Variable:S$(_) -> $
+ Variable:I -> .
+ Variable:S$(.) -> $
 160 NEXT I
- Variable:I -> _
+ Variable:I -> .
 170 FOR I=1 TO 4
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:4"]
 180 READ M$(I)
- Variable:I -> _
- Variable:M$(_) -> $
+ Variable:I -> .
+ Variable:M$(.) -> $
 190 NEXT I
- Variable:I -> _
+ Variable:I -> .
 200 DATA "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P"
  WARNING: Line exceeds PRETTY width limit 72
  TextValue:"A"
@@ -82,11 +82,11 @@
  TextValue:" ----1----2----3----4----"
  CarriageControl:NL
 260 K=4
- Variable:K -> _
+ Variable:K -> .
  NumericValue:4
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 270 FOR I=1 TO 4
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:4"]
 280 PRINT "-":PRINT "-":PRINT "-":PRINT "-"
@@ -99,61 +99,61 @@
  TextValue:"-"
  CarriageControl:NL
 320 PRINT M$(K);
- Variable:K -> _
- Variable:M$(_) -> $
+ Variable:K -> .
+ Variable:M$(.) -> $
  CarriageControl:;
 330 S1=16-4*I+1
- Variable:S1 -> _
+ Variable:S1 -> .
  NumericValue:16
  NumericValue:4
- Variable:I -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
+ Variable:I -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 340 PRINT "    ";S$(S1);"    ";S$(S1+1);"    ";S$(S1+2);"    ";S$(S1+3);
  WARNING: Line exceeds PRETTY width limit 72
  TextValue:"    "
  CarriageControl:;
- Variable:S1 -> _
- Variable:S$(_) -> $
+ Variable:S1 -> .
+ Variable:S$(.) -> $
  CarriageControl:;
  TextValue:"    "
  CarriageControl:;
- Variable:S1 -> _
+ Variable:S1 -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- Variable:S$(_) -> $
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:S$(.) -> $
  CarriageControl:;
  TextValue:"    "
  CarriageControl:;
- Variable:S1 -> _
+ Variable:S1 -> .
  NumericValue:2
- BinaryOperatorPlus:+(_,_) -> _
- Variable:S$(_) -> $
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:S$(.) -> $
  CarriageControl:;
  TextValue:"    "
  CarriageControl:;
- Variable:S1 -> _
+ Variable:S1 -> .
  NumericValue:3
- BinaryOperatorPlus:+(_,_) -> _
- Variable:S$(_) -> $
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:S$(.) -> $
  CarriageControl:;
 350 PRINT "    ";M$(K)
  TextValue:"    "
  CarriageControl:;
- Variable:K -> _
- Variable:M$(_) -> $
+ Variable:K -> .
+ Variable:M$(.) -> $
  CarriageControl:NL
 380 K=K-1
- Variable:K -> _
- Variable:K -> _
+ Variable:K -> .
+ Variable:K -> .
  NumericValue:1
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 390 NEXT I
- Variable:I -> _
+ Variable:I -> .
 400 PRINT "-":PRINT "-":PRINT "-":PRINT "-"
  TextValue:"-"
  CarriageControl:NL
@@ -246,18 +246,18 @@
  CarriageControl:NL
  CarriageControl:NL
 750 FOR I=1 TO 5
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:5"]
 760 S=INT(RND*16+1):PRINT
- Variable:S -> _
- FunctionRnd:RND -> _
+ Variable:S -> .
+ FunctionRnd:RND -> .
  NumericValue:16
- BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- FunctionInt:INT(_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ FunctionInt:INT(.) -> .
+ AssignmentOperator:= . -> .
  CarriageControl:NL
 770 PRINT "HELLO "N$"'S PIZZA. THIS IS "S$(S);
  TextValue:"HELLO "
@@ -266,8 +266,8 @@
  CarriageControl:
  TextValue:"'S PIZZA. THIS IS "
  CarriageControl:
- Variable:S -> _
- Variable:S$(_) -> $
+ Variable:S -> .
+ Variable:S$(.) -> $
  CarriageControl:;
 775 PRINT "   PLEASE SEND A PIZZA."
  TextValue:"   PLEASE SEND A PIZZA."
@@ -279,38 +279,38 @@
  CarriageControl:
  TextValue:": WHERE DOES "
  CarriageControl:
- Variable:S -> _
- Variable:S$(_) -> $
+ Variable:S -> .
+ Variable:S$(.) -> $
  CarriageControl:
  TextValue:" LIVE"
  CarriageControl:;
 790 INPUT A(1),A(2)
  NumericValue:1
- Variable:A(_) -> _
+ Variable:A(.) -> .
  NumericValue:2
- Variable:A(_) -> _
+ Variable:A(.) -> .
 870 T=A(1)+(A(2)-1)*4
- Variable:T -> _
+ Variable:T -> .
  NumericValue:1
- Variable:A(_) -> _
+ Variable:A(.) -> .
  NumericValue:2
- Variable:A(_) -> _
+ Variable:A(.) -> .
  NumericValue:1
- BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorMinus:-(.,.) -> .
  NumericValue:4
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 880 IF T=S THEN 920
- Variable:T -> _
- Variable:S -> _
- BinaryOperatorEqual:=(_,_) -> ?
+ Variable:T -> .
+ Variable:S -> .
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:920
 890 PRINT "THIS IS "S$(T)"  I DID NOT ORDER A PIZZA"
  TextValue:"THIS IS "
  CarriageControl:
- Variable:T -> _
- Variable:S$(_) -> $
+ Variable:T -> .
+ Variable:S$(.) -> $
  CarriageControl:
  TextValue:"  I DID NOT ORDER A PIZZA"
  CarriageControl:NL
@@ -318,12 +318,12 @@
  TextValue:"I LIVE AT "
  CarriageControl:
  NumericValue:1
- Variable:A(_) -> _
+ Variable:A(.) -> .
  CarriageControl:
  TextValue:","
  CarriageControl:
  NumericValue:2
- Variable:A(_) -> _
+ Variable:A(.) -> .
  CarriageControl:NL
 910 GOTO 780
  LineNumber:780
@@ -334,13 +334,13 @@
  CarriageControl:
  TextValue:". THIS IS "
  CarriageControl:
- Variable:S -> _
- Variable:S$(_) -> $
+ Variable:S -> .
+ Variable:S$(.) -> $
  CarriageControl:
  TextValue:". THANKS FOR THE PIZZA."
  CarriageControl:NL
 930 NEXT I
- Variable:I -> _
+ Variable:I -> .
 940 PRINT:INPUT "DO YOU WANT TO DELIVER MORE PIZZAS";A$
  CarriageControl:NL
  Variable:A$ -> $

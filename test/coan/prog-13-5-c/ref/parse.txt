@@ -1,40 +1,40 @@
 10 LET C=1
- Variable:C -> _
+ Variable:C -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 20 FOR X=100 TO 100-10+1 STEP -1
- control: Variable:X -> _
+ control: Variable:X -> .
  start:   ["NumericValue:100"]
- end:     ["NumericValue:100", "NumericValue:10", "BinaryOperatorMinus:-(_,_) -> =_", "NumericValue:1", "BinaryOperatorPlus:+(_,_) -> =_"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ end:     ["NumericValue:100", "NumericValue:10", "BinaryOperatorMinus:-(.,.) -> =.", "NumericValue:1", "BinaryOperatorPlus:+(.,.) -> =."]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 30 LET C=C*X/(100-X+1)
- Variable:C -> _
- Variable:C -> _
- Variable:X -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ Variable:C -> .
+ Variable:C -> .
+ Variable:X -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:100
- Variable:X -> _
- BinaryOperatorMinus:-(_,_) -> _
+ Variable:X -> .
+ BinaryOperatorMinus:-(.,.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ AssignmentOperator:= . -> .
 40 NEXT X
- Variable:X -> _
+ Variable:X -> .
 50 LET P=C*(.1)^10*(.9)^90
- Variable:P -> _
- Variable:C -> _
+ Variable:P -> .
+ Variable:C -> .
  NumericValue:.1
  NumericValue:10
- BinaryOperatorPower:^(_,_) -> =_
- BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPower:^(.,.) -> =.
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:.9
  NumericValue:90
- BinaryOperatorPower:^(_,_) -> =_
- BinaryOperatorMultiply:*(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPower:^(.,.) -> =.
+ BinaryOperatorMultiply:*(.,.) -> .
+ AssignmentOperator:= . -> .
 60 PRINT P
- Variable:P -> _
+ Variable:P -> .
  CarriageControl:NL
 70 END
  

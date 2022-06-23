@@ -2,45 +2,45 @@
  TextValue:"INPUT ANY INTEGER"
  CarriageControl:;
 20 INPUT N
- Variable:N -> _
+ Variable:N -> .
 30 IF N=0 THEN 999
- Variable:N -> _
+ Variable:N -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:999
 40 FOR E=5 TO 0 STEP -1
- control: Variable:E -> _
+ control: Variable:E -> .
  start:   ["NumericValue:5"]
  end:     ["NumericValue:0"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 50 LET I=INT(N/10^E)
- Variable:I -> _
- Variable:N -> _
+ Variable:I -> .
+ Variable:N -> .
  NumericValue:10
- Variable:E -> _
- BinaryOperatorPower:^(_,_) -> _
- BinaryOperatorDivide:/(_,_) -> _
- FunctionInt:INT(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:E -> .
+ BinaryOperatorPower:^(.,.) -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ FunctionInt:INT(.) -> .
+ AssignmentOperator:= . -> .
 60 PRINT I;
- Variable:I -> _
+ Variable:I -> .
  CarriageControl:;
 70 LET R=N-I*10^E
- Variable:R -> _
- Variable:N -> _
- Variable:I -> _
+ Variable:R -> .
+ Variable:N -> .
+ Variable:I -> .
  NumericValue:10
- Variable:E -> _
- BinaryOperatorPower:^(_,_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:E -> .
+ BinaryOperatorPower:^(.,.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 80 LET N=R
- Variable:N -> _
- Variable:R -> _
- AssignmentOperator:= _ -> _
+ Variable:N -> .
+ Variable:R -> .
+ AssignmentOperator:= . -> .
 90 NEXT E
- Variable:E -> _
+ Variable:E -> .
 100 PRINT
  CarriageControl:NL
 110 GOTO 10

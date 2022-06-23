@@ -1,6 +1,6 @@
 100 DIM A(100)
  NumericValue:100
- Declaration:A() -> _()
+ Declaration:A() -> .()
 110 PRINT "A$";
  TextValue:"A$"
  CarriageControl:;
@@ -10,46 +10,46 @@
  CarriageControl:NL
 140 CHANGE A$ TO A
  Variable:A$ -> $
- Variable:A() -> _()
+ Variable:A() -> .()
 150 FOR I = 1 TO A(0) - 1
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
- end:     ["NumericValue:0", "Variable:A(_) -> _", "NumericValue:1", "BinaryOperatorMinus:-(_,_) -> _"]
+ end:     ["NumericValue:0", "Variable:A(.) -> .", "NumericValue:1", "BinaryOperatorMinus:-(.,.) -> ."]
 160    FOR J = I + 1 TO A(0)
- control: Variable:J -> _
- start:   ["Variable:I -> _", "NumericValue:1", "BinaryOperatorPlus:+(_,_) -> _"]
- end:     ["NumericValue:0", "Variable:A(_) -> _"]
+ control: Variable:J -> .
+ start:   ["Variable:I -> .", "NumericValue:1", "BinaryOperatorPlus:+(.,.) -> ."]
+ end:     ["NumericValue:0", "Variable:A(.) -> ."]
 170       IF A(I) <= A(J) THEN 210
- Variable:I -> _
- Variable:A(_) -> _
- Variable:J -> _
- Variable:A(_) -> _
- BinaryOperatorLessEqual:<=(_,_) -> ?
+ Variable:I -> .
+ Variable:A(.) -> .
+ Variable:J -> .
+ Variable:A(.) -> .
+ BinaryOperatorLessEqual:<=(.,.) -> ?
  LineNumber:210
 175 REM * EXCHANGE OUT OF ORDER CODES
  Remark:* EXCHANGE OUT OF ORDER CODES
 180       LET S = A(I)
- Variable:S -> _
- Variable:I -> _
- Variable:A(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:S -> .
+ Variable:I -> .
+ Variable:A(.) -> .
+ AssignmentOperator:= . -> .
 190       LET A(I) = A(J)
- Variable:I -> _
- Variable:A(_) -> _
- Variable:J -> _
- Variable:A(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:I -> .
+ Variable:A(.) -> .
+ Variable:J -> .
+ Variable:A(.) -> .
+ AssignmentOperator:= . -> .
 200       LET A(J) = S
- Variable:J -> _
- Variable:A(_) -> _
- Variable:S -> _
- AssignmentOperator:= _ -> _
+ Variable:J -> .
+ Variable:A(.) -> .
+ Variable:S -> .
+ AssignmentOperator:= . -> .
 210    NEXT J
- Variable:J -> _
+ Variable:J -> .
 220 NEXT I
- Variable:I -> _
+ Variable:I -> .
 230 CHANGE A TO A$
- Variable:A() -> _()
+ Variable:A() -> .()
  Variable:A$ -> $
 240 PRINT A$
  Variable:A$ -> $

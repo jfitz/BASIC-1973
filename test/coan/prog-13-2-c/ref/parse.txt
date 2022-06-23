@@ -1,55 +1,55 @@
 10 READ N,R
- Variable:N -> _
- Variable:R -> _
+ Variable:N -> .
+ Variable:R -> .
 20 IF N=0 THEN 150
- Variable:N -> _
+ Variable:N -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:150
 30 LET C=1
- Variable:C -> _
+ Variable:C -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 40 REM 30 TO 50 FIND NPR
  Remark:30 TO 50 FIND NPR
 50 FOR X=N TO N-R+1 STEP -1
- control: Variable:X -> _
- start:   ["Variable:N -> _"]
- end:     ["Variable:N -> _", "Variable:R -> _", "BinaryOperatorMinus:-(_,_) -> _", "NumericValue:1", "BinaryOperatorPlus:+(_,_) -> _"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ control: Variable:X -> .
+ start:   ["Variable:N -> ."]
+ end:     ["Variable:N -> .", "Variable:R -> .", "BinaryOperatorMinus:-(.,.) -> .", "NumericValue:1", "BinaryOperatorPlus:+(.,.) -> ."]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 60 LET C=C*X
- Variable:C -> _
- Variable:C -> _
- Variable:X -> _
- BinaryOperatorMultiply:*(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:C -> .
+ Variable:C -> .
+ Variable:X -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ AssignmentOperator:= . -> .
 70 NEXT X
- Variable:X -> _
+ Variable:X -> .
 80 REM 60 TO 80 DIVIDE BY R!
  Remark:60 TO 80 DIVIDE BY R!
 90 FOR X=R TO 1 STEP -1
- control: Variable:X -> _
- start:   ["Variable:R -> _"]
+ control: Variable:X -> .
+ start:   ["Variable:R -> ."]
  end:     ["NumericValue:1"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 100 LET C=C/X
- Variable:C -> _
- Variable:C -> _
- Variable:X -> _
- BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:C -> .
+ Variable:C -> .
+ Variable:X -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ AssignmentOperator:= . -> .
 110 NEXT X
- Variable:X -> _
+ Variable:X -> .
 120 PRINT N;"THINGS";R;"AT A TIME HAVE";C;"COMBINATIONS"
- Variable:N -> _
+ Variable:N -> .
  CarriageControl:;
  TextValue:"THINGS"
  CarriageControl:;
- Variable:R -> _
+ Variable:R -> .
  CarriageControl:;
  TextValue:"AT A TIME HAVE"
  CarriageControl:;
- Variable:C -> _
+ Variable:C -> .
  CarriageControl:;
  TextValue:"COMBINATIONS"
  CarriageControl:NL

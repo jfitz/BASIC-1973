@@ -8,15 +8,15 @@
  Remark:*** WRITTEN BY CHRIS REID, LEXINGTON HS, CLASS OF '73
 5 DIM S(7),A(7),L(7),D(7),P(7)
  NumericValue:7
- Declaration:S() -> _()
+ Declaration:S() -> .()
  NumericValue:7
- Declaration:A() -> _()
+ Declaration:A() -> .()
  NumericValue:7
- Declaration:L() -> _()
+ Declaration:L() -> .()
  NumericValue:7
- Declaration:D() -> _()
+ Declaration:D() -> .()
  NumericValue:7
- Declaration:P() -> _()
+ Declaration:P() -> .()
 10 PRINT:PRINT "I AM THINKING OF A WORD -- YOU GUESS IT. I WILL GIVE YOU"
  WARNING: Line exceeds PRETTY width limit 72
  CarriageControl:NL
@@ -37,64 +37,64 @@
 35 RESTORE
  
 40 READ N
- Variable:N -> _
+ Variable:N -> .
 50 C=INT(RND*N+1)
- Variable:C -> _
- FunctionRnd:RND -> _
- Variable:N -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ Variable:C -> .
+ FunctionRnd:RND -> .
+ Variable:N -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- FunctionInt:INT(_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ FunctionInt:INT(.) -> .
+ AssignmentOperator:= . -> .
 60 FOR I=1 TO C
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:C -> _"]
+ end:     ["Variable:C -> ."]
 70 READ S$
  Variable:S$ -> $
 80 NEXT I
- Variable:I -> _
+ Variable:I -> .
 90 G=0
- Variable:G -> _
+ Variable:G -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 100 CHANGE S$ TO S
  Variable:S$ -> $
- Variable:S() -> _()
+ Variable:S() -> .()
 110 FOR I=1 TO 5
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:5"]
 120 A(I)=45
- Variable:I -> _
- Variable:A(_) -> _
+ Variable:I -> .
+ Variable:A(.) -> .
  NumericValue:45
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 130 NEXT I
- Variable:I -> _
+ Variable:I -> .
 140 FOR J=1 TO 5
- control: Variable:J -> _
+ control: Variable:J -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:5"]
 144 P(J)=0
- Variable:J -> _
- Variable:P(_) -> _
+ Variable:J -> .
+ Variable:P(.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 146 NEXT J
- Variable:J -> _
+ Variable:J -> .
 150 PRINT "GUESS A FIVE-LETTER WORD";
  TextValue:"GUESS A FIVE-LETTER WORD"
  CarriageControl:;
 160 INPUT L$
  Variable:L$ -> $
 170 G=G+1
- Variable:G -> _
- Variable:G -> _
+ Variable:G -> .
+ Variable:G -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 172 IF L$=S$ THEN 500
  Variable:L$ -> $
  Variable:S$ -> $
@@ -102,94 +102,94 @@
  LineNumber:500
 180 CHANGE L$ TO L
  Variable:L$ -> $
- Variable:L() -> _()
+ Variable:L() -> .()
 190 IF L(1)=63 THEN 300
  NumericValue:1
- Variable:L(_) -> _
+ Variable:L(.) -> .
  NumericValue:63
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:300
 200 IF L(0)<>5 THEN 400
  NumericValue:0
- Variable:L(_) -> _
+ Variable:L(.) -> .
  NumericValue:5
- BinaryOperatorNotEqual:<>(_,_) -> ?
+ BinaryOperatorNotEqual:<>(.,.) -> ?
  LineNumber:400
 205 M=0:Q=0
- Variable:M -> _
+ Variable:M -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
- Variable:Q -> _
+ AssignmentOperator:= =. -> .
+ Variable:Q -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 210 FOR I=1 TO 5
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:5"]
 220 FOR J=1 TO 5
- control: Variable:J -> _
+ control: Variable:J -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:5"]
 230 IF S(I)<>L(J) THEN 260
- Variable:I -> _
- Variable:S(_) -> _
- Variable:J -> _
- Variable:L(_) -> _
- BinaryOperatorNotEqual:<>(_,_) -> ?
+ Variable:I -> .
+ Variable:S(.) -> .
+ Variable:J -> .
+ Variable:L(.) -> .
+ BinaryOperatorNotEqual:<>(.,.) -> ?
  LineNumber:260
 231 Q=Q+1
- Variable:Q -> _
- Variable:Q -> _
+ Variable:Q -> .
+ Variable:Q -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 232 P(Q)=L(J)
- Variable:Q -> _
- Variable:P(_) -> _
- Variable:J -> _
- Variable:L(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:Q -> .
+ Variable:P(.) -> .
+ Variable:J -> .
+ Variable:L(.) -> .
+ AssignmentOperator:= . -> .
 233 IF I<>J THEN 260
- Variable:I -> _
- Variable:J -> _
- BinaryOperatorNotEqual:<>(_,_) -> ?
+ Variable:I -> .
+ Variable:J -> .
+ BinaryOperatorNotEqual:<>(.,.) -> ?
  LineNumber:260
 240 M=M+1
- Variable:M -> _
- Variable:M -> _
+ Variable:M -> .
+ Variable:M -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 250 A(I)=L(J)
- Variable:I -> _
- Variable:A(_) -> _
- Variable:J -> _
- Variable:L(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:I -> .
+ Variable:A(.) -> .
+ Variable:J -> .
+ Variable:L(.) -> .
+ AssignmentOperator:= . -> .
 260 NEXT J
- Variable:J -> _
+ Variable:J -> .
 265 NEXT I
- Variable:I -> _
+ Variable:I -> .
 270 A(0)=5
  NumericValue:0
- Variable:A(_) -> _
+ Variable:A(.) -> .
  NumericValue:5
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 272 P(0)=Q
  NumericValue:0
- Variable:P(_) -> _
- Variable:Q -> _
- AssignmentOperator:= _ -> _
+ Variable:P(.) -> .
+ Variable:Q -> .
+ AssignmentOperator:= . -> .
 275 CHANGE A TO A$
- Variable:A() -> _()
+ Variable:A() -> .()
  Variable:A$ -> $
 277 CHANGE P TO P$
- Variable:P() -> _()
+ Variable:P() -> .()
  Variable:P$ -> $
 280 PRINT "THERE WERE"M"MATCHES AND THE COMMON LETTERS WERE...",P$
  TextValue:"THERE WERE"
  CarriageControl:
- Variable:M -> _
+ Variable:M -> .
  CarriageControl:
  TextValue:"MATCHES AND THE COMMON LETTERS WERE..."
  CarriageControl:,
@@ -206,9 +206,9 @@
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:500
 287 IF M>1 THEN 289
- Variable:M -> _
+ Variable:M -> .
  NumericValue:1
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:289
 288 PRINT:PRINT "IF YOU GIVE UP, TYPE '?' FOR YOUR NEXT GUESS"
  CarriageControl:NL
@@ -219,7 +219,7 @@
 290 GOTO 150
  LineNumber:150
 300 CHANGE S _ TO S$
- Variable:S() -> _()
+ Variable:S() -> .()
  Variable:S$ -> $
 310 PRINT "THE SECRET WORD IS "S$: PRINT
  TextValue:"THE SECRET WORD IS "
@@ -235,16 +235,16 @@
  CarriageControl:NL
 410 PRINT:G=G-1: GOTO 150
  CarriageControl:NL
- Variable:G -> _
- Variable:G -> _
+ Variable:G -> .
+ Variable:G -> .
  NumericValue:1
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
  LineNumber:150
 500 PRINT "YOU HAVE GUESSED THE WORD. IT TOOK"G"GUESSES!":PRINT
  TextValue:"YOU HAVE GUESSED THE WORD. IT TOOK"
  CarriageControl:
- Variable:G -> _
+ Variable:G -> .
  CarriageControl:
  TextValue:"GUESSES!"
  CarriageControl:NL

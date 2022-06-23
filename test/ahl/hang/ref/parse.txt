@@ -20,252 +20,252 @@
  NumericValue:26
  Declaration:N$() -> $()
  NumericValue:50
- Declaration:U() -> _()
+ Declaration:U() -> .()
 40 C=1:RANDOMIZE:N=50
- Variable:C -> _
+ Variable:C -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
  
- Variable:N -> _
+ Variable:N -> .
  NumericValue:50
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 50 D$(I)="-" FOR I=1 TO 20:M=0
- Variable:I -> _
- Variable:D$(_) -> $
+ Variable:I -> .
+ Variable:D$(.) -> $
  TextValue:"-"
  AssignmentOperator:= =$ -> $
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:20"]
- Variable:M -> _
+ Variable:M -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 60 N$(I)="" FOR I=1 TO 26
- Variable:I -> _
- Variable:N$(_) -> $
+ Variable:I -> .
+ Variable:N$(.) -> $
  TextValue:""
  AssignmentOperator:= =$ -> $
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:26"]
 70 FOR I=1 TO 12:FOR J=1 TO 12:P$(I,J)=" ":NEXT J:NEXT I
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:12"]
- control: Variable:J -> _
+ control: Variable:J -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:12"]
- Variable:I -> _
- Variable:J -> _
- Variable:P$(_,_) -> $
+ Variable:I -> .
+ Variable:J -> .
+ Variable:P$(.,.) -> $
  TextValue:" "
  AssignmentOperator:= =$ -> $
- Variable:J -> _
- Variable:I -> _
+ Variable:J -> .
+ Variable:I -> .
 80 P$(I,1)="X" FOR I=1 TO 12
- Variable:I -> _
+ Variable:I -> .
  NumericValue:1
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"X"
  AssignmentOperator:= =$ -> $
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:12"]
 90 P$(1,I)="X" FOR I=1 TO 7:P$(2,7)="X"
  NumericValue:1
- Variable:I -> _
- Variable:P$(_,_) -> $
+ Variable:I -> .
+ Variable:P$(.,.) -> $
  TextValue:"X"
  AssignmentOperator:= =$ -> $
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:7"]
  NumericValue:2
  NumericValue:7
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"X"
  AssignmentOperator:= =$ -> $
 95 IF C<N THEN 100 ELSE PRINT "YOU DID ALL THE WORDS!!":STOP
- Variable:C -> _
- Variable:N -> _
- BinaryOperatorLess:<(_,_) -> ?
+ Variable:C -> .
+ Variable:N -> .
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:100
  TextValue:"YOU DID ALL THE WORDS!!"
  CarriageControl:NL
  
 100 Q=INT(N*RND+1)
- Variable:Q -> _
- Variable:N -> _
- FunctionRnd:RND -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ Variable:Q -> .
+ Variable:N -> .
+ FunctionRnd:RND -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- FunctionInt:INT(_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ FunctionInt:INT(.) -> .
+ AssignmentOperator:= . -> .
 110 IF U(Q)=1 THEN 100 ELSE U(Q)=1:C=C+1:RESTORE:T1=0
- Variable:Q -> _
- Variable:U(_) -> _
+ Variable:Q -> .
+ Variable:U(.) -> .
  NumericValue:1
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:100
- Variable:Q -> _
- Variable:U(_) -> _
+ Variable:Q -> .
+ Variable:U(.) -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
- Variable:C -> _
- Variable:C -> _
+ AssignmentOperator:= =. -> .
+ Variable:C -> .
+ Variable:C -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
  
- Variable:T1 -> _
+ Variable:T1 -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 150 READ A$ FOR I=1 TO Q
  Variable:A$ -> $
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:Q -> _"]
+ end:     ["Variable:Q -> ."]
 160 L=LEN(A$):L$(I)=MID(A$,I,I) FOR I=1 TO L
- Variable:L -> _
+ Variable:L -> .
  Variable:A$ -> $
- FunctionLen:LEN($) -> _
- AssignmentOperator:= _ -> _
- Variable:I -> _
- Variable:L$(_) -> $
+ FunctionLen:LEN($) -> .
+ AssignmentOperator:= . -> .
+ Variable:I -> .
+ Variable:L$(.) -> $
  Variable:A$ -> $
- Variable:I -> _
- Variable:I -> _
- FunctionMid:MID($,_,_) -> $
+ Variable:I -> .
+ Variable:I -> .
+ FunctionMid:MID($,.,.) -> $
  AssignmentOperator:= $ -> $
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:L -> _"]
+ end:     ["Variable:L -> ."]
 170 &"HERE ARE THE LETTERS YOU USED."
  TextValue:"HERE ARE THE LETTERS YOU USED."
  CarriageControl:NL
 180 FOR I=1 TO 26:& N$(I);:IF N$(I+1)="" THEN 200
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:26"]
- Variable:I -> _
- Variable:N$(_) -> $
+ Variable:I -> .
+ Variable:N$(.) -> $
  CarriageControl:;
- Variable:I -> _
+ Variable:I -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- Variable:N$(_) -> $
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:N$(.) -> $
  TextValue:""
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:200
 190 PRINT ", ";:NEXT I
  TextValue:", "
  CarriageControl:;
- Variable:I -> _
+ Variable:I -> .
 200 &:&:FOR I=1 TO L:& D$(I);:NEXT I:&:&
  CarriageControl:NL
  CarriageControl:NL
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:L -> _"]
- Variable:I -> _
- Variable:D$(_) -> $
+ end:     ["Variable:L -> ."]
+ Variable:I -> .
+ Variable:D$(.) -> $
  CarriageControl:;
- Variable:I -> _
+ Variable:I -> .
  CarriageControl:NL
  CarriageControl:NL
 210 INPUT "WHAT IS YOUR GUESS";G$:R=0
  Variable:G$ -> $
- Variable:R -> _
+ Variable:R -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 220 FOR I=1 TO 26:IF N$(I)="" THEN 250
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:26"]
- Variable:I -> _
- Variable:N$(_) -> $
+ Variable:I -> .
+ Variable:N$(.) -> $
  TextValue:""
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:250
 230 IF G$=N$(I) THEN & "YOU GUESSED THAT LETTER BEFORE":GOTO 170
  Variable:G$ -> $
- Variable:I -> _
- Variable:N$(_) -> $
+ Variable:I -> .
+ Variable:N$(.) -> $
  BinaryOperatorEqual:=($,$) -> ?
  TextValue:"YOU GUESSED THAT LETTER BEFORE"
  CarriageControl:NL
  LineNumber:170
 240 NEXT I:& "PROGRAM ERROR. RUN AGAIN.":STOP
- Variable:I -> _
+ Variable:I -> .
  TextValue:"PROGRAM ERROR. RUN AGAIN."
  CarriageControl:NL
  
 250 T1=T1+1:N$(T1)=G$
- Variable:T1 -> _
- Variable:T1 -> _
+ Variable:T1 -> .
+ Variable:T1 -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:T1 -> _
- Variable:N$(_) -> $
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:T1 -> .
+ Variable:N$(.) -> $
  Variable:G$ -> $
  AssignmentOperator:= $ -> $
 260 FOR I=1 TO L:IF L$(I)=G$ THEN 280
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:L -> _"]
- Variable:I -> _
- Variable:L$(_) -> $
+ end:     ["Variable:L -> ."]
+ Variable:I -> .
+ Variable:L$(.) -> $
  Variable:G$ -> $
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:280
 270 NEXT I:IF R=0 THEN 290 ELSE GOTO 300
- Variable:I -> _
- Variable:R -> _
+ Variable:I -> .
+ Variable:R -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:290
  LineNumber:300
 280 D$(I)=G$:R=R+1:GOTO 270
- Variable:I -> _
- Variable:D$(_) -> $
+ Variable:I -> .
+ Variable:D$(.) -> $
  Variable:G$ -> $
  AssignmentOperator:= $ -> $
- Variable:R -> _
- Variable:R -> _
+ Variable:R -> .
+ Variable:R -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
  LineNumber:270
 290 M=M+1:GOTO 400
- Variable:M -> _
- Variable:M -> _
+ Variable:M -> .
+ Variable:M -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
  LineNumber:400
 300 FOR I=1 TO L:IF D$(I)="-" THEN 320
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:L -> _"]
- Variable:I -> _
- Variable:D$(_) -> $
+ end:     ["Variable:L -> ."]
+ Variable:I -> .
+ Variable:D$(.) -> $
  TextValue:"-"
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:320
 310 NEXT I:GOTO 290
- Variable:I -> _
+ Variable:I -> .
  LineNumber:290
 320 &:FOR I=1 TO L:& D$(I);:NEXT I:&:&
  CarriageControl:NL
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:L -> _"]
- Variable:I -> _
- Variable:D$(_) -> $
+ end:     ["Variable:L -> ."]
+ Variable:I -> .
+ Variable:D$(.) -> $
  CarriageControl:;
- Variable:I -> _
+ Variable:I -> .
  CarriageControl:NL
  CarriageControl:NL
 330 INPUT "WHAT IS YOUR GUESS FOR THE WORD"; B$
@@ -283,7 +283,7 @@
 360 &"RIGHT!! IT TOOK YOU"T1"GUESSES!"
  TextValue:"RIGHT!! IT TOOK YOU"
  CarriageControl:
- Variable:T1 -> _
+ Variable:T1 -> .
  CarriageControl:
  TextValue:"GUESSES!"
  CarriageControl:NL
@@ -308,7 +308,7 @@
  TextValue:"SORRY, THAT LETTER ISN'T IN THE WORD."
  CarriageControl:NL
 410 ON M GOTO 415, 420, 425, 430, 435, 440, 445, 450, 455, 460
- Variable:M -> _
+ Variable:M -> .
  LineNumber:415
  LineNumber:420
  LineNumber:425
@@ -359,7 +359,7 @@
  TextValue:"HERE'S THE OTHER FOOT  YOU'RE HUNG!!"
  CarriageControl:NL
 470 ON M GOTO 480,490,500,510,520,530,540,550,560,570
- Variable:M -> _
+ Variable:M -> .
  LineNumber:480
  LineNumber:490
  LineNumber:500
@@ -374,76 +374,76 @@
  WARNING: Line exceeds PRETTY width limit 72
  NumericValue:2
  NumericValue:6
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"-"
  AssignmentOperator:= =$ -> $
  NumericValue:2
  NumericValue:7
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"-"
  AssignmentOperator:= =$ -> $
  NumericValue:2
  NumericValue:8
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"-"
  AssignmentOperator:= =$ -> $
  NumericValue:4
  NumericValue:5
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"("
  AssignmentOperator:= =$ -> $
  NumericValue:4
  NumericValue:6
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:" "
  AssignmentOperator:= =$ -> $
 481 P$(4,8)=".":P$(4,9)=")":P$(5,6)="-":P$(5,7)="-":P$(5,8)="-":GOTO 580
  WARNING: Line exceeds PRETTY width limit 72
  NumericValue:4
  NumericValue:8
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"."
  AssignmentOperator:= =$ -> $
  NumericValue:4
  NumericValue:9
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:")"
  AssignmentOperator:= =$ -> $
  NumericValue:5
  NumericValue:6
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"-"
  AssignmentOperator:= =$ -> $
  NumericValue:5
  NumericValue:7
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"-"
  AssignmentOperator:= =$ -> $
  NumericValue:5
  NumericValue:8
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"-"
  AssignmentOperator:= =$ -> $
  LineNumber:580
 490 P$(I,7)="X" FOR I=6 TO 9:GOTO 580
- Variable:I -> _
+ Variable:I -> .
  NumericValue:7
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"X"
  AssignmentOperator:= =$ -> $
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:6"]
  end:     ["NumericValue:9"]
  LineNumber:580
 500 P$(I,I-1)="\" FOR I = 4 TO 7:GOTO 580
- Variable:I -> _
- Variable:I -> _
+ Variable:I -> .
+ Variable:I -> .
  NumericValue:1
- BinaryOperatorMinus:-(_,_) -> _
- Variable:P$(_,_) -> $
+ BinaryOperatorMinus:-(.,.) -> .
+ Variable:P$(.,.) -> $
  TextValue:"\"
  AssignmentOperator:= =$ -> $
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:4"]
  end:     ["NumericValue:7"]
  LineNumber:580
@@ -451,106 +451,106 @@
  WARNING: Line exceeds PRETTY width limit 72
  NumericValue:4
  NumericValue:11
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"/"
  AssignmentOperator:= =$ -> $
  NumericValue:5
  NumericValue:10
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"/"
  AssignmentOperator:= =$ -> $
  NumericValue:6
  NumericValue:9
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"\"
  AssignmentOperator:= =$ -> $
  NumericValue:7
  NumericValue:8
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"/"
  AssignmentOperator:= =$ -> $
  LineNumber:580
 520 P$(10,6)="/":P$(11,5)="/":GOTO 580
  NumericValue:10
  NumericValue:6
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"/"
  AssignmentOperator:= =$ -> $
  NumericValue:11
  NumericValue:5
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"/"
  AssignmentOperator:= =$ -> $
  LineNumber:580
 530 P$(10,8)="\":P$(11,9)="\":GOTO 580
  NumericValue:10
  NumericValue:8
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"\"
  AssignmentOperator:= =$ -> $
  NumericValue:11
  NumericValue:9
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"\"
  AssignmentOperator:= =$ -> $
  LineNumber:580
 540 P$(3,11)="\":GOTO 580
  NumericValue:3
  NumericValue:11
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"\"
  AssignmentOperator:= =$ -> $
  LineNumber:580
 550 P$(3,3)="/":GOTO 580
  NumericValue:3
  NumericValue:3
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"/"
  AssignmentOperator:= =$ -> $
  LineNumber:580
 560 P$(12,10)="\":P$(12,11)="-":GOTO 580
  NumericValue:12
  NumericValue:10
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"\"
  AssignmentOperator:= =$ -> $
  NumericValue:12
  NumericValue:11
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"-"
  AssignmentOperator:= =$ -> $
  LineNumber:580
 570 P$(12,3)="-":P$(12,4)="/"
  NumericValue:12
  NumericValue:3
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"-"
  AssignmentOperator:= =$ -> $
  NumericValue:12
  NumericValue:4
- Variable:P$(_,_) -> $
+ Variable:P$(.,.) -> $
  TextValue:"/"
  AssignmentOperator:= =$ -> $
 580 FOR I=1 TO 12:FOR J=1 TO 12:& P$(I,J);:NEXT J
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:12"]
- control: Variable:J -> _
+ control: Variable:J -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:12"]
- Variable:I -> _
- Variable:J -> _
- Variable:P$(_,_) -> $
+ Variable:I -> .
+ Variable:J -> .
+ Variable:P$(.,.) -> $
  CarriageControl:;
- Variable:J -> _
+ Variable:J -> .
 590 &:NEXT I:&:&:IF M=10 THEN 600 ELSE 170
  CarriageControl:NL
- Variable:I -> _
+ Variable:I -> .
  CarriageControl:NL
  CarriageControl:NL
- Variable:M -> _
+ Variable:M -> .
  NumericValue:10
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:600
  LineNumber:170
 600 &"SORRY, YOU LOSE. THE WORD WAS "A$

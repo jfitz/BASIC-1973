@@ -4,19 +4,19 @@
  TextValue:"Y0U ARE NOW GOING TO PLAY A COMPUTERIZED VERSION OF BINGO--"
  CarriageControl:NL
 180 LET F=1
- Variable:F -> _
+ Variable:F -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 190 DIM B(10,10)
  NumericValue:10
  NumericValue:10
- Declaration:B(,) -> _(,)
+ Declaration:B(,) -> .(,)
 200 DIM L(75)
  NumericValue:75
- Declaration:L() -> _()
+ Declaration:L() -> .()
 210 MAT READ A$(5)
  NumericValue:5
- Variable:A$(_) -> $(,)
+ Variable:A$(.) -> $(,)
 220 DATA "B" ,"I" ,"N" ,"G" ,"O"
  TextValue:"B"
  TextValue:"I"
@@ -26,25 +26,25 @@
 235 REM THIS SEQUENCE GENERATES THE CARD NUMBERS (LINES 240-430)
  Remark:THIS SEQUENCE GENERATES THE CARD NUMBERS (LINES 240-430)
 240 FOR K1=1 TO 75
- control: Variable:K1 -> _
+ control: Variable:K1 -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:75"]
 250 LET L(K1)=0
- Variable:K1 -> _
- Variable:L(_) -> _
+ Variable:K1 -> .
+ Variable:L(.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 260 NEXT K1
- Variable:K1 -> _
+ Variable:K1 -> .
 270 PRINT" "," HERE'S ";
  TextValue:" "
  CarriageControl:,
  TextValue:" HERE'S "
  CarriageControl:;
 280 IF F>1 THEN 310
- Variable:F -> _
+ Variable:F -> .
  NumericValue:1
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:310
 290 PRINT"YOUR CARD"
  TextValue:"YOUR CARD"
@@ -55,64 +55,64 @@
  TextValue:"MY CARD"
  CarriageControl:NL
 320 LET M=16
- Variable:M -> _
+ Variable:M -> .
  NumericValue:16
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 330 LET G=F+4
- Variable:G -> _
- Variable:F -> _
+ Variable:G -> .
+ Variable:F -> .
  NumericValue:4
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 340 FOR Y=F TO G
- control: Variable:Y -> _
- start:   ["Variable:F -> _"]
- end:     ["Variable:G -> _"]
+ control: Variable:Y -> .
+ start:   ["Variable:F -> ."]
+ end:     ["Variable:G -> ."]
 350 FOR X=F TO G
- control: Variable:X -> _
- start:   ["Variable:F -> _"]
- end:     ["Variable:G -> _"]
+ control: Variable:X -> .
+ start:   ["Variable:F -> ."]
+ end:     ["Variable:G -> ."]
 360 LET R=INT(M*RND)
- Variable:R -> _
- Variable:M -> _
- FunctionRnd:RND -> _
- BinaryOperatorMultiply:*(_,_) -> _
- FunctionInt:INT(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:R -> .
+ Variable:M -> .
+ FunctionRnd:RND -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ FunctionInt:INT(.) -> .
+ AssignmentOperator:= . -> .
 370 IF R<M-15 THEN 360
- Variable:R -> _
- Variable:M -> _
+ Variable:R -> .
+ Variable:M -> .
  NumericValue:15
- BinaryOperatorMinus:-(_,_) -> _
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorMinus:-(.,.) -> .
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:360
 380 IF L(R)<>0 THEN 360
- Variable:R -> _
- Variable:L(_) -> _
+ Variable:R -> .
+ Variable:L(.) -> .
  NumericValue:0
- BinaryOperatorNotEqual:<>(_,_) -> ?
+ BinaryOperatorNotEqual:<>(.,.) -> ?
  LineNumber:360
 390 LET B(X,Y)=R
- Variable:X -> _
- Variable:Y -> _
- Variable:B(_,_) -> _
- Variable:R -> _
- AssignmentOperator:= _ -> _
+ Variable:X -> .
+ Variable:Y -> .
+ Variable:B(.,.) -> .
+ Variable:R -> .
+ AssignmentOperator:= . -> .
 400 LET L(R)=1
- Variable:R -> _
- Variable:L(_) -> _
+ Variable:R -> .
+ Variable:L(.) -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 410 NEXT X
- Variable:X -> _
+ Variable:X -> .
 420 LET M=M+15
- Variable:M -> _
- Variable:M -> _
+ Variable:M -> .
+ Variable:M -> .
  NumericValue:15
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 430 NEXT Y
- Variable:Y -> _
+ Variable:Y -> .
 435 REM THIS SEQUENCE PRINTS THE CARD (LINES 440-670) 
  Remark:THIS SEQUENCE PRINTS THE CARD (LINES 440-670) 
 440 PRINT
@@ -129,9 +129,9 @@
  TextValue:"--O--"
  CarriageControl:NL
 460 FOR X=F TO G
- control: Variable:X -> _
- start:   ["Variable:F -> _"]
- end:     ["Variable:G -> _"]
+ control: Variable:X -> .
+ start:   ["Variable:F -> ."]
+ end:     ["Variable:G -> ."]
 470 PRINT
  CarriageControl:NL
 480 PRINT
@@ -139,26 +139,26 @@
 490 PRINT
  CarriageControl:NL
 500 FOR Y=F TO G
- control: Variable:Y -> _
- start:   ["Variable:F -> _"]
- end:     ["Variable:G -> _"]
+ control: Variable:Y -> .
+ start:   ["Variable:F -> ."]
+ end:     ["Variable:G -> ."]
 510 IF B(X,Y)=B(F+2,F+2) THEN 540
- Variable:X -> _
- Variable:Y -> _
- Variable:B(_,_) -> _
- Variable:F -> _
+ Variable:X -> .
+ Variable:Y -> .
+ Variable:B(.,.) -> .
+ Variable:F -> .
  NumericValue:2
- BinaryOperatorPlus:+(_,_) -> _
- Variable:F -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:F -> .
  NumericValue:2
- BinaryOperatorPlus:+(_,_) -> _
- Variable:B(_,_) -> _
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:B(.,.) -> .
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:540
 520 PRINT B(X,Y),
- Variable:X -> _
- Variable:Y -> _
- Variable:B(_,_) -> _
+ Variable:X -> .
+ Variable:Y -> .
+ Variable:B(.,.) -> .
  CarriageControl:,
 530 GOTO 550
  LineNumber:550
@@ -166,9 +166,9 @@
  TextValue:"FREE"
  CarriageControl:,
 550 NEXT Y
- Variable:Y -> _
+ Variable:Y -> .
 560 NEXT X
- Variable:X -> _
+ Variable:X -> .
 570 PRINT
  CarriageControl:NL
 580 PRINT
@@ -182,22 +182,22 @@
  TextValue:" [TEAR OFF AFTER MACHINE AUTOMATICALLY ADVANCES PAPER]"
  CarriageControl:NL
 620 FOR K9 = 1 TO 9
- control: Variable:K9 -> _
+ control: Variable:K9 -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:9"]
 630 PRINT
  CarriageControl:NL
 640 NEXT K9
- Variable:K9 -> _
+ Variable:K9 -> .
 650 IF F=6 THEN 680
- Variable:F -> _
+ Variable:F -> .
  NumericValue:6
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:680
 660 LET F=6
- Variable:F -> _
+ Variable:F -> .
  NumericValue:6
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 670 GOTO 240
  LineNumber:240
 680 PRINT
@@ -239,58 +239,58 @@
 810 REM
  Remark:
 820 FOR K1 = 1 TO 75
- control: Variable:K1 -> _
+ control: Variable:K1 -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:75"]
 830 LET L(K1)=0
- Variable:K1 -> _
- Variable:L(_) -> _
+ Variable:K1 -> .
+ Variable:L(.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 840 NEXT K1
- Variable:K1 -> _
+ Variable:K1 -> .
 850 PRINT
  CarriageControl:NL
 860 LET B(3,3)=0
  NumericValue:3
  NumericValue:3
- Variable:B(_,_) -> _
+ Variable:B(.,.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 870 LET B(8,8)=0
  NumericValue:8
  NumericValue:8
- Variable:B(_,_) -> _
+ Variable:B(.,.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 875 REM THIS SEQUENCE GENERATES THE BINGO NUMBERS (LINES 880-1100)
  Remark:THIS SEQUENCE GENERATES THE BINGO NUMBERS (LINES 880-1100)
 880 LET U=INT(75*RND)+1
- Variable:U -> _
+ Variable:U -> .
  NumericValue:75
- FunctionRnd:RND -> _
- BinaryOperatorMultiply:*(_,_) -> _
- FunctionInt:INT(_) -> _
+ FunctionRnd:RND -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ FunctionInt:INT(.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 910 IF L(U)<>0 THEN 880
- Variable:U -> _
- Variable:L(_) -> _
+ Variable:U -> .
+ Variable:L(.) -> .
  NumericValue:0
- BinaryOperatorNotEqual:<>(_,_) -> ?
+ BinaryOperatorNotEqual:<>(.,.) -> ?
  LineNumber:880
 920 LET L(U)=1
- Variable:U -> _
- Variable:L(_) -> _
+ Variable:U -> .
+ Variable:L(.) -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 930 PRINT
  CarriageControl:NL
 940 IF RND > .5 THEN 970
- FunctionRnd:RND -> _
+ FunctionRnd:RND -> .
  NumericValue:.5
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:970
 950 PRINT"THE NUMBER COMES UP:",
  TextValue:"THE NUMBER COMES UP:"
@@ -301,76 +301,76 @@
  TextValue:"THE NEXT ONE IS:"
  CarriageControl:,
 980 PRINT A$(INT((U-1)/15)+1);U
- Variable:U -> _
+ Variable:U -> .
  NumericValue:1
- BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorMinus:-(.,.) -> .
  NumericValue:15
- BinaryOperatorDivide:/(_,_) -> _
- FunctionInt:INT(_) -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ FunctionInt:INT(.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- Variable:A$(_) -> $
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:A$(.) -> $
  CarriageControl:;
- Variable:U -> _
+ Variable:U -> .
  CarriageControl:NL
 1105 REM THIS IS THE "NUMBER ON CARD?" SEQUENCE (LINES 1110-1260)
  Remark:THIS IS THE "NUMBER ON CARD?" SEQUENCE (LINES 1110-1260)
 1110 FOR Y=1 TO 10
- control: Variable:Y -> _
+ control: Variable:Y -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:10"]
 1120 FOR X=1 TO 10
- control: Variable:X -> _
+ control: Variable:X -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:10"]
 1130 IF B(X,Y)=U THEN 1250
- Variable:X -> _
- Variable:Y -> _
- Variable:B(_,_) -> _
- Variable:U -> _
- BinaryOperatorEqual:=(_,_) -> ?
+ Variable:X -> .
+ Variable:Y -> .
+ Variable:B(.,.) -> .
+ Variable:U -> .
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:1250
 1140 NEXT X
- Variable:X -> _
+ Variable:X -> .
 1150 NEXT Y
- Variable:Y -> _
+ Variable:Y -> .
 1160 LET F=1
- Variable:F -> _
+ Variable:F -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 1170 GOSUB 1270
  LineNumber:1270
 1180 LET F=6
- Variable:F -> _
+ Variable:F -> .
  NumericValue:6
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 1190 GOSUB 1270
  LineNumber:1270
 1200 IF V=0 THEN 1230
- Variable:V -> _
+ Variable:V -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:1230
 1210 IF W=1 THEN 1980
- Variable:W -> _
+ Variable:W -> .
  NumericValue:1
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:1980
 1220 GOTO 2050
  LineNumber:2050
 1230 IF W=0 THEN 880 
- Variable:W -> _
+ Variable:W -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:880
 1240 GOTO 2120
  LineNumber:2120
 1250 LET B(X,Y)=0
- Variable:X -> _
- Variable:Y -> _
- Variable:B(_,_) -> _
+ Variable:X -> .
+ Variable:Y -> .
+ Variable:B(.,.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 1260 GOTO 1140
  LineNumber:1140
 1265 REM THIS IS THE BINGO DETERMINING SEQUENCE (LINES 1270-1950)
@@ -380,39 +380,39 @@
  Remark:THIS IS THE VERTICAL CHECK FOR BINGO*** (LINES 1270-1430)
 1270 LET G=F+4
  WARNING: GOSUB length exceeds limit 40
- Variable:G -> _
- Variable:F -> _
+ Variable:G -> .
+ Variable:F -> .
  NumericValue:4
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 1280 FOR Y=F TO G
  WARNING: FORNEXT length exceeds limit 40
- control: Variable:Y -> _
- start:   ["Variable:F -> _"]
- end:     ["Variable:G -> _"]
+ control: Variable:Y -> .
+ start:   ["Variable:F -> ."]
+ end:     ["Variable:G -> ."]
 1290 FOR X=F TO G
  WARNING: FORNEXT length exceeds limit 40
- control: Variable:X -> _
- start:   ["Variable:F -> _"]
- end:     ["Variable:G -> _"]
+ control: Variable:X -> .
+ start:   ["Variable:F -> ."]
+ end:     ["Variable:G -> ."]
 1300 IF B(X,Y)<>0 THEN 1430
- Variable:X -> _
- Variable:Y -> _
- Variable:B(_,_) -> _
+ Variable:X -> .
+ Variable:Y -> .
+ Variable:B(.,.) -> .
  NumericValue:0
- BinaryOperatorNotEqual:<>(_,_) -> ?
+ BinaryOperatorNotEqual:<>(.,.) -> ?
  LineNumber:1430
 1310 IF X<F+4 THEN 1420
- Variable:X -> _
- Variable:F -> _
+ Variable:X -> .
+ Variable:F -> .
  NumericValue:4
- BinaryOperatorPlus:+(_,_) -> _
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorPlus:+(.,.) -> .
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:1420
 1320 IF F=6 THEN 1370
- Variable:F -> _
+ Variable:F -> .
  NumericValue:6
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:1370
 1330 PRINT
  CarriageControl:NL
@@ -420,9 +420,9 @@
  TextValue:"YOU'VE GOT A BINGO***"
  CarriageControl:NL
 1350 LET W=1
- Variable:W -> _
+ Variable:W -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 1360 RETURN
  
 1370 PRINT
@@ -431,50 +431,50 @@
  TextValue:"I'VE GOT A BINGO*****"
  CarriageControl:NL
 1390 LET V=1
- Variable:V -> _
+ Variable:V -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 1410 GO TO 1450 
  LineNumber:1450
 1420 NEXT X
- Variable:X -> _
+ Variable:X -> .
 1430 NEXT Y
- Variable:Y -> _
+ Variable:Y -> .
 1440 REM THIS IS THE HORIZONTAL CHECK FOR BINGO*** (LINES 1450-1610)
  Remark:THIS IS THE HORIZONTAL CHECK FOR BINGO*** (LINES 1450-1610)
 1450 LET G=F+4
- Variable:G -> _
- Variable:F -> _
+ Variable:G -> .
+ Variable:F -> .
  NumericValue:4
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 1460 FOR X=F TO G
- control: Variable:X -> _
- start:   ["Variable:F -> _"]
- end:     ["Variable:G -> _"]
+ control: Variable:X -> .
+ start:   ["Variable:F -> ."]
+ end:     ["Variable:G -> ."]
 1470 FOR Y=F TO G
  WARNING: FOR/NEXT nesting exceeds limit 3
- control: Variable:Y -> _
- start:   ["Variable:F -> _"]
- end:     ["Variable:G -> _"]
+ control: Variable:Y -> .
+ start:   ["Variable:F -> ."]
+ end:     ["Variable:G -> ."]
 1480 IF B(X,Y)<>0 THEN 1610 
- Variable:X -> _
- Variable:Y -> _
- Variable:B(_,_) -> _
+ Variable:X -> .
+ Variable:Y -> .
+ Variable:B(.,.) -> .
  NumericValue:0
- BinaryOperatorNotEqual:<>(_,_) -> ?
+ BinaryOperatorNotEqual:<>(.,.) -> ?
  LineNumber:1610
 1490 IF Y<F+4 THEN 1600
- Variable:Y -> _
- Variable:F -> _
+ Variable:Y -> .
+ Variable:F -> .
  NumericValue:4
- BinaryOperatorPlus:+(_,_) -> _
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorPlus:+(.,.) -> .
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:1600
 1500 IF F=6 THEN 1550
- Variable:F -> _
+ Variable:F -> .
  NumericValue:6
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:1550
 1510 PRINT
  CarriageControl:NL
@@ -482,9 +482,9 @@
  TextValue:"YOU'VE GOT A BINGO***"
  CarriageControl:NL
 1530 LET W=1
- Variable:W -> _
+ Variable:W -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 1540 RETURN
  
 1550 PRINT
@@ -493,60 +493,60 @@
  TextValue:"I'VE GOT A BINGO*****"
  CarriageControl:NL
 1570 LET V=1
- Variable:V -> _
+ Variable:V -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 1590 GOTO 1620
  LineNumber:1620
 1600 NEXT Y
- Variable:Y -> _
+ Variable:Y -> .
 1610 NEXT X
- Variable:X -> _
+ Variable:X -> .
 1615 REM THIS IS THE SLANT CHECK (M=-1) FOR BINGO*** (LINES 1620-1770)
  Remark:THIS IS THE SLANT CHECK (M=-1) FOR BINGO*** (LINES 1620-1770)
 1620 LET X=F
- Variable:X -> _
- Variable:F -> _
- AssignmentOperator:= _ -> _
+ Variable:X -> .
+ Variable:F -> .
+ AssignmentOperator:= . -> .
 1630 LET Y=F
- Variable:Y -> _
- Variable:F -> _
- AssignmentOperator:= _ -> _
+ Variable:Y -> .
+ Variable:F -> .
+ AssignmentOperator:= . -> .
 1640 IF B(X,Y)<>0 THEN 1770
- Variable:X -> _
- Variable:Y -> _
- Variable:B(_,_) -> _
+ Variable:X -> .
+ Variable:Y -> .
+ Variable:B(.,.) -> .
  NumericValue:0
- BinaryOperatorNotEqual:<>(_,_) -> ?
+ BinaryOperatorNotEqual:<>(.,.) -> ?
  LineNumber:1770
 1650 LET X=X+1
- Variable:X -> _
- Variable:X -> _
+ Variable:X -> .
+ Variable:X -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 1660 LET Y=Y+1
- Variable:Y -> _
- Variable:Y -> _
+ Variable:Y -> .
+ Variable:Y -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 1670 IF Y<F+5 THEN 1640
- Variable:Y -> _
- Variable:F -> _
+ Variable:Y -> .
+ Variable:F -> .
  NumericValue:5
- BinaryOperatorPlus:+(_,_) -> _
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorPlus:+(.,.) -> .
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:1640
 1680 IF Y=11 THEN 1740
- Variable:Y -> _
+ Variable:Y -> .
  NumericValue:11
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:1740
 1690 LET W=1
- Variable:W -> _
+ Variable:W -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 1700 PRINT
  CarriageControl:NL
 1710 PRINT"YOU'VE GOT A BINGO***"
@@ -558,53 +558,53 @@
  TextValue:"I'VE GOT A BINGO*****"
  CarriageControl:NL
 1750 LET V=1
- Variable:V -> _
+ Variable:V -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 1770 RETURN
  
 1775 REM THIS IS THE SLANT CHECK (M=1) FOR BINGO*** (LINES 1780-1950)
  Remark:THIS IS THE SLANT CHECK (M=1) FOR BINGO*** (LINES 1780-1950)
 1780 LET X=F+4
- Variable:X -> _
- Variable:F -> _
+ Variable:X -> .
+ Variable:F -> .
  NumericValue:4
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 1790 LET Y=X
- Variable:Y -> _
- Variable:X -> _
- AssignmentOperator:= _ -> _
+ Variable:Y -> .
+ Variable:X -> .
+ AssignmentOperator:= . -> .
 1800 IF B(X,Y)<>0 THEN 1950
- Variable:X -> _
- Variable:Y -> _
- Variable:B(_,_) -> _
+ Variable:X -> .
+ Variable:Y -> .
+ Variable:B(.,.) -> .
  NumericValue:0
- BinaryOperatorNotEqual:<>(_,_) -> ?
+ BinaryOperatorNotEqual:<>(.,.) -> ?
  LineNumber:1950
 1810 LET X=X-1
- Variable:X -> _
- Variable:X -> _
+ Variable:X -> .
+ Variable:X -> .
  NumericValue:1
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 1820 LET Y=Y+1
- Variable:Y -> _
- Variable:Y -> _
+ Variable:Y -> .
+ Variable:Y -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 1830 IF Y<F+5 THEN 1800
- Variable:Y -> _
- Variable:F -> _
+ Variable:Y -> .
+ Variable:F -> .
  NumericValue:5
- BinaryOperatorPlus:+(_,_) -> _
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorPlus:+(.,.) -> .
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:1800
 1840 IF Y=11 THEN 1900
- Variable:Y -> _
+ Variable:Y -> .
  NumericValue:11
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:1900
 1850 PRINT
  CarriageControl:NL
@@ -612,9 +612,9 @@
  TextValue:"YOU'VE GOT A BINGO***"
  CarriageControl:NL
 1870 LET W=1
- Variable:W -> _
+ Variable:W -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 1890 RETURN
  
 1900 PRINT
@@ -623,9 +623,9 @@
  TextValue:"I'VE GOT A BINGO*****"
  CarriageControl:NL
 1920 LET V=1
- Variable:V -> _
+ Variable:V -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 1950 RETURN
  
 1970 REM THIS THE TIE PRINTOUT SEQUENCE
@@ -658,14 +658,14 @@
 2050 PRINT
  CarriageControl:NL
 2060 FOR S=1 TO 6
- control: Variable:S -> _
+ control: Variable:S -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:6"]
 2070 PRINT"I WIN. ";
  TextValue:"I WIN. "
  CarriageControl:;
 2080 NEXT S
- Variable:S -> _
+ Variable:S -> .
 2090 PRINT
  CarriageControl:NL
 2100 PRINT

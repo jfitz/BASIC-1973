@@ -21,9 +21,9 @@
 140 PRINT 
  CarriageControl:NL
 150 LET M=23
- Variable:M -> _
+ Variable:M -> .
  NumericValue:23
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 200 REM ***THE HUMAN MOVES
  Remark:***THE HUMAN MOVES
 205 PRINT
@@ -31,7 +31,7 @@
 210 PRINT "THERE ARE NOW";M;"MATCHES."
  TextValue:"THERE ARE NOW"
  CarriageControl:;
- Variable:M -> _
+ Variable:M -> .
  CarriageControl:;
  TextValue:"MATCHES."
  CarriageControl:NL
@@ -41,106 +41,106 @@
  TextValue:"HOW MANY DO YOU TAKE"
  CarriageControl:;
 230 INPUT H
- Variable:H -> _
+ Variable:H -> .
 240 IF H>M THEN 510
- Variable:H -> _
- Variable:M -> _
- BinaryOperatorGreater:>(_,_) -> ?
+ Variable:H -> .
+ Variable:M -> .
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:510
 250 IF H<>INT(H) THEN 510
- Variable:H -> _
- Variable:H -> _
- FunctionInt:INT(_) -> _
- BinaryOperatorNotEqual:<>(_,_) -> ?
+ Variable:H -> .
+ Variable:H -> .
+ FunctionInt:INT(.) -> .
+ BinaryOperatorNotEqual:<>(.,.) -> ?
  LineNumber:510
 260 IF H<=0 THEN 510
- Variable:H -> _
+ Variable:H -> .
  NumericValue:0
- BinaryOperatorLessEqual:<=(_,_) -> ?
+ BinaryOperatorLessEqual:<=(.,.) -> ?
  LineNumber:510
 270 IF H>=4 THEN 510
- Variable:H -> _
+ Variable:H -> .
  NumericValue:4
- BinaryOperatorGreaterEqual:>=(_,_) -> ?
+ BinaryOperatorGreaterEqual:>=(.,.) -> ?
  LineNumber:510
 280 LET M=M-H
- Variable:M -> _
- Variable:M -> _
- Variable:H -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:M -> .
+ Variable:M -> .
+ Variable:H -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 290 IF M=0 THEN 410
- Variable:M -> _
+ Variable:M -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:410
 300 REM ***THE COMPUTER MOVES
  Remark:***THE COMPUTER MOVES
 305 IF M=1 THEN 440
- Variable:M -> _
+ Variable:M -> .
  NumericValue:1
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:440
 310 LET R= M-4*INT(M/4)
- Variable:R -> _
- Variable:M -> _
+ Variable:R -> .
+ Variable:M -> .
  NumericValue:4
- Variable:M -> _
+ Variable:M -> .
  NumericValue:4
- BinaryOperatorDivide:/(_,_) -> _
- FunctionInt:INT(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ FunctionInt:INT(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 320 IF R<>1 THEN 350
- Variable:R -> _
+ Variable:R -> .
  NumericValue:1
- BinaryOperatorNotEqual:<>(_,_) -> ?
+ BinaryOperatorNotEqual:<>(.,.) -> ?
  LineNumber:350
 330 LET C=INT(3+RND(0))+1
- Variable:C -> _
+ Variable:C -> .
  NumericValue:3
  NumericValue:0
- FunctionRnd:RND(_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- FunctionInt:INT(_) -> _
+ FunctionRnd:RND(.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ FunctionInt:INT(.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 340 GO TO 360
  LineNumber:360
 350 LET C=(R+3)-4*INT((R+3)/4)
- Variable:C -> _
- Variable:R -> _
+ Variable:C -> .
+ Variable:R -> .
  NumericValue:3
- BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorPlus:+(.,.) -> .
  NumericValue:4
- Variable:R -> _
+ Variable:R -> .
  NumericValue:3
- BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorPlus:+(.,.) -> .
  NumericValue:4
- BinaryOperatorDivide:/(_,_) -> _
- FunctionInt:INT(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ FunctionInt:INT(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 360 LET M=M-C
- Variable:M -> _
- Variable:M -> _
- Variable:C -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:M -> .
+ Variable:M -> .
+ Variable:C -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 370 IF M=0 THEN 440
- Variable:M -> _
+ Variable:M -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:440
 375 PRINT
  CarriageControl:NL
 380 PRINT "I TOOK";C;"...";
  TextValue:"I TOOK"
  CarriageControl:;
- Variable:C -> _
+ Variable:C -> .
  CarriageControl:;
  TextValue:"..."
  CarriageControl:;

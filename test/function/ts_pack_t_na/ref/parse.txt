@@ -1,28 +1,28 @@
 10 REM TEST PROGRAM FOR PACK$() FUNCTION
  Remark:TEST PROGRAM FOR PACK$() FUNCTION
 20 READ N
- Variable:N -> _
+ Variable:N -> .
 30 DIM A(N)
- Variable:N -> _
- Declaration:A() -> _()
+ Variable:N -> .
+ Declaration:A() -> .()
 40 A(0) = N
  NumericValue:0
- Variable:A(_) -> _
- Variable:N -> _
- AssignmentOperator:= _ -> _
+ Variable:A(.) -> .
+ Variable:N -> .
+ AssignmentOperator:= . -> .
 50 FOR I = 1 TO N
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:N -> _"]
+ end:     ["Variable:N -> ."]
 60 READ A(I)
- Variable:I -> _
- Variable:A(_) -> _
+ Variable:I -> .
+ Variable:A(.) -> .
 70 NEXT I
- Variable:I -> _
+ Variable:I -> .
 80 A$ = PACK$(A)
  Variable:A$ -> $
- Variable:A() -> _()
- FunctionPack:PACK$(_()) -> $
+ Variable:A() -> .()
+ FunctionPack:PACK$(.()) -> $
  AssignmentOperator:= $ -> $
 90 PRINT "A$ IS '"; A$; "'"
  TextValue:"A$ IS '"

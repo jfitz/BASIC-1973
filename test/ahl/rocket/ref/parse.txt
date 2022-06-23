@@ -32,9 +32,9 @@
  TextValue:"GOOD LUCK!!!"
  CarriageControl:NL
 11 L=0
- Variable:L -> _
+ Variable:L -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 13 PRINT\PRINT "SEC","MI + FT","MPH","LB FUEL", "BURN RATE"\PRINT
  CarriageControl:NL
  TextValue:"SEC"
@@ -49,95 +49,95 @@
  CarriageControl:NL
  CarriageControl:NL
 15 A=120\V=1\M=33000\N=16500\G=1E-3\Z=1.8
- Variable:A -> _
+ Variable:A -> .
  NumericValue:120
- AssignmentOperator:= =_ -> _
- Variable:V -> _
+ AssignmentOperator:= =. -> .
+ Variable:V -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
- Variable:M -> _
+ AssignmentOperator:= =. -> .
+ Variable:M -> .
  NumericValue:33000
- AssignmentOperator:= =_ -> _
- Variable:N -> _
+ AssignmentOperator:= =. -> .
+ Variable:N -> .
  NumericValue:16500
- AssignmentOperator:= =_ -> _
- Variable:G -> _
+ AssignmentOperator:= =. -> .
+ Variable:G -> .
  NumericValue:1E-3
- AssignmentOperator:= =_ -> _
- Variable:Z -> _
+ AssignmentOperator:= =. -> .
+ Variable:Z -> .
  NumericValue:1.8
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 21 PRINT L,INT(A);INT(5280*(A-INT(A))),3600*V,M-N,\INPUT K\T=10
  WARNING: Line exceeds PRETTY width limit 72
- Variable:L -> _
+ Variable:L -> .
  CarriageControl:,
- Variable:A -> _
- FunctionInt:INT(_) -> _
+ Variable:A -> .
+ FunctionInt:INT(.) -> .
  CarriageControl:;
  NumericValue:5280
- Variable:A -> _
- Variable:A -> _
- FunctionInt:INT(_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- FunctionInt:INT(_) -> _
+ Variable:A -> .
+ Variable:A -> .
+ FunctionInt:INT(.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ FunctionInt:INT(.) -> .
  CarriageControl:,
  NumericValue:3600
- Variable:V -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ Variable:V -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  CarriageControl:,
- Variable:M -> _
- Variable:N -> _
- BinaryOperatorMinus:-(_,_) -> _
+ Variable:M -> .
+ Variable:N -> .
+ BinaryOperatorMinus:-(.,.) -> .
  CarriageControl:,
- Variable:K -> _
- Variable:T -> _
+ Variable:K -> .
+ Variable:T -> .
  NumericValue:10
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 31 IF M-N<.001 THEN 41\IF T<.001 THEN 21\S=T\IF M>=N+S*K THEN 35
  WARNING: Line exceeds PRETTY width limit 72
- Variable:M -> _
- Variable:N -> _
- BinaryOperatorMinus:-(_,_) -> _
+ Variable:M -> .
+ Variable:N -> .
+ BinaryOperatorMinus:-(.,.) -> .
  NumericValue:.001
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:41
- Variable:T -> _
+ Variable:T -> .
  NumericValue:.001
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:21
- Variable:S -> _
- Variable:T -> _
- AssignmentOperator:= _ -> _
- Variable:M -> _
- Variable:N -> _
- Variable:S -> _
- Variable:K -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- BinaryOperatorGreaterEqual:>=(_,_) -> ?
+ Variable:S -> .
+ Variable:T -> .
+ AssignmentOperator:= . -> .
+ Variable:M -> .
+ Variable:N -> .
+ Variable:S -> .
+ Variable:K -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ BinaryOperatorGreaterEqual:>=(.,.) -> ?
  LineNumber:35
 32 S=(M-N)/K
- Variable:S -> _
- Variable:M -> _
- Variable:N -> _
- BinaryOperatorMinus:-(_,_) -> _
- Variable:K -> _
- BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:S -> .
+ Variable:M -> .
+ Variable:N -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ Variable:K -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ AssignmentOperator:= . -> .
 35 GOSUB 91\IF I<=0 THEN 71\IF V<=0 THEN 38\IF J<0 THEN 81
  LineNumber:91
- Variable:I -> _
+ Variable:I -> .
  NumericValue:0
- BinaryOperatorLessEqual:<=(_,_) -> ?
+ BinaryOperatorLessEqual:<=(.,.) -> ?
  LineNumber:71
- Variable:V -> _
+ Variable:V -> .
  NumericValue:0
- BinaryOperatorLessEqual:<=(_,_) -> ?
+ BinaryOperatorLessEqual:<=(.,.) -> ?
  LineNumber:38
- Variable:J -> _
+ Variable:J -> .
  NumericValue:0
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:81
 38 GOSUB 61\GOTO 31
  LineNumber:61
@@ -146,75 +146,75 @@
  WARNING: Line exceeds PRETTY width limit 72
  TextValue:"FUEL OUT AT"
  CarriageControl:
- Variable:L -> _
+ Variable:L -> .
  CarriageControl:
  TextValue:"SEC"
  CarriageControl:NL
- Variable:S -> _
- Variable:V -> _
- UnaryOperatorMinus:-(_) -> _
- Variable:V -> _
- Variable:V -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ Variable:S -> .
+ Variable:V -> .
+ UnaryOperatorMinus:-(.) -> .
+ Variable:V -> .
+ Variable:V -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:2
- Variable:A -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:G -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- FunctionSqr:SQR(_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- Variable:G -> _
- BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:V -> _
- Variable:V -> _
- Variable:G -> _
- Variable:S -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:L -> _
- Variable:L -> _
- Variable:S -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:A -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:G -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ FunctionSqr:SQR(.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:G -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:V -> .
+ Variable:V -> .
+ Variable:G -> .
+ Variable:S -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:L -> .
+ Variable:L -> .
+ Variable:S -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 51 W=3600*V\PRINT"ON MOON AT"L"SEC - IMPACT VELOCITY" W "MPH"
- Variable:W -> _
+ Variable:W -> .
  NumericValue:3600
- Variable:V -> _
- BinaryOperatorMultiply:*(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:V -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ AssignmentOperator:= . -> .
  TextValue:"ON MOON AT"
  CarriageControl:
- Variable:L -> _
+ Variable:L -> .
  CarriageControl:
  TextValue:"SEC - IMPACT VELOCITY"
  CarriageControl:
- Variable:W -> _
+ Variable:W -> .
  CarriageControl:
  TextValue:"MPH"
  CarriageControl:NL
 52 IF W>1.2 THEN 53\PRINT "PERFECT LANDING! (LUCKY) "\GOTO 95
- Variable:W -> _
+ Variable:W -> .
  NumericValue:1.2
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:53
  TextValue:"PERFECT LANDING! (LUCKY) "
  CarriageControl:NL
  LineNumber:95
 53 IF W>10 THEN 56\PRINT "GOOD LANDING (COULD BE BETTER) "\GOTO 95
- Variable:W -> _
+ Variable:W -> .
  NumericValue:10
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:56
  TextValue:"GOOD LANDING (COULD BE BETTER) "
  CarriageControl:NL
  LineNumber:95
 56 IF W>60 THEN 58 \PRINT "CRAFT DAMAGE YOU'RE STRANDED HERE UNTIL"
- Variable:W -> _
+ Variable:W -> .
  NumericValue:60
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:58
  TextValue:"CRAFT DAMAGE YOU'RE STRANDED HERE UNTIL"
  CarriageControl:NL
@@ -228,225 +228,225 @@
 59 PRINT "IN FACT, YOU BLASTED A NEW LUNAR CRATER "W*.2777"FT DEEP"
  TextValue:"IN FACT, YOU BLASTED A NEW LUNAR CRATER "
  CarriageControl:
- Variable:W -> _
+ Variable:W -> .
  NumericValue:.2777
- BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMultiply:*(.,.) -> .
  CarriageControl:
  TextValue:"FT DEEP"
  CarriageControl:NL
 60 GOTO 95
  LineNumber:95
 61 L=L+S\T=T-S\M=M-S*K\A=I\V=J\RETURN
- Variable:L -> _
- Variable:L -> _
- Variable:S -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:T -> _
- Variable:T -> _
- Variable:S -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:M -> _
- Variable:M -> _
- Variable:S -> _
- Variable:K -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:A -> _
- Variable:I -> _
- AssignmentOperator:= _ -> _
- Variable:V -> _
- Variable:J -> _
- AssignmentOperator:= _ -> _
+ Variable:L -> .
+ Variable:L -> .
+ Variable:S -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:T -> .
+ Variable:T -> .
+ Variable:S -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:M -> .
+ Variable:M -> .
+ Variable:S -> .
+ Variable:K -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:A -> .
+ Variable:I -> .
+ AssignmentOperator:= . -> .
+ Variable:V -> .
+ Variable:J -> .
+ AssignmentOperator:= . -> .
  
 71 IF S<5E-3 THEN 51\D=V+SQR(V*V+2*A*(G-Z*K/M))\S=2*A/D
  WARNING: Line exceeds PRETTY width limit 72
- Variable:S -> _
+ Variable:S -> .
  NumericValue:5E-3
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:51
- Variable:D -> _
- Variable:V -> _
- Variable:V -> _
- Variable:V -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ Variable:D -> .
+ Variable:V -> .
+ Variable:V -> .
+ Variable:V -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:2
- Variable:A -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:G -> _
- Variable:Z -> _
- Variable:K -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:M -> _
- BinaryOperatorDivide:/(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- FunctionSqr:SQR(_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:S -> _
+ Variable:A -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:G -> .
+ Variable:Z -> .
+ Variable:K -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:M -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ FunctionSqr:SQR(.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:S -> .
  NumericValue:2
- Variable:A -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:D -> _
- BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:A -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:D -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ AssignmentOperator:= . -> .
 73 GOSUB 91\GOSUB 61\GOTO 71
  LineNumber:91
  LineNumber:61
  LineNumber:71
 81 W=(1-M*G/(Z*K))/2\S=M*V/(Z*K*(W+SQR(W*W+Y/Z)))+.05\GOSUB 91
  WARNING: Line exceeds PRETTY width limit 72
- Variable:W -> _
+ Variable:W -> .
  NumericValue:1
- Variable:M -> _
- Variable:G -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:Z -> _
- Variable:K -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorDivide:/(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
+ Variable:M -> .
+ Variable:G -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:Z -> .
+ Variable:K -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
  NumericValue:2
- BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:S -> _
- Variable:M -> _
- Variable:V -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:Z -> _
- Variable:K -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:W -> _
- Variable:W -> _
- Variable:W -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:Y -> _
- Variable:Z -> _
- BinaryOperatorDivide:/(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- FunctionSqr:SQR(_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorDivide:/(_,_) -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:S -> .
+ Variable:M -> .
+ Variable:V -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:Z -> .
+ Variable:K -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:W -> .
+ Variable:W -> .
+ Variable:W -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:Y -> .
+ Variable:Z -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ FunctionSqr:SQR(.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorDivide:/(.,.) -> .
  NumericValue:.05
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
  LineNumber:91
 83 IF I<=0 THEN 71\GOSUB 61\IF J>0 THEN 31\IF Y>0 THEN 81\GOTO 31
  WARNING: Line exceeds PRETTY width limit 72
- Variable:I -> _
+ Variable:I -> .
  NumericValue:0
- BinaryOperatorLessEqual:<=(_,_) -> ?
+ BinaryOperatorLessEqual:<=(.,.) -> ?
  LineNumber:71
  LineNumber:61
- Variable:J -> _
+ Variable:J -> .
  NumericValue:0
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:31
- Variable:Y -> _
+ Variable:Y -> .
  NumericValue:0
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:81
  LineNumber:31
 91 Q=S*K/M\J=V+G*S+Z*(-Q-Q*Q/2-Q^3/3-Q^4/4-Q^5/5)
  WARNING: Line exceeds PRETTY width limit 72
  WARNING: Inconsistent GOSUB origins
- Variable:Q -> _
- Variable:S -> _
- Variable:K -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:M -> _
- BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:J -> _
- Variable:V -> _
- Variable:G -> _
- Variable:S -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- Variable:Z -> _
- Variable:Q -> _
- UnaryOperatorMinus:-(_) -> _
- Variable:Q -> _
- Variable:Q -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ Variable:Q -> .
+ Variable:S -> .
+ Variable:K -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:M -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:J -> .
+ Variable:V -> .
+ Variable:G -> .
+ Variable:S -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:Z -> .
+ Variable:Q -> .
+ UnaryOperatorMinus:-(.) -> .
+ Variable:Q -> .
+ Variable:Q -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:2
- BinaryOperatorDivide:/(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- Variable:Q -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ Variable:Q -> .
  NumericValue:3
- BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorPower:^(.,.) -> .
  NumericValue:3
- BinaryOperatorDivide:/(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- Variable:Q -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ Variable:Q -> .
  NumericValue:4
- BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorPower:^(.,.) -> .
  NumericValue:4
- BinaryOperatorDivide:/(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- Variable:Q -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ Variable:Q -> .
  NumericValue:5
- BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorPower:^(.,.) -> .
  NumericValue:5
- BinaryOperatorDivide:/(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 94 I=A-G*S*S/2-V*S+Z*S*(Q/2+Q^2/6+Q^3/12+Q^4/20+Q^5/30)\RETURN
  WARNING: Line exceeds PRETTY width limit 72
- Variable:I -> _
- Variable:A -> _
- Variable:G -> _
- Variable:S -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:S -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ Variable:I -> .
+ Variable:A -> .
+ Variable:G -> .
+ Variable:S -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:S -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:2
- BinaryOperatorDivide:/(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- Variable:V -> _
- Variable:S -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- Variable:Z -> _
- Variable:S -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:Q -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ Variable:V -> .
+ Variable:S -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ Variable:Z -> .
+ Variable:S -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:Q -> .
  NumericValue:2
- BinaryOperatorDivide:/(_,_) -> _
- Variable:Q -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ Variable:Q -> .
  NumericValue:2
- BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorPower:^(.,.) -> .
  NumericValue:6
- BinaryOperatorDivide:/(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- Variable:Q -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:Q -> .
  NumericValue:3
- BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorPower:^(.,.) -> .
  NumericValue:12
- BinaryOperatorDivide:/(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- Variable:Q -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:Q -> .
  NumericValue:4
- BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorPower:^(.,.) -> .
  NumericValue:20
- BinaryOperatorDivide:/(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- Variable:Q -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:Q -> .
  NumericValue:5
- BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorPower:^(.,.) -> .
  NumericValue:30
- BinaryOperatorDivide:/(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
  
 95 PRINT\PRINT\PRINT\PRINT "TRY AGAIN??"\GOTO 6
  CarriageControl:NL

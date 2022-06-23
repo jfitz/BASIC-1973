@@ -1,43 +1,43 @@
 10 READ N
- Variable:N -> _
+ Variable:N -> .
 20 PRINT N;"BASE TEN =";
- Variable:N -> _
+ Variable:N -> .
  CarriageControl:;
  TextValue:"BASE TEN ="
  CarriageControl:;
 30 FOR E=20 TO 0 STEP -1
- control: Variable:E -> _
+ control: Variable:E -> .
  start:   ["NumericValue:20"]
  end:     ["NumericValue:0"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 40 LET I=INT(N/2^E)
- Variable:I -> _
- Variable:N -> _
+ Variable:I -> .
+ Variable:N -> .
  NumericValue:2
- Variable:E -> _
- BinaryOperatorPower:^(_,_) -> _
- BinaryOperatorDivide:/(_,_) -> _
- FunctionInt:INT(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:E -> .
+ BinaryOperatorPower:^(.,.) -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ FunctionInt:INT(.) -> .
+ AssignmentOperator:= . -> .
 50 PRINT I;
- Variable:I -> _
+ Variable:I -> .
  CarriageControl:;
 60 LET R=N-I*2^E
- Variable:R -> _
- Variable:N -> _
- Variable:I -> _
+ Variable:R -> .
+ Variable:N -> .
+ Variable:I -> .
  NumericValue:2
- Variable:E -> _
- BinaryOperatorPower:^(_,_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:E -> .
+ BinaryOperatorPower:^(.,.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 70 LET N=R
- Variable:N -> _
- Variable:R -> _
- AssignmentOperator:= _ -> _
+ Variable:N -> .
+ Variable:R -> .
+ AssignmentOperator:= . -> .
 80 NEXT E
- Variable:E -> _
+ Variable:E -> .
 85 PRINT "BASE TWO"
  TextValue:"BASE TWO"
  CarriageControl:NL

@@ -1,62 +1,62 @@
 10 READ N,D
- Variable:N -> _
- Variable:D -> _
+ Variable:N -> .
+ Variable:D -> .
 20 FOR P=N TO 2 STEP -1
- control: Variable:P -> _
- start:   ["Variable:N -> _"]
+ control: Variable:P -> .
+ start:   ["Variable:N -> ."]
  end:     ["NumericValue:2"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 30 IF N/P=INT(N/P) THEN 70
- Variable:N -> _
- Variable:P -> _
- BinaryOperatorDivide:/(_,_) -> _
- Variable:N -> _
- Variable:P -> _
- BinaryOperatorDivide:/(_,_) -> _
- FunctionInt:INT(_) -> _
- BinaryOperatorEqual:=(_,_) -> ?
+ Variable:N -> .
+ Variable:P -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ Variable:N -> .
+ Variable:P -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ FunctionInt:INT(.) -> .
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:70
 40 NEXT P
- Variable:P -> _
+ Variable:P -> .
 50 PRINT N"/"D
- Variable:N -> _
+ Variable:N -> .
  CarriageControl:
  TextValue:"/"
  CarriageControl:
- Variable:D -> _
+ Variable:D -> .
  CarriageControl:NL
 60 GOTO 10
  LineNumber:10
 70 IF D/P=INT(D/P) THEN 90
- Variable:D -> _
- Variable:P -> _
- BinaryOperatorDivide:/(_,_) -> _
- Variable:D -> _
- Variable:P -> _
- BinaryOperatorDivide:/(_,_) -> _
- FunctionInt:INT(_) -> _
- BinaryOperatorEqual:=(_,_) -> ?
+ Variable:D -> .
+ Variable:P -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ Variable:D -> .
+ Variable:P -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ FunctionInt:INT(.) -> .
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:90
 80 GOTO 40
  LineNumber:40
 90 PRINT N"/"D"="N/P"/"D/P
- Variable:N -> _
+ Variable:N -> .
  CarriageControl:
  TextValue:"/"
  CarriageControl:
- Variable:D -> _
+ Variable:D -> .
  CarriageControl:
  TextValue:"="
  CarriageControl:
- Variable:N -> _
- Variable:P -> _
- BinaryOperatorDivide:/(_,_) -> _
+ Variable:N -> .
+ Variable:P -> .
+ BinaryOperatorDivide:/(.,.) -> .
  CarriageControl:
  TextValue:"/"
  CarriageControl:
- Variable:D -> _
- Variable:P -> _
- BinaryOperatorDivide:/(_,_) -> _
+ Variable:D -> .
+ Variable:P -> .
+ BinaryOperatorDivide:/(.,.) -> .
  CarriageControl:NL
 100 GOTO 10
  LineNumber:10

@@ -1,24 +1,24 @@
 10 READ A,B,C
- Variable:A -> _
- Variable:B -> _
- Variable:C -> _
+ Variable:A -> .
+ Variable:B -> .
+ Variable:C -> .
 15 IF B =-.001 THEN 9999
- Variable:B -> _
+ Variable:B -> .
  NumericValue:.001
- UnaryOperatorMinus:-(_) -> =_
- BinaryOperatorEqual:=(_,_) -> ?
+ UnaryOperatorMinus:-(.) -> =.
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:9999
 20 PRINT A;B;C
- Variable:A -> _
+ Variable:A -> .
  CarriageControl:;
- Variable:B -> _
+ Variable:B -> .
  CarriageControl:;
- Variable:C -> _
+ Variable:C -> .
  CarriageControl:NL
 25 IF A <> 0 THEN 30
- Variable:A -> _
+ Variable:A -> .
  NumericValue:0
- BinaryOperatorNotEqual:<>(_,_) -> ?
+ BinaryOperatorNotEqual:<>(.,.) -> ?
  LineNumber:30
 26 PRINT "A=0 THEN EXPRESSION IS NOT QUADRATIC"
  TextValue:"A=0 THEN EXPRESSION IS NOT QUADRATIC"
@@ -28,14 +28,14 @@
 28 REM   DETERMINE  MAX. OR MIN.
  Remark:  DETERMINE  MAX. OR MIN.
 30 LET M=SGN(A)
- Variable:M -> _
- Variable:A -> _
- FunctionSgn:SGN(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:M -> .
+ Variable:A -> .
+ FunctionSgn:SGN(.) -> .
+ AssignmentOperator:= . -> .
 40 IF M=1 THEN 70
- Variable:M -> _
+ Variable:M -> .
  NumericValue:1
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:70
 50 PRINT "MAXIMUM PARABOLA"
  TextValue:"MAXIMUM PARABOLA"
@@ -48,45 +48,45 @@
 78 REM  FIND THE AXIS OF SYMMETRY
  Remark: FIND THE AXIS OF SYMMETRY
 80 LET X=-B/(2*A)
- Variable:X -> _
- Variable:B -> _
- UnaryOperatorMinus:-(_) -> _
+ Variable:X -> .
+ Variable:B -> .
+ UnaryOperatorMinus:-(.) -> .
  NumericValue:2
- Variable:A -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:A -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ AssignmentOperator:= . -> .
 90 PRINT "AXIS OF SYMMETRY IS  X =";X
  TextValue:"AXIS OF SYMMETRY IS  X ="
  CarriageControl:;
- Variable:X -> _
+ Variable:X -> .
  CarriageControl:NL
 98 REM  FIND EXTREME VALUE
  Remark: FIND EXTREME VALUE
 100 LET Y=(4*A*C-B^2)/(4*A)
- Variable:Y -> _
+ Variable:Y -> .
  NumericValue:4
- Variable:A -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:C -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:B -> _
+ Variable:A -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:C -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:B -> .
  NumericValue:2
- BinaryOperatorPower:^(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorPower:^(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
  NumericValue:4
- Variable:A -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:A -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ AssignmentOperator:= . -> .
 110 PRINT "THE TURNING POINT IS (";X;",";Y;")"
  TextValue:"THE TURNING POINT IS ("
  CarriageControl:;
- Variable:X -> _
+ Variable:X -> .
  CarriageControl:;
  TextValue:","
  CarriageControl:;
- Variable:Y -> _
+ Variable:Y -> .
  CarriageControl:;
  TextValue:")"
  CarriageControl:NL
@@ -101,19 +101,19 @@
  NumericValue:1
  NumericValue:2
  NumericValue:3
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
  NumericValue:6
  NumericValue:13
  NumericValue:6
 155 DATA -3,5,11
  NumericValue:3
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
  NumericValue:5
  NumericValue:11
 160 DATA 4,-.001,1
  NumericValue:4
  NumericValue:.001
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
  NumericValue:1
 9999 END
  

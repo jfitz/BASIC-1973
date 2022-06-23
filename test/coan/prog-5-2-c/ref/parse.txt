@@ -1,31 +1,31 @@
 10 LET A=1
- Variable:A -> _
+ Variable:A -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 20 FOR R=1 TO 3
- control: Variable:R -> _
+ control: Variable:R -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:3"]
 30 FOR C=1 TO 5
- control: Variable:C -> _
+ control: Variable:C -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:5"]
 40 LET A[R,C]=A
- Variable:R -> _
- Variable:C -> _
- Variable:A(_,_) -> _
- Variable:A -> _
- AssignmentOperator:= _ -> _
+ Variable:R -> .
+ Variable:C -> .
+ Variable:A(.,.) -> .
+ Variable:A -> .
+ AssignmentOperator:= . -> .
 50 LET A=A+1
- Variable:A -> _
- Variable:A -> _
+ Variable:A -> .
+ Variable:A -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 60 NEXT C
- Variable:C -> _
+ Variable:C -> .
 70 NEXT R
- Variable:R -> _
+ Variable:R -> .
 90 PRINT "WE PRINT THE ORIGINAL ARRAY"
  TextValue:"WE PRINT THE ORIGINAL ARRAY"
  CarriageControl:NL
@@ -35,21 +35,21 @@
  TextValue:"WE CAN MULTIPLY EVERY ELEMENT IN THE 4TH COLUMN BY 6"
  CarriageControl:NL
 120 FOR R=1 TO 3
- control: Variable:R -> _
+ control: Variable:R -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:3"]
 130 LET A[R,4]=A[R,4]*6
- Variable:R -> _
+ Variable:R -> .
  NumericValue:4
- Variable:A(_,_) -> _
- Variable:R -> _
+ Variable:A(.,.) -> .
+ Variable:R -> .
  NumericValue:4
- Variable:A(_,_) -> _
+ Variable:A(.,.) -> .
  NumericValue:6
- BinaryOperatorMultiply:*(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorMultiply:*(.,.) -> .
+ AssignmentOperator:= . -> .
 140 NEXT R
- Variable:R -> _
+ Variable:R -> .
 150 GOSUB 900
  LineNumber:900
 160 PRINT "WE CAN SUBTRACT THE 3RD ROW FROM THE 2ND ROW"
@@ -59,23 +59,23 @@
  TextValue:"AND PUT THE RESULT IN THE 3RD ROW"
  CarriageControl:NL
 180 FOR C=1 TO 5
- control: Variable:C -> _
+ control: Variable:C -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:5"]
 190 LET A[3,C]=A[2,C]-A[3,C]
  NumericValue:3
- Variable:C -> _
- Variable:A(_,_) -> _
+ Variable:C -> .
+ Variable:A(.,.) -> .
  NumericValue:2
- Variable:C -> _
- Variable:A(_,_) -> _
+ Variable:C -> .
+ Variable:A(.,.) -> .
  NumericValue:3
- Variable:C -> _
- Variable:A(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:C -> .
+ Variable:A(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 200 NEXT C
- Variable:C -> _
+ Variable:C -> .
 210 GOSUB 900
  LineNumber:900
 880 STOP
@@ -83,26 +83,26 @@
 890 REM ****PRINTING SUBROUTINE IS HERE****
  Remark:****PRINTING SUBROUTINE IS HERE****
 900 FOR R=1 TO 3
- control: Variable:R -> _
+ control: Variable:R -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:3"]
 910 FOR C=1 TO 5
- control: Variable:C -> _
+ control: Variable:C -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:5"]
 920 PRINT A[R,C];
- Variable:R -> _
- Variable:C -> _
- Variable:A(_,_) -> _
+ Variable:R -> .
+ Variable:C -> .
+ Variable:A(.,.) -> .
  CarriageControl:;
 930 NEXT C
- Variable:C -> _
+ Variable:C -> .
 940 PRINT
  CarriageControl:NL
 950 PRINT
  CarriageControl:NL
 960 NEXT R
- Variable:R -> _
+ Variable:R -> .
 970 RETURN
  
 999 END

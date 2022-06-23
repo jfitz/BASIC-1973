@@ -1,38 +1,38 @@
 10 READ N,R
- Variable:N -> _
- Variable:R -> _
+ Variable:N -> .
+ Variable:R -> .
 20 IF N=0 THEN 100
- Variable:N -> _
+ Variable:N -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:100
 30 LET P=1
- Variable:P -> _
+ Variable:P -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 40 FOR X=N TO N-R+1 STEP -1
- control: Variable:X -> _
- start:   ["Variable:N -> _"]
- end:     ["Variable:N -> _", "Variable:R -> _", "BinaryOperatorMinus:-(_,_) -> _", "NumericValue:1", "BinaryOperatorPlus:+(_,_) -> _"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ control: Variable:X -> .
+ start:   ["Variable:N -> ."]
+ end:     ["Variable:N -> .", "Variable:R -> .", "BinaryOperatorMinus:-(.,.) -> .", "NumericValue:1", "BinaryOperatorPlus:+(.,.) -> ."]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 50 LET P=P*X
- Variable:P -> _
- Variable:P -> _
- Variable:X -> _
- BinaryOperatorMultiply:*(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:P -> .
+ Variable:P -> .
+ Variable:X -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ AssignmentOperator:= . -> .
 60 NEXT X
- Variable:X -> _
+ Variable:X -> .
 70 PRINT N;"THINGS";R;"AT A TIME HAVE";P;"PERMUTATIONS"
- Variable:N -> _
+ Variable:N -> .
  CarriageControl:;
  TextValue:"THINGS"
  CarriageControl:;
- Variable:R -> _
+ Variable:R -> .
  CarriageControl:;
  TextValue:"AT A TIME HAVE"
  CarriageControl:;
- Variable:P -> _
+ Variable:P -> .
  CarriageControl:;
  TextValue:"PERMUTATIONS"
  CarriageControl:NL

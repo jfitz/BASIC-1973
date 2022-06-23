@@ -8,27 +8,27 @@
 110 FILES "text.txt"
  TextValue:"text.txt"
 120 FOR I=1 TO 6
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:6"]
 130 READ #1,I;A$,A,A1
  NumericValue:1
- UnaryOperatorHash:#(_) -> =FH
- Variable:I -> _
+ UnaryOperatorHash:#(.) -> =FH
+ Variable:I -> .
  Variable:A$ -> $
- Variable:A -> _
- Variable:A1 -> _
+ Variable:A -> .
+ Variable:A1 -> .
 140 FOR J=I+1 TO 7
- control: Variable:J -> _
- start:   ["Variable:I -> _", "NumericValue:1", "BinaryOperatorPlus:+(_,_) -> _"]
+ control: Variable:J -> .
+ start:   ["Variable:I -> .", "NumericValue:1", "BinaryOperatorPlus:+(.,.) -> ."]
  end:     ["NumericValue:7"]
 150 READ #1,J;B$,B,B1
  NumericValue:1
- UnaryOperatorHash:#(_) -> =FH
- Variable:J -> _
+ UnaryOperatorHash:#(.) -> =FH
+ Variable:J -> .
  Variable:B$ -> $
- Variable:B -> _
- Variable:B1 -> _
+ Variable:B -> .
+ Variable:B1 -> .
 160 IF A$ <= B$ THEN 200
  Variable:A$ -> $
  Variable:B$ -> $
@@ -36,37 +36,37 @@
  LineNumber:200
 170 PRINT #1,I;B$,B,B1
  NumericValue:1
- UnaryOperatorHash:#(_) -> =FH
- Variable:I -> _
+ UnaryOperatorHash:#(.) -> =FH
+ Variable:I -> .
  CarriageControl:;
  Variable:B$ -> $
  CarriageControl:,
- Variable:B -> _
+ Variable:B -> .
  CarriageControl:,
- Variable:B1 -> _
+ Variable:B1 -> .
  CarriageControl:NL
 180 PRINT #1,J;A$,A,A1
  NumericValue:1
- UnaryOperatorHash:#(_) -> =FH
- Variable:J -> _
+ UnaryOperatorHash:#(.) -> =FH
+ Variable:J -> .
  CarriageControl:;
  Variable:A$ -> $
  CarriageControl:,
- Variable:A -> _
+ Variable:A -> .
  CarriageControl:,
- Variable:A1 -> _
+ Variable:A1 -> .
  CarriageControl:NL
 190 READ #1,I;A$,A,A1
  NumericValue:1
- UnaryOperatorHash:#(_) -> =FH
- Variable:I -> _
+ UnaryOperatorHash:#(.) -> =FH
+ Variable:I -> .
  Variable:A$ -> $
- Variable:A -> _
- Variable:A1 -> _
+ Variable:A -> .
+ Variable:A1 -> .
 200 NEXT J
- Variable:J -> _
+ Variable:J -> .
 210 NEXT I
- Variable:I -> _
+ Variable:I -> .
 220 PRINT "FILE ALPHABETIZED"
  TextValue:"FILE ALPHABETIZED"
  CarriageControl:NL

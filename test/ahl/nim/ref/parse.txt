@@ -64,39 +64,39 @@
 200 DIM X(20,4),S(20),L(20),S2(20),N2(4),C(20),S3(20),V(20)
  NumericValue:20
  NumericValue:4
- Declaration:X(,) -> _(,)
+ Declaration:X(,) -> .(,)
  NumericValue:20
- Declaration:S() -> _()
+ Declaration:S() -> .()
  NumericValue:20
- Declaration:L() -> _()
+ Declaration:L() -> .()
  NumericValue:20
- Declaration:S2() -> _()
+ Declaration:S2() -> .()
  NumericValue:4
- Declaration:N2() -> _()
+ Declaration:N2() -> .()
  NumericValue:20
- Declaration:C() -> _()
+ Declaration:C() -> .()
  NumericValue:20
- Declaration:S3() -> _()
+ Declaration:S3() -> .()
  NumericValue:20
- Declaration:V() -> _()
+ Declaration:V() -> .()
 205 PRINT\PRINT "HOW MANY PILES";\INPUT P\IF P>20 THEN 215
  CarriageControl:NL
  TextValue:"HOW MANY PILES"
  CarriageControl:;
- Variable:P -> _
- Variable:P -> _
+ Variable:P -> .
+ Variable:P -> .
  NumericValue:20
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:215
 210 IF P>INT(P) THEN 215\IF P<=0 THEN 215\GO TO 220
- Variable:P -> _
- Variable:P -> _
- FunctionInt:INT(_) -> _
- BinaryOperatorGreater:>(_,_) -> ?
+ Variable:P -> .
+ Variable:P -> .
+ FunctionInt:INT(.) -> .
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:215
- Variable:P -> _
+ Variable:P -> .
  NumericValue:0
- BinaryOperatorLessEqual:<=(_,_) -> ?
+ BinaryOperatorLessEqual:<=(.,.) -> ?
  LineNumber:215
  LineNumber:220
 215 PRINT "ILLEGAL PILE NUMBER. "\PRINT\GO TO 205
@@ -106,33 +106,33 @@
  LineNumber:205
 220 PRINT\FOR I=1 TO P
  CarriageControl:NL
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:P -> _"]
+ end:     ["Variable:P -> ."]
 225 PRINT "HOW MANY STICKS IN PILE"I;\INPUT L(I)\IF L(I)>20 THEN 235
  TextValue:"HOW MANY STICKS IN PILE"
  CarriageControl:
- Variable:I -> _
+ Variable:I -> .
  CarriageControl:;
- Variable:I -> _
- Variable:L(_) -> _
- Variable:I -> _
- Variable:L(_) -> _
+ Variable:I -> .
+ Variable:L(.) -> .
+ Variable:I -> .
+ Variable:L(.) -> .
  NumericValue:20
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:235
 230 IF L(I)>INT(L(I)) THEN 235\IF L(I)<=0 THEN 235\GO TO 240
- Variable:I -> _
- Variable:L(_) -> _
- Variable:I -> _
- Variable:L(_) -> _
- FunctionInt:INT(_) -> _
- BinaryOperatorGreater:>(_,_) -> ?
+ Variable:I -> .
+ Variable:L(.) -> .
+ Variable:I -> .
+ Variable:L(.) -> .
+ FunctionInt:INT(.) -> .
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:235
- Variable:I -> _
- Variable:L(_) -> _
+ Variable:I -> .
+ Variable:L(.) -> .
  NumericValue:0
- BinaryOperatorLessEqual:<=(_,_) -> ?
+ BinaryOperatorLessEqual:<=(.,.) -> ?
  LineNumber:235
  LineNumber:240
 235 PRINT "ILLEGAL STICK NUMBER"\PRINT\GO TO 225
@@ -141,23 +141,23 @@
  CarriageControl:NL
  LineNumber:225
 240 NEXT I
- Variable:I -> _
+ Variable:I -> .
 245 FOR I=1 TO P\S(I)=L(I)\G=G+L(I)\NEXT I
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:P -> _"]
- Variable:I -> _
- Variable:S(_) -> _
- Variable:I -> _
- Variable:L(_) -> _
- AssignmentOperator:= _ -> _
- Variable:G -> _
- Variable:G -> _
- Variable:I -> _
- Variable:L(_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:I -> _
+ end:     ["Variable:P -> ."]
+ Variable:I -> .
+ Variable:S(.) -> .
+ Variable:I -> .
+ Variable:L(.) -> .
+ AssignmentOperator:= . -> .
+ Variable:G -> .
+ Variable:G -> .
+ Variable:I -> .
+ Variable:L(.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:I -> .
 250 PRINT\PRINT "DO YOU WANT TO GO FIRST";
  CarriageControl:NL
  TextValue:"DO YOU WANT TO GO FIRST"
@@ -179,19 +179,19 @@
 265 REM  CONTROL OF GAME REPEATS AND TESTS FOR END OF GAME- 
  Remark: CONTROL OF GAME REPEATS AND TESTS FOR END OF GAME- 
 270 IF G=0 THEN 275\IF F=1 THEN 390\GO TO 320
- Variable:G -> _
+ Variable:G -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:275
- Variable:F -> _
+ Variable:F -> .
  NumericValue:1
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:390
  LineNumber:320
 275 IF F=1 THEN 315
- Variable:F -> _
+ Variable:F -> .
  NumericValue:1
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:315
 280 PRINT\PRINT "I WON. DO YOU WANT TO PLAY AGAIN";
  CarriageControl:NL
@@ -244,47 +244,47 @@
  TextValue:"STICKS LEFT"
  CarriageControl:NL
 325 FOR I=1 TO P\IF S(I)=0 THEN 330\PRINT I,S(I)
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:P -> _"]
- Variable:I -> _
- Variable:S(_) -> _
+ end:     ["Variable:P -> ."]
+ Variable:I -> .
+ Variable:S(.) -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:330
- Variable:I -> _
+ Variable:I -> .
  CarriageControl:,
- Variable:I -> _
- Variable:S(_) -> _
+ Variable:I -> .
+ Variable:S(.) -> .
  CarriageControl:NL
 330 NEXT I
- Variable:I -> _
+ Variable:I -> .
 335 REM -------------------PLAYER'S MOVE-------------------------
  Remark:-------------------PLAYER'S MOVE-------------------------
 340 PRINT\PRINT "WHICH PILE DO YOU WANT STICKS FROM";\INPUT N
  CarriageControl:NL
  TextValue:"WHICH PILE DO YOU WANT STICKS FROM"
  CarriageControl:;
- Variable:N -> _
+ Variable:N -> .
 345 IF N>P THEN 355\IF N>INT(N) THEN 355\IF N<=0 THEN 355
- Variable:N -> _
- Variable:P -> _
- BinaryOperatorGreater:>(_,_) -> ?
+ Variable:N -> .
+ Variable:P -> .
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:355
- Variable:N -> _
- Variable:N -> _
- FunctionInt:INT(_) -> _
- BinaryOperatorGreater:>(_,_) -> ?
+ Variable:N -> .
+ Variable:N -> .
+ FunctionInt:INT(.) -> .
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:355
- Variable:N -> _
+ Variable:N -> .
  NumericValue:0
- BinaryOperatorLessEqual:<=(_,_) -> ?
+ BinaryOperatorLessEqual:<=(.,.) -> ?
  LineNumber:355
 350 IF S(N)=0 THEN 355\GO TO 360
- Variable:N -> _
- Variable:S(_) -> _
+ Variable:N -> .
+ Variable:S(.) -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:355
  LineNumber:360
 355 PRINT "ILLEGAL PILE NUMBER."\PRINT\GO TO 340
@@ -296,22 +296,22 @@
  CarriageControl:NL
  TextValue:"HOW MANY STICKS"
  CarriageControl:;
- Variable:T -> _
+ Variable:T -> .
 365 IF T>S(N) THEN 370\IF T>INT(T) THEN 370\IF T<=0 THEN 370\GO TO 375
  WARNING: Line exceeds PRETTY width limit 72
- Variable:T -> _
- Variable:N -> _
- Variable:S(_) -> _
- BinaryOperatorGreater:>(_,_) -> ?
+ Variable:T -> .
+ Variable:N -> .
+ Variable:S(.) -> .
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:370
- Variable:T -> _
- Variable:T -> _
- FunctionInt:INT(_) -> _
- BinaryOperatorGreater:>(_,_) -> ?
+ Variable:T -> .
+ Variable:T -> .
+ FunctionInt:INT(.) -> .
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:370
- Variable:T -> _
+ Variable:T -> .
  NumericValue:0
- BinaryOperatorLessEqual:<=(_,_) -> ?
+ BinaryOperatorLessEqual:<=(.,.) -> ?
  LineNumber:370
  LineNumber:375
 370 PRINT "ILLEGAL STICK NUMBER."\PRINT\GO TO 360
@@ -320,320 +320,320 @@
  CarriageControl:NL
  LineNumber:360
 375 S(N)=S(N)-T\G=G-T
- Variable:N -> _
- Variable:S(_) -> _
- Variable:N -> _
- Variable:S(_) -> _
- Variable:T -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:G -> _
- Variable:G -> _
- Variable:T -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:N -> .
+ Variable:S(.) -> .
+ Variable:N -> .
+ Variable:S(.) -> .
+ Variable:T -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:G -> .
+ Variable:G -> .
+ Variable:T -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 380 F=1\GO TO 270
- Variable:F -> _
+ Variable:F -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
  LineNumber:270
 385 REM -------------------MACHINE'S MOVE-------------------------
  Remark:-------------------MACHINE'S MOVE-------------------------
 390 FOR I=0 TO 4\V(I)=0\NEXT I
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:0"]
  end:     ["NumericValue:4"]
- Variable:I -> _
- Variable:V(_) -> _
+ Variable:I -> .
+ Variable:V(.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
- Variable:I -> _
+ AssignmentOperator:= =. -> .
+ Variable:I -> .
 395 FOR I=1 TO P
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:P -> _"]
+ end:     ["Variable:P -> ."]
 400    C(I)=S(I)
- Variable:I -> _
- Variable:C(_) -> _
- Variable:I -> _
- Variable:S(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:I -> .
+ Variable:C(.) -> .
+ Variable:I -> .
+ Variable:S(.) -> .
+ AssignmentOperator:= . -> .
 405    FOR E=4 TO 0 STEP -1
- control: Variable:E -> _
+ control: Variable:E -> .
  start:   ["NumericValue:4"]
  end:     ["NumericValue:0"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 410       IF S(I)<2^E THEN 415\S2(I)=S2(I)+10^E\S(I)=S(I)-2^E
- Variable:I -> _
- Variable:S(_) -> _
+ Variable:I -> .
+ Variable:S(.) -> .
  NumericValue:2
- Variable:E -> _
- BinaryOperatorPower:^(_,_) -> _
- BinaryOperatorLess:<(_,_) -> ?
+ Variable:E -> .
+ BinaryOperatorPower:^(.,.) -> .
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:415
- Variable:I -> _
- Variable:S2(_) -> _
- Variable:I -> _
- Variable:S2(_) -> _
+ Variable:I -> .
+ Variable:S2(.) -> .
+ Variable:I -> .
+ Variable:S2(.) -> .
  NumericValue:10
- Variable:E -> _
- BinaryOperatorPower:^(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:I -> _
- Variable:S(_) -> _
- Variable:I -> _
- Variable:S(_) -> _
+ Variable:E -> .
+ BinaryOperatorPower:^(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:I -> .
+ Variable:S(.) -> .
+ Variable:I -> .
+ Variable:S(.) -> .
  NumericValue:2
- Variable:E -> _
- BinaryOperatorPower:^(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:E -> .
+ BinaryOperatorPower:^(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 415    NEXT E
- Variable:E -> _
+ Variable:E -> .
 420    FOR Y=4 TO 0 STEP -1
- control: Variable:Y -> _
+ control: Variable:Y -> .
  start:   ["NumericValue:4"]
  end:     ["NumericValue:0"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 425       X(I,Y)=INT(S2(I)/10^Y)\S2(I)=S2(I)-X(I,Y)*10^Y
- Variable:I -> _
- Variable:Y -> _
- Variable:X(_,_) -> _
- Variable:I -> _
- Variable:S2(_) -> _
+ Variable:I -> .
+ Variable:Y -> .
+ Variable:X(.,.) -> .
+ Variable:I -> .
+ Variable:S2(.) -> .
  NumericValue:10
- Variable:Y -> _
- BinaryOperatorPower:^(_,_) -> _
- BinaryOperatorDivide:/(_,_) -> _
- FunctionInt:INT(_) -> _
- AssignmentOperator:= _ -> _
- Variable:I -> _
- Variable:S2(_) -> _
- Variable:I -> _
- Variable:S2(_) -> _
- Variable:I -> _
- Variable:Y -> _
- Variable:X(_,_) -> _
+ Variable:Y -> .
+ BinaryOperatorPower:^(.,.) -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ FunctionInt:INT(.) -> .
+ AssignmentOperator:= . -> .
+ Variable:I -> .
+ Variable:S2(.) -> .
+ Variable:I -> .
+ Variable:S2(.) -> .
+ Variable:I -> .
+ Variable:Y -> .
+ Variable:X(.,.) -> .
  NumericValue:10
- Variable:Y -> _
- BinaryOperatorPower:^(_,_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:Y -> .
+ BinaryOperatorPower:^(.,.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 430       V(Y)=V(Y)+X(I,Y)
- Variable:Y -> _
- Variable:V(_) -> _
- Variable:Y -> _
- Variable:V(_) -> _
- Variable:I -> _
- Variable:Y -> _
- Variable:X(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:Y -> .
+ Variable:V(.) -> .
+ Variable:Y -> .
+ Variable:V(.) -> .
+ Variable:I -> .
+ Variable:Y -> .
+ Variable:X(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 435    NEXT Y
- Variable:Y -> _
+ Variable:Y -> .
 440 NEXT I
- Variable:I -> _
+ Variable:I -> .
 445 R=0
- Variable:R -> _
+ Variable:R -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 450 FOR Y=4 TO 0 STEP -1
- control: Variable:Y -> _
+ control: Variable:Y -> .
  start:   ["NumericValue:4"]
  end:     ["NumericValue:0"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 455    IF V(Y)/2-INT(V(Y)/2)=0 THEN 480
- Variable:Y -> _
- Variable:V(_) -> _
+ Variable:Y -> .
+ Variable:V(.) -> .
  NumericValue:2
- BinaryOperatorDivide:/(_,_) -> _
- Variable:Y -> _
- Variable:V(_) -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ Variable:Y -> .
+ Variable:V(.) -> .
  NumericValue:2
- BinaryOperatorDivide:/(_,_) -> _
- FunctionInt:INT(_) -> _
- BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ FunctionInt:INT(.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:480
 460    IF R=1 THEN 470\Q=INT(P*RND(X))+1
- Variable:R -> _
+ Variable:R -> .
  NumericValue:1
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:470
- Variable:Q -> _
- Variable:P -> _
- Variable:X -> _
- FunctionRnd:RND(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- FunctionInt:INT(_) -> _
+ Variable:Q -> .
+ Variable:P -> .
+ Variable:X -> .
+ FunctionRnd:RND(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ FunctionInt:INT(.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 465    IF X(Q,Y)<>1 THEN 460\X(Q,Y)=0\R=1\GO TO 480
- Variable:Q -> _
- Variable:Y -> _
- Variable:X(_,_) -> _
+ Variable:Q -> .
+ Variable:Y -> .
+ Variable:X(.,.) -> .
  NumericValue:1
- BinaryOperatorNotEqual:<>(_,_) -> ?
+ BinaryOperatorNotEqual:<>(.,.) -> ?
  LineNumber:460
- Variable:Q -> _
- Variable:Y -> _
- Variable:X(_,_) -> _
+ Variable:Q -> .
+ Variable:Y -> .
+ Variable:X(.,.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
- Variable:R -> _
+ AssignmentOperator:= =. -> .
+ Variable:R -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
  LineNumber:480
 470    IF X(Q,Y)=1 THEN 475\X(Q,Y)=1\GO TO 480
- Variable:Q -> _
- Variable:Y -> _
- Variable:X(_,_) -> _
+ Variable:Q -> .
+ Variable:Y -> .
+ Variable:X(.,.) -> .
  NumericValue:1
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:475
- Variable:Q -> _
- Variable:Y -> _
- Variable:X(_,_) -> _
+ Variable:Q -> .
+ Variable:Y -> .
+ Variable:X(.,.) -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
  LineNumber:480
 475    X(Q,Y)=0
- Variable:Q -> _
- Variable:Y -> _
- Variable:X(_,_) -> _
+ Variable:Q -> .
+ Variable:Y -> .
+ Variable:X(.,.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 480 NEXT Y
- Variable:Y -> _
+ Variable:Y -> .
 485 FOR I=1 TO P
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:P -> _"]
+ end:     ["Variable:P -> ."]
 490    S2(I)=0
- Variable:I -> _
- Variable:S2(_) -> _
+ Variable:I -> .
+ Variable:S2(.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 495    FOR Y=4 TO 0 STEP -1
- control: Variable:Y -> _
+ control: Variable:Y -> .
  start:   ["NumericValue:4"]
  end:     ["NumericValue:0"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 500       S3(I)=X(I,Y)*10^Y\S2(I)=S2(I)+S3(I)
- Variable:I -> _
- Variable:S3(_) -> _
- Variable:I -> _
- Variable:Y -> _
- Variable:X(_,_) -> _
+ Variable:I -> .
+ Variable:S3(.) -> .
+ Variable:I -> .
+ Variable:Y -> .
+ Variable:X(.,.) -> .
  NumericValue:10
- Variable:Y -> _
- BinaryOperatorPower:^(_,_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:I -> _
- Variable:S2(_) -> _
- Variable:I -> _
- Variable:S2(_) -> _
- Variable:I -> _
- Variable:S3(_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:Y -> .
+ BinaryOperatorPower:^(.,.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:I -> .
+ Variable:S2(.) -> .
+ Variable:I -> .
+ Variable:S2(.) -> .
+ Variable:I -> .
+ Variable:S3(.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 505    NEXT Y
- Variable:Y -> _
+ Variable:Y -> .
 510    FOR E=4 TO 0 STEP -1
- control: Variable:E -> _
+ control: Variable:E -> .
  start:   ["NumericValue:4"]
  end:     ["NumericValue:0"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 515       IF S2(I)<10^E THEN 520\S(I)=S(I)+2^E\S2(I)=S2(I)-10^E
  WARNING: Line exceeds PRETTY width limit 72
- Variable:I -> _
- Variable:S2(_) -> _
+ Variable:I -> .
+ Variable:S2(.) -> .
  NumericValue:10
- Variable:E -> _
- BinaryOperatorPower:^(_,_) -> _
- BinaryOperatorLess:<(_,_) -> ?
+ Variable:E -> .
+ BinaryOperatorPower:^(.,.) -> .
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:520
- Variable:I -> _
- Variable:S(_) -> _
- Variable:I -> _
- Variable:S(_) -> _
+ Variable:I -> .
+ Variable:S(.) -> .
+ Variable:I -> .
+ Variable:S(.) -> .
  NumericValue:2
- Variable:E -> _
- BinaryOperatorPower:^(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:I -> _
- Variable:S2(_) -> _
- Variable:I -> _
- Variable:S2(_) -> _
+ Variable:E -> .
+ BinaryOperatorPower:^(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:I -> .
+ Variable:S2(.) -> .
+ Variable:I -> .
+ Variable:S2(.) -> .
  NumericValue:10
- Variable:E -> _
- BinaryOperatorPower:^(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:E -> .
+ BinaryOperatorPower:^(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 520    NEXT E
- Variable:E -> _
+ Variable:E -> .
 525 NEXT I 
- Variable:I -> _
+ Variable:I -> .
 530 IF R=1 THEN 535\Q=INT(P*RND(X))+1\IF S(Q)=0 THEN 530\S(Q)=S(Q)-1
  WARNING: Line exceeds PRETTY width limit 72
- Variable:R -> _
+ Variable:R -> .
  NumericValue:1
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:535
- Variable:Q -> _
- Variable:P -> _
- Variable:X -> _
- FunctionRnd:RND(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- FunctionInt:INT(_) -> _
+ Variable:Q -> .
+ Variable:P -> .
+ Variable:X -> .
+ FunctionRnd:RND(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ FunctionInt:INT(.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:Q -> _
- Variable:S(_) -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:Q -> .
+ Variable:S(.) -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:530
- Variable:Q -> _
- Variable:S(_) -> _
- Variable:Q -> _
- Variable:S(_) -> _
+ Variable:Q -> .
+ Variable:S(.) -> .
+ Variable:Q -> .
+ Variable:S(.) -> .
  NumericValue:1
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 535 D=C(Q)-S(Q)\G=G-D
- Variable:D -> _
- Variable:Q -> _
- Variable:C(_) -> _
- Variable:Q -> _
- Variable:S(_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:G -> _
- Variable:G -> _
- Variable:D -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:D -> .
+ Variable:Q -> .
+ Variable:C(.) -> .
+ Variable:Q -> .
+ Variable:S(.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:G -> .
+ Variable:G -> .
+ Variable:D -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 540 IF D=1 THEN 550
- Variable:D -> _
+ Variable:D -> .
  NumericValue:1
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:550
 545 PRINT\PRINT "I'LL TAKE";D;"STICKS FROM PILE";Q;"."\GO TO 555
  CarriageControl:NL
  TextValue:"I'LL TAKE"
  CarriageControl:;
- Variable:D -> _
+ Variable:D -> .
  CarriageControl:;
  TextValue:"STICKS FROM PILE"
  CarriageControl:;
- Variable:Q -> _
+ Variable:Q -> .
  CarriageControl:;
  TextValue:"."
  CarriageControl:NL
@@ -642,14 +642,14 @@
  CarriageControl:NL
  TextValue:"I'LL TAKE 1 STICK FROM PILE"
  CarriageControl:;
- Variable:Q -> _
+ Variable:Q -> .
  CarriageControl:;
  TextValue:"."
  CarriageControl:NL
 555 F=0\GO TO 270
- Variable:F -> _
+ Variable:F -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
  LineNumber:270
 560 END
  

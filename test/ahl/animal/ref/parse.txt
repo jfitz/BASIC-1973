@@ -85,9 +85,9 @@
  CarriageControl:NL
  control: Variable:I% -> %
  start:   ["IntegerValue:0"]
- end:     ["IntegerValue:0", "Variable:A$(%) -> $", "FunctionVal:VAL($) -> _"]
+ end:     ["IntegerValue:0", "Variable:A$(%) -> $", "FunctionVal:VAL($) -> ."]
  NumericValue:1
- UnaryOperatorHash:#(_) -> =FH
+ UnaryOperatorHash:#(.) -> =FH
  IntegerValue:26
  FunctionChr:CHR$(%) -> =$
  CarriageControl:NL
@@ -110,7 +110,7 @@
  Variable:I% -> %
  Variable:A$(%) -> $
  TextValue:"\A"
- FunctionInstr:INSTR(%,$,$) -> _
+ FunctionInstr:INSTR(%,$,$) -> .
  control: Variable:I% -> %
  start:   ["IntegerValue:1"]
  end:     ["IntegerValue:200"]
@@ -131,9 +131,9 @@
  LineNumber:3000
  Variable:K% -> %
  Variable:A$(%) -> $
- FunctionLen:LEN($) -> _
+ FunctionLen:LEN($) -> .
  IntegerValue:0
- BinaryOperatorEqual:=(_,%) -> ?
+ BinaryOperatorEqual:=(.,%) -> ?
  LineNumber:1400
  Variable:K% -> %
  Variable:A$(%) -> $
@@ -215,8 +215,8 @@
  Variable:Z1% -> %
  IntegerValue:0
  Variable:A$(%) -> $
- FunctionVal:VAL($) -> _
- AssignmentOperator:= _ -> %
+ FunctionVal:VAL($) -> .
+ AssignmentOperator:= . -> %
  IntegerValue:0
  Variable:A$(%) -> $
  Variable:Z1% -> %
@@ -277,10 +277,10 @@
  IntegerValue:3
  Variable:Q$ -> $
  TextValue:"\"
- FunctionInstr:INSTR(%,$,$) -> _
+ FunctionInstr:INSTR(%,$,$) -> .
  IntegerValue:3
- BinaryOperatorMinus:-(_,%) -> _
- FunctionMid:MID($,%,_) -> $
+ BinaryOperatorMinus:-(.,%) -> .
+ FunctionMid:MID($,%,.) -> $
  CarriageControl:;
  Variable:Z9$ -> $
  Variable:Z9$ -> $
@@ -300,16 +300,16 @@
  TextValue:"\"
  Variable:Z9$ -> $
  BinaryOperatorPlus:+($,$) -> $
- FunctionInstr:INSTR(%,$,$) -> _
+ FunctionInstr:INSTR(%,$,$) -> .
  IntegerValue:2
- BinaryOperatorPlus:+(_,%) -> _
- AssignmentOperator:= _ -> %
+ BinaryOperatorPlus:+(.,%) -> .
+ AssignmentOperator:= . -> %
  Variable:Z2% -> %
  Variable:Z1% -> %
  Variable:Q$ -> $
  TextValue:"\"
- FunctionInstr:INSTR(%,$,$) -> _
- AssignmentOperator:= _ -> %
+ FunctionInstr:INSTR(%,$,$) -> .
+ AssignmentOperator:= . -> %
  UserFunction:FNA% -> %
  Variable:Q$ -> $
  Variable:Z1% -> %
@@ -317,8 +317,8 @@
  Variable:Z1% -> %
  BinaryOperatorMinus:-(%,%) -> %
  FunctionMid:MID($,%,%) -> $
- FunctionVal:VAL($) -> _
- AssignmentOperator:= _ -> %
+ FunctionVal:VAL($) -> .
+ AssignmentOperator:= . -> %
  
 9999 END 
  

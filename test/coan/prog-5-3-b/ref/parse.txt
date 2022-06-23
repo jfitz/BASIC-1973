@@ -1,135 +1,135 @@
 10 DIM S[15,10]
  NumericValue:15
  NumericValue:10
- Declaration:S(,) -> _(,)
+ Declaration:S(,) -> .(,)
 20 FOR R=1 TO 15
- control: Variable:R -> _
+ control: Variable:R -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:15"]
 28 REM LINE 30 ENTERS THE ROW NUMBER IN THE FIRST COLUMN
  Remark:LINE 30 ENTERS THE ROW NUMBER IN THE FIRST COLUMN
 30 LET S[R,1]=R
- Variable:R -> _
+ Variable:R -> .
  NumericValue:1
- Variable:S(_,_) -> _
- Variable:R -> _
- AssignmentOperator:= _ -> _
+ Variable:S(.,.) -> .
+ Variable:R -> .
+ AssignmentOperator:= . -> .
 40 FOR C=2 TO 5
- control: Variable:C -> _
+ control: Variable:C -> .
  start:   ["NumericValue:2"]
  end:     ["NumericValue:5"]
 48 REM LINE 50 SETS THE LAST 4 COLUMNS AT ZERO
  Remark:LINE 50 SETS THE LAST 4 COLUMNS AT ZERO
 50 LET S[R,C]=0
- Variable:R -> _
- Variable:C -> _
- Variable:S(_,_) -> _
+ Variable:R -> .
+ Variable:C -> .
+ Variable:S(.,.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 60 NEXT C
- Variable:C -> _
+ Variable:C -> .
 70 NEXT R
- Variable:R -> _
+ Variable:R -> .
 78 REM 80 READS THE CATEGORY FOR THE NEXT PERSON IN THE SURVEY
  Remark:80 READS THE CATEGORY FOR THE NEXT PERSON IN THE SURVEY
 80 READ P
- Variable:P -> _
+ Variable:P -> .
 90 IF P=-1 THEN 145
- Variable:P -> _
+ Variable:P -> .
  NumericValue:1
- UnaryOperatorMinus:-(_) -> =_
- BinaryOperatorEqual:=(_,_) -> ?
+ UnaryOperatorMinus:-(.) -> =.
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:145
 98 REM Q GOES THROUGH THE 15 QUESTIONS
  Remark:Q GOES THROUGH THE 15 QUESTIONS
 100 FOR Q=1 TO 15
- control: Variable:Q -> _
+ control: Variable:Q -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:15"]
 110 READ A
- Variable:A -> _
+ Variable:A -> .
 120 LET S[Q,P]=S[Q,P]+A
- Variable:Q -> _
- Variable:P -> _
- Variable:S(_,_) -> _
- Variable:Q -> _
- Variable:P -> _
- Variable:S(_,_) -> _
- Variable:A -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:Q -> .
+ Variable:P -> .
+ Variable:S(.,.) -> .
+ Variable:Q -> .
+ Variable:P -> .
+ Variable:S(.,.) -> .
+ Variable:A -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 130 NEXT Q
- Variable:Q -> _
+ Variable:Q -> .
 138 REM LINE 140 SENSE THE COMPUTER BACK TO READ ANOTHER LINE OF DATA
  Remark:LINE 140 SENSE THE COMPUTER BACK TO READ ANOTHER LINE OF DATA
 140 GOTO 80
  LineNumber:80
 145 FOR R=1 TO 15
- control: Variable:R -> _
+ control: Variable:R -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:15"]
 150 LET S[R,6]=S[R,2]+S[R,3]
- Variable:R -> _
+ Variable:R -> .
  NumericValue:6
- Variable:S(_,_) -> _
- Variable:R -> _
+ Variable:S(.,.) -> .
+ Variable:R -> .
  NumericValue:2
- Variable:S(_,_) -> _
- Variable:R -> _
+ Variable:S(.,.) -> .
+ Variable:R -> .
  NumericValue:3
- Variable:S(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:S(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 160 LET S[R,7]=S[R,4]+S[R,5]
- Variable:R -> _
+ Variable:R -> .
  NumericValue:7
- Variable:S(_,_) -> _
- Variable:R -> _
+ Variable:S(.,.) -> .
+ Variable:R -> .
  NumericValue:4
- Variable:S(_,_) -> _
- Variable:R -> _
+ Variable:S(.,.) -> .
+ Variable:R -> .
  NumericValue:5
- Variable:S(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:S(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 170 LET S[R,8]=S[R,3]+S[R,5]
- Variable:R -> _
+ Variable:R -> .
  NumericValue:8
- Variable:S(_,_) -> _
- Variable:R -> _
+ Variable:S(.,.) -> .
+ Variable:R -> .
  NumericValue:3
- Variable:S(_,_) -> _
- Variable:R -> _
+ Variable:S(.,.) -> .
+ Variable:R -> .
  NumericValue:5
- Variable:S(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:S(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 180 LET S[R,9]=S[R,2]+S[R,4]
- Variable:R -> _
+ Variable:R -> .
  NumericValue:9
- Variable:S(_,_) -> _
- Variable:R -> _
+ Variable:S(.,.) -> .
+ Variable:R -> .
  NumericValue:2
- Variable:S(_,_) -> _
- Variable:R -> _
+ Variable:S(.,.) -> .
+ Variable:R -> .
  NumericValue:4
- Variable:S(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:S(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 185 LET S[R,10]=S[R,6]+S[R,7]
- Variable:R -> _
+ Variable:R -> .
  NumericValue:10
- Variable:S(_,_) -> _
- Variable:R -> _
+ Variable:S(.,.) -> .
+ Variable:R -> .
  NumericValue:6
- Variable:S(_,_) -> _
- Variable:R -> _
+ Variable:S(.,.) -> .
+ Variable:R -> .
  NumericValue:7
- Variable:S(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:S(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 190 NEXT R
- Variable:R -> _
+ Variable:R -> .
 198 REM THE PRINTING BEGINS HERE
  Remark:THE PRINTING BEGINS HERE
 200 PRINT "QUEST MALE  MALE FEMALEFEMALE"
@@ -142,24 +142,24 @@
  TextValue:"  TOTAL"
  CarriageControl:NL
 220 FOR R=1 TO 15
- control: Variable:R -> _
+ control: Variable:R -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:15"]
 230 FOR C=1 TO 10
- control: Variable:C -> _
+ control: Variable:C -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:10"]
 250 PRINT S[R,C];
- Variable:R -> _
- Variable:C -> _
- Variable:S(_,_) -> _
+ Variable:R -> .
+ Variable:C -> .
+ Variable:S(.,.) -> .
  CarriageControl:;
 260 NEXT C
- Variable:C -> _
+ Variable:C -> .
 270 PRINT
  CarriageControl:NL
 280 NEXT R
- Variable:R -> _
+ Variable:R -> .
 498 REM  ***A LINE LIKE 500 MAY HELP TO LINEUP THE DATA LINES
  Remark: ***A LINE LIKE 500 MAY HELP TO LINEUP THE DATA LINES
 499 REM  IN TYPING***
@@ -353,7 +353,7 @@
  NumericValue:1
 900 DATA -1
  NumericValue:1
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
 999 END
  
 

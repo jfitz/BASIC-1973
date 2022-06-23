@@ -6,36 +6,36 @@
  NumericValue:10
  Declaration:W$() -> $()
  NumericValue:30
- Declaration:L() -> _()
+ Declaration:L() -> .()
  NumericValue:30
- Declaration:R() -> _()
+ Declaration:R() -> .()
 20 R$(1)="RIGHT":R$(2)="CORRECT":R$(3)="FINE":R$(4)="GOOD!":R$(5)="CHECK"
  WARNING: Line exceeds PRETTY width limit 72
  NumericValue:1
- Variable:R$(_) -> $
+ Variable:R$(.) -> $
  TextValue:"RIGHT"
  AssignmentOperator:= =$ -> $
  NumericValue:2
- Variable:R$(_) -> $
+ Variable:R$(.) -> $
  TextValue:"CORRECT"
  AssignmentOperator:= =$ -> $
  NumericValue:3
- Variable:R$(_) -> $
+ Variable:R$(.) -> $
  TextValue:"FINE"
  AssignmentOperator:= =$ -> $
  NumericValue:4
- Variable:R$(_) -> $
+ Variable:R$(.) -> $
  TextValue:"GOOD!"
  AssignmentOperator:= =$ -> $
  NumericValue:5
- Variable:R$(_) -> $
+ Variable:R$(.) -> $
  TextValue:"CHECK"
  AssignmentOperator:= =$ -> $
 70 RANDOMIZE:C=0:PRINT:PRINT "SYNONYMS": PRINT
  
- Variable:C -> _
+ Variable:C -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
  CarriageControl:NL
  TextValue:"SYNONYMS"
  CarriageControl:NL
@@ -62,90 +62,90 @@
  CarriageControl:NL
 150 RESTORE:C=C+1:READ N
  
- Variable:C -> _
- Variable:C -> _
+ Variable:C -> .
+ Variable:C -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:N -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:N -> .
 160 IF C>N THEN 420
- Variable:C -> _
- Variable:N -> _
- BinaryOperatorGreater:>(_,_) -> ?
+ Variable:C -> .
+ Variable:N -> .
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:420
 170 N1=INT(RND*N+1)
- Variable:N1 -> _
- FunctionRnd:RND -> _
- Variable:N -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ Variable:N1 -> .
+ FunctionRnd:RND -> .
+ Variable:N -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- FunctionInt:INT(_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ FunctionInt:INT(.) -> .
+ AssignmentOperator:= . -> .
 174 IF R(N1)=1 THEN 170
- Variable:N1 -> _
- Variable:R(_) -> _
+ Variable:N1 -> .
+ Variable:R(.) -> .
  NumericValue:1
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:170
 176 R(N1)=1
- Variable:N1 -> _
- Variable:R(_) -> _
+ Variable:N1 -> .
+ Variable:R(.) -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 180 FOR I=1 TO N1
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:N1 -> _"]
+ end:     ["Variable:N1 -> ."]
 190 READ N2
- Variable:N2 -> _
+ Variable:N2 -> .
 200 FOR J=1 TO N2
- control: Variable:J -> _
+ control: Variable:J -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:N2 -> _"]
+ end:     ["Variable:N2 -> ."]
 210 READ W$(J)
- Variable:J -> _
- Variable:W$(_) -> $
+ Variable:J -> .
+ Variable:W$(.) -> $
 220 NEXT J
- Variable:J -> _
+ Variable:J -> .
 230 NEXT I
- Variable:I -> _
+ Variable:I -> .
 232 L(J)=J FOR J=1 TO N2
- Variable:J -> _
- Variable:L(_) -> _
- Variable:J -> _
- AssignmentOperator:= _ -> _
- control: Variable:J -> _
+ Variable:J -> .
+ Variable:L(.) -> .
+ Variable:J -> .
+ AssignmentOperator:= . -> .
+ control: Variable:J -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:N2 -> _"]
+ end:     ["Variable:N2 -> ."]
 235 L(0)=N2:G=1:PRINT
  NumericValue:0
- Variable:L(_) -> _
- Variable:N2 -> _
- AssignmentOperator:= _ -> _
- Variable:G -> _
+ Variable:L(.) -> .
+ Variable:N2 -> .
+ AssignmentOperator:= . -> .
+ Variable:G -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
  CarriageControl:NL
 237 L(G)=L(L(0)):L(0)=N2-1:PRINT
- Variable:G -> _
- Variable:L(_) -> _
+ Variable:G -> .
+ Variable:L(.) -> .
  NumericValue:0
- Variable:L(_) -> _
- Variable:L(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:L(.) -> .
+ Variable:L(.) -> .
+ AssignmentOperator:= . -> .
  NumericValue:0
- Variable:L(_) -> _
- Variable:N2 -> _
+ Variable:L(.) -> .
+ Variable:N2 -> .
  NumericValue:1
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
  CarriageControl:NL
 240 PRINT "WHAT IS A SYNONYM OF "W$(G);:INPUT A$
  TextValue:"WHAT IS A SYNONYM OF "
  CarriageControl:
- Variable:G -> _
- Variable:W$(_) -> $
+ Variable:G -> .
+ Variable:W$(.) -> $
  CarriageControl:;
  Variable:A$ -> $
 250 IF A$="HELP" THEN 340
@@ -154,77 +154,77 @@
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:340
 260 FOR J=1 TO N2
- control: Variable:J -> _
+ control: Variable:J -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:N2 -> _"]
+ end:     ["Variable:N2 -> ."]
 270 IF G=J THEN 290
- Variable:G -> _
- Variable:J -> _
- BinaryOperatorEqual:=(_,_) -> ?
+ Variable:G -> .
+ Variable:J -> .
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:290
 280 IF A$=W$(J) THEN 320
  Variable:A$ -> $
- Variable:J -> _
- Variable:W$(_) -> $
+ Variable:J -> .
+ Variable:W$(.) -> $
  BinaryOperatorEqual:=($,$) -> ?
  LineNumber:320
 290 NEXT J
- Variable:J -> _
+ Variable:J -> .
 300 PRINT "TRY AGAIN."
  TextValue:"TRY AGAIN."
  CarriageControl:NL
 310 GOTO 240
  LineNumber:240
 320 PRINT R$(RND*5+1)
- FunctionRnd:RND -> _
+ FunctionRnd:RND -> .
  NumericValue:5
- BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- Variable:R$(_) -> $
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:R$(.) -> $
  CarriageControl:NL
 330 GOTO 150
  LineNumber:150
 340 G1=INT(RND*L(0)+1)
- Variable:G1 -> _
- FunctionRnd:RND -> _
+ Variable:G1 -> .
+ FunctionRnd:RND -> .
  NumericValue:0
- Variable:L(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ Variable:L(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- FunctionInt:INT(_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ FunctionInt:INT(.) -> .
+ AssignmentOperator:= . -> .
 360 PRINT "**** A SYNONYM OF "W$(G)" IS "W$(L(G1))"."
  TextValue:"**** A SYNONYM OF "
  CarriageControl:
- Variable:G -> _
- Variable:W$(_) -> $
+ Variable:G -> .
+ Variable:W$(.) -> $
  CarriageControl:
  TextValue:" IS "
  CarriageControl:
- Variable:G1 -> _
- Variable:L(_) -> _
- Variable:W$(_) -> $
+ Variable:G1 -> .
+ Variable:L(.) -> .
+ Variable:W$(.) -> $
  CarriageControl:
  TextValue:"."
  CarriageControl:NL
 365 PRINT
  CarriageControl:NL
 370 L(G1)=L(L(0)):L(0)=L(0)-1
- Variable:G1 -> _
- Variable:L(_) -> _
+ Variable:G1 -> .
+ Variable:L(.) -> .
  NumericValue:0
- Variable:L(_) -> _
- Variable:L(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:L(.) -> .
+ Variable:L(.) -> .
+ AssignmentOperator:= . -> .
  NumericValue:0
- Variable:L(_) -> _
+ Variable:L(.) -> .
  NumericValue:0
- Variable:L(_) -> _
+ Variable:L(.) -> .
  NumericValue:1
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 390 GOTO 240
  LineNumber:240
 420 PRINT:PRINT "SYNONYM DRILL COMPLETED.":STOP

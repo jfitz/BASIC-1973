@@ -1,99 +1,99 @@
 8 REM LINES 0 THROUGH 40 READ AND PRINT THE FIRST POLYNOMIAL
  Remark:LINES 0 THROUGH 40 READ AND PRINT THE FIRST POLYNOMIAL
 10 FOR X=3 TO 1 STEP -1
- control: Variable:X -> _
+ control: Variable:X -> .
  start:   ["NumericValue:3"]
  end:     ["NumericValue:1"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 20 READ F[X]
- Variable:X -> _
- Variable:F(_) -> _
+ Variable:X -> .
+ Variable:F(.) -> .
 30 PRINT F[X];
- Variable:X -> _
- Variable:F(_) -> _
+ Variable:X -> .
+ Variable:F(.) -> .
  CarriageControl:;
 40 NEXT X
- Variable:X -> _
+ Variable:X -> .
 50 PRINT "TIMES  ";
  TextValue:"TIMES  "
  CarriageControl:;
 58 REM LINES 60 THROUGH 90 READ AND PRINT THE SECOND POLYNOMIAL
  Remark:LINES 60 THROUGH 90 READ AND PRINT THE SECOND POLYNOMIAL
 60 FOR Y=2 TO 1 STEP -1
- control: Variable:Y -> _
+ control: Variable:Y -> .
  start:   ["NumericValue:2"]
  end:     ["NumericValue:1"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 70 READ S[Y]
- Variable:Y -> _
- Variable:S(_) -> _
+ Variable:Y -> .
+ Variable:S(.) -> .
 80 PRINT S[Y];
- Variable:Y -> _
- Variable:S(_) -> _
+ Variable:Y -> .
+ Variable:S(.) -> .
  CarriageControl:;
 90 NEXT Y
- Variable:Y -> _
+ Variable:Y -> .
 98 REM 100 THROUGH 120 SET THE RESULT LIST AT ALL ZEROS
  Remark:100 THROUGH 120 SET THE RESULT LIST AT ALL ZEROS
 100 FOR W=1 TO 4
- control: Variable:W -> _
+ control: Variable:W -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:4"]
 110 LET P[W]=0
- Variable:W -> _
- Variable:P(_) -> _
+ Variable:W -> .
+ Variable:P(.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 120 NEXT W
- Variable:W -> _
+ Variable:W -> .
 128 REM LINES 130 THROUGH 170 DO THE ACTUAL MULTIPLYING
  Remark:LINES 130 THROUGH 170 DO THE ACTUAL MULTIPLYING
 130 FOR I=1 TO 3
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:3"]
 140 FOR J=1 TO 2
- control: Variable:J -> _
+ control: Variable:J -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:2"]
 150 LET P[I+J-1]=P[I+J-1]+F[I]*S[J]
- Variable:I -> _
- Variable:J -> _
- BinaryOperatorPlus:+(_,_) -> _
+ Variable:I -> .
+ Variable:J -> .
+ BinaryOperatorPlus:+(.,.) -> .
  NumericValue:1
- BinaryOperatorMinus:-(_,_) -> _
- Variable:P(_) -> _
- Variable:I -> _
- Variable:J -> _
- BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorMinus:-(.,.) -> .
+ Variable:P(.) -> .
+ Variable:I -> .
+ Variable:J -> .
+ BinaryOperatorPlus:+(.,.) -> .
  NumericValue:1
- BinaryOperatorMinus:-(_,_) -> _
- Variable:P(_) -> _
- Variable:I -> _
- Variable:F(_) -> _
- Variable:J -> _
- Variable:S(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorMinus:-(.,.) -> .
+ Variable:P(.) -> .
+ Variable:I -> .
+ Variable:F(.) -> .
+ Variable:J -> .
+ Variable:S(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 160 NEXT J
- Variable:J -> _
+ Variable:J -> .
 170 NEXT I
- Variable:I -> _
+ Variable:I -> .
 180 PRINT "YIELDS  ";
  TextValue:"YIELDS  "
  CarriageControl:;
 190 FOR Z=4 TO 1 STEP -1
- control: Variable:Z -> _
+ control: Variable:Z -> .
  start:   ["NumericValue:4"]
  end:     ["NumericValue:1"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 200 PRINT P[Z];
- Variable:Z -> _
- Variable:P(_) -> _
+ Variable:Z -> .
+ Variable:P(.) -> .
  CarriageControl:;
 210 NEXT Z
- Variable:Z -> _
+ Variable:Z -> .
 218 REM THE FIRST THREE NUMBERS REPRESENT 3X^2+11X-5
  Remark:THE FIRST THREE NUMBERS REPRESENT 3X^2+11X-5
 219 REM THE NEXT TWO NUMBERS REPRESENT 2X+7
@@ -102,7 +102,7 @@
  NumericValue:3
  NumericValue:11
  NumericValue:5
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
  NumericValue:2
  NumericValue:7
 230 END

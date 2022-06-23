@@ -65,96 +65,96 @@
  TextValue:"ENTER SPEED"
  CarriageControl:;
 340 INPUT S
- Variable:S -> _
+ Variable:S -> .
 350 IF S<1 THEN 330
- Variable:S -> _
+ Variable:S -> .
  NumericValue:1
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:330
 360 IF S>100 THEN 330
- Variable:S -> _
+ Variable:S -> .
  NumericValue:100
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:330
 370 PRINT "ENTER DISTANCE";
  TextValue:"ENTER DISTANCE"
  CarriageControl:;
 380 INPUT D
- Variable:D -> _
+ Variable:D -> .
 390 IF D<0 THEN 370
- Variable:D -> _
+ Variable:D -> .
  NumericValue:0
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:370
 400 IF D>10000 THEN 370
- Variable:D -> _
+ Variable:D -> .
  NumericValue:10000
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:370
 410 M=100000-75000*RND(0)
- Variable:M -> _
+ Variable:M -> .
  NumericValue:100000
  NumericValue:75000
  NumericValue:0
- FunctionRnd:RND(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ FunctionRnd:RND(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 420 PRINT
  CarriageControl:NL
 430 PRINT "THE MAXIMUM RANGE OF YOUR GUN IS "M" YARDS"
  TextValue:"THE MAXIMUM RANGE OF YOUR GUN IS "
  CarriageControl:
- Variable:M -> _
+ Variable:M -> .
  CarriageControl:
  TextValue:" YARDS"
  CarriageControl:NL
 440 FOR K=1 TO M/10000
- control: Variable:K -> _
+ control: Variable:K -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:M -> _", "NumericValue:10000", "BinaryOperatorDivide:/(_,_) -> _"]
+ end:     ["Variable:M -> .", "NumericValue:10000", "BinaryOperatorDivide:/(.,.) -> ."]
 450 LET K1=RND(0)
- Variable:K1 -> _
+ Variable:K1 -> .
  NumericValue:0
- FunctionRnd:RND(_) -> _
- AssignmentOperator:= _ -> _
+ FunctionRnd:RND(.) -> .
+ AssignmentOperator:= . -> .
 460 NEXT K
- Variable:K -> _
+ Variable:K -> .
 470 R=.95*M-.6*M*RND(0)
- Variable:R -> _
+ Variable:R -> .
  NumericValue:.95
- Variable:M -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ Variable:M -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:.6
- Variable:M -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ Variable:M -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:0
- FunctionRnd:RND(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ FunctionRnd:RND(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 480 LET N=0
- Variable:N -> _
+ Variable:N -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 490 GOTO 520
  LineNumber:520
 500 IF R>M THEN 840
- Variable:R -> _
- Variable:M -> _
- BinaryOperatorGreater:>(_,_) -> ?
+ Variable:R -> .
+ Variable:M -> .
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:840
 510 IF R<(M/2.5) THEN 860
- Variable:R -> _
- Variable:M -> _
+ Variable:R -> .
+ Variable:M -> .
  NumericValue:2.5
- BinaryOperatorDivide:/(_,_) -> _
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorDivide:/(.,.) -> .
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:860
 520 PRINT "TARGET RANGE IS"R" YARDS"
  TextValue:"TARGET RANGE IS"
  CarriageControl:
- Variable:R -> _
+ Variable:R -> .
  CarriageControl:
  TextValue:" YARDS"
  CarriageControl:NL
@@ -162,63 +162,63 @@
  TextValue:"ELEVATION"
  CarriageControl:NL
 540 INPUT E
- Variable:E -> _
+ Variable:E -> .
 550 IF E<0 THEN 840
- Variable:E -> _
+ Variable:E -> .
  NumericValue:0
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:840
 560 IF E> 89 THEN 800
- Variable:E -> _
+ Variable:E -> .
  NumericValue:89
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:800
 570 IF E <1 THEN 820
- Variable:E -> _
+ Variable:E -> .
  NumericValue:1
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:820
 580 N=N+1
- Variable:N -> _
- Variable:N -> _
+ Variable:N -> .
+ Variable:N -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 590 K=INT(R-M*SIN(2*E/57.3))
- Variable:K -> _
- Variable:R -> _
- Variable:M -> _
+ Variable:K -> .
+ Variable:R -> .
+ Variable:M -> .
  NumericValue:2
- Variable:E -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ Variable:E -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:57.3
- BinaryOperatorDivide:/(_,_) -> _
- FunctionSin:SIN(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- FunctionInt:INT(_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ FunctionSin:SIN(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ FunctionInt:INT(.) -> .
+ AssignmentOperator:= . -> .
 600 K=ABS(K)
- Variable:K -> _
- Variable:K -> _
- FunctionAbs:ABS(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:K -> .
+ Variable:K -> .
+ FunctionAbs:ABS(.) -> .
+ AssignmentOperator:= . -> .
 610 K1=ABS(K-D)
- Variable:K1 -> _
- Variable:K -> _
- Variable:D -> _
- BinaryOperatorMinus:-(_,_) -> _
- FunctionAbs:ABS(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:K1 -> .
+ Variable:K -> .
+ Variable:D -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ FunctionAbs:ABS(.) -> .
+ AssignmentOperator:= . -> .
 620 IF K1>D THEN 720
- Variable:K1 -> _
- Variable:D -> _
- BinaryOperatorGreater:>(_,_) -> ?
+ Variable:K1 -> .
+ Variable:D -> .
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:720
 630 IF K1<D THEN 740
- Variable:K1 -> _
- Variable:D -> _
- BinaryOperatorLess:<(_,_) -> ?
+ Variable:K1 -> .
+ Variable:D -> .
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:740
 650 PRINT "*** TARGET DESTROYED ***"
  TextValue:"*** TARGET DESTROYED ***"
@@ -226,26 +226,26 @@
 660 GOSUB 940
  LineNumber:940
 670 D=K
- Variable:D -> _
- Variable:K -> _
- AssignmentOperator:= _ -> _
+ Variable:D -> .
+ Variable:K -> .
+ AssignmentOperator:= . -> .
 680 FOR K=1 TO N+D/100
- control: Variable:K -> _
+ control: Variable:K -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:N -> _", "Variable:D -> _", "NumericValue:100", "BinaryOperatorDivide:/(_,_) -> _", "BinaryOperatorPlus:+(_,_) -> _"]
+ end:     ["Variable:N -> .", "Variable:D -> .", "NumericValue:100", "BinaryOperatorDivide:/(.,.) -> .", "BinaryOperatorPlus:+(.,.) -> ."]
 690 K1=RND(0)
- Variable:K1 -> _
+ Variable:K1 -> .
  NumericValue:0
- FunctionRnd:RND(_) -> _
- AssignmentOperator:= _ -> _
+ FunctionRnd:RND(.) -> .
+ AssignmentOperator:= . -> .
 700 NEXT K
- Variable:K -> _
+ Variable:K -> .
 710 GOTO 410
  LineNumber:410
 720 PRINT "SHORT OF TARGET BY "K1" YARDS"
  TextValue:"SHORT OF TARGET BY "
  CarriageControl:
- Variable:K1 -> _
+ Variable:K1 -> .
  CarriageControl:
  TextValue:" YARDS"
  CarriageControl:NL
@@ -254,59 +254,59 @@
 740 PRINT "OVER TARGET BY "K1"YARDS"
  TextValue:"OVER TARGET BY "
  CarriageControl:
- Variable:K1 -> _
+ Variable:K1 -> .
  CarriageControl:
  TextValue:"YARDS"
  CarriageControl:NL
 745 LET C=INT(2*RND(0)+1)
- Variable:C -> _
+ Variable:C -> .
  NumericValue:2
  NumericValue:0
- FunctionRnd:RND(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ FunctionRnd:RND(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- FunctionInt:INT(_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ FunctionInt:INT(.) -> .
+ AssignmentOperator:= . -> .
 746 IF C=1 THEN 750
- Variable:C -> _
+ Variable:C -> .
  NumericValue:1
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:750
 748 LET C=-1
- Variable:C -> _
+ Variable:C -> .
  NumericValue:1
- UnaryOperatorMinus:-(_) -> =_
- AssignmentOperator:= =_ -> _
+ UnaryOperatorMinus:-(.) -> =.
+ AssignmentOperator:= =. -> .
 749 GOTO 760
  LineNumber:760
 750 LET C=1
- Variable:C -> _
+ Variable:C -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 760 C1=M*S/100*RND(0)
- Variable:C1 -> _
- Variable:M -> _
- Variable:S -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ Variable:C1 -> .
+ Variable:M -> .
+ Variable:S -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:100
- BinaryOperatorDivide:/(_,_) -> _
+ BinaryOperatorDivide:/(.,.) -> .
  NumericValue:0
- FunctionRnd:RND(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- AssignmentOperator:= _ -> _
+ FunctionRnd:RND(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ AssignmentOperator:= . -> .
 770 C1=C*C1
- Variable:C1 -> _
- Variable:C -> _
- Variable:C1 -> _
- BinaryOperatorMultiply:*(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:C1 -> .
+ Variable:C -> .
+ Variable:C1 -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ AssignmentOperator:= . -> .
 780 R=R+C1
- Variable:R -> _
- Variable:R -> _
- Variable:C1 -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:R -> .
+ Variable:R -> .
+ Variable:C1 -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 790 GOTO 500
  LineNumber:500
 800 PRINT "MAXIMUM ELEVATION IS 89 DEGREES"
@@ -330,12 +330,12 @@
 870 GOTO 670
  LineNumber:670
 940 IF N=1 THEN 970
- Variable:N -> _
+ Variable:N -> .
  NumericValue:1
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:970
 950 PRINT N" ROUNDS EXPENDED"
- Variable:N -> _
+ Variable:N -> .
  CarriageControl:
  TextValue:" ROUNDS EXPENDED"
  CarriageControl:NL

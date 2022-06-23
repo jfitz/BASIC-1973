@@ -1,73 +1,73 @@
 10 FOR X=1 TO 10
- control: Variable:X -> _
+ control: Variable:X -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:10"]
 20 LET L[X]=INT(250*RND(1)+1)
- Variable:X -> _
- Variable:L(_) -> _
+ Variable:X -> .
+ Variable:L(.) -> .
  NumericValue:250
  NumericValue:1
- FunctionRnd:RND(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ FunctionRnd:RND(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- FunctionInt:INT(_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ FunctionInt:INT(.) -> .
+ AssignmentOperator:= . -> .
 40 NEXT X
- Variable:X -> _
+ Variable:X -> .
 58 REM  TURN THE SWITCH OFF!!!
  Remark: TURN THE SWITCH OFF!!!
 60 LET S=0
- Variable:S -> _
+ Variable:S -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 70 FOR I=1 TO 9
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:9"]
 80 IF L[I] <= L[I+1] THEN 130
- Variable:I -> _
- Variable:L(_) -> _
- Variable:I -> _
+ Variable:I -> .
+ Variable:L(.) -> .
+ Variable:I -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- Variable:L(_) -> _
- BinaryOperatorLessEqual:<=(_,_) -> ?
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:L(.) -> .
+ BinaryOperatorLessEqual:<=(.,.) -> ?
  LineNumber:130
 90 LET K=L[I]
- Variable:K -> _
- Variable:I -> _
- Variable:L(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:K -> .
+ Variable:I -> .
+ Variable:L(.) -> .
+ AssignmentOperator:= . -> .
 100 LET L[I]=L[I+1]
- Variable:I -> _
- Variable:L(_) -> _
- Variable:I -> _
+ Variable:I -> .
+ Variable:L(.) -> .
+ Variable:I -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- Variable:L(_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:L(.) -> .
+ AssignmentOperator:= . -> .
 110 LET L[I+1]=K
- Variable:I -> _
+ Variable:I -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- Variable:L(_) -> _
- Variable:K -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:L(.) -> .
+ Variable:K -> .
+ AssignmentOperator:= . -> .
 120 LET S=1
- Variable:S -> _
+ Variable:S -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 121 REM *** TURN THE SWITCH ON ***
  Remark:*** TURN THE SWITCH ON ***
 130 NEXT I
- Variable:I -> _
+ Variable:I -> .
 138 REM  IS THE SWITCH ON??
  Remark: IS THE SWITCH ON??
 140 IF S=1 THEN 60
- Variable:S -> _
+ Variable:S -> .
  NumericValue:1
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:60
 142 REM   IF THE SWITCH IS OFF THERE WERE NO EXCHANGES AND
  Remark:  IF THE SWITCH IS OFF THERE WERE NO EXCHANGES AND
@@ -77,15 +77,15 @@
  TextValue:"THE NUMBERS IN ORDER"
  CarriageControl:NL
 150 FOR X=1 TO 10
- control: Variable:X -> _
+ control: Variable:X -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:10"]
 160 PRINT L[X];
- Variable:X -> _
- Variable:L(_) -> _
+ Variable:X -> .
+ Variable:L(.) -> .
  CarriageControl:;
 170 NEXT X
- Variable:X -> _
+ Variable:X -> .
 180 END
  
 

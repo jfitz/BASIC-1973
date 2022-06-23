@@ -1,43 +1,43 @@
 10 FOR N=0 TO 11
- control: Variable:N -> _
+ control: Variable:N -> .
  start:   ["NumericValue:0"]
  end:     ["NumericValue:11"]
 20 FOR R=0 TO N
- control: Variable:R -> _
+ control: Variable:R -> .
  start:   ["NumericValue:0"]
- end:     ["Variable:N -> _"]
+ end:     ["Variable:N -> ."]
 30 LET C=1
- Variable:C -> _
+ Variable:C -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 40 FOR X=N TO N-R+1 STEP -1
- control: Variable:X -> _
- start:   ["Variable:N -> _"]
- end:     ["Variable:N -> _", "Variable:R -> _", "BinaryOperatorMinus:-(_,_) -> _", "NumericValue:1", "BinaryOperatorPlus:+(_,_) -> _"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ control: Variable:X -> .
+ start:   ["Variable:N -> ."]
+ end:     ["Variable:N -> .", "Variable:R -> .", "BinaryOperatorMinus:-(.,.) -> .", "NumericValue:1", "BinaryOperatorPlus:+(.,.) -> ."]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 50 LET C=C*X/(N-X+1)
- Variable:C -> _
- Variable:C -> _
- Variable:X -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:N -> _
- Variable:X -> _
- BinaryOperatorMinus:-(_,_) -> _
+ Variable:C -> .
+ Variable:C -> .
+ Variable:X -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:N -> .
+ Variable:X -> .
+ BinaryOperatorMinus:-(.,.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ AssignmentOperator:= . -> .
 60 NEXT X
- Variable:X -> _
+ Variable:X -> .
 70 PRINT C;
- Variable:C -> _
+ Variable:C -> .
  CarriageControl:;
 80 NEXT R
- Variable:R -> _
+ Variable:R -> .
 90 PRINT
  CarriageControl:NL
 100 NEXT N
- Variable:N -> _
+ Variable:N -> .
 110 END
  
 

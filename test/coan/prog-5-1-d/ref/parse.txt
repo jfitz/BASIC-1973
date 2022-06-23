@@ -1,22 +1,22 @@
 10 FOR I=1 TO 5
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:5"]
 20 LET C[I]=0
- Variable:I -> _
- Variable:C(_) -> _
+ Variable:I -> .
+ Variable:C(.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 30 NEXT I
- Variable:I -> _
+ Variable:I -> .
 33 REM THIS LOOP SIMULATES 500 PEOPLE
  Remark:THIS LOOP SIMULATES 500 PEOPLE
 35 FOR X=1 TO 500
- control: Variable:X -> _
+ control: Variable:X -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:500"]
 40 FOR R=1 TO 5
- control: Variable:R -> _
+ control: Variable:R -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:5"]
 42 REM  THIS LOOP LOOKS AT FIVE COURSES FOR EACH PERSON
@@ -24,35 +24,35 @@
 48 REM   PICK A RANDOM NUMBER ZERO OR ONE
  Remark:  PICK A RANDOM NUMBER ZERO OR ONE
 50 LET K=INT(2*RND(1))
- Variable:K -> _
+ Variable:K -> .
  NumericValue:2
  NumericValue:1
- FunctionRnd:RND(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- FunctionInt:INT(_) -> _
- AssignmentOperator:= _ -> _
+ FunctionRnd:RND(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ FunctionInt:INT(.) -> .
+ AssignmentOperator:= . -> .
 60 IF K=-1 THEN 100
- Variable:K -> _
+ Variable:K -> .
  NumericValue:1
- UnaryOperatorMinus:-(_) -> =_
- BinaryOperatorEqual:=(_,_) -> ?
+ UnaryOperatorMinus:-(.) -> =.
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:100
 70 LET C[R]=C[R]+K
- Variable:R -> _
- Variable:C(_) -> _
- Variable:R -> _
- Variable:C(_) -> _
- Variable:K -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:R -> .
+ Variable:C(.) -> .
+ Variable:R -> .
+ Variable:C(.) -> .
+ Variable:K -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 78 REM  NEXT COURSE
  Remark: NEXT COURSE
 80 NEXT R
- Variable:R -> _
+ Variable:R -> .
 88 REM   NEXT PERSON
  Remark:  NEXT PERSON
 90 NEXT X
- Variable:X -> _
+ Variable:X -> .
 100 PRINT "CHEMISTRY","PHYSICS","FRENCH","SPANISH","CALCULUS"
  TextValue:"CHEMISTRY"
  CarriageControl:,
@@ -65,15 +65,15 @@
  TextValue:"CALCULUS"
  CarriageControl:NL
 110 FOR I=1 TO 5
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:5"]
 120 PRINT C[I],
- Variable:I -> _
- Variable:C(_) -> _
+ Variable:I -> .
+ Variable:C(.) -> .
  CarriageControl:,
 130 NEXT I
- Variable:I -> _
+ Variable:I -> .
 9999 END
  WARNING: Terminating statement in FOR/NEXT
  

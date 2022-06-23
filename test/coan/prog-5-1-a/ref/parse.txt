@@ -1,34 +1,34 @@
 10 FOR I=1 TO 4
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:4"]
 20 LET T[I]=0
- Variable:I -> _
- Variable:T(_) -> _
+ Variable:I -> .
+ Variable:T(.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 30 NEXT I
- Variable:I -> _
+ Variable:I -> .
 31 REM EACH ELEMENT IN THE LIST IS NOW ZERO
  Remark:EACH ELEMENT IN THE LIST IS NOW ZERO
 40 READ N
- Variable:N -> _
+ Variable:N -> .
 49 REM TEST FOR THE END OF DATA
  Remark:TEST FOR THE END OF DATA
 50 IF N=-1 THEN 80
- Variable:N -> _
+ Variable:N -> .
  NumericValue:1
- UnaryOperatorMinus:-(_) -> =_
- BinaryOperatorEqual:=(_,_) -> ?
+ UnaryOperatorMinus:-(.) -> =.
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:80
 60 LET T[N]=T[N]+1
- Variable:N -> _
- Variable:T(_) -> _
- Variable:N -> _
- Variable:T(_) -> _
+ Variable:N -> .
+ Variable:T(.) -> .
+ Variable:N -> .
+ Variable:T(.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 70 GOTO 40
  LineNumber:40
 80 PRINT "NO. OF TV'S","NO. OF FAMILIES"
@@ -39,17 +39,17 @@
 89 REM NOW PRINT THE NUMBER OF SETS AND THE NUMBER OF FAMILIES
  Remark:NOW PRINT THE NUMBER OF SETS AND THE NUMBER OF FAMILIES
 90 FOR I=1 TO 4
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:4"]
 100 PRINT I,T[I]
- Variable:I -> _
+ Variable:I -> .
  CarriageControl:,
- Variable:I -> _
- Variable:T(_) -> _
+ Variable:I -> .
+ Variable:T(.) -> .
  CarriageControl:NL
 110 NEXT I
- Variable:I -> _
+ Variable:I -> .
 498 REM EACH ITEM O FDATA IS THE NUMBER OF TV'S IN ONE FAMILY
  Remark:EACH ITEM O FDATA IS THE NUMBER OF TV'S IN ONE FAMILY
 500 DATA 1,3,4,1,2,1,3,1,1,2,4,1,3,1,2,4,1,3,1,1,1,4,1,3,2,2,1,2
@@ -110,7 +110,7 @@
  NumericValue:1
 520 DATA -1
  NumericValue:1
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
 999 END
  
 

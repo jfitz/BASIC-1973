@@ -24,37 +24,37 @@
  Variable:A$ -> $
  CarriageControl:NL
 150 FOR I=1 TO LEN(A$) STEP 2
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
- end:     ["Variable:A$ -> $", "FunctionLen:LEN($) -> _"]
+ end:     ["Variable:A$ -> $", "FunctionLen:LEN($) -> ."]
  step:    ["NumericValue:2"]
 160 PRINT "A$(";D$[I,I];",";D$[I+1,I+1];")=";A$[I,I+1]
  TextValue:"A$("
  CarriageControl:;
- Variable:I -> _
- Variable:I -> _
- Variable:D$(_,_) -> $
+ Variable:I -> .
+ Variable:I -> .
+ Variable:D$(.,.) -> $
  CarriageControl:;
  TextValue:","
  CarriageControl:;
- Variable:I -> _
+ Variable:I -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- Variable:I -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:I -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- Variable:D$(_,_) -> $
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:D$(.,.) -> $
  CarriageControl:;
  TextValue:")="
  CarriageControl:;
- Variable:I -> _
- Variable:I -> _
+ Variable:I -> .
+ Variable:I -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- Variable:A$(_,_) -> $
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:A$(.,.) -> $
  CarriageControl:NL
 170 NEXT I
- Variable:I -> _
+ Variable:I -> .
 180 PRINT
  CarriageControl:NL
 190 GOTO 110

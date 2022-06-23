@@ -11,22 +11,22 @@
 21 RANDOMIZE
  
 22 ARR LET N0 = RND1(3, 100)
- Variable:N0() -> _()
+ Variable:N0() -> .()
  NumericValue:3
  NumericValue:100
- FunctionRnd1:RND1(_,_) -> _()
- AssignmentOperator:= _() -> _()
+ FunctionRnd1:RND1(.,.) -> .()
+ AssignmentOperator:= .() -> .()
 23 DIM N(3)
  NumericValue:3
- Declaration:N() -> _()
+ Declaration:N() -> .()
 24 DIM M(3,100)
  NumericValue:3
  NumericValue:100
- Declaration:M(,) -> _(,)
+ Declaration:M(,) -> .(,)
 30 LET I = 1
- Variable:I -> _
+ Variable:I -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 40 GOSUB 500
  LineNumber:500
 100 REM PRINT THE NUMBERS
@@ -37,55 +37,55 @@
  Remark:CALCULATE AVERAGE, GEOMETRIC MEAN, MEDIAN
 111 LET N(1) = AVG(N0)
  NumericValue:1
- Variable:N(_) -> _
- Variable:N0() -> _()
- FunctionAvg:AVG(_()) -> _
- AssignmentOperator:= _ -> _
+ Variable:N(.) -> .
+ Variable:N0() -> .()
+ FunctionAvg:AVG(.()) -> .
+ AssignmentOperator:= . -> .
 112 LET N(2) = PROD(N0)^(1/NELEM(N0))
  NumericValue:2
- Variable:N(_) -> _
- Variable:N0() -> _()
- FunctionProd:PROD(_()) -> _
+ Variable:N(.) -> .
+ Variable:N0() -> .()
+ FunctionProd:PROD(.()) -> .
  NumericValue:1
- Variable:N0() -> _()
- FunctionNelem:NELEM(_()) -> _
- BinaryOperatorDivide:/(_,_) -> _
- BinaryOperatorPower:^(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:N0() -> .()
+ FunctionNelem:NELEM(.()) -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ BinaryOperatorPower:^(.,.) -> .
+ AssignmentOperator:= . -> .
 113 LET N(3) = MEDIAN(N0)
  NumericValue:3
- Variable:N(_) -> _
- Variable:N0() -> _()
- FunctionMedian:MEDIAN(_()) -> _
- AssignmentOperator:= _ -> _
+ Variable:N(.) -> .
+ Variable:N0() -> .()
+ FunctionMedian:MEDIAN(.()) -> .
+ AssignmentOperator:= . -> .
 120 REM CHECK FOR CONVERGENCE
  Remark:CHECK FOR CONVERGENCE
 121 IF NELEM(UNIQ1(N)) = 1 THEN 300
- Variable:N() -> _()
- FunctionUniq1:UNIQ1(_()) -> _()
- FunctionNelem:NELEM(_()) -> _
+ Variable:N() -> .()
+ FunctionUniq1:UNIQ1(.()) -> .()
+ FunctionNelem:NELEM(.()) -> .
  NumericValue:1
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:300
 130 REM CHECK FOR STUCK LOOP
  Remark:CHECK FOR STUCK LOOP
 131 IF N(1) = N0(1) AND N(2) = N0(2) AND N(3) = N0(3) THEN 310
  NumericValue:1
- Variable:N(_) -> _
+ Variable:N(.) -> .
  NumericValue:1
- Variable:N0(_) -> _
- BinaryOperatorEqual:=(_,_) -> ?
+ Variable:N0(.) -> .
+ BinaryOperatorEqual:=(.,.) -> ?
  NumericValue:2
- Variable:N(_) -> _
+ Variable:N(.) -> .
  NumericValue:2
- Variable:N0(_) -> _
- BinaryOperatorEqual:=(_,_) -> ?
+ Variable:N0(.) -> .
+ BinaryOperatorEqual:=(.,.) -> ?
  BinaryOperatorAnd:AND(?,?) -> ?
  NumericValue:3
- Variable:N(_) -> _
+ Variable:N(.) -> .
  NumericValue:3
- Variable:N0(_) -> _
- BinaryOperatorEqual:=(_,_) -> ?
+ Variable:N0(.) -> .
+ BinaryOperatorEqual:=(.,.) -> ?
  BinaryOperatorAnd:AND(?,?) -> ?
  LineNumber:310
 132 REM IF N() = N0() THEN 310
@@ -93,22 +93,22 @@
 140 REM CHECK ITERATION LIMIT
  Remark:CHECK ITERATION LIMIT
 141 IF I > 99 THEN 320
- Variable:I -> _
+ Variable:I -> .
  NumericValue:99
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:320
 150 REM PERFORM ANOTHER LOOP
  Remark:PERFORM ANOTHER LOOP
 151 LET I = I + 1
- Variable:I -> _
- Variable:I -> _
+ Variable:I -> .
+ Variable:I -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 152 ARR LET N0 = N
- Variable:N0() -> _()
- Variable:N() -> _()
- AssignmentOperator:= _() -> _()
+ Variable:N0() -> .()
+ Variable:N() -> .()
+ AssignmentOperator:= .() -> .()
 153 GOSUB 500
  LineNumber:500
 159 GOTO 100
@@ -145,20 +145,20 @@
 400 REM PROCEDURE - PRINT NUMBERS
  Remark:PROCEDURE - PRINT NUMBERS
 401 PRINT I,
- Variable:I -> _
+ Variable:I -> .
  CarriageControl:,
 402 ARR PRINT N0
- Variable:N0() -> _()
+ Variable:N0() -> .()
  CarriageControl:NL
 409 RETURN
  
 410 REM PROCEDURE - PRINT NUMBERS
  Remark:PROCEDURE - PRINT NUMBERS
 411 PRINT I,
- Variable:I -> _
+ Variable:I -> .
  CarriageControl:,
 412 ARR PRINT N
- Variable:N() -> _()
+ Variable:N() -> .()
  CarriageControl:NL
 419 RETURN
  
@@ -166,35 +166,35 @@
  Remark:STORE NUMBERS TO HISTORY
 501 LET M(1,I) = N0(1)
  NumericValue:1
- Variable:I -> _
- Variable:M(_,_) -> _
+ Variable:I -> .
+ Variable:M(.,.) -> .
  NumericValue:1
- Variable:N0(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:N0(.) -> .
+ AssignmentOperator:= . -> .
 502 LET M(2,I) = N0(2)
  NumericValue:2
- Variable:I -> _
- Variable:M(_,_) -> _
+ Variable:I -> .
+ Variable:M(.,.) -> .
  NumericValue:2
- Variable:N0(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:N0(.) -> .
+ AssignmentOperator:= . -> .
 503 LET M(3,I) = N0(3)
  NumericValue:3
- Variable:I -> _
- Variable:M(_,_) -> _
+ Variable:I -> .
+ Variable:M(.,.) -> .
  NumericValue:3
- Variable:N0(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:N0(.) -> .
+ AssignmentOperator:= . -> .
 509 RETURN
  
 510 REM PLOT HISTORY
  Remark:PLOT HISTORY
 511 DIM M(3,I)
  NumericValue:3
- Variable:I -> _
- Declaration:M(,) -> _(,)
+ Variable:I -> .
+ Declaration:M(,) -> .(,)
 512 MAT PLOT M
- Variable:M(,) -> _(,)
+ Variable:M(,) -> .(,)
 999 END
  WARNING: Terminating statement in GOSUB
  

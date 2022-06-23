@@ -18,7 +18,7 @@
  Variable:X1% -> %
  Variable:Y1% -> %
  NumericValue:1
- AssignmentOperator:= =_ -> %,%
+ AssignmentOperator:= =. -> %,%
  Variable:X2% -> %
  IntegerValue:24
  AssignmentOperator:= =% -> %
@@ -39,10 +39,10 @@
  WARNING: Target type (integer) does not match expression type (numeric).
  Variable:C% -> %
  NumericValue:1
- AssignmentOperator:= =_ -> %
+ AssignmentOperator:= =. -> %
 50 INPUT LINE #1,B$(C%):B$(C%)=LEFT(B$(C%),LEN(B$(C%))-2%)
  NumericValue:1
- UnaryOperatorHash:#(_) -> =FH
+ UnaryOperatorHash:#(.) -> =FH
  Variable:C% -> %
  Variable:B$(%) -> $
  Variable:C% -> %
@@ -51,10 +51,10 @@
  Variable:B$(%) -> $
  Variable:C% -> %
  Variable:B$(%) -> $
- FunctionLen:LEN($) -> _
+ FunctionLen:LEN($) -> .
  IntegerValue:2
- BinaryOperatorMinus:-(_,%) -> _
- FunctionLeft:LEFT($,_) -> $
+ BinaryOperatorMinus:-(.,%) -> .
+ FunctionLeft:LEFT($,.) -> $
  AssignmentOperator:= $ -> $
 60 C%=C%+1
  WARNING: Type mismatch integer + numeric
@@ -62,8 +62,8 @@
  Variable:C% -> %
  Variable:C% -> %
  NumericValue:1
- BinaryOperatorPlus:+(%,_) -> _
- AssignmentOperator:= _ -> %
+ BinaryOperatorPlus:+(%,.) -> .
+ AssignmentOperator:= . -> %
 70 GO TO 50
  LineNumber:50
 80 L%=0%
@@ -73,19 +73,19 @@
 90 FOR X%=1 TO C%-1
  control: Variable:X% -> %
  start:   ["NumericValue:1"]
- end:     ["Variable:C% -> %", "NumericValue:1", "BinaryOperatorMinus:-(%,_) -> _"]
+ end:     ["Variable:C% -> %", "NumericValue:1", "BinaryOperatorMinus:-(%,.) -> ."]
 100 IF LEN(B$(X%))>=L% THEN L%=LEN(B$(X%))
  WARNING: Target type (integer) does not match expression type (numeric).
  Variable:X% -> %
  Variable:B$(%) -> $
- FunctionLen:LEN($) -> _
+ FunctionLen:LEN($) -> .
  Variable:L% -> %
- BinaryOperatorGreaterEqual:>=(_,%) -> ?
+ BinaryOperatorGreaterEqual:>=(.,%) -> ?
  Variable:L% -> %
  Variable:X% -> %
  Variable:B$(%) -> $
- FunctionLen:LEN($) -> _
- AssignmentOperator:= _ -> %
+ FunctionLen:LEN($) -> .
+ AssignmentOperator:= . -> %
 110 NEXT X%
  Variable:X% -> %
 120 X1%=11%-C%/2%
@@ -111,7 +111,7 @@
 150 FOR Y%=1 TO LEN(B$(X%))
  control: Variable:Y% -> %
  start:   ["NumericValue:1"]
- end:     ["Variable:X% -> %", "Variable:B$(%) -> $", "FunctionLen:LEN($) -> _"]
+ end:     ["Variable:X% -> %", "Variable:B$(%) -> $", "FunctionLen:LEN($) -> ."]
 160 IF MID(B$(X%),Y%,1)<>" " THEN A%(X1%+X%, Y1%+Y%)=1:P%=P%+1
  WARNING: Line exceeds PRETTY width limit 72
  WARNING: Target type (integer) does not match expression type (numeric).
@@ -121,7 +121,7 @@
  Variable:B$(%) -> $
  Variable:Y% -> %
  NumericValue:1
- FunctionMid:MID($,%,_) -> $
+ FunctionMid:MID($,%,.) -> $
  TextValue:" "
  BinaryOperatorNotEqual:<>($,$) -> ?
  Variable:X1% -> %
@@ -132,12 +132,12 @@
  BinaryOperatorPlus:+(%,%) -> %
  Variable:A%(%,%) -> %
  NumericValue:1
- AssignmentOperator:= =_ -> %
+ AssignmentOperator:= =. -> %
  Variable:P% -> %
  Variable:P% -> %
  NumericValue:1
- BinaryOperatorPlus:+(%,_) -> _
- AssignmentOperator:= _ -> %
+ BinaryOperatorPlus:+(%,.) -> .
+ AssignmentOperator:= . -> %
 170 NEXT Y%
  Variable:Y% -> %
 180 NEXT X%
@@ -179,7 +179,7 @@
  Variable:X4% -> %
  Variable:Y4% -> %
  NumericValue:1
- AssignmentOperator:= =_ -> %,%
+ AssignmentOperator:= =. -> %,%
  Variable:P% -> %
  IntegerValue:0
  AssignmentOperator:= =% -> %
@@ -241,7 +241,7 @@
  Variable:Y% -> %
  Variable:A%(%,%) -> %
  NumericValue:1
- BinaryOperatorNotEqual:<>(%,_) -> ?
+ BinaryOperatorNotEqual:<>(%,.) -> ?
  LineNumber:270
 261 PRINT TAB(Y%);"*";
  Variable:Y% -> %
@@ -290,7 +290,7 @@
  FunctionChr:CHR$(%) -> =$
  CarriageControl:NL
  control: Variable:X% -> %
- start:   ["Variable:X2% -> %", "NumericValue:1", "BinaryOperatorPlus:+(%,_) -> _"]
+ start:   ["Variable:X2% -> %", "NumericValue:1", "BinaryOperatorPlus:+(%,.) -> ."]
  end:     ["IntegerValue:24"]
 298 PRINT CHR$(29%);
  IntegerValue:29
@@ -359,12 +359,12 @@
  AssignmentOperator:= =% -> %
 500 FOR X%=X1%-1 TO X2%+1
  control: Variable:X% -> %
- start:   ["Variable:X1% -> %", "NumericValue:1", "BinaryOperatorMinus:-(%,_) -> _"]
- end:     ["Variable:X2% -> %", "NumericValue:1", "BinaryOperatorPlus:+(%,_) -> _"]
+ start:   ["Variable:X1% -> %", "NumericValue:1", "BinaryOperatorMinus:-(%,.) -> ."]
+ end:     ["Variable:X2% -> %", "NumericValue:1", "BinaryOperatorPlus:+(%,.) -> ."]
 510 FOR Y%=Y1%-1 TO Y2%+1
  control: Variable:Y% -> %
- start:   ["Variable:Y1% -> %", "NumericValue:1", "BinaryOperatorMinus:-(%,_) -> _"]
- end:     ["Variable:Y2% -> %", "NumericValue:1", "BinaryOperatorPlus:+(%,_) -> _"]
+ start:   ["Variable:Y1% -> %", "NumericValue:1", "BinaryOperatorMinus:-(%,.) -> ."]
+ end:     ["Variable:Y2% -> %", "NumericValue:1", "BinaryOperatorPlus:+(%,.) -> ."]
 520 C%=0%
  Variable:C% -> %
  IntegerValue:0
@@ -424,8 +424,8 @@
  Variable:P% -> %
  Variable:P% -> %
  NumericValue:1
- BinaryOperatorPlus:+(%,_) -> _
- AssignmentOperator:= _ -> %
+ BinaryOperatorPlus:+(%,.) -> .
+ AssignmentOperator:= . -> %
 600 GO TO 620
  LineNumber:620
 610 IF C%=3% THEN A%(X%, Y%)=3%:P%=P%+1
@@ -442,8 +442,8 @@
  Variable:P% -> %
  Variable:P% -> %
  NumericValue:1
- BinaryOperatorPlus:+(%,_) -> _
- AssignmentOperator:= _ -> %
+ BinaryOperatorPlus:+(%,.) -> .
+ AssignmentOperator:= . -> %
 620 NEXT Y%
  Variable:Y% -> %
 630 NEXT X%
@@ -460,23 +460,23 @@
  Variable:X1% -> %
  Variable:X1% -> %
  NumericValue:1
- BinaryOperatorMinus:-(%,_) -> _
- AssignmentOperator:= _ -> %
+ BinaryOperatorMinus:-(%,.) -> .
+ AssignmentOperator:= . -> %
  Variable:Y1% -> %
  Variable:Y1% -> %
  NumericValue:1
- BinaryOperatorMinus:-(%,_) -> _
- AssignmentOperator:= _ -> %
+ BinaryOperatorMinus:-(%,.) -> .
+ AssignmentOperator:= . -> %
  Variable:X2% -> %
  Variable:X2% -> %
  NumericValue:1
- BinaryOperatorPlus:+(%,_) -> _
- AssignmentOperator:= _ -> %
+ BinaryOperatorPlus:+(%,.) -> .
+ AssignmentOperator:= . -> %
  Variable:Y2% -> %
  Variable:Y2% -> %
  NumericValue:1
- BinaryOperatorPlus:+(%,_) -> _
- AssignmentOperator:= _ -> %
+ BinaryOperatorPlus:+(%,.) -> .
+ AssignmentOperator:= . -> %
 640 GO TO 210
  LineNumber:210
 650 END

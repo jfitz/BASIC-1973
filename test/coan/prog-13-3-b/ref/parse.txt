@@ -1,35 +1,35 @@
 10 LET P=1
- Variable:P -> _
+ Variable:P -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 20 FOR D=365 TO 336 STEP -1
- control: Variable:D -> _
+ control: Variable:D -> .
  start:   ["NumericValue:365"]
  end:     ["NumericValue:336"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 30 LET P=P*D/365
- Variable:P -> _
- Variable:P -> _
- Variable:D -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ Variable:P -> .
+ Variable:P -> .
+ Variable:D -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:365
- BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ AssignmentOperator:= . -> .
 40 NEXT D
- Variable:D -> _
+ Variable:D -> .
 50 LET Q=1-P
- Variable:Q -> _
+ Variable:Q -> .
  NumericValue:1
- Variable:P -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:P -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 60 PRINT "THE PROBABILITY OF TWO OR MORE"
  TextValue:"THE PROBABILITY OF TWO OR MORE"
  CarriageControl:NL
 70 PRINT "IDENTICAL BIRTHDATES AMONG 30 PEOPLE IS";Q
  TextValue:"IDENTICAL BIRTHDATES AMONG 30 PEOPLE IS"
  CarriageControl:;
- Variable:Q -> _
+ Variable:Q -> .
  CarriageControl:NL
 80 END
  

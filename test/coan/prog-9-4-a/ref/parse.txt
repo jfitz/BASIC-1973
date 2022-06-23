@@ -1,9 +1,9 @@
 5 LET K=3.14159/180
- Variable:K -> _
+ Variable:K -> .
  NumericValue:3.14159
  NumericValue:180
- BinaryOperatorDivide:/(_,_) -> =_
- AssignmentOperator:= =_ -> _
+ BinaryOperatorDivide:/(.,.) -> =.
+ AssignmentOperator:= =. -> .
 10 PRINT "ANGLE","1-2COS(G)","2+SIN(2G)","1+2COS(G)-3SIN(G)^2"
  TextValue:"ANGLE"
  CarriageControl:,
@@ -14,80 +14,80 @@
  TextValue:"1+2COS(G)-3SIN(G)^2"
  CarriageControl:NL
 20 DEF FNR(X)=INT(X*100+.5)/100
- UserFunctionName:FNR -> _
- VariableName:X -> _
- Variable:X -> _
+ UserFunctionName:FNR -> .
+ VariableName:X -> .
+ Variable:X -> .
  NumericValue:100
- BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:.5
- BinaryOperatorPlus:+(_,_) -> _
- FunctionInt:INT(_) -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ FunctionInt:INT(.) -> .
  NumericValue:100
- BinaryOperatorDivide:/(_,_) -> _
+ BinaryOperatorDivide:/(.,.) -> .
 30 DEF FNA(X)=1-2*COS(K*X)
- UserFunctionName:FNA -> _
- VariableName:X -> _
+ UserFunctionName:FNA -> .
+ VariableName:X -> .
  NumericValue:1
  NumericValue:2
- Variable:K -> _
- Variable:X -> _
- BinaryOperatorMultiply:*(_,_) -> _
- FunctionCos:COS(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
+ Variable:K -> .
+ Variable:X -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ FunctionCos:COS(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
 40 DEF FNB(X)=2+SIN(2*K*X)
- UserFunctionName:FNB -> _
- VariableName:X -> _
+ UserFunctionName:FNB -> .
+ VariableName:X -> .
  NumericValue:2
  NumericValue:2
- Variable:K -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:X -> _
- BinaryOperatorMultiply:*(_,_) -> _
- FunctionSin:SIN(_) -> _
- BinaryOperatorPlus:+(_,_) -> _
+ Variable:K -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:X -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ FunctionSin:SIN(.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
 50 DEF FNC(X)=1+2*COS(K*X)-3*SIN(K*X)^2
- UserFunctionName:FNC -> _
- VariableName:X -> _
+ UserFunctionName:FNC -> .
+ VariableName:X -> .
  NumericValue:1
  NumericValue:2
- Variable:K -> _
- Variable:X -> _
- BinaryOperatorMultiply:*(_,_) -> _
- FunctionCos:COS(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
+ Variable:K -> .
+ Variable:X -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ FunctionCos:COS(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
  NumericValue:3
- Variable:K -> _
- Variable:X -> _
- BinaryOperatorMultiply:*(_,_) -> _
- FunctionSin:SIN(_) -> _
+ Variable:K -> .
+ Variable:X -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ FunctionSin:SIN(.) -> .
  NumericValue:2
- BinaryOperatorPower:^(_,_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
+ BinaryOperatorPower:^(.,.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
 60 FOR G=0 TO 360 STEP 15
- control: Variable:G -> _
+ control: Variable:G -> .
  start:   ["NumericValue:0"]
  end:     ["NumericValue:360"]
  step:    ["NumericValue:15"]
 70 PRINT G,FNR(FNA(G)),FNR(FNB(G)),FNR(FNC(G))
- Variable:G -> _
+ Variable:G -> .
  CarriageControl:,
- Variable:G -> _
- UserFunction:FNA(_) -> _
- UserFunction:FNR(_) -> _
+ Variable:G -> .
+ UserFunction:FNA(.) -> .
+ UserFunction:FNR(.) -> .
  CarriageControl:,
- Variable:G -> _
- UserFunction:FNB(_) -> _
- UserFunction:FNR(_) -> _
+ Variable:G -> .
+ UserFunction:FNB(.) -> .
+ UserFunction:FNR(.) -> .
  CarriageControl:,
- Variable:G -> _
- UserFunction:FNC(_) -> _
- UserFunction:FNR(_) -> _
+ Variable:G -> .
+ UserFunction:FNC(.) -> .
+ UserFunction:FNR(.) -> .
  CarriageControl:NL
 80 NEXT G
- Variable:G -> _
+ Variable:G -> .
 90 END
  
 

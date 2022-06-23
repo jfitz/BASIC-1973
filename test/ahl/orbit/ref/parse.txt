@@ -172,45 +172,45 @@
  TextValue:"GOOD LUCK. THE FEDERATION IS COUNTING ON YOU."
  CarriageControl:NL
 270 LET A=INT(RND*360)
- Variable:A -> _
- FunctionRnd:RND -> _
+ Variable:A -> .
+ FunctionRnd:RND -> .
  NumericValue:360
- BinaryOperatorMultiply:*(_,_) -> _
- FunctionInt:INT(_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorMultiply:*(.,.) -> .
+ FunctionInt:INT(.) -> .
+ AssignmentOperator:= . -> .
 280 LET D=INT(RND*200) +100
- Variable:D -> _
- FunctionRnd:RND -> _
+ Variable:D -> .
+ FunctionRnd:RND -> .
  NumericValue:200
- BinaryOperatorMultiply:*(_,_) -> _
- FunctionInt:INT(_) -> _
+ BinaryOperatorMultiply:*(.,.) -> .
+ FunctionInt:INT(.) -> .
  NumericValue:100
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 290 LET R=INT(RND*20) +10
- Variable:R -> _
- FunctionRnd:RND -> _
+ Variable:R -> .
+ FunctionRnd:RND -> .
  NumericValue:20
- BinaryOperatorMultiply:*(_,_) -> _
- FunctionInt:INT(_) -> _
+ BinaryOperatorMultiply:*(.,.) -> .
+ FunctionInt:INT(.) -> .
  NumericValue:10
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 300 LET H=0
- Variable:H -> _
+ Variable:H -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 310 IF H=7 GOTO 490
- Variable:H -> _
+ Variable:H -> .
  NumericValue:7
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:490
 320 LET H=H+1
- Variable:H -> _
- Variable:H -> _
+ Variable:H -> .
+ Variable:H -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 325 PRINT
  CarriageControl:NL
 326 PRINT
@@ -218,7 +218,7 @@
 330 PRINT "HOUR";H;", AT WHAT ANGLE DO YOU WISH TO SEND"
  TextValue:"HOUR"
  CarriageControl:;
- Variable:H -> _
+ Variable:H -> .
  CarriageControl:;
  TextValue:", AT WHAT ANGLE DO YOU WISH TO SEND"
  CarriageControl:NL
@@ -226,79 +226,79 @@
  TextValue:"YOUR PHOTON BOMB?"
  CarriageControl:NL
 340 INPUT A1
- Variable:A1 -> _
+ Variable:A1 -> .
 350 PRINT "HOW FAR OUT DO YOU WISH TO DETONATE IT?"
  TextValue:"HOW FAR OUT DO YOU WISH TO DETONATE IT?"
  CarriageControl:NL
 360 INPUT D1
- Variable:D1 -> _
+ Variable:D1 -> .
 365 PRINT
  CarriageControl:NL
 366 PRINT
  CarriageControl:NL
 370 LET A=A+R
- Variable:A -> _
- Variable:A -> _
- Variable:R -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:A -> .
+ Variable:A -> .
+ Variable:R -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 380 IF A<360 GOTO 400
- Variable:A -> _
+ Variable:A -> .
  NumericValue:360
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:400
 390 LET A=A-360
- Variable:A -> _
- Variable:A -> _
+ Variable:A -> .
+ Variable:A -> .
  NumericValue:360
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 400 LET T=ABS(A-A1)
- Variable:T -> _
- Variable:A -> _
- Variable:A1 -> _
- BinaryOperatorMinus:-(_,_) -> _
- FunctionAbs:ABS(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:T -> .
+ Variable:A -> .
+ Variable:A1 -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ FunctionAbs:ABS(.) -> .
+ AssignmentOperator:= . -> .
 410 IF T<180 GOTO 430
- Variable:T -> _
+ Variable:T -> .
  NumericValue:180
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:430
 420 LET T=360-T
- Variable:T -> _
+ Variable:T -> .
  NumericValue:360
- Variable:T -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:T -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 430 LET C=SQR(D*D+D1*D1-2*D*D1*COS(T*3.14159/180))
- Variable:C -> _
- Variable:D -> _
- Variable:D -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:D1 -> _
- Variable:D1 -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
+ Variable:C -> .
+ Variable:D -> .
+ Variable:D -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:D1 -> .
+ Variable:D1 -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
  NumericValue:2
- Variable:D -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:D1 -> _
- BinaryOperatorMultiply:*(_,_) -> _
- Variable:T -> _
+ Variable:D -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:D1 -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ Variable:T -> .
  NumericValue:3.14159
- BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:180
- BinaryOperatorDivide:/(_,_) -> _
- FunctionCos:COS(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- FunctionSqr:SQR(_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ FunctionCos:COS(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ FunctionSqr:SQR(.) -> .
+ AssignmentOperator:= . -> .
 440 PRINT "YOUR PHOTON BOMB EXPLODED";C;"*10^2 MILES FROM THE"
  TextValue:"YOUR PHOTON BOMB EXPLODED"
  CarriageControl:;
- Variable:C -> _
+ Variable:C -> .
  CarriageControl:;
  TextValue:"*10^2 MILES FROM THE"
  CarriageControl:NL
@@ -306,9 +306,9 @@
  TextValue:"THE ROMULAN SHIP"
  CarriageControl:NL
 450 IF C<50 GOTO 470
- Variable:C -> _
+ Variable:C -> .
  NumericValue:50
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:470
 460 GOTO 310
  LineNumber:310

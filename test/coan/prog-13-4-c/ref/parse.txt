@@ -3,73 +3,73 @@
 10 DIM L(1,7)
  NumericValue:1
  NumericValue:7
- Declaration:L(,) -> _(,)
+ Declaration:L(,) -> .(,)
 20 MAT L=ZER
- Variable:L(,) -> _(,)
- FunctionZer2:ZER -> _(,)
- AssignmentOperator:= _(,) -> _(,)
+ Variable:L(,) -> .(,)
+ FunctionZer2:ZER -> .(,)
+ AssignmentOperator:= .(,) -> .(,)
 38 REM THE COMPUTER DOES 50 THROUGH 110 1000 TIMES
  Remark:THE COMPUTER DOES 50 THROUGH 110 1000 TIMES
 40 FOR X=1 TO 1000
- control: Variable:X -> _
+ control: Variable:X -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:1000"]
 50 LET C=0
- Variable:C -> _
+ Variable:C -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 55 REM  C IS GOING TO COUNT 1'S
  Remark: C IS GOING TO COUNT 1'S
 56 REM LINES 60 THOUGH 100 ROLL A DICE AND COUNT 1'S
  Remark:LINES 60 THOUGH 100 ROLL A DICE AND COUNT 1'S
 60 FOR R=1 TO 6
- control: Variable:R -> _
+ control: Variable:R -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:6"]
 70 LET U=INT(6*RND(1)+1)
- Variable:U -> _
+ Variable:U -> .
  NumericValue:6
  NumericValue:1
- FunctionRnd:RND(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ FunctionRnd:RND(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- FunctionInt:INT(_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ FunctionInt:INT(.) -> .
+ AssignmentOperator:= . -> .
 80 IF U>1 THEN 100
- Variable:U -> _
+ Variable:U -> .
  NumericValue:1
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:100
 90 LET C=C+1
- Variable:C -> _
- Variable:C -> _
+ Variable:C -> .
+ Variable:C -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 100 NEXT R
- Variable:R -> _
+ Variable:R -> .
 110 LET L[1,C+1]=L[1,C+1]+1
  NumericValue:1
- Variable:C -> _
+ Variable:C -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- Variable:L(_,_) -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:L(.,.) -> .
  NumericValue:1
- Variable:C -> _
+ Variable:C -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- Variable:L(_,_) -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:L(.,.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 120 NEXT X
- Variable:X -> _
+ Variable:X -> .
 130 PRINT "NONE  ONE   TWO   THREE FOUR  FIVE  SIX"
  TextValue:"NONE  ONE   TWO   THREE FOUR  FIVE  SIX"
  CarriageControl:NL
 140 MAT PRINT L;
- Variable:L(,) -> _(,)
+ Variable:L(,) -> .(,)
  CarriageControl:;
 150 END
  

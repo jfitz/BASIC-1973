@@ -1,37 +1,37 @@
 10 REM TEST OPEN OUTPUT
  Remark:TEST OPEN OUTPUT
 20 RECORD A,B,C
- Variable:A -> _
- Variable:B -> _
- Variable:C -> _
- Variable:A -> _
- Variable:B -> _
- Variable:C -> _
+ Variable:A -> .
+ Variable:B -> .
+ Variable:C -> .
+ Variable:A -> .
+ Variable:B -> .
+ Variable:C -> .
 30 OPEN #2, "data.txt"
  TextValue:"data.txt"
  NumericValue:2
- UnaryOperatorHash:#(_) -> =FH
+ UnaryOperatorHash:#(.) -> =FH
 40 FOR I = 0 TO 2
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:0"]
  end:     ["NumericValue:2"]
 50 GET #2,20,I
  NumericValue:2
- UnaryOperatorHash:#(_) -> =FH
+ UnaryOperatorHash:#(.) -> =FH
  NumericValue:20
- Variable:I -> _
+ Variable:I -> .
 60 PRINT A,B,C
- Variable:A -> _
+ Variable:A -> .
  CarriageControl:,
- Variable:B -> _
+ Variable:B -> .
  CarriageControl:,
- Variable:C -> _
+ Variable:C -> .
  CarriageControl:NL
 70 NEXT I
- Variable:I -> _
+ Variable:I -> .
 80 CLOSE #2
  NumericValue:2
- UnaryOperatorHash:#(_) -> =FH
+ UnaryOperatorHash:#(.) -> =FH
 99 END
  
 

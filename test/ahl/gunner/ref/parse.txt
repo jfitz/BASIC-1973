@@ -30,28 +30,28 @@
  TextValue:"MAXIMUM RANGE OF YOUR GUN IS 46500 YARDS."
  CarriageControl:NL
 185 Z=0
- Variable:Z -> _
+ Variable:Z -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 190 PRINT
  CarriageControl:NL
 195 S1=0
- Variable:S1 -> _
+ Variable:S1 -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 200 LET T=43000-30000*RND(X)
- Variable:T -> _
+ Variable:T -> .
  NumericValue:43000
  NumericValue:30000
- Variable:X -> _
- FunctionRnd:RND(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:X -> .
+ FunctionRnd:RND(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 210 LET S=0
- Variable:S -> _
+ Variable:S -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 220 GO TO 370
  LineNumber:370
 230 PRINT"MINIMUM ELEVATION OF GUN IS ONE DEGREE."
@@ -67,8 +67,8 @@
 270 PRINT"OVER TARGET BY";ABS(E);"YARDS."
  TextValue:"OVER TARGET BY"
  CarriageControl:;
- Variable:E -> _
- FunctionAbs:ABS(_) -> _
+ Variable:E -> .
+ FunctionAbs:ABS(.) -> .
  CarriageControl:;
  TextValue:"YARDS."
  CarriageControl:NL
@@ -77,8 +77,8 @@
 290 PRINT "SHORT OF TARGET BY";ABS(E);"YARDS."
  TextValue:"SHORT OF TARGET BY"
  CarriageControl:;
- Variable:E -> _
- FunctionAbs:ABS(_) -> _
+ Variable:E -> .
+ FunctionAbs:ABS(.) -> .
  CarriageControl:;
  TextValue:"YARDS."
  CarriageControl:NL
@@ -89,29 +89,29 @@
 320 PRINT"***TARGET DESTROYED***";S;"ROUNDS OF AMMUNITION EXPENDED"
  TextValue:"***TARGET DESTROYED***"
  CarriageControl:;
- Variable:S -> _
+ Variable:S -> .
  CarriageControl:;
  TextValue:"ROUNDS OF AMMUNITION EXPENDED"
  CarriageControl:NL
 322 GOSUB 600
  LineNumber:600
 325 S1=S1+S
- Variable:S1 -> _
- Variable:S1 -> _
- Variable:S -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:S1 -> .
+ Variable:S1 -> .
+ Variable:S -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 330 IF Z=4 THEN 490
- Variable:Z -> _
+ Variable:Z -> .
  NumericValue:4
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:490
 340 Z=Z+1
- Variable:Z -> _
- Variable:Z -> _
+ Variable:Z -> .
+ Variable:Z -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 345 PRINT
  CarriageControl:NL
 350 PRINT"THE FORWARD OBSERVER HAS SIGHTED MORE ENEMY ACTIVITY."
@@ -122,8 +122,8 @@
 370 PRINT"DISTANCE TO THE TARGET IS";INT(T);"YARDS"
  TextValue:"DISTANCE TO THE TARGET IS"
  CarriageControl:;
- Variable:T -> _
- FunctionInt:INT(_) -> _
+ Variable:T -> .
+ FunctionInt:INT(.) -> .
  CarriageControl:;
  TextValue:"YARDS"
  CarriageControl:NL
@@ -135,27 +135,27 @@
  TextValue:"ELEVATION:"
  CarriageControl:;
 410 INPUT B
- Variable:B -> _
+ Variable:B -> .
 420 IF B>89 THEN 250
- Variable:B -> _
+ Variable:B -> .
  NumericValue:89
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:250
 430 IF B<1 THEN 230
- Variable:B -> _
+ Variable:B -> .
  NumericValue:1
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:230
 440 LET S=S+1
- Variable:S -> _
- Variable:S -> _
+ Variable:S -> .
+ Variable:S -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 442 IF S<6 THEN 450
- Variable:S -> _
+ Variable:S -> .
  NumericValue:6
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:450
 444 PRINT\PRINT "BOOM!!! YOU HAVE JUST BEEN DESTROYED ";
  CarriageControl:NL
@@ -171,56 +171,56 @@
  LineNumber:495
 450 LET B2=2*B/57.3\LET I=46500*SIN(B2)\LET X=T-I\LET E=INT(X)
  WARNING: Line exceeds PRETTY width limit 72
- Variable:B2 -> _
+ Variable:B2 -> .
  NumericValue:2
- Variable:B -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ Variable:B -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:57.3
- BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:I -> _
+ BinaryOperatorDivide:/(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:I -> .
  NumericValue:46500
- Variable:B2 -> _
- FunctionSin:SIN(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:X -> _
- Variable:T -> _
- Variable:I -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
- Variable:E -> _
- Variable:X -> _
- FunctionInt:INT(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:B2 -> .
+ FunctionSin:SIN(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:X -> .
+ Variable:T -> .
+ Variable:I -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
+ Variable:E -> .
+ Variable:X -> .
+ FunctionInt:INT(.) -> .
+ AssignmentOperator:= . -> .
 460 IF ABS(E)<100 THEN 210
- Variable:E -> _
- FunctionAbs:ABS(_) -> _
+ Variable:E -> .
+ FunctionAbs:ABS(.) -> .
  NumericValue:100
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:210
 470 IF E>100 THEN 290
- Variable:E -> _
+ Variable:E -> .
  NumericValue:100
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:290
 480 IF E<-100 THEN 270
- Variable:E -> _
+ Variable:E -> .
  NumericValue:100
- UnaryOperatorMinus:-(_) -> =_
- BinaryOperatorLess:<(_,_) -> ?
+ UnaryOperatorMinus:-(.) -> =.
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:270
 490 PRINT\PRINT\PRINT "TOTAL ROUNDS EXPENDED WERE";S1
  CarriageControl:NL
  CarriageControl:NL
  TextValue:"TOTAL ROUNDS EXPENDED WERE"
  CarriageControl:;
- Variable:S1 -> _
+ Variable:S1 -> .
  CarriageControl:NL
 491 IF S1<15 THEN 495\PRINT "NICE SHOOTING!! "\GOSUB 600\GOTO 500
- Variable:S1 -> _
+ Variable:S1 -> .
  NumericValue:15
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:495
  TextValue:"NICE SHOOTING!! "
  CarriageControl:NL
@@ -240,13 +240,13 @@
  CarriageControl:NL
  LineNumber:180
 600 FOR N=1 TO 10\PRINT CHR$(7);\NEXT N
- control: Variable:N -> _
+ control: Variable:N -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:10"]
  NumericValue:7
- FunctionChr:CHR$(_) -> =$
+ FunctionChr:CHR$(.) -> =$
  CarriageControl:;
- Variable:N -> _
+ Variable:N -> .
 610 RETURN
  
 999 END

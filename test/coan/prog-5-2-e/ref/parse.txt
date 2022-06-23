@@ -1,55 +1,55 @@
 10 FOR R=1 TO 8
- control: Variable:R -> _
+ control: Variable:R -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:8"]
 14 REM  HERE THE ROW NUMBER IS ENTERED IN THE FIRST COLUMN
  Remark: HERE THE ROW NUMBER IS ENTERED IN THE FIRST COLUMN
 15 LET S[R,1]=R
- Variable:R -> _
+ Variable:R -> .
  NumericValue:1
- Variable:S(_,_) -> _
- Variable:R -> _
- AssignmentOperator:= _ -> _
+ Variable:S(.,.) -> .
+ Variable:R -> .
+ AssignmentOperator:= . -> .
 20 FOR C=2 TO 5
- control: Variable:C -> _
+ control: Variable:C -> .
  start:   ["NumericValue:2"]
  end:     ["NumericValue:5"]
 30 LET S[R,C]=0
- Variable:R -> _
- Variable:C -> _
- Variable:S(_,_) -> _
+ Variable:R -> .
+ Variable:C -> .
+ Variable:S(.,.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 40 NEXT C
- Variable:C -> _
+ Variable:C -> .
 50 NEXT R
- Variable:R -> _
+ Variable:R -> .
 68 REM WE ARE ENTERING FIGURES IN COLUMNS 2 THROUGH 5 ONLY
  Remark:WE ARE ENTERING FIGURES IN COLUMNS 2 THROUGH 5 ONLY
 70 FOR C=2 TO 5
- control: Variable:C -> _
+ control: Variable:C -> .
  start:   ["NumericValue:2"]
  end:     ["NumericValue:5"]
 80 READ N
- Variable:N -> _
+ Variable:N -> .
 85 IF N=-1 THEN 110
- Variable:N -> _
+ Variable:N -> .
  NumericValue:1
- UnaryOperatorMinus:-(_) -> =_
- BinaryOperatorEqual:=(_,_) -> ?
+ UnaryOperatorMinus:-(.) -> =.
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:110
 90 LET S[N,C]=S[N,C]+1
- Variable:N -> _
- Variable:C -> _
- Variable:S(_,_) -> _
- Variable:N -> _
- Variable:C -> _
- Variable:S(_,_) -> _
+ Variable:N -> .
+ Variable:C -> .
+ Variable:S(.,.) -> .
+ Variable:N -> .
+ Variable:C -> .
+ Variable:S(.,.) -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 100 NEXT C
- Variable:C -> _
+ Variable:C -> .
 105 GOTO 70
  LineNumber:70
 110 PRINT "NUMBER,TV'S, CARS, HOMES,BATHS"
@@ -58,24 +58,24 @@
 119 REM  HERE ARE THE RESULTS PRINTED
  Remark: HERE ARE THE RESULTS PRINTED
 120 FOR R=1 TO 8
- control: Variable:R -> _
+ control: Variable:R -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:8"]
 130 FOR C=1 TO 5
- control: Variable:C -> _
+ control: Variable:C -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:5"]
 140 PRINT S[R,C];
- Variable:R -> _
- Variable:C -> _
- Variable:S(_,_) -> _
+ Variable:R -> .
+ Variable:C -> .
+ Variable:S(.,.) -> .
  CarriageControl:;
 150 NEXT C
- Variable:C -> _
+ Variable:C -> .
 155 PRINT
  CarriageControl:NL
 160 NEXT R
- Variable:R -> _
+ Variable:R -> .
 349 REM EACH GROUP OF FOUR NUMBERS IS FOR ONE FAMILY- T,C,H,B
  Remark:EACH GROUP OF FOUR NUMBERS IS FOR ONE FAMILY- T,C,H,B
 350 DATA 1,1,1,1,2,1,1,2,3,2,1,2,4,3,2,8,4,2,1,5
@@ -147,7 +147,7 @@
  NumericValue:1
  NumericValue:2
  NumericValue:1
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
  NumericValue:0
  NumericValue:0
  NumericValue:0

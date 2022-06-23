@@ -8,14 +8,14 @@
  TextValue:"50  FOR X=14 TO 20 PRODUCES THE FOLLIWING VALUES FOR X"
  CarriageControl:NL
 50 FOR X=14 TO 20
- control: Variable:X -> _
+ control: Variable:X -> .
  start:   ["NumericValue:14"]
  end:     ["NumericValue:20"]
 60 PRINT X;
- Variable:X -> _
+ Variable:X -> .
  CarriageControl:;
 70 NEXT X
- Variable:X -> _
+ Variable:X -> .
 80 PRINT
  CarriageControl:NL
 90 REM  BASIC ALLOWS US TO INCREMENT A LOOP BY VALUES OTHER THAN ONE
@@ -26,15 +26,15 @@
  TextValue:"120  FOR X=1 TO 19 STEP 2 PRODUCES:"
  CarriageControl:NL
 120 FOR X=1 TO 19 STEP 2
- control: Variable:X -> _
+ control: Variable:X -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:19"]
  step:    ["NumericValue:2"]
 130 PRINT X;
- Variable:X -> _
+ Variable:X -> .
  CarriageControl:;
 140 NEXT X
- Variable:X -> _
+ Variable:X -> .
 150 PRINT
  CarriageControl:NL
 160 REM    THE STEP NEED NOT INCREASE THE VALUE OF X
@@ -45,15 +45,15 @@
  TextValue:"190  FOR X=345 TO 282 STEP -9 GIVES:"
  CarriageControl:NL
 190 FOR X=345 TO 282 STEP -9
- control: Variable:X -> _
+ control: Variable:X -> .
  start:   ["NumericValue:345"]
  end:     ["NumericValue:282"]
- step:    ["NumericValue:9", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:9", "UnaryOperatorMinus:-(.) -> =."]
 200 PRINT X;
- Variable:X -> _
+ Variable:X -> .
  CarriageControl:;
 210 NEXT X
- Variable:X -> _
+ Variable:X -> .
 220 PRINT
  CarriageControl:NL
 230 REM  DECIMALS ARE ALLOWED IN BASIC
@@ -64,15 +64,15 @@
  TextValue:"260  FOR X=91.5 TO 3 STEP -15.7 YIELDS:"
  CarriageControl:NL
 260 FOR X=91.5 TO 3 STEP -15.7
- control: Variable:X -> _
+ control: Variable:X -> .
  start:   ["NumericValue:91.5"]
  end:     ["NumericValue:3"]
- step:    ["NumericValue:15.7", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:15.7", "UnaryOperatorMinus:-(.) -> =."]
 270 PRINT X;
- Variable:X -> _
+ Variable:X -> .
  CarriageControl:;
 280 NEXT X
- Variable:X -> _
+ Variable:X -> .
 290 PRINT
  CarriageControl:NL
 300 REM  VARIABLES MAY BE USED TO SET UP A MACHINE LOOP IN BASIC
@@ -86,27 +86,27 @@
  TextValue:"360  FOR V=A TO B STEP C  GIVES THESE RESULTS:"
  CarriageControl:NL
 330 LET A=5
- Variable:A -> _
+ Variable:A -> .
  NumericValue:5
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 340 LET B=45
- Variable:B -> _
+ Variable:B -> .
  NumericValue:45
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 350 LET C=6
- Variable:C -> _
+ Variable:C -> .
  NumericValue:6
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 360 FOR V=A TO B STEP C
- control: Variable:V -> _
- start:   ["Variable:A -> _"]
- end:     ["Variable:B -> _"]
- step:    ["Variable:C -> _"]
+ control: Variable:V -> .
+ start:   ["Variable:A -> ."]
+ end:     ["Variable:B -> ."]
+ step:    ["Variable:C -> ."]
 370 PRINT V;
- Variable:V -> _
+ Variable:V -> .
  CarriageControl:;
 380 NEXT V
- Variable:V -> _
+ Variable:V -> .
 390 END
  
 

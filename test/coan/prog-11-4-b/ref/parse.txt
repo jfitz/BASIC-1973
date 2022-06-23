@@ -3,140 +3,140 @@
 9 REM  SEE THE PROGRAM FOR REM STATEMENTS
  Remark: SEE THE PROGRAM FOR REM STATEMENTS
 10 DEF FNP(X)=P[4]*X^3+P[3]*X^2+P[2]*X+P[1]
- UserFunctionName:FNP -> _
- VariableName:X -> _
+ UserFunctionName:FNP -> .
+ VariableName:X -> .
  NumericValue:4
- Variable:P(_) -> _
- Variable:X -> _
+ Variable:P(.) -> .
+ Variable:X -> .
  NumericValue:3
- BinaryOperatorPower:^(_,_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ BinaryOperatorPower:^(.,.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:3
- Variable:P(_) -> _
- Variable:X -> _
+ Variable:P(.) -> .
+ Variable:X -> .
  NumericValue:2
- BinaryOperatorPower:^(_,_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
+ BinaryOperatorPower:^(.,.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
  NumericValue:2
- Variable:P(_) -> _
- Variable:X -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
+ Variable:P(.) -> .
+ Variable:X -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
  NumericValue:1
- Variable:P(_) -> _
- BinaryOperatorPlus:+(_,_) -> _
+ Variable:P(.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
 20 PRINT
  CarriageControl:NL
 30 PRINT
  CarriageControl:NL
 40 FOR S=4 TO 1 STEP -1
- control: Variable:S -> _
+ control: Variable:S -> .
  start:   ["NumericValue:4"]
  end:     ["NumericValue:1"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 50 READ P[S]
- Variable:S -> _
- Variable:P(_) -> _
+ Variable:S -> .
+ Variable:P(.) -> .
 60 IF P[S]=.0101 THEN 430
- Variable:S -> _
- Variable:P(_) -> _
+ Variable:S -> .
+ Variable:P(.) -> .
  NumericValue:.0101
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:430
 70 PRINT P[S];
- Variable:S -> _
- Variable:P(_) -> _
+ Variable:S -> .
+ Variable:P(.) -> .
  CarriageControl:;
 80 NEXT S
- Variable:S -> _
+ Variable:S -> .
 90 PRINT "INTEGRAL ZERO:"
  TextValue:"INTEGRAL ZERO:"
  CarriageControl:NL
 100 FOR X=-P[1] TO P[1] STEP SGN(P[1])
- control: Variable:X -> _
- start:   ["NumericValue:1", "Variable:P(_) -> _", "UnaryOperatorMinus:-(_) -> _"]
- end:     ["NumericValue:1", "Variable:P(_) -> _"]
- step:    ["NumericValue:1", "Variable:P(_) -> _", "FunctionSgn:SGN(_) -> _"]
+ control: Variable:X -> .
+ start:   ["NumericValue:1", "Variable:P(.) -> .", "UnaryOperatorMinus:-(.) -> ."]
+ end:     ["NumericValue:1", "Variable:P(.) -> ."]
+ step:    ["NumericValue:1", "Variable:P(.) -> .", "FunctionSgn:SGN(.) -> ."]
 110 IF X=0 THEN 160
- Variable:X -> _
+ Variable:X -> .
  NumericValue:0
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:160
 120 IF P[1]/X <> INT(P[1]/X) THEN 160
  NumericValue:1
- Variable:P(_) -> _
- Variable:X -> _
- BinaryOperatorDivide:/(_,_) -> _
+ Variable:P(.) -> .
+ Variable:X -> .
+ BinaryOperatorDivide:/(.,.) -> .
  NumericValue:1
- Variable:P(_) -> _
- Variable:X -> _
- BinaryOperatorDivide:/(_,_) -> _
- FunctionInt:INT(_) -> _
- BinaryOperatorNotEqual:<>(_,_) -> ?
+ Variable:P(.) -> .
+ Variable:X -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ FunctionInt:INT(.) -> .
+ BinaryOperatorNotEqual:<>(.,.) -> ?
  LineNumber:160
 130 IF FNP(X) <> 0 THEN 160
- Variable:X -> _
- UserFunction:FNP(_) -> _
+ Variable:X -> .
+ UserFunction:FNP(.) -> .
  NumericValue:0
- BinaryOperatorNotEqual:<>(_,_) -> ?
+ BinaryOperatorNotEqual:<>(.,.) -> ?
  LineNumber:160
 140 PRINT X
- Variable:X -> _
+ Variable:X -> .
  CarriageControl:NL
 150 GOTO 170
  LineNumber:170
 160 NEXT X
- Variable:X -> _
+ Variable:X -> .
 164 REM  INTZER ENDS HERE ***  SYNDIV BEGINS HERE
  Remark: INTZER ENDS HERE ***  SYNDIV BEGINS HERE
 170 LET R=X
- Variable:R -> _
- Variable:X -> _
- AssignmentOperator:= _ -> _
+ Variable:R -> .
+ Variable:X -> .
+ AssignmentOperator:= . -> .
 180 PRINT "SYNTHETIC DIVISION BY   X -";R;"YIELDS:"
  TextValue:"SYNTHETIC DIVISION BY   X -"
  CarriageControl:;
- Variable:R -> _
+ Variable:R -> .
  CarriageControl:;
  TextValue:"YIELDS:"
  CarriageControl:NL
 190 PRINT P[4];
  NumericValue:4
- Variable:P(_) -> _
+ Variable:P(.) -> .
  CarriageControl:;
 200 FOR X=3 TO 1 STEP -1
- control: Variable:X -> _
+ control: Variable:X -> .
  start:   ["NumericValue:3"]
  end:     ["NumericValue:1"]
- step:    ["NumericValue:1", "UnaryOperatorMinus:-(_) -> =_"]
+ step:    ["NumericValue:1", "UnaryOperatorMinus:-(.) -> =."]
 210 LET P[X]=P[X]+P[X+1]*R
- Variable:X -> _
- Variable:P(_) -> _
- Variable:X -> _
- Variable:P(_) -> _
- Variable:X -> _
+ Variable:X -> .
+ Variable:P(.) -> .
+ Variable:X -> .
+ Variable:P(.) -> .
+ Variable:X -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- Variable:P(_) -> _
- Variable:R -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:P(.) -> .
+ Variable:R -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 220 IF X > 1 THEN 240
- Variable:X -> _
+ Variable:X -> .
  NumericValue:1
- BinaryOperatorGreater:>(_,_) -> ?
+ BinaryOperatorGreater:>(.,.) -> ?
  LineNumber:240
 230 PRINT "REMAINDER =";
  TextValue:"REMAINDER ="
  CarriageControl:;
 240 PRINT P[X];
- Variable:X -> _
- Variable:P(_) -> _
+ Variable:X -> .
+ Variable:P(.) -> .
  CarriageControl:;
 250 NEXT X
- Variable:X -> _
+ Variable:X -> .
 252 REM SYNDIV ENDS HERE
  Remark:SYNDIV ENDS HERE
 258 REM  HERE WE MOVE EACH ENTRY IN THE P LIST
@@ -144,79 +144,79 @@
 259 REM   TO THE LOCATION ONE SUBSCRIPT LOWER
  Remark:  TO THE LOCATION ONE SUBSCRIPT LOWER
 260 FOR X=1 TO 3
- control: Variable:X -> _
+ control: Variable:X -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:3"]
 270 LET P[X]=P[X+1]
- Variable:X -> _
- Variable:P(_) -> _
- Variable:X -> _
+ Variable:X -> .
+ Variable:P(.) -> .
+ Variable:X -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- Variable:P(_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ Variable:P(.) -> .
+ AssignmentOperator:= . -> .
 280 NEXT X
- Variable:X -> _
+ Variable:X -> .
 290 PRINT
  CarriageControl:NL
 298 REM COMP-1 BEGINS HERE
  Remark:COMP-1 BEGINS HERE
 300 LET D=P[2]^2-4*P[3]*P[1]
- Variable:D -> _
+ Variable:D -> .
  NumericValue:2
- Variable:P(_) -> _
+ Variable:P(.) -> .
  NumericValue:2
- BinaryOperatorPower:^(_,_) -> _
+ BinaryOperatorPower:^(.,.) -> .
  NumericValue:4
  NumericValue:3
- Variable:P(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
+ Variable:P(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
  NumericValue:1
- Variable:P(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- BinaryOperatorMinus:-(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:P(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ BinaryOperatorMinus:-(.,.) -> .
+ AssignmentOperator:= . -> .
 310 LET F=2*P[3]
- Variable:F -> _
+ Variable:F -> .
  NumericValue:2
  NumericValue:3
- Variable:P(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:P(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ AssignmentOperator:= . -> .
 320 LET A=-P[2]/F
- Variable:A -> _
+ Variable:A -> .
  NumericValue:2
- Variable:P(_) -> _
- UnaryOperatorMinus:-(_) -> _
- Variable:F -> _
- BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:P(.) -> .
+ UnaryOperatorMinus:-(.) -> .
+ Variable:F -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ AssignmentOperator:= . -> .
 330 LET B=SQR(ABS(D))/F
- Variable:B -> _
- Variable:D -> _
- FunctionAbs:ABS(_) -> _
- FunctionSqr:SQR(_) -> _
- Variable:F -> _
- BinaryOperatorDivide:/(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:B -> .
+ Variable:D -> .
+ FunctionAbs:ABS(.) -> .
+ FunctionSqr:SQR(.) -> .
+ Variable:F -> .
+ BinaryOperatorDivide:/(.,.) -> .
+ AssignmentOperator:= . -> .
 340 IF D<0 THEN 380
- Variable:D -> _
+ Variable:D -> .
  NumericValue:0
- BinaryOperatorLess:<(_,_) -> ?
+ BinaryOperatorLess:<(.,.) -> ?
  LineNumber:380
 350 PRINT "REAL ZEROS:"
  TextValue:"REAL ZEROS:"
  CarriageControl:NL
 360 PRINT A+B;"AND   ";A-B
- Variable:A -> _
- Variable:B -> _
- BinaryOperatorPlus:+(_,_) -> _
+ Variable:A -> .
+ Variable:B -> .
+ BinaryOperatorPlus:+(.,.) -> .
  CarriageControl:;
  TextValue:"AND   "
  CarriageControl:;
- Variable:A -> _
- Variable:B -> _
- BinaryOperatorMinus:-(_,_) -> _
+ Variable:A -> .
+ Variable:B -> .
+ BinaryOperatorMinus:-(.,.) -> .
  CarriageControl:NL
 370 GOTO 20
  LineNumber:20
@@ -226,20 +226,20 @@
 390 PRINT "(";A;",";B;") AND (";A;",";-B;")"
  TextValue:"("
  CarriageControl:;
- Variable:A -> _
+ Variable:A -> .
  CarriageControl:;
  TextValue:","
  CarriageControl:;
- Variable:B -> _
+ Variable:B -> .
  CarriageControl:;
  TextValue:") AND ("
  CarriageControl:;
- Variable:A -> _
+ Variable:A -> .
  CarriageControl:;
  TextValue:","
  CarriageControl:;
- Variable:B -> _
- UnaryOperatorMinus:-(_) -> _
+ Variable:B -> .
+ UnaryOperatorMinus:-(.) -> .
  CarriageControl:;
  TextValue:")"
  CarriageControl:NL
@@ -249,39 +249,39 @@
  NumericValue:1
  NumericValue:2
  NumericValue:1
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
  NumericValue:2
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
 410 DATA 1,-1,0,-48,1,0,0,-1,1,0,0,1,1,-1,1,-1
  NumericValue:1
  NumericValue:1
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
  NumericValue:0
  NumericValue:48
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
  NumericValue:1
  NumericValue:0
  NumericValue:0
  NumericValue:1
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
  NumericValue:1
  NumericValue:0
  NumericValue:0
  NumericValue:1
  NumericValue:1
  NumericValue:1
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
  NumericValue:1
  NumericValue:1
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
 415 DATA 6,-77,-189,-90
  NumericValue:6
  NumericValue:77
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
  NumericValue:189
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
  NumericValue:90
- UnaryOperatorMinus:-(_) -> =_
+ UnaryOperatorMinus:-(.) -> =.
 420 DATA .0101
  NumericValue:.0101
 430 END

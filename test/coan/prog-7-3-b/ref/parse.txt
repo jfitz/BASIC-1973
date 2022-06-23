@@ -2,9 +2,9 @@
  Remark:* DEMONSTRATE CHANGE STATEMENT
 100 DIM A(30), B(1)
  NumericValue:30
- Declaration:A() -> _()
+ Declaration:A() -> .()
  NumericValue:1
- Declaration:B() -> _()
+ Declaration:B() -> .()
 110 PRINT "STRING";
  TextValue:"STRING"
  CarriageControl:;
@@ -12,10 +12,10 @@
  Variable:A$ -> $
 130 CHANGE A$ TO A
  Variable:A$ -> $
- Variable:A() -> _()
+ Variable:A() -> .()
 140 PRINT LEN(A$); "CHARACTERS IN '"; A$; "'"
  Variable:A$ -> $
- FunctionLen:LEN($) -> _
+ FunctionLen:LEN($) -> .
  CarriageControl:;
  TextValue:"CHARACTERS IN '"
  CarriageControl:;
@@ -27,24 +27,24 @@
  CarriageControl:NL
 160 LET B(0) = 1
  NumericValue:0
- Variable:B(_) -> _
+ Variable:B(.) -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 170 PRINT "CHAR ASCII CODE"
  TextValue:"CHAR ASCII CODE"
  CarriageControl:NL
 180 FOR I = 1 TO A(0)
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
- end:     ["NumericValue:0", "Variable:A(_) -> _"]
+ end:     ["NumericValue:0", "Variable:A(.) -> ."]
 190    LET B(1) = A(I)
  NumericValue:1
- Variable:B(_) -> _
- Variable:I -> _
- Variable:A(_) -> _
- AssignmentOperator:= _ -> _
+ Variable:B(.) -> .
+ Variable:I -> .
+ Variable:A(.) -> .
+ AssignmentOperator:= . -> .
 200    CHANGE B TO B$
- Variable:B() -> _()
+ Variable:B() -> .()
  Variable:B$ -> $
 210    PRINT "'"; B$; "'  "; A(I)
  TextValue:"'"
@@ -53,11 +53,11 @@
  CarriageControl:;
  TextValue:"'  "
  CarriageControl:;
- Variable:I -> _
- Variable:A(_) -> _
+ Variable:I -> .
+ Variable:A(.) -> .
  CarriageControl:NL
 220 NEXT I
- Variable:I -> _
+ Variable:I -> .
 230 END
  
 

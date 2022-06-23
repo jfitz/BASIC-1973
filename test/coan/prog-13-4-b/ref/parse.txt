@@ -1,27 +1,27 @@
 2 FOR Y=1 TO 10
- control: Variable:Y -> _
+ control: Variable:Y -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:10"]
 5 LET C=0
- Variable:C -> _
+ Variable:C -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 10 FOR X=1 TO 50
- control: Variable:X -> _
+ control: Variable:X -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:50"]
 20 LET F=INT(2*RND(1))
- Variable:F -> _
+ Variable:F -> .
  NumericValue:2
  NumericValue:1
- FunctionRnd:RND(_) -> _
- BinaryOperatorMultiply:*(_,_) -> _
- FunctionInt:INT(_) -> _
- AssignmentOperator:= _ -> _
+ FunctionRnd:RND(.) -> .
+ BinaryOperatorMultiply:*(.,.) -> .
+ FunctionInt:INT(.) -> .
+ AssignmentOperator:= . -> .
 30 IF F=1 THEN 60
- Variable:F -> _
+ Variable:F -> .
  NumericValue:1
- BinaryOperatorEqual:=(_,_) -> ?
+ BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:60
 40 PRINT "T";
  TextValue:"T"
@@ -31,27 +31,27 @@
 58 REM C COUNTS THE NUMBER OF HEADS
  Remark:C COUNTS THE NUMBER OF HEADS
 60 LET C=C+1
- Variable:C -> _
- Variable:C -> _
+ Variable:C -> .
+ Variable:C -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 70 PRINT "H";
  TextValue:"H"
  CarriageControl:;
 100 NEXT X
- Variable:X -> _
+ Variable:X -> .
 110 PRINT
  CarriageControl:NL
 120 PRINT "HEADS  ";C;"OUT OF 50 FLIPS"
  TextValue:"HEADS  "
  CarriageControl:;
- Variable:C -> _
+ Variable:C -> .
  CarriageControl:;
  TextValue:"OUT OF 50 FLIPS"
  CarriageControl:NL
 125 NEXT Y
- Variable:Y -> _
+ Variable:Y -> .
 130 END
  
 

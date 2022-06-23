@@ -1,69 +1,69 @@
 10 LET A=1
- Variable:A -> _
+ Variable:A -> .
  NumericValue:1
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 20 FOR R=1 TO 3
- control: Variable:R -> _
+ control: Variable:R -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:3"]
 30 FOR C=1 TO 5
- control: Variable:C -> _
+ control: Variable:C -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:5"]
 40 LET A[R,C]=A
- Variable:R -> _
- Variable:C -> _
- Variable:A(_,_) -> _
- Variable:A -> _
- AssignmentOperator:= _ -> _
+ Variable:R -> .
+ Variable:C -> .
+ Variable:A(.,.) -> .
+ Variable:A -> .
+ AssignmentOperator:= . -> .
 50 LET A=A+1
- Variable:A -> _
- Variable:A -> _
+ Variable:A -> .
+ Variable:A -> .
  NumericValue:1
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 60 NEXT C
- Variable:C -> _
+ Variable:C -> .
 70 NEXT R
- Variable:R -> _
+ Variable:R -> .
 80 PRINT "HERE IS THE ORIGINAL ARRAY"
  TextValue:"HERE IS THE ORIGINAL ARRAY"
  CarriageControl:NL
 100 FOR R=1 TO 3
- control: Variable:R -> _
+ control: Variable:R -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:3"]
 110 FOR C=1 TO 5
- control: Variable:C -> _
+ control: Variable:C -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:5"]
 120 PRINT A[R,C];
- Variable:R -> _
- Variable:C -> _
- Variable:A(_,_) -> _
+ Variable:R -> .
+ Variable:C -> .
+ Variable:A(.,.) -> .
  CarriageControl:;
 130 NEXT C
- Variable:C -> _
+ Variable:C -> .
 140 PRINT
  CarriageControl:NL
 150 PRINT
  CarriageControl:NL
 160 NEXT R
- Variable:R -> _
+ Variable:R -> .
 168 REM SET ALL ELEMENTS IN THE 4TH ROW TO ZERO
  Remark:SET ALL ELEMENTS IN THE 4TH ROW TO ZERO
 170 FOR I=1 TO 5
- control: Variable:I -> _
+ control: Variable:I -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:5"]
 180 LET A[4,I]=0
  NumericValue:4
- Variable:I -> _
- Variable:A(_,_) -> _
+ Variable:I -> .
+ Variable:A(.,.) -> .
  NumericValue:0
- AssignmentOperator:= =_ -> _
+ AssignmentOperator:= =. -> .
 190 NEXT I
- Variable:I -> _
+ Variable:I -> .
 200 PRINT "WE NOW HAVE THE 4 BY 5 ARRAY"
  TextValue:"WE NOW HAVE THE 4 BY 5 ARRAY"
  CarriageControl:NL
@@ -72,29 +72,29 @@
 219 REM THIS ROUTINE ADDS COLUMNS AND PUTS THE SUM IN THE 4TH ROW
  Remark:THIS ROUTINE ADDS COLUMNS AND PUTS THE SUM IN THE 4TH ROW
 220 FOR C=1 TO 5
- control: Variable:C -> _
+ control: Variable:C -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:5"]
 230 FOR R=1 TO 3
- control: Variable:R -> _
+ control: Variable:R -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:3"]
 240 LET A[4,C]=A[4,C]+A[R,C]
  NumericValue:4
- Variable:C -> _
- Variable:A(_,_) -> _
+ Variable:C -> .
+ Variable:A(.,.) -> .
  NumericValue:4
- Variable:C -> _
- Variable:A(_,_) -> _
- Variable:R -> _
- Variable:C -> _
- Variable:A(_,_) -> _
- BinaryOperatorPlus:+(_,_) -> _
- AssignmentOperator:= _ -> _
+ Variable:C -> .
+ Variable:A(.,.) -> .
+ Variable:R -> .
+ Variable:C -> .
+ Variable:A(.,.) -> .
+ BinaryOperatorPlus:+(.,.) -> .
+ AssignmentOperator:= . -> .
 250 NEXT R
- Variable:R -> _
+ Variable:R -> .
 260 NEXT C
- Variable:C -> _
+ Variable:C -> .
 270 PRINT "THE FOURTH ROW NOW CONTAINS THE SUMS OF THE FIRST 3 ROWS."
  TextValue:"THE FOURTH ROW NOW CONTAINS THE SUMS OF THE FIRST 3 ROWS."
  CarriageControl:NL
@@ -105,26 +105,26 @@
 498 REM **THIS IS THE PRINTING ROUTINE FOR THE 4 BY 5 ARRAY**
  Remark:**THIS IS THE PRINTING ROUTINE FOR THE 4 BY 5 ARRAY**
 500 FOR R=1 TO 4
- control: Variable:R -> _
+ control: Variable:R -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:4"]
 510 FOR C=1 TO 5
- control: Variable:C -> _
+ control: Variable:C -> .
  start:   ["NumericValue:1"]
  end:     ["NumericValue:5"]
 520 PRINT A[R,C];
- Variable:R -> _
- Variable:C -> _
- Variable:A(_,_) -> _
+ Variable:R -> .
+ Variable:C -> .
+ Variable:A(.,.) -> .
  CarriageControl:;
 530 NEXT C
- Variable:C -> _
+ Variable:C -> .
 540 PRINT
  CarriageControl:NL
 550 PRINT
  CarriageControl:NL
 560 NEXT R
- Variable:R -> _
+ Variable:R -> .
 570 RETURN
  
 999 END
