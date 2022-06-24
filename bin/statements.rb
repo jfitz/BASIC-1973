@@ -2381,11 +2381,13 @@ class FilesStatement < AbstractStatement
   def execute_core(_) end
 end
 
-# FNEND
+# FNEND, ENDFN, ENDFUNCTION
 class FnendStatement < AbstractStatement
   def self.lead_keywords
     [
-      [KeywordToken.new('FNEND')]
+      [KeywordToken.new('FNEND')],
+      [KeywordToken.new('ENDFN')],
+      [KeywordToken.new('ENDFUNCTION')]
     ]
   end
 
