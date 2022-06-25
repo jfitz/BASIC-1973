@@ -62,7 +62,7 @@ class UnaryOperator < AbstractElement
   end
 
   def sigils
-    make_sigils(@arg_types, @arg_shapes)
+    Sigils.make_sigils_2(@arg_types, @arg_shapes)
   end
 
   def signature
@@ -78,7 +78,7 @@ class UnaryOperator < AbstractElement
   end
 
   def dump
-    result = make_type_sigil(@content_type) + make_shape_sigil(@shape)
+    result = Sigils.make_type_sigil(@content_type) + Sigils.make_shape_sigil(@shape)
     const = @constant ? '=' : ''
     "#{self.class}:#{@op}#{signature} -> #{const}#{result}"
   end
@@ -185,7 +185,7 @@ class BinaryOperator < AbstractElement
   end
 
   def sigils
-    make_sigils(@arg_types, @arg_shapes)
+    Sigils.make_sigils_2(@arg_types, @arg_shapes)
   end
 
   def signature
@@ -198,7 +198,7 @@ class BinaryOperator < AbstractElement
   end
 
   def dump
-    result = make_type_sigil(@content_type) + make_shape_sigil(@shape)
+    result = Sigils.make_type_sigil(@content_type) + Sigils.make_shape_sigil(@shape)
     const = @constant ? '=' : ''
     "#{self.class}:#{@op}#{signature} -> #{const}#{result}"
   end
