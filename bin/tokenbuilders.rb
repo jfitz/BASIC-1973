@@ -11,8 +11,8 @@ class InvalidTokenBuilder
     @token.size
   end
 
-  def token
-    InvalidToken.new(@token)
+  def tokens
+    [InvalidToken.new(@token)]
   end
 end
 
@@ -61,8 +61,8 @@ class ListTokenBuilder
     !@count.zero?
   end
 
-  def token
-    @class.new(@token)
+  def tokens
+    [@class.new(@token)]
   end
 
   private
@@ -126,7 +126,7 @@ class RemarkTokenBuilder
     !@count.zero?
   end
 
-  def token
+  def tokens
     tokens = []
     tokens << KeywordToken.new(@keyword_token)
     tokens << RemarkToken.new(@remark_token) unless @remark_token.empty?
@@ -159,8 +159,8 @@ class WhitespaceTokenBuilder
     @token.size
   end
 
-  def token
-    WhitespaceToken.new(@token)
+  def tokens
+    [WhitespaceToken.new(@token)]
   end
 end
 
@@ -179,8 +179,8 @@ class CommentTokenBuilder
     @count = @token.size
   end
 
-  def token
-    CommentToken.new(@token)
+  def tokens
+    [CommentToken.new(@token)]
   end
 end
 
@@ -214,8 +214,8 @@ class TextTokenBuilder
     @count = @token.size
   end
 
-  def token
-    TextLiteralToken.new(@token)
+  def tokens
+    [TextLiteralToken.new(@token)]
   end
 end
 
@@ -242,8 +242,8 @@ class InputNumberTokenBuilder
     @token.size
   end
 
-  def token
-    NumericLiteralToken.new(@token)
+  def tokens
+    [NumericLiteralToken.new(@token)]
   end
 end
 
@@ -315,8 +315,8 @@ class NumberTokenBuilder
     !@count.zero?
   end
 
-  def token
-    NumericLiteralToken.new(@token)
+  def tokens
+    [NumericLiteralToken.new(@token)]
   end
 
   private
@@ -398,8 +398,8 @@ class IntegerTokenBuilder
     !@count.zero?
   end
 
-  def token
-    IntegerLiteralToken.new(@token)
+  def tokens
+    [IntegerLiteralToken.new(@token)]
   end
 
   private
@@ -451,8 +451,8 @@ class NumericSymbolTokenBuilder
     !@count.zero?
   end
 
-  def token
-    NumericSymbolToken.new(@token)
+  def tokens
+    [NumericSymbolToken.new(@token)]
   end
 end
 
@@ -484,33 +484,8 @@ class TextSymbolTokenBuilder
     !@count.zero?
   end
 
-  def token
-    TextSymbolToken.new(@token)
-  end
-end
-
-# token reader for unit constants
-class UnitsTokenBuilder
-  attr_reader :count
-
-  def try(text)
-    @token = ''
-
-    candidate = ''
-    i = 0
-    if !text.empty? && text[0] == '{'
-      until i == text.size || candidate[-1] == '}'
-        candidate += text[i]
-        i += 1
-      end
-    end
-
-    @token = candidate if candidate[-1] == '}'
-    @count = @token.size
-  end
-
-  def token
-    UnitsLiteralToken.new(@token)
+  def tokens
+    [TextSymbolToken.new(@token)]
   end
 end
 
@@ -557,8 +532,8 @@ class VariableTokenBuilder
     !@count.zero?
   end
 
-  def token
-    VariableToken.new(@token)
+  def tokens
+    [VariableToken.new(@token)]
   end
 
   private
@@ -598,8 +573,8 @@ class InputTextTokenBuilder
     @token.size
   end
 
-  def token
-    TextLiteralToken.new(@token)
+  def tokens
+    [TextLiteralToken.new(@token)]
   end
 end
 
@@ -614,9 +589,9 @@ class InputBareTextTokenBuilder
     @token.size
   end
 
-  def token
+  def tokens
     quoted = "\"#{@token}\""
-    TextLiteralToken.new(quoted)
+    [TextLiteralToken.new(quoted)]
   end
 end
 
@@ -631,8 +606,8 @@ class BreakTokenBuilder
     @token.size
   end
 
-  def token
-    BreakToken.new(@token)
+  def tokens
+    [BreakToken.new(@token)]
   end
 end
 
@@ -658,8 +633,8 @@ class NumericFormatTokenBuilder
     @token.size
   end
 
-  def token
-    NumericFormatToken.new(@token)
+  def tokens
+    [NumericFormatToken.new(@token)]
   end
 
   private
@@ -687,8 +662,8 @@ class CharFormatTokenBuilder
     @token.size
   end
 
-  def token
-    CharFormatToken.new(@token)
+  def tokens
+    [CharFormatToken.new(@token)]
   end
 end
 
@@ -703,8 +678,8 @@ class PlainStringFormatTokenBuilder
     @token.size
   end
 
-  def token
-    PlainStringFormatToken.new(@token)
+  def tokens
+    [PlainStringFormatToken.new(@token)]
   end
 end
 
@@ -719,8 +694,8 @@ class PaddedStringFormatTokenBuilder
     @token.size
   end
 
-  def token
-    PaddedStringFormatToken.new(@token)
+  def tokens
+    [PaddedStringFormatToken.new(@token)]
   end
 end
 
@@ -738,7 +713,7 @@ class ConstantFormatTokenBuilder
     @token.size
   end
 
-  def token
-    ConstantFormatToken.new(@token)
+  def tokens
+    [ConstantFormatToken.new(@token)]
   end
 end
