@@ -215,7 +215,7 @@ class TextTokenBuilder
   end
 
   def tokens
-    [TextLiteralToken.new(@token)]
+    [QuotedTextLiteralToken.new(@token)]
   end
 end
 
@@ -574,7 +574,7 @@ class InputTextTokenBuilder
   end
 
   def tokens
-    [TextLiteralToken.new(@token)]
+    [QuotedTextLiteralToken.new(@token)]
   end
 end
 
@@ -590,8 +590,7 @@ class InputBareTextTokenBuilder
   end
 
   def tokens
-    quoted = "\"#{@token}\""
-    [TextLiteralToken.new(quoted)]
+    [BareTextLiteralToken.new(@token)]
   end
 end
 

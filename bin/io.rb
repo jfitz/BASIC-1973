@@ -63,8 +63,7 @@ module Inputter
   def line_input(interpreter)
     input_text = read_line
     input_text += "\r\n" if $options['crlf_on_line_input'].value
-    quoted = "\"#{input_text}\""
-    token = TextLiteralToken.new(quoted)
+    token = BareTextLiteralToken.new(input_text)
     tokens = [token]
     # convert from tokens to values
     expressions = ValueExpressionSet.new(tokens, :scalar)
