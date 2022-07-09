@@ -23,35 +23,31 @@ require_relative 'program'
 class Option
   attr_reader :types
 
-  def initialize(types, defs, value)
+  def initialize(types, defs, v)
     @types = types
     @defs = defs
-    check_value(value)
-    @values = [value]
+    check_value(v)
+    @values = [v]
   end
 
-  def set(value)
+  def set(v)
     num_types = %w[Fixnum Integer]
-    if @defs[:type] == :bool && num_types.include?(value.class.to_s)
-      value = value != 0
-    end
+    v = v != 0 if @defs[:type] == :bool && num_types.include?(v.class.to_s)
 
-    check_value(value)
-    @values = [value]
+    check_value(v)
+    @values = [v]
   end
 
   def value
     @values[-1]
   end
 
-  def push(value)
+  def push(v)
     num_types = %w[Fixnum Integer]
+    v = v != 0 if @defs[:type] == :bool && num_types.include?(v.class.to_s)
 
-    value = value != 0 if
-      @defs[:type] == :bool && num_types.include?(value.class.to_s)
-
-    check_value(value)
-    @values.push(value)
+    check_value(v)
+    @values.push(v)
   end
 
   def pop
@@ -244,17 +240,16 @@ class Shell
         value = option[1].to_s.upcase
         lines << ("OPTION #{name} #{value}")
       end
-    elsif args.size == 1
+    elsif args.size == 1 && args[0].keyword?
       kwd = args[0].to_s
       kwd_d = kwd.downcase
 
-      if $options.key?(kwd_d)
-        value = $options[kwd_d].to_s.upcase
-        lines << ("OPTION #{kwd} #{value}") if echo_set
-      else
-        raise BASICCommandError, "Unknown option #{kwd}"
-      end
-    elsif args.size == 2
+      raise BASICCommandError, "Unknown option #{kwd}" unless
+        $options.key?(kwd_d)
+
+      value = $options[kwd_d].to_s.upcase
+      lines << ("OPTION #{kwd} #{value}")
+    elsif args.size == 2 && args[0].keyword?
       kwd = args[0].to_s
       kwd_d = kwd.downcase
 
@@ -370,12 +365,14 @@ class Shell
       save_file(filename, lines)
     when 'LIST'
       texts = @interpreter.program_list(args, false)
+
       texts.each { |text| @console_io.print_line(text) }
       texts = @interpreter.program_errors
       texts.each { |text| @console_io.print_line(text) }
       @console_io.newline
     when 'PRETTY'
       pretty_multiline = $options['pretty_multiline'].value
+
       texts = @interpreter.program_pretty(args, pretty_multiline)
       texts.each { |text| @console_io.print_line(text) }
       texts = @interpreter.program_errors
@@ -406,6 +403,7 @@ class Shell
       end
     when 'CROSSREF'
       @interpreter.program_optimize
+
       texts = @interpreter.program_crossref
       texts.each { |text| @console_io.print_line(text) }
       @console_io.newline
@@ -413,12 +411,14 @@ class Shell
       @interpreter.dump_dims
     when 'PARSE'
       texts = @interpreter.program_parse(args)
+
       texts.each { |text| @console_io.print_line(text) }
       texts = @interpreter.program_errors
       texts.each { |text| @console_io.print_line(text) }
       @console_io.newline
     when 'ANALYZE'
       @interpreter.program_optimize
+
       texts = @interpreter.program_analyze
       texts.each { |text| @console_io.print_line(text) }
       @console_io.newline
@@ -594,7 +594,7 @@ def make_command_tokenbuilders(quotes)
     CACHE_CONST_EXPR CHR_ALLOW_ALL COLON_FILE COLON_SEPARATOR
     CRLF_ON_LINE_INPUT
     DEFAULT_PROMPT DETECT_INFINITE_LOOP
-    ECHO EXTEND_IF
+    EXTEND_IF
     FIELD_SEP FORGET_FORNEXT FORNEXT_ONE_BEYOND
     HEADING
     IGNORE_RND_ARG IMPLIED_SEMICOLON INPUT_HIGH_BIT INT_BITWISE INT_FLOOR

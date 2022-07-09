@@ -612,6 +612,7 @@ class Interpreter
     line_statement = @current_line_stmt_mod.statement
     line_index = @current_line_stmt_mod.index
 
+    # breakpoint may have already been set by another test
     breakpoint = false
 
     # look for line breakpoint
@@ -739,6 +740,7 @@ class Interpreter
             @line_breakpoints[line_number] = ''
           rescue BASICSyntaxError
             tkns = tokens_list.map(&:to_s).join
+
             raise BASICCommandError, "INVALID BREAKPOINT #{tkns}"
           end
         else # tokens_list.size > 1
@@ -1228,8 +1230,7 @@ class Interpreter
     # convert a numeric to a string when a string is expected
     if value.numeric_constant? &&
        variable.content_type == :string
-      val = value.symbol_text
-      value = TextValue.new(val)
+      value = TextValue.new(value.symbol_text)
     end
 
     # convert an integer to a numeric
@@ -1293,9 +1294,7 @@ class Interpreter
   end
 
   def forget_value(variable)
-    legals = [
-      'Variable'
-    ]
+    legals = %w[Variable]
 
     unless legals.include?(variable.class.to_s)
       raise(BASICSyntaxError,
