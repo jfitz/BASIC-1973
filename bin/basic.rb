@@ -534,9 +534,10 @@ def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads)
     ListTokenBuilder.new(FunctionFactory.user_function_names, UserFunctionToken)
 
   tokenbuilders << TextTokenBuilder.new(quotes)
+  tokenbuilders << NumberTokenBuilder.new
 
   allow_hash_constant = $options['allow_hash_constant'].value
-  tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
+  tokenbuilders << HashNumberTokenBuilder.new(allow_hash_constant)
 
   tokenbuilders << IntegerTokenBuilder.new
   tokenbuilders << NumericSymbolTokenBuilder.new
@@ -567,9 +568,10 @@ def make_interpreter_data_tokenbuilders(quotes, statement_separators, comment_le
   tokenbuilders << BreakTokenBuilder.new
   tokenbuilders << ListTokenBuilder.new([',', ';'], ParamSeparatorToken)
   tokenbuilders << TextTokenBuilder.new(quotes)
+  tokenbuilders << NumberTokenBuilder.new
 
   allow_hash_constant = $options['allow_hash_constant'].value
-  tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
+  tokenbuilders << HashNumberTokenBuilder.new(allow_hash_constant)
 
   tokenbuilders << IntegerTokenBuilder.new
   tokenbuilders << NumericSymbolTokenBuilder.new
@@ -631,9 +633,11 @@ def make_command_tokenbuilders(quotes)
     ListTokenBuilder.new(FunctionFactory.user_function_names, UserFunctionToken)
 
   tokenbuilders << TextTokenBuilder.new(quotes)
+  tokenbuilders << NumberTokenBuilder.new
 
   allow_hash_constant = $options['allow_hash_constant'].value
-  tokenbuilders << NumberTokenBuilder.new(allow_hash_constant)
+  tokenbuilders << HashNumberTokenBuilder.new(allow_hash_constant)
+
   tokenbuilders << VariableTokenBuilder.new
   tokenbuilders << ListTokenBuilder.new(%w[TRUE FALSE], BooleanLiteralToken)
   tokenbuilders << WhitespaceTokenBuilder.new

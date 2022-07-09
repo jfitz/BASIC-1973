@@ -218,7 +218,8 @@ class Interpreter
       ListTokenBuilder.new(user_function_names, UserFunctionToken)
 
     tokenbuilders << TextTokenBuilder.new(@quotes)
-    tokenbuilders << NumberTokenBuilder.new(false)
+    tokenbuilders << NumberTokenBuilder.new
+    # do not allow hash constants
     tokenbuilders << IntegerTokenBuilder.new
 
     tokenbuilders << VariableTokenBuilder.new
