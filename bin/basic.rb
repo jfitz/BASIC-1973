@@ -533,7 +533,7 @@ def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads)
   tokenbuilders <<
     ListTokenBuilder.new(FunctionFactory.user_function_names, UserFunctionToken)
 
-  tokenbuilders << TextTokenBuilder.new(quotes)
+  tokenbuilders << QuotedTextTokenBuilder.new(quotes)
   tokenbuilders << NumberTokenBuilder.new
 
   allow_hash_constant = $options['allow_hash_constant'].value
@@ -567,7 +567,7 @@ def make_interpreter_data_tokenbuilders(quotes, statement_separators, comment_le
 
   tokenbuilders << BreakTokenBuilder.new
   tokenbuilders << ListTokenBuilder.new([',', ';'], ParamSeparatorToken)
-  tokenbuilders << TextTokenBuilder.new(quotes)
+  tokenbuilders << QuotedTextTokenBuilder.new(quotes)
   tokenbuilders << NumberTokenBuilder.new
 
   allow_hash_constant = $options['allow_hash_constant'].value
@@ -632,7 +632,7 @@ def make_command_tokenbuilders(quotes)
   tokenbuilders <<
     ListTokenBuilder.new(FunctionFactory.user_function_names, UserFunctionToken)
 
-  tokenbuilders << TextTokenBuilder.new(quotes)
+  tokenbuilders << QuotedTextTokenBuilder.new(quotes)
   tokenbuilders << NumberTokenBuilder.new
 
   allow_hash_constant = $options['allow_hash_constant'].value
