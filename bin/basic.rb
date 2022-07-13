@@ -580,6 +580,7 @@ def make_interpreter_data_tokenbuilders(quotes, statement_separators, comment_le
   tokenbuilders << TextSymbolTokenBuilder.new if allow_ascii
 
   tokenbuilders << ListTokenBuilder.new(%w[TRUE FALSE], BooleanLiteralToken)
+  tokenbuilders << BareTextTokenBuilder.new
   tokenbuilders << WhitespaceTokenBuilder.new
 end
 
