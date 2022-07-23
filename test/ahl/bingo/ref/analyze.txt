@@ -313,10 +313,10 @@ Halstead complexity:
 1240 (0 2) GOTO 2120
   Origs: 1230:auto
   Dests: 2120:goto
-1250 F(Y:1110,X:1120) (0 3) LET B(X, Y) = 0
+1250 (0 3) LET B(X, Y) = 0
   Origs: 1130:ifthen
   Dests: 1260:auto
-1260 F(Y:1110,X:1120) (0 3) GOTO 1140
+1260 (0 3) GOTO 1140
   Origs: 1250:auto
   Dests: 1140:goto
 1265 (0 1) REM THIS IS THE BINGO DETERMINING SEQUENCE (LINES 1270-1950)
@@ -333,11 +333,9 @@ Halstead complexity:
   Origs: 1170:gosub, 1190:gosub
   Dests: 1280:auto
 1280 G(1270) F(Y:1280) (1 3) FOR Y = F TO G
-     WARNING: FORNEXT length exceeds limit 40
   Origs: 1270:auto
   Dests: 1290:fornext, 1430:fornext
 1290 G(1270) F(Y:1280,X:1290) (1 3) FOR X = F TO G
-     WARNING: FORNEXT length exceeds limit 40
   Origs: 1280:fornext
   Dests: 1300:fornext, 1420:fornext
 1300 G(1270) F(Y:1280,X:1290) (1 4) IF B(X, Y) <> 0 THEN 1430
@@ -376,104 +374,103 @@ Halstead complexity:
 1420 G(1270) F(Y:1280,X:1290) (0 1) NEXT X
   Origs: 1290:fornext, 1310:ifthen
   Dests: 1430:auto
-1430 G(1270) F(Y:1280,X:1290) (0 1) NEXT Y
+1430 G(1270) F(Y:1280) (0 1) NEXT Y
   Origs: 1280:fornext, 1300:ifthen, 1420:auto
   Dests: 1450:auto
 1440 (0 1) REM THIS IS THE HORIZONTAL CHECK FOR BINGO*** (LINES 1450-1610)
   Origs: 
   Dests: 
-1450 G(1270) F(Y:1280,X:1290) (0 4) LET G = F + 4
+1450 G(1270) (0 4) LET G = F + 4
   Origs: 1410:goto, 1430:auto
   Dests: 1460:auto
-1460 G(1270) F(Y:1280,X:1290,X:1460) (1 3) FOR X = F TO G
+1460 G(1270) F(X:1460) (1 3) FOR X = F TO G
   Origs: 1450:auto
   Dests: 1470:fornext, 1610:fornext
-1470 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (1 3) FOR Y = F TO G
-     WARNING: FOR/NEXT nesting exceeds limit 3
+1470 G(1270) F(X:1460,Y:1470) (1 3) FOR Y = F TO G
   Origs: 1460:fornext
   Dests: 1480:fornext, 1600:fornext
-1480 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (1 4) IF B(X, Y) <> 0 THEN 1610
+1480 G(1270) F(X:1460,Y:1470) (1 4) IF B(X, Y) <> 0 THEN 1610
   Origs: 1470:fornext
   Dests: 1490:auto, 1610:ifthen
-1490 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (1 6) IF Y < F + 4 THEN 1600
+1490 G(1270) F(X:1460,Y:1470) (1 6) IF Y < F + 4 THEN 1600
   Origs: 1480:auto
   Dests: 1500:auto, 1600:ifthen
-1500 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (1 4) IF F = 6 THEN 1550
+1500 G(1270) F(X:1460,Y:1470) (1 4) IF F = 6 THEN 1550
   Origs: 1490:auto
   Dests: 1510:auto, 1550:ifthen
-1510 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 2) PRINT
+1510 G(1270) F(X:1460,Y:1470) (0 2) PRINT
   Origs: 1500:auto
   Dests: 1520:auto
-1520 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 2) PRINT "YOU'VE GOT A BINGO***"
+1520 G(1270) F(X:1460,Y:1470) (0 2) PRINT "YOU'VE GOT A BINGO***"
   Origs: 1510:auto
   Dests: 1530:auto
-1530 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 3) LET W = 1
+1530 G(1270) F(X:1460,Y:1470) (0 3) LET W = 1
   Origs: 1520:auto
   Dests: 1540:auto
-1540 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 1) RETURN
+1540 G(1270) F(X:1460,Y:1470) (0 1) RETURN
   Origs: 1530:auto
   Dests: 
-1550 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 2) PRINT
+1550 G(1270) F(X:1460,Y:1470) (0 2) PRINT
   Origs: 1500:ifthen
   Dests: 1560:auto
-1560 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 2) PRINT "I'VE GOT A BINGO*****"
+1560 G(1270) F(X:1460,Y:1470) (0 2) PRINT "I'VE GOT A BINGO*****"
   Origs: 1550:auto
   Dests: 1570:auto
-1570 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 3) LET V = 1
+1570 G(1270) F(X:1460,Y:1470) (0 3) LET V = 1
   Origs: 1560:auto
   Dests: 1590:auto
-1590 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 2) GOTO 1620
+1590 G(1270) F(X:1460,Y:1470) (0 2) GOTO 1620
   Origs: 1570:auto
   Dests: 1620:goto
-1600 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 1) NEXT Y
+1600 G(1270) F(X:1460,Y:1470) (0 1) NEXT Y
   Origs: 1470:fornext, 1490:ifthen
   Dests: 1610:auto
-1610 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 1) NEXT X
+1610 G(1270) F(X:1460) (0 1) NEXT X
   Origs: 1460:fornext, 1480:ifthen, 1600:auto
   Dests: 1620:auto
 1615 (0 1) REM THIS IS THE SLANT CHECK (M=-1) FOR BINGO*** (LINES 1620-1770)
   Origs: 
   Dests: 
-1620 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 3) LET X = F
+1620 G(1270) (0 3) LET X = F
   Origs: 1590:goto, 1610:auto
   Dests: 1630:auto
-1630 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 3) LET Y = F
+1630 G(1270) (0 3) LET Y = F
   Origs: 1620:auto
   Dests: 1640:auto
-1640 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (1 4) IF B(X, Y) <> 0 THEN 1770
+1640 G(1270) (1 4) IF B(X, Y) <> 0 THEN 1770
   Origs: 1630:auto, 1670:ifthen
   Dests: 1650:auto, 1770:ifthen
-1650 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 4) LET X = X + 1
+1650 G(1270) (0 4) LET X = X + 1
   Origs: 1640:auto
   Dests: 1660:auto
-1660 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 4) LET Y = Y + 1
+1660 G(1270) (0 4) LET Y = Y + 1
   Origs: 1650:auto
   Dests: 1670:auto
-1670 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (1 7) IF Y < F + 5 THEN 1640
+1670 G(1270) (1 7) IF Y < F + 5 THEN 1640
   Origs: 1660:auto
   Dests: 1640:ifthen, 1680:auto
-1680 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (1 4) IF Y = 11 THEN 1740
+1680 G(1270) (1 4) IF Y = 11 THEN 1740
   Origs: 1670:auto
   Dests: 1690:auto, 1740:ifthen
-1690 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 3) LET W = 1
+1690 G(1270) (0 3) LET W = 1
   Origs: 1680:auto
   Dests: 1700:auto
-1700 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 2) PRINT
+1700 G(1270) (0 2) PRINT
   Origs: 1690:auto
   Dests: 1710:auto
-1710 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 2) PRINT "YOU'VE GOT A BINGO***"
+1710 G(1270) (0 2) PRINT "YOU'VE GOT A BINGO***"
   Origs: 1700:auto
   Dests: 1730:auto
-1730 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 1) RETURN
+1730 G(1270) (0 1) RETURN
   Origs: 1710:auto
   Dests: 
-1740 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 2) PRINT "I'VE GOT A BINGO*****"
+1740 G(1270) (0 2) PRINT "I'VE GOT A BINGO*****"
   Origs: 1680:ifthen
   Dests: 1750:auto
-1750 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 3) LET V = 1
+1750 G(1270) (0 3) LET V = 1
   Origs: 1740:auto
   Dests: 1770:auto
-1770 G(1270) F(Y:1280,X:1290,X:1460,Y:1470) (0 1) RETURN
+1770 G(1270) (0 1) RETURN
   Origs: 1640:ifthen, 1750:auto
   Dests: 
 1775 (0 1) REM THIS IS THE SLANT CHECK (M=1) FOR BINGO*** (LINES 1780-1950)

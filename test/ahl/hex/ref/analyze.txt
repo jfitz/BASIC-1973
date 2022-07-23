@@ -81,49 +81,48 @@ Halstead complexity:
     (0 2) PRINT "SINCE I'M A GOOD SPORT, YOU'LL ALWAYS GO FIRST"
   Origs: 10:ifthen, 60:auto
   Dests: 120:auto
-120 F(C%:310) (0 3) P% = 8%
-    F(C%:310) (0 3) P$ = "XXX--OOO"
-    F(C%:310) (0 2) &
-    F(C%:310) (0 2) & "NUMBERING: "
-    F(C%:310) (0 2) & "123"
-    F(C%:310) (0 2) & "456"
-    F(C%:310) (0 2) & "789"
-    F(C%:310) (0 2) &
+120 (0 3) P% = 8%
+    (0 3) P$ = "XXX--OOO"
+    (0 2) &
+    (0 2) & "NUMBERING: "
+    (0 2) & "123"
+    (0 2) & "456"
+    (0 2) & "789"
+    (0 2) &
   Origs: 110:auto, 530:ifthen
   Dests: 190:auto
-190 F(C%:310) (0 4) D% = -1%
-    F(C%:310) (0 3) Q$ = "O"
-    F(C%:310) (0 2) GOSUB 2000
-    F(C%:310) (1 5) IF M$ = "" THEN PRINT "YOU CAN'T MOVE. I WIN."
-    F(C%:310) (0 2) GOTO 510
+190 (0 4) D% = -1%
+    (0 3) Q$ = "O"
+    (0 2) GOSUB 2000
+    (1 5) IF M$ = "" THEN PRINT "YOU CAN'T MOVE. I WIN."
+    (0 2) GOTO 510
   Origs: 120:auto, 440:goto
   Dests: 200:auto, 510:goto, 2000:gosub
-200 F(C%:310) (0 2) &
-    F(C%:310) (0 2) & "BOARD:"
-    F(C%:310) (0 3) & LEFT(P$, 3%)
-    F(C%:310) (0 3) & MID(P$, 4%, 3%)
-    F(C%:310) (0 3) & RIGHT(P$, 7%)
-    F(C%:310) (0 2) &
+200 (0 2) &
+    (0 2) & "BOARD:"
+    (0 3) & LEFT(P$, 3%)
+    (0 3) & MID(P$, 4%, 3%)
+    (0 3) & RIGHT(P$, 7%)
+    (0 2) &
   Origs: 190:auto
   Dests: 210:auto
-210 F(C%:310) (2 3) INPUT "WHAT IS YOUR MOVE"; A%, B%
-    F(C%:310) (1 6) IF INSTR(1%, M$, FNN$(A%) + FNN$(B%)) = 0% THEN PRINT "ILLEGAL MOVE."
-    F(C%:310) (0 3) GOTO 210
+210 (2 3) INPUT "WHAT IS YOUR MOVE"; A%, B%
+    (1 6) IF INSTR(1%, M$, FNN$(A%) + FNN$(B%)) = 0% THEN PRINT "ILLEGAL MOVE."
+    (0 3) GOTO 210
   Origs: 200:auto
   Dests: 230:auto
-230 F(C%:310) (0 5) P$ = FNC$(FNC$(P$, A%, "-"), B%, "O")
-    F(C%:310) (1 10) IF INSTR(1%, P$, "*") = 0% OR INSTR(1%, P$, "O") = 4% THEN PRINT "YOU WIN."
-    F(C%:310) (0 2) GOTO 500
+230 (0 5) P$ = FNC$(FNC$(P$, A%, "-"), B%, "O")
+    (1 10) IF INSTR(1%, P$, "*") = 0% OR INSTR(1%, P$, "O") = 4% THEN PRINT "YOU WIN."
+    (0 2) GOTO 500
   Origs: 210:auto
   Dests: 100:function, 300:auto, 500:goto
-300 F(C%:310) (0 4) P% = P% + 2%
+300 (0 4) P% = P% + 2%
   Origs: 230:auto
   Dests: 310:auto
 310 F(C%:310) (1 3) FOR C% = 1% TO Q%
     F(C%:310) (0 3) C$ = P$(C%)
     F(C%:310) (1 12) IF VAL(LEFT(C$, 1%)) = P% AND MID(C$, 2%, 9%) = P$ THEN M$ = RIGHT(C$, 11%)
     F(C%:310) (0 2) GOTO 400
-    WARNING: FORNEXT length exceeds limit 40
   Origs: 300:auto
   Dests: 320:auto, 320:fornext, 400:goto
 320 F(C%:310) (0 1) NEXT C%
@@ -135,54 +134,54 @@ Halstead complexity:
     (0 2) GOTO 500
   Origs: 310:auto, 310:fornext
   Dests: 400:auto, 500:goto, 2000:gosub
-400 F(C%:310) (1 5) IF M$ = "" THEN PRINT "I RESIGN."
-    F(C%:310) (0 2) GOTO 500
+400 (1 5) IF M$ = "" THEN PRINT "I RESIGN."
+    (0 2) GOTO 500
   Origs: 310:goto, 320:auto
   Dests: 410:auto, 500:goto
-410 F(C%:310) (0 4) K$ = LEFT(M$, 2%)
-    F(C%:310) (0 4) M$ = RIGHT(M$, 3%)
-    F(C%:310) (1 9) IF RND > 0.333333 AND M$ <> "" THEN 410
+410 (0 4) K$ = LEFT(M$, 2%)
+    (0 4) M$ = RIGHT(M$, 3%)
+    (1 9) IF RND > 0.333333 AND M$ <> "" THEN 410
   Origs: 400:auto
   Dests: 420:auto
-420 F(C%:310) (0 3) K% = C%
-    F(C%:310) (0 4) A% = VAL(LEFT(K$, 1%))
-    F(C%:310) (0 4) B% = VAL(RIGHT(K$, 2%))
-    F(C%:310) (0 5) P$ = FNC$(FNC$(P$, A%, "-"), B%, "*")
+420 (0 3) K% = C%
+    (0 4) A% = VAL(LEFT(K$, 1%))
+    (0 4) B% = VAL(RIGHT(K$, 2%))
+    (0 5) P$ = FNC$(FNC$(P$, A%, "-"), B%, "*")
     WARNING: Target type (integer) does not match expression type (numeric).
     WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 410:auto
   Dests: 100:function, 430:auto
-430 F(C%:310) (1 8) IF INSTR(1%, P$, "O") = 0% OR INSTR(7%, P$, "*") THEN PRINT "I WIN!"
-    F(C%:310) (0 2) GOTO 510
+430 (1 8) IF INSTR(1%, P$, "O") = 0% OR INSTR(7%, P$, "*") THEN PRINT "I WIN!"
+    (0 2) GOTO 510
   Origs: 420:auto
   Dests: 440:auto, 510:goto
-440 F(C%:310) (0 5) PRINT "I MOVE FROM" A% "TO" B%
-    F(C%:310) (0 3) GOTO 190
+440 (0 5) PRINT "I MOVE FROM" A% "TO" B%
+    (0 3) GOTO 190
   Origs: 430:auto
   Dests: 190:goto
-500 F(C%:310) (0 4) W2% = W2% + 1%
-    F(C%:310) (0 4) I% = INSTR(11%, P$(K%), K$)
-    F(C%:310) (0 6) P$(K%) = LEFT(P$(K%), I% - 1%) + RIGHT(P$(K%), I% + 2%)
-              (1 1)   IF I%
-              (0 1)   ENDIF
-    F(C%:310) (0 2) GOTO 520
+500 (0 4) W2% = W2% + 1%
+    (0 4) I% = INSTR(11%, P$(K%), K$)
+    (0 6) P$(K%) = LEFT(P$(K%), I% - 1%) + RIGHT(P$(K%), I% + 2%)
+    (1 1)   IF I%
+    (0 1)   ENDIF
+    (0 2) GOTO 520
     WARNING: Target type (integer) does not match expression type (numeric).
   Origs: 230:goto, 320:goto, 400:goto
   Dests: 520:goto
-510 F(C%:310) (0 4) W1% = W1% + 1%
+510 (0 4) W1% = W1% + 1%
   Origs: 190:goto, 430:goto
   Dests: 520:auto
-520 F(C%:310) (0 2) &
-    F(C%:310) (0 2) & "BOARD:"
-    F(C%:310) (0 3) & LEFT(P$, 3%)
-    F(C%:310) (0 3) & MID(P$, 4%, 3%)
-    F(C%:310) (0 3) & RIGHT(P$, 7%)
-    F(C%:310) (0 2) &
-    F(C%:310) (0 9) & "I HAVE WON" W1% "AND YOU HAVE WON" W2% "OF" W1% + W2% "GAMES"
+520 (0 2) &
+    (0 2) & "BOARD:"
+    (0 3) & LEFT(P$, 3%)
+    (0 3) & MID(P$, 4%, 3%)
+    (0 3) & RIGHT(P$, 7%)
+    (0 2) &
+    (0 9) & "I HAVE WON" W1% "AND YOU HAVE WON" W2% "OF" W1% + W2% "GAMES"
   Origs: 500:goto, 510:auto
   Dests: 530:auto
-530 F(C%:310) (1 2) INPUT "ANOTHER GAME"; C$
-    F(C%:310) (1 6) IF C$ = "NO" THEN 9999 ELSE 120
+530 (1 2) INPUT "ANOTHER GAME"; C$
+    (1 6) IF C$ = "NO" THEN 9999 ELSE 120
   Origs: 520:auto
   Dests: 120:ifthen, 9999:ifthen
 900 (0 0) 
@@ -224,8 +223,7 @@ Halstead complexity:
 2060 G(2000) (0 1) RETURN
   Origs: 2050:auto
   Dests: 
-9999 F(C%:310) (0 1) END
-     WARNING: Terminating statement in FOR/NEXT
+9999 (0 1) END
   Origs: 530:ifthen
   Dests: :stop
 

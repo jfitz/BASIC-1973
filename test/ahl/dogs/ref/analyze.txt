@@ -238,29 +238,29 @@ Halstead complexity:
     (0 2) GOTO 325
   Origs: 270:fornext, 290:auto
   Dests: 325:goto
-300 F(Z:270) (0 3) PRINT "YOU MUST BET AT LEAST $2,00, TRY AGAIN " N$(Z)
+300 (0 3) PRINT "YOU MUST BET AT LEAST $2,00, TRY AGAIN " N$(Z)
   Origs: 290:ifthen
   Dests: 305:auto
-305 F(Z:270) (0 2) PRINT "YOUR BET";
-    F(Z:270) (1 2) INPUT P(Z)
+305 (0 2) PRINT "YOUR BET";
+    (1 2) INPUT P(Z)
   Origs: 300:auto, 320:goto
   Dests: 310:auto
-310 F(Z:270) (0 3) GOTO 290
+310 (0 3) GOTO 290
   Origs: 305:auto
   Dests: 290:goto
-315 F(Z:270) (0 4) PRINT "YOU CAN'T BET OVER 500,00 " N$(Z) " TRY AGAIN"
+315 (0 4) PRINT "YOU CAN'T BET OVER 500,00 " N$(Z) " TRY AGAIN"
   Origs: 290:ifthen
   Dests: 320:auto
-320 F(Z:270) (0 3) GOTO 305
+320 (0 3) GOTO 305
   Origs: 315:auto
   Dests: 305:goto
-325 F(I:325,I:920) (1 3) FOR I = 1 TO 10
+325 F(I:325) (1 3) FOR I = 1 TO 10
   Origs: 295:goto, 940:ifthen, 1065:goto, 1080:goto
   Dests: 330:fornext, 335:fornext
-330 F(I:325,I:920) (0 4) B(11) = B(11) + P(I)
+330 F(I:325) (0 4) B(11) = B(11) + P(I)
   Origs: 325:fornext
   Dests: 335:auto
-335 F(I:325,I:920) (0 1) NEXT I
+335 F(I:325) (0 1) NEXT I
   Origs: 325:fornext, 330:auto
   Dests: 340:auto
 340 F(I:340) (1 3) FOR I = 1 TO Q
@@ -409,31 +409,31 @@ Halstead complexity:
 575 (0 2) GOTO 625
   Origs: 570:auto
   Dests: 625:goto
-580 F(P:540,R:545) (0 6) PRINT TAB(R * 2); R; CHR$(141)
+580 (0 6) PRINT TAB(R * 2); R; CHR$(141)
   Origs: 550:ifthen
   Dests: 585:auto
-585 F(P:540,R:545) (0 3) GOTO 560
+585 (0 3) GOTO 560
   Origs: 580:auto
   Dests: 560:goto
-590 F(P:540,R:545) (1 4) IF W(1) <> 0 THEN 605
+590 (1 4) IF W(1) <> 0 THEN 605
   Origs: 555:ifthen
   Dests: 595:auto, 605:ifthen
-595 F(P:540,R:545) (0 3) W(1) = R
+595 (0 3) W(1) = R
   Origs: 590:auto
   Dests: 600:auto
-600 F(P:540,R:545) (0 3) GOTO 560
+600 (0 3) GOTO 560
   Origs: 595:auto
   Dests: 560:goto
-605 F(P:540,R:545) (0 3) D = 2
+605 (0 3) D = 2
   Origs: 590:ifthen
   Dests: 610:auto
-610 F(P:540,R:545) (0 3) W(D) = R
+610 (0 3) W(D) = R
   Origs: 605:auto
   Dests: 615:auto
-615 F(P:540,R:545) (0 4) D = D + 1
+615 (0 4) D = D + 1
   Origs: 610:auto
   Dests: 620:auto
-620 F(P:540,R:545) (0 3) GOTO 560
+620 (0 3) GOTO 560
   Origs: 615:auto
   Dests: 560:goto
 625 (1 4) IF W(1) <> 0 THEN 640
@@ -460,13 +460,13 @@ Halstead complexity:
 660 (0 2) GOTO 680
   Origs: 655:auto
   Dests: 680:goto
-665 F(Y:640) (0 2) PRINT " FINISH";
+665 (0 2) PRINT " FINISH";
   Origs: 650:ifthen
   Dests: 670:auto
-670 F(Y:640) (0 3) Y = 13
+670 (0 3) Y = 13
   Origs: 665:auto
   Dests: 675:auto
-675 F(Y:640) (0 3) GOTO 655
+675 (0 3) GOTO 655
   Origs: 670:auto
   Dests: 655:goto
 680 (0 2) PRINT
@@ -499,10 +499,10 @@ Halstead complexity:
 720 (0 2) GOTO 735
   Origs: 715:auto
   Dests: 735:goto
-725 F(I2:705) (0 3) G = W(I2 + 1)
+725 (0 3) G = W(I2 + 1)
   Origs: 710:ifthen
   Dests: 730:auto
-730 F(I2:705) (0 3) GOTO 715
+730 (0 3) GOTO 715
   Origs: 725:auto
   Dests: 715:goto
 735 (0 2) PRINT
@@ -539,31 +539,31 @@ Halstead complexity:
 785 (0 2) GOTO 835
   Origs: 780:auto
   Dests: 835:goto
-790 F(E:760) (1 4) IF B(G) = 2 THEN 800
+790 (1 4) IF B(G) = 2 THEN 800
   Origs: 765:ifthen
   Dests: 795:auto, 800:ifthen
-795 F(E:760) (0 2) GOTO 805
+795 (0 2) GOTO 805
   Origs: 790:auto
   Dests: 805:goto
-800 F(E:760) (0 3) B(G) = 1
+800 (0 3) B(G) = 1
   Origs: 790:ifthen
   Dests: 805:auto
-805 F(E:760) (0 4) M = INT(100 * (B(G) * P(E) * P(E)) / 100)
+805 (0 4) M = INT(100 * (B(G) * P(E) * P(E)) / 100)
   Origs: 795:goto, 800:auto
   Dests: 810:auto
-810 F(E:760) (0 5) PRINT "CONGRATULATION " N$(E) " YOU HAVE WON $"; M
+810 (0 5) PRINT "CONGRATULATION " N$(E) " YOU HAVE WON $"; M
   Origs: 805:auto
   Dests: 815:auto
-815 F(E:760) (0 4) M5(E) = M5(E) + M
+815 (0 4) M5(E) = M5(E) + M
   Origs: 810:auto
   Dests: 820:auto
-820 F(E:760) (0 4) N7 = N7 - M
+820 (0 4) N7 = N7 - M
   Origs: 815:auto
   Dests: 825:auto
-825 F(E:760) (0 2) PRINT
+825 (0 2) PRINT
   Origs: 820:auto
   Dests: 830:auto
-830 F(E:760) (0 3) GOTO 780
+830 (0 3) GOTO 780
   Origs: 825:auto
   Dests: 780:goto
 835 (0 2) PRINT "WOULD YOU AVID RACE FANS LIKE TO PLAY AGAIN";
@@ -627,7 +627,6 @@ Halstead complexity:
   Origs: 910:auto
   Dests: 920:auto
 920 F(I:920) (1 3) FOR I = 1 TO Q
-    WARNING: FORNEXT length exceeds limit 40
   Origs: 915:auto
   Dests: 925:fornext, 935:fornext
 925 F(I:920) (0 4) PRINT N$(I); " YOUR DOGS NUMBER" I
@@ -643,23 +642,23 @@ Halstead complexity:
     F(I:920) (0 1) NEXT I
   Origs: 920:fornext, 930:auto, 955:goto
   Dests: 940:auto, 950:ifthen, 960:ifthen
-940 F(I:920) (1 5) IF C$ = "NO" THEN 325
+940 (1 5) IF C$ = "NO" THEN 325
   Origs: 935:auto
   Dests: 325:ifthen, 945:auto
-945 F(I:920) (0 2) GOTO 1025
+945 (0 2) GOTO 1025
   Origs: 940:auto
   Dests: 1025:goto
-950 F(I:920) (0 4) PRINT "YOU MUST BET AT LEAST $2.00 " N$(I) "YOUR BET";
+950 (0 4) PRINT "YOU MUST BET AT LEAST $2.00 " N$(I) "YOUR BET";
   Origs: 935:ifthen
   Dests: 955:auto
-955 F(I:920) (1 2) INPUT P(I)
-    F(I:920) (0 3) GOTO 935
+955 (1 2) INPUT P(I)
+    (0 3) GOTO 935
   Origs: 950:auto
   Dests: 935:goto
-960 F(I:920) (0 4) PRINT "YOU CAN'T BET OVER $500.00 " N$(I) " TRY AGAIN"
+960 (0 4) PRINT "YOU CAN'T BET OVER $500.00 " N$(I) " TRY AGAIN"
   Origs: 935:ifthen
   Dests: 965:auto
-965 F(I:920) (0 3) GOTO 930
+965 (0 3) GOTO 930
   Origs: 960:auto
   Dests: 930:goto
 970 F(I:970) (1 3) FOR I = 1 TO 10
@@ -698,54 +697,54 @@ Halstead complexity:
 1020 (0 2) GOTO 1085
   Origs: 
   Dests: 1085:goto
-1025 F(I:920) (0 2) PRINT
-     F(I:920) (0 2) PRINT "HOW MANY NEWCOMERS";
-     F(I:920) (0 3) Q4 = 0
-     F(I:920) (1 2) INPUT J6
-     F(I:920) (0 4) Q4 = Q + J6
+1025 (0 2) PRINT
+     (0 2) PRINT "HOW MANY NEWCOMERS";
+     (0 3) Q4 = 0
+     (1 2) INPUT J6
+     (0 4) Q4 = Q + J6
   Origs: 945:goto, 1035:goto
   Dests: 1030:auto
-1030 F(I:920) (1 4) IF Q4 >= 20 THEN 1035
-     F(I:920) (0 3) Q = Q4
-     F(I:920) (0 3) Q4 = 0
-     F(I:920) (0 2) GOTO 1040
+1030 (1 4) IF Q4 >= 20 THEN 1035
+     (0 3) Q = Q4
+     (0 3) Q4 = 0
+     (0 2) GOTO 1040
   Origs: 1025:auto
   Dests: 1035:auto, 1035:ifthen, 1040:goto
-1035 F(I:920) (0 3) PRINT "NO MORE THAN 19 ALLOWED, YOU NOW HAVE " Q
-     F(I:920) (0 3) Q4 = 0
-     F(I:920) (0 3) GOTO 1025
+1035 (0 3) PRINT "NO MORE THAN 19 ALLOWED, YOU NOW HAVE " Q
+     (0 3) Q4 = 0
+     (0 3) GOTO 1025
   Origs: 1030:auto, 1030:ifthen
   Dests: 1025:goto
-1040 F(I:920,Z:1040) (1 3) FOR Z = I TO Q
+1040 F(Z:1040) (1 3) FOR Z = I TO Q
   Origs: 1030:goto
   Dests: 1045:fornext, 1065:fornext
-1045 F(I:920,Z:1040) (0 2) PRINT "BETTORS NAME";
-     F(I:920,Z:1040) (1 2) INPUT N$(Z)
+1045 F(Z:1040) (0 2) PRINT "BETTORS NAME";
+     F(Z:1040) (1 2) INPUT N$(Z)
   Origs: 1040:fornext
   Dests: 1050:auto
-1050 F(I:920,Z:1040) (0 2) PRINT "DOGS NUMBER";
-     F(I:920,Z:1040) (1 2) INPUT J(Z)
+1050 F(Z:1040) (0 2) PRINT "DOGS NUMBER";
+     F(Z:1040) (1 2) INPUT J(Z)
   Origs: 1045:auto
   Dests: 1055:auto
-1055 F(I:920,Z:1040) (0 2) PRINT "AND YOUR BET";
-     F(I:920,Z:1040) (1 2) INPUT P(Z)
-     F(I:920,Z:1040) (1 4) IF P(Z) < 2 THEN 1070
+1055 F(Z:1040) (0 2) PRINT "AND YOUR BET";
+     F(Z:1040) (1 2) INPUT P(Z)
+     F(Z:1040) (1 4) IF P(Z) < 2 THEN 1070
   Origs: 1050:auto, 1070:goto, 1075:goto
   Dests: 1060:auto, 1070:ifthen
-1060 F(I:920,Z:1040) (1 4) IF P(Z) > 500 THEN 1075
+1060 F(Z:1040) (1 4) IF P(Z) > 500 THEN 1075
   Origs: 1055:auto
   Dests: 1065:auto, 1075:ifthen
-1065 F(I:920,Z:1040) (0 2) PRINT
-     F(I:920,Z:1040) (0 1) NEXT Z
-     F(I:920) (0 3) GOTO 325
+1065 F(Z:1040) (0 2) PRINT
+     F(Z:1040) (0 1) NEXT Z
+     (0 3) GOTO 325
   Origs: 1040:fornext, 1060:auto
   Dests: 325:goto
-1070 F(I:920,Z:1040) (0 2) PRINT "YOU MUST BET AT LEAST $2.00"
-     F(I:920,Z:1040) (0 3) GOTO 1055
+1070 (0 2) PRINT "YOU MUST BET AT LEAST $2.00"
+     (0 3) GOTO 1055
   Origs: 1055:ifthen
   Dests: 1055:goto
-1075 F(I:920,Z:1040) (0 2) PRINT "YOU CAN'T BET OVER $500,00"
-     F(I:920,Z:1040) (0 3) GOTO 1055
+1075 (0 2) PRINT "YOU CAN'T BET OVER $500,00"
+     (0 3) GOTO 1055
   Origs: 1060:ifthen
   Dests: 1055:goto
 1080 (0 3) GOTO 325

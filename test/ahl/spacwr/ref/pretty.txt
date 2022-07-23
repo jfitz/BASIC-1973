@@ -30,9 +30,7 @@
 490 B9, K9 = 0
 491 REM *** SETS UP WHAT EXISTS IN GALAXY
 500 FOR I = 1 TO 8
- WARNING: FOR/NEXT nesting exceeds limit 3
 510 FOR J = 1 TO 8
- WARNING: FOR/NEXT nesting exceeds limit 3
 520 R1 = RND(1)
 530 IF R1 > 0.98 THEN 580
 540 IF R1 > 0.95 THEN 610
@@ -69,7 +67,6 @@
 900 PRINT "   SHIELDS DANGEROUSLY LOW"
 910 MAT K = ZER
 920 FOR I = 1 TO 3
- WARNING: FOR/NEXT nesting exceeds limit 3
 930 K(I, 3) = 0
 940 NEXT I
 950 Q$ = Z$ : R$ = Z$
@@ -80,7 +77,6 @@
 1000 Z2 = S2
 1010 GOSUB 5510
 1020 FOR I = 1 TO K3
- WARNING: FOR/NEXT nesting exceeds limit 3
 1030 GOSUB 5380
 1031 REM *** PUT KLINGONS SOMEWHERE
 1040 A$ = "+++"
@@ -170,7 +166,6 @@
 1890 X1 = C(C1, 1) + (C(C1 + 1, 1) - C(C1, 1)) * (C1 - INT(C1))
 1900 X2 = C(C1, 2) + (C(C1 + 1, 2) - C(C1, 2)) * (C1 - INT(C1))
 1910 FOR I = 1 TO N : S1 = S1 + X1 : S2 = S2 + X2
- WARNING: FORNEXT length exceeds limit 40
 1940 IF S1 < 1 OR S1 >= 9 OR S2 < 1 OR S2 >= 9 THEN 2170
 1950 S8 = S1 * 24 + S2 * 3 - 26 : IF S8 > 72 THEN 1990
 1970 IF MID(Q$, S8, 3) = "   " THEN 2070
@@ -209,10 +204,8 @@
 2370 PRINT "LONG RANGE SENSOR SCAN FOR QUADRANT " Q1 "." Q2
 2380 PRINT "-------------------"
 2390 FOR I = Q1 - 1 TO Q1 + 1
- WARNING: FOR/NEXT nesting exceeds limit 3
 2400 MAT N = ZER
 2410 FOR J = Q2 - 1 TO Q2 + 1
- WARNING: FOR/NEXT nesting exceeds limit 3
 2420 IF I < 1 OR I > 8 OR J < 1 OR J > 8 THEN 2460
 2430 N(J - Q2 + 2) = G(I, J)
 2440 IF D(7) < 0 THEN 2460
@@ -241,8 +234,6 @@
 2660 IF D(7) > 0 THEN 2680
 2670 X = X * RND(1)
 2680 FOR I = 1 TO 3
- WARNING: FORNEXT length exceeds limit 40
- WARNING: FOR/NEXT nesting exceeds limit 3
 2690 IF K(I, 3) <= 0 THEN 2770
 2700 H = INT((X / K / FND(0)) * (2 * RND(1)))
 2710 K(I, 3) = K(I, 3) - H
@@ -288,7 +279,6 @@
 3130 K3 = K3 - 1 : K9 = K9 - 1
 3150 IF K9 <= 8 THEN 4040
 3160 FOR I = 1 TO 3 : IF INT(X) = K(I, 1) THEN 3190
- WARNING: FORNEXT length exceeds limit 40
 3180 IF INT(Y) <> K(I, 2) THEN 3200
 3190 NEXT I
 3200 K(I, 3) = 0 : GOTO 3360
@@ -333,7 +323,6 @@
  WARNING: Branch to line before GOSUB start
 3590 PRINT \ PRINT "DEVICE STATE OF REPAIR"
 3610 FOR R1 = 1 TO 8
- WARNING: FOR/NEXT nesting exceeds limit 3
 3620 GOSUB 5610
 3630 PRINT D(R1)
 3640 NEXT R1 : PRINT
@@ -353,7 +342,6 @@
 3810 RETURN
 3820 IF K3 <= 0 THEN 3910
 3830 FOR I = 1 TO 3 : IF K(I, 3) <= 0 THEN 3900
- WARNING: FORNEXT length exceeds limit 40
 3850 H = INT((K(I, 3) / FND(0)) * (2 + RND(1))) : S = S - H
 3870 PRINT H " UNIT HIT ON ENTERPRISE AT SECTOR " K(I, 1) "," K(I, 2);
 3871 PRINT "     (" S " LEFT)"
@@ -390,7 +378,6 @@
 4111 REM *** SHORT RANGE SENSOR SCAN AND STARTING POINT CODE
 4120 FOR I = S1 - 1 TO S1 + 1
  WARNING: GOSUB length exceeds limit 40
- WARNING: FORNEXT length exceeds limit 40
 4130 FOR J = S2 - 1 TO S2 + 1
 4140 IF I < 1 OR I > 8 OR J < 1 OR J > 8 THEN 4200
 4150 A$ = ">1<" : Z1 = I : Z2 = J
@@ -465,7 +452,6 @@
 4760 PRINT "     1     2     3     4     5     6     7     8"
 4770 PRINT "   ----- ----- ----- ----- ----- ----- ----- -----"
 4780 FOR I = 1 TO 8
- WARNING: FOR/NEXT nesting exceeds limit 3
 4790 N1$ = "#   ###   ###   ###   ###   ###   ###   ###   ###"
 4795 PRINT USING N1$, I, Z(I, 1), Z(I, 2), Z(I, 3), Z(I, 4), Z(I, 5), Z(I, 6), Z(I, 7), Z(I, 8)
  WARNING: Line exceeds LIST width limit 72
@@ -485,7 +471,6 @@
 4880 PRINT : H8 = 0
 4881 REM *** PHOTON TORPEDO DATA CODE BEGINS HERE
 4900 FOR I = 1 TO 3
- WARNING: FORNEXT length exceeds limit 40
 4910 IF K(I, 3) <= 0 THEN 5260
 4920 C1 = S1 : A = S2 : W1 = K(I, 1) : X = K(I, 2)
 4960 GOTO 5010
@@ -623,5 +608,4 @@
 6500 GOTO 230
 6510 END
  WARNING: Terminating statement in GOSUB
- WARNING: Terminating statement in FOR/NEXT
 

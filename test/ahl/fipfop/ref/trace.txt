@@ -24,233 +24,233 @@ TO RESET THE LINE TO ALL X' S, TYPE A 0 (ZERO) AND TO START A NEW
 IN THE MIDDLE OF A GAME, TYPE 11 (ELEVEN)
 170 PRINT
 
-180 F(Z:650) RANDOMIZE
-190 F(Z:650) LET Q = RND(Y)
+180 RANDOMIZE
+190 LET Q = RND(Y)
  Y: 0
  Q = 0.417022005
-200 F(Z:650) PRINT "HERE IS THE STARTING LINE OF X'S:"
+200 PRINT "HERE IS THE STARTING LINE OF X'S:"
 HERE IS THE STARTING LINE OF X'S:
-210 F(Z:650) PRINT
+210 PRINT
 
-220 F(Z:650) LET C = 0
+220 LET C = 0
  C = 0
-230 F(Z:650) PRINT "1 2 3 4 5 6 7 8 9 10"
+230 PRINT "1 2 3 4 5 6 7 8 9 10"
 1 2 3 4 5 6 7 8 9 10
-240 F(Z:650) PRINT "X X X X X X X X X X"
+240 PRINT "X X X X X X X X X X"
 X X X X X X X X X X
-250 F(Z:650) PRINT
+250 PRINT
 
-260 F(Z:650) DIM A$(20)
-270 F(X:270,Z:650) FOR X = 1 TO 10
+260 DIM A$(20)
+270 F(X:270) FOR X = 1 TO 10
  X = 1
  terminated:false
-280 F(X:270,Z:650) LET A$(X) = "X"
+280 F(X:270) LET A$(X) = "X"
  X: 1
  A$(1) = "X"
-290 F(X:270,Z:650) NEXT X
+290 F(X:270) NEXT X
  X: 1
  terminated:false
  X = 2
-280 F(X:270,Z:650) LET A$(X) = "X"
+280 F(X:270) LET A$(X) = "X"
  X: 2
  A$(2) = "X"
-290 F(X:270,Z:650) NEXT X
+290 F(X:270) NEXT X
  X: 2
  terminated:false
  X = 3
-280 F(X:270,Z:650) LET A$(X) = "X"
+280 F(X:270) LET A$(X) = "X"
  X: 3
  A$(3) = "X"
-290 F(X:270,Z:650) NEXT X
+290 F(X:270) NEXT X
  X: 3
  terminated:false
  X = 4
-280 F(X:270,Z:650) LET A$(X) = "X"
+280 F(X:270) LET A$(X) = "X"
  X: 4
  A$(4) = "X"
-290 F(X:270,Z:650) NEXT X
+290 F(X:270) NEXT X
  X: 4
  terminated:false
  X = 5
-280 F(X:270,Z:650) LET A$(X) = "X"
+280 F(X:270) LET A$(X) = "X"
  X: 5
  A$(5) = "X"
-290 F(X:270,Z:650) NEXT X
+290 F(X:270) NEXT X
  X: 5
  terminated:false
  X = 6
-280 F(X:270,Z:650) LET A$(X) = "X"
+280 F(X:270) LET A$(X) = "X"
  X: 6
  A$(6) = "X"
-290 F(X:270,Z:650) NEXT X
+290 F(X:270) NEXT X
  X: 6
  terminated:false
  X = 7
-280 F(X:270,Z:650) LET A$(X) = "X"
+280 F(X:270) LET A$(X) = "X"
  X: 7
  A$(7) = "X"
-290 F(X:270,Z:650) NEXT X
+290 F(X:270) NEXT X
  X: 7
  terminated:false
  X = 8
-280 F(X:270,Z:650) LET A$(X) = "X"
+280 F(X:270) LET A$(X) = "X"
  X: 8
  A$(8) = "X"
-290 F(X:270,Z:650) NEXT X
+290 F(X:270) NEXT X
  X: 8
  terminated:false
  X = 9
-280 F(X:270,Z:650) LET A$(X) = "X"
+280 F(X:270) LET A$(X) = "X"
  X: 9
  A$(9) = "X"
-290 F(X:270,Z:650) NEXT X
+290 F(X:270) NEXT X
  X: 9
  terminated:false
  X = 10
-280 F(X:270,Z:650) LET A$(X) = "X"
+280 F(X:270) LET A$(X) = "X"
  X: 10
  A$(10) = "X"
-290 F(X:270,Z:650) NEXT X
+290 F(X:270) NEXT X
  X: 10
  terminated:true
-300 F(Z:650) GOTO 320
-320 F(Z:650) PRINT "INPUT THE NUMBER";
+300 GOTO 320
+320 PRINT "INPUT THE NUMBER";
 INPUT THE NUMBER
-330 F(Z:650) INPUT N
+330 INPUT N
 ? 1
  N = 1
-340 F(Z:650) IF N <> INT(N) THEN 310
+340 IF N <> INT(N) THEN 310
  N: 1
  N <> INT(N): false
-350 F(Z:650) IF N = 22 THEN 180
+350 IF N = 22 THEN 180
  N: 1
  N = 22: false
-360 F(Z:650) IF N > 11 THEN 310
+360 IF N > 11 THEN 310
  N: 1
  N > 11: false
-370 F(Z:650) IF N = 0 THEN 230
+370 IF N = 0 THEN 230
  N: 1
  N = 0: false
-380 F(Z:650) IF M = N THEN 510
+380 IF M = N THEN 510
  M: 0
  N: 1
  M = N: false
-390 F(Z:650) LET M = N
+390 LET M = N
  N: 1
  M = 1
-400 F(Z:650) IF A$(N) = "O" THEN 480
+400 IF A$(N) = "O" THEN 480
  N: 1
  A$(1): "X"
  A$(N) = "O": false
-410 F(Z:650) LET A$(N) = "O"
+410 LET A$(N) = "O"
  N: 1
  A$(1) = "O"
-420 F(Z:650) LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
+420 LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
  Q: 0.417022005
  N: 1
  R = 236.612998
-430 F(Z:650) LET N = ABS(R - INT(R))
+430 LET N = ABS(R - INT(R))
  R: 236.612998
  N = 0.612998
-440 F(Z:650) LET N = INT(10 * N)
+440 LET N = INT(10 * N)
  N: 0.612998
  N = 6
-450 F(Z:650) IF A$(N) = "O" THEN 480
+450 IF A$(N) = "O" THEN 480
  N: 6
  A$(6): "X"
  A$(N) = "O": false
-460 F(Z:650) LET A$(N) = "O"
+460 LET A$(N) = "O"
  N: 6
  A$(6) = "O"
-470 F(Z:650) GOTO 610
-610 F(Z:650) PRINT "1 2 3 4 5 6 7 8 9 10"
+470 GOTO 610
+610 PRINT "1 2 3 4 5 6 7 8 9 10"
 1 2 3 4 5 6 7 8 9 10
-620.0.-1 F(Z:650) FOR Z = 1 TO 10
+620.0.-1 FOR Z = 1 TO 10
  Z = 1
  terminated:false
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 1
  A$(1): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 1
  terminated:false
  Z = 2
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 2
  A$(2): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 2
  terminated:false
  Z = 3
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 3
  A$(3): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 3
  terminated:false
  Z = 4
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 4
  A$(4): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 4
  terminated:false
  Z = 5
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 5
  A$(5): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 5
  terminated:false
  Z = 6
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 6
  A$(6): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 6
  terminated:false
  Z = 7
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 7
  A$(7): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 7
  terminated:false
  Z = 8
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 8
  A$(8): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 8
  terminated:false
  Z = 9
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 9
  A$(9): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 9
  terminated:false
  Z = 10
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 10
  A$(10): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 10
  terminated:true
-630 F(Z:650) LET C = C + 1
+630 LET C = C + 1
  C: 0
  C = 1
-640 F(Z:650) PRINT
+640 PRINT
 
 650 F(Z:650) FOR Z = 1 TO 10
  Z = 1
@@ -267,143 +267,143 @@ X
  Z: 2
  A$(2): "X"
  A$(Z) <> "O": true
-320 F(Z:650) PRINT "INPUT THE NUMBER";
+320 PRINT "INPUT THE NUMBER";
 INPUT THE NUMBER
-330 F(Z:650) INPUT N
+330 INPUT N
 ? 2
  N = 2
-340 F(Z:650) IF N <> INT(N) THEN 310
+340 IF N <> INT(N) THEN 310
  N: 2
  N <> INT(N): false
-350 F(Z:650) IF N = 22 THEN 180
+350 IF N = 22 THEN 180
  N: 2
  N = 22: false
-360 F(Z:650) IF N > 11 THEN 310
+360 IF N > 11 THEN 310
  N: 2
  N > 11: false
-370 F(Z:650) IF N = 0 THEN 230
+370 IF N = 0 THEN 230
  N: 2
  N = 0: false
-380 F(Z:650) IF M = N THEN 510
+380 IF M = N THEN 510
  M: 1
  N: 2
  M = N: false
-390 F(Z:650) LET M = N
+390 LET M = N
  N: 2
  M = 2
-400 F(Z:650) IF A$(N) = "O" THEN 480
+400 IF A$(N) = "O" THEN 480
  N: 2
  A$(2): "X"
  A$(N) = "O": false
-410 F(Z:650) LET A$(N) = "O"
+410 LET A$(N) = "O"
  N: 2
  A$(2) = "O"
-420 F(Z:650) LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
+420 LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
  Q: 0.417022005
  N: 2
  R = 335.721188
-430 F(Z:650) LET N = ABS(R - INT(R))
+430 LET N = ABS(R - INT(R))
  R: 335.721188
  N = 0.721188
-440 F(Z:650) LET N = INT(10 * N)
+440 LET N = INT(10 * N)
  N: 0.721188
  N = 7
-450 F(Z:650) IF A$(N) = "O" THEN 480
+450 IF A$(N) = "O" THEN 480
  N: 7
  A$(7): "X"
  A$(N) = "O": false
-460 F(Z:650) LET A$(N) = "O"
+460 LET A$(N) = "O"
  N: 7
  A$(7) = "O"
-470 F(Z:650) GOTO 610
-610 F(Z:650) PRINT "1 2 3 4 5 6 7 8 9 10"
+470 GOTO 610
+610 PRINT "1 2 3 4 5 6 7 8 9 10"
 1 2 3 4 5 6 7 8 9 10
-620.0.-1 F(Z:650) FOR Z = 1 TO 10
+620.0.-1 FOR Z = 1 TO 10
  Z = 1
  terminated:false
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 1
  A$(1): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 1
  terminated:false
  Z = 2
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 2
  A$(2): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 2
  terminated:false
  Z = 3
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 3
  A$(3): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 3
  terminated:false
  Z = 4
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 4
  A$(4): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 4
  terminated:false
  Z = 5
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 5
  A$(5): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 5
  terminated:false
  Z = 6
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 6
  A$(6): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 6
  terminated:false
  Z = 7
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 7
  A$(7): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 7
  terminated:false
  Z = 8
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 8
  A$(8): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 8
  terminated:false
  Z = 9
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 9
  A$(9): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 9
  terminated:false
  Z = 10
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 10
  A$(10): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 10
  terminated:true
-630 F(Z:650) LET C = C + 1
+630 LET C = C + 1
  C: 1
  C = 2
-640 F(Z:650) PRINT
+640 PRINT
 
 650 F(Z:650) FOR Z = 1 TO 10
  Z = 1
@@ -428,147 +428,147 @@ X
  Z: 3
  A$(3): "X"
  A$(Z) <> "O": true
-320 F(Z:650) PRINT "INPUT THE NUMBER";
+320 PRINT "INPUT THE NUMBER";
 INPUT THE NUMBER
-330 F(Z:650) INPUT N
+330 INPUT N
 ? 3
  N = 3
-340 F(Z:650) IF N <> INT(N) THEN 310
+340 IF N <> INT(N) THEN 310
  N: 3
  N <> INT(N): false
-350 F(Z:650) IF N = 22 THEN 180
+350 IF N = 22 THEN 180
  N: 3
  N = 22: false
-360 F(Z:650) IF N > 11 THEN 310
+360 IF N > 11 THEN 310
  N: 3
  N > 11: false
-370 F(Z:650) IF N = 0 THEN 230
+370 IF N = 0 THEN 230
  N: 3
  N = 0: false
-380 F(Z:650) IF M = N THEN 510
+380 IF M = N THEN 510
  M: 2
  N: 3
  M = N: false
-390 F(Z:650) LET M = N
+390 LET M = N
  N: 3
  M = 3
-400 F(Z:650) IF A$(N) = "O" THEN 480
+400 IF A$(N) = "O" THEN 480
  N: 3
  A$(3): "X"
  A$(N) = "O": false
-410 F(Z:650) LET A$(N) = "O"
+410 LET A$(N) = "O"
  N: 3
  A$(3) = "O"
-420 F(Z:650) LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
+420 LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
  Q: 0.417022005
  N: 3
  R = 236.635236
-430 F(Z:650) LET N = ABS(R - INT(R))
+430 LET N = ABS(R - INT(R))
  R: 236.635236
  N = 0.635236
-440 F(Z:650) LET N = INT(10 * N)
+440 LET N = INT(10 * N)
  N: 0.635236
  N = 6
-450 F(Z:650) IF A$(N) = "O" THEN 480
+450 IF A$(N) = "O" THEN 480
  N: 6
  A$(6): "O"
  A$(N) = "O": true
-480 F(Z:650) LET A$(N) = "X"
+480 LET A$(N) = "X"
  N: 6
  A$(6) = "X"
-490 F(Z:650) IF M = N THEN 420
+490 IF M = N THEN 420
  M: 3
  N: 6
  M = N: false
-500 F(Z:650) GOTO 610
-610 F(Z:650) PRINT "1 2 3 4 5 6 7 8 9 10"
+500 GOTO 610
+610 PRINT "1 2 3 4 5 6 7 8 9 10"
 1 2 3 4 5 6 7 8 9 10
-620.0.-1 F(Z:650) FOR Z = 1 TO 10
+620.0.-1 FOR Z = 1 TO 10
  Z = 1
  terminated:false
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 1
  A$(1): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 1
  terminated:false
  Z = 2
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 2
  A$(2): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 2
  terminated:false
  Z = 3
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 3
  A$(3): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 3
  terminated:false
  Z = 4
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 4
  A$(4): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 4
  terminated:false
  Z = 5
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 5
  A$(5): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 5
  terminated:false
  Z = 6
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 6
  A$(6): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 6
  terminated:false
  Z = 7
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 7
  A$(7): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 7
  terminated:false
  Z = 8
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 8
  A$(8): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 8
  terminated:false
  Z = 9
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 9
  A$(9): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 9
  terminated:false
  Z = 10
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 10
  A$(10): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 10
  terminated:true
-630 F(Z:650) LET C = C + 1
+630 LET C = C + 1
  C: 2
  C = 3
-640 F(Z:650) PRINT
+640 PRINT
 
 650 F(Z:650) FOR Z = 1 TO 10
  Z = 1
@@ -601,143 +601,143 @@ X
  Z: 4
  A$(4): "X"
  A$(Z) <> "O": true
-320 F(Z:650) PRINT "INPUT THE NUMBER";
+320 PRINT "INPUT THE NUMBER";
 INPUT THE NUMBER
-330 F(Z:650) INPUT N
+330 INPUT N
 ? 4
  N = 4
-340 F(Z:650) IF N <> INT(N) THEN 310
+340 IF N <> INT(N) THEN 310
  N: 4
  N <> INT(N): false
-350 F(Z:650) IF N = 22 THEN 180
+350 IF N = 22 THEN 180
  N: 4
  N = 22: false
-360 F(Z:650) IF N > 11 THEN 310
+360 IF N > 11 THEN 310
  N: 4
  N > 11: false
-370 F(Z:650) IF N = 0 THEN 230
+370 IF N = 0 THEN 230
  N: 4
  N = 0: false
-380 F(Z:650) IF M = N THEN 510
+380 IF M = N THEN 510
  M: 3
  N: 4
  M = N: false
-390 F(Z:650) LET M = N
+390 LET M = N
  N: 4
  M = 4
-400 F(Z:650) IF A$(N) = "O" THEN 480
+400 IF A$(N) = "O" THEN 480
  N: 4
  A$(4): "X"
  A$(N) = "O": false
-410 F(Z:650) LET A$(N) = "O"
+410 LET A$(N) = "O"
  N: 4
  A$(4) = "O"
-420 F(Z:650) LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
+420 LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
  Q: 0.417022005
  N: 4
  R = -19.9992187
-430 F(Z:650) LET N = ABS(R - INT(R))
+430 LET N = ABS(R - INT(R))
  R: -19.9992187
  N = 0.9992187
-440 F(Z:650) LET N = INT(10 * N)
+440 LET N = INT(10 * N)
  N: 0.9992187
  N = 9
-450 F(Z:650) IF A$(N) = "O" THEN 480
+450 IF A$(N) = "O" THEN 480
  N: 9
  A$(9): "X"
  A$(N) = "O": false
-460 F(Z:650) LET A$(N) = "O"
+460 LET A$(N) = "O"
  N: 9
  A$(9) = "O"
-470 F(Z:650) GOTO 610
-610 F(Z:650) PRINT "1 2 3 4 5 6 7 8 9 10"
+470 GOTO 610
+610 PRINT "1 2 3 4 5 6 7 8 9 10"
 1 2 3 4 5 6 7 8 9 10
-620.0.-1 F(Z:650) FOR Z = 1 TO 10
+620.0.-1 FOR Z = 1 TO 10
  Z = 1
  terminated:false
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 1
  A$(1): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 1
  terminated:false
  Z = 2
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 2
  A$(2): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 2
  terminated:false
  Z = 3
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 3
  A$(3): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 3
  terminated:false
  Z = 4
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 4
  A$(4): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 4
  terminated:false
  Z = 5
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 5
  A$(5): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 5
  terminated:false
  Z = 6
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 6
  A$(6): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 6
  terminated:false
  Z = 7
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 7
  A$(7): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 7
  terminated:false
  Z = 8
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 8
  A$(8): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 8
  terminated:false
  Z = 9
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 9
  A$(9): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 9
  terminated:false
  Z = 10
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 10
  A$(10): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 10
  terminated:true
-630 F(Z:650) LET C = C + 1
+630 LET C = C + 1
  C: 3
  C = 4
-640 F(Z:650) PRINT
+640 PRINT
 
 650 F(Z:650) FOR Z = 1 TO 10
  Z = 1
@@ -778,147 +778,147 @@ X
  Z: 5
  A$(5): "X"
  A$(Z) <> "O": true
-320 F(Z:650) PRINT "INPUT THE NUMBER";
+320 PRINT "INPUT THE NUMBER";
 INPUT THE NUMBER
-330 F(Z:650) INPUT N
+330 INPUT N
 ? 5
  N = 5
-340 F(Z:650) IF N <> INT(N) THEN 310
+340 IF N <> INT(N) THEN 310
  N: 5
  N <> INT(N): false
-350 F(Z:650) IF N = 22 THEN 180
+350 IF N = 22 THEN 180
  N: 5
  N = 22: false
-360 F(Z:650) IF N > 11 THEN 310
+360 IF N > 11 THEN 310
  N: 5
  N > 11: false
-370 F(Z:650) IF N = 0 THEN 230
+370 IF N = 0 THEN 230
  N: 5
  N = 0: false
-380 F(Z:650) IF M = N THEN 510
+380 IF M = N THEN 510
  M: 4
  N: 5
  M = N: false
-390 F(Z:650) LET M = N
+390 LET M = N
  N: 5
  M = 5
-400 F(Z:650) IF A$(N) = "O" THEN 480
+400 IF A$(N) = "O" THEN 480
  N: 5
  A$(5): "X"
  A$(N) = "O": false
-410 F(Z:650) LET A$(N) = "O"
+410 LET A$(N) = "O"
  N: 5
  A$(5) = "O"
-420 F(Z:650) LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
+420 LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
  Q: 0.417022005
  N: 5
  R = -252.28382
-430 F(Z:650) LET N = ABS(R - INT(R))
+430 LET N = ABS(R - INT(R))
  R: -252.28382
  N = 0.28382
-440 F(Z:650) LET N = INT(10 * N)
+440 LET N = INT(10 * N)
  N: 0.28382
  N = 2
-450 F(Z:650) IF A$(N) = "O" THEN 480
+450 IF A$(N) = "O" THEN 480
  N: 2
  A$(2): "O"
  A$(N) = "O": true
-480 F(Z:650) LET A$(N) = "X"
+480 LET A$(N) = "X"
  N: 2
  A$(2) = "X"
-490 F(Z:650) IF M = N THEN 420
+490 IF M = N THEN 420
  M: 5
  N: 2
  M = N: false
-500 F(Z:650) GOTO 610
-610 F(Z:650) PRINT "1 2 3 4 5 6 7 8 9 10"
+500 GOTO 610
+610 PRINT "1 2 3 4 5 6 7 8 9 10"
 1 2 3 4 5 6 7 8 9 10
-620.0.-1 F(Z:650) FOR Z = 1 TO 10
+620.0.-1 FOR Z = 1 TO 10
  Z = 1
  terminated:false
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 1
  A$(1): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 1
  terminated:false
  Z = 2
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 2
  A$(2): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 2
  terminated:false
  Z = 3
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 3
  A$(3): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 3
  terminated:false
  Z = 4
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 4
  A$(4): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 4
  terminated:false
  Z = 5
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 5
  A$(5): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 5
  terminated:false
  Z = 6
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 6
  A$(6): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 6
  terminated:false
  Z = 7
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 7
  A$(7): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 7
  terminated:false
  Z = 8
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 8
  A$(8): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 8
  terminated:false
  Z = 9
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 9
  A$(9): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 9
  terminated:false
  Z = 10
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 10
  A$(10): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 10
  terminated:true
-630 F(Z:650) LET C = C + 1
+630 LET C = C + 1
  C: 4
  C = 5
-640 F(Z:650) PRINT
+640 PRINT
 
 650 F(Z:650) FOR Z = 1 TO 10
  Z = 1
@@ -935,147 +935,147 @@ X
  Z: 2
  A$(2): "X"
  A$(Z) <> "O": true
-320 F(Z:650) PRINT "INPUT THE NUMBER";
+320 PRINT "INPUT THE NUMBER";
 INPUT THE NUMBER
-330 F(Z:650) INPUT N
+330 INPUT N
 ? 6
  N = 6
-340 F(Z:650) IF N <> INT(N) THEN 310
+340 IF N <> INT(N) THEN 310
  N: 6
  N <> INT(N): false
-350 F(Z:650) IF N = 22 THEN 180
+350 IF N = 22 THEN 180
  N: 6
  N = 22: false
-360 F(Z:650) IF N > 11 THEN 310
+360 IF N > 11 THEN 310
  N: 6
  N > 11: false
-370 F(Z:650) IF N = 0 THEN 230
+370 IF N = 0 THEN 230
  N: 6
  N = 0: false
-380 F(Z:650) IF M = N THEN 510
+380 IF M = N THEN 510
  M: 5
  N: 6
  M = N: false
-390 F(Z:650) LET M = N
+390 LET M = N
  N: 6
  M = 6
-400 F(Z:650) IF A$(N) = "O" THEN 480
+400 IF A$(N) = "O" THEN 480
  N: 6
  A$(6): "X"
  A$(N) = "O": false
-410 F(Z:650) LET A$(N) = "O"
+410 LET A$(N) = "O"
  N: 6
  A$(6) = "O"
-420 F(Z:650) LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
+420 LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
  Q: 0.417022005
  N: 6
  R = -335.494705
-430 F(Z:650) LET N = ABS(R - INT(R))
+430 LET N = ABS(R - INT(R))
  R: -335.494705
  N = 0.494705
-440 F(Z:650) LET N = INT(10 * N)
+440 LET N = INT(10 * N)
  N: 0.494705
  N = 4
-450 F(Z:650) IF A$(N) = "O" THEN 480
+450 IF A$(N) = "O" THEN 480
  N: 4
  A$(4): "O"
  A$(N) = "O": true
-480 F(Z:650) LET A$(N) = "X"
+480 LET A$(N) = "X"
  N: 4
  A$(4) = "X"
-490 F(Z:650) IF M = N THEN 420
+490 IF M = N THEN 420
  M: 6
  N: 4
  M = N: false
-500 F(Z:650) GOTO 610
-610 F(Z:650) PRINT "1 2 3 4 5 6 7 8 9 10"
+500 GOTO 610
+610 PRINT "1 2 3 4 5 6 7 8 9 10"
 1 2 3 4 5 6 7 8 9 10
-620.0.-1 F(Z:650) FOR Z = 1 TO 10
+620.0.-1 FOR Z = 1 TO 10
  Z = 1
  terminated:false
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 1
  A$(1): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 1
  terminated:false
  Z = 2
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 2
  A$(2): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 2
  terminated:false
  Z = 3
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 3
  A$(3): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 3
  terminated:false
  Z = 4
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 4
  A$(4): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 4
  terminated:false
  Z = 5
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 5
  A$(5): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 5
  terminated:false
  Z = 6
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 6
  A$(6): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 6
  terminated:false
  Z = 7
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 7
  A$(7): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 7
  terminated:false
  Z = 8
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 8
  A$(8): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 8
  terminated:false
  Z = 9
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 9
  A$(9): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 9
  terminated:false
  Z = 10
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 10
  A$(10): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 10
  terminated:true
-630 F(Z:650) LET C = C + 1
+630 LET C = C + 1
  C: 5
  C = 6
-640 F(Z:650) PRINT
+640 PRINT
 
 650 F(Z:650) FOR Z = 1 TO 10
  Z = 1
@@ -1092,147 +1092,147 @@ X
  Z: 2
  A$(2): "X"
  A$(Z) <> "O": true
-320 F(Z:650) PRINT "INPUT THE NUMBER";
+320 PRINT "INPUT THE NUMBER";
 INPUT THE NUMBER
-330 F(Z:650) INPUT N
+330 INPUT N
 ? 8
  N = 8
-340 F(Z:650) IF N <> INT(N) THEN 310
+340 IF N <> INT(N) THEN 310
  N: 8
  N <> INT(N): false
-350 F(Z:650) IF N = 22 THEN 180
+350 IF N = 22 THEN 180
  N: 8
  N = 22: false
-360 F(Z:650) IF N > 11 THEN 310
+360 IF N > 11 THEN 310
  N: 8
  N > 11: false
-370 F(Z:650) IF N = 0 THEN 230
+370 IF N = 0 THEN 230
  N: 8
  N = 0: false
-380 F(Z:650) IF M = N THEN 510
+380 IF M = N THEN 510
  M: 6
  N: 8
  M = N: false
-390 F(Z:650) LET M = N
+390 LET M = N
  N: 8
  M = 8
-400 F(Z:650) IF A$(N) = "O" THEN 480
+400 IF A$(N) = "O" THEN 480
  N: 8
  A$(8): "X"
  A$(N) = "O": false
-410 F(Z:650) LET A$(N) = "O"
+410 LET A$(N) = "O"
  N: 8
  A$(8) = "O"
-420 F(Z:650) LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
+420 LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
  Q: 0.417022005
  N: 8
  R = 37.662573
-430 F(Z:650) LET N = ABS(R - INT(R))
+430 LET N = ABS(R - INT(R))
  R: 37.662573
  N = 0.662573
-440 F(Z:650) LET N = INT(10 * N)
+440 LET N = INT(10 * N)
  N: 0.662573
  N = 6
-450 F(Z:650) IF A$(N) = "O" THEN 480
+450 IF A$(N) = "O" THEN 480
  N: 6
  A$(6): "O"
  A$(N) = "O": true
-480 F(Z:650) LET A$(N) = "X"
+480 LET A$(N) = "X"
  N: 6
  A$(6) = "X"
-490 F(Z:650) IF M = N THEN 420
+490 IF M = N THEN 420
  M: 8
  N: 6
  M = N: false
-500 F(Z:650) GOTO 610
-610 F(Z:650) PRINT "1 2 3 4 5 6 7 8 9 10"
+500 GOTO 610
+610 PRINT "1 2 3 4 5 6 7 8 9 10"
 1 2 3 4 5 6 7 8 9 10
-620.0.-1 F(Z:650) FOR Z = 1 TO 10
+620.0.-1 FOR Z = 1 TO 10
  Z = 1
  terminated:false
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 1
  A$(1): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 1
  terminated:false
  Z = 2
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 2
  A$(2): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 2
  terminated:false
  Z = 3
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 3
  A$(3): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 3
  terminated:false
  Z = 4
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 4
  A$(4): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 4
  terminated:false
  Z = 5
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 5
  A$(5): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 5
  terminated:false
  Z = 6
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 6
  A$(6): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 6
  terminated:false
  Z = 7
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 7
  A$(7): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 7
  terminated:false
  Z = 8
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 8
  A$(8): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 8
  terminated:false
  Z = 9
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 9
  A$(9): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 9
  terminated:false
  Z = 10
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 10
  A$(10): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 10
  terminated:true
-630 F(Z:650) LET C = C + 1
+630 LET C = C + 1
  C: 6
  C = 7
-640 F(Z:650) PRINT
+640 PRINT
 
 650 F(Z:650) FOR Z = 1 TO 10
  Z = 1
@@ -1249,143 +1249,143 @@ X
  Z: 2
  A$(2): "X"
  A$(Z) <> "O": true
-320 F(Z:650) PRINT "INPUT THE NUMBER";
+320 PRINT "INPUT THE NUMBER";
 INPUT THE NUMBER
-330 F(Z:650) INPUT N
+330 INPUT N
 ? 10
  N = 10
-340 F(Z:650) IF N <> INT(N) THEN 310
+340 IF N <> INT(N) THEN 310
  N: 10
  N <> INT(N): false
-350 F(Z:650) IF N = 22 THEN 180
+350 IF N = 22 THEN 180
  N: 10
  N = 22: false
-360 F(Z:650) IF N > 11 THEN 310
+360 IF N > 11 THEN 310
  N: 10
  N > 11: false
-370 F(Z:650) IF N = 0 THEN 230
+370 IF N = 0 THEN 230
  N: 10
  N = 0: false
-380 F(Z:650) IF M = N THEN 510
+380 IF M = N THEN 510
  M: 8
  N: 10
  M = N: false
-390 F(Z:650) LET M = N
+390 LET M = N
  N: 10
  M = 10
-400 F(Z:650) IF A$(N) = "O" THEN 480
+400 IF A$(N) = "O" THEN 480
  N: 10
  A$(10): "X"
  A$(N) = "O": false
-410 F(Z:650) LET A$(N) = "O"
+410 LET A$(N) = "O"
  N: 10
  A$(10) = "O"
-420 F(Z:650) LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
+420 LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
  Q: 0.417022005
  N: 10
  R = 328.614565
-430 F(Z:650) LET N = ABS(R - INT(R))
+430 LET N = ABS(R - INT(R))
  R: 328.614565
  N = 0.614565
-440 F(Z:650) LET N = INT(10 * N)
+440 LET N = INT(10 * N)
  N: 0.614565
  N = 6
-450 F(Z:650) IF A$(N) = "O" THEN 480
+450 IF A$(N) = "O" THEN 480
  N: 6
  A$(6): "X"
  A$(N) = "O": false
-460 F(Z:650) LET A$(N) = "O"
+460 LET A$(N) = "O"
  N: 6
  A$(6) = "O"
-470 F(Z:650) GOTO 610
-610 F(Z:650) PRINT "1 2 3 4 5 6 7 8 9 10"
+470 GOTO 610
+610 PRINT "1 2 3 4 5 6 7 8 9 10"
 1 2 3 4 5 6 7 8 9 10
-620.0.-1 F(Z:650) FOR Z = 1 TO 10
+620.0.-1 FOR Z = 1 TO 10
  Z = 1
  terminated:false
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 1
  A$(1): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 1
  terminated:false
  Z = 2
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 2
  A$(2): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 2
  terminated:false
  Z = 3
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 3
  A$(3): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 3
  terminated:false
  Z = 4
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 4
  A$(4): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 4
  terminated:false
  Z = 5
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 5
  A$(5): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 5
  terminated:false
  Z = 6
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 6
  A$(6): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 6
  terminated:false
  Z = 7
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 7
  A$(7): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 7
  terminated:false
  Z = 8
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 8
  A$(8): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 8
  terminated:false
  Z = 9
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 9
  A$(9): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 9
  terminated:false
  Z = 10
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 10
  A$(10): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 10
  terminated:true
-630 F(Z:650) LET C = C + 1
+630 LET C = C + 1
  C: 7
  C = 8
-640 F(Z:650) PRINT
+640 PRINT
 
 650 F(Z:650) FOR Z = 1 TO 10
  Z = 1
@@ -1402,147 +1402,147 @@ O
  Z: 2
  A$(2): "X"
  A$(Z) <> "O": true
-320 F(Z:650) PRINT "INPUT THE NUMBER";
+320 PRINT "INPUT THE NUMBER";
 INPUT THE NUMBER
-330 F(Z:650) INPUT N
+330 INPUT N
 ? 2
  N = 2
-340 F(Z:650) IF N <> INT(N) THEN 310
+340 IF N <> INT(N) THEN 310
  N: 2
  N <> INT(N): false
-350 F(Z:650) IF N = 22 THEN 180
+350 IF N = 22 THEN 180
  N: 2
  N = 22: false
-360 F(Z:650) IF N > 11 THEN 310
+360 IF N > 11 THEN 310
  N: 2
  N > 11: false
-370 F(Z:650) IF N = 0 THEN 230
+370 IF N = 0 THEN 230
  N: 2
  N = 0: false
-380 F(Z:650) IF M = N THEN 510
+380 IF M = N THEN 510
  M: 10
  N: 2
  M = N: false
-390 F(Z:650) LET M = N
+390 LET M = N
  N: 2
  M = 2
-400 F(Z:650) IF A$(N) = "O" THEN 480
+400 IF A$(N) = "O" THEN 480
  N: 2
  A$(2): "X"
  A$(N) = "O": false
-410 F(Z:650) LET A$(N) = "O"
+410 LET A$(N) = "O"
  N: 2
  A$(2) = "O"
-420 F(Z:650) LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
+420 LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
  Q: 0.417022005
  N: 2
  R = 335.721188
-430 F(Z:650) LET N = ABS(R - INT(R))
+430 LET N = ABS(R - INT(R))
  R: 335.721188
  N = 0.721188
-440 F(Z:650) LET N = INT(10 * N)
+440 LET N = INT(10 * N)
  N: 0.721188
  N = 7
-450 F(Z:650) IF A$(N) = "O" THEN 480
+450 IF A$(N) = "O" THEN 480
  N: 7
  A$(7): "O"
  A$(N) = "O": true
-480 F(Z:650) LET A$(N) = "X"
+480 LET A$(N) = "X"
  N: 7
  A$(7) = "X"
-490 F(Z:650) IF M = N THEN 420
+490 IF M = N THEN 420
  M: 2
  N: 7
  M = N: false
-500 F(Z:650) GOTO 610
-610 F(Z:650) PRINT "1 2 3 4 5 6 7 8 9 10"
+500 GOTO 610
+610 PRINT "1 2 3 4 5 6 7 8 9 10"
 1 2 3 4 5 6 7 8 9 10
-620.0.-1 F(Z:650) FOR Z = 1 TO 10
+620.0.-1 FOR Z = 1 TO 10
  Z = 1
  terminated:false
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 1
  A$(1): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 1
  terminated:false
  Z = 2
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 2
  A$(2): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 2
  terminated:false
  Z = 3
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 3
  A$(3): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 3
  terminated:false
  Z = 4
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 4
  A$(4): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 4
  terminated:false
  Z = 5
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 5
  A$(5): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 5
  terminated:false
  Z = 6
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 6
  A$(6): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 6
  terminated:false
  Z = 7
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 7
  A$(7): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 7
  terminated:false
  Z = 8
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 8
  A$(8): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 8
  terminated:false
  Z = 9
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 9
  A$(9): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 9
  terminated:false
  Z = 10
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 10
  A$(10): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 10
  terminated:true
-630 F(Z:650) LET C = C + 1
+630 LET C = C + 1
  C: 8
  C = 9
-640 F(Z:650) PRINT
+640 PRINT
 
 650 F(Z:650) FOR Z = 1 TO 10
  Z = 1
@@ -1575,147 +1575,147 @@ O
  Z: 4
  A$(4): "X"
  A$(Z) <> "O": true
-320 F(Z:650) PRINT "INPUT THE NUMBER";
+320 PRINT "INPUT THE NUMBER";
 INPUT THE NUMBER
-330 F(Z:650) INPUT N
+330 INPUT N
 ? 4
  N = 4
-340 F(Z:650) IF N <> INT(N) THEN 310
+340 IF N <> INT(N) THEN 310
  N: 4
  N <> INT(N): false
-350 F(Z:650) IF N = 22 THEN 180
+350 IF N = 22 THEN 180
  N: 4
  N = 22: false
-360 F(Z:650) IF N > 11 THEN 310
+360 IF N > 11 THEN 310
  N: 4
  N > 11: false
-370 F(Z:650) IF N = 0 THEN 230
+370 IF N = 0 THEN 230
  N: 4
  N = 0: false
-380 F(Z:650) IF M = N THEN 510
+380 IF M = N THEN 510
  M: 2
  N: 4
  M = N: false
-390 F(Z:650) LET M = N
+390 LET M = N
  N: 4
  M = 4
-400 F(Z:650) IF A$(N) = "O" THEN 480
+400 IF A$(N) = "O" THEN 480
  N: 4
  A$(4): "X"
  A$(N) = "O": false
-410 F(Z:650) LET A$(N) = "O"
+410 LET A$(N) = "O"
  N: 4
  A$(4) = "O"
-420 F(Z:650) LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
+420 LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
  Q: 0.417022005
  N: 4
  R = -19.9992187
-430 F(Z:650) LET N = ABS(R - INT(R))
+430 LET N = ABS(R - INT(R))
  R: -19.9992187
  N = 0.9992187
-440 F(Z:650) LET N = INT(10 * N)
+440 LET N = INT(10 * N)
  N: 0.9992187
  N = 9
-450 F(Z:650) IF A$(N) = "O" THEN 480
+450 IF A$(N) = "O" THEN 480
  N: 9
  A$(9): "O"
  A$(N) = "O": true
-480 F(Z:650) LET A$(N) = "X"
+480 LET A$(N) = "X"
  N: 9
  A$(9) = "X"
-490 F(Z:650) IF M = N THEN 420
+490 IF M = N THEN 420
  M: 4
  N: 9
  M = N: false
-500 F(Z:650) GOTO 610
-610 F(Z:650) PRINT "1 2 3 4 5 6 7 8 9 10"
+500 GOTO 610
+610 PRINT "1 2 3 4 5 6 7 8 9 10"
 1 2 3 4 5 6 7 8 9 10
-620.0.-1 F(Z:650) FOR Z = 1 TO 10
+620.0.-1 FOR Z = 1 TO 10
  Z = 1
  terminated:false
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 1
  A$(1): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 1
  terminated:false
  Z = 2
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 2
  A$(2): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 2
  terminated:false
  Z = 3
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 3
  A$(3): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 3
  terminated:false
  Z = 4
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 4
  A$(4): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 4
  terminated:false
  Z = 5
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 5
  A$(5): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 5
  terminated:false
  Z = 6
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 6
  A$(6): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 6
  terminated:false
  Z = 7
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 7
  A$(7): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 7
  terminated:false
  Z = 8
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 8
  A$(8): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 8
  terminated:false
  Z = 9
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 9
  A$(9): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 9
  terminated:false
  Z = 10
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 10
  A$(10): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 10
  terminated:true
-630 F(Z:650) LET C = C + 1
+630 LET C = C + 1
  C: 9
  C = 10
-640 F(Z:650) PRINT
+640 PRINT
 
 650 F(Z:650) FOR Z = 1 TO 10
  Z = 1
@@ -1772,147 +1772,147 @@ O
  Z: 7
  A$(7): "X"
  A$(Z) <> "O": true
-320 F(Z:650) PRINT "INPUT THE NUMBER";
+320 PRINT "INPUT THE NUMBER";
 INPUT THE NUMBER
-330 F(Z:650) INPUT N
+330 INPUT N
 ? 7
  N = 7
-340 F(Z:650) IF N <> INT(N) THEN 310
+340 IF N <> INT(N) THEN 310
  N: 7
  N <> INT(N): false
-350 F(Z:650) IF N = 22 THEN 180
+350 IF N = 22 THEN 180
  N: 7
  N = 22: false
-360 F(Z:650) IF N > 11 THEN 310
+360 IF N > 11 THEN 310
  N: 7
  N > 11: false
-370 F(Z:650) IF N = 0 THEN 230
+370 IF N = 0 THEN 230
  N: 7
  N = 0: false
-380 F(Z:650) IF M = N THEN 510
+380 IF M = N THEN 510
  M: 4
  N: 7
  M = N: false
-390 F(Z:650) LET M = N
+390 LET M = N
  N: 7
  M = 7
-400 F(Z:650) IF A$(N) = "O" THEN 480
+400 IF A$(N) = "O" THEN 480
  N: 7
  A$(7): "X"
  A$(N) = "O": false
-410 F(Z:650) LET A$(N) = "O"
+410 LET A$(N) = "O"
  N: 7
  A$(7) = "O"
-420 F(Z:650) LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
+420 LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
  Q: 0.417022005
  N: 7
  R = -211.179957
-430 F(Z:650) LET N = ABS(R - INT(R))
+430 LET N = ABS(R - INT(R))
  R: -211.179957
  N = 0.179957
-440 F(Z:650) LET N = INT(10 * N)
+440 LET N = INT(10 * N)
  N: 0.179957
  N = 1
-450 F(Z:650) IF A$(N) = "O" THEN 480
+450 IF A$(N) = "O" THEN 480
  N: 1
  A$(1): "O"
  A$(N) = "O": true
-480 F(Z:650) LET A$(N) = "X"
+480 LET A$(N) = "X"
  N: 1
  A$(1) = "X"
-490 F(Z:650) IF M = N THEN 420
+490 IF M = N THEN 420
  M: 7
  N: 1
  M = N: false
-500 F(Z:650) GOTO 610
-610 F(Z:650) PRINT "1 2 3 4 5 6 7 8 9 10"
+500 GOTO 610
+610 PRINT "1 2 3 4 5 6 7 8 9 10"
 1 2 3 4 5 6 7 8 9 10
-620.0.-1 F(Z:650) FOR Z = 1 TO 10
+620.0.-1 FOR Z = 1 TO 10
  Z = 1
  terminated:false
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 1
  A$(1): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 1
  terminated:false
  Z = 2
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 2
  A$(2): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 2
  terminated:false
  Z = 3
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 3
  A$(3): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 3
  terminated:false
  Z = 4
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 4
  A$(4): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 4
  terminated:false
  Z = 5
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 5
  A$(5): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 5
  terminated:false
  Z = 6
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 6
  A$(6): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 6
  terminated:false
  Z = 7
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 7
  A$(7): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 7
  terminated:false
  Z = 8
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 8
  A$(8): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 8
  terminated:false
  Z = 9
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 9
  A$(9): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 9
  terminated:false
  Z = 10
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 10
  A$(10): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 10
  terminated:true
-630 F(Z:650) LET C = C + 1
+630 LET C = C + 1
  C: 10
  C = 11
-640 F(Z:650) PRINT
+640 PRINT
 
 650 F(Z:650) FOR Z = 1 TO 10
  Z = 1
@@ -1921,143 +1921,143 @@ O
  Z: 1
  A$(1): "X"
  A$(Z) <> "O": true
-320 F(Z:650) PRINT "INPUT THE NUMBER";
+320 PRINT "INPUT THE NUMBER";
 INPUT THE NUMBER
-330 F(Z:650) INPUT N
+330 INPUT N
 ? 9
  N = 9
-340 F(Z:650) IF N <> INT(N) THEN 310
+340 IF N <> INT(N) THEN 310
  N: 9
  N <> INT(N): false
-350 F(Z:650) IF N = 22 THEN 180
+350 IF N = 22 THEN 180
  N: 9
  N = 22: false
-360 F(Z:650) IF N > 11 THEN 310
+360 IF N > 11 THEN 310
  N: 9
  N > 11: false
-370 F(Z:650) IF N = 0 THEN 230
+370 IF N = 0 THEN 230
  N: 9
  N = 0: false
-380 F(Z:650) IF M = N THEN 510
+380 IF M = N THEN 510
  M: 7
  N: 9
  M = N: false
-390 F(Z:650) LET M = N
+390 LET M = N
  N: 9
  M = 9
-400 F(Z:650) IF A$(N) = "O" THEN 480
+400 IF A$(N) = "O" THEN 480
  N: 9
  A$(9): "X"
  A$(N) = "O": false
-410 F(Z:650) LET A$(N) = "O"
+410 LET A$(N) = "O"
  N: 9
  A$(9) = "O"
-420 F(Z:650) LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
+420 LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
  Q: 0.417022005
  N: 9
  R = 267.087426
-430 F(Z:650) LET N = ABS(R - INT(R))
+430 LET N = ABS(R - INT(R))
  R: 267.087426
  N = 0.087426
-440 F(Z:650) LET N = INT(10 * N)
+440 LET N = INT(10 * N)
  N: 0.087426
  N = 0
-450 F(Z:650) IF A$(N) = "O" THEN 480
+450 IF A$(N) = "O" THEN 480
  N: 0
  A$(0): ""
  A$(N) = "O": false
-460 F(Z:650) LET A$(N) = "O"
+460 LET A$(N) = "O"
  N: 0
  A$(0) = "O"
-470 F(Z:650) GOTO 610
-610 F(Z:650) PRINT "1 2 3 4 5 6 7 8 9 10"
+470 GOTO 610
+610 PRINT "1 2 3 4 5 6 7 8 9 10"
 1 2 3 4 5 6 7 8 9 10
-620.0.-1 F(Z:650) FOR Z = 1 TO 10
+620.0.-1 FOR Z = 1 TO 10
  Z = 1
  terminated:false
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 1
  A$(1): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 1
  terminated:false
  Z = 2
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 2
  A$(2): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 2
  terminated:false
  Z = 3
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 3
  A$(3): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 3
  terminated:false
  Z = 4
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 4
  A$(4): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 4
  terminated:false
  Z = 5
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 5
  A$(5): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 5
  terminated:false
  Z = 6
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 6
  A$(6): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 6
  terminated:false
  Z = 7
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 7
  A$(7): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 7
  terminated:false
  Z = 8
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 8
  A$(8): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 8
  terminated:false
  Z = 9
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 9
  A$(9): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 9
  terminated:false
  Z = 10
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 10
  A$(10): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 10
  terminated:true
-630 F(Z:650) LET C = C + 1
+630 LET C = C + 1
  C: 11
  C = 12
-640 F(Z:650) PRINT
+640 PRINT
 
 650 F(Z:650) FOR Z = 1 TO 10
  Z = 1
@@ -2066,147 +2066,147 @@ O
  Z: 1
  A$(1): "X"
  A$(Z) <> "O": true
-320 F(Z:650) PRINT "INPUT THE NUMBER";
+320 PRINT "INPUT THE NUMBER";
 INPUT THE NUMBER
-330 F(Z:650) INPUT N
+330 INPUT N
 ? 1
  N = 1
-340 F(Z:650) IF N <> INT(N) THEN 310
+340 IF N <> INT(N) THEN 310
  N: 1
  N <> INT(N): false
-350 F(Z:650) IF N = 22 THEN 180
+350 IF N = 22 THEN 180
  N: 1
  N = 22: false
-360 F(Z:650) IF N > 11 THEN 310
+360 IF N > 11 THEN 310
  N: 1
  N > 11: false
-370 F(Z:650) IF N = 0 THEN 230
+370 IF N = 0 THEN 230
  N: 1
  N = 0: false
-380 F(Z:650) IF M = N THEN 510
+380 IF M = N THEN 510
  M: 9
  N: 1
  M = N: false
-390 F(Z:650) LET M = N
+390 LET M = N
  N: 1
  M = 1
-400 F(Z:650) IF A$(N) = "O" THEN 480
+400 IF A$(N) = "O" THEN 480
  N: 1
  A$(1): "X"
  A$(N) = "O": false
-410 F(Z:650) LET A$(N) = "O"
+410 LET A$(N) = "O"
  N: 1
  A$(1) = "O"
-420 F(Z:650) LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
+420 LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
  Q: 0.417022005
  N: 1
  R = 236.612998
-430 F(Z:650) LET N = ABS(R - INT(R))
+430 LET N = ABS(R - INT(R))
  R: 236.612998
  N = 0.612998
-440 F(Z:650) LET N = INT(10 * N)
+440 LET N = INT(10 * N)
  N: 0.612998
  N = 6
-450 F(Z:650) IF A$(N) = "O" THEN 480
+450 IF A$(N) = "O" THEN 480
  N: 6
  A$(6): "O"
  A$(N) = "O": true
-480 F(Z:650) LET A$(N) = "X"
+480 LET A$(N) = "X"
  N: 6
  A$(6) = "X"
-490 F(Z:650) IF M = N THEN 420
+490 IF M = N THEN 420
  M: 1
  N: 6
  M = N: false
-500 F(Z:650) GOTO 610
-610 F(Z:650) PRINT "1 2 3 4 5 6 7 8 9 10"
+500 GOTO 610
+610 PRINT "1 2 3 4 5 6 7 8 9 10"
 1 2 3 4 5 6 7 8 9 10
-620.0.-1 F(Z:650) FOR Z = 1 TO 10
+620.0.-1 FOR Z = 1 TO 10
  Z = 1
  terminated:false
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 1
  A$(1): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 1
  terminated:false
  Z = 2
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 2
  A$(2): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 2
  terminated:false
  Z = 3
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 3
  A$(3): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 3
  terminated:false
  Z = 4
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 4
  A$(4): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 4
  terminated:false
  Z = 5
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 5
  A$(5): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 5
  terminated:false
  Z = 6
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 6
  A$(6): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 6
  terminated:false
  Z = 7
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 7
  A$(7): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 7
  terminated:false
  Z = 8
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 8
  A$(8): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 8
  terminated:false
  Z = 9
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 9
  A$(9): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 9
  terminated:false
  Z = 10
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 10
  A$(10): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 10
  terminated:true
-630 F(Z:650) LET C = C + 1
+630 LET C = C + 1
  C: 12
  C = 13
-640 F(Z:650) PRINT
+640 PRINT
 
 650 F(Z:650) FOR Z = 1 TO 10
  Z = 1
@@ -2255,147 +2255,147 @@ O
  Z: 6
  A$(6): "X"
  A$(Z) <> "O": true
-320 F(Z:650) PRINT "INPUT THE NUMBER";
+320 PRINT "INPUT THE NUMBER";
 INPUT THE NUMBER
-330 F(Z:650) INPUT N
+330 INPUT N
 ? 6
  N = 6
-340 F(Z:650) IF N <> INT(N) THEN 310
+340 IF N <> INT(N) THEN 310
  N: 6
  N <> INT(N): false
-350 F(Z:650) IF N = 22 THEN 180
+350 IF N = 22 THEN 180
  N: 6
  N = 22: false
-360 F(Z:650) IF N > 11 THEN 310
+360 IF N > 11 THEN 310
  N: 6
  N > 11: false
-370 F(Z:650) IF N = 0 THEN 230
+370 IF N = 0 THEN 230
  N: 6
  N = 0: false
-380 F(Z:650) IF M = N THEN 510
+380 IF M = N THEN 510
  M: 1
  N: 6
  M = N: false
-390 F(Z:650) LET M = N
+390 LET M = N
  N: 6
  M = 6
-400 F(Z:650) IF A$(N) = "O" THEN 480
+400 IF A$(N) = "O" THEN 480
  N: 6
  A$(6): "X"
  A$(N) = "O": false
-410 F(Z:650) LET A$(N) = "O"
+410 LET A$(N) = "O"
  N: 6
  A$(6) = "O"
-420 F(Z:650) LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
+420 LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
  Q: 0.417022005
  N: 6
  R = -335.494705
-430 F(Z:650) LET N = ABS(R - INT(R))
+430 LET N = ABS(R - INT(R))
  R: -335.494705
  N = 0.494705
-440 F(Z:650) LET N = INT(10 * N)
+440 LET N = INT(10 * N)
  N: 0.494705
  N = 4
-450 F(Z:650) IF A$(N) = "O" THEN 480
+450 IF A$(N) = "O" THEN 480
  N: 4
  A$(4): "O"
  A$(N) = "O": true
-480 F(Z:650) LET A$(N) = "X"
+480 LET A$(N) = "X"
  N: 4
  A$(4) = "X"
-490 F(Z:650) IF M = N THEN 420
+490 IF M = N THEN 420
  M: 6
  N: 4
  M = N: false
-500 F(Z:650) GOTO 610
-610 F(Z:650) PRINT "1 2 3 4 5 6 7 8 9 10"
+500 GOTO 610
+610 PRINT "1 2 3 4 5 6 7 8 9 10"
 1 2 3 4 5 6 7 8 9 10
-620.0.-1 F(Z:650) FOR Z = 1 TO 10
+620.0.-1 FOR Z = 1 TO 10
  Z = 1
  terminated:false
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 1
  A$(1): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 1
  terminated:false
  Z = 2
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 2
  A$(2): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 2
  terminated:false
  Z = 3
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 3
  A$(3): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 3
  terminated:false
  Z = 4
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 4
  A$(4): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 4
  terminated:false
  Z = 5
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 5
  A$(5): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 5
  terminated:false
  Z = 6
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 6
  A$(6): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 6
  terminated:false
  Z = 7
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 7
  A$(7): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 7
  terminated:false
  Z = 8
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 8
  A$(8): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 8
  terminated:false
  Z = 9
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 9
  A$(9): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 9
  terminated:false
  Z = 10
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 10
  A$(10): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 10
  terminated:true
-630 F(Z:650) LET C = C + 1
+630 LET C = C + 1
  C: 13
  C = 14
-640 F(Z:650) PRINT
+640 PRINT
 
 650 F(Z:650) FOR Z = 1 TO 10
  Z = 1
@@ -2428,147 +2428,147 @@ O
  Z: 4
  A$(4): "X"
  A$(Z) <> "O": true
-320 F(Z:650) PRINT "INPUT THE NUMBER";
+320 PRINT "INPUT THE NUMBER";
 INPUT THE NUMBER
-330 F(Z:650) INPUT N
+330 INPUT N
 ? 4
  N = 4
-340 F(Z:650) IF N <> INT(N) THEN 310
+340 IF N <> INT(N) THEN 310
  N: 4
  N <> INT(N): false
-350 F(Z:650) IF N = 22 THEN 180
+350 IF N = 22 THEN 180
  N: 4
  N = 22: false
-360 F(Z:650) IF N > 11 THEN 310
+360 IF N > 11 THEN 310
  N: 4
  N > 11: false
-370 F(Z:650) IF N = 0 THEN 230
+370 IF N = 0 THEN 230
  N: 4
  N = 0: false
-380 F(Z:650) IF M = N THEN 510
+380 IF M = N THEN 510
  M: 6
  N: 4
  M = N: false
-390 F(Z:650) LET M = N
+390 LET M = N
  N: 4
  M = 4
-400 F(Z:650) IF A$(N) = "O" THEN 480
+400 IF A$(N) = "O" THEN 480
  N: 4
  A$(4): "X"
  A$(N) = "O": false
-410 F(Z:650) LET A$(N) = "O"
+410 LET A$(N) = "O"
  N: 4
  A$(4) = "O"
-420 F(Z:650) LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
+420 LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
  Q: 0.417022005
  N: 4
  R = -19.9992187
-430 F(Z:650) LET N = ABS(R - INT(R))
+430 LET N = ABS(R - INT(R))
  R: -19.9992187
  N = 0.9992187
-440 F(Z:650) LET N = INT(10 * N)
+440 LET N = INT(10 * N)
  N: 0.9992187
  N = 9
-450 F(Z:650) IF A$(N) = "O" THEN 480
+450 IF A$(N) = "O" THEN 480
  N: 9
  A$(9): "O"
  A$(N) = "O": true
-480 F(Z:650) LET A$(N) = "X"
+480 LET A$(N) = "X"
  N: 9
  A$(9) = "X"
-490 F(Z:650) IF M = N THEN 420
+490 IF M = N THEN 420
  M: 4
  N: 9
  M = N: false
-500 F(Z:650) GOTO 610
-610 F(Z:650) PRINT "1 2 3 4 5 6 7 8 9 10"
+500 GOTO 610
+610 PRINT "1 2 3 4 5 6 7 8 9 10"
 1 2 3 4 5 6 7 8 9 10
-620.0.-1 F(Z:650) FOR Z = 1 TO 10
+620.0.-1 FOR Z = 1 TO 10
  Z = 1
  terminated:false
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 1
  A$(1): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 1
  terminated:false
  Z = 2
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 2
  A$(2): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 2
  terminated:false
  Z = 3
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 3
  A$(3): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 3
  terminated:false
  Z = 4
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 4
  A$(4): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 4
  terminated:false
  Z = 5
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 5
  A$(5): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 5
  terminated:false
  Z = 6
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 6
  A$(6): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 6
  terminated:false
  Z = 7
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 7
  A$(7): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 7
  terminated:false
  Z = 8
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 8
  A$(8): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 8
  terminated:false
  Z = 9
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 9
  A$(9): "X"
 X 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 9
  terminated:false
  Z = 10
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 10
  A$(10): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 10
  terminated:true
-630 F(Z:650) LET C = C + 1
+630 LET C = C + 1
  C: 14
  C = 15
-640 F(Z:650) PRINT
+640 PRINT
 
 650 F(Z:650) FOR Z = 1 TO 10
  Z = 1
@@ -2641,147 +2641,147 @@ O
  Z: 9
  A$(9): "X"
  A$(Z) <> "O": true
-320 F(Z:650) PRINT "INPUT THE NUMBER";
+320 PRINT "INPUT THE NUMBER";
 INPUT THE NUMBER
-330 F(Z:650) INPUT N
+330 INPUT N
 ? 9
  N = 9
-340 F(Z:650) IF N <> INT(N) THEN 310
+340 IF N <> INT(N) THEN 310
  N: 9
  N <> INT(N): false
-350 F(Z:650) IF N = 22 THEN 180
+350 IF N = 22 THEN 180
  N: 9
  N = 22: false
-360 F(Z:650) IF N > 11 THEN 310
+360 IF N > 11 THEN 310
  N: 9
  N > 11: false
-370 F(Z:650) IF N = 0 THEN 230
+370 IF N = 0 THEN 230
  N: 9
  N = 0: false
-380 F(Z:650) IF M = N THEN 510
+380 IF M = N THEN 510
  M: 4
  N: 9
  M = N: false
-390 F(Z:650) LET M = N
+390 LET M = N
  N: 9
  M = 9
-400 F(Z:650) IF A$(N) = "O" THEN 480
+400 IF A$(N) = "O" THEN 480
  N: 9
  A$(9): "X"
  A$(N) = "O": false
-410 F(Z:650) LET A$(N) = "O"
+410 LET A$(N) = "O"
  N: 9
  A$(9) = "O"
-420 F(Z:650) LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
+420 LET R = TAN(Q + N / Q - N) - SIN(Q / N) + 336 * SIN(0.8 * N)
  Q: 0.417022005
  N: 9
  R = 267.087426
-430 F(Z:650) LET N = ABS(R - INT(R))
+430 LET N = ABS(R - INT(R))
  R: 267.087426
  N = 0.087426
-440 F(Z:650) LET N = INT(10 * N)
+440 LET N = INT(10 * N)
  N: 0.087426
  N = 0
-450 F(Z:650) IF A$(N) = "O" THEN 480
+450 IF A$(N) = "O" THEN 480
  N: 0
  A$(0): "O"
  A$(N) = "O": true
-480 F(Z:650) LET A$(N) = "X"
+480 LET A$(N) = "X"
  N: 0
  A$(0) = "X"
-490 F(Z:650) IF M = N THEN 420
+490 IF M = N THEN 420
  M: 9
  N: 0
  M = N: false
-500 F(Z:650) GOTO 610
-610 F(Z:650) PRINT "1 2 3 4 5 6 7 8 9 10"
+500 GOTO 610
+610 PRINT "1 2 3 4 5 6 7 8 9 10"
 1 2 3 4 5 6 7 8 9 10
-620.0.-1 F(Z:650) FOR Z = 1 TO 10
+620.0.-1 FOR Z = 1 TO 10
  Z = 1
  terminated:false
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 1
  A$(1): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 1
  terminated:false
  Z = 2
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 2
  A$(2): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 2
  terminated:false
  Z = 3
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 3
  A$(3): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 3
  terminated:false
  Z = 4
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 4
  A$(4): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 4
  terminated:false
  Z = 5
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 5
  A$(5): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 5
  terminated:false
  Z = 6
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 6
  A$(6): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 6
  terminated:false
  Z = 7
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 7
  A$(7): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 7
  terminated:false
  Z = 8
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 8
  A$(8): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 8
  terminated:false
  Z = 9
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 9
  A$(9): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 9
  terminated:false
  Z = 10
-620 F(Z:650) PRINT A$(Z); " ";
+620 PRINT A$(Z); " ";
  Z: 10
  A$(10): "O"
 O 
-620.0.1 F(Z:650) NEXT Z
+620.0.1 NEXT Z
  Z: 10
  terminated:true
-630 F(Z:650) LET C = C + 1
+630 LET C = C + 1
  C: 15
  C = 16
-640 F(Z:650) PRINT
+640 PRINT
 
 650 F(Z:650) FOR Z = 1 TO 10
  Z = 1
