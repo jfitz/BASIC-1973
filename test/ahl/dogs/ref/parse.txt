@@ -295,6 +295,8 @@
  Variable:Z -> .
  Variable:P(.) -> .
 290 IF P(Z)<2 THEN 300\IF P(Z)>500 THEN 315
+ WARNING: Transfer in/out of FOR/NEXT 300
+ WARNING: Transfer in/out of FOR/NEXT 315
  Variable:Z -> .
  Variable:P(.) -> .
  NumericValue:2
@@ -321,6 +323,7 @@
  Variable:Z -> .
  Variable:P(.) -> .
 310 GOTO 290
+ WARNING: Transfer in/out of FOR/NEXT 290
  LineNumber:290
 315 PRINT "YOU CAN'T BET OVER 500,00 "N$(Z)" TRY AGAIN"
  TextValue:"YOU CAN'T BET OVER 500,00 "
@@ -597,12 +600,14 @@
  start:   ["NumericValue:1"]
  end:     ["NumericValue:10"]
 550 IF P=S(R) THEN 580
+ WARNING: Transfer in/out of FOR/NEXT 580
  Variable:P -> .
  Variable:R -> .
  Variable:S(.) -> .
  BinaryOperatorEqual:=(.,.) -> ?
  LineNumber:580
 555 IF S(R)>20 THEN 590
+ WARNING: Transfer in/out of FOR/NEXT 590
  Variable:R -> .
  Variable:S(.) -> .
  NumericValue:20
@@ -628,6 +633,7 @@
  FunctionChr:CHR$(.) -> =$
  CarriageControl:NL
 585 GOTO 560
+ WARNING: Transfer in/out of FOR/NEXT 560
  LineNumber:560
 590 IF W(1)<>0 THEN 605
  NumericValue:1
@@ -641,6 +647,7 @@
  Variable:R -> .
  AssignmentOperator:= . -> .
 600 GOTO 560
+ WARNING: Transfer in/out of FOR/NEXT 560
  LineNumber:560
 605 D=2
  Variable:D -> .
@@ -658,6 +665,7 @@
  BinaryOperatorPlus:+(.,.) -> .
  AssignmentOperator:= . -> .
 620 GOTO 560
+ WARNING: Transfer in/out of FOR/NEXT 560
  LineNumber:560
 625 IF W(1)<>0 THEN 640
  NumericValue:1
@@ -690,6 +698,7 @@
  FunctionChr:CHR$(.) -> =$
  CarriageControl:;
 650 IF Y=7 THEN 665
+ WARNING: Transfer in/out of FOR/NEXT 665
  Variable:Y -> .
  NumericValue:7
  BinaryOperatorEqual:=(.,.) -> ?
@@ -706,6 +715,7 @@
  NumericValue:13
  AssignmentOperator:= =. -> .
 675 GOTO 655
+ WARNING: Transfer in/out of FOR/NEXT 655
  LineNumber:655
 680 PRINT
  CarriageControl:NL
@@ -735,6 +745,7 @@
  start:   ["NumericValue:1"]
  end:     ["Variable:D -> ."]
 710 IF S(W(I2))<S(W(I2+1)) THEN 725
+ WARNING: Transfer in/out of FOR/NEXT 725
  Variable:I2 -> .
  Variable:W(.) -> .
  Variable:S(.) -> .
@@ -757,6 +768,7 @@
  Variable:W(.) -> .
  AssignmentOperator:= . -> .
 730 GOTO 715
+ WARNING: Transfer in/out of FOR/NEXT 715
  LineNumber:715
 735 PRINT
  CarriageControl:NL
@@ -780,6 +792,7 @@
  start:   ["NumericValue:1"]
  end:     ["Variable:Q -> ."]
 765 IF G=J(E) THEN 790
+ WARNING: Transfer in/out of FOR/NEXT 790
  Variable:G -> .
  Variable:E -> .
  Variable:J(.) -> .
@@ -861,6 +874,7 @@
 825 PRINT
  CarriageControl:NL
 830 GOTO 780
+ WARNING: Transfer in/out of FOR/NEXT 780
  LineNumber:780
 835 PRINT "WOULD YOU AVID RACE FANS LIKE TO PLAY AGAIN";
  TextValue:"WOULD YOU AVID RACE FANS LIKE TO PLAY AGAIN"
@@ -968,6 +982,8 @@
  Variable:I -> .
  Variable:P(.) -> .
 935 IF P(I)<2 THEN 950\IF P(I)>500 THEN 960\NEXT I
+ WARNING: Transfer in/out of FOR/NEXT 950
+ WARNING: Transfer in/out of FOR/NEXT 960
  Variable:I -> .
  Variable:P(.) -> .
  NumericValue:2
@@ -995,6 +1011,7 @@
  TextValue:"YOUR BET"
  CarriageControl:;
 955 INPUT P(I)\GOTO 935
+ WARNING: Transfer in/out of FOR/NEXT 935
  Variable:I -> .
  Variable:P(.) -> .
  LineNumber:935
@@ -1007,6 +1024,7 @@
  TextValue:" TRY AGAIN"
  CarriageControl:NL
 965 GOTO 930
+ WARNING: Transfer in/out of FOR/NEXT 930
  LineNumber:930
 970 FOR I=1 TO 10
  control: Variable:I -> .
@@ -1111,6 +1129,7 @@
  Variable:Z -> .
  Variable:J(.) -> .
 1055 PRINT "AND YOUR BET";\INPUT P(Z)\IF P(Z)<2 THEN 1070
+ WARNING: Transfer in/out of FOR/NEXT 1070
  TextValue:"AND YOUR BET"
  CarriageControl:;
  Variable:Z -> .
@@ -1121,6 +1140,7 @@
  BinaryOperatorLess:<(.,.) -> ?
  LineNumber:1070
 1060 IF P(Z)>500 THEN 1075
+ WARNING: Transfer in/out of FOR/NEXT 1075
  Variable:Z -> .
  Variable:P(.) -> .
  NumericValue:500
@@ -1131,10 +1151,12 @@
  Variable:Z -> .
  LineNumber:325
 1070 PRINT "YOU MUST BET AT LEAST $2.00"\GOTO 1055
+ WARNING: Transfer in/out of FOR/NEXT 1055
  TextValue:"YOU MUST BET AT LEAST $2.00"
  CarriageControl:NL
  LineNumber:1055
 1075 PRINT "YOU CAN'T BET OVER $500,00"\GOTO 1055
+ WARNING: Transfer in/out of FOR/NEXT 1055
  TextValue:"YOU CAN'T BET OVER $500,00"
  CarriageControl:NL
  LineNumber:1055

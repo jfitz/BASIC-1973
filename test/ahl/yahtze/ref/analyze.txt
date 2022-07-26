@@ -721,9 +721,11 @@ Halstead complexity:
   Origs: 2770:ifthen
   Dests: 3450:auto, 3870:ifthen
 3450 F(I:1540) (1 4) IF A(1) <> A(4) THEN 4960
+     WARNING: Transfer in/out of FOR/NEXT 4960
   Origs: 3440:auto
   Dests: 3460:auto, 4960:ifthen
 3460 F(I:1540) (1 4) IF A(2) <> A(3) THEN 4960
+     WARNING: Transfer in/out of FOR/NEXT 4960
   Origs: 3450:auto
   Dests: 3470:auto, 4960:ifthen
 3470 F(I:1540) (0 3) F(3, I) = 0
@@ -745,9 +747,11 @@ Halstead complexity:
   Origs: 2780:ifthen
   Dests: 3530:auto, 3870:ifthen
 3530 F(I:1540) (1 4) IF A(1) <> A(2) THEN 4960
+     WARNING: Transfer in/out of FOR/NEXT 4960
   Origs: 3520:auto
   Dests: 3540:auto, 4960:ifthen
 3540 F(I:1540) (1 4) IF A(4) <> A(S) THEN 4960
+     WARNING: Transfer in/out of FOR/NEXT 4960
   Origs: 3530:auto
   Dests: 3550:auto, 4960:ifthen
 3550 F(I:1540) (1 4) IF A(3) <> A(2) THEN 3570
@@ -757,6 +761,7 @@ Halstead complexity:
   Origs: 3550:auto
   Dests: 3590:goto
 3570 F(I:1540) (1 4) IF A(3) <> A(4) THEN 4960
+     WARNING: Transfer in/out of FOR/NEXT 4960
   Origs: 3550:ifthen
   Dests: 3580:auto, 4960:ifthen
 3580 F(I:1540) (0 2) GOTO 3590
@@ -787,12 +792,15 @@ Halstead complexity:
   Origs: 2800:ifthen
   Dests: 3670:auto, 3870:ifthen
 3670 F(I:1540) (1 6) IF A(1) <> A(5) + 4 THEN 4960
+     WARNING: Transfer in/out of FOR/NEXT 4960
   Origs: 3660:auto
   Dests: 3680:auto, 4960:ifthen
 3680 F(I:1540) (1 6) IF A(2) <> A(4) + 2 THEN 4960
+     WARNING: Transfer in/out of FOR/NEXT 4960
   Origs: 3670:auto
   Dests: 3690:auto, 4960:ifthen
 3690 F(I:1540) (1 6) IF A(3) <> A(5) + 2 THEN 4960
+     WARNING: Transfer in/out of FOR/NEXT 4960
   Origs: 3680:auto
   Dests: 3700:auto, 4960:ifthen
 3700 F(I:1540) (0 3) L(1, I) = 40
@@ -814,6 +822,7 @@ Halstead complexity:
   Origs: 3740:fornext
   Dests: 3760:fornext, 3770:fornext
 3760 F(I:1540,O:3740,O1:3750) (1 4) IF A(O) <> A(O1) THEN 4960
+     WARNING: Transfer in/out of FOR/NEXT 4960
   Origs: 3750:fornext
   Dests: 3770:auto, 4960:ifthen
 3770 F(I:1540,O:3740,O1:3750) (0 1) NEXT O1
@@ -1096,6 +1105,7 @@ Halstead complexity:
   Origs: 2930:goto, 3020:goto, 3110:goto, 3190:goto, 3290:goto, 3380:goto, 3430:goto, 3510:goto, 3610:goto, 3650:goto, 3720:goto, 3810:goto, 3860:goto, 4140:goto, 4180:goto, 4220:goto, 4260:goto, 4300:goto, 4340:goto, 4380:goto, 4420:goto, 4460:goto, 4500:goto, 4540:goto, 4580:goto, 4620:goto
   Dests: 4700:auto
 4700 F(I:1540) (0 2) GOTO 5750
+     WARNING: Transfer in/out of FOR/NEXT 5750
   Origs: 4690:auto
   Dests: 5750:goto
 4710 F(I:1540) (0 1) NEXT I
@@ -1177,6 +1187,7 @@ Halstead complexity:
   Origs: 3450:ifthen, 3460:ifthen, 3530:ifthen, 3540:ifthen, 3570:ifthen, 3670:ifthen, 3680:ifthen, 3690:ifthen, 3760:ifthen
   Dests: 4970:auto
 4970 (0 3) GOTO 2620
+     WARNING: Transfer in/out of FOR/NEXT 2620
   Origs: 4960:auto
   Dests: 2620:goto
 4980 (0 2) PRINT
@@ -1453,78 +1464,91 @@ Halstead complexity:
   Origs: 5750:ifthen, 5870:auto
   Dests: 5890:auto
 5890 (0 3) GOTO 4710
+     WARNING: Transfer in/out of FOR/NEXT 4710
   Origs: 5880:auto
   Dests: 4710:goto
 5900 (0 3) H(I, R) = 2
   Origs: 5760:ifthen
   Dests: 5910:auto
 5910 (0 3) GOTO 4710
+     WARNING: Transfer in/out of FOR/NEXT 4710
   Origs: 5900:auto
   Dests: 4710:goto
 5920 (0 3) H(I, R) = 3
   Origs: 5770:ifthen
   Dests: 5930:auto
 5930 (0 3) GOTO 4710
+     WARNING: Transfer in/out of FOR/NEXT 4710
   Origs: 5920:auto
   Dests: 4710:goto
 5940 (0 3) H(I, R) = 4
   Origs: 5780:ifthen
   Dests: 5950:auto
 5950 (0 3) GOTO 4710
+     WARNING: Transfer in/out of FOR/NEXT 4710
   Origs: 5940:auto
   Dests: 4710:goto
 5960 (0 3) H(I, R) = 5
   Origs: 5790:ifthen
   Dests: 5970:auto
 5970 (0 3) GOTO 4710
+     WARNING: Transfer in/out of FOR/NEXT 4710
   Origs: 5960:auto
   Dests: 4710:goto
 5980 (0 3) H(I, R) = 6
   Origs: 5800:ifthen
   Dests: 5990:auto
 5990 (0 3) GOTO 4710
+     WARNING: Transfer in/out of FOR/NEXT 4710
   Origs: 5980:auto
   Dests: 4710:goto
 6000 (0 3) H(I, R) = 7
   Origs: 5810:ifthen, 5840:ifthen
   Dests: 6010:auto
 6010 (0 3) GOTO 4710
+     WARNING: Transfer in/out of FOR/NEXT 4710
   Origs: 6000:auto
   Dests: 4710:goto
 6020 (0 3) H(I, R) = 8
   Origs: 5820:ifthen
   Dests: 6030:auto
 6030 (0 3) GOTO 4710
+     WARNING: Transfer in/out of FOR/NEXT 4710
   Origs: 6020:auto
   Dests: 4710:goto
 6040 (0 3) H(I, R) = 9
   Origs: 5830:ifthen
   Dests: 6050:auto
 6050 (0 3) GOTO 4710
+     WARNING: Transfer in/out of FOR/NEXT 4710
   Origs: 6040:auto
   Dests: 4710:goto
 6060 (0 3) H(I, R) = 10
   Origs: 
   Dests: 6070:auto
 6070 (0 3) GOTO 4710
+     WARNING: Transfer in/out of FOR/NEXT 4710
   Origs: 6060:auto
   Dests: 4710:goto
 6080 (0 3) H(I, R) = 11
   Origs: 5850:ifthen
   Dests: 6090:auto
 6090 (0 3) GOTO 4710
+     WARNING: Transfer in/out of FOR/NEXT 4710
   Origs: 6080:auto
   Dests: 4710:goto
 6100 (0 3) H(I, R) = 12
   Origs: 5860:ifthen
   Dests: 6110:auto
 6110 (0 3) GOTO 4710
+     WARNING: Transfer in/out of FOR/NEXT 4710
   Origs: 6100:auto
   Dests: 4710:goto
 6120 (0 3) H(I, R) = 13
   Origs: 5870:ifthen
   Dests: 6130:auto
 6130 (0 3) GOTO 4710
+     WARNING: Transfer in/out of FOR/NEXT 4710
   Origs: 6120:auto
   Dests: 4710:goto
 6140 G(6140) (0 3) PRINT N$(I); " HAS USED THE FOLLOWING CATEGORIES:"
@@ -1672,6 +1696,7 @@ Halstead complexity:
   Origs: 6570:auto
   Dests: 6572:fornext, 6573:fornext
 6572 F(X:6571) (1 4) IF K(X) = S(X) THEN 6580
+     WARNING: Transfer in/out of FOR/NEXT 6580
   Origs: 6571:fornext
   Dests: 6573:auto, 6580:ifthen
 6573 F(X:6571) (0 1) NEXT X

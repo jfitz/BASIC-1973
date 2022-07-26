@@ -13,6 +13,7 @@
  WARNING: Multiple GOSUB entry points
 41 FOR K = 0 TO I - 1 : IF G(I) = G(K) GOTO 170
  WARNING: Multiple GOSUB entry points
+ WARNING: Transfer in/out of FOR/NEXT 170
 42 NEXT K
  WARNING: Multiple GOSUB entry points
 43 NEXT I
@@ -61,6 +62,7 @@
 220 FOR I = 0 TO P - 1 : IF D(A, I) = D(A, P) GOTO 210
  WARNING: Multiple GOSUB entry points
  WARNING: Branch to line before GOSUB start
+ WARNING: Transfer in/out of FOR/NEXT 210
 230 NEXT I
  WARNING: Multiple GOSUB entry points
 240 NEXT P
@@ -81,6 +83,7 @@
  WARNING: GOSUB length exceeds limit 40
 405 LET G(P) = D(J, P)
 410 FOR I = 0 TO P - 1 : IF G(I) = G(P) GOTO 430
+ WARNING: Transfer in/out of FOR/NEXT 430
 415 NEXT I
 420 FOR A = 1 TO J : GOSUB 300
 425 IF V <= B(A) THEN IF W <= C(A) THEN IF 4 - P >= C(A) - W THEN IF 4 - P >= B(A) - V GOTO 440
@@ -89,6 +92,7 @@
 432 IF P = 0 THEN IF G(P) = D(1, 0) GOTO 150
  WARNING: Branch to line before GOSUB start
 435 IF G(P) <> D(J, P) GOTO 410
+ WARNING: Transfer in/out of FOR/NEXT 410
 440 LET P = P - 1 : IF P < 0 THEN GOTO 150
  WARNING: Branch to line before GOSUB start
 445 GOTO 430

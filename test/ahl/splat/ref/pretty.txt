@@ -60,8 +60,10 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
 219 PRINT "**********", "*****************"
 300 FOR I = 0 TO T STEP (T / 8)
 310 IF I > V / A GOTO 400
+ WARNING: Transfer in/out of FOR/NEXT 400
 320 D = D1 - ((A / 2) + I ^ 2)
 330 IF D <= 0 GOTO 1000
+ WARNING: Transfer in/out of FOR/NEXT 1000
 340 PRINT I, D
 350 NEXT I
 360 GOTO 500
@@ -69,6 +71,7 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
 405 FOR I = 1 TO T STEP (T / 8)
 410 D = D1 - ((V ^ 2 / (2 + A)) + (V * (I - (V / A))))
 420 IF D <= 0 GOTO 1010
+ WARNING: Transfer in/out of FOR/NEXT 1010
 430 PRINT I, D
 440 NEXT I
 450 GOTO 500
@@ -76,6 +79,7 @@ Syntax error: Expression is not declaration (type UnaryOperatorHash)
 510 K = 0 \ K1 = 0
 530 FOR I = 1 TO 4000
 550 IF A(I) = 0 GOTO 620
+ WARNING: Transfer in/out of FOR/NEXT 620
 560 K = K + 1
 570 IF D > A(I) GOTO 600
 580 K1 = K1 + 1

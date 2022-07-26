@@ -74,6 +74,7 @@ Halstead complexity:
   Origs: 160:auto
   Dests: 180:fornext, 190:fornext
 180 F(I:150,J:170) (1 5) IF A(I) = A(J) THEN 160
+    WARNING: Transfer in/out of FOR/NEXT 160
   Origs: 170:fornext
   Dests: 160:ifthen, 190:auto
 190 F(I:150,J:170) (0 1) NEXT J
@@ -100,15 +101,18 @@ Halstead complexity:
   Origs: 240:auto
   Dests: 255:auto
 255 F(I:220) (1 4) IF A1(0) <> 3 THEN 630
+    WARNING: Transfer in/out of FOR/NEXT 630
   Origs: 250:auto
   Dests: 260:auto, 630:ifthen
 260 F(I:220,J:260) (1 3) FOR J = 1 TO 3
   Origs: 255:auto
   Dests: 270:fornext, 290:fornext
 270 F(I:220,J:260) (1 4) IF A1(J) < 48 THEN 300
+    WARNING: Transfer in/out of FOR/NEXT 300
   Origs: 260:fornext
   Dests: 280:auto, 300:ifthen
 280 F(I:220,J:260) (1 4) IF A1(J) > 57 THEN 300
+    WARNING: Transfer in/out of FOR/NEXT 300
   Origs: 270:auto
   Dests: 285:auto, 300:ifthen
 285 F(I:220,J:260) (0 4) B(J) = A1(J) - 48
@@ -127,12 +131,15 @@ Halstead complexity:
   Origs: 300:auto
   Dests: 230:goto
 320 F(I:220) (1 4) IF B(1) = B(2) THEN 650
+    WARNING: Transfer in/out of FOR/NEXT 650
   Origs: 295:goto
   Dests: 330:auto, 650:ifthen
 330 F(I:220) (1 4) IF B(2) = B(3) THEN 650
+    WARNING: Transfer in/out of FOR/NEXT 650
   Origs: 320:auto
   Dests: 340:auto, 650:ifthen
 340 F(I:220) (1 4) IF B(2) = B(1) THEN 650
+    WARNING: Transfer in/out of FOR/NEXT 650
   Origs: 330:auto
   Dests: 350:auto, 650:ifthen
 350 F(I:220) (0 3) C = 0
@@ -182,6 +189,7 @@ Halstead complexity:
   Origs: 460:fornext, 470:ifthen, 480:auto
   Dests: 500:auto
 500 F(I:220) (1 4) IF D = 3 THEN 680
+    WARNING: Transfer in/out of FOR/NEXT 680
   Origs: 490:auto
   Dests: 520:auto, 680:ifthen
 520 F(I:220,J:520) (1 3) FOR J = 1 TO C
@@ -225,6 +233,7 @@ Halstead complexity:
   Dests: 700:goto
 630 (0 2) PRINT "TRY GUESSING A THREE-DIGIT NUMBER. "
     (0 3) GOTO 230
+    WARNING: Transfer in/out of FOR/NEXT 230
   Origs: 255:ifthen
   Dests: 230:goto
 650 (0 2) PRINT "OH, I FORGOT TO TELL YOU THAT THE NUMBER I HAVE IN"
@@ -232,6 +241,7 @@ Halstead complexity:
   Dests: 660:auto
 660 (0 2) PRINT "MIND HAS NO TWO DIGITS THE SAME. "
     (0 3) GOTO 230
+    WARNING: Transfer in/out of FOR/NEXT 230
   Origs: 650:auto
   Dests: 230:goto
 680 (0 2) PRINT "YOU GOT IT!!! "

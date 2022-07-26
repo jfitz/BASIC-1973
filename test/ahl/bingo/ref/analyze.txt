@@ -278,6 +278,7 @@ Halstead complexity:
   Origs: 1110:fornext
   Dests: 1130:fornext, 1140:fornext
 1130 F(Y:1110,X:1120) (1 4) IF B(X, Y) = U THEN 1250
+     WARNING: Transfer in/out of FOR/NEXT 1250
   Origs: 1120:fornext
   Dests: 1140:auto, 1250:ifthen
 1140 F(Y:1110,X:1120) (0 1) NEXT X
@@ -317,6 +318,7 @@ Halstead complexity:
   Origs: 1130:ifthen
   Dests: 1260:auto
 1260 (0 3) GOTO 1140
+     WARNING: Transfer in/out of FOR/NEXT 1140
   Origs: 1250:auto
   Dests: 1140:goto
 1265 (0 1) REM THIS IS THE BINGO DETERMINING SEQUENCE (LINES 1270-1950)
@@ -339,6 +341,7 @@ Halstead complexity:
   Origs: 1280:fornext
   Dests: 1300:fornext, 1420:fornext
 1300 G(1270) F(Y:1280,X:1290) (1 4) IF B(X, Y) <> 0 THEN 1430
+     WARNING: Transfer in/out of FOR/NEXT 1430
   Origs: 1290:fornext
   Dests: 1310:auto, 1430:ifthen
 1310 G(1270) F(Y:1280,X:1290) (1 6) IF X < F + 4 THEN 1420
@@ -369,6 +372,7 @@ Halstead complexity:
   Origs: 1380:auto
   Dests: 1410:auto
 1410 G(1270) F(Y:1280,X:1290) (0 2) GOTO 1450
+     WARNING: Transfer in/out of FOR/NEXT 1450
   Origs: 1390:auto
   Dests: 1450:goto
 1420 G(1270) F(Y:1280,X:1290) (0 1) NEXT X
@@ -390,6 +394,7 @@ Halstead complexity:
   Origs: 1460:fornext
   Dests: 1480:fornext, 1600:fornext
 1480 G(1270) F(X:1460,Y:1470) (1 4) IF B(X, Y) <> 0 THEN 1610
+     WARNING: Transfer in/out of FOR/NEXT 1610
   Origs: 1470:fornext
   Dests: 1490:auto, 1610:ifthen
 1490 G(1270) F(X:1460,Y:1470) (1 6) IF Y < F + 4 THEN 1600
@@ -420,6 +425,7 @@ Halstead complexity:
   Origs: 1560:auto
   Dests: 1590:auto
 1590 G(1270) F(X:1460,Y:1470) (0 2) GOTO 1620
+     WARNING: Transfer in/out of FOR/NEXT 1620
   Origs: 1570:auto
   Dests: 1620:goto
 1600 G(1270) F(X:1460,Y:1470) (0 1) NEXT Y

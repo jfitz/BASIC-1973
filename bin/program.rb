@@ -23,24 +23,16 @@ class LineNumber
     end
   end
 
+  def hash
+    @line_number.hash
+  end
+
   def eql?(other)
     @line_number == other.line_number
   end
 
   def ==(other)
     @line_number == other.line_number
-  end
-
-  def hash
-    @line_number.hash
-  end
-
-  def zero?
-    @line_number.zero?
-  end
-
-  def succ
-    LineNumber.new(@line_number + 1)
   end
 
   def <=>(other)
@@ -61,6 +53,14 @@ class LineNumber
 
   def <=(other)
     comp_value <= other.comp_value
+  end
+
+  def zero?
+    @line_number.zero?
+  end
+
+  def succ
+    LineNumber.new(@line_number + 1)
   end
 
   def dump
@@ -125,6 +125,10 @@ class LineStmt
     @statement = statement
   end
 
+  def hash
+    @line_number.hash + @statement.hash
+  end
+
   def eql?(other)
     @line_number == other.line_number && @statement == other.statement
   end
@@ -133,8 +137,10 @@ class LineStmt
     @line_number == other.line_number && @statement == other.statement
   end
 
-  def hash
-    @line_number.hash + @statement.hash
+  def <=>(other)
+    return @statement <=> other.statement if @line_number == other.line_number
+
+    @line_number <=> other.line_number
   end
 
   def index
@@ -161,6 +167,10 @@ class LineStmtMod
     @index = mod
   end
 
+  def hash
+    @line_number.hash + @statement.hash + @index.hash
+  end
+
   def eql?(other)
     @line_number == other.line_number &&
       @statement == other.statement &&
@@ -173,8 +183,15 @@ class LineStmtMod
       @index == other.index
   end
 
-  def hash
-    @line_number.hash + @statement.hash + @index.hash
+  def <=>(other)
+    return @index <=> other.index if
+      @line_number == other.line_number &&
+      @statement == other.statement
+
+    return @statement <=> other.statement if
+      @line_number == other.line_number
+
+    @line_number <=> other.line_number
   end
 
   def to_s
@@ -269,7 +286,7 @@ class Line
 
   def check_statements(program, line_number)
     @statements.each_with_index do |statement, stmt|
-      line_number_stmt = LineStmt.new(line_number, stmt)
+      line_stmt = LineStmt.new(line_number, stmt)
       statement.check_gosub_origins if stmt.zero?
       statement.check_gosub_single if stmt.zero?
       statement.check_gosub_early(line_number)
@@ -279,7 +296,8 @@ class Line
       statement.check_terminating_in_gosub
       statement.check_terminating_in_onerror
       statement.check_terminating_in_fornext
-      statement.check_program(program, line_number_stmt)
+      statement.check_destinations_fornext(program, line_stmt)
+      statement.check_program(program, line_stmt)
     end
   end
 
@@ -488,6 +506,10 @@ class LineRef
     @assignment = assignment
   end
 
+  def hash
+    @line_num.hash + @assignment.hash
+  end
+
   def eql?(other)
     @line_num == other.line_num &&
       @assignment == other.assignment
@@ -496,10 +518,6 @@ class LineRef
   def ==(other)
     @line_num == other.line_num &&
       @assignment == other.assignment
-  end
-
-  def hash
-    @line_num.hash + @assignment.hash
   end
 
   def <=>(other)
@@ -599,6 +617,10 @@ class TransferRefLineStmt
     @type = type
   end
 
+  def hash
+    @line_number.hash + @statement.hash + @type.hash
+  end
+
   def eql?(other)
     @line_number == other.line_number &&
       @statement == other.statement &&
@@ -609,10 +631,6 @@ class TransferRefLineStmt
     @line_number == other.line_number &&
       @statement == other.statement &&
       @type == other.type
-  end
-
-  def hash
-    @line_number.hash + @statement.hash + @type.hash
   end
 
   def <=>(other)
@@ -646,16 +664,16 @@ class TransferRefLine
     @type = type
   end
 
+  def hash
+    @line_number.hash + @type.hash
+  end
+
   def eql?(other)
     @line_number == other.line_number && @type == other.type
   end
 
   def ==(other)
     @line_number == other.line_number && @type == other.type
-  end
-
-  def hash
-    @line_number.hash + @type.hash
   end
 
   def <=>(other)

@@ -231,6 +231,8 @@ Halstead complexity:
   Dests: 290:auto
 290 F(Z:270) (1 4) IF P(Z) < 2 THEN 300
     F(Z:270) (1 4) IF P(Z) > 500 THEN 315
+    WARNING: Transfer in/out of FOR/NEXT 300
+    WARNING: Transfer in/out of FOR/NEXT 315
   Origs: 285:auto, 310:goto
   Dests: 295:auto, 300:ifthen, 315:ifthen
 295 F(Z:270) (0 2) PRINT
@@ -246,6 +248,7 @@ Halstead complexity:
   Origs: 300:auto, 320:goto
   Dests: 310:auto
 310 (0 3) GOTO 290
+    WARNING: Transfer in/out of FOR/NEXT 290
   Origs: 305:auto
   Dests: 290:goto
 315 (0 4) PRINT "YOU CAN'T BET OVER 500,00 " N$(Z) " TRY AGAIN"
@@ -392,9 +395,11 @@ Halstead complexity:
   Origs: 540:fornext
   Dests: 550:fornext, 560:fornext
 550 F(P:540,R:545) (1 4) IF P = S(R) THEN 580
+    WARNING: Transfer in/out of FOR/NEXT 580
   Origs: 545:fornext
   Dests: 555:auto, 580:ifthen
 555 F(P:540,R:545) (1 4) IF S(R) > 20 THEN 590
+    WARNING: Transfer in/out of FOR/NEXT 590
   Origs: 550:auto
   Dests: 560:auto, 590:ifthen
 560 F(P:540,R:545) (0 1) NEXT R
@@ -413,6 +418,7 @@ Halstead complexity:
   Origs: 550:ifthen
   Dests: 585:auto
 585 (0 3) GOTO 560
+    WARNING: Transfer in/out of FOR/NEXT 560
   Origs: 580:auto
   Dests: 560:goto
 590 (1 4) IF W(1) <> 0 THEN 605
@@ -422,6 +428,7 @@ Halstead complexity:
   Origs: 590:auto
   Dests: 600:auto
 600 (0 3) GOTO 560
+    WARNING: Transfer in/out of FOR/NEXT 560
   Origs: 595:auto
   Dests: 560:goto
 605 (0 3) D = 2
@@ -434,6 +441,7 @@ Halstead complexity:
   Origs: 610:auto
   Dests: 620:auto
 620 (0 3) GOTO 560
+    WARNING: Transfer in/out of FOR/NEXT 560
   Origs: 615:auto
   Dests: 560:goto
 625 (1 4) IF W(1) <> 0 THEN 640
@@ -452,6 +460,7 @@ Halstead complexity:
   Origs: 640:fornext
   Dests: 650:auto
 650 F(Y:640) (1 4) IF Y = 7 THEN 665
+    WARNING: Transfer in/out of FOR/NEXT 665
   Origs: 645:auto
   Dests: 655:auto, 665:ifthen
 655 F(Y:640) (0 1) NEXT Y
@@ -467,6 +476,7 @@ Halstead complexity:
   Origs: 665:auto
   Dests: 675:auto
 675 (0 3) GOTO 655
+    WARNING: Transfer in/out of FOR/NEXT 655
   Origs: 670:auto
   Dests: 655:goto
 680 (0 2) PRINT
@@ -491,6 +501,7 @@ Halstead complexity:
   Origs: 700:auto
   Dests: 710:fornext, 715:fornext
 710 F(I2:705) (1 4) IF S(W(I2)) < S(W(I2 + 1)) THEN 725
+    WARNING: Transfer in/out of FOR/NEXT 725
   Origs: 705:fornext
   Dests: 715:auto, 725:ifthen
 715 F(I2:705) (0 1) NEXT I2
@@ -503,6 +514,7 @@ Halstead complexity:
   Origs: 710:ifthen
   Dests: 730:auto
 730 (0 3) GOTO 715
+    WARNING: Transfer in/out of FOR/NEXT 715
   Origs: 725:auto
   Dests: 715:goto
 735 (0 2) PRINT
@@ -525,6 +537,7 @@ Halstead complexity:
   Origs: 755:auto
   Dests: 765:fornext, 780:fornext
 765 F(E:760) (1 4) IF G = J(E) THEN 790
+    WARNING: Transfer in/out of FOR/NEXT 790
   Origs: 760:fornext
   Dests: 770:auto, 790:ifthen
 770 F(E:760) (0 4) M5(E) = M5(E) - P(E)
@@ -564,6 +577,7 @@ Halstead complexity:
   Origs: 820:auto
   Dests: 830:auto
 830 (0 3) GOTO 780
+    WARNING: Transfer in/out of FOR/NEXT 780
   Origs: 825:auto
   Dests: 780:goto
 835 (0 2) PRINT "WOULD YOU AVID RACE FANS LIKE TO PLAY AGAIN";
@@ -640,6 +654,8 @@ Halstead complexity:
 935 F(I:920) (1 4) IF P(I) < 2 THEN 950
     F(I:920) (1 4) IF P(I) > 500 THEN 960
     F(I:920) (0 1) NEXT I
+    WARNING: Transfer in/out of FOR/NEXT 950
+    WARNING: Transfer in/out of FOR/NEXT 960
   Origs: 920:fornext, 930:auto, 955:goto
   Dests: 940:auto, 950:ifthen, 960:ifthen
 940 (1 5) IF C$ = "NO" THEN 325
@@ -653,12 +669,14 @@ Halstead complexity:
   Dests: 955:auto
 955 (1 2) INPUT P(I)
     (0 3) GOTO 935
+    WARNING: Transfer in/out of FOR/NEXT 935
   Origs: 950:auto
   Dests: 935:goto
 960 (0 4) PRINT "YOU CAN'T BET OVER $500.00 " N$(I) " TRY AGAIN"
   Origs: 935:ifthen
   Dests: 965:auto
 965 (0 3) GOTO 930
+    WARNING: Transfer in/out of FOR/NEXT 930
   Origs: 960:auto
   Dests: 930:goto
 970 F(I:970) (1 3) FOR I = 1 TO 10
@@ -729,9 +747,11 @@ Halstead complexity:
 1055 F(Z:1040) (0 2) PRINT "AND YOUR BET";
      F(Z:1040) (1 2) INPUT P(Z)
      F(Z:1040) (1 4) IF P(Z) < 2 THEN 1070
+     WARNING: Transfer in/out of FOR/NEXT 1070
   Origs: 1050:auto, 1070:goto, 1075:goto
   Dests: 1060:auto, 1070:ifthen
 1060 F(Z:1040) (1 4) IF P(Z) > 500 THEN 1075
+     WARNING: Transfer in/out of FOR/NEXT 1075
   Origs: 1055:auto
   Dests: 1065:auto, 1075:ifthen
 1065 F(Z:1040) (0 2) PRINT
@@ -741,10 +761,12 @@ Halstead complexity:
   Dests: 325:goto
 1070 (0 2) PRINT "YOU MUST BET AT LEAST $2.00"
      (0 3) GOTO 1055
+     WARNING: Transfer in/out of FOR/NEXT 1055
   Origs: 1055:ifthen
   Dests: 1055:goto
 1075 (0 2) PRINT "YOU CAN'T BET OVER $500,00"
      (0 3) GOTO 1055
+     WARNING: Transfer in/out of FOR/NEXT 1055
   Origs: 1060:ifthen
   Dests: 1055:goto
 1080 (0 3) GOTO 325
