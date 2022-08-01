@@ -122,9 +122,11 @@ class StatementFactory
       ArrReadStatement,
       ArrWriteStatement,
       ArrLetStatement,
+      BreakStatement,
       ChainStatement,
       ChangeStatement,
       CloseStatement,
+      ContinueStatement,
       DataStatement,
       DefineFunctionStatement,
       DimStatement,
@@ -1883,6 +1885,56 @@ module WriteFunctions
   end
 end
 
+# BREAK
+class BreakStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('BREAK')]
+    ]
+  end
+
+  def initialize(_, keywords, tokens_lists)
+    super
+
+    extract_modifiers(tokens_lists)
+    @autonext = false unless @any_if_modifiers
+
+    template = []
+
+    @errors << 'Syntax error' unless check_template(tokens_lists, template)
+  end
+
+  def set_destinations(_, line_stmt, program)
+    begin
+      @nextstmt_line_stmt =
+        program.find_continue_next_line_stmt(line_stmt)
+    rescue BASICSyntaxError => e
+      @program_errors << e.message
+    end
+  end
+
+  def set_transfers(_)
+    unless @nextstmt_line_stmt.nil?
+      line_number = @nextstmt_line_stmt.line_number
+      stmt = @nextstmt_line_stmt.statement
+      @transfers << TransferRefLineStmt.new(line_number, stmt, :fornext)
+    end
+  end
+
+  def dump
+    ['']
+  end
+
+  def execute_core(interpreter)
+    interpreter.break_fornext
+
+    raise(BASICSyntaxError, 'Line number not found') if
+      @nextstmt_line_stmt.nil?
+
+    interpreter.next_line_stmt_mod = @nextstmt_line_stmt
+  end
+end
+
 # CHAIN
 class ChainStatement < AbstractStatement
   def self.lead_keywords
@@ -2117,6 +2169,54 @@ class CloseStatement < AbstractStatement
     fns = @filenum_expression.evaluate(interpreter)
     fh = FileHandle.new(fns[0])
     interpreter.close_file(fh)
+  end
+end
+
+# CONTINUE
+class ContinueStatement < AbstractStatement
+  def self.lead_keywords
+    [
+      [KeywordToken.new('CONTINUE')]
+    ]
+  end
+
+  def initialize(_, keywords, tokens_lists)
+    super
+
+    extract_modifiers(tokens_lists)
+    @autonext = false unless @any_if_modifiers
+
+    template = []
+
+    @errors << 'Syntax error' unless check_template(tokens_lists, template)
+  end
+
+  def set_destinations(_, line_stmt, program)
+    begin
+      @nextstmt_line_stmt =
+        program.find_continue_next_line_stmt(line_stmt)
+    rescue BASICSyntaxError => e
+      @program_errors << e.message
+    end
+  end
+
+  def set_transfers(_)
+    unless @nextstmt_line_stmt.nil?
+      line_number = @nextstmt_line_stmt.line_number
+      stmt = @nextstmt_line_stmt.statement
+      @transfers << TransferRefLineStmt.new(line_number, stmt, :fornext)
+    end
+  end
+
+  def dump
+    ['']
+  end
+
+  def execute_core(interpreter)
+    raise(BASICSyntaxError, 'Line number not found') if
+      @nextstmt_line_stmt.nil?
+
+    interpreter.next_line_stmt_mod = @nextstmt_line_stmt
   end
 end
 
@@ -4397,6 +4497,8 @@ class NextStatement < AbstractStatement
       # change control variable value for FOR-TO
       fornext_control.bump_control(interpreter) unless bump_early
     end
+
+    fornext_control.broken = false
   end
 end
 
