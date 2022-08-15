@@ -23,6 +23,9 @@ Halstead complexity:
   Origs: :start
   Dests: 20:fornext, 40:fornext
 20 F(I:10) (0 5) GOTO I OF 100, 200, 300
+   WARNING: Transfer in/out of FOR/NEXT 100
+   WARNING: Transfer in/out of FOR/NEXT 200
+   WARNING: Transfer in/out of FOR/NEXT 300
   Origs: 10:fornext
   Dests: 100:goto, 200:goto, 300:goto
 30 (0 1) REM
@@ -34,22 +37,25 @@ Halstead complexity:
 90 (0 1) STOP
   Origs: 40:auto
   Dests: :stop
-100 F(I:10) (0 2) PRINT "LINE 100"
+100 (0 2) PRINT "LINE 100"
   Origs: 20:goto
   Dests: 110:auto
-110 F(I:10) (0 3) GOTO 30
+110 (0 3) GOTO 30
+    WARNING: Transfer in/out of FOR/NEXT 40
   Origs: 100:auto
   Dests: 40:goto
-200 F(I:10) (0 2) PRINT "LINE 200"
+200 (0 2) PRINT "LINE 200"
   Origs: 20:goto
   Dests: 210:auto
-210 F(I:10) (0 3) GOTO 30
+210 (0 3) GOTO 30
+    WARNING: Transfer in/out of FOR/NEXT 40
   Origs: 200:auto
   Dests: 40:goto
-300 F(I:10) (0 2) PRINT "LINE 300"
+300 (0 2) PRINT "LINE 300"
   Origs: 20:goto
   Dests: 310:auto
-310 F(I:10) (0 3) GOTO 30
+310 (0 3) GOTO 30
+    WARNING: Transfer in/out of FOR/NEXT 40
   Origs: 300:auto
   Dests: 40:goto
 900 (0 1) END
