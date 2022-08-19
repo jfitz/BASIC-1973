@@ -58,7 +58,7 @@ class Option
     v = value
     case @defs[:type]
     when :bool
-      v.to_s
+      v.to_s.upcase
     when :int
       v.to_s
     when :float
@@ -237,7 +237,7 @@ class Shell
     if args.empty?
       $options.each do |option|
         name = option[0].upcase
-        value = option[1].to_s.upcase
+        value = option[1].to_s
         lines << ("OPTION #{name} #{value}")
       end
     elsif args.size == 1 && args[0].keyword?
@@ -247,7 +247,7 @@ class Shell
       raise BASICCommandError, "Unknown option #{kwd}" unless
         $options.key?(kwd_d)
 
-      value = $options[kwd_d].to_s.upcase
+      value = $options[kwd_d].to_s
       lines << ("OPTION #{kwd} #{value}")
     elsif args.size == 2 && args[0].keyword?
       kwd = args[0].to_s
@@ -274,7 +274,7 @@ class Shell
         raise BASICCommandError, 'Incorrect value type'
       end
 
-      value = $options[kwd_d].value.to_s.upcase
+      value = $options[kwd_d].to_s
       lines << ("OPTION #{kwd} #{value}")
     else
       raise BASICCommandError, 'Too many arguments'
@@ -594,7 +594,7 @@ def make_command_tokenbuilders(quotes)
     BACK_TAB BACKSLASH_SEPARATOR BANG_COMMENT BASE BRACKETS
     CACHE_CONST_EXPR CHR_ALLOW_ALL COLON_FILE COLON_SEPARATOR
     CRLF_ON_LINE_INPUT
-    DEFAULT_PROMPT DETECT_INFINITE_LOOP
+    DEFAULT_PROMPT DEGREES DETECT_INFINITE_LOOP
     EXTEND_IF
     FIELD_SEP FORGET_FORNEXT FORNEXT_ONE_BEYOND
     HEADING
@@ -605,7 +605,7 @@ def make_command_tokenbuilders(quotes)
     PRECISION PRETTY_MULTILINE PRINT_SPEED PRINT_WIDTH
     PROMPT PROMPTD PROMPT_COUNT PROVENANCE
     QMARK_AFTER_PROMPT
-    RANDOMIZE REQUIRE_INITIALIZED RESPECT_RANDOMIZE
+    RADIANS RANDOMIZE REQUIRE_INITIALIZED RESPECT_RANDOMIZE
     SEMICOLON_ZONE_WIDTH SINGLE_QUOTE_STRING
     TIMING TRACE TRIG_REQUIRE_UNITS
     WARN_FORNEXT_LENGTH WARN_FORNEXT_LEVEL
@@ -816,6 +816,8 @@ $options['crlf_on_line_input'] =
 
 $options['default_prompt'] = Option.new(all_types, string, '? ')
 
+$options['degrees'] = Option.new(all_types, string, 'DEG')
+
 $options['detect_infinite_loop'] =
   Option.new(all_types, boolean, !options.key?(:no_detect_infinite_loop))
 
@@ -908,6 +910,8 @@ $options['provenance'] =
 
 $options['qmark_after_prompt'] =
   Option.new(all_types, boolean, options.key?(:qmark_after_prompt))
+
+$options['radians'] = Option.new(all_types, string, 'RAD')
 
 $options['randomize'] =
   Option.new(all_types, boolean, options.key?(:randomize))
