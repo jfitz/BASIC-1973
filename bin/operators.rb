@@ -1,18 +1,7 @@
 # frozen_string_literal: true
 
-# Unary scalar operators
-class UnaryOperator < AbstractElement
-  @operators = ['+', '-', '#', ':', 'NOT']
-
-  def self.operators(colon_file)
-    op = @operators
-    op -= [':'] unless colon_file
-    op
-  end
-
-  attr_reader :content_type, :shape, :constant, :warnings, :arguments,
-              :precedence
-
+# operators
+class Operator < AbstractElement
   def initialize(text)
     super()
 
@@ -29,8 +18,44 @@ class UnaryOperator < AbstractElement
     @arg_consts = []
   end
 
-  def pop_stack(stack)
-    stack.pop
+  def sigils
+    Sigils.make_sigils_2(@arg_types, @arg_shapes)
+  end
+
+  def signature
+    make_signature(@arg_types, @arg_shapes)
+  end
+
+  def dump
+    result = Sigils.make_type_sigil(@content_type) + Sigils.make_shape_sigil(@shape)
+    const = @constant ? '=' : ''
+    "#{self.class}:#{@op}#{signature} -> #{const}#{result}"
+  end
+
+  def pound?
+    false
+  end
+
+  def to_s
+    @op
+  end
+end
+
+# Unary scalar operators
+class UnaryOperator < Operator
+  @operators = ['+', '-', '#', ':', 'NOT']
+
+  def self.operators(colon_file)
+    op = @operators
+    op -= [':'] unless colon_file
+    op
+  end
+
+  attr_reader :content_type, :shape, :constant, :warnings, :arguments,
+              :precedence
+
+  def initialize(text)
+    super
   end
 
   def set_content_type(type_stack)
@@ -61,26 +86,8 @@ class UnaryOperator < AbstractElement
     constant_stack.push(@constant)
   end
 
-  def sigils
-    Sigils.make_sigils_2(@arg_types, @arg_shapes)
-  end
-
-  def signature
-    make_signature(@arg_types, @arg_shapes)
-  end
-
   def pop_stack(stack)
     stack.pop
-  end
-
-  def pop_stack(stack)
-    stack.pop
-  end
-
-  def dump
-    result = Sigils.make_type_sigil(@content_type) + Sigils.make_shape_sigil(@shape)
-    const = @constant ? '=' : ''
-    "#{self.class}:#{@op}#{signature} -> #{const}#{result}"
   end
 
   def unary?
@@ -91,22 +98,11 @@ class UnaryOperator < AbstractElement
     false
   end
 
-  def pound?
-    false
-  end
-
-  def to_s
-    @op
-  end
+  # evaluate() in each subclass
 end
 
 # Binary scalar operators
-class BinaryOperator < AbstractElement
-  def self.accept?(token)
-    classes = %w[OperatorToken]
-    classes.include?(token.class.to_s)
-  end
-
+class BinaryOperator < Operator
   @operators = [
     '=', '<>', '><', '#', '>', '>=', '=>', '<', '<=', '=<',
     '+', '-', '*', '/', '^', '**',
@@ -124,21 +120,10 @@ class BinaryOperator < AbstractElement
               :precedence
 
   def initialize(text)
-    super()
-
-    @op = text.to_s
-    @operation = nil
-    @content_type = :unknown
-    @shape = :unknown
-    @constant = false
-    @warnings = []
-    @arguments = nil
-    @precedence = 0
-    @operator = true
-    @arg_types = nil
-    @arg_shapes = []
-    @arg_consts = []
+    super
   end
+
+  # set_content() is in each subclass
 
   def set_shape(shape_stack)
     raise(BASICExpressionError, 'Not enough operands') if
@@ -184,23 +169,9 @@ class BinaryOperator < AbstractElement
     constant_stack.push(@constant)
   end
 
-  def sigils
-    Sigils.make_sigils_2(@arg_types, @arg_shapes)
-  end
-
-  def signature
-    make_signature(@arg_types, @arg_shapes)
-  end
-
   def pop_stack(stack)
     stack.pop
     stack.pop
-  end
-
-  def dump
-    result = Sigils.make_type_sigil(@content_type) + Sigils.make_shape_sigil(@shape)
-    const = @constant ? '=' : ''
-    "#{self.class}:#{@op}#{signature} -> #{const}#{result}"
   end
 
   def unary?
@@ -209,14 +180,6 @@ class BinaryOperator < AbstractElement
 
   def binary?
     true
-  end
-
-  def pound?
-    false
-  end
-
-  def to_s
-    @op
   end
 
   def evaluate(_interpreter, arg_stack)
