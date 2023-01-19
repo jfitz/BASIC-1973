@@ -677,36 +677,34 @@ class AbstractStatement
     vars
   end
 
+  def stop?
+    false
+  end
+
+  def end?
+    false
+  end
+
+  def chain?
+    false
+  end
+
   def for?
-    @keywords.size == 1 && @keywords[0].to_s == 'FOR'
+    false
   end
 
   def next?
-    @keywords.size == 1 && @keywords[0].to_s == 'NEXT'
+    false
   end
 
   def user_def?
-    @keywords.size == 1 && @keywords[0].to_s == 'DEF'
+    false
   end
 
   def end_user_def?
-    result = false
-
-    if @keywords.size == 1
-      result = true if @keywords[0].to_s == 'FNEND'
-      result = true if @keywords[0].to_s == 'ENDFN'
-      result = true if @keywords[0].to_s == 'ENDFUNCTION'
-    end
-
-    if @keywords.size == 2
-      result == true if
-        @keywords[0].to_s == 'END' &&
-        @keywords[1].to_s == 'FUNCTION'
-    end
-
-    result
+    false
   end
-
+ 
   def procedure?
     is_proc = false
 
@@ -1971,6 +1969,10 @@ class ChainStatement < AbstractStatement
     @target.uncache
   end
 
+  def chain?
+    true
+  end
+
   def dump
     lines = ['']
 
@@ -2330,6 +2332,10 @@ class DefineFunctionStatement < AbstractStatement
     end
   end
 
+  def user_def?
+    true
+  end
+
   def singledef?
     return false if @definition.nil?
 
@@ -2452,6 +2458,10 @@ class EndStatement < AbstractStatement
     @program_errors << 'Statements after END' unless next_line_stmt.nil?
   end
 
+  def end?
+    true
+  end
+
   def dump
     lines = ['']
 
@@ -2533,6 +2543,10 @@ class FnendStatement < AbstractStatement
 
     @errors << 'Syntax error' unless
       check_template(tokens_lists, template)
+  end
+
+  def end_user_def?
+    true
   end
 
   def multiend?
@@ -2825,6 +2839,10 @@ class ForStatement < AbstractStatement
     @step&.uncache
     @until&.uncache
     @while&.uncache
+  end
+
+  def for?
+    true
   end
 
   def dump
@@ -4451,6 +4469,10 @@ class NextStatement < AbstractStatement
     end
   end
 
+  def next?
+    true
+  end
+
   def dump
     lines = [@control.dump]
 
@@ -5679,6 +5701,10 @@ class StopStatement < AbstractStatement
   def set_transfers(_)
     empty_line_number = LineNumber.new(nil)
     @transfers << TransferRefLine.new(empty_line_number, :stop)
+  end
+
+  def stop?
+    true
   end
 
   def dump
