@@ -625,10 +625,21 @@ class BareTextTokenBuilder
       /\A\d+E\d+\z/
     ]
 
-    number_token = false
-    regexes.each { |regex| regex.match(@token) { |_| number_token = true } }
+    items = @token.split
 
-    @token = '' if number_token
+    all_items_are_numbers = !items.empty?
+
+    items.each do |item|
+      item_is_number = false
+
+      regexes.each do |regex|
+        regex.match(item) { |_| item_is_number = true }
+      end
+
+      all_items_are_numbers &&= item_is_number
+    end
+
+    @token = '' if all_items_are_numbers
   end
 
   def count
@@ -651,8 +662,7 @@ class InputTextTokenBuilder
     # discard trailing spaces
     @token = token.rstrip
 
-    # if it could be a numeric value, don't take it
-    # (these match regexes from InputNumberTokenBuilder but with \z)
+    # if it could be a numeric value, or seriers of numeric values, don't take it
     regexes = [
       /\A[+-]?\d+(\{[A-Za-z0-9\+\- _]*\})?\z/,
       /\A[+-]?\d+\.(\{[A-Za-z0-9\+\- _]*\})?\z/,
@@ -664,10 +674,21 @@ class InputTextTokenBuilder
       /\A[+-]?\.\d+E[+-]?\d+(\{[A-Za-z0-9\+\- _]*\})?\z/
     ]
 
-    number_token = false
-    regexes.each { |regex| regex.match(@token) { |_| number_token = true } }
+    items = @token.split
 
-    @token = '' if number_token
+    all_items_are_numbers = !items.empty?
+
+    items.each do |item|
+      item_is_number = false
+
+      regexes.each do |regex|
+        regex.match(item) { |_| item_is_number = true }
+      end
+
+      all_items_are_numbers &&= item_is_number
+    end
+
+    @token = '' if all_items_are_numbers
   end
 
   def count
