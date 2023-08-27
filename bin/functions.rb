@@ -4265,8 +4265,10 @@ class FunctionVal < AbstractFunction
     raise BASICRuntimeError.new(:te_args_no_match, @name) unless
       match_args_to_signature(args, @signature1)
 
-    f = args[0].to_v.to_f
-    res = NumericValue.new(f)
+    num = args[0].to_v
+    clean = num.delete ','
+
+    res = NumericValue.new(clean.to_f)
 
     @cached = res if @constant && $options['cache_const_expr']
     res
