@@ -5954,7 +5954,8 @@ class WhileStatement < AbstractStatement
     raise BASICSyntaxError, 'uninitialized WHILE' if
       @wendstmt_line_stmt.nil?
 
-    while_control = WhileControl.new(@expression, @loopstart_line_stmt_mod)
+    while_control = WhileControl.new(:while, @expression,
+                                     @loopstart_line_stmt_mod)
 
     interpreter.enter_loop(while_control)
 
