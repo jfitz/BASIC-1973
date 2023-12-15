@@ -1,14 +1,17 @@
 # frozen_string_literal: true
 
+# abstract class
+class AbstractTokenBuilder
+  def count
+    @token.size
+  end
+end
+
 # accept any characters
-class InvalidTokenBuilder
+class InvalidTokenBuilder < AbstractTokenBuilder
   def try(text)
     @token = ''
     @token += text.empty? ? '' : text[0]
-  end
-
-  def count
-    @token.size
   end
 
   def tokens
@@ -17,13 +20,15 @@ class InvalidTokenBuilder
 end
 
 # accept characters to match item in list
-class ListTokenBuilder
-  attr_reader :count
-
+class ListTokenBuilder < AbstractTokenBuilder
   def initialize(legals, class_name)
     @legals = legals
     @class = class_name
     @count = 0
+  end
+
+  def count
+    @count
   end
 
   def try(text)
@@ -85,12 +90,14 @@ class ListTokenBuilder
 end
 
 # Remark tokens (returns 2)
-class RemarkTokenBuilder
-  attr_reader :count
-
+class RemarkTokenBuilder < AbstractTokenBuilder
   def initialize
     @legals = %w[REMARK REM]
     @count = 0
+  end
+
+  def count
+    @count
   end
 
   def try(text)
@@ -159,15 +166,11 @@ class RemarkTokenBuilder
 end
 
 # token reader for whitespace
-class WhitespaceTokenBuilder
+class WhitespaceTokenBuilder < AbstractTokenBuilder
   def try(text)
     @token = ''
 
     /\A\s+/.match(text) { |m| @token = m[0] }
-  end
-
-  def count
-    @token.size
   end
 
   def tokens
@@ -176,9 +179,7 @@ class WhitespaceTokenBuilder
 end
 
 # token reader for comments
-class CommentTokenBuilder
-  attr_reader :count
-
+class CommentTokenBuilder < AbstractTokenBuilder
   def initialize(lead_chars)
     @lead_chars = lead_chars
   end
@@ -186,8 +187,6 @@ class CommentTokenBuilder
   def try(text)
     @token = ''
     @token = text if !text.empty? && @lead_chars.include?(text[0])
-
-    @count = @token.size
   end
 
   def tokens
@@ -196,7 +195,7 @@ class CommentTokenBuilder
 end
 
 # token reader for quoted text constants
-class QuotedTextTokenBuilder
+class QuotedTextTokenBuilder < AbstractTokenBuilder
   def initialize(quotes)
     @quotes = quotes
   end
@@ -221,17 +220,13 @@ class QuotedTextTokenBuilder
     end
   end
 
-  def count
-    @token.size
-  end
-
   def tokens
     [QuotedTextLiteralToken.new(@token)]
   end
 end
 
 # token reader for numeric constants in input channels (READ, INPUT)
-class InputNumberTokenBuilder
+class InputNumberTokenBuilder < AbstractTokenBuilder
   def try(text)
     regexes = [
       /\A[+-]?\d+(\{[A-Za-z0-9\+\- _]*\})?/,
@@ -249,18 +244,16 @@ class InputNumberTokenBuilder
     regexes.each { |regex| regex.match(text) { |m| @token = m[0] } }
   end
 
-  def count
-    @token.size
-  end
-
   def tokens
     [NumericLiteralToken.new(@token)]
   end
 end
 
 # token reader for numeric constants
-class NumberTokenBuilder
-  attr_reader :count
+class NumberTokenBuilder < AbstractTokenBuilder
+  def count
+    @count
+  end
 
   def try(text)
     candidate = ''
@@ -356,11 +349,13 @@ class NumberTokenBuilder
 end
 
 # token reader for numeric constants
-class HashNumberTokenBuilder
-  attr_reader :count
-
+class HashNumberTokenBuilder < AbstractTokenBuilder
   def initialize(allow_hash_constant)
     @allow_hash_constant = allow_hash_constant
+  end
+
+  def count
+    @count
   end
 
   def try(text)
@@ -402,8 +397,10 @@ class HashNumberTokenBuilder
 end
 
 # token reader for integer constants
-class IntegerTokenBuilder
-  attr_reader :count
+class IntegerTokenBuilder < AbstractTokenBuilder
+  def count
+    @count
+  end
 
   def try(text)
     candidate = ''
@@ -473,8 +470,10 @@ class IntegerTokenBuilder
 end
 
 # token reader for numeric symbols
-class NumericSymbolTokenBuilder
-  attr_reader :count
+class NumericSymbolTokenBuilder < AbstractTokenBuilder
+  def count
+    @count
+  end
 
   def try(text)
     legals = %w[PI EUL AUR]
@@ -504,9 +503,7 @@ class NumericSymbolTokenBuilder
 end
 
 # token reader for text symbols
-class TextSymbolTokenBuilder
-  attr_reader :count
-
+class TextSymbolTokenBuilder < AbstractTokenBuilder
   def try(text)
     legals =
       %w[NUL SOH STX ETX EOT ENQ ACK BEL BS HT LF VT FF CR
@@ -538,8 +535,10 @@ class TextSymbolTokenBuilder
 end
 
 # token reader for variables
-class VariableTokenBuilder
-  attr_reader :count
+class VariableTokenBuilder < AbstractTokenBuilder
+  def count
+    @count
+  end
 
   def try(text)
     candidate = ''
@@ -609,7 +608,7 @@ class VariableTokenBuilder
 end
 
 # token reader for unquoted text constants in DATA statements
-class BareTextTokenBuilder
+class BareTextTokenBuilder < AbstractTokenBuilder
   def try(text)
     token = ''
 
@@ -642,17 +641,13 @@ class BareTextTokenBuilder
     @token = '' if all_items_are_numbers
   end
 
-  def count
-    @token.size
-  end
-
   def tokens
     [BareTextLiteralToken.new(@token)]
   end
 end
 
 # token reader for unquoted text constants in INPUT statements
-class InputTextTokenBuilder
+class InputTextTokenBuilder < AbstractTokenBuilder
   def try(text)
     token = ''
 
@@ -691,24 +686,16 @@ class InputTextTokenBuilder
     @token = '' if all_items_are_numbers
   end
 
-  def count
-    @token.size
-  end
-
   def tokens
     [BareTextLiteralToken.new(@token)]
   end
 end
 
 # token reader for token separator
-class BreakTokenBuilder
+class BreakTokenBuilder < AbstractTokenBuilder
   def try(text)
     @token = ''
     @token = text[0] if text[0] == '_'
-  end
-
-  def count
-    @token.size
   end
 
   def tokens
@@ -717,7 +704,7 @@ class BreakTokenBuilder
 end
 
 # token reader for PRINT USING numeric
-class NumericFormatTokenBuilder
+class NumericFormatTokenBuilder < AbstractTokenBuilder
   def try(text)
     candidate = ''
     i = 0
@@ -734,10 +721,6 @@ class NumericFormatTokenBuilder
     end
 
     @token = candidate
-  end
-
-  def count
-    @token.size
   end
 
   def tokens
@@ -759,14 +742,10 @@ class NumericFormatTokenBuilder
 end
 
 # token reader for PRINT USING character
-class CharFormatTokenBuilder
+class CharFormatTokenBuilder < AbstractTokenBuilder
   def try(text)
     @token = ''
     @token += text[0] if !text.empty? && text[0] == '!'
-  end
-
-  def count
-    @token.size
   end
 
   def tokens
@@ -775,14 +754,10 @@ class CharFormatTokenBuilder
 end
 
 # token reader for PRINT USING plain string
-class PlainStringFormatTokenBuilder
+class PlainStringFormatTokenBuilder < AbstractTokenBuilder
   def try(text)
     @token = ''
     @token += text[0] if text.size.positive? && text[0] == '&'
-  end
-
-  def count
-    @token.size
   end
 
   def tokens
@@ -791,14 +766,10 @@ class PlainStringFormatTokenBuilder
 end
 
 # token reader for PRINT USING padded string
-class PaddedStringFormatTokenBuilder
+class PaddedStringFormatTokenBuilder < AbstractTokenBuilder
   def try(text)
     @token = ''
     /\A\\ *\\/.match(text) { |m| @token = m[0] }
-  end
-
-  def count
-    @token.size
   end
 
   def tokens
@@ -807,7 +778,7 @@ class PaddedStringFormatTokenBuilder
 end
 
 # token reader for PRINT USING constant
-class ConstantFormatTokenBuilder
+class ConstantFormatTokenBuilder < AbstractTokenBuilder
   def try(text)
     @token = ''
 
@@ -815,10 +786,6 @@ class ConstantFormatTokenBuilder
       @token += text[0]
       text = text[1..-1]
     end
-  end
-
-  def count
-    @token.size
   end
 
   def tokens
