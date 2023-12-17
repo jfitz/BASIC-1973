@@ -145,7 +145,7 @@ class Shell
     @console_io = console_io
     @interpreter = interpreter
     @tokenbuilders = tokenbuilders
-    @invalid_tokenbuilder = InvalidTokenBuilder.new
+    @invalid_tokenbuilder = InvalidTokenBuilder.new(true)
   end
 
   def run
@@ -495,103 +495,107 @@ class Shell
 end
 
 def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads)
+  normal_tb = true
   tokenbuilders = []
 
-  tokenbuilders << CommentTokenBuilder.new(comment_leads)
-  tokenbuilders << RemarkTokenBuilder.new
+  tokenbuilders << CommentTokenBuilder.new(normal_tb, comment_leads)
+  tokenbuilders << RemarkTokenBuilder.new(normal_tb)
 
   unless statement_separators.empty?
     tokenbuilders <<
-      ListTokenBuilder.new(statement_separators, StatementSeparatorToken)
+      ListTokenBuilder.new(normal_tb, statement_separators, StatementSeparatorToken)
   end
 
   statement_factory = StatementFactory.instance
 
   # lead keywords let us identify the statement
   lead_keywords = statement_factory.lead_keywords
-  tokenbuilders << ListTokenBuilder.new(lead_keywords, KeywordToken)
+  tokenbuilders << ListTokenBuilder.new(normal_tb, lead_keywords, KeywordToken)
 
   # statement keywords occur later in the text
   stmt_keywords = statement_factory.stmt_keywords
-  tokenbuilders << ListTokenBuilder.new(stmt_keywords, KeywordToken)
+  tokenbuilders << ListTokenBuilder.new(normal_tb, stmt_keywords, KeywordToken)
 
   colon_file = $options['colon_file'].value
   un_ops = UnaryOperator.operators(colon_file)
+  tokenbuilders << ListTokenBuilder.new(normal_tb, un_ops, OperatorToken)
+
   min_max_op = $options['min_max_op'].value
   bi_ops = BinaryOperator.operators(min_max_op)
-  operators = (un_ops + bi_ops).uniq
-  tokenbuilders << ListTokenBuilder.new(operators, OperatorToken)
+  tokenbuilders << ListTokenBuilder.new(normal_tb, bi_ops, OperatorToken)
 
-  tokenbuilders << BreakTokenBuilder.new
+  tokenbuilders << BreakTokenBuilder.new(normal_tb)
 
   if $options['brackets'].value
-    tokenbuilders << ListTokenBuilder.new(['(', '['], GroupStartToken)
-    tokenbuilders << ListTokenBuilder.new([')', ']'], GroupEndToken)
+    tokenbuilders << ListTokenBuilder.new(normal_tb, ['(', '['], GroupStartToken)
+    tokenbuilders << ListTokenBuilder.new(normal_tb, [')', ']'], GroupEndToken)
   else
-    tokenbuilders << ListTokenBuilder.new(['('], GroupStartToken)
-    tokenbuilders << ListTokenBuilder.new([')'], GroupEndToken)
+    tokenbuilders << ListTokenBuilder.new(normal_tb, ['('], GroupStartToken)
+    tokenbuilders << ListTokenBuilder.new(normal_tb, [')'], GroupEndToken)
   end
 
-  tokenbuilders << ListTokenBuilder.new([',', ';'], ParamSeparatorToken)
+  tokenbuilders << ListTokenBuilder.new(normal_tb, [',', ';'], ParamSeparatorToken)
 
   tokenbuilders <<
-    ListTokenBuilder.new(FunctionFactory.function_names, FunctionToken)
+    ListTokenBuilder.new(normal_tb, FunctionFactory.function_names, FunctionToken)
 
   tokenbuilders <<
-    ListTokenBuilder.new(FunctionFactory.user_function_names, UserFunctionToken)
+    ListTokenBuilder.new(normal_tb, FunctionFactory.user_function_names, UserFunctionToken)
 
-  tokenbuilders << QuotedTextTokenBuilder.new(quotes)
-  tokenbuilders << NumberTokenBuilder.new
+  tokenbuilders << QuotedTextTokenBuilder.new(normal_tb, quotes)
+  tokenbuilders << NumberTokenBuilder.new(normal_tb)
 
   allow_hash_constant = $options['allow_hash_constant'].value
-  tokenbuilders << HashNumberTokenBuilder.new(allow_hash_constant)
+  tokenbuilders << HashNumberTokenBuilder.new(normal_tb, allow_hash_constant)
 
-  tokenbuilders << IntegerTokenBuilder.new
-  tokenbuilders << NumericSymbolTokenBuilder.new
+  tokenbuilders << IntegerTokenBuilder.new(normal_tb)
+  tokenbuilders << NumericSymbolTokenBuilder.new(normal_tb)
 
   allow_ascii = $options['allow_ascii'].value
-  tokenbuilders << TextSymbolTokenBuilder.new if allow_ascii
+  tokenbuilders << TextSymbolTokenBuilder.new(normal_tb) if allow_ascii
 
-  tokenbuilders << VariableTokenBuilder.new
-  tokenbuilders << ListTokenBuilder.new(%w[TRUE FALSE], BooleanLiteralToken)
-  tokenbuilders << WhitespaceTokenBuilder.new
+  tokenbuilders << VariableTokenBuilder.new(normal_tb)
+  tokenbuilders << ListTokenBuilder.new(normal_tb, %w[TRUE FALSE], BooleanLiteralToken)
+  tokenbuilders << WhitespaceTokenBuilder.new(normal_tb)
 end
 
 def make_interpreter_data_tokenbuilders(quotes, statement_separators, comment_leads)
+  normal_tb = true
   tokenbuilders = []
 
-  tokenbuilders << CommentTokenBuilder.new(comment_leads)
+  tokenbuilders << CommentTokenBuilder.new(normal_tb, comment_leads)
 
   unless statement_separators.empty?
     tokenbuilders <<
-      ListTokenBuilder.new(statement_separators, StatementSeparatorToken)
+      ListTokenBuilder.new(normal_tb, statement_separators, StatementSeparatorToken)
   end
 
   # operators for negative numeric values
   colon_file = $options['colon_file'].value
   un_ops = UnaryOperator.operators(colon_file)
-  tokenbuilders << ListTokenBuilder.new(un_ops, OperatorToken)
+  tokenbuilders << ListTokenBuilder.new(normal_tb, un_ops, OperatorToken)
 
-  tokenbuilders << BreakTokenBuilder.new
-  tokenbuilders << ListTokenBuilder.new([',', ';'], ParamSeparatorToken)
-  tokenbuilders << QuotedTextTokenBuilder.new(quotes)
-  tokenbuilders << NumberTokenBuilder.new
+  tokenbuilders << BreakTokenBuilder.new(normal_tb)
+  tokenbuilders << ListTokenBuilder.new(normal_tb, [',', ';'], ParamSeparatorToken)
+  tokenbuilders << QuotedTextTokenBuilder.new(normal_tb, quotes)
+  tokenbuilders << NumberTokenBuilder.new(normal_tb)
 
   allow_hash_constant = $options['allow_hash_constant'].value
-  tokenbuilders << HashNumberTokenBuilder.new(allow_hash_constant)
+  tokenbuilders << HashNumberTokenBuilder.new(normal_tb, allow_hash_constant)
 
-  tokenbuilders << IntegerTokenBuilder.new
-  tokenbuilders << NumericSymbolTokenBuilder.new
+  tokenbuilders << IntegerTokenBuilder.new(normal_tb)
+  tokenbuilders << NumericSymbolTokenBuilder.new(normal_tb)
 
   allow_ascii = $options['allow_ascii'].value
-  tokenbuilders << TextSymbolTokenBuilder.new if allow_ascii
+  tokenbuilders << TextSymbolTokenBuilder.new(normal_tb) if allow_ascii
 
-  tokenbuilders << ListTokenBuilder.new(%w[TRUE FALSE], BooleanLiteralToken)
-  tokenbuilders << BareTextTokenBuilder.new
-  tokenbuilders << WhitespaceTokenBuilder.new
+  tokenbuilders << ListTokenBuilder.new(normal_tb, %w[TRUE FALSE], BooleanLiteralToken)
+  tokenbuilders << BareTextTokenBuilder.new(normal_tb)
+  tokenbuilders << WhitespaceTokenBuilder.new(normal_tb)
 end
 
 def make_command_tokenbuilders(quotes)
+  command_tb = true
   tokenbuilders = []
 
   keywords = %w[
@@ -619,36 +623,37 @@ def make_command_tokenbuilders(quotes)
     WARN_GOSUB_LENGTH WARN_LIST_WIDTH WARN_PRETTY_WIDTH WRAP
     ZONE_WIDTH
   ]
-  tokenbuilders << ListTokenBuilder.new(keywords, KeywordToken)
+  tokenbuilders << ListTokenBuilder.new(command_tb, keywords, KeywordToken)
 
   colon_file = $options['colon_file'].value
   un_ops = UnaryOperator.operators(colon_file)
+  tokenbuilders << ListTokenBuilder.new(command_tb, un_ops, OperatorToken)
+
   min_max_op = $options['min_max_op'].value
   bi_ops = BinaryOperator.operators(min_max_op)
-  operators = (un_ops + bi_ops).uniq
-  tokenbuilders << ListTokenBuilder.new(operators, OperatorToken)
+  tokenbuilders << ListTokenBuilder.new(command_tb, bi_ops, OperatorToken)
 
-  tokenbuilders << BreakTokenBuilder.new
+  tokenbuilders << BreakTokenBuilder.new(command_tb)
 
-  tokenbuilders << ListTokenBuilder.new(['('], GroupStartToken)
-  tokenbuilders << ListTokenBuilder.new([')'], GroupEndToken)
-  tokenbuilders << ListTokenBuilder.new([',', ';'], ParamSeparatorToken)
-
-  tokenbuilders <<
-    ListTokenBuilder.new(FunctionFactory.function_names, FunctionToken)
+  tokenbuilders << ListTokenBuilder.new(command_tb, ['('], GroupStartToken)
+  tokenbuilders << ListTokenBuilder.new(command_tb, [')'], GroupEndToken)
+  tokenbuilders << ListTokenBuilder.new(command_tb, [',', ';'], ParamSeparatorToken)
 
   tokenbuilders <<
-    ListTokenBuilder.new(FunctionFactory.user_function_names, UserFunctionToken)
+    ListTokenBuilder.new(command_tb, FunctionFactory.function_names, FunctionToken)
 
-  tokenbuilders << QuotedTextTokenBuilder.new(quotes)
-  tokenbuilders << NumberTokenBuilder.new
+  tokenbuilders <<
+    ListTokenBuilder.new(command_tb, FunctionFactory.user_function_names, UserFunctionToken)
+
+  tokenbuilders << QuotedTextTokenBuilder.new(command_tb, quotes)
+  tokenbuilders << NumberTokenBuilder.new(command_tb)
 
   allow_hash_constant = $options['allow_hash_constant'].value
-  tokenbuilders << HashNumberTokenBuilder.new(allow_hash_constant)
+  tokenbuilders << HashNumberTokenBuilder.new(command_tb, allow_hash_constant)
 
-  tokenbuilders << VariableTokenBuilder.new
-  tokenbuilders << ListTokenBuilder.new(%w[TRUE FALSE], BooleanLiteralToken)
-  tokenbuilders << WhitespaceTokenBuilder.new
+  tokenbuilders << VariableTokenBuilder.new(command_tb)
+  tokenbuilders << ListTokenBuilder.new(command_tb, %w[TRUE FALSE], BooleanLiteralToken)
+  tokenbuilders << WhitespaceTokenBuilder.new(command_tb)
 end
 
 def print_timing(timing, console_io)
