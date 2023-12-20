@@ -258,36 +258,37 @@ class Interpreter
         DIM GOTO LET PRINT
       ]
 
-    tokenbuilders << ListTokenBuilder.new(debug_tb, keywords, KeywordToken)
+    tokenbuilders << ListTokenBuilder.new(debug_tb, [], keywords, KeywordToken)
 
     un_ops = UnaryOperator.operators(false)
-    tokenbuilders << ListTokenBuilder.new(debug_tb, un_ops, OperatorToken)
+    tokenbuilders << ListTokenBuilder.new(debug_tb, [], un_ops, OperatorToken)
 
     bi_ops = BinaryOperator.operators(false)
-    tokenbuilders << ListTokenBuilder.new(debug_tb, bi_ops, OperatorToken)
+    tokenbuilders << ListTokenBuilder.new(debug_tb, [], bi_ops, OperatorToken)
 
-    tokenbuilders << BreakTokenBuilder.new(debug_tb)
+    tokenbuilders << BreakTokenBuilder.new(debug_tb, [])
 
-    tokenbuilders << ListTokenBuilder.new(debug_tb, ['(', '['], GroupStartToken)
-    tokenbuilders << ListTokenBuilder.new(debug_tb, [')', ']'], GroupEndToken)
-    tokenbuilders << ListTokenBuilder.new(debug_tb, [',', ';'], ParamSeparatorToken)
+    tokenbuilders << ListTokenBuilder.new(debug_tb, [], ['(', '['], GroupStartToken)
+    tokenbuilders << ListTokenBuilder.new(debug_tb, [], [')', ']'], GroupEndToken)
+    tokenbuilders << ListTokenBuilder.new(debug_tb, [], [',', ';'], ParamSeparatorToken)
 
+    function_names = FunctionFactory.function_names
     tokenbuilders <<
-      ListTokenBuilder.new(debug_tb, FunctionFactory.function_names, FunctionToken)
+      ListTokenBuilder.new(debug_tb, [], function_names, FunctionToken)
 
     user_function_names = FunctionFactory.user_function_names
     tokenbuilders <<
-      ListTokenBuilder.new(debug_tb, user_function_names, UserFunctionToken)
+      ListTokenBuilder.new(debug_tb, [], user_function_names, UserFunctionToken)
 
-    tokenbuilders << QuotedTextTokenBuilder.new(debug_tb, @quotes)
-    tokenbuilders << NumberTokenBuilder.new(debug_tb)
+    tokenbuilders << QuotedTextTokenBuilder.new(debug_tb, [], @quotes)
+    tokenbuilders << NumberTokenBuilder.new(debug_tb, [])
     # do not allow hash constants
-    tokenbuilders << IntegerTokenBuilder.new(debug_tb)
+    tokenbuilders << IntegerTokenBuilder.new(debug_tb, [])
 
-    tokenbuilders << VariableTokenBuilder.new(debug_tb)
-    tokenbuilders << ListTokenBuilder.new(debug_tb, %w[TRUE FALSE], BooleanLiteralToken)
+    tokenbuilders << VariableTokenBuilder.new(debug_tb, [])
+    tokenbuilders << ListTokenBuilder.new(debug_tb, [], %w[TRUE FALSE], BooleanLiteralToken)
 
-    tokenbuilders << WhitespaceTokenBuilder.new(debug_tb)
+    tokenbuilders << WhitespaceTokenBuilder.new(debug_tb, [])
   end
 
   public
@@ -643,7 +644,7 @@ class Interpreter
       cmd = @console_io.read_line
 
       # tokenize
-      invalid_tokenbuilder = InvalidTokenBuilder.new(true)
+      invalid_tokenbuilder = InvalidTokenBuilder.new(true, [])
       tokenizer = Tokenizer.new(@tokenbuilders, invalid_tokenbuilder)
       tokens = tokenizer.tokenize_line(cmd)
       tokens.delete_if(&:whitespace?)
