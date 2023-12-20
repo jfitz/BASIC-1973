@@ -494,7 +494,8 @@ class Shell
   end
 end
 
-def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads)
+def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads,
+                                   lead_keywords, stmt_keywords)
   normal_tb = true
   data_tb = false
   tokenbuilders = []
@@ -507,14 +508,10 @@ def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads)
       ListTokenBuilder.new(normal_tb, [], statement_separators, StatementSeparatorToken)
   end
 
-  statement_factory = StatementFactory.instance
-
   # lead keywords let us identify the statement
-  lead_keywords = statement_factory.lead_keywords
   tokenbuilders << ListTokenBuilder.new(normal_tb, ['DATA'], lead_keywords, KeywordToken)
 
   # statement keywords occur later in the text
-  stmt_keywords = statement_factory.stmt_keywords
   tokenbuilders << ListTokenBuilder.new(normal_tb, ['DATA'], stmt_keywords, KeywordToken)
 
   colon_file = $options['colon_file'].value
@@ -973,14 +970,18 @@ comment_leads << "'" if
 
 console_io = ConsoleIo.new
 
+statement_factory = StatementFactory.instance
+lead_keywords = statement_factory.lead_keywords
+stmt_keywords = statement_factory.stmt_keywords
 tokenbuilders =
-  make_interpreter_tokenbuilders(quotes, statement_seps, comment_leads)
+  make_interpreter_tokenbuilders(quotes, statement_seps, comment_leads, lead_keywords, stmt_keywords)
+statement_factory.tokenbuilders = tokenbuilders
 
 interpreter = Interpreter.new(console_io)
 interpreter.set_default_args('RND', NumericValue.new(1))
 interpreter.set_default_args('RND%', IntegerValue.new(100))
 interpreter.set_default_args('RND$', NumericValue.new(6))
-program = Program.new(console_io, tokenbuilders)
+program = Program.new(console_io, statement_factory)
 interpreter.program = program
 
 if $options['heading'].value
