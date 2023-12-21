@@ -498,6 +498,7 @@ def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads,
                                    lead_keywords, stmt_keywords)
   normal_tb = true
   data_tb = false
+  extra_tb = false
   tokenbuilders = []
 
   tokenbuilders << CommentTokenBuilder.new(normal_tb, [], comment_leads)
@@ -514,6 +515,9 @@ def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads,
   # statement keywords occur later in the text
   tokenbuilders << ListTokenBuilder.new(normal_tb, ['DATA'], stmt_keywords, KeywordToken)
 
+  option_keywords = $options.keys.map(&:upcase)
+  tokenbuilders << ListTokenBuilder.new(extra_tb, ['OPTION'], option_keywords, KeywordToken)
+  
   colon_file = $options['colon_file'].value
   un_ops = UnaryOperator.operators(colon_file)
   tokenbuilders << ListTokenBuilder.new(normal_tb, [], un_ops, OperatorToken)
@@ -562,34 +566,47 @@ end
 
 def make_command_tokenbuilders(quotes)
   command_tb = true
+  extra_tb = false
   tokenbuilders = []
 
   keywords = %w[
     ANALYZE BKPT NOBKPT BYE CROSSREF DELETE DIMS IF LIST LOAD
     NEW OPTION PARSE PRETTY PROFILE RENUMBER RUN SAVE TOKENS UDFS VARS
+  ]
+  tokenbuilders << ListTokenBuilder.new(command_tb, [], keywords, KeywordToken)
+
+  option_keywords = %w[
     ALLOW_ASCII ALLOW_HASH_CONSTANT APOSTROPHE_COMMENT ASC_ALLOW_ALL
-    BACK_TAB BACKSLASH_SEPARATOR BANG_COMMENT BASE BRACKETS
+    BACK_TAB BACKSLASH_SEPARATOR BANG_COMMENT
+    BASE BRACKETS
     CACHE_CONST_EXPR CHR_ALLOW_ALL COLON_FILE COLON_SEPARATOR
     CRLF_ON_LINE_INPUT
     DEFAULT_PROMPT DEGREES DETECT_INFINITE_LOOP
     EXTEND_IF
-    FIELD_SEP FORGET_FORNEXT FORNEXT_ONE_BEYOND
+    FIELD_SEP
+    FORGET_FORNEXT FORNEXT_ONE_BEYOND
     HEADING
-    IGNORE_RND_ARG IMPLIED_SEMICOLON INPUT_HIGH_BIT INT_BITWISE INT_FLOOR
+    IGNORE_RND_ARG IMPLIED_SEMICOLON INPUT_HIGH_BIT
+    INT_BITWISE INT_FLOOR
     LOCK_FORNEXT
-    MATCH_FORNEXT MAX_DIM MAX_LINE_NUM MIN_LINE_NUM MIN_MAX_OP
+    MATCH_FORNEXT
+    MAX_DIM MAX_LINE_NUM MIN_LINE_NUM MIN_MAX_OP
     NEWLINE_SPEED
     PRECISION PRETTY_MULTILINE PRINT_SPEED PRINT_WIDTH
-    PROMPT PROMPTD PROMPT_COUNT PROVENANCE
+    PROMPT PROMPTD PROMPT_COUNT
+    PROVENANCE
     QMARK_AFTER_PROMPT
-    RADIANS RANDOMIZE REQUIRE_INITIALIZED RESPECT_RANDOMIZE
+    RADIANS
+    REQUIRE_INITIALIZED RESPECT_RANDOMIZE
     SEMICOLON_ZONE_WIDTH SINGLE_QUOTE_STRING
     TIMING TRACE TRIG_REQUIRE_UNITS
     WARN_FORNEXT_LENGTH WARN_FORNEXT_LEVEL
-    WARN_GOSUB_LENGTH WARN_LIST_WIDTH WARN_PRETTY_WIDTH WRAP
+    WARN_GOSUB_LENGTH
+    WARN_LIST_WIDTH WARN_PRETTY_WIDTH
+    WRAP
     ZONE_WIDTH
   ]
-  tokenbuilders << ListTokenBuilder.new(command_tb, [], keywords, KeywordToken)
+  tokenbuilders << ListTokenBuilder.new(extra_tb, ['OPTION'], option_keywords, KeywordToken)
 
   colon_file = $options['colon_file'].value
   un_ops = UnaryOperator.operators(colon_file)
