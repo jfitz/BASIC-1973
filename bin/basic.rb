@@ -494,14 +494,14 @@ class Shell
   end
 end
 
-def make_interpreter_tokenbuilders(quotes, statement_separators, comment_leads,
+def make_interpreter_tokenbuilders(quotes, statement_separators,
                                    lead_keywords, stmt_keywords)
   normal_tb = true
   data_tb = false
   extra_tb = false
   tokenbuilders = []
 
-  tokenbuilders << CommentTokenBuilder.new(normal_tb, [], comment_leads)
+  tokenbuilders << CommentTokenBuilder.new(normal_tb, [])
   tokenbuilders << RemarkTokenBuilder.new(normal_tb, ['DATA'])
 
   unless statement_separators.empty?
@@ -978,12 +978,6 @@ statement_seps << ':' if $options['colon_separator'].value
 quotes = []
 quotes << '"'
 quotes << "'" if $options['single_quote_strings'].value
-comment_leads = []
-comment_leads << '!' if $options['bang_comment'].value
-
-comment_leads << "'" if
-  $options['apostrophe_comment'].value &&
-  !$options['single_quote_strings'].value
 
 console_io = ConsoleIo.new
 
@@ -991,7 +985,7 @@ statement_factory = StatementFactory.instance
 lead_keywords = statement_factory.lead_keywords
 stmt_keywords = statement_factory.stmt_keywords
 tokenbuilders =
-  make_interpreter_tokenbuilders(quotes, statement_seps, comment_leads, lead_keywords, stmt_keywords)
+  make_interpreter_tokenbuilders(quotes, statement_seps, lead_keywords, stmt_keywords)
 statement_factory.tokenbuilders = tokenbuilders
 
 interpreter = Interpreter.new(console_io)

@@ -228,10 +228,8 @@ end
 
 # token reader for comments
 class CommentTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens, lead_chars)
+  def initialize(default_enabled, trigger_tokens)
     super(default_enabled, trigger_tokens)
-
-    @lead_chars = lead_chars
   end
 
   def try(text)
@@ -240,7 +238,14 @@ class CommentTokenBuilder < AbstractTokenBuilder
 
     return unless @enabled
     
-    @token = text if !text.empty? && @lead_chars.include?(text[0])
+    comment_leads = []
+    comment_leads << '!' if $options['bang_comment'].value
+
+    comment_leads << "'" if
+      $options['apostrophe_comment'].value &&
+      !$options['single_quote_strings'].value
+
+    @token = text if !text.empty? && comment_leads.include?(text[0])
   end
 
   def tokens
