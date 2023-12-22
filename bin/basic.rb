@@ -494,8 +494,7 @@ class Shell
   end
 end
 
-def make_interpreter_tokenbuilders(statement_separators,
-                                   lead_keywords, stmt_keywords)
+def make_interpreter_tokenbuilders(lead_keywords, stmt_keywords)
   normal_tb = true
   data_tb = false
   extra_tb = false
@@ -503,11 +502,7 @@ def make_interpreter_tokenbuilders(statement_separators,
 
   tokenbuilders << CommentTokenBuilder.new(normal_tb, [])
   tokenbuilders << RemarkTokenBuilder.new(normal_tb, ['DATA'])
-
-  unless statement_separators.empty?
-    tokenbuilders <<
-      ListTokenBuilder.new(normal_tb, [], statement_separators, StatementSeparatorToken)
-  end
+  tokenbuilders << StatementSeparatorTokenBuilder.new(normal_tb, [])
 
   # lead keywords let us identify the statement
   tokenbuilders << ListTokenBuilder.new(normal_tb, ['DATA'], lead_keywords, KeywordToken)
@@ -972,17 +967,12 @@ zone_width = 16
 zone_width = options[:zone_width].to_i if options.key?(:zone_width)
 $options['zone_width'] = Option.new(all_types, int40, zone_width)
 
-statement_seps = []
-statement_seps << '\\' if $options['backslash_separator'].value
-statement_seps << ':' if $options['colon_separator'].value
-
 console_io = ConsoleIo.new
 
 statement_factory = StatementFactory.instance
 lead_keywords = statement_factory.lead_keywords
 stmt_keywords = statement_factory.stmt_keywords
-tokenbuilders =
-  make_interpreter_tokenbuilders(statement_seps, lead_keywords, stmt_keywords)
+tokenbuilders = make_interpreter_tokenbuilders(lead_keywords, stmt_keywords)
 statement_factory.tokenbuilders = tokenbuilders
 
 interpreter = Interpreter.new(console_io)
