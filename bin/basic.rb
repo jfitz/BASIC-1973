@@ -494,7 +494,7 @@ class Shell
   end
 end
 
-def make_interpreter_tokenbuilders(quotes, statement_separators,
+def make_interpreter_tokenbuilders(statement_separators,
                                    lead_keywords, stmt_keywords)
   normal_tb = true
   data_tb = false
@@ -546,7 +546,7 @@ def make_interpreter_tokenbuilders(quotes, statement_separators,
   tokenbuilders <<
     ListTokenBuilder.new(normal_tb, ['DATA'], user_function_names, UserFunctionToken)
 
-  tokenbuilders << QuotedTextTokenBuilder.new(normal_tb, [], quotes)
+  tokenbuilders << QuotedTextTokenBuilder.new(normal_tb, [])
   tokenbuilders << NumberTokenBuilder.new(normal_tb, [])
 
   allow_hash_constant = $options['allow_hash_constant'].value
@@ -564,7 +564,7 @@ def make_interpreter_tokenbuilders(quotes, statement_separators,
   tokenbuilders << WhitespaceTokenBuilder.new(normal_tb, [])
 end
 
-def make_command_tokenbuilders(quotes)
+def make_command_tokenbuilders()
   command_tb = true
   extra_tb = false
   tokenbuilders = []
@@ -630,7 +630,7 @@ def make_command_tokenbuilders(quotes)
   tokenbuilders <<
     ListTokenBuilder.new(command_tb, [], user_function_names, UserFunctionToken)
 
-  tokenbuilders << QuotedTextTokenBuilder.new(command_tb, [], quotes)
+  tokenbuilders << QuotedTextTokenBuilder.new(command_tb, [])
   tokenbuilders << NumberTokenBuilder.new(command_tb, [])
 
   allow_hash_constant = $options['allow_hash_constant'].value
@@ -975,9 +975,6 @@ $options['zone_width'] = Option.new(all_types, int40, zone_width)
 statement_seps = []
 statement_seps << '\\' if $options['backslash_separator'].value
 statement_seps << ':' if $options['colon_separator'].value
-quotes = []
-quotes << '"'
-quotes << "'" if $options['single_quote_strings'].value
 
 console_io = ConsoleIo.new
 
@@ -985,7 +982,7 @@ statement_factory = StatementFactory.instance
 lead_keywords = statement_factory.lead_keywords
 stmt_keywords = statement_factory.stmt_keywords
 tokenbuilders =
-  make_interpreter_tokenbuilders(quotes, statement_seps, lead_keywords, stmt_keywords)
+  make_interpreter_tokenbuilders(statement_seps, lead_keywords, stmt_keywords)
 statement_factory.tokenbuilders = tokenbuilders
 
 interpreter = Interpreter.new(console_io)
@@ -1150,7 +1147,7 @@ end
 if list_filename.nil? && parse_filename.nil? && analyze_filename.nil? &&
    pretty_filename.nil? && cref_filename.nil? && run_filename.nil?
 
-  tokenbuilders = make_command_tokenbuilders(quotes)
+  tokenbuilders = make_command_tokenbuilders
 
   shell = Shell.new(console_io, interpreter, tokenbuilders)
   shell.run

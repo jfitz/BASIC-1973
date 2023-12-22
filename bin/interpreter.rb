@@ -213,7 +213,6 @@ class Interpreter
     respect_option = $options['respect_randomize']
     @randomizer = Random.new if randomize_option.value && respect_option.value
 
-    @quotes = ['"']
     @console_io = console_io
     @tokenbuilders = make_debug_tokenbuilders
 
@@ -280,7 +279,7 @@ class Interpreter
     tokenbuilders <<
       ListTokenBuilder.new(debug_tb, [], user_function_names, UserFunctionToken)
 
-    tokenbuilders << QuotedTextTokenBuilder.new(debug_tb, [], @quotes)
+    tokenbuilders << QuotedTextTokenBuilder.new(debug_tb, [])
     tokenbuilders << NumberTokenBuilder.new(debug_tb, [])
     # do not allow hash constants
     tokenbuilders << IntegerTokenBuilder.new(debug_tb, [])
