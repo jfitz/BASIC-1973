@@ -4735,6 +4735,46 @@ class OptionStatement < AbstractStatement
     ]
   end
 
+  def self.stmt_keywords
+    # build list from all defined options
+    $options.keys.map(&:upcase)
+  end
+
+  def self.cmd_keywords
+    # build list from subset of options
+    %w[
+      ALLOW_ASCII ALLOW_HASH_CONSTANT APOSTROPHE_COMMENT ASC_ALLOW_ALL
+      BACK_TAB BACKSLASH_SEPARATOR BANG_COMMENT
+      BASE BRACKETS
+      CACHE_CONST_EXPR CHR_ALLOW_ALL COLON_FILE COLON_SEPARATOR
+      CRLF_ON_LINE_INPUT
+      DEFAULT_PROMPT DEGREES DETECT_INFINITE_LOOP
+      EXTEND_IF
+      FIELD_SEP
+      FORGET_FORNEXT FORNEXT_ONE_BEYOND
+      HEADING
+      IGNORE_RND_ARG IMPLIED_SEMICOLON INPUT_HIGH_BIT
+      INT_BITWISE INT_FLOOR
+      LOCK_FORNEXT
+      MATCH_FORNEXT
+      MAX_DIM MAX_LINE_NUM MIN_LINE_NUM MIN_MAX_OP
+      NEWLINE_SPEED
+      PRECISION PRETTY_MULTILINE PRINT_SPEED PRINT_WIDTH
+      PROMPT PROMPTD PROMPT_COUNT
+      PROVENANCE
+      QMARK_AFTER_PROMPT
+      RADIANS
+      REQUIRE_INITIALIZED RESPECT_RANDOMIZE
+      SEMICOLON_ZONE_WIDTH SINGLE_QUOTE_STRING
+      TIMING TRACE TRIG_REQUIRE_UNITS
+      WARN_FORNEXT_LENGTH WARN_FORNEXT_LEVEL
+      WARN_GOSUB_LENGTH
+      WARN_LIST_WIDTH WARN_PRETTY_WIDTH
+      WRAP
+      ZONE_WIDTH
+    ]
+  end
+
   def initialize(_, keywords, tokens_lists)
     super
 
@@ -4807,7 +4847,7 @@ class PrintStatement < AbstractStatement
   include FileFunctions
   include PrintFunctions
 
-  def self.extra_keywords
+  def self.stmt_keywords
     ['USING']
   end
 
