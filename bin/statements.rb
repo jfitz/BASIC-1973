@@ -1936,6 +1936,10 @@ class CloseStatement < AbstractStatement
     ]
   end
 
+  def self.stmt_keywords
+    %w[FILE]
+  end
+
   def initialize(_, keywords, tokens_lists)
     super
 
@@ -4625,7 +4629,7 @@ class OpenStatement < AbstractStatement
     ]
   end
 
-  def self.extra_keywords
+  def self.stmt_keywords
     %w[FOR INPUT OUTPUT AS FILE]
   end
 

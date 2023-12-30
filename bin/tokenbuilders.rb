@@ -2,10 +2,10 @@
 
 # abstract class
 class AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
     # configuration
     @default_enabled = default_enabled
-    @trigger_tokens = trigger_tokens
+    @trigger_keyword = trigger_keyword
     # state
     @enabled = @default_enabled
     # properties
@@ -16,7 +16,7 @@ class AbstractTokenBuilder
   def see_keyword(token, seen_keywords)
     return if token.whitespace?
 
-    if seen_keywords == @trigger_tokens
+    if seen_keywords == @trigger_keyword
       @enabled = !@default_enabled
     end
   end
@@ -32,8 +32,8 @@ end
 
 # accept any characters
 class InvalidTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def try(text)
@@ -52,8 +52,8 @@ end
 
 # statement separator characters
 class StatementSeparatorTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def try(text)
@@ -78,8 +78,8 @@ end
 
 # accept characters to match item in list
 class ListTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens, legals, class_name)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword, legals, class_name)
+    super(default_enabled, trigger_keyword)
 
     @legals = legals
     @class = class_name
@@ -150,8 +150,8 @@ end
 
 # Remark tokens (returns 2)
 class RemarkTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
 
     @legals = %w[REMARK REM]
     @count = 0
@@ -229,8 +229,8 @@ end
 
 # token reader for whitespace
 class WhitespaceTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def try(text)
@@ -249,8 +249,8 @@ end
 
 # token reader for comments
 class CommentTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def try(text)
@@ -276,8 +276,8 @@ end
 
 # token reader for quoted text constants
 class QuotedTextTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def try(text)
@@ -313,8 +313,8 @@ end
 
 # token reader for numeric constants in input channels (READ, INPUT)
 class InputNumberTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def try(text)
@@ -344,8 +344,8 @@ end
 
 # token reader for numeric constants
 class NumberTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def count
@@ -447,8 +447,8 @@ end
 
 # token reader for numeric constants
 class HashNumberTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens, allow_hash_constant)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword, allow_hash_constant)
+    super(default_enabled, trigger_keyword)
 
     @allow_hash_constant = allow_hash_constant
   end
@@ -497,8 +497,8 @@ end
 
 # token reader for integer constants
 class IntegerTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def count
@@ -574,8 +574,8 @@ end
 
 # token reader for numeric symbols
 class NumericSymbolTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def count
@@ -611,8 +611,8 @@ end
 
 # token reader for text symbols
 class TextSymbolTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def try(text)
@@ -647,8 +647,8 @@ end
 
 # token reader for variables
 class VariableTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def count
@@ -725,8 +725,8 @@ end
 
 # token reader for unquoted text constants in DATA statements
 class BareTextTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def try(text)
@@ -773,8 +773,8 @@ end
 
 # token reader for unquoted text constants in INPUT statements
 class InputTextTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def try(text)
@@ -827,8 +827,8 @@ end
 
 # token reader for token separator
 class BreakTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def try(text)
@@ -847,8 +847,8 @@ end
 
 # token reader for PRINT USING numeric
 class NumericFormatTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def try(text)
@@ -894,8 +894,8 @@ end
 
 # token reader for PRINT USING character
 class CharFormatTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def try(text)
@@ -914,8 +914,8 @@ end
 
 # token reader for PRINT USING plain string
 class PlainStringFormatTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def try(text)
@@ -934,8 +934,8 @@ end
 
 # token reader for PRINT USING padded string
 class PaddedStringFormatTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def try(text)
@@ -954,8 +954,8 @@ end
 
 # token reader for PRINT USING constant
 class ConstantFormatTokenBuilder < AbstractTokenBuilder
-  def initialize(default_enabled, trigger_tokens)
-    super(default_enabled, trigger_tokens)
+  def initialize(default_enabled, trigger_keyword)
+    super(default_enabled, trigger_keyword)
   end
 
   def try(text)
