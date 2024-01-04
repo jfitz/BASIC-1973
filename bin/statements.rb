@@ -521,7 +521,8 @@ class AbstractStatement
       if [:goto, :ifthen].include?(xfer.type)
         dest_line_number = xfer.line_number
       
-        if dest_line_number < @part_of_sub.min && dest_line_number < line_number
+        if dest_line_number < @part_of_sub.min &&
+           dest_line_number < line_number
           @program_warnings << "Branch to line before GOSUB start"
         end
       end
@@ -580,7 +581,7 @@ class AbstractStatement
   def check_terminating_in_onerror
     return if @part_of_onerror.empty?
 
-    # warn about STOP, END, CHAIN in GOSUB block
+    # warn about STOP, END, CHAIN in ON-ERROR block
     @transfers.each do |xfer|
       if [:stop, :chain].include?(xfer.type)
         @program_warnings << "Terminating statement in ON-ERROR"
@@ -2250,8 +2251,7 @@ class EndStatement < AbstractStatement
 
     template = []
 
-    @errors << 'Syntax error' unless
-      check_template(tokens_lists, template)
+    @errors << 'Syntax error' unless check_template(tokens_lists, template)
   end
 
   def set_transfers(_)
@@ -7103,7 +7103,16 @@ class MatLetStatement < AbstractLetStatement
     l_values = @assignment.eval_target(interpreter)
     l_value0 = l_values[0]
     l_dims = interpreter.get_dimensions(l_value0.name)
+    set_default_args(interpreter, l_dims)
 
+    r_value = first_value(interpreter)
+
+    clear_default_args(interpreter)
+
+    set_dimensions(interpreter, r_value, l_values)
+  end
+
+  def set_default_args(interpreter, l_dims)
     interpreter.set_default_args('CON', l_dims)
     interpreter.set_default_args('CON2', l_dims)
     interpreter.set_default_args('CON2%', l_dims)
@@ -7116,9 +7125,19 @@ class MatLetStatement < AbstractLetStatement
     interpreter.set_default_args('ZER2', l_dims)
     interpreter.set_default_args('ZER2%', l_dims)
     interpreter.set_default_args('ZER2$', l_dims)
+  end
 
-    r_value = first_value(interpreter)
+  def first_value(interpreter)
+    r_values = @assignment.eval_value(interpreter)
+    r_value = r_values[0]
 
+    raise(BASICSyntaxError, 'Expected Matrix') if
+      r_value.class.to_s != 'Matrix'
+
+    r_value
+  end
+
+  def clear_default_args(interpreter)
     interpreter.set_default_args('CON', nil)
     interpreter.set_default_args('CON2', nil)
     interpreter.set_default_args('CON2%', nil)
@@ -7131,7 +7150,9 @@ class MatLetStatement < AbstractLetStatement
     interpreter.set_default_args('ZER2', nil)
     interpreter.set_default_args('ZER2%', nil)
     interpreter.set_default_args('ZER2$', nil)
+  end
 
+  def set_dimensions(interpreter, r_value, l_values)
     r_dims = r_value.dimensions
 
     values = r_value.values_1 if r_dims.size == 1
@@ -7141,16 +7162,6 @@ class MatLetStatement < AbstractLetStatement
       interpreter.set_dimensions(l_value, r_dims)
       interpreter.set_values(l_value.name, values)
     end
-  end
-
-  def first_value(interpreter)
-    r_values = @assignment.eval_value(interpreter)
-    r_value = r_values[0]
-
-    raise(BASICSyntaxError, 'Expected Matrix') if
-      r_value.class.to_s != 'Matrix'
-
-    r_value
   end
 end
 
