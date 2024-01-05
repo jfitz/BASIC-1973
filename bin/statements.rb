@@ -2381,7 +2381,7 @@ class ForStatement < AbstractStatement
     ]
   end
 
-  def self.extra_keywords
+  def self.stmt_keywords
     %w[TO STEP UNTIL WHILE]
   end
 
@@ -7263,6 +7263,11 @@ class StatementFactory
       keywords += kwds.map(&:to_s)
     end
 
+    modifier_classes.each do |cl|
+      kwds = cl.lead_keywords.flatten
+      keywords += kwds.map(&:to_s)
+    end
+
     keywords.uniq
   end
 
@@ -7271,13 +7276,6 @@ class StatementFactory
     keywords = []
 
     statement_classes.each do |cl|
-      keywords += cl.extra_keywords
-    end
-
-    modifier_classes.each do |cl|
-      kwds = cl.lead_keywords.flatten
-      keywords += kwds.map(&:to_s)
-
       keywords += cl.extra_keywords
     end
 
