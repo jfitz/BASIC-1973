@@ -520,12 +520,23 @@ def make_interpreter_tokenbuilders(lead_keywords, stmt_keywords)
   # statement keywords occur later in the text
   tokenbuilders << ListTokenBuilder.new(normal_tb, 'DATA', stmt_keywords, KeywordToken)
 
+  change_keywords = ChangeStatement.stmt_keywords
+  tokenbuilders << ListTokenBuilder.new(extra_tb, 'CHANGE', change_keywords, KeywordToken)
+  tokenbuilders << ListTokenBuilder.new(extra_tb, 'CHA', change_keywords, KeywordToken)
+
   close_keywords = OpenStatement.stmt_keywords
   tokenbuilders << ListTokenBuilder.new(extra_tb, 'CLOSE', close_keywords, KeywordToken)
   tokenbuilders << ListTokenBuilder.new(extra_tb, 'CLO', close_keywords, KeywordToken)
   
   for_keywords = ForStatement.stmt_keywords
   tokenbuilders << ListTokenBuilder.new(extra_tb, 'FOR', for_keywords, KeywordToken)
+
+  goto_keywords = GotoStatement.stmt_keywords
+  tokenbuilders << ListTokenBuilder.new(extra_tb, 'GOTO', goto_keywords, KeywordToken)
+  tokenbuilders << ListTokenBuilder.new(extra_tb, 'GOT', goto_keywords, KeywordToken)
+
+  on_keywords = OnStatement.stmt_keywords
+  tokenbuilders << ListTokenBuilder.new(extra_tb, 'ON', on_keywords, KeywordToken)
 
   open_keywords = OpenStatement.stmt_keywords
   tokenbuilders << ListTokenBuilder.new(extra_tb, 'OPEN', open_keywords, KeywordToken)

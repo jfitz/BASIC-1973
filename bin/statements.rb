@@ -1816,7 +1816,7 @@ class ChangeStatement < AbstractStatement
     ]
   end
 
-  def self.extra_keywords
+  def self.stmt_keywords
     ['TO']
   end
 
@@ -3068,7 +3068,7 @@ class GotoStatement < AbstractStatement
     ]
   end
 
-  def self.extra_keywords
+  def self.stmt_keywords
     ['OF']
   end
 
@@ -4457,7 +4457,7 @@ class OnStatement < AbstractStatement
     ]
   end
 
-  def self.extra_keywords
+  def self.stmt_keywords
     %w[GOTO THEN]
   end
 
