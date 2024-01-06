@@ -504,7 +504,7 @@ class Shell
   end
 end
 
-def make_interpreter_tokenbuilders(lead_keywords, stmt_keywords)
+def make_interpreter_tokenbuilders(lead_keywords)
   normal_tb = true
   data_tb = false
   extra_tb = false
@@ -514,11 +514,8 @@ def make_interpreter_tokenbuilders(lead_keywords, stmt_keywords)
   tokenbuilders << RemarkTokenBuilder.new(normal_tb, 'DATA')
   tokenbuilders << StatementSeparatorTokenBuilder.new(normal_tb, '')
 
-  # lead keywords let us identify the statement
+  # DATA disables statement keywords
   tokenbuilders << ListTokenBuilder.new(normal_tb, 'DATA', lead_keywords, KeywordToken)
-
-  # statement keywords occur later in the text
-  tokenbuilders << ListTokenBuilder.new(normal_tb, 'DATA', stmt_keywords, KeywordToken)
 
   change_keywords = ChangeStatement.stmt_keywords
   tokenbuilders << ListTokenBuilder.new(extra_tb, 'CHANGE', change_keywords, KeywordToken)
@@ -534,6 +531,12 @@ def make_interpreter_tokenbuilders(lead_keywords, stmt_keywords)
   goto_keywords = GotoStatement.stmt_keywords
   tokenbuilders << ListTokenBuilder.new(extra_tb, 'GOTO', goto_keywords, KeywordToken)
   tokenbuilders << ListTokenBuilder.new(extra_tb, 'GOT', goto_keywords, KeywordToken)
+
+  if_keywords = ['THEN']
+  tokenbuilders << ListTokenBuilder.new(extra_tb, 'IF', if_keywords, KeywordToken)
+
+  then_keywords = ['ELSE']
+  tokenbuilders << ListTokenBuilder.new(extra_tb, 'THEN', then_keywords, KeywordToken)
 
   on_keywords = OnStatement.stmt_keywords
   tokenbuilders << ListTokenBuilder.new(extra_tb, 'ON', on_keywords, KeywordToken)
@@ -984,8 +987,7 @@ console_io = ConsoleIo.new
 
 statement_factory = StatementFactory.instance
 lead_keywords = statement_factory.lead_keywords
-stmt_keywords = statement_factory.stmt_keywords
-tokenbuilders = make_interpreter_tokenbuilders(lead_keywords, stmt_keywords)
+tokenbuilders = make_interpreter_tokenbuilders(lead_keywords)
 statement_factory.tokenbuilders = tokenbuilders
 
 interpreter = Interpreter.new(console_io)
