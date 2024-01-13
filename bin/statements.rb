@@ -73,6 +73,8 @@ class AbstractStatement
                 :reachable, :visited
 
   def initialize(_, keywords, tokens_lists)
+    @allow_cond_modifiers = false
+    @allow_loop_modifiers = false
     @keywords = keywords
     @executable = :run
     @tokens = tokens_lists.flatten
@@ -85,7 +87,6 @@ class AbstractStatement
     @valid = true
     @comment = false
     @modifiers = []
-    @any_if_modifiers = false
     @elements = {
       numerics: [],
       num_symbols: [],
@@ -394,6 +395,22 @@ class AbstractStatement
     syms = @tokens.clone
     syms.keep_if(&:symbol_constant?)
     syms.keep_if(&:numeric_constant?)
+  end
+
+  def any_cond_modifiers
+    any = false
+
+    @modifiers.each { |modifier| any ||= modifier.cond }
+
+    any
+  end
+
+  def any_loop_modifiers
+    any = false
+
+    @modifiers.each { |modifier| any ||= modifier.loop }
+
+    any
   end
 
   def modifier_strings
@@ -953,8 +970,6 @@ class AbstractStatement
       # remove the tokens used for the modifier
       tokens_lists.pop(2)
 
-      @any_if_modifiers = true
-
       return true
     end
 
@@ -970,9 +985,6 @@ class AbstractStatement
 
       # remove the tokens used for the modifier
       tokens_lists.pop(2)
-
-      # any_if because its a conditional
-      @any_if_modifiers = true
 
       return true
     end
@@ -1179,9 +1191,6 @@ class AbstractStatement
       # remove the tokens used for the modifier
       tokens_lists.pop(2)
 
-      # any_if because its a conditional
-      @any_if_modifiers = true
-
       return true
     end
 
@@ -1198,9 +1207,6 @@ class AbstractStatement
 
       # remove the tokens used for the modifier
       tokens_lists.pop(2)
-
-      # any_if because its a conditional
-      @any_if_modifiers = true
 
       return true
     end
@@ -1227,6 +1233,12 @@ class AbstractStatement
     @core_tokens = tokens_lists.flatten
 
     @modifiers.each do |modifier|
+      @errors << 'Loop modifiers not allowed' if
+        modifier.loop && !@allow_loop_modifiers
+
+      @errors << 'Conditional modifiers not allowed' if
+        modifier.cond && !@allow_cond_modifiers
+
       @errors += modifier.errors
       @warnings += modifier.warnings
     end
@@ -1694,8 +1706,10 @@ class BreakStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+
     extract_modifiers(tokens_lists)
-    @autonext = false unless @any_if_modifiers
+    @autonext = false unless any_cond_modifiers
 
     template = []
 
@@ -1744,8 +1758,11 @@ class ChainStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+    @allow_loop_modifiers = true
+
     extract_modifiers(tokens_lists)
-    @autonext = false unless @any_if_modifiers
+    @autonext = false unless any_cond_modifiers
 
     template = [[1, '>']]
 
@@ -1818,6 +1835,9 @@ class ChangeStatement < AbstractStatement
 
   def initialize(_, keywords, tokens_lists)
     super
+
+    @allow_cond_modifiers = true
+    @allow_loop_modifiers = true
 
     extract_modifiers(tokens_lists)
 
@@ -1940,6 +1960,9 @@ class CloseStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+    @allow_loop_modifiers = true
+
     extract_modifiers(tokens_lists)
 
     template = [[1, '>=']]
@@ -1989,8 +2012,10 @@ class ContinueStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+
     extract_modifiers(tokens_lists)
-    @autonext = false unless @any_if_modifiers
+    @autonext = false unless any_cond_modifiers
 
     template = []
 
@@ -2183,6 +2208,10 @@ class DimStatement < AbstractStatement
 
   def initialize(_, keywords, tokens_lists)
     super
+
+    @allow_cond_modifiers = true
+
+    extract_modifiers(tokens_lists)
 
     template = [[1, '>=']]
 
@@ -2758,6 +2787,9 @@ class ForgetStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+    @allow_loop_modifiers = true
+
     extract_modifiers(tokens_lists)
 
     template = [[1, '>=']]
@@ -2963,6 +2995,9 @@ class GosubStatement < AbstractStatement
   def initialize(line_number, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+    @allow_loop_modifiers = true
+
     extract_modifiers(tokens_lists)
 
     template = [[1]]
@@ -3071,8 +3106,10 @@ class GotoStatement < AbstractStatement
   def initialize(line_number, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+
     extract_modifiers(tokens_lists)
-    @autonext = false unless @any_if_modifiers
+    @autonext = false unless any_cond_modifiers
 
     template1 = [[1]]
     template2 = [[1, '>='], 'OF', [1, '>=']]
@@ -3905,6 +3942,9 @@ class InputStatement < AbstractStatement
   def initialize(_, _, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+    @allow_loop_modifiers = true
+
     extract_modifiers(tokens_lists)
 
     template = [[1, '>=']]
@@ -3988,6 +4028,9 @@ class InputCharStatement < AbstractStatement
 
   def initialize(_, keywords, tokens_lists)
     super
+
+    @allow_cond_modifiers = true
+    @allow_loop_modifiers = true
 
     extract_modifiers(tokens_lists)
 
@@ -4082,6 +4125,9 @@ class AbstractScalarLetStatement < AbstractLetStatement
   def initialize(_, _, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+    @allow_loop_modifiers = true
+
     extract_modifiers(tokens_lists)
 
     template = [[3, '>=']]
@@ -4170,6 +4216,9 @@ class LineInputStatement < AbstractStatement
 
   def initialize(_, _, tokens_lists)
     super
+
+    @allow_cond_modifiers = true
+    @allow_loop_modifiers = true
 
     extract_modifiers(tokens_lists)
 
@@ -4628,6 +4677,9 @@ class OpenStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+    @allow_loop_modifiers = true
+
     extract_modifiers(tokens_lists)
 
     template_input_as = [[1, '>='], 'FOR', 'INPUT', 'AS', [1, '>=']]
@@ -4774,6 +4826,8 @@ class OptionStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+
     extras = $options.keys.map(&:upcase)
     template = [extras, [1, '>=']]
 
@@ -4849,6 +4903,9 @@ class PrintStatement < AbstractStatement
 
   def initialize(_, keywords, tokens_lists)
     super
+
+    @allow_cond_modifiers = true
+    @allow_loop_modifiers = true
 
     extract_modifiers(tokens_lists)
 
@@ -5145,6 +5202,8 @@ class RandomizeStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+
     extract_modifiers(tokens_lists)
 
     template = []
@@ -5180,6 +5239,9 @@ class ReadStatement < AbstractStatement
 
   def initialize(_, keywords, tokens_lists)
     super
+
+    @allow_cond_modifiers = true
+    @allow_loop_modifiers = true
 
     extract_modifiers(tokens_lists)
 
@@ -5303,6 +5365,8 @@ class RestoreStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+
     extract_modifiers(tokens_lists)
 
     template = []
@@ -5336,8 +5400,10 @@ class ResumeStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+
     extract_modifiers(tokens_lists)
-    @autonext = false unless @any_if_modifiers
+    @autonext = false unless any_cond_modifiers
 
     template_0 = []
     template_1 = [[1, '>=']]
@@ -5405,8 +5471,10 @@ class ReturnStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+
     extract_modifiers(tokens_lists)
-    @autonext = false unless @any_if_modifiers
+    @autonext = false unless any_cond_modifiers
 
     template = []
 
@@ -5438,8 +5506,10 @@ class RunStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+
     extract_modifiers(tokens_lists)
-    @autonext = false unless @any_if_modifiers
+    @autonext = false unless any_cond_modifiers
 
     template = []
 
@@ -5476,6 +5546,9 @@ class SleepStatement < AbstractStatement
 
   def initialize(_, keywords, tokens_lists)
     super
+
+    @allow_cond_modifiers = true
+    @allow_loop_modifiers = true
 
     extract_modifiers(tokens_lists)
 
@@ -5531,8 +5604,10 @@ class StopStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+
     extract_modifiers(tokens_lists)
-    @autonext = false unless @any_if_modifiers
+    @autonext = false unless any_cond_modifiers
 
     template = []
 
@@ -5575,6 +5650,8 @@ class UnsaveStatement < AbstractStatement
 
   def initialize(_, keywords, tokens_lists)
     super
+
+    @allow_cond_modifiers = true
 
     extract_modifiers(tokens_lists)
 
@@ -5777,6 +5854,9 @@ class WriteStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+    @allow_loop_modifiers = true
+
     extract_modifiers(tokens_lists)
 
     template = [[1, '>=']]
@@ -5835,6 +5915,8 @@ class ArrForgetStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+
     extract_modifiers(tokens_lists)
 
     template = [[1, '>=']]
@@ -5890,6 +5972,10 @@ class ArrInputStatement < AbstractStatement
     super
 
     template = [[1, '>=']]
+
+    @allow_cond_modifiers = true
+
+    extract_modifiers(tokens_lists)
 
     if check_template(tokens_lists, template)
       tokens_lists = split_tokens(tokens_lists[0], true)
@@ -5990,6 +6076,8 @@ class ArrPlotStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+
     extract_modifiers(tokens_lists)
 
     template2 = [[1, '>=']]
@@ -6059,6 +6147,8 @@ class ArrPrintStatement < AbstractStatement
 
   def initialize(_, keywords, tokens_lists)
     super
+
+    @allow_cond_modifiers = true
 
     extract_modifiers(tokens_lists)
 
@@ -6225,6 +6315,8 @@ class ArrReadStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+
     extract_modifiers(tokens_lists)
 
     template = [[1, '>=']]
@@ -6308,6 +6400,8 @@ class ArrWriteStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+
     extract_modifiers(tokens_lists)
 
     template = [[1, '>=']]
@@ -6367,6 +6461,8 @@ class ArrLetStatement < AbstractLetStatement
 
   def initialize(_, keywords, tokens_lists)
     super
+
+    @allow_cond_modifiers = true
 
     extract_modifiers(tokens_lists)
 
@@ -6468,6 +6564,8 @@ class MatForgetStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+
     extract_modifiers(tokens_lists)
 
     template = [[1, '>=']]
@@ -6521,6 +6619,10 @@ class MatInputStatement < AbstractStatement
 
   def initialize(_, keywords, tokens_lists)
     super
+
+    @allow_cond_modifiers = true
+
+    extract_modifiers(tokens_lists)
 
     template = [[1, '>=']]
 
@@ -6638,6 +6740,10 @@ class MatPlotStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+
+    extract_modifiers(tokens_lists)
+
     template2 = [[1, '>=']]
 
     @items = []
@@ -6705,6 +6811,8 @@ class MatPrintStatement < AbstractStatement
 
   def initialize(_, keywords, tokens_lists)
     super
+
+    @allow_cond_modifiers = true
 
     extract_modifiers(tokens_lists)
 
@@ -6898,6 +7006,8 @@ class MatReadStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+
     extract_modifiers(tokens_lists)
 
     template = [[1, '>=']]
@@ -6999,6 +7109,8 @@ class MatWriteStatement < AbstractStatement
   def initialize(_, keywords, tokens_lists)
     super
 
+    @allow_cond_modifiers = true
+
     extract_modifiers(tokens_lists)
 
     template = [[1, '>=']]
@@ -7057,6 +7169,8 @@ class MatLetStatement < AbstractLetStatement
 
   def initialize(_, keywords, tokens_lists)
     super
+
+    @allow_cond_modifiers = true
 
     extract_modifiers(tokens_lists)
 
