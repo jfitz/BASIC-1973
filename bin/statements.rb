@@ -4386,7 +4386,7 @@ class NextStatement < AbstractStatement
       fornext_control.bump_control(interpreter) if
         $options['fornext_one_beyond'].value
 
-      interpreter.exit_fornext(fornext_control)
+      interpreter.exit_loop(fornext_control)
       fornext_control.broken = false
     else
       # set next line from top item
@@ -5740,7 +5740,7 @@ class WendStatement < AbstractStatement
     while_control = interpreter.top_while
 
     if while_control.terminated?(interpreter)
-      interpreter.exit_while
+      interpreter.exit_loop(while_control)
     else
       interpreter.next_line_stmt_mod = while_control.start_line_stmt_mod
     end
@@ -6287,7 +6287,7 @@ class ArrNextStatement < AbstractStatement
       fornext_control.bump_control(interpreter) if
         $options['fornext_one_beyond'].value
 
-      interpreter.exit_fornext(fornext_control)
+      interpreter.exit_loop(fornext_control)
       fornext_control.broken = false
     else
       # set next line from top item
