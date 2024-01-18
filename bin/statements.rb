@@ -2415,7 +2415,7 @@ class AbstractForStatement < AbstractStatement
   def assign_fornext_markers(program, current_line_stmt)
     return if @nextstmt_line_stmt.nil?
 
-    marker = ForNextMarker.new(@variable, current_line_stmt)
+    marker = ForNextMarker.new(@control_variable, current_line_stmt)
     
     walk_line_stmt = current_line_stmt
 
@@ -2436,7 +2436,7 @@ class AbstractForStatement < AbstractStatement
   end
 
   def part_of_fornext_short(this_line_stmt)
-    marker = ForNextMarker.new(@variable, this_line_stmt)
+    marker = ForNextMarker.new(@control_variable, this_line_stmt)
 
     @part_of_fornext - [marker]
   end
@@ -2475,7 +2475,7 @@ class ForStatement < AbstractForStatement
       begin
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
-        @variable = Variable.new(variable_name, :scalar, [], [])
+        @control_variable = Variable.new(variable_name, :scalar, [], [])
         @start = ValueExpressionSet.new(tokens2, :scalar)
         @step = nil
         @end = ValueExpressionSet.new(tokens_lists[2], :scalar)
@@ -2486,7 +2486,7 @@ class ForStatement < AbstractForStatement
       begin
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
-        @variable = Variable.new(variable_name, :scalar, [], [])
+        @control_variable = Variable.new(variable_name, :scalar, [], [])
         @start = ValueExpressionSet.new(tokens2, :scalar)
         @step = ValueExpressionSet.new(tokens_lists[4], :scalar)
         @end = ValueExpressionSet.new(tokens_lists[2], :scalar)
@@ -2497,7 +2497,7 @@ class ForStatement < AbstractForStatement
       begin
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
-        @variable = Variable.new(variable_name, :scalar, [], [])
+        @control_variable = Variable.new(variable_name, :scalar, [], [])
         @start = ValueExpressionSet.new(tokens2, :scalar)
         @step = ValueExpressionSet.new(tokens_lists[2], :scalar)
         @end = ValueExpressionSet.new(tokens_lists[4], :scalar)
@@ -2508,7 +2508,7 @@ class ForStatement < AbstractForStatement
       begin
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
-        @variable = Variable.new(variable_name, :scalar, [], [])
+        @control_variable = Variable.new(variable_name, :scalar, [], [])
         @start = ValueExpressionSet.new(tokens2, :scalar)
         @until = ValueExpressionSet.new(tokens_lists[2], :scalar)
       rescue BASICExpressionError => e
@@ -2518,7 +2518,7 @@ class ForStatement < AbstractForStatement
       begin
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
-        @variable = Variable.new(variable_name, :scalar, [], [])
+        @control_variable = Variable.new(variable_name, :scalar, [], [])
         @start = ValueExpressionSet.new(tokens2, :scalar)
         @until = ValueExpressionSet.new(tokens_lists[2], :scalar)
         @step = ValueExpressionSet.new(tokens_lists[4], :scalar)
@@ -2529,7 +2529,7 @@ class ForStatement < AbstractForStatement
       begin
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
-        @variable = Variable.new(variable_name, :scalar, [], [])
+        @control_variable = Variable.new(variable_name, :scalar, [], [])
         @start = ValueExpressionSet.new(tokens2, :scalar)
         @step = ValueExpressionSet.new(tokens_lists[2], :scalar)
         @until = ValueExpressionSet.new(tokens_lists[4], :scalar)
@@ -2540,7 +2540,7 @@ class ForStatement < AbstractForStatement
       begin
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
-        @variable = Variable.new(variable_name, :scalar, [], [])
+        @control_variable = Variable.new(variable_name, :scalar, [], [])
         @start = ValueExpressionSet.new(tokens2, :scalar)
         @while = ValueExpressionSet.new(tokens_lists[2], :scalar)
       rescue BASICExpressionError => e
@@ -2550,7 +2550,7 @@ class ForStatement < AbstractForStatement
       begin
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
-        @variable = Variable.new(variable_name, :scalar, [], [])
+        @control_variable = Variable.new(variable_name, :scalar, [], [])
         @start = ValueExpressionSet.new(tokens2, :scalar)
         @while = ValueExpressionSet.new(tokens_lists[2], :scalar)
         @step = ValueExpressionSet.new(tokens_lists[4], :scalar)
@@ -2561,7 +2561,7 @@ class ForStatement < AbstractForStatement
       begin
         tokens1, tokens2 = control_and_start(tokens_lists[0])
         variable_name = VariableName.new(tokens1[0])
-        @variable = Variable.new(variable_name, :scalar, [], [])
+        @control_variable = Variable.new(variable_name, :scalar, [], [])
         @start = ValueExpressionSet.new(tokens2, :scalar)
         @step = ValueExpressionSet.new(tokens_lists[2], :scalar)
         @while = ValueExpressionSet.new(tokens_lists[4], :scalar)
@@ -2582,18 +2582,18 @@ class ForStatement < AbstractForStatement
     @warnings << 'Constant expression' if !@while.nil? && @while.constant?
 
     unless @until.nil?
-      @warnings << "No #{@variable} in expression" unless
-        @until.include?(@variable)
+      @warnings << "No #{@control_variable} in expression" unless
+        @until.include?(@control_variable)
     end
 
     unless @while.nil?
-      @warnings << "No #{@variable} in expression" unless
-        @while.include?(@variable)
+      @warnings << "No #{@control_variable} in expression" unless
+        @while.include?(@control_variable)
     end
 
     @mccabe = 1
 
-    xref = XrefEntry.new(@variable.to_s, nil, true)
+    xref = XrefEntry.new(@control_variable.to_s, nil, true)
 
     @elements[:numerics] = []
     @elements[:strings] = []
@@ -2664,9 +2664,9 @@ class ForStatement < AbstractForStatement
     @loopstart_line_stmt_mod = program.find_next_line_stmt_mod(line_stmt)
 
     begin
-      unless @variable.nil?
+      unless @control_variable.nil?
         @nextstmt_line_stmt =
-          program.find_closing_next_line_stmt(@variable, line_stmt)
+          program.find_closing_next_line_stmt(@control_variable, line_stmt)
       end
     rescue BASICSyntaxError => e
       @program_errors << e.message
@@ -2702,7 +2702,7 @@ class ForStatement < AbstractForStatement
   def dump
     lines = []
 
-    lines << ("control: #{@variable.dump}") unless @variable.nil?
+    lines << ("control: #{@control_variable.dump}") unless @control_variable.nil?
     lines << ("start:   #{@start.dump}") unless @start.nil?
     lines << ("end:     #{@end.dump}") unless @end.nil?
     lines << ("step:    #{@step.dump}") unless @step.nil?
@@ -2734,19 +2734,19 @@ class ForStatement < AbstractForStatement
       to = @end.evaluate(interpreter)[0]
 
       fornext_control =
-        ForToControl.new(@variable, from, step, to,
+        ForToControl.new(@control_variable, from, step, to,
                          @loopstart_line_stmt_mod)
     end
 
     unless @until.nil?
       fornext_control =
-        ForUntilControl.new(@variable, from, step, @until,
+        ForUntilControl.new(@control_variable, from, step, @until,
                             @loopstart_line_stmt_mod)
     end
 
     unless @while.nil?
       fornext_control =
-        ForWhileControl.new(@variable, from, step, @while,
+        ForWhileControl.new(@control_variable, from, step, @while,
                             @loopstart_line_stmt_mod)
     end
 
@@ -2898,7 +2898,7 @@ class GetStatement < AbstractStatement
           @comprehension_effort += item.comprehension_effort
         end
 
-        @mccabe += @items.size
+        @mccabe = @items.size
       else
         @errors << 'Syntax error'
       end
@@ -3983,7 +3983,7 @@ class InputStatement < AbstractStatement
 
       @items.each { |item| @comprehension_effort += item.comprehension_effort }
 
-      @mccabe += @items.size
+      @mccabe = @items.size
     else
       @errors << 'Syntax error'
     end
@@ -4070,7 +4070,7 @@ class InputCharStatement < AbstractStatement
 
       @items.each { |item| @comprehension_effort += item.comprehension_effort }
 
-      @mccabe += 1
+      @mccabe = 1
     else
       @errors << 'Syntax error'
     end
@@ -4258,7 +4258,7 @@ class LineInputStatement < AbstractStatement
 
       @items.each { |item| @comprehension_effort += item.comprehension_effort }
 
-      @mccabe += @items.size
+      @mccabe = @items.size
     else
       @errors << 'Syntax error'
     end
@@ -4437,7 +4437,7 @@ class OnErrorStatement < AbstractStatement
         @errors << "Invalid line number #{dest_line}"
       end
 
-      @mccabe += 1
+      @mccabe = 1
     else
       @errors << 'Syntax error'
     end
@@ -4573,7 +4573,7 @@ class OnStatement < AbstractStatement
         @comprehension_effort += 1 if dest_line <= line_number
       end
 
-      @mccabe += @dest_lines.size
+      @mccabe = @dest_lines.size
     else
       @errors << 'Syntax error'
     end
@@ -5129,7 +5129,7 @@ class PutStatement < AbstractStatement
 
       @items.each { |item| @comprehension_effort += item.comprehension_effort }
 
-      @mccabe += @items.size
+      @mccabe = @items.size
     else
       @errors << 'Syntax error'
     end
@@ -5281,7 +5281,7 @@ class ReadStatement < AbstractStatement
 
       @items.each { |item| @comprehension_effort += item.comprehension_effort }
 
-      @mccabe += @items.size
+      @mccabe = @items.size
     else
       @errors << 'Syntax error'
     end
@@ -5325,7 +5325,7 @@ class RecordStatement < AbstractStatement
       @elements = make_references(@read_items)
       # TODO: merge these two dictionaries
       @elements = make_references(@write_items)
-      @mccabe += @write_items.size
+      @mccabe = @write_items.size
     else
       @errors << 'Syntax error'
     end
@@ -6571,7 +6571,7 @@ class ArrReadStatement < AbstractStatement
 
       @items.each { |item| @comprehension_effort += item.comprehension_effort }
 
-      @mccabe += @items.size
+      @mccabe = @items.size
     else
       @errors << 'Syntax error'
     end
@@ -7262,7 +7262,7 @@ class MatReadStatement < AbstractStatement
 
       @items.each { |item| @comprehension_effort += item.comprehension_effort }
 
-      @mccabe += @items.size
+      @mccabe = @items.size
     else
       @errors << 'Syntax error'
     end

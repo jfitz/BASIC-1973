@@ -1107,7 +1107,7 @@ class Interpreter
 
   # get the current value for ERL()
   def error_line(part)
-    raise BASICError.new('ERL without ERROR') if @resume_stack.empty?
+    raise BASICSyntaxError.new('ERL without ERROR') if @resume_stack.empty?
 
     line_index = @resume_stack[-1]
 
@@ -1127,7 +1127,7 @@ class Interpreter
 
   # get the current value for ERR()
   def error_code
-    raise BASICError.new('ERR without ERROR') if @error_stack.empty?
+    raise BASICSyntaxError.new('ERR without ERROR') if @error_stack.empty?
 
     code = @error_stack[-1]
     NumericValue.new(code)
@@ -1208,7 +1208,7 @@ class Interpreter
   def set_user_function(definition)
     signature = definition.signature
 
-    raise BASICError, "invalid signature #{signature.class}" unless
+    raise BASICSyntaxError, "invalid signature #{signature.class}" unless
       signature.class.to_s == 'UserFunctionSignature'
 
     raise BASICRuntimeError.new(:te_func_alr, signature) if
@@ -1636,7 +1636,7 @@ class Interpreter
   def retrieve_fornext(control_variable)
     fornext = @fornexts[control_variable]
 
-    raise BASICError.new('NEXT without FOR') if fornext.nil?
+    raise BASICSyntaxError.new('NEXT without FOR') if fornext.nil?
 
     fornext
   end
@@ -1648,9 +1648,9 @@ class Interpreter
   end
 
   def exit_loop(loop_control)
-    raise BASICError.new('Loop end without start') if @loop_stack.empty?
+    raise BASICSyntaxError.new('Loop end without start') if @loop_stack.empty?
 
-    raise BASICError.new('Loop end mismatch') if
+    raise BASICSyntaxError.new('Loop end mismatch') if
       @loop_stack[0].type != loop_control.type
 
     @loop_broken = loop_control.broken
@@ -1660,7 +1660,7 @@ class Interpreter
   end
 
   def top_fornext
-    raise BASICError.new('Implied NEXT without FOR') if
+    raise BASICSyntaxError.new('Implied NEXT without FOR') if
       @loop_stack.empty?
 
     raise BASICSyntaxError.new('Implied NEXT without FOR') if
@@ -1677,20 +1677,20 @@ class Interpreter
   end
 
   def top_while
-    raise BASICError.new('Implied WEND without WHILE') if
+    raise BASICSyntaxError.new('Implied WEND without WHILE') if
       @loop_stack.empty?
 
-    raise BASICError.new('Implied WEND without WHILE') if
+    raise BASICSyntaxError.new('Implied WEND without WHILE') if
       @loop_stack[0].type != :while
 
     @loop_stack[-1]
   end
 
   def top_until
-    raise BASICError.new('Implied END UNTIL without UNTIL') if
+    raise BASICSyntaxError.new('Implied END UNTIL without UNTIL') if
       @loop_stack.empty?
 
-    raise BASICError.new('Implied END UNTIL without UNTIL') if
+    raise BASICSyntaxError.new('Implied END UNTIL without UNTIL') if
       @loop_stack[0].type != :until
 
     @loop_stack[-1]
