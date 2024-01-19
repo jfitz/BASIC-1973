@@ -6002,7 +6002,7 @@ class ArrForInStatement < AbstractForStatement
       begin
         tokens1, tokens2 = control_and_array(tokens[0], tokens[2])
         @variable_name = VariableName.new(tokens1)
-        @variable = Variable.new(@variable_name, :scalar, [], [])
+        @control_variable = Variable.new(@variable_name, :scalar, [], [])
         @array_name = VariableName.new(tokens2)
         @array = Variable.new(@array_name, :array, [], [])
       rescue BASICExpressionError => e
@@ -6014,7 +6014,7 @@ class ArrForInStatement < AbstractForStatement
 
     @mccabe = 1
 
-    xref_v = XrefEntry.new(@variable.to_s, nil, true)
+    xref_v = XrefEntry.new(@control_variable.to_s, nil, true)
     xref_a = XrefEntry.new(@array.to_s, nil, true)
 
     @elements[:numerics] = []
@@ -6035,7 +6035,7 @@ class ArrForInStatement < AbstractForStatement
     @loopstart_line_stmt_mod = program.find_next_line_stmt_mod(line_stmt)
 
     begin
-      unless @variable.nil?
+      unless @control_variable.nil?
         @nextstmt_line_stmt =
           program.find_closing_arr_next_line_stmt(line_stmt)
       end
@@ -6067,7 +6067,7 @@ class ArrForInStatement < AbstractForStatement
   def dump
     lines = []
 
-    lines << ("control: #{@variable.dump}") unless @variable.nil?
+    lines << ("control: #{@control_variable.dump}") unless @control_variable.nil?
     lines << ("array:   #{@array.dump}") unless @array.nil?
 
     @modifiers&.each { |item| lines += item.dump }
@@ -6098,7 +6098,7 @@ class ArrForInStatement < AbstractForStatement
     step = NumericValue.new(1)
     step = @step.evaluate(interpreter)[0] unless @step.nil?
 
-    fornext_control = ArrForInControl.new(@variable, from, step, to,
+    fornext_control = ArrForInControl.new(@control_variable, from, step, to,
                                           @loopstart_line_stmt_mod)
 
     interpreter.assign_fornext(fornext_control)
