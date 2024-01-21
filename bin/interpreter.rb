@@ -1030,6 +1030,9 @@ class Interpreter
 
     uncachers = %w[base cache_const_expr degrees precision radians wrap]
     @program.uncache if uncachers.include?(name)
+
+    @trace_out.newline_when_needed
+    @trace_out.print_line(" #{name.upcase} = #{v}")
   end
 
   def pop_option(name)
@@ -1045,6 +1048,9 @@ class Interpreter
 
     uncachers = %w[base cache_const_expr degrees precision radians wrap]
     @program.uncache if uncachers.include?(name)
+
+    @trace_out.newline_when_needed
+    @trace_out.print_line(" #{name.upcase} = #{v}")
   end
 
   def clear_variables
@@ -1476,7 +1482,7 @@ class Interpreter
     @variables.delete(v)
 
     @trace_out.newline_when_needed
-    @trace_out.print_line(" #{v}")
+    @trace_out.print_line(" forget #{v}")
   end
 
   def forget_compound_values(variable)

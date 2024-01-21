@@ -4380,8 +4380,7 @@ class NextStatement < AbstractStatement
     terminated = fornext_control.terminated?(interpreter)
 
     io = interpreter.trace_out
-    s = " terminated:#{terminated}"
-    io.trace_output(s)
+    io.trace_output(" terminated:#{terminated}")
 
     if terminated
       fornext_control.bump_control(interpreter) if
@@ -6281,8 +6280,7 @@ class ArrNextStatement < AbstractStatement
     terminated = fornext_control.terminated?(interpreter)
 
     io = interpreter.trace_out
-    s = " terminated:#{terminated}"
-    io.trace_output(s)
+    io.trace_output(" terminated:#{terminated}")
 
     if terminated
       fornext_control.bump_control(interpreter) if
