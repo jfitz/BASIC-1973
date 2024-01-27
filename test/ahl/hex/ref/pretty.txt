@@ -11,8 +11,9 @@
 5     ! IF THE PROGRAM LOSES A GAME, IT ERASES THE MOVE THAT LED TO DEFEAT. IF IT HITS A POSITION FROM WHICH ALL MOVES HAVE BEEN DELETED (THEY ALL LED TO DEFEAT), IT ERASES THE MOVE THAT GOT IT HERE AND RESIGNS.
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
-10  INPUT "INSTRUCTIONS"; C$ :
+10  INPUT "DO YOU WANT INSTRUCTIONS? "; C$ :
     IF LEFT(C$, 1%) <> "Y" THEN 110
+ WARNING: Line exceeds PRETTY width limit 72
 20  & :
     &, "THIS PROGRAM PLAYS THE GAME OF HEXAPAWN." :
     & "HEXAPAWN IS PLAYED WITH CHESS PAWNS ON A 3 BY 3 BOARD. THE PAWNS ARE" :
@@ -44,7 +45,7 @@
 100  DEF FNC$(X$, X%, Y$) = LEFT(X$, X%, 1%) + Y$ + RIGHT(X$, X% + LEN(Y$))
 105  DEF FNN$(X%) :
      X$ = NUM$(X%) :
-     FNN$ = MID(X$, 2% * LEN(X$) - 2%) :
+     FNN$ = MID(X$, 2% * LEN(X$) - 1%) :
      FNEND
  WARNING: Line exceeds PRETTY width limit 72
 110  DIM P$(50%) :
@@ -76,7 +77,7 @@
      & RIGHT(P$, 7%) :
      &
  WARNING: Line exceeds PRETTY width limit 72
-210  INPUT "WHAT IS YOUR MOVE"; A%, B% :
+210  INPUT "WHAT IS YOUR MOVE? "; A%, B% :
      IF INSTR(1%, M$, FNN$(A%) + FNN$(B%)) = 0% THEN PRINT "ILLEGAL MOVE." :
      GOTO 210
  WARNING: Line exceeds LIST width limit 72
@@ -137,11 +138,11 @@
      & MID(P$, 4%, 3%) :
      & RIGHT(P$, 7%) :
      & :
-     & "I HAVE WON" W1% "AND YOU HAVE WON" W2% "OF" W1% + W2% "GAMES"
+     & "I HAVE WON" W1% " AND YOU HAVE WON" W2% " OF" W1% + W2% " GAMES"
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
-530  INPUT "ANOTHER GAME"; C$ :
-     IF C$ = "NO" THEN 9999 ELSE 120
+530  INPUT "ANOTHER GAME? "; C$ :
+     IF LEFT(C$, 1%) = "Y" THEN 120 ELSE 9990
 900     ! DATA**= <- OF MOVE IN GAME><POSITION><LIST OF MOVES> IN <POSITION>, -=BLANK *=COMPUTER'S PAWN, O=PLAYER'S PAWN <LIST OF MOVES> IS <- MOVE FROM><- MOVE TO><LIST OF MOVES>
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
@@ -167,5 +168,6 @@
       P$(Q%) = FNN$(P%) + P$ + M$
  WARNING: Line exceeds PRETTY width limit 72
 2060  RETURN
+9990  STOP
 9999  END
 

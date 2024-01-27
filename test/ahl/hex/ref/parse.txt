@@ -11,7 +11,8 @@
 5 ! IF THE PROGRAM LOSES A GAME, IT ERASES THE MOVE THAT LED TO DEFEAT. IF IT HITS A POSITION FROM WHICH ALL MOVES HAVE BEEN DELETED (THEY ALL LED TO DEFEAT), IT ERASES THE MOVE THAT GOT IT HERE AND RESIGNS.
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
-10 INPUT "INSTRUCTIONS"; C$: IF LEFT(C$, 1%)<> "Y" THEN 110
+10 INPUT "DO YOU WANT INSTRUCTIONS? "; C$: IF LEFT(C$, 1%) <> "Y" THEN 110
+ WARNING: Line exceeds PRETTY width limit 72
  Variable:C$ -> $
  Variable:C$ -> $
  IntegerValue:1
@@ -88,7 +89,7 @@
  BinaryOperatorPlus:+(%,.) -> .
  FunctionRight:RIGHT($,.) -> $
  BinaryOperatorPlus:+($,$) -> $
-105 DEF FNN$(X%):X$=NUM$(X%):FNN$=MID(X$,2%*LEN(X$)-2%):FNEND
+105 DEF FNN$(X%):X$=NUM$(X%):FNN$=MID(X$,2%*LEN(X$)-1%):FNEND
  WARNING: Line exceeds PRETTY width limit 72
  UserFunctionName:FNN$ -> $
  VariableName:X% -> %
@@ -102,7 +103,7 @@
  Variable:X$ -> $
  FunctionLen:LEN($) -> .
  BinaryOperatorMultiply:*(%,.) -> .
- IntegerValue:2
+ IntegerValue:1
  BinaryOperatorMinus:-(.,%) -> .
  FunctionMid:MID($,.) -> $
  AssignmentOperator:= $ -> $
@@ -172,7 +173,7 @@
  FunctionRight:RIGHT($,%) -> $
  CarriageControl:NL
  CarriageControl:NL
-210 INPUT "WHAT IS YOUR MOVE"; A%,B%: IF INSTR(1%,M$,FNN$(A%)+FNN$(B%))=0% THEN PRINT "ILLEGAL MOVE.": GOTO 210
+210 INPUT "WHAT IS YOUR MOVE? "; A%,B%: IF INSTR(1%,M$,FNN$(A%)+FNN$(B%))=0% THEN PRINT "ILLEGAL MOVE.": GOTO 210
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
  Variable:A% -> %
@@ -397,7 +398,7 @@
  IntegerValue:1
  BinaryOperatorPlus:+(%,%) -> %
  AssignmentOperator:= % -> %
-520 &: &"BOARD:": &LEFT(P$,3%): &MID(P$,4%,3%): &RIGHT(P$,7%): &: & "I HAVE WON" W1% "AND YOU HAVE WON" W2% "OF" W1%+W2% "GAMES"
+520 &: &"BOARD:": &LEFT(P$,3%): &MID(P$,4%,3%): &RIGHT(P$,7%): &: & "I HAVE WON" W1% " AND YOU HAVE WON" W2% " OF" W1%+W2% " GAMES"
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
  CarriageControl:NL
@@ -421,25 +422,27 @@
  CarriageControl:
  Variable:W1% -> %
  CarriageControl:
- TextValue:"AND YOU HAVE WON"
+ TextValue:" AND YOU HAVE WON"
  CarriageControl:
  Variable:W2% -> %
  CarriageControl:
- TextValue:"OF"
+ TextValue:" OF"
  CarriageControl:
  Variable:W1% -> %
  Variable:W2% -> %
  BinaryOperatorPlus:+(%,%) -> %
  CarriageControl:
- TextValue:"GAMES"
+ TextValue:" GAMES"
  CarriageControl:NL
-530 INPUT "ANOTHER GAME"; C$: IF C$="NO" THEN 9999 ELSE 120
+530 INPUT "ANOTHER GAME? "; C$: IF LEFT(C$, 1%) ="Y" THEN 120 ELSE 9990
  Variable:C$ -> $
  Variable:C$ -> $
- TextValue:"NO"
+ IntegerValue:1
+ FunctionLeft:LEFT($,%) -> $
+ TextValue:"Y"
  BinaryOperatorEqual:=($,$) -> ?
- LineNumber:9999
  LineNumber:120
+ LineNumber:9990
 900 ! DATA**= <- OF MOVE IN GAME><POSITION><LIST OF MOVES> IN <POSITION>, -=BLANK *=COMPUTER'S PAWN, O=PLAYER'S PAWN <LIST OF MOVES> IS <- MOVE FROM><- MOVE TO><LIST OF MOVES>
  WARNING: Line exceeds LIST width limit 72
  WARNING: Line exceeds PRETTY width limit 72
@@ -634,6 +637,8 @@
  BinaryOperatorPlus:+($,$) -> $
  AssignmentOperator:= $ -> $
 2060 RETURN
+ 
+9990 STOP
  
 9999 END
  

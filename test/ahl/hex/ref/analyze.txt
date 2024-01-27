@@ -1,23 +1,23 @@
 Statistics:
 
-Number of lines: 43
-Number of valid statements: 110
+Number of lines: 44
+Number of valid statements: 111
 Number of comments: 0
-Number of executable statements: 108
+Number of executable statements: 109
 
 Complexity:
 
 Comment density: 0.000
-Comprehension effort: 444
+Comprehension effort: 446
 McCabe complexity: 26
 Halstead complexity:
- length: 677
- volume: 3423.078
- difficulty: 64.649
- effort: 221297.393
- language: 0.819
- intelligence: 52.949
- time: 204.905
+ length: 682
+ volume: 3444.002
+ difficulty: 65.445
+ effort: 225394.263
+ language: 0.804
+ intelligence: 52.624
+ time: 208.698
 
 1 (0 0) 
   Origs: 
@@ -34,7 +34,7 @@ Halstead complexity:
 5 (0 0) 
   Origs: 
   Dests: 
-10 (1 2) INPUT "INSTRUCTIONS"; C$
+10 (1 2) INPUT "DO YOU WANT INSTRUCTIONS? "; C$
    (1 5) IF LEFT(C$, 1%) <> "Y" THEN 110
   Origs: :start
   Dests: 20:auto, 110:ifthen
@@ -71,7 +71,7 @@ Halstead complexity:
   Dests: 
 105 FNN$(%) (0 1) DEF FNN$(X%)
     FNN$(%) (0 4) X$ = NUM$(X%)
-    FNN$(%) (0 6) FNN$ = MID(X$, 2% * LEN(X$) - 2%)
+    FNN$(%) (0 6) FNN$ = MID(X$, 2% * LEN(X$) - 1%)
     FNN$(%) (0 1) FNEND
   Origs: 2020:function, 2030:function, 2040:function, 2050:function
   Dests: 
@@ -106,7 +106,7 @@ Halstead complexity:
     (0 2) &
   Origs: 190:auto
   Dests: 210:auto
-210 (2 3) INPUT "WHAT IS YOUR MOVE"; A%, B%
+210 (2 3) INPUT "WHAT IS YOUR MOVE? "; A%, B%
     (1 6) IF INSTR(1%, M$, FNN$(A%) + FNN$(B%)) = 0% THEN PRINT "ILLEGAL MOVE."
     (0 3) GOTO 210
   Origs: 200:auto
@@ -178,13 +178,13 @@ Halstead complexity:
     (0 3) & MID(P$, 4%, 3%)
     (0 3) & RIGHT(P$, 7%)
     (0 2) &
-    (0 9) & "I HAVE WON" W1% "AND YOU HAVE WON" W2% "OF" W1% + W2% "GAMES"
+    (0 9) & "I HAVE WON" W1% " AND YOU HAVE WON" W2% " OF" W1% + W2% " GAMES"
   Origs: 500:goto, 510:auto
   Dests: 530:auto
-530 (1 2) INPUT "ANOTHER GAME"; C$
-    (1 6) IF C$ = "NO" THEN 9999 ELSE 120
+530 (1 2) INPUT "ANOTHER GAME? "; C$
+    (1 7) IF LEFT(C$, 1%) = "Y" THEN 120 ELSE 9990
   Origs: 520:auto
-  Dests: 120:ifthen, 9999:ifthen
+  Dests: 120:ifthen, 9990:ifthen
 900 (0 0) 
   Origs: 
   Dests: 
@@ -224,11 +224,14 @@ Halstead complexity:
 2060 G(2000) (0 1) RETURN
   Origs: 2050:auto
   Dests: 
-9999 (0 1) END
+9990 (0 1) STOP
   Origs: 530:ifthen
+  Dests: :stop
+9999 (0 1) END
+  Origs: 
   Dests: :stop
 
 Unreachable code:
 
-All executable lines are reachable.
+9999: END
 
