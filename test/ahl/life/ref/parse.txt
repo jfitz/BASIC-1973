@@ -31,8 +31,8 @@
  Declaration:A%(,) -> %(,)
  IntegerValue:24
  Declaration:B$() -> $()
-20 OPEN "KB:" AS FILE 1
- ERROR: Syntax error
+20 REM OPEN "KB:" AS FILE 1
+ Remark:OPEN "KB:" AS FILE 1
 30 ON ERROR GO TO 80
  LineNumber:80
 40 C%=1
@@ -40,9 +40,7 @@
  Variable:C% -> %
  NumericValue:1
  AssignmentOperator:= =. -> %
-50 INPUT LINE #1,B$(C%):B$(C%)=LEFT(B$(C%),LEN(B$(C%))-2%)
- NumericValue:1
- UnaryOperatorHash:#(.) -> =FH
+50 INPUT LINE B$(C%):B$(C%)=LEFT(B$(C%),LEN(B$(C%))-2%)
  Variable:C% -> %
  Variable:B$(%) -> $
  Variable:C% -> %
