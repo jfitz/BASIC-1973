@@ -607,7 +607,7 @@ class Interpreter
 
     raise(BASICSyntaxError, 'Infinite loop detected') if
       detect && @previous_line_indexes.include?(@current_line_stmt_mod)
-    
+
     @previous_line_indexes << @current_line_stmt_mod
 
     line_number = @current_line_stmt_mod.line_number
@@ -653,7 +653,6 @@ class Interpreter
   def exit_user_function
     @previous_line_indexes = @previous_stack.pop
     function_signature, @current_line_stmt_mod, @next_line_stmt_mod = @function_stack.pop
-    ## puts "POP #{function_signature} #{@current_line_stmt_mod} #{@next_line_stmt_mod}"
 
     # one user-def function may invoke a second
     @function_running = !@function_stack.empty?
@@ -739,9 +738,9 @@ class Interpreter
       next if tokens.empty?
 
       keyword = tokens[0]
-      args = tokens[1..-1]
 
       if keyword.keyword?
+        args = tokens[1..-1]
         execute_debug_command(keyword, args, cmd)
       else
         print "Unknown command #{cmd}\n"
@@ -1053,6 +1052,8 @@ class Interpreter
 
     uncachers = %w[base cache_const_expr degrees precision radians wrap]
     @program.uncache if uncachers.include?(name)
+
+    v = $options[name].value
 
     @trace_out.newline_when_needed
     @trace_out.print_line(" #{name.upcase} = #{v}")

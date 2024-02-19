@@ -332,7 +332,7 @@ end
 
 # class for units
 class Units
-  def self.new_empty()
+  def self.new_empty
     Units.new({}, '')
   end
 
@@ -1308,7 +1308,7 @@ class NumericValue < AbstractValue
     rad_name = $options['radians'].value
 
     new_units = Units.new_empty
-    new_units = Units.new({ rad_name => 1 }) if
+    new_units = Units.new_values({ rad_name => 1 }) if
       $options['trig_require_units'].value
 
     new_value = Math.atan2(@value, a2.to_f)
@@ -2673,12 +2673,12 @@ class Variable < AbstractElement
     "#{self.class}:#{@variable_name}#{signature} -> #{result}"
   end
 
-  def name
-    @variable_name
-  end
-
   def constant?
     @constant
+  end
+
+  def name
+    @variable_name
   end
 
   def dimensions?
@@ -2945,6 +2945,10 @@ class Declaration < AbstractElement
     @arg_consts = []
   end
 
+  def name
+    @variable_name
+  end
+
   def set_content_type(type_stack)
     if !type_stack.empty? && (type_stack[-1].class.to_s == 'Array')
       type_stack.pop
@@ -2977,21 +2981,17 @@ class Declaration < AbstractElement
     constant_stack.push(@constant)
   end
 
-  def signature
-    Sigils.make_shape_sigil(@shape)
+  def constant?
+    @constant
   end
 
-  def name
-    @variable_name
+  def signature
+    Sigils.make_shape_sigil(@shape)
   end
 
   def dump
     result = Sigils.make_type_sigil(@content_type) + Sigils.make_shape_sigil(@shape)
     "#{self.class}:#{@variable_name}#{signature} -> #{result}"
-  end
-
-  def constant?
-    @constant
   end
 
   def to_s

@@ -38,7 +38,7 @@ module Reader
     end
 
     # if last item was a separator, add a blank value
-    if prev_was_sep && !tokens.empty?
+    if prev_was_sep && !new_tokens.empty?
       new_tokens << BareTextLiteralToken.new('')
     end
 
@@ -329,8 +329,6 @@ class DataStore
   end
 
   def read
-    puts "INDEX: #{@data_index}"
-    puts "DS VALUES: #{@data_store.size}"
     raise BASICRuntimeError, :te_out_of_data if
       @data_index >= @data_store.size
 
