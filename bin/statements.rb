@@ -5293,6 +5293,7 @@ class ReadStatement < AbstractStatement
     @items.each do |item|
       targets = item.evaluate(interpreter)
       targets.each do |target|
+        puts "TARGET #{target}"
         value = ds.read
         interpreter.set_value(target, value)
       end
@@ -7275,6 +7276,8 @@ class MatReadStatement < AbstractStatement
     @items.each do |item|
       targets = item.evaluate(interpreter)
       targets.each do |target|
+        puts "TD: #{target.dimensions}"
+        puts "TD: #{target.dimensions?}"
         interpreter.set_dimensions(target.name, target.dimensions) if
           target.dimensions?
 
@@ -7292,6 +7295,7 @@ class MatReadStatement < AbstractStatement
 
   def read_values(name, interpreter, ds)
     dims = interpreter.get_dimensions(name)
+    puts "DIMS: #{dims}"
 
     case dims.size
     when 1
@@ -7320,6 +7324,7 @@ class MatReadStatement < AbstractStatement
     values = {}
 
     base = $options['base'].value
+    puts "BASE: #{base}"
 
     (base..dims[0].to_i).each do |row|
       (base..dims[1].to_i).each do |col|

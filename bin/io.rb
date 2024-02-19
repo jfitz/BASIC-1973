@@ -12,7 +12,7 @@ module Reader
     ascii_text
   end
 
-  def make_tokenbuilders()
+  def make_tokenbuilders
     tokenbuilders = []
     tokenbuilders << QuotedTextTokenBuilder.new(true, [])
     tokenbuilders << InputNumberTokenBuilder.new(true, [])
@@ -122,8 +122,7 @@ class ConsoleIo
     raise BASICRuntimeError, :te_eof if input_text.empty?
 
     input_text.bytes.collect do |c|
-      raise BASICRuntimeError, :te_break if
-                               c < 8
+      raise BASICRuntimeError, :te_break if c < 8
     end
 
     ascii_text = ascii_printables(input_text)
@@ -330,6 +329,8 @@ class DataStore
   end
 
   def read
+    puts "INDEX: #{@data_index}"
+    puts "DS VALUES: #{@data_store.size}"
     raise BASICRuntimeError, :te_out_of_data if
       @data_index >= @data_store.size
 
@@ -405,7 +406,7 @@ class FileHandler
   end
 
   def read_record(interpreter, rec_number)
-    raise BASICRuntimeError, :te_mode_inc if @mode != :memory
+    raise BASICRuntimeError, :te_mode_inc unless @mode == :memory
 
     # error if format not specified by RECORD
     raise BASICRuntimeError, :te_recno_inv if rec_number.negative?
@@ -435,7 +436,7 @@ class FileHandler
   end
 
   def write_record(record, rec_number)
-    raise BASICRuntimeError, :te_mode_inc if @mode != :memory
+    raise BASICRuntimeError, :te_mode_inc unless @mode == :memory
 
     # error if format not specified by RECORD
     raise BASICRuntimeError, :te_recno_inv if rec_number.negative?
@@ -555,7 +556,7 @@ class FileHandler
     file = File.open(file_name, 'rt')
     file.each_line { |line| lines << line.strip }
     file.close
-  rescue Exception => e
+  rescue Exception
     raise BASICRuntimeError.new(:te_file_no_read, file_name)
   else
     lines
@@ -565,7 +566,7 @@ class FileHandler
     file = File.open(file_name, 'wt')
     lines.each { |line| file.puts(line) }
     file.close
-  rescue Exception => e
+  rescue Exception
     raise BASICRuntimeError.new(:te_file_no_write, file_name)
   end
 end
